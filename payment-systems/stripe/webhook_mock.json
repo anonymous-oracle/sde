@@ -1,0 +1,11 @@
+{
+  "id": "evt_mock_123",
+  "type": "payment_intent.succeeded",
+  "data": {
+    "object": {
+      "id": "pi_mock_abc",
+      "object": "payment_intent",
+      "status": "succeeded"
+    }
+  }
+}
