@@ -52,7 +52,13 @@ def app(environ, start_response):
 
         sid = session_store.create(user.id)
         c = cookies.SimpleCookie()
-        c[""]
+        c["__Host-sessionid"] = sid
+        c["__Host-sessionid"]["path"] = "/"
+        c["__Host-sessionid"]["secure"] = True
+        c["__Host-sessionid"]["httponly"] = True
+        c["__Host-sessionid"]["samesite"] = "Lax"
+
+        headers.append(("Set-Cookie", c.output(headers="")))
         
 
         
