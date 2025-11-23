@@ -73,7 +73,10 @@ class System:
             if user.id == session.user_id:
                 return user
         return None
-
+    
+    def force_logout(self, sessionid) -> None:
+        if sessionid in self.sessions:
+            self.sessions[sessionid].is_active = False
 # ---------------------------------------------------------
 # 3. EXECUTION
 # ---------------------------------------------------------
@@ -92,6 +95,16 @@ if __name__ == "__main__":
     # Alice sends ONLY the token. Server looks up State.
     current_user = app.authenticate_request(token)
     
+    if current_user:
+        print(f"Authorized access for: {current_user.username}")
+    else:
+        print("401 Unauthorized")
+
+    # demonstrating a forced logout session
+    app.force_logout(token)
+
+    current_user = app.authenticate_request(token)
+
     if current_user:
         print(f"Authorized access for: {current_user.username}")
     else:
