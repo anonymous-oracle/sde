@@ -51,9 +51,11 @@ def verify_token(input_token, stored_token):
     return is_valid
 
 if __name__ == "__main__":
+    load_dotenv()
     demonstrate_generators()
     
     # Example: Timing attack defense
     real_secret = "deadbeef"
     user_attempt = "deadbaaf"
+    print(f"AUTH MODE: {os.environ.get("AUTH_MODE", "dev")}")
     print(f"Match: {verify_token(user_attempt, real_secret)}")
