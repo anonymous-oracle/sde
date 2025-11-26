@@ -1,17 +1,19 @@
-.PHONY: setup format lint test ci
+.PHONY: install lint test type run
 
-setup:
-	python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements-dev.txt
-
-format:
-	. .venv/bin/activate && black .
+install:
+	uv sync || poetry install || pip install -r requirements.txt
 
 lint:
-	. .venv/bin/activate && ruff check .
+	ruff check .
+
+format:
+	ruff check . --fix
 
 test:
-	. .venv/bin/activate && pytest
+	pytest -q
 
-ci: format lint test
+type:
+	mypy src
 
-
+run:
+	python -m app.entrypoints.main
