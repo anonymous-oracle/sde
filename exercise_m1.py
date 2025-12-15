@@ -27,6 +27,7 @@ class FakeEmailSender:
         print(f"   [FakeEmailSender] >> Written to log: {recipient} - {body}")
         return True
 
+<<<<<<< HEAD
 # exercise
 class SillyEmailSender:
     def send(self, recipient: str, body: str) -> bool:
@@ -44,4 +45,10 @@ if __name__ == "__main__":
     # my_sender = FakeEmailSender()
     # my_sender = SillyEmailSender()
     my_sender = BrokenSender()
+=======
+# --- Execution ---
+if __name__ == "__main__":
+    # We plug the toaster (FakeEmailSender) into the socket (service argument)
+    my_sender = FakeEmailSender()
+>>>>>>> 5805c7ce80c9fd32ffae1c5d6ea81ce56c2e9e37
     welcome_user(my_sender, "Alice")
