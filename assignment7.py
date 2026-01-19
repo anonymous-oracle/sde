@@ -28,6 +28,11 @@ class DatabaseManager:
         self.conn.commit()
         print(f"--- GAME SAVED: {player.name} ---")
 
+    def load_player(self, name):
+        self.cursor.execute("SELECT * FROM players WHERE name = ?", (name, ))
+        data = self.cursor.fetchone() # get the first result
+        return data # # Returns a tuple: (name, rank, hp) or None
+
 class Character:
     def __init__(self, name, hp, damage):
         self.name = name
@@ -51,12 +56,25 @@ class Hunter(Character):
     def pick_up_item(self, item):
         self.inventory.append(item)
         print(f"{self.name} obtained {item}!")
+    
+    def __str__(self):
+        return f"Hunter: {self.name} | Rank: {self.rank} | HP: {self.hp}"
 
 
 class Monster(Character):
     pass
 
-player = Hunter("Ashborn", "The Shadow Monarch")
+db = DatabaseManager()
+player_data = db.load_player("Ashborn")
+
+if player_data:
+    print("--- WELCOME BACK, MONARCH ---")
+    player = Hunter(player_data[0], player_data[1])
+    player.hp = player_data[2]
+    print(player)
+else:
+    print("--- NEW GAME STARTED ---")
+    player = Hunter("Ashborn", "The Shadow Monarch")
 boss = Monster("Igris - The Red", 200, 15)
 
 while True:
@@ -66,5 +84,4 @@ while True:
     if player.hp > 0 and boss.hp > 0:
         break
 
-db = DatabaseManager()
 db.save_player(player)
