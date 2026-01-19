@@ -81,7 +81,7 @@ while True:
     player.attack(boss)
     print("You hit the boss!")
     boss.attack(player)
-    if player.hp > 0 and boss.hp > 0:
+    if player.hp <= 0 or boss.hp <= 0:
         break
 
 db.save_player(player)
