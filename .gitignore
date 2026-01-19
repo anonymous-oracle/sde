@@ -19,6 +19,8 @@ env/
 .coverage
 coverage.xml
 htmlcov/
+*.db
+*.sqlite
 
 ### macOS
 .DS_Store
