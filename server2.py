@@ -35,4 +35,13 @@ while True:
         boss_hp += 5
         response = f"You healed the Boss (Why?!). Boss HP: {boss_hp}"
     else:
-        pass
+        response = "Unknown command. Try 'attack' or 'heal'."
+    
+    # 3. Send the result back
+    client_socket.send(bytes(response, "utf-8"))
+
+    # Check game over
+    if boss_hp <= 0:
+        client_socket.send(bytes("\nVICTORY! The Boss is dead.","utf-8"))
+
+client_socket.close()
