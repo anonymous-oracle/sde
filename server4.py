@@ -2,9 +2,11 @@ import socket
 import threading # for concurrency
 
 boss_hp = 500 # shared game state, multiple players can join in to attack the boss
+hp_lock = threading.Lock()
 
 def handle_client(client_socket: socket.socket, address):
     global boss_hp # refer to global scope boss_hp
+    global hp_lock
     print(f"New connection from {address}")
 
     while True:
@@ -14,8 +16,13 @@ def handle_client(client_socket: socket.socket, address):
                 break
             response = ""
             if command == "attack":
-                boss_hp -= 10
-                response = f"You hit! Global Boss HP: {boss_hp}"
+                # hp_lock.acquire() # make thread safe modification
+                # boss_hp -= 10
+                # hp_lock.release() # release lock after modification
+                # response = f"You hit! Global Boss HP: {boss_hp}"
+                with hp_lock:
+                    boss_hp -= 10
+                    response = f"You hit! Global Boss HP: {boss_hp}"
             else:
                 response = "Unknown command."
             
