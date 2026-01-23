@@ -1,14 +1,23 @@
 import socket
 import threading # for concurrency
+import queue # used for queueing actions from client events
 
 boss_hp = 500 # shared game state, multiple players can join in to attack the boss
-hp_lock = threading.Lock()
+game_events = queue.Queue() # holds game events as a buffer
+
+def process_game_events():
+    global game_events
+    global boss_hp
+    while boss_hp >= 0:
+        event = game_events.get()
+        attack_damage = event if isinstance(event, int) else 0
+        boss_hp -= attack_damage
+        print(boss_hp)
+
 
 def handle_client(client_socket: socket.socket, address):
-    global boss_hp # refer to global scope boss_hp
-    global hp_lock
     print(f"New connection from {address}")
-
+    global game_events
     while True:
         try:
             command = client_socket.recv(1024).decode("utf-8").lower()
@@ -16,13 +25,7 @@ def handle_client(client_socket: socket.socket, address):
                 break
             response = ""
             if command == "attack":
-                # hp_lock.acquire() # make thread safe modification
-                # boss_hp -= 10
-                # hp_lock.release() # release lock after modification
-                # response = f"You hit! Global Boss HP: {boss_hp}"
-                with hp_lock:
-                    boss_hp -= 10
-                    response = f"You hit! Global Boss HP: {boss_hp}"
+                game_events.put(10)
             else:
                 response = "Unknown command."
             
@@ -44,6 +47,9 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(("localhost", 9999))
 server.listen()
 print("Raid Server Started! Waiting for party members...")
+
+game_event_thread = threading.Thread(target=process_game_events)
+game_event_thread.start()
 
 while True:
     # 1. Accept a new player
