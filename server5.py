@@ -26,10 +26,11 @@ def handle_client(client_socket: socket.socket, address):
             response = ""
             if command == "attack":
                 game_events.put(10)
+                client_socket.send(bytes("Attack queued", "utf-8"))
             else:
                 response = "Unknown command."
             
-            client_socket.send(bytes(response, "utf-8"))
+            client_socket.send(bytes(response if response else f"BOSS HP - {boss_hp}", "utf-8"))
 
             if boss_hp <= 0:
                 client_socket.send(bytes("\nBOSS DEFEATED! Everyone wins!", "utf-8"))
@@ -64,4 +65,4 @@ while True:
     thread.start()
 
     # 4. The main loop immediately loops back to accept the NEXT player
-    print(f"Active connections: {threading.active_count() - 1}")
+    print(f"Active connections: {threading.active_count() - 2}")
