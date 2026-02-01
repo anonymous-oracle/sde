@@ -33,7 +33,7 @@ def handle_client(client_socket: socket.socket, address):
             client_socket.send(bytes(response if response else f"BOSS HP - {boss_hp}", "utf-8"))
 
             if boss_hp <= 0:
-                client_socket.send(bytes("\nBOSS DEFEATED! Everyone wins!", "utf-8"))
+                client_socket.send(bytes("\nBOSS DEFEATED! Everyone wins! VICTORY!!!", "utf-8"))
                 break
 
         except:

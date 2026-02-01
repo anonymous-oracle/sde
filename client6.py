@@ -16,7 +16,7 @@ while True:
     response = client.recv(1024).decode("utf-8")
     print(f"Server says: {response}")
 
-    if "VICTORY" in response:
+    if "victory" in response.lower():
         break
     if action == "quit":
         break
