@@ -4,6 +4,7 @@ import queue # used for queueing actions from client events
 
 boss_hp = 500 # shared game state, multiple players can join in to attack the boss
 game_events = queue.Queue() # holds game events as a buffer
+connected_clients = set()
 
 def process_game_events():
     global game_events
@@ -14,8 +15,13 @@ def process_game_events():
         boss_hp -= attack_damage
         print(boss_hp)
 
+def broadcast(message: str):
+    global connected_clients
+    for client_socket in connected_clients:
+        client_socket.send(bytes(message, "utf-8"))
 
 def handle_client(client_socket: socket.socket, address):
+    global connected_clients
     print(f"New connection from {address}")
     global game_events
     while True:
@@ -38,6 +44,7 @@ def handle_client(client_socket: socket.socket, address):
 
         except:
             print(f"Connection to {address} shut down unexpectedly")
+            connected_clients.remove(client_socket)
             break
 
     print(f"Player {address} disconnected.")
@@ -55,6 +62,7 @@ game_event_thread.start()
 while True:
     # 1. Accept a new player
     client_socket, address = server.accept()
+    connected_clients.add(client_socket)
 
     # 2. Create a specific thread just for them
     # target = the function to run
