@@ -7,48 +7,49 @@ game_events = queue.Queue() # holds game events as a buffer
 connected_clients = set()
 
 def process_game_events():
-    global game_events
     global boss_hp
     while boss_hp >= 0:
         event = game_events.get()
         attack_damage = event if isinstance(event, int) else 0
         boss_hp -= attack_damage
-        print(boss_hp)
+        if boss_hp <= 0:
+            break
+        broadcast(f"BOSS HP UPDATE: {boss_hp}")
+    broadcast("VICTORY! Boss Down.")
 
 def broadcast(message: str):
-    global connected_clients
-    for client_socket in connected_clients:
-        client_socket.send(bytes(message, "utf-8"))
+    for client_socket in connected_clients.copy():
+        try:
+            client_socket.send(bytes(message, "utf-8"))
+        except:
+            pass
 
 def handle_client(client_socket: socket.socket, address):
-    global connected_clients
     print(f"New connection from {address}")
     global game_events
-    while True:
-        try:
-            command = client_socket.recv(1024).decode("utf-8").lower()
-            if not command or command == "quit":
+    try:
+        while True:
+            try:
+                command = client_socket.recv(1024).decode("utf-8").lower()
+                if not command or command == "quit":
+                    connected_clients.discard(client_socket)
+                    break
+                response = ""
+                if command == "attack":
+                    game_events.put(10)
+                else:
+                    response = "Unknown command."
+                
+            except:
+                print(f"Connection to {address} shut down unexpectedly")
+                connected_clients.discard(client_socket)
                 break
-            response = ""
-            if command == "attack":
-                game_events.put(10)
-                client_socket.send(bytes("Attack queued", "utf-8"))
-            else:
-                response = "Unknown command."
-            
-            client_socket.send(bytes(response if response else f"BOSS HP - {boss_hp}", "utf-8"))
 
-            if boss_hp <= 0:
-                client_socket.send(bytes("\nBOSS DEFEATED! Everyone wins! VICTORY!!!", "utf-8"))
-                break
-
-        except:
-            print(f"Connection to {address} shut down unexpectedly")
-            connected_clients.remove(client_socket)
-            break
-
-    print(f"Player {address} disconnected.")
-    client_socket.close()
+        print(f"Player {address} disconnected.")
+        client_socket.close()
+    except:
+        print("Unexpected failure. Shutting down the client connection.")
+        connected_clients.discard(client_socket)
 
 # --- Main Server Setup ---
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
