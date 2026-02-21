@@ -7,7 +7,8 @@ def receive_messages(sock: socket.socket):
         try:
             msg = sock.recv(1024).decode("utf-8")
             server_data = json.loads(msg)
-            if "victory" in msg.lower():
+            server_message = server_data["message"]
+            if "victory" in server_message.lower():
                 break
         except:
             break

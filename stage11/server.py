@@ -10,18 +10,19 @@ connected_clients = set()
 def process_game_events():
     global boss_hp
     while boss_hp >= 0:
-        event = game_events.get()
-        attack_damage = event if isinstance(event, int) else 0
+        event_data = game_events.get()
+        attack_damage = event_data.get("damage", 10)
+        player = event_data.get("player", "Ashborn")
         boss_hp -= attack_damage
         if boss_hp <= 0:
             break
-        broadcast(f"BOSS HP UPDATE: {boss_hp}\n")
-    broadcast("VICTORY! Boss Down.\n")
+        broadcast({"type": "update", "hp": boss_hp, "message":f"{player} hit the Boss! HP: {boss_hp}\n"})
+    broadcast({"type": "update", "hp": boss_hp, "message":f"VICTORY! Boss Down.\n{player} hit the Boss! HP: {boss_hp}\n"})
 
-def broadcast(message: str):
+def broadcast(message_payload: dict):
     for client_socket in connected_clients.copy():
         try:
-            client_socket.send(bytes(message, "utf-8"))
+            client_socket.send(bytes(json.dumps(message_payload), "utf-8"))
         except:
             pass
 
@@ -31,13 +32,21 @@ def handle_client(client_socket: socket.socket, address):
     try:
         while True:
             try:
-                command = client_socket.recv(1024).decode("utf-8").lower()
+                client_data_raw = client_socket.recv(1024).decode("utf-8")
+                client_data = json.loads(client_data_raw)
+                player, command = client_data.get("player", "Ashborn"), client_data.get("command", "attack")
+
                 if not command or command == "quit":
                     connected_clients.discard(client_socket)
                     break
                 response = ""
                 if command == "attack":
-                    game_events.put(10)
+                    game_events.put(
+                        {
+                            "player": player,
+                            "damage": 10
+                        }
+                    )
                 else:
                     response = "Unknown command."
                 
