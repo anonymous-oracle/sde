@@ -1,6 +1,7 @@
 import socket
 import threading # for concurrency
 import queue # used for queueing actions from client events
+import json
 
 boss_hp = 500 # shared game state, multiple players can join in to attack the boss
 game_events = queue.Queue() # holds game events as a buffer
