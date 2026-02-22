@@ -6,6 +6,7 @@ import json
 boss_hp = 500 # shared game state, multiple players can join in to attack the boss
 game_events = queue.Queue() # holds game events as a buffer
 connected_clients = set()
+broadcast_queue = queue.Queue()
 
 def process_game_events():
     global boss_hp
@@ -16,13 +17,20 @@ def process_game_events():
         boss_hp -= attack_damage
         if boss_hp <= 0:
             break
-        broadcast({"type": "update", "hp": boss_hp, "message":f"{player} hit the Boss! HP: {boss_hp}\n"})
-    broadcast({"type": "update", "hp": boss_hp, "message":f"VICTORY! Boss Down.\n{player} hit the Boss! HP: {boss_hp}\n"})
+        broadcast_queue.put({"type": "update", "hp": boss_hp, "message":f"{player} hit the Boss! HP: {boss_hp}\n"})
+    broadcast_queue.put({"type": "update", "hp": boss_hp, "message":f"VICTORY! Boss Down.\n{player} hit the Boss! HP: {boss_hp}\n"})
+
+def broadcast_dispatcher():
+    while True:
+        broadcast_event = broadcast_queue.get()
+        if broadcast_event:
+            broadcast(broadcast_event)
 
 def broadcast(message_payload: dict):
+    payload = json.dumps(message_payload)
     for client_socket in connected_clients.copy():
         try:
-            client_socket.send(bytes(json.dumps(message_payload), "utf-8"))
+            client_socket.send(bytes(payload, "utf-8"))
         except:
             pass
 
@@ -32,23 +40,30 @@ def handle_client(client_socket: socket.socket, address):
     try:
         while True:
             try:
-                client_data_raw = client_socket.recv(1024).decode("utf-8")
-                client_data = json.loads(client_data_raw)
-                player, command = client_data.get("player", "Ashborn"), client_data.get("command", "attack")
+                client_data_raw = client_socket.recv(1024)
+                client_data = {}
+                if client_data_raw:
+                    if isinstance(client_data_raw, bytes):
+                        client_data_raw = client_data_raw.decode("utf-8")
+                    if isinstance(client_data_raw, str):
+                        client_data = json.loads(client_data_raw)
+                    player, command = client_data.get("player"), client_data.get("command")
 
-                if not command or command == "quit":
-                    connected_clients.discard(client_socket)
-                    break
-                response = ""
-                if command == "attack":
-                    game_events.put(
-                        {
-                            "player": player,
-                            "damage": 10
-                        }
-                    )
+                    if not command or command == "quit":
+                        connected_clients.discard(client_socket)
+                        break
+                    response = ""
+                    if command == "attack":
+                        game_events.put(
+                            {
+                                "player": player,
+                                "damage": 10
+                            }
+                        )
+                    else:
+                        response = "Unknown command."
                 else:
-                    response = "Unknown command."
+                    break
                 
             except:
                 print(f"Connection to {address} shut down unexpectedly")
@@ -69,6 +84,8 @@ print("Raid Server Started! Waiting for party members...")
 
 game_event_thread = threading.Thread(target=process_game_events)
 game_event_thread.start()
+broadcast_thread = threading.Thread(target=broadcast_dispatcher)
+broadcast_thread.start()
 
 while True:
     # 1. Accept a new player
