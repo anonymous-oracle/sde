@@ -6,8 +6,7 @@ def receive_messages(sock: socket.socket):
     while True:
         try:
             server_data_raw = sock.recv(1024)
-            if isinstance(server_data_raw, bytes):
-                server_data_raw = server_data_raw.decode("utf-8")
+            server_data_raw = server_data_raw.decode("utf-8")
             if not server_data_raw:
                 break
             server_data_chunks = server_data_raw.split("\n")

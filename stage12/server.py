@@ -27,7 +27,7 @@ def broadcast_dispatcher():
             broadcast(broadcast_event)
 
 def broadcast(message_payload: dict):
-    payload = json.dumps(message_payload)
+    payload = json.dumps(message_payload) + "\n"
     for client_socket in connected_clients.copy():
         try:
             client_socket.send(bytes(payload, "utf-8"))
@@ -41,28 +41,35 @@ def handle_client(client_socket: socket.socket, address):
         while True:
             try:
                 client_data_raw = client_socket.recv(1024)
-                client_data = {}
+                client_data_obj = {}
                 if not client_data_raw:
                     break
                 if isinstance(client_data_raw, bytes):
                     client_data_raw = client_data_raw.decode("utf-8")
-                if isinstance(client_data_raw, str):
-                    client_data = json.loads(client_data_raw)
-                player, command = client_data.get("player"), client_data.get("command")
+                client_data_chunks = client_data_raw.split("\n")
+                break_while = False
+                for client_data in client_data_chunks:
+                    if not client_data:
+                        continue
+                    if isinstance(client_data, str):
+                        client_data_obj = json.loads(client_data)
+                    player, command = client_data_obj.get("player"), client_data_obj.get("command")
 
-                if not command or command == "quit":
-                    connected_clients.discard(client_socket)
+                    if not command or command == "quit":
+                        connected_clients.discard(client_socket)
+                        break_while = True
+                    response = ""
+                    if command == "attack":
+                        game_events.put(
+                            {
+                                "player": player,
+                                "damage": 10
+                            }
+                        )
+                    else:
+                        response = "Unknown command."
+                if break_while:
                     break
-                response = ""
-                if command == "attack":
-                    game_events.put(
-                        {
-                            "player": player,
-                            "damage": 10
-                        }
-                    )
-                else:
-                    response = "Unknown command."
                 
             except:
                 print(f"Connection to {address} shut down unexpectedly")
