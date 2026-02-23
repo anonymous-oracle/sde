@@ -5,10 +5,12 @@ import json
 def receive_messages(sock: socket.socket):
     while True:
         try:
-            server_data = sock.recv(1024)
-            if isinstance(server_data, bytes):
-                server_data = server_data.decode("utf-8")
-            server_data_chunks = server_data.split("\n")
+            server_data_raw = sock.recv(1024)
+            if isinstance(server_data_raw, bytes):
+                server_data_raw = server_data_raw.decode("utf-8")
+            if not server_data_raw:
+                break
+            server_data_chunks = server_data_raw.split("\n")
             break_while = False
             for server_data in server_data_chunks:
                 if server_data:
@@ -19,7 +21,6 @@ def receive_messages(sock: socket.socket):
                     if "victory" in msg.lower():
                         break_while = True
                         break
-            break_while = all(server_data_chunks)
             if break_while:
                 break
         except:
