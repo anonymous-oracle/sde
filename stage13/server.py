@@ -17,7 +17,6 @@ class RaidServer:
 
 
     def process_game_events(self):
-        self.boss_hp
         while self.boss_hp >= 0:
             event_data = self.game_events.get()
             attack_damage = event_data.get("damage", 10)
@@ -25,7 +24,7 @@ class RaidServer:
             self.boss_hp -= attack_damage
             if self.boss_hp <= 0:
                 break
-            self.broadcast_queue.put({"type": "update", "hp": self.boss_hp, "message":f"{player} hit the Boss! HP: {self.boss_hp}\n"})
+            self.broadcast_queue.put({"type": "update", "hp": self.boss_hp, "message":f"{player} hit the Boss! HP: {self.boss_hp}"})
         self.broadcast_queue.put({"type": "update", "hp": self.boss_hp, "message":f"VICTORY! Boss Down.\n{player} hit the Boss! HP: {self.boss_hp}\n"})
 
     def broadcast_dispatcher(self):
