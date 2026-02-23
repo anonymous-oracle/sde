@@ -71,6 +71,7 @@ def handle_client(client_socket: socket.socket, address):
 
         print(f"Player {address} disconnected.")
         client_socket.close()
+        connected_clients.discard(client_socket)
     except:
         print("Unexpected failure. Shutting down the client connection.")
         connected_clients.discard(client_socket)
