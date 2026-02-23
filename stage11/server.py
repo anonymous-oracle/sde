@@ -42,28 +42,27 @@ def handle_client(client_socket: socket.socket, address):
             try:
                 client_data_raw = client_socket.recv(1024)
                 client_data = {}
-                if client_data_raw:
-                    if isinstance(client_data_raw, bytes):
-                        client_data_raw = client_data_raw.decode("utf-8")
-                    if isinstance(client_data_raw, str):
-                        client_data = json.loads(client_data_raw)
-                    player, command = client_data.get("player"), client_data.get("command")
-
-                    if not command or command == "quit":
-                        connected_clients.discard(client_socket)
-                        break
-                    response = ""
-                    if command == "attack":
-                        game_events.put(
-                            {
-                                "player": player,
-                                "damage": 10
-                            }
-                        )
-                    else:
-                        response = "Unknown command."
-                else:
+                if not client_data_raw:
                     break
+                if isinstance(client_data_raw, bytes):
+                    client_data_raw = client_data_raw.decode("utf-8")
+                if isinstance(client_data_raw, str):
+                    client_data = json.loads(client_data_raw)
+                player, command = client_data.get("player"), client_data.get("command")
+
+                if not command or command == "quit":
+                    connected_clients.discard(client_socket)
+                    break
+                response = ""
+                if command == "attack":
+                    game_events.put(
+                        {
+                            "player": player,
+                            "damage": 10
+                        }
+                    )
+                else:
+                    response = "Unknown command."
                 
             except:
                 print(f"Connection to {address} shut down unexpectedly")
