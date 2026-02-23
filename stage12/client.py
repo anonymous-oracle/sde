@@ -8,11 +8,19 @@ def receive_messages(sock: socket.socket):
             server_data = sock.recv(1024)
             if isinstance(server_data, bytes):
                 server_data = server_data.decode("utf-8")
-            if isinstance(server_data, str):
-                server_data = json.loads(server_data)
-            msg = server_data.get("message", "")
-            print(msg)
-            if "victory" in msg.lower():
+            server_data_chunks = server_data.split("\n")
+            break_while = False
+            for server_data in server_data_chunks:
+                if server_data:
+                    if isinstance(server_data, str):
+                        server_data = json.loads(server_data)
+                    msg = server_data.get("message", "")
+                    print(msg)
+                    if "victory" in msg.lower():
+                        break_while = True
+                        break
+            break_while = all(server_data_chunks)
+            if break_while:
                 break
         except:
             break
@@ -34,7 +42,7 @@ while True:
     if "quit" in action.lower():
         break
     payload = {"player": "Ashborn", "command":action}
-    serialized_payload = json.dumps(payload)
+    serialized_payload = json.dumps(payload) + "\n"
     # 2. Send it to server
     client.send(bytes(serialized_payload, "utf-8"))
 
