@@ -6,13 +6,13 @@ import json
 
 
 class RaidServer:
-    def __init__(self):
+    def __init__(self, port=9999, host="localhost"):
         self.boss_hp = 500
         self.connected_clients = set()
         self.game_events = queue.Queue()
         self.broadcast_queue = queue.Queue()
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server.bind(("localhost", 9999))
+        self.server.bind((host, port))
         self.server.listen()
 
 
