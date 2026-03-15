@@ -5,5 +5,4 @@ sympy
 networkx
 torch
 tensorflow
-tensorflow-metal
 jupyter
