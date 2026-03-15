@@ -5,6 +5,10 @@ __pycache__/
 *.pyd
 *.so
 *.egg-info/
+.ml-venv
+.ml-venv/
+.ml-venv/*
+.ml-venv/*/*
 build/
 dist/
 .dist/

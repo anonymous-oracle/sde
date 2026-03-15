@@ -4,6 +4,6 @@ matplotlib
 sympy
 networkx
 torch
-tensorflow-macos
+tensorflow
 tensorflow-metal
 jupyter
