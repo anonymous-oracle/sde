@@ -48,6 +48,6 @@ docker-data/
 ### Images/Diagrams (generated)
 docs/diagrams/**/*.png
 docs/diagrams/**/*.svg
-
+.ml-venv
 
 
