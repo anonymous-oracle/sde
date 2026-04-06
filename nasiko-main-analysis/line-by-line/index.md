@@ -32,6 +32,12 @@ Processed (line-chunk summaries complete)
 - `app/utils/templates/a2a-webhook-agent/src/webhook_agent_executor.py`
 - `app/utils/templates/a2a-webhook-agent/src/__main__.py`
 - `app/utils/templates/a2a-webhook-agent/src/__init__.py`
+- `app/adapters/base_adapter.py`
+- `app/adapters/nanda_adapter.py` (partial)
+- `app/adapters/__init__.py`
+- `app/.dockerignore`
+- `app/docker-compose.app.yaml`
+- `app/api/auth.py`
 
 Pending
 -------

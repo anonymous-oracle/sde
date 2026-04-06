@@ -71,6 +71,13 @@
   - `app/utils/templates/a2a-webhook-agent/src/webhook_agent_executor.py`
   - `app/utils/templates/a2a-webhook-agent/src/__main__.py`
   - `app/utils/templates/a2a-webhook-agent/src/__init__.py`
+  - `app/adapters/base_adapter.py`
+  - `app/adapters/nanda_adapter.py` (partial)
+  - `app/adapters/__init__.py`
+  - `app/.dockerignore`
+  - `app/docker-compose.app.yaml`
+  - `app/api/auth.py`
+- Updated: `nasiko-main_course_meta_prompt.md` to add zero-to-mastery requirements and subcourse structure.
 
 ## Key findings
 - System is an AI agent control plane with microservices: FastAPI backend, Kong gateway, router service, auth service, chat history service, web UI.
@@ -88,7 +95,7 @@
 - Project is large; inspection will focus on all major modules and configurations while avoiding restricted files.
 
 ## Current status
-- Line-by-line analysis progressing; observability and webhook template code complete.
+- Line-by-line analysis progressing; adapters and auth complete; NANDA adapter partial.
 
 ## Remaining work
-- Continue 8-line summaries for remaining files in `nasiko-main-list.txt`.
+- Continue 8-line summaries for remaining files; finish `app/adapters/nanda_adapter.py` part 2 and proceed.
