@@ -60,6 +60,17 @@
   - `app/utils/agentcard_generator/__init__.py`
   - `app/utils/agentcard_generator/cli.py`
   - `app/utils/agentcard_generator/tools.py` (partial, first ~120 lines)
+- Line-by-line analysis added for:
+  - `app/utils/agentcard_generator/tools.py` (completed)
+  - `app/utils/agentcard_generator/agent.py`
+  - `app/utils/observability/config.py`
+  - `app/utils/observability/tracing_utils.py`
+  - `app/utils/observability/__init__.py`
+  - `app/utils/observability/injector.py`
+  - `app/utils/templates/a2a-webhook-agent/src/webhook_agent.py`
+  - `app/utils/templates/a2a-webhook-agent/src/webhook_agent_executor.py`
+  - `app/utils/templates/a2a-webhook-agent/src/__main__.py`
+  - `app/utils/templates/a2a-webhook-agent/src/__init__.py`
 
 ## Key findings
 - System is an AI agent control plane with microservices: FastAPI backend, Kong gateway, router service, auth service, chat history service, web UI.
@@ -77,7 +88,7 @@
 - Project is large; inspection will focus on all major modules and configurations while avoiding restricted files.
 
 ## Current status
-- Line-by-line analysis progressing; agentcard_generator docs complete, tools.py in progress.
+- Line-by-line analysis progressing; observability and webhook template code complete.
 
 ## Remaining work
-- Continue 8-line summaries for remaining files, including full tools.py and agent.py.
+- Continue 8-line summaries for remaining files in `nasiko-main-list.txt`.

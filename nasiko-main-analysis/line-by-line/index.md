@@ -22,7 +22,16 @@ Processed (line-chunk summaries complete)
 - `app/utils/agentcard_generator/cli.py`
 - `app/utils/agentcard_generator/ARCHITECTURE.md`
 - `app/utils/agentcard_generator/README.md`
-- `app/utils/agentcard_generator/tools.py` (partial)
+- `app/utils/agentcard_generator/tools.py`
+- `app/utils/agentcard_generator/agent.py`
+- `app/utils/observability/config.py`
+- `app/utils/observability/tracing_utils.py`
+- `app/utils/observability/__init__.py`
+- `app/utils/observability/injector.py`
+- `app/utils/templates/a2a-webhook-agent/src/webhook_agent.py`
+- `app/utils/templates/a2a-webhook-agent/src/webhook_agent_executor.py`
+- `app/utils/templates/a2a-webhook-agent/src/__main__.py`
+- `app/utils/templates/a2a-webhook-agent/src/__init__.py`
 
 Pending
 -------

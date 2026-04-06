@@ -14,19 +14,26 @@ Create a comprehensive course plan that explains architecture, data flows, and i
 - Sample agents following an Agent-to-Agent protocol
 
 ## Audience
-Intermediate backend engineers who know Go basics, HTTP APIs, and Docker, but are new to agent orchestration platforms and LLM routing.
+Absolute beginners with **zero programming knowledge** (assume they do not know basic programming concepts). The course must teach them from the ground up until they can implement this project in Go.
 
 ## Output requirements
 Produce a course in Markdown that includes:
 - A short course overview and outcomes
-- Prerequisites and setup requirements
-- A module-by-module syllabus (12 to 18 modules)
-- For each module: goals, concepts, design decisions, key APIs, labs, and deliverables
+- **Zero-knowledge baseline** assumptions (no programming literacy)
+- Prerequisites and setup requirements (hardware, OS, editor, CLI)
+- A **core course syllabus** (12 to 18 modules) focused on building the control plane
+- **Subcourses** for each tool/package/Go language topic used in the project
+- For each module/subcourse: goals, concepts, design decisions, key APIs, labs, and deliverables
 - Progressive capstone project checkpoints
 - A final capstone description and acceptance criteria
 - A testing and evaluation plan
 - A glossary of required concepts and tools
 - Reading and reference links (generic references, no proprietary or secret data)
+
+## Zero-to-mastery constraint
+- Explain every term before use.
+- Include a foundations track that teaches: basic computing, file system, CLI, Git, HTTP, JSON, IDE usage, debugging, and core programming concepts (variables, control flow, functions, data structures).
+- Include a **full Go language subcourse** from zero to mastery (syntax, types, errors, interfaces, concurrency, testing, modules, build/release).
 
 ## Scope to cover (must include)
 ### Architecture and data flows
@@ -63,6 +70,40 @@ Produce a course in Markdown that includes:
 - Terraform bootstrap for cloud clusters
 - BuildKit image builds and registry integration
 
+## Subcourse requirements (mandatory)
+For **each tool, package, framework, and platform** used in the project, create a **dedicated subcourse** with exhaustive curriculum depth based on how sophisticated its usage is in this repo. Each subcourse must include:
+- Prerequisites (from zero)
+- Concepts and mental models
+- Hands-on labs and mini-projects
+- Common pitfalls and debugging strategies
+- Assessments and mastery checks
+
+Minimum subcourses (expand as needed):
+- Go language (full stack fundamentals)
+- Git + GitHub
+- Docker + Docker Compose
+- Kubernetes + Helm
+- Terraform (AWS EKS + DigitalOcean DOKS)
+- Kong API Gateway + plugins (Lua basics)
+- MongoDB (data modeling, indexing)
+- Redis (streams, caching)
+- OpenTelemetry + Phoenix tracing
+- LLM API usage and structured output
+- JSON-RPC 2.0 and A2A protocol
+- CLI tooling (Cobra, Viper)
+
+## Design and architecture mastery
+Include dedicated tracks for:
+- **HLD (High-Level Design)** from zero to mastery
+- **LLD (Low-Level Design)** from zero to mastery
+- **Design patterns** mapped to project components (factory, adapter, repository, mediator, observer, etc.)
+
+Every design topic must include:
+- Concept explanation
+- UML diagrams
+- Mapping to this project’s components
+- Exercises that implement the pattern in Go
+
 ## Implementation constraints
 - Use ASCII-only text and code examples unless strictly necessary
 - Be explicit about trade-offs and alternatives
@@ -91,6 +132,11 @@ Produce a course in Markdown that includes:
 6. Add observability and tracing.
 7. Add CLI and infra automation.
 8. Finish with sample agents and end-to-end tests.
+
+## Deliverable structure
+- One **main course** (core control plane build).
+- One **subcourse per tool/package/language** with exhaustive depth.
+- A **dependency map** showing which subcourses must be completed before each core module.
 
 ## Deliverables per module
 Each module should specify:
