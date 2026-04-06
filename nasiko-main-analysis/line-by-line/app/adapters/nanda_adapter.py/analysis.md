@@ -58,5 +58,80 @@
 ## Lines 113-120
 - Delegates to get_agents and returns response.
 
-## Continuation
-- Remaining methods (search, online, facts, messages) continue in part 2.
+## Lines 121-128
+- Completes agent detail parsing and success response.
+- Handles 404 not found and generic errors.
+
+## Lines 129-136
+- Logs exceptions for get_agent_by_id and returns 500 response.
+- Starts get_agents_by_category definition.
+
+## Lines 137-144
+- Docstring for category filter and arguments.
+- Builds request and delegates to get_agents.
+
+## Lines 145-152
+- Starts search_agents with search_query and limit.
+- Delegates to get_agents with search parameter.
+
+## Lines 153-160
+- Starts get_online_agents with status filter.
+- Delegates to get_agents with status=online.
+
+## Lines 161-168
+- Starts get_agent_facts method and docstring.
+- Retrieves agent via get_agent_by_id.
+
+## Lines 169-176
+- If agent fetch failed, returns response.
+- Extracts factsUrl from agent data.
+
+## Lines 177-184
+- Returns 404 if factsUrl missing.
+- Prepares request to facts URL.
+
+## Lines 185-192
+- Calls GET to facts URL; on 200 returns success with data.
+- Otherwise returns standardized error.
+
+## Lines 193-200
+- Handles exceptions with logged error and 500 response.
+- Starts get_messages method and docstring.
+
+## Lines 201-208
+- Builds query params from request fields (limit, offset, before/after).
+
+## Lines 209-216
+- Adds agent_id, conversation_id, message_type params.
+- Calls GET /api/messages.
+
+## Lines 217-224
+- On success, parses JSON and sanitizes unicode.
+- Handles list response by mapping to NANDAMessage.
+
+## Lines 225-232
+- Builds NANDAMessagesResponse with total and has_more.
+- Handles wrapped response objects.
+
+## Lines 233-240
+- Parses wrapped messages list and builds response with totals.
+- Returns success response with model_dump.
+
+## Lines 241-248
+- On non-200, returns standardized error.
+- Handles exceptions and returns 500 response.
+
+## Lines 249-256
+- Starts get_messages_by_agent helper and docstring.
+- Builds NANDAMessagesListRequest and delegates.
+
+## Lines 257-264
+- Starts get_messages_by_conversation helper and docstring.
+- Delegates with conversation_id filter.
+
+## Lines 265-272
+- Starts get_messages_by_type helper and docstring.
+- Delegates with message_type filter.
+
+## Lines 273-280
+- Ends class definition and file.

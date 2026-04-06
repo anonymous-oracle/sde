@@ -77,6 +77,7 @@
   - `app/.dockerignore`
   - `app/docker-compose.app.yaml`
   - `app/api/auth.py`
+  - `app/api/types.py` (partial, first ~200 lines)
 - Updated: `nasiko-main_course_meta_prompt.md` to add zero-to-mastery requirements and subcourse structure.
 
 ## Key findings
@@ -95,7 +96,7 @@
 - Project is large; inspection will focus on all major modules and configurations while avoiding restricted files.
 
 ## Current status
-- Line-by-line analysis progressing; adapters and auth complete; NANDA adapter partial.
+- Line-by-line analysis progressing; NANDA adapter complete; types.py in progress.
 
 ## Remaining work
 - Continue 8-line summaries for remaining files; finish `app/adapters/nanda_adapter.py` part 2 and proceed.
