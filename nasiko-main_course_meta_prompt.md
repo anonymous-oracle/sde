@@ -92,6 +92,30 @@ Minimum subcourses (expand as needed):
 - JSON-RPC 2.0 and A2A protocol
 - CLI tooling (Cobra, Viper)
 
+## Zero-to-hero topic domains (mandatory)
+Include **full zero-to-hero subcourses** for **every domain below**, explicitly mapped to this project’s features:
+- **Computer Science Fundamentals**: binary/hex, filesystems, OS/processes, networking basics, concurrency primitives.
+- **Programming Fundamentals**: variables, control flow, functions, error handling, testing, debugging.
+- **Data Structures**: arrays, lists, stacks, queues, hash maps, trees, graphs.
+- **Algorithms**: complexity, searching, sorting, hashing, graph traversal, caching strategies.
+- **Mathematics**: basic algebra, probability, linear algebra fundamentals for embeddings.
+- **Machine Learning**: supervised/unsupervised, evaluation, embeddings, vector similarity.
+- **LLMs**: tokens, prompts, tool calling, structured output, rate limits, safety.
+- **MLOps**: model lifecycle, deployment patterns, monitoring, data drift.
+- **AIOps**: observability signals, anomaly detection, incident response basics.
+- **Orchestration**: queues/streams, schedulers, workflows, idempotency.
+- **System Design**: scalability, reliability, fault tolerance, CAP tradeoffs.
+- **HLD**: architecture diagrams, service boundaries, data flows.
+- **LLD**: API design, data contracts, schemas, module interfaces.
+- **Design Patterns**: repository, adapter, factory, strategy, observer, mediator; map each to project components.
+- **Software Development**: Git workflows, CI/CD, code review, documentation, testing pyramid.
+
+Each domain subcourse must include:
+- Prerequisites (from zero)
+- Concept progression (intro → intermediate → advanced)
+- Hands-on labs tied to this project
+- Assessments and mastery checkpoints
+
 ## Design and architecture mastery
 Include dedicated tracks for:
 - **HLD (High-Level Design)** from zero to mastery
