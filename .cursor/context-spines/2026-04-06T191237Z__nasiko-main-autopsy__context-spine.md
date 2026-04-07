@@ -77,7 +77,15 @@
   - `app/.dockerignore`
   - `app/docker-compose.app.yaml`
   - `app/api/auth.py`
-  - `app/api/types.py` (partial, first ~200 lines)
+  - `app/api/types.py` (completed)
+  - `app/api/routes/agent_operations_routes.py`
+  - `app/api/routes/search_routes.py`
+  - `app/api/routes/agent_update_routes.py`
+  - `app/api/routes/__init__.py`
+  - `app/api/routes/n8n_routes.py`
+  - `app/api/routes/github_routes.py`
+  - `app/api/routes/registry_routes.py`
+  - `app/api/routes/nanda_routes.py`
 - Updated: `nasiko-main_course_meta_prompt.md` to add zero-to-mastery requirements and subcourse structure.
 
 ## Key findings
@@ -96,7 +104,7 @@
 - Project is large; inspection will focus on all major modules and configurations while avoiding restricted files.
 
 ## Current status
-- Line-by-line analysis progressing; NANDA adapter complete; types.py in progress.
+- Line-by-line analysis progressing; types.py complete; multiple route files completed.
 
 ## Remaining work
 - Continue 8-line summaries for remaining files; finish `app/adapters/nanda_adapter.py` part 2 and proceed.

@@ -38,7 +38,39 @@ Processed (line-chunk summaries complete)
 - `app/.dockerignore`
 - `app/docker-compose.app.yaml`
 - `app/api/auth.py`
-- `app/api/types.py` (partial)
+- `app/api/types.py`
+- `app/api/routes/agent_operations_routes.py`
+- `app/api/routes/search_routes.py`
+- `app/api/routes/agent_update_routes.py`
+- `app/api/routes/__init__.py`
+- `app/api/routes/n8n_routes.py`
+- `app/api/routes/github_routes.py`
+- `app/api/routes/registry_routes.py`
+- `app/api/routes/nanda_routes.py`
+- `app/api/routes/agent_upload_routes.py`
+- `app/api/routes/router.py`
+- `app/api/routes/observability_routes.py`
+- `app/api/routes/superuser_routes.py`
+- `app/api/routes/health_routes.py`
+- `app/api/routes/chat_history_routes.py`
+- `app/api/handlers/agent_update_handler.py`
+- `app/api/handlers/chat_history_handler.py`
+- `app/api/handlers/github_handler.py`
+- `app/api/handlers/agent_operations_handler.py`
+- `app/api/handlers/base_handler.py`
+- `app/api/handlers/__init__.py`
+- `app/api/handlers/health_handler.py`
+- `app/api/handlers/search_handler.py`
+- `app/api/handlers/n8n_handler.py`
+- `app/api/handlers/observability_handler.py`
+- `app/api/handlers/traces_handler.py`
+- `app/api/handlers/agent_upload_handler.py`
+- `app/api/handlers/nanda_handler.py`
+- `app/api/handlers/registry_handler.py`
+- `app/init-scripts/mongo/01-setup.js`
+- `app/service/agent_operations_service.py`
+- `app/service/service.py`
+- `app/service/chat_history_service.py`
 
 Pending
 -------
