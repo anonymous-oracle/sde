@@ -71,6 +71,20 @@ Processed (line-chunk summaries complete)
 - `app/service/agent_operations_service.py`
 - `app/service/service.py`
 - `app/service/chat_history_service.py`
+- `app/service/orchestration_service.py`
+- `app/service/agentcard_service.py`
+- `app/service/agent_upload_tracking_service.py`
+- `app/service/agent_upload_service.py`
+- `app/main.py`
+- `app/pkg/config/config.py`
+- `app/pkg/auth/auth_client.py`
+- `app/pkg/auth/__init__.py`
+- `app/pkg/redisclient/redisclient.py`
+- `superuser_init.py`
+- `Makefile`
+- `pyproject.toml`
+- `LICENSE`
+- `docker-compose.local.yml`
 
 Pending
 -------
