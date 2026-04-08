@@ -75,6 +75,11 @@ Processed (line-chunk summaries complete)
 - `app/service/agentcard_service.py`
 - `app/service/agent_upload_tracking_service.py`
 - `app/service/agent_upload_service.py`
+- `app/service/redis_search_service.py`
+- `app/service/nanda_service.py`
+- `app/service/n8n_service.py`
+- `app/service/k8s_service.py`
+- `app/service/github_service.py`
 - `app/main.py`
 - `app/pkg/config/config.py`
 - `app/pkg/auth/auth_client.py`
@@ -85,6 +90,26 @@ Processed (line-chunk summaries complete)
 - `pyproject.toml`
 - `LICENSE`
 - `docker-compose.local.yml`
+- `agent-gateway/router/__init__.py`
+- `agent-gateway/router/src/__init__.py`
+- `agent-gateway/router/tests/__init__.py`
+- `agents/a2a-compliance-checker/src/__init__.py`
+- `agents/a2a-github-agent/src/__init__.py`
+- `agents/a2a-translator/src/__init__.py`
+- `cli/k8s/README.md`
+- `cli/k8s/charts/nasiko-platform/Chart.yaml`
+- `cli/k8s/charts/nasiko-platform/environments/dev.yaml`
+- `cli/k8s/charts/nasiko-platform/environments/prod.yaml`
+- `cli/k8s/charts/nasiko-platform/environments/staging.yaml`
+- `cli/k8s/charts/nasiko-platform/templates/_helpers.tpl`
+- `cli/k8s/charts/nasiko-platform/templates/configmaps/app-config.yaml`
+- `cli/k8s/charts/nasiko-platform/templates/networking/ingress.yaml`
+- `cli/k8s/charts/nasiko-platform/templates/networking/networkpolicies.yaml`
+- `cli/k8s/charts/nasiko-platform/templates/secrets/registry-secret.yaml`
+- `cli/k8s/charts/nasiko-platform/values.yaml`
+- `cli/setup/__init__.py`
+- `cli/auth/__init__.py`
+- `cli/commands/__init__.py`
 
 Pending
 -------
