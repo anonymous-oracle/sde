@@ -24,5 +24,5 @@
 ## Lines 57-64
 - Sets JSON-RPC fields, params, and route metadata.
 
-## Lines 65-66
+## Lines 65-65
 - Returns payload.

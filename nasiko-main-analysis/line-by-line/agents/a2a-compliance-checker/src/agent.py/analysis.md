@@ -27,5 +27,5 @@
 ## Lines 65-72
 - process_message logs input and invokes agent executor.
 
-## Lines 73-77
+## Lines 73-76
 - Returns output text from agent executor result.

@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Defines Task model with status/artifacts/contextId.
 
-## Lines 57-61
+## Lines 57-60
 - Defines JsonRpcResponse wrapper with result Task.

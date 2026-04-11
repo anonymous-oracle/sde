@@ -74,5 +74,5 @@
 ## Lines 145-152
 - Deletes deployment records; logs count and returns it.
 
-## Lines 153-160
+## Lines 153-159
 - Logs and returns 0 on deployment deletion failure.

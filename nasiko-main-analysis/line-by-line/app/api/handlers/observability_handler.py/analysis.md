@@ -12,5 +12,5 @@
 ## Lines 25-32
 - get_all_sessions passes user_id/auth_header/start_time to service for multi-agent session retrieval.
 
-## Lines 33-39
+## Lines 33-38
 - get_agent_project_stats delegates to service for agent-specific stats.

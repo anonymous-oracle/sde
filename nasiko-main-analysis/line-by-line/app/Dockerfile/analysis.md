@@ -12,5 +12,5 @@
 - Copies `app/` source into image.
 - Exposes port 8000.
 
-## Lines 25-27
+## Lines 25-26
 - Runs Uvicorn via `uv run`, binding to 0.0.0.0:8000.

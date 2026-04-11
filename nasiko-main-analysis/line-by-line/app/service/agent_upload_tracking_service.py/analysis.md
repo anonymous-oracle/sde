@@ -204,5 +204,5 @@
 ## Lines 537-544
 - Logs success/returns or warns, then starts exception logging.
 
-## Lines 545-547
+## Lines 545-546
 - Logs update error and raises exception.

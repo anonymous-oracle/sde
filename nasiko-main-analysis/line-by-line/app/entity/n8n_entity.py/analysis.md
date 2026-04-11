@@ -39,5 +39,5 @@
 ## Lines 89-96
 - `N8nRegisterResponse` fields: success, message, agent_name, agent_id.
 
-## Lines 97-104
+## Lines 97-103
 - Adds webhook_url, container_name, upload_id fields.

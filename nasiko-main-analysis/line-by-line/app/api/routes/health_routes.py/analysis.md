@@ -8,6 +8,6 @@
 - Defines create_health_routes factory.
 - Creates router with Health tag and /healthcheck endpoint.
 
-## Lines 17-22
+## Lines 17-21
 - healthcheck delegates to handlers.health.healthcheck.
 - Returns router.

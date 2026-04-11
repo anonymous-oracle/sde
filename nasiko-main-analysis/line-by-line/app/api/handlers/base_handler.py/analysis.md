@@ -30,5 +30,5 @@
 ## Lines 73-80
 - build_success_response returns standardized payload; build_error_response signature/docstring.
 
-## Lines 81-85
+## Lines 81-84
 - build_error_response constructs error payload with optional error_code.

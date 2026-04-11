@@ -6,5 +6,5 @@
 ## Lines 9-16
 - Polls server port until ready and logs readiness.
 
-## Lines 17-24
+## Lines 17-23
 - Creates model from Modelfile and waits for server process.

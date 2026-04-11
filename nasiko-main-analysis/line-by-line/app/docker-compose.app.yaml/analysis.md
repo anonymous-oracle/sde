@@ -28,5 +28,5 @@
 - Connects backend to app-network and agents-net.
 - Defines networks section.
 
-## Lines 57-64
+## Lines 57-63
 - Declares external networks and Mongo data volume.

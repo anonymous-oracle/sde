@@ -36,5 +36,5 @@
 - Declares GET /{agent_id}/versions endpoint with response model.
 - get_version_history delegates to handler.
 
-## Lines 73-89
+## Lines 73-88
 - Returns router.

@@ -45,5 +45,5 @@
 ## Lines 113-120
 - Prints table or no-agents message.
 
-## Lines 121-128
+## Lines 121-127
 - Handles typer exit and generic exception reporting.

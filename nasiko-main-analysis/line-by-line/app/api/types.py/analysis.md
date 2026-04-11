@@ -290,6 +290,6 @@
 - NANDAMessagesResponse adds total and has_more.
 - Starts NANDAMessagesListRequest with limit/offset/before/after.
 
-## Lines 616-620
+## Lines 616-619
 - NANDAMessagesListRequest adds agent_id, conversation_id, message_type filters.
 - End of file.

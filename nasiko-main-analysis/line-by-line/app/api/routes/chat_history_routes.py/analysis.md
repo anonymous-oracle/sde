@@ -28,5 +28,5 @@
 - Defines query params for chat history pagination.
 - Delegates to handlers.chat_history.get_chat_history.
 
-## Lines 57-114
+## Lines 57-113
 - Returns router.

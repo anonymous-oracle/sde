@@ -15,5 +15,5 @@
 ## Lines 33-40
 - Configures additional pool sizing and autoscaling.
 
-## Lines 41-48
+## Lines 41-47
 - Sets labels/tags for additional pool and closes resource.

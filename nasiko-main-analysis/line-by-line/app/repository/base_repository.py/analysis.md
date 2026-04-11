@@ -28,6 +28,6 @@
 - `_decrypt_data` mirrors encryption: early return if empty.
 - Base64-decodes stored ciphertext and constructs `Fernet` for decryption.
 
-## Lines 57-62
+## Lines 57-61
 - Decrypts bytes to a string and returns it.
 - Logs and raises any decryption errors.

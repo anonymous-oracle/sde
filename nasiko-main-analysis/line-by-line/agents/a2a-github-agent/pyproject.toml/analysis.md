@@ -9,5 +9,5 @@
 ## Lines 17-24
 - Closes dependencies and configures hatch wheel build plus build-system.
 
-## Lines 25-26
+## Lines 25-25
 - Declares hatchling build backend.

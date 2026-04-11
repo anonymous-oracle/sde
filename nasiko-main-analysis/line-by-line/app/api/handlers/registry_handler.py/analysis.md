@@ -255,5 +255,5 @@
 ## Lines 673-680
 - Logs error and raises 500 for update failures.
 
-## Lines 681-683
+## Lines 681-682
 - Completes 500 response and ends file.

@@ -162,5 +162,5 @@
 ## Lines 425-432
 - Deletes upload records and logs errors on failure.
 
-## Lines 433-435
+## Lines 433-434
 - Returns 0 on upload record deletion failure and ends file.

@@ -65,5 +65,5 @@
 - Closes AsyncClient if present and clears reference.
 - Declares abstract health_check.
 
-## Lines 137-138
+## Lines 137-137
 - Health_check abstract method stub (pass).

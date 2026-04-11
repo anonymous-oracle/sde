@@ -1,31 +1,37 @@
 # .gitignore — line-by-line analysis
 
 ## Lines 1-8
-- Ignores Python bytecode, caches, and shared object files.
+- Ignores Python bytecode and C extension artifacts.
 
 ## Lines 9-16
-- Ignores build/packaging directories and egg artifacts.
+- Ignores packaging/build directories through .eggs/.
 
 ## Lines 17-24
-- Ignores packaging metadata and manifest files.
+- Ignores lib/parts/sdist/var plus wheel metadata folders.
 
 ## Lines 25-32
-- Ignores PyInstaller artifacts and environment files.
+- Ignores egg metadata and PyInstaller manifest/spec files.
 
 ## Lines 33-40
-- Ignores IDE files and editor swap/backup files.
+- Ignores environment files and starts IDE ignore list.
 
 ## Lines 41-48
-- Ignores OS-generated files.
+- Ignores IDE swap files and starts OS file ignores.
 
 ## Lines 49-56
-- Ignores logs and runtime pid files.
+- Ignores OS-generated files and begins logs section.
 
 ## Lines 57-64
-- Ignores coverage outputs and pytest caches.
+- Ignores log files and runtime pid/seed data.
 
 ## Lines 65-72
-- Ignores mypy cache and DMypy files.
+- Ignores coverage outputs and nyc test artifacts.
 
-## Lines 73-79
-- Ignores vector store cache files and model artifacts.
+## Lines 73-80
+- Ignores pytest caches and mypy cache files.
+
+## Lines 81-88
+- Ignores dmypy json, vector store cache, and model file patterns.
+
+## Lines 89-89
+- Ignores joblib model artifacts.

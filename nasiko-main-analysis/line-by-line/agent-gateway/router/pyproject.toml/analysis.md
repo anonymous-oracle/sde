@@ -12,5 +12,5 @@
 ## Lines 25-32
 - Adds requests/httpx/multipart plus dev pytest dependency.
 
-## Lines 33-37
+## Lines 33-36
 - Configures build-system to use poetry-core backend.

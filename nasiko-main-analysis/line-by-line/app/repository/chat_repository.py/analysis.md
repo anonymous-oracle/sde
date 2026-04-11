@@ -115,5 +115,5 @@
 - Returns paginated chat history payload.
 - Logs errors on failure.
 
-## Lines 281-283
+## Lines 281-282
 - Raises exception after logging.

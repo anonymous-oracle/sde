@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Outputs raw kubeconfig YAML (sensitive).
 
-## Lines 57-60
+## Lines 57-59
 - Closes kube_config output block.

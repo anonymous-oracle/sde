@@ -57,5 +57,5 @@
 ## Lines 145-152
 - Mounts script configMap and defines volume.
 
-## Lines 153-155
+## Lines 153-154
 - Sets configMap name and defaultMode.

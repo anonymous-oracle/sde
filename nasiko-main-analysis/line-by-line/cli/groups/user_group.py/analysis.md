@@ -27,5 +27,5 @@
 ## Lines 65-72
 - Defines delete command with confirm option and handler call.
 
-## Lines 73-90
+## Lines 73-89
 - Concludes delete command and file.

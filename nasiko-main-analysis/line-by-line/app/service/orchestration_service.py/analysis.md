@@ -69,5 +69,5 @@
 ## Lines 177-184
 - Sets key expiration, logs debug, returns True, or logs error.
 
-## Lines 185-192
+## Lines 185-191
 - Returns False on error; close method closes Redis client and logs.

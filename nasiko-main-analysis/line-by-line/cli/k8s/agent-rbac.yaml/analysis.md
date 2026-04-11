@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Defines roleRef and subject service account details.
 
-## Lines 57-58
+## Lines 57-57
 - (No additional code; file ends after RoleBinding.)

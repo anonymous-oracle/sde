@@ -15,5 +15,3 @@
 ## Lines 33-40
 - Adds language detection guidance and closes system prompt.
 
-## Lines 41-41
-- Closes returned dict.

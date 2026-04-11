@@ -33,5 +33,5 @@
 ## Lines 81-88
 - send command docstring and handler import.
 
-## Lines 89-91
+## Lines 89-90
 - Calls send_message_command.

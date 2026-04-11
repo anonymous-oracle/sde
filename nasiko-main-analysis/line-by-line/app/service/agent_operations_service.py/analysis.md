@@ -117,5 +117,5 @@
 ## Lines 305-312
 - Returns success payload and starts exception handling.
 
-## Lines 313-319
+## Lines 313-318
 - Logs update errors and re-raises exceptions.

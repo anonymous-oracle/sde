@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Defines tags list variable with default values.
 
-## Lines 57-66
+## Lines 57-65
 - Closes tags variable block.

@@ -36,5 +36,5 @@
 ## Lines 89-96
 - Returns error response and defines get_tools helper.
 
-## Lines 97-99
+## Lines 97-98
 - Returns tool mapping for check_compliance and analyze_policy.

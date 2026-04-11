@@ -474,5 +474,3 @@
 ## Lines 1257-1264
 - Returns validation error payload on exception.
 
-## Lines 1265-1265
-- Closes validation error response at end of file.

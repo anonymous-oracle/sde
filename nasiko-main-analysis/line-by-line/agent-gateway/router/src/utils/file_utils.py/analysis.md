@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Returns text part dict for message payloads.
 
-## Lines 57-58
+## Lines 57-57
 - (No additional code; file ends after make_text_part.)

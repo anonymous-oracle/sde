@@ -36,5 +36,5 @@
 ## Lines 89-96
 - Runs uvicorn server and starts __main__ guard.
 
-## Lines 97-98
+## Lines 97-97
 - Invokes main() when executed as a script.

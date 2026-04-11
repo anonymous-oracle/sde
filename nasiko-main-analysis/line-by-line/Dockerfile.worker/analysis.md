@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Creates worker user and defines healthcheck to import orchestrator.
 
-## Lines 57-61
+## Lines 57-60
 - Sets ENTRYPOINT to run Redis stream listener.

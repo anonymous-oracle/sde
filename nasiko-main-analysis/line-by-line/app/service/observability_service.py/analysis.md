@@ -480,5 +480,5 @@
 ## Lines 1273-1280
 - Converts span to snake_case, returns payload, and logs exceptions.
 
-## Lines 1281-1282
+## Lines 1281-1281
 - Returns snake_case fallback response on transform error.

@@ -138,5 +138,5 @@
 ## Lines 361-368
 - Adds created_at/updated_at and re-indexes agent; logs errors on exception.
 
-## Lines 369-370
+## Lines 369-369
 - Returns False on update errors and ends file.

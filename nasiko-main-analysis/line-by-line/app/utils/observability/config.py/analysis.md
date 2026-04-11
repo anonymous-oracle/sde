@@ -18,5 +18,5 @@
 ## Lines 33-40
 - get_injection_enabled checks OBSERVABILITY_INJECTION_ENABLED flag.
 
-## Lines 41-48
+## Lines 41-47
 - get_log_level reads OBSERVABILITY_LOG_LEVEL with default INFO.

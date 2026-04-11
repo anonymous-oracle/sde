@@ -59,5 +59,5 @@
 ## Lines 113-120
 - Logs errors on delete failures and returns 0.
 
-## Lines 121-122
+## Lines 121-121
 - End of repository class.

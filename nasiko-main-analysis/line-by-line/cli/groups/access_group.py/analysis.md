@@ -27,5 +27,5 @@
 ## Lines 65-72
 - Defines revoke-agent args and help text.
 
-## Lines 73-78
+## Lines 73-77
 - Calls revoke_agent_access_command.

@@ -24,5 +24,5 @@
 ## Lines 57-64
 - Defines response format details and evidence/fix fields.
 
-## Lines 65-72
+## Lines 65-71
 - Builds user_prompt, calls agent chat, logs snippet, returns response.

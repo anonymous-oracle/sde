@@ -14,6 +14,6 @@
 - Validates imports with a Python one-liner.
 - Copies `app` and `worker` sources.
 
-## Lines 25-29
+## Lines 25-28
 - Prepends venv to PATH.
 - Runs `worker.k8s_build_worker` as module entrypoint.

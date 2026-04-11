@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Concatenates text parts with newlines and logs per-part errors.
 
-## Lines 57-63
+## Lines 57-62
 - Returns text if found; raises RuntimeError when no text parts present.

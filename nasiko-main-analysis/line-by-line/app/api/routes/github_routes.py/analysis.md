@@ -44,5 +44,5 @@
 - GET /auth/github/login-user is public and uses shared callback.
 - Delegates to github_user_login.
 
-## Lines 89-104
+## Lines 89-103
 - Returns router.

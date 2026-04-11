@@ -6,5 +6,5 @@
 ## Lines 9-16
 - Activates venv if found, logs Python used, and prints version.
 
-## Lines 17-24
+## Lines 17-23
 - Announces tracing, sets PYTHONPATH, and runs agent on port 9100.

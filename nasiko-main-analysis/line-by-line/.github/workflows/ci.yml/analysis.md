@@ -9,5 +9,5 @@
 ## Lines 17-24
 - Runs black check and starts typecheck job.
 
-## Lines 25-33
+## Lines 25-32
 - Typecheck job repeats setup and runs mypy with ignore-missing-imports.

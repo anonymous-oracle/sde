@@ -36,5 +36,5 @@
 ## Lines 89-96
 - Starts readiness probe exec command and timing settings.
 
-## Lines 97-102
+## Lines 97-101
 - Completes readiness probe settings.

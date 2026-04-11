@@ -19,5 +19,5 @@
 ## Lines 33-40
 - Adds superuser, search, chat history, observability, and NANDA routes.
 
-## Lines 41-43
+## Lines 41-42
 - Returns combined router.

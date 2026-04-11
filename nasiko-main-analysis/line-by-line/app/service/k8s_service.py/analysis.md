@@ -261,5 +261,5 @@
 ## Lines 689-696
 - Returns True on 404; logs errors and returns False otherwise.
 
-## Lines 697-698
+## Lines 697-697
 - Logs generic exception and returns False.

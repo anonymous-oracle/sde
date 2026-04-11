@@ -27,5 +27,5 @@
 ## Lines 65-72
 - Delegates span_details_command to handler.
 
-## Lines 73-82
+## Lines 73-81
 - Defines stats command and delegates agent_stats_command.

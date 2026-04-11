@@ -3,5 +3,5 @@
 ## Lines 1-8
 - Module docstring and HealthHandler class definition with a brief docstring.
 
-## Lines 9-16
+## Lines 9-15
 - __init__ does nothing (no dependencies); healthcheck returns a basic ok status payload.

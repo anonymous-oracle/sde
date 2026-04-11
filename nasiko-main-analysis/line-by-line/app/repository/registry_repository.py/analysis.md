@@ -72,5 +72,5 @@
 - Constructs initial version history payload with defaults.
 - Includes rollback info and empty build/deploy lists.
 
-## Lines 145-151
+## Lines 145-150
 - Attaches `version_history` to result and returns.

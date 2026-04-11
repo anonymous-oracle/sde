@@ -60,5 +60,5 @@
 - Logs unexpected exceptions and exits.
 - Defines `__main__` guard.
 
-## Lines 129-130
+## Lines 129-129
 - Invokes `main()` when run as a script.

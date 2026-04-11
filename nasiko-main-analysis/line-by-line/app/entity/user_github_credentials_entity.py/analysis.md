@@ -8,5 +8,5 @@
 - Defines `GitHubCredentialType` enum (OAuth vs PAT).
 - Defines `GitHubConnectionStatus` enum and first values.
 
-## Lines 17-19
+## Lines 17-18
 - Completes connection status enum values (error/testing).

@@ -36,5 +36,5 @@
 ## Lines 89-96
 - Creates Starlette app, runs uvicorn, and starts __main__ guard.
 
-## Lines 97-100
+## Lines 97-99
 - Invokes main() when run as a script.

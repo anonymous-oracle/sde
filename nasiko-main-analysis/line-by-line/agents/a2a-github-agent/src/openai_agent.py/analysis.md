@@ -9,5 +9,5 @@
 ## Lines 17-24
 - Details supported user requests and repo info fields to include.
 
-## Lines 25-30
+## Lines 25-29
 - Emphasizes using GitHub API tools and accurate responses.

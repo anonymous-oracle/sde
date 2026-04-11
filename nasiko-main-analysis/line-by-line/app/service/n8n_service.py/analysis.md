@@ -258,5 +258,3 @@
 ## Lines 681-688
 - Logs trace extraction errors and returns empty list.
 
-## Lines 689-689
-- Ends file after error handling.

@@ -243,5 +243,5 @@
 ## Lines 641-648
 - Logs message statistics errors and returns failure response.
 
-## Lines 649-656
+## Lines 649-655
 - close method docstring and awaits adapter.close.

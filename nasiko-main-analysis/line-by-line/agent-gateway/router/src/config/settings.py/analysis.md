@@ -30,5 +30,5 @@
 ## Lines 73-80
 - Defines model_config env files and case sensitivity; instantiates settings.
 
-## Lines 81-82
+## Lines 81-81
 - Exposes global settings instance.

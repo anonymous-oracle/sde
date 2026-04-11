@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Service metadata, selector, and port definition start.
 
-## Lines 57-63
+## Lines 57-62
 - Completes service port mapping to 8000.

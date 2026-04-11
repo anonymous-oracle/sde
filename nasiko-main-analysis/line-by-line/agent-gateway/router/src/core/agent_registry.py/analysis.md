@@ -63,5 +63,5 @@
 ## Lines 161-168
 - Iterates cards, selects first with name+url.
 
-## Lines 169-172
+## Lines 169-171
 - Returns fallback tuple or None.

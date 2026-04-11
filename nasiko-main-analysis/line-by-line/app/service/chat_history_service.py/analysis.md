@@ -45,5 +45,5 @@
 ## Lines 113-120
 - Logs debug history output and returns results.
 
-## Lines 121-126
+## Lines 121-125
 - Logs errors on failure and re-raises exception.

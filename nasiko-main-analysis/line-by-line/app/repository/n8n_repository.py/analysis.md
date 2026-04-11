@@ -50,5 +50,5 @@
 ## Lines 105-112
 - Returns updated credential if modified, else None.
 
-## Lines 113-115
+## Lines 113-114
 - End of repository class.

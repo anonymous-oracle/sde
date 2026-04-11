@@ -21,5 +21,5 @@
 ## Lines 49-56
 - Appends cleaned skill and adds truncated card to results.
 
-## Lines 57-63
+## Lines 57-62
 - Logs processing errors and returns truncated_agent_cards list.

@@ -48,5 +48,5 @@
 ## Lines 121-128
 - Lists Chinese conventional commit types.
 
-## Lines 129-130
+## Lines 129-129
 - Ends Chinese section.

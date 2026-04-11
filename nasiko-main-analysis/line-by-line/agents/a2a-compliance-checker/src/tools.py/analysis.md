@@ -15,5 +15,5 @@
 ## Lines 33-40
 - Normalizes whitespace, joins chunks, and truncates output length.
 
-## Lines 41-45
+## Lines 41-44
 - Returns error message on exceptions.

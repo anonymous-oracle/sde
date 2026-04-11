@@ -6,5 +6,5 @@
 ## Lines 9-16
 - Defines cluster_name and cluster_version variables with defaults.
 
-## Lines 17-24
+## Lines 17-23
 - Defines instance_type variable for worker nodes with default.

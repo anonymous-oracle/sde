@@ -418,7 +418,7 @@
 ## Lines 897-904
 - Continues tool name list through detect/generate methods.
 
-## Lines 905-906
+## Lines 905-905
 - Closes tools list and method.
 
 ## Continuation

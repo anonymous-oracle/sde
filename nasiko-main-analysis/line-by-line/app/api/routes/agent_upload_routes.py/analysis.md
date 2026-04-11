@@ -36,5 +36,5 @@
 - Defines GET /agents/{agent_name}/download endpoint for BuildKit.
 - Accepts optional version query param and delegates to download_agent_files.
 
-## Lines 73-98
+## Lines 73-97
 - Returns router.

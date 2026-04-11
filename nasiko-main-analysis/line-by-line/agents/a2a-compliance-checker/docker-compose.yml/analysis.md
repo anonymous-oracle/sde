@@ -6,5 +6,5 @@
 ## Lines 9-16
 - Sets stdin/ports/tty, attaches to agents-net and agents-db-net networks.
 
-## Lines 17-22
+## Lines 17-21
 - Declares external networks for agents and database.

@@ -78,5 +78,5 @@
 ## Lines 201-208
 - Serializes normalized JSON and logs when transformed.
 
-## Lines 209-215
+## Lines 209-214
 - Logs warning on parse failure and returns processed_trace.

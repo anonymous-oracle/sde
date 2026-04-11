@@ -27,5 +27,5 @@
 ## Lines 65-72
 - Defines pytest options for test paths and coverage addopts.
 
-## Lines 73-79
+## Lines 73-78
 - Closes pytest options and file.

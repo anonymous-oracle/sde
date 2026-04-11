@@ -15,5 +15,5 @@
 ## Lines 33-40
 - Starts Service definition with name/namespace and ClusterIP type.
 
-## Lines 41-48
+## Lines 41-47
 - Sets service selector and port mapping to 8001.

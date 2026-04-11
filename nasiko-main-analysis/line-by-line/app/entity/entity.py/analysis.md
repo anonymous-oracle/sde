@@ -91,5 +91,5 @@
 ## Lines 201-208
 - ChatHistory fields; `ChatHistoryResponse` begins.
 
-## Lines 209-216
+## Lines 209-215
 - ChatHistoryResponse fields and defaults.

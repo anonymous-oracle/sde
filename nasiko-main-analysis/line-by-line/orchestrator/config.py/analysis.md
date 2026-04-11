@@ -18,5 +18,5 @@
 ## Lines 41-48
 - Defines startup delays and agent directory/health timeout.
 
-## Lines 49-56
+## Lines 49-55
 - Sets docker-compose file paths for app/web/kong/ollama.

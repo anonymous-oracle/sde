@@ -12,5 +12,5 @@
 ## Lines 25-32
 - Defines agents command signature and imports agent search handler.
 
-## Lines 33-35
+## Lines 33-34
 - Calls agent search handler with query and limit.
