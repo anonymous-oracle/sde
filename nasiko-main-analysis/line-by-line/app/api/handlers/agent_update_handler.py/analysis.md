@@ -51,3 +51,36 @@
 ## Lines 97-104
 - On missing agent, raises 404.
 - Handles errors and raises 500.
+
+## Lines 105-112
+- Logs rollback request details and calls rollback_agent with params.
+
+## Lines 113-120
+- Returns success response with rollback metadata.
+
+## Lines 121-128
+- Returns failure response with error message.
+
+## Lines 129-136
+- Logs rollback error and raises HTTPException 500.
+
+## Lines 137-144
+- Builds HTTP 500 for rollback failures.
+
+## Lines 145-152
+- Starts get_version_history; logs request and calls service.
+
+## Lines 153-160
+- On success, initializes versions list and iterates version entries.
+
+## Lines 161-168
+- Builds AgentVersionInfo objects from version data.
+
+## Lines 169-176
+- Returns AgentVersionHistoryResponse with version count.
+
+## Lines 177-184
+- Raises 404 when agent not found.
+
+## Lines 185-192
+- Logs errors and raises 500 for version history failures.

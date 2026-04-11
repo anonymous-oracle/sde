@@ -51,3 +51,33 @@
 ## Lines 97-104
 - Returns ChatHistoryResponse.
 - Handles exceptions and service errors.
+
+## Lines 105-112
+- Builds SessionHistory list and assigns pagination counters from result.
+
+## Lines 113-120
+- Returns SessionHistoryResponse with PaginationMetaData fields.
+
+## Lines 121-128
+- Handles HTTPException/service errors and starts get_chat_history.
+
+## Lines 129-136
+- get_chat_history params and docstring for pagination options.
+
+## Lines 137-144
+- Calls chat_history_service.get_chat_history with params.
+
+## Lines 145-152
+- Initializes collection and pagination defaults.
+
+## Lines 153-160
+- Builds ChatHistory list from result messages.
+
+## Lines 161-168
+- Sets total_count and cursor pagination values.
+
+## Lines 169-176
+- Returns ChatHistoryResponse with pagination metadata.
+
+## Lines 177-182
+- Handles HTTPException and service errors for chat history.

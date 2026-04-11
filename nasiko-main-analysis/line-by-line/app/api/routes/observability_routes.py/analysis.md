@@ -35,3 +35,18 @@
 ## Lines 65-72
 - get_agent_project_stats delegates to handler.
 - Returns router.
+
+## Lines 73-80
+- Returns trace details and defines span details endpoint signature.
+
+## Lines 81-88
+- Span details docstring and handler delegation.
+
+## Lines 89-96
+- Defines agent stats endpoint with start_time query and user_id.
+
+## Lines 97-104
+- Docstring describes stats args and returned metrics.
+
+## Lines 105-112
+- Delegates to get_agent_project_stats and returns router.

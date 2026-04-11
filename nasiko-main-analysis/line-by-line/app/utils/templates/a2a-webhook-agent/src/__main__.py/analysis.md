@@ -29,3 +29,12 @@
 
 ## Lines 57-64
 - __main__ guard invokes main().
+
+## Lines 65-72
+- Builds WebhookAgentExecutor and DefaultRequestHandler.
+
+## Lines 73-80
+- Creates A2AStarletteApplication, routes, Starlette app, and runs uvicorn.
+
+## Lines 81-83
+- __main__ guard calls main().

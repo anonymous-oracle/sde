@@ -27,3 +27,15 @@
 ## Lines 49-56
 - Handles generic errors and returns 500.
 - Returns router.
+
+## Lines 57-64
+- Builds UserRegistrationResponse with status, credentials, created_on, message.
+
+## Lines 65-72
+- Logs auth service errors, raises HTTPException, handles request errors with 503.
+
+## Lines 73-80
+- Logs registration errors and raises 500 response.
+
+## Lines 81-84
+- Returns router.

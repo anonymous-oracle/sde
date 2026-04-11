@@ -70,3 +70,21 @@
 ## Lines 137-144
 - Enforces superuser flag; raises 403 if not.
 - Returns AuthUser for superuser.
+
+## Lines 145-152
+- Returns 401 with WWW-Authenticate when header malformed; extracts token and validates.
+
+## Lines 153-160
+- Raises 401 if subject_id missing and returns user_id on success.
+
+## Lines 161-168
+- Starts get_super_user dependency and docstring.
+
+## Lines 169-176
+- Extracts user_id, subject_type, and superuser flag from token data.
+
+## Lines 177-184
+- Raises 401 if user_id missing; prepares superuser check.
+
+## Lines 185-190
+- Raises 403 if not superuser and returns AuthUser for authorized user.

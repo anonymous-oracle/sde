@@ -22,3 +22,6 @@
 ## Lines 41-48
 - Prints banner with path and model.
 - Runs CLI module using repo `.venv` Python.
+
+## Lines 49-49
+- Executes the CLI with assembled arguments.

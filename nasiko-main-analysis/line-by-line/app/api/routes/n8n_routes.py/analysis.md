@@ -42,3 +42,30 @@
 
 ## Lines 81-88
 - Returns router from factory.
+
+## Lines 89-96
+- Defines PUT /credentials route and update_user_n8n_credentials signature.
+
+## Lines 97-104
+- Docstring lists updatable fields and notes auto connection testing.
+
+## Lines 105-112
+- Delegates to update_credential and starts DELETE /credentials route.
+
+## Lines 113-120
+- delete_user_n8n_credentials docstring begins with permanence warning.
+
+## Lines 121-128
+- Finishes delete docstring and delegates to delete_credential.
+
+## Lines 129-136
+- Defines GET /workflows route with active_only/limit query params.
+
+## Lines 137-144
+- Docstring describes workflow list and query parameter meanings.
+
+## Lines 145-152
+- Docstring lists returned workflow fields and tags.
+
+## Lines 153-158
+- Notes user_id extraction, delegates to list_workflows, returns router.

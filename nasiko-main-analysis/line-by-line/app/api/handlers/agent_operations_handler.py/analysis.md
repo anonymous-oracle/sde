@@ -43,3 +43,27 @@
 ## Lines 81-88
 - Builds VersionMappingResponse and returns.
 - Handles errors with 500.
+
+## Lines 89-96
+- Raises 500 for deployment record errors and starts update_deployment_status.
+
+## Lines 97-104
+- Logs deployment status update and delegates to service.
+
+## Lines 105-112
+- Handles invalid deployment ID with 400 error.
+
+## Lines 113-120
+- Handles update errors with 500 response.
+
+## Lines 121-128
+- Starts get_version_mapping, logs, and calls service.
+
+## Lines 129-136
+- Raises 404 when mapping not found.
+
+## Lines 137-144
+- Builds VersionMappingResponse with image tag and timestamp.
+
+## Lines 145-151
+- Handles mapping errors with 500 response.

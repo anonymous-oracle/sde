@@ -28,3 +28,6 @@
 ## Lines 65-72
 - Adds pyyaml and semver; closes dependencies list.
 - Starts dev dependency group with pyinstaller.
+
+## Lines 73-73
+- Closes the dev dependency group list.

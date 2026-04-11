@@ -40,3 +40,6 @@
 
 ## Lines 81-88
 - cancel method raises UnsupportedOperationError wrapped in ServerError.
+
+## Lines 89-96
+- Logs A2A session id usage, processes request, and defines cancel to raise error.

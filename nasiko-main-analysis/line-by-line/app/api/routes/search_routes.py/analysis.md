@@ -30,3 +30,15 @@
 
 ## Lines 57-64
 - Returns router.
+
+## Lines 65-72
+- Agent search docstring lists prefix/case/fuzzy/tag/description features.
+
+## Lines 73-80
+- Describes relevance ranking and calls search_agents; starts index_user route.
+
+## Lines 81-88
+- index_user docstring notes internal use and delegates to handler.
+
+## Lines 89-93
+- Returns router.

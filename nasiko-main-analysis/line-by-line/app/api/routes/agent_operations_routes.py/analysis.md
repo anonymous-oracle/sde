@@ -31,3 +31,9 @@
 ## Lines 57-64
 - get_version_mapping reads agent_id and semantic_version from query params.
 - Delegates to handler factory and returns router.
+
+## Lines 65-72
+- Declares /build/version-mapping route metadata and handler signature.
+
+## Lines 73-80
+- Delegates to handler for version mapping and returns router.

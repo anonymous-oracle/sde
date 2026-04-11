@@ -173,3 +173,27 @@
 ## Lines 361-368
 - Returns True on validation success.
 - Logs and returns False on errors.
+
+## Lines 369-376
+- Defines _get_observability_dependencies and starts agent framework detection.
+
+## Lines 377-384
+- Adjusts agent_dir for src/ layout and builds AgentCard.json path.
+
+## Lines 385-392
+- Loads AgentCard.json and reads agentFramework field.
+
+## Lines 393-400
+- Logs detected framework or missing field; logs when AgentCard.json absent.
+
+## Lines 401-408
+- Handles exceptions, returns None, and starts validate_injection.
+
+## Lines 409-416
+- Checks observability module and tracing_utils.py exist.
+
+## Lines 417-424
+- Reads main file and verifies bootstrap_tracing import.
+
+## Lines 425-431
+- Returns True on success; logs validation failure and returns False.

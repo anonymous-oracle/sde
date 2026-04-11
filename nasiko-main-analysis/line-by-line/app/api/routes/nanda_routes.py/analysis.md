@@ -63,3 +63,36 @@
 ## Lines 121-128
 - Declares GET /messages/statistics endpoint.
 - Delegates to handlers.nanda.get_message_statistics and returns router.
+
+## Lines 129-136
+- Defines agent statistics handler and begins messages endpoints section.
+
+## Lines 137-144
+- Declares /messages endpoint with limit/offset/before/after params.
+
+## Lines 145-152
+- Delegates get_all_messages with pagination arguments.
+
+## Lines 153-160
+- Declares /messages/agent/{agent_id} endpoint with limit param.
+
+## Lines 161-168
+- Delegates get_messages_by_agent with agent_id/limit.
+
+## Lines 169-176
+- Declares /messages/conversation/{conversation_id} endpoint.
+
+## Lines 177-184
+- Delegates get_messages_by_conversation with conversation_id/limit.
+
+## Lines 185-192
+- Declares /messages/type/{message_type} endpoint with limit param.
+
+## Lines 193-200
+- Delegates get_messages_by_type with message_type/limit.
+
+## Lines 201-208
+- Declares /messages/statistics endpoint and handler.
+
+## Lines 209-211
+- Returns router.

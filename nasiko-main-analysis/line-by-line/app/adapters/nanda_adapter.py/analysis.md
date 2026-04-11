@@ -135,3 +135,33 @@
 
 ## Lines 273-280
 - Ends class definition and file.
+
+## Lines 281-288
+- Builds messages response totals and starts wrapped-response parsing.
+
+## Lines 289-296
+- Maps wrapped messages list and calculates total/has_more flags.
+
+## Lines 297-304
+- Returns success response or handles non-200 errors.
+
+## Lines 305-312
+- Logs exceptions and returns 500 error response.
+
+## Lines 313-320
+- Defines get_messages_by_agent and its docstring.
+
+## Lines 321-328
+- Builds list request and delegates to get_messages.
+
+## Lines 329-336
+- Defines get_messages_by_conversation with args/docstring.
+
+## Lines 337-344
+- Builds conversation request and delegates to get_messages.
+
+## Lines 345-352
+- Defines get_messages_by_type with args/docstring.
+
+## Lines 353-359
+- Builds type request and delegates to get_messages.

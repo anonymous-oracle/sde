@@ -39,3 +39,54 @@
 ## Lines 73-80
 - github_user_login delegates to get_github_auth_url_for_login.
 - Handles ValueError as 503.
+
+## Lines 81-88
+- Logs token status request, calls service, reads status and success flags.
+
+## Lines 89-96
+- Returns result when connected; raises 202 for not_connected.
+
+## Lines 97-104
+- Raises 202 for token_expired with pending message.
+
+## Lines 105-112
+- Raises 202 for invalid_credential to avoid client logout.
+
+## Lines 113-120
+- Raises 500 for error/unknown status cases.
+
+## Lines 121-128
+- Re-raises HTTPException and handles errors via handle_service_error.
+
+## Lines 129-136
+- github_logout logs request, calls service, handles exceptions.
+
+## Lines 137-144
+- Handles logout errors with handle_service_error.
+
+## Lines 145-152
+- list_github_repositories logs and calls service for repo list.
+
+## Lines 153-160
+- Wraps repositories into GithubRepositoryListResponse or errors.
+
+## Lines 161-168
+- clone_github_repository logs request and calls clone service.
+
+## Lines 169-176
+- Builds agent_upload_data from service result.
+
+## Lines 177-184
+- Returns AgentUploadResponse with success/failure message.
+
+## Lines 185-192
+- Handles clone errors via handle_service_error.
+
+## Lines 193-200
+- github_user_login logs and returns auth_url from service.
+
+## Lines 201-208
+- Raises 503 on ValueError from missing OAuth config.
+
+## Lines 209-213
+- Handles login errors with handle_service_error.

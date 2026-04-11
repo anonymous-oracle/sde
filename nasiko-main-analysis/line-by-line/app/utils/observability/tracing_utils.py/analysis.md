@@ -105,3 +105,6 @@
 
 ## Lines 233-236
 - On ImportError, disables middleware by setting None.
+
+## Lines 237-237
+- Sets `_JsonRpcSessionMiddleware` to None in ImportError case.
