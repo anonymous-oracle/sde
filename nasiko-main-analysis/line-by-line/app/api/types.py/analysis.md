@@ -184,15 +184,14 @@
 
 ## Lines 393-400
 - Adds version and score fields for agent search result.
-- Starts UserSearchResponse with data list.
+- Starts UserSearchResponse with data list and query.
 
-## Lines 400-407
-- UserSearchResponse adds query, total_matches, showing, status_code, message.
+## Lines 401-407
+- UserSearchResponse adds total_matches, showing, status_code, message.
 - Starts AgentSearchResponse class.
 
 ## Lines 408-415
 - AgentSearchResponse fields mirror UserSearchResponse for agents.
-- Begins Agent Update API Types section.
 
 ## Lines 416-423
 - Defines AgentVersionInfo fields: version, status, created_at, build/deploy ids.

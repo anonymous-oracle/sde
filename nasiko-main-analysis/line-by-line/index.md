@@ -294,6 +294,16 @@ Processed (line-chunk summaries complete)
 - `cli/setup/container_registry_setup.py`
 - `cli/setup/k8s_setup.py`
 - `agent-gateway/router/tests/maf_tests.py`
+- `README.md`
+- `agent-gateway/router/tests/router_quality_tests.py`
+- `cli/commands/observability.py`
+- `agent-gateway/registry/registry.py`
+- `orchestrator/redis_stream_listener.py`
+- `cli/setup/app_setup.py`
+- `cli/uv.lock`
+- `worker/k8s_build_worker.py`
+- `cli/setup/setup.py`
+- `uv.lock`
 
 Pending
 -------
