@@ -30,6 +30,22 @@ Produce a course in Markdown that includes:
 - A glossary of required concepts and tools
 - Reading and reference links (generic references, no proprietary or secret data)
 
+## Production-level requirements (mandatory)
+Treat the course as if the learner is building a real production system. Include:
+- Non-functional requirements (NFRs): reliability, scalability, availability, latency, and cost budgets.
+- Explicit SLIs and SLOs per service (API latency, error rates, queue lag, build latency).
+- Capacity planning and autoscaling strategy (requests per second, worker pools, rate limits).
+- Failure modes and resilience patterns: retries, timeouts, circuit breakers, bulkheads, idempotency.
+- Multi-environment workflow: local, dev, staging, prod with config layering and feature flags.
+- Change management: versioning, migrations, backward compatibility, and deprecation policy.
+- Data lifecycle: schema migrations, indexing, backups, restores, retention, and PII handling.
+- Security hardening: RBAC, least privilege, secret rotation, TLS, and audit logging.
+- Supply chain security: dependency scanning, SBOMs, image signing, and provenance checks.
+- Observability operations: logs, metrics, traces, dashboards, alerting, and runbooks.
+- Incident response: on-call procedures, triage flow, and postmortem templates.
+- Performance testing: load tests, stress tests, and profiling requirements.
+- Cost management: LLM token budgets, caching strategies, and cost attribution by service.
+
 ## Zero-to-mastery constraint
 - Explain every term before use.
 - Include a foundations track that teaches: basic computing, file system, CLI, Git, HTTP, JSON, IDE usage, debugging, and core programming concepts (variables, control flow, functions, data structures).
@@ -133,6 +149,9 @@ Every design topic must include:
 - Be explicit about trade-offs and alternatives
 - Explain data contracts between services
 - Provide realistic testing strategies for each module
+- Include operational readiness review (ORR) checklists and go-live criteria
+- Require threat modeling and abuse prevention for public endpoints
+- Include backward compatibility plans for APIs and AgentCard schema changes
 
 ## Suggested technology mapping (Go)
 - HTTP: Gin/Fiber/Chi, net/http
@@ -156,11 +175,15 @@ Every design topic must include:
 6. Add observability and tracing.
 7. Add CLI and infra automation.
 8. Finish with sample agents and end-to-end tests.
+9. Add production hardening: security, performance, and disaster recovery.
+10. Add operational readiness and release management.
 
 ## Deliverable structure
 - One **main course** (core control plane build).
 - One **subcourse per tool/package/language** with exhaustive depth.
 - A **dependency map** showing which subcourses must be completed before each core module.
+- A **production operations track** covering runbooks, alerting, incident response, and SRE practices.
+- A **release engineering track** covering CI/CD pipelines, staging promotion, and rollback plans.
 
 ## Deliverables per module
 Each module should specify:
@@ -168,6 +191,9 @@ Each module should specify:
 - Key structs, interfaces, and data contracts
 - Tests to write and how to run them
 - Expected runtime behavior and observability signals
+- Dashboards, alerts, and runbooks relevant to the module
+- Risk register entries and mitigation steps
+- Rollback and recovery steps
 
 ## Capstone project
 Design a capstone where the learner builds a minimal but complete control plane:
@@ -175,6 +201,10 @@ Design a capstone where the learner builds a minimal but complete control plane:
 - Routes a user query to the correct agent with confidence
 - Logs chat history and shows traces in an observability UI
 - Provides CLI commands for status, upload, and routing tests
+- Deploys a staging and production environment with promotion rules
+- Runs load tests and demonstrates scalability under traffic
+- Demonstrates backup/restore and disaster recovery drill
+- Performs a security review and produces an incident response plan
 
 ## Evaluation rubric
 Define pass/fail criteria for:
@@ -183,6 +213,9 @@ Define pass/fail criteria for:
 - Routing accuracy and fallback behavior
 - Observability completeness
 - Infrastructure automation reproducibility
+- Production readiness (SLOs met, alerts, runbooks, rollback)
+- Security and compliance (RBAC, audit logs, secret handling)
+- Performance and cost controls (latency targets, token budgets)
 
 ## Finish with a glossary
 Include definitions for Redis Streams, Kong plugins, AgentCard, JSON-RPC, OpenTelemetry, vector search, BuildKit, and LLM routing.
