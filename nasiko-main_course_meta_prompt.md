@@ -29,6 +29,10 @@ Produce a course in Markdown that includes:
 - A testing and evaluation plan
 - A glossary of required concepts and tools
 - Reading and reference links (generic references, no proprietary or secret data)
+- **Branched learning quests**: when a tool/library/design topic is introduced, branch into a focused mastery quest, then return to the main build track once mastery is demonstrated.
+- **Full mastery tracks** for Go, HLD, LLD, clean architecture, and system design (zero to expert), tied to this project.
+- **Mastery-first pacing**: no minimum or maximum lesson counts. Keep teaching and practicing until industry-level mastery is achieved.
+- **Checkpoint snapshots**: record progress after each step with a detailed snapshot; provide it on user request.
 
 ## Production-level requirements (mandatory)
 Treat the course as if the learner is building a real production system. Include:
@@ -50,6 +54,10 @@ Treat the course as if the learner is building a real production system. Include
 - Explain every term before use.
 - Include a foundations track that teaches: basic computing, file system, CLI, Git, HTTP, JSON, IDE usage, debugging, and core programming concepts (variables, control flow, functions, data structures).
 - Include a **full Go language subcourse** from zero to mastery (syntax, types, errors, interfaces, concurrency, testing, modules, build/release).
+- Include **full LLD + HLD + clean architecture mastery tracks** that use this project as the running example.
+- Include **system design and architecture mastery** with real-world tradeoffs, capacity planning, and failure modes.
+- Use **vertical slicing** only when it improves mastery (e.g., teach a thin end-to-end slice, then deepen each layer).
+- Teach until mastery using practice problems, theoretical study, and intuitive, illustrative, exhaustive explanations.
 
 ## Scope to cover (must include)
 ### Architecture and data flows
@@ -137,6 +145,7 @@ Include dedicated tracks for:
 - **HLD (High-Level Design)** from zero to mastery
 - **LLD (Low-Level Design)** from zero to mastery
 - **Design patterns** mapped to project components (factory, adapter, repository, mediator, observer, etc.)
+- **Clean architecture** with boundaries, dependency inversion, and explicit mapping to service layers
 
 Every design topic must include:
 - Concept explanation
