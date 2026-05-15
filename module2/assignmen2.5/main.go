@@ -14,7 +14,7 @@ func StartAgent(){
 
 func SafeWrapper(){
 	defer func() {
-		if r := recover(); r != nil {
+		if r := recover(); r != nil { // recover() return value will not be not null if a panic is triggered
 			fmt.Printf("Recovered from %v\n", r)
 		}
 	}()
