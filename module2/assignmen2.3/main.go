@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	activeAgents := []string {"Alpha", "Bravo", "Charlie"}
+	activeAgents := []string{"Alpha", "Bravo", "Charlie"}
 	activeAgents = append(activeAgents, "Delta")
 
 	for i, name := range activeAgents {

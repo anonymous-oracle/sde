@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 type AgentCard struct {
-	ID int
-	Name string
+	ID         int
+	Name       string
 	PowerLevel float64
 }
 
-type ControlPlane struct { 
+type ControlPlane struct {
 	ActiveAgent AgentCard
 }
 

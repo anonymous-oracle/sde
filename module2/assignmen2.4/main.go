@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-func main (){
-	var agentRegistry = map[string]bool {"Alpha": true, "Bravo": false}
+func main() {
+	var agentRegistry = map[string]bool{"Alpha": true, "Bravo": false}
 	delete(agentRegistry, "Bravo")
 	_, ok := agentRegistry["Alpha"]
 	if ok {

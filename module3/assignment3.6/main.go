@@ -2,19 +2,20 @@ package main
 
 import "fmt"
 
-
 type Telemetry struct {
-	LatencyMs int
+	LatencyMs    int
 	PayloadBytes int
 }
 
-func (telemetry_ Telemetry) CalculateThroughput() (float64) {
-	if telemetry_.LatencyMs == 0 {return 0.0} // 0 latency is theoretically impossible
+func (telemetry_ Telemetry) CalculateThroughput() float64 {
+	if telemetry_.LatencyMs == 0 {
+		return 0.0
+	} // 0 latency is theoretically impossible
 	return float64(telemetry_.PayloadBytes) / float64(telemetry_.LatencyMs)
 }
 
 type SystemNode struct {
-	UUID int
+	UUID        int
 	LoadAverage float64
 }
 
@@ -27,12 +28,12 @@ type ProcessCluster struct {
 }
 
 func (pc *ProcessCluster) Halt() {
-	if pc==nil {
+	if pc == nil {
 		fmt.Println("Aborting: Cluster reference unallocated")
 		return
 	}
 	pc.IsHalted = true
-	fmt.Println("Cluster safely locked down.")	
+	fmt.Println("Cluster safely locked down.")
 }
 
 type DataKernel struct {
@@ -48,16 +49,16 @@ type StorageNode struct {
 }
 
 type SecurityPolicy struct {
-	Enforced bool
-	Level int
+	Enforced  bool
+	Level     int
 	Signature string
 }
 
-func (policy SecurityPolicy) VerifyCompliance() (bool) {
+func (policy SecurityPolicy) VerifyCompliance() bool {
 	return policy.Enforced && policy.Level > 5
 }
 
-func main(){
+func main() {
 	var storageNode StorageNode = StorageNode{DataKernel{Size: 512}}
 	storageNode.Kernel.Expand()
 	fmt.Printf("The updated size of the kernel is %d\n", storageNode.Kernel.Size)

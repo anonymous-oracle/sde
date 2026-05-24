@@ -2,13 +2,14 @@ package main
 
 import "fmt"
 
-func main(){
+func main() {
 	result, err := CheckVersion(2, 3)
 	if err != nil {
 		fmt.Printf("Looks like it's an invalid version - %v\n", result)
 	}
 
 }
+
 // Verb,Usage,Language Nuance
 // %v,Default Value,"The ""universal"" verb. In Python/Java, you often need .toString(). In Go, %v figures it out."
 // %T,Type,"Shows the variable's type (e.g., int). Critical for debugging types in a statically typed language."

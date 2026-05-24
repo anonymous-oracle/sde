@@ -7,12 +7,12 @@ func main() {
 	fmt.Println("System remains operational.")
 }
 
-func StartAgent(){
+func StartAgent() {
 	defer fmt.Println("Cleaning up agent resources")
 	panic("AGENT_CRITICAL_FAILURE")
 }
 
-func SafeWrapper(){
+func SafeWrapper() {
 	defer func() {
 		if r := recover(); r != nil { // recover() return value will not be not null if a panic is triggered
 			fmt.Printf("Recovered from %v\n", r)

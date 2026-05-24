@@ -1,14 +1,14 @@
 package main
+
 import "fmt"
 
-func main(){
-	for i:=1; i < 6; i++ {
+func main() {
+	for i := 1; i < 6; i++ {
 		fmt.Println(i)
 	}
 }
 
-
-// Suhas.KS@INSQ-Y2V92R2DMP module1 % go run main.go 
+// Suhas.KS@INSQ-Y2V92R2DMP module1 % go run main.go
 // 1
 // 2
 // 3
