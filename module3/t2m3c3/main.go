@@ -51,5 +51,13 @@ func (swarm *RoutingSwarm) ExecuteNodeAudit(nodeKey string) {
 }
 
 func main(){
+	var routingSwarm RoutingSwarm = RoutingSwarm{Nodes: make(map[string]ComputeNode)}
+	node := ComputeNode{LoadPercentage: 45.2, ProcessorCore: ProcessorCore{CoreID: 808, LoadPercentage: 12.5}, NetworkRadio: NetworkRadio{RadioID: 909, LoadPercentage: 88.1}}
+	routingSwarm.Nodes["node-alpha"] = node
+	node2 := ComputeNode{LoadPercentage: 99.9, ProcessorCore: ProcessorCore{}, NetworkRadio: NetworkRadio{}}
+	routingSwarm.Nodes["node-omega"] = node2
 
+	routingSwarm.ExecuteNodeAudit("node-alpha")
+	routingSwarm.ExecuteNodeAudit("node-omega")
+	
 }
