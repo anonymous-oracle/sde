@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type ProcessorCore struct {
-	CoreID int
+	CoreID         int
 	LoadPercentage float64
 }
 
@@ -12,7 +12,7 @@ func (core ProcessorCore) StatusTrace() string {
 }
 
 type NetworkRadio struct {
-	RadioID int
+	RadioID        int
 	LoadPercentage float64
 }
 
@@ -35,7 +35,7 @@ func (swarm *RoutingSwarm) ExecuteNodeAudit(nodeKey string) {
 		return
 	}
 	defer func() {
-		if r:=recover(); r!=nil {
+		if r := recover(); r != nil {
 			fmt.Printf("Audit Panic Bypassed: - %v\n", r)
 		}
 	}()
@@ -43,14 +43,14 @@ func (swarm *RoutingSwarm) ExecuteNodeAudit(nodeKey string) {
 	if node.LoadPercentage == 99.9 {
 		panic("CRITICAL_NODE_OVERLOAD")
 	}
-	fmt.Printf("Top Level load - %v\n",node.LoadPercentage)
-	fmt.Printf("Processor Core load - %v\n",node.ProcessorCore.LoadPercentage)
-	fmt.Printf("Network Radio Load - %v\n",node.NetworkRadio.LoadPercentage)
+	fmt.Printf("Top Level load - %v\n", node.LoadPercentage)
+	fmt.Printf("Processor Core load - %v\n", node.ProcessorCore.LoadPercentage)
+	fmt.Printf("Network Radio Load - %v\n", node.NetworkRadio.LoadPercentage)
 	node.ProcessorCore.StatusTrace()
 	node.NetworkRadio.StatusTrace()
 }
 
-func main(){
+func main() {
 	var routingSwarm RoutingSwarm = RoutingSwarm{Nodes: make(map[string]ComputeNode)}
 	node := ComputeNode{LoadPercentage: 45.2, ProcessorCore: ProcessorCore{CoreID: 808, LoadPercentage: 12.5}, NetworkRadio: NetworkRadio{RadioID: 909, LoadPercentage: 88.1}}
 	routingSwarm.Nodes["node-alpha"] = node
@@ -59,5 +59,5 @@ func main(){
 
 	routingSwarm.ExecuteNodeAudit("node-alpha")
 	routingSwarm.ExecuteNodeAudit("node-omega")
-	
+
 }

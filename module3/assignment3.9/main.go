@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 type LinkState int
+
 const (
 	StateOffline = iota
 	StateOnline
@@ -15,8 +16,8 @@ type TelemetryIngester interface {
 }
 
 type SecureLink struct {
-	NodeName string
-	CurrentState LinkState
+	NodeName       string
+	CurrentState   LinkState
 	TotalProcessed int
 }
 
@@ -53,8 +54,8 @@ func (router *AgnosticRouter) ProcessChannel(channelKey string, dataSize int) {
 	if _, ok := router.ActiveLinks[channelKey]; !ok {
 		return
 	} else {
-		defer func (){
-			if r := recover(); r!=nil {
+		defer func() {
+			if r := recover(); r != nil {
 				fmt.Println("Panic Intercepted:", r)
 				return
 			}
@@ -76,10 +77,12 @@ func (router *AgnosticRouter) ProcessChannel(channelKey string, dataSize int) {
 		fmt.Println(ingester.BroadcastID)
 	}
 }
+
 var _ TelemetryIngester = (*SecureLink)(nil)
-var _ TelemetryIngester = nil 
+var _ TelemetryIngester = nil
+
 func main() {
-	router := AgnosticRouter{ ActiveLinks: make(map[string]TelemetryIngester)}
+	router := AgnosticRouter{ActiveLinks: make(map[string]TelemetryIngester)}
 	router.ActiveLinks["channel-secure"] = &SecureLink{NodeName: "Secure-Alpha", CurrentState: StateOnline, TotalProcessed: 0}
 	router.ActiveLinks["channel-open"] = OpenLink{BroadcastID: 707, FixedStatus: StateDegraded}
 	router.ProcessChannel("channel-open", 512)
