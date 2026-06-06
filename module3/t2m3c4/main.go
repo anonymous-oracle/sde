@@ -19,6 +19,8 @@ type SubsystemRegistry[K comparable, V any] struct {
 func (sr *SubsystemRegistry[K, V]) RegisterAndAudit(key K, data V, state ClusterState) (V, bool) {
 	if val, ok := sr.MetricEnvelopes[key]; ok {
 		return val.Payload, false
+	} else if !ok {
+		sr.MetricEnvelopes[key] = MetricEnvelope[V]{SystemState: state, Payload: data}
+
 	}
-	
 }
