@@ -1,0 +1,37 @@
+{
+  "analysis": {
+    "byte_count": 48929,
+    "ends_with_newline": true,
+    "line_count": 239,
+    "path": "/Users/Suhas.KS/CurriculumSpine2.txt",
+    "sha1": "0db16171cdf13beeb7f457ef600250ac679335a7"
+  },
+  "dense": {
+    "byte_count": 40579,
+    "ends_with_newline": true,
+    "line_count": 2,
+    "path": "/Users/Suhas.KS/curriculum-spine.md",
+    "sha1": "08c597cc68c09854fa5c9377b589a94e0cb10655"
+  },
+  "master": {
+    "byte_count": 116373,
+    "ends_with_newline": true,
+    "line_count": 773,
+    "path": "/Users/Suhas.KS/master-curriculum.md",
+    "sha1": "bbd527857811bb5066746c3e2c47124dbc8f7c36"
+  },
+  "structured": {
+    "byte_count": 22328,
+    "ends_with_newline": true,
+    "line_count": 435,
+    "path": "/Users/Suhas.KS/curriculum-spine2.md",
+    "sha1": "3aeb5eb529ea5efe23b8a6a9ea3a2748207ef533"
+  },
+  "textbooks": {
+    "byte_count": 4537,
+    "ends_with_newline": true,
+    "line_count": 97,
+    "path": "/Users/Suhas.KS/textbooks.md",
+    "sha1": "53f97401689270cd82353b5e6585fff6bff3a539"
+  }
+}
