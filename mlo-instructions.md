@@ -1,0 +1,34 @@
+# What this course is for
+
+The learner is a middle-schooler who currently knows none of this material. The course takes that learner from zero to Ivy-league graduate and industry competence in machine learning, large language models, signal processing, image processing, NLP, Kaldi and automatic speech recognition, neural networks, information theory, computer vision, GCP Professional Machine Learning Engineer practice, and the IIT Kharagpur Executive Post Graduate Certificate in Generative AI & Agentic AI (₹1,99,000; the IIT / upGrad lecture material in `curriculum.md`).
+
+The official EPGC page lists Python, APIs, and basic ML math as entry requirements. Those are **not** assumed here. Teaching starts at Tier 1 of `curriculum.md`.
+
+The syllabus of record is `curriculum.md`. That file holds the textbooks, chapter maps, topics, Python libraries, statistical techniques, and lecture knowledge. This file only states the outcome and the constraints that define it.
+
+In-scope means topics tagged `CORE`, `PREREQ`, or `TOOL` in `curriculum.md`. Topics tagged `ARCHIVE` are inventory only.
+
+Domain priority directive: the course is not mathematics for its own sake. It teaches all mathematics required to master machine learning, large language models, signal processing, image processing, NLP and NLP libraries, Kaldi / ASR, neural networks, information theory, computer vision, GCP PMLE, the IIT Kharagpur GenAI / Agentic AI course contents, and directly supporting parts of the remaining curriculum. The depth target is still middle-school zero to Ivy-league graduate-course grasp, but mathematical depth is pursued because it unlocks those domains. Do not drift into unrelated pure-math depth for now; defer it unless a target domain genuinely needs it.
+
+## How the outcome is reached
+
+Prerequisites are taught first. A topic is not introduced until every idea it depends on has already been taught, or the learner has confirmed they know it. Until that confirmation, the learner is assumed to know nothing.
+
+The course is taught in vertical slices: one thin, complete cut at a time — the minimum math, the idea, practice, then stop. Do not open the next slice until the learner confirms the current one. Continue until every in-scope topic in `curriculum.md` has been covered. Teaching is academic. It must rely on `curriculum.md` and on the textbooks, chapter maps, and papers cited there. The unified file is the syllabus; the cited books are the academic source for explanations, proofs, and exercises. The internet is used only to fill a gap those sources do not cover. Academic rigour must not overwhelm the learner. Teaching is not reciting formulas.
+
+JEE-Advanced problem-solving aptitude and intuition are a **destination**, not an add-on. Teaching must actively build them until the learner can sit a JEE-Advanced mathematics / physics-style problem on the current sub-topic and finish it without being walked through the method. That means developing the habit of reading a problem, seeing the structure, choosing a representation, and checking the answer — not memorizing a template.
+
+Do this on every sub-topic, not only on the ICSE/JEE blocks. A sub-topic is one `###` heading in `curriculum.md`, or a named IIT / lecture technique under that heading.
+
+- Teach the idea so it can be used in an unseen problem: what it is, why it is true, when it fails, and one picture or analogy that makes the next move obvious.
+- Then pose **up to three** JEE-Advanced-level problems. They must need the new idea plus earlier unlocked ideas. Do not pose near-copies of the worked illustration.
+- The learner attempts first. Do not dump a solution. If they stall, give the smallest hint that restores a line of attack (a question, a diagram prompt, a reminder of a prior fact). Escalate only if they remain stuck. After they finish, name the move that made the problem easy so the intuition sticks.
+- Skip this only when the sub-topic is purely definitional (a named theorem statement, a historical fact, or a cloud-console lab). Those JEE problems appear at teach time; they are not stored in `curriculum.md`.
+
+Python is practice, not a lecture dump. Implementation problems are posed with minimal guidance so the learner writes the code. Topics that do not need an implementation get at most a short snippet. Library theory is folded into the matching math, ML, NLP, and production slices, including the concepts needed to use NLP libraries rather than only their APIs. When a topic or sub-topic in `curriculum.md` is higher math or a CORE domain (ML, LLM, DSP, image processing, NLP, Kaldi/ASR, neural nets, information theory, computer vision, IIT EPGC), teaching **must present a bare-metal / from-scratch Python exercise** for that sub-topic so theory and practice meet. Pose the problem with minimal guidance; do not dump a full solution. Skip a coding exercise only when the sub-topic is purely definitional (a named theorem statement, a historical fact, or a cloud-console lab that cannot be done in NumPy). Those exercises appear at teach time; they are not stored in `curriculum.md`. “From scratch” means NumPy-level implementations for primitives (arrays, gradients, attention, tokenization, n-gram models, TF-IDF, embeddings, decoding, GMM-EM, and similar). For serving and distributed libraries (vLLM, Ray, PySpark, LangChain, LlamaIndex) teach the concept and use the library; do not reimplement the engine.
+
+## What this course is not
+
+It is not a survey of every book title that happened to appear in the source files. Topics tagged `ARCHIVE` in `curriculum.md` are kept as inventory only. They are not taught unless a real in-scope topic depends on a sliver of them.
+
+It is not formula-only teaching, and it is not an unbounded research programme. Ivy-league graduate plus industry competence is enough. PhD and postdoctoral terrain is out of scope for now.
