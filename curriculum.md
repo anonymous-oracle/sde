@@ -19,6 +19,18 @@ Source keys: `CUR` curriculum spine, `IIT` IIT GenAI master list, `DL` deep-lear
 
 A book list appears in §1. Chapter maps appear in §2. The spine in §3 points at those books instead of repeating their tables of contents.
 
+## Learning tracks and deferral policy
+
+This file is intentionally broad so prior source work is not lost. Teaching is not equally broad. The active course follows three tracks:
+
+1. **Primary destination track.** ML, LLMs, signal processing, image processing, NLP, Kaldi / ASR, neural networks, information theory, computer vision, GCP PMLE, IIT Kharagpur GenAI / Agentic AI, and the production systems needed to build and deploy them.
+2. **Required support track.** Mathematics, Python, statistics, algorithms, and software practice taught because they unlock the primary destination track. This includes the necessary depth of algebra, calculus, linear algebra, probability, inference, optimization, transforms, spectral methods, information theory, automata, and numerical computing.
+3. **Deferred enrichment track.** Material that is valuable but not currently load-bearing for the primary destination track: unrelated pure-math depth, PhD/research number theory, medical and mechanical inventories, game-engine/rendering tracks, unrelated software-web stacks, and any `ARCHIVE` topic.
+
+Deferral is not deletion. Deferred material remains in the file for provenance and future expansion. Pull it back into teaching only when a primary destination topic genuinely depends on it, and then teach only the needed slice.
+
+Advanced mathematics is not automatically deferred. Keep it active when it is load-bearing for ML, LLMs, DSP, image processing, ASR, NLP, information theory, computer vision, or production ML. Defer it when it becomes depth for its own sake.
+
 ---
 
 # 1. Bibliography
