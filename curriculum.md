@@ -1355,6 +1355,84 @@ Theory of each library is taught from scratch in the slice that first needs it. 
 
 ---
 
+# 4A. NLP library theory curriculum `TOOL` / `CORE`
+
+Official documentation folded in here: Hugging Face Transformers and Tokenizers; spaCy linguistic-features and processing-pipeline guides; NLTK Book Ch. 3 and Ch. 5. Teach this section with §4, §6.1, §6.4, M45, and M46. Do not teach APIs as magic wrappers. First teach the representation, data structure, algorithm, failure mode, and evaluation signal; then use the library.
+
+## Shared text-processing substrate `PREREQ` / `TOOL`
+
+Raw text is not yet NLP data. The learner must understand the conversion chain: bytes -> Unicode string -> normalized string -> sentences -> tokens -> spans -> labels -> tensors -> model outputs -> decoded text or structured annotations.
+
+- **Unicode and encodings.** Code points, UTF-8 bytes, decoding vs encoding, mojibake, normalization, language scripts, case folding vs lowercasing, glyph vs character. This is required before tokenization, multilingual NLP, ASR transcripts, web corpora, and LLM prompts.
+- **Raw text acquisition.** Local files, web pages, HTML stripping, metadata/header/footer removal, RSS/API text, corpora, PDF text vs OCR routing, and the difference between raw strings, token lists, sentence lists, and annotated corpora.
+- **Regular expressions.** Anchors, character classes, ranges, groups, alternation, greedy vs non-greedy closures, raw strings, word boundaries, extraction vs substitution, and why regex tokenizers are useful but limited.
+- **Normalization.** Whitespace cleanup, punctuation policy, contractions, casing, stop words, numbers/dates/acronyms, stemming vs lemmatization, vocabulary cutoffs, OOV / UNK replacement, and task-specific tradeoffs.
+- **Segmentation.** Sentence segmentation, word segmentation, subword segmentation, token boundaries, span offsets, no-whitespace writing systems, speech-like continuous streams, and why no universal tokenizer exists.
+- **Evaluation.** Gold tokenization, gold POS / NER labels, train/test split, error analysis, confusion matrices, inter-annotator ambiguity, precision/recall/F1 for span labels, and downstream error propagation.
+
+Bare-metal exercises: implement Unicode-safe text loading; an HTML-to-text cleanup pipeline; a regex tokenizer with offsets for dates, money, abbreviations, and names; a sentence segmenter; a vocabulary builder with UNK replacement; and a tiny concordance / frequency-distribution tool.
+
+## NLTK theory `TOOL`
+
+NLTK is the pedagogy and classical NLP laboratory. Use it to expose corpus structure, tokenization, frequency analysis, lexical resources, taggers, and evaluation before relying on neural models.
+
+- **Corpus interfaces.** `raw()`, `words()`, `sents()`, `tagged_words()`, `tagged_sents()`, file IDs, categories, multilingual corpora, and why sentence-level tagged data is the right unit for sequence models.
+- **Core data structures.** Python strings vs lists; dictionaries as lexical maps; `defaultdict`; word -> count maps; word -> tag maps; `FreqDist`; `ConditionalFreqDist`; `Index`; n-grams; conditional counts; sorted vocabulary; corpus-derived evidence.
+- **Lexical resources.** WordNet synsets, lemmas, hypernyms, similarity; stopword lists; pronouncing dictionaries; words corpora; treebanks; Brown / Treebank / CoNLL-style annotations.
+- **Tokenization and normalization.** `word_tokenize`, `sent_tokenize` / Punkt, `regexp_tokenize`, stemmers, WordNet lemmatizer, tokenized-text regex search, collocations, concordance, and known failures on domain text.
+- **POS tagging.** Tagsets, Universal vs Penn vs Brown tags, tagged-token tuples, default taggers, regex taggers, lookup taggers, unigram / bigram / trigram taggers, backoff chains, sparse data, unknown-word handling, Brill transformation rules, model size vs accuracy.
+- **Classical sequence thinking.** A tagger predicts a label per token using local evidence. This is the conceptual bridge to HMMs, CRFs, token classification heads, ASR decoding labels, and transformer NER.
+
+Bare-metal exercises: implement `FreqDist` and `ConditionalFreqDist`; a regex stemmer and regex tokenizer; a unigram POS tagger; a bigram tagger with backoff to unigram and default taggers; UNK replacement for rare words; and a confusion matrix for a tagger.
+
+## spaCy theory `TOOL`
+
+spaCy is the industrial linguistic-pipeline library. Teach it as a typed annotation engine over `Doc`, `Token`, and `Span`, with a configurable pipeline that mixes rules, statistical models, and custom components.
+
+- **Object model.** `Language`, `Vocab`, `StringStore`, `Lexeme`, `Doc`, `Token`, `Span`; token text, whitespace, character offsets, lexical attributes, context-dependent token attributes, and why `Token` / `Span` are views over a `Doc`.
+- **Tokenizer design.** Non-destructive tokenization (`doc.text == input_text`), language-specific exceptions, prefixes, suffixes, infixes, `token_match`, `url_match`, special cases, retokenization, pre-tokenized `Doc` construction, and debugging with tokenizer explanations.
+- **Token alignment.** Align spaCy tokens with external annotations and transformer word pieces. Preserve offsets when moving between NLTK corpora, spaCy `Doc`s, Hugging Face subwords, and human span labels.
+- **Pipeline architecture.** Tokenizer first, then components in order. `tok2vec`, `transformer`, `tagger`, `morphologizer`, `attribute_ruler`, `lemmatizer`, `parser`, `senter`, `sentencizer`, `ner`, `entity_ruler`, `entity_linker`, `textcat`, and custom components.
+- **Linguistic annotations.** POS tags, fine tags, morphology, lemmas, dependency heads and labels, projective vs non-projective parses, noun chunks, sentence boundaries, named entities, IOB / BILUO entity encodings, entity linking IDs, word vectors, OOV flags, vector norms, and similarity limits.
+- **Rules plus models.** `Matcher`, `PhraseMatcher`, `EntityRuler`, `AttributeRuler`, custom extension attributes, custom pipeline components, component factories, pipeline configs, serialization, wrappers around outside models, and `nlp.analyze_pipes` for dependency checks.
+- **Efficiency.** `nlp.pipe` for batching, disabling or excluding unused components, `select_pipes`, batch size, multiprocessing limits on macOS / Windows, GPU caveats, and transformer multiprocessing deadlocks.
+
+Bare-metal exercises: build a minimal `Doc` / `Token` / `Span` representation with text offsets; implement rule-based tokenizer exceptions; implement BILUO span encoding and decoding; traverse a dependency tree from head indices; implement vector averaging and cosine similarity; and build a tiny pipeline that passes a document through ordered components.
+
+## Hugging Face Tokenizers theory `TOOL` / `CORE`
+
+Hugging Face Tokenizers is the production subword-tokenization layer behind transformer workflows. Teach the tokenizer as a deterministic pipeline that must match the model checkpoint.
+
+- **Tokenizer pipeline.** Normalizer -> pre-tokenizer -> tokenization model -> post-processor -> decoder, with optional truncation, padding, special tokens, and offset tracking.
+- **Subword models.** WordPiece, BPE, byte-level BPE, Unigram LM, WordLevel; vocabulary size; merge rules; continuation markers; unknown-token policy; byte fallback; special-token inventory (`[CLS]`, `[SEP]`, `[PAD]`, `[MASK]`, BOS, EOS).
+- **Encoding outputs.** `input_ids`, token strings, `attention_mask`, `token_type_ids`, special-token masks, overflowing windows, offset mappings, word IDs, padding direction, truncation strategy, and batch collation.
+- **Alignment problems.** Word-level labels must be aligned to subword pieces for NER and POS; answer spans must be aligned to character offsets for QA; generation output must be decoded while removing or preserving special tokens as required.
+- **Failure modes.** Tokenization mismatch between training and inference, bad domain segmentation, too-small vocabulary, excessive sequence length, label drift after normalization, destructive normalization without offset recovery, and prompt length surprises because tokens are not words.
+
+Bare-metal exercises: train a toy BPE vocabulary; implement greedy WordPiece encoding; encode and decode with offsets; add special tokens; build attention masks and padded batches; and align word-level NER labels to subword labels.
+
+## Hugging Face Transformers theory `TOOL` / `CORE`
+
+Transformers is the model-definition and pretrained-checkpoint interface for modern NLP, LLMs, speech, vision-language, and multimodal models. It should be taught as preprocessing -> tensors -> model -> logits / hidden states -> task-specific postprocessing.
+
+- **Core abstractions.** Checkpoint, model card, config, tokenizer / processor, model class, task head, pipeline, `AutoTokenizer`, `AutoModel`, `AutoModelFor...`, Hub revisions, local cache, framework backend, and reproducible model loading.
+- **Inputs and outputs.** Token IDs, attention masks, token type IDs, position IDs, labels, logits, hidden states, attentions, pooled outputs, encoder outputs, decoder outputs, `past_key_values`, loss values, and generated sequences.
+- **Task heads.** Masked language modeling, causal language modeling, seq2seq generation, sequence classification, token classification, question answering, feature extraction / embeddings, summarization, translation, ASR, image-to-text, VLM chat, and multimodal processors.
+- **Pipelines.** A pipeline is convenience orchestration: preprocessing, batching, model forward pass, postprocessing, and output formatting. Teach what each pipeline hides before using it.
+- **Fine-tuning workflow.** Dataset schema, train/validation/test split, tokenization map, data collator, dynamic padding, labels, loss, metrics, `Trainer`, callbacks, checkpoints, gradient accumulation, mixed precision, distributed training, and when PEFT / LoRA / QLoRA is preferable to full fine-tuning.
+- **Generation and decoding.** Greedy search, beam search, sampling, temperature, top-k, top-p, repetition penalty, stop sequences, max tokens, streaming, KV cache, chat templates, structured output constraints, and why decoding knobs do not solve hallucination without grounding.
+- **Operational concerns.** GPU memory, device maps, quantization, batching, latency, throughput, safety filters, eval harnesses, reproducible prompts, model-card limitations, license constraints, and handoff to vLLM / TGI / Vertex when serving becomes the goal.
+
+Bare-metal exercises: implement a tokenizer-to-tensor batch; attention masks; masked-LM cross-entropy; a sequence-classification head; token-classification span reconstruction; greedy, beam, and nucleus decoding; a tiny PyTorch fine-tuning loop after the NumPy version is understood; and a minimal evaluation harness for text classification / NER / generation.
+
+## Cross-library selection and integration `TOOL`
+
+Use NLTK when the goal is classical NLP, corpus inspection, frequency distributions, lexical resources, tagger pedagogy, or transparent baselines. Use spaCy when the goal is fast production text annotation, rule+model pipelines, entity extraction, custom linguistic components, or robust document objects. Use Hugging Face when the goal is pretrained neural models, transformers, embeddings, LLM fine-tuning, ASR, VLMs, or modern generation.
+
+Shared contracts across all three: tokenization policy, offsets, labels, schema, train/test split, metrics, error analysis, and reproducible preprocessing. A mismatch in any one of those can silently ruin an NLP system even when the API calls look correct.
+
+---
+
 # 5. Statistical techniques `CORE` / `PREREQ`
 
 Canonical list. Taught inside M40 and the ML slices, not as a second course.
@@ -1629,6 +1707,7 @@ Kept so the source files lose no unique title or module. Not taught unless a COR
 | `iit-genai.md` Modules 1–13 | Folded into §3 Tiers 1, 4, 7, 8 |
 | IIT Kharagpur EPGC (₹1,99,000) official pages | §3 official map |
 | `python-libs.md` 21 libraries | §4 |
+| Official NLP library docs: Hugging Face Transformers / Tokenizers, spaCy, NLTK Book | §4A |
 | `stat-tech.md` 50 techniques | §5 |
 | `lecture_slides_unified.md` 12 decks | §6 topic bank |
 | Unrelated domains | §7 `ARCHIVE` |
@@ -1638,4 +1717,5 @@ Kept so the source files lose no unique title or module. Not taught unless a COR
 - IIT micro-bullets: propositional logic gates; row substitution and transpose; plane distance metrics; Bayes formula; cosine similarity as the embedding distance; system routing tokens, guard prompts, boundary checks, exception paths; structural parsing blocks; Docker minimal layers; token-cost functions.
 - Lecture systems: 6-stage retrieval pipeline; four chunking strategies; HNSW (`M`, `ef`); FAISS vs Chroma; IVFFlat `nlist`/`nprobe`; OCR vs pypdf; ToT; self-consistency; triage agent.
 - Official EPGC week map, faculty, five portfolio projects, SQL bridge, RAGAS metrics, LangGraph, fine-tune-vs-RAG-vs-prompt, VLM/image-gen list, named papers.
+- NLP library theory section: shared text-processing substrate; NLTK corpora / taggers / lexical resources; spaCy Doc / Token / Span pipelines; Hugging Face tokenizers and transformers abstractions; cross-library alignment and evaluation contracts.
 - New CORE textbooks with verified chapter maps: Hammack; Gonzalez & Woods; Szeliski (2e, all 15); Hartley & Zisserman (2e, 1–22); Manning/Raghavan/Schütze; Sutton & Barto; Boyd & Vandenberghe; MacKay; Murphy; Hopcroft/Motwani/Ullman; Huyen; Zhang et al. D2L; Prince; Rabiner & Juang; Huang/Acero/Hon (1–18); Yu & Deng (1–15); Quatieri (1–14).
