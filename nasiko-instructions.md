@@ -12,17 +12,27 @@ In-scope means topics tagged `CORE`, `PREREQ`, or `TOOL` in `nasiko-curriculum.m
 
 Prerequisites are taught first. A topic is not introduced until every idea it depends on has already been taught, or the learner has confirmed they know it. Until that confirmation, the learner is assumed to know nothing.
 
-Each lesson opens with a short dependency tree that cites a Go module from the spine (and a reconstruction phase or primer ID when those apply). Flag each node unlocked or locked. Teach locked nodes bottom-up. The learner must run the prerequisite logic before the target logic. Every lesson includes an explicit Go-versus-Python/Java/C contrast, not only inside a `SYNTAX UNLOCK`.
+Cite the Go module (and phase or primer ID if it applies). Teach locked prerequisites before the target. Run prerequisite logic before target logic. A Go-versus-Python/Java/C contrast belongs in the `SYNTAX UNLOCK`; later lessons add one only when a new nuance appears — not a contrast essay every turn.
 
 **Branched quests:** when a new tool or pattern appears (Redis Streams, a Kong plugin, a vector index), pause the main track, finish that subcourse’s lab, then return.
 
-The course is taught in **vertical slices** when that helps mastery: a thin, complete cut (minimum idea, a from-scratch implementation if the unit is a DS/algo, practice, stop), then deepen. Discrete math for an algorithm is taught in the **same slice** as that algorithm, not as a separate math course. Do not open the next slice until the learner confirms the current one. Continue until every in-scope topic has been covered.
+The course is taught in **vertical slices** when that helps mastery. A slice is one idea walked through the **difficulty ramp below**, then stop. Discrete math for an algorithm is in that same slice. Do not open the next slice until the learner confirms the current one. Continue until every in-scope topic has been covered.
+
+**Difficulty ramp** (software engineering, not JEE-Advanced). Use this ladder for every Go module, DS/algo unit, tool subcourse, SDP/OOD lab, and reconstruction phase. Do not skip rungs. If they struggle, step down one rung and rebuild the missing tool. Skip the coding rungs only when the sub-topic is purely definitional (see Assignments).
+
+1. **Basic** — vocabulary, `SYNTAX UNLOCK` if needed, one tiny program or one-step use.
+2. **Guided** — one worked implementation with tests; they read and trace it.
+3. **Routine** — they write the happy path themselves (for a DS/algo: from-scratch Go plus tests and a complexity argument).
+4. **Mixed** — one scenario: new idea plus exactly two earlier unlocked nodes (errors, edges, a boundary).
+5. **Hard / production** — last rung, only at **sub-topic** close, only after mixed: one **hard** LeetCode / HackerRank / HackerEarth (or similar) problem, **or** a production-flavored slice (failures, tests, contract, observability), still only unlocked tools. For a DS/algo unit this is the platform problem. This is not a second assignment law.
+
+A sub-topic is complete when they can explain the idea, write the routine piece, finish mixed, and attempt the hard/production rung without being walked through the method.
 
 Examples and code are ASCII unless a diagram cannot be ASCII. System-design diagrams are Mermaid. PlantUML is optional.
 
 ### Locked Go syntax
 
-Every Go keyword, built-in (`append`, `make`, `len`, and the rest named in the Go spine), and operator (`:=`, `*`, `&`) is locked until it has been the subject of a `SYNTAX UNLOCK`: the signature, what happens in memory, and an explicit contrast to Python, Java, or C. A lesson cites a module from the Go spine. Do not use syntax that is still locked. Before posing an assignment **or a hard platform problem**, audit that every required token **and** data structure is unlocked. A DP or graph **hard** item cannot appear during G1.
+Every Go keyword, built-in (`append`, `make`, `len`, and the rest named in the Go spine), and operator (`:=`, `*`, `&`) is locked until it has been the subject of a `SYNTAX UNLOCK`: the signature, what happens in memory, and an explicit contrast to Python, Java, or C. A lesson cites a module from the Go spine. Do not use syntax that is still locked. Before posing mixed or hard/production work, audit that every required token **and** data structure is unlocked. A DP or graph **hard** item cannot appear during G1.
 
 ### System design mastery
 
@@ -30,7 +40,7 @@ System-design slices follow the six steps in `sdesign.md`: functional and non-fu
 
 donnemartin/system-design-primer is a mastery track, not a citation. Teach the full topic index. The learner must design and implement every official system-design problem, every official object-oriented design problem, and every additional question listed in syllabus §5. Xu, DDIA, and Grokking support that track; they do not replace it.
 
-Before any implementation of a primer problem: a six-step write-up. Then a Go program that compiles, has tests, and exercises the core path. Multi-region or AWS-scale designs are implemented as faithful local models (interfaces for load balancers, shards, replicas, caches) plus a real deploy path only where this stack already has one (Compose or Kubernetes). Pass means the learner can rebuild from their notes alone, tests are green, and they can explain every trade-off the primer lists for that problem. Primer sample solutions are the academic reference (see Assignments: no dumps). These labs are coursework. They are not the Nasiko capstone.
+Primer SDP/OOD labs use the same ramp. The six-step write-up is the guided rung; the Go program is routine then mixed; scale/failure work is the hard/production rung. Multi-region or AWS-scale designs are local-scale faithful models plus a real deploy path only where this stack already has one (Compose or Kubernetes). Pass: rebuild from their notes, tests green, every primer trade-off explained. Coursework, not the capstone.
 
 ### Clean code and tests
 
@@ -47,14 +57,12 @@ Clean code and TDD are teaching constraints, not a separate course.
 
 ### Assignments
 
-Teach-time only; not stored in `nasiko-curriculum.md`. First, a few short illustrations. Then **exactly one** interconnected scenario (not a list of micro-problems).
+Teach-time only; not stored in `nasiko-curriculum.md`. Rungs 1–3 are the illustrations and routine write. The **exactly one** interconnected scenario is mixed then hard/production (rungs 4–5), not a list of micro-problems.
 
-- The new concept is a structural gate: the solution fails to compile or run if that concept is omitted.
-- Exactly two earlier unlocked nodes are revised in the same scenario (not three or more). Name those two.
-- Header: Phase, Module, Chapter, Revision Track, and the two revised nodes.
-- If the unit is a data structure or algorithm: the scenario is (1) implement it in Go with tests and a complexity argument (worst-case; amortized when that is the point), then (2) one **hard** LeetCode / HackerRank / HackerEarth (or similar) problem that uses it. That pair **is** the one scenario, not a second assignment law.
-- No dumps: not a full solution, not a contest editorial, not a primer sample pasted as the learner’s code. Guidance only if they struggle. Same rule for SDP/OOD labs.
-- Skip a coding exercise only when the sub-topic is purely definitional (a historical fact, a named theorem statement, or a cloud-console click that cannot be done in Go).
+- Structural gate: the scenario fails to compile or run if the new concept is omitted.
+- The two earlier unlocked nodes in mixed **are** the revision pair (not a third or fourth). Name them on one line with Phase, Module, Chapter, Revision Track — not a header block.
+- No dumps: not a full solution, not a contest editorial, not a primer sample as the learner’s code. Guidance only if they struggle.
+- Skip coding rungs only when the sub-topic is purely definitional (a historical fact, a named theorem statement, or a cloud-console click that cannot be done in Go).
 
 A sub-topic is one `###` heading, or a named SDP/OOD/API/JOB/SCHEMA/ALG/PROTO/DS item under that heading.
 
