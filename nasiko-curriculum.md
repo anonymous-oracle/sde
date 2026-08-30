@@ -1,6 +1,6 @@
 # Nasiko Go Control Plane — Master Curriculum
 
-Single syllabus of record for this course. Every unique topic from the eight source files lives here once.
+Single syllabus of record for this course. Every unique topic lives here once as a canonical node in the learning graph, then later sections reuse that node by reference.
 
 Teaching brief: `nasiko-instructions.md`.
 
@@ -77,6 +77,110 @@ Ivy-league / OCW spines for algorithms, data structures, and discrete math. Teac
 3. Registry discovers the agent → Kong services/routes/plugins
 4. Router: query → embeddings → shortlist → LLM picks agent
 5. Gateway routes to agent → chat logged → traces emitted
+
+## 1b. Knowledge graph and no-repeat policy `CORE`
+
+Teach this curriculum as a directed knowledge graph. A concept has one **owner** where it is first taught at full depth. Later appearances are **reuse edges**: retrieve the prior idea, apply it to the new setting, and add only the new nuance. Do not reteach the same theory in each Go module, system-design problem, and capstone phase.
+
+Edge types:
+
+- **Prerequisite** — the target cannot be taught honestly until the source is mastered.
+- **Complement** — the topics strengthen each other and should be practiced close together.
+- **Application** — the target uses a prior idea in a real service, lab, or production drill.
+
+```mermaid
+flowchart TD
+	BASE[Computing baseline and tooling]
+	GO[Go syntax and standard library]
+	DS[Data structures, algorithms, proofs]
+	IO[Files, encoding, time, config]
+	CONC[Concurrency, races, worker pools]
+	NET[Networking, HTTP, TLS, REST]
+	SQL[Relational algebra and SQL correctness]
+	DBI[PostgreSQL internals and operations]
+	API[API contracts and clean architecture]
+	SD[System design HLD/LLD]
+	PAT[Microservice and reliability patterns]
+	TOOL[Tools: Docker, Kong, Redis, Mongo, K8s, Terraform, OTEL]
+	CAP[Nasiko P0-P10 capstone]
+	PROD[Production readiness and SRE]
+
+	BASE --> GO --> DS
+	GO --> IO --> API
+	GO --> CONC --> PAT
+	GO --> NET --> API
+	NET --> SQL --> DBI
+	DS --> DBI
+	SQL --> API
+	SD --> PAT --> CAP
+	API --> CAP
+	TOOL --> CAP
+	DBI --> CAP
+	CAP --> PROD
+	DBI -. complements .-> SD
+	DS -. complements .-> SD
+	CONC -. complements .-> DBI
+	PROD -. validates .-> CAP
+```
+
+### Concept ownership matrix `CORE`
+
+| Concept node | First taught at full depth | Strong prerequisites | Complements | Later reuse without reteaching | Mastery evidence |
+|---|---|---|---|---|---|
+| Computing baseline | §3, G0 | none | Git, shell, editor | every lesson | Can run, edit, test, and explain files/processes/env |
+| Go syntax and memory model | G1-G3 | §3 | DS/algo, clean code | all Go labs and phases | Small programs with tests; syntax unlock notes |
+| Data structures, algorithms, proofs | G1-G4, G8-G9, G11, §2b | G1-G3 | DB indexes, routing, caches | SDP/OOD, DBI, P4-P7 | From-scratch Go implementation, invariant, complexity, hard problem |
+| IO, serialization, time, config | G4-G5 | G1-G3 | Postgres pages/WAL, CLI, config patterns | P0-P2, P8, P10 | Parser/config tool with tests |
+| Testing and benchmarking | G9 | G1-G5 | all implementation nodes | every later lab | Table tests, benchmark, failure case |
+| Concurrency and synchronization | G6-G7, G10 | G1-G3 | queues, MVCC, worker pools | P7, P10 | Worker pool with race detector clean |
+| Networking, HTTP, TLS, REST | G11-G12, 5a.15 | G1-G5 | API design, auth, gateway | P3-P9 | CRUD API with contract tests |
+| SQL correctness | G12, DB-1-DB-3 | G1-G5, §3 relations | API contracts, data modeling | P2-P3, P6-P7, payments | Schema + queries + `EXPLAIN` transcript |
+| PostgreSQL internals | DB-4-DB-10 | SQL correctness, DS/algo, IO, concurrency | system design database choices | P2, P5-P7, P10 | Go mini-engine pieces plus operational drills |
+| Caching | 5a.13, OOD-2 | maps/hash tables, HTTP | router/search, rate limits | P3, P5, SDP-A5/A6 | LRU/LFU implementation and cache-policy trade-off |
+| Queues and async work | G2 queues, G6 channels, 5a.14 | Go basics, concurrency | idempotency, backpressure | Redis Streams, P7, webhooks | Bounded queue + idempotent consumer test |
+| Search and indexing | G3/G4/G8, DB-6 | DS/algo, SQL | vector search, chat search | P5, P6 | Index choice justified by query shape and measurements |
+| API contracts and LLD | G12, §7 | HTTP, SQL, errors | clean architecture, tests | P3-P9 | OpenAPI-like contract, handler/service/repo tests |
+| HLD and system design | §5a-§5d | computing, networking, databases | SRE, production patterns | every SDP and P0-P10 | Six-step design, Mermaid, capacity table, trade-offs |
+| Microservice and reliability patterns | §5e | HLD, APIs, concurrency | SRE, distributed systems | P3-P10 | Pattern force, Go implementation, test, simpler alternative |
+| Observability and SRE | G16, P10, §9 | HTTP, concurrency, deployment | reliability patterns, DB ops | every service | Trace, metrics, dashboard, alert, runbook, postmortem drill |
+| Security | G17, 5a.16 | HTTP, API contracts | auth service, secrets, supply chain | P3, P8-P10, payments | Threat model, auth tests, secret handling, vuln scan |
+| Deployment and infra | G18, §4 tools | Go build, Docker basics | P0-P10 | releases, scaling, rollback | Local compose, K8s/Terraform plan, rollback proof |
+| Nasiko capstone | P0-P10 | all required owner nodes | production readiness | final project only | Upload -> build -> deploy -> route -> chat -> trace -> rollback |
+
+### Complementary topic pairs `CORE`
+
+| Pair | Why they belong close together | Teach-once rule |
+|---|---|---|
+| `map` and hash tables | Go maps give client fluency; hand-built hash ST explains collisions and caches | Syntax in G2; implementation in G3/OOD-1; reuse in caching and sharding |
+| Trees and B-Trees | BSTs teach ordered search; B-Trees explain disk/page-aware indexes | Tree invariants in G3; page-aware index internals in DB-6 |
+| Sorting and query execution | Merge/quicksort teach comparison cost; external sort explains `work_mem` spill | Sorting in G8; DB executor/planner in DB-7/DB-8 |
+| Channels and queues | Channels teach coordination; queues add durability and delivery semantics | Channels in G6; message/task queues in 5a.14; Redis Streams in P7 |
+| Context/timeouts and retries | `context` cancels local work; retries/backoff handle unreliable networks | `context` in G6; retry/circuit/bulkhead in §5e/P10 |
+| ACID and MVCC | ACID defines correctness; MVCC explains how PostgreSQL permits concurrency | ACID in G12; MVCC/locks/vacuum in DB-9 |
+| REST and RPC | REST models resources; RPC models behavior; control plane uses both | REST in G12/5a.15; gRPC in G13-G15; JSON-RPC in P9 |
+| HLD and LLD | HLD chooses components; LLD proves contracts and invariants | Method in §5; artifacts required in every SDP/phase |
+| Observability and SLOs | Traces explain one request; SLOs judge service behavior over time | OTEL in G16/P1; SLOs and incident drills in P10 |
+
+### Compressed learning sequence `CORE`
+
+| Milestone | Canonical topics taught | Key reused topics | Exit gate |
+|---|---|---|---|
+| M0 Setup | §3, G0 | none | Run Go, Git, shell, editor, Docker smoke test |
+| M1 First programs | G1-G2 | baseline | Tested functions using arrays/slices/maps/errors |
+| M2 Types and core DS | G3 | proofs vocabulary | Linked list, tree, heap, union-find, hash ST with tests |
+| M3 IO and config | G4-G5 | M1-M2 | File parser, JSON config, CLI flag/env overlay |
+| M4 Concurrency | G6-G7, G10 | queues as DS | Worker pool, cancellation, no race detector failures |
+| M5 Algorithms and analysis | G8-G9, G11 graph DS, §2b as needed | M2-M4 | Sorting/search/DP/graph implementations, proofs, hard problems |
+| M6 HTTP and SQL correctness | G11-G12, DB-1-DB-3 | M1-M5 | CRUD API, schema constraints, joins/CTEs/windows, `EXPLAIN` notes |
+| M7 Database internals | DB-4-DB-10 | DS, IO, concurrency, SQL | Slotted page, B-Tree, executor, MVCC, WAL, backup/replica drills |
+| M8 System design and patterns | §5a-§5e, SDP/OOD | M1-M7 | Six-step designs, Go implementations, pattern tests |
+| M9 Tool mastery | §4 | M1-M8 | Docker/Kong/Mongo/Redis/Postgres/K8s/OTEL labs pass |
+| M10 Platform skeleton | P0-P2 | M3, M6, M9 | Repo skeleton, shared libs, data contracts reviewed |
+| M11 Core services | P3-P6 | API, DB, cache, discovery | Backend, registry/gateway, router, chat history work together |
+| M12 Orchestration and clients | P7-P9 | queues, idempotency, RPC, CLI | Build/deploy worker, CLI, JSON-RPC agents pass e2e |
+| M13 Production | P10, §9 | all prior | SLOs, traces, load test, rollback, backup/restore, security review |
+
+Milestone rule: if a later milestone needs a prior node, give a short retrieval prompt and move into the new application. Reopen a full lesson only if the learner cannot pass the prior node's exit gate.
 
 ---
 
@@ -254,7 +358,7 @@ Mathematics for the router only: vectors, dot product, cosine similarity. Superv
 
 ### 3b Zero-to-hero domain map (`META`)
 
-Folded tracks, not a second spine. Each domain: intro in the cited block, intermediate on the first project use, advanced in the matching P-phase or primer lab.
+Index only. The canonical first-teach owner is §1b; this table helps locate where a broad domain first appears and where it becomes project work.
 
 | Domain | Lives in | Project lab |
 |---|---|---|
@@ -264,6 +368,7 @@ Folded tracks, not a second spine. Each domain: intro in the cited block, interm
 | Algorithms | G8–G9, G11, P4–P5, §2b | Sort, graph, DP, then residual NP/flow/segtree |
 | Discrete mathematics | §3, G3, G8–G9, G11–G12 | Proofs, recurrences, graphs, counting, mod, probability |
 | Mathematics | §3 router math | Cosine similarity on two embedding vectors |
+| SQL and database systems | G12, G12b, §5a-SQL | Schema/query labs, internals labs, Postgres operations |
 | Machine learning | §3 + `curriculum.md` | Embed + evaluate a shortlist |
 | LLMs | §4 LLM row, ALG-ROUTE, P5/P9 | Structured pick; tool call |
 | MLOps | P5, P10, §9 | Deploy a model-backed router; watch drift as “bad shortlist rate” |
@@ -281,7 +386,7 @@ Folded tracks, not a second spine. Each domain: intro in the cited block, interm
 
 Each row is a subcourse. Teach prereqs from zero, concepts, a lab tied to this project, pitfalls, then a mastery check. Depth = how sophisticated the repo’s use is.
 
-**Branched quests:** when a new tool or pattern appears (Redis Streams, a Kong plugin, a vector index), pause the main track, finish that row’s lab, then return.
+**Branched quests:** when a new tool, database mechanism, or pattern appears (Redis Streams, a Kong plugin, a Postgres index, a vector index, outbox, circuit breaker), pause the main track, finish that row’s lab, then return.
 
 | Subcourse | Project use | Lab / mastery |
 |---|---|---|
@@ -308,7 +413,7 @@ Gin / Fiber / Chi + `net/http` for HTTP services. Pydantic equivalent = structs 
 
 ### HLD, LLD, and clean architecture `CORE`
 
-Named tracks (`META`). Running example is this control plane. Not a second spine.
+Named tracks (`META`). Running example is this control plane. Not a second spine; §1b and §5e own the canonical teaching.
 
 - **HLD** — service boundaries, C4/Mermaid, data flows, capacity. Teach with primer 5a and every P0–P10 Deep-Dive.
 - **LLD** — API contracts (`API-*`), schemas (`SCHEMA-*`), module interfaces (handler -> service -> repository), transaction boundaries, idempotency keys, pagination contracts, error model, concurrency model, and state machines.
@@ -457,75 +562,21 @@ Pattern graduation rule: a pattern is complete only when the learner can name th
 
 # 6. Reconstruction phases `CORE`
 
-Source: blueprint + packed `plan.phases`. Isolated until §2–§5 (as needed) and §4 tools for that phase are done.
+Source: blueprint + packed `plan.phases`. Phases are capstone applications of the §1b graph. They may introduce local wiring and domain decisions, but they must not reteach graph-owned concepts.
 
-### P0 Foundations
-
-Inputs: workstation, Go toolchain, Docker, kubectl, terraform.  
-Steps: monorepo + Go modules; lint/format; Makefile; local dev loop.  
-Outputs: repo skeleton.  
-Acceptance: `go test ./...` on scaffolding; dev loop documented.  
-Deep-dive: what is a system; latency numbers.
-
-### P1 Core platform skeleton
-
-Shared config (env, file, defaults); logging; tracing; error model and HTTP helpers.  
-Acceptance: a service boots with config + logs + traces.  
-Deep-dive: communication, SLIs.
-
-### P2 Data stores and contracts
-
-Mongo schemas (registry, chat, creds, builds, uploads). Redis stream names, payloads, consumer groups. Kong DB, service/route specs. Postgres lab schemas for users/agents/access/audit plus optional auth/audit relational slice if chosen. Migrations, constraints, indexes, invariants, isolation requirements, and data ownership.
-Acceptance: data-model review.  
-Deep-dive: SQL vs document; relational algebra to schema design; catalogs/system columns; constraints; B-Tree/GIN/BRIN index choice; JSONB vs document-store trade-off.
-
-### P3 Backend API
-
-HTTP router, middleware, handlers, services, repositories. JWT validation. Endpoints §7 `API-*`. Idempotency-key middleware for mutating endpoints, keyset pagination where ordering matters, repository transaction boundaries, and query-plan checks for list/search endpoints.
-Acceptance: contract tests; auth works.  
-Deep-dive: REST, Microsoft-style API consistency, pagination, idempotency, N+1 detection, isolation-level selection.
-
-### P4 Registry and gateway
-
-Discover Docker/K8s agents. Program Kong services, routes, plugins. Health checks; stale cleanup.  
-Acceptance: agents appear on the gateway and are routable.  
-Deep-dive: service discovery, reverse proxy, L7 routing. **DS/algo:** model agents as a graph; BFS/DFS from G11; union-find for connected components if useful.
-
-### P5 Router
-
-Embeddings; vector store; shortlist; rerank; LLM structured pick.  
-Acceptance: routing tests match expected agent.  
-Deep-dive: cache, ANN vs exact k-NN, fallbacks. **DS/algo:** heap-select / top-k (SDP-A18); tries for token prefixes (G4).
-
-### P6 Chat history
-
-JSON-RPC ingest; Mongo persist; query + pagination. Kong `chat-logger` -> `/log-chat`. Compare append-only Mongo storage with a Postgres JSONB/GIN/BRIN lab so the learner can reason about retention, partitions, index-only scans, and hot channels.
-Acceptance: logs persist and retrieve.  
-Deep-dive: append-only storage, TTL/retention, hot partitions, coalesced reads, consistency of derived read models.
-
-### P7 Orchestrator + worker
-
-`XREADGROUP` on `orchestration:commands`. BuildKit/Docker build; push; deploy; registry/status updates. Actions: deploy, update, rebuild, rollback. Add transactional outbox/idempotent consumer labs and a Postgres isolation test that proves duplicate deliveries cannot create duplicate deployments.
-Acceptance: e2e build/deploy completes.  
-Deep-dive: queues, at-least-once vs exactly-once, idempotency, back pressure, bounded backlog, DLQ/redrive, retry with jitter, transaction boundaries.
-
-### P8 CLI
-
-Command groups §7 `CLI-*`. Local/K8s setup automation.  
-Acceptance: operator workflows covered.  
-Deep-dive: client retries, config layering.
-
-### P9 Sample agents
-
-A2A JSON-RPC; AgentCard; tool calling; streaming/artifacts. Templates.  
-Acceptance: agents accept JSON-RPC and complete a routed turn.  
-Deep-dive: RPC vs REST; schema evolution.
-
-### P10 Production hardening
-
-SLOs, dashboards, alerts, runbooks. Load tests, pprof, scaling. Security and supply chain. Postgres performance/recovery drill: `pg_stat_statements`, slow query triage, `VACUUM`/bloat check, WAL/archive backup, restore, replica lag, failover exercise. ORR, rollback, DR drill.
-Acceptance: ORR signed; rollback proven.  
-Deep-dive: nines, failover, cost, recovery objectives, data-loss budgets. Retries, timeouts, circuit breakers, bulkheads, idempotency on every public path.
+| Phase | Build slice | First-teach owner used here | Reuse edges | Acceptance |
+|---|---|---|---|---|
+| P0 Foundations | Workstation, Go toolchain, Docker, kubectl, Terraform, monorepo, Go modules, lint/format, Makefile, local dev loop | §3, G0, §4 Git/Docker | latency numbers from §5a.17 | `go test ./...` on scaffolding; dev loop documented |
+| P1 Core platform skeleton | Shared config, logging, tracing, error model, HTTP helpers | G5, G16, 5a.15 | externalized config and microservice chassis from §5e | one service boots with config + logs + traces |
+| P2 Data stores and contracts | Mongo schemas; Redis streams; Kong DB specs; Postgres teaching schemas for users/agents/access/audit; migrations, constraints, indexes, ownership | G12, DB-1-DB-3, §7.6 | SQL vs document from 5a.11-12; index choice from DB-6 | data-model review; invariants proven by constraint tests |
+| P3 Backend API | HTTP router, middleware, handlers, services, repositories, JWT validation, endpoints §7.1, idempotency-key middleware, keyset pagination, query-plan checks | G11-G12, API/LLD owner in §1b, §5e repository/unit-of-work/middleware | idempotency from 5a.4/5a.11; SQL correctness from DB-1-DB-3 | contract tests; auth works; mutating endpoints retry safely |
+| P4 Registry and gateway | Docker/K8s discovery; Kong services/routes/plugins; health checks; stale cleanup | 5a.8-10, §4 Kong/K8s, §7.4 | graphs/BFS/DFS from G11; adapter pattern from §5e | agents appear on gateway and are routable |
+| P5 Router | Embeddings, vector store, shortlist, rerank, LLM structured pick | §3 router math, G4 tries, G8 top-k, DB-6, ALG-ROUTE-001 | cache from 5a.13; search/indexing node from §1b; fallback patterns from §5e | routing tests match expected agent; fallback is explicit |
+| P6 Chat history | JSON-RPC ingest, Mongo persistence, query/pagination, Kong `chat-logger` to `/log-chat`, Postgres JSONB/GIN/BRIN comparison lab | 5a.14-15, DB-6, §7.2 | append-only/event-sourcing from §5e; hot partition case study from `IND` | logs persist and retrieve; query paths measured |
+| P7 Orchestrator + worker | Redis `XREADGROUP`; BuildKit/Docker build; push; deploy; status updates; deploy/update/rebuild/rollback; outbox/idempotent consumer lab | G6-G7, 5a.14, DB-9, §5e outbox/saga/idempotent consumer | retry with jitter, bounded backlog, DLQ/redrive from §5e/P10 | e2e build/deploy completes; duplicate delivery cannot duplicate deployment |
+| P8 CLI | Cobra/Viper command groups §7.8; local/K8s setup automation | G5, §4 Cobra/Viper | API contracts from P3; client retry/config from §5e | operator workflows covered |
+| P9 Sample agents | A2A JSON-RPC, AgentCard, tool calling, streaming/artifacts, templates | G13-G15, §7.3c | REST vs RPC from 5a.15; schema evolution from G13 | agents accept JSON-RPC and complete a routed turn |
+| P10 Production hardening | SLOs, dashboards, alerts, runbooks, load tests, pprof, scaling, security, supply chain, Postgres performance/recovery, ORR, rollback, DR drill | G16-G18, DB-5, DB-8, DB-10, §9 | circuit breaker, bulkhead, retry, SRE, incident/postmortem from §5e/§9 | ORR signed; rollback proven; backup/restore and failover tested |
 
 **Capstone acceptance (`META`):** upload → build → deploy → register → route a query with confidence → chat + traces visible → CLI status/upload/route-test → staging and prod with promotion → load test → backup/restore drill → security review + incident plan.
 
