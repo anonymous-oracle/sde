@@ -1,8 +1,8 @@
 # What this course is for
 
-The learner is an absolute beginner who currently knows none of this material — not Go, not programming, not systems. Hardware, OS, editor, and CLI are not assumed; they are the first `PREREQ` block in `nasiko-curriculum.md`. The course takes that learner from zero to industry competence: they can implement and operate an AI-agent control plane in Go, the same class of system as Nasiko (gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, sample agents), **and** implement standard algorithms and data structures in Go well enough to solve **hard** problems on LeetCode, HackerRank, HackerEarth, and similar. Those DS/algo labs are coursework, not the capstone.
+The learner is an absolute beginner who currently knows none of this material — not Go, not programming, not systems. Hardware, OS, editor, and CLI are not assumed; they are the first `PREREQ` block in `nasiko-curriculum.md`. The course takes that learner from zero to industry competence: they can implement and operate an AI-agent control plane in Go, the same class of system as Nasiko (gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, sample agents), understand and tune PostgreSQL-backed systems from relational algebra down to MVCC/WAL/index internals, design HLD/LLD/microservice architectures at an industry bar, **and** implement standard algorithms and data structures in Go well enough to solve **hard** problems on LeetCode, HackerRank, HackerEarth, and similar. Those DS/algo and database-systems labs are coursework, not the capstone.
 
-The syllabus of record is `nasiko-curriculum.md`. That file holds the Go spine, blended algorithms/data structures/discrete math (Ivy sources in its bibliography), tool subcourses, donnemartin system-design primer, reconstruction phases P0–P10, normalized specs, and the production bar. This file only states the outcome and the constraints that define it. Teaching must rely on that syllabus and on the books and official docs cited there (Sedgewick/Wayne, Algorithms Illuminated, MIT 6.042/6.006, CS161, primer, Xu, DDIA, Grokking, tool docs). The internet is used only to fill a gap those sources do not cover. Teaching is academic, not reciting APIs or contest editorials.
+The syllabus of record is `nasiko-curriculum.md`. That file holds the Go spine, blended algorithms/data structures/discrete math (Ivy sources in its bibliography), the PostgreSQL/database-systems braid, tool subcourses, donnemartin system-design primer, industry architecture research atlas, reconstruction phases P0–P10, normalized specs, and the production bar. This file only states the outcome and the constraints that define it. Teaching must rely on that syllabus and on the books and official docs cited there (Sedgewick/Wayne, Algorithms Illuminated, MIT 6.042/6.006, CS161, CMU 15-445/645, Berkeley CS186, PostgreSQL docs/source, primer, Xu, DDIA, Grokking, Microsoft API Guidelines, Google SRE, AWS Builders' Library, tool docs). Internet research is deliberate for system design, microservices, PostgreSQL operations, OSS architecture, and production case studies; use primary or reputable engineering sources, extract principles, and cite the source family. Teaching is academic, not reciting APIs, blog posts, or contest editorials.
 
 This is a different course from the ML/LLM/DSP syllabus in `curriculum.md` / `mlo-instructions.md`. Do not mix the two spines. When a router slice needs embeddings, tokens, or vector similarity, teach a thin prerequisite or point at `curriculum.md` if that fact is already taught there. Do not reopen that course.
 
@@ -14,7 +14,7 @@ Prerequisites are taught first. A topic is not introduced until every idea it de
 
 Cite the Go module (and phase or primer ID if it applies). Teach locked prerequisites before the target. Run prerequisite logic before target logic. A Go-versus-Python/Java/C contrast belongs in the `SYNTAX UNLOCK`; later lessons add one only when a new nuance appears — not a contrast essay every turn.
 
-**Branched quests:** when a new tool or pattern appears (Redis Streams, a Kong plugin, a vector index), pause the main track, finish that subcourse’s lab, then return.
+**Branched quests:** when a new tool, database mechanism, or pattern appears (Redis Streams, a Kong plugin, a vector index, a Postgres index, MVCC isolation, WAL recovery, outbox, circuit breaker), pause the main track, finish that subcourse’s lab, then return.
 
 The course is taught in **vertical slices** when that helps mastery. A slice is one idea walked through the **difficulty ramp below**, then stop. Discrete math for an algorithm is in that same slice. Do not open the next slice until the learner confirms the current one. Continue until every in-scope topic has been covered.
 
@@ -36,11 +36,25 @@ Every Go keyword, built-in (`append`, `make`, `len`, and the rest named in the G
 
 ### System design mastery
 
-System-design slices follow the six steps in `sdesign.md`: functional and non-functional requirements; capacity; high-level design; deep dive and failures; trade-offs; production hardening. Every reconstruction phase has a Deep-Dive that maps the relevant primer topic onto the control plane.
+System-design slices follow the six steps in `sdesign.md`: functional and non-functional requirements; capacity; high-level design; deep dive and failures; trade-offs; production hardening. Every reconstruction phase has a Deep-Dive that maps the relevant primer topic, PostgreSQL/database-systems braid, and industry case-study pattern onto the control plane.
 
 donnemartin/system-design-primer is a mastery track, not a citation. Teach the full topic index. The learner must design and implement every official system-design problem, every official object-oriented design problem, and every additional question listed in syllabus §5. Xu, DDIA, and Grokking support that track; they do not replace it.
 
-Primer SDP/OOD labs use the same ramp. The six-step write-up is the guided rung; the Go program is routine then mixed; scale/failure work is the hard/production rung. Multi-region or AWS-scale designs are local-scale faithful models plus a real deploy path only where this stack already has one (Compose or Kubernetes). Pass: rebuild from their notes, tests green, every primer trade-off explained. Coursework, not the capstone.
+Primer SDP/OOD labs use the same ramp. The six-step write-up is the guided rung; the Go program is routine then mixed; scale/failure work is the hard/production rung. Multi-region or AWS-scale designs are local-scale faithful models plus a real deploy path only where this stack already has one (Compose or Kubernetes). Pass: rebuild from their notes, tests green, every primer trade-off explained, and at least one HLD/LLD artifact plus one production failure drill completed. Coursework, not the capstone.
+
+### Database systems mastery
+
+Teach the supplied PostgreSQL internals curriculum through the existing modules and phases. Do not append it as a standalone reading dump. Each DB topic must follow this path: formal concept -> PostgreSQL engine behavior -> Go or SQL implementation -> Nasiko/system-design consequence.
+
+Required coverage: relational algebra and SQL semantics; schemas/types/catalogs/constraints; CTEs/windows/lateral joins; storage layout, slotted pages, TOAST, FSM/VM; buffer pool, clock-sweep, bgwriter/checkpointer; B-Tree/hash/GIN/GiST/SP-GiST/BRIN and scan strategies; Volcano execution, sort/join/aggregate algorithms; statistics, selectivity, cost model, path generation, parallelism; MVCC, snapshots, isolation, locks, deadlocks, vacuum/HOT/freezing; WAL, checkpoints, crash recovery, streaming replication, PITR.
+
+Required hands-on: SQL transcript in Postgres; `EXPLAIN (ANALYZE, BUFFERS)` interpretation; Go lab for slotted pages/index/executor/MVCC/WAL where the topic is algorithmic; operational drill for vacuum, backup/restore, replica lag, or failover where the topic is operational. A DB slice is complete only when the learner can predict behavior before running it and explain the discrepancy after running it.
+
+### Research-grounded architecture teaching
+
+For HLD, LLD, microservices, and design patterns, use roadmap.sh as a coverage checklist, the primer as the mastery sequence, official docs for concrete technologies, and serious industry/OSS systems as evidence. A case study is useful only if it produces an implementable lesson: e.g., Stripe-style idempotency keys, Discord-style hot-partition protection and request coalescing, AWS-style queue backlog controls, Kubernetes-style reconciliation loops, etcd-style watch/config propagation, Temporal-style workflow state, CockroachDB/Postgres-style transaction trade-offs.
+
+Every architecture lesson must distinguish: monolith vs modular monolith vs microservices; sync vs async communication; data ownership; transaction boundary; consistency model; retry/idempotency rule; observability signal; deployment and rollback path. Every design pattern must be taught as a response to a force in the code, not as a memorized catalog entry.
 
 ### Clean code and tests
 
@@ -68,7 +82,7 @@ A sub-topic is one `###` heading, or a named SDP/OOD/API/JOB/SCHEMA/ALG/PROTO/DS
 
 ### Capstone isolation
 
-Do not implement the Nasiko control plane until the conceptual spine is done: setup and computing prerequisites, Go modules 0–19 (including blended DS/algo), the primer topic index and the SDP/OOD labs those modules unlock, and the tool subcourses that P0–P10 need. DS/algo labs and hard platform problems are coursework; they may run in vertical slices **during** the spine. They are not the capstone. The capstone is Go only. No concurrent capstone work during Foundations.
+Do not implement the Nasiko control plane until the conceptual spine is done: setup and computing prerequisites, Go modules 0–19 (including blended DS/algo), the PostgreSQL/database-systems braid, the primer topic index and the SDP/OOD labs those modules unlock, the HLD/LLD/microservice/design-pattern implementation ladder, and the tool subcourses that P0–P10 need. DS/algo, database-systems, and system-design labs are coursework; they may run in vertical slices **during** the spine. They are not the capstone. The capstone is Go only. No concurrent capstone work during Foundations.
 
 Recurse into computer science or mathematics only for locked prerequisites of the current slice. Stop at industry competence. Do not expand into “the full fields of CS and mathematics.”
 
