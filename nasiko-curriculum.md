@@ -1,6 +1,6 @@
 # Nasiko Go Control Plane — Master Curriculum
 
-Single syllabus of record for this course. Every unique topic from the eight source files lives here once.
+Single syllabus of record for this course. Every unique topic from the source files lives here once. The knowledge graph in §0 is the teaching order; later sections define node details, labs, specs, and traceability.
 
 Teaching brief: `nasiko-instructions.md`.
 
@@ -17,7 +17,7 @@ This is not the ML/LLM/DSP course (`curriculum.md`).
 
 Source keys: `GO` go-topics, `SD` sdesign + donnemartin primer, `BP` reconstruction blueprint, `META` course meta prompt, `AN` packed analysis, `PAY` payments addendum, `RULE` nasigo-rules / engine / exercise-rule, `DB` PostgreSQL internals attachment, `ROAD` roadmap.sh backend / system-design / PostgreSQL DBA roadmaps, `OSS` open-source architecture repos, `IND` serious industry architecture writeups.
 
-A lesson cites a Go module from §2. Reconstruction work cites a phase from §6 and spec IDs from §7. Algorithms/DS cite §2 blend notes, §2b, or the Nasiko bibliography below.
+A lesson cites a knowledge-graph node from §0, plus the Go module, phase, or spec ID that owns the implementation detail. Reconstruction work cites a phase from §6 and spec IDs from §7. Algorithms/DS cite §0/§2, §2b, or the Nasiko bibliography below.
 
 ## Nasiko bibliography `CORE`
 
@@ -32,6 +32,115 @@ Ivy-league / OCW spines for algorithms, data structures, and discrete math. Teac
 - Contest practice: LeetCode / HackerRank / HackerEarth **hard** — implement the DS/algo in Go first, then the platform problem, using only unlocked syntax.
 - Database systems spine (`DB`): PostgreSQL official docs and source-code comments; CMU 15-445/645 Database Systems; Berkeley CS186; *Database System Concepts* (Silberschatz/Korth/Sudarshan); *Readings in Database Systems*; DDIA storage/replication/transactions chapters. Use the supplied PostgreSQL internals curriculum as the topic inventory, but teach each topic at the first Go/system-design point where it explains real behavior.
 - Industry architecture spine (`ROAD`, `OSS`, `IND`): roadmap.sh backend/system-design/PostgreSQL DBA as coverage checks; donnemartin primer + ByteByteGo System Design 101 as index support; Microsoft REST API Guidelines for public API quality; AWS Builders' Library, Stripe idempotency, Discord message storage, Figma/Postgres scaling, Netflix/Uber/LinkedIn engineering posts, and mature repos such as Kubernetes, Envoy/Kong/Nginx, etcd, Redis, Kafka/Redpanda, Temporal, CockroachDB, PostgreSQL, Prometheus, Grafana Loki, Jaeger/OpenTelemetry, and MinIO as architecture specimens. Extract constraints, invariants, failures, trade-offs, and implementation labs; do not copy diagrams or prose.
+
+---
+
+# 0. Knowledge graph and graph-ordered curriculum `CORE`
+
+This section is the rebuilt curriculum. It is dependency-first and deduped: each concept has one canonical owner node. Later appearances are application edges, revision edges, or capstone edges, not second introductions.
+
+## 0.1 Edge types and ownership rules
+
+| Edge | Meaning | Teaching rule |
+|---|---|---|
+| `requires` | B cannot be learned honestly before A | Teach A first, with the full difficulty ramp |
+| `strengthens` | A makes B easier, deeper, or more concrete | Briefly connect B back to A; do not reteach A |
+| `implements` | B is the hands-on implementation of A | Teach B as the lab for A |
+| `contrasts` | A and B answer similar forces differently | Compare with a trade-off table after both are unlocked |
+| `revises` | B uses A for spaced repetition | Name A as revision; spend at most five minutes unless the learner fails the check |
+
+If a topic appears in multiple sections, the first owner in §0.2 teaches it. All other sections must say “uses” or “revises” and point to the owner node. This is the anti-repetition rule.
+
+## 0.2 Canonical node owners
+
+| Node | Owns these concepts | Strong links |
+|---|---|---|
+| `BASE` Computing baseline | hardware, files, processes, terminal, Git, HTTP vocabulary, JSON, editor/debugger, zero-level programming vocabulary | requires none; strengthens every later node |
+| `GO-CORE` Go syntax and runtime | G0-G20 syntax unlocks, errors, tests, concurrency, HTTP, gRPC, profiling, deployment | implements DS, DB toy engines, tools, and capstone services |
+| `MATH-DS` Discrete math, DS, algorithms | proofs, induction, complexity, arrays, stacks, queues, maps, trees, heaps, graphs, sorting, DP, tries, hard contest practice | strengthens DB indexes/planner, routing, caching, rate limiting, service discovery |
+| `DB-SQL` Relational model and SQL | relational algebra, SQL DDL/DML, joins, bag/set semantics, NULL/3VL, constraints, transactions, query shape | requires GO-CORE G1-G2; strengthens API filters, schemas, idempotency, authorization |
+| `DB-ENGINE` PostgreSQL internals | catalogs, storage, slotted pages, TOAST, buffer pool, indexes, scans, execution, planner, statistics, MVCC, locks, vacuum, WAL, recovery, replication | requires MATH-DS and DB-SQL; strengthens system design database trade-offs and P10 ops |
+| `API-SVC` API and service design | REST, gRPC, JSON-RPC, protobuf, API gateway, auth, contracts, pagination, idempotency, error model | requires GO-CORE G11-G15 and DB-SQL; implements P3/P8/P9 |
+| `ARCH` HLD/LLD and architecture | C4/Mermaid HLD, LLD, DDD boundaries, clean architecture, microservices, service discovery, sync/async, patterns | requires API-SVC and system-design basics; strengthens all SDP/OOD/P-phase labs |
+| `DIST-OPS` Distributed systems and operations | CAP, consistency, queues, caches, replication, backpressure, retries, circuit breakers, bulkheads, observability, SLOs, incident response, release engineering | requires API-SVC, DB-ENGINE, ARCH; implements P7/P10 |
+| `TOOLS` Platforms and clients | Docker, Compose, BuildKit, Kubernetes, Helm, Terraform, Kong/Nginx, MongoDB, Redis, Postgres, pgvector/Qdrant, OpenTelemetry, Cobra/Viper, LLM APIs, Ollama | taught on first use, never as detached tool trivia |
+| `SDP-OOD` Design-problem practice | primer SDP/OOD problems and additional system-design questions | uses ARCH, DIST-OPS, MATH-DS, DB-ENGINE; coursework, not capstone |
+| `CAPSTONE` Nasiko reconstruction | P0-P10, API/JOB/SCHEMA/PROTO specs, final control plane | requires all owner nodes that a phase touches |
+| `PAY` Payments addendum | payment domain, idempotent charges, webhooks, ledger, refunds, reconciliation, regional rails | optional; requires DB-SQL, DB-ENGINE DB-9, API-SVC, DIST-OPS |
+
+## 0.3 Strong dependency graph
+
+```mermaid
+flowchart LR
+	BASE --> GO[GO-CORE]
+	BASE --> MATH[MATH-DS]
+	GO --> MATH
+	GO --> SQL[DB-SQL]
+	MATH --> ENGINE[DB-ENGINE]
+	SQL --> ENGINE
+	GO --> API[API-SVC]
+	SQL --> API
+	API --> ARCH
+	ENGINE --> ARCH
+	ARCH --> DIST[DIST-OPS]
+	ENGINE --> DIST
+	TOOLS --> API
+	TOOLS --> DIST
+	ARCH --> SDP[SDP-OOD]
+	DIST --> SDP
+	MATH --> SDP
+	API --> CAPSTONE
+	ARCH --> CAPSTONE
+	DIST --> CAPSTONE
+	ENGINE --> CAPSTONE
+	PAY -. optional .-> CAPSTONE
+```
+
+Complementary links to exploit for speed:
+
+- Hash maps -> hash indexes -> Redis key design -> idempotency-key stores.
+- Trees -> B-Trees -> index scans -> keyset pagination -> query latency budgets.
+- Tries/inverted indexes -> GIN -> AgentCard search -> router shortlist quality.
+- Sorting/heaps/top-k -> external sort -> merge/hash joins -> ranking and trending systems.
+- Goroutines/channels/mutexes -> buffer pins/refcounts -> worker pools -> backpressure.
+- Deadlocks in Go -> database wait-for graphs -> Redis consumer races -> incident drills.
+- WAL/replay -> outbox/event sourcing -> rollback/restore -> production data-loss budgets.
+- HTTP/gRPC/JSON-RPC -> gateway/routing -> service discovery -> API contracts.
+- CAP/consistency -> MVCC/isolation -> sagas/CQRS -> multi-service transaction choices.
+- Observability -> query plans -> traces -> SLO burn alerts -> operational readiness.
+
+## 0.4 Graph-ordered teaching stages
+
+Teach in this order. A stage may include several vertical slices, but a concept is introduced only once at its owner node.
+
+| Stage | Owner nodes | What is taught once | Hands-on output |
+|---|---|---|---|
+| S0 Setup and mental model | `BASE`, `GO-CORE` G0 | computer/process/file/terminal/Git/editor; Go toolchain; how this course uses graph nodes | repo/dev loop; first `go test` |
+| S1 Programming foundations | `GO-CORE` G1-G2, `MATH-DS` basics | variables, control flow, arrays/slices/maps/functions/errors/strings; induction; arrays/stacks/queues/hash-map-as-client | tested Go functions; array/stack/queue/window hard practice when unlocked |
+| S2 Types, memory, and core data structures | `GO-CORE` G3, `MATH-DS` | pointers, structs, methods, interfaces, generics; linked lists, trees, heaps, union-find, hash tables from scratch | reusable DS packages; OOD-1/OOD-2 foundations |
+| S3 Files, encodings, and storage-shaped thinking | `GO-CORE` G4-G5, `DB-ENGINE` DB-4 preview | IO, paths, templates, regex, time, config, logging; binary layout; slotted pages; WAL record shape | file/CLI tools; slotted-page package; AgentCard parser |
+| S4 Concurrency and queues | `GO-CORE` G6-G7/G10, `DIST-OPS` queue basics | goroutines, channels, worker pools, mutexes, atomics, conditions, race detector, deadlocks; bounded queues | worker-pool lab; Redis stream mental model; wait-for graph toy lab |
+| S5 Algorithms for performance | `MATH-DS`, `GO-CORE` G8-G9 | sorting, binary search, heaps, greedy, MST, complexity, tests/benchmarks, DP; top-k and external merge sort | benchmarked sort/top-k/rate-limiter/cache labs; hard algorithm practice |
+| S6 Networked APIs and SQL correctness | `GO-CORE` G11-G12, `DB-SQL`, `API-SVC` REST | HTTP/TLS, REST, middleware, auth primitives; relational algebra, SQL, constraints, transactions, pagination, idempotency | REST API slice backed by Postgres teaching schema; SQL correctness transcript |
+| S7 Database engine internals | `DB-ENGINE` DB-2-DB-10 | catalogs/types, query transformation, storage, buffer pool, access methods, scans, execution, planner, MVCC, locks, vacuum, WAL, replication, PITR | Postgres `EXPLAIN` labs; B-Tree/inverted-index/executor/MVCC/WAL Go labs; backup/restore drill |
+| S8 RPC, protocols, and service contracts | `API-SVC`, `GO-CORE` G13-G15 | protobuf, gRPC, streaming, metadata, JSON-RPC, schema evolution, contract testing, Mongo/NoSQL trade-offs | gRPC + JSON-RPC services; contract tests; schema evolution exercise |
+| S9 Architecture and system-design practice | `ARCH`, `DIST-OPS`, `SDP-OOD` | HLD/LLD, DDD, clean architecture, microservices, discovery, gateway, caches, queues, CAP, availability, resilience, patterns | every SDP/OOD lab; Mermaid HLD; LLD/API/schema/state diagrams; production failure drill |
+| S10 Tools and platform mastery | `TOOLS`, `DIST-OPS` | Docker, Compose, BuildKit, Kubernetes, Helm, Terraform, Kong/Nginx, MongoDB, Redis, Postgres ops, OpenTelemetry, Cobra/Viper, vector store, LLM APIs | each tool lab tied to its first project use; no tool-only sightseeing |
+| S11 Nasiko capstone reconstruction | `CAPSTONE` P0-P10 | implement the Go control plane after prerequisites are complete | upload -> build -> deploy -> register -> route -> chat -> traces -> CLI -> staging/prod drill |
+| S12 Optional specialization and interview closure | `PAY`, `SDP-OOD`, `DIST-OPS` | payments if needed; interview synthesis; final hard platform problems | payment slice or interview portfolio; ORR packet |
+
+## 0.5 Anti-repetition ledger
+
+| Concept family | Canonical owner | Later sections may only... |
+|---|---|---|
+| Go syntax/runtime | §2 / `GO-CORE` | reference the unlocked module |
+| DS/algo/discrete math | §2 + §2b / `MATH-DS` | use as revision or implementation substrate |
+| SQL semantics | §2 G12 + G12b / `DB-SQL` | apply to schemas, APIs, and design problems |
+| PostgreSQL internals | §2 G12b / `DB-ENGINE` | map to system-design and P-phase consequences |
+| HLD/LLD/microservices/patterns | §5e / `ARCH` | instantiate in SDP/OOD and P0-P10 |
+| Distributed operations/resilience | §5 + §9 / `DIST-OPS` | apply in service slices and ORR |
+| Tool syntax and commands | §4 / `TOOLS` | teach at first use, then assume unlocked |
+| Nasiko API/schema/job details | §7 / `CAPSTONE` | implement during P0-P10 only |
 
 ---
 
@@ -80,9 +189,9 @@ Ivy-league / OCW spines for algorithms, data structures, and discrete math. Teac
 
 ---
 
-# 2. Go language spine `CORE`
+# 2. Concept node details: Go, DS/algo, and database internals `CORE`
 
-Source: `go-topics.md`. Udemy map in parentheses. Named syntax under each module is the unlock list. Do not use an item before its module.
+Source: `go-topics.md`, the Nasiko bibliography, and the `DB` inventory. This section defines the canonical details for `GO-CORE`, `MATH-DS`, `DB-SQL`, and `DB-ENGINE`. Teach them in the graph order from §0.4; do not treat this section as a second linear syllabus. Named syntax under each Go module is the unlock list. Do not use an item before its module.
 
 ### G0 Orientation and tooling `PREREQ` (Udemy 1–2)
 
@@ -263,12 +372,14 @@ Folded tracks, not a second spine. Each domain: intro in the cited block, interm
 | Data structures | G1–G4, G8, OOD-1, OOD-2 | From-scratch Go + hard LC/HR/HE |
 | Algorithms | G8–G9, G11, P4–P5, §2b | Sort, graph, DP, then residual NP/flow/segtree |
 | Discrete mathematics | §3, G3, G8–G9, G11–G12 | Proofs, recurrences, graphs, counting, mod, probability |
+| Database systems | §0 `DB-SQL`/`DB-ENGINE`, G12/G12b, §5a-SQL | SQL correctness; slotted page/index/executor/MVCC/WAL labs; Postgres ops drills |
 | Mathematics | §3 router math | Cosine similarity on two embedding vectors |
 | Machine learning | §3 + `curriculum.md` | Embed + evaluate a shortlist |
 | LLMs | §4 LLM row, ALG-ROUTE, P5/P9 | Structured pick; tool call |
 | MLOps | P5, P10, §9 | Deploy a model-backed router; watch drift as “bad shortlist rate” |
 | AIOps | G16, P10, §9 | Trace + alert + incident note |
 | Orchestration | G6–G8, P7, JOB-* | Stream consumer, idempotent deploy |
+| Distributed systems and resilience | §0 `DIST-OPS`, §5a, P7, P10, §9 | Backpressure, retries, idempotency, SLOs, failover |
 | System design | §5a | Every SDP |
 | HLD | §4 HLD, P0–P10 Deep-Dives | Mermaid for the control plane |
 | LLD | §7 `API-*` / `SCHEMA-*` | One service contract |
@@ -281,7 +392,7 @@ Folded tracks, not a second spine. Each domain: intro in the cited block, interm
 
 Each row is a subcourse. Teach prereqs from zero, concepts, a lab tied to this project, pitfalls, then a mastery check. Depth = how sophisticated the repo’s use is.
 
-**Branched quests:** when a new tool or pattern appears (Redis Streams, a Kong plugin, a vector index), pause the main track, finish that row’s lab, then return.
+**Branched quests:** when a new tool, data-store mechanism, protocol, or architectural pattern appears (Redis Streams, a Kong plugin, a vector index, Postgres WAL/MVCC, an outbox, a circuit breaker), pause the main track, finish that row’s lab, then return.
 
 | Subcourse | Project use | Lab / mastery |
 |---|---|---|
@@ -308,7 +419,7 @@ Gin / Fiber / Chi + `net/http` for HTTP services. Pydantic equivalent = structs 
 
 ### HLD, LLD, and clean architecture `CORE`
 
-Named tracks (`META`). Running example is this control plane. Not a second spine.
+Named tracks (`META`). Running example is this control plane. Canonical owner is `ARCH` in §0 and §5e; this subsection only names the architectural vocabulary that tools and phases are allowed to reference.
 
 - **HLD** — service boundaries, C4/Mermaid, data flows, capacity. Teach with primer 5a and every P0–P10 Deep-Dive.
 - **LLD** — API contracts (`API-*`), schemas (`SCHEMA-*`), module interfaces (handler -> service -> repository), transaction boundaries, idempotency keys, pagination contracts, error model, concurrency model, and state machines.
@@ -357,11 +468,11 @@ Teach every heading, in order. Each is a sub-topic.
 
 Patterns to name when they appear in Nasiko: repository, unit of work, adapter, factory, builder, strategy, decorator/middleware, observer/pub-sub, mediator, command, state, outbox, saga, CQRS, idempotent consumer, circuit breaker, bulkhead, retry with jitter. Clean architecture: handlers -> services -> repositories/adapters; dependencies point inward; transaction and idempotency boundaries are explicit.
 
-### 5a-SQL PostgreSQL and database-systems braid `CORE`
+### 5a-SQL PostgreSQL and database-systems application matrix `CORE`
 
-The `DB` inventory is taught through the primer database topic and the Nasiko phases, not as a block append. The compression strategy is concept -> engine behavior -> system-design consequence -> implementation.
+Canonical owners are `DB-SQL` and `DB-ENGINE` in §0 and G12b. This matrix shows where system-design and capstone work uses those owners; it does not reteach the database material.
 
-| Primer / phase anchor | PostgreSQL internals inserted here | System-design payoff |
+| Primer / phase anchor | Uses these DB owner nodes | System-design payoff |
 |---|---|---|
 | 5a.11 Database basics + G12 | Relational algebra, joins, bag/set semantics, 3VL, constraints, DDL/DML, transactions | Correct schemas, API filters, pagination, and idempotent writes |
 | P2 data contracts | catalogs, system columns, types, JSONB/range/UUID, PK/FK/CHECK/DOMAIN, deferred constraints | Model invariants in the database instead of only in Go |
@@ -370,15 +481,7 @@ The `DB` inventory is taught through the primer database topic and the Nasiko ph
 | P10 operations | shared buffers, bgwriter, checkpointer, WAL, full-page writes, crash recovery, streaming replication, PITR | SLOs, backups, failover, replica lag budgets, and incident runbooks |
 | P5 router | JSONB/GIN and pgvector trade-offs vs Qdrant; selectivity, top-k, ANN/exact k-NN | Choose the simplest vector/search store that meets recall and latency needs |
 
-Hands-on sequence, minimum time without thinning depth:
-
-1. SQL correctness: build tables for users, agents, access grants, audit events; prove keys, FKs, CHECKs, NULL behavior, and isolation with tests.
-2. Query mechanics: write CTE/window/lateral/report queries for registry/chat data; inspect `EXPLAIN (ANALYZE, BUFFERS)` before and after indexes.
-3. Storage/index lab: implement slotted pages, a B-Tree page split, an inverted index, and a BRIN-like summary in Go; connect each to a real Postgres access method.
-4. Execution/planner lab: implement tiny Volcano nodes and cost selection for nested-loop/hash/merge joins; compare to Postgres plans on skewed data.
-5. MVCC/WAL lab: implement visibility checks, wait-for graph deadlock detection, WAL replay for the slotted-page lab, backup/restore, and a local primary/standby.
-
-Do not teach syntax-only SQL tutorials. Every SQL topic must end in one of: correctness proof, plan analysis, performance measurement, failure drill, or production trade-off.
+Do not teach syntax-only SQL tutorials. Every SQL use in §5/§6 must point back to its §2 owner and end in one of: correctness proof, plan analysis, performance measurement, failure drill, or production trade-off.
 
 ### 5b Official system-design problems — design + implement in Go `CORE`
 
@@ -441,7 +544,7 @@ Do not add primer problems that are not on the README.
 
 ### 5e HLD/LLD/microservices/design-pattern implementation ladder `CORE`
 
-These are not extra theory chapters. They are the implementation bar for every SDP/OOD and P0–P10 phase.
+Canonical owner: `ARCH`. These are not extra theory chapters. They are the implementation bar for every SDP/OOD and P0–P10 phase.
 
 | Track | Concepts | Required hands-on implementation |
 |---|---|---|
@@ -457,7 +560,7 @@ Pattern graduation rule: a pattern is complete only when the learner can name th
 
 # 6. Reconstruction phases `CORE`
 
-Source: blueprint + packed `plan.phases`. Isolated until §2–§5 (as needed) and §4 tools for that phase are done.
+Source: blueprint + packed `plan.phases`. Isolated until the §0 owner nodes required by the phase are unlocked and §4 tools for that phase are done.
 
 ### P0 Foundations
 
@@ -742,7 +845,7 @@ NANDA adapter: wrap external NANDA HTTP (`adapters/nanda_adapter.py`).
 
 # 9. Production and release `CORE`
 
-Fold into P10; teach ideas when the matching service appears.
+Canonical owner: `DIST-OPS`. Fold into P10; teach ideas when the matching service appears.
 
 NFRs: reliability, scalability, availability, latency, cost. Multi-env: local / dev / staging / prod; config layering; feature flags. Change management: versioning, migrations, compatibility, deprecation (APIs + AgentCard). Data lifecycle: backups, restore, retention, PII. Security: RBAC, least privilege, secret rotation, TLS, audit. Supply chain: scan, SBOM, image sign, provenance. Observability: logs, metrics, traces, dashboards, alerts, runbooks. Incidents: on-call, triage, postmortem. Performance: load, stress, pprof. Cost: LLM token budgets, cache, attribution.
 
@@ -817,4 +920,6 @@ Inventory only.
 | Blueprint P0–P10, inventory, flow | §1, §6 |
 | Packed JSON / Appendix A facts | §7, §8; raw text ARCHIVE |
 | COS 226 / 6.006 / CS161 / 6.042 DS–algo–discrete | §2 blend notes, §2b, §3, Nasiko bibliography |
+| PostgreSQL internals attachment + PostgreSQL docs + CMU/Berkeley database courses | §0, G12b, §5a-SQL, §6 P2/P3/P6/P7/P10 |
+| roadmap.sh / microservices.io / Fowler / SRE / industry case studies / OSS repos | §0, §4, §5, §9, Nasiko bibliography |
 | `nasigo-rules` / engine / exercise-rule | `nasiko-instructions.md` |
