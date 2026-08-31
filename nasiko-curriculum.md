@@ -1,10 +1,10 @@
 # Nasiko Go Control Plane — Master Curriculum
 
-Single syllabus of record for this course. Every unique topic from the source files lives here once. The knowledge graph in §0 is the teaching order; later sections define node details, labs, specs, and traceability.
+Single syllabus of record for this course. Every unique topic from the source corpus lives here once. The knowledge graph in §0 is the teaching order; later sections define node details, labs, specs, and traceability.
 
-Teaching brief: `nasiko-instructions.md`.
+Teaching brief: the Nasiko teaching contract.
 
-This is not the full ML/LLM/DSP course (`curriculum.md`), but production ML-system design is now in scope for this Go control-plane course because the router, retrieval, ranking, evaluation, and operations paths depend on it.
+This is not the full ML/LLM/DSP course, but production ML-system design is now in scope for this Go control-plane course because the router, retrieval, ranking, evaluation, and operations paths depend on it.
 
 ## How to read this file
 
@@ -15,7 +15,7 @@ This is not the full ML/LLM/DSP course (`curriculum.md`), but production ML-syst
 | `TOOL` | Platforms and libraries, taught with the matching slice |
 | `ARCHIVE` | Kept so nothing is lost; not taught unless a real CORE dependency appears |
 
-Source keys: `GO` go-topics, `SD` sdesign + donnemartin primer, `BP` reconstruction blueprint, `META` course meta prompt, `AN` packed analysis, `PAY` payments addendum, `RULE` nasigo-rules / engine / exercise-rule, `DB` PostgreSQL internals attachment, `ROAD` roadmap.sh backend / system-design / PostgreSQL DBA roadmaps, `OSS` open-source architecture repos, `IND` serious industry architecture writeups, `CUR` selective math/ML/CS inventory from `curriculum.md`, `MLCASE` Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies plus fetched linked articles.
+Source keys: `GO` Go topic inventory, `SD` system-design primer, `BP` reconstruction blueprint, `META` course meta prompt, `AN` packed analysis, `PAY` payments addendum, `RULE` Nasiko rules / engine / exercise rule, `DB` PostgreSQL internals attachment, `ROAD` backend / system-design / PostgreSQL DBA roadmaps, `OSS` open-source architecture repos, `IND` serious industry architecture writeups, `CUR` selective math/ML/CS inventory from the broad curriculum source, `MLCASE` production ML-system case-study atlas plus fetched linked articles.
 
 A lesson cites a knowledge-graph node from §0, plus the Go module, phase, or spec ID that owns the implementation detail. Reconstruction work cites a phase from §6 and spec IDs from §7. Algorithms/DS cite §0/§2, §2b, or the Nasiko bibliography below.
 
@@ -32,7 +32,7 @@ Ivy-league / OCW spines for algorithms, data structures, and discrete math. Teac
 - Contest practice: LeetCode / HackerRank / HackerEarth **hard** — implement the DS/algo in Go first, then the platform problem, using only unlocked syntax.
 - Database systems spine (`DB`): PostgreSQL official docs and source-code comments; CMU 15-445/645 Database Systems; Berkeley CS186; *Database System Concepts* (Silberschatz/Korth/Sudarshan); *Readings in Database Systems*; DDIA storage/replication/transactions chapters. Use the supplied PostgreSQL internals curriculum as the topic inventory, but teach each topic at the first Go/system-design point where it explains real behavior.
 - Industry architecture spine (`ROAD`, `OSS`, `IND`): roadmap.sh backend/system-design/PostgreSQL DBA as coverage checks; donnemartin primer + ByteByteGo System Design 101 as index support; Microsoft REST API Guidelines for public API quality; AWS Builders' Library, Stripe idempotency, Discord message storage, Figma/Postgres scaling, Netflix/Uber/LinkedIn engineering posts, and mature repos such as Kubernetes, Envoy/Kong/Nginx, etcd, Redis, Kafka/Redpanda, Temporal, CockroachDB, PostgreSQL, Prometheus, Grafana Loki, Jaeger/OpenTelemetry, and MinIO as architecture specimens. Extract constraints, invariants, failures, trade-offs, and implementation labs; do not copy diagrams or prose.
-- ML-system spine (`MLCASE`, `CUR`): Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies is the production case-study atlas: 309 README entries were parsed, 261 linked pages were fetched into the local audit artifact, and inaccessible pages remain represented by their README metadata. Use it for workload families, architecture patterns, model/evaluation choices, and production failure modes. `curriculum.md` is used as a selective prerequisite inventory: pull its M1-M40 math/statistics/numerical spine directly into `MATH-ML`, and pull its DSP/CV/NLP/ASR/Kaldi/GCP-PMLE topics only when a router, multimodal, speech, or production-ML case study needs them. Supporting academic spines: Khan Academy/OpenStax arithmetic through precalculus; MIT 18.06/18.065 linear algebra; MIT 18.01/18.02 calculus; MIT 6.041/18.05 probability and statistics; Stanford CS229 / Berkeley CS189 ML; CS224N/CS231n only for NLP/CV slices that the case studies require. Implement learning labs in Go first; third-party Go math/ML packages are allowed only after the from-scratch version is understood.
+- ML-system spine (`MLCASE`, `CUR`): the production case-study atlas includes 309 repository index entries, 261 linked pages fetched into the local audit artifact, and inaccessible pages represented by their repository metadata. Use it for workload families, architecture patterns, model/evaluation choices, and production failure modes. The broad curriculum source is used as a selective prerequisite inventory: pull its M1-M40 math/statistics/numerical spine directly into `MATH-ML`, and pull its DSP/CV/NLP/ASR/Kaldi/GCP-PMLE topics only when a router, multimodal, speech, or production-ML case study needs them. Supporting academic spines: Khan Academy/OpenStax arithmetic through precalculus; MIT 18.06/18.065 linear algebra; MIT 18.01/18.02 calculus; MIT 6.041/18.05 probability and statistics; Stanford CS229 / Berkeley CS189 ML; CS224N/CS231n only for NLP/CV slices that the case studies require. Implement learning labs in Go first; third-party Go math/ML packages are allowed only after the from-scratch version is understood.
 
 ---
 
@@ -220,7 +220,7 @@ Teach in this order. A stage may include several vertical slices, but a concept 
 
 # 2. Concept node details: Go, DS/algo, database internals, and ML systems `CORE`
 
-Source: `go-topics.md`, the Nasiko bibliography, the `DB` inventory, and the `MLCASE` atlas. This section defines the canonical details for `GO-CORE`, `MATH-DS`, `MATH-ML`, `DB-SQL`, `DB-ENGINE`, `ML-CORE`, and `ML-SYS`. Teach them in the graph order from §0.4; do not treat this section as a second linear syllabus. Named syntax under each Go module is the unlock list. Do not use an item before its module.
+Source: the Go topic inventory, the Nasiko bibliography, the `DB` inventory, and the `MLCASE` atlas. This section defines the canonical details for `GO-CORE`, `MATH-DS`, `MATH-ML`, `DB-SQL`, `DB-ENGINE`, `ML-CORE`, and `ML-SYS`. Teach them in the graph order from §0.4; do not treat this section as a second linear syllabus. Named syntax under each Go module is the unlock list. Do not use an item before its module.
 
 ### G0 Orientation and tooling `PREREQ` (Udemy 1–2)
 
@@ -374,7 +374,7 @@ Each item: invariant + complexity, Go implementation with tests, then one hard p
 
 Canonical owners: `MATH-ML`, `ML-CORE`, and `ML-SYS`. This is the Go-only ML-system path extracted from `MLCASE`, the selected prerequisite spine in `CUR`, and supporting academic sources. It is not a Python notebook track and it is not a paste of the wider ML/LLM/DSP syllabus. Every algorithmic item is implemented from scratch in Go first with tests, synthetic data, metrics, and a short proof or derivation. Go packages such as Gonum, Gorgonia, GoMLX, ONNX Runtime Go bindings, Qdrant/pgvector clients, or Kafka/Redpanda clients may be introduced only after the learner can explain the hand-built version and the reason the package is needed.
 
-Selective import rule from `curriculum.md`: M1-M17 feed arithmetic/algebra/geometry/trig readiness; M19-M22 feed functions, relations, counting, and probability; M26-M27/M39 feed matrix methods, eigenspaces, PCA, and low-rank embeddings; M29-M34 feed calculus, gradients, and differential-equation intuition; M37-M40 feed numerical methods, reproducibility, inference, MLE, Bayesian reasoning, and experiments. M41-M46 are conditional gates: teach only the convolution/FFT/image/audio/tokenizer/attention/production-ML piece required by an `MLCASE`, router, multimodal, or agentic-AI lab.
+Selective import rule from the broad curriculum source: M1-M17 feed arithmetic/algebra/geometry/trig readiness; M19-M22 feed functions, relations, counting, and probability; M26-M27/M39 feed matrix methods, eigenspaces, PCA, and low-rank embeddings; M29-M34 feed calculus, gradients, and differential-equation intuition; M37-M40 feed numerical methods, reproducibility, inference, MLE, Bayesian reasoning, and experiments. M41-M46 are conditional gates: teach only the convolution/FFT/image/audio/tokenizer/attention/production-ML piece required by an `MLCASE`, router, multimodal, or agentic-AI lab.
 
 #### MATH-ML ladder: arithmetic to graduate-level readiness
 
@@ -448,7 +448,7 @@ Zero-knowledge track (`META`). Thin.
 - OS: process vs thread vs goroutine (with G6).
 - Networking: IP, port, DNS (with primer DNS topic and G11).
 
-Mathematics for ML systems lives in `MATH-ML`: middle-school arithmetic and units; algebra, relations, functions, logs/exponents, coordinate geometry; linear algebra and spectral methods; calculus; probability; statistics and inference; optimization; information theory; numerical methods; conditional signal/image/sequence math; causal/RL math when case studies require it. Teach each concept at the first `ML-CORE` or `ML-SYS` use and implement the numerical idea in Go. The broader ML/LLM/DSP course (`curriculum.md`) remains a selective inventory for these owners, not a prerequisite escape hatch.
+Mathematics for ML systems lives in `MATH-ML`: middle-school arithmetic and units; algebra, relations, functions, logs/exponents, coordinate geometry; linear algebra and spectral methods; calculus; probability; statistics and inference; optimization; information theory; numerical methods; conditional signal/image/sequence math; causal/RL math when case studies require it. Teach each concept at the first `ML-CORE` or `ML-SYS` use and implement the numerical idea in Go. The broader ML/LLM/DSP course remains a selective inventory for these owners, not a prerequisite escape hatch.
 
 ### 3b Zero-to-hero domain map (`META`)
 
@@ -578,7 +578,7 @@ Do not teach syntax-only SQL tutorials. Every SQL use in §5/§6 must point back
 
 ### 5a-ML Production ML-system case-study atlas `CORE`
 
-Canonical owner: `ML-SYS`. This atlas is stitched into `ARCH`, `DIST-OPS`, P5, and P10. It does not teach ML algorithms from scratch; it applies `MATH-ML` and `ML-CORE` to production systems. Ingestion audit: the Engineer1999 README was parsed into 309 case-study rows; a bulk crawl reached 261 linked pages and followed 114 redirects; the remaining blocked or timed-out pages stay represented by README metadata and are retried only when a lesson needs that exact article. Cluster counts below are overlapping because many production systems combine ranking, forecasting, retrieval, and platform concerns.
+Canonical owner: `ML-SYS`. This atlas is stitched into `ARCH`, `DIST-OPS`, P5, and P10. It does not teach ML algorithms from scratch; it applies `MATH-ML` and `ML-CORE` to production systems. Ingestion audit: the Engineer1999 repository index was parsed into 309 case-study rows; a bulk crawl reached 261 linked pages and followed 114 redirects; the remaining blocked or timed-out pages stay represented by repository metadata and are retried only when a lesson needs that exact article. Cluster counts below are overlapping because many production systems combine ranking, forecasting, retrieval, and platform concerns.
 
 | Corpus cluster | Source coverage | Canonical prerequisites | Required Go/system lab |
 |---|---:|---|---|
@@ -651,7 +651,7 @@ One lab when two names are the same system.
 | SDP-A22 | API rate limiter | After G8; maps to gateway/backend middleware |
 | SDP-A23 | Stock exchange | After G7, G12 |
 
-Do not add primer problems that are not on the README.
+Do not add primer problems that are not on the official problem index.
 
 ### 5e HLD/LLD/microservices/design-pattern implementation ladder `CORE`
 
@@ -676,7 +676,7 @@ Source: blueprint + packed `plan.phases`. Isolated until the §0 owner nodes req
 ### P0 Foundations
 
 Inputs: workstation, Go toolchain, Docker, kubectl, terraform.  
-Steps: monorepo + Go modules; lint/format; Makefile; local dev loop.  
+Steps: monorepo + Go modules; lint/format; build-task runner; local dev loop.  
 Outputs: repo skeleton.  
 Acceptance: `go test ./...` on scaffolding; dev loop documented.  
 Deep-dive: what is a system; latency numbers.
@@ -821,7 +821,7 @@ Config: backend URL, API keys, Minimax/Ollama URLs, provider/model, vector setti
 First-class service (`META`). Not only middleware.
 
 - Issue and validate JWT. Users and access rules (user↔agent, agent↔agent).
-- Backend `pkg/auth` client; CLI login/refresh; orchestrator `superuser_manager` (create/verify superuser, persist `superuser_credentials.json` locally — gitignored).
+- Backend auth package client; CLI login/refresh; orchestrator superuser manager (create/verify superuser, persist local superuser credentials outside version control).
 - Superuser routes proxy `/auth/users/register`.
 - **Assumption:** auth may stay a small Go service or sit behind the backend; do not invent a third OAuth provider beyond GitHub optional.
 
@@ -868,7 +868,7 @@ At-least-once: idempotent on `(agent_id, version, action)`. ACK after status wri
 
 **SCHEMA-MSG-001 Message** — role, content, timestamps, metadata (chat service + backend).
 
-**SCHEMA-N8N-001** — n8n credentials and workflows (`entity/n8n_entity.py`).
+**SCHEMA-N8N-001** — n8n credentials and workflows through the N8N entity model.
 
 **SCHEMA-GH-001** — user GitHub credentials.
 
@@ -882,15 +882,15 @@ At-least-once: idempotent on `(agent_id, version, action)`. ACK after status wri
 
 ## 7.7 Config matrix (non-secret names)
 
-From `app/pkg/config` and orchestrator config. Secrets never stored in git (`.env*` ignored; `*.env.example` allowed; `superuser_credentials.json` ignored).
+From the app configuration package and orchestrator config. Secrets are never stored in version control; environment templates are allowed, while local environment values and superuser credentials remain ignored.
 
 Mongo user/pass/host/port/db → `MONGO_URI`. Redis host/port/db. Phoenix. OpenAI / Minimax keys + Minimax base URL. BuildKit address. Registry and gateway URLs. DigitalOcean token. `K8S_ENABLED`. `NASIKO_API_URL`. GitHub OAuth client + redirect. Encryption key. Orchestrator: Docker network, Kong URL, agent registry URL/tag, startup delays, agent directory, health timeout.
 
-**Assumption:** `.nasiko-local.env.example` was not read in analysis; treat as the local template and list keys from code references only.
+**Assumption:** the local environment template was not read in analysis; treat it as the local template and list keys from code references only.
 
 ## 7.8 CLI (`go-cli`)
 
-Typer → Cobra groups. Env load order as in `cli/main.py`.
+Typer → Cobra groups. Environment load order follows the CLI entry point.
 
 | ID | Group / command | Maps to |
 |---|---|---|
@@ -907,15 +907,15 @@ Typer → Cobra groups. Env load order as in `cli/main.py`.
 | CLI-ACC-001–003 | `access` grant-user, grant-agent, list | access APIs |
 | CLI-OBS-001 | `observability` session/trace helpers | API-OBS-* |
 | CLI-IMG-001 | `images` build/push service images (router, registry, chat-history, auth) | Docker |
-| CLI-LOC-001 | `local` compose up/down/ps (requires daemon) | `docker-compose.local.yml` |
+| CLI-LOC-001 | `local` compose up/down/ps (requires daemon) | local compose stack |
 
 ## 7.9 Infra
 
-- `docker-compose.local.yml`: Mongo, Redis, Kong+Postgres, backend, router, web, chat-history, registry, worker, superuser job; healthchecks; `agents-net`.
-- App-only compose: `docker-compose.app.yaml`.
+- Local compose stack: Mongo, Redis, Kong+Postgres, backend, router, web, chat-history, registry, worker, superuser job; healthchecks; `agents-net`.
+- App-only compose stack.
 - Gateway compose: Kong, registry, router, chat-history.
-- `Dockerfile.worker` / `app/Dockerfile.k8s-build-worker`.
-- Makefile: clean, backend, router, orchestrator, redis-listener. (References `orchestrator/orchestrator.py` — **not in tree**; listener is the real entry. Flag.)
+- Worker image build definitions.
+- Build-task runner: clean, backend, router, orchestrator, redis-listener. (References a legacy orchestrator entry that is **not in tree**; listener is the real entry. Flag.)
 - CI: format + types on `main` and PRs (Go equivalent: `gofmt`/`go vet`/`staticcheck`).
 - License: Apache 2.0.
 - Models: optional Ollama on 11434; Modelfile `arch-function` from GGUF; `num_ctx 8096`.
@@ -930,17 +930,17 @@ Tests: unit (handlers/services with fakes); contract tests per `API-*`; SQL migr
 
 ## 7.11 Agents
 
-Sample trees: `a2a-compliance-checker`, `a2a-github-agent`, `a2a-translator` (zips are copies of dirs — ARCHIVE as zip). AgentCard.json; executor; tool schema; JSON-RPC task/artifact/stream. Alternate LangChain path in compliance agent — implement one Go executor; keep LangChain path as ARCHIVE. `policy_agent.py` imported `BaseAgent` missing in tree — **flag**; do not depend on a missing type.
+Sample agent trees: compliance checker, GitHub agent, translator (archived compressed copies duplicate directories). AgentCard document; executor; tool schema; JSON-RPC task/artifact/stream. Alternate LangChain path in compliance agent — implement one Go executor; keep LangChain path as ARCHIVE. The policy-agent module imported a missing `BaseAgent` type — **flag**; do not depend on a missing type.
 
-Webhook agent template under `app/utils/templates/a2a-webhook-agent/`. AgentCard generator under `app/utils/agentcard_generator/`.
+Webhook agent template under the app utility templates area. AgentCard generator under the app utility generator area.
 
-NANDA adapter: wrap external NANDA HTTP (`adapters/nanda_adapter.py`).
+NANDA adapter: wrap external NANDA HTTP through the adapter component.
 
 ---
 
 # 8. Traceability
 
-302 analyzed files, rolled up. Raw line notes stay in `nasiko-main_reconstruction_blueprint.md` Appendix A and the packed JSON. Do not teach Python line-by-line.
+302 analyzed source units, rolled up. Raw line notes stay in the reconstruction blueprint appendix and the packed JSON. Do not teach Python line-by-line.
 
 | Legacy tree | Count | Go home | Responsibility |
 |---|---|---|---|
@@ -951,7 +951,7 @@ NANDA adapter: wrap external NANDA HTTP (`adapters/nanda_adapter.py`).
 | `orchestrator/` | 8 | `go-orchestrator/` | Local stream consumer, docker build, inject, registry upsert |
 | `worker/` | 2 | `go-orchestrator/` (k8s worker cmd) | BuildKit + deploy/rollback |
 | `models/` | 3 | `infra/ollama` | Optional local LLM |
-| root + `.github` | 12 | `infra/` + CI | Compose, Makefile, license, CI |
+| root metadata + CI configuration | 12 | infrastructure + CI | Compose, build-task runner, license, CI |
 | `docs/` | 1 | docs | Indexes |
 
 ---
@@ -998,13 +998,13 @@ Release: CI/CD, staging promotion, rollback. ORR checklist and go-live criteria.
 - ByteByteGo System Design 101 as a visual index and case-study pointer, not copied course material
 - Microsoft REST API Guidelines; Google SRE books/workbooks; AWS Builders' Library
 - Industry writeups: Stripe idempotency, Discord message storage, Figma Postgres scaling, Netflix/Uber/LinkedIn engineering posts selected for the current design problem
-- ML system-design case-study atlas: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies); use parsed README metadata plus fetched linked articles as the production evidence corpus
-- Math and ML academic spines for the ML-system path: selected prerequisite slices from `curriculum.md`; Khan Academy/OpenStax arithmetic through precalculus; MIT 18.06/18.065 linear algebra; MIT 18.01/18.02 calculus; MIT 6.041/18.05 probability/statistics; Stanford CS229 and Berkeley CS189 ML; CS224N/CS231n only for NLP/CV slices required by `MLCASE`
+- ML system-design case-study atlas: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies); use parsed repository metadata plus fetched linked articles as the production evidence corpus
+- Math and ML academic spines for the ML-system path: selected prerequisite slices from the broad curriculum source; Khan Academy/OpenStax arithmetic through precalculus; MIT 18.06/18.065 linear algebra; MIT 18.01/18.02 calculus; MIT 6.041/18.05 probability/statistics; Stanford CS229 and Berkeley CS189 ML; CS224N/CS231n only for NLP/CV slices required by `MLCASE`
 - Open-source architecture specimens: PostgreSQL, Kubernetes, Envoy/Kong/Nginx, etcd, Redis, Kafka/Redpanda, Temporal, CockroachDB, Prometheus, Grafana Loki, Jaeger/OpenTelemetry, MinIO
 - Official docs: Go, Gin/Fiber/Chi, mongo-go-driver, go-redis, client-go, Kong, Docker, Kubernetes, Terraform, OpenTelemetry, Cobra, Viper
 - Official docs: PostgreSQL, pgvector, `psql`, `pgbench`, `pg_stat_statements`, backup/restore/PITR, streaming replication
 - JSON-RPC 2.0 spec; A2A/AgentCard notes in the analysis indexes
-- `nasiko-main_reconstruction_blueprint.md` Appendix A and the packed JSON — lookup only, not a teaching spine
+- Reconstruction blueprint appendix and the packed JSON — lookup only, not a teaching spine
 - Sedgewick & Wayne *Algorithms* 4e; Princeton COS 226
 - MIT 6.042J / 6.1200J; MIT 6.006; MIT 6.046 (residual)
 - Roughgarden *Algorithms Illuminated* I–IV; Stanford CS161
@@ -1016,11 +1016,11 @@ Release: CI/CD, staging promotion, rollback. ORR checklist and go-live criteria.
 Inventory only.
 
 - Appendix A line-by-line Python (“Lines 1–8 …”) and packed `analysis.line_by_line` chunks.
-- `uv.lock` full pin lists; use module `pyproject.toml` intent instead.
-- Agent `.zip` archives (duplicates of directories).
-- `.nasiko-local.env.example` contents (unread by analysis policy).
+- Dependency lock full pin lists; use module build-metadata intent instead.
+- Compressed agent archives (duplicates of directories).
+- Local environment template contents (unread by analysis policy).
 - Python-only paths: FastAPI/Typer/Pydantic/LangChain/Poetry/PyOxidizer/black/mypy as implementation, not concepts.
-- Missing-tree references: `orchestrator/orchestrator.py`; `BaseAgent` import.
+- Missing-tree references: legacy orchestrator entry; `BaseAgent` import.
 - Web UI if present only as a compose service name without Go rewrite requirement — keep as “existing UI talks HTTP to backend”; do not invent a frontend course.
 - Udemy sections 12, 14, 15 (resources, summary, best wishes).
 - Clean-code Java exception/null wording (intent kept in the brief).
@@ -1032,15 +1032,15 @@ Inventory only.
 
 | Source | Where it lives |
 |---|---|
-| `go-topics.md` 0–20 + named syntax | §2 |
-| `sdesign.md` 6-step + books | §5 intro |
+| Go topic inventory 0–20 + named syntax | §2 |
+| System-design six-step source + books | §5 intro |
 | donnemartin primer topics + all listed problems | §5a–5d |
 | Meta services, subcourses, production, capstone rubric | §1, §4, §6, §9 |
 | Blueprint P0–P10, inventory, flow | §1, §6 |
 | Packed JSON / Appendix A facts | §7, §8; raw text ARCHIVE |
 | COS 226 / 6.006 / CS161 / 6.042 DS–algo–discrete | §2 blend notes, §2b, §3, Nasiko bibliography |
-| `curriculum.md` selected math/ML/CS prerequisites (`CUR`) | §0 `MATH-ML`/`ML-CORE`, §2b automata gate, §2c, §3b, §4 Go numerical stack |
+| Broad curriculum selected math/ML/CS prerequisites (`CUR`) | §0 `MATH-ML`/`ML-CORE`, §2b automata gate, §2c, §3b, §4 Go numerical stack |
 | PostgreSQL internals attachment + PostgreSQL docs + CMU/Berkeley database courses | §0, G12b, §5a-SQL, §6 P2/P3/P6/P7/P10 |
 | roadmap.sh / microservices.io / Fowler / SRE / industry case studies / OSS repos | §0, §4, §5, §9, Nasiko bibliography |
 | Engineer1999 ML system-design case-study repository + fetched linked articles | §0 `MATH-ML`/`ML-CORE`/`ML-SYS`, §2c, §3b, §5a-ML, P5/P10, §9 |
-| `nasigo-rules` / engine / exercise-rule | `nasiko-instructions.md` |
+| Nasiko rules / engine / exercise-rule | Nasiko instruction contract |

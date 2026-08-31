@@ -1,8 +1,8 @@
 # Master Curriculum
 
-Single syllabus of record. Every unique topic, textbook, chapter map, library, statistical technique, and IIT / upGrad lecture fact from the five source files lives here once.
+Single syllabus of record. Every unique topic, textbook, chapter map, library, statistical technique, and IIT / upGrad lecture fact from the source corpus lives here once.
 
-Teaching brief: `mlo-instructions.md`.
+Teaching brief: the math/ML teaching contract.
 
 ## How to read this file
 
@@ -967,7 +967,7 @@ Eight-tier modules M1–M46 are the backbone. IIT GenAI modules and the eight DL
 
 Published progression: Generative AI → LLMs → Customisation / Fine-Tuning → RAG → Agentic AI → Production Deployment.
 
-This is the same course as `iit-genai.md` and the §6 lecture bank. The table below is the official week map. Teach the matching M-modules and lecture sections; do not run a second parallel course.
+This is the same course as the IIT GenAI source notes and the §6 lecture bank. The table below is the official week map. Teach the matching M-modules and lecture sections; do not run a second parallel course.
 
 | Official module | Weeks | Topics | Where it lives here |
 |---|---|---|---|
@@ -1228,7 +1228,7 @@ Kaldi secondary spine (do not treat as a second course):
 
 ### M44 OpenFst-based automata `CORE`
 
-WFSTs; symbol tables (`words.txt`, `phones.txt`); transducers H, C, L, G; composition \(H \circ C \circ L \circ G\); determinization, minimization, epsilon removal; disambiguation symbols `#0 #1 #2`; self-loop addition; Viterbi decoding graphs.
+WFSTs; word and phone symbol tables; transducers H, C, L, G; composition \(H \circ C \circ L \circ G\); determinization, minimization, epsilon removal; disambiguation symbols `#0 #1 #2`; self-loop addition; Viterbi decoding graphs.
 
 - G: language-model acceptor (word-sequence probabilities; n-gram LMs, perplexity, Kneser-Ney).
 - L: lexicon (CI phones → words).
@@ -1713,15 +1713,15 @@ Kept so the source files lose no unique title or module. Not taught unless a COR
 
 | Source | Where it landed |
 |---|---|
-| `curriculum_unified_deduped.md` bibliography | §1 |
+| Prior unified bibliography | §1 |
 | Textbook deconstructions and ICSE/JEE/NT/DSP/ML ToCs | §2 (each book once; Rudin and Strang not repeated) |
 | Eight-tier M1–M46, Kaldi spine, DL modules 1–8 | §3 |
-| `iit-genai.md` Modules 1–13 | Folded into §3 Tiers 1, 4, 7, 8 |
+| IIT GenAI Modules 1–13 | Folded into §3 Tiers 1, 4, 7, 8 |
 | IIT Kharagpur EPGC (₹1,99,000) official pages | §3 official map |
-| `python-libs.md` 21 libraries | §4 |
+| Python library inventory, 21 libraries | §4 |
 | Official NLP library docs: Hugging Face Transformers / Tokenizers, spaCy, NLTK Book | §4A |
-| `stat-tech.md` 50 techniques | §5 |
-| `lecture_slides_unified.md` 12 decks | §6 topic bank |
+| Statistical-techniques inventory, 50 techniques | §5 |
+| Unified lecture-slide inventory, 12 decks | §6 topic bank |
 | Unrelated domains | §7 `ARCHIVE` |
 
 ## Restored or added in remigration
