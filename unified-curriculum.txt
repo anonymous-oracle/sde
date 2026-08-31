@@ -1,0 +1,457 @@
+# Unified Math, ML, Computer Science, and Production Systems Curriculum
+
+Single track for learning theory and software development side by side. This file ingests `curriculum.txt` and `nasiko-curriculum.txt` without turning either file into a pasted appendix.
+
+Teaching brief: `unified-instructions.txt`.
+
+## 0. Mission
+
+The learner starts from zero and climbs toward durable mastery for the agentic-coding era: strong mathematics, computer science, machine learning, software engineering, system design, production ML, and the ability to implement core ideas from scratch.
+
+The final working ability is not only to use agents, libraries, and cloud tools. It is to understand the theory behind them, rebuild the important primitives, choose production trade-offs, and operate real systems.
+
+## 1. Source Keys and Tags
+
+| Key | Source | Role in this unified file |
+|---|---|---|
+| `CUR` | `curriculum.txt` | Broad math, ML, DSP, CV, NLP, ASR, GenAI, GCP PMLE, bibliography, textbook chapter maps, Python library theory |
+| `NAS` | `nasiko-curriculum.txt` | Go control-plane curriculum, DS/algo/discrete math, PostgreSQL internals, HLD/LLD, system design, Nasiko capstone |
+| `MLO-I` | `mlo-instructions.txt` | Beginner-first math/ML teaching contract, JEE-style ramp, Python/NumPy scratch protocol |
+| `NAS-I` | `nasiko-instructions.txt` | Knowledge-graph execution, Go syntax locks, system-design, database, architecture, and capstone constraints |
+
+| Tag | Meaning |
+|---|---|
+| `CORE` | Destination topic in the single track |
+| `PREREQ` | Must be learned first because CORE depends on it |
+| `TOOL` | Library, platform, cloud tool, or framework taught at first real use |
+| `ARCHIVE` | Retained for provenance or future expansion; not taught unless a CORE dependency requires a sliver |
+
+## 2. NLP-Style Ingestion and Dedupe Method
+
+The unified graph was built as if the two curricula were source corpora.
+
+1. **Entity extraction.** Extract concepts, skills, tools, books, chapter maps, labs, systems, and assessment rules.
+2. **Canonicalization.** Normalize aliases: matrices and linear algebra, embeddings and vectors, RAG and retrieval, SQL and relational algebra, HLD/LLD and architecture artifacts.
+3. **Semantic clustering.** Cluster related entities into owner nodes such as `MATH-LA`, `ML-CORE`, `DB-ENGINE`, `ARCH-HLD-LLD`, and `NASIKO-CAPSTONE`.
+4. **Edge inference.** Add `requires`, `implements`, `strengthens`, `contrasts`, and `revises` edges.
+5. **Conflict resolution.** Pick one owner for each concept. Later appearances become applications, not duplicate lessons.
+6. **Retention.** Preserve unique source content through the source atlas, bibliography, chapter atlas, tool atlas, design-problem lists, and capstone spec map.
+
+## 3. Language Ownership
+
+| Domain | Primary implementation language | Rule |
+|---|---|---|
+| Foundational math, numerical methods, probability, statistics, ML theory, ML algorithms, deep learning primitives, NLP/CV/audio primitives | Python first, NumPy-level from scratch | Use libraries only after the primitive is understood and tested |
+| DS/algo, hard platform problems, Go programming, SQL/database internals, API services, HLD/LLD, design patterns, system design labs, distributed systems, Nasiko capstone | Go first | Implement from scratch, then compare with production packages or services |
+| Production ML systems | Hybrid | Model/math primitives in Python; service boundary, evaluator, feature store, registry, router, rollout, observability, and operations in Go |
+| Cloud, MLOps, serving engines, LLM APIs, vector DBs | Tool-backed | Teach concepts first, then use the tool through typed contracts and tests |
+
+## 4. Knowledge Graph
+
+### 4.1 Edge Types
+
+| Edge | Meaning | Teaching rule |
+|---|---|---|
+| `requires` | B cannot be learned honestly before A | Teach A first and confirm it |
+| `implements` | B is the coding lab for A | Build B as the practice artifact |
+| `strengthens` | A deepens B | Recall A briefly after both are unlocked |
+| `contrasts` | A and B solve similar forces differently | Compare trade-offs after both are learned |
+| `revises` | B reuses A for spaced practice | Recall, do not reteach |
+
+### 4.2 Canonical Owner Nodes
+
+| Node | Owns | Main sources | Code owner |
+|---|---|---|---|
+| `BASE` | Hardware, files, terminal, Git, editor, HTTP/JSON vocabulary, programming vocabulary | `NAS` | Go shell/repo labs |
+| `PY-CORE` | Python syntax needed for numerical and ML work, NumPy arrays, tests, notebooks/scripts | `CUR`, `MLO-I` | Python |
+| `GO-CORE` | Go syntax, runtime, errors, tests, interfaces, generics, concurrency, HTTP, gRPC, profiling, releases | `NAS` | Go |
+| `MATH-FUND` | Arithmetic, bases, fractions, ratios, percentages, real line, algebra, inequalities, functions, coordinate geometry, trigonometry | `CUR` M1-M34 | Python |
+| `PROOF-DISCRETE` | Logic, sets, relations, induction, counting, recurrences, graphs, modular arithmetic, finite automata when needed | `CUR`, `NAS` | Go for CS labs, Python where math proof-checks feed ML |
+| `MATH-LA` | Vectors, matrices, determinants, row operations, vector spaces, eigenvalues, SVD, PCA, spectral methods | `CUR` M9/M26/M27/M39 | Python |
+| `MATH-CALC-NUM` | Limits, continuity, derivatives, gradients, integration, ODE intuition, numerical methods, finite differences, interpolation, RK4 | `CUR` M29-M37 | Python |
+| `PROB-STAT-INFO` | Probability, distributions, inference, MLE, Fisher information, bootstrap, Bayesian updates, information theory, experiments | `CUR` M40, STAT, Cover, Jaynes, Wasserman, Casella-Berger | Python |
+| `ML-CORE` | ML framing, features, metrics, regression/classification, trees, clustering, anomaly detection, ranking, recommenders, bandits, causal inference | `CUR`, `NAS` | Python first; Go service application later |
+| `DL-NLP-CV-AUDIO` | Neural nets, CNNs, RNNs, transformers, tokenization, NLP libraries, DSP, image processing, ASR, Kaldi/OpenFst concepts | `CUR` M41-M45, NLP library theory, IIT/upGrad | Python first; Go gates for router/service constraints |
+| `GENAI-RAG-AGENTS` | Prompting, decoding, RAG, vector indexes, agent loops, guardrails, LLM evaluation, safety, multimodal, fine-tuning, PEFT | `CUR`, `NAS` | Python for primitives; Go for gateways/evaluators/services |
+| `DS-ALGO` | Arrays, stacks, queues, maps, trees, heaps, union-find, sorting, graph algorithms, DP, tries, hard platform practice | `NAS`, CLRS, Sedgewick, MIT, CS161 | Go |
+| `DB-SQL` | Relational algebra, SQL, schemas, constraints, transactions, query semantics, joins, CTEs, windows | `NAS` | SQL + Go |
+| `DB-ENGINE` | PostgreSQL storage, catalogs, pages, buffer pool, indexes, executor, planner, MVCC, locks, WAL, replication, PITR | `NAS` | Go + Postgres labs |
+| `API-SVC` | REST, gRPC, protobuf, JSON-RPC, auth, gateway, schema evolution, API contracts | `NAS` | Go |
+| `ARCH-HLD-LLD` | HLD, LLD, clean architecture, DDD, microservices, design patterns, ADRs, C4/Mermaid | `NAS` | Go |
+| `DIST-OPS` | Caches, queues, backpressure, consistency, idempotency, retries, circuit breakers, SLOs, observability, rollout/rollback | `NAS` | Go |
+| `ML-SYS-MLOPS` | Feature stores, model registry, training/eval pipelines, serving, A/B tests, drift, governance, GCP PMLE, production ML case studies | `CUR`, `NAS` MLCASE | Hybrid |
+| `TOOLS` | Docker, Compose, Kubernetes, Terraform, Kong/Nginx, MongoDB, Redis, Postgres, pgvector/Qdrant, OpenTelemetry, MLflow/wandb/Evidently, Ray/PySpark/Dask, FastAPI, LangChain, LlamaIndex, vLLM | `CUR`, `NAS` | Tool labs at first use |
+| `SDP-OOD` | System-design and object-design problem set, plus additional primer questions | `NAS` | Go |
+| `NASIKO-CAPSTONE` | P0-P10 Go control plane: gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, agents, production readiness | `NAS` | Go |
+| `ARCHIVE` | Deferred medical/mechanical/game/rendering/unrelated web/pure research inventory | `CUR`, `NAS` | None unless pulled by dependency |
+
+### 4.3 Dependency Graph
+
+```mermaid
+flowchart LR
+    BASE --> PY[PY-CORE]
+    BASE --> GO[GO-CORE]
+    PY --> MF[MATH-FUND]
+    MF --> PD[PROOF-DISCRETE]
+    MF --> LA[MATH-LA]
+    LA --> CALC[MATH-CALC-NUM]
+    CALC --> STAT[PROB-STAT-INFO]
+    STAT --> ML[ML-CORE]
+    LA --> ML
+    CALC --> ML
+    ML --> DL[DL-NLP-CV-AUDIO]
+    DL --> GENAI[GENAI-RAG-AGENTS]
+    GO --> DS[DS-ALGO]
+    PD --> DS
+    GO --> SQL[DB-SQL]
+    DS --> DBE[DB-ENGINE]
+    SQL --> DBE
+    GO --> API[API-SVC]
+    SQL --> API
+    API --> ARCH[ARCH-HLD-LLD]
+    DBE --> ARCH
+    ARCH --> DIST[DIST-OPS]
+    DBE --> DIST
+    ML --> MLSYS[ML-SYS-MLOPS]
+    GENAI --> MLSYS
+    API --> MLSYS
+    DIST --> MLSYS
+    ARCH --> SDP[SDP-OOD]
+    DS --> SDP
+    DIST --> SDP
+    MLSYS --> SDP
+    TOOLS --> API
+    TOOLS --> DIST
+    TOOLS --> MLSYS
+    SDP --> NASIKO[NASIKO-CAPSTONE]
+    MLSYS --> NASIKO
+    DIST --> NASIKO
+    DBE --> NASIKO
+```
+
+### 4.4 Dedupe Ledger
+
+| Overlap | Canonical owner | Later use |
+|---|---|---|
+| Arithmetic, algebra, functions in both ML and systems | `MATH-FUND` | Capacity math, score calibration, cost math, ML features |
+| Sets, relations, graphs, automata | `PROOF-DISCRETE` | Go DS/algo, tokenizer/ASR/WFST gates, service graphs |
+| Matrices, vectors, embeddings, PCA | `MATH-LA` | ML embeddings, ANN, router, recommender systems |
+| Calculus, optimization, numerical methods | `MATH-CALC-NUM` | Gradient descent, optimizer diagnostics, learning curves, simulations |
+| Probability, statistics, A/B tests | `PROB-STAT-INFO` | ML evaluation, online experiments, SLO/error-budget reasoning |
+| ML algorithms | `ML-CORE` | Production ML case studies and Nasiko router only apply them |
+| NLP, tokenization, transformers, RAG | `DL-NLP-CV-AUDIO` then `GENAI-RAG-AGENTS` | Router, RAG services, LLM safety and evaluation |
+| Algorithms/data structures | `DS-ALGO` | DB indexes, service discovery, routing, caches, hard practice |
+| SQL and Postgres | `DB-SQL` and `DB-ENGINE` | System design, capstone persistence, production operations |
+| HLD/LLD/design patterns | `ARCH-HLD-LLD` | SDP/OOD labs and Nasiko phases |
+| Production ML-system design | `ML-SYS-MLOPS` | Nasiko P5/P10, system-design ML questions, GCP PMLE |
+| Tool APIs | `TOOLS` | First real use only; never a detached sightseeing module |
+
+## 5. Single Graph-Ordered Learning Track
+
+Each stage mixes theory and software only where the graph allows it. Do not open a later stage because it is exciting; unlock it by passing the earlier checks.
+
+| Stage | Owner nodes | Theory learned | Implementation and artifact |
+|---|---|---|---|
+| S0 Zero setup | `BASE` | Computer, files, shell, editor, Git, HTTP/JSON words, process vs program | Repo setup, terminal drills, first test loop |
+| S1 Python numerical base | `PY-CORE`, `MATH-FUND` | Python values, functions, lists, dictionaries, tests, arithmetic, bases, estimation, units | Python base converters, unit calculators, tiny test suite |
+| S2 Go programming base | `GO-CORE` | Go program layout, types, variables, control flow, arrays, slices, maps, errors, strings | Go functions with tests; array/window/string labs |
+| S3 Algebra and functions | `MATH-FUND`, `PY-CORE` | Fractions, real line, algebra, inequalities, polynomials, logs/exponents, relations, functions, composition | Python expression evaluator, function validator, graph/table checks |
+| S4 Proof, discrete math, and basic DS | `PROOF-DISCRETE`, `DS-ALGO`, `GO-CORE` | Logic, sets, induction, counting, recurrences, arrays, stacks, queues, maps | Go stacks/queues/hash-map-client labs and proof notes |
+| S5 Geometry, coordinates, and vectors | `MATH-FUND`, `MATH-LA` | Coordinate geometry, distance metrics, vectors, dot products, matrix multiplication | Python vector/matrix kernels, distance metrics, tiny embedding examples |
+| S6 Go types and core data structures | `GO-CORE`, `DS-ALGO` | Pointers, structs, methods, interfaces, generics; linked lists, trees, heaps, union-find, hash tables | Go reusable DS packages, hard platform problems after unlock |
+| S7 Linear algebra and spectral methods | `MATH-LA` | Gaussian elimination, rank, projections, orthogonality, eigenvalues, Gram-Schmidt, SVD/PCA, low-rank approximation | Python Gaussian elimination, power iteration, PCA projection, numerical tests |
+| S8 Sorting, graphs, complexity | `DS-ALGO`, `PROOF-DISCRETE` | Asymptotics, invariants, sorting, binary search, heaps, greedy, MST, BFS/DFS, shortest paths | Go sort/top-k/graph packages, benchmark notes, hard platform problems |
+| S9 Calculus and numerical methods | `MATH-CALC-NUM` | Limits, continuity, derivatives, partials, gradients, integrals, ODE intuition, finite differences, interpolation, Euler/RK4 | Python gradient checks, numerical integration, RK4 toy solver, stability notes |
+| S10 Probability, statistics, and information | `PROB-STAT-INFO` | Random variables, distributions, Bayes, expectation, variance, CLT, MLE, CIs, hypothesis tests, bootstrap, entropy, KL, mutual information | Python samplers, MLE, bootstrap CI, A/B analyzer, log-loss/perplexity tools |
+| S11 Classical ML from scratch | `ML-CORE` | Data contracts, leakage, metrics, kNN, linear/logistic regression, naive Bayes, SVM/margin intuition, GLMs, trees, ensembles, clustering, GMM/EM, anomaly detection | Python from-scratch models with NumPy, metrics, gradient checks, comparison to scikit-learn |
+| S12 SQL and database correctness | `DB-SQL`, `GO-CORE` | Relational algebra, SQL semantics, NULL/3VL, constraints, transactions, joins, CTEs, windows, pagination | SQL transcripts, Go relational evaluator, Postgres schema and migration tests |
+| S13 PostgreSQL internals | `DB-ENGINE`, `DS-ALGO` | Catalogs, slotted pages, TOAST, buffer pool, indexes, executor, planner, statistics, MVCC, locks, vacuum, WAL, recovery, replication | Go slotted page, B-Tree, iterator executor, MVCC/WAL toy labs; `EXPLAIN` drills |
+| S14 Optimization, RL, causality | `MATH-CALC-NUM`, `PROB-STAT-INFO`, `ML-CORE` | Convexity, constraints, SGD, momentum, coordinate descent, LP/assignment, bandits, MDPs, propensity, uplift | Python optimizers, assignment solver, bandit simulator, causal estimators |
+| S15 DSP, image, NLP, and sequence gates | `DL-NLP-CV-AUDIO` | Convolution, correlation, sampling, DFT/FFT, STFT/MFCC, image filters, Unicode, regex, tokenization, n-grams, edit distance, finite-state basics | Python 1D/2D convolution, DFT, spectrogram features, tokenizer/BPE/WordPiece, n-gram LM |
+| S16 Deep learning and transformers | `DL-NLP-CV-AUDIO` | Perceptron, MLP, activations, loss, backprop, regularization, CNNs, RNN/LSTM/GRU, attention, positional encoding, decoder masking | Python tiny tensor/MLP/backprop, self-attention, masked softmax, minimal training loop |
+| S17 GenAI, RAG, and agents | `GENAI-RAG-AGENTS` | Prompting, CoT/self-consistency/ToT/ReAct, decoding, RAG, chunking, vector indexes, reranking, LLM evaluation, jailbreaks, prompt injection, guardrails | Python BM25/vector/RAG evaluator, prompt packer, structured output validator; Go LLM gateway contracts |
+| S18 APIs and service contracts | `API-SVC`, `GO-CORE`, `TOOLS` | HTTP/TLS, REST, middleware, auth, JWT, protobuf, gRPC, JSON-RPC, schema evolution | Go REST/gRPC/JSON-RPC services with contract tests |
+| S19 HLD, LLD, microservices, patterns | `ARCH-HLD-LLD`, `DIST-OPS` | C4/Mermaid, DDD, clean architecture, monolith vs microservices, sync/async, retries, idempotency, circuit breaker, outbox, saga, CQRS | Go service slices, ADRs, sequence/state diagrams, pattern tests |
+| S20 System design and OOD labs | `SDP-OOD`, `DS-ALGO`, `DB-ENGINE`, `DIST-OPS` | Primer topics, official SDP/OOD problems, capacity, bottlenecks, trade-offs, failure modes | Six-step write-up plus Go implementation for every listed problem |
+| S21 Production ML systems and MLOps | `ML-SYS-MLOPS`, `TOOLS`, `GENAI-RAG-AGENTS` | Feature stores, registries, training/eval pipelines, batch/online serving, A/B tests, drift, governance, GCP PMLE, ML case-study synthesis | Python model artifact plus Go feature-store facade, evaluator CLI, model registry, shadow/canary, drift alerts |
+| S22 Nasiko control-plane capstone | `NASIKO-CAPSTONE` | Gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, A2A agents, production readiness | Go P0-P10 implementation, route tests, traces, load test, backup/restore, ORR |
+| S23 Optional retained specializations | `ARCHIVE` | Game/rendering, medical, mechanical, deep pure math, unrelated web stacks, extra number theory | Pull only if a future CORE dependency needs it |
+
+## 6. Math and ML Spine From `curriculum.txt`
+
+| Block | Modules | Landing node |
+|---|---|---|
+| Foundational math | M1-M17 | `MATH-FUND` |
+| Commercial arithmetic | M18 | `ARCHIVE`, except finance/payment examples |
+| Senior secondary and JEE | M19-M34 | `MATH-FUND`, `MATH-LA`, `MATH-CALC-NUM`, `PROB-STAT-INFO` |
+| Engineering math | M35-M37 | `MATH-CALC-NUM`, conditional DSP prep |
+| Graduate rigor | M38-M40 | `MATH-LA`, `PROB-STAT-INFO` |
+| Signal and image processing | M41-M42 | `DL-NLP-CV-AUDIO` |
+| Kaldi and ASR | M43-M44 | `DL-NLP-CV-AUDIO`, `PROOF-DISCRETE` automata gate |
+| Sequence models and transformers | M45 plus folded DL modules | `DL-NLP-CV-AUDIO`, `GENAI-RAG-AGENTS` |
+| Production, GenAI, GCP PMLE | M46 plus IIT folded modules | `GENAI-RAG-AGENTS`, `ML-SYS-MLOPS` |
+
+## 7. Go, CS, DB, Architecture, and Nasiko Spine From `nasiko-curriculum.txt`
+
+| Block | Modules or slices | Landing node |
+|---|---|---|
+| Go core | G0-G20 | `GO-CORE` |
+| DS/algo/discrete math | G1-G12 blend, §2b residuals | `DS-ALGO`, `PROOF-DISCRETE` |
+| PostgreSQL | G12/G12b DB-1 to DB-10 | `DB-SQL`, `DB-ENGINE` |
+| ML-system foundations | MATH-ML, ML-CORE, ML-SYS | `MATH-LA`, `PROB-STAT-INFO`, `ML-CORE`, `ML-SYS-MLOPS` with language ownership adjusted |
+| Tool subcourses | Docker, K8s, Terraform, Kong, MongoDB, Redis, Postgres, OTEL, Cobra/Viper, vector stores, LLM APIs | `TOOLS` |
+| HLD/LLD/design patterns | §4 and §5e | `ARCH-HLD-LLD` |
+| System design | Primer topic index, SDP/OOD/additional questions | `SDP-OOD` |
+| Nasiko phases and specs | P0-P10, API/JOB/SCHEMA/PROTO/CLI/infra/ops specs | `NASIKO-CAPSTONE` |
+
+### 7.1 Go Module Detail Map
+
+| Module | Retained concepts | Owner |
+|---|---|---|
+| G0 | Git/GitHub/SSH, VS Code, Go install, Go Playground, `GOROOT`/`GOPATH`/`GOMOD`, `go env`, formatting habits | `BASE`, `GO-CORE` |
+| G1 | `main`, types, variables, constants, arithmetic, `for`, `if`, `switch`, arrays, blank identifier; arrays/two-pointers/prefix sums | `GO-CORE`, `DS-ALGO` |
+| G2 | slices, maps, `range`, functions, multiple returns, variadic, `defer`, `panic`/`recover`, `init`, closures, recursion, errors, strings/runes/fmt; stacks/queues/windows/backtracking | `GO-CORE`, `DS-ALGO` |
+| G3 | pointers, structs, methods, interfaces, embedding, tags, generics, conversions; linked lists, BST/red-black, heaps, union-find, hash tables | `GO-CORE`, `DS-ALGO` |
+| G4 | files, `bufio`, paths, dirs, temp files, `embed`, templates, regex, time; tries, KMP, rolling hash, slotted-page/WAL serialization | `GO-CORE`, `DS-ALGO`, `DB-ENGINE` |
+| G5 | CLI flags/subcommands, environment variables, logging, JSON, XML | `GO-CORE`, `TOOLS` |
+| G6-G7 | goroutines, channels, `select`, `context`, worker pools, wait groups, mutexes, atomics, `sync.Cond`, `sync.Once`, `sync.Pool` | `GO-CORE`, `DIST-OPS` |
+| G8-G9 | rate limiters, sorting, binary search, recurrences, greedy/MST, testing, benchmarking, OS signals, reflection, asymptotics, invariants, DP, discrete probability | `GO-CORE`, `DS-ALGO` |
+| G10-G12 | advanced concurrency, race detector, deadlocks, HTTP/TLS, graph algorithms, REST, middleware, SQL CRUD, auth primitives, pagination, security | `GO-CORE`, `API-SVC`, `DB-SQL` |
+| G12b | relational algebra through PostgreSQL internals DB-1 to DB-10 | `DB-SQL`, `DB-ENGINE` |
+| G13-G15 | protobuf, RPC, compatibility, gRPC, streaming, metadata, validation, Mongo/NoSQL CRUD, interceptors, REST+gRPC combo | `API-SVC` |
+| G16-G18 | OpenTelemetry, pprof, traces, Argon2/JWT/CSRF/XSS/govulncheck, secrets, audit, Docker, cross-compile, GoReleaser | `DIST-OPS`, `TOOLS` |
+| G19 | interview synthesis using unlocked DS/algo, concurrency, API design, distributed systems, SDP/OOD | `SDP-OOD` |
+| G20 | optional payments: rails, idempotent charges, webhooks, ledger, refunds/disputes, reconciliation, regional rails, security/ops | optional `PAY` under `ARCH-HLD-LLD` and `DIST-OPS` |
+
+### 7.2 PostgreSQL Slice Detail Map
+
+| Slice | Retained concepts | Required artifact |
+|---|---|---|
+| DB-1 | relational algebra, joins, semi/anti joins, outer joins, bag/set semantics, NULL/3VL | Go relational evaluator plus SQL edge-case transcript |
+| DB-2 | catalogs, namespaces, `ctid`, `xmin`, `xmax`, types, JSONB, range/UUID, PK/FK/CHECK/DOMAIN, deferred constraints | schema/migration and constraint tests |
+| DB-3 | CTEs, recursive CTEs, window frames, lateral joins | reporting queries with `EXPLAIN (ANALYZE, BUFFERS)` |
+| DB-4 | `$PGDATA`, forks, segments, FSM/VM, 8KB pages, line pointers, heap tuples, TOAST | Go slotted-page package |
+| DB-5 | shared buffers, descriptors, pins/refcounts, clock-sweep, bgwriter, checkpointer | Go toy buffer pool and hit-ratio benchmark |
+| DB-6 | B-Tree, Lehman-Yao links, hash, GIN/GiST/SP-GiST/BRIN, bitmap/index-only scans, visibility map | Go B-Tree, inverted index, BRIN-like summary |
+| DB-7 | Volcano iterator, `work_mem`, external sort, nested-loop/index/hash/merge joins, aggregation | Go executor nodes with spill lab |
+| DB-8 | parser/analyzer/rewriter/planner, `pg_statistic`, MCV/histograms/correlation, path generation, GEQO, parallel query | selectivity prediction and plan comparison |
+| DB-9 | MVCC, snapshots, isolation, SSI, row/table locks, deadlocks, HOT, autovacuum, XID freezing | visibility simulator, SQL isolation labs, deadlock detector |
+| DB-10 | WAL, synchronous commit, full-page writes, checkpoints, redo/no-undo recovery, streaming replication, WAL archiving, PITR | mini WAL/replay, primary/standby, backup/restore drill |
+
+## 8. Consolidated Bibliography
+
+### 8.1 Mathematics Foundations and Proof
+
+- ICSE mathematics: Selina, M.L. Aggarwal, S. Chand, Frank, Together With, R.S. Aggarwal.
+- NCERT Mathematics XI-XII.
+- Hall & Knight, S.L. Loney, I.A. Maron, Michael Spivak.
+- JEE Advanced sources: Vikas Gupta/Pankaj Joshi, Cengage Mathematics Series, Arihant Skills in Mathematics.
+- Proof and foundations: Hammack, Ernst, Taylor, Jensen-Vallin, Sundstrom, Judson.
+- Real analysis and measure inventory: Rudin, Axler, Ernst, Mahavier, Boman/Rogers, Towsley, Orr.
+
+### 8.2 Discrete Math, Algorithms, and CS
+
+- Rosen and Grimaldi for discrete mathematics.
+- Sedgewick & Wayne, MIT 6.006, MIT 6.042/6.1200, MIT 6.046, Stanford CS161/Roughgarden, Harvard CS124, CLRS.
+- Hopcroft/Motwani/Ullman for automata, with finite automata/WFST taught only when NLP/ASR/grammar constraints require it.
+
+### 8.3 Linear Algebra, Calculus, Optimization, Probability, Statistics
+
+- Strang, Luenberger, Grewal, Kreyszig, Spivak, Rudin.
+- Jaynes, Wasserman, Casella & Berger.
+- Boyd & Vandenberghe, Cover & Thomas, MacKay, Murphy.
+
+### 8.4 ML, DL, NLP, CV, Audio, ASR
+
+- Bishop, Duda/Hart/Stork, ESL, Goodfellow/Bengio/Courville, Russell & Norvig, Sutton & Barto, Prince, Dive into Deep Learning.
+- Manning/Raghavan/Schutze IR, Jurafsky & Martin, Manning & Schutze FSNLP.
+- Gonzalez & Woods, Szeliski, Forsyth & Ponce, Hartley & Zisserman.
+- Oppenheim & Willsky, Proakis & Manolakis, Lyons, Lathi, Oppenheim & Schafer, Proakis & Salehi.
+- Rabiner & Juang, Huang/Acero/Hon, Yu & Deng, Quatieri, Kaldi/OpenFst docs.
+
+### 8.5 Production ML, Software, Systems, and Tools
+
+- Chip Huyen, Lakshmanan/Robinson/Munn, Google PMLE syllabus, Google SRE, AWS Builders' Library, DDIA, Alex Xu, Grokking, ByteByteGo, donnemartin/system-design-primer, roadmap.sh.
+- Microsoft REST API Guidelines, official Go docs, PostgreSQL docs/source, Docker, Kubernetes, Terraform, Kong/Nginx, Redis, MongoDB, OpenTelemetry, Cobra/Viper, pgvector/Qdrant, JSON-RPC, A2A/AgentCard notes.
+- Software engineering support: SE at Google, Effective Software Testing, The Programmer's Brain, Fundamentals of Software Architecture, Refactoring.
+
+### 8.6 Retained Archive Bibliography
+
+- Game Engine Architecture; Real-Time Rendering.
+- Mechanical, fluid, aerospace texts from `curriculum.txt`.
+- Medical and AccessMedicine inventory.
+- React and TypeScript texts as archive unless a future UI track is opened.
+- PhD/research number theory sources as archive unless a later cryptography or theory dependency needs a slice.
+
+## 9. Textbook and Chapter Atlas
+
+The chapter lists from `curriculum.txt` are retained as the reading atlas below. They are not taught as separate courses; each is entered only through the owner node that needs it.
+
+| Source | Retained chapter/topic map | Teaching owner |
+|---|---|---|
+| Spivak Calculus | numbers, functions, graphs, limits, continuity, derivatives, integrals, sequences, series, complex numbers, fields, real construction | `MATH-CALC-NUM`, rigor ceiling |
+| Rudin Principles | ordered fields, topology, sequences/series, continuity, differentiation, Riemann-Stieltjes, uniform convergence, special functions, several variables, differential forms, Lebesgue theory | `MATH-CALC-NUM`, `MATH-LA`, rigor ceiling; measure only if needed |
+| Strang Linear Algebra books | vectors, linear systems, elimination, spaces/subspaces, orthogonality, determinants, eigenvalues, SVD, transformations, applications | `MATH-LA` |
+| Jaynes | plausible reasoning, product/sum rules, sampling, hypothesis testing, parameter estimation, Gaussian, sufficiency, entropy, priors, decision theory, communication | `PROB-STAT-INFO` |
+| Wasserman | probability, inference, parametric inference, bootstrap/jackknife, nonparametric, EDA, classification and ML | `PROB-STAT-INFO`, `ML-CORE` |
+| Casella & Berger | probability, transformations, common families, joint/conditional, samples, sufficiency, estimation, testing, intervals, ANOVA/regression | `PROB-STAT-INFO` |
+| CLRS | asymptotics, divide-conquer, sorting, randomized algorithms, DS, DP, greedy, amortized, graphs, max flow, number theory, approximation | `DS-ALGO` |
+| Luenberger | linear/Hilbert spaces, approximation, least squares, operators, constrained optimization, KKT, Newton, steepest descent, conjugate gradient | `MATH-LA`, `MATH-CALC-NUM`, `ML-CORE` |
+| Kreyszig/Grewal | ODE/PDE, matrices, vector calculus, Fourier, Laplace, z-transform, complex, numerics, optimization, graphs, probability/statistics | `MATH-CALC-NUM`, `DL-NLP-CV-AUDIO` gates |
+| DSP texts | LTI systems, convolution, z-transform, Fourier/DFT/FFT, sampling, filters, STFT, cepstrum, multirate, fixed-point issues | `DL-NLP-CV-AUDIO` |
+| Digital Communications | signal space, modulation, receivers, synchronization, information theory, coding, fading, MIMO | `ARCHIVE` unless comms/information slice needs it |
+| Huang/Acero/Hon | speech structure, probability/info, pattern recognition, DSP, speech representations, HMMs, acoustic modeling, robustness, LMs, search, TTS, SLU | `DL-NLP-CV-AUDIO` |
+| Cover & Thomas | entropy, relative entropy, mutual information, AEP, compression, channel capacity, differential entropy, rate distortion, max entropy, inequalities | `PROB-STAT-INFO` |
+| Bishop, Duda, ESL, Murphy | probability, regression/classification, neural nets, kernels, graphical models, mixtures/EM, inference, sampling, model assessment, trees, SVMs, clustering, GLMs | `ML-CORE` |
+| Goodfellow, Prince, D2L | applied math, probability/info, numerical computation, ML basics, feedforward nets, regularization, optimization, CNNs, RNNs, transformers, generative models, RL | `DL-NLP-CV-AUDIO`, `GENAI-RAG-AGENTS` |
+| Russell & Norvig | agents, search, CSPs, games, logic, planning, uncertainty, decisions, ML, RL, NLP, robotics, CV, ethics/safety | `ML-CORE`, `GENAI-RAG-AGENTS`; robotics archive unless needed |
+| FSNLP and Jurafsky/Martin | linguistic essentials, n-grams, tagging, parsing, IR, text classification, tokens, transformers, post-training, ASR, TTS, discourse | `DL-NLP-CV-AUDIO`, `GENAI-RAG-AGENTS` |
+| CV books | image formation, filtering, features, segmentation, recognition, detection, geometry, stereo, SfM/SLAM, reconstruction, rendering | `DL-NLP-CV-AUDIO` |
+| IR book | Boolean retrieval, vocab/postings, indexing/compression, scoring, evaluation, feedback, probabilistic IR, classification, clustering, LSI, web search/PageRank | `GENAI-RAG-AGENTS`, `ML-CORE` |
+| Sutton & Barto | bandits, finite MDPs, DP, Monte Carlo, TD, n-step, planning, function approximation, policy gradients | `ML-CORE` |
+| Hopcroft/Motwani/Ullman | finite automata, regex/languages, CFGs, pushdown automata, Turing machines, undecidability, intractability | `PROOF-DISCRETE`, conditional ASR/tokenizer gate |
+| Chip Huyen | ML systems overview, data engineering, training data, feature engineering, model development/eval, deployment, monitoring, continual learning, tooling, human side | `ML-SYS-MLOPS` |
+| ICSE/NCERT/JEE maps | classes 6-12 arithmetic, algebra, sets, geometry, trig, matrices, calculus, probability; JEE algebra/calculus/trig/coordinate/vector practice | `MATH-FUND`, `MATH-CALC-NUM`, JEE ramp |
+| Number theory sources | divisibility, GCD, congruences, CRT, Fermat/Euler, primitive roots, quadratic reciprocity, cryptography, continued fractions, deeper algebraic/analytic theory | `PROOF-DISCRETE` basics; research depth archive |
+| Game/rendering/mechanical/medical/software archive maps | titles and module lists retained from `CUR` | `ARCHIVE` |
+
+## 10. Python Library and ML Tool Atlas
+
+| Group | Tools | Teaching rule |
+|---|---|---|
+| Numerical/data | NumPy, Pandas, SciPy | Teach with math, statistics, and ML slices after hand tracing |
+| Visualization | Matplotlib, Seaborn, Plotly | Use for EDA, diagnostics, and learning curves |
+| Classical ML | scikit-learn, XGBoost, LightGBM | Compare after from-scratch Python implementation |
+| Deep learning | PyTorch, TensorFlow, Keras | Use after NumPy primitives; PyTorch for explicit training loops |
+| NLP/transformers | NLTK, spaCy, Hugging Face Tokenizers, Hugging Face Transformers | Teach representation, data structures, failure modes, and evaluation before APIs |
+| Data engineering | PySpark, Dask | Teach when scale requires distributed processing |
+| MLOps | MLflow, Weights & Biases, Evidently | Teach with experiment tracking, registry, drift, and monitoring |
+| Deployment and agents | FastAPI, LangChain, LlamaIndex, vLLM, Ray | Teach service or orchestration concepts first; do not reimplement engines |
+
+## 11. Go Tool, Platform, and System Atlas
+
+| Group | Tools or sources | Teaching rule |
+|---|---|---|
+| Go services | standard library, Chi/Gin/Fiber, protobuf, gRPC, JSON-RPC | Write typed service boundaries and contract tests |
+| Data stores | Postgres, MongoDB, Redis, pgvector/Qdrant | Teach schema, query, consistency, and failure behavior before production use |
+| Infra | Docker, Compose, BuildKit, Kubernetes, Helm, Terraform, Kong/Nginx | Use at first project need and prove the local workflow |
+| Observability | OpenTelemetry, pprof, Phoenix, dashboards, alerts | Add traces/metrics/logs to every production slice |
+| CLI | Cobra, Viper | Build operator workflows |
+| Go numerical/ML support | Gonum, Gorgonia/GoMLX, ONNX Runtime Go bindings, HTTP model services | Use only after Python scratch model and Go service contract are understood |
+
+## 12. System Design, HLD, LLD, and OOD Track
+
+### 12.1 Required Primer Topics
+
+Performance vs scalability; latency vs throughput; availability vs consistency; consistency patterns; availability patterns; DNS; CDN; load balancing; reverse proxies; application layer and microservices; database design and scaling; NoSQL; caches; asynchronism; communication; security; powers of two and latency numbers.
+
+### 12.2 Official System-Design Problems
+
+Pastebin/Bitly; Twitter timeline/search; web crawler; Mint.com; social-network data structures; search-engine key-value store; Amazon sales ranking; scale to millions on AWS.
+
+### 12.3 Official OOD Problems
+
+Hash map; LRU cache; call center; deck of cards; parking lot; chat server; circular array.
+
+### 12.4 Additional Primer Questions
+
+File sync; search engine; scalable crawler; Google Docs; Redis-like store; Memcached-like cache; Amazon recommendations; TinyURL/Bitly; WhatsApp/chat; Instagram/picture sharing; Facebook feed/timeline/chat/graph search; CDN; trending topics; Snowflake ID generation; top-k requests in a window; multi-datacenter serving; multiplayer card game; garbage collector; API rate limiter; stock exchange.
+
+### 12.5 HLD/LLD/Pattern Ladder
+
+Every design lab produces: requirements, capacity estimate, Mermaid HLD, LLD/API/schema/state diagrams, bottleneck/failure table, trade-off table, Go implementation, tests, observability, rollback story, and one ADR.
+
+Patterns are taught only as responses to forces: repository, unit of work, adapter, strategy, factory, builder, middleware/decorator, chain of responsibility, observer/pub-sub, mediator, command, state, outbox, saga, CQRS/read model, idempotent consumer, circuit breaker, bulkhead, retry with jitter, strangler fig.
+
+## 13. Production ML and ML-System Case-Study Track
+
+Case-study clusters from `NAS` and `MLCASE` are retained as production rotations, not as articles to memorize.
+
+| Cluster | Examples | Required artifact |
+|---|---|---|
+| Ranking, search, recommendations, ads, feeds | Airbnb, Etsy, Netflix, Spotify, Walmart, Instacart, Meta/Twitter feeds | Retrieval/rerank/diversity lab; recall@k, NDCG, latency, cold-start notes |
+| Forecasting, ETA, scheduling, pricing | Uber, DoorDash, Wayfair, Zalando | Forecast baseline, freshness check, quantile errors, assignment/cost simulator |
+| Fraud, risk, anomaly, spam, trust | Stripe Radar, LinkedIn spam, Grab graph anomaly, Zillow phone spam | Stream features, fraud/anomaly score, threshold review queue, audit trail |
+| LLM/NLP/assistants/generative systems | GitHub Copilot, Honeycomb, Microsoft incident management, Salesforce, Monzo | RAG evaluator, prompt/context packer, structured output, safety tests, fallback/cache/SLO |
+| CV/audio/document systems | Apple segmentation, Netflix in-video/audio, Etsy image search, Dropbox image search, Uber documents | Image/audio feature extractor, convolution/spectrogram lab, embedding adapter, multimodal retrieval eval |
+| Feature platforms and MLOps | Spotify Dataflow, Stitch Fix, BlaBlaCar, PayPal, Pinterest | Feature-store facade, registry, evaluator CLI, parity test, drift monitor, shadow/canary |
+| Graph ML and entity resolution | Grab, Walmart, Yelp, LinkedIn sparse IDs, Dailymotion | Bipartite graph, PageRank/random-walk toy, blocking/candidates, anomaly actioning |
+| Bandits/RL/explore-exploit | Instacart, Wayfair, Netflix, Trivago | Bandit simulator, offline replay evaluator, reward/guardrail dashboard |
+| Causal inference and experimentation | LinkedIn, Lyft, Meta, Spotify | A/B assignment, exposure log, bootstrap/CUPED report, propensity/uplift memo |
+
+## 14. Nasiko Capstone Retention Map
+
+The capstone is Go-only and starts after the required graph nodes are unlocked.
+
+### 14.1 Service and Infrastructure Inventory
+
+Target services retained from `NAS`: API gateway, backend API, auth service, router, registry, chat history, orchestrator and build worker, CLI, sample A2A agents, and optional web UI as an existing HTTP client only.
+
+Stores and infra retained: MongoDB, Redis streams/cache, Postgres for Kong and SQL/database-system labs, optional relational auth/audit schema, object storage, container registry, BuildKit, Docker, Kubernetes, Terraform, Kong or Nginx.
+
+End-to-end flow: upload agent -> registry -> Redis build request -> orchestrator/worker build and deploy -> registry discovers agent -> Kong routes/plugins -> router embeds and shortlists -> LLM structured pick -> gateway routes -> chat logged -> traces emitted.
+
+### 14.2 Phase Map
+
+| Phase | Output |
+|---|---|
+| P0 Foundations | Go monorepo, dev loop, tooling |
+| P1 Core platform skeleton | shared config, logs, traces, error model |
+| P2 Data stores and contracts | Mongo, Redis, Kong/Postgres, optional SQL auth/audit schema, migrations and invariants |
+| P3 Backend API | handlers, services, repositories, JWT, idempotency, pagination, query-plan checks |
+| P4 Registry and gateway | Docker/K8s discovery, Kong services/routes/plugins, health and stale cleanup |
+| P5 Router | embeddings, vector store, shortlist/rerank, structured LLM pick, offline eval, guardrails |
+| P6 Chat history | JSON-RPC ingest, append-only storage, pagination, retention/index trade-offs |
+| P7 Orchestrator and worker | Redis streams, BuildKit/Docker, deploy/update/rebuild/rollback, idempotent consumers |
+| P8 CLI | Cobra/Viper operator workflows |
+| P9 Sample agents | A2A JSON-RPC, AgentCard, tool calling, streaming/artifacts |
+| P10 Production hardening | SLOs, dashboards, runbooks, load, security, ML drift, model rollback, backup/restore, ORR |
+
+### 14.3 Normalized Spec Inventory
+
+Retained API and protocol groups: backend health, upload, access, n8n, build/deploy/update/rollback, registry, chat session/history, GitHub OAuth, NANDA adapter, user registration, chat-history service, router algorithm `ALG-ROUTE-001`, auth service, A2A JSON-RPC `message/send`, task tracking, AgentCard validation, tool calling, registry/Kong sync, Redis jobs, schemas, config matrix, CLI commands, infra, ops/tests, sample agents.
+
+Retained schemas: registry AgentCard, skills, upload status, agent build, deployment, session, message, n8n credentials/workflows, GitHub credentials, SQL teaching schema, query-performance fixture, transaction fixture.
+
+## 15. Archive and Deferral Policy
+
+Archive is retained, not deleted. It is not taught unless a current CORE node requires it.
+
+- Commercial arithmetic M18 is archive except finance/payments examples.
+- Deep number theory is archive except GCD, modular arithmetic, CRT, hashing, crypto, and proof practice.
+- Game engines/rendering are archive except geometry, vectors, matrices, or graphics math needed by CV.
+- Mechanical/fluid/aerospace and medical inventories are archive.
+- React/TypeScript and unrelated web stacks are archive unless a UI track is opened.
+- Python-only legacy Nasiko implementation details are archive as implementation, but their concepts are retained in Go owner nodes.
+
+## 16. Mastery Definition
+
+A stage is complete only when the learner can:
+
+- Explain the concept in plain language and with the right notation.
+- Solve basic, routine, mixed, and hard/domain-appropriate problems using only unlocked tools.
+- Implement the core primitive in the owner language.
+- Test the implementation and explain complexity, numerical stability, or production trade-offs as appropriate.
+- Transfer the idea into a new problem without copying the worked example.
+- State when the idea fails or when a simpler alternative is better.
+
+## 17. Source Coverage Ledger
+
+| Source content | Unified landing |
+|---|---|
+| `curriculum.txt` bibliography | §8 |
+| `curriculum.txt` chapter maps | §9 |
+| `curriculum.txt` M1-M46 teaching spine | §5-S1 through §5-S21, §6 |
+| IIT/upGrad lecture bank, GenAI/Agentic official map, papers | `GENAI-RAG-AGENTS`, §5-S17, §13 |
+| Python library curriculum and NLP library theory | §10 |
+| Statistical techniques | `PROB-STAT-INFO`, §5-S10 |
+| Nasiko knowledge graph | §4 |
+| Go G0-G20 | §5, §7 |
+| DS/algo/discrete math and hard contest practice | `DS-ALGO`, §5-S4/S6/S8/S20 |
+| PostgreSQL internals | `DB-SQL`, `DB-ENGINE`, §5-S12/S13 |
+| HLD/LLD/microservices/design patterns | `ARCH-HLD-LLD`, §12 |
+| System-design and OOD problem lists | §12 |
+| ML-system case-study atlas | §13 |
+| Nasiko P0-P10 phases and specs | §14 |
+| Tool/platform subcourses | §10, §11 |
+| Archive inventories | §15 |
