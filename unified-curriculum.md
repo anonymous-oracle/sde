@@ -1,14 +1,52 @@
 # Unified Math, ML, Computer Science, and Production Systems Curriculum
 
-Single track for learning theory and software development side by side. This file ingests the broad curriculum source and the Nasiko curriculum source as a graph-ordered synthesis and includes the full source-preserved corpus so the unified file can stand alone.
-
-Teaching brief: the unified teaching contract.
+Single track for learning theory and software development side by side. This curriculum is self-contained: its curated graph, execution rules, content maps, assessment gates, references, and source-preserved corpus are all included here.
 
 ## 0. Mission
 
 The learner starts from zero and climbs toward durable mastery for the agentic-coding era: strong mathematics, computer science, machine learning, software engineering, system design, production ML, and the ability to implement core ideas from scratch.
 
 The final working ability is not only to use agents, libraries, and cloud tools. It is to understand the theory behind them, rebuild the important primitives, choose production trade-offs, and operate real systems.
+
+### 0.1 Single-Course Execution Contract
+
+This is one curriculum, not a bundle of courses to complete separately. Sections 0-17 are the active teaching layer. The source-preserved corpus in the final section exists for lossless provenance, detail recovery, and audit; it does not create a second teaching sequence. If preserved wording conflicts with the curated layer, the curated graph, language ownership, stage order, and mastery gates control teaching.
+
+Execute one owner node and one coherent sub-topic at a time. Walk every `requires` edge, confirm the learner with an unseen check, and update one learner ledger containing the current stage, owner node, sub-topic, ramp rung, unlocked tools, shaky tools, postponed challenges, artifact evidence, and next gate. Later occurrences of an owned concept receive recall plus application, not a second full lesson.
+
+Every non-definitional sub-topic climbs the same internal ramp: concrete anchor -> vocabulary/notation -> representation -> core move -> worked illustration -> basic unseen check -> routine variation -> mixed transfer with exactly two earlier unlocked ideas -> domain-appropriate top rung -> reflection and ledger update. Math uses readiness-matched JEE-Advanced-style reasoning; Go/DS uses hard platform reasoning; security, database, system-design, and production topics use adversarial or production failure drills.
+
+### 0.2 Required Learning-Unit Schema
+
+Each teach-time unit is complete enough to stand alone and must identify:
+
+1. Canonical owner node and exact heading path.
+2. Confirmed prerequisites and locked prerequisites deliberately excluded.
+3. Observable learning outcomes in explain, solve, implement, test, and transfer form.
+4. Minimal theory, notation, representation, invariant, or system contract.
+5. One worked illustration followed by learner-owned practice through the difficulty ramp.
+6. A from-scratch implementation in the owner language when the topic is implementable.
+7. Verification: tests, numerical checks, complexity, stability, threat cases, query plans, or operational signals as appropriate.
+8. Failure modes, counterexample or boundary case, and criteria for choosing a simpler alternative.
+9. A retained evidence artifact: code, test suite, proof note, experiment report, benchmark, threat model, design document, runbook, or deployed slice.
+
+No unit advances on reading or verbal confidence alone. The learner must pass an unseen check. A stage advances only after its owner-node gates and required artifacts pass.
+
+### 0.3 One-to-Two-Year Mastery Pace
+
+Calendar time is a planning aid, never a substitute for mastery. A 12-month intensive path assumes roughly 20-25 focused hours per week; a 24-month sustainable path assumes roughly 10-15. Slow down whenever a prerequisite remains shaky and accelerate only by proving prior knowledge with unseen checks.
+
+| Phase | Stages | Share of core time | Career evidence |
+|---|---|---:|---|
+| Foundations | S0-S4 | 15% | Reproducible repositories, Python numerical basics, tested Go programs, proof and DS notes |
+| Mathematical and algorithmic core | S5-S10 | 20% | Numerical kernels, Go data-structure packages, benchmarks, statistics and experiment tools |
+| ML, data, database, and domain primitives | S11-S15 | 25% | Scratch ML package, SQL/engine labs, optimizer and DSP/NLP/CV primitives |
+| Deep learning and GenAI | S16-S17 | 15% | Backprop/attention implementations, evaluated retrieval and agent workflows |
+| Services, security, architecture, and production ML | S18-S22 | 15% | Secure Go API, auth/middleware package, HLD/LLD dossier, production ML service slice |
+| Integrated capstone | S23 | 10% | Operable Go control plane with tests, traces, load evidence, security review, and recovery drill |
+| Optional retained specializations | S24 | outside core | Open only after the core destination is complete or a real dependency requires it |
+
+Every 8-12 weeks, select one existing coursework artifact and harden it into portfolio evidence: a clear problem statement, reproducible setup, architecture or derivation, tests, measured results, failure analysis, security considerations, and a concise demonstration. Portfolio work hardens material already learned; it must not create a parallel course or bypass the graph.
 
 ## 1. Source Keys and Tags
 
@@ -41,10 +79,12 @@ The unified graph was built as if the two curricula were source corpora.
 
 | Domain | Primary implementation language | Rule |
 |---|---|---|
-| Foundational math, numerical methods, probability, statistics, ML theory, ML algorithms, deep learning primitives, NLP/CV/audio primitives | Python first, NumPy-level from scratch | Use libraries only after the primitive is understood and tested |
-| DS/algo, hard platform problems, Go programming, SQL/database internals, API services, HLD/LLD, design patterns, system design labs, distributed systems, Nasiko capstone | Go first | Implement from scratch, then compare with production packages or services |
-| Production ML systems | Hybrid | Model/math primitives in Python; service boundary, evaluator, feature store, registry, router, rollout, observability, and operations in Go |
+| Mathematics, numerical methods, probability, statistics, optimization, ML, deep learning, LLMs, NLP, Kaldi/ASR, information theory, signal processing, image processing, computer vision, and related theoretical/application primitives | Python first, NumPy-level from scratch | Implement theory and applications in Python; use scientific or ML libraries only after the primitive is understood and tested |
+| Software development, Go language learning, computer-science implementations, DS/algo, hard platform problems, database/storage internals, APIs, authentication, authorization, application security, middleware, concurrency, distributed systems, HLD/LLD, design patterns, system-design labs, operations, and the capstone | Go first | Implement the related primitive or application from scratch in Go, then compare with production packages or services |
+| Production ML systems | Hybrid | Keep model, mathematics, data-science primitive, and evaluation in Python; implement service boundaries, gateways, evaluators, feature access, registries, routers, rollout, observability, and operations in Go |
 | Cloud, MLOps, serving engines, LLM APIs, vector DBs | Tool-backed | Teach concepts first, then use the tool through typed contracts and tests |
+
+For authentication and security, "from scratch" means implementing protocol state, middleware, validation, sessions, token lifecycle, authorization policy, replay defense, and adversarial tests in Go. Cryptographic algorithms remain owned by the Go standard library or vetted extended packages; never invent a cipher, hash, password KDF, signature scheme, random generator, or TLS variant for production use.
 
 ## 4. Knowledge Graph
 
@@ -76,7 +116,8 @@ The unified graph was built as if the two curricula were source corpora.
 | `DS-ALGO` | Arrays, stacks, queues, maps, trees, heaps, union-find, sorting, graph algorithms, DP, tries, hard platform practice | `NAS`, CLRS, Sedgewick, MIT, CS161 | Go |
 | `DB-SQL` | Relational algebra, SQL, schemas, constraints, transactions, query semantics, joins, CTEs, windows | `NAS` | SQL + Go |
 | `DB-ENGINE` | PostgreSQL storage, catalogs, pages, buffer pool, indexes, executor, planner, MVCC, locks, WAL, replication, PITR | `NAS` | Go + Postgres labs |
-| `API-SVC` | REST, gRPC, protobuf, JSON-RPC, auth, gateway, schema evolution, API contracts | `NAS` | Go |
+| `API-SVC` | REST, gRPC, protobuf, JSON-RPC, gateways, schema evolution, API contracts | `NAS` | Go |
+| `SEC-AUTH` | Threat modeling, secure HTTP middleware, authentication, authorization, password handling, sessions, CSRF/CORS, API keys, JWT, OAuth/OIDC, MFA/passkeys, secrets, supply chain, and security verification | Go security guidance, IETF, NIST, OWASP, `NAS` | Go |
 | `ARCH-HLD-LLD` | HLD, LLD, clean architecture, DDD, microservices, design patterns, ADRs, C4/Mermaid | `NAS` | Go |
 | `DIST-OPS` | Caches, queues, backpressure, consistency, idempotency, retries, circuit breakers, SLOs, observability, rollout/rollback | `NAS` | Go |
 | `ML-SYS-MLOPS` | Feature stores, model registry, training/eval pipelines, serving, A/B tests, drift, governance, GCP PMLE, production ML case studies | `CUR`, `NAS` MLCASE | Hybrid |
@@ -108,9 +149,13 @@ flowchart LR
     SQL --> DBE
     GO --> API[API-SVC]
     SQL --> API
+    API --> SEC[SEC-AUTH]
+    SQL --> SEC
     API --> ARCH[ARCH-HLD-LLD]
+    SEC --> ARCH
     DBE --> ARCH
     ARCH --> DIST[DIST-OPS]
+    SEC --> DIST
     DBE --> DIST
     ML --> MLSYS[ML-SYS-MLOPS]
     GENAI --> MLSYS
@@ -118,6 +163,7 @@ flowchart LR
     DIST --> MLSYS
     ARCH --> SDP[SDP-OOD]
     DS --> SDP
+    SEC --> SDP
     DIST --> SDP
     MLSYS --> SDP
     TOOLS --> API
@@ -127,6 +173,7 @@ flowchart LR
     MLSYS --> NASIKO
     DIST --> NASIKO
     DBE --> NASIKO
+    SEC --> NASIKO
 ```
 
 ### 4.4 Dedupe Ledger
@@ -142,6 +189,7 @@ flowchart LR
 | NLP, tokenization, transformers, RAG | `DL-NLP-CV-AUDIO` then `GENAI-RAG-AGENTS` | Router, RAG services, LLM safety and evaluation |
 | Algorithms/data structures | `DS-ALGO` | DB indexes, service discovery, routing, caches, hard practice |
 | SQL and Postgres | `DB-SQL` and `DB-ENGINE` | System design, capstone persistence, production operations |
+| Authentication, authorization, sessions, tokens, and middleware | `SEC-AUTH` | APIs, system-design labs, production ML services, and capstone phases apply the established controls |
 | HLD/LLD/design patterns | `ARCH-HLD-LLD` | SDP/OOD labs and Nasiko phases |
 | Production ML-system design | `ML-SYS-MLOPS` | Nasiko P5/P10, system-design ML questions, GCP PMLE |
 | Tool APIs | `TOOLS` | First real use only; never a detached sightseeing module |
@@ -170,12 +218,13 @@ Each stage mixes theory and software only where the graph allows it. Do not open
 | S15 DSP, image, NLP, and sequence gates | `DL-NLP-CV-AUDIO` | Convolution, correlation, sampling, DFT/FFT, STFT/MFCC, image filters, Unicode, regex, tokenization, n-grams, edit distance, finite-state basics | Python 1D/2D convolution, DFT, spectrogram features, tokenizer/BPE/WordPiece, n-gram LM |
 | S16 Deep learning and transformers | `DL-NLP-CV-AUDIO` | Perceptron, MLP, activations, loss, backprop, regularization, CNNs, RNN/LSTM/GRU, attention, positional encoding, decoder masking | Python tiny tensor/MLP/backprop, self-attention, masked softmax, minimal training loop |
 | S17 GenAI, RAG, and agents | `GENAI-RAG-AGENTS` | Prompting, CoT/self-consistency/ToT/ReAct, decoding, RAG, chunking, vector indexes, reranking, LLM evaluation, jailbreaks, prompt injection, guardrails | Python BM25/vector/RAG evaluator, prompt packer, structured output validator; Go LLM gateway contracts |
-| S18 APIs and service contracts | `API-SVC`, `GO-CORE`, `TOOLS` | HTTP/TLS, REST, middleware, auth, JWT, protobuf, gRPC, JSON-RPC, schema evolution | Go REST/gRPC/JSON-RPC services with contract tests |
-| S19 HLD, LLD, microservices, patterns | `ARCH-HLD-LLD`, `DIST-OPS` | C4/Mermaid, DDD, clean architecture, monolith vs microservices, sync/async, retries, idempotency, circuit breaker, outbox, saga, CQRS | Go service slices, ADRs, sequence/state diagrams, pattern tests |
-| S20 System design and OOD labs | `SDP-OOD`, `DS-ALGO`, `DB-ENGINE`, `DIST-OPS` | Primer topics, official SDP/OOD problems, capacity, bottlenecks, trade-offs, failure modes | Six-step write-up plus Go implementation for every listed problem |
-| S21 Production ML systems and MLOps | `ML-SYS-MLOPS`, `TOOLS`, `GENAI-RAG-AGENTS` | Feature stores, registries, training/eval pipelines, batch/online serving, A/B tests, drift, governance, GCP PMLE, ML case-study synthesis | Python model artifact plus Go feature-store facade, evaluator CLI, model registry, shadow/canary, drift alerts |
-| S22 Nasiko control-plane capstone | `NASIKO-CAPSTONE` | Gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, A2A agents, production readiness | Go P0-P10 implementation, route tests, traces, load test, backup/restore, ORR |
-| S23 Optional retained specializations | `ARCHIVE` | Game/rendering, medical, mechanical, deep pure math, unrelated web stacks, extra number theory | Pull only if a future CORE dependency needs it |
+| S18 APIs and service contracts | `API-SVC`, `GO-CORE`, `TOOLS` | HTTP/TLS semantics, REST, protobuf, gRPC, JSON-RPC, schema evolution, gateway and service contracts | Go REST/gRPC/JSON-RPC services with contract tests |
+| S19 Go authentication, security, and middleware | `SEC-AUTH`, `API-SVC`, `DB-SQL`, `GO-CORE` | Threat models, middleware ordering, password/session/token lifecycle, authorization, CSRF/CORS, JWT, OAuth/OIDC, MFA, secrets, secure outbound calls, verification | From-scratch Go security package, hardened local service, abuse-case tests, fuzz/race evidence, security review |
+| S20 HLD, LLD, microservices, patterns | `ARCH-HLD-LLD`, `DIST-OPS`, `SEC-AUTH` | C4/Mermaid, DDD, clean architecture, monolith vs microservices, sync/async, retries, idempotency, circuit breaker, outbox, saga, CQRS, security boundaries | Go service slices, threat-aware ADRs, sequence/state diagrams, pattern tests |
+| S21 System design and OOD labs | `SDP-OOD`, `DS-ALGO`, `DB-ENGINE`, `DIST-OPS`, `SEC-AUTH` | Primer topics, official SDP/OOD problems, capacity, bottlenecks, trade-offs, failure modes, abuse cases | Six-step write-up, threat model, and Go implementation for every listed problem |
+| S22 Production ML systems and MLOps | `ML-SYS-MLOPS`, `TOOLS`, `GENAI-RAG-AGENTS`, `SEC-AUTH` | Feature stores, registries, training/eval pipelines, batch/online serving, A/B tests, drift, governance, GCP PMLE, ML case-study synthesis | Python model artifact plus secure Go feature-store facade, evaluator CLI, model registry, shadow/canary, drift alerts |
+| S23 Nasiko control-plane capstone | `NASIKO-CAPSTONE` | Gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, A2A agents, production readiness | Go P0-P10 implementation, route tests, traces, load test, backup/restore, security review, ORR |
+| S24 Optional retained specializations | `ARCHIVE` | Game/rendering, medical, mechanical, deep pure math, unrelated web stacks, extra number theory | Pull only if a future CORE dependency needs it |
 
 ## 6. Math and ML Spine From the broad curriculum source
 
@@ -275,7 +324,17 @@ Each stage mixes theory and software only where the graph allows it. Do not open
 - Microsoft REST API Guidelines, official Go docs, PostgreSQL docs/source, Docker, Kubernetes, Terraform, Kong/Nginx, Redis, MongoDB, OpenTelemetry, Cobra/Viper, pgvector/Qdrant, JSON-RPC, A2A/AgentCard notes.
 - Software engineering support: SE at Google, Effective Software Testing, The Programmer's Brain, Fundamentals of Software Architecture, Refactoring.
 
-### 8.6 Retained Archive Bibliography
+### 8.6 Authentication and Application-Security Standards
+
+- Go primary material: current `net/http`, `crypto/*`, `crypto/rand`, `crypto/subtle`, `crypto/tls`, `x/crypto/argon2`, `httptest`, testing/fuzzing, race-detector, vulnerability-management, and release/security notes.
+- IETF: HTTP Semantics; cookie specifications; JSON Web Token (RFC 7519) and JWT Best Current Practices (RFC 8725); OAuth PKCE (RFC 7636); Authorization Server Metadata (RFC 8414); OAuth mutual TLS (RFC 8705); Pushed Authorization Requests (RFC 9126); Authorization Server Issuer Identification (RFC 9207); DPoP (RFC 9449); OAuth 2.0 Security Best Current Practice (RFC 9700).
+- OpenID Foundation: OpenID Connect Core and current discovery, logout, and assurance profiles used by the selected lab.
+- NIST: Digital Identity Guidelines, especially SP 800-63B-4 for authenticator and lifecycle decisions; key-management guidance where key lifecycle is in scope.
+- OWASP: ASVS 5.0 authentication, session, authorization, self-contained-token, OAuth/OIDC, cryptography, communication, data, API, logging, and configuration controls; current threat-modeling, authentication, password-storage, forgot-password, MFA, session, authorization, CSRF, REST, input-validation, SSRF, logging, secrets-management, and software-supply-chain cheat sheets.
+
+Use these as a hierarchy, not a reading dump. Start with the governing RFC/BCP or platform documentation, use NIST/ASVS for assurance and verification, and use cheat sheets for implementation review. Record the edition or publication date checked because security guidance changes.
+
+### 8.7 Retained Archive Bibliography
 
 - Game Engine Architecture; Real-Time Rendering.
 - Mechanical, fluid, aerospace texts from the broad curriculum source.
@@ -339,6 +398,142 @@ The chapter lists from the broad curriculum source are retained as the reading a
 | CLI | Cobra, Viper | Build operator workflows |
 | Go numerical/ML support | Gonum, Gorgonia/GoMLX, ONNX Runtime Go bindings, HTTP model services | Use only after Python scratch model and Go service contract are understood |
 
+### 11.1 Go Authentication, Security, and Middleware From Scratch `CORE`
+
+Owner: `SEC-AUTH`. Stage: S19. Prerequisites: `BASE`, `GO-CORE`, `API-SVC`, `DB-SQL`, HTTP/TLS vocabulary, Go interfaces/errors/context/concurrency, SQL transactions, and the testing/benchmarking/race-detector syntax already unlocked. This is software engineering and is implemented in Go.
+
+**Learning boundary.** Build application and protocol logic from scratch: threat models, handlers, middleware composition, password-verifier wrappers, session stores, token lifecycle, authorization policy, replay caches, validation pipelines, and adversarial tests. Do not implement cryptographic primitives. Use the Go standard library and vetted extended packages for secure randomness, Argon2id or another approved password KDF, HMAC, signatures, authenticated encryption, X.509, TLS, and constant-time comparison. Learning implementations run only on local test systems until they pass the security gate and are compared with a maintained production component.
+
+#### 11.1.1 Threat Modeling and Security Foundations
+
+Concepts: assets; subjects, identities, authenticators, credentials, sessions, permissions; confidentiality/integrity/availability; privacy; trust boundaries; entry and exit points; data-flow diagrams; attacker capabilities; misuse cases; STRIDE prompts; likelihood, impact, blast radius, residual risk; defense in depth; least privilege; deny by default; fail closed without destroying availability; secure defaults; separation of duties; security usability and accessibility.
+
+Required artifact: a Mermaid data-flow diagram and threat register for a small Go service. Each threat records asset, actor, precondition, attack path, violated property, mitigation, detection, test, owner, and residual risk. Revisit the threat model whenever identity flow, trust boundary, external service, storage, or privilege changes.
+
+#### 11.1.2 Hardened Go HTTP and Middleware Mechanics
+
+Build the middleware type `func(http.Handler) http.Handler`, chaining, short-circuiting, request-scoped typed context values, cancellation, response status/byte capture, panic recovery, and capability-preserving response-writer wrappers. Trace request flow inward and response flow outward. Prove order sensitivity with tests.
+
+Default chain, outermost to innermost:
+
+1. Request/trace identifier and trusted-proxy normalization.
+2. Panic recovery with generic client errors and internal diagnostics.
+3. Host validation, method allowlist, security headers, header/body limits, and content-type negotiation.
+4. Access logging and metrics with secret redaction.
+5. Request deadline, cancellation propagation, concurrency budget, and graceful overload behavior.
+6. CORS and cross-origin/CSRF defense.
+7. Per-client and per-account rate controls.
+8. Authentication and session loading.
+9. Authorization at function, object, field, tenant, and workflow-state levels.
+10. Syntactic and semantic input validation.
+11. Business handler.
+
+Server hardening: explicit server instance; read-header, read, write, and idle timeouts; maximum header and request-body sizes; safe HTTP method semantics; no state change on GET/HEAD/OPTIONS; strict JSON decoding with unknown-field and trailing-data handling where the contract requires it; correct 400/401/403/404/405/406/413/415/429/500 behavior; generic external errors; no stack traces; graceful shutdown. Validate authoritative Host values and sanitize security-relevant forwarding headers at the trusted proxy boundary.
+
+Outbound HTTP hardening: reusable client/transport, total and phase timeouts, cancellation, response-body closure, redirect policy, destination allowlist where possible, proxy trust, TLS verification, response-size limits, and bounded concurrency. For SSRF, parse once, restrict schemes, reject userinfo and fragments when irrelevant, resolve and validate every destination IP, block loopback/private/link-local/multicast/metadata ranges, defend against DNS rebinding and redirect escape, and combine application checks with network egress controls.
+
+Labs: build a middleware chain and recorder; table-test every short circuit and order permutation; fuzz headers, paths, JSON, and forwarded-host inputs; race-test shared limiter/session state; benchmark rejection paths; compare custom CSRF/cross-origin logic with the current standard-library protection available in the selected Go version.
+
+#### 11.1.3 Identity, Passwords, Recovery, and MFA
+
+Model user identity separately from credentials and authenticators. Use opaque non-sequential public identifiers. Treat email/phone as mutable verified attributes, not permanent identity keys. Document every authentication pathway and require equivalent controls across login, registration, password change, recovery, admin-assisted recovery, API login, and federation.
+
+Password policy baseline:
+
+- Support long passphrases and at least 64 characters; do not silently truncate.
+- Use a minimum of 15 characters for password-only authentication, or at least 8 when the password is only one factor in MFA.
+- Accept spaces and Unicode; define and consistently test normalization behavior.
+- Do not impose arbitrary character-class composition rules or periodic rotation. Require change on compromise and check new passwords against common, contextual, and breached-password blocklists.
+- Permit paste, autofill, and password managers. Avoid knowledge-based security questions.
+
+Password storage lab: wrap Argon2id using a unique cryptographically random salt per password; encode algorithm, version, parameters, salt, and derived value in a parseable versioned record; set explicit input limits; tune memory/time/parallelism on the deployment class; verify with constant-time comparison; support parameter upgrade after successful login; optionally add a separately stored pepper only with a documented rotation/recovery plan. Never store plaintext or reversibly encrypted passwords, and never use a fast general hash as a password KDF.
+
+Authentication flow: use generic public failure messages and equivalent status/timing behavior for unknown users, wrong passwords, disabled accounts, registration, and recovery. Perform a dummy KDF path when needed to reduce enumeration timing differences. Combine account-aware throttling with IP/device/network signals without letting attackers cheaply lock out victims. Log security events without credentials. Require recent authentication for password, email, MFA, recovery, payout, privilege, or other high-risk changes.
+
+Recovery and authenticator lifecycle: generate high-entropy, single-use, expiring verification/reset/recovery values; store recoverable tokens hashed when lookup permits; bind them to purpose and account; invalidate after use; rotate sessions after authentication or privilege change; notify the user through an independent channel; support multiple authenticators and recovery methods; revoke lost or compromised authenticators. A recovery path may not be weaker than the account risk it bypasses.
+
+MFA progression: implement and test one-time recovery codes and a TOTP verifier using standard HMAC primitives, trusted server time, replay prevention, rate limits, bounded clock skew, secure seed handling, enrollment confirmation, and revocation. Then implement a WebAuthn/passkey relying-party lab through a maintained library, validating challenge freshness, origin/relying-party binding, user presence/verification flags, credential counters or equivalent risk signals, and recovery. Treat manually entered OTP and SMS/phone methods as non-phishing-resistant; offer phishing-resistant authentication for higher assurance.
+
+#### 11.1.4 Opaque Sessions, Cookies, CSRF, and CORS
+
+Implement an opaque server-side session manager in Go. Generate at least 128 bits of cryptographic randomness; expose only the opaque identifier; keep identity, assurance, permissions, creation, last activity, idle deadline, absolute deadline, and revocation state server-side. Store a one-way lookup value rather than the raw token where practical. Accept session identifiers only through the intended transport, never through query parameters.
+
+Cookie baseline: `Secure`, `HttpOnly`, explicit `SameSite=Lax` or `Strict`, host-only scope, `Path=/` when using a host-prefixed cookie, no unnecessary `Domain`, and expiry no later than server-side validity. Rotate the identifier after login, reauthentication, privilege or authenticator change; destroy old state. Enforce idle and absolute expiry on the server, explicit logout, all-session revocation, account-disable revocation, concurrent-session policy, and sensitive-response `Cache-Control: no-store`. Do not place session identifiers, access tokens, refresh tokens, or credentials in browser local storage.
+
+CSRF progression: first model the browser's automatic cookie behavior and forbid state changes on safe methods. Implement a synchronizer-token pattern for stateful sessions or a session-bound HMAC signed double-submit pattern for stateless constraints; compare in constant time and never put CSRF tokens in URLs or logs. Add exact Origin/target-origin validation and Fetch Metadata policy with a documented fallback. Treat SameSite as defense in depth, not the sole control unless a written threat model justifies the narrow case. Compare with the Go standard-library cross-origin protection supported by the selected version.
+
+CORS progression: disable when unnecessary. Otherwise use an exact origin allowlist, explicit methods and headers, correct preflight handling, and `Vary: Origin` where responses differ. Never combine credentialed requests with a wildcard origin. CORS is a browser read policy, not authentication, authorization, CSRF protection, or a server-to-server access control.
+
+Adversarial tests: fixation, guessing, stale/expired/revoked sessions, privilege-change rotation, logout replay, concurrent renewal races, cross-site unsafe requests, missing/forged CSRF values, hostile Origin/Referer/Fetch Metadata combinations, subdomain assumptions, preflight cache behavior, and cookie attribute assertions.
+
+#### 11.1.5 API Keys, Signed Requests, and JWT Validation
+
+API keys: generate with cryptographic randomness; show once; store only a hash plus a non-secret lookup prefix; bind owner, purpose, scopes, environment, creation, last use, expiry, and revocation; support overlapping rotation; redact from logs; reject keys in URLs. Use API keys for client identification, metering, or bounded machine access, not as the sole control for high-value user actions.
+
+Signed-request lab: design a versioned canonical request containing method, canonical target, selected headers, body digest, timestamp, nonce, key identifier, and audience. Compute HMAC with a vetted primitive, compare in constant time, enforce a narrow clock window, keep a nonce/replay cache, scope the key, and reject ambiguous encodings. Fuzz canonicalization and duplicate-header/query cases; test replay, body substitution, method substitution, and clock skew.
+
+JWT validation lab: use a maintained JOSE/JWT library for cryptographic processing, while implementing the validation policy and tests explicitly. Pin an algorithm allowlist; never accept `none`; prevent symmetric/asymmetric key confusion; bind each key to one algorithm and purpose; validate every signature layer; require UTF-8 and reject malformed or duplicate security claims according to the parser contract. Validate trusted issuer, subject namespace, audience, expiration, not-before, issued-at policy, token identifier/replay policy, explicit token type, scope/authorization details, and maximum lifetime with bounded clock skew.
+
+Key selection must come from preconfigured trusted issuers. Never follow attacker-controlled key URLs or use an untrusted key identifier as a database/path/URL query. Use mutually exclusive validation rules, audiences, types, claims, and preferably keys for access, ID, refresh, logout, reset, and other token classes. Keep sensitive data out of readable token claims. Plan key rotation, cache refresh, revocation, incident cutoff, and stale-permission handling; a valid signature does not prove current authorization.
+
+#### 11.1.6 OAuth 2.0, OpenID Connect, and Federation
+
+First distinguish roles and goals: OAuth delegates authorization to APIs; OpenID Connect adds user authentication and identity assertions. Model client, resource owner, authorization server/OpenID Provider, resource server, and relying party. Treat access tokens, refresh tokens, and ID Tokens as different artifacts with different consumers and validation rules.
+
+OAuth client lab: implement authorization-code flow with transaction-specific high-entropy state, PKCE using S256, and OIDC nonce where applicable. Bind the transaction to the initiating browser session; use exact pre-registered redirect URIs; verify issuer to prevent mix-up; reject unsolicited or replayed callbacks; exchange codes over TLS; keep tokens out of URLs and browser storage; request least-privilege scopes; use a backend-for-frontend pattern when appropriate.
+
+Authorization-server conformance lab: exact redirect matching; no open redirects; one-time short-lived authorization codes; mandatory PKCE with S256; downgrade rejection; consent bound to client/resource/scope; confidential-client authentication; no implicit grant and no resource-owner-password grant; refresh-token rotation or sender constraint with family revocation on replay; absolute refresh expiry; metadata and key rotation; 303 rather than 307 after credential-bearing POST flows. This remains an isolated learning implementation, not a production identity provider.
+
+Resource-server lab: validate token type, issuer, audience, lifetime, signature, scope, resource/action, and subject/client distinction before authorization. Reject tokens intended for another service. Advanced transfer: sender-constrained access tokens through mutual TLS or proof-of-possession, resource indicators, rich authorization details, pushed authorization requests, and replay detection.
+
+OIDC relying-party lab: use discovery only from a preconfigured trusted issuer; require exact metadata issuer match; validate ID Token signature, issuer, audience/client identifier, expiration, nonce, subject, and any required authentication context/recentness. Namespace external identities by issuer plus subject. Do not use an access token as proof that a user is currently present.
+
+#### 11.1.7 Authorization and Multi-Tenant Policy
+
+Authorization is distinct from authentication. Start with an access-control matrix of subjects, actions, resources, fields, tenants, workflow states, and environmental constraints. Deny by default and authorize every request at a trusted server-side enforcement point.
+
+Implement in increasing expressiveness:
+
+1. RBAC with explicit permissions and no scattered role-name conditionals.
+2. Object ownership and relationship checks to stop horizontal privilege escalation and IDOR/BOLA.
+3. Field-level read/write policy to stop property-level authorization failures and mass assignment.
+4. Tenant isolation in query construction, storage constraints, cache keys, jobs, exports, logs, and administrative paths.
+5. ABAC using subject, resource, action, and environment attributes.
+6. ReBAC for graph relationships and delegated access.
+7. Policy-decision and policy-enforcement separation, decision explanations, versioning, caching, and immediate invalidation or bounded stale-policy risk.
+
+Tests use a subject x action x resource x tenant x state matrix and prove both allowed and denied cases. Include missing policy, stale role/token, confused deputy, service-to-service delegation, guessed identifiers, batch endpoints, indirect object references, field overposting, cross-tenant cache/job leaks, administrator separation, and policy-store failure. Authorization changes apply immediately where possible; otherwise document and test the bounded stale window and compensating controls.
+
+#### 11.1.8 Application, Data, Secrets, and Supply-Chain Security
+
+Input/data boundaries: syntactic and semantic allowlist validation at the first trusted boundary; strong types; length/range/count/depth limits; Unicode and canonicalization policy; parameterized SQL; safe command construction without shell interpolation; context-aware output encoding; safe templates; path containment; archive/zip limits; file type/content/size validation; generated storage names; malware/content scanning where risk requires it; workflow state-machine enforcement; generic errors.
+
+Secrets and keys: inventory owner/purpose/consumers/environment/creation/expiry/rotation/revocation; no secrets in source, images, build output, URLs, logs, traces, crash reports, or test fixtures; least-privilege access; short-lived workload identity or dynamic secrets where possible; separate secret store/KMS/HSM by assurance need; overlapping rotation; emergency revocation; encrypted backup and tested restore; break-glass controls; audit every access without recording the secret. Minimize plaintext lifetime in memory while acknowledging Go garbage-collection limits.
+
+Transport and proxy trust: TLS 1.2 minimum unless current policy requires stronger, prefer safe library defaults, verify certificates and hostnames, never use insecure verification in production, configure mutual TLS for suitable service/high-assurance cases, protect proxy-to-service links, strip and recreate trusted forwarding or client-certificate headers, and test certificate expiry/rotation/failure.
+
+Security logging: record when, where, who, what, action, object, outcome, reason category, request/trace ID, and confidence for authentication, authorization, session, validation, configuration, secret, key, admin, and suspicious workflow events. Sanitize CR/LF and delimiters; protect log confidentiality, integrity, availability, access, retention, and clock synchronization. Never log passwords, reset/recovery values, private keys, raw session IDs, access/refresh tokens, database credentials, or unnecessary personal data; use a non-reversible correlation value when session linkage is needed.
+
+Supply chain: minimize dependencies; review maintainer health, security policy, release provenance, transitive dependencies, and license; pin reproducibly; review code/config changes; separate duties; protect build credentials; use ephemeral isolated builds where practical; generate an SBOM and provenance; scan source, dependencies, containers, and final artifacts; run the Go vulnerability checker and investigate reachable findings; sign and verify release artifacts; monitor deployed components and rotate exposed credentials.
+
+#### 11.1.9 Assurance Ladder and Required Projects
+
+These are curriculum assurance levels inspired by current OWASP ASVS and NIST identity guidance; they are learning gates, not a compliance certification.
+
+| Level | Required implementation | Required evidence |
+|---|---|---|
+| L1 Core defense | Hardened Go HTTP server and middleware chain; Argon2id password wrapper; registration/login/change/reset; opaque sessions; CSRF/CORS; RBAC plus object authorization; input limits and safe errors | Threat model, table/HTTP tests, negative authorization matrix, no-secret log test, timeout/body-limit tests, dependency and vulnerability report |
+| L2 Production service | MFA/recovery; active-session management; OIDC client; strict JWT/resource-server validation; ABAC/tenant/field policy; secrets rotation; secure outbound client/SSRF policy; TLS and audit pipeline | Fuzz corpus, race-detector pass, timing/resource benchmarks, key/token/session rotation drills, multi-tenant regression suite, incident and recovery runbooks |
+| L3 High assurance | Phishing-resistant WebAuthn/passkey or mutual-TLS flow; sender-constrained token study; contextual step-up; hardened administrative plane; hardware-backed key-management design | Independent threat-model review, abuse-case demonstration, failover/revocation exercise, evidence mapping to selected ASVS controls and NIST assurance goals, residual-risk memo |
+
+Integrated project: build a small multi-tenant Go service with public, authenticated, operator, and service-to-service paths. It must include the ordered middleware chain, password and phishing-resistant options, opaque sessions, OAuth/OIDC client and resource-server slices, granular authorization, secure outbound webhooks, secrets/key rotation, tamper-aware audit events, tests/fuzz/race/benchmarks, deployment hardening, and an attack-to-detection-to-recovery demonstration. Then replace the learning identity-provider or token machinery with a mature component while preserving the learner-owned interfaces and contract tests.
+
+#### 11.1.10 Research Baseline and Freshness Rule
+
+Research baseline reviewed September 2026: current Go HTTP, TLS, secure-random, constant-time, Argon2id, testing, fuzzing, race-detector, and vulnerability-management guidance; IETF HTTP semantics, cookies, JWT, JWT Best Current Practices, PKCE, OAuth authorization/security Best Current Practice, sender-constrained token, and authorization-server metadata standards; OpenID Connect Core; NIST Digital Identity Guidelines SP 800-63B-4; OWASP ASVS 5 authentication, session, authorization, self-contained-token, OAuth/OIDC, and configuration controls; OWASP authentication, password storage, session management, authorization, CSRF, REST, input-validation, SSRF, threat-modeling, logging, secrets, and software-supply-chain guidance.
+
+Security guidance ages faster than mathematical content. At teach time, verify whether a newer RFC/BCP, Go release behavior, NIST revision, OWASP ASVS release, or package security advisory supersedes this baseline. Record the source family and date checked in the security artifact; do not silently weaken a newer requirement to match an older source block.
+
 ## 12. System Design, HLD, LLD, and OOD Track
 
 ### 12.1 Required Primer Topics
@@ -359,7 +554,7 @@ File sync; search engine; scalable crawler; Google Docs; Redis-like store; Memca
 
 ### 12.5 HLD/LLD/Pattern Ladder
 
-Every design lab produces: requirements, capacity estimate, Mermaid HLD, LLD/API/schema/state diagrams, bottleneck/failure table, trade-off table, Go implementation, tests, observability, rollback story, and one ADR.
+Every design lab produces: functional and quality requirements; assets, actors, trust boundaries, abuse cases, and authorization model; capacity estimate; Mermaid HLD; LLD/API/schema/state diagrams; bottleneck/failure/security table; trade-off table; Go implementation; positive, negative, load, and adversarial tests; observability with secret-redaction checks; rollback/revocation/recovery story; and one ADR. A design that authenticates a caller but does not authorize the action and object is incomplete.
 
 Patterns are taught only as responses to forces: repository, unit of work, adapter, strategy, factory, builder, middleware/decorator, chain of responsibility, observer/pub-sub, mediator, command, state, outbox, saga, CQRS/read model, idempotent consumer, circuit breaker, bulkhead, retry with jitter, strangler fig.
 
@@ -369,19 +564,19 @@ Case-study clusters from `NAS` and `MLCASE` are retained as production rotations
 
 | Cluster | Examples | Required artifact |
 |---|---|---|
-| Ranking, search, recommendations, ads, feeds | Airbnb, Etsy, Netflix, Spotify, Walmart, Instacart, Meta/Twitter feeds | Retrieval/rerank/diversity lab; recall@k, NDCG, latency, cold-start notes |
+| Ranking, search, recommendations, ads, feeds | Airbnb, Etsy, Netflix, Spotify, Walmart, Instacart, Meta/Twitter feeds | Retrieval/rerank/diversity lab; recall@k, NDCG, latency, cold-start, abuse, and access-scope notes |
 | Forecasting, ETA, scheduling, pricing | Uber, DoorDash, Wayfair, Zalando | Forecast baseline, freshness check, quantile errors, assignment/cost simulator |
-| Fraud, risk, anomaly, spam, trust | Stripe Radar, LinkedIn spam, Grab graph anomaly, Zillow phone spam | Stream features, fraud/anomaly score, threshold review queue, audit trail |
-| LLM/NLP/assistants/generative systems | GitHub Copilot, Honeycomb, Microsoft incident management, Salesforce, Monzo | RAG evaluator, prompt/context packer, structured output, safety tests, fallback/cache/SLO |
+| Fraud, risk, anomaly, spam, trust | Stripe Radar, LinkedIn spam, Grab graph anomaly, Zillow phone spam | Stream features, fraud/anomaly score, threshold review queue, authorization boundaries, tamper-aware audit trail |
+| LLM/NLP/assistants/generative systems | GitHub Copilot, Honeycomb, Microsoft incident management, Salesforce, Monzo | RAG evaluator, prompt/context packer, structured output, untrusted-content/tool authorization tests, data-boundary checks, fallback/cache/SLO |
 | CV/audio/document systems | Apple segmentation, Netflix in-video/audio, Etsy image search, Dropbox image search, Uber documents | Image/audio feature extractor, convolution/spectrogram lab, embedding adapter, multimodal retrieval eval |
-| Feature platforms and MLOps | Spotify Dataflow, Stitch Fix, BlaBlaCar, PayPal, Pinterest | Feature-store facade, registry, evaluator CLI, parity test, drift monitor, shadow/canary |
+| Feature platforms and MLOps | Spotify Dataflow, Stitch Fix, BlaBlaCar, PayPal, Pinterest | Authenticated Go feature-store facade, scoped registry, evaluator CLI, parity test, drift monitor, shadow/canary, model and credential rollback |
 | Graph ML and entity resolution | Grab, Walmart, Yelp, LinkedIn sparse IDs, Dailymotion | Bipartite graph, PageRank/random-walk toy, blocking/candidates, anomaly actioning |
 | Bandits/RL/explore-exploit | Instacart, Wayfair, Netflix, Trivago | Bandit simulator, offline replay evaluator, reward/guardrail dashboard |
 | Causal inference and experimentation | LinkedIn, Lyft, Meta, Spotify | A/B assignment, exposure log, bootstrap/CUPED report, propensity/uplift memo |
 
 ## 14. Nasiko Capstone Retention Map
 
-The capstone is Go-only and starts after the required graph nodes are unlocked.
+The capstone control plane is Go-only and starts after the required graph nodes, including `SEC-AUTH` L2, are unlocked. Python model or embedding artifacts may be consumed through typed, authenticated service or artifact contracts; model logic does not move into Go merely because the control plane is Go.
 
 ### 14.1 Service and Infrastructure Inventory
 
@@ -396,22 +591,35 @@ End-to-end flow: upload agent -> registry -> Redis build request -> orchestrator
 | Phase | Output |
 |---|---|
 | P0 Foundations | Go monorepo, dev loop, tooling |
-| P1 Core platform skeleton | shared config, logs, traces, error model |
-| P2 Data stores and contracts | Mongo, Redis, Kong/Postgres, optional SQL auth/audit schema, migrations and invariants |
-| P3 Backend API | handlers, services, repositories, JWT, idempotency, pagination, query-plan checks |
-| P4 Registry and gateway | Docker/K8s discovery, Kong services/routes/plugins, health and stale cleanup |
-| P5 Router | embeddings, vector store, shortlist/rerank, structured LLM pick, offline eval, guardrails |
-| P6 Chat history | JSON-RPC ingest, append-only storage, pagination, retention/index trade-offs |
-| P7 Orchestrator and worker | Redis streams, BuildKit/Docker, deploy/update/rebuild/rollback, idempotent consumers |
-| P8 CLI | Cobra/Viper operator workflows |
-| P9 Sample agents | A2A JSON-RPC, AgentCard, tool calling, streaming/artifacts |
-| P10 Production hardening | SLOs, dashboards, runbooks, load, security, ML drift, model rollback, backup/restore, ORR |
+| P1 Core platform skeleton | shared config, secret-safe structured logs, traces, generic error model, hardened servers/clients, ordered middleware |
+| P2 Data stores and contracts | Mongo, Redis, Kong/Postgres, SQL auth/audit schema, tenant constraints, migrations, transactions, backup invariants |
+| P3 Backend API and identity | handlers, services, repositories, password/OIDC login, opaque control-plane sessions, strict JWT resource validation where required, granular authorization, CSRF/CORS, idempotency, pagination, query-plan checks |
+| P4 Registry and gateway | Docker/K8s discovery, Kong services/routes/plugins, workload/gateway identity, scoped credentials, route authorization, health and stale cleanup |
+| P5 Router | Python-produced embeddings behind a typed contract, vector store, shortlist/rerank, structured LLM pick, offline eval, tenant/data boundaries, untrusted-output and tool guardrails |
+| P6 Chat history | authenticated JSON-RPC ingest, object/tenant/field authorization, append-only audit linkage, pagination, privacy, retention/deletion/index trade-offs |
+| P7 Orchestrator and worker | Redis streams, BuildKit/Docker, short-lived workload identity, artifact provenance, deploy/update/rebuild/rollback, idempotent consumers, command/input isolation |
+| P8 CLI | Cobra/Viper operator workflows, device or browser login, least-privilege commands, confirmation and recent-authentication gates, no credential leakage |
+| P9 Sample agents | authenticated and authorized A2A JSON-RPC, AgentCard validation, per-tool policy, delegated identity, replay control, streaming/artifact limits |
+| P10 Production hardening | SLOs, dashboards, alert drills, load/abuse/fuzz/race testing, dependency and secret scans, key/session/token rotation, ML drift/model rollback, backup/restore, incident recovery, security review, ORR |
 
 ### 14.3 Normalized Spec Inventory
 
 Retained API and protocol groups: backend health, upload, access, n8n, build/deploy/update/rollback, registry, chat session/history, GitHub OAuth, NANDA adapter, user registration, chat-history service, router algorithm `ALG-ROUTE-001`, auth service, A2A JSON-RPC `message/send`, task tracking, AgentCard validation, tool calling, registry/Kong sync, Redis jobs, schemas, config matrix, CLI commands, infra, ops/tests, sample agents.
 
 Retained schemas: registry AgentCard, skills, upload status, agent build, deployment, session, message, n8n credentials/workflows, GitHub credentials, SQL teaching schema, query-performance fixture, transaction fixture.
+
+### 14.4 Capstone Security Acceptance Criteria
+
+The final operational-readiness review must show, not merely claim:
+
+- An updated data-flow diagram, trust-boundary map, abuse-case register, data classification, authorization matrix, and residual-risk register.
+- Exact identity propagation across browser/CLI, gateway, backend, router, registry, worker, and agents; no implicit trust based only on network location.
+- Deny-by-default function, object, field, tenant, and tool authorization with regression tests; administrator and service identities are separate and least-privileged.
+- Password/session/OIDC/JWT behavior inherited from `SEC-AUTH`, including fixation/replay/expiry/revocation tests and an emergency all-session or key cutoff.
+- Bounded inputs, hardened outbound requests, artifact/source validation, isolated builds, dependency/SBOM/provenance evidence, and no secrets in source, images, logs, traces, or model prompts.
+- `go test`, targeted fuzz corpora, race-detector checks, vulnerability analysis, load and abuse tests, plus captured fixes for every discovered security regression.
+- Alerts for authentication abuse, authorization denial anomalies, secret/key events, suspicious agent/tool use, and logging failure; dashboards link to an owned response runbook.
+- A rehearsed compromised-credential or signing-key rotation, malicious-agent containment, backup restore, rollback, and post-incident evidence review.
 
 ## 15. Archive and Deferral Policy
 
@@ -424,16 +632,46 @@ Archive is retained, not deleted. It is not taught unless a current CORE node re
 - React/TypeScript and unrelated web stacks are archive unless a UI track is opened.
 - Python-only legacy Nasiko implementation details are archive as implementation, but their concepts are retained in Go owner nodes.
 
-## 16. Mastery Definition
+## 16. Mastery, Assessment, and Portfolio Standard
+
+### 16.1 Universal Stage Gate
 
 A stage is complete only when the learner can:
 
-- Explain the concept in plain language and with the right notation.
-- Solve basic, routine, mixed, and hard/domain-appropriate problems using only unlocked tools.
-- Implement the core primitive in the owner language.
-- Test the implementation and explain complexity, numerical stability, or production trade-offs as appropriate.
-- Transfer the idea into a new problem without copying the worked example.
-- State when the idea fails or when a simpler alternative is better.
+- Explain the concept in plain language, use the right notation or system vocabulary, and reconstruct the central idea without notes.
+- Pass unseen basic and routine checks, a mixed transfer using earlier unlocked tools, and the domain-appropriate top rung.
+- Implement the core primitive in the owner language, where implementable, without a library that hides the learning objective.
+- Verify the result and explain complexity, numerical stability, uncertainty, security properties, failure behavior, or production trade-offs as appropriate.
+- Diagnose a deliberately broken or misleading case and state when the idea fails or a simpler alternative is better.
+- Produce the stage's required artifact and defend one consequential design choice, one rejected alternative, and one residual risk.
+
+Minimum pass rule: every prerequisite-critical criterion passes; the learner reaches at least 80% on the remaining rubric; and any failed unseen transfer is repaired and retested with a different problem. Retesting uses new inputs or scenarios, not memorized repeats. Speed is recorded only after correctness and explanation are stable.
+
+### 16.2 Domain Evidence Matrix
+
+| Domain | Unseen assessment | Implementation evidence | Required analysis |
+|---|---|---|---|
+| Mathematics and probability | Basic, routine, mixed, and readiness-matched JEE-Advanced-style problem | Python/NumPy numerical experiment when meaningful | Derivation or proof idea, assumptions, counterexample, numerical error |
+| ML, NLP, CV, DSP, ASR | New dataset slice, shape/gradient/metric prediction, ablation or error diagnosis | Python scratch primitive plus library comparison | Baseline, leakage controls, uncertainty, metric choice, failure slices |
+| Go and DS/algo | New constraints, trace, edge cases, hard platform problem | Idiomatic Go package and tests | Invariant, correctness argument, time/space cost, benchmark where relevant |
+| Database and distributed systems | Query/transaction/failure scenario | Go or SQL engine/component lab | Plan or state trace, consistency guarantee, recovery and operational trade-off |
+| Security and middleware | Threat or abuse case not seen in the worked example | Go control plus positive/negative, fuzz, race, and resource tests as relevant | Security invariant, attacker model, residual risk, production replacement boundary |
+| HLD/LLD and production ML | Changed scale, SLO, failure, privacy, or tenancy constraint | Go service slice consuming Python ML artifacts where applicable | Capacity, trust boundaries, alternatives, observability, rollback and incident response |
+
+### 16.3 Assessment Cadence
+
+- Every session: short retrieval of prior unlocked ideas and one immediate unseen check.
+- Every module: cumulative mixed transfer, implementation or proof artifact, failure diagnosis, and learner explanation.
+- Every stage: timed and untimed checks, artifact review against the domain rubric, and a fresh transfer after feedback.
+- Every 4-6 weeks: interleaved review selected from the learner ledger; weak prerequisites return to the graph before new dependent content.
+- Every 8-12 weeks: portfolio hardening and a concise oral/design defense. Do not add unrelated topics merely to make a larger project.
+- Before S19, S22, and S23: cumulative gates for Go concurrency/testing, APIs/databases, and security respectively. The capstone does not become the place where missing foundations are first taught.
+
+### 16.4 Portfolio Evidence
+
+Maintain a small set of deep artifacts rather than many tutorial clones. Each published artifact contains a precise problem and scope, prerequisite map, reproducible environment, derivation or architecture, owner-language implementation, tests, measured results, failure analysis, security/privacy considerations, operational instructions where relevant, and a short demonstration. Preserve commit history that shows hypothesis, failure, repair, and verification. Remove real credentials and personal or proprietary data; use deterministic fixtures or documented synthetic data.
+
+By S23 the portfolio must include at least: one mathematics/numerical notebook or report; one Go DS/algo package; one statistics/ML experiment with leakage-safe evaluation; one database/storage lab; one Python domain primitive from NLP/CV/audio/ASR; one secure Go service with auth/middleware evidence; one HLD/LLD dossier; one production-ML boundary joining Python and Go; and the integrated capstone with an operational-readiness review.
 
 ## 17. Source Coverage Ledger
 
@@ -441,18 +679,19 @@ A stage is complete only when the learner can:
 |---|---|
 | the broad curriculum source bibliography | §8 |
 | the broad curriculum source chapter maps | §9 |
-| the broad curriculum source M1-M46 teaching spine | §5-S1 through §5-S21, §6 |
+| the broad curriculum source M1-M46 teaching spine | §5-S1 through §5-S22, §6 |
 | IIT/upGrad lecture bank, GenAI/Agentic official map, papers | `GENAI-RAG-AGENTS`, §5-S17, §13 |
 | Python library curriculum and NLP library theory | §10 |
 | Statistical techniques | `PROB-STAT-INFO`, §5-S10 |
 | Nasiko knowledge graph | §4 |
 | Go G0-G20 | §5, §7 |
-| DS/algo/discrete math and hard contest practice | `DS-ALGO`, §5-S4/S6/S8/S20 |
+| DS/algo/discrete math and hard contest practice | `DS-ALGO`, §5-S4/S6/S8/S21 |
 | PostgreSQL internals | `DB-SQL`, `DB-ENGINE`, §5-S12/S13 |
 | HLD/LLD/microservices/design patterns | `ARCH-HLD-LLD`, §12 |
 | System-design and OOD problem lists | §12 |
 | ML-system case-study atlas | §13 |
 | Nasiko P0-P10 phases and specs | §14 |
+| Current Go/IETF/NIST/OWASP authentication, security, and middleware research | `SEC-AUTH`, §5-S19, §11.1 |
 | Tool/platform subcourses | §10, §11 |
 | Archive inventories | §15 |
 

@@ -10,18 +10,19 @@ Deduplication happened at content-unit level. Exact normalized repeats were remo
 
 ## 1. Owner Cluster Index
 
-| Owner cluster | Retained units | Merge signals |
-|---|---:|---|
-| Purpose Scope and Source of Record | 4 | purpose, learner, beginner, outcome, scope, syllabus, source, record |
-| Conflict Resolution and Ownership Rules | 1 | resolved, conflicts, python, go, split, archive, capstone, timing |
-| Learner State and Dependency Gate | 2 | learner, state, ledger, progress, unlocked, shaky, postponed, dependency |
-| Lesson Shape and Difficulty Ramps | 4 | lesson, protocol, one, idea, worked, example, routine, mixed |
-| Math Python and ML Teaching Protocol | 2 | math, jee, python, numpy, scratch, pseudocode, arrays, gradients |
-| Go Syntax CS and Assignment Protocol | 2 | go, syntax, unlock, keyword, builtin, operator, data, structures |
-| System Design Database and ML Systems Protocol | 7 | system, design, hld, lld, database, postgres, sql, mvcc |
-| Clean Code Tests and Research-Grounded Architecture | 3 | clean, code, tests, tdd, first, maintainability, names, functions |
-| Capstone Isolation and Completion Bar | 6 | capstone, isolation, nasiko, final, complete, completion, bar, operational |
-| Non Goals and Archive Rules | 6 | not, course, archive, inventory, survey, formula, only, unbounded |
+| Owner cluster | Canonical responsibility | Merge signals |
+|---|---|---|
+| Purpose Scope and Source of Record | active-artifact binding, beginner-to-destination scope, language ownership | purpose, learner, outcome, scope, syllabus, source, record |
+| Conflict Resolution and Ownership Rules | precedence, dedupe ownership, archive and timing decisions | resolved, conflicts, python, go, split, archive, capstone, timing |
+| Learner State and Dependency Gate | persistent ledger, prerequisite audit, confirmation and remediation | learner, state, progress, unlocked, shaky, postponed, dependency |
+| Lesson Shape and Difficulty Ramps | one-idea units, ten-rung progression, unseen transfer | lesson, protocol, worked, routine, mixed, challenge, reflection |
+| Math Python and ML Teaching Protocol | JEE-Advanced-level reasoning across mathematically grounded domains plus Python/NumPy scratch work | math, jee, ml, dsp, image, signal, python, numpy, scratch, gradients |
+| Go Syntax CS and Assignment Protocol | syntax locks, Go scratch implementation, DS/algo practice | go, syntax, unlock, builtin, operator, algorithms, data structures |
+| Go Authentication Security and Middleware Protocol | threat-first Go security, vetted-crypto boundary, adversarial verification | auth, session, token, authorization, middleware, threat, fuzz, race |
+| System Design Database and ML Systems Protocol | HLD/LLD, PostgreSQL internals, distributed and hybrid ML systems | system, design, database, postgres, sql, mvcc, production ML |
+| Clean Code Tests and Research-Grounded Architecture | maintainability, TDD, primary-source research, operational evidence | clean code, tests, research, architecture, observability, review |
+| Capstone Isolation and Completion Bar | prerequisite timing, integration, operational-readiness evidence | capstone, isolation, final, complete, recovery, operational |
+| Non Goals and Archive Rules | bounded scope, provenance retention, deferred enrichment | archive, inventory, survey, formula-only, deferred, unbounded |
 
 ## 2. Semantic Teaching Contract by Policy Owner
 
@@ -55,7 +56,14 @@ The learner is a middle-schooler who currently knows none of this material. The 
 
 External programs may list Python, APIs, or basic ML math as entry requirements. Those are **not** assumed here. Teaching starts at the first foundational prerequisite in the active curriculum.
 
-The active curriculum holds the graph order, textbooks, chapter maps, topics, Python libraries, statistical techniques, Go spine, database braid, system-design track, production ML case studies, and capstone phases. This contract states how to teach that syllabus.
+The active curriculum holds the graph order, textbooks, chapter maps, topics, Python libraries, statistical techniques, Go spine, database braid, system-design track, production ML case studies, and capstone phases. This contract states how to teach that syllabus and is complete without the earlier teaching contracts.
+
+**Language ownership and scratch boundary.** This rule overrides any inherited wording that assigns the same implementation to another language.
+
+- **Go owns software and systems:** software development, computer-science implementations, Go language learning, algorithms and data structures, database and storage internals, APIs, authentication, authorization, application security, HTTP middleware, concurrency, distributed systems, HLD, LLD, design patterns, system-design labs, operations, and the control-plane capstone. Implement the related primitives and applications from scratch in Go before adopting a framework or package that hides the learning objective.
+- **Python owns mathematical and ML domains:** mathematics, probability, statistics, numerical methods, optimization, ML, deep learning, LLMs, NLP, Kaldi/ASR, information theory, signal processing, image processing, computer vision, and their theoretical or application-level scratch implementations. Use Python and NumPy-level primitives first, then compare with scientific or ML libraries.
+- **Production ML is a language boundary, not duplicate coursework:** the model, mathematics, evaluation, and data-science primitive stay in Python; Go owns service contracts, gateways, evaluators, registries, feature access, routers, rollout controls, observability, and operations. Reimplement a Python primitive in Go only when the Go/DS objective or a measured deployment constraint requires it.
+- **Security from scratch does not mean inventing cryptography:** implement protocol state, middleware composition, validation, session/token lifecycle, authorization policy, replay defenses, key selection, and adversarial tests in Go. Use the Go standard library or vetted extended packages for randomness, password hashing, MACs, signatures, encryption, TLS, and constant-time operations. Never design a new cipher, hash, password KDF, signature scheme, random generator, or TLS variant for production use.
 
 #### What this course is for > How the outcome is reached
 Prerequisites are taught first. A topic is not introduced until every idea it depends on has already been taught, or the learner has confirmed they know it. Until that confirmation, the learner is assumed to know nothing.
@@ -79,7 +87,7 @@ Worked example of a blocked path: in M1 (arithmetic and bases), \((144)_b=(100)_
 
 **Lesson protocol.** One coherent idea per unit. Short title, then teach (state already says how to persist). Internally: target owner node, unlocked tools only, current ramp rung, pass signal, and next gate. A sub-topic is one third-level curriculum heading, a graph owner node, or a named IIT / lecture technique under that heading. Every non-definitional sub-topic must move through the module ramp below; do not replace the ramp with a lecture, a formula list, or a bulk exercise set.
 
-**Skip when definitional.** Named theorem statement, historical fact, or cloud-console lab: no JEE set and no from-scratch code (code also skipped if it cannot be done in NumPy). All other practice is at teach time, not stored in the curriculum artifact.
+**Skip when definitional.** A named theorem statement, historical fact, or cloud-console-only lab gets no top-rung problem and no forced scratch implementation. Skip code only when the idea cannot be meaningfully implemented in its owner language. All other practice happens at teach time, not as a bulk exercise dump in the curriculum artifact.
 
 **Module difficulty ramp.** Every module is an internal ladder from basic to advanced. Start with concrete objects, vocabulary, notation, and one-step problems, but do not linger at drill once the representation is clear. Raise pressure only inside the unlocked toolkit. Each non-definitional sub-topic uses this sequence:
 
@@ -91,12 +99,14 @@ Worked example of a blocked path: in M1 (arithmetic and bases), \((144)_b=(100)_
 6. **Basic check.** Pose one small unseen check using the same representation. Pass: correct answer plus a short reason, not just the result.
 7. **Routine check.** Change numbers, wording, data shape, input order, or API boundary without changing the method. Pass: the learner solves without copying the worked illustration.
 8. **Mixed transfer.** Combine the new idea with exactly two earlier unlocked ideas. Hide the target or require choosing the representation. Pass: the learner identifies the new idea, the two earlier tools, and a coherent path before executing it.
-9. **Top-rung challenge.** At sub-topic close only, pose a readiness-matched challenge: JEE-Advanced-style for math/probability/ML-theory reasoning, hard platform-style for Go/DS/algo, or production-flavored for DB/system/ML systems. Pass: a serious attempt that uses unlocked structure, checks constraints, and can be repaired with minimal hints.
+9. **Top-rung challenge.** At sub-topic close only, pose a readiness-matched challenge: JEE-Advanced-level structural reasoning for mathematics and every mathematically grounded domain, hard platform-style for Go/DS/algo, or production-flavored for DB/system/ML systems. Pass: the learner independently chooses a representation, gives a structure-first plan, completes the reasoning with unlocked tools, checks constraints and boundary cases, and repairs a plausible wrong path. Code may verify the reasoning but cannot replace it.
 10. **Reflection and ledger.** Name the problem-solving move that mattered, one failure mode, and what is now unlocked, shaky, or postponed.
 
 Readiness-matched does not mean easy. It means the difficulty comes from structure, representation, hidden constraints, transfer, or proof pressure rather than from future-module machinery. Productive struggle is expected: a hard but unlocked problem is not a failure just because the learner needs time or asks for guidance. Step down only when the attempt reveals a missing prerequisite, a shaky earlier tool, or repeated dead ends after minimal hints.
 
-**Module completion.** A module is not complete when its notes have been read. It is complete only when every in-scope sub-topic in that module has been confirmed, the learner can explain the core ideas in plain language, solve basic and routine problems, handle at least one mixed problem using earlier unlocked tools, has attempted that module’s readiness-matched JEE-style challenges (the same ones already posed under the JEE rule; do not add a second set), can identify common failure cases, and, where the Python rule below applies, can implement the core primitive from scratch. End each module with a few lines of consolidation (unlocked, still shaky, what is next)—not a full ledger reprint. A postponed JEE item does not block completion of an early module; it stays on the live store until its prerequisites are unlocked.
+**Module completion.** A module is not complete when its notes have been read. It is complete only when every in-scope sub-topic has been confirmed, the learner can explain the core ideas in plain language, solve basic and routine problems, handle at least one mixed problem using earlier unlocked tools, attempt the domain-appropriate top rung already posed by the ramp, identify common failure cases, and implement the core primitive from scratch in the owner language where applicable. End each module with a few lines of consolidation (unlocked, still shaky, what is next), not a full ledger reprint. A postponed top-rung item does not block completion when its prerequisites are genuinely locked; keep it on the live store and revisit it immediately after those prerequisites unlock.
+
+**Mathematical-aptitude completion gate.** A mathematically grounded sub-topic does not close on routine accuracy, a code run, or an attempt alone. The learner must pass its current readiness-matched top rung and then solve or substantially advance one fresh nearby transfer without copying the prior path. A full-ceiling challenge may be postponed when a genuine prerequisite is locked, but the strongest challenge available inside the current unlocked toolkit is never optional.
 
 ### Conflict Resolution and Ownership Rules
 
@@ -164,14 +174,16 @@ Default unit:
 
 One new idea per unit. A sub-topic is complete only when the learner can explain it, solve routine and mixed problems, attempt the top-rung problem, implement the core primitive when applicable, and name common failure cases.
 
-#### Unified Teaching Instructions > 8. Math and JEE-Style Ramp
-Use the universal module ramp for `MATH-FUND`, `MATH-LA`, `MATH-CALC-NUM`, and `PROB-STAT-INFO`. The math-specific top rung is a JEE-style transfer challenge at sub-topic close, after the mixed transfer rung passes.
+#### Unified Teaching Instructions > 8. Mathematically Grounded JEE-Advanced Ramp
+Use the universal module ramp for `MATH-FUND`, `MATH-LA`, `MATH-CALC-NUM`, `PROB-STAT-INFO`, and every mathematical slice of ML, deep learning, LLMs, numerical methods, optimization, DSP, signal/audio processing, image processing, computer vision, NLP, Kaldi/ASR, information retrieval, causal inference, scientific computing, and any later field whose core reasoning depends on mathematics. The top rung is a JEE-Advanced-level transfer challenge at sub-topic close, after the mixed-transfer rung passes.
 
-Math pass signals are stricter than answer correctness: the learner must identify the representation, explain why the move works, check edge cases or units where relevant, and repair one plausible wrong path. A solved answer with no structure named is routine fluency, not JEE-style aptitude.
+"JEE-Advanced-level" outside the JEE syllabus means the same level of problem-solving aptitude and cognitive demand, translated into the field's own objects. It requires an unfamiliar formulation, hidden structure or constraints, a deliberate representation choice, multiple justified reasoning moves, and a check or counterexample. It does not mean relabeling a routine formula substitution, library call, or coding task as JEE-style.
+
+Mathematical-domain pass signals are stricter than answer correctness: the learner must identify the representation, state the governing assumptions, explain why each important move works, check dimensions/units/domains/boundaries where relevant, and repair one plausible wrong path. A correct output with no structure named is routine fluency, not JEE-Advanced-level aptitude.
 
 The JEE-style challenge must be genuinely non-routine but still unlocked: hidden structure, case split, invariant, reversal, construction, bounding, or representation choice. Do not create fake difficulty with bloated arithmetic or future-module tricks.
 
-Pose up to three JEE-style challenges per sub-topic. If a natural challenge needs a future idea, postpone it in the ledger.
+Pose one to three JEE-style challenges for every substantial, non-definitional mathematically grounded sub-topic. At least one must be an unseen integrated reasoning problem that cannot be completed by copying the worked illustration. A derivation followed by a Python/NumPy experiment, diagnostic, or ablation may form one integrated top rung; the mathematical reasoning must come first. If a natural full-ceiling challenge needs a future idea, postpone that version in the ledger and pose the strongest unlocked version now.
 
 **JEE intuition move bank.** Use these moves as teaching lenses, not as a checklist to dump. Pick one or two that fit the current sub-topic and are unlocked. If a move depends on a locked tool, postpone it or replace it.
 
@@ -190,18 +202,21 @@ Pose up to three JEE-style challenges per sub-topic. If a natural challenge need
 - Foundational math: use manipulatives, number lines, arrays, diagrams, and small cases; top-rung difficulty comes from representation choice and constraints, not algebra that has not unlocked.
 - Senior-secondary and JEE math: use full JEE-style transfers once algebra, functions, geometry, trigonometry, calculus, or probability tools are unlocked; require structure-first solution plans before computation.
 - Linear algebra, calculus, numerical methods, probability, statistics, and information theory: pair proof intuition with tiny numerical or simulation checks; top-rung difficulty can include counterexamples, limiting cases, conditioning, approximation error, or optimization geometry.
-- ML, NLP, CV, audio, ASR, and deep learning primitives: make the learner predict shapes, gradients, probabilities, decoding choices, failure modes, and metric behavior before coding; top-rung difficulty is a scratch primitive plus an unseen diagnostic or ablation.
+- ML, deep learning, and LLM mathematics: reason about objective geometry, dimensions, gradients, probability, optimization, generalization, kernels, attention, and metrics before coding. The top rung combines a derivation or structural prediction with an unseen dataset, counterexample, diagnostic, or ablation in Python.
+- DSP, signal processing, audio, and Kaldi/ASR: reason across time, frequency, z/Laplace, state, and probabilistic sequence representations. Top rungs use sampling/aliasing traps, convolution or filter structure, spectral leakage, reconstruction bounds, stability, dynamic programming, or decoding trade-offs, then verify on a synthetic signal in Python.
+- Image processing and computer vision: reason across pixels, convolution, frequency, geometry, vectors/matrices, probability, and invariance. Top rungs require predicting or deriving an unseen transformation, constructing an adversarial/boundary image, or explaining failure under noise, scale, viewpoint, or sampling before Python verification.
+- Mathematical NLP, information retrieval, and other quantitative fields: transfer the same ramp to vectors, probability, combinatorics, dynamic programming, optimization, estimation, and evaluation. Any mathematically grounded field not named here inherits the closest domain rule and still requires a reasoning-first top rung.
 - Go and DS/algo: replace JEE math wording with invariant, complexity, edge-case, and implementation reasoning; top-rung difficulty is a hard platform problem only after the needed syntax, data structures, and algorithms unlock.
 - Databases: top-rung difficulty is predicting engine behavior before running it: query plan, lock conflict, MVCC snapshot, index choice, WAL/recovery consequence, or operational failure mode.
 - System design and production ML systems: top-rung difficulty is a production-flavored design or implementation slice with trade-offs, failure handling, observability, rollback, safety, cost, and a Go boundary.
 
 #### What this course is for > How the outcome is reached > JEE-Advanced aptitude
-JEE-Advanced problem-solving aptitude and intuition are a **destination**, not an add-on. Teaching must actively build the habit of reading a problem, seeing the structure, choosing a representation, and checking the answer, not memorizing a template.
+JEE-Advanced problem-solving aptitude and intuition are a **destination**, not an add-on or a mathematics-only phase. Teaching must actively build the habit of reading an unfamiliar problem, exposing its structure, choosing and switching representations, planning before calculating or coding, and checking the result rather than memorizing a template. Carry that aptitude into ML, DSP, signal/audio processing, image processing, computer vision, ASR, information theory, numerical methods, optimization, and every other mathematically grounded field.
 
-This applies as a reasoning discipline on every sub-topic except **Skip when definitional**, including later CORE domains. Math sub-topics express it as JEE-style challenges. Non-math sub-topics translate the same habits into hard platform, production, diagnostic, or design challenges:
+This applies as a reasoning discipline on every sub-topic except **Skip when definitional**, including later CORE domains. Mathematics and mathematically grounded domains use the mandatory JEE-Advanced ramp above. Non-mathematical sub-topics translate the same habits into hard platform, production, diagnostic, or design challenges:
 
 - The JEE-style challenges **are** the top rung of the difficulty ramp, not a second parallel set. They should feel genuinely non-routine: unfamiliar wording, hidden structure, multi-step reasoning, case splits, reversals, invariants, bounding, construction, or choosing an efficient representation, while still using only unlocked tools. Avoid fake difficulty from tedious arithmetic, bloated numbers, or disguised future-module methods. Do not add extra contest problems after the ramp already ended in challenges. Do not open the JEE rung until the mixed-problem transfer check for that sub-topic has passed.
-- Pose **up to three** such problems **per sub-topic** (`###` heading or named technique). For substantial sub-topics, prefer two or three; make at least one a transfer problem that cannot be solved by copying the worked illustration. If a sub-topic contains several concepts, still share that budget of three; put them after the last concept’s mixed problems, not three per concept.
+- Pose **one to three** such problems **per substantial, non-definitional sub-topic** (`###` heading or named technique). Prefer two or three when the sub-topic supports distinct representations; make at least one a transfer problem that cannot be solved by copying the worked illustration. If a sub-topic contains several concepts, still share that budget of three; put them after the last concept's mixed problems, not three per concept.
 - If the natural JEE-Advanced item needs a future idea, postpone it on the live store or replace it with an unlocked-path version. Early modules: **readiness-matched** means current-toolkit habits (structure, representation, check), not a later-module equation to solve. Full-paper JEE-Advanced difficulty is the destination once that item’s mathematics is unlocked and confirmed.
 - Teach so the idea can be used unseen: what it is, why it is true, when it fails, one picture that makes the next move obvious. No near-copies of the illustration.
 - Learner attempts first. No solution dump. Do not rescue at the first sign of struggle: ask what structure they see, have them test a smaller case or boundary case, then give the smallest unlocked-path hint. Escalate only if still stuck; after resolution, name the move that made it easy and add one nearby variant if the solved problem exposed a shaky habit.
@@ -212,7 +227,7 @@ Teach-time only; not stored in the curriculum artifact. Rungs 1-3 are the illust
 - Structural gate: the scenario fails to compile or run if the new concept is omitted.
 - The two earlier unlocked nodes in mixed **are** the revision pair (not a third or fourth). Name them on one line with Phase, Module, Chapter, Revision Track — not a header block.
 - No dumps: not a full solution, not a contest editorial, not a primer sample as the learner’s code. Guidance only if they struggle.
-- Skip coding rungs only when the sub-topic is purely definitional (a historical fact, a named theorem statement, or a cloud-console click that cannot be done in Go).
+- Skip coding rungs only when the sub-topic is purely definitional (a historical fact, a named theorem statement, or a cloud-console-only action that cannot be meaningfully implemented in the owner language).
 
 A sub-topic is one graph owner node, one `###` heading under that owner, or a named SDP/OOD/API/JOB/SCHEMA/ALG/PROTO/DS item under that heading. If a heading merely applies an already-owned idea, grade the application, not the original concept.
 
@@ -253,6 +268,29 @@ Assignments happen at teach time. Do not store bulk exercises in the curriculum.
 
 #### What this course is for > How the outcome is reached > Locked Go syntax
 Every Go keyword, built-in (`append`, `make`, `len`, and the rest named in the Go spine), and operator (`:=`, `*`, `&`) is locked until it has been the subject of a `SYNTAX UNLOCK`: the signature, what happens in memory, and an explicit contrast to Python, Java, or C. A lesson cites a module from the Go spine. Do not use syntax that is still locked. Before posing mixed or hard/production work, audit that every required token **and** data structure is unlocked. A DP or graph **hard** item cannot appear during G1.
+
+### Go Authentication Security and Middleware Protocol
+
+Authentication, authorization, application security, and HTTP middleware are Go-owned software topics. Teach them from first principles through small local services, then compare the learner's implementation with the Go standard library, current standards, and mature production components.
+
+**Security evidence order.** Prefer current IETF standards and Best Current Practices, current Go documentation and security guidance, current NIST digital-identity guidance, then OWASP ASVS and OWASP cheat sheets. Treat older source material as historical context when newer security guidance supersedes it. Recheck version-sensitive recommendations such as password parameters, TLS defaults, token profiles, and OAuth requirements at teach time.
+
+**Security lesson route.** Every non-definitional security slice follows this sequence:
+
+1. Identify assets, actors, entry points, trust boundaries, data flows, attacker capabilities, abuse cases, and the security property at risk.
+2. Write a misuse or failing security test before the control: unauthorized request, replay, fixation, confused deputy, enumeration, injection, traversal, oversized input, timeout, race, or stale privilege.
+3. Specify the protocol or middleware contract as states, invariants, allowed transitions, failure behavior, and observable audit events.
+4. Implement the control in Go using explicit `net/http` handlers, typed context values, interfaces at external boundaries, and vetted cryptographic primitives.
+5. Test success, denial, malformed input, boundary values, ordering, concurrency, cancellation, and failure of dependencies. Use table-driven tests and HTTP test utilities; fuzz parsers, tokens, headers, URLs, and state machines; run the race detector for shared session, limiter, cache, and key state.
+6. Inspect timing, allocation, resource, and denial-of-service behavior where relevant. A security control that an attacker can cheaply exhaust is incomplete.
+7. Compare with a maintained library, identity provider, gateway, or standard-library feature. State what the production component adds and when the learning implementation must be replaced.
+8. Add safe logs, metrics, alerts, rotation/revocation behavior, rollback, and an incident drill without logging credentials, raw session identifiers, access tokens, private keys, or reset secrets.
+
+**Middleware composition.** Teach `func(http.Handler) http.Handler`, request/response flow, short-circuiting, context cancellation, wrapped response-writer capabilities, and order sensitivity from scratch. Require an explicit chain-order table. The default outer-to-inner policy is request ID and trusted-proxy normalization -> panic recovery -> security headers and body/header limits -> access logging/metrics -> timeout/cancellation -> CORS and cross-origin/CSRF checks -> rate and concurrency limits -> authentication -> authorization -> validation -> business handler. Change the order only with a written invariant and a test proving the intended behavior. Logging must observe final status without exposing secrets; recovery must not convert partial sensitive responses into misleading success; authentication must precede authorization.
+
+**From-scratch security boundary.** The learner implements a password verifier around Argon2id or another approved KDF, opaque server-side sessions, CSRF defenses, API-key/HMAC verification, strict JWT claim validation, an OAuth authorization-code/PKCE lab, an OIDC relying-party validation lab, RBAC/ABAC/ReBAC policy checks, tenant/object/field authorization, secure outbound HTTP policy, and security middleware. Cryptographic algorithms and certificate validation remain library-owned. OAuth/OIDC authorization-server exercises are isolated conformance labs, not production identity providers.
+
+**Security completion gate.** A slice passes only when the learner can explain the threat, demonstrate the exploit against the deliberately failing test, implement the defense, show positive and negative tests, fuzz or race-test the relevant boundary, document residual risk, and explain which production component would replace or harden the learning implementation.
 
 ### System Design Database and ML Systems Protocol
 
@@ -297,6 +335,7 @@ The learner finishes the unified track when they can:
 - derive, explain, and implement the core math/ML primitives in Python
 - implement DS/algo and hard platform problems in Go
 - reason about SQL and PostgreSQL internals from query to storage and recovery
+- build and verify Go authentication, session, authorization, and middleware controls without inventing cryptographic primitives
 - design HLD/LLD/microservice architectures and implement them in Go
 - build production ML-system components with evaluation, monitoring, rollback, and governance
 - complete the Nasiko Go control plane with tests, traces, load checks, backup/restore, and an operational readiness review
@@ -363,7 +402,7 @@ Case studies are evidence and practice. Do not memorize company prose. Rebuild a
 #### What this course is for > How the outcome is reached > ML-system design mastery
 Teach ML-system design through `MATH-ML`, `ML-CORE`, and `ML-SYS`, not as a separate appendix and not as Python-first data science. The learner starts from arithmetic, ratios, algebra, functions, vectors, matrices, probability, and statistics when those ideas are locked, then climbs to calculus, optimization, information theory, causal inference, bandits, and graph ML only when a case-study or router slice needs them.
 
-Go is the implementation language. For every algorithmic ML topic, build the primitive in Go first: data loaders, feature transforms, metrics, regression/classification models, trees, clustering, anomaly scoring, retrieval/ranking, matrix factorization, bandits, causal estimators, and evaluator CLIs. Use Go packages such as Gonum, Gorgonia, GoMLX, ONNX Runtime Go bindings, Qdrant/pgvector clients, or external model APIs only after the learner can explain the from-scratch version and the production reason for the package or service. Non-Go tools are allowed only as external infrastructure or model runtimes when no practical Go-native alternative exists, and they must sit behind a Go interface.
+Production ML implementation is hybrid. Build algorithmic and mathematical primitives in Python/NumPy first: data loaders, feature transforms, metrics, regression/classification models, trees, clustering, anomaly scoring, retrieval/ranking, matrix factorization, bandits, and causal estimators. After the primitive is understood and tested, apply it through a production-facing Go boundary such as an evaluator CLI, feature-service adapter, registry client, router, rollout controller, or typed model-service client. Reimplement a primitive in Go only when the active Go/DS learning objective, deployment constraint, or measured performance requirement justifies it; do not make the learner maintain two equivalent implementations by default. Use Gonum, Gorgonia, GoMLX, ONNX Runtime Go bindings, Qdrant/pgvector clients, or external model APIs only after the learner can explain the underlying primitive and the production reason for the package or service. External infrastructure and model runtimes must sit behind a tested Go interface.
 
 Every `MLCASE` lesson must follow this route: case-study problem framing -> required math -> data/label/feature contract -> model family -> offline metric -> online metric or experiment -> serving architecture -> monitoring/failure mode -> Go implementation. Case studies are evidence and practice, not source text to memorize. The learner must implement a small faithful model of the force involved, such as a recommender retrieval/reranker, fraud thresholding pipeline, ETA forecaster, graph anomaly detector, prompt/context packer, feature-store facade, model registry, shadow/canary rollout, or drift detector.
 
@@ -452,7 +491,7 @@ Recurse into computer science, mathematics, or ML theory only for locked prerequ
 | Multiple curriculum/source streams | the active curriculum is canonical for teaching; prior source streams are provenance |
 | Math/ML in Go vs Python | Math, ML theory, and scratch ML implementations use Python/NumPy first. Go applies them in services, DS/algo, architecture, and production ML systems |
 | Former math/ML stream vs former Go/system stream | They are now one graph-ordered track. Do not run two spines |
-| JEE-style math ramp vs hard platform ramp | Use JEE-style reasoning for math; use hard LeetCode/HackerRank/HackerEarth or production drills for Go/DS/system design |
+| JEE-Advanced ramp vs hard platform ramp | Use JEE-Advanced-level reasoning for mathematics and every mathematically grounded field, including ML, DSP, signal/audio, image processing, CV, and ASR; use hard platform or production drills for non-mathematical Go/DS/system work |
 | Tool/library teaching | Theory and from-scratch primitive first, then library/tool use |
 | Archive content | Retained but not taught unless a CORE dependency needs a sliver |
 | Capstone timing | Nasiko capstone waits until required graph nodes are unlocked |
@@ -488,20 +527,20 @@ It is not a survey of every Python file in the legacy analysis. Topics tagged `A
 
 It is not the full ML/DSP research course, though production ML-system design is in scope. It is not an orchestrator spec and not an unbounded research programme. Staff-engineer plus production ML operations is enough.
 
-## 3. Coverage and Deduplication Audit
+## 3. Policy Coverage and Deduplication Audit
 
-| Metric | Value |
-|---|---:|
-| Source content units tokenized | 37 |
-| Unique content units retained | 37 |
-| Exact duplicate units removed | 0 |
-| Near-duplicate units removed by embedding similarity | 0 |
-| Semantic owner clusters used | 10 |
+This section records invariants, not frozen NLP counts. Any substantive edit invalidates old token, cluster, or duplicate totals until the full pipeline is rerun; do not present historical counts as current evidence.
 
-| Source stream | Status |
+| Check | Pass condition |
 |---|---|
-| Unified instruction control layer | 19 units analyzed; 19 units retained or mapped to a duplicate owner unit |
-| Math/ML instruction source corpus | 6 units analyzed; 6 units retained or mapped to a duplicate owner unit |
-| Nasiko instruction source corpus | 12 units analyzed; 12 units retained or mapped to a duplicate owner unit |
+| Self-containment | The contract can select an active curriculum, route a lesson, persist state, gate prerequisites, assess mastery, and resolve conflicts without an earlier instruction file |
+| Canonical ownership | Each rule family has one owner cluster; later text may specialize or apply it but may not create a conflicting second policy |
+| Language precedence | Go owns software/systems/security; Python owns math/ML/domain primitives; production ML crosses the boundary through explicit contracts |
+| Difficulty and dependency safety | Every non-definitional unit uses the prerequisite-safe ramp; top-rung labels cannot import locked machinery |
+| Security boundary | Application/protocol logic is implemented in Go; cryptographic primitives and certificate validation remain vetted-library responsibilities |
+| Curriculum independence | Binding depends on artifact role, graph, tags, headings, and learner choice, never a filename or upload position |
+| Source coverage | Every non-structural source rule is retained under an owner or has a documented exact/high-confidence semantic mapping with no lost constraint |
+| Duplicate safety | Exact or near duplicate removal is allowed only when the removed unit adds no condition, exception, example, list item, or stronger obligation |
+| Counterpart parity | Markdown and text counterparts are byte-identical after synchronization |
 
-Coverage rule: every non-structural source content unit must either appear in this artifact or map to a retained unit by exact normalization or high embedding similarity under the same tokenizer and vectorizers.
+Audit procedure: normalize headings and prose, compare exact units, run conservative lexical-plus-semantic similarity, manually review every candidate pair, search explicitly for precedence terms and domain conflicts, verify all owner clusters above have active policy text, and compare counterpart hashes. A zero-candidate result is acceptable; deletion is never a target by itself.
