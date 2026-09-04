@@ -454,6 +454,7 @@ Sections 6-17 support this traversal with maps, references, practice banks, asse
 - JEE Advanced sources: Vikas Gupta/Pankaj Joshi, Cengage Mathematics Series, Arihant Skills in Mathematics.
 - Proof and foundations: Hammack, Ernst, Taylor, Jensen-Vallin, Sundstrom, Judson.
 - Real analysis and measure inventory: Rudin, Axler, Ernst, Mahavier, Boman/Rogers, Towsley, Orr.
+- Verified open-licensed foundational texts added by the §17.1 research pass: OpenStax *Prealgebra 2e*, *Precalculus 2e*, *Algebra and Trigonometry 2e*, *Intermediate Algebra 2e*, *Calculus Volume 3*, and *Contemporary Mathematics*; Corral *Elementary Trigonometry*; Africk *Elementary College Geometry*; Sundstrom *Mathematical Reasoning*. Exact editions, chapter maps, and evidence are in §17.1.3.
 
 ### 8.2 Discrete Math, Algorithms, and CS
 
@@ -466,6 +467,7 @@ Sections 6-17 support this traversal with maps, references, practice banks, asse
 - Strang, Luenberger, Grewal, Kreyszig, Spivak, Rudin.
 - Jaynes, Wasserman, Casella & Berger.
 - Boyd & Vandenberghe, Cover & Thomas, MacKay, Murphy.
+- Verified additions from the §17.1 research pass: OpenStax *Calculus* Volumes 1-3; Abbott *Understanding Analysis*; Apostol *Calculus* Vol. 1; Trefethen & Bau *Numerical Linear Algebra*; Boyce, DiPrima & Meade; Golub & Van Loan *Matrix Computations*; Nocedal & Wright *Numerical Optimization*; Grinstead & Snell *Introduction to Probability*; OpenStax *Introductory Statistics 2e*. Exact editions, chapter maps, evidence levels and gaps are in §17.1.5 through §17.1.8.
 
 ### 8.4 ML, DL, NLP, CV, Audio, ASR
 
@@ -474,6 +476,8 @@ Sections 6-17 support this traversal with maps, references, practice banks, asse
 - Gonzalez & Woods, Szeliski, Forsyth & Ponce, Hartley & Zisserman.
 - Oppenheim & Willsky, Proakis & Manolakis, Lyons, Lathi, Oppenheim & Schafer, Proakis & Salehi.
 - Rabiner & Juang, Huang/Acero/Hon, Yu & Deng, Quatieri, Kaldi/OpenFst docs.
+- Verified additions from the §17.1 research pass: James/Witten/Hastie/Tibshirani *An Introduction to Statistical Learning* 2e; Downey *Think DSP*; Lattimore & Szepesvari *Bandit Algorithms*; Prince *Understanding Deep Learning*; Bishop & Bishop *Deep Learning: Foundations and Concepts*. Exact editions, chapter maps, evidence levels and gaps are in §17.1.9 through §17.1.15.
+- Evidence warning: of the texts already listed above, only Goodfellow/Bengio/Courville, Manning/Raghavan/Schutze, Hartley & Zisserman and Sutton & Barto were reached at all by the audit, and only the first three reached `confirmed`. The speech and ASR titles, `M45`, and the whole GenAI/RAG/agents area have no confirmed textbook evidence; see the gap tables in §17.1.10, §17.1.12 and §17.1.13.
 
 ### 8.5 Production ML, Software, Systems, and Tools
 
@@ -530,6 +534,14 @@ The chapter lists from the broad curriculum source are retained as the reading a
 | ICSE/NCERT/JEE maps | classes 6-12 arithmetic, algebra, sets, geometry, trig, matrices, calculus, probability; JEE algebra/calculus/trig/coordinate/vector practice | `MATH-FUND`, `MATH-CALC-NUM`, JEE ramp |
 | Number theory sources | divisibility, GCD, congruences, CRT, Fermat/Euler, primitive roots, quadratic reciprocity, cryptography, continued fractions, deeper algebraic/analytic theory | `PROOF-DISCRETE` basics; research depth archive |
 | Game/rendering/mechanical/medical/software archive maps | titles and module lists retained from `CUR` | `ARCHIVE` |
+| OpenStax open-licensed series (Prealgebra, Precalculus, Algebra & Trigonometry, Intermediate Algebra, Calculus 1-3, Introductory Statistics, Contemporary Mathematics) | arithmetic through multivariable calculus, statistics, and quantitative literacy; verified in §17.1.3, §17.1.5, §17.1.7 | `MATH-FUND`, `MATH-CALC-NUM`, `PROB-STAT-INFO` |
+| Trefethen & Bau; Golub & Van Loan | SVD, QR and least squares, conditioning and floating-point stability, Gaussian elimination, eigenvalue algorithms, iterative and Krylov methods, sparse and structured problems | `MATH-LA`, `MATH-CALC-NUM`, `MML-10` |
+| Nocedal & Wright; Boyd & Vandenberghe | unconstrained and constrained optimization, line search and trust regions, quasi-Newton, convex sets and functions, duality, interior-point methods | `MML-7`, `ML-CORE`; both `single-sourced, unverified` |
+| Grinstead & Snell; Casella & Berger | discrete and continuous distributions, expectation, laws of large numbers, central limit theorem, Markov chains; sufficiency, estimation, testing, intervals, asymptotics | `PROB-STAT-INFO` |
+| Downey, Think DSP | signals and harmonics, noise, autocorrelation, DCT and DFT, filtering and convolution, LTI systems, modulation and sampling | `DL-NLP-CV-AUDIO` DSP gate, `MML-11` |
+| James/Witten/Hastie/Tibshirani, ISL 2e | statistical learning framing, regression, classification, resampling, shrinkage, non-linearity, trees and ensembles, SVMs, deep learning, survival analysis, clustering, multiple testing | `ML-CORE` |
+| Lattimore & Szepesvari, Bandit Algorithms | stochastic and adversarial bandits, UCB and Thompson sampling, lower bounds, contextual and linear bandits, ranking, pure exploration, MDPs | `ML-CORE`, `MML-9` |
+| Prince; Bishop & Bishop; Dive into Deep Learning | shallow and deep networks, losses and optimizers, backpropagation, convolution, residual connections and normalization, attention and transformers, graph networks, generative models | `DL-NLP-CV-AUDIO`; all `single-sourced, unverified` or `candidate` |
 
 ## 10. Python Library and ML Tool Atlas
 
@@ -860,7 +872,9 @@ The active research scope was subsequently narrowed to mathematics and machine l
 
 Software-development and production-systems textbook records already compiled in §17.1.2 and §17.1.4 are retained as completed historical research. They are frozen: no additional Go, general programming, algorithms-for-software, database, API, security, architecture, distributed-systems, SRE, infrastructure-tool, system-design, OOD, or capstone textbook search is required by this audit. A software topic is reopened only when a mathematics or ML module directly requires its theoretical content, such as numerical computing, ML data systems, model serving, evaluation, or MLOps. Textbooks support study; standards, official documentation, papers, and product manuals remain separate primary sources for behavioral or current operational claims.
 
-**Research stop point (2026-09-04).** This appendix retains every textbook payload returned before research was stopped: the complete foundational audit through `M28`/`MML-3`, plus the previously fetched software/system records. Later mathematics and ML batches were announced but produced no recoverable report, so `M29-M46`, `MML-4-MML-12`, `ML-1-ML-14`, and `MLSYS-1-MLSYS-9` remain supported only by the earlier unverified atlas and source-preserved maps outside this appendix. No claim of exact-edition verification is made for those remaining modules.
+**Research history.** An earlier pass stopped after the foundational audit through `M28`/`MML-3` and the software/system records. Later mathematics and ML batches were announced but produced no recoverable report, so `M29-M46`, `MML-4-MML-12`, `ML-1-ML-14`, and `MLSYS-1-MLSYS-9` were left supported only by the unverified atlas and source-preserved maps outside this appendix.
+
+**Resumed pass (2026-09-04).** Research resumed under the same evidence contract, with two objectives: close the open `GAP:` rows left in the foundational audit at §17.1.3.1, and extend exact-edition verification across the remaining mathematics and ML modules. Each batch writes its `SRC-*`, `TB-*`, and audit rows to this appendix before the next batch begins, and every candidate considered, including rejected ones, is logged in `research-audit-log.md` alongside this file. Modules not yet reached by a completed batch continue to carry no claim of exact-edition verification.
 
 #### 17.1.1 Evidence and Compilation Contract
 
@@ -958,6 +972,94 @@ Each `SRC-*` row is one independently owned source. A recommendation or adoption
 | `SRC-TOOL-001` | O'Reilly; publisher ToC | Poulton, *Docker: Up & Running*, 3rd ed. (2023), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/docker-up/9781098131814/) | yes |
 | `SRC-TOOL-002` | O'Reilly; publisher ToC | Burns et al., *Kubernetes: Up & Running*, 3rd ed. (2022), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/kubernetes-up-and/9781098110192/) | yes |
 | `SRC-TOOL-003` | O'Reilly; publisher ToC | Brikman, *Terraform: Up & Running*, 3rd ed. (2022), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/terraform-up-and/9781098116736/) | yes |
+| `SRC-MATH-024` | OpenStax; publisher ToC/metadata | *Calculus Volume 3* (2016), chapter structure | [OpenStax preface](https://openstax.org/books/calculus-volume-3/pages/preface) | yes |
+| `SRC-MATH-025` | LibreTexts; independent hosted ToC | OpenStax *Calculus*, vectors-in-space chapter and book navigation | [LibreTexts edition](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/12%3A_Vectors_in_Space) | yes |
+| `SRC-MATH-026` | OpenStax; publisher ToC/metadata | *Intermediate Algebra 2e* (2020), chapter structure | [OpenStax preface](https://openstax.org/books/intermediate-algebra-2e/pages/preface) | yes |
+| `SRC-MATH-027` | LibreTexts; independent hosted ToC | *Intermediate Algebra 2e*, chapter structure | [LibreTexts edition](https://math.libretexts.org/Workbench/Intermediate_Algebra_2e_(OpenStax)) | yes |
+| `SRC-MATH-028` | LibreTexts; independent hosted ToC | *Algebra and Trigonometry 2e*, chapter structure | [LibreTexts edition](https://math.libretexts.org/Workbench/Algebra_and_Trigonometry_2e_(OpenStax)) | yes |
+| `SRC-MATH-029` | LibreTexts; independent section-level ToC | Determinant and Cramer's-rule sections in *Precalculus 2e* and *Algebra and Trigonometry 2e* | [LibreTexts section](https://math.libretexts.org/Bookshelves/Precalculus/Precalculus_2e_(OpenStax)/09%3A_Systems_of_Equations_and_Inequalities/9.09%3A_Solving_Systems_with_Cramer's_Rule) | yes |
+| `SRC-MATH-030` | Michael Corral; author ToC/full text | *Elementary Trigonometry*, version 1.2 (2020), chapter structure and license | [Author book site](https://www.mecmath.net/trig/) | yes |
+| `SRC-MATH-031` | LibreTexts; independent hosted ToC | *Elementary Trigonometry* (Corral), chapter structure | [LibreTexts edition](https://math.libretexts.org/Bookshelves/Precalculus/Elementary_Trigonometry_(Corral)) | yes |
+| `SRC-MATH-032` | Open Textbook Library; independent ToC/reviews | Africk, *Elementary College Geometry* (2021 ed.), chapter structure | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/508) | yes |
+| `SRC-MATH-033` | LibreTexts; independent hosted ToC | *Elementary College Geometry* (Africk), chapter structure | [LibreTexts edition](https://math.libretexts.org/Bookshelves/Geometry/Elementary_College_Geometry_(Africk)) | yes |
+| `SRC-MATH-034` | CUNY Academic Works; institutional repository | Africk, *Elementary College Geometry*, 2021 edition identity and license | [CUNY repository record](https://academicworks.cuny.edu/ny_oers/44/) | yes |
+| `SRC-MATH-035` | Grand Valley State University ScholarWorks; author/publisher ToC | Sundstrom, *Mathematical Reasoning: Writing and Proof*, chapter structure | [ScholarWorks record](https://scholarworks.gvsu.edu/books/24/) | yes |
+| `SRC-MATH-036` | AIMath; independent textbook review with chapter list | Sundstrom, *Mathematical Reasoning*, chapter structure and selection | [AIMath approved text](https://textbooks.aimath.org/textbooks/approved-textbooks/sundstrom/) | yes |
+| `SRC-MATH-037` | Oscar Levin; author ToC/full text | *Discrete Mathematics: An Open Introduction*, 4th ed. (2024), chapter structure | [Author edition site](https://discrete.openmathbooks.org/dmoi4/frontmatter.html) | yes |
+| `SRC-MATH-038` | Open Textbook Library; adoption and selection | Levin, *Discrete Mathematics*, 4th ed., selection signal; listed contents lag the 4th-edition ordering | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/discrete-mathematics-an-open-introduction) | yes |
+| `SRC-MATH-039` | LibreTexts; independent hosted ToC | *Contemporary Mathematics* (OpenStax), chapter structure | [LibreTexts edition](https://math.libretexts.org/Bookshelves/Applied_Mathematics/Contemporary_Mathematics_(OpenStax)) | yes |
+| `SRC-MATH-040` | OpenStax; publisher ToC/section list | *Contemporary Mathematics* (2023), money-management chapter sections | [OpenStax chapter](https://openstax.org/books/contemporary-mathematics/pages/6-introduction) | yes |
+| `SRC-MATH-041` | Open Textbook Library; independent ToC | Keller and Trotter, *Applied Combinatorics* (2017), chapter structure and ISBN | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/339) | yes |
+| `SRC-MATH-042` | Keller and Trotter; author book site | *Applied Combinatorics*, scope and edition identity; no chapter ToC exposed | [Author book site](https://appliedcombinatorics.org/appcomb/) | yes |
+| `SRC-CALC-001` | OpenStax; publisher ToC/metadata | *Calculus Volume 1* (2016), chapter structure | [OpenStax preface](https://openstax.org/books/calculus-volume-1/pages/preface) | yes |
+| `SRC-CALC-002` | OpenStax; publisher ToC/metadata | *Calculus Volume 2* (2016), chapter structure | [OpenStax preface](https://openstax.org/books/calculus-volume-2/pages/preface) | yes |
+| `SRC-CALC-003` | LibreTexts; independent hosted ToC | OpenStax *Calculus*, combined seventeen-chapter structure spanning all three volumes | [LibreTexts edition](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)) | yes |
+| `SRC-CALC-004` | Publish or Perish; publisher ToC/metadata | Spivak, *Calculus*, 4th ed. (2008), part and chapter structure and ISBN | [Publisher edition](https://mathpop.com/products/calculus-4th-edition) | yes |
+| `SRC-CALC-005` | Google Books; independent preview record | Spivak, *Calculus*, 4th ed., contents and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9780914098911) | yes |
+| `SRC-CALC-006` | University of Wisconsin-Madison Libraries; library catalog contents note | Rudin, *Principles of Mathematical Analysis*, 3rd ed. (1976), chapter structure | [UW-Madison catalog](https://search.library.wisc.edu/catalog/999470119302121) | yes |
+| `SRC-CALC-007` | McGraw-Hill India; publisher ToC/metadata | *Principles of Mathematical Analysis*, 3rd ed., chapter structure; 2023 India printing ISBN | [McGraw-Hill edition](https://www.mheducation.co.in/principles-of-mathematical-analysis-9789355325969-india) | yes |
+| `SRC-CALC-008` | Springer; publisher ToC/metadata | Abbott, *Understanding Analysis*, 2nd ed. (2015), chapter structure and pagination | [Springer edition](https://link.springer.com/book/10.1007/978-1-4939-2712-8) | yes |
+| `SRC-CALC-009` | Google Books; independent preview record | Abbott, *Understanding Analysis*, 2nd ed., edition identity and ISBN; no chapter list exposed | [Google Books edition](https://books.google.com/books?vid=ISBN9781493927111) | yes |
+| `SRC-CALC-010` | Google Books; independent preview ToC | Apostol, *Calculus, Volume 1*, 2nd ed., chapter structure and ISBN | [Google Books edition](https://books.google.com/books/about/Calculus_Volume_1.html?id=o2D4DwAAQBAJ) | yes |
+| `SRC-CALC-011` | Wiley; publisher metadata | Apostol, *Calculus, Volume 1*, 2nd ed., edition identity and ISBN; contents PDF not machine-readable | [Wiley edition](https://www.wiley.com/en-gb/calculus-volume-1-2nd-edition-p-9780471000051) | yes |
+| `SRC-ENG-001` | Wiley Book Companion Site; publisher ToC | Kreyszig, *Advanced Engineering Mathematics*, 10th ed., twenty-five-chapter structure | [Wiley companion contents](https://bcs.wiley.com/he-bcs/Books?action=contents&itemId=0470458364&bcsId=6767) | yes |
+| `SRC-ENG-002` | Google Books; independent preview record | Kreyszig, 10th ed., part-level structure, year and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9780470458365) | yes |
+| `SRC-ENG-003` | SIAM; publisher chapter listing | Trefethen and Bau, *Numerical Linear Algebra* (1997), six-part structure | [SIAM edition](https://epubs.siam.org/doi/book/10.1137/1.9780898719574) | yes |
+| `SRC-ENG-004` | Google Books; independent preview record | *Numerical Linear Algebra*, matching six-part pagination, forty-lecture form, ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9780898713619) | yes |
+| `SRC-ENG-005` | Google Books; independent preview ToC | Boyce, DiPrima, and Meade, *Elementary Differential Equations and Boundary Value Problems*, 11th ed. (2017), chapter structure and ISBN | [Google Books edition](https://books.google.com/books/about/Elementary_Differential_Equations_and_Bo.html?id=SyaVDwAAQBAJ) | yes |
+| `SRC-PROB-001` | Open Textbook Library; independent ToC/reviews | Grinstead and Snell, *Introduction to Probability*, 2nd ed. (2006, AMS), chapter structure | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/introduction-to-probability) | yes |
+| `SRC-PROB-002` | LibreTexts; independent hosted ToC | *Introductory Probability* (Grinstead and Snell), chapter structure | [LibreTexts edition](https://stats.libretexts.org/Bookshelves/Probability_Theory/Introductory_Probability_(Grinstead_and_Snell)) | yes |
+| `SRC-PROB-003` | OpenStax; publisher ToC/metadata | *Introductory Statistics 2e* (2023), chapter structure | [OpenStax preface](https://openstax.org/books/introductory-statistics-2e/pages/preface) | yes |
+| `SRC-PROB-004` | LibreTexts; independent hosted ToC | *Introductory Statistics 2e*, chapter structure | [LibreTexts edition](https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Introductory_Statistics_2e_(OpenStax)) | yes |
+| `SRC-PROB-005` | Routledge/Chapman and Hall; publisher ToC | Casella and Berger, *Statistical Inference*, 2nd ed., chapter structure | [Publisher edition](https://www.routledge.com/Statistical-Inference/Casella-Berger/p/book/9781032593036) | yes |
+| `SRC-PROB-006` | Google Books; independent preview ToC | Casella and Berger, *Statistical Inference*, 2nd ed., chapter set and CRC reprint ISBN | [Google Books edition](https://books.google.com/books/about/Statistical_Inference.html?id=LhgFEQAAQBAJ) | yes |
+| `SRC-PROB-007` | Springer; publisher ToC/metadata | Wasserman, *All of Statistics* (2004), twenty-four-chapter structure with pagination | [Springer edition](https://link.springer.com/book/10.1007/978-0-387-21736-9) | yes |
+| `SRC-PROB-008` | Google Books; independent preview record | *All of Statistics*, edition identity and ISBN; chapter titles not exposed | [Google Books edition](https://books.google.com/books?vid=ISBN9780387402727) | yes |
+| `SRC-PROB-009` | Cambridge University Press; publisher ToC | Jaynes, *Probability Theory: The Logic of Science* (2003), part and chapter structure and ISBN | [Cambridge edition](https://www.cambridge.org/core/books/probability-theory/9CA08E224FF30123304E6D8935CF1A99) | yes |
+| `SRC-PROB-010` | Google Books; independent preview record | *Probability Theory: The Logic of Science*, edition identity and ISBN; chapter titles not exposed | [Google Books edition](https://books.google.com/books?vid=ISBN9780521592710) | yes |
+| `SRC-PROB-011` | Google Books; independent preview ToC | Cover and Thomas, *Elements of Information Theory*, 2nd ed. (2006), chapter structure and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9780471241959) | yes |
+| `SRC-PROB-012` | Wiley; publisher metadata | *Elements of Information Theory*, 2nd ed., edition identity and ISBN; contents PDF not machine-readable | [Wiley edition](https://www.wiley.com/en-us/Elements+of+Information+Theory%2C+2nd+Edition-p-9780471241959) | yes |
+| `SRC-OPT-001` | Johns Hopkins University Press via SIAM; publisher contents listing | Golub and Van Loan, *Matrix Computations*, 4th ed. (2013), chapter structure | [SIAM/JHU edition](https://epubs.siam.org/doi/book/10.1137/1.9781421407944) | yes |
+| `SRC-OPT-002` | Google Books; independent preview ToC | *Matrix Computations*, 4th ed., chapter structure and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9781421407944) | yes |
+| `SRC-OPT-003` | Springer; publisher ToC/metadata | Nocedal and Wright, *Numerical Optimization*, 2nd ed. (2006), nineteen-chapter structure with pagination | [Springer edition](https://link.springer.com/book/10.1007/978-0-387-40065-5) | yes |
+| `SRC-OPT-004` | Google Books; independent preview record | *Numerical Optimization*, 2nd ed., ISBN and the first three chapter titles only | [Google Books edition](https://books.google.com/books?vid=ISBN9780387303031) | yes |
+| `SRC-OPT-005` | Cambridge University Press; publisher chapter listing | Boyd and Vandenberghe, *Convex Optimization* (2004), part, chapter and appendix structure | [Cambridge edition](https://www.cambridge.org/highereducation/books/convex-optimization/17D2FAA54F641A2F62C7CCD01DFA97C4) | yes |
+| `SRC-OPT-006` | Stephen Boyd/Stanford; author book site | *Convex Optimization*, edition identity and publisher; no chapter ToC exposed | [Author book site](https://web.stanford.edu/~boyd/cvxbook/) | yes |
+| `SRC-DSP-001` | Pearson; publisher ToC (International Edition front matter) | Oppenheim and Schafer, *Discrete-Time Signal Processing*, 3rd ed., twelve-chapter structure and appendices | [Pearson contents](https://www.pearson.de/media/muster/toc/toc_9781292038155.pdf) | yes |
+| `SRC-DSP-002` | Google Books; independent preview record | *Discrete-Time Signal Processing*, 3rd ed., edition identity and ISBN; only a partial, reordered chapter listing | [Google Books edition](https://books.google.com/books?vid=ISBN9780131988422) | yes |
+| `SRC-DSP-003` | Allen B. Downey/Green Tea Press; author ToC/full text | *Think DSP* (2012), chapter structure | [Author edition](https://greenteapress.com/thinkdsp/html/index.html) | yes |
+| `SRC-DSP-004` | Open Textbook Library; independent ToC/reviews | *Think DSP*, chapter structure, ISBN and selection | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/290) | yes |
+| `SRC-CV-001` | Gonzalez and Woods; author companion-site contents | *Digital Image Processing*, 4th ed. (2018), detailed chapter and section structure | [Authors' detailed contents](https://www.imageprocessingplace.com/downloads_V3/dip4e_downloads/dip4e_sample_book_material/dip4e_detailed_TOC.pdf) | yes |
+| `SRC-CV-002` | Pearson; publisher catalog | *Digital Image Processing*, 4th ed., edition identity; its listing conflicts with the authors' contents on the order of the transform and colour chapters | [Pearson edition](https://www.pearson.com/en-us/subject-catalog/p/digital-image-processing/P200000003224) | yes |
+| `SRC-CV-003` | Oxford Visual Geometry Group; author-hosted contents | Hartley and Zisserman, *Multiple View Geometry in Computer Vision*, 2nd ed., part, chapter and section structure | [Authors' book site](https://www.robots.ox.ac.uk/~vgg/hzbook/) | yes |
+| `SRC-CV-004` | Cambridge University Press; publisher ToC/metadata | *Multiple View Geometry*, 2nd ed. (2004), part and chapter structure and ISBN | [Cambridge edition](https://www.cambridge.org/core/books/multiple-view-geometry-in-computer-vision/0B6F289C78B2B23F596CAA76D3D43F7A) | yes |
+| `SRC-CV-005` | Springer; publisher ToC/metadata | Szeliski, *Computer Vision: Algorithms and Applications*, 2nd ed. (2022), fifteen-chapter structure with pagination | [Springer edition](https://link.springer.com/book/10.1007/978-3-030-34372-9) | yes |
+| `SRC-CV-006` | Richard Szeliski; author book site | *Computer Vision: Algorithms and Applications*, 2nd ed., edition identity and publisher; no chapter ToC exposed | [Author book site](https://szeliski.org/Book/) | yes |
+| `SRC-SPCH-001` | Springer; publisher ToC/metadata | Yu and Deng, *Automatic Speech Recognition: A Deep Learning Approach* (2014), fifteen-chapter structure with pagination | [Springer edition](https://link.springer.com/book/10.1007/978-1-4471-5779-3) | yes |
+| `SRC-SPCH-002` | Google Books; independent preview record | Yu and Deng (2014), edition identity and ISBN; no chapter list exposed | [Google Books edition](https://books.google.com/books?vid=ISBN9781447157786) | yes |
+| `SRC-NLP-001` | Jurafsky and Martin/Stanford; author-hosted ToC and full draft | *Speech and Language Processing*, 3rd edition draft, volume and chapter structure | [Author draft site](https://web.stanford.edu/~jurafsky/slp3/) | yes |
+| `SRC-NLP-002` | Google Books; independent preview record | *Speech and Language Processing*, 2nd ed. (2009), edition identity and ISBN; no chapter list exposed | [Google Books edition](https://books.google.com/books?vid=ISBN9780131873216) | yes |
+| `SRC-AUT-001` | Google Books; independent preview record | Hopcroft, Motwani and Ullman, *Introduction to Automata Theory, Languages, and Computation*, 3rd ed., ISBN and the opening three chapters only | [Google Books edition](https://books.google.com/books?vid=ISBN9780321455369) | yes |
+| `SRC-AUT-002` | Pearson; publisher catalog | Hopcroft, Motwani and Ullman, 3rd ed., edition identity and ISBN; no chapter ToC exposed | [Pearson edition](https://www.pearson.com/en-us/subject-catalog/p/introduction-to-automata-theory-languages-and-computation/P200000003517/9780321455369) | yes |
+| `SRC-ML-001` | Springer; publisher ToC/metadata | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009), eighteen-chapter structure with pagination | [Springer edition](https://link.springer.com/book/10.1007/978-0-387-84858-7) | yes |
+| `SRC-ML-002` | Hastie/Stanford; author book site | *The Elements of Statistical Learning*, 2nd ed., edition identity and date; frameset exposes no chapter list | [Author book site](https://hastie.su.domains/ElemStatLearn/) | yes |
+| `SRC-ML-003` | Springer; publisher chapter listing | James, Witten, Hastie and Tibshirani, *An Introduction to Statistical Learning*, 2nd ed. (2021), numbered chapter structure | [Springer edition](https://link.springer.com/book/10.1007/978-1-0716-1418-1) | yes |
+| `SRC-ML-004` | The authors; official book site | *An Introduction to Statistical Learning*, 2nd ed., topic sequence and edition history | [Author book site](https://www.statlearning.com/) | yes |
+| `SRC-DL-001` | Goodfellow, Bengio and Courville; author-hosted ToC and full text | *Deep Learning* (2016), part and chapter structure | [Author book site](https://www.deeplearningbook.org/) | yes |
+| `SRC-DL-002` | MIT Press; publisher metadata and structural description | *Deep Learning* (2016), ISBN, date, and the same part-and-topic sequence in prose | [MIT Press edition](https://mitpress.mit.edu/9780262035613/deep-learning/) | yes |
+| `SRC-DL-003` | MIT Press; publisher metadata | Prince, *Understanding Deep Learning* (2023), ISBN, date and topical scope; no chapter ToC exposed | [MIT Press edition](https://mitpress.mit.edu/9780262048644/understanding-deep-learning/) | yes |
+| `SRC-DL-004` | Simon Prince; author book site | *Understanding Deep Learning*, chapter-numbered exercise notebooks that reveal the chapter sequence indirectly | [Author book site](https://udlbook.github.io/udlbook/) | yes |
+| `SRC-DL-005` | Zhang, Lipton, Li and Smola; author-hosted ToC and full text | *Dive into Deep Learning* (2023), chapter structure and version | [Author book site](https://d2l.ai/) | yes |
+| `SRC-DL-006` | Springer; publisher metadata | Bishop and Bishop, *Deep Learning: Foundations and Concepts* (2024), edition identity and scope; chapter list not reached | [Springer edition](https://link.springer.com/book/10.1007/978-3-031-45468-4) | yes |
+| `SRC-DL-007` | Christopher and Hugh Bishop; author book site | *Deep Learning: Foundations and Concepts*, publisher, year and structure description; no chapter ToC exposed | [Author book site](https://www.bishopbook.com/) | yes |
+| `SRC-IR-001` | Manning, Raghavan and Schuetze/Stanford; author-hosted ToC and full text | *Introduction to Information Retrieval* (2008), twenty-one-chapter structure | [Author book site](https://nlp.stanford.edu/IR-book/information-retrieval-book.html) | yes |
+| `SRC-IR-002` | Cambridge University Press; publisher chapter listing | *Introduction to Information Retrieval* (2008), matching chapter sequence | [Cambridge edition](https://www.cambridge.org/highereducation/books/introduction-to-information-retrieval/669D108D20F556C5C30957D63B5AB65C) | yes |
+| `SRC-RL-001` | Sutton and Barto; author book site | *Reinforcement Learning: An Introduction*, 2nd ed. (2018), edition identity, publisher and year; no chapter ToC on the page | [Author book site](http://incompleteideas.net/book/the-book-2nd.html) | yes |
+| `SRC-RL-002` | MIT Press; publisher metadata and structural description | *Reinforcement Learning*, 2nd ed., ISBN, date, and the three-part structure with named additions | [MIT Press edition](https://mitpress.mit.edu/9780262039246/reinforcement-learning/) | yes |
+| `SRC-RL-003` | Cambridge University Press; publisher ToC | Lattimore and Szepesvari, *Bandit Algorithms* (2020), part and chapter structure and ISBNs | [Cambridge edition](https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC) | yes |
+| `SRC-RL-004` | Google Books; independent preview ToC | *Bandit Algorithms*, full chapter listing and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9781108486828) | yes |
+| `SRC-MLSYS-001` | O'Reilly; publisher ToC | Huyen, *Designing Machine Learning Systems* (2022), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) | yes |
+| `SRC-MLSYS-002` | Google Books; independent preview record | *Designing Machine Learning Systems*, edition identity and ISBN; no chapter list exposed | [Google Books edition](https://books.google.com/books?vid=ISBN9781098107963) | yes |
 
 #### 17.1.3 Verified Bibliography and Chapter Atlas: Foundational Mathematics
 
@@ -969,16 +1071,24 @@ Each `SRC-*` row is one independently owned source. A recommendation or adoption
 | `TB-MATH-004` | Sheldon Axler, *Linear Algebra Done Right*, 4th ed. (2024); rigorous | Chs. 1-3: vector spaces and linear maps; Chs. 4-7: polynomials, eigenstructure, inner products, operators; Chs. 8-9: multilinear forms and complexification | `M19`, `M20`, `M26`, `M39`, `MML-3`, `MATH-LA`, S7 | `SRC-MATH-010`, `SRC-MATH-011`; selection `SRC-MATH-012`; `confirmed`; `CORR-002` |
 | `TB-MATH-005` | Gilbert Strang, *Introduction to Linear Algebra*, 6th ed. (2023); applied/computational | Chs. 1-4: elimination, spaces, orthogonality, determinants; Chs. 5-7: eigenvalues, positive definiteness, SVD; later chapters: transformations, numerical linear algebra, optimization, and probability links | `M9`, `M13`, `M26`, `M39`, `MML-3`, `MATH-LA`, S7 | `SRC-MATH-013`, `SRC-MATH-014`; selection `SRC-MATH-015`; `confirmed`; `CORR-002` |
 | `TB-MATH-006` | Deisenroth, Faisal, and Ong, *Mathematics for Machine Learning* (2020); applied bridge | Chs. 2-7: linear algebra, analytic geometry, decompositions, vector calculus, probability, optimization; Chs. 8-12: regression, dimensionality reduction, density estimation, and classification applications | `M23-M28`, `MML-0-MML-4`, `MATH-LA`, `MATH-CALC-NUM`, `PROB-STAT-INFO`, `ML-CORE`, S7, S9-S11 | `SRC-MATH-016`, `SRC-MATH-017`; selection `SRC-MATH-018`; `confirmed` |
+| `TB-MATH-012` | OpenStax, *Calculus Volume 3* (2016); applied | Chs. 1-2: parametric and polar forms, then spatial vectors with dot and cross products, lines, planes, quadric surfaces, and cylindrical/spherical frames; Chs. 3-7: vector-valued functions, several-variable differentiation, multiple integration, vector calculus, and second-order equations | `M27`, `M28`, `M33`, `M35`, `MML-2`, `MML-4`, `MATH-FUND`, `MATH-CALC-NUM` | `SRC-MATH-024`, `SRC-MATH-025`; `confirmed`; LibreTexts renumbers these as Chs. 11-17 of the combined edition |
+| `TB-MATH-013` | OpenStax, *Intermediate Algebra 2e* (2020); applied | Chs. 1-4: number foundations, linear equations and inequalities, functions and graphs, linear systems with determinant-based solving; Chs. 5-9: polynomial functions, factoring, rational expressions, radicals, quadratics; Chs. 10-12: exponentials and logarithms, conics, sequences, series, and the binomial theorem | `M5-M8`, `M10`, `M11`, `M22`, `M25`, `M26`, `MML-1`, `MATH-FUND` | `SRC-MATH-026`, `SRC-MATH-027`; determinant section `SRC-MATH-029`; `confirmed` |
+| `TB-MATH-014` | Michael Corral, *Elementary Trigonometry*, version 1.2 (2020); applied/geometric | Chs. 1-2: right-triangle ratios and general-triangle laws; Chs. 3-5: identities, radian measure, graphing and inverse functions; Ch. 6: trigonometric equations, numerical root-finding, and complex/polar representations | `M17`, `M23`, `M20` partial, `MML-2`, `MATH-FUND` | `SRC-MATH-030`, `SRC-MATH-031`; `confirmed` |
+| `TB-MATH-015` | Henry Africk, *Elementary College Geometry*, 2021 ed.; applied/synthetic | Chs. 1-2: lines, angles, triangle basics, and congruence criteria; Chs. 3-4: quadrilaterals and similarity; Chs. 5-7: right-triangle trigonometry, area and perimeter, regular polygons and circles | `M14`, `M15`, `M16`, `M17` partial, `MML-2`, `MATH-FUND` | `SRC-MATH-032`, `SRC-MATH-033`; edition identity `SRC-MATH-034`; `confirmed` |
+| `TB-MATH-016` | Ted Sundstrom, *Mathematical Reasoning: Writing and Proof*; rigorous/foundational | Chs. 1-4: proof-writing conventions, logical reasoning, proof construction, induction; Chs. 5-7: sets, functions, equivalence relations; Chs. 8-9: congruence-centred number theory and finite versus infinite cardinality | `M3`, `M19`, `M21`, `PROOF-DISCRETE`, S4 | `SRC-MATH-035`, `SRC-MATH-036`; `confirmed` on chapter structure; the two sources label the same nine-chapter contents version 3 (2020) and version 2.1 (2022), so the version string is not settled |
+| `TB-MATH-018` | OpenStax, *Contemporary Mathematics* (2023); applied/quantitative literacy | Chs. 1-5: sets, logic, real-number systems and elementary number theory, numeral representation, algebra; Ch. 6: percent, discounts, markups, sales tax, simple and compound interest, budgeting, savings, investments, loans, credit, and income tax; Chs. 7-13: probability, statistics, measurement, geometry, voting, graphs, and applications | `M1`, `M2`, `M3` partial, `M4`, `M16`, `M18`, `MML-0`, `MATH-FUND` | `SRC-MATH-039`, `SRC-MATH-040`; `confirmed` |
 
 Fetched candidates are retained below exactly at the evidence level reached in the session. They identify useful leads and known coverage, but do not clear gaps unless a second edition-matched legitimate ToC is later added.
 
 | Textbook record | Exact edition and tier | Paraphrased chapter or topical coverage | Feeds | Evidence and status |
 |---|---|---|---|---|
-| `TB-MATH-007` | Abramson et al., *Algebra and Trigonometry 2e* (2021); applied | Chs. 1-6: equations, inequalities, and algebraic functions; Chs. 7-10: trigonometry; Chs. 11-13: systems, analytic geometry, sequences, and counting | `M5-M8`, `M20`, `M23-M25`, `MML-1`, `MML-2`, `MATH-FUND` | ToC and selection `SRC-MATH-019`; `single-sourced, unverified` |
+| `TB-MATH-007` | Abramson et al., *Algebra and Trigonometry 2e* (2021); applied | Chs. 1-6: equations, inequalities, and algebraic functions; Chs. 7-10: trigonometry; Chs. 11-13: systems, analytic geometry, sequences, and counting | `M5-M8`, `M20`, `M23-M25`, `MML-1`, `MML-2`, `MATH-FUND` | `SRC-MATH-019`, `SRC-MATH-028`; Cramer's-rule section `SRC-MATH-029`; `confirmed`; `CORR-003` |
 | `TB-MATH-008` | Daniel J. Velleman, *How to Prove It*, 3rd ed. (2019); rigorous | Logic and proof construction; sets, relations, functions, induction, and elementary number-theory arguments | `M3`, `M19`, `PROOF-DISCRETE`, S4 | ToC `SRC-MATH-020`; `single-sourced, unverified` |
 | `TB-MATH-009` | Kenneth H. Rosen, *Discrete Mathematics and Its Applications*, 8th ed. (2019); applied/discrete | Logic, sets, algorithms, elementary number theory, induction, counting, relations, graphs, trees, and Boolean algebra | `M3`, `M10`, `M19`, `M21`, `M22`, `PROOF-DISCRETE`, S4 | adoption and chapter schedule `SRC-MATH-021`; `single-sourced, unverified` |
 | `TB-MATH-010` | Richard Rusczyk, *Introduction to Geometry*, 2nd ed.; applied/competition | Publisher scope: congruence, similarity, polygons, circles, area, power relations, transformations, introductory trigonometry, and solid geometry | `M14-M17`, `M28`, `MML-2`, `MATH-FUND` | topical scope and selection `SRC-MATH-022`; no usable chapter ToC; `candidate` |
 | `TB-MATH-011` | G. Tewani, *JEE Advanced Coordinate Geometry*, 3rd ed.; exam/computational | Intended coverage: advanced circle geometry, tangents and normals, and conic sections | `M24`, `M25`, `MML-2`, `MATH-FUND` | edition metadata `SRC-MATH-023`; no usable chapter ToC; `candidate` |
+| `TB-MATH-017` | Oscar Levin, *Discrete Mathematics: An Open Introduction*, 4th ed. (2024); applied/discrete | Ch. 0: statements, sets, functions; Chs. 1-2: symbolic logic, proof techniques, graph theory; Chs. 3-4: counting and sequences; Chs. 5-6: revisited discrete structures, generating functions, and number theory | `M3`, `M10`, `M19`, `M21`, `M22`, `PROOF-DISCRETE`, S4 | ToC `SRC-MATH-037`; adoption `SRC-MATH-038`; `single-sourced, unverified` because the second record's listed contents still follow the 3rd-edition order |
+| `TB-MATH-019` | Keller and Trotter, *Applied Combinatorics* (2017); applied/combinatorial | Chs. 1-4: enumeration foundations, strings, sets, binomial coefficients, induction, combinatorial basics; Chs. 5-9: graphs, posets, inclusion-exclusion, generating functions, recurrences; Chs. 10-16: discrete probability, graph algorithms, network flows, and enumeration under symmetry | `M21`, `M22`, `PROOF-DISCRETE` | ToC `SRC-MATH-041`; scope and selection `SRC-MATH-042`; `single-sourced, unverified` |
 
 ##### 17.1.3.1 Foundational Module Audit and Gaps
 
@@ -986,20 +1096,20 @@ This crosswalk preserves the recovered foundational research payload. A range is
 
 | Modules or owner | Accepted records | Candidate or unverified records already researched | Audit result |
 |---|---|---|---|
-| `M1`, `M2`, `M4`, `MML-0` | `TB-MATH-001` | none confirmed | `GAP:` a second independently verified foundational arithmetic text |
-| `M3`, `PROOF-DISCRETE` | `TB-MATH-003` | `TB-MATH-008`, `TB-MATH-009` | `GAP:` a second confirmed proof/discrete text and explicit digital-logic coverage |
-| `M5-M8`, `MML-1` | `TB-MATH-001`, `TB-MATH-002` | `TB-MATH-007` | `GAP:` dedicated inequalities, polynomial division, and a second exact-edition algebra ToC |
+| `M1`, `M2`, `M4`, `MML-0` | `TB-MATH-001`, `TB-MATH-018` | none outstanding | closed: two confirmed foundational arithmetic and number-system texts |
+| `M3`, `PROOF-DISCRETE` | `TB-MATH-003`, `TB-MATH-016`; `TB-MATH-018` for sets and logic | `TB-MATH-008`, `TB-MATH-009`, `TB-MATH-017` | proof and discrete coverage closed by a second confirmed text; `GAP:` explicit digital-logic and Boolean-circuit coverage remains, and every discrete-specific candidate is still single-sourced |
+| `M5-M8`, `MML-1` | `TB-MATH-001`, `TB-MATH-002`, `TB-MATH-007`, `TB-MATH-013` | none outstanding | closed: inequalities, polynomial and rational function work, factoring, and radicals now carry two confirmed algebra texts |
 | `M9-M13` | `TB-MATH-001`, `TB-MATH-002`, `TB-MATH-005`, `TB-MATH-006` | none | covered at foundational/application depth |
-| `M14-M16` | `TB-MATH-001` partial | `TB-MATH-010` | `GAP:` rigorous synthetic triangle/circle geometry and an independently verified applied geometry ToC |
-| `M17`, `M23` | `TB-MATH-002`; `TB-MATH-006` partial | `TB-MATH-007`, `TB-MATH-010` | `GAP:` a second confirmed dedicated trigonometry text |
-| `M18` | `TB-MATH-001` partial | current Selina and R. S. Aggarwal editions were not edition-verifiable | `GAP:` current Indian commercial-arithmetic coverage |
+| `M14-M16` | `TB-MATH-001` partial, `TB-MATH-015`, `TB-MATH-018` geometry chapter | `TB-MATH-010` | applied synthetic geometry closed with an independently verified ToC; `GAP:` a proof-first rigorous geometry text at the Hartshorne or olympiad tier is still unverified |
+| `M17`, `M23` | `TB-MATH-002`, `TB-MATH-007`, `TB-MATH-014`; `TB-MATH-015` right-triangle chapter | `TB-MATH-010` | closed: a dedicated trigonometry text is now confirmed alongside the precalculus treatments |
+| `M18` | `TB-MATH-001` partial, `TB-MATH-018` | current Selina and R. S. Aggarwal editions were not edition-verifiable | commercial-arithmetic content closed generically: percent, markup, tax, simple and compound interest, loans, and credit; `GAP:` an India-specific verifiable edition remains absent, and `M18` stays `ARCHIVE` |
 | `M19`, `M21` | `TB-MATH-002`, `TB-MATH-003`; `TB-MATH-004` for structural linear-algebra links | `TB-MATH-008`, `TB-MATH-009` | covered overall; equivalence classes remain thin in the applied tier |
-| `M20` | `TB-MATH-002`, `TB-MATH-004` partial | `TB-MATH-007` | `GAP:` polar form and roots-of-unity coverage from a second confirmed source |
-| `M22` | `TB-MATH-002`, `TB-MATH-003` partial | `TB-MATH-009` | `GAP:` multinomial expansions and advanced coefficient identities |
-| `M24-M25` | `TB-MATH-002` partial | `TB-MATH-007`, `TB-MATH-011` | `GAP:` advanced circle geometry and a second exam-oriented conics text with two legitimate ToCs |
-| `M26` | `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006` | none | `GAP:` a second source explicitly covering Cramer's rule rather than general linear solving |
-| `M27-M28`, `MML-2` | `TB-MATH-002`, `TB-MATH-006` partial | `TB-MATH-010`; current JEE vector/3D editions remain unverified | `GAP:` cross/triple products, skew-line forms, planes, and point-to-plane distance |
-| `MML-3`, `MATH-LA` | `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006` | none | covered for vector spaces, decompositions, spectral methods, and ML applications; the `M27-M28` gap still applies |
+| `M20` | `TB-MATH-002`, `TB-MATH-007`, `TB-MATH-014` partial; `TB-MATH-004` partial | none outstanding for polar form | polar and trigonometric representation of complex numbers now has two confirmed sources; `GAP:` roots of unity as a cyclic-group structure is still only implicit |
+| `M22` | `TB-MATH-002`, `TB-MATH-013` | `TB-MATH-009`, `TB-MATH-017`, `TB-MATH-019` | binomial theorem closed; `GAP:` multinomial expansions and advanced coefficient identities are still carried only by single-sourced combinatorics records |
+| `M24-M25` | `TB-MATH-002`, `TB-MATH-007`, `TB-MATH-013` conics chapter; `TB-MATH-015` circle chapter | `TB-MATH-011` | conics closed with two confirmed analytic-geometry treatments; `GAP:` JEE-level tangent, normal, chord-of-contact, and pole-polar technique still has no edition-verifiable text |
+| `M26` | `TB-MATH-002`, `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006`, `TB-MATH-007`, `TB-MATH-013` | none | closed: determinant-based solving and Cramer's rule are located at section level in two independently confirmed texts via `SRC-MATH-029` |
+| `M27-M28`, `MML-2` | `TB-MATH-012`; `TB-MATH-002`, `TB-MATH-006` partial | `TB-MATH-010`; current JEE vector/3D editions remain unverified | dot and cross products, spatial lines and planes, distance formulas, and quadric surfaces are now confirmed in one text; `GAP:` scalar and vector triple products and skew-line distance need a second confirmed source |
+| `MML-3`, `MATH-LA` | `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006` | none | covered for vector spaces, decompositions, spectral methods, and ML applications; the narrowed `M27-M28` triple-product gap still applies |
 
 Corrections recovered from the transcript audit:
 
@@ -1007,6 +1117,9 @@ Corrections recovered from the transcript audit:
 |---|---|---|
 | `CORR-001` | `TB-MATH-003` fed geometry and commercial-arithmetic modules `M14`, `M15`, and `M18` | Its verified contents feed `M3`, `M10`, `M19`, `M21`, `M22`, and `PROOF-DISCRETE`; geometry and commercial arithmetic remain gaps. |
 | `CORR-002` | `TB-MATH-004` and `TB-MATH-005` were broadly assigned to `M27-M28`, `MML-2`, and calculus | Their confirmed chapter maps support linear systems, vector spaces, eigentheory, orthogonality, SVD, and spectral work; cross/triple products, formal 3D geometry, and calculus need separate records. |
+| `CORR-003` | `TB-MATH-007` (*Algebra and Trigonometry 2e*) was recorded `single-sourced, unverified` on `SRC-MATH-019` alone | A second independent edition-matched ToC (`SRC-MATH-028`) was located, so the record is promoted to `confirmed`. This is a status change to an existing entry, logged here rather than applied silently. |
+| `CORR-004` | The `M18` audit row implied that closing it required a current Indian commercial-arithmetic edition | `TB-MATH-018` closes the mathematical content generically. The India-specific edition gap is retained as a separate, narrower note; `M18` remains `ARCHIVE` in the teaching graph, so the residual gap does not block any active module. |
+| `CORR-005` | §18.2 lists Apostol only through *Introduction to Analytic Number Theory*, in a file whose calculus and analysis modules need Apostol's *Calculus* or *Mathematical Analysis* | The analytic number theory title is tangential to `M29-M38` and `MATH-CALC-NUM`. It is retained under number theory but is not counted as calculus or analysis evidence for any module. The correct Apostol volumes are researched in the calculus and analysis batch, not assumed from the existing citation. |
 
 Rejected or deferred leads recovered from the same research pass:
 
@@ -1018,6 +1131,7 @@ Rejected or deferred leads recovered from the same research pass:
 | Cengage JEE Advanced algebra, trigonometry, coordinate, and vector series | Publisher records identify the series, but usable publisher and independent same-edition ToCs were unavailable. |
 | Selina and R. S. Aggarwal school texts | Current exact editions could not be tied to two legitimate contents sources. |
 | Hall and Knight, Loney, and Grewal | Existing curriculum references omit or conflate editions; defer until each exact edition is separated and verified. |
+
 
 #### 17.1.4 Verified Bibliography and Chapter Atlas: Software and Systems
 
@@ -1049,6 +1163,384 @@ Rejected or deferred leads recovered from the same research pass:
 | `TB-TOOL-003` | Yevgeniy Brikman, *Terraform: Up & Running*, 3rd ed. (2022); operations | Language and state, modules, testing, teams, production workflows, secrets and infrastructure patterns | Terraform tool row, G18, S22-S23; SDP-8, P10 | ToC `SRC-TOOL-003`; `single-sourced, unverified` |
 
 
+#### 17.1.5 Verified Bibliography and Chapter Atlas: Calculus and Real Analysis
+
+Covers `M29-M34`, `M38`, `MML-4`, `MML-12`, and the `MATH-CALC-NUM` owner node.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-CALC-001` | OpenStax, *Calculus Volume 1* (2016); applied | Chs. 1-2: function review, then limits developed informally and through the epsilon-delta definition, with continuity and the intermediate-value property; Chs. 3-4: derivative rules, implicit and higher-order differentiation, mean-value theorems, monotonicity, extrema, indeterminate forms and L'Hopital, related rates; Chs. 5-6: Riemann sums, the fundamental theorem, substitution, and area and volume applications | `M29-M33`, `MML-4`, `MATH-CALC-NUM`, S5 | `SRC-CALC-001`, `SRC-CALC-003`; `confirmed` |
+| `TB-CALC-002` | OpenStax, *Calculus Volume 2* (2016); applied | Chs. 1-3: integration technique, integral applications, substitution, parts, partial fractions, and improper integrals; Ch. 4: first-order differential equations including separable and linear forms with integrating factors, plus direction fields and numerical stepping; Chs. 5-7: sequences, series, convergence tests, power and Taylor series, parametric and polar forms | `M32-M34`, `MML-4`, `MATH-CALC-NUM`, S5 | `SRC-CALC-002`, `SRC-CALC-003`; `confirmed` |
+| `TB-CALC-003` | Michael Spivak, *Calculus*, 4th ed. (2008); rigorous ceiling | Part I: field and order properties of number systems; Part II: functions, graphs, limits, continuity, the three hard theorems, least upper bounds; Part III: derivatives, differentiation rules, the meaning of the derivative, inverse functions, the integral, the fundamental theorem, transcendental functions, elementary integration; Part IV: polynomial approximation, sequences, series, uniform convergence, power series, complex numbers and functions; Part V: fields, construction and uniqueness of the reals | `M29-M33`, `M38`, `MML-12`, `MATH-CALC-NUM` rigor ceiling, S5 | `SRC-CALC-004`, `SRC-CALC-005`; `confirmed` |
+| `TB-CALC-004` | Walter Rudin, *Principles of Mathematical Analysis*, 3rd ed. (1976); rigorous | Chs. 1-3: ordered fields, the real and complex systems, metric-space topology, numerical sequences and series; Chs. 4-6: continuity, differentiation, the Riemann-Stieltjes integral; Chs. 7-8: sequences and series of functions, uniform convergence, equicontinuity, approximation, and special functions; Chs. 9-11: several-variable calculus, differential forms and integration on chains, and an introduction to Lebesgue theory | `M38`, `MML-12`, `MATH-CALC-NUM` and `MATH-LA` rigor ceiling, S5 | `SRC-CALC-006`, `SRC-CALC-007`; `confirmed`; the two sources describe the same third-edition contents under a 1976 McGraw-Hill imprint and a 2023 India printing |
+| `TB-CALC-006` | Tom M. Apostol, *Calculus, Volume 1*, 2nd ed.; rigorous/integration-first | Early chapters: set-theoretic preliminaries, an axiomatic real-number system, induction and summation, then the integral introduced before the derivative with applications; middle chapters: continuity, differential calculus, the link between the two operations, logarithmic and exponential functions, polynomial approximation; later chapters: differential equations, complex numbers, improper integrals, sequences and series of functions, and an introduction to vector algebra and linear transformations | `M29-M34`, `M38` partial, `MATH-CALC-NUM` | ToC `SRC-CALC-010`; edition identity `SRC-CALC-011`; `single-sourced, unverified`; `CORR-005` |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-CALC-005` | Stephen Abbott, *Understanding Analysis*, 2nd ed. (2015); rigorous | Chs. 1-3: the real numbers, sequences and series, topology of the line; Chs. 4-5: functional limits, continuity, the derivative; Chs. 6-8: sequences and series of functions with uniform convergence, the Riemann integral, and project-style additional topics including the gamma function and Weierstrass approximation | `M29`, `M38`, `MML-12`, `MATH-CALC-NUM` | ToC `SRC-CALC-008`; edition identity `SRC-CALC-009`; `single-sourced, unverified` |
+
+##### 17.1.5.1 Calculus and Analysis Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M29` | `TB-CALC-001`, `TB-CALC-003` | `TB-CALC-005`, `TB-CALC-006` | closed: epsilon-delta limits, limit laws, continuity, the intermediate-value theorem, indeterminate forms, and L'Hopital are carried at both tiers |
+| `M30`, `M31` | `TB-CALC-001`, `TB-CALC-003` | `TB-CALC-006` | closed: differentiation rules, implicit and higher-order derivatives, mean-value theorems, monotonicity, and extrema are carried at both tiers. `GAP:` parametric differentiation is not separately verified |
+| `M32`, `M33` | `TB-CALC-001`, `TB-CALC-002`, `TB-CALC-003` | `TB-CALC-006` | closed: antiderivatives, substitution, parts, partial fractions, Riemann sums, the fundamental theorem, and area applications |
+| `M34` | `TB-CALC-002` | `TB-CALC-006` | `GAP:` a second confirmed source for first-order ordinary differential equations, integrating factors, and homogeneous forms; the engineering-mathematics batch owns the deeper treatment |
+| `M38` | `TB-CALC-004`, `TB-CALC-003` | `TB-CALC-005` | closed at the stated undergraduate ceiling: metric spaces, open and closed sets, limit points, Cauchy sequences, completeness, compactness, continuity, uniform continuity, uniform convergence, and approximation theorems |
+| `MML-4` | `TB-CALC-001`, `TB-CALC-002`; `TB-MATH-012` for the multivariable half; `TB-MATH-006` partial | none | closed for limits, derivatives, chain rule, partial derivatives, gradients, and integration as accumulation. `GAP:` Jacobians and Hessians as named objects sit in `TB-MATH-006` alone |
+| `MML-12` | `TB-CALC-003`, `TB-CALC-004` | `TB-CALC-005` | closed for proof habits, convergence, compactness, and continuity at the ceiling the module declares |
+| `MATH-CALC-NUM` calculus slice | `TB-CALC-001`, `TB-CALC-002`, `TB-CALC-003`, `TB-CALC-004`, `TB-MATH-012` | `TB-CALC-005`, `TB-CALC-006` | covered; the numerical-methods slice is owned by the engineering-mathematics batch and is not yet researched |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Stewart and Thomas calculus editions | Not pursued once two confirmed applied-tier calculus records were in place; no legitimate edition-matched ToC pair was established. |
+| Apostol, *Introduction to Analytic Number Theory* | Tangential to every calculus and analysis module. Retained under number theory only; see `CORR-005`. |
+| Course-hosted and mirror PDF copies of Rudin and Spivak surfaced by search | Excluded as unauthorized scans of in-copyright works, regardless of the hosting domain. |
+
+
+#### 17.1.6 Verified Bibliography and Chapter Atlas: Engineering Mathematics and Numerics
+
+Covers `M35`, `M36`, `M37`, `MML-10`, and the numerical slice of `MATH-CALC-NUM`.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-ENG-001` | Erwin Kreyszig, *Advanced Engineering Mathematics*, 10th ed. (2011); applied/engineering | Chs. 1-6: first-order, second-order, and higher-order linear equations, systems and phase-plane behaviour, series solutions with special functions, Laplace transforms; Chs. 7-10: matrices, determinants, linear systems, eigenvalue problems, and vector differential and integral calculus; Chs. 11-12: Fourier series, integrals and transforms, then partial differential equations; Chs. 13-18: complex functions, contour integration, power and Laurent series, residues, conformal mapping, potential theory; Chs. 19-21: general numerics, numerical linear algebra, and numerical treatment of differential equations; Chs. 22-25: unconstrained optimization, linear programming, graphs and combinatorial optimization, probability and statistics | `M35`, `M36`, `M37`, `M39` partial, `M40` partial, `MML-7`, `MML-10`, `MATH-CALC-NUM`, `DL-NLP-CV-AUDIO` transform gate | `SRC-ENG-001`, `SRC-ENG-002`; `confirmed` |
+| `TB-ENG-002` | Trefethen and Bau, *Numerical Linear Algebra* (1997); rigorous/numerical | Part I: matrix-vector formulations, orthogonality, norms, and the singular value decomposition; Part II: QR factorization, Gram-Schmidt, Householder reflectors, and least squares; Part III: conditioning, floating-point arithmetic, and backward stability analysis; Part IV: Gaussian elimination, pivoting, and Cholesky; Parts V-VI: eigenvalue algorithms and iterative methods including Krylov subspace techniques. Presented as forty short lectures | `M37`, `M39`, `MML-3`, `MML-10`, `MML-12`, `MATH-LA`, `MATH-CALC-NUM` | `SRC-ENG-003`, `SRC-ENG-004`; `confirmed` |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-ENG-003` | Boyce, DiPrima, and Meade, *Elementary Differential Equations and Boundary Value Problems*, 11th ed. (2017); applied/theory bridge | Early chapters: first-order equations, second-order linear equations, numerical stepping methods; middle chapters: nonlinear equations and stability, systems of first-order linear equations with eigenvalue-based solutions; later chapters: boundary value problems and Sturm-Liouville theory, with appendices deriving the heat and wave equations | `M34`, `M35`, `M37` partial, `MATH-CALC-NUM` | ToC `SRC-ENG-005`; `single-sourced, unverified`; the single listing does not cleanly separate chapters from sections |
+
+##### 17.1.6.1 Engineering Mathematics and Numerics Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M35` | `TB-ENG-001` Chs. 1-6, 12 | `TB-ENG-003`, `TB-CALC-002` | `GAP:` one confirmed source only. Constant-coefficient linear equations, series solutions, special functions, and partial differential equations are covered; Beta and Gamma functions are not separately verified |
+| `M36` | `TB-ENG-001` Chs. 6, 11 | none | `GAP:` a second confirmed transform text. Laplace transforms, inverse transforms, convolution, Fourier series, integrals, and transforms are covered; the discrete z-transform and its region of convergence are not, and are deferred to the signals batch |
+| `M37` | `TB-ENG-001` Chs. 19-21, `TB-ENG-002` | `TB-ENG-003` Ch. 4 | closed at both tiers: interpolation, numerical differentiation and integration, Euler and Runge-Kutta stepping, and numerical linear algebra. `GAP:` difference equations and curve fitting as named topics rest on `TB-ENG-001` alone |
+| `MML-10` | `TB-ENG-002` Part III, `TB-ENG-001` Ch. 19 | none | closed for floating-point error, conditioning, and stability. `GAP:` stable softmax and logsumexp are implementation idioms with no textbook owner; treat them as lab practice, not a reading gap |
+| `MATH-CALC-NUM` numerics slice | `TB-ENG-001`, `TB-ENG-002` | `TB-ENG-003` | covered |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Grewal, *Higher Engineering Mathematics* | Cited throughout the source corpus, but no exact edition could be tied to two legitimate contents sources. Remains deferred, consistent with the earlier Hall and Knight, Loney, and Grewal decision. |
+| Burden and Faires, *Numerical Analysis* | Canonical applied-numerics lead; not verified in this batch because `TB-ENG-001` and `TB-ENG-002` already close `M37` at both tiers. Left as an unresearched candidate rather than a claim. |
+| Golub and Van Loan, *Matrix Computations* | Deferred to the optimization and spectral batch. |
+| Course-hosted PDF copies of Kreyszig surfaced by search | Excluded as unauthorized scans of an in-copyright work. |
+
+
+#### 17.1.7 Verified Bibliography and Chapter Atlas: Probability, Statistics, and Information Theory
+
+Covers `M40`, `MML-5`, `MML-6`, `MML-8`, and the `PROB-STAT-INFO` owner node, which absorbs IIT Module 3 and the STAT 1-9 inventory.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-PROB-001` | Grinstead and Snell, *Introduction to Probability*, 2nd ed. (2006, AMS); applied/foundational | Chs. 1-4: discrete distributions, continuous densities, counting arguments, conditional probability and independence; Chs. 5-7: named distributions and densities, expectation and variance, sums and convolutions of random variables; Chs. 8-9: laws of large numbers and central limit behaviour; Chs. 10-12: generating functions, Markov chains, random walks | `M40` partial, `MML-5`, `MML-9` partial, `PROB-STAT-INFO`, S9 | `SRC-PROB-001`, `SRC-PROB-002`; `confirmed` |
+| `TB-PROB-002` | OpenStax, *Introductory Statistics 2e* (2023); applied | Chs. 1-2: sampling, data types, descriptive summaries; Chs. 3-6: probability topics, discrete and continuous random variables, the normal distribution; Chs. 7-10: the central limit theorem, confidence intervals, one-sample and two-sample hypothesis testing; remaining chapters: chi-square, analysis of variance with the F distribution, and linear regression with correlation | `M40` partial, `MML-6`, `PROB-STAT-INFO`, `ML-3`, S9 | `SRC-PROB-003`, `SRC-PROB-004`; `confirmed`; the two sources swap the ordering of the regression and ANOVA chapters |
+| `TB-PROB-003` | Casella and Berger, *Statistical Inference*, 2nd ed. (2001 Duxbury; 2024 Chapman and Hall reprint); rigorous | Chs. 1-4: probability foundations, transformations and expectations, common distribution families, joint and conditional behaviour of multiple random variables; Chs. 5-6: sampling distributions and properties of a random sample, sufficiency and data-reduction principles; Chs. 7-10: point estimation including maximum likelihood, hypothesis testing, interval estimation, and asymptotic evaluation; Chs. 11-12: analysis of variance and regression models | `M40`, `MML-6`, `PROB-STAT-INFO`, S9 | `SRC-PROB-005`, `SRC-PROB-006`; `confirmed`; the second listing gives the same chapter set in a scrambled order |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-PROB-004` | Larry Wasserman, *All of Statistics* (2004); rigorous/concise | Part I: probability, random variables, expectation, inequalities, convergence; Part II: statistical models, empirical distribution functions and functionals, the bootstrap, parametric inference, hypothesis testing and p-values, Bayesian inference, decision theory; Part III: linear and logistic regression, multivariate models, independence testing, causal inference, and further chapters on graphical models, classification, and simulation | `M40`, `MML-6`, `MML-9`, `PROB-STAT-INFO`, `ML-CORE` | ToC `SRC-PROB-007`; edition identity `SRC-PROB-008`; `single-sourced, unverified` |
+| `TB-PROB-005` | E. T. Jaynes, *Probability Theory: The Logic of Science* (2003); rigorous/Bayesian | Part I: plausible reasoning, the quantitative rules, elementary sampling, hypothesis testing, parameter estimation, the Gaussian distribution, sufficiency and ancillarity, repeated experiments; Part II: entropy-based and transformation-group priors, decision theory and its history, paradoxes, a critique of orthodox methods, model comparison, outliers and robustness, and an introduction to communication theory | `M40`, `MML-5`, `MML-6`, `MML-8`, `PROB-STAT-INFO` | ToC `SRC-PROB-009`; edition identity `SRC-PROB-010`; `single-sourced, unverified` |
+| `TB-PROB-006` | Cover and Thomas, *Elements of Information Theory*, 2nd ed. (2006); rigorous/information | Chs. 1-3: entropy, relative entropy, mutual information, the asymptotic equipartition property, entropy rates of stochastic processes; Chs. 4-8: source coding and data compression, gambling, channel capacity, differential entropy, the Gaussian channel; Chs. 9-13: universal source coding, Kolmogorov complexity, rate distortion, information-theoretic statistics, maximum entropy; Chs. 14-16: multiple-access channels, portfolio theory, and information inequalities | `M40`, `M41` gate, `MML-8`, `PROB-STAT-INFO`, `DL-NLP-CV-AUDIO` cross-entropy gate | ToC `SRC-PROB-011`; edition identity `SRC-PROB-012`; `single-sourced, unverified` |
+
+##### 17.1.7.1 Probability, Statistics, and Information Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M40` | `TB-PROB-003`, `TB-PROB-002`; `TB-PROB-001` for the probability half; `TB-ENG-001` Chs. 24-25 | `TB-PROB-004`, `TB-PROB-005` | closed for joint, marginal and conditional distributions, estimation, maximum likelihood, hypothesis testing, and confidence intervals. `GAP:` Fisher information and the Cramer-Rao bound sit inside `TB-PROB-003` Chs. 7 and 10 but have no second confirmed source; Markov chain Monte Carlo has none at all |
+| `MML-5` | `TB-PROB-001`, `TB-PROB-002` Chs. 3-6 | `TB-PROB-005` | closed: events, conditional probability, Bayes, independence, random variables, expectation, variance, named distributions, sampling, and convergence |
+| `MML-6` | `TB-PROB-002`, `TB-PROB-003` | `TB-PROB-004` | closed for estimators, bias and variance, the central limit theorem, maximum likelihood, confidence intervals, hypothesis tests, and p-values. `GAP:` the bootstrap and jackknife rest on `TB-PROB-004` alone; A/B testing, CUPED, and multiple-testing correction have no textbook owner and are carried by the production-ML batch |
+| `MML-8` | none confirmed | `TB-PROB-006` | `GAP:` entropy, cross-entropy, KL divergence, mutual information, and perplexity are covered only by a `single-sourced, unverified` record. A second confirmed information-theory text is the largest single evidence gap in this batch |
+| `PROB-STAT-INFO` | `TB-PROB-001`, `TB-PROB-002`, `TB-PROB-003` | `TB-PROB-004`, `TB-PROB-005`, `TB-PROB-006` | probability and inference are covered at both tiers; the information-theory slice inherits the `MML-8` gap |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| MacKay, *Information Theory, Inference, and Learning Algorithms* | The author-hosted site refused automated access from two different tools. A canonical lead for `MML-8`, left unverified rather than claimed. |
+| DeGroot and Schervish; Ross, *A First Course in Probability* | Not pursued once `MML-5` closed at both tiers. |
+| Blitzstein and Hwang, *Introduction to Probability* | Strong lead for the applied tier; not fetched in this batch. |
+| Durrett, *Probability: Theory and Examples* | Measure-theoretic depth beyond the declared rigor ceiling; deferred. |
+
+
+#### 17.1.8 Verified Bibliography and Chapter Atlas: Optimization and Spectral Methods
+
+Covers `M39`, `MML-7`, and the spectral and optimization slices of `MATH-LA`.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-OPT-001` | Golub and Van Loan, *Matrix Computations*, 4th ed. (2013); rigorous/numerical | Chs. 1-2: matrix multiplication formulations, norms, orthogonality, and the singular value decomposition as an analytic tool; Chs. 3-6: general and structured linear systems, orthogonalization and least squares, and modified least-squares methods; Chs. 7-9: unsymmetric and symmetric eigenvalue algorithms and matrix functions; Chs. 10-12: large sparse eigenvalue and linear-system methods, then special topics including structured problems and tensor computations | `M39`, `M37`, `MML-3`, `MML-10`, `MATH-LA`, S7 | `SRC-OPT-001`, `SRC-OPT-002`; `confirmed` |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-OPT-002` | Nocedal and Wright, *Numerical Optimization*, 2nd ed. (2006); rigorous | Chs. 1-7: unconstrained optimization fundamentals, line search, trust regions, conjugate gradient, quasi-Newton, and large-scale methods; Chs. 8-11: derivative computation, derivative-free methods, least squares, nonlinear equations; Chs. 12-15: constrained optimization theory, the simplex and interior-point approaches to linear programming, and algorithm fundamentals for nonlinear constraints; Chs. 16-19: quadratic programming, penalty and augmented Lagrangian methods, sequential quadratic programming, and nonlinear interior-point methods | `MML-7`, `M39` partial, `ML-CORE` optimization gate | ToC `SRC-OPT-003`; `SRC-OPT-004` corroborates the ISBN and only the opening three chapters; `single-sourced, unverified` |
+| `TB-OPT-003` | Boyd and Vandenberghe, *Convex Optimization* (2004); rigorous | Theory part: convex sets, convex functions, convex problem classes, and duality; applications part: general applications, approximation and fitting, statistical estimation, and geometric problems; algorithms part: unconstrained minimization, equality-constrained minimization, and interior-point methods; appendices: mathematical background, quadratic-function problems, and numerical linear algebra | `MML-7`, `M39` partial, `ML-CORE`, `DL-NLP-CV-AUDIO` optimizer gate | ToC `SRC-OPT-005`; edition identity `SRC-OPT-006`; `single-sourced, unverified` |
+
+##### 17.1.8.1 Optimization and Spectral Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M39` | `TB-MATH-004`, `TB-MATH-005`, `TB-ENG-002`, `TB-OPT-001` | `TB-OPT-003` | closed: inner products, orthonormal bases, Gram-Schmidt, self-adjoint operators, the spectral theorem, the singular value decomposition, low-rank approximation, and matrix norms are carried at both tiers. `GAP:` Hilbert space as an abstract setting is not covered by any confirmed record; the existing Luenberger citation was not edition-verified |
+| `MML-7` | `TB-ENG-001` Chs. 22-23 | `TB-OPT-002`, `TB-OPT-003` | `GAP:` the two canonical optimization texts are each `single-sourced, unverified`. Linear programming and the assignment problem are covered by one confirmed record; convexity, Lagrange and KKT conditions, gradient descent variants, momentum and adaptive optimizers, and regularization are not covered by any confirmed record. This is the largest open gap in the mathematics half of the audit |
+| `MATH-LA` spectral and optimization slices | `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006`, `TB-ENG-002`, `TB-OPT-001` | `TB-OPT-002`, `TB-OPT-003` | the spectral slice is closed; the optimization slice inherits the `MML-7` gap |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Luenberger, *Optimization by Vector Space Methods* | Cited in the source corpus for `M39` Hilbert-space material, but no exact edition was tied to two legitimate contents sources in this batch. The `M39` Hilbert-space gap is recorded rather than treated as covered by the existing citation. |
+| Bertsekas, *Nonlinear Programming*; Beck, *First-Order Methods in Optimization* | Not fetched; left as unresearched candidates for closing the `MML-7` gap. |
+
+
+#### 17.1.9 Verified Bibliography and Chapter Atlas: Signals, Image Processing, and Vision
+
+Covers `M41`, `M42`, `MML-11`, and the signal, image, and vision slices of `DL-NLP-CV-AUDIO`.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-DSP-002` | Allen B. Downey, *Think DSP* (2012); applied/computational | Chs. 1-5: sounds and signals, harmonic content, non-periodic signals, noise, autocorrelation; Chs. 6-8: the discrete cosine transform, the discrete Fourier transform, filtering and convolution; Chs. 9-11: numerical differentiation and integration of signals, linear time-invariant systems, modulation and sampling. Worked entirely through Python signal objects | `M41`, `MML-11`, `DL-NLP-CV-AUDIO` DSP gate, S15 | `SRC-DSP-003`, `SRC-DSP-004`; `confirmed` |
+| `TB-CV-002` | Hartley and Zisserman, *Multiple View Geometry in Computer Vision*, 2nd ed. (2004); rigorous | Background part: projective geometry and transformations in two and three dimensions, estimation of planar transformations by direct linear methods and maximum likelihood, algorithm evaluation and error analysis; single-view part: camera models, computation of the camera matrix, calibration and vanishing structure; two-view part: epipolar geometry, the fundamental and essential matrices, projective and stratified reconstruction, computation of the fundamental matrix, triangulation, scene planes and homographies, affine epipolar geometry; three-view and N-view parts: the trifocal tensor and its computation, multiple-view tensors, auto-calibration, duality and cheirality | `M42` later chapters, `ML-9`, `DL-NLP-CV-AUDIO` geometry gate | `SRC-CV-003`, `SRC-CV-004`; `confirmed` |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-DSP-001` | Oppenheim and Schafer, *Discrete-Time Signal Processing*, 3rd ed. (2010); rigorous | Chs. 1-4: discrete-time signals and systems, the z-transform and its region of convergence, sampling of continuous-time signals; Chs. 5-7: transform analysis of linear time-invariant systems, realization structures, FIR and IIR filter design; Chs. 8-10: the discrete Fourier transform, fast algorithms for computing it, and Fourier analysis of signals in practice; Chs. 11-12: parametric signal modelling and discrete Hilbert transforms, with appendices on random signals and continuous-time filters | `M36` z-transform slice, `M41`, `MML-11`, `DL-NLP-CV-AUDIO` | ToC `SRC-DSP-001`; `SRC-DSP-002` corroborates the ISBN and only a partial, reordered chapter list; `single-sourced, unverified` |
+| `TB-CV-001` | Gonzalez and Woods, *Digital Image Processing*, 4th ed. (2018); applied/image | Chs. 1-2: imaging fundamentals, sampling and quantization, pixel relationships, and the mathematical toolset including probability; Chs. 3-5: intensity transformations and spatial filtering, frequency-domain filtering, restoration and reconstruction with noise models and inverse, Wiener and constrained least-squares filters; Chs. 6-8: wavelet and other image transforms, colour processing, compression and watermarking; Chs. 9-11: morphological processing, then segmentation by edge detection and thresholding and by active contours and level sets; Chs. 12-13: feature extraction and image pattern classification including neural approaches | `M42`, `MML-11`, `ML-9`, `DL-NLP-CV-AUDIO` image gate, S16 | ToC `SRC-CV-001`; `single-sourced, unverified` because `SRC-CV-002` conflicts on the ordering of the transform and colour chapters rather than corroborating it |
+| `TB-CV-003` | Richard Szeliski, *Computer Vision: Algorithms and Applications*, 2nd ed. (2022); applied | Chs. 1-4: introduction, image formation and photometry, image processing operators, model fitting and optimization; Chs. 5-6: deep learning and recognition; Chs. 7-9: feature detection and matching, image alignment and stitching, motion estimation; remaining chapters: computational photography, structure from motion, depth and stereo, 3D reconstruction, image-based rendering, and applications, with appendices on linear algebra, numerical methods, estimation, datasets and software | `M42` later chapters, `ML-9`, `DL-NLP-CV-AUDIO` vision gate, S16 | ToC `SRC-CV-005`; edition identity `SRC-CV-006`; `single-sourced, unverified` |
+
+##### 17.1.9.1 Signals, Image, and Vision Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M41` | `TB-DSP-002`, `TB-ENG-001` Ch. 11 | `TB-DSP-001` | `GAP:` the applied tier is closed for sampling, convolution, the DFT, filtering, and LTI systems, but the rigorous tier rests on one unverified record. Aliasing, the sampling theorem, FIR/IIR design method detail, and cepstral analysis have no second confirmed source; cepstrum in particular has none at all |
+| `M42` | `TB-CV-002` for the geometry chapters | `TB-CV-001`, `TB-CV-003` | `GAP:` the core image-processing content of `M42` -- 2D convolution, spatial and frequency-domain filters, restoration, noise models, histogram equalization, and morphology -- rests entirely on `TB-CV-001`, which no second source corroborates. This is the largest gap in this batch |
+| `MML-11` | `TB-DSP-002` | `TB-DSP-001`, `TB-CV-001` | `GAP:` one-dimensional convolution, correlation, sampling, the DFT and windowing are closed at the applied tier. Two-dimensional convolution, morphology, spectrogram and MFCC intuition are not; MFCC is deferred to the speech batch |
+| `DL-NLP-CV-AUDIO` DSP, image, and vision slices | `TB-DSP-002`, `TB-CV-002` | `TB-DSP-001`, `TB-CV-001`, `TB-CV-003` | partially covered; inherits the `M41` and `M42` gaps |
+| `ML-9` | `TB-CV-002` for the geometry half; `TB-DSP-002` for the audio half | `TB-CV-001`, `TB-CV-003`, `TB-SPCH-001` | `GAP:` pixels, two-dimensional convolution and image filters rest on `TB-CV-001` alone; image embeddings, OCR and document extraction, MFCC intuition, and multimodal retrieval have no confirmed source. The audio-framing and windowing half is closed by `TB-DSP-002` |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Proakis and Manolakis; Lyons; Lathi; Oppenheim and Willsky; Proakis and Salehi | Cited in the source corpus. Not fetched in this batch; left as unresearched candidates for closing the `M41` gap rather than treated as evidence. |
+| Forsyth and Ponce, *Computer Vision: A Modern Approach* | Canonical lead for the `M42` gap; not fetched in this batch. |
+| Course-hosted PDF copies of Oppenheim and Gonzalez surfaced by search | Excluded as unauthorized scans of in-copyright works. |
+
+
+#### 17.1.10 Verified Bibliography and Chapter Atlas: Speech, ASR, and Automata
+
+Covers `M43`, `M44`, and the speech slice of `DL-NLP-CV-AUDIO`. This batch returned no `confirmed` record and is the thinnest area of the whole audit; the result is reported as found rather than padded.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-SPCH-001` | Yu and Deng, *Automatic Speech Recognition: A Deep Learning Approach* (2014); rigorous/neural | Ch. 1: introduction; Chs. 2-3: conventional acoustic models built on Gaussian mixtures and hidden Markov models and their variants; Chs. 4-5: deep neural networks and initialization techniques; Chs. 6-8: hybrid deep-network and hidden-Markov systems, training and decoding speedups, sequence-discriminative training; Chs. 9-11: learned feature representations, fusion of neural and mixture systems, speaker and environment adaptation; remaining chapters: representation sharing and further advanced models | `M43`, `DL-NLP-CV-AUDIO` speech gate, S15 | ToC `SRC-SPCH-001`; edition identity `SRC-SPCH-002`; `single-sourced, unverified` |
+| `TB-NLP-001` | Jurafsky and Martin, *Speech and Language Processing*, 3rd edition draft; applied/theory | Volume I: tokenization, n-gram language models, logistic regression for text classification, embeddings, neural networks, transformers and pretraining, post-training; Volume II: masked language models, interpretability, retrieval and retrieval-augmented generation, machine translation, recurrent and long short-term memory networks, phonetics and speech features, automatic speech recognition, text-to-speech; Volume III: sequence labelling, constituency and dependency parsing, information extraction, semantic roles, sentiment lexicons, coreference, discourse and conversation | `M43` feature slice, `M45`, `ML-8`, `DL-NLP-CV-AUDIO`, `GENAI-RAG-AGENTS` | ToC `SRC-NLP-001`; `SRC-NLP-002` identifies only the earlier published 2nd edition; `single-sourced, unverified`. This is a living draft, not a fixed edition, so the contract's exact-edition requirement cannot be satisfied; cite it with a retrieval date |
+| `TB-AUT-001` | Hopcroft, Motwani and Ullman, *Introduction to Automata Theory, Languages, and Computation*, 3rd ed. (2006); rigorous | Opening chapters: proof methods, finite automata, regular expressions and languages; later chapters reported as twelve in total but not exposed by any legitimate source reached in this pass | `M44` discrete prerequisite, `PROOF-DISCRETE`, `ML-8` constrained-decoding gate | partial ToC `SRC-AUT-001`; edition identity `SRC-AUT-002`; `single-sourced, unverified` |
+
+##### 17.1.10.1 Speech, ASR, and Automata Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M43` | none confirmed | `TB-SPCH-001`, `TB-NLP-001`, `TB-DSP-001` | `GAP:` no confirmed source at either tier. Speech production and hearing, MFCC and PLP feature extraction, i-vectors, phonetic decision trees, and state clustering have no verified textbook; hidden Markov models, Gaussian mixtures, expectation-maximization, and the forward-backward algorithm are carried only by unverified records |
+| `M44` | none confirmed | `TB-AUT-001` | `GAP:` weighted finite-state transducers are not covered by any textbook record in this file at any evidence level. The H, C, L and G composition, determinization, minimization, epsilon removal, and disambiguation symbols are documented only by the OpenFst and Kaldi project documentation already cited in the module, which is official documentation rather than a textbook |
+| `DL-NLP-CV-AUDIO` speech slice | none confirmed | `TB-SPCH-001`, `TB-NLP-001` | `GAP:` inherits both module gaps |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Rabiner and Juang, *Fundamentals of Speech Recognition* | Cited in the source corpus. No legitimate edition-matched ToC source was reached; not fetched successfully in this pass. |
+| Huang, Acero and Hon, *Spoken Language Processing* | Same decision. The existing chapter map in §18.2 predates this audit and is not exact-edition verified. |
+| Quatieri, *Discrete-Time Speech Signal Processing* | Same decision; the `M43` cepstral prerequisite therefore remains unverified. |
+| Ullman's Stanford automata page | The author-hosted page that reportedly carries the contents refused connection during this pass. |
+| Sipser, *Introduction to the Theory of Computation* | Not fetched; a reasonable alternative lead for the `M44` discrete prerequisite. |
+| Mohri, Pereira and Riley WFST literature | Papers and project documentation, not textbooks. They remain the module's primary sources but cannot clear a textbook gap under this contract. |
+
+
+#### 17.1.11 Verified Bibliography and Chapter Atlas: Classical Machine Learning
+
+Covers `ML-1` through `ML-7`, `ML-10`, `ML-11`, and the `ML-CORE` owner node.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-ML-002` | James, Witten, Hastie and Tibshirani, *An Introduction to Statistical Learning*, 2nd ed. (2021); applied | Early chapters: what statistical learning is, linear regression, classification; middle chapters: resampling and cross-validation, model selection and shrinkage, moving beyond linearity, tree-based methods including random forests and boosting; later chapters: support vector machines, deep learning, survival analysis, unsupervised learning and clustering, and multiple testing. Each chapter ends with an R implementation walkthrough | `ML-1`, `ML-3`, `ML-4`, `ML-5`, `ML-6`, `ML-11`, `ML-CORE`, `MML-6`, S11 | `SRC-ML-003`, `SRC-ML-004`; `confirmed`; the author site lists topics rather than numbered chapters, so the match is on sequence rather than on numbering |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-ML-001` | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009); rigorous | Chs. 1-4: supervised learning overview, linear methods for regression and for classification; Chs. 5-8: basis expansions and regularization, kernel smoothing, model assessment and selection, inference and averaging including the bootstrap; Chs. 9-10: additive models, trees, and boosting; later chapters: neural networks, support vector machines, prototype methods, unsupervised learning and clustering, random forests, ensemble methods, graphical models, and high-dimensional problems | `ML-3`, `ML-4`, `ML-5`, `ML-6`, `ML-CORE`, `PROB-STAT-INFO`, S11 | ToC `SRC-ML-001`; edition identity `SRC-ML-002`; `single-sourced, unverified` |
+
+##### 17.1.11.1 Classical ML Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `ML-1` | `TB-ML-002` Ch. 2 | `TB-ML-001` | `GAP:` problem framing is partly covered, but labels, leakage, delayed labels, cold start, and feedback loops are production concerns with no textbook owner here; they belong to the production batch |
+| `ML-2` | none confirmed | none | `GAP:` feature engineering, the hashing trick, missing-value strategy, and train/serve parity have no textbook record in this audit at any evidence level |
+| `ML-3` | `TB-ML-002`, `TB-PROB-002` | `TB-ML-001` Ch. 7 | closed for train/validation/test splits, cross-validation, confusion matrices, precision, recall, and ROC. `GAP:` ranking metrics such as MAP, NDCG and MRR, and calibration, have no confirmed source |
+| `ML-4` | `TB-ML-002` | `TB-ML-001` | closed: k-nearest neighbours, linear and logistic regression, naive Bayes, discriminant analysis, support vector machines, and regularization |
+| `ML-5` | `TB-ML-002` | `TB-ML-001` Chs. 9-10 | closed: decision trees, impurity, random forests, gradient boosting, and feature importance. `GAP:` monotonic constraints |
+| `ML-6` | `TB-ML-002` unsupervised chapter | `TB-ML-001` | `GAP:` k-means and clustering are covered by one confirmed record, but Gaussian mixtures with expectation-maximization, DBSCAN, isolation forests, and reconstruction-error anomaly detection are not |
+| `ML-7` | `TB-IR-001` | `TB-ML-001` | closed for inverted indexes, term weighting, the vector space model, evaluation, and clustering. `GAP:` approximate nearest neighbour indexes, collaborative filtering, matrix factorization, learning to rank, and diversity or fairness in result sets have no textbook record |
+| `ML-10` | none confirmed | `TB-IR-001` link-analysis chapters | `GAP:` graph machine learning and entity resolution. PageRank and link analysis are covered; graph features, random-walk embeddings, label propagation, and blocking are not |
+| `ML-11` | `TB-ML-002` survival and regression chapters partial; `TB-ENG-001` Chs. 22-23 for the optimization half | none | `GAP:` time-series forecasting is the clearest hole. Moving averages, exponential smoothing, seasonality, autoregressive models, and quantile forecasting have no textbook record in this audit |
+| `ML-CORE` | `TB-ML-002`, `TB-IR-001`, `TB-PROB-003` | `TB-ML-001`, `TB-PROB-004` | supervised learning, evaluation, trees and ensembles are covered; features, unsupervised density modelling, retrieval and ranking beyond IR, graph methods, and forecasting are not |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Bishop, *Pattern Recognition and Machine Learning* | The author's current site now redirects to the newer Bishop and Bishop deep-learning volume; no legitimate edition-matched ToC for the 2006 book was reached in this pass. |
+| Duda, Hart and Stork, *Pattern Classification*, 2nd ed. | Not fetched; left as an unresearched candidate. |
+| Murphy, *Probabilistic Machine Learning: An Introduction* (2022) | MIT Press exposes ISBN and date but no ToC; the author's long-contents PDF was not located at a working URL. Left unverified. |
+| Geron, *Hands-On Machine Learning*; Shalev-Shwartz and Ben-David | Not fetched. |
+| Hyndman and Athanasopoulos, *Forecasting: Principles and Practice* | The obvious open-access lead for the `ML-11` forecasting gap; not fetched in this pass. |
+
+#### 17.1.12 Verified Bibliography and Chapter Atlas: Deep Learning and Sequence Models
+
+Covers the folded DL Modules 1-7, `M45`, `ML-14`, and the neural slice of `DL-NLP-CV-AUDIO`.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-DL-001` | Goodfellow, Bengio and Courville, *Deep Learning* (2016); rigorous | Part I: linear algebra, probability and information theory, numerical computation, and machine learning basics including capacity and the bias-variance tension; Part II: deep feedforward networks, regularization, optimization for training, convolutional networks, recurrent and recursive sequence models, practical methodology, and applications; Part III: linear factor models, autoencoders, representation learning, structured probabilistic models, Monte Carlo methods, the partition function, approximate inference, and deep generative models | folded DL Modules 1-7, `M45` background, `ML-14`, `DL-NLP-CV-AUDIO`, S15-S16 | `SRC-DL-001`, `SRC-DL-002`; `confirmed`; the second source states the same part-and-topic sequence in prose rather than as a numbered list |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-DL-002` | Simon J. D. Prince, *Understanding Deep Learning* (2023); applied/theory | Early chapters: supervised learning framing, shallow then deep networks, activation functions, loss functions for regression and binary and multiclass classification; middle chapters: gradient descent, stochastic and momentum variants, Adam, backpropagation and initialization, measured performance and the bias-variance and double-descent picture, regularization and ensembling; later chapters: one- and two-dimensional convolution and resampling, residual connections and batch normalization, self-attention and multi-head attention with tokenization and decoding, graph networks, generative adversarial networks, normalizing flows, and latent-variable models | folded DL Modules 2-7, `M45`, `ML-14` | metadata `SRC-DL-003`; chapter sequence inferred from the author's numbered notebooks `SRC-DL-004`; `single-sourced, unverified`, and the chapter titles are inferred from exercise names rather than a published ToC |
+| `TB-DL-003` | Zhang, Lipton, Li and Smola, *Dive into Deep Learning* (2023); applied | Chs. 1-6: introduction, preliminaries, linear networks for regression and classification, multilayer perceptrons, and implementation patterns; Chs. 7-11: convolutional networks and modern architectures, recurrent and modern recurrent networks, attention mechanisms and transformers; Chs. 12-16: optimization algorithms, computational performance, computer vision, and natural language pretraining and applications; Chs. 17-21: reinforcement learning, Gaussian processes, hyperparameter optimization, generative adversarial networks, recommender systems, with mathematical and tooling appendices | folded DL Modules 2-7, `M45`, `ML-7`, `ML-14`, `DL-NLP-CV-AUDIO` | ToC `SRC-DL-005`; `single-sourced, unverified` |
+| `TB-DL-004` | Bishop and Bishop, *Deep Learning: Foundations and Concepts* (2024); rigorous | Presented as many short single-topic chapters in linear progression, with a self-contained probability introduction and coverage of contemporary architectures. Chapter-level detail was not exposed by any legitimate source reached | folded DL Modules 1-7, `M45`, `ML-14` | edition identity `SRC-DL-006`, `SRC-DL-007`; no chapter list reached; `candidate` |
+
+##### 17.1.12.1 Deep Learning Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| Folded DL Module 1 (math and ML primitives) | `TB-DL-001` Part I, `TB-MATH-006`, `TB-PROB-003` | `TB-ML-001`, `TB-DL-003` | closed |
+| Folded DL Modules 2-3 (neural nets, IIT Module 4) | `TB-DL-001` Chs. 6-8 | `TB-DL-002`, `TB-DL-003`, `TB-DL-004` | `GAP:` one confirmed source. Perceptrons, feedforward layers, backpropagation, regularization and optimizers are covered by it; the newer activations (GELU, Swish) and layer normalization are not, since the confirmed record predates them |
+| Folded DL Module 4 (CNNs) | `TB-DL-001` Ch. 9 | `TB-DL-003`, `TB-CV-003` | `GAP:` one confirmed source; specific architectures beyond 2016 and modern detection and segmentation methods are not covered by it |
+| Folded DL Module 5 (sequence models) | `TB-DL-001` Ch. 10 | `TB-DL-003`, `TB-NLP-001` | `GAP:` one confirmed source for recurrent networks, long short-term memory, gated units, and encoder-decoder models |
+| `M45` (attention and transformers) | none confirmed | `TB-DL-002`, `TB-DL-003`, `TB-NLP-001` | `GAP:` no confirmed source. Scaled dot-product attention, multi-head projections, positional encoding, residual connections, decoder masking, and the BERT/GPT/T5 families rest entirely on unverified records and on the papers already cited in the module |
+| Folded DL Module 7 (generative models) | `TB-DL-001` Part III | `TB-DL-002`, `TB-DL-003` | `GAP:` autoencoders, representation learning, and deep generative models are covered by one confirmed record; variational autoencoders are marginal in it, and diffusion models and normalizing flows postdate it entirely |
+| `ML-14` | `TB-DL-001` | `TB-DL-002`, `TB-DL-003` | `GAP:` tensors, computational graphs, multilayer perceptrons, backpropagation, regularization and optimizers are closed by one confirmed record; attention heads, positional encodings, residual connections and decoder masking are not |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Chollet, *Deep Learning with Python* | Not fetched; an applied-tier lead. |
+| Cambridge catalog page for *Dive into Deep Learning* | Returned HTTP 500 during this pass, so the second source for `TB-DL-003` is still missing. |
+| Vaswani et al. and the transformer paper corpus | Papers, not textbooks. They remain `M45`'s primary sources but cannot clear a textbook gap under this contract. |
+
+
+#### 17.1.13 Verified Bibliography and Chapter Atlas: NLP, Information Retrieval, and GenAI Systems
+
+Covers `ML-8`, the folded IIT Modules 7-13, and the `GENAI-RAG-AGENTS` owner node.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-IR-001` | Manning, Raghavan and Schuetze, *Introduction to Information Retrieval* (2008); rigorous/applied | Chs. 1-5: boolean retrieval, term vocabularies and postings lists, tolerant retrieval and dictionaries, index construction, index compression; Chs. 6-9: term weighting and the vector space model, complete scoring systems, retrieval evaluation, relevance feedback and query expansion; Chs. 10-12: structured retrieval, probabilistic retrieval, and language models for retrieval; Chs. 13-18: text classification with naive Bayes and vector-space methods, support vector machines on documents, flat and hierarchical clustering, matrix decompositions and latent semantic indexing; Chs. 19-21: web search, crawling and indexing, and link analysis | `ML-7`, `ML-8`, folded IIT Module 8, `GENAI-RAG-AGENTS`, `ML-CORE`, S17 | `SRC-IR-001`, `SRC-IR-002`; `confirmed` |
+
+##### 17.1.13.1 NLP, IR, and GenAI Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `ML-8` classical half | `TB-IR-001` | `TB-NLP-001` | closed for tokenization at the index level, TF-IDF, BM25-style weighting, inverted indexes, and evaluation |
+| `ML-8` LLM half | none confirmed | `TB-NLP-001`, `TB-DL-003` | `GAP:` transformer blocks at architecture level, prompts, context windows, structured outputs, prompt injection, safety filters, and grammar-constrained decoding have no confirmed textbook source |
+| Folded IIT Module 7 (prompt engineering) | none confirmed | `TB-NLP-001` post-training chapter | `GAP:` no textbook record. Zero-shot, few-shot, chain-of-thought, self-consistency, tree-of-thought, ReAct, and tool-calling rest entirely on the lecture bank in §6.9-6.10 and on the cited papers |
+| Folded IIT Module 8 (RAG) | `TB-IR-001` for the retrieval substrate | `TB-NLP-001` retrieval chapter | `GAP:` chunking strategy, dense and hybrid retrieval, cross-encoder reranking, IVF, product quantization, HNSW, and agentic RAG have no confirmed textbook source; only the classical IR substrate does |
+| Folded IIT Module 9 (PEFT) | none confirmed | none | `GAP:` LoRA, QLoRA and adapter methods have no textbook record at any evidence level; they rest on the cited papers |
+| Folded IIT Modules 10-11 (multimodal and agents) | none confirmed | `TB-CV-003` Ch. 5 partial | `GAP:` cross-attention over text and image, vision encoders, plan-act-track loops, graph orchestration, and memory across stateless endpoints have no textbook record |
+| Folded IIT Modules 12-13 (serving, safety, hardware) | none confirmed | none | `GAP:` deferred to the production batch; paged attention serving, quantization, pruning and distillation have no textbook record |
+| `GENAI-RAG-AGENTS` | `TB-IR-001` | `TB-NLP-001`, `TB-DL-003` | `GAP:` this owner node is the least textbook-supported in the whole audit. Its subject matter postdates most published textbooks, so official documentation and papers remain its primary sources by necessity, not by omission |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Russell and Norvig, *Artificial Intelligence: A Modern Approach*, 4th ed. | The Berkeley author-hosted contents page refused connection from both tools during this pass. Left unverified. |
+| Manning and Schuetze, *Foundations of Statistical Natural Language Processing* | Not fetched in this pass. |
+| Tunstall, von Werra and Wolf, *Natural Language Processing with Transformers* | Not fetched; the most likely applied-tier lead for the `ML-8` LLM gap. |
+
+#### 17.1.14 Verified Bibliography and Chapter Atlas: Reinforcement Learning, Bandits, and Causality
+
+Covers `ML-12` and `MML-9`.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-RL-002` | Lattimore and Szepesvari, *Bandit Algorithms* (2020); rigorous | Part I: probability foundations, stochastic processes and Markov chains, the stochastic bandit model, concentration inequalities; Part II: explore-then-commit and the upper confidence bound family with asymptotic, minimax and Bernoulli variants; Part III: adversarial bandits via exponential-weight algorithms; Part IV: lower bounds and the information-theoretic tools behind them; Part V: contextual and linear bandits, least-squares confidence sets and optimal design, sparsity; later parts: convex analysis, mirror descent and regularized-leader methods, combinatorial and non-stationary bandits, ranking, pure exploration, Bayesian bandits, Thompson sampling, partial monitoring, and Markov decision processes | `ML-12`, `MML-9`, `MLSYS-5` | `SRC-RL-003`, `SRC-RL-004`; `confirmed` |
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-RL-001` | Sutton and Barto, *Reinforcement Learning: An Introduction*, 2nd ed. (2018); rigorous | Part I: the tabular setting, covering bandits including upper confidence bound methods, finite Markov decision processes, dynamic programming, Monte Carlo methods, temporal-difference learning with expected Sarsa and double learning, n-step methods and planning; Part II: approximate solution methods with function approximation, artificial neural networks, the Fourier basis, off-policy learning and policy-gradient methods; Part III: relationships to psychology and neuroscience, and case studies | `ML-12`, `MML-9`, `ML-CORE` | edition identity `SRC-RL-001`; part structure `SRC-RL-002`; `single-sourced, unverified`, since neither source exposes a chapter-level list |
+
+##### 17.1.14.1 RL, Bandits, and Causality Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `ML-12` bandit half | `TB-RL-002` | `TB-RL-001` | closed: exploration and exploitation, contextual bandits, upper confidence bound methods, and Thompson sampling |
+| `ML-12` RL half | none confirmed | `TB-RL-001`, `TB-DL-003` Ch. 17 | `GAP:` Markov decision processes, dynamic programming, temporal-difference learning, and policy gradients rest on one unverified record; off-policy evaluation has no confirmed source |
+| `ML-12` causal half | none confirmed | `TB-PROB-004` causal-inference chapter | `GAP:` causal graphs, observational bias, propensity weighting, and uplift modelling have no confirmed textbook source |
+| `MML-9` | `TB-RL-002` for bandits and Markov decision processes | `TB-RL-001`, `TB-PROB-004` | `GAP:` directed acyclic graphs, confounding, propensity scores, difference-in-differences, and uplift metrics are uncovered by any confirmed record |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Hernan and Robins, *Causal Inference: What If* | The Harvard author-hosted page now redirects to a staff profile; the book site was not reached. This is the strongest lead for the causal gap and should be retried at its current URL. |
+| Pearl, *Causality*; Pearl, Glymour and Jewell, *Causal Inference in Statistics: A Primer* | Not fetched in this pass. |
+| banditalgs.com | The authors' companion site presented an expired certificate; not used. |
+
+#### 17.1.15 Verified Bibliography and Chapter Atlas: Production ML and MLOps
+
+Covers `M46`, `ML-13`, `MLSYS-1` through `MLSYS-9`, and the `ML-SYS-MLOPS` owner node. The already-confirmed `TB-DIST-001` in §17.1.4 remains the data-platform reference for this area and is not re-researched.
+
+No record in this batch reached `confirmed` status.
+
+Fetched candidates retained at the evidence level reached:
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-MLSYS-001` | Chip Huyen, *Designing Machine Learning Systems* (2022); implementation/operations | Chs. 1-2: what makes machine-learning systems distinctive and how to frame their design; Chs. 3-5: data engineering foundations, training data and sampling and labelling strategy, feature engineering; Chs. 6-7: model development and offline evaluation, then deployment and prediction-serving patterns; Chs. 8-9: data distribution shift and monitoring, continual learning and testing in production; later chapters cover platform infrastructure and the human side of the work | `M46`, `ML-1`, `ML-2`, `ML-3`, `MLSYS-1` to `MLSYS-9`, `ML-SYS-MLOPS`, S17 | ToC `SRC-MLSYS-001`; edition identity `SRC-MLSYS-002`; `single-sourced, unverified`; the publisher listing truncates after Ch. 9 |
+
+##### 17.1.15.1 Production ML Module Audit and Gaps
+
+| Modules or owner | Accepted records | Candidate or unverified records | Audit result |
+|---|---|---|---|
+| `M46` | `TB-DIST-001` for the data platform | `TB-MLSYS-001` | `GAP:` no confirmed ML-specific source. The module is anchored to the official Google PMLE exam guide and Vertex product documentation, which are current primary sources and remain correct for a certification target; the textbook layer is thin by nature here |
+| `ML-13` | none confirmed | `TB-MLSYS-001` responsible-ML material | `GAP:` privacy, PII minimization, abuse resistance, model bias and fairness, explanation, and human-in-the-loop review have no confirmed textbook record. `TB-SEC-001` in §17.1.4 covers the security and privacy half at `confirmed` level and is the nearest available anchor |
+| `MLSYS-1`, `MLSYS-3`, `MLSYS-5` | none confirmed | `TB-MLSYS-001` | `GAP:` metric framing, training and evaluation pipelines, and experimentation rest on one unverified record; A/B testing and CUPED inherit the `MML-6` gap |
+| `MLSYS-2`, `MLSYS-4`, `MLSYS-8` | `TB-DIST-001`, `TB-OPS-001`, `TB-OPS-002` from §17.1.4 | `TB-MLSYS-001` | covered at the systems level by the frozen software records; the ML-specific feature-store and serving detail rests on one unverified record |
+| `MLSYS-6`, `MLSYS-7` | `TB-OPS-001`, `TB-OPS-002`, `TB-SEC-001` from §17.1.4 | `TB-MLSYS-001` | monitoring, incident response and governance are covered generically; drift detection and model-abuse specifics are not |
+| `MLSYS-9` | not applicable | not applicable | this slice is a case-study rotation over the `MLCASE` corpus, not a textbook target. No `GAP:` is recorded because no textbook is expected |
+| `ML-SYS-MLOPS` | `TB-DIST-001`, `TB-OPS-001`, `TB-OPS-002` | `TB-MLSYS-001` | the systems substrate is covered; the ML-specific layer needs a second confirmed source |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Lakshmanan, Robinson and Munn, *Machine Learning Design Patterns* | The O'Reilly page returned 403 to WebFetch and was not retried in the browser before this batch closed. The strongest lead for a second confirmed production-ML record. |
+| Burkov, *Machine Learning Engineering*; Ameisen, *Building Machine Learning Powered Applications* | Not fetched. |
+| Google PMLE exam guide and Vertex documentation | Official primary sources, already cited in `M46`. Correct for the certification target but outside the textbook contract. |
+
 ## 18. Lossless NLP Diff Audit and Source Corpus
 
 The curated graph above is the teaching order. The bounded source blocks below preserve the original curriculum source material verbatim for lossless, self-contained use. Use the graph, dedupe ledger, and stage map above for execution; use these blocks as the complete retained source corpus.
@@ -1058,6 +1550,8 @@ The curated graph above is the teaching order. The bounded source blocks below p
 The unification pass used heading-aware chunking, concept canonicalization, and semantic owner assignment. Overlapping concepts are taught once through the owner nodes in §4 and the stage map in §5. Source chunks that contain unique wording, lists, chapter maps, tool inventories, specs, or provenance are retained verbatim below instead of being summarized away.
 
 Diff rule: every line from the broad curriculum source and the Nasiko curriculum source must be recoverable from the bounded source blocks below. If a future edit changes a source artifact, rerun the extraction diff before treating this unified curriculum as lossless.
+
+Diff rule amendment (2026-09-04): the §17.1 research pass now also writes verified textbook records into the subject blocks below, so those blocks are source-plus-research rather than purely source-preserved. Every such insertion is wrapped in `<!-- RESEARCH-ADDITION §17.1 -->` and `<!-- /RESEARCH-ADDITION -->` markers and adds only new lines; no source line is removed or reworded. Losslessness therefore still holds mechanically: strip every marked region together with the single blank line that separates it from the preceding source paragraph, and the remaining text is the original source corpus line for line. Run the extraction diff against that stripped form, not the raw section. This has been verified for the current file: after stripping, §18.2 differs from the pre-audit version by blank lines only, with zero content lines added, removed, or reworded.
 
 ### 18.2 Verbatim Source Blocks
 
@@ -1100,6 +1594,17 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 # 1. Bibliography
 
 ## ICSE Mathematics Series (Classes 6–10)
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified open-licensed stand-ins for this tier, compiled in §17.1.3 with two legitimate ToC sources each:
+
+| Book | Paraphrased coverage | Feeds |
+|---|---|---|
+| OpenStax *Contemporary Mathematics* (2023) — `TB-MATH-018` | Chs. 1-5 sets, logic, real-number systems and elementary number theory, numeral representation, algebra; Ch. 6 percent, discounts, markup, sales tax, simple and compound interest, budgeting, savings, loans, credit, income tax; Chs. 7-13 probability, statistics, measurement, geometry, voting, graphs | `M1`, `M2`, `M4`, `M16`, `M18`, `MML-0` |
+| Africk, *Elementary College Geometry*, 2021 ed. — `TB-MATH-015` | Chs. 1-2 lines, angles, triangle basics, congruence criteria; Chs. 3-4 quadrilaterals, similarity; Chs. 5-7 right-triangle trigonometry, area and perimeter, regular polygons and circles | `M14`, `M15`, `M16` |
+| Corral, *Elementary Trigonometry* v1.2 (2020) — `TB-MATH-014` | Chs. 1-2 right-triangle ratios, general-triangle laws; Chs. 3-5 identities, radian measure, graphing and inverses; Ch. 6 trigonometric equations, numerical root-finding, complex and polar forms | `M17`, `M23`, `M20` partial |
+
+The current Selina and R. S. Aggarwal editions named above could not be tied to two legitimate contents sources, so they remain unverified rather than removed.
+<!-- /RESEARCH-ADDITION -->
 
 - Concise Mathematics Series (Selina Publishers) — R.K. Bansal
 - Understanding ICSE Mathematics — M.L. Aggarwal
@@ -1115,6 +1620,16 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Mathematics Textbook for Class XII — Part II (2025–2026 edition)
 
 ## Higher Algebra and Classical Texts
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified algebra records compiled in §17.1.3:
+
+| Book | Paraphrased coverage | Feeds |
+|---|---|---|
+| OpenStax *Intermediate Algebra 2e* (2020) — `TB-MATH-013` | Chs. 1-4 number foundations, linear equations and inequalities, functions and graphs, linear systems including determinant-based solving; Chs. 5-9 polynomial functions, factoring, rational expressions, radicals, quadratics; Chs. 10-12 exponentials and logarithms, conics, sequences, series, binomial theorem | `M5-M8`, `M10`, `M11`, `M22`, `M25`, `M26`, `MML-1` |
+| OpenStax *Algebra and Trigonometry 2e* (2021) — `TB-MATH-007`, promoted to `confirmed` under `CORR-003` | Chs. 1-6 equations, inequalities, algebraic and transcendental functions; Chs. 7-10 unit circle, periodic functions, identities, further trigonometric applications; Chs. 11-13 systems and determinants, analytic geometry, sequences, probability, counting | `M5-M8`, `M20`, `M23-M25`, `MML-1`, `MML-2` |
+
+Hall and Knight, Loney, and Maron remain deferred: the existing references omit or conflate editions, so no exact edition could be verified.
+<!-- /RESEARCH-ADDITION -->
 
 - Higher Algebra — Hall & Knight
 - Plane Trigonometry (Part 1) — S.L. Loney
@@ -1129,6 +1644,9 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Arihant Skills in Mathematics Series (7 volumes) — Dr. S.K. Goyal & Amit M. Agarwal
 
 ## Number Theory
+<!-- RESEARCH-ADDITION §17.1 -->
+Correction `CORR-005`: Apostol appears in this file only through *Introduction to Analytic Number Theory*. That title is tangential to the calculus and analysis modules `M29-M38` and to `MATH-CALC-NUM`, and is not counted as evidence for them. The Apostol volume those modules actually need is *Calculus, Volume 1*, researched separately as `TB-CALC-006` in §17.1.5. The analytic number theory title is retained here on its own merits and is not removed.
+<!-- /RESEARCH-ADDITION -->
 
 - Elementary Number Theory (7th Edition) — David M. Burton
 - A Friendly Introduction to Number Theory (4th Edition) — Joseph H. Silverman
@@ -1141,6 +1659,15 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Elementary Number Theory in Nine Chapters — James J. Tattersall
 
 ## Proof and Abstract Algebra
+<!-- RESEARCH-ADDITION §17.1 -->
+Second confirmed proof text compiled in §17.1.3, joining Hammack:
+
+| Book | Paraphrased coverage | Feeds |
+|---|---|---|
+| Sundstrom, *Mathematical Reasoning: Writing and Proof* — `TB-MATH-016` | Chs. 1-4 proof-writing conventions, logical reasoning, proof construction, induction; Chs. 5-7 sets, functions, equivalence relations; Chs. 8-9 congruence-centred number theory, finite versus infinite cardinality | `M3`, `M19`, `M21`, `PROOF-DISCRETE` |
+
+The two legitimate sources agree on the nine-chapter structure but label it version 3 (2020) and version 2.1 (2022), so the version string is recorded as unsettled.
+<!-- /RESEARCH-ADDITION -->
 
 - An Introduction to Proof via Inquiry-Based Learning — Dana C. Ernst
 - Introduction to Proof — Ron Taylor
@@ -1151,6 +1678,15 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Abstract Algebra: Theory and Applications — Tom Judson
 
 ## Real Analysis and Measure Theory
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions verified in §17.1.5. Rudin and Spivak are `confirmed`; Abbott and Apostol Vol. 1 remain `single-sourced, unverified` and do not clear a gap on their own.
+
+| Book | Paraphrased coverage | Feeds |
+|---|---|---|
+| Rudin, *Principles of Mathematical Analysis*, 3rd ed. (1976) — `TB-CALC-004` | Chs. 1-3 ordered fields, real and complex systems, metric-space topology, sequences and series; Chs. 4-6 continuity, differentiation, the Riemann-Stieltjes integral; Chs. 7-8 function sequences, uniform convergence, equicontinuity, approximation, special functions; Chs. 9-11 several variables, differential forms, Lebesgue theory | `M38`, `MML-12`, `MATH-CALC-NUM` ceiling |
+| Spivak, *Calculus*, 4th ed. (2008) — `TB-CALC-003` | Part I number-system properties; Part II functions, graphs, limits, continuity, the three hard theorems, least upper bounds; Part III derivatives through elementary integration; Part IV polynomial approximation, sequences, series, uniform convergence, power series, complex analysis; Part V fields and construction of the reals | `M29-M33`, `M38`, `MML-12` |
+| Abbott, *Understanding Analysis*, 2nd ed. (2015) — `TB-CALC-005` | Chs. 1-3 the reals, sequences and series, topology of the line; Chs. 4-5 functional limits, continuity, the derivative; Chs. 6-8 function sequences and uniform convergence, the Riemann integral, project topics including the gamma function | `M29`, `M38`, `MML-12` |
+<!-- /RESEARCH-ADDITION -->
 
 - Introduction to Real Analysis — Dana C. Ernst
 - Analysis — W. Ted Mahavier
@@ -1161,6 +1697,16 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Principles of Mathematical Analysis — Walter Rudin
 
 ## Discrete Mathematics
+<!-- RESEARCH-ADDITION §17.1 -->
+Discrete and combinatorial candidates researched in §17.1.3. Both remain `single-sourced, unverified` and therefore do not clear the outstanding multinomial gap at `M22`:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Levin, *Discrete Mathematics: An Open Introduction*, 4th ed. (2024) — `TB-MATH-017` | Ch. 0 statements, sets, functions; Chs. 1-2 symbolic logic, proof techniques, graph theory; Chs. 3-4 counting, sequences; Chs. 5-6 discrete structures revisited, generating functions, number theory | `single-sourced, unverified`; the second record's contents still follow the 3rd-edition order |
+| Keller and Trotter, *Applied Combinatorics* (2017) — `TB-MATH-019` | Chs. 1-4 enumeration foundations, strings, sets, binomial coefficients, induction; Chs. 5-9 graphs, posets, inclusion-exclusion, generating functions, recurrences; Chs. 10-16 discrete probability, graph algorithms, network flows, enumeration under symmetry | `single-sourced, unverified` |
+
+Rosen remains `single-sourced, unverified` on an adoption schedule alone.
+<!-- /RESEARCH-ADDITION -->
 
 - Discrete Mathematics and Its Applications — Kenneth H. Rosen
 - Discrete and Combinatorial Mathematics: An Applied Introduction — Ralph P. Grimaldi
@@ -1171,22 +1717,65 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Linear Algebra and Its Applications — Gilbert Strang
 
 ## Higher Engineering Mathematics
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions verified in §17.1.6:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Kreyszig, *Advanced Engineering Mathematics*, 10th ed. (2011) — `TB-ENG-001` | Chs. 1-6 ordinary differential equations, systems, series solutions, special functions, Laplace transforms; Chs. 7-10 matrices, eigenvalue problems, vector calculus; Chs. 11-12 Fourier analysis and partial differential equations; Chs. 13-18 complex analysis; Chs. 19-21 numerics; Chs. 22-25 optimization, graphs, probability and statistics | `confirmed` |
+| Trefethen and Bau, *Numerical Linear Algebra* (1997) — `TB-ENG-002` | Six parts across forty lectures: matrix formulations and the SVD; QR and least squares; conditioning, floating point, backward stability; Gaussian elimination and Cholesky; eigenvalue algorithms; iterative and Krylov methods | `confirmed` |
+| Boyce, DiPrima, and Meade, *Elementary Differential Equations and Boundary Value Problems*, 11th ed. (2017) — `TB-ENG-003` | First- and second-order equations, numerical stepping, nonlinear stability, linear systems via eigenvalues, boundary value problems and Sturm-Liouville theory | `single-sourced, unverified` |
+
+Grewal remains deferred: no exact edition could be tied to two legitimate contents sources.
+<!-- /RESEARCH-ADDITION -->
 
 - Higher Engineering Mathematics (44th/45th Edition) — B.S. Grewal
 - Advanced Engineering Mathematics — Erwin Kreyszig
 
 ## Probability, Statistics, Inference
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions verified in §17.1.7:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Casella and Berger, *Statistical Inference*, 2nd ed. — `TB-PROB-003` | Chs. 1-4 probability, transformations and expectations, distribution families, multiple random variables; Chs. 5-6 random samples, sufficiency, data reduction; Chs. 7-10 point estimation, testing, interval estimation, asymptotics; Chs. 11-12 ANOVA and regression | `confirmed` |
+| Grinstead and Snell, *Introduction to Probability*, 2nd ed. (2006) — `TB-PROB-001` | Chs. 1-4 discrete and continuous distributions, combinatorics, conditional probability; Chs. 5-7 densities, expectation and variance, sums of random variables; Chs. 8-9 laws of large numbers, central limit theorem; Chs. 10-12 generating functions, Markov chains, random walks | `confirmed` |
+| OpenStax, *Introductory Statistics 2e* (2023) — `TB-PROB-002` | Sampling and descriptive statistics; probability and random variables; the normal distribution and central limit theorem; confidence intervals and one- and two-sample testing; chi-square, ANOVA, regression | `confirmed` |
+| Wasserman, *All of Statistics* (2004) — `TB-PROB-004` | Part I probability through convergence; Part II inference, bootstrap, testing, Bayesian methods, decision theory; Part III regression, multivariate models, independence, causal inference, graphical models, classification | `single-sourced, unverified` |
+| Jaynes, *Probability Theory: The Logic of Science* (2003) — `TB-PROB-005` | Part I plausible reasoning through sufficiency and repeated experiments; Part II entropy and transformation-group priors, decision theory, paradoxes, orthodox-method critique, model comparison, communication theory | `single-sourced, unverified` |
+<!-- /RESEARCH-ADDITION -->
 
 - Probability Theory: The Logic of Science — E.T. Jaynes
 - All of Statistics — Larry Wasserman
 - Statistical Inference — George Casella & Roger L. Berger
 
 ## Algorithms and Optimization
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions researched in §17.1.8:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Golub and Van Loan, *Matrix Computations*, 4th ed. (2013) — `TB-OPT-001` | Chs. 1-2 matrix multiplication, norms, orthogonality, the SVD; Chs. 3-6 general and structured linear systems, orthogonalization, least squares; Chs. 7-9 unsymmetric and symmetric eigenvalue algorithms, matrix functions; Chs. 10-12 large sparse problems, structured topics, tensor computations | `confirmed` |
+| Nocedal and Wright, *Numerical Optimization*, 2nd ed. (2006) — `TB-OPT-002` | Chs. 1-7 unconstrained methods, line search, trust region, conjugate gradient, quasi-Newton, large scale; Chs. 8-11 derivatives, derivative-free methods, least squares, nonlinear equations; Chs. 12-19 constrained theory, linear programming, quadratic programming, augmented Lagrangian, SQP, nonlinear interior point | `single-sourced, unverified` |
+| Boyd and Vandenberghe, *Convex Optimization* (2004) — `TB-OPT-003` | Theory: convex sets, convex functions, problem classes, duality; applications: approximation and fitting, statistical estimation, geometric problems; algorithms: unconstrained, equality-constrained, and interior-point minimization; appendices on mathematical and numerical linear algebra background | `single-sourced, unverified` |
+
+Luenberger, *Optimization by Vector Space Methods*, remains cited in this file but was not edition-verified. The `M39` Hilbert-space slice and the whole of `MML-7` are therefore recorded as open gaps rather than treated as covered.
+<!-- /RESEARCH-ADDITION -->
 
 - Introduction to Algorithms — Cormen, Leiserson, Rivest, Stein
 - Optimization by Vector Space Methods — David G. Luenberger
 
 ## Signals, Systems, Digital Signal Processing, Communications
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions researched in §17.1.9:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Downey, *Think DSP* (2012) — `TB-DSP-002` | Chs. 1-5 sounds and signals, harmonics, non-periodic signals, noise, autocorrelation; Chs. 6-8 discrete cosine and Fourier transforms, filtering and convolution; Chs. 9-11 numerical differentiation and integration, LTI systems, modulation and sampling | `confirmed` |
+| Oppenheim and Schafer, *Discrete-Time Signal Processing*, 3rd ed. (2010) — `TB-DSP-001` | Chs. 1-4 discrete-time signals and systems, the z-transform and its ROC, sampling; Chs. 5-7 transform analysis of LTI systems, realization structures, filter design; Chs. 8-10 the DFT, fast computation, practical Fourier analysis; Chs. 11-12 parametric modelling, discrete Hilbert transforms | `single-sourced, unverified` |
+
+Proakis and Manolakis, Lyons, Lathi, Oppenheim and Willsky, and Proakis and Salehi remain unresearched candidates rather than evidence.
+<!-- /RESEARCH-ADDITION -->
 
 - Signals and Systems — Alan V. Oppenheim & Alan S. Willsky
 - Digital Signal Processing: Principles, Algorithms, and Applications — John G. Proakis & Dimitris G. Manolakis
@@ -1196,11 +1785,36 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Digital Communications — John G. Proakis & Masoud Salehi
 
 ## Information Theory
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact edition researched in §17.1.7:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Cover and Thomas, *Elements of Information Theory*, 2nd ed. (2006) — `TB-PROB-006` | Chs. 1-3 entropy, relative entropy, mutual information, the asymptotic equipartition property, entropy rates; Chs. 4-8 compression, gambling, channel capacity, differential entropy, the Gaussian channel; Chs. 9-13 universal coding, Kolmogorov complexity, rate distortion, information-theoretic statistics, maximum entropy; Chs. 14-16 multiple access, portfolio theory, inequalities | `single-sourced, unverified` |
+
+`GAP:` `MML-8` needs a second confirmed information-theory text. MacKay is the obvious lead, but the author-hosted site refused automated access from two tools and no other edition-matched legitimate ToC was located.
+<!-- /RESEARCH-ADDITION -->
 
 - Elements of Information Theory — Cover & Thomas
 - Information Theory, Inference, and Learning Algorithms — David J.C. MacKay
 
 ## Machine Learning and AI
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions researched in §17.1.11, §17.1.12 and §17.1.14:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| James, Witten, Hastie and Tibshirani, *An Introduction to Statistical Learning*, 2nd ed. (2021) — `TB-ML-002` | Statistical learning framing, linear regression, classification; resampling and cross-validation, model selection and shrinkage, non-linearity, trees and ensembles; support vector machines, deep learning, survival analysis, unsupervised learning, multiple testing | `confirmed` |
+| Goodfellow, Bengio and Courville, *Deep Learning* (2016) — `TB-DL-001` | Part I applied maths, probability and information theory, numerical computation, ML basics; Part II feedforward networks, regularization, optimization, convolutional networks, sequence models, practical methodology, applications; Part III linear factor models, autoencoders, representation learning, structured probabilistic models, Monte Carlo, approximate inference, deep generative models | `confirmed` |
+| Lattimore and Szepesvari, *Bandit Algorithms* (2020) — `TB-RL-002` | Probability and concentration foundations; explore-then-commit and UCB families; adversarial bandits; lower bounds and information theory; contextual and linear bandits; convex analysis, mirror descent, combinatorial and non-stationary bandits, ranking, pure exploration, Bayesian bandits, Thompson sampling, MDPs | `confirmed` |
+| Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) — `TB-ML-001` | Supervised learning overview, linear regression and classification; basis expansions, kernel smoothing, model assessment, inference and averaging; additive models, trees, boosting; neural networks, SVMs, unsupervised learning, random forests, ensembles, graphical models, high-dimensional problems | `single-sourced, unverified` |
+| Prince, *Understanding Deep Learning* (2023) — `TB-DL-002` | Supervised framing, shallow and deep networks, activations and losses; gradient descent, momentum, Adam, backpropagation, initialization; bias-variance and double descent, regularization; convolution, residual connections, normalization; self-attention, tokenization, decoding; graph networks, GANs, normalizing flows, latent-variable models | `single-sourced, unverified`; chapter sequence inferred from the author's numbered notebooks |
+| Zhang, Lipton, Li and Smola, *Dive into Deep Learning* (2023) — `TB-DL-003` | Linear networks, multilayer perceptrons, implementation patterns; convolutional and modern convolutional networks; recurrent and modern recurrent networks; attention and transformers; optimization, performance, computer vision, NLP pretraining and applications; RL, Gaussian processes, hyperparameter optimization, GANs, recommender systems | `single-sourced, unverified` |
+| Sutton and Barto, *Reinforcement Learning: An Introduction*, 2nd ed. (2018) — `TB-RL-001` | Part I tabular methods: bandits, MDPs, dynamic programming, Monte Carlo, temporal difference, n-step, planning; Part II function approximation, neural networks, off-policy learning, policy gradients; Part III psychology, neuroscience, case studies | `single-sourced, unverified` |
+| Bishop and Bishop, *Deep Learning: Foundations and Concepts* (2024) — `TB-DL-004` | Many short single-topic chapters in linear progression with a self-contained probability introduction; chapter detail not exposed by any source reached | `candidate` |
+
+`GAP:` `M45` and the whole `GENAI-RAG-AGENTS` node have no confirmed textbook. Bishop's *Pattern Recognition and Machine Learning*, Murphy, Duda/Hart/Stork, Russell and Norvig, and Hernan and Robins were not edition-verified in this pass, so their chapter maps elsewhere in this file carry no verification claim.
+<!-- /RESEARCH-ADDITION -->
 
 - Pattern Recognition and Machine Learning — Christopher Bishop
 - Pattern Classification (2nd Edition) — Richard O. Duda, Peter E. Hart, David G. Stork
@@ -1214,6 +1828,15 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Dive into Deep Learning — Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola
 
 ## Image Processing and Computer Vision
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions researched in §17.1.9:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Hartley and Zisserman, *Multiple View Geometry*, 2nd ed. (2004) — `TB-CV-002` | Background projective geometry, transformations and estimation; single-view camera models and calibration; two-view epipolar geometry, fundamental and essential matrices, reconstruction, triangulation, scene planes; three-view trifocal tensor; N-view tensors, auto-calibration, duality, cheirality | `confirmed` |
+| Gonzalez and Woods, *Digital Image Processing*, 4th ed. (2018) — `TB-CV-001` | Chs. 1-2 imaging fundamentals, sampling, quantization, pixel relationships; Chs. 3-5 intensity transformations and spatial filtering, frequency-domain filtering, restoration and reconstruction; Chs. 6-8 wavelet and other transforms, colour, compression and watermarking; Chs. 9-11 morphology and segmentation; Chs. 12-13 feature extraction and pattern classification | `single-sourced, unverified`; the publisher catalog conflicts with the authors' contents on chapter order |
+| Szeliski, *Computer Vision: Algorithms and Applications*, 2nd ed. (2022) — `TB-CV-003` | Chs. 1-4 introduction, image formation, image processing, model fitting; Chs. 5-6 deep learning and recognition; Chs. 7-9 features, alignment and stitching, motion; later chapters computational photography, structure from motion, stereo, 3D reconstruction, image-based rendering | `single-sourced, unverified` |
+<!-- /RESEARCH-ADDITION -->
 
 - Digital Image Processing (4th Edition) — Rafael C. Gonzalez & Richard E. Woods
 - Computer Vision: Algorithms and Applications (2nd Edition, 2022) — Richard Szeliski
@@ -1221,10 +1844,28 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Multiple View Geometry in Computer Vision (2nd Edition) — Richard Hartley & Andrew Zisserman
 
 ## Information Retrieval
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact edition verified in §17.1.13:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Manning, Raghavan and Schuetze, *Introduction to Information Retrieval* (2008) — `TB-IR-001` | Chs. 1-5 boolean retrieval, vocabularies and postings, tolerant retrieval, index construction and compression; Chs. 6-9 term weighting and the vector space model, complete scoring systems, evaluation, relevance feedback; Chs. 10-12 structured and probabilistic retrieval, language models; Chs. 13-18 text classification, SVMs on documents, clustering, latent semantic indexing; Chs. 19-21 web search, crawling, link analysis | `confirmed` |
+<!-- /RESEARCH-ADDITION -->
 
 - Introduction to Information Retrieval — Christopher D. Manning, Prabhakar Raghavan, Hinrich Schütze
 
 ## Speech, Language, Weighted Automata
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact editions researched in §17.1.10. This area returned no `confirmed` record.
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Yu and Deng, *Automatic Speech Recognition: A Deep Learning Approach* (2014) — `TB-SPCH-001` | Ch. 1 introduction; Chs. 2-3 Gaussian mixtures and hidden Markov models; Chs. 4-5 deep networks and initialization; Chs. 6-8 hybrid DNN-HMM systems, training and decoding speedups, sequence-discriminative training; Chs. 9-11 representation learning, system fusion, adaptation; later chapters representation sharing and advanced models | `single-sourced, unverified` |
+| Jurafsky and Martin, *Speech and Language Processing*, 3rd edition draft — `TB-NLP-001` | Vol. I tokenization, n-grams, text classification, embeddings, neural networks, transformers, post-training; Vol. II masked models, interpretability, retrieval and RAG, translation, RNN/LSTM, phonetics, ASR, TTS; Vol. III sequence labelling, parsing, information extraction, semantic roles, sentiment, coreference, discourse | `single-sourced, unverified`; a living draft rather than a fixed edition |
+| Hopcroft, Motwani and Ullman, *Introduction to Automata Theory*, 3rd ed. (2006) — `TB-AUT-001` | Opening chapters proof methods, finite automata, regular expressions and languages; the remaining chapters were not exposed by any legitimate source reached | `single-sourced, unverified` |
+
+`GAP:` weighted finite-state transducers, the core of `M44`, have no textbook record at any evidence level. Rabiner and Juang, Huang/Acero/Hon, and Quatieri were not edition-verified, so the existing chapter maps for them elsewhere in this file predate the audit and carry no verification claim.
+<!-- /RESEARCH-ADDITION -->
 
 - Fundamentals of Speech Recognition — Lawrence Rabiner & Biing-Hwang Juang
 - Spoken Language Processing — X. Huang, A. Acero, H.W. Hon
@@ -1239,6 +1880,15 @@ Advanced mathematics is not automatically deferred. Keep it active when it is lo
 - Introduction to Automata Theory, Languages, and Computation — John E. Hopcroft, Rajeev Motwani, Jeffrey D. Ullman
 
 ## Production ML and Software Engineering
+<!-- RESEARCH-ADDITION §17.1 -->
+Exact edition researched in §17.1.15:
+
+| Book | Paraphrased coverage | Status |
+|---|---|---|
+| Huyen, *Designing Machine Learning Systems* (2022) — `TB-MLSYS-001` | Chs. 1-2 what makes ML systems distinctive and how to frame their design; Chs. 3-5 data engineering, training data, feature engineering; Chs. 6-7 model development and offline evaluation, deployment and prediction serving; Chs. 8-9 distribution shift and monitoring, continual learning and testing in production; later chapters platform infrastructure and the human side | `single-sourced, unverified`; the publisher listing truncates after Ch. 9 |
+
+The already-`confirmed` records in §17.1.4 -- Kleppmann `TB-DIST-001`, the two Google SRE volumes, and Anderson `TB-SEC-001` -- remain the systems, operations and security substrate for `MLSYS-2`, `MLSYS-4`, `MLSYS-6`, `MLSYS-7` and `MLSYS-8`. `GAP:` no confirmed ML-specific production text; Lakshmanan et al. is the strongest untried lead.
+<!-- /RESEARCH-ADDITION -->
 
 - Machine Learning Design Patterns — Valliappa Lakshmanan, Sara Robinson, Michael Munn
 - Designing Machine Learning Systems — Chip Huyen
@@ -2070,9 +2720,17 @@ Textbooks: Selina, Aggarwal, S. Chand, Frank, Together With, R.S. Aggarwal. JEE 
 
 Number systems, base transformations, place/local values, rounding/estimation, divisibility, prime factorization, GCD/HCF, LCM, BODMAS. Skills: fast integer manipulation, factorization pipelines, base-n representation.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-001`, `TB-MATH-018` (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
+
 ### M2 Rational fields and the real line `PREREQ`
 
 Field properties of ℚ, fraction conversion, repeating decimals, absolute value, negatives, real-line mappings, exponent laws.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-001`, `TB-MATH-018` (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
 
 ### M3 Set-theoretic foundations `PREREQ` · also IIT Module 1 discrete math
 
@@ -2082,9 +2740,17 @@ Definition, membership, roster vs set-builder, empty/finite/infinite, Cartesian 
 
 Unitary method, compounding ratios, continued proportion, direct/inverse variation, scale factors, componendo, dividendo, alternando, invertendo.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-001`, `TB-MATH-018` (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
+
 ### M5 Foundational algebra `PREREQ`
 
 Polynomial identities, substitution, framing expressions from words, linear equations in one variable.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-007`, `TB-MATH-013` (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
 
 ### M6 Linear inequations in one variable `PREREQ`
 
@@ -2122,21 +2788,41 @@ Grid lines \(ax+by=c\), slopes, **point intersections**. Slope, inclination, slo
 
 Congruence, similarity (AAA, SAS, AA), Thales / BPT, midpoint theorem, area ratios vs side ratios.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-MATH-015` (§17.1.3). `GAP:` a proof-first rigorous geometry text remains unverified.
+<!-- /RESEARCH-ADDITION -->
+
 ### M15 Circle geometry and tangents `PREREQ` (JEE aptitude)
 
 Chords, cyclic quads, angles in a segment, tangent theorems, intersecting chords, secants, concyclic points.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-MATH-015` Ch. 7 (§17.1.3). `GAP:` a proof-first rigorous geometry text remains unverified.
+<!-- /RESEARCH-ADDITION -->
 
 ### M16 Classical mensuration `PREREQ`
 
 Plane areas; SA and volume of cylinder, cone, sphere, hemisphere; combined solids.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-015` Ch. 6, `TB-MATH-018` geometry chapter (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
+
 ### M17 Foundational trigonometry `PREREQ`
 
 Six ratios (sine, cosine, tangent, secant, cosecant, cotangent), \(\sin^2\theta+\cos^2\theta=1\), heights and distances, elevation and depression.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-014`, `TB-MATH-007`, `TB-MATH-015` Ch. 5 (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
+
 ### M18 Commercial arithmetic `ARCHIVE`
 
 VAT/GST (CGST, SGST, IGST, ITC), recurring deposits, shares and dividends. Retained from Selina / Aggarwal Class 10 Ch. 1–3. Not a teaching destination.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-MATH-018` Ch. 6 (§17.1.3), covering percent, markup, tax, interest, loans, and credit. Remains `ARCHIVE`.
+<!-- /RESEARCH-ADDITION -->
 
 ## Tier 2 — Senior secondary and JEE `PREREQ`
 
@@ -2150,6 +2836,10 @@ Cartesian products, equivalence relations and classes, domain/codomain/range, in
 
 Field ℂ, conjugates, polar and Euler form \(e^{j\theta}\), modulus and principal argument, triangle inequalities, de Moivre, n-th roots of unity, geometric maps.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-007`, `TB-MATH-014` Ch. 6 (§17.1.3). `GAP:` roots of unity as cyclic-group structure.
+<!-- /RESEARCH-ADDITION -->
+
 ### M21 Combinatorics and permutations `PREREQ`
 
 Counting principle, permutations with/without repetition, circular permutations, combinations, constrained selection, partitions of identical objects. Rosen / Grimaldi / CLRS App. C.
@@ -2158,53 +2848,105 @@ Counting principle, permutations with/without repetition, circular permutations,
 
 Positive integral index, general and middle terms, coefficient identities, multinomial expansions.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text for the binomial half: `TB-MATH-013` Ch. 12 (§17.1.3). `GAP:` multinomial expansions rest on `TB-MATH-017` and `TB-MATH-019`, both `single-sourced, unverified`.
+<!-- /RESEARCH-ADDITION -->
+
 ### M23 Plane trigonometry and equations `PREREQ`
 
 Periodic graphs, addition/subtraction, multiple and half-angle, general solutions, inverse circular functions and principal values.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-014`, `TB-MATH-007` Chs. 7-10 (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
 
 ### M24 Advanced coordinate geometry: circle `PREREQ`
 
 General second-degree equation, parametric form, tangent and normal, chord of contact, director circle, orthogonal circles.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-007` Ch. 12, `TB-MATH-013` Ch. 11 (§17.1.3). `GAP:` JEE-level tangent, chord-of-contact, and pole-polar technique.
+<!-- /RESEARCH-ADDITION -->
+
 ### M25 Conic sections `PREREQ`
 
 Eccentricity-focus-directrix, parabola / ellipse / hyperbola, auxiliary circles, asymptotes, tangents and normals.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-007` Ch. 12, `TB-MATH-013` Ch. 11 (§17.1.3). `GAP:` JEE-level conic technique.
+<!-- /RESEARCH-ADDITION -->
 
 ### M26 Matrices, determinants, Cramer's rule `PREREQ`
 
 3×3 determinants, transpose, adjoint, inverse, row/column ops, diagonal / symmetric / skew-symmetric, simultaneous systems, Cramer's rule.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-MATH-002` §9.9 and `TB-MATH-007` §11.9 locate Cramer's rule directly; `TB-MATH-013` Ch. 4 covers determinant-based solving (§17.1.3).
+<!-- /RESEARCH-ADDITION -->
+
 ### M27 Vector algebra and triple products `PREREQ`
 
 Direction cosines/ratios, dot and cross, scalar triple \([a,b,c]\), vector triple \(a\times(b\times c)\).
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-MATH-012` Ch. 2 for dot and cross products (§17.1.3). `GAP:` scalar and vector triple products need a second confirmed source.
+<!-- /RESEARCH-ADDITION -->
 
 ### M28 Three-dimensional coordinate space `PREREQ`
 
 Skew lines, symmetric/unsymmetric line forms, planes, angles, point-to-plane distance.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-MATH-012` Ch. 2 for spatial lines, planes, distances, quadric surfaces, and cylindrical/spherical frames (§17.1.3). `GAP:` skew-line distance.
+<!-- /RESEARCH-ADDITION -->
+
 ### M29 Real limits and continuity `PREREQ`
 
 ε-δ definition, limit properties, IVT, indeterminate forms, L'Hôpital. Spivak Ch. 5–8; Maron; Rudin Ch. 4 later.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-CALC-001`, `TB-CALC-003` (§17.1.5).
+<!-- /RESEARCH-ADDITION -->
 
 ### M30 Differential calculus `PREREQ`
 
 First principles, product/quotient/chain, implicit and parametric, higher-order derivatives. Skill: finite-difference gradient kernels.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-CALC-001` Ch. 3, `TB-CALC-003` Part III (§17.1.5).
+<!-- /RESEARCH-ADDITION -->
+
 ### M31 Applications of derivatives `PREREQ`
 
 Rates, tangents/normals, Rolle and Lagrange MVT, monotonicity, local/absolute extrema. This is the first optimization habit used later in gradient descent.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-CALC-001` Ch. 4, `TB-CALC-003` Part III (§17.1.5).
+<!-- /RESEARCH-ADDITION -->
 
 ### M32 Indefinite and definite integration `PREREQ`
 
 Antiderivatives, substitution, parts, partial fractions, Riemann sums, FTC, properties of definite integrals.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-CALC-001` Ch. 5, `TB-CALC-002` Chs. 1-3, `TB-CALC-003` Part III (§17.1.5).
+<!-- /RESEARCH-ADDITION -->
+
 ### M33 Applications of integrals `PREREQ`
 
 Area under curves and between intersections, symmetry.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-CALC-001` Ch. 6, `TB-CALC-002` Ch. 2 (§17.1.5).
+<!-- /RESEARCH-ADDITION -->
+
 ### M34 Ordinary differential equations `PREREQ`
 
 Order, degree, formation, separable, homogeneous first-order, linear first-order, integrating factors. Skill: IVP numerical solvers.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-CALC-002` Ch. 4 (§17.1.5). `GAP:` a second confirmed source; the deeper treatment belongs to the engineering-mathematics batch.
+<!-- /RESEARCH-ADDITION -->
 
 ## Tier 3 — Undergraduate engineering mathematics `PREREQ`
 
@@ -2214,13 +2956,25 @@ Textbooks: Grewal, Kreyszig.
 
 Linear ODEs with constant coefficients, series solutions, Bessel and Legendre, Beta and Gamma, PDEs.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-ENG-001` Chs. 1-6 and 12 (§17.1.6). `GAP:` a second confirmed source; Beta and Gamma functions unverified.
+<!-- /RESEARCH-ADDITION -->
+
 ### M36 Advanced transform calculus `PREREQ` · feeds DSP
 
 Laplace and inverse, convolution theorem, Fourier series / integrals / transforms, discrete z-transform, ROC. Skill: frequency-domain analysis, transfer functions.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-ENG-001` Chs. 6 and 11 (§17.1.6). `GAP:` a second confirmed transform text, and the z-transform is deferred to the signals batch.
+<!-- /RESEARCH-ADDITION -->
+
 ### M37 Numerical methods and difference equations `PREREQ`
 
 Curve fitting, finite differences, interpolation, numerical differentiation/integration, Euler, RK4, difference equations. Skill: error-propagation modeling. Python hook: SciPy.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-ENG-001` Chs. 19-21, `TB-ENG-002` (§17.1.6).
+<!-- /RESEARCH-ADDITION -->
 
 ## Tier 4 — Graduate-level rigor, proof to Python
 
@@ -2228,13 +2982,25 @@ Curve fitting, finite differences, interpolation, numerical differentiation/inte
 
 Metric spaces, open/closed, limit points, Cauchy, completeness, compactness (Heine-Borel), continuous maps, uniform continuity, uniform convergence, Stone-Weierstrass. Rudin Ch. 2–7; Axler as optional measure follow-on. `ARCHIVE` if pushed into research measure theory.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-CALC-004`, `TB-CALC-003` (§17.1.5).
+<!-- /RESEARCH-ADDITION -->
+
 ### M39 Spectral theory and matrix decompositions `CORE`
 
 Inner products, Hilbert space, orthonormal bases, Gram-Schmidt, self-adjoint operators, spectral theorem, SVD, low-rank approximation, matrix norms. Skill: SVD from scratch via power iteration and Hotelling deflation in NumPy. Strang Ch. 5–6; Luenberger Ch. 2–5. Lecture hook: PCA motivation in §6.3.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-OPT-001`, `TB-ENG-002`, `TB-MATH-004`, `TB-MATH-005` (§17.1.8). `GAP:` abstract Hilbert space; the Luenberger citation is not edition-verified.
+<!-- /RESEARCH-ADDITION -->
+
 ### M40 Mathematical statistics and inference `CORE` · absorbs IIT Module 3 and STAT 1–9
 
 Joint / marginal / conditional; parameter estimation; MLE; Fisher information; Cramér-Rao; hypothesis testing; confidence intervals; Bayesian inference (prior/posterior); MCMC. Bayes' theorem written out:
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified texts: `TB-PROB-003`, `TB-PROB-002`, `TB-PROB-001` (§17.1.7). `GAP:` Fisher information, Cramer-Rao, and MCMC lack a second confirmed source.
+<!-- /RESEARCH-ADDITION -->
 
 \[
 P(A\mid B)=\frac{P(B\mid A)\,P(A)}{P(B)}
@@ -2250,9 +3016,17 @@ Textbooks: Oppenheim & Willsky, Oppenheim & Schafer, Proakis & Manolakis, Lyons,
 
 Sampling theorem, aliasing, discrete-time LTI, z-transform, DFT, FFT, FIR/IIR design, cepstral analysis. Skill: 1D FFT and convolution from scratch in NumPy. SciPy signal. Speech-specific follow-on (cepstrum, STFT, LPC, filter banks): Quatieri Ch. 2, 5–9.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-DSP-002` (§17.1.9); `TB-DSP-001` is the rigorous companion but is `single-sourced, unverified`. `GAP:` cepstral analysis has no verified source.
+<!-- /RESEARCH-ADDITION -->
+
 ### M42 Digital image processing `CORE` · Computer vision entry
 
 2D sampling and quantization, 2D discrete convolution, spatial filters (smoothing, sharpening, Sobel, LoG), frequency-domain filtering, restoration, noise models, histogram equalization, morphology. Textbook: Gonzalez & Woods (full ToC in §2). Later: CNN / detection / multi-view in Szeliski, Forsyth & Ponce, and Hartley & Zisserman; CNN applications in DL Module 4.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text for the geometry chapters: `TB-CV-002` (§17.1.9). `GAP:` the core image-processing content rests on `TB-CV-001` alone, uncorroborated.
+<!-- /RESEARCH-ADDITION -->
 
 Open-course companions for the later vision chapters (use when the printed book is not in hand):
 
@@ -2272,6 +3046,10 @@ Textbooks: Rabiner & Juang, Huang/Acero/Hon, Yu & Deng (neural ASR), Quatieri (s
 ### M43 Kaldi-level acoustic modeling `CORE`
 
 Speech production and hearing; MFCC / PLP; i-vectors; HMMs; GMMs (including diagonal); EM; forward-backward; state clustering; phonetic decision trees. Skill: GMM-EM from scratch in NumPy. Proakis cepstrum from M41 and Quatieri Ch. 5–7 are prerequisites.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` no confirmed textbook at either tier (§17.1.10); `TB-SPCH-001` and `TB-NLP-001` are `single-sourced, unverified`, and MFCC/PLP, i-vectors, and decision-tree clustering have no verified source.
+<!-- /RESEARCH-ADDITION -->
 
 Open-course companions (same edition topics; not a second spine):
 
@@ -2294,6 +3072,10 @@ Kaldi secondary spine (do not treat as a second course):
 
 WFSTs; word and phone symbol tables; transducers H, C, L, G; composition \(H \circ C \circ L \circ G\); determinization, minimization, epsilon removal; disambiguation symbols `#0 #1 #2`; self-loop addition; Viterbi decoding graphs.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` weighted finite-state transducers have no textbook record at any evidence level (§17.1.10); the module rests on OpenFst and Kaldi project documentation, and `TB-AUT-001` is `single-sourced, unverified`.
+<!-- /RESEARCH-ADDITION -->
+
 - G: language-model acceptor (word-sequence probabilities; n-gram LMs, perplexity, Kneser-Ney).
 - L: lexicon (CI phones → words).
 - C: context-dependency (CD phones → CI phones).
@@ -2309,21 +3091,41 @@ Absorbs IIT Modules 4–6, DL Modules 1–6, Lectures 3–4. Unique lecture fact
 
 1.1 Tensors, eigendecomposition, PCA (M39). 1.2 Partial derivatives, chain rule, Hessians (M30–M31). 1.3 Distributions, cross-entropy, KL (M40 + Cover & Thomas). 1.4 Capacity, over/underfitting, bias-variance. 1.5 MLE and Bayesian stats (M40). 1.6 SVM, logistic regression, shallow classifiers (Bishop 3–4, 7; ESL 3–4, 12; Duda–Hart–Stork 2–6).
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-DL-001` Part I (§17.1.12).
+<!-- /RESEARCH-ADDITION -->
+
 ### Folded DL Module 2–3 and IIT Module 4 — Neural nets `CORE`
 
 Perceptron; feedforward layers; activations (sigmoid, tanh, ReLU, leaky ReLU, GELU, Swish); cost functions and output units; backprop and computational graphs; **layer dimensions vs depth bounds** (IIT Module 4; same idea as depth vs width); universal approximation. Regularization: L1/L2, augmentation, noise, early stopping, parameter tying, dropout, ensembles. Optimizers: SGD, mini-batch, Momentum, Nesterov, AdaGrad, RMSProp, Adam. BatchNorm and LayerNorm. Goodfellow Parts I–II; Bishop 5; lecture §6.5. Skill: forward and backward pass from scratch.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-DL-001` Chs. 6-8 (§17.1.12). `GAP:` GELU, Swish, and layer normalization postdate the confirmed record.
+<!-- /RESEARCH-ADDITION -->
 
 ### Folded DL Module 4 — CNNs / CV `CORE`
 
 Convolution (padding, stride, dilation); pooling (max, average) and translation invariance; LeNet, AlexNet, VGG, Inception, ResNet; detection, segmentation, YOLO; visualizing representations. Goodfellow Ch. 9. Sits on M42.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-DL-001` Ch. 9 (§17.1.12). `GAP:` architectures and detection methods after 2016.
+<!-- /RESEARCH-ADDITION -->
+
 ### Folded DL Module 5 — Sequence models `CORE`
 
 RNN unrolling; vanishing/exploding gradients; LSTM, GRU; bidirectional and deep RNNs; encoder-decoder seq2seq; NLP and time-series uses. Goodfellow Ch. 10; Jurafsky Ch. 13. Prerequisite for M45.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-DL-001` Ch. 10 (§17.1.12).
+<!-- /RESEARCH-ADDITION -->
+
 ### M45 Attention and transformers `CORE` · IIT Module 5–6, DL Module 6
 
 Tokenization (BPE, WordPiece); embeddings; **sinusoidal** positional encoding; scaled dot-product attention
+
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` no confirmed textbook (§17.1.12); `TB-DL-002`, `TB-DL-003`, and `TB-NLP-001` are `single-sourced, unverified`, so this module rests on its cited papers.
+<!-- /RESEARCH-ADDITION -->
 
 \[
 S = QK^\top / \sqrt{d_k},\quad A = \mathrm{softmax}(S),\quad Z = AV
@@ -2335,6 +3137,10 @@ Multi-head projections, **residual connections**, layer norm, decoder masking, u
 
 Undercomplete / regularized / sparse / denoising autoencoders; representation and manifold learning; VAEs; GANs; diffusion and normalizing flows; GNNs. Goodfellow Part III. Stop at working competence.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified text: `TB-DL-001` Part III (§17.1.12). `GAP:` diffusion models and normalizing flows postdate the confirmed record.
+<!-- /RESEARCH-ADDITION -->
+
 ## Tier 8 — Production, GenAI systems, GCP PMLE `CORE`
 
 Absorbs IIT Modules 7–13, DL Module 8, Lectures 4 / 6 / Module 2, Lakshmanan design patterns, GCP PMLE 2026 syllabus.
@@ -2343,25 +3149,49 @@ Absorbs IIT Modules 7–13, DL Module 8, Lectures 4 / 6 / Module 2, Lakshmanan d
 
 System vs user prompts; **system routing tokens**; zero-shot; few-shot; CoT; self-consistency; ToT; ReAct; meta-prompting; directional stimulus; tool-calling / JSON structural returns; **guard prompts**, **structural boundary checking**, **exception paths**. Details §6.9–6.10.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` no textbook record at any evidence level (§17.1.13); this module rests on the lecture bank and cited papers.
+<!-- /RESEARCH-ADDITION -->
+
 ### Folded IIT Module 8 / RAG lectures — RAG `CORE`
 
 Chunking, overlapping spans, **structural parsing blocks**; vector indexes; k-NN; hybrid dense+sparse; cross-encoder rerank; context precision. Naive vs advanced (pre- and post-retrieval). IVF, product quantization, HNSW, FAISS vs Chroma. Agentic RAG. Manning IR for BM25 / inverted indexes. Details §6.11.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified retrieval substrate: `TB-IR-001` (§17.1.13). `GAP:` chunking, dense/hybrid retrieval, reranking, IVF, PQ, HNSW, and agentic RAG have no confirmed textbook.
+<!-- /RESEARCH-ADDITION -->
 
 ### Folded IIT Module 9 — PEFT `CORE`
 
 LoRA, QLoRA (4-bit), adapter-only optimization, compare adapters to base.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` no textbook record at any evidence level (§17.1.13); LoRA and QLoRA rest on their papers.
+<!-- /RESEARCH-ADDITION -->
+
 ### Folded IIT Modules 10–11 — Multimodal and agents `CORE`
 
 Cross-attention for text+image; vision encoder into token generation (ViT, CLIP, Whisper). Plan–Act–Track loops; graph orchestration; **persistence layer**: memory design across stateless model endpoint calls. Lecture 6 of Module 2: enterprise DevOps/support agent.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` no textbook record at any evidence level (§17.1.13).
+<!-- /RESEARCH-ADDITION -->
 
 ### Folded IIT Modules 12–13 and DL Module 8 — Serving, safety, hardware `CORE`
 
 vLLM-style paging; **asynchronous** FastAPI request handling; **Docker minimal layers**; **real-time** verification filters for hallucinations; latency logging and **token-cost functions**. GPUs/TPUs, parallelization; TF/PyTorch; APIs and edge; pruning, quantization, distillation.
 
+<!-- RESEARCH-ADDITION §17.1 -->
+`GAP:` no textbook record (§17.1.13, §17.1.15); serving, quantization, pruning and distillation rest on documentation and papers.
+<!-- /RESEARCH-ADDITION -->
+
 ### M46 Enterprise production MLOps / GCP PMLE `CORE`
 
 Official PMLE exam guide (as of 1 June 2026, Google PDF):
+
+<!-- RESEARCH-ADDITION §17.1 -->
+Verified systems substrate: `TB-DIST-001` (§17.1.4). `GAP:` no confirmed ML-specific textbook (§17.1.15); the official PMLE guide and Vertex documentation remain the correct primary sources.
+<!-- /RESEARCH-ADDITION -->
 
 - **Section 1** Architecting low-code AI solutions (~13%) — BigQuery ML / AutoML / Gemini Enterprise Agent Platform; cost, latency, availability of Gemini apps  
 - **Section 2** Collaborating within and across teams to manage data and models — metadata, Feature Store, shared datasets  
