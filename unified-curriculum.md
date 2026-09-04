@@ -856,6 +856,12 @@ By S23 the portfolio must include at least: one mathematics/numerical notebook o
 
 This additive research layer maps every retained module and concept to exact textbook editions without changing the teaching graph or the source-preserved corpus. A repeated concept is researched once at its canonical owner and remains traceable from every module that uses it. Textbooks support study; standards, official documentation, papers, and product manuals remain separate primary sources for behavioral or current operational claims.
 
+The active research scope was subsequently narrowed to mathematics and machine learning: mathematical foundations through graduate prerequisites, numerical and statistical methods, classical ML, deep learning, DSP, image processing, computer vision, NLP/IR, speech/ASR, information theory, optimization, reinforcement learning, causality, GenAI/RAG/agents, and production ML/MLOps theory.
+
+Software-development and production-systems textbook records already compiled in §17.1.2 and §17.1.4 are retained as completed historical research. They are frozen: no additional Go, general programming, algorithms-for-software, database, API, security, architecture, distributed-systems, SRE, infrastructure-tool, system-design, OOD, or capstone textbook search is required by this audit. A software topic is reopened only when a mathematics or ML module directly requires its theoretical content, such as numerical computing, ML data systems, model serving, evaluation, or MLOps. Textbooks support study; standards, official documentation, papers, and product manuals remain separate primary sources for behavioral or current operational claims.
+
+**Research stop point (2026-09-04).** This appendix retains every textbook payload returned before research was stopped: the complete foundational audit through `M28`/`MML-3`, plus the previously fetched software/system records. Later mathematics and ML batches were announced but produced no recoverable report, so `M29-M46`, `MML-4-MML-12`, `ML-1-ML-14`, and `MLSYS-1-MLSYS-9` remain supported only by the earlier unverified atlas and source-preserved maps outside this appendix. No claim of exact-edition verification is made for those remaining modules.
+
 #### 17.1.1 Evidence and Compilation Contract
 
 | Record or status | Required meaning |
@@ -873,7 +879,174 @@ Candidate selection and contents verification are independent. Selection normall
 
 For mathematics, `rigorous` means proof- or theory-first and `applied` means computational, engineering, or exam-oriented. For programming, databases, security, architecture, production systems, tools, and professional domains, the corresponding tiers are `foundational/theory` and `implementation/operations`. Standards and manuals can corroborate these areas but do not count toward the textbook minimum.
 
+For ML and its domain branches, `rigorous` means theory, derivation, or statistical-learning-first and `applied` means computational, experimental, or production-oriented. The earlier software/system records retain their original labels, but their coverage gaps are outside the remaining audit scope.
+
 Each compiled entry uses chapter numbers or ranges followed by short, paraphrased topic nouns. It maps coverage rather than reproducing a table of contents, and no source wording longer than approximately fifteen words is retained. The research baseline and all access dates are 2026-09-04 unless a source row states otherwise.
+
+#### 17.1.2 Exact-Edition Source Registry
+
+Each `SRC-*` row is one independently owned source. A recommendation or adoption source supports selection only; it is never counted as a second ToC unless it exposes an edition-matched chapter sequence.
+
+| Source | Owner and source kind | Exact-edition claim supported | URL | Legitimate |
+|---|---|---|---|---|
+| `SRC-MATH-001` | OpenStax; publisher ToC/metadata | *Prealgebra 2e* (2020), chapter structure | [OpenStax preface](https://openstax.org/books/prealgebra-2e/pages/preface) | yes |
+| `SRC-MATH-002` | LibreTexts; independent hosted ToC | *Prealgebra 2e*, chapter structure | [LibreTexts edition](https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)) | yes |
+| `SRC-MATH-003` | Open Textbook Library; faculty review | *Prealgebra 2e*, selection signal | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/prealgebra-2e) | yes |
+| `SRC-MATH-004` | OpenStax; publisher ToC/metadata | *Precalculus 2e* (2021), chapter structure | [OpenStax preface](https://openstax.org/books/precalculus-2e/pages/preface) | yes |
+| `SRC-MATH-005` | LibreTexts; independent hosted ToC | *Precalculus 2e*, chapter structure | [LibreTexts edition](https://math.libretexts.org/Bookshelves/Precalculus/Precalculus_2e_(OpenStax)) | yes |
+| `SRC-MATH-006` | Open Textbook Library; faculty review | *Precalculus 2e*, selection signal | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/precalculus-2e) | yes |
+| `SRC-MATH-007` | Richard Hammack; author ToC/full text | *Book of Proof*, 3rd ed. (2018), chapter structure | [Author book site](https://richardhammack.github.io/BookOfProof/index.html) | yes |
+| `SRC-MATH-008` | Open Textbook Library; independent ToC/reviews | *Book of Proof*, 3rd ed., contents and selection | [Open Textbook Library record](https://open.umn.edu/opentextbooks/textbooks/book-of-proof) | yes |
+| `SRC-MATH-009` | AIMath; independent textbook review | *Book of Proof*, selection signal | [AIMath approved text](https://textbooks.aimath.org/textbooks/approved-textbooks/hammack/) | yes |
+| `SRC-MATH-010` | Sheldon Axler; author ToC/full text | *Linear Algebra Done Right*, 4th ed. (2024), chapter structure | [Author edition site](https://linear.axler.net/) | yes |
+| `SRC-MATH-011` | Springer; publisher ToC/metadata | *Linear Algebra Done Right*, 4th ed., contents and ISBN | [Springer edition](https://link.springer.com/book/10.1007/978-3-031-41026-0) | yes |
+| `SRC-MATH-012` | AIMath; independent textbook review | *Linear Algebra Done Right*, selection signal | [AIMath approved text](https://textbooks.aimath.org/textbooks/approved-textbooks/axler/) | yes |
+| `SRC-MATH-013` | Gilbert Strang/MIT; author ToC | *Introduction to Linear Algebra*, 6th ed. (2023), chapter structure | [MIT edition site](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html) | yes |
+| `SRC-MATH-014` | SIAM; publisher ToC/metadata | *Introduction to Linear Algebra*, 6th ed., contents and ISBN | [SIAM edition](https://epubs.siam.org/doi/book/10.1137/1.9781733146678) | yes |
+| `SRC-MATH-015` | MIT OpenCourseWare; university adoption | Strang linear algebra, selection signal | [MIT 18.06SC](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) | yes |
+| `SRC-MATH-016` | Deisenroth, Faisal, and Ong; author ToC/full text | *Mathematics for Machine Learning* (2020), chapter structure | [Author book site](https://mml-book.github.io/) | yes |
+| `SRC-MATH-017` | Cambridge University Press; publisher ToC | *Mathematics for Machine Learning*, chapter structure and ISBN | [Cambridge edition](https://www.cambridge.org/highereducation/books/mathematics-for-machine-learning/5EE57FD1CFB23E6EB11E130309C7EF98) | yes |
+| `SRC-MATH-018` | AIMath; independent textbook review | *Mathematics for Machine Learning*, selection signal | [AIMath approved text](https://textbooks.aimath.org/textbooks/approved-textbooks/deisenroth-faisal-ong/) | yes |
+| `SRC-MATH-019` | OpenStax; publisher ToC/metadata | *Algebra and Trigonometry 2e* (2021), chapter structure and adoption claim | [OpenStax preface](https://openstax.org/books/algebra-and-trigonometry-2e/pages/preface) | yes |
+| `SRC-MATH-020` | Cambridge University Press; publisher ToC | Velleman, *How to Prove It*, 3rd ed. (2019), chapter structure and ISBN | [Cambridge ToC](https://assets.cambridge.org/97811084/24189/toc/9781108424189_toc.pdf) | yes |
+| `SRC-MATH-021` | Norwegian University of Science and Technology; university syllabus | Rosen, *Discrete Mathematics and Its Applications*, 8th ed. (2019), adoption and chapter schedule | [NTNU TMA4140 syllabus](https://wiki.math.ntnu.no/tma4140/2020h/pensum) | yes |
+| `SRC-MATH-022` | Art of Problem Solving; publisher scope/selection | Rusczyk, *Introduction to Geometry*, 2nd ed., topical scope and course use; no chapter ToC | [AoPS edition](https://artofproblemsolving.com/store/book/intro-geometry) | yes |
+| `SRC-MATH-023` | Cengage India; publisher metadata | Tewani, *JEE Advanced Coordinate Geometry*, 3rd ed., edition identity; no usable chapter ToC | [Cengage edition](https://www.cengage.co.in/book-list/print/jee-advanced-coordinate-geometry-3e-zr) | yes |
+| `SRC-SW-001` | Donovan and Kernighan; author ToC | *The Go Programming Language* (2015), chapter structure | [Author book site](https://www.gopl.io/) | yes |
+| `SRC-SW-002` | Addison-Wesley/InformIT; publisher ToC | *The Go Programming Language*, contents and ISBN | [InformIT edition](https://www.informit.com/store/go-programming-language-9780134190440) | yes |
+| `SRC-SW-003` | Go project; official recommendation list | Go books, selection signal | [Go wiki books](https://go.dev/wiki/Books) | yes |
+| `SRC-SW-004` | No Starch Press; publisher ToC | *Python Crash Course*, 3rd ed. (2023), contents and ISBN | [No Starch edition](https://nostarch.com/python-crash-course-3rd-edition) | yes |
+| `SRC-SW-005` | Google Books; independent preview ToC | *Python Crash Course*, 3rd ed., chapter structure | [Google Books edition](https://books.google.com/books?vid=ISBN9781718502703) | yes |
+| `SRC-ALG-001` | Sedgewick and Wayne/Princeton; author-university ToC | *Algorithms*, 4th ed. (2011), chapter structure | [Princeton book site](https://algs4.cs.princeton.edu/home/) | yes |
+| `SRC-ALG-002` | O'Reilly learning platform; independent ToC | *Algorithms*, 4th ed., chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/algorithms-fourth-edition/9780132762564/) | yes |
+| `SRC-ALG-003` | Princeton; university adoption | *Algorithms*, 4th ed., selection signal | [COS 226](https://www.cs.princeton.edu/courses/archive/spring24/cos226/) | yes |
+| `SRC-ALG-004` | MIT Press; publisher ToC/metadata | *Introduction to Algorithms*, 4th ed. (2022), chapter structure and ISBN | [MIT Press edition](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/) | yes |
+| `SRC-ALG-005` | MIT OpenCourseWare; university selection | CLRS family, algorithms-course adoption | [MIT 6.006 syllabus](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/pages/syllabus/) | yes |
+| `SRC-SW-006` | O'Reilly; publisher ToC | *Learning Go*, 2nd ed. (2024), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/learning-go-2nd/9781098139285/) | yes |
+| `SRC-DB-001` | Silberschatz, Korth, and Sudarshan; author ToC | *Database System Concepts*, 7th ed. (2019), chapter structure | [Author book site](https://www.db-book.com/) | yes |
+| `SRC-DB-002` | CMU; university course selection | Database systems literature and topic sequence | [CMU 15-445/645](https://15445.courses.cs.cmu.edu/fall2025/) | yes |
+| `SRC-DB-003` | Postgres Professional; publisher-hosted ToC | Rogov, *PostgreSQL 14 Internals*, chapter structure | [Postgres Professional book page](https://postgrespro.com/community/books/internals) | yes |
+| `SRC-DB-004` | Hironobu Suzuki; independent technical reference | PostgreSQL internals corroboration, not a textbook edition | [The Internals of PostgreSQL](https://www.interdb.jp/pg/) | yes |
+| `SRC-API-001` | O'Reilly; publisher ToC | Gourley and Totty, *HTTP: The Definitive Guide* (2002), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/http-the-definitive/1565925092/) | yes |
+| `SRC-API-002` | Google Books; independent preview ToC | *HTTP: The Definitive Guide*, contents and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9781565925090) | yes |
+| `SRC-API-003` | O'Reilly; publisher ToC | Indrasiri and Kuruppu, *gRPC: Up and Running* (2020), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/grpc-up-and/9781492058328/) | yes |
+| `SRC-API-004` | gRPC project; official documentation | Current gRPC behavior; corroboration only | [gRPC introduction](https://grpc.io/docs/what-is-grpc/introduction/) | yes |
+| `SRC-API-005` | Manning; publisher ToC | Geewax, *API Design Patterns* (2021), chapter structure | [Manning edition](https://www.manning.com/books/api-design-patterns) | yes |
+| `SRC-API-006` | Google AIP team; official design guidance | Current resource-oriented API behavior; corroboration only | [Google AIPs](https://google.aip.dev/general) | yes |
+| `SRC-SEC-001` | Ross Anderson; author ToC/full text | *Security Engineering*, 3rd ed. (2020), chapter structure | [Author book site](https://www.cl.cam.ac.uk/~rja14/book.html) | yes |
+| `SRC-SEC-002` | O'Reilly/Wiley; publisher ToC | *Security Engineering*, 3rd ed., chapter structure and ISBN | [O'Reilly edition](https://www.oreilly.com/library/view/security-engineering-third/9781119642817/) | yes |
+| `SRC-SEC-003` | O'Reilly/Manning; publisher ToC | Richer and Sanso, *OAuth 2 in Action* (2017), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/oauth-2-in/9781617293276/) | yes |
+| `SRC-SEC-004` | Google Books; independent preview ToC | *OAuth 2 in Action*, chapter structure and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9781617293276) | yes |
+| `SRC-SEC-005` | O'Reilly/Manning; publisher ToC | Madden, *API Security in Action* (2020), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/api-security-in/9781617296024/) | yes |
+| `SRC-SEC-006` | Google Books; independent preview ToC | *API Security in Action*, chapter structure and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9781617296024) | yes |
+| `SRC-ARCH-001` | O'Reilly/Addison-Wesley; publisher ToC | Evans, *Domain-Driven Design* (2003), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/) | yes |
+| `SRC-ARCH-002` | Google Books; independent preview ToC | *Domain-Driven Design*, chapter structure and ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9780321125217) | yes |
+| `SRC-ARCH-003` | Martin Fowler; independent practitioner recommendation | DDD selection signal | [Fowler on DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html) | yes |
+| `SRC-ARCH-004` | Martin Fowler; author ToC | *Patterns of Enterprise Application Architecture* (2002), chapter structure | [Author book page](https://martinfowler.com/books/eaa.html) | yes |
+| `SRC-ARCH-005` | O'Reilly/Addison-Wesley; publisher ToC | *Patterns of Enterprise Application Architecture*, chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/patterns-of-enterprise/0321127420/) | yes |
+| `SRC-DIST-001` | O'Reilly; publisher ToC | Kleppmann, *Designing Data-Intensive Applications* (2017), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) | yes |
+| `SRC-DIST-002` | Google Books; independent preview ToC | *Designing Data-Intensive Applications*, chapter structure and print ISBN | [Google Books edition](https://books.google.com/books?vid=ISBN9781449373320) | yes |
+| `SRC-DIST-003` | Martin Kleppmann; author support/selection | DDIA selection and edition identity | [Author book site](https://dataintensive.net/) | yes |
+| `SRC-OPS-001` | Google; author-hosted ToC/full text | Beyer et al., *Site Reliability Engineering* (2016), chapter structure | [Google SRE book](https://sre.google/sre-book/table-of-contents/) | yes |
+| `SRC-OPS-002` | O'Reilly; publisher metadata | *Site Reliability Engineering*, ISBN and selection signal | [O'Reilly edition](https://www.oreilly.com/library/view/site-reliability-engineering/9781491929117/) | yes |
+| `SRC-OPS-003` | Google; author-hosted ToC/full text | Beyer et al., *The Site Reliability Workbook* (2018), chapter structure | [Google SRE workbook](https://sre.google/workbook/table-of-contents/) | yes |
+| `SRC-OPS-004` | O'Reilly; publisher metadata | *The Site Reliability Workbook*, ISBN and selection signal | [O'Reilly edition](https://www.oreilly.com/library/view/the-site-reliability/9781492029496/) | yes |
+| `SRC-ARCH-006` | Addison-Wesley; publisher ToC | Bass et al., *Software Architecture in Practice*, 4th ed. (2021), chapter structure | [Publisher edition](https://www.pearson.com/en-us/subject-catalog/p/software-architecture-in-practice/P200000003154) | yes |
+| `SRC-ARCH-007` | SEI; institutional recommendation | *Software Architecture in Practice*, 4th ed., selection signal | [SEI book page](https://www.sei.cmu.edu/library/software-architecture-in-practice-fourth-edition/) | yes |
+| `SRC-ARCH-008` | O'Reilly; publisher ToC | Richards and Ford, *Fundamentals of Software Architecture* (2020), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/) | yes |
+| `SRC-ARCH-009` | O'Reilly; publisher ToC | Newman, *Building Microservices*, 2nd ed. (2021), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/building-microservices-2nd/9781492034018/) | yes |
+| `SRC-TOOL-001` | O'Reilly; publisher ToC | Poulton, *Docker: Up & Running*, 3rd ed. (2023), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/docker-up/9781098131814/) | yes |
+| `SRC-TOOL-002` | O'Reilly; publisher ToC | Burns et al., *Kubernetes: Up & Running*, 3rd ed. (2022), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/kubernetes-up-and/9781098110192/) | yes |
+| `SRC-TOOL-003` | O'Reilly; publisher ToC | Brikman, *Terraform: Up & Running*, 3rd ed. (2022), chapter structure | [O'Reilly edition](https://www.oreilly.com/library/view/terraform-up-and/9781098116736/) | yes |
+
+#### 17.1.3 Verified Bibliography and Chapter Atlas: Foundational Mathematics
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-MATH-001` | Marecek et al., *Prealgebra 2e* (2020); applied/foundational | Chs. 1-8: arithmetic, number systems, fractions, ratios, signed values, equations; Ch. 9: measurement; Chs. 10-11: polynomial and graph foundations | `M1`, `M2`, `M4`, `M5`, `M12`, `M16`, `M18`, `MML-0`, `MML-1`, `MATH-FUND`, S1-S3 | `SRC-MATH-001`, `SRC-MATH-002`; selection `SRC-MATH-003`; `confirmed` |
+| `TB-MATH-002` | Abramson et al., *Precalculus 2e* (2021); applied | Chs. 1-4: functions and algebraic models; Chs. 5-8: trigonometry; Ch. 9: systems; Ch. 10: conics; Ch. 11: sequences and counting | `M7-M13`, `M17`, `M19-M25`, `MML-1`, `MML-2`, `MATH-FUND`, S3, S5 | `SRC-MATH-004`, `SRC-MATH-005`; selection `SRC-MATH-006`; `confirmed` |
+| `TB-MATH-003` | Richard Hammack, *Book of Proof*, 3rd ed. (2018); rigorous/foundational | Chs. 1-3: sets and logic; Chs. 4-8: direct, contrapositive, contradiction, induction, and existence proofs; later chapters: relations, functions, cardinality, and elementary number theory | `M3`, `M10`, `M19`, `M21`, `M22`, `PROOF-DISCRETE`, S4 | `SRC-MATH-007`, `SRC-MATH-008`; selection `SRC-MATH-009`; `confirmed`; `CORR-001` |
+| `TB-MATH-004` | Sheldon Axler, *Linear Algebra Done Right*, 4th ed. (2024); rigorous | Chs. 1-3: vector spaces and linear maps; Chs. 4-7: polynomials, eigenstructure, inner products, operators; Chs. 8-9: multilinear forms and complexification | `M19`, `M20`, `M26`, `M39`, `MML-3`, `MATH-LA`, S7 | `SRC-MATH-010`, `SRC-MATH-011`; selection `SRC-MATH-012`; `confirmed`; `CORR-002` |
+| `TB-MATH-005` | Gilbert Strang, *Introduction to Linear Algebra*, 6th ed. (2023); applied/computational | Chs. 1-4: elimination, spaces, orthogonality, determinants; Chs. 5-7: eigenvalues, positive definiteness, SVD; later chapters: transformations, numerical linear algebra, optimization, and probability links | `M9`, `M13`, `M26`, `M39`, `MML-3`, `MATH-LA`, S7 | `SRC-MATH-013`, `SRC-MATH-014`; selection `SRC-MATH-015`; `confirmed`; `CORR-002` |
+| `TB-MATH-006` | Deisenroth, Faisal, and Ong, *Mathematics for Machine Learning* (2020); applied bridge | Chs. 2-7: linear algebra, analytic geometry, decompositions, vector calculus, probability, optimization; Chs. 8-12: regression, dimensionality reduction, density estimation, and classification applications | `M23-M28`, `MML-0-MML-4`, `MATH-LA`, `MATH-CALC-NUM`, `PROB-STAT-INFO`, `ML-CORE`, S7, S9-S11 | `SRC-MATH-016`, `SRC-MATH-017`; selection `SRC-MATH-018`; `confirmed` |
+
+Fetched candidates are retained below exactly at the evidence level reached in the session. They identify useful leads and known coverage, but do not clear gaps unless a second edition-matched legitimate ToC is later added.
+
+| Textbook record | Exact edition and tier | Paraphrased chapter or topical coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-MATH-007` | Abramson et al., *Algebra and Trigonometry 2e* (2021); applied | Chs. 1-6: equations, inequalities, and algebraic functions; Chs. 7-10: trigonometry; Chs. 11-13: systems, analytic geometry, sequences, and counting | `M5-M8`, `M20`, `M23-M25`, `MML-1`, `MML-2`, `MATH-FUND` | ToC and selection `SRC-MATH-019`; `single-sourced, unverified` |
+| `TB-MATH-008` | Daniel J. Velleman, *How to Prove It*, 3rd ed. (2019); rigorous | Logic and proof construction; sets, relations, functions, induction, and elementary number-theory arguments | `M3`, `M19`, `PROOF-DISCRETE`, S4 | ToC `SRC-MATH-020`; `single-sourced, unverified` |
+| `TB-MATH-009` | Kenneth H. Rosen, *Discrete Mathematics and Its Applications*, 8th ed. (2019); applied/discrete | Logic, sets, algorithms, elementary number theory, induction, counting, relations, graphs, trees, and Boolean algebra | `M3`, `M10`, `M19`, `M21`, `M22`, `PROOF-DISCRETE`, S4 | adoption and chapter schedule `SRC-MATH-021`; `single-sourced, unverified` |
+| `TB-MATH-010` | Richard Rusczyk, *Introduction to Geometry*, 2nd ed.; applied/competition | Publisher scope: congruence, similarity, polygons, circles, area, power relations, transformations, introductory trigonometry, and solid geometry | `M14-M17`, `M28`, `MML-2`, `MATH-FUND` | topical scope and selection `SRC-MATH-022`; no usable chapter ToC; `candidate` |
+| `TB-MATH-011` | G. Tewani, *JEE Advanced Coordinate Geometry*, 3rd ed.; exam/computational | Intended coverage: advanced circle geometry, tangents and normals, and conic sections | `M24`, `M25`, `MML-2`, `MATH-FUND` | edition metadata `SRC-MATH-023`; no usable chapter ToC; `candidate` |
+
+##### 17.1.3.1 Foundational Module Audit and Gaps
+
+This crosswalk preserves the recovered foundational research payload. A range is grouped only when every identifier has the same accepted books and unresolved evidence. Candidate titles remain visible but do not clear a `GAP:` until two edition-matched legitimate ToCs are available.
+
+| Modules or owner | Accepted records | Candidate or unverified records already researched | Audit result |
+|---|---|---|---|
+| `M1`, `M2`, `M4`, `MML-0` | `TB-MATH-001` | none confirmed | `GAP:` a second independently verified foundational arithmetic text |
+| `M3`, `PROOF-DISCRETE` | `TB-MATH-003` | `TB-MATH-008`, `TB-MATH-009` | `GAP:` a second confirmed proof/discrete text and explicit digital-logic coverage |
+| `M5-M8`, `MML-1` | `TB-MATH-001`, `TB-MATH-002` | `TB-MATH-007` | `GAP:` dedicated inequalities, polynomial division, and a second exact-edition algebra ToC |
+| `M9-M13` | `TB-MATH-001`, `TB-MATH-002`, `TB-MATH-005`, `TB-MATH-006` | none | covered at foundational/application depth |
+| `M14-M16` | `TB-MATH-001` partial | `TB-MATH-010` | `GAP:` rigorous synthetic triangle/circle geometry and an independently verified applied geometry ToC |
+| `M17`, `M23` | `TB-MATH-002`; `TB-MATH-006` partial | `TB-MATH-007`, `TB-MATH-010` | `GAP:` a second confirmed dedicated trigonometry text |
+| `M18` | `TB-MATH-001` partial | current Selina and R. S. Aggarwal editions were not edition-verifiable | `GAP:` current Indian commercial-arithmetic coverage |
+| `M19`, `M21` | `TB-MATH-002`, `TB-MATH-003`; `TB-MATH-004` for structural linear-algebra links | `TB-MATH-008`, `TB-MATH-009` | covered overall; equivalence classes remain thin in the applied tier |
+| `M20` | `TB-MATH-002`, `TB-MATH-004` partial | `TB-MATH-007` | `GAP:` polar form and roots-of-unity coverage from a second confirmed source |
+| `M22` | `TB-MATH-002`, `TB-MATH-003` partial | `TB-MATH-009` | `GAP:` multinomial expansions and advanced coefficient identities |
+| `M24-M25` | `TB-MATH-002` partial | `TB-MATH-007`, `TB-MATH-011` | `GAP:` advanced circle geometry and a second exam-oriented conics text with two legitimate ToCs |
+| `M26` | `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006` | none | `GAP:` a second source explicitly covering Cramer's rule rather than general linear solving |
+| `M27-M28`, `MML-2` | `TB-MATH-002`, `TB-MATH-006` partial | `TB-MATH-010`; current JEE vector/3D editions remain unverified | `GAP:` cross/triple products, skew-line forms, planes, and point-to-plane distance |
+| `MML-3`, `MATH-LA` | `TB-MATH-004`, `TB-MATH-005`, `TB-MATH-006` | none | covered for vector spaces, decompositions, spectral methods, and ML applications; the `M27-M28` gap still applies |
+
+Corrections recovered from the transcript audit:
+
+| Correction | Earlier compiled claim | Corrected active mapping |
+|---|---|---|
+| `CORR-001` | `TB-MATH-003` fed geometry and commercial-arithmetic modules `M14`, `M15`, and `M18` | Its verified contents feed `M3`, `M10`, `M19`, `M21`, `M22`, and `PROOF-DISCRETE`; geometry and commercial arithmetic remain gaps. |
+| `CORR-002` | `TB-MATH-004` and `TB-MATH-005` were broadly assigned to `M27-M28`, `MML-2`, and calculus | Their confirmed chapter maps support linear systems, vector spaces, eigentheory, orthogonality, SVD, and spectral work; cross/triple products, formal 3D geometry, and calculus need separate records. |
+
+Rejected or deferred leads recovered from the same research pass:
+
+| Candidate | Audit decision |
+|---|---|
+| Coxeter and Greitzer, *Geometry Revisited* | Canonical lead, but exact-edition identity and two legitimate ToCs were not established. |
+| Chen, *Euclidean Geometry in Mathematical Olympiads* | Strong rigorous lead; public exact-edition ToC evidence was insufficient. |
+| NCERT Mathematics XI-XII | Official chapter files were found, but no stable dated edition plus independent matching ToC was established. |
+| Cengage JEE Advanced algebra, trigonometry, coordinate, and vector series | Publisher records identify the series, but usable publisher and independent same-edition ToCs were unavailable. |
+| Selina and R. S. Aggarwal school texts | Current exact editions could not be tied to two legitimate contents sources. |
+| Hall and Knight, Loney, and Grewal | Existing curriculum references omit or conflate editions; defer until each exact edition is separated and verified. |
+
+#### 17.1.4 Verified Bibliography and Chapter Atlas: Software and Systems
+
+| Textbook record | Exact edition and tier | Paraphrased chapter coverage | Feeds | Evidence and status |
+|---|---|---|---|---|
+| `TB-SW-001` | Donovan and Kernighan, *The Go Programming Language* (2015); foundational/theory | Chs. 1-5: program structure, types, composites, functions; Chs. 6-8: methods, interfaces, goroutines, channels; Chs. 9-13: shared state, packages, reflection, low-level programming | `G0-G12`, `GO-CORE`, `BASE`, S2, S6 | `SRC-SW-001`, `SRC-SW-002`; selection `SRC-SW-003`; `confirmed` |
+| `TB-SW-002` | Matthes, *Python Crash Course*, 3rd ed. (2023); implementation | Chs. 1-11: values, collections, control flow, functions, classes, files, exceptions, tests; later projects: data, web, and visualization practice | `PY-CORE`, `MML-0`, S1; Python implementation feeds in S3-S17 | `SRC-SW-004`, `SRC-SW-005`; `confirmed` |
+| `TB-SW-003` | Bodner, *Learning Go*, 2nd ed. (2024); implementation | Chs. 1-8: syntax, composites, functions, methods, interfaces, generics; Chs. 9-15: errors, modules, concurrency, context, testing, HTTP | `G0-G12`, `G16-G18`, `GO-CORE`, `API-SVC`, S2, S6, S18 | ToC `SRC-SW-006`; selection `SRC-SW-003`; `single-sourced, unverified` |
+| `TB-ALG-001` | Sedgewick and Wayne, *Algorithms*, 4th ed. (2011); foundational/applied | Ch. 1: analysis, union-find; Ch. 2: sorting and priority queues; Ch. 3: search trees and hashing; Ch. 4: graph algorithms; Chs. 5-6: strings and selected advanced topics | `M21`, `G1-G4`, `G8-G12`, `DS-ALGO`, `SDP-OOD`, S4, S6, S8, S21 | `SRC-ALG-001`, `SRC-ALG-002`; selection `SRC-ALG-003`; `confirmed` |
+| `TB-ALG-002` | Cormen et al., *Introduction to Algorithms*, 4th ed. (2022); foundational/theory | Parts I-III: foundations, sorting, data structures; Parts IV-VI: design paradigms, graphs, selected advanced methods; appendices: mathematical tools | `M21`, `M22`, `G1-G4`, `G8-G12`, `DS-ALGO`, `PROOF-DISCRETE`, S4, S8 | ToC `SRC-ALG-004`; selection `SRC-ALG-005`; `single-sourced, unverified` |
+| `TB-DB-001` | Silberschatz, Korth, and Sudarshan, *Database System Concepts*, 7th ed. (2019); foundational/theory | Parts I-III: relational model, SQL, design, application; Parts IV-V: storage, indexing, query processing and optimization; Parts VI-VII: transactions, recovery, distributed data | `DB-1-DB-10`, `G12`, `G12b`, `DB-SQL`, `DB-ENGINE`, S12-S13 | ToC `SRC-DB-001`; selection `SRC-DB-002`; `single-sourced, unverified` |
+| `TB-DB-002` | Egor Rogov, *PostgreSQL 14 Internals*; implementation/operations | Chs. 1-4: architecture, isolation, pages, buffer cache; Chs. 5-8: WAL, locks, vacuum, indexes; later chapters: joins, statistics, planning, execution, parallelism, replication | `DB-2-DB-10`, `G12b`, `DB-ENGINE`, S13; P2, P5, P10 | ToC `SRC-DB-003`; corroboration `SRC-DB-004`; `single-sourced, unverified` |
+| `TB-API-001` | Gourley and Totty, *HTTP: The Definitive Guide* (2002); foundational/theory | Parts I-II: messages, connections, servers, proxies, caches; Parts III-IV: clients, authentication, secure HTTP, entities, negotiation; later parts: publishing and redirection | `G10-G12`, `API-SVC`, `SEC-AUTH`, `DIST-OPS`, S18-S20; API and capstone specs | `SRC-API-001`, `SRC-API-002`; `confirmed`; current RFCs supersede obsolete wire behavior |
+| `TB-API-002` | Indrasiri and Kuruppu, *gRPC: Up and Running* (2020); implementation | Chs. 1-4: RPC foundations, service definitions, implementation, communication patterns; Chs. 5-8: advanced features, security, production deployment, ecosystem | `G13-G15`, `API-SVC`, `PROTO-A2A-001..004`, S18; P4, P8, P9 | ToC `SRC-API-003`; current behavior `SRC-API-004`; `single-sourced, unverified` |
+| `TB-API-003` | Geewax, *API Design Patterns* (2021); implementation/design | Parts I-II: resource naming, standard methods, behavior; Parts III-IV: data movement, long operations, versioning, compatibility, policy patterns | `G11-G15`, `API-SVC`, all `API-*`, `PROTO-*`, `CLI-*`, S18; P3-P9 | ToC `SRC-API-005`; current guidance `SRC-API-006`; `single-sourced, unverified` |
+| `TB-SEC-001` | Ross Anderson, *Security Engineering*, 3rd ed. (2020); foundational/theory | Early chapters: threat models, protocols, access control, cryptography; middle chapters: authentication, distributed systems, economics and sector cases; final chapters: assurance, management, privacy | `SEC-AUTH`, G10-G12, G16-G18, S19-S23; security, design-bank, and capstone feeds | `SRC-SEC-001`, `SRC-SEC-002`; `confirmed`; standards govern current parameters |
+| `TB-SEC-002` | Richer and Sanso, *OAuth 2 in Action* (2017); implementation | Parts I-II: OAuth roles, authorization grants, token use, client and server implementation; Part III: vulnerabilities, bearer-token protection, dynamic registration, user authentication | `SEC-AUTH`, `API-GH-001..004`, S19; P3, P8, P10 | `SRC-SEC-003`, `SRC-SEC-004`; `confirmed`; RFC 9700 supersedes obsolete recommendations |
+| `TB-SEC-003` | Madden, *API Security in Action* (2020); implementation | Parts I-II: API threat modeling, secure development, sessions, modern token authentication; Parts III-IV: authorization, capabilities, OAuth/OIDC, microservice and browser security | `SEC-AUTH`, `API-SVC`, all authenticated `API-*`/`PROTO-*`, S19-S23; P3-P10 | `SRC-SEC-005`, `SRC-SEC-006`; `confirmed`; current OWASP/NIST/IETF profiles control details |
+| `TB-ARCH-001` | Eric Evans, *Domain-Driven Design* (2003); foundational/theory | Parts I-II: domain models, language, entities, value objects, services, lifecycle; Parts III-IV: refactoring, bounded contexts, context maps, strategic design | `ARCH-HLD-LLD`, S20-S23; all SDP/OOD labs; P0-P10 service boundaries | `SRC-ARCH-001`, `SRC-ARCH-002`; selection `SRC-ARCH-003`; `confirmed` |
+| `TB-ARCH-002` | Martin Fowler, *Patterns of Enterprise Application Architecture* (2002); implementation/design | Parts I-II: layering, domain logic, data mapping, web presentation, concurrency and sessions; pattern catalog: data source, object-relational, distribution, offline concurrency, base patterns | `ARCH-HLD-LLD`, `DB-SQL`, `API-SVC`, `DIST-OPS`, S20-S23; SDP/OOD; P1-P10 | `SRC-ARCH-004`, `SRC-ARCH-005`; `confirmed` |
+| `TB-DIST-001` | Martin Kleppmann, *Designing Data-Intensive Applications* (2017); foundational/theory | Part I: data models, storage, encoding; Part II: replication, partitioning, transactions, distributed-system failure and consistency; Part III: batch, stream, and derived-data systems | `DB-ENGINE`, `DIST-OPS`, `ML-SYS-MLOPS`, S13, S20-S23; all SDP and production case-study feeds | `SRC-DIST-001`, `SRC-DIST-002`; selection `SRC-DIST-003`; `confirmed` |
+| `TB-OPS-001` | Beyer et al., *Site Reliability Engineering* (2016); operations | Parts I-II: SRE principles, SLOs, toil, monitoring, automation; Parts III-IV: release, simplicity, practical management; later chapters: overload, cascading failure, incident response and culture | `DIST-OPS`, `ML-SYS-MLOPS`, `TOOLS`, S20-S23; MLSYS-4-8, P10 | ToC `SRC-OPS-001`; metadata/selection `SRC-OPS-002`; `single-sourced, unverified` |
+| `TB-OPS-002` | Beyer et al., *The Site Reliability Workbook* (2018); operations | Early chapters: SLO implementation, monitoring and alerting; middle chapters: toil, reliability testing, canaries and incident response; later chapters: organizational adoption and launch practice | `DIST-OPS`, `ML-SYS-MLOPS`, S20-S23; MLSYS-4-8, P10 | ToC `SRC-OPS-003`; metadata/selection `SRC-OPS-004`; `single-sourced, unverified` |
+| `TB-ARCH-003` | Bass et al., *Software Architecture in Practice*, 4th ed. (2021); foundational/theory | Parts I-II: architectural drivers, quality attributes, tactics, patterns and modeling; Parts III-IV: evaluation, documentation, reconstruction and organizational context | `ARCH-HLD-LLD`, `DIST-OPS`, S20-S23; all HLD and SDP feeds | ToC `SRC-ARCH-006`; selection `SRC-ARCH-007`; `single-sourced, unverified` |
+| `TB-ARCH-004` | Richards and Ford, *Fundamentals of Software Architecture* (2020); implementation/design | Parts I-II: architecture thinking, modularity, characteristics and measurement; Parts III-IV: styles, decisions, risk, teams and negotiation | `ARCH-HLD-LLD`, S20-S23; SDP/OOD; P0-P10 | ToC `SRC-ARCH-008`; `single-sourced, unverified` |
+| `TB-ARCH-005` | Sam Newman, *Building Microservices*, 2nd ed. (2021); implementation/operations | Early chapters: service boundaries and decomposition; middle chapters: communication, workflow, data, deployment and testing; later chapters: observability, resilience, security and organizational adoption | `ARCH-HLD-LLD`, `DIST-OPS`, S20-S23; P1-P10 | ToC `SRC-ARCH-009`; `single-sourced, unverified` |
+| `TB-TOOL-001` | Nigel Poulton, *Docker: Up & Running*, 3rd ed. (2023); operations | Images, containers, networking, storage, Compose, security, orchestration and production workflows | Docker, Compose, BuildKit, `JOB-ORCH-001`, G18, S22-S23; P0, P7, P10 | ToC `SRC-TOOL-001`; `single-sourced, unverified` |
+| `TB-TOOL-002` | Burns, Beda, Hightower, and Evenson, *Kubernetes: Up & Running*, 3rd ed. (2022); operations | Core objects, deployments, services, storage, configuration, security, policy, extensibility and application patterns | Kubernetes, Helm, client-go, `JOB-K8S-001`, G18, S22-S23; P4, P7, P10 | ToC `SRC-TOOL-002`; `single-sourced, unverified` |
+| `TB-TOOL-003` | Yevgeniy Brikman, *Terraform: Up & Running*, 3rd ed. (2022); operations | Language and state, modules, testing, teams, production workflows, secrets and infrastructure patterns | Terraform tool row, G18, S22-S23; SDP-8, P10 | ToC `SRC-TOOL-003`; `single-sourced, unverified` |
 
 
 ## 18. Lossless NLP Diff Audit and Source Corpus
