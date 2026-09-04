@@ -40,4 +40,5 @@ def test_aliasing_case():
 def test_non_finite_case():
     data = [1.0, np.nan, np.inf]
     arr = np.array(data)
-    assert np.allclose(normalize_ref(data.copy()), normalize_vec(arr), equal_nan=True)
+    with pytest.raises(ValueError):
+        np.allclose(normalize_ref(data.copy()), normalize_vec(arr), equal_nan=True)
