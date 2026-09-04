@@ -852,6 +852,29 @@ By S23 the portfolio must include at least: one mathematics/numerical notebook o
 | Tool/platform subcourses | §10, §11 |
 | Archive inventories | §15 |
 
+### 17.1 Verified Textbook Research and Module Audit
+
+This additive research layer maps every retained module and concept to exact textbook editions without changing the teaching graph or the source-preserved corpus. A repeated concept is researched once at its canonical owner and remains traceable from every module that uses it. Textbooks support study; standards, official documentation, papers, and product manuals remain separate primary sources for behavioral or current operational claims.
+
+#### 17.1.1 Evidence and Compilation Contract
+
+| Record or status | Required meaning |
+|---|---|
+| `TB-*` | One exact textbook edition. Materially different editions receive separate records. |
+| `SRC-*` | One named legitimate source with owner, URL, source kind, access date, and the claim it supports. |
+| `CON-*` | One canonical concept cluster. Every original module-to-concept occurrence remains in the module audit even when aliases share a cluster. |
+| `confirmed` | The same edition's contents were checked against two independent legitimate ToC sources. |
+| `single-sourced, unverified` | Only one legitimate ToC source was available. The book remains visible but cannot clear a coverage gap. |
+| `candidate` | Canonicality is supported, but contents verification is incomplete. |
+| `rejected` | The edition is mismatched, coverage is tangential, recommendation evidence is weak, or no legitimate ToC source is available. |
+| `GAP:` | Fewer than two independently ToC-verified textbooks cover the module, or one requested rigor tier remains materially thin. The note names the missing evidence or concept. |
+
+Candidate selection and contents verification are independent. Selection normally requires at least two recommendation signals across an official university syllabus or reading list, an independent educational recommendation, and a publisher catalog. Contents confirmation requires two edition-matched sources drawn from publishers, authors or universities, legitimate book previews, and library catalogs. Unauthorized scans and hosts, including Scribd, Library Genesis, Z-Library, Sci-Hub, Internet Archive full-text or borrow copies, epdf.pub, and PDF Drive, are excluded.
+
+For mathematics, `rigorous` means proof- or theory-first and `applied` means computational, engineering, or exam-oriented. For programming, databases, security, architecture, production systems, tools, and professional domains, the corresponding tiers are `foundational/theory` and `implementation/operations`. Standards and manuals can corroborate these areas but do not count toward the textbook minimum.
+
+Each compiled entry uses chapter numbers or ranges followed by short, paraphrased topic nouns. It maps coverage rather than reproducing a table of contents, and no source wording longer than approximately fifteen words is retained. The research baseline and all access dates are 2026-09-04 unless a source row states otherwise.
+
 
 ## 18. Lossless NLP Diff Audit and Source Corpus
 
