@@ -200,3 +200,66 @@ No confirmed source at all: `ML-2`, `ML-10`, `ML-11` forecasting, `M45`, every f
 | §18.2 losslessness: strip each marked region plus its preceding blank line | byte-identical to the pre-audit section |
 | Compiled entries use chapter ranges plus paraphrased nouns, no verbatim ToC | spot-checked; no numbered mirror lists |
 | Diff is additive apart from the deliberately flagged §17.1 history paragraph, the §18.1 diff rule, and the `TB-MATH-007` status change (`CORR-003`) | confirmed |
+
+## Batch B12 — fanout.sh appraisal and the leads it surfaced
+
+Prompted by a user request to evaluate whether `fanout.sh` resources could close
+any open gap. The site was first checked for security and link hygiene, then
+browsed only through its own published public surfaces: `robots.txt`,
+`llms.txt`, `sitemap.md`, `roadmap.md`, and public `.md` representations. Its
+`robots.txt` explicitly allows `ClaudeBot` and `Claude-User`, and its `llms.txt`
+states that public pages may be summarized and cited. **No paywalled lesson
+content was fetched, and no access control was bypassed or probed.**
+
+### Security and link assessment
+
+| Check | Result |
+|---|---|
+| Real TLS chain, verified out-of-band via certificate transparency | Let's Encrypt and Google Trust Services; current and valid |
+| Certificate presented locally | A Zscaler interception certificate. This workstation sits behind a corporate TLS-inspecting proxy, so the locally observed chain is not the site's own; the true chain was confirmed independently |
+| Security headers | HSTS two years, `nosniff`, `X-Frame-Options: SAMEORIGIN`, `strict-origin-when-cross-origin` referrer policy, permissions policy denying camera, microphone and geolocation |
+| Hosting | Cloudflare fronting Railway; no forms on public pages |
+| Outbound links | All HTTPS. Destinations are arXiv, YouTube, Amazon, and author or publisher sites. Zero hits against the excluded-host list |
+| Privacy | Public pages load Google Ads, Meta and X advertising pixels plus an `unpkg.com` script. Not a vulnerability, but visits are tracked by three ad networks |
+| Authority | Solo-authored commercial platform; course content paywalled and therefore unverifiable |
+
+### Records
+
+| Modules | Candidate | Sources fetched | Outcome | Compiled entry | Gap effect |
+|---|---|---|---|---|---|
+| `M45`, folded IIT Module 9, `ML-8`, `ML-14` | Raschka, *Build a Large Language Model (From Scratch)* (Manning, 2024) | O'Reilly full ToC `SRC-DL-009`, recovered by expanding the publisher's own collapsed contents listing; Google Books full ToC `SRC-DL-010`; Manning edition identity `SRC-DL-008`; surfaced via `SRC-REC-001` | `confirmed` — the two ToC sources agree chapter for chapter and appendix for appendix | `TB-DL-005` | closes `M45` attention and GPT-from-scratch, and folded IIT Module 9 LoRA. Both previously had **no textbook record at any evidence level** |
+| `M45` modern primitives, folded IIT Modules 9 and 12-13 | Kumaresan, *Under The Hood* (Leanpub, 2026) | Leanpub scope and structure `SRC-DL-011`; surfaced via `SRC-REC-001` | `candidate` — self-published, no independent record | `TB-DL-006` | clears nothing; named as the only known candidate for the modern-architecture gap |
+| n/a | fanout.sh itself | `robots.txt`, `llms.txt`, `sitemap.md`, `roadmap.md`, `/ai/resources.md`, `/system/resources.md`, public overview stubs | admitted as a selection signal only | `SRC-REC-001`, logged as `CORR-006` | cannot clear any `GAP:`; not added as a curriculum resource or teaching source |
+| various | Goodfellow, Bishop, Axler on fanout's shelf | already held | corroboration only | existing records | none; already `confirmed` or handled |
+| n/a | Bertrand Russell, *Principles of Mathematics*, which fanout tags as an ML "foundation" text | not pursued | `rejected` | none | a 1903 philosophy-of-mathematics work; not a proof or foundations textbook for this curriculum |
+| n/a | Math Academy, Khan Academy, MIT OCW links on the same shelf | not pursued as textbooks | out of contract | none | platforms and courses, not textbook editions |
+
+### Curriculum-coverage finding
+
+The user also asked whether fanout covers topics this file does not. Its course
+bodies are paywalled, but its public `roadmap.md` publishes the full topic tree
+for all three tracks. Diffing that tree against this file by word-boundary
+search produced one real, coherent finding, now logged as a cross-cutting `GAP:`
+row in §17.1.12.1.
+
+Verified absent from `unified-curriculum.md`, zero hits each: RMSNorm, rotary
+position embeddings, SwiGLU, grouped-query attention, mixture-of-experts as a
+taught mechanism, flash attention, paged attention, continuous batching,
+speculative decoding, group-relative and sequence-level policy optimization,
+empirical risk minimization, and PAC learning. Proximal policy optimization
+appears once, inside a table, rather than as taught content.
+
+Already covered and therefore **not** gaps: quantization, distillation, pruning,
+decoding strategies, and the model-family landscape.
+
+Out of scope, noted only: fanout's system-design track covers probabilistic and
+streaming structures (HyperLogLog, count-min sketch, reservoir sampling, top-K
+heavy hitters) absent from this file. These fall under the frozen
+software/systems scope of §17.1 and were not researched.
+
+### B12 result
+
+Closed: `M45` 2017-2020 core, folded IIT Module 9 LoRA, the `ML-8` LLM half, and
+`ML-14` attention primitives — all via one `confirmed` record.
+Opened: one cross-cutting `GAP:` for the modern transformer architecture and
+inference layer, with `TB-DL-006` as its only candidate.
