@@ -263,3 +263,110 @@ Closed: `M45` 2017-2020 core, folded IIT Module 9 LoRA, the `ML-8` LLM half, and
 `ML-14` attention primitives — all via one `confirmed` record.
 Opened: one cross-cutting `GAP:` for the modern transformer architecture and
 inference layer, with `TB-DL-006` as its only candidate.
+
+## Batch B13 — modern-LLM layer, plus a second fanout.sh pass
+
+Two objectives: hunt textbooks and primary literature for the gap cluster opened
+in B12, and re-examine fanout.sh's public surfaces for anything else relevant.
+The user also named four pages directly; `/ai/overview` and `/ml-math/resources`
+carried real public content, the other two are stubs.
+
+### Textbooks
+
+| Modules | Candidate | Sources fetched | Outcome | Compiled entry | Gap effect |
+|---|---|---|---|---|---|
+| `ML-3`, `ML-CORE`, `MML-12` | Shalev-Shwartz and Ben-David, *Understanding Machine Learning* (Cambridge, 2014) | Cambridge ToC `SRC-ML-005`; Google Books ToC `SRC-ML-006` | `confirmed` | `TB-ML-003` | closes the empirical-risk-minimization and PAC-learning gap flagged in B12, and the statistical-learning-theory half of `ML-CORE` |
+| folded IIT Modules 7-13, `M46`, `ML-13`, `GENAI-RAG-AGENTS` | Huyen, *AI Engineering* (O'Reilly, 2025) | O'Reilly full ToC `SRC-DL-012`, DOM-expanded; Google Books `SRC-DL-013` states the same sequence in prose | `confirmed` | `TB-DL-007` | the single largest gain of this batch: closes prompt engineering, RAG and agents as system patterns, evaluation methodology, dataset engineering, deployment architecture, and inference optimization at the decision level |
+| `ML-8`, folded IIT Modules 7-8 | Alammar and Grootendorst, *Hands-On Large Language Models* (O'Reilly, 2024) | O'Reilly full ToC `SRC-DL-014`; Google Books `SRC-DL-015` gives scope but no ordered chapters | `single-sourced, unverified` | `TB-DL-008` | none |
+| `ML-12` RL half, `M45` reasoning | Raschka, *Build a Reasoning Model (From Scratch)* (Manning, June 2026) | Manning metadata `SRC-DL-016` | `candidate`; unpublished, no chapter titles released | `TB-DL-009` | none; explicitly covers GRPO, so worth revisiting on publication |
+| `MATH-LA` applied tier | Boyd and Vandenberghe, *Introduction to Applied Linear Algebra* (2018) | Google Books ToC `SRC-MATH-043`; Stanford author site `SRC-MATH-044` exposes no chapter list | `single-sourced, unverified` | `TB-MATH-020` | none |
+| `M35`, `M36` | Riley, Hobson and Bence, *Mathematical Methods for Physics and Engineering* 3e | Google Books `SRC-MATH-045`; the Cambridge page returned HTTP 500 | `candidate` | `TB-MATH-021` | none, but this is the most promising route to closing the `M35`/`M36` single-source gap; retry Cambridge |
+| `ML-CORE` | Bishop, *Pattern Recognition and Machine Learning* | Microsoft Research and Springer pages reached; neither exposes a chapter list | remains unverified | none | none |
+| `M35`, `M36` | Kneusel *Math for Deep Learning*; Banerjee *Mathematical Modeling*; Sokolowski and Banks *Principles of Modeling and Simulation* | listed on fanout's shelf; not fetched | unresearched candidates | none | none |
+
+### Primary literature — new §17.1.16
+
+Twenty-six papers verified against arXiv's own metadata API (`SRC-PAP-001`) for
+exact title, authors, identifier and year, covering: normalization and activation
+variants; rotary position embeddings; multi-query and grouped-query attention;
+flash attention; sparse mixture-of-experts; paged memory management for serving;
+speculative decoding; tensor, pipeline and data parallelism with optimizer-state
+sharding; post-training quantization; compute-optimal scaling; and the policy
+optimization family from PPO through GRPO and GSPO.
+
+These are papers, not textbooks. Under §17.1.1 they cannot clear a textbook
+`GAP:`, and those rows stay open. They are recorded so the affected modules have
+citable primary sources rather than nothing — the correct evidence class for
+mechanisms that postdate the textbooks this curriculum is built on.
+
+Two mechanisms have no arXiv source and are named as leads only: continuous
+batching (Orca, USENIX OSDI 2022) and the roofline model (Williams, Waterman and
+Patterson, CACM 2009).
+
+### Second fanout.sh pass
+
+| Page | Result |
+|---|---|
+| `/ml-math/resources` | A real 13-book shelf. Seven were already held (`TB-MATH-004`, `TB-MATH-006`, `TB-ENG-001`, `TB-ENG-002`, `TB-OPT-003`, `TB-PROB-004`, Bishop). Six were new leads, of which two were verified this batch |
+| `/ai/overview` | ~9.5 KB of genuinely public lesson text for the Math Fundamentals section — functions, derivatives, vectors, gradients, matrices, Hadamard product, exponential moving averages. All of it is standard material already covered by `M29`-`M39` and `MML-3`/`MML-4` at greater depth. No gap |
+| `/ml-math/overview`, `/system/overview` | Stubs; the substantive content is gated |
+| `/labs/math-decoder` | 382 public equation-level slugs. This is what evidenced the second gap cluster — distributed training and serving arithmetic — now recorded in §17.1.12.1 as `SRC-REC-002` |
+
+### New gap opened
+
+**Distributed training and serving arithmetic**, confirmed absent by
+word-boundary search: tensor, pipeline and data parallelism; ring all-reduce and
+collective-latency modelling; roofline bound and arithmetic intensity;
+floating-point-operation accounting; micro-batch sizing; key-value cache memory
+arithmetic; and the arithmetic of quantization itself — scale, zero point, group
+size, symmetric schemes. The file names quantization as a concept seventeen times
+but never its arithmetic.
+
+### B13 result
+
+Closed: ERM and PAC learning; statistical learning theory in `ML-CORE`; prompt
+engineering, RAG and agents as system patterns; evaluation methodology; dataset
+engineering; deployment architecture; inference optimization at the decision level.
+Opened: the distributed and serving arithmetic gap.
+Primary-source coverage now exists for the entire B12 modern-architecture cluster
+even though its textbook layer stays open.
+
+## Batch B14 — the untried leads from B0-B11
+
+Resumes the follow-up batch proposed at the end of B11, targeting the modules
+that still had no confirmed source at all.
+
+| Modules | Candidate | Sources fetched | Outcome | Compiled entry | Gap effect |
+|---|---|---|---|---|---|
+| `ML-12` causal half, `MML-9` | Hernan and Robins, *Causal Inference: What If* (CRC, 2020) | author site at its moved URL `SRC-CAU-001`; Routledge/CRC full twenty-three-chapter ToC `SRC-CAU-002` | `confirmed` | `TB-CAU-001` | **closes the causal gap**, which previously had no textbook record at any level: causal graphs, confounding, selection and measurement bias, propensity scores, inverse-probability weighting, instrumental variables, time-varying treatments |
+| `ML-11` | Hyndman and Athanasopoulos, *Forecasting: Principles and Practice*, 3rd ed. (2021) | OTexts author-publisher ToC `SRC-ML-007`; Google Books `SRC-ML-008` gives ISBN only | `single-sourced, unverified` | `TB-ML-004` | the forecasting hole -- previously nothing at any level -- now has a record covering decomposition, exponential smoothing, ARIMA, seasonality, hierarchical reconciliation and backtesting |
+| `MML-8`, `M40` | MacKay, *Information Theory, Inference and Learning Algorithms* (2003) | Google Books full ToC `SRC-PROB-013`; the author site 403'd again and Cambridge was mid-outage | `single-sourced, unverified` | `TB-PROB-007` | `MML-8` now rests on two independent unverified records instead of one; still no confirmed text |
+| `M42`, `ML-9` | Forsyth and Ponce, *Computer Vision: A Modern Approach*, 2nd ed. (2012) | Pearson International Edition contents PDF `SRC-CV-007`, read as PDF pages; Google Books `SRC-CV-008` gives ISBN only | `single-sourced, unverified` | `TB-CV-004` | the `M42` core is now carried by two independent books rather than one; still no confirmed record |
+| `M46`, `ML-2`, `ML-13`, `MLSYS-2`-`MLSYS-7` | Lakshmanan, Robinson and Munn, *Machine Learning Design Patterns* (2020) | O'Reilly full ToC `SRC-MLSYS-003`, DOM-expanded after the earlier 403; Google Books `SRC-MLSYS-004` corroborates the first four of eight chapters exactly | `single-sourced, unverified` | `TB-MLSYS-002` | the production-pattern layer now has two independent unverified records; `ML-2` feature engineering is no longer absent |
+| `M45`, `ML-8`, folded IIT Modules 7 and 12-13 | Tunstall, von Werra and Wolf, *NLP with Transformers*, revised ed. (2022) | O'Reilly full ToC `SRC-NLP-003`, DOM-expanded; Google Books `SRC-NLP-004` gives ISBN only | `single-sourced, unverified` | `TB-NLP-002` | adds an independent treatment of the architecture and of production efficiency via distillation, quantization and pruning |
+
+### Notes from this pass
+
+- The Hernan and Robins book site had moved; the URL recorded as failing in B10
+  now redirects to a staff profile, and `miguelhernan.org/whatifbook` is the live
+  location. Recorded so the next pass does not repeat the failure.
+- **Cambridge University Press was mid-outage** during this batch, serving a
+  "Temporary Disruption ... we have suspended some of our systems" notice. This
+  explains the HTTP 500 responses recorded against Cambridge in B13 for Riley,
+  Hobson and Bence and for *Dive into Deep Learning*, and it blocked MacKay here.
+  Those three are worth retrying once Cambridge is back; each could be promoted.
+- Consistency rule applied throughout: `confirmed` requires the second source to
+  expose the complete edition-matched structure. Where it exposes only part, the
+  record stays `single-sourced, unverified` and the evidence cell states how much
+  was corroborated.
+
+### B14 result
+
+Closed: the causal half of `ML-12` and the causal content of `MML-9`.
+Materially improved without closing: `ML-11` forecasting and `ML-2` feature
+engineering both went from no record at any level to a documented record;
+`MML-8`, `M42` and the production-pattern layer each went from one unverified
+record to two independent ones.
+Still open with no confirmed source: `M43`, `M44`, `M45` modern primitives,
+`MML-7` optimization, `MML-8`, `ML-10` graph ML, and the two cross-cutting
+clusters in §17.1.12.1.
