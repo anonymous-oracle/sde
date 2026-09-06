@@ -67,3 +67,17 @@ def test_square_neg_raises():
     with pytest.raises(TypeError):
         square("a")
 
+# numpy slicing
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+arr2 = arr[:, 1:]
+arr3 = arr[:, 1:].copy()
+
+arr2[0, 1] = 55
+arr3[0, 1] = 99
+print(arr) # 
+
+# dtype=np.int8 and store >127 value
+arr_int8 = np.array([128], dtype=np.int8)
+print(arr_int8)
