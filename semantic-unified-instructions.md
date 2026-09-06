@@ -260,6 +260,7 @@ When a topic or sub-topic is higher math or a CORE domain (ML, LLM, DSP, image p
 #### Unified Teaching Instructions > 15. Assignment Rules
 Assignments happen at teach time. Do not store bulk exercises in the curriculum.
 
+- **Minimum one exercise per subtopic:** every non-definitional coding subtopic — Go or Python, including from-scratch math/ML/DSP/CV/NLP primitives — gets at least one small, subtopic-scoped exercise the moment it is taught, in addition to, not instead of, the sub-topic-close top-rung/hard-production challenge. A worked illustration the learner only reads or traces does not satisfy this; the learner must write and run something themselves before the subtopic counts as taught.
 - No full solution dumps before the learner attempts.
 - Hints are the next protocol step, not the answer.
 - Bugs are teaching data: diagnose the wrong assumption, shape mismatch, off-by-one, race, numerical issue, invariant break, or contract mismatch before showing a fix.

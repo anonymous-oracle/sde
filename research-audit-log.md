@@ -370,3 +370,85 @@ record to two independent ones.
 Still open with no confirmed source: `M43`, `M44`, `M45` modern primitives,
 `MML-7` optimization, `MML-8`, `ML-10` graph ML, and the two cross-cutting
 clusters in §17.1.12.1.
+
+## Batch B15 — remaining untried leads (Blitzstein & Hwang, Sipser)
+
+Continues the follow-up sweep after B14. Attempted to retry three Cambridge
+University Press pages first (`TB-MATH-021` Riley/Hobson/Bence, MacKay, and
+*Dive into Deep Learning*'s catalog page) — all three still return HTTP 500
+with the same "Temporary Disruption ... we have suspended some of our systems"
+notice seen in B13/B14. Cambridge remains down site-wide; not a genuine
+absence of a second source. Left as open leads for a later retry rather than
+marked `rejected`.
+
+| Modules | Candidate | Sources fetched | Outcome | Compiled entry | Gap effect |
+|---|---|---|---|---|---|
+| `MML-5`, `MML-6`, `PROB-STAT-INFO` | Blitzstein and Hwang, *Introduction to Probability*, 2nd ed. (2019) | Routledge/Chapman and Hall full ToC `SRC-PROB-014`; Google Books `SRC-PROB-015`, matching chapter list | `confirmed` | `TB-PROB-008` | strengthens `MML-5` and `MML-6` from one confirmed source each to two; adds MCMC coverage |
+| `M44` discrete prerequisite | Sipser, *Introduction to the Theory of Computation*, 3rd ed. | Cengage Learning India catalog, full three-part ten-chapter ToC `SRC-AUT-003`; Google Books `SRC-AUT-004` gives ISBN only; a second WebSearch-sourced summary matched the Cengage India listing exactly, corroborating it independently but not counted as a second *fetched* legitimate ToC page under the evidence contract | `single-sourced, unverified` | `TB-AUT-002` | `M44`'s discrete-math prerequisite now has two independent unverified sources; the WFST core of `M44` itself remains uncovered by any textbook |
+| `M35`, `M36` | Riley, Hobson and Bence, *Mathematical Methods for Physics and Engineering* 3e (Cambridge retry) | Cambridge Core and Cambridge Aspire both returned HTTP 500 again | blocked by outage, not re-assessed | `TB-MATH-021` unchanged | none this batch |
+| `MML-8` | MacKay (Cambridge retry) | Cambridge Core returned HTTP 500 | blocked by outage | `TB-PROB-007` unchanged | none this batch |
+| `MML-4` | *Dive into Deep Learning* Cambridge catalog (second-source retry for `TB-DL-003`) | Cambridge returned HTTP 500 | blocked by outage | `TB-DL-003` unchanged | none this batch |
+
+### B15 result
+
+Closed nothing new outright, but **`MML-5` and `MML-6` are now each carried by
+two independent confirmed sources** rather than resting on a single one, which
+is a meaningfully stronger evidence position even without a status change.
+`M44`'s prerequisite chain gained a second unverified source. Three Cambridge
+retries were blocked by the same ongoing site-wide outage documented in B13/B14
+— worth one more retry in a future session before concluding those records
+cannot be promoted.
+
+### Remaining threads for a future pass
+
+- Retry Cambridge (`TB-MATH-021`, `TB-PROB-007`, `TB-DL-003` second source) once
+  the outage clears.
+- `MML-7` (optimization): Bertsekas *Nonlinear Programming*, Beck *First-Order
+  Methods in Optimization* still unfetched — the largest remaining gap with a
+  named candidate list and zero attempts.
+- Engineering-math shelf from fanout, still unfetched: Kneusel *Math for Deep
+  Learning*, Banerjee *Mathematical Modeling*, Sokolowski and Banks *Principles
+  of Modeling and Simulation*.
+- `M43`/`M44` core (speech, WFSTs): no textbook lead has been found across five
+  batches now (B6, B14, B15). This may be a genuine, permanent gap rather than
+  an unexplored one — Kaldi/OpenFst official documentation is likely the
+  correct long-term primary source, not a placeholder.
+- `ML-10` (graph ML): never attempted in any batch. No candidate has been named.
+
+## Batch B16 — the two never-attempted leads (graph ML, optimization)
+
+B15 flagged `ML-10` (graph ML) as never attempted in any batch and `MML-7`
+(optimization) as having the largest gap with a named but unfetched candidate
+list. Both were chased this batch.
+
+| Modules | Candidate | Sources fetched | Outcome | Compiled entry | Gap effect |
+|---|---|---|---|---|---|
+| `ML-10`, folded DL Module 7 graph slice, `MML-9` | William L. Hamilton, *Graph Representation Learning* (2020) | author-hosted McGill site with full nine-chapter, three-part ToC `SRC-ML-009`; Springer chapter listing `SRC-ML-010`, matching exactly | `confirmed` | `TB-ML-005` | **closes `ML-10`**, never attempted in five prior batches: graph theory foundations, node embeddings, GNNs, and generative graph models |
+| `MML-7`, `M39` | Amir Beck, *First-Order Methods in Optimization* (2017) | SIAM full fifteen-chapter ToC `SRC-OPT-007`; Google Books `SRC-OPT-008` gives ISBN only, no chapter list | `single-sourced, unverified` | `TB-OPT-004` | `MML-7` now has three unverified records instead of two; still no confirmed pair, still the largest open gap in the mathematics half of the audit |
+
+### Evidence-discipline note
+
+An early draft of this batch nearly recorded `TB-OPT-004` as `confirmed` on the
+strength of a WebSearch summary that happened to match the SIAM chapter list
+exactly. That WebSearch summary is not itself a fetched legitimate source under
+the §17.1.1 contract — it is a search engine's aggregation of unspecified pages
+— so it cannot serve as the second ToC. Caught and corrected before writing:
+`TB-OPT-004` is recorded `single-sourced, unverified`, consistent with how the
+same situation was handled for Sipser in B15.
+
+### B16 result
+
+Closed: `ML-10`.
+Strengthened without closing: `MML-7` (three unverified sources now, was two).
+
+### Cumulative gap status after B0-B16
+
+No confirmed source at any tier: `M43`/`M44` core (speech, WFSTs — five batches
+attempted, no textbook found at any level; likely a genuine, permanent
+textbook-layer gap with Kaldi/OpenFst documentation as the correct primary
+source), `MML-7` (optimization), `MML-8` (information theory), `M45` modern
+architecture and inference primitives (RMSNorm/RoPE/SwiGLU/GQA/MoE/flash
+attention/paged attention/continuous batching/speculative decoding — §17.1.16
+supplies primary sources, textbook layer open pending `TB-DL-006`/`TB-DL-009`).
+Blocked by an ongoing Cambridge University Press outage, not a genuine gap:
+`TB-MATH-021`, `TB-PROB-007`, `TB-DL-003`'s second source.
