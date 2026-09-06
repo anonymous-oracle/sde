@@ -12,7 +12,7 @@ Deduplication happened at content-unit level. Exact normalized repeats were remo
 
 | Owner cluster | Canonical responsibility | Merge signals |
 |---|---|---|
-| Purpose Scope and Source of Record | active-artifact binding, beginner-to-destination scope, language ownership | purpose, learner, outcome, scope, syllabus, source, record |
+| Purpose Scope and Source of Record | active-artifact binding, beginner-to-destination scope, mastery depth floor, language ownership | purpose, learner, outcome, scope, syllabus, source, record, depth, mastery |
 | Conflict Resolution and Ownership Rules | precedence, dedupe ownership, archive and timing decisions | resolved, conflicts, python, go, split, archive, capstone, timing |
 | Learner State and Dependency Gate | persistent ledger, prerequisite audit, confirmation and remediation | learner, state, progress, unlocked, shaky, postponed, dependency |
 | Lesson Shape and Difficulty Ramps | one-idea units, ten-rung progression, unseen transfer | lesson, protocol, worked, routine, mixed, challenge, reflection |
@@ -22,7 +22,7 @@ Deduplication happened at content-unit level. Exact normalized repeats were remo
 | System Design Database and ML Systems Protocol | HLD/LLD, PostgreSQL internals, distributed and hybrid ML systems | system, design, database, postgres, sql, mvcc, production ML |
 | Clean Code Tests and Research-Grounded Architecture | maintainability, TDD, primary-source research, operational evidence | clean code, tests, research, architecture, observability, review |
 | Capstone Isolation and Completion Bar | prerequisite timing, integration, operational-readiness evidence | capstone, isolation, final, complete, recovery, operational |
-| Non Goals and Archive Rules | bounded scope, provenance retention, deferred enrichment | archive, inventory, survey, formula-only, deferred, unbounded |
+| Non Goals and Archive Rules | coverage tiers and ordering, provenance retention, deferred enrichment | archive, inventory, survey, formula-only, deferred, unbounded, tier |
 
 ## 2. Semantic Teaching Contract by Policy Owner
 
@@ -55,6 +55,17 @@ Do not teach the prior source streams as parallel courses. Attach every topic to
 The learner is a middle-schooler who currently knows none of this material. The course takes that learner from zero to Ivy-league graduate and industry competence across mathematics, computer science, machine learning, large language models, signal processing, image processing, NLP, Kaldi and automatic speech recognition, neural networks, information theory, computer vision, GCP Professional Machine Learning Engineer practice, IIT Kharagpur Generative AI and Agentic AI material, Go production systems, PostgreSQL-backed services, HLD/LLD, system design, production ML-system patterns, and the Nasiko control-plane capstone.
 
 External programs may list Python, APIs, or basic ML math as entry requirements. Those are **not** assumed here. Teaching starts at the first foundational prerequisite in the active curriculum.
+
+**Mastery destination and depth floor.** The destination is Ivy-league (MIT/Stanford/Harvard-caliber) graduate-course-level expertise in every topic this contract teaches, reached basics-to-advanced, not a survey of it. Familiarity, "enough to use the library," and routine fluency are waypoints on the way to a topic, not its completion. A topic is not covered until the learner can, at that topic's own academic level:
+
+- derive or prove its central results from first principles, not recall them;
+- state the governing assumptions and validity conditions, and say what breaks when each fails;
+- implement the core primitive from scratch in the owner language and predict its behavior before running it;
+- solve an unseen problem at that level without a template, using the JEE-Advanced-style aptitude below;
+- read, use, and critique the primary literature or official documentation the topic rests on; and
+- place the topic in the graph: its prerequisites, what it unlocks, and its trade-offs against nearby alternatives.
+
+Two limits survive this floor. **Skip when definitional** still applies: a named theorem statement, historical fact, or cloud-console-only lab does not get a derivation demand it cannot support. And the ceiling is graduate *coursework*, not original research: the learner should be able to walk into a graduate course or a research conversation on the topic, not produce novel results in it. The floor is per topic, not an average across the course — a topic that was only mentioned, defined, demonstrated once, or exercised at routine level has not reached it, regardless of how advanced other topics have gotten.
 
 The active curriculum holds the graph order, textbooks, chapter maps, topics, Python libraries, statistical techniques, Go spine, database braid, system-design track, production ML case studies, and capstone phases. This contract states how to teach that syllabus and is complete without the earlier teaching contracts.
 
@@ -178,6 +189,8 @@ One new idea per unit. A sub-topic is complete only when the learner can explain
 Use the universal module ramp for `MATH-FUND`, `MATH-LA`, `MATH-CALC-NUM`, `PROB-STAT-INFO`, and every mathematical slice of ML, deep learning, LLMs, numerical methods, optimization, DSP, signal/audio processing, image processing, computer vision, NLP, Kaldi/ASR, information retrieval, causal inference, scientific computing, and any later field whose core reasoning depends on mathematics. The top rung is a JEE-Advanced-level transfer challenge at sub-topic close, after the mixed-transfer rung passes.
 
 "JEE-Advanced-level" outside the JEE syllabus means the same level of problem-solving aptitude and cognitive demand, translated into the field's own objects. It requires an unfamiliar formulation, hidden structure or constraints, a deliberate representation choice, multiple justified reasoning moves, and a check or counterexample. It does not mean relabeling a routine formula substitution, library call, or coding task as JEE-style.
+
+**The label names an aptitude, not a level cap.** "JEE-Advanced" is used because that examination is the clearest common reference for a specific kind of problem-solving intuition: reading an unfamiliar problem, exposing its hidden structure, choosing and switching representations, planning before computing, and checking the result. It does not mean the curriculum's difficulty stops at undergraduate-entrance level. That aptitude must be built and then carried upward, unchanged in kind, as the material itself climbs to graduate-course depth. On a graduate-tier sub-topic — real analysis, spectral theory and matrix decompositions, mathematical statistics and inference, convex and numerical optimization, information theory, or the mathematics inside advanced ML/DL/CV/ASR/NLP topics — the top rung applies this same aptitude to graduate-level objects: prove or disprove a claim, derive a result from first principles rather than cite it, state the precise conditions under which it holds, construct a counterexample or boundary case where it fails, analyze convergence rate, error bound, conditioning, or complexity, and connect the result to the paper or text it comes from. The aptitude standard is constant across the whole course; what the aptitude is applied to escalates with the topic's own academic tier, toward the depth floor above.
 
 Mathematical-domain pass signals are stricter than answer correctness: the learner must identify the representation, state the governing assumptions, explain why each important move works, check dimensions/units/domains/boundaries where relevant, and repair one plausible wrong path. A correct output with no structure named is routine fluency, not JEE-Advanced-level aptitude.
 
@@ -333,6 +346,7 @@ Required coverage includes relational algebra, SQL semantics, constraints, CTEs/
 #### Unified Teaching Instructions > 18. Completion Bar
 The learner finishes the unified track when they can:
 
+- explain, derive, and defend every taught topic at graduate-course level: state its assumptions, derive or prove its central result rather than recall it, name the conditions under which it holds and fails, and solve an unseen problem at that level without a template
 - derive, explain, and implement the core math/ML primitives in Python
 - implement DS/algo and hard platform problems in Go
 - reason about SQL and PostgreSQL internals from query to storage and recovery
@@ -341,6 +355,8 @@ The learner finishes the unified track when they can:
 - build production ML-system components with evaluation, monitoring, rollback, and governance
 - complete the Nasiko Go control plane with tests, traces, load checks, backup/restore, and an operational readiness review
 - use agentic coding tools as accelerators while still being able to inspect, correct, and replace the generated work
+
+The track finishes when both coverage tiers — the destination spine and the retained archive — have reached this bar, not when Tier 1 alone has.
 
 #### What this course is for > How the outcome is reached
 
@@ -482,7 +498,7 @@ Required hands-on: SQL transcript in Postgres; `EXPLAIN (ANALYZE, BUFFERS)` inte
 #### What this course is for > How the outcome is reached > Capstone isolation
 Do not implement the Nasiko control plane until the conceptual spine is done: setup and computing prerequisites, Go modules 0–19 (including blended DS/algo), the `MATH-ML`/`ML-CORE`/`ML-SYS` spine required by router and MLCASE work, the PostgreSQL/database-systems braid, the primer topic index and the SDP/OOD labs those modules unlock, the HLD/LLD/microservice/design-pattern implementation ladder, and the tool subcourses that P0–P10 need. DS/algo, ML, database-systems, and system-design labs are coursework; they may run in vertical slices **during** the spine. They are not the capstone. The capstone is Go only. No concurrent capstone work during Foundations.
 
-Recurse into computer science, mathematics, or ML theory only for locked prerequisites of the current slice. For `MLCASE`, go as deep as the production lesson requires, from middle-school arithmetic through graduate-level optimization/causal/RL ideas when necessary, then stop and return to the graph path. Do not expand into “the full fields of CS, mathematics, and ML.”
+Recurse into computer science, mathematics, or ML theory only for locked prerequisites of the current slice. For `MLCASE`, go as deep as the production lesson requires, from middle-school arithmetic through graduate-level optimization/causal/RL ideas when necessary, then stop and return to the graph path. Do not expand into “the full fields of CS, mathematics, and ML” as lateral drift mid-slice — this bounds scope creep during a slice, not the depth floor a topic reaches when its own slot arrives.
 
 ### Non Goals and Archive Rules
 
@@ -490,11 +506,12 @@ Recurse into computer science, mathematics, or ML theory only for locked prerequ
 | Conflict | Final rule |
 |---|---|
 | Multiple curriculum/source streams | the active curriculum is canonical for teaching; prior source streams are provenance |
+| Depth bar vs waypoint bars | The mastery depth floor (graduate-course level per topic) governs; "industry competence," "enough to use the library," and routine fluency are waypoints toward it, never a substitute completion criterion |
 | Math/ML in Go vs Python | Math, ML theory, and scratch ML implementations use Python/NumPy first. Go applies them in services, DS/algo, architecture, and production ML systems |
 | Former math/ML stream vs former Go/system stream | They are now one graph-ordered track. Do not run two spines |
 | JEE-Advanced ramp vs hard platform ramp | Use JEE-Advanced-level reasoning for mathematics and every mathematically grounded field, including ML, DSP, signal/audio, image processing, CV, and ASR; use hard platform or production drills for non-mathematical Go/DS/system work |
 | Tool/library teaching | Theory and from-scratch primitive first, then library/tool use |
-| Archive content | Retained but not taught unless a CORE dependency needs a sliver |
+| Archive content | Taught in Tier 2, after Tier 1 (`CORE`/`PREREQ`/`TOOL`) is complete, at the same depth floor and ramp; a sliver still pulls forward early only when a Tier-1 topic genuinely needs it |
 | Capstone timing | Nasiko capstone waits until required graph nodes are unlocked |
 
 #### Unified Teaching Instructions > 17. What This Course Is Not
@@ -503,30 +520,35 @@ It is not a paste-through of every source heading. It is not a survey of book ti
 Archive material is preserved for provenance. Teach it only when a current CORE dependency needs a precise slice.
 
 #### What this course is for > What is taught
-In-scope for teaching means topics tagged `CORE`, `PREREQ`, or `TOOL` in the active curriculum that sit on the primary destination track or the required support track. Topics tagged `ARCHIVE`, and books or chapters on the deferred enrichment track (unrelated pure-math depth, research number theory, medical/mechanical inventories, game-engine/rendering, unrelated web stacks), are inventory only. Pull a deferred or `ARCHIVE` sliver back only when a primary-destination topic genuinely needs it, and teach only that sliver.
+**Coverage is tiered, not truncated.** Every topic in the active curriculum is taught to the depth floor above; the tiers set the order, not a cutoff.
+
+- **Tier 1 — destination spine, taught first.** Everything tagged `CORE`, `PREREQ`, or `TOOL`: mathematics through its ML/LLM/DSP/image-processing/computer-vision/NLP/Kaldi-ASR/information-theory applications, the Python scratch-implementation track, the Go/DS-algo/database/system-design/security track, production ML-system design, and the Nasiko capstone. Finish Tier 1 before opening Tier 2.
+- **Tier 2 — retained archive, taught after Tier 1.** Commercial arithmetic (`M18`), the clinical/AccessMedicine inventory, mechanical/fluid/aerospace material, game engines and real-time rendering, React/TypeScript and other unrelated web stacks, and number theory beyond the elementary slices already folded into Tier 1. Tier 2 uses the same depth floor and the same difficulty ramp as Tier 1; it is sequenced after, not exempted from either.
+- **Sliver rule, unchanged.** When a Tier-1 topic genuinely needs a Tier-2 idea, pull that sliver forward and teach only the sliver at its owner node. The full Tier-2 treatment of that material still happens later, in its own slot.
+- Do not let Tier 2 open while Tier-1 topics remain unconfirmed, and do not let Tier 2 slow down Tier 1's progress.
 
 Domain priority: the course is not mathematics for its own sake. It teaches all mathematics required to master machine learning, large language models, signal processing, image processing, NLP and NLP libraries, Kaldi / ASR, neural networks, information theory, computer vision, GCP PMLE, the IIT Kharagpur GenAI / Agentic AI course contents, and the supporting Python, statistics, algorithms, and software practice those domains need. The depth target is still middle-school zero to Ivy-league graduate-course grasp, but mathematical depth is pursued because it unlocks those domains. Do not drift into unrelated pure-math depth; defer it unless a target domain genuinely needs it.
 
 Continue until every **in-scope** topic in that sense has been covered. Do not treat “every heading in the bibliography” as a teaching obligation.
 
 #### What this course is for > What this course is not
-It is not a survey of every book title that happened to appear in the source files. `ARCHIVE` and deferred-enrichment material stay as inventory. They are not taught unless a real primary-destination topic depends on a sliver of them.
+It is not a survey of every book title that happened to appear in the source files. `ARCHIVE` and deferred-enrichment material are Tier 2: taught after the `CORE`/`PREREQ`/`TOOL` destination spine is complete, at the same depth floor, not skipped. A sliver still pulls forward early only when a Tier-1 topic genuinely depends on it.
 
-It is not formula-only teaching, and it is not an unbounded research programme. Ivy-league graduate plus industry competence is enough. PhD and postdoctoral terrain is out of scope for now.
+It is not formula-only teaching, and it is not an unbounded research programme. Ivy-league graduate plus industry competence is the floor to reach on every topic, not a cap to stop below. PhD-level original research and postdoctoral specialization are out of scope for now.
 
 #### What this course is for
-The learner is an absolute beginner who currently knows none of this material, including Go, programming, systems, hardware, OS, editor, and CLI. Those are taught through the first `PREREQ` blocks in the active curriculum. The course takes that learner from zero to industry competence: they can implement and operate an AI-agent control plane in Go, the same class of system as Nasiko (gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, sample agents), understand and tune PostgreSQL-backed systems from relational algebra down to MVCC/WAL/index internals, design HLD/LLD/microservice architectures at an industry bar, implement production ML-system patterns from real company case studies, and implement standard algorithms, data structures, math primitives, and ML algorithms well enough to solve hard domain problems. Those DS/algo, ML, database-systems, and system-design labs are coursework, not the capstone.
+The learner is an absolute beginner who currently knows none of this material, including Go, programming, systems, hardware, OS, editor, and CLI. Those are taught through the first `PREREQ` blocks in the active curriculum. The course takes that learner from zero to graduate-course expertise and industry competence: they can implement and operate an AI-agent control plane in Go, the same class of system as Nasiko (gateway, backend, auth, router, registry, chat history, orchestrator/worker, CLI, sample agents), understand and tune PostgreSQL-backed systems from relational algebra down to MVCC/WAL/index internals, design HLD/LLD/microservice architectures at an industry bar, implement production ML-system patterns from real company case studies, and implement standard algorithms, data structures, math primitives, and ML algorithms well enough to solve hard domain problems. Those DS/algo, ML, database-systems, and system-design labs are coursework, not the capstone.
 
 The active curriculum holds the canonical knowledge graph, graph-ordered teaching stages, Go spine, blended algorithms/data structures/discrete math, PostgreSQL/database-systems braid, ML mathematics and production ML-system design spine, tool subcourses, system-design primer coverage, industry architecture research atlas, reconstruction phases P0-P10, normalized specs, and production bar. Teaching must rely on that syllabus and on the books, official docs, and source families cited there: algorithms, discrete math, linear algebra, calculus, probability, statistics, ML, database internals, PostgreSQL docs/source, system design, SRE, cloud architecture, tool docs, and `MLCASE`. Internet research is deliberate for system design, microservices, PostgreSQL operations, ML-system design, OSS architecture, and production case studies; use primary or reputable engineering sources, extract principles, and cite the source family. Teaching is academic, not reciting APIs, blog posts, or contest editorials.
 
 The former broad ML/LLM/DSP stream and the former Go/system stream are now integrated. Do not import either stream as a separate spine. When a router or `MLCASE` slice needs embeddings, ranking, LLMs, statistics, optimization, CV/audio, causal inference, or MLOps, teach the required prerequisite directly through the active curriculum owner nodes.
 
-In-scope means topics tagged `CORE`, `PREREQ`, or `TOOL` in the active curriculum. Topics tagged `ARCHIVE` are inventory only.
+Tier 1 means topics tagged `CORE`, `PREREQ`, or `TOOL` in the active curriculum, taught first. Topics tagged `ARCHIVE` are Tier 2, taught after Tier 1 completes, at the same depth floor.
 
 #### What this course is for > What this course is not
-It is not a survey of every Python file in the legacy analysis. Topics tagged `ARCHIVE` are kept so nothing is lost. They are not taught unless a real in-scope Go behavior depends on them.
+It is not a survey of every Python file in the legacy analysis. Topics tagged `ARCHIVE` are Tier 2 and are taught, at the same depth floor, after the in-scope Go/CS/ML destination spine is complete; a sliver still pulls forward early only when a real in-scope Go behavior depends on it.
 
-It is not the full ML/DSP research course, though production ML-system design is in scope. It is not an orchestrator spec and not an unbounded research programme. Staff-engineer plus production ML operations is enough.
+It is not the full ML/DSP research course, though production ML-system design is in scope. It is not an orchestrator spec and not an unbounded research programme. Staff-engineer plus production ML operations is the industry half of the bar; the graduate-course depth floor above is the other half, and both are required, not either one alone.
 
 ## 3. Policy Coverage and Deduplication Audit
 
@@ -535,6 +557,8 @@ This section records invariants, not frozen NLP counts. Any substantive edit inv
 | Check | Pass condition |
 |---|---|
 | Self-containment | The contract can select an active curriculum, route a lesson, persist state, gate prerequisites, assess mastery, and resolve conflicts without an earlier instruction file |
+| Depth floor | Every non-definitional topic's completion criteria include derivation/proof, stated validity conditions, an unseen problem solved without a template, and a from-scratch implementation where applicable — not routine accuracy alone |
+| Coverage tiering | Tier 1 (`CORE`/`PREREQ`/`TOOL`) is sequenced before Tier 2 (retained archive); no policy text still claims archive is untaught inventory |
 | Canonical ownership | Each rule family has one owner cluster; later text may specialize or apply it but may not create a conflicting second policy |
 | Language precedence | Go owns software/systems/security; Python owns math/ML/domain primitives; production ML crosses the boundary through explicit contracts |
 | Difficulty and dependency safety | Every non-definitional unit uses the prerequisite-safe ramp; top-rung labels cannot import locked machinery |
