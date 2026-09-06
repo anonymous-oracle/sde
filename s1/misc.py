@@ -78,6 +78,15 @@ arr2[0, 1] = 55
 arr3[0, 1] = 99
 print(arr) # 
 
-# dtype=np.int8 and store >127 value
-arr_int8 = np.array([128], dtype=np.int8)
-print(arr_int8)
+# # dtype=np.int8 and store >127 value
+try:
+    arr_int8 = np.array([128], dtype=np.int8)
+    print(arr_int8)
+except OverflowError as e:
+    print(f"Overflow error: {e}")
+
+# add (2, 2) and (2, ) sized arrays
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([10, 20])
+result = arr1 + arr2
+print(result)
