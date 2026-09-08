@@ -452,3 +452,74 @@ attention/paged attention/continuous batching/speculative decoding — §17.1.16
 supplies primary sources, textbook layer open pending `TB-DL-006`/`TB-DL-009`).
 Blocked by an ongoing Cambridge University Press outage, not a genuine gap:
 `TB-MATH-021`, `TB-PROB-007`, `TB-DL-003`'s second source.
+
+## Batch B17 — IIT/IISc BTech/MTech CS and Math institutional curriculum cross-check
+
+New kind of batch: instead of hunting textbooks for modules already in this
+file's spine, this batch consolidated the official BTech/BE and MTech/ME
+Computer Science and Mathematics curricula of six institutes (IISc plus IIT
+Bombay, Delhi, Kanpur, Kharagpur, Madras — the "top 5" IITs by public
+curriculum documentation, per the user's explicit scope choice), diffed the
+consolidated topic list against this file's existing coverage, and recorded
+only the genuine gaps. Raw per-institute extraction (course lists, topics,
+textbook citations, with every URL fetched and every rejected/unofficial
+source logged) is kept in `iit-iisc-curriculum-research.md` at the repository
+root as the citation backing for the `SRC-CURR-*` rows below.
+
+Excluded hosts (Scribd, Careers360, Shiksha, Zollege, Quora, Collegedunia,
+coaching-site PDFs, and similar) appeared repeatedly in search results across
+all six institutes and were never fetched or cited, consistent with the
+existing exclusion list. Two access constraints were hit and are recorded as
+researcher-side limitations, not evidence against the source: IIT Bombay's and
+IIT Madras's CSE department pages are JavaScript single-page apps that returned
+only page shells to static fetch; IIT Kharagpur's main CSE site returned
+HTTP 403 through a local network security proxy. In each case an alternate
+official page or PDF on the same domain was used instead.
+
+| Modules | Candidate | Sources fetched | Outcome | Compiled entry | Gap effect |
+|---|---|---|---|---|---|
+| new CS-theory node (`PROOF-DISCRETE` companion) | Arora and Barak, *Computational Complexity: A Modern Approach* (2009) | IISc CSA course-description page for E0 224, official `csa.iisc.ac.in` (`SRC-CURR-006`) | `single-sourced, unverified` | `TB-CSTH-001` | opens a graduate complexity-theory node distinct from the `M44`/`ML-8`-scoped `TB-AUT-001`/`TB-AUT-002` |
+| new CS-theory node | Hennessy and Patterson, *Computer Organization and Design* | cross-referenced on IIT Bombay, Kanpur, and Kharagpur CSE architecture-course pages (`SRC-CURR-001`, `SRC-CURR-003`, `SRC-CURR-004`) | `single-sourced, unverified` | `TB-CSTH-002` | opens a computer-architecture node; none existed before |
+| new CS-theory node | Silberschatz, Galvin and Gagne, *Operating System Concepts* | cross-referenced on IIT Bombay, Kharagpur, and IISc CSA OS-course pages (`SRC-CURR-001`, `SRC-CURR-004`, `SRC-CURR-006`) | `single-sourced, unverified` | `TB-CSTH-003` | opens an OS-theory node; none existed before |
+| new CS-theory node | Tanenbaum and Wetherall, *Computer Networks* | cross-referenced on IIT Bombay and IISc networks-course pages (`SRC-CURR-001`, `SRC-CURR-006`) | `single-sourced, unverified` | `TB-CSTH-004` | opens a networks-theory node; none existed before |
+| new CS-theory node | Aho, Lam, Sethi and Ullman, *Compilers: Principles, Techniques, and Tools* | department-wide compiler reference at IIT Bombay and IIT Kharagpur (`SRC-CURR-001`, `SRC-CURR-004`) | `single-sourced, unverified` | `TB-CSTH-005` | opens a compiler/PL-theory node; none existed before |
+| new math node | Dummit and Foote, *Abstract Algebra* | named at IIT Bombay MA414 and IIT Kanpur MTH204 (`SRC-CURR-001`, `SRC-CURR-003`) | `single-sourced, unverified` | `TB-MATH-022` | opens an abstract-algebra node; none existed before |
+| new math node | Munkres, *Topology* | named at IIT Bombay MA406 and IISc MA231 (`SRC-CURR-001`, `SRC-CURR-006`) | `single-sourced, unverified` | `TB-MATH-023` | opens a topology node; none existed before |
+| new math node | Ahlfors, *Complex Analysis* | named at IISc MA224, cross-referenced against IIT Kanpur MTH403's Stein and Shakarchi variant (`SRC-CURR-006`, `SRC-CURR-003`) | `single-sourced, unverified` | `TB-MATH-024` | opens a pure-complex-analysis node, distinct from the applied DSP use of complex exponentials |
+| new math node | Royden (and Fitzpatrick), *Real Analysis* | named at IIT Bombay MA408 and IISc MA222 (`SRC-CURR-001`, `SRC-CURR-006`) | `single-sourced, unverified` | `TB-MATH-025` | opens a measure-theory/functional-analysis node; none existed before |
+| new math node | do Carmo, *Differential Geometry of Curves and Surfaces* | named at IIT Kanpur MTH305 only (`SRC-CURR-003`) | `candidate` | `TB-MATH-026` | opens a differential-geometry node; only one institutional citation found |
+| new math node | Enderton, *A Mathematical Introduction to Logic* | nearest official match is IIT Kanpur MTH302, which itself cites Chiswell and Hodges plus Halmos (`SRC-CURR-003`) | `candidate` | `TB-MATH-027` | opens a logic/set-theory node beyond `M3`; the institute's own cited titles (Chiswell and Hodges, Halmos) are flagged as the preferred alternative, not yet fetched |
+| new math node | West, *Introduction to Graph Theory* | nearest official match is IISc E0 220's reading list (Diestel, West, Bondy and Murty, Bollobás) (`SRC-CURR-006`) | `single-sourced, unverified` | `TB-MATH-028` | opens a pure-combinatorics/graph-theory node, distinct from `ML-10`'s applied graph ML |
+| new theoretical-cryptography node | Katz and Lindell, *Introduction to Modern Cryptography* | nearest official match is IISc E0 248 and IIT Kharagpur's "Foundations of Cryptography," both citing Goldreich and Delfs and Knebl rather than Katz and Lindell directly (`SRC-CURR-006`, `SRC-CURR-004`) | `candidate` | `TB-CRYP-001` | opens a theory-of-cryptography node distinct from the vetted-library Go security track; Goldreich flagged as the closer-fit alternative |
+| new math node | Evans, *Partial Differential Equations* | named at IIT Bombay MA515 as one of four reference options (`SRC-CURR-001`) | `single-sourced, unverified` | `TB-MATH-029` | opens a rigorous-PDE node beyond the applied engineering-math treatment |
+
+### Evidence-discipline note
+
+No row above was marked `confirmed`. An institute's course page naming a
+textbook is a selection/recommendation signal under §17.1.1, not a contents
+(ToC) verification source — the same distinction already enforced for
+WebSearch aggregations in B15/B16. Two rows (`TB-MATH-026`, `TB-MATH-027`)
+were marked `candidate` rather than `single-sourced` specifically because the
+strongest institutional evidence points to a different title than the one
+compiled (do Carmo has only one citing institute; the Kanpur logic course
+cites Chiswell/Hodges and Halmos, not Enderton) — recorded as found, not
+silently reconciled to a cleaner story.
+
+### B17 result
+
+Partially closed: fourteen new gap clusters identified and given a first
+candidate textbook each, all requiring a second ToC-verified source before
+any can close. Institutional topic coverage that already has an owner node
+(algorithms, discrete math, databases, calculus, linear algebra, probability,
+statistics, optimization, classical/deep ML) was checked and confirmed
+already-covered — not re-added, per the diff step.
+
+### Cumulative gap status after B0-B17
+
+Unchanged from B16 for the original math/ML spine (see above). New, from B17:
+fourteen CS-theory and pure-math clusters (`TB-CSTH-001`-`005`,
+`TB-MATH-022`-`029`, `TB-CRYP-001`) each have exactly one candidate textbook
+and need a second ToC source to reach `confirmed`; two of the fourteen
+(`TB-MATH-026`, `TB-MATH-027`) additionally need the institute's own
+preferred alternative title checked before the compiled candidate is treated
+as settled.

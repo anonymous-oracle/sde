@@ -507,6 +507,13 @@ Use these as a hierarchy, not a reading dump. Start with the governing RFC/BCP o
 - React and TypeScript texts as archive unless a future UI track is opened.
 - PhD/research number theory sources as archive unless a later cryptography or theory dependency needs a slice.
 
+### 8.8 IIT/IISc Institutional Curriculum Cross-Check
+
+- CS theory: Arora and Barak *Computational Complexity*, Hennessy and Patterson *Computer Organization and Design*, Silberschatz/Galvin/Gagne *Operating System Concepts*, Tanenbaum and Wetherall *Computer Networks*, Aho/Lam/Sethi/Ullman *Compilers*.
+- Pure mathematics: Dummit and Foote *Abstract Algebra*, Munkres *Topology*, Ahlfors *Complex Analysis*, Royden *Real Analysis*, do Carmo *Differential Geometry of Curves and Surfaces*, Enderton *A Mathematical Introduction to Logic*, West *Introduction to Graph Theory*, Evans *Partial Differential Equations*.
+- Theoretical cryptography: Katz and Lindell *Introduction to Modern Cryptography* (candidate; Goldreich *Foundations of Cryptography* is the closer institutional match, not yet verified).
+- All fourteen titles are `single-sourced, unverified` or `candidate`, sourced from IISc and IIT Bombay/Delhi/Kanpur/Kharagpur/Madras official curricula rather than from a two-source ToC check. Exact editions, evidence, and gaps are in §17.1.17.
+
 ## 9. Textbook and Chapter Atlas
 
 The chapter lists from the broad curriculum source are retained as the reading atlas below. They are not taught as separate courses; each is entered only through the owner node that needs it.
@@ -546,6 +553,9 @@ The chapter lists from the broad curriculum source are retained as the reading a
 | James/Witten/Hastie/Tibshirani, ISL 2e | statistical learning framing, regression, classification, resampling, shrinkage, non-linearity, trees and ensembles, SVMs, deep learning, survival analysis, clustering, multiple testing | `ML-CORE` |
 | Lattimore & Szepesvari, Bandit Algorithms | stochastic and adversarial bandits, UCB and Thompson sampling, lower bounds, contextual and linear bandits, ranking, pure exploration, MDPs | `ML-CORE`, `MML-9` |
 | Prince; Bishop & Bishop; Dive into Deep Learning | shallow and deep networks, losses and optimizers, backpropagation, convolution, residual connections and normalization, attention and transformers, graph networks, generative models | `DL-NLP-CV-AUDIO`; all `single-sourced, unverified` or `candidate` |
+| Arora & Barak; Hennessy & Patterson; Silberschatz/Galvin/Gagne; Tanenbaum & Wetherall; Aho/Lam/Sethi/Ullman | computational complexity beyond the ASR gate; CPU/cache/pipeline architecture; process/memory/file-system OS theory; layered network protocols and routing; compiler phases and code generation | new CS-theory nodes, `ARCHIVE`; all `single-sourced, unverified`, verified in §17.1.17 |
+| Dummit & Foote; Munkres; Ahlfors; Royden; do Carmo; Enderton; West; Evans | groups/rings/fields/Galois theory; point-set and algebraic topology; pure complex analysis; measure theory and functional analysis; curves and surfaces; mathematical logic and set theory; pure graph theory and combinatorics; rigorous PDE theory | new math nodes, `ARCHIVE`; `single-sourced, unverified` or `candidate`, verified in §17.1.17 |
+| Katz & Lindell | hardness assumptions, PRGs/PRFs, semantic security, provable-security reductions, zero-knowledge proofs | theoretical-cryptography node, `ARCHIVE`; `candidate`, verified in §17.1.17 |
 
 ## 10. Python Library and ML Tool Atlas
 
@@ -804,6 +814,7 @@ Archive is retained, not deleted. It is not taught unless a current CORE node re
 - Mechanical/fluid/aerospace and medical inventories are archive.
 - React/TypeScript and unrelated web stacks are archive unless a UI track is opened.
 - Python-only legacy Nasiko implementation details are archive as implementation, but their concepts are retained in Go owner nodes.
+- IIT/IISc BTech-MTech CS and Math topics absent from the destination spine (theory of computation and complexity beyond the ASR gate, computer architecture, operating systems, computer networks, compiler design, abstract algebra, topology, pure complex analysis, measure/functional analysis, differential geometry, mathematical logic, pure combinatorics/graph theory, theoretical cryptography, rigorous PDE theory) are archive except where a CORE node already needs a slice.
 
 ## 16. Mastery, Assessment, and Portfolio Standard
 
@@ -856,6 +867,7 @@ By S23 the portfolio must include at least: one mathematics/numerical notebook o
 | IIT/upGrad lecture bank, GenAI/Agentic official map, papers | `GENAI-RAG-AGENTS`, §5.6, §13 |
 | Python library curriculum and NLP library theory | §10 |
 | Statistical techniques | `PROB-STAT-INFO`, §5-S10 |
+| IISc and IIT Bombay/Delhi/Kanpur/Kharagpur/Madras official BTech-MTech CS and Math curricula | §7, §17.1.17 |
 | Nasiko knowledge graph | §4 |
 | Go G0-G20 | §5, §7 |
 | DS/algo/discrete math and hard contest practice | `DS-ALGO`, §5-S4/S6/S8/S21 |
@@ -900,6 +912,8 @@ For mathematics, `rigorous` means proof- or theory-first and `applied` means com
 For ML and its domain branches, `rigorous` means theory, derivation, or statistical-learning-first and `applied` means computational, experimental, or production-oriented. The earlier software/system records retain their original labels, but their coverage gaps are outside the remaining audit scope.
 
 Each compiled entry uses chapter numbers or ranges followed by short, paraphrased topic nouns. It maps coverage rather than reproducing a table of contents, and no source wording longer than approximately fifteen words is retained. The research baseline and all access dates are 2026-09-04 unless a source row states otherwise.
+
+**Curriculum-page source kind (added 2026-09-08).** `SRC-CURR-*` names an official institutional curriculum document (a department course-list page or a scheme-of-instruction/curriculum PDF) rather than a textbook table of contents. A topic-coverage claim built on this kind reaches `confirmed` only when the same claim appears on two independent official sources from the same or different institutes; a single official page or PDF supports `single-sourced, unverified` only, the same bar as a single textbook ToC. `SRC-CURR-*` never substitutes for a textbook ToC source when verifying a `TB-*` edition's contents.
 
 #### 17.1.2 Exact-Edition Source Registry
 
@@ -1636,6 +1650,71 @@ such: **continuous batching** originates in the Orca serving paper (USENIX OSDI
 and Patterson (Communications of the ACM, 2009). Both are legitimate peer-reviewed
 sources outside arXiv; neither was fetched in this pass, so both are named as
 leads rather than verified rows.
+
+#### 17.1.17 Verified Bibliography and Chapter Atlas: IIT/IISc Institutional Curriculum Cross-Check
+
+Batch B17 (2026-09-08). Consolidated the official BTech/BE and MTech/ME Computer
+Science and Mathematics curricula of IISc plus IIT Bombay, Delhi, Kanpur,
+Kharagpur, and Madras (including "Mathematics and Computing" dual-degree
+programs at Delhi, Kharagpur, and IISc's BTech M&C), diffed the consolidated
+topic list against this file's M1-M46/`MML-*`/`ML-*`/`MLSYS-*` spine, §8, and
+§9. Most core CS-theory (algorithms, discrete math, databases) and core math
+(calculus, linear algebra, probability, statistics, optimization) already have
+an owner node and are not re-added. The rows below are the confirmed gaps.
+
+Curriculum-page source registry (`SRC-CURR-*`, each a bundle of the official
+pages/PDFs fetched for that institute; full URL list retained in
+`iit-iisc-curriculum-research.md`):
+
+| ID | Institute | Kind | Coverage | Access date |
+|---|---|---|---|---|
+| `SRC-CURR-001` | IIT Bombay | Dept. curriculum PDFs and course pages | CSE UG curriculum, Mathematics BS/dual-degree/MSc curriculum booklet | 2026-09-08 |
+| `SRC-CURR-002` | IIT Delhi | Dept./institute curriculum portal and PDFs | CSE and Mathematics & Computing BTech/MTech (legacy and 2025-revised) | 2026-09-08 |
+| `SRC-CURR-003` | IIT Kanpur | DOAA Courses-of-Study PDFs and dept. pages | CSE and Mathematics & Scientific Computing BTech/BS/MTech/MSc | 2026-09-08 |
+| `SRC-CURR-004` | IIT Kharagpur | ERP curriculum portal and dept. pages | CSE and Mathematics and Computing BTech/MTech/MSc | 2026-09-08 |
+| `SRC-CURR-005` | IIT Madras | Institute/dept. curriculum PDFs | CSE and Mathematics BS/MSc/MTech | 2026-09-08 |
+| `SRC-CURR-006` | IISc | UG Handbook and dept. pages | CSA and Mathematics BS(Research)/BTech M&C/MTech | 2026-09-08 |
+
+Module audit and gaps:
+
+| Cluster | `TB-*` | Evidence | Feeds | Status |
+|---|---|---|---|---|
+| Theory of computation and computational complexity beyond the `M44`/`ML-8` automata gate | `TB-CSTH-001` Arora and Barak, *Computational Complexity: A Modern Approach* (2009); rigorous | Named on the IISc CSA course description for E0 224 (`SRC-CURR-006`) | new node, `PROOF-DISCRETE` | `single-sourced, unverified`. `GAP:` a second ToC-verified source |
+| Computer architecture and digital logic design | `TB-CSTH-002` Hennessy and Patterson, *Computer Organization and Design*; foundational | Cited across IIT Bombay, Kanpur, Kharagpur CSE syllabi as the cross-course architecture reference (`SRC-CURR-001`, `SRC-CURR-003`, `SRC-CURR-004`) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Operating systems theory | `TB-CSTH-003` Silberschatz, Galvin and Gagne, *Operating System Concepts*; foundational | Cited across IIT Bombay, Kharagpur, and IISc M.Tech CSA syllabi (`SRC-CURR-001`, `SRC-CURR-004`, `SRC-CURR-006`) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Computer networks theory | `TB-CSTH-004` Tanenbaum and Wetherall, *Computer Networks*; foundational | Cited across IIT Bombay and IISc CSA syllabi (`SRC-CURR-001`, `SRC-CURR-006`, via the Stallings cross-reference) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Compiler design and programming-language theory | `TB-CSTH-005` Aho, Lam, Sethi and Ullman, *Compilers: Principles, Techniques, and Tools*; foundational | Cited at IIT Bombay and IIT Kharagpur as the department-wide compiler-course reference (`SRC-CURR-001`, `SRC-CURR-004`) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Abstract algebra (groups, rings, fields, Galois theory) | `TB-MATH-022` Dummit and Foote, *Abstract Algebra*; rigorous | Named at IIT Bombay MA414 and IIT Kanpur MTH204 (`SRC-CURR-001`, `SRC-CURR-003`) | new node, `MATH-LA` companion | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Point-set and algebraic topology | `TB-MATH-023` Munkres, *Topology*; rigorous | Named at IIT Bombay MA406 and IISc MA231 (`SRC-CURR-001`, `SRC-CURR-006`) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Complex analysis (pure) | `TB-MATH-024` Ahlfors, *Complex Analysis*; rigorous | Named at IISc MA224 and cross-referenced at IIT Kanpur MTH403 (Stein and Shakarchi variant) (`SRC-CURR-006`, `SRC-CURR-003`) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Measure theory and functional analysis | `TB-MATH-025` Royden (and Fitzpatrick), *Real Analysis*; rigorous | Named at IIT Bombay MA408 and IISc MA222 (`SRC-CURR-001`, `SRC-CURR-006`) | new node | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Differential geometry | `TB-MATH-026` do Carmo, *Differential Geometry of Curves and Surfaces*; rigorous | Named at IIT Kanpur MTH305 (`SRC-CURR-003`) | new node | `candidate`. `GAP:` a second recommendation signal and a ToC source |
+| Mathematical logic and axiomatic set theory beyond `M3` | `TB-MATH-027` Enderton, *A Mathematical Introduction to Logic*; rigorous | Nearest official match is IIT Kanpur MTH302 (Set Theory and Logic), which itself cites Chiswell and Hodges, *Mathematical Logic*, and Halmos, *Naive Set Theory* (`SRC-CURR-003`) | new node, `M3` companion | `candidate`. `GAP:` the exact IIT Kanpur reference titles are Chiswell and Hodges plus Halmos, not yet cross-checked against Enderton for equivalent coverage |
+| Combinatorics and graph theory (pure, beyond `ML-10`'s graph ML) | `TB-MATH-028` West, *Introduction to Graph Theory*; rigorous | Nearest official match is the IISc E0 220 Graph Theory reading list (Diestel, West, Bondy and Murty, Bollobás) (`SRC-CURR-006`) | new node, `ML-10` companion | `single-sourced, unverified`. `GAP:` an independent ToC source |
+| Theoretical foundations of cryptography | `TB-CRYP-001` Katz and Lindell, *Introduction to Modern Cryptography*; rigorous | Nearest official match is the IISc E0 248 Theoretical Foundations of Cryptography reading list and the IIT Kharagpur M.Tech "Foundations of Cryptography" syllabus, both naming Goldreich and Delfs and Knebl rather than Katz and Lindell directly (`SRC-CURR-006`, `SRC-CURR-004`) | new node, distinct from the Go security track | `candidate`. `GAP:` Katz and Lindell is a reasonable-fit substitute, not the institutes' own cited title; Goldreich, *Foundations of Cryptography*, is the closer-fit alternative candidate |
+| Partial differential equations (rigorous, beyond the applied engineering-math treatment) | `TB-MATH-029` Evans, *Partial Differential Equations*; rigorous | Named at IIT Bombay MA515 as one of four reference options (`SRC-CURR-001`) | `MML-10`/`MATH-CALC-NUM` companion | `single-sourced, unverified`. `GAP:` an independent ToC source |
+
+Rejected or deferred leads from this batch:
+
+| Candidate | Audit decision |
+|---|---|
+| Sipser, *Introduction to the Theory of Computation*, as the sole source for the new complexity-theory node | Already `TB-AUT-002` in this file, scoped to the `M44` discrete prerequisite. Not re-recorded; Arora and Barak is the incremental addition for the graduate complexity layer Sipser's Part 3 does not reach. |
+| Chiswell and Hodges, *Mathematical Logic*; Halmos, *Naive Set Theory* | The institutes' own cited titles for the logic/set-theory node, preferred over Enderton once independently ToC-checked; not yet fetched this pass. |
+| Goldreich, *Foundations of Cryptography* | The closer institutional match for the cryptography-theory node than Katz and Lindell; not yet fetched this pass. |
+| Institute-specific per-course textbook citations not backed by any independent recommendation signal (e.g. single-page mentions with no cross-institute or publisher corroboration) | Left uncompiled; the fourteen rows above are the clusters with at least one legitimate institutional citation. |
+
+### B17 result
+
+Partially closed. Fourteen genuine gap clusters identified against the
+consolidated IISc/IIT curricula and recorded above, each with at least one
+legitimately-sourced textbook candidate; none reached `confirmed` since no
+independent second ToC source was fetched in this pass (an intentional
+stopping point — institute-syllabus citation alone is a selection signal
+under §17.1.1, not a contents-verification source). Two rows (`TB-MATH-026`,
+`TB-MATH-027`) are `candidate` rather than `single-sourced` because the
+consolidated evidence points to an alternative title the institutes actually
+cite; both are flagged rather than silently substituted. See
+`research-audit-log.md` Batch B17 for the full per-institute source ledger.
 
 ## 18. Lossless NLP Diff Audit and Source Corpus
 
@@ -3719,6 +3798,25 @@ Kept so the source files lose no unique title or module. Not taught unless a COR
 - **Game engines / real-time rendering** as a primary track (Gregory, Akenine-Möller). Matrix/transform facts already live under M27–M28 / M39.
 - **Mechanical, fluid, aerospace** module lists in §2.
 - **Clinical / AccessMedicine** inventory in §2.
+
+<!-- RESEARCH-ADDITION §17.1 -->
+IIT/IISc BTech-MTech CS and Math institutional cross-check (§17.1.17), closed against IISc and IIT Bombay/Delhi/Kanpur/Kharagpur/Madras official curricula, all `single-sourced, unverified` pending a second ToC-verified textbook source:
+
+- **Theory of Computation and Computational Complexity (graduate depth)** undecidability beyond Rice's theorem, the Cook-Levin theorem, the polynomial hierarchy, space-bounded computation, circuit complexity, probabilistically checkable and interactive proofs -- beyond what `TB-AUT-001`/`TB-AUT-002` already cover at the `M44`/`ML-8` prerequisite gate (`TB-CSTH-001`).
+- **Computer Architecture and Digital Logic Design** CPU datapath and control-unit design, instruction-set architecture, pipelining and hazards, cache hierarchies and coherence, memory systems, I/O, superscalar/VLIW and multicore organization (`TB-CSTH-002`).
+- **Operating Systems theory** process/thread models, CPU scheduling, synchronization primitives and classical concurrency problems, deadlocks, memory management (paging, segmentation, virtual memory), file systems (`TB-CSTH-003`).
+- **Computer Networks theory** layered network architectures, data-link and MAC protocols, routing algorithms, transport-layer congestion control (`TB-CSTH-004`).
+- **Compiler Design and Programming-Language Theory** lexical/syntax/semantic analysis, intermediate representations, code generation and optimization, register allocation, formal operational/denotational semantics, type systems (`TB-CSTH-005`).
+- **Abstract Algebra** group theory through Sylow's theorems and the structure theorem for finite abelian groups, ring and module theory, field extensions and Galois theory, representation theory of finite groups (`TB-MATH-022`).
+- **Point-Set and Algebraic Topology** topological spaces and continuity, connectedness and compactness, separation axioms, quotient/product topology, the fundamental group, simplicial and singular homology (`TB-MATH-023`).
+- **Complex Analysis (pure)** holomorphic functions, contour integration and the Cauchy integral formula, Taylor/Laurent series, the residue theorem, conformal mapping, the Riemann mapping theorem -- distinct from the applied Laplace/Fourier use already in the DSP modules (`TB-MATH-024`).
+- **Measure Theory and Functional Analysis** sigma-algebras and Lebesgue measure, the Lebesgue integral and convergence theorems, Lp spaces, Banach and Hilbert spaces, Hahn-Banach and closed-graph/open-mapping theorems, spectral theory of operators (`TB-MATH-025`).
+- **Differential Geometry** curves and the Frenet-Serret apparatus, regular surfaces, the first and second fundamental forms, Gaussian and mean curvature, geodesics, the Gauss-Bonnet theorem (`TB-MATH-026`).
+- **Mathematical Logic and Axiomatic Set Theory** propositional and first-order logic, soundness and completeness, Zermelo-Fraenkel axioms, cardinals and ordinals, compactness and Löwenheim-Skolem, Gödel's incompleteness theorems -- beyond the naive set-theoretic foundations already at `M3` (`TB-MATH-027`).
+- **Combinatorics and Graph Theory (pure)** enumeration and generating functions, Ramsey theory, extremal graph theory, matchings and network flows, planarity and graph colorings, design theory -- distinct from the applied graph-ML content already at `ML-10` (`TB-MATH-028`).
+- **Theoretical Foundations of Cryptography** computational hardness assumptions, pseudorandom generators and functions, semantic security and indistinguishability, provable-security reductions, zero-knowledge proofs -- the academic-theory layer distinct from the vetted-library, no-new-primitives Go security track (`TB-CRYP-001`).
+- **Partial Differential Equations (rigorous)** classification of second-order linear PDEs, existence and uniqueness theory, Sobolev-space methods, the maximum principle, Green's functions -- beyond the applied separation-of-variables treatment already in the engineering-math modules (`TB-MATH-029`).
+<!-- /RESEARCH-ADDITION -->
 
 ---
 
