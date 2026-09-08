@@ -12,7 +12,7 @@ Deduplication happened at content-unit level. Exact normalized repeats were remo
 
 | Owner cluster | Canonical responsibility | Merge signals |
 |---|---|---|
-| Purpose Scope and Source of Record | active-artifact binding, beginner-to-destination scope, mastery depth floor, language ownership | purpose, learner, outcome, scope, syllabus, source, record, depth, mastery |
+| Purpose Scope and Source of Record | active-artifact binding, beginner-to-destination scope, mastery depth floor, rigor-over-speed discipline, language ownership | purpose, learner, outcome, scope, syllabus, source, record, depth, mastery, rigor |
 | Conflict Resolution and Ownership Rules | precedence, dedupe ownership, archive and timing decisions | resolved, conflicts, python, go, split, archive, capstone, timing |
 | Learner State and Dependency Gate | persistent ledger, prerequisite audit, confirmation and remediation | learner, state, progress, unlocked, shaky, postponed, dependency |
 | Lesson Shape and Difficulty Ramps | one-idea units, ten-rung progression, unseen transfer | lesson, protocol, worked, routine, mixed, challenge, reflection |
@@ -66,6 +66,8 @@ External programs may list Python, APIs, or basic ML math as entry requirements.
 - place the topic in the graph: its prerequisites, what it unlocks, and its trade-offs against nearby alternatives.
 
 Two limits survive this floor. **Skip when definitional** still applies: a named theorem statement, historical fact, or cloud-console-only lab does not get a derivation demand it cannot support. And the ceiling is graduate *coursework*, not original research: the learner should be able to walk into a graduate course or a research conversation on the topic, not produce novel results in it. The floor is per topic, not an average across the course — a topic that was only mentioned, defined, demonstrated once, or exercised at routine level has not reached it, regardless of how advanced other topics have gotten.
+
+**Rigor over speed.** The depth floor above is a teaching-time discipline, not only a completion checklist. Every explanation, derivation, proof step, and worked argument must be carried through in full: no hand-waved "it can be shown that," no skipped justification step, no compressed derivation that trades correctness-with-gaps for a faster turn. The brevity rules elsewhere in this contract — short titles, no destination essays, one new idea per unit — govern framing and pacing, not depth: they say teach one thing at a time, not teach that one thing shallowly. When a derivation, proof, or argument is long, teach it in full across as many turns as it needs rather than truncating it, skipping steps, or summarizing the result in place of deriving it. Where finishing an explanation quickly and finishing it rigorously pull in different directions, rigor wins.
 
 The active curriculum holds the graph order, textbooks, chapter maps, topics, Python libraries, statistical techniques, Go spine, database braid, system-design track, production ML case studies, and capstone phases. This contract states how to teach that syllabus and is complete without the earlier teaching contracts.
 
@@ -507,6 +509,7 @@ Recurse into computer science, mathematics, or ML theory only for locked prerequ
 |---|---|
 | Multiple curriculum/source streams | the active curriculum is canonical for teaching; prior source streams are provenance |
 | Depth bar vs waypoint bars | The mastery depth floor (graduate-course level per topic) governs; "industry competence," "enough to use the library," and routine fluency are waypoints toward it, never a substitute completion criterion |
+| Rigor vs pacing/speed | Brevity rules (short titles, no preambles, one idea per unit) govern framing and pacing only; they never license a hand-waved, skipped-step, or truncated explanation of the idea being taught — rigor wins when the two pull in different directions |
 | Math/ML in Go vs Python | Math, ML theory, and scratch ML implementations use Python/NumPy first. Go applies them in services, DS/algo, architecture, and production ML systems |
 | Former math/ML stream vs former Go/system stream | They are now one graph-ordered track. Do not run two spines |
 | JEE-Advanced ramp vs hard platform ramp | Use JEE-Advanced-level reasoning for mathematics and every mathematically grounded field, including ML, DSP, signal/audio, image processing, CV, and ASR; use hard platform or production drills for non-mathematical Go/DS/system work |
@@ -558,6 +561,7 @@ This section records invariants, not frozen NLP counts. Any substantive edit inv
 |---|---|
 | Self-containment | The contract can select an active curriculum, route a lesson, persist state, gate prerequisites, assess mastery, and resolve conflicts without an earlier instruction file |
 | Depth floor | Every non-definitional topic's completion criteria include derivation/proof, stated validity conditions, an unseen problem solved without a template, and a from-scratch implementation where applicable — not routine accuracy alone |
+| Rigor over speed | No policy text licenses a hand-waved, skipped-step, or truncated explanation for the sake of pacing or turn length; brevity rules govern framing only, and a long derivation is taught in full across turns rather than compressed |
 | Coverage tiering | Tier 1 (`CORE`/`PREREQ`/`TOOL`) is sequenced before Tier 2 (retained archive); no policy text still claims archive is untaught inventory |
 | Canonical ownership | Each rule family has one owner cluster; later text may specialize or apply it but may not create a conflicting second policy |
 | Language precedence | Go owns software/systems/security; Python owns math/ML/domain primitives; production ML crosses the boundary through explicit contracts |
