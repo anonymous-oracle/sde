@@ -8,7 +8,8 @@ import pytest
     (2, 5),          # boundary case at 2kg
     (5, 5 + 1.5 * 3),# normal case between 2kg and 10kg
     (10, 5 + 1.5 * 8),# boundary case at 10kg
-    (12, 20),        # normal case above 10kg
+    (12, 20),        # normal case above 10kg,
+    (0, 5)           # boundary case at 0kg
 ])
 def test_shipping_cost(weight, expected):
     assert shipping_cost(weight) == expected
