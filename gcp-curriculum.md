@@ -12,7 +12,8 @@ Student-facing copy. Canonical teaching order is the course spine below. Python 
 - **PCA v6.1 complete:** every bullet in the official exam guide (English on/after 30 Oct) has a home in this course, including Vertex AI Pipelines, AI Hypercomputer, Model Garden, Gemini Enterprise, Model Armor, Migration Center, Google Cloud VMware Engine, Apigee, Terraform, Cloud Emulators, Gemini Cloud Assist.
 - **Absolute-beginner prerequisites** sit in Foundation Block F. A software engineer can skip-test; an absolute beginner cannot skip F.
 - Prerequisites are researched and taught **just-in-time**, not as a six-month wall before GCP.
-- After every subtopic: concept → HLD → LLD → lab → **Python exercise**. After you submit, the **same exercise in Go**.
+- After every subtopic: concept → **from-scratch implementation** (your own code, servers, middleware) → HLD → LLD → GCP lab → **Python exercise**. After you submit, the **same exercise in Go**.
+- **You implement the mechanism yourself before you consume the managed product.** Frameworks and GCP APIs come second. See Pedagogy §6.
 - Include Donne Martin (`system-design-primer`) mapped onto GCP, not as a separate interview-only track.
 - Thoroughness is the priority. **Do not compress for calendar time.**
 - Target **all** outcomes: job-ready architect, PCA exam, production delivery.
@@ -89,11 +90,12 @@ GKE, Spanner, AlloyDB, Memorystore, Apigee, Cloud Armor, VPC-SC are **required a
 ### 1. One product, growing
 You build **Northstar** — a multi-tenant storefront SaaS (catalog, cart, checkout, orders, webhooks, admin). Every module adds a real production concern to the same system. No toy “hello world” that is thrown away.
 
-### 2. Four artifacts per subtopic
+### 2. Five artifacts per subtopic
 1. **Concept** — what it is, why it exists, failure modes.
-2. **HLD** — C4 container/context, GCP architecture sketch, NFRs, trade-offs, ADR (Architecture Decision Record).
-3. **LLD** — OpenAPI or protobuf, sequence diagram, data model, IAM bindings, Terraform module shape, error/idempotency contract.
-4. **Exercise** — Python first. You submit. Then the **identical** exercise in Go (same tests, same API, same GCP APIs).
+2. **From scratch** — you write the mechanism in stdlib Python (then Go): servers, proxies, middleware, parsers, state machines. No FastAPI/Gin magic until the stdlib version works. No GCP client until the local version works.
+3. **HLD** — C4 container/context, GCP architecture sketch, NFRs, trade-offs, ADR.
+4. **LLD** — OpenAPI or protobuf, sequence diagram, data model, IAM bindings, Terraform module shape, error/idempotency contract.
+5. **GCP lab + exercise** — wire the same contract to the real product. Python first; Go after submit.
 
 ### 3. Python → Go rule
 - Python is the learning language (FastAPI or stdlib `http.server` + `google-cloud-*`).
@@ -109,6 +111,68 @@ You build **Northstar** — a multi-tenant storefront SaaS (catalog, cart, check
 | Donne Martin step | Step 2: high-level design | Step 3: core components + Step 4: scale |
 
 Donne Martin’s four interview steps become the **design loop for every Northstar change**: constraints → HLD → core LLD → scale/security/cost.
+
+### 6. From-scratch rule (required guideline — every topic)
+
+You do not “call the SDK and call it learned.” For every concept in this curriculum you:
+
+1. **Write it** with the language standard library (Python `http.server` / `socket` / `asyncio`, then Go `net/http` / `net` / `context`). Prefer no framework. If a framework is used later, you must be able to point to the middleware you would have written.
+2. **Test it** with table-driven tests: happy path, failure, timeout, replay, concurrency.
+3. **Name the production substitute:** “this is what Cloud CDN / Cloud Load Balancing / Identity Platform / Pub/Sub is doing for me, and here is where my toy version is wrong.”
+4. **Then** use the GCP offering. The managed product is the *deployment*, not the *understanding*.
+
+**Middleware you will write yourself (stdlib), then keep in Northstar until a gateway replaces them:**
+
+| Middleware | What you implement | Later replaced / fronted by |
+|---|---|---|
+| Request ID / correlation | UUID per request, `X-Request-Id` | Cloud Trace |
+| Structured logging | JSON logs, no secrets | Cloud Logging |
+| Access log | method, path, status, latency | Cloud Logging + LB logs |
+| Recover / panic | catch, 500, don’t leak traces | Error Reporting |
+| Timeouts | per-request deadline | Cloud Run request timeout, LB timeout |
+| Authn | parse Bearer JWT, verify (local HMAC first, then Google certs) | Identity Platform + IAP |
+| Authz | RBAC on `(principal, action, resource)` | IAM + app RBAC |
+| CORS | origin allowlist, preflight | CDN/LB cannot replace this on APIs |
+| Rate limit | token bucket / sliding window in memory, then Redis | Cloud Armor rate limit, API Gateway quota |
+| Idempotency | `Idempotency-Key` header + store | your DB unique constraint |
+| Body size limit | reject oversized bodies | LB / Cloud Armor |
+| Security headers | CSP, HSTS, X-Content-Type-Options | CDN / Hosting |
+| Cache | `Cache-Control`, ETag, If-None-Match, in-process LRU | Cloud CDN |
+| Retry + backoff + jitter | client middleware | — you still own this |
+| Circuit breaker | consecutive failures → open | — you still own this |
+| HMAC webhook verify | Stripe-style signature | — you still own this |
+
+**Bare-metal / from-scratch servers (required, local):**
+
+| Concept | You write | You do **not** write |
+|---|---|---|
+| HTTP/1.1 | request parser + response writer on a TCP socket (subset: request line, headers, Content-Length) | HTTP/2 framing, HPACK |
+| Reverse proxy / L7 LB | round-robin to N backends, health check, Host/path routing | Maglev, GFE |
+| L4 forwarder | TCP accept → dial backend → bidirectional copy | Anycast, DSR |
+| CDN edge | cache key, TTL, revalidation, stale-while-revalidate | global PoPs |
+| DNS | recursive stub: parse A/AAAA, follow CNAME, honor TTL | DNSSEC crypto |
+| NAT | rewrite source IP/port with a mapping table (userspace toy) | kernel conntrack, Cloud NAT |
+| Firewall | 5-tuple evaluator (already in Part 6) | kernel netfilter |
+| JWT | create/verify HS256 yourself; then verify RS256 with a JWKS fetch | Identity Platform |
+| Sessions | signed cookie, expiry, rotation | — |
+| Password hashing | Argon2/bcrypt via library; never roll a hash | — |
+| TLS | use stdlib TLS; draw the handshake; **do not invent crypto** | OpenSSL |
+| Pub/Sub | in-memory topics, at-least-once delivery, ack deadline, DLQ | global Pub/Sub |
+| Task queue | delayed jobs, lease/heartbeat | Cloud Tasks |
+| KV store | hash map + WAL file (append log, replay) | Spanner |
+| LRU cache | the Donne Martin exercise, wired as middleware | Memorystore |
+| Rate limiter | token bucket | Armor |
+| CI runner | watch a git dir, run tests, fail on non-zero | Cloud Build |
+| Reconcile loop | desired vs actual, act, requeue (mini-controller) | kube-controller-manager |
+| Namespaces toy | optional Linux: `unshare` + chroot + cgroups read-only (no new kernel modules) | Docker |
+
+**Hard bans (from-scratch does not mean reckless):**
+- Do not implement TLS, AES, or RSA from scratch. Use the stdlib. You *must* still explain the handshake and certificates.
+- Do not store or parse PAN. Stripe test mode only.
+- Do not scan, attack, or exploit any system you do not own. Vulnerable-by-design local apps only.
+- Do not write malware, miners, or persistence kits. Container escape is discussed, not practiced against GCP.
+
+**Order on every topic:** toy implementation → tests → “what I got wrong vs production” → GCP/product lab.
 
 ### 5. Lab safety (free tier / credits)
 Day 0, before any deploy:
@@ -135,6 +199,8 @@ Day 0, before any deploy:
 | SQL design | ERD, normalization, indexes, Tx, RLS, migrations — then mapped to GCP |
 | Managed SQL | Cloud SQL (MySQL/Postgres/SQL Server), AlloyDB, Spanner |
 | Other data | Firestore, GCS, BigQuery, Bigtable, Memorystore |
+| IP addressing | Ephemeral vs static, internal vs external, regional vs global, IPv4/IPv6, alias IPs, forwarding-rule IPs, idle-IP billing |
+| CDN | Cloud CDN (cache modes, keys, signed URLs, invalidation), Firebase CDN, Cache-Control/ETag from origin |
 | Network security | VPC, Cloud NAT, Cloud NGFW, hierarchical firewall, Armor, IAP, PSC, VPC-SC, Cloud DNS, LB/SSL policies |
 | Cybersecurity | IAM, KMS/HSM, Secret Manager, SCC, DLP, audit logs, Binary Authorization, Shielded VM, Assured Workloads, org policy |
 | Hybrid | Cloud VPN, Cloud Interconnect, NCC, VMware Engine |
@@ -217,8 +283,9 @@ D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running se
 
 5  Payments, webhooks, PCI-aware design
 
-6  Networking in full (refresher → VPC, subnets, routing, PGA, IP addressing, static IPs,
-   firewalls, custom VPC, peering, Shared VPC, flow logs, NAT, Cloud DNS + record types)
+6  Networking in full (refresher → VPC, subnets, routing, PGA,
+   ephemeral vs static IPs (internal/external, regional/global), NAT, DNS,
+   firewalls, custom VPC, peering, Shared VPC, flow logs, Cloud CDN + LB)
 
 7  Network security + cybersecurity (NGFW, Armor, IAP, VPC-SC, KMS, SCC, DLP, org policy, IR)
 
@@ -249,7 +316,8 @@ Required if you cannot yet: use a terminal, explain HTTP, or explain IaaS vs Paa
 - CLI vs GUI. Shell, PATH, exit codes.
 - Git: clone, branch, commit, push, PR.
 - Networks in one sitting: IP, port, DNS, TCP vs UDP, HTTP methods, status codes, TLS, JSON.
-- Python enough: venv, `pip`, functions, types, pytest, `http.server` / FastAPI hello.
+- **From scratch:** bind a TCP socket, read a request line, write `HTTP/1.1 200` + JSON. This is the first middleware host. FastAPI comes after.
+- Python enough: venv, `pip`, functions, types, pytest, then FastAPI.
 - Go enough (after first Python submit later): modules, `net/http`, `testing`.
 - **Exercise:** Python HTTP server that returns JSON; after submit, Go version.
 
@@ -365,14 +433,38 @@ Decision tree:
 - **Lab:** static storefront on Firebase Hosting calling the Cloud Run API.
 - **Python:** tiny Jinja/static generator or FastAPI `StaticFiles` alternative path; document why Hosting is preferred for SPA.
 
-### 1.4 Edge: TLS, DNS, LB, Armor, CDN
-- Google Front End terminates TLS. Managed certificates.
-- L4 vs L7 (Donne Martin) → Network vs Application Load Balancer.
-- Cloud Armor WAF, Cloud CDN pull vs push.
-- **Free-tier reality:** Cloud Run provides HTTPS and Google-managed cert on `run.app`. Custom domain on Firebase Hosting is the no-LB path.
-- **HLD:** draw both (cheap path vs enterprise GFE+Armor+CDN).
-- **Credits-optional lab:** global HTTPS LB + serverless NEG + Cloud Armor OWASP + CDN.
-- **Python:** implement correct cache headers and CORS; never “implement TLS.”
+### 1.4 Edge: TLS, DNS, LB, Armor, CDN (concept + from scratch + GCP)
+
+**From scratch (required, local, before any GCP edge lab):**
+- HTTP/1.1 origin: stdlib TCP server that speaks a minimal HTTP subset.
+- L7 reverse proxy: accept, parse Host + path, pick a backend (round-robin), copy bytes, health-check `/healthz`.
+- Cache middleware on the proxy: cache key = `(method, host, path, Accept, Authorization? no — never cache authenticated)`; honor `Cache-Control`, `ETag`, `If-None-Match`; TTL; size cap LRU.
+- CORS + security-header middleware you wrote (Pedagogy §6).
+- TLS: terminate with stdlib (`ssl` / `tls`) and a **local mkcert**. Draw the handshake. Do not write crypto.
+
+**GCP — IPs at the edge (full treatment in 6.3):**
+- Global external IP on a forwarding rule is how a global HTTPS LB is addressed. Ephemeral vs reserved static. Idle static IPs **bill** — release them.
+- Cloud Run `run.app` hides this; you still must know the LB+IP model for PCA and production custom domains.
+
+**GCP — Cloud CDN (full):**
+- Cloud CDN is not a standalone box. It is a cache on the **global external Application Load Balancer** (or classic). No LB ⇒ no Cloud CDN.
+- Request path: user → GFE/PoP → cache hit return; miss → origin (GCS / MIG / serverless NEG / internet NEG).
+- **Cache modes:** `CACHE_ALL_STATIC` (default; by Content-Type, still respects `private`/`no-store`), `USE_ORIGIN_HEADERS` (you own Cache-Control), `FORCE_CACHE_ALL` (**never** on authenticated APIs or user HTML).
+- Cache keys: protocol, host, path, query string include/exclude, named headers. Wrong key = personalization leak or 0% hit ratio.
+- TTL: client TTL vs CDN TTL vs max-age vs s-maxage vs stale-while-revalidate vs stale-if-error. Negative caching.
+- Signed cookies / signed URLs for private content (match GCS V4 signed URLs — you already write those in Part 2).
+- Invalidation: path, path prefix, tags. Invalidation is eventually consistent and **costs**. Prefer short TTL or versioned URLs (`/static/app.abc123.js`).
+- Push vs pull (Donne Martin): Cloud CDN is **pull**. GCS + versioned objects is the production “push-like” pattern.
+- Firebase Hosting / App Hosting CDN: the free-tier edge. Custom domain + SSL without a forwarding-rule SKU.
+- Hit ratio, cache fill, uncacheable (Set-Cookie, Authorization, POST).
+- **Billing:** cache lookup + cache egress vs origin egress. CDN exists to cut origin and LB processing.
+
+**Labs:**
+- Required: origin sets correct `Cache-Control`/`ETag`; your toy CDN caches; tests prove 304 and hit/miss.
+- Required free-tier: Firebase Hosting for static; Cloud Run API sends `Cache-Control: private, no-store` on authenticated JSON and `public, max-age=60, s-maxage=300` on catalog that may be public.
+- Credits-optional: global HTTPS LB + serverless NEG + Cloud CDN `USE_ORIGIN_HEADERS` + Armor. Destroy forwarding rule and **release the static IP**.
+
+**Python / Go:** cache middleware + header policy tests. Never implement TLS ciphers.
 
 ### 1.5 Service identity (minimum)
 - Runtime service account per service. No user credentials in prod. No downloaded keys.
@@ -519,6 +611,7 @@ What DevOps is (and is not):
 This is the container track an architect and an implementer both need. Cloud Run’s contract is a *subset*; you still must understand the image.
 
 #### D1.1 Why containers
+- **From scratch (Linux):** a script that `unshare`s pid/net/mnt, `chroot`s to a directory, and runs `/bin/sh`. Read cgroup files. This is not Docker; it is why Docker exists.
 - Process isolation vs VMs. Namespaces (pid, net, mnt, uts, ipc, user), cgroups v2, union FS.
 - Image vs container vs registry vs runtime (containerd, not “Docker in production on GKE”).
 - OCI image spec vs Docker image. Artifact Registry stores OCI.
@@ -719,6 +812,7 @@ This is Kubernetes **the system**, not only GKE product knobs. GKE is how you ru
 #### D8.1 Control plane
 - kube-apiserver, etcd, scheduler, controller-manager. GKE: you do not SSH the control plane; you still must know what it does.
 - Declarative desired state. Controllers reconcile. That *is* GitOps’s runtime.
+- **From scratch:** a 50-line reconcile loop: desired replica count vs running processes; spawn/kill until equal; requeue on failure. That is a controller.
 
 #### D8.2 Objects you must be able to write from memory
 - Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet, Job, CronJob.
@@ -885,6 +979,7 @@ Ops:
 - **Python:** generate OpenAPI from FastAPI; contract tests.
 
 ### 3.4 Async: Pub/Sub, Eventarc, Tasks
+- **From scratch first:** in-memory broker (topic, pull, ack deadline, nack, DLQ after N, at-least-once). Then the same producer/consumer against real Pub/Sub.
 - At-least-once. Idempotency keys. Dead letter topics. Ordering vs throughput.
 - Eventarc Standard: CloudEvents to Cloud Run.
 - Cloud Run **Worker Pools** for pull consumers (2026 model).
@@ -915,6 +1010,7 @@ Ops:
 | Managed workload identities | GKE/GCE/agents | SPIFFE / mTLS |
 
 ### 4.2 Customer auth (Identity Platform)
+- **From scratch first:** HS256 JWT issue/verify middleware (header.payload.signature, `exp`/`nbf`/`aud`/`iss`); then RS256 with a fetched JWKS. Cookie session signer. Password hash via bcrypt/argon2 library — not homemade.
 - JWT verification on Cloud Run (audience, issuer, expiry).
 - Multi-tenancy for B2B SaaS.
 - Blocking functions, MFA (Identity Platform, not Firebase Auth).
@@ -989,10 +1085,67 @@ Ops:
 - Direct VPC egress from Cloud Run vs Serverless VPC Access (legacy).
 - **Lab:** custom VPC, two subnets in two regions, no default network.
 
-### 6.3 IP addressing
-- Internal vs external; ephemeral vs static; regional vs global (for LB).
-- IPv4/IPv6 (Dual-stack). Alias IPs.
-- **Lab PART 1–2:** reserve internal static + external static; attach/detach; **release external IPs immediately** (idle external IPs bill). Prefer no external IP + IAP.
+### 6.3 IP addressing — dynamic (ephemeral) vs static, end to end
+
+This is first-class. You configure IPs on VMs, forwarding rules, Cloud NAT, and you write the user-space toys that make the words mean something.
+
+#### Concepts
+- **Internal vs external:** internal is RFC1918 (or Google internal IPv6) — not internet-routable. External is publicly routed. Cloud Run/GKE nodes often have **no** external IP; egress via Cloud NAT.
+- **Ephemeral (dynamic) vs static:**
+  - Ephemeral: assigned automatically; **released** when you stop/delete the VM or delete the forwarding rule. Next create may get a different address. Fine for cattle, bad for DNS A records and allowlists.
+  - Static: reserved in the project (or subnet for internal). Survives VM delete/recreate. You attach/detach. You **pay for unused external static IPs**.
+- **Regional vs global:**
+  - Regional internal IPv4: from a subnet range; VMs, ILB, alias IPs.
+  - Regional external IPv4: VMs, regional LBs. `/32` from Google’s pool.
+  - Global external IPv4/IPv6: **global** external Application / proxy Network Load Balancers (Premium tier). One anycast IP, nearest GFE.
+- **IPv4 / IPv6 / dual-stack / IPv6-only.** Internal IPv6 `/96` from subnet; external IPv6 `/96` regional or `/64` global.
+- **Alias IP ranges:** extra internal IPs on one NIC (GKE Pod CIDR).
+- **Primary internal IP** is required on IPv4 NICs. External is optional.
+- **Forwarding-rule IP:** the address clients hit. Can be ephemeral or reserved static. Multiple forwarding rules can share a static IP with different ports/protocols when the LB type allows it.
+- **Cloud NAT IPs:** a pool of regional external IPs used as source for private VMs. Ephemeral NAT IPs vs static NAT IPs (allowlist partners on a stable egress IP).
+- **Private Google Access** is not an IP you assign; it is a subnet flag so VMs without external IPs can reach `*.googleapis.com`.
+- **DNS coupling:** A/AAAA for a service must target a **static** IP or a stable hostname (`run.app`, GCLB forwarding rule you own). Never put an ephemeral VM IP in a public A record.
+- **Network Service Tiers:** Premium (Google backbone, global IP) vs Standard (ISP peering, regional IP). Global LB requires Premium.
+
+#### From scratch (required)
+- Userspace “DHCP-like” allocator: given a CIDR, allocate/release leases with TTL (ephemeral) vs permanent reservation (static). Tests: exhaustion, double-free, persist across process restart (file).
+- Userspace NAT: map `(src_ip, src_port) → (nat_ip, nat_port)` and rewrite a fake packet header struct. Tests: two clients, port reuse after expiry.
+- Bind a local HTTP server to `127.0.0.1` vs `0.0.0.0`; prove with a client. This is “internal vs external” on one machine.
+
+#### GCP configuration (required procedure — Terraform written even if you do not apply paid IPs)
+```
+# internal static (free-ish; still clean up)
+gcloud compute addresses create ns-int --region=us-central1 --subnet=... --addresses=<in-range>
+
+# regional external static (BILLS IF IDLE)
+gcloud compute addresses create ns-ext --region=us-central1
+
+# global external static for HTTPS LB (BILLS IF IDLE)
+gcloud compute addresses create ns-gip --global
+
+# attach to VM
+gcloud compute instances create ... --private-network-ip=... --address=ns-ext   # prefer omit --address
+
+# promote ephemeral → static
+gcloud compute addresses create ns-promoted --addresses=<current> --region=...
+
+# ALWAYS
+gcloud compute addresses delete ns-ext --region=us-central1
+```
+- Console + Terraform: `google_compute_address` (regional), `google_compute_global_address`.
+- List, describe, attach, detach, promote, release.
+- **Lab PART 1:** internal static on e2-micro; SSH via IAP; no external IP.
+- **Lab PART 2:** reserve a regional external static, attach, curl, **delete VM and delete address in the same sitting**. Prove idle-IP billing in the cost model even if you never leave it up.
+- **Python / Go:** Compute Engine Address API — list addresses, flag `status=RESERVED` (idle) as a cost leak.
+
+#### Decision table (PCA)
+| Need | Address type |
+|---|---|
+| VM that can die and come back on the same private IP | Regional **internal static** |
+| Partner allowlists your egress | Cloud NAT **static** regional external |
+| Public website, one IP worldwide | **Global external static** on HTTPS LB |
+| Throwaway sandbox VM | Ephemeral internal, **no** external |
+| Cloud Run / GAE | You do not assign; platform does. Custom domain → Hosting or LB IP |
 
 ### 6.4 Firewall and firewall rules
 - Implied allow-egress / deny-ingress.
@@ -1046,10 +1199,13 @@ GCP offerings:
 - Target tags vs service accounts as targets (prefer SA).
 - **Python / Go:** given a rule set + 5-tuple, decide allow/deny (unit tests). Write the equivalent Terraform `google_compute_firewall` / `google_compute_network_firewall_policy`.
 
-### 6.13 Load balancing, TLS, and the edge
+### 6.13 Load balancing, TLS, CDN, and the edge
 - External vs internal; global vs regional; Application vs Network vs Proxy.
 - SSL policies, managed certs, HTTPS redirect.
 - Serverless NEGs (Cloud Run, App Engine, Cloud Functions).
+- Forwarding rule **must** have an IP: ephemeral or reserved static (see 6.3). Deleting the rule without deleting a reserved IP leaves a billing leak.
+- Cloud CDN on that same HTTPS LB (see 1.4): cache modes, keys, signed URLs, invalidation, hit ratio.
+- **From scratch:** your L4/L7 proxies from 1.4 sit in front of two local backends; add weighted round-robin and a drain flag (canary). Then map each feature to a GCP LB type.
 - **Cloud Armor:** WAF rules, preconfigured OWASP, rate limiting, bot management, Adaptive Protection, named IP lists.
 - **Cloud CDN:** cache modes, signed URLs, cache invalidation.
 - **reCAPTCHA Enterprise** at the edge.
@@ -1323,14 +1479,16 @@ For each numbered subtopic when teaching starts:
 
 ```
 1. Concept (short, sourced)
-2. HLD prompt (you write; reviewed)
-3. LLD prompt (you write; reviewed)
-4. Lab steps (gcloud/Terraform, free-tier boxed)
-5. PYTHON-EXERCISE.md  — tests included
+2. FROM-SCRATCH.md — stdlib server / middleware / parser / state machine
+   → you submit Python; then Go
+3. HLD prompt (you write; reviewed)
+4. LLD prompt (you write; reviewed)
+5. Lab steps (gcloud/Terraform, free-tier boxed)
+6. PYTHON-EXERCISE.md  — GCP-wired version, tests included
    → you submit
-6. GOLANG-EXERCISE.md  — same tests, same behavior
+7. GOLANG-EXERCISE.md  — same tests, same behavior
    → you submit
-7. Review notes: diffs in error handling, concurrency, GCP clients
+8. Review notes: what the toy got wrong vs the managed product
 ```
 
 Sample of early Python exercises (illustrative, not started):
@@ -1354,6 +1512,16 @@ Sample of early Python exercises (illustrative, not started):
 - Env-repo digest bumper (GitOps CI step).
 - Binary Authorization policy evaluator (allow/deny a fake image).
 - kind: generate Deployment YAML + apply + wait for Available.
+- Minimal HTTP/1.1 server on a raw TCP socket.
+- L7 reverse proxy (round-robin + health check).
+- In-process CDN cache (TTL, ETag, 304, LRU).
+- Ephemeral vs static IP lease allocator (CIDR).
+- Userspace NAT mapping table.
+- Token-bucket rate-limit middleware.
+- JWT HS256 sign/verify middleware; then RS256 + JWKS.
+- In-memory Pub/Sub (ack deadline + DLQ).
+- Append-only WAL + hashmap (toy KV).
+- Reconcile loop (desired vs actual).
 
 Each has a Go twin after submission.
 
@@ -1378,6 +1546,8 @@ Each has a Go twin after submission.
 - PCA exam guide v6.1 + the four case studies.
 - Donne Martin `system-design-primer` (topics index + Pastebin/Twitter/crawler/Mint/scaling solutions).
 - Donne Martin `interactive-coding-challenges` used only as the style model for exercise notebooks — GCP exercises are original.
+- Cloud CDN overview, cache modes, best practices; Compute Engine / VPC IP address docs (ephemeral vs static, regional vs global).
+- RFC 9111 (HTTP caching), RFC 7519 (JWT) as the from-scratch specs.
 
 ---
 
@@ -1389,6 +1559,8 @@ Each has a Go twin after submission.
 - Will not teach storing card data.
 - Will not treat PCA dumps as architecture education.
 - Will not skip Go; it is sequenced after each Python submit, not as a separate language semester.
+- Will not skip from-scratch implementations (servers, proxies, middleware). Managed GCP is the second step, not the first.
+- Will not have you implement TLS/AES/RSA, store PAN, or attack systems you do not own.
 
 ---
 
