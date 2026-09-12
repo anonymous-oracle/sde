@@ -8,7 +8,7 @@ Student-facing copy. Canonical teaching order is the course spine below. Python 
 - Production deploy of frontend + backend microservices is taught **first**.
 - Billing is at the **start** (cannot deploy industry software without it).
 - Then authentication, then payment systems, then the rest of architect depth.
-- **First-class (not optional, not “later if time”):** SQL database design; Cloud SQL setup on GCP; Compute Engine; App Engine; Cloud Run; Cloud Functions; GKE; hybrid connectivity (VPN, Interconnect); network security; cybersecurity; IAM; Cloud Identity; storage (GCS lifecycle/versioning, Filestore); Spanner; NoSQL; Big Data; Vertex AI / Gemini (PCA v6.1); Operations Suite (Monitoring, Logging, Trace, Profiler, Error Reporting); billing; **DevOps culture; Docker/OCI; Kubernetes internals; CI/CD; GitOps; Cloud Build; Cloud Deploy; Skaffold; supply-chain security (SLSA, Binary Authorization, Artifact Analysis)**. Each includes the concept **and** the matching GCP offerings.
+- **First-class (not optional, not “later if time”):** SQL database design; Cloud SQL setup on GCP; Compute Engine; App Engine; Cloud Run; Cloud Functions; GKE; hybrid connectivity (VPN, Interconnect); network security; cybersecurity; IAM; Cloud Identity; storage; Spanner; NoSQL; Big Data; Vertex AI / Gemini; Operations Suite; billing; DevOps/Docker/K8s/CI/CD/GitOps; **gRPC + protobuf + HTTP/2; QUIC + HTTP/3; SOLID; design patterns; hexagonal/clean architecture; DDD; microservices pattern catalog; production-scale primitives (bloom filters, consistent hashing, WAL, load shedding, …)**. Each idea has **one home** (see placement: Part 3.0, 3.2, 6.1, 8). No parallel duplicate parts.
 - **PCA v6.1 complete:** every bullet in the official exam guide (English on/after 30 Oct) has a home in this course, including Vertex AI Pipelines, AI Hypercomputer, Model Garden, Gemini Enterprise, Model Armor, Migration Center, Google Cloud VMware Engine, Apigee, Terraform, Cloud Emulators, Gemini Cloud Assist.
 - **Absolute-beginner prerequisites** sit in Foundation Block F. A software engineer can skip-test; an absolute beginner cannot skip F.
 - Prerequisites are researched and taught **just-in-time**, not as a six-month wall before GCP.
@@ -242,6 +242,10 @@ You are a software engineer with little GCP. Prerequisites are **injected at the
 | Python 3 typing, pytest, FastAPI | all exercises | Assumed engineer-level; we teach GCP client usage. |
 | Go modules, `context`, `net/http`, table tests | after each Python submit | Taught as a parallel implementation, not a language course first. |
 | HLD/LLD literacy | 0.4 then every module | Donne Martin loop. |
+| SOLID, hexagonal, DDD | 3.0 | Before split; CI grep on imports. |
+| Protobuf, gRPC | 3.2 | Internal s2s; REST stays public. |
+| HTTP/2 HOL, QUIC ideas | 6.1 | Transport only; crypto is stdlib. |
+| Bloom, hashing, WAL, shed | 8.1 | Scale primitives. |
 
 Linux/OS/sysadmin/networking/cybersecurity from the original request are **not dropped**. They are sequenced **after you have a running product**, so they attach to real GCP failure modes (IAM, VPC, audit logs, container escape surface, supply chain) instead of abstract distro admin.
 
@@ -277,15 +281,14 @@ D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running se
 
 2  SQL design + Cloud SQL setup + GCS + Firestore + Spanner + NoSQL map
 
-3  Microservices (sync + async)
+3  Microservices: SOLID/hexagonal/DDD (3.0) → split → gRPC (3.2) → saga/outbox
+   (no separate architecture or protocol semester)
 
 4  Authentication and authorization (customers + workloads) — Identity Platform, IAP, WIF
 
 5  Payments, webhooks, PCI-aware design
 
-6  Networking in full (refresher → VPC, subnets, routing, PGA,
-   ephemeral vs static IPs (internal/external, regional/global), NAT, DNS,
-   firewalls, custom VPC, peering, Shared VPC, flow logs, Cloud CDN + LB)
+6  Networking in full + HTTP/2 HOL demo + mini-QUIC (ideas only; crypto is stdlib)
 
 7  Network security + cybersecurity (NGFW, Armor, IAP, VPC-SC, KMS, SCC, DLP, org policy, IR)
 
@@ -448,6 +451,7 @@ Decision tree:
 
 **GCP — Cloud CDN (full):**
 - Cloud CDN is not a standalone box. It is a cache on the **global external Application Load Balancer** (or classic). No LB ⇒ no Cloud CDN.
+- Browsers often reach GFE over **HTTP/3 (QUIC)**; your origin is still HTTP/1.1 or HTTP/2 (Part 6.1). You do not run a QUIC server on Cloud Run.
 - Request path: user → GFE/PoP → cache hit return; miss → origin (GCS / MIG / serverless NEG / internet NEG).
 - **Cache modes:** `CACHE_ALL_STATIC` (default; by Content-Type, still respects `private`/`no-store`), `USE_ORIGIN_HEADERS` (you own Cache-Control), `FORCE_CACHE_ALL` (**never** on authenticated APIs or user HTML).
 - Cache keys: protocol, host, path, query string include/exclude, named headers. Wrong key = personalization leak or 0% hit ratio.
@@ -960,16 +964,64 @@ Ops:
 
 ## Part 3 — Microservices (industry)
 
-### 3.1 When to split
-- Single Cloud Run service is a **modular monolith**. Split on: independent deploy, independent scale, independent failure, separate data, separate team.
-- Donne Martin application layer + service discovery.
-- **HLD:** catalog, cart, order, notification. Synchronous HTTP for user path; async for side effects.
+SOLID, hexagonal, DDD, gRPC, and the pattern catalog live **here only**. Later parts link back. Do not re-teach them in Part 8.
 
-### 3.2 Service-to-service
-- Authenticated Cloud Run invoker (`roles/run.invoker`) + ID tokens.
-- 2026: **service bindings** (preview) inject service-account JWT — teach as the direction of travel.
-- Timeouts, retries with jitter, circuit breaking at the client (Python `tenacity` / Go libraries).
-- **Python:** catalog client that fetches a Google-signed ID token and calls order service. **Go:** `idtoken.NewClient`.
+### 3.0 Software design (before you split)
+
+Northstar is still a modular monolith. You impose structure so the later split is a cut, not a rewrite.
+
+**SOLID (tests fail if you violate):**
+| | Rule in this repo |
+|---|---|
+| S | HTTP handler, `PlaceOrder` use case, and `OrderRepository` are three modules. A PR that mixes them is rejected. |
+| O | New PSP = new `PaymentPort` adapter, not another `if provider ==`. |
+| L | `InMemoryOrderRepo` substitutes for Postgres in tests with zero use-case edits. |
+| I | Small ports: `OrderWriter`, `CatalogReader` — no 40-method god interface. |
+| D | `domain/` and `app/` **must not** import `google.cloud`, `psycopg`, FastAPI. CI grep / import-linter. |
+
+**Hexagonal / Clean / Onion:** same dependency rule (inward). Code layout: `domain/`, `app/` (use cases), `ports/`, `adapters/http|grpc|sql|pubsub`. Driving adapters (HTTP/gRPC) vs driven (SQL, Stripe ACL). Catalog listing may stay layered CRUD; **order/payment is hexagonal**.
+
+**DDD tactical:** Order is an aggregate; line items don’t leak; `OrderPlaced` is a domain event; Pub/Sub carries an *integration* event. Stripe/Identity Platform sit behind an anti-corruption layer. Anemic model is an anti-pattern except honest transaction scripts.
+
+**CQRS:** two *queries* before two databases. Event-source checkout only if you can defend audit/replay; default is outbox (3.5).
+
+**Patterns you implement once (50–150 lines + tests), then keep:**
+Factory (clients), Adapter (GCP SDK), Decorator/Chain (middleware — Pedagogy §6), Strategy (pricing), State (order machine), Repository, Circuit breaker / Retry / Timeout / Bulkhead (client), Command (use case).
+
+**From scratch:** `PlaceOrder` with in-memory adapter tests, then Postgres adapter. Use case file cannot import the DB driver.
+
+### 3.1 When to split
+- Modular monolith is the **default until** independent deploy, scale, failure, data, or team.
+- Split on bounded contexts (3.0): catalog, cart, order, payment, notification.
+- Strangler fig: extract catalog first, not payment.
+- **HLD:** sync user path; async side effects.
+- **Pattern catalog (one table, GCP mapping):**
+
+| Pattern | Northstar | GCP |
+|---|---|---|
+| Database per service | Own schema/collection | Cloud SQL db or Firestore |
+| Saga choreography / orchestration | `OrderPlaced` → pay → stock | Pub/Sub; Workflows if orchestrator |
+| Outbox | Commit event with order row | SQL + publisher job |
+| Inbox | Consumer idempotency store | Firestore/SQL unique key |
+| BFF / aggregator | Storefront API | Cloud Run in front of gRPC |
+| API Gateway | JWT, quota | API Gateway; Apigee if API-as-product |
+| Bulkhead | Isolate payment client pool | process-level; mesh later |
+| Sidecar / ACL | Stripe client | library first; mesh only at GKE scale |
+
+**Review fails:** shared DB, distributed monolith (8 sync hops per click), nano-services, 2PC, chatty HTTP joins.
+
+### 3.2 Service-to-service + gRPC + protobuf
+- Public browser API stays **JSON/HTTP**. Internal: **gRPC/HTTP/2** on Cloud Run.
+- Auth: `roles/run.invoker` + ID tokens; service bindings (preview) as direction of travel.
+- Timeouts, retries with jitter, circuit breaker — **your client middleware** (3.0 / §6), not a library you don’t read.
+
+**Protobuf from scratch:** encode/decode `{id, name, price_cents}` (varint, wire type 2). Golden test vs `protoc`. Then official runtime. Field numbers never reused.
+
+**HTTP/2 / HOL:** taught in Part 6.1 (not repeated here). gRPC mapping: `POST /package.Service/Method`, `application/grpc`, 5-byte prefix (compressed flag + length) + protobuf. Unary + server-stream in a toy over HTTP/1 first if needed; all four RPC types with `grpcio` / `google.golang.org/grpc`.
+
+**Production gRPC:** interceptors = middleware (auth, log, deadline). Status codes. Health `grpc.health.v1`. Reflection off in prod. REST BFF calls `catalog.v1.CatalogService`. Same `.proto` → Python then Go stubs.
+
+**Lab:** GetProduct gRPC on Cloud Run; BFF REST in front. **Python / Go:** ID-token client + generated stub. N+1 is a fail — batch or stream (Part 8).
 
 ### 3.3 API facade
 - URL map on LB vs **API Gateway** (OpenAPI, API keys, JWT, quotas; cheap) vs **Apigee** (API-as-product, monetization, hybrid).
@@ -988,8 +1040,11 @@ Ops:
 - **Python / Go:** publisher + subscriber with exactly-once *business* effect (idempotency store in Firestore).
 
 ### 3.5 Failure design
-- Partial failure, sagas vs choreography, outbox pattern.
-- **HLD + LLD:** order placement sequence with payment still stubbed.
+- Partial failure. Dual-write (`sql.commit()` + `pubsub.publish()`) is forbidden.
+- **From scratch:** in-process saga + outbox on SQLite; same tests against SQL + Pub/Sub.
+- Saga: choreography default; compensating `ReleaseStock`. Orchestration only if the graph is painful.
+- Inbox on the consumer (idempotency). Poison → DLQ → **redrive API** (not a grave).
+- **HLD + LLD:** order placement sequence with payment stub, then Stripe in Part 5.
 
 ---
 
@@ -1070,12 +1125,23 @@ Ops:
 
 **Goal:** You can design, draw, and (within free-tier) implement VPC, IPs, firewalls, DNS, NAT, peering, and Shared VPC — then place security controls on that network.
 
-### 6.1 Networking refresher PART 1 and 2 (absolute beginner allowed)
-- OSI vs TCP/IP. Ethernet, IP, TCP, UDP, ICMP, TLS.
+### 6.1 Networking refresher + HTTP/2 + QUIC (from scratch)
+- OSI vs TCP/IP. Ethernet, IP, TCP, UDP, ICMP, TLS (stdlib only — no homemade crypto).
 - MAC vs IP vs port. ARP. Default gateway.
 - Subnets, CIDR, public vs RFC1918, NAT, routes, DNS.
-- Stateful firewalls, implicit deny, default deny.
-- East-west vs north-south. DMZ vs zero trust.
+- Stateful firewalls, implicit deny. East-west vs north-south.
+
+**HTTP/2 subset (why gRPC is multiplexed):**
+- One TCP+TLS connection, many streams, binary frames. Toy frames: SETTINGS, DATA, uncompressed HEADERS (not full HPACK Huffman), RST_STREAM.
+- **HOL demo (required):** two streams on one TCP socket; drop a byte on stream 1; prove stream 2 stalls. This is TCP HOL. It is why QUIC exists.
+
+**QUIC / HTTP/3 (ideas, then library):**
+- UDP, connection IDs (survive NAT/IP change), independent stream buffers, 1-RTT with TLS 1.3 integrated, 0-RTT replay-unsafe (never checkout).
+- **From scratch:** UDP echo; mini-QUIC mux (conn ID + two stream buffers); inject loss on stream 1; **prove stream 2 continues**. Contrast with the HTTP/2 HOL demo. Do **not** implement packet protection.
+- Then `aioquic` / `quic-go` HTTP/3 echo. QPACK is “headers without HOL” — do not implement.
+- **GCP:** GFE / Cloud CDN speak HTTP/3 to browsers. Cloud Run origin remains HTTP/1.1 or HTTP/2. You do not terminate QUIC yourself. Internal Northstar stays gRPC/HTTP/2 unless you measure HOL on a lossy path.
+
+gRPC service implementation stays in **Part 3.2**. This section is transport only.
 
 ### 6.2 VPC, subnets, routing, Private Google Access
 - VPC is global; subnets are regional. Auto vs custom mode (**custom in prod**; delete default network).
@@ -1310,8 +1376,37 @@ Every Donne Martin building block becomes a GCP decision table plus a Northstar 
 | NoSQL | Firestore, Bigtable, Memorystore | v0 data |
 | Cache patterns | CDN, Memorystore, client cache | catalog |
 | Message/task queues | Pub/Sub, Cloud Tasks, Worker Pools | orders |
-| REST vs RPC | Cloud Run HTTP vs gRPC | public REST, internal gRPC optional |
+| REST vs RPC | Cloud Run HTTP vs gRPC | public REST, internal gRPC (Part 3.2) |
 | Security | IAM, IAP, Armor, NGFW, KMS, Secret Manager, VPC-SC, SCC | Parts 4, 6, 7 |
+
+### 8.1 Production-scale primitives (from scratch, then product)
+
+Tutorial microservices skip these. You do not. Each: small tested toy → Northstar hook → GCP stand-in. Do not re-teach SOLID/gRPC here.
+
+| Primitive | Why | Toy | Production |
+|---|---|---|---|
+| **Bloom filter** | Negative lookups; cache penetration | Bit array + k hashes; measure FPR | In-process on catalog; Redis Bloom if Memorystore |
+| **Cache stampede / singleflight** | Thundering herd on TTL | Coalesce concurrent misses | Client + Memorystore |
+| **Consistent hashing** | Remap fewer keys when a node dies | Ring + vnodes; plot % moved | Memorystore cluster, Pub/Sub ordering keys |
+| **WAL** | Durability is a log | Append + replay | Postgres WAL, Spanner |
+| **LSM vs B-tree** | Why Firestore/Bigtable write path ≠ Cloud SQL | One SSTable flush diagram/toy | Cloud SQL vs Bigtable |
+| **HyperLogLog / Count-Min** | Cardinality / heavy hitters | Tiny sketch | BigQuery `HLL_COUNT` |
+| **Load shedding** | Survive overload | Queue depth → 503 + Retry-After | Cloud Run concurrency, Armor |
+| **Hedged requests** | Tail latency | Hedge after p95 | Client middleware only |
+| **Backpressure** | Slow consumer slows producer | Bounded queue | Pub/Sub outstanding, Cloud Run CPU |
+| **Hot partition** | One key melts a shard | Key histogram | Firestore/Spanner key design |
+| **Cursor pagination** | Never `OFFSET 100000` | Seek `(created_at, id)` | Cloud SQL / Firestore |
+| **Schema evolution** | Expand/contract | Break a consumer, then proto/SQL fix | protobuf field numbers (3.2), migrations (2.1) |
+| **Leases / fencing tokens** | No split-brain leader | Monotonic fence | Spanner/etcd; **Redis lock is not truth** |
+| **Clock skew** | `ORDER BY now()` lies | Two clocks disagree | TrueTime; sort by ID |
+| **Idempotency at scale** | Exactly-once *effect* | Unique key | SQL/Firestore + Pub/Sub |
+| **N+1 / batching** | Chatty s2s | DataLoader-style batch | gRPC stream/batch (3.2) |
+| **Connection pool math** | instances × pool > `max_connections` | Spreadsheet + test | Cloud SQL + PgBouncer (2.3) |
+| **Multi-tenant isolation** | Noisy neighbor | `tenant_id` + per-tenant limiter | RLS (2.1) |
+| **Feature flags** | Deploy ≠ release | In-memory JSON flags | Remote Config / your table |
+| **Poison redrive** | DLQ is not a grave | Redrive API | Pub/Sub DLQ (3.5) |
+
+**From-scratch required in this part:** bloom filter + FPR tests; consistent-hash ring; singleflight; load-shed middleware; cursor pager. WAL toy may reuse Pedagogy §6 KV. LSM is a written comparison + optional flush toy.
 
 Worked HLD/LLD studios (Python models + Go after submit where there is code):
 1. URL shortener (Pastebin) on Cloud Run + Firestore.
@@ -1461,8 +1556,9 @@ A stranger can:
 7. You show: Terraform (or equivalent IaC), Cloud Build + WIF, per-service SAs, Secret Manager, budget alerts, ADRs, threat model, SLO, cost model, runbook.
 8. OLTP schema + migrations exist (Postgres). Live Cloud SQL if credits; Docker Postgres if not. Either way the Terraform for Cloud SQL is in the repo.
 9. ADRs covering Cloud Run vs App Engine vs GCE for the API, and Cloud SQL vs Firestore vs Spanner for orders.
+10. Bloom-filter negative cache on catalog; cursor pagination; Cloud SQL pool-size ADR; load-shed on checkout; outbox (not dual-write); proto-stable internal gRPC.
 
-Deliverables: HLD deck, LLD pack (OpenAPI, ERD/DDL, sequences, firewall policy, IAM), Python services, Go ports of at least **two** services, GCE e2-micro and App Engine labs documented (can be torn down), lab teardown.
+Deliverables: HLD deck, LLD pack (OpenAPI + `.proto`, ERD/DDL, sequences, firewall policy, IAM, hexagonal layout), Python services, Go ports of at least **two** services, GCE e2-micro and App Engine labs documented (can be torn down), lab teardown.
 
 ### PCA alignment (v6.1)
 Not a dump of dumps. After capstone:
@@ -1522,6 +1618,13 @@ Sample of early Python exercises (illustrative, not started):
 - In-memory Pub/Sub (ack deadline + DLQ).
 - Append-only WAL + hashmap (toy KV).
 - Reconcile loop (desired vs actual).
+- Protobuf varint encode/decode vs `protoc` golden file.
+- Bloom filter + false-positive-rate tests.
+- Consistent-hash ring (vnode remap %).
+- Singleflight cache fill.
+- Load-shed middleware (queue depth).
+- Cursor pager `(created_at, id)`.
+- Mini-QUIC: two UDP streams, loss on stream 1, stream 2 continues.
 
 Each has a Go twin after submission.
 
@@ -1547,7 +1650,8 @@ Each has a Go twin after submission.
 - Donne Martin `system-design-primer` (topics index + Pastebin/Twitter/crawler/Mint/scaling solutions).
 - Donne Martin `interactive-coding-challenges` used only as the style model for exercise notebooks — GCP exercises are original.
 - Cloud CDN overview, cache modes, best practices; Compute Engine / VPC IP address docs (ephemeral vs static, regional vs global).
-- RFC 9111 (HTTP caching), RFC 7519 (JWT) as the from-scratch specs.
+- RFC 9111 (HTTP caching), RFC 7519 (JWT), protobuf encoding, RFC 9000 (QUIC concepts only) as from-scratch specs.
+- Bloom filters; consistent hashing; DDD/hexagonal as used in Northstar, not as a second course.
 
 ---
 
@@ -1559,7 +1663,8 @@ Each has a Go twin after submission.
 - Will not teach storing card data.
 - Will not treat PCA dumps as architecture education.
 - Will not skip Go; it is sequenced after each Python submit, not as a separate language semester.
-- Will not skip from-scratch implementations (servers, proxies, middleware). Managed GCP is the second step, not the first.
+- Will not skip from-scratch implementations (servers, proxies, middleware, bloom filters, gRPC toys, mini-QUIC). Managed GCP is the second step, not the first.
+- Will not duplicate SOLID/gRPC/QUIC in extra parts — one home each (3.0, 3.2, 6.1).
 - Will not have you implement TLS/AES/RSA, store PAN, or attack systems you do not own.
 
 ---
