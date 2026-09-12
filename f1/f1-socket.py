@@ -12,7 +12,7 @@ while True:
     client_socket, client_address = s.accept()
     print(f"Connection from {client_address}")
     recv_data = client_socket.recv(1024)
-    if b"\r\r\r\n" in recv_data:
+    if b"\r\n\r\n" in recv_data:
         break
     client_bytes += recv_data
 
