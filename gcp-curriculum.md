@@ -8,7 +8,7 @@ Student-facing copy. Canonical teaching order is the course spine below. Python 
 - Production deploy of frontend + backend microservices is taught **first**.
 - Billing is at the **start** (cannot deploy industry software without it).
 - Then authentication, then payment systems, then the rest of architect depth.
-- **First-class (not optional, not “later if time”):** SQL database design; Cloud SQL setup on GCP; Compute Engine; App Engine; Cloud Run; Cloud Functions; GKE; hybrid connectivity (VPN, Interconnect); network security; cybersecurity; IAM; Cloud Identity; storage; Spanner; NoSQL; Big Data; Vertex AI / Gemini; Operations Suite; billing; DevOps/Docker/K8s/CI/CD/GitOps; **gRPC + protobuf + HTTP/2; QUIC + HTTP/3; SOLID; design patterns; hexagonal/clean architecture; DDD; microservices pattern catalog; production-scale primitives (bloom filters, consistent hashing, WAL, load shedding, …)**. Each idea has **one home** (see placement: Part 3.0, 3.2, 6.1, 8). No parallel duplicate parts.
+- **First-class (not optional, not “later if time”):** SQL database design; Cloud SQL setup on GCP; Compute Engine; App Engine (including **dashboard/analytics**); Cloud Run; Cloud Functions; GKE; hybrid connectivity; network security; cybersecurity; IAM; storage; Spanner; NoSQL; Big Data; Vertex AI; Observability (Monitoring/Logging/Trace/Profiler/Error Reporting/SLO burn-rate); **Cloud Quotas + consumed-API metrics + billing export / SKU analysis**; **Cloud Tasks + Cloud Scheduler**; billing; DevOps/Docker/K8s/CI/CD; gRPC/HTTP/2/QUIC; SOLID/hexagonal/DDD; scale primitives. Each idea has **one home**. No parallel duplicate parts.
 - **PCA v6.1 complete:** every bullet in the official exam guide (English on/after 30 Oct) has a home in this course, including Vertex AI Pipelines, AI Hypercomputer, Model Garden, Gemini Enterprise, Model Armor, Migration Center, Google Cloud VMware Engine, Apigee, Terraform, Cloud Emulators, Gemini Cloud Assist.
 - **Absolute-beginner prerequisites** sit in Foundation Block F. A software engineer can skip-test; an absolute beginner cannot skip F.
 - Prerequisites are researched and taught **just-in-time**, not as a six-month wall before GCP.
@@ -206,7 +206,9 @@ Day 0, before any deploy:
 | Hybrid | Cloud VPN, Cloud Interconnect, NCC, VMware Engine |
 | Containers | GKE Autopilot/Standard, Gateway API, Workload Identity, Policy Controller |
 | Big data / AI | Pub/Sub, Dataflow, Dataproc, BigQuery, Vertex AI, Gemini, Model Garden, Model Armor |
-| Operations | Cloud Logging, Monitoring, Trace, Profiler, Error Reporting, alerting, SLOs |
+| Operations | Cloud Logging, Monitoring, Trace, Profiler, Error Reporting, alerting, SLOs, App Engine/Run dashboards |
+| Async jobs | Cloud Scheduler, Cloud Tasks, Cloud Run Jobs, Workflows, Pub/Sub, GKE CronJob |
+| API budgets | Cloud Billing export, Cloud Quotas, consumed API metrics, API Gateway/Apigee quotas |
 | DevOps / CI | Cloud Build, GitHub Actions, GitLab CI, Tekton, testing, quality gates |
 | CD / GitOps | Cloud Deploy, Skaffold, kustomize, Helm, Argo CD, Flux, app-repo vs env-repo |
 | Containers | Docker, BuildKit, OCI, Artifact Registry, distroless |
@@ -540,6 +542,14 @@ Curriculum:
 - **Lab (Always Free standard):** deploy the same Northstar health API as an App Engine standard Python service; split traffic; then deploy the Go version as a second version. Delete when done so F1 hours stay inside the free 28/day.
 - **Python / Go:** identical handlers on GAE standard.
 - **ADR-001b:** App Engine is taught and labbed; Northstar production path stays Cloud Run unless a constraint (existing GAE org, specific sandbox) wins.
+
+**Dashboard & quotas (the analytics template every later dashboard copies):**
+- Open **Console → App Engine** on this lab service first: requests/sec, latency, error rate, instance count, **instance hours**, versions, traffic split — by service and version.
+- Same series in Metrics Explorer: `appengine.googleapis.com/http/server/response_count`, `response_latencies` (p50/p95/p99), `response_count` by `response_code`, instance CPU/memory, instance hours.
+- Instance hours are **health and money**: 28 F1/day Always Free is a quota budget *and* a dollar budget.
+- Split 50/50 and compare version latency (canary analytics).
+- Then rebuild these tiles for Cloud Run in Part 10.0. That is “API analytics” without Apigee.
+- Task queues (if shown): attempts, delay, errors, depth — same RED as Cloud Tasks (3.4 / 10.0). `cron.yaml` is legacy; Cloud Scheduler is the successor (3.4).
 
 ### 1.10 Decision matrix (you will reuse this on the PCA)
 
@@ -1030,14 +1040,37 @@ Factory (clients), Adapter (GCP SDK), Decorator/Chain (middleware — Pedagogy �
 - **Lab:** OpenAPI spec in front of two Cloud Run services (API Gateway has a free call tier; stay inside it).
 - **Python:** generate OpenAPI from FastAPI; contract tests.
 
-### 3.4 Async: Pub/Sub, Eventarc, Tasks
-- **From scratch first:** in-memory broker (topic, pull, ack deadline, nack, DLQ after N, at-least-once). Then the same producer/consumer against real Pub/Sub.
+### 3.4 Async: Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler
+- **From scratch first:** in-memory broker (topic, pull, ack deadline, nack, DLQ after N, at-least-once). Delayed queue with lease/heartbeat (this *is* Cloud Tasks). A loop that sleeps until the next cron tick and POSTs (this *is* Scheduler — then delete it).
 - At-least-once. Idempotency keys. Dead letter topics. Ordering vs throughput.
 - Eventarc Standard: CloudEvents to Cloud Run.
 - Cloud Run **Worker Pools** for pull consumers (2026 model).
-- Cloud Tasks for deferred HTTP with delay.
-- **Lab:** `order.placed` → Pub/Sub → notification service; poison message → DLQ.
-- **Python / Go:** publisher + subscriber with exactly-once *business* effect (idempotency store in Firestore).
+
+**Cloud Scheduler** (successor to `cron.yaml`; **3 jobs** per billing account Always Free):
+- Targets: HTTP, Pub/Sub, App Engine HTTP. Unix-cron, timezone, attempt deadline.
+- Auth: OIDC to Cloud Run (`audience` = service URL). No API keys in the job.
+- Retry config vs “the handler is idempotent” (required).
+- **Lab:** (1) OIDC HTTP to Cloud Run `/internal/recompute`, (2) Pub/Sub tick. Optional (3) App Engine target on the 1.9 service. Destroy extras. Python then Go: create/pause/run via API.
+
+**Cloud Tasks** (successor to App Engine Task Queues; PCA still names GAE queues):
+- Queue: location, `rateLimits` (maxDispatchesPerSecond, maxConcurrentDispatches, maxBurstSize), `retryConfig` (maxAttempts, min/maxBackoff, doublings).
+- Task: HTTP (Cloud Run) or App Engine target; payload; `scheduleTime`; **name** for dedupe (`ALREADY_EXISTS`).
+- OIDC / dispatch token; handler verifies (same as Scheduler).
+- At-least-once → inbox (3.5). Observability in 10.0: `cloud_tasks_queue` depth, attempt count, attempt delay.
+- **Lab:** enqueue notification HTTP tasks; poison → retry → maxAttempts. Python then Go: create task + handler.
+
+| Need | Product |
+|---|---|
+| Run at 03:00 UTC | Cloud Scheduler |
+| Delayed/retried HTTP to **one** worker | Cloud Tasks |
+| Fan-out event | Pub/Sub |
+| Run-to-completion batch | Cloud Run Jobs (+ Scheduler trigger) |
+| Multi-step orchestration | Workflows |
+| In-cluster cron | GKE CronJob |
+| Legacy GAE | `cron.yaml` / GAE Task Queues — PCA literacy; don’t start new |
+
+- **Lab (Pub/Sub path):** `order.placed` → Pub/Sub → notification; poison → DLQ.
+- **Python / Go:** publisher + subscriber with exactly-once *business* effect (idempotency store).
 
 ### 3.5 Failure design
 - Partial failure. Dual-write (`sql.commit()` + `pubsub.publish()`) is forbidden.
@@ -1505,28 +1538,59 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 
 Well-Architected pillars, now that you have a system. Operations Suite is the former Stackdriver video block.
 
-### 10.0 Operations Suite (Observability — PCA 6.2)
-- Cloud Logging: log buckets, sinks, exclusion, 50 GiB free ingest.
-- Cloud Monitoring: metrics, SLOs, uptime checks, dashboards, alerting (channels, policies).
-- Cloud Trace, Cloud Profiler, Error Reporting.
-- Cloud Audit Logs (admin / data access / system) — already in Part 7; here: operational use.
-- Alerting strategies: avoid pager fatigue; SLOs not “CPU > 80%.”
-- **Lab:** dashboard for Northstar API (request count, latency, 5xx); alert on error-budget burn. Python/Go: emit a custom metric.
+### 10.0 Google Cloud Observability (full — PCA 6.2)
 
-### 10.1 Reliability
-- SLI/SLO/SLA, error budgets.
-- Regional Cloud Run is multi-zone already. Multi-region: dual Cloud Run + global LB + Firestore multi-region.
-- RPO/RTO. Backup Firestore (paid) vs application-level export to GCS.
-- Chaos: kill a revision, fail a Pub/Sub push, revoke a secret.
+Three budgets stay distinct: **dollar** (0.1 / 10.3), **error** (10.1), **quota** (10.7).
+
+**Start from the App Engine dashboard you already used in 1.9.** Rebuild those tiles here, then add Cloud Run, Tasks, Scheduler.
+
+Products:
+- **Cloud Monitoring:** Metrics Explorer, dashboards, alerting policies, notification channels, snooze, incidents, metrics scopes (multi-project), MQL / PromQL (Managed Service for Prometheus), uptime checks (HTTP/TCP; public vs private), synthetic monitors, SLO catalog, service monitoring. Managed dashboards for App Engine, Cloud Run, App Hub.
+- **App Engine metrics to copy:** `http/server/response_count`, `response_latencies` (p50/p95/p99), codes, instance hours (health **and** 28 F1/day budget).
+- **Cloud Run:** request count, latencies, billable instance time, CPU/memory, startup latency.
+- **Cloud Tasks:** `cloud_tasks_queue` depth, `task_attempt_count`, `task_attempt_delays`. Alert if depth or delay grows.
+- **Cloud Scheduler:** job success/failure, last-run.
+- **Cloud Logging:** buckets, views, sinks (GCS/BQ/Pub/Sub), exclusions, log-based metrics, 50 GiB free ingest, retention, CMEK. Audit logs for IR stay Part 7; here they are ops.
+- **Cloud Trace:** spans, sampling, W3C / `X-Cloud-Trace-Context`. Pedagogy §6 request-ID becomes the trace ID.
+- **Cloud Profiler:** CPU/heap — p95 CPU vs lock.
+- **Error Reporting:** grouped exceptions ↔ 5xx.
+- **Ops Agent** on GCE (1.8). Cloud Run structured logs auto-ingest.
+- **Alerting:** metric-threshold, MQL, log-based, SLO burn (fast 1h + slow 24h). Channels: email, Pub/Sub, PagerDuty/Slack. Alerting **has a SKU** — don’t alert on everything.
+- **From scratch:** in-process RED (rate, errors, duration histogram); `/metrics`; SLO calculator `(1-SLO)*events`; burn-rate. Then `custom.googleapis.com/northstar/...` or OTel.
+- **Lab:** Northstar dashboard = GAE tiles + Run + Tasks depth + Scheduler last-run. Alert on 5xx and SLO burn. Uptime check on Cloud Run URL. Python/Go: custom metric + list time series.
+
+### 10.1 Reliability + SLO / error budget
+- SLI: availability (success/total), latency (p95 checkout).
+- SLO: e.g. 99.9% monthly → error budget 0.1%. Fast-burn vs slow-burn (`select_slo_burn_rate`).
+- Error budget **gates deploys** (DORA): freeze prod if burned.
+- **From scratch:** remaining budget from a CSV of requests. Then Monitoring SLO API / Terraform `google_monitoring_slo`.
+- Regional Cloud Run is already multi-zone. Multi-region: dual Run + global LB + Firestore multi-region.
+- RPO/RTO. Chaos: kill a revision, fail a Pub/Sub push, stall a Tasks queue, miss a Scheduler run.
 
 ### 10.2 Operational excellence
 - DORA metrics. Terraform modules. Environments. Promotion.
 - Runbooks. On-call. Postmortems.
 
-### 10.3 Cost optimization (deep billing, returning to Part 0)
-- Request-based vs instance-based Cloud Run billing.
-- Committed use, CUD, idle Artifact Registry, log ingestion.
-- **Python / Go:** cost anomaly detector on a synthetic export.
+### 10.3 FinOps + API / SKU cost analysis
+Day-zero 0.1 already has a $10 budget. Here you **analyze**.
+- Billing export to BigQuery (standard + detailed). Cost by `service.description`, `sku.description`, `project.id`, `labels.env`, `labels.service`.
+- **API/SKU analysis:** which Google APIs are dollars (BigQuery bytes, Cloud Run CPU-seconds, GAE instance hours, Maps/Gemini, Logging ingest, Artifact Registry, idle IPs, NAT, LB forwarding rules).
+- Pricing Calculator vs actual. CUD. Idle waste: unused IPs, unattached PD, old images, log spam.
+- Budget alerts **lag**; pair with Monitoring on consumed API request count (10.7).
+- **From scratch:** extend the 0.1 parser — top-N SKUs, month-end forecast, flag non-Always-Free, unit economics (`$/1k checkout`).
+- **Lab:** export or synthetic CSV. BigQuery (1 TiB free queries) or DuckDB. Python then Go CLI.
+
+### 10.7 Cloud Quotas, consumed APIs, API budgeting
+Quota is a budget equal to money.
+- **Cloud Quotas:** allocation vs rate, project/folder/org, increase requests, usage alerts (~80%).
+- **Service Usage API:** Terraform-enable only what you need; disable unused APIs.
+- **Consumed API metrics** (`serviceruntime.googleapis.com`): `api/request_count`, `api/request_latencies`, `quota/allocation/usage`, `quota/rate/net_usage`, `quota/exceeded`. Resource type **Consumed API**. Filter `service`, `method`, `credential_id`, `quota_metric`.
+- Alerts: `quota/exceeded`, allocation > 85%, request_count spike (runaway / leaked key).
+- **Your API quotas** (API Gateway / Endpoints / Apigee products and rate plans — 3.3) vs **Google API quotas** (your project calling Google). Both.
+- Billable Google APIs (Maps, Gemini): quota **and** SKU. Cap with org policy + Monitoring.
+- **From scratch:** token-bucket (§6) *is* a rate quota. Script: Cloud Quotas API → % used.
+- **Lab:** Metrics Explorer on Consumed API for `run.googleapis.com` or `compute.googleapis.com`. Alert at 80%. Document a quota increase you do **not** file unless needed.
+- **Python / Go:** query `api/request_count` by method; fail CI if last hour > N.
 
 ### 10.4 Performance
 - Concurrency tuning, connection pooling to Firestore, CDN cache hit ratio, payload size.
@@ -1557,6 +1621,7 @@ A stranger can:
 8. OLTP schema + migrations exist (Postgres). Live Cloud SQL if credits; Docker Postgres if not. Either way the Terraform for Cloud SQL is in the repo.
 9. ADRs covering Cloud Run vs App Engine vs GCE for the API, and Cloud SQL vs Firestore vs Spanner for orders.
 10. Bloom-filter negative cache on catalog; cursor pagination; Cloud SQL pool-size ADR; load-shed on checkout; outbox (not dual-write); proto-stable internal gRPC.
+11. Dashboard (GAE-shaped tiles + Run + Tasks depth + Scheduler), SLO + burn-rate alert, billing SKU report, quota alert, unit-economics one-pager.
 
 Deliverables: HLD deck, LLD pack (OpenAPI + `.proto`, ERD/DDL, sequences, firewall policy, IAM, hexagonal layout), Python services, Go ports of at least **two** services, GCE e2-micro and App Engine labs documented (can be torn down), lab teardown.
 
@@ -1625,6 +1690,10 @@ Sample of early Python exercises (illustrative, not started):
 - Load-shed middleware (queue depth).
 - Cursor pager `(created_at, id)`.
 - Mini-QUIC: two UDP streams, loss on stream 1, stream 2 continues.
+- RED metrics + SLO remaining-budget from a CSV of requests.
+- Cloud Tasks enqueue + idempotent handler.
+- Cloud Scheduler create/pause (stay within 3 jobs).
+- Consumed-API request_count grouped by method (Monitoring API).
 
 Each has a Go twin after submission.
 
@@ -1652,6 +1721,7 @@ Each has a Go twin after submission.
 - Cloud CDN overview, cache modes, best practices; Compute Engine / VPC IP address docs (ephemeral vs static, regional vs global).
 - RFC 9111 (HTTP caching), RFC 7519 (JWT), protobuf encoding, RFC 9000 (QUIC concepts only) as from-scratch specs.
 - Bloom filters; consistent hashing; DDD/hexagonal as used in Northstar, not as a second course.
+- Cloud Monitoring SLO / burn-rate; Cloud Quotas; consumed API (`serviceruntime`) metrics; Cloud Tasks observability; Cloud Scheduler; App Engine metrics (`http/server/*`).
 
 ---
 
