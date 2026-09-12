@@ -12,7 +12,7 @@ Student-facing copy. Canonical teaching order is the course spine below. Python 
 - **PCA v6.1 complete:** every bullet in the official exam guide (English on/after 30 Oct) has a home in this course, including Vertex AI Pipelines, AI Hypercomputer, Model Garden, Gemini Enterprise, Model Armor, Migration Center, Google Cloud VMware Engine, Apigee, Terraform, Cloud Emulators, Gemini Cloud Assist.
 - **Absolute-beginner prerequisites** sit in Foundation Block F. A software engineer can skip-test; an absolute beginner cannot skip F.
 - Prerequisites are researched and taught **just-in-time**, not as a six-month wall before GCP.
-- After every subtopic: concept → **from-scratch implementation** (your own code, servers, middleware) → HLD → LLD → GCP lab → **Python exercise**. After you submit, the **same exercise in Go**.
+- After every subtopic: climb the **difficulty ramp** (Pedagogy §7) — concept → from-scratch → HLD/LLD → GCP lab. Python then Go. Unseen check, not “I understand.”
 - **You implement the mechanism yourself before you consume the managed product.** Frameworks and GCP APIs come second. See Pedagogy §6.
 - Include Donne Martin (`system-design-primer`) mapped onto GCP, not as a separate interview-only track.
 - Thoroughness is the priority. **Do not compress for calendar time.**
@@ -173,6 +173,77 @@ You do not “call the SDK and call it learned.” For every concept in this cur
 - Do not write malware, miners, or persistence kits. Container escape is discussed, not practiced against GCP.
 
 **Order on every topic:** toy implementation → tests → “what I got wrong vs production” → GCP/product lab.
+
+### 7. Difficulty ramp (from unified curriculum / semantic instructions)
+
+This is the **same internal ladder** used in `unified-curriculum.md` and `semantic-unified-instructions.md`, specialized for this GCP course. It is not a second curriculum. It governs **how** each existing sub-topic is taught.
+
+**Execution contract (one unit at a time):**
+- One owner heading (`###` in this file) and one coherent idea per unit. Short title, then teach. No destination essays.
+- Walk prerequisites first (the JIT map + earlier confirmed sub-topics). Do not import a later Part’s machinery to make a “harder” question.
+- Confirm with an **unseen check**, not “I understand.”
+- Later appearances of an owned idea: one-line recall + application. Do not re-teach.
+- Persist a compact **learner ledger** (overwrite, do not dump into chat): `part · sub-topic · ramp rung · unlocked · shaky · postponed · next gate`.
+- If they struggle: step **down one rung** and rebuild the missing tool. Do not skip rungs. Skip coding rungs only when the sub-topic is purely definitional (named fact, console-only click, theorem statement).
+
+**Universal ten-rung sequence** (every non-definitional sub-topic):
+
+| # | Rung | Pass signal |
+|---|---|---|
+| 1 | **Concrete anchor** | Point at the object (trace, packet, IAM binding, billing line, failing request) and say what changes |
+| 2 | **Vocabulary / notation** | Translate words ↔ GCP name / flag / proto field without a later tool |
+| 3 | **Representation** | Defend the picture: sequence, state machine, CIDR, SLO burn chart, hexagonal ports, C4, `EXPLAIN` |
+| 4 | **Core move** | Name the new operation or design decision; say when it is illegal / fails |
+| 5 | **Worked illustration** | Trace one clean example; predict one intermediate step |
+| 6 | **Basic unseen check** | Correct answer plus a short reason |
+| 7 | **Routine variation** | Same method, new numbers / API / region / failure |
+| 8 | **Mixed transfer** | New idea **plus exactly two** earlier unlocked ideas. Name all three before executing |
+| 9 | **Top-rung challenge** | Sub-topic close only, after mixed. Domain-matched (below). Structure-first plan, unlocked tools only, check a boundary / wrong path |
+| 10 | **Reflection + ledger** | Move that mattered, one failure mode, unlocked / shaky / postponed |
+
+Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump. Productive struggle on an **unlocked** hard problem is expected. Readiness-matched ≠ easy: difficulty comes from structure, hidden constraints, transfer, or production pressure — not from Part 9 GKE while you are still on Part 1 Cloud Run.
+
+**Map onto this course’s artifacts (Pedagogy §§2–6):**
+
+| Ramp | What happens here |
+|---|---|
+| 1–5 | Concept + one worked trace (console or stdlib) |
+| 6–7 | Basic/routine: FROM-SCRATCH.md Python, then Go after submit |
+| 8 | Mixed: HLD/LLD that uses **exactly two** earlier Northstar pieces (e.g. JWT middleware + Pub/Sub inbox) |
+| 9 | Top rung: GCP lab **or** production failure drill **or** ADR under a nasty constraint |
+| 10 | Consolidation, not a ledger reprint |
+
+**Software-engineering five-rung shorthand** (same ramp, collapsed for Go/DS/platform slices — do not skip the ten internally):
+
+1. **Basic** — vocabulary, one tiny program or one `gcloud` use.
+2. **Guided** — one worked implementation with tests; they read and trace it.
+3. **Routine** — they write the happy path (Python, then Go).
+4. **Mixed** — new idea + exactly two earlier unlocked nodes (errors, edges, a boundary).
+5. **Hard / production** — last rung at sub-topic close: production-flavored slice (failures, contract, observability, rollback, cost) **or** an adversarial/diagnostic drill. Still only unlocked tools.
+
+**Top-rung by domain in this file (not a second problem set):**
+
+| Kind of sub-topic | Top rung is |
+|---|---|
+| Platform / GCP product (Cloud Run, IAM, VPC, Tasks, Monitoring) | Production failure: misconfig, blast radius, rollback, cost leak, quota burn, idle IP, dual-write |
+| Security / IAM / PCI | Adversarial: least-privilege hole, metadata SSRF story, leaked token runbook — **no** attacking systems you do not own |
+| Data / SQL / Firestore / Spanner | Predict engine behavior: isolation anomaly, index miss, hot key, pool exhaustion, WAL/PITR consequence |
+| Protocols / gRPC / QUIC / HTTP | HOL vs independent streams, wire-format golden test, deadline/cancel |
+| Scale primitives (Part 8.1) | Structural reasoning: FPR of a bloom, remap % of a hash ring, load-shed vs SLO — math aptitude on **unlocked** objects, not a later calculus module |
+| HLD/LLD / microservices | Design under constraint: pick protocol, data ownership, retry/idempotency, observability, rollback; PCA-style “I pick X because Y, I accept Z” |
+| Definitional / console-only | No top rung, no forced scratch |
+
+**Intuition moves** (pick one or two per unit; do not dump the list): smaller/boundary case first; name the invariant; reverse from the incident; bound latency/cost/quota before solving; split cases only when it reduces uncertainty; construct a minimal failing input; choose the simplest service boundary that exposes the constraint; sanity-check against the original SLO/budget/IAM.
+
+**Learner attempts first.** No solution dump. If stuck: what structure do you see → smaller case → smallest unlocked hint. After resolution, name the move.
+
+**Dependency gate (silent):** before any prompt, audit the whole intended solution path. If a tool is not unlocked-and-confirmed, replace the path or postpone the item. Harder is not “smuggle GKE into Cloud Run week.”
+
+**Sub-topic complete when** they can: explain it in plain language; solve basic + routine; finish mixed (two earlier tools named); **attempt** the top rung; name a failure case; implement the core primitive from scratch (Python then Go) unless definitional.
+
+**Part / module complete when** every in-scope `###` has been confirmed that way. A postponed top-rung (genuine locked prereq) does not block the part; keep it on the ledger and revisit as soon as the prereq unlocks. End the part with a few lines: unlocked, still shaky, next — not a full ledger reprint.
+
+**Assignments at teach time only.** Rungs 1–3 are illustration + routine write. Mixed then hard is **exactly one** interconnected Northstar scenario, not a list of micro-problems. The scenario should fail to compile, test, or pass the lab if the new concept is omitted.
 
 ### 5. Lab safety (free tier / credits)
 Day 0, before any deploy:
@@ -1636,21 +1707,17 @@ Not a dump of dumps. After capstone:
 
 ## Exercise engine (how teaching will actually work)
 
-For each numbered subtopic when teaching starts:
+For each numbered subtopic when teaching starts, **walk Pedagogy §7** (do not skip rungs):
 
 ```
-1. Concept (short, sourced)
-2. FROM-SCRATCH.md — stdlib server / middleware / parser / state machine
-   → you submit Python; then Go
-3. HLD prompt (you write; reviewed)
-4. LLD prompt (you write; reviewed)
-5. Lab steps (gcloud/Terraform, free-tier boxed)
-6. PYTHON-EXERCISE.md  — GCP-wired version, tests included
-   → you submit
-7. GOLANG-EXERCISE.md  — same tests, same behavior
-   → you submit
-8. Review notes: what the toy got wrong vs the managed product
+1–5  Concrete → vocab → representation → core move → one worked illustration
+6–7  FROM-SCRATCH.md (basic + routine) — Python, then Go after submit
+8    Mixed: HLD/LLD using this idea + exactly two earlier unlocked Northstar pieces
+9    Top rung (after mixed): GCP lab / production failure / ADR / adversarial drill
+10   Reflection + ledger stamp (part · sub-topic · rung · unlocked · shaky · postponed · next)
 ```
+
+Lab steps (gcloud/Terraform, free-tier boxed) sit on rungs 7–9 as appropriate. PYTHON-EXERCISE / GOLANG-EXERCISE are the routine then GCP-wired write. Review notes: what the toy got wrong vs the managed product.
 
 Sample of early Python exercises (illustrative, not started):
 - Billing export aggregator (Run, GCE, GAE, SQL SKUs).
@@ -1768,9 +1835,10 @@ Case studies (required reading before Part 11): Altostrat Media, Cymbal Retail, 
 
 ## How we run it
 
-1. This file is the curriculum: `~/gcp-curriculum.md`.
+1. This file is the curriculum: `~/sde/gcp-curriculum.md` (copy: `~/gcp-curriculum.md`).
 2. Teaching starts at **F** (skip-test if you are already a software engineer) then **0.1 Billing** — when you say start.
-3. One subtopic at a time. You submit Python. Then Go. Then next subtopic.
+3. **One `###` sub-topic at a time**, full **§7 ramp**. Unseen check. Ledger stamp. Python then Go. Next sub-topic only after the current one is complete (or a top rung is postponed with a locked prereq).
 4. Northstar repo lives in your workspace; each part is a PR-quality increment.
+5. Preferred: overwrite a live learner ledger beside this file. If a write is impossible, one compact end-of-turn stamp: `part · sub-topic · ramp · unlocked · shaky · postponed · next`.
 
 No teaching content is delivered until you say start.
