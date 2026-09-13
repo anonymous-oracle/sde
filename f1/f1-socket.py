@@ -8,11 +8,12 @@ s.listen(5)
 print("Server listening on port 8080")
 
 client_bytes = b""
+client_socket, client_address = s.accept()
 while True:
-    client_socket, client_address = s.accept()
     print(f"Connection from {client_address}")
     recv_data = client_socket.recv(1024)
     if b"\r\n\r\n" in recv_data:
+        client_bytes += recv_data[:len(recv_data)-len(b"\r\n\r\n")]
         break
     client_bytes += recv_data
 
