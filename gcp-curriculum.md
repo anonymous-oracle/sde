@@ -223,25 +223,41 @@ Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump
 4. **Mixed** — new idea + exactly two earlier unlocked nodes (errors, edges, a boundary).
 5. **Hard / production** — last rung at sub-topic close: production-flavored slice (failures, contract, observability, rollback, cost) **or** an adversarial/diagnostic drill. Still only unlocked tools.
 
-**Top-rung by domain in this file (not a second problem set):**
+**If a topic is theoretically required, the academic bar is complete — not a survey.** Classify each `###` as one of:
 
-| Kind of sub-topic | Top rung is |
+| Class | What “complete” means | Typical owners |
+|---|---|---|
+| **Theoretical** | Central results are **derived or proved from first principles**, not recalled. Assumptions and validity conditions stated; what breaks when each fails; counterexample or boundary; unseen transfer that cannot copy the illustration. Then the from-scratch primitive (if implementable). | 8.1 primitives; SLO/error-budget math; CAP/consistency; isolation/MVCC; WAL; HOL/QUIC stream independence; protobuf wire types; JWT structure (not crypto); bloom FPR; consistent-hash remap; 9c metrics/leakage/ranking losses that you actually use |
+| **Systems / design** | Unfamiliar constraint, hidden structure, multi-step trade-off, failure and rollback, observability and cost. Not a library-call dressed as hard. | Cloud Run, IAM, VPC, CI/CD, HLD/LLD, microservices, payments |
+| **Security** | Adversarial: property at risk, failing test first, invariant, what an attacker cheaply exhausts | Parts 4, 6, 7, PCI |
+| **Engine / data** | **Predict** engine behavior before running; explain the discrepancy after (`EXPLAIN`, isolation anomaly, index, lock, PITR) | Part 2, Spanner/Firestore |
+| **Definitional** | Named fact, historical label, console-only click. No derivation demand it cannot support | Product nicknames, exam case names |
+
+Do not leave a theoretical topic at “I can call the API” or “I sketched the formula.” Do not inflate a definitional topic into fake proofs.
+
+**Top-rung budget (mandatory on every substantial non-definitional `###`):** after mixed transfer passes, pose **one to three** non-routine challenges. Prefer two or three when the topic has distinct representations. At least one is an unseen integrated problem that cannot be completed by copying the worked illustration. These **are** the top rung, not a second problem set. If a full-ceiling item needs a locked tool, postpone it and pose the strongest **unlocked** version now. Fake difficulty (bloated arithmetic, future-module tricks) is forbidden.
+
+**Top-rung by class:**
+
+| Class | Top rung |
 |---|---|
-| Platform / GCP product (Cloud Run, IAM, VPC, Tasks, Monitoring) | Production failure: misconfig, blast radius, rollback, cost leak, quota burn, idle IP, dual-write |
-| Security / IAM / PCI | Adversarial: least-privilege hole, metadata SSRF story, leaked token runbook — **no** attacking systems you do not own |
-| Data / SQL / Firestore / Spanner | Predict engine behavior: isolation anomaly, index miss, hot key, pool exhaustion, WAL/PITR consequence |
-| Protocols / gRPC / QUIC / HTTP | HOL vs independent streams, wire-format golden test, deadline/cancel |
-| Scale primitives (Part 8.1) | Structural reasoning: FPR of a bloom, remap % of a hash ring, load-shed vs SLO — math aptitude on **unlocked** objects, not a later calculus module |
-| HLD/LLD / microservices | Design under constraint: pick protocol, data ownership, retry/idempotency, observability, rollback; PCA-style “I pick X because Y, I accept Z” |
-| Definitional / console-only | No top rung, no forced scratch |
+| Theoretical | Prove or disprove; derive; state precise conditions; construct a counterexample; check dimensions/units/complexity/FPR/error bound; then a tiny numerical or code check if implementable |
+| Platform / GCP product | Production failure: misconfig, blast radius, rollback, cost leak, quota burn, idle IP, dual-write |
+| Security / IAM / PCI | Least-privilege hole, confused deputy, replay, leaked-token runbook — **no** attacking systems you do not own |
+| Data / SQL / Firestore / Spanner | Predict: isolation anomaly, index miss, hot key, pool exhaustion, WAL/PITR |
+| Protocols | HOL vs independent streams, wire-format golden test, deadline/cancel |
+| HLD/LLD | Design under constraint: protocol, data ownership, retry/idempotency, observability, rollback; “I pick X because Y, I accept Z” |
+| Definitional | No top rung, no forced scratch |
 
-**Intuition moves** (pick one or two per unit; do not dump the list): smaller/boundary case first; name the invariant; reverse from the incident; bound latency/cost/quota before solving; split cases only when it reduces uncertainty; construct a minimal failing input; choose the simplest service boundary that exposes the constraint; sanity-check against the original SLO/budget/IAM.
+**Intuition moves** (pick one or two per unit; do not dump the list): translate representations; smaller/zero/boundary/extreme case first; invariant, symmetry, or repeated substructure; reverse from the target or the incident; bound size/latency/cost/quota/probability before solving; split cases only when it reduces uncertainty; construct or disprove with a minimal failing input; choose the simplest coordinate, schema, or service boundary that exposes the constraint; sanity-check against the original wording, SLO, budget, IAM, or units.
 
-**Learner attempts first.** No solution dump. If stuck: what structure do you see → smaller case → smallest unlocked hint. After resolution, name the move.
+**Theoretical pass signals (stricter than a correct output):** the learner names the representation; states governing assumptions; explains why each important move works; checks a boundary or a plausible wrong path and repairs it. A right number or a green test with no structure named is routine fluency, not close.
+
+**Learner attempts first.** No solution dump. If stuck: what structure do you see → smaller case → smallest unlocked hint. Escalate only if still stuck. After resolution, name the move that made it easy; add one nearby variant if a shaky habit showed.
 
 **Dependency gate (silent):** before any prompt, audit the whole intended solution path. If a tool is not unlocked-and-confirmed, replace the path or postpone the item. Harder is not “smuggle GKE into Cloud Run week.”
 
-**Sub-topic complete when** they can: explain it in plain language; solve basic + routine; finish mixed (two earlier tools named); **attempt** the top rung; name a failure case; implement the core primitive from scratch (Python then Go) unless definitional.
+**Sub-topic complete when** they can: explain it in plain language; **derive or prove** its central results if the topic is theoretical; state assumptions and failure; solve basic + routine; finish mixed (two earlier tools named); **pass** (not merely attempt) the current unlocked top rung; then solve or substantially advance **one fresh nearby transfer** without copying the prior path; name a failure case; implement the core primitive from scratch (Python then Go) unless definitional. A postponed full-ceiling challenge does not block if a genuine prereq is locked — the strongest unlocked challenge is never optional.
 
 **Part / module complete when** every in-scope `###` has been confirmed that way. A postponed top-rung (genuine locked prereq) does not block the part; keep it on the ledger and revisit as soon as the prereq unlocks. End the part with a few lines: unlocked, still shaky, next — not a full ledger reprint.
 
@@ -255,9 +271,18 @@ This curriculum **is** the syllabus of record and the teaching law. Owner nodes 
 
 **Source of record.** Teach from these headings. Official product documentation, the system-design topic map (Part 8), and the industry ML catalog (Appendix M) are evidence under an owner — not extra courses. If an external article introduces a new idea, attach it to an existing `###` before teaching it.
 
-**Rigor over speed.** Short titles and one idea per unit govern *pacing*, not *depth*. No hand-waved “GCP handles that.” Carry the argument through. Long derivations (WAL, HOL, JWT, SLO math) span as many turns as they need.
+**Rigor over speed.** Short titles and one idea per unit govern *pacing*, not *depth*. No hand-waved “GCP handles that,” no “it can be shown that,” no skipped justification. Carry every explanation, derivation, and worked argument through in full. When a derivation is long (WAL, HOL, JWT structure, SLO math, isolation, bloom FPR), teach it across as many turns as it needs rather than summarizing the result. Where finishing quickly and finishing rigorously pull apart, **rigor wins**.
 
-**Depth floor (per topic, not an average).** A non-definitional topic is not done at “I can click the console” or “the library call works.” The learner must: state assumptions and what breaks when they fail; implement the core primitive from scratch where applicable (Python then Go); solve an unseen check without a template; read/critique the official doc or primary paper the topic rests on; place it in the graph (prereqs, what it unlocks, trade-offs). Ceiling is graduate-*coursework* / staff-engineer operations, not original research. **Skip when definitional** still applies.
+**Depth floor (per topic, not an average).** Familiarity, “enough to use the library,” and routine fluency are waypoints, not completion. A non-definitional topic is not covered until the learner can, at **that topic’s own academic level**:
+
+- **derive or prove** its central results from first principles when the topic is theoretical — not recall a slogan;
+- state governing assumptions and validity conditions, and say what breaks when each fails;
+- implement the core primitive from scratch in the owner languages (Python then Go) and **predict** behavior before running it, where the topic is implementable;
+- solve an unseen problem at that level without a template (non-routine top rung above);
+- read, use, and critique the primary literature or official documentation the topic rests on;
+- place the topic in the graph: prerequisites, what it unlocks, trade-offs against nearby alternatives.
+
+Ceiling is graduate **coursework** / staff-engineer operations, not original research: walk into a serious conversation on the topic, not produce novel papers. **Skip when definitional** still applies. A topic that was only mentioned, defined, demoed once, or exercised at routine level has **not** reached the floor, no matter how advanced other topics are. If this curriculum lists a theoretical idea, that idea is taught to this floor — not “partially” or “enough to pick the product.”
 
 **Assume nothing until confirmed.** Unseen check, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked.
 
@@ -287,7 +312,7 @@ This curriculum **is** the syllabus of record and the teaching law. Owner nodes 
 
 Every architecture lesson must name: monolith vs modular monolith vs microservices; sync vs async; data ownership; transaction boundary; consistency; retry/idempotency; observability signal; deploy/rollback. Patterns only when the **force** is in the code (Part 3.0). Case studies (Appendix M, primer) are useful only if they produce an implementable Northstar lesson.
 
-**Database protocol (Part 2 slices):** formal concept → PostgreSQL behavior → SQL transcript or Python/Go → `EXPLAIN (ANALYZE, BUFFERS)` or operational consequence → Cloud SQL / Spanner mapping. Predict before you run; explain the discrepancy after. Required internals **when the slice needs them** (not a second DB-ENGINE encyclopedia): relational algebra, constraints, indexes/scans, MVCC and isolation, locks/deadlocks, WAL/checkpoints/PITR, replication, vacuum. Hands-on: local Postgres + transcript; Go/Python only for the algorithmic bit (WAL toy is 8.1).
+**Database protocol (Part 2 — complete for every listed internal, not a survey):** formal concept → derive the invariant → PostgreSQL behavior → SQL transcript or Python/Go → `EXPLAIN (ANALYZE, BUFFERS)` or operational consequence → Cloud SQL / Spanner mapping. Predict before you run; explain the discrepancy after. These internals are **required and taught to the theoretical floor**, not optional color: relational algebra; constraints and normalization invariants; indexes and access paths; MVCC, snapshots, and isolation anomalies; locks and deadlocks; WAL, checkpoints, crash recovery, PITR; replication and failover; vacuum/bloat. Hands-on: local Postgres + transcript. Algorithmic toys (WAL replay, lock ordering) in Python then Go. Do not reimplement a storage engine. Do not skip an internal because a managed service hides it — hide it only after the learner can say what is being hidden.
 
 **Security lesson route (Parts 4, 6, 7; Python then Go):**
 1. Assets, actors, trust boundaries, abuse cases, property at risk.
@@ -305,11 +330,11 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 
 **Clean code and TDD (constraints, not a module):** Boy Scout rule; intention-revealing names; small functions, one abstraction level, few args, command-query separation; comments last resort; adapters at third-party edges; Three Laws of TDD; FIRST tests; one concept per test. Go: `error` is a value — do not ignore it. Python: exceptions with a clear boundary; do not swallow.
 
-**Math / ML protocol (8.1 and 9c only):** hand-trace tiny example → pseudocode → minimal Python → numerical tests → library compare. Serving engines (Vertex, Dataflow) = concept + product, not a reimplementation.
+**Math / ML protocol (every theoretically required quantitative idea in 8.1, 9c, SLO math, ranking metrics, leakage, FPR):** reason first. Hand-trace a tiny example → state assumptions → derive or prove the move → pseudocode → minimal Python → numerical tests that can fail the derivation → then a library compare. Objective geometry, dimensions, probability, metrics, and generalization **before** coding. A derivation plus a tiny experiment or ablation may form one integrated top rung; the reasoning comes first. Serving engines (Vertex, Dataflow) remain concept + product — you do not reimplement them — but you **do** complete the theory of any metric, loss, or estimator you actually use (precision/recall, leakage, train/serving skew, bloom FPR, ETA error, ranking utility). Incomplete “we’ll call Vertex” is not close.
 
 **Coding protocol:** learner writes; no solution dump. Hints = next protocol step or a question. Bugs are teaching data: wrong assumption, off-by-one, race, shape mismatch, invariant, contract. Tiny inputs until they can predict the output.
 
-**Minimum one learner-written exercise per non-definitional sub-topic** at teach time, plus the top rung at close. Tracing a worked example does not count.
+**Minimum exercises:** one learner-written exercise per non-definitional sub-topic at teach time (tracing a worked example does not count), **plus** the one-to-three top-rung challenges at close. The mixed-then-hard Northstar scenario is exactly one interconnected slice and must fail to compile, test, or pass the lab if the new concept is omitted.
 
 **Diagrams:** ASCII unless a diagram cannot be ASCII. System-design diagrams: Mermaid.
 
@@ -319,7 +344,7 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 
 **Capstone isolation (Part 11):** do not start Northstar v1 integration until Parts 0–5 (billing, deploy, SQL, microservices, auth, payments) plus CI (Part D enough to ship), observability 10.0 tiles, and the hexagonal ports for the services you are wiring are unlocked. Coursework labs (Pastebin studio, bloom filter, gRPC toy) run **during** the spine; they are not the capstone. Optional 9c ML slice is not a gate for v1 payments.
 
-**Completion bar (this course):** the learner can design, implement, test, and operate Northstar on GCP: HLD/LLD, hexagonal services, REST+gRPC, IAM/identity, PCI-sane payments, VPC/IPs/CDN literacy, CI/CD without keys, SLO + dollar + quota budgets, and at least recall the 9c ML families. They can implement core primitives from scratch and name the managed substitute. They can sit a PCA-style case with “I pick X because Y.” They cannot skip to “library-only” as done.
+**Completion bar (this course):** the learner can design, implement, test, and operate Northstar on GCP: HLD/LLD, hexagonal services, REST+gRPC, IAM/identity, PCI-sane payments, VPC/IPs/CDN literacy, CI/CD without keys, SLO + dollar + quota budgets. They can **derive** the theoretical results this syllabus actually requires (isolation, WAL, HOL, SLO math, bloom FPR, leakage/skew, ranking metrics they use) — not only operate the products. They can implement core primitives from scratch and name the managed substitute. They can sit a PCA-style case with “I pick X because Y.” Library-only or console-only is not done.
 
 **Resolved conflicts (this file wins):**
 | Conflict | Rule |
@@ -1043,8 +1068,9 @@ This is a full design track, not “pick Cloud SQL on the exam.”
 
 - Conceptual → logical → physical. ER diagrams, entities for catalog, cart, order, payment_intent, user, tenant.
 - Normalization (1NF–3NF, when to denormalize). Keys, FKs, uniqueness, check constraints.
-- Integrity: ACID, isolation levels (read committed vs repeatable read vs serializable), phantom reads.
-- Indexing: B-tree, composite, covering, partial; `EXPLAIN ANALYZE`; what Firestore indexes taught you vs SQL.
+- Integrity: ACID — **derive** what each letter forbids; isolation levels (read committed vs repeatable read vs serializable); dirty/nonrepeatable/phantom — **predict** before running.
+- Engine internals (required, theoretical floor, not color): relational algebra; constraints as invariants; B-tree vs heap vs index-only scan; MVCC snapshots; locks vs deadlocks; WAL, checkpoints, crash recovery, PITR; replication/failover; vacuum/bloat. Hide behind Cloud SQL only after the learner can say what is hidden.
+- Indexing: B-tree, composite, covering, partial; `EXPLAIN (ANALYZE, BUFFERS)`; Firestore indexes vs SQL.
 - Transactions and idempotency (`orders.idempotency_key UNIQUE`).
 - Migrations: expand/contract, never destructive in one step. Tools: Alembic (Python), golang-migrate (Go).
 - Multi-tenant SQL: `tenant_id` on every table vs schema-per-tenant vs DB-per-tenant. Default: shared schema + RLS (Postgres row-level security).
@@ -1723,10 +1749,11 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 
 Source catalog: [Engineer1999 ML system-design case studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) — **309** studies, **84** companies. Full one-line index is **Appendix M**. You do not re-implement 309 blogs. You learn **families**, attach **one Northstar slice** each, map to **GCP**. Recall IAM, Cloud Run, Pub/Sub, BQ/Dataflow, Monitoring — do not re-teach them.
 
-Each 9c unit uses Pedagogy §7. Pattern: problem → labels/leakage → offline metric → serving → monitor/rollback/cost → one named case.
+Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → **derive the metric or estimator you use** → offline evaluation → serving → monitor/rollback/cost → one named case. Metrics, leakage, skew, ranking utility, and FPR that appear in the slice are **theoretical** topics: complete floor, not “call Vertex.”
 
 ### 9c.1 Features, labels, skew
-- Leakage, train/serving skew, point-in-time joins.
+- Leakage: define it; construct a leak; prove a point-in-time join forbids it.
+- Train/serving skew: name the distribution shift; a test that fails if online features diverge.
 - Feature store (Vertex Feature Store / Feast-shaped toy). Online vs offline features.
 - **From scratch:** a feature table with `event_time` + as-of join that fails if you leak future labels.
 

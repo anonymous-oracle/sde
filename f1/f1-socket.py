@@ -1,3 +1,4 @@
+import json
 import socket
 
 # set reusable address
@@ -17,7 +18,9 @@ while True:
         break
     client_bytes += recv_data
 
-response = f"HTTP/1.1 200 OK\r\nContent-Length: 13\r\n\r\n{client_bytes.decode()}".encode()
+response_body = json.dumps({"data": client_bytes.decode(), "status": "ok"})
+
+response = f"HTTP/1.1 200 OK\r\nContent-Length: {len(response_body.encode())}\r\nContent-Type: application/json\r\n\r\n{response_body}".encode()
 client_socket.sendall(response)
 client_socket.close()
 s.close()
