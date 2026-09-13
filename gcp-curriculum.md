@@ -8,7 +8,7 @@ Student-facing copy. Canonical teaching order is the course spine below. Python 
 - Production deploy of frontend + backend microservices is taught **first**.
 - Billing is at the **start** (cannot deploy industry software without it).
 - Then authentication, then payment systems, then the rest of architect depth.
-- **First-class (not optional, not “later if time”):** SQL database design; Cloud SQL setup on GCP; Compute Engine; App Engine (including **dashboard/analytics**); Cloud Run; Cloud Functions; GKE; hybrid connectivity; network security; cybersecurity; IAM; storage; Spanner; NoSQL; Big Data; Vertex AI; Observability (Monitoring/Logging/Trace/Profiler/Error Reporting/SLO burn-rate); **Cloud Quotas + consumed-API metrics + billing export / SKU analysis**; **Cloud Tasks + Cloud Scheduler**; billing; DevOps/Docker/K8s/CI/CD; gRPC/HTTP/2/QUIC; SOLID/hexagonal/DDD; scale primitives. Each idea has **one home**. No parallel duplicate parts.
+- **First-class (not optional, not “later if time”):** SQL; Cloud SQL; GCE; App Engine dashboards; Cloud Run; GKE; networking/security; IAM; Observability + quotas + SKU analysis; Tasks/Scheduler; DevOps; gRPC/QUIC; SOLID/hexagonal; scale primitives; **production ML systems (9c) + Donne Martin complete topic map (8)**. Each idea has **one home**. Full ML catalog is Appendix M (309 studies). No parallel primer/ML encyclopedias.
 - **PCA v6.1 complete:** every bullet in the official exam guide (English on/after 30 Oct) has a home in this course, including Vertex AI Pipelines, AI Hypercomputer, Model Garden, Gemini Enterprise, Model Armor, Migration Center, Google Cloud VMware Engine, Apigee, Terraform, Cloud Emulators, Gemini Cloud Assist.
 - **Absolute-beginner prerequisites** sit in Foundation Block F. A software engineer can skip-test; an absolute beginner cannot skip F.
 - Prerequisites are researched and taught **just-in-time**, not as a six-month wall before GCP.
@@ -276,7 +276,8 @@ Day 0, before any deploy:
 | Cybersecurity | IAM, KMS/HSM, Secret Manager, SCC, DLP, audit logs, Binary Authorization, Shielded VM, Assured Workloads, org policy |
 | Hybrid | Cloud VPN, Cloud Interconnect, NCC, VMware Engine |
 | Containers | GKE Autopilot/Standard, Gateway API, Workload Identity, Policy Controller |
-| Big data / AI | Pub/Sub, Dataflow, Dataproc, BigQuery, Vertex AI, Gemini, Model Garden, Model Armor |
+| Big data / AI | Pub/Sub, Dataflow, Dataproc, BigQuery, Vertex AI, Gemini, Model Garden, Model Armor, Feature Store, Vector Search |
+| Production ML | Recs/LTR, ETA, fraud-on-tokens, RAG apps, bandits, skew, experiments (Part 9c) |
 | Operations | Cloud Logging, Monitoring, Trace, Profiler, Error Reporting, alerting, SLOs, App Engine/Run dashboards |
 | Async jobs | Cloud Scheduler, Cloud Tasks, Cloud Run Jobs, Workflows, Pub/Sub, GKE CronJob |
 | API budgets | Cloud Billing export, Cloud Quotas, consumed API metrics, API Gateway/Apigee quotas |
@@ -367,7 +368,9 @@ D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running se
 
 8  Hybrid connectivity (Cloud VPN, Cloud Interconnect, NCC) + migration (Migration Center)
 
-9  Kubernetes internals (CKA-level) + GKE + GitOps onto the cluster
+9  Kubernetes internals + GKE
+9b Vertex / Gemini / BigQuery (PCA product)
+9c Production ML systems (case-study atlas → Northstar slices)
 
 10 HLD/LLD mastery (Donne Martin) + Well-Architected + PCA design domains
 
@@ -1203,6 +1206,7 @@ Factory (clients), Adapter (GCP SDK), Decorator/Chain (middleware — Pedagogy �
 - Google is PCI DSS Level 1 **infrastructure**. You still own the app.
 - Scope reduction: tokenization, no PAN on your servers, dedicated project/VPC if you ever handle cards.
 - **ADR-004:** Stripe Checkout or Elements (hosted/iframe). Northstar is SAQ A. Server never sees card numbers.
+- Stripe **Radar-class fraud ML** is **Part 9c.4** (score on tokens). This part is money movement only.
 
 ### 5.2 Stripe on GCP (the real integration)
 - Checkout Session from Cloud Run.
@@ -1482,6 +1486,21 @@ Every Donne Martin building block becomes a GCP decision table plus a Northstar 
 | Message/task queues | Pub/Sub, Cloud Tasks, Worker Pools | orders |
 | REST vs RPC | Cloud Run HTTP vs gRPC | public REST, internal gRPC (Part 3.2) |
 | Security | IAM, IAP, Armor, NGFW, KMS, Secret Manager, VPC-SC, SCC | Parts 4, 6, 7 |
+| CAP / failover / nines | SLO math (10.1); series vs parallel availability | checkout SLO |
+| Consistency patterns | Weak / eventual / strong | Firestore vs Spanner |
+| Cache-aside / write-through / write-behind / refresh-ahead | Memorystore (9.1) | catalog |
+| Federation / sharding / denorm / SQL tuning | 2.1–2.3 | OLTP |
+| BASE / KV / document / wide-column / graph | 2.2, 2.7 | polyglot |
+| Back pressure | 8.1 + Pub/Sub outstanding | workers |
+| MapReduce / Spark / Storm | Dataflow / Dataproc (9b.1) | recall |
+| Bigtable / Dynamo / Redis / Memcached | Bigtable, Memorystore | |
+| GFS / HDFS | GCS (2.5) | objects |
+| Chubby / ZK | leases 8.1; GKE etcd | |
+| Dapper | Cloud Trace (10.0) | |
+| Kafka | Pub/Sub (3.4) | |
+| Scale-to-millions (primer AWS chapter) | **GCP** global LB + multi-region Run + Spanner/Firestore + CDN — do not teach AWS as the platform | |
+
+Primer 4-step loop is already Pedagogy §4. Interview questions without a GCP lab still use that loop on paper.
 
 ### 8.1 Production-scale primitives (from scratch, then product)
 
@@ -1512,16 +1531,21 @@ Tutorial microservices skip these. You do not. Each: small tested toy → Norths
 
 **From-scratch required in this part:** bloom filter + FPR tests; consistent-hash ring; singleflight; load-shed middleware; cursor pager. WAL toy may reuse Pedagogy §6 KV. LSM is a written comparison + optional flush toy.
 
-Worked HLD/LLD studios (Python models + Go after submit where there is code):
-1. URL shortener (Pastebin) on Cloud Run + Firestore.
-2. News feed / timeline — Pub/Sub fanout.
-3. Web crawler — Cloud Run Jobs + GCS.
-4. Rate limiter / LRU — Memorystore conceptually; Firestore or in-process for lab.
-5. Mint-like transaction aggregator — BigQuery (1 TiB free queries) for analytics path.
+Worked HLD/LLD studios (primer `solutions/` + GCP analog; Python then Go):
+1. Pastebin / Bitly — Cloud Run + Firestore + GCS; Base62/hash from scratch.
+2. Twitter timeline/search — **full recs/LTR is 9c.2**; here: fan-out vs read-fan-in ADR only.
+3. Web crawler — Cloud Run Jobs + Pub/Sub + GCS.
+4. Mint.com — BigQuery path (9b.1).
+5. Social graph — Firestore/Spanner; graph DB recall.
+6. Query-cache / KV — Memorystore + consistent hash (8.1).
+7. Amazon sales rank — Pub/Sub counters + BigQuery.
+8. Scale to millions — global LB, multi-region Run, Spanner or Firestore, CDN (GCP, not AWS).
 
-Back-of-envelope: powers of two, latency numbers, GCP SKU napkin math (Part 0 skills reused).
+**OOD (primer notebooks):** hash map + LRU required (cache). Chat server optional after 3.2 streams. Call center / cards / parking lot: skip unless they attach to Northstar.
 
-PCA-style writing: “Given this constraint, I pick X because Y, and I accept Z.”
+**Appendix D additional primer questions** (design on paper + link to owner; not extra courses): Dropbox-like sync; Google search; Google Docs OT (tiny toy — do not invent CRDT research); Redis; Memcached; Amazon recs → 9c.2; WhatsApp chat; Instagram photos; FB feed/timeline/chat/graph search; Cloudflare CDN → 1.4; Twitter trends → HyperLogLog 8.1; Snowflake IDs; top-k; multi-DC; **API rate limiter** (Stripe blog + §6 token bucket); stock exchange optional.
+
+Back-of-envelope: powers of two, latency numbers, GCP SKU napkin math (Part 0). PCA-style: “I pick X because Y, I accept Z.”
 
 ---
 
@@ -1593,7 +1617,7 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 - Vertex AI Pipelines to orchestrate the ML lifecycle.
 - Data integration into Vertex.
 - AI Hypercomputer: GPUs/TPUs, Cloud Run functions + Vertex for serving, consumption models, large-scale training (concept + SKU awareness).
-- **HLD:** Northstar “recommend products” as a Vertex endpoint, not a custom GPU cluster.
+- **HLD:** Northstar “recommend products” as a Vertex endpoint, not a custom GPU cluster. The **recs system design** (two-tower, LTR, cold start) is **9c.2** — this subsection is the Vertex product, not a second recs course.
 
 ### 9b.3 Pre-built AI APIs and Gemini (PCA 2.5)
 - Google AI APIs: Search, Conversation, Vision, Image, Video, Audio — when to buy vs build.
@@ -1602,10 +1626,53 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 - Gemini Cloud Assist (PCA 1.2, 5.1) as an architect copilot — use it, don’t blindly trust it.
 - **Securing AI (PCA 3.1):** Model Armor, Sensitive Data Protection, secure model deployment. Prompt injection as a threat.
 - **Lab (free-tier boxed):** call a Gemini API from Cloud Run with a Vertex/AI Studio key in Secret Manager; never log prompts that contain PII. Python then Go.
+- LLM **application** design (RAG, eval, guardrails) is **9c.5**. This subsection is model/API selection.
 
 ---
 
-## Part 10 — Operations Suite, reliability, FinOps, compliance
+## Part 9c — Production ML systems (industry case-study atlas)
+
+Source catalog: [Engineer1999 ML system-design case studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) — **309** studies, **84** companies. Full one-line index is **Appendix M**. You do not re-implement 309 blogs. You learn **families**, attach **one Northstar slice** each, map to **GCP**. Recall IAM, Cloud Run, Pub/Sub, BQ/Dataflow, Monitoring — do not re-teach them.
+
+Each 9c unit uses Pedagogy §7. Pattern: problem → labels/leakage → offline metric → serving → monitor/rollback/cost → one named case.
+
+### 9c.1 Features, labels, skew
+- Leakage, train/serving skew, point-in-time joins.
+- Feature store (Vertex Feature Store / Feast-shaped toy). Online vs offline features.
+- **From scratch:** a feature table with `event_time` + as-of join that fails if you leak future labels.
+
+### 9c.2 Retrieval, rank, recommend, bandits
+- Candidate generation → rank → re-rank/diversity. Two-tower + ANN (Vertex Vector Search). LTR, multi-task, cold start.
+- Bandits / explore-exploit (Instacart, Trivago, DoorDash homepage). Feature flags (8.1) are not bandits.
+- Cases: Netflix recs, Instagram Explore, Etsy ranker, Airbnb LTR, Twitter algorithm.
+- **Northstar:** catalog retrieval + rank toy (cosine + a few LTR features). Python then Go **service boundary**.
+
+### 9c.3 Forecast, ETA, demand
+- Time series, cascade/ensemble (DoorDash holidays), DeepETA-class tabular/seq models.
+- Cases: Uber DeepETA, Swiggy delivery time, Grubhub volume.
+- **Northstar:** ETA stub for “order arriving” (features + regression; not a DeepETA clone).
+
+### 9c.4 Fraud, graph, HITL
+- Imbalance, embeddings of journeys (Wayfair Melange), graph anomaly (Grab), HITL (Uber RADAR).
+- Score **tokens**, never PAN. PCI path stays Part 5.
+- **Northstar:** fraud score on Stripe tokens + Cloud Tasks HITL queue.
+
+### 9c.5 LLM applications
+- RAG, eval set, refusal/guardrails, latency, token cost. Copilot/Honeycomb/Ava-class **apps**.
+- Gemini pick stays 9b.3.
+- **Northstar:** help-doc RAG on Cloud Run + Gemini; eval questions; never log PII.
+
+### 9c.6 CV / speech serving
+- Batch vs online. Cases: Netflix in-video search, Etsy image search, Dropbox OCR, speech/music.
+- Architect literacy + Vertex custom job; not a CV PhD.
+
+### 9c.7 Platform, experiments, serving
+- Michelangelo ≈ Vertex + Feature Store + Pipelines + registry + endpoints.
+- Batch vs online serving. Drift / prediction-quality monitors (product = 10.0).
+- A/B, holdout, shadow, CUPED-style. Cloud Deploy canary (D4) is **release**, not experiment.
+- Training pipelines: Dataflow/BQ **contract** only (jobs already 9b.1).
+
+**Optional capstone ML:** one of {ranker, fraud score, ETA, RAG} behind a hexagonal port. Not required to finish payments.
 
 Well-Architected pillars, now that you have a system. Operations Suite is the former Stackdriver video block.
 
@@ -1693,6 +1760,7 @@ A stranger can:
 9. ADRs covering Cloud Run vs App Engine vs GCE for the API, and Cloud SQL vs Firestore vs Spanner for orders.
 10. Bloom-filter negative cache on catalog; cursor pagination; Cloud SQL pool-size ADR; load-shed on checkout; outbox (not dual-write); proto-stable internal gRPC.
 11. Dashboard (GAE-shaped tiles + Run + Tasks depth + Scheduler), SLO + burn-rate alert, billing SKU report, quota alert, unit-economics one-pager.
+12. Optional: one ML slice from 9c behind a port (ranker, fraud score, ETA, or RAG).
 
 Deliverables: HLD deck, LLD pack (OpenAPI + `.proto`, ERD/DDL, sequences, firewall policy, IAM, hexagonal layout), Python services, Go ports of at least **two** services, GCE e2-micro and App Engine labs documented (can be torn down), lab teardown.
 
@@ -1783,7 +1851,8 @@ Each has a Go twin after submission.
 - Modern CI/CD with GKE reference architecture; GitOps-style CD with Cloud Build.
 - DORA metrics; Well-Architected operational excellence.
 - PCA exam guide v6.1 + the four case studies.
-- Donne Martin `system-design-primer` (topics index + Pastebin/Twitter/crawler/Mint/scaling solutions).
+- Donne Martin `system-design-primer` (full topic index mapped in Part 8; solutions/ + additional questions in 8 studios / Appendix D).
+- [ML system-design case studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) (309; Appendix M; taught as Part 9c families).
 - Donne Martin `interactive-coding-challenges` used only as the style model for exercise notebooks — GCP exercises are original.
 - Cloud CDN overview, cache modes, best practices; Compute Engine / VPC IP address docs (ephemeral vs static, regional vs global).
 - RFC 9111 (HTTP caching), RFC 7519 (JWT), protobuf encoding, RFC 9000 (QUIC concepts only) as from-scratch specs.
@@ -1842,3 +1911,351 @@ Case studies (required reading before Part 11): Altostrat Media, Cymbal Retail, 
 5. Preferred: overwrite a live learner ledger beside this file. If a write is impossible, one compact end-of-turn stamp: `part · sub-topic · ramp · unlocked · shaky · postponed · next`.
 
 No teaching content is delivered until you say start.
+## Appendix M — ML system-design case studies (complete catalog)
+
+Source: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) (309 studies, 84 companies). Teach **Part 9c** families; this appendix is the full index. One-liners are `Company — description (year)`.
+
+### Recommend / personalize / feed (65)
+
+- Walmart — Recommend complementary items (2023)
+- Swiggy — Recommend items to order (2023)
+- Lyft — Recommend content in app (2023)
+- Etsy — Recommend relevant marketplace items (2023)
+- Airbnb — Personalized listing search (2023)
+- Twitter — Recommend interesting tweets (2023)
+- Linkedin — Personalize the homepage feed (2023)
+- Netflix — Personalize video clips (2023)
+- Instacart — Personalize user experience by recommending relevant products (2023)
+- Pinterest — Recommend similar visual content (2023)
+- Spotify — Recommend new complementary music (2023)
+- Dailymotion — Recommend diversified video content (2023)
+- New York Times — Recommend recipes to readers (2023)
+- Expedia — Suggest diverse travel recommendations (2023)
+- Stitch Fix — Personalize styling recommendations (2023)
+- Netflix — Generate content recommendations for users (2023)
+- Delivery Hero — Recommend restaurants for new customers (2023)
+- Salesforce — Recommend apps in the marketplace (2023)
+- Delivery Hero — Recommend restaurants (2023)
+- Ebay — Recommend relevant e-commerce items (2022)
+- Doordash — Recommend substitute items (2022)
+- Pinterest — Personalize homepage contents (2022)
+- Expedia — Categorize customer feedback (2022)
+- Ebay — Recommend products and content (2022)
+- Yelp — Personalize recommendations (2022)
+- Gousto — Recommend food items and recipes (2022)
+- Meta — Personalize daily digest notifications (2022)
+- Instacart — Recommend relevant food items (2022)
+- Doordash — Personalize recommendations on homepage (2022)
+- Autotrader — Personalize automotive search results (2022)
+- Peloton — Recommend fitness training videos (2022)
+- New York Times — Personalize paywall limits (2022)
+- Netflix — Recommend content to view (2022)
+- Stitch Fix — Recommend e-commerce items (2022)
+- Walmart — Curate e-commerce product recommendations (2022)
+- Twitter — Recommend accounts to follow (2022)
+- Glassdoor — Recommend interesting posts to users (2022)
+- Glassdoor — Recommend interesting posts to users (2022)
+- Dailymotion — Recommend diversified video content (2022)
+- Linkedin — Deliver more relevant job recommendations (2022)
+- Cookidoo — Personalize recipe recommendations (2022)
+- Pinterest — Recommend bids for advertizers (2021)
+- OLX — Recommend e-commerce items (2021)
+- Stitch Fix — Recommend e-commerce inventory (2021)
+- Gousto — Recommend food items and recipes (2021)
+- Spotify — Personalize homepage content (podcasts, playlist, music) (2021)
+- Stitch Fix — Recommend looks (2021)
+- Walmart — Recommend learning content (2021)
+- New York Times — Recommend content to read (2021)
+- PayPal — Recommend financial products (2021)
+- Scribd — Recommend content to read (2021)
+- Wayfair — Recommend furniture items (2021)
+- Zillow — Recommend similar homes (2021)
+- Spotify — Personalize homepage content (podcasts, playlist, music) (2021)
+- Expedia — Personalize travel search results (2021)
+- Meta — Personalize the newsfeed content (2021)
+- Linkedin — Serve personalized learning recommendations (2020)
+- Linkedin — Serve personalized learning recommendations (2020)
+- Etsy — Personalize e-commerce search (2020)
+- Zynga — Personalize push notification timing (2020)
+- Spotify — Recommend shortcuts for homepage (2020)
+- Wayfair — Recommend complementary products (2020)
+- Airbnb — Recommend marketplace items (2019)
+- Gojek — Personalize search results (2019)
+- Lyft — Personalize marketing offers (2018)
+
+### Search / rank / ads (36)
+
+- Pinterest — Prevent advertiser churn (2023)
+- Airbnb — Improve travel search experience (2023)
+- Algolia — Suggest relevant search queries (2023)
+- Netflix — In-video search (2023)
+- Etsy — Show relevant ads (2023)
+- Swiggy — Сonversational and open-ended search (2023)
+- Etsy — Search by image (2023)
+- Linkedin — Show relevant jobs in search (2023)
+- Instacart — Search food and grocery items (2022)
+- Spotify — Search for podcasts (2022)
+- PayPal — Prioritize sales leads (2022)
+- Trivago — Optimize accommodation ranking (2022)
+- Airbnb — Improve travel search experience (2022)
+- Expedia — Rank relevant travel deals (2022)
+- Linkedin — Improve post search functionality (2022)
+- Snap — Rank relevant ads (2022)
+- Instacart — Autocomplete user searches in e-commerce (2022)
+- Doordash — Search food and grocery items (2022)
+- Faire — Rank e-commerce items (feature store) (2022)
+- Linkedin — Predict ad click-through rate (2022)
+- Etsy — Rank marketplace search results (2022)
+- Faire — Search and navigate marketplace items (2021)
+- Dropbox — Search by image content (2021)
+- Microsoft — Rank customer support cases (2021)
+- Swiggy — Rank restaurants in search (2021)
+- Swiggy — Rank food dishes in search (2021)
+- Wayfair — Automate ads placement and bidding (2021)
+- Dailymotion — Target contextual advertising (2021)
+- Wayfair — Optimize digital ads (2021)
+- Airbnb — Rank travel search results (2020)
+- Wayfair — Improve search experience for new customers (2020)
+- Zillow — Rank homes to buy (2020)
+- Doordash — Search for restaurants and dishes (2020)
+- Dropbox — Predict files users search for (2019)
+- Gojek — Analyse the relevance of search results (2019)
+- Airbnb — ML Powered search ranking (2019)
+
+### Forecast / ETA / demand (27)
+
+- Uber — Forecast demand for airport rides (2023)
+- Wayfair — Predict delivery times (2023)
+- Zalando — Forecast demand in fashion e-commerce (2023)
+- Doordash — Forecast order volumes and deliveries (2023)
+- Expedia — Forecast flight prices (2023)
+- Doordash — Accurately forecast demand during holidays (2023)
+- Swiggy — Predict food delivery time (2023)
+- Swiggy — Predict food delivery time (2023)
+- Swiggy — Predict food delivery time (2023)
+- OLX — Predict order delivery time (2023)
+- Grubhub — Forecast order volume (2022)
+- Gojek — Predict food delivery times (2022)
+- Uber — Predict estimated time of arrival (2022)
+- Spotify — Forecast user activity metrics (2022)
+- Walmart — Forecast anomalies in refrigeration (2022)
+- Gojek — Predict estimated time of delivery (2022)
+- Lyft — Make causally valid forecasts (2022)
+- Lyft — Make causally valid forecasts (2022)
+- Grubhub — Forecast volume order (2021)
+- Doordash — Predict delivery supply and demand (2021)
+- Scribd — Extract metadata from documents (2021)
+- Twitter — Forecast resource usage and cost (2021)
+- Ocado — Forecast e-commerce grocery demand (2021)
+- Mercado Libre — Forecast demand for e-commerce items (2021)
+- Instacart — Spot lost demand (2019)
+- Gojek — Accurately forecast demand (2019)
+- Uber — 100+ Petabytes with Minute Latency (2018)
+
+### Fraud / trust & safety (24)
+
+- Stripe — Prevent fraudelent transactions (2023)
+- Linkedin — Detect viral spam (2023)
+- Wayfair — Detect fraud with embeddings (2023)
+- Zillow — Identify and block unwanted callers (2023)
+- BlaBlaCar — Prevent phishing and payment fraud (2023)
+- Uber — Detect potential fraudulent entities (2023)
+- Grab — Automatically detect new fraud types (2023)
+- Whatnot — Detect marketplace spam (2023)
+- BlaBlaCar — Prevent phishing and payment fraud (2023)
+- Uber — Detect payment fraud (2022)
+- Netflix — Detect account or content fraud (2022)
+- Grab — Detect fraud with graph models (2022)
+- Slack — Detect spam invites (2021)
+- Pinterest — Detect spam users (2021)
+- PayPal — Detect payment fraud (2021)
+- Swiggy — Detect fraud in online food delivery (2021)
+- Stripe — Detect fraud in online payments (2021)
+- PayPal — Prevent repeated payment fraud (2021)
+- Wayfair — Detect payment fraud (2020)
+- PayPal — Detect payment fraud (2020)
+- Stripe — Detect fraud in online payments (2020)
+- Lyft — Predict fraudulent activity (2018)
+- Lyft — Identify user fraud (2018)
+- Lyft — Shallow to deep learning in fraud (2018)
+
+### LLM / genAI apps (19)
+
+- Stitch Fix — Generate ad headlines (2023)
+- Microsoft — Diagnose production incidents with LLM (2023)
+- GitHub — Generate code and code suggestions (2023)
+- Honeycomb — Generate queries with natural language (2023)
+- Spotify — Automatically generate ad content (2023)
+- Nextdoor — Generate engaging email subject lines (2023)
+- Meta — Generate code with LLM (2023)
+- GitHub — AI copilot for code generation (2023)
+- Doordash — Areas for using Generative AI (2023)
+- Spotify — Generate audio podcast previews (2023)
+- Thoughtworks — AI copilot for product strategy (2023)
+- Salesforce — Summarize Slack conversations (2023)
+- Instacart — Build an internal AI assistant (2023)
+- Vimeo — Customer support AI assistant (2023)
+- Google — Generate summaries (2022)
+- Google — Summarize conversations (2022)
+- Nordstrom — Generate outfit combinations (2021)
+- Gojek — Generate names for pickup points (2020)
+- Zillow — Generate floor plans from photos (2020)
+
+### NLP / text / support (7)
+
+- Grab — Automatically tag sensitive data (2023)
+- Salesforce — Extract relevant information from a knowledge article (2023)
+- Dropbox — Identify date formats in file names (2023)
+- Meta — Translate and transcribe across speech and text (2023)
+- Nextdoor — Predict harmful comments (2022)
+- Wayfair — Predict intent in customer support messages (2022)
+- Pinterest — Detect policy-violating comments (2021)
+
+### CV / video / OCR (6)
+
+- Apple — Identify objects on images (2023)
+- Netflix — Improve video quality at scale (2022)
+- Doordash — Extract information from images (2021)
+- Bumble — Derive information from images (2020)
+- Dailymotion — Automatically categorize videos (2020)
+- Dropbox — Modern OCR with CV and DL (2017)
+
+### Speech / audio (3)
+
+- Netflix — Detect speech and music in audio (2023)
+- Walmart — Fill shopping cart via voice dialog (2022)
+- Amazon — Suggest music to listen to (2022)
+
+### Marketing / churn / CLV / notify (14)
+
+- Monzo — Select relevant marketing messages (2023)
+- Expedia — Predict Customer Lifetime Value (CLV) (2023)
+- Grab — Сreate scalable lookalike audiences (2023)
+- Grab — Optimize promotional campaigns (2023)
+- Gousto — Predict subscription churn (2022)
+- Uber — Send timely push notifications (2022)
+- Artefact — Evaluate success of past promotions (2022)
+- Linkedin — Predict churn and upsell products (2022)
+- Wayfair — Optimize email sending time and frequency (2022)
+- Netflix — Apply causality in experiments and marketing (2022)
+- Pinterest — Find lookalike users for ad targeting (2021)
+- Wayfair — Optimize paid media marketing (2021)
+- Doordash — Optimize marketing spending (2020)
+- Lyft — Build a marketing automation platform (2019)
+
+### Availability / inventory (5)
+
+- DoorDash — Predict if a store is open (2023)
+- Instacart — Predict availability of food items (2023)
+- Instacart — Predict grocery item availability (2023)
+- Instacart — Predict availability of food items (2023)
+- Instacart — Predict grocery item availability (2018)
+
+### ML platform / infra (2)
+
+- King — Automate playtesting pipeline (2019)
+- Uber — Scaling ML with Michelangelo (2019)
+
+### Other (pricing, classification, routing, dimensions, …) (101)
+
+- Foodpanda — Optimize menu sorting order (2023)
+- Zillow — Estimate the house market value (2023)
+- Airbnb — Identify user interests (2023)
+- DoorDash — Optimize courier waiting time (2023)
+- Linkedin — Select best payment gateway (2023)
+- Yelp — Organize e-commerce content using embeddings (2023)
+- Monzo — Detect patterns in text data (2023)
+- Wayfair — Predict new product’s sales potential (2023)
+- Wayfair — Identify business customers (2023)
+- Criteo — Figure out users' preferences (2023)
+- Grammarly — Suggest gender-inclusive grammatical error corrections (2023)
+- Delivery Hero — Better understand user behavior (2023)
+- Expedia — Alert users about optimal deals (2023)
+- Walmart — Resolve entities and detect relationships (2023)
+- Wayfair — Send relevant communications to customers (2023)
+- Meta — Show users relevant content at scale (2023)
+- GitHub — Automated code reviews and PR tagging (2023)
+- Spotify — Target in-app messaging (2023)
+- Nubank — Automatically route customer phone calls (2023)
+- Mercado Libre — Predict product dimensions for delivery (2022)
+- Walmart — Assist in e-commerce shopping (2022)
+- Foodpanda — Classify restaurants and cuisines (2022)
+- Github — Detect vulnerabilities in code (2022)
+- Doordash — Find high-value merchants (2022)
+- Grammarly — Suggest text edits (2022)
+- Zillow — Select tags for product listings (2022)
+- Airbnb — Improve customer support (2022)
+- Walmart — Categorize e-commerce products (2022)
+- Zillow — Identify customers that are likely to convert (2022)
+- Zillow — Extract text features (2022)
+- Lyft — Optimize trip price (2022)
+- Grammarly — Correct grammatical errors (2022)
+- Airbnb — Improve customer travel experience (2022)
+- Swiggy — Flag incorrectly captured locations (2022)
+- Uber — Verify documents (2022)
+- Didact AI — Predict stock prices (2022)
+- Wayfair — Identify specific entities within a text (2022)
+- Oda — Predict driver's non-driving time (2022)
+- Linkedin — Estimate the impact of product changes (2022)
+- Siemens Healthineers — Optimize software testing (2022)
+- Linkedin — Improve ML model performance with multitask learning (2022)
+- Google — Suggest past photos to look at (2021)
+- Uber — Identify cash intermediaries (2021)
+- Microsoft — Cluster customer support issues by similarity (2021)
+- Apple — Recognize people in photos (2021)
+- Datto — Predict hard drive failures (2021)
+- Bumble — Detect rude messages (2021)
+- Nextdoor — Send relevant and timely updates (2021)
+- Dropbox — Identify best time for renewal charge (2021)
+- Brex — Classify bank transactions (2021)
+- Grammarly — Capture what readers pay attention to (2021)
+- Apple — Identify best user experience (2021)
+- Airbnb — Data privacy and security (2021)
+- Capital One — Identify suspicious account activity (2021)
+- Wayfair — Assign color names to products (2021)
+- Capital One — Automate incident management (2021)
+- Walmart — Categorize e-commerce products (2021)
+- Walmart — Identify refrigeration defrost (2021)
+- Capital One — Improve cardholder experience (2021)
+- Shopify — Categorize e-commerce products (2021)
+- Amazon — Predict coordinates of delivery location (2021)
+- PayPal — Predict declined transactions (2021)
+- Slack — Predict Slack connect invites (2021)
+- Grammarly — Detect grammatical errors (2021)
+- Doordash — Deliver orders on time (2021)
+- Lifen — Recognize PDF layout (2021)
+- Bumble — Detect rude messages (2021)
+- Swiggy — Estimate travel distance (2021)
+- Scribd — Classify documents (2021)
+- Google — Correct grammatical errors (2021)
+- Nubank — Predict conversions and attract new customers (2021)
+- Grammarly — Correct grammatical errors (2021)
+- Scribd — Classify user-uploaded documents (2021)
+- Oda — Predict driver's non-driving time (2021)
+- Mercado Libre — Predict customer engagement and LTV (2021)
+- Wayfair — Show relevant content to new customers (2021)
+- Microsoft — Classify cloud workload types (2021)
+- Github — Help users find contribution opportunities (2020)
+- Mozilla — Predict the outcome of software tests (2020)
+- Adyen — Predict probability of transaction success (2020)
+- Lyft — Provide location suggestions (2020)
+- Twitter — Predict value of ad requests (2020)
+- Picnic — Predict delivery drop times (2020)
+- Shopify — Categorize e-commerce products (2020)
+- Gojek — Target cross-sell to existing users (2020)
+- OLX — Detect stolen photos (2020)
+- Duolingo — Teaching foreign languages (2020)
+- Firefox — Automatically assign new untriaged bugs (2019)
+- Zoominfo — Predict data accuracy (2019)
+- Lyft — Predict location of traffic control elements (2019)
+- Apple — Identify text language (2019)
+- Stitch Fix — Extract information from customer notes (2019)
+- Lyft — Detect errors in maps (2019)
+- Wayfair — Model uplift (2019)
+- Lyft — Predict rides and driver hours (2019)
+- Netflix — Improve streaming quality (2018)
+- Instacart — Optimize food delivery logistics (2017)
+- Airbnb — Predict Value of Homes (2017)
+- Netflix — Improve Streamning Quality (2018)
+- Booking.com — 150 Successful Machine Learning Models (2019)
+- Chicisimo — Grow User base using vertical ML approch (2019)
