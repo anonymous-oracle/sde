@@ -358,7 +358,7 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 | Unified Go-only systems vs this course | Python then Go for every implementable slice |
 | Nasiko capstone vs Northstar | Northstar v1 is the capstone |
 | JEE vs production top rung | Production/adversarial/engine-prediction for GCP/platform; structural math only for 8.1 / 9c theory |
-| Dual spines (degree numbering vs this file) | One spine: Parts F→11b. Institutional stages are owners/tracks, not a prefix |
+| Dual spines (degree numbering vs this file) | F→11b first. Part 12 is S0–S24 after 11b. During GCP, only prereq refs |
 | Depth vs “enough to use gcloud” | Depth floor; console fluency is a waypoint |
 | Rigor vs short turns | Rigor wins; split across turns |
 | Archive / extra encyclopedias | Appendix M and primer extra questions are indexes; teach at the owner in 9c / 8 |
@@ -481,6 +481,8 @@ You are a software engineer with little GCP. Prerequisites are **injected at the
 
 Linux/OS/sysadmin/networking/cybersecurity from the original request are **not dropped**. They are sequenced **after you have a running product**, so they attach to real GCP failure modes (IAM, VPC, audit logs, container escape surface, supply chain) instead of abstract distro admin.
 
+**JIT prereq during F–11b:** if a GCP lesson needs theory not yet taught here, emit `Prereq ref: 12.Sx (name) — one sentence + optional skip-test.` Do **not** teach the full continuation stage before 11b. Full S0–S24 is **Part 12**, after the GCP capstones.
+
 ---
 
 ## Course spine
@@ -535,6 +537,8 @@ D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running se
 
 13 Capstone (Northstar v1) + PCA case studies
 11b Control-plane capstone (gateway, registry, worker, router, CLI, ORR) after Northstar v1
+12 Continuation AFTER 11b: unified S0–S24 (skip-test stages already confirmed in F–11b)
+   JIT during F–11b: prereq reference to 12.Sx only, not a full stage
 ```
 
 This curriculum is the syllabus of record.
@@ -2265,13 +2269,102 @@ Case studies (required reading before Part 11): Altostrat Media, Cymbal Retail, 
 
 ---
 
+## Part 12 — Continuation (after 11b)
+
+Do **not** open this part until Northstar v1 and 11b are done or skip-tested. Pedagogy §§7–8 still apply. Python then Go. Theoretical floor is complete for every listed stage.
+
+**Skip-test:** if F–11b already confirmed the same artifacts, stamp the stage complete and do not re-teach. Approximate overlap: S12/S13 ↔ Part 2; S18 ↔ 3.2; S19 ↔ Part 4; S20 ↔ 3.0; S21 ↔ Part 8; S22 ↔ 9c.7; S23 ↔ 11b. All other stages are taught here in order.
+
+**12.0 Evidence hierarchy.** Standards and official docs for behavior; university pages for order; textbooks/papers for derivations; tool docs for APIs. Blogs cannot create a stage. Families: Python/NumPy/pytest; Go tour/memory model/security; MIT 6.042/6.006/18.01/18.02/18.06/6.041; Stanford EE364, CS229, CS224N, CS231n, CS224S; CMU 15-445; Sutton & Barto; D2L; PostgreSQL docs; RFC 9110; gRPC; OWASP ASVS 5; NIST 800-63B; MIT 6.5840; Google SRE; Rules of ML; PMLE; NIST AI 600-1; OWASP LLM Top 10.
+
+### 12.S0–S4 Foundations
+**S0** Bits/bytes, CPU/memory/disk, paths, process vs program, env, ports, DNS/HTTP/JSON words, shell, Git. Trace one command and one HTTP request. Gate: recover broken path, env, branch, local HTTP; setup runbook.
+
+**S1** Python: literals → mutability → control → functions → collections → venv → exceptions/IO → pytest → NumPy. Predict shape/dtype/strides/broadcast/copy-vs-view. Overflow, float error, tolerance, seeds, vectorize vs matmul. Gate: tested utility; loop and vectorized forms agree.
+
+**S2** Go: module → types → control → arrays/slices/maps → strings/runes → structs → errors → table tests → vet/benchmarks. Gate: command + package pass tests, vet, format, benchmark explanation.
+
+**S3** Fractions, algebra, inequalities, polynomials, logs, functions as rule/table/graph/code; domain/inverse/composition. Gate: piecewise evaluator; counterexamples to false inverses; fresh parameterized problems.
+
+**S4** Logic, proof techniques, sets, induction, counting, recurrences, graphs, state machines; arrays/stacks/queues/maps with invariants. Gate: proof portfolio + tested structures; unseen problem that **chooses** the technique.
+
+### 12.S5–S10 Mathematical and algorithmic core
+**S5** Coordinates, norms, Euclidean/Manhattan/cosine, projections, transforms. Gate: kernels without NumPy first, then compare.
+
+**S6** Pointers, structs, interfaces, generics; lists, BST, heap, union-find, hash table; nil-interface, aliasing. Gate: packages with property tests and crossover benchmarks.
+
+**S7** Elimination, rank, four subspaces, maps, least squares, eigen, SPD, SVD/PCA, condition. Predict rank/stability before compute. Gate: GE, QR, power iteration, PCA with residuals.
+
+**S8** Asymptotics, binary-search invariant, sorts, heaps, hashing, BFS/DFS/topo/SCC, shortest paths, MST, DP, max-flow entry. Gate: algorithm package; mixed unseen problem that forces the paradigm.
+
+**S9** Limits through FTC, series, gradient/Jacobian/Hessian, ODEs, floating-point, interpolation, Euler/RK4. Gate: analytic vs finite-difference gradients; solver with step-size failure explained.
+
+**S10** Bayes, RVs, expectation, CLT, MLE/MAP, CIs, tests, bootstrap, entropy/CE/KL, experiment design. Gate: simulation verifies a derivation; A/B analyzer with power and multiple-comparison caveats.
+
+### 12.S11–S14 ML, databases, optimization, RL, causality
+**S11** Baseline → leakage/split → kNN → linear/logistic/GLM → NB/LDA → SVM → trees → forests/boosting → clustering → GMM/EM → PCA → anomaly → ranking. Each: objective, assumptions, complexity, calibration, simpler alternative. Gate: scratch NumPy, gradient/likelihood checks, ablation on a fresh set.
+
+**S12** FDs, normalization, algebra, NULL/3VL, joins, CTE/windows, isolation, pagination. Skip-test if Part 2 confirmed. Gate: SQL transcript + parameterized client.
+
+**S13** Pages, TOAST, buffers, indexes, iterators, planner, MVCC, WAL, replica, PITR. Skip-test if DB-1–10 confirmed. Gate: toys + predicted `EXPLAIN`.
+
+**S14** Convexity, GD/momentum, KKT/duality, LP; bandits → MDP/Bellman → DP → MC → TD/Q; then causal estimands, DAGs, backdoor, IV/DiD/RDD. Gate: distinguish prediction vs intervention vs counterfactual; assumption-violation experiments.
+
+### 12.S15 Domain gates (serial, not parallel)
+**S15-A DSP:** LTI, convolution, FT/DFT/FFT, sampling/aliasing, STFT/MFCC. Evidence: scratch DFT, Parseval, aliasing counterexample.
+
+**S15-B Image/CV:** formation, 2D conv, edges, homography/RANSAC, stereo/flow, metrics. Evidence: scratch kernels before OpenCV; one reproducible experiment.
+
+**S15-C NLP/IR:** Unicode, tokenize, edit distance, n-grams, BM25, eval, word vectors, BPE, WFST only as needed. Evidence: tokenizer, n-gram LM, BM25 evaluator.
+
+**S15-D Speech/ASR:** framing, mel/MFCC, HMM/Viterbi, GMM-HMM-DNN, CTC, Conformer/Whisper overview, WER, Kaldi/OpenFst inspection. Evidence: feature pipeline, toy decoder, error taxonomy.
+
+### 12.S16 Deep learning
+Tensors, perceptron, MLP, backprop **derive**, init/stability, CNN/ResNet, RNN/LSTM/GRU, attention from similarity, multi-head, positional, encoder/decoder/enc-dec, pretraining. Gate: scratch NumPy MLP+attention; finite-difference grads; overfit tiny batch; ablations.
+
+### 12.S17 GenAI, RAG, agents
+Official block order: GenAI/LLMs → prompting/RAG → PEFT/alignment → multimodal/agents → deploy/safety.
+
+1. Generative modeling: AR factorization, decoding, KV cache, cost equations.  
+2. Prompts: hierarchy, tools/schemas, versioning; CoT is not an output contract.  
+3. Retrieval: lexical → dense → ANN → hybrid → rerank → pack. Measure retrieval first.  
+4. RAG eval: recall@k, faithfulness, citation, abstention, latency/cost; diagnose per stage.  
+5. Adaptation: prompt/RAG baseline before LoRA/QLoRA; SFT; DPO/RLHF conceptual.  
+6. Multimodal: contrastive encoders, VQA, diffusion intuition.  
+7. Agents: simplest sufficient pattern; typed tools; least privilege; budgets; stop conditions.  
+8. Safety: OWASP LLM Top 10; NIST Govern-Map-Measure-Manage.
+
+**Five portfolio systems (replace overlapping 9c.5 tutorials if 9c.5 was only a slice):** enterprise RAG; fine-tuned LLM with baseline; multi-agent workflow; deployed GenAI API; bounded industry capstone with no-deploy if evidence is weak.
+
+### 12.S18–S22 Services and operations
+**S18** RFC 9110 resources, safe/idempotent, ETag, protobuf compatibility, gRPC streams/deadlines. Skip-test if 3.2 confirmed. Gate: old-client/new-server contract tests.
+
+**S19** Part 4 order plus NIST AAL1–3, OAuth BCP attacks, ASVS 5 mapping. Skip-test if 4.2–4.10 confirmed.
+
+**S20** S20 order already in 3.0. **Add here if not done:** toy MapReduce, linearizable KV, Raft, sharded KV — at toy scale, not a production consensus product. Skip-test SOLID/hexagonal if 3.0 confirmed.
+
+**S21** Primer bank (Part 8). Each problem: six-step write-up + thin implementation. Cover read-heavy, write-heavy, realtime, batch, multi-tenant, global, ML-backed, adversarial. Revisit one design at 10× scale.
+
+**S22** ML warranted? → metric/baseline → contracts → pipeline/lineage → registry → serve → parity → tests → shadow/canary/A-B → drift → retrain → rollback/govern. GenAI: corpus/prompt/model/tool versions, spend budgets. Gate: PMLE-style defense, ML Test Score, silent-failure drill. Skip-test overlap with 9c.7/10.
+
+### 12.S23 Control plane
+Skip-test if 11b ORR passed. Else finish P0–P10 and ORR here.
+
+### 12.S24 Optional archive
+Game/rendering, medical, mechanical, deep pure math, extra number theory — only if a later CORE names a slice.
+
+### 12. Assessment
+Each S-stage has the gate above. Part 12 complete when S0–S23 gates pass (skip-tests count). Portfolio: numerical package, DS/algo package, scratch ML, RAG/agent systems, and any remaining control-plane evidence.
+
+---
+
 ## How we run it
 
 1. This curriculum is the syllabus of record. Pedagogy is the teaching law; the Parts are the content.
-2. Teaching starts at **F** (skip-test if you are already a software engineer) then **0.1 Billing** — when you say start.
-3. **One `###` sub-topic at a time**, full difficulty ramp. Unseen check. Ledger stamp. Python then Go. Next sub-topic only after the current one is complete (or a top rung is postponed with a locked prereq).
-4. Northstar lives in the learner workspace; each part is a PR-quality increment.
-5. Preferred: overwrite a live learner ledger beside this curriculum. If a write is impossible, one compact end-of-turn stamp: `part · sub-topic · ramp · unlocked · shaky · postponed · next`.
+2. Teaching starts at **F** then **0.1 Billing** when you say start. **Part 12 opens only after 11b** (or skip-test). During F–11b, extra theory is a **prereq ref** to 12.Sx, not a full stage.
+3. **One `###` sub-topic at a time**, full difficulty ramp. Unseen check. Ledger stamp. Python then Go.
+4. Northstar then 11b in the learner workspace; Part 12 artifacts are separate packages/systems as gated.
+5. Preferred: overwrite a live learner ledger. Compact stamp: `part · sub-topic · ramp · unlocked · shaky · postponed · next`.
 
 No teaching content is delivered until you say start.
 ## Appendix M — ML system-design case studies (complete catalog)
