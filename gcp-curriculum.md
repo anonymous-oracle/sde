@@ -290,7 +290,7 @@ Ceiling is graduate **coursework** / staff-engineer operations, not original res
 - **Systems / APIs / middleware / HLD/LLD / concurrency / GCP clients:** Python stdlib toy, then Go `net/http` / `context` / official clients. Frameworks (FastAPI, Gin) only after stdlib.
 - **Math / ML primitives (8.1, 9c):** Python/NumPy-level first (hand trace → pseudocode → tiny function → tests → library). Go owns the **service boundary** (evaluator, ranker HTTP/gRPC, feature access). Do not maintain two equivalent ML engines unless a measured constraint requires it.
 - **Do not reimplement engines:** Vertex, Dataflow, GFE, Spanner, TLS, QUIC crypto, vLLM, etc. Concept + use the product.
-- **Go syntax:** if they are new to Go, each keyword/builtin/`:=`/`*`/`&` gets a one-time `SYNTAX UNLOCK` (signature, memory, tiny example, contrast to Python). Do not use locked Go tokens in exercises. Not a full G0–G20 spine unless F1 showed they need it.
+- **Go syntax:** each keyword/builtin/`:=`/`*`/`&` gets a one-time `SYNTAX UNLOCK` (signature, memory, tiny example, contrast to Python) at first use in the mainstream part that needs it. Do not use locked Go tokens. G0–G20 is a **reference index** (Appendix G), not a separate course.
 
 **Tool teaching (first real use):** problem it solves → concept it hides → minimal lab → failure modes → test/ops check → when not to use it. Third-party APIs (Stripe, Google clients) sit behind **adapters**. Learning tests at the boundary before wrapping.
 
@@ -428,7 +428,8 @@ You are a software engineer with little GCP. Prerequisites are **injected at the
 | PCI, PAN, tokenization, SAQ | 5.x | Payments. |
 | Terraform HCL | 1.6 onward | All infra after the first manual deploy. |
 | Python 3 typing, pytest, FastAPI | all exercises | Assumed engineer-level; we teach GCP client usage. |
-| Go G0–G20, discrete math, DS/algo | Part G | Complete language/CS track; GCP slices still Python then Go. |
+| Go language (G0–G20 index) | JIT in F, 0–5, 8, 10, 11b | Appendix G maps modules to owners. Not a separate track. |
+| Discrete math, DS/algo | F1 + 8.1 + G-CS in Appendix G | Invariants with the first structure; asymptotics with bloom/hash. |
 | Vectors, LA, probability as used | Part M | Complete for listed uses (9c, SLO), not a survey. |
 | HLD/LLD literacy | 0.4 then every module | Donne Martin loop. |
 | SOLID, hexagonal, DDD | 3.0 | Before split; CI grep on imports. |
@@ -444,8 +445,7 @@ Linux/OS/sysadmin/networking/cybersecurity from the original request are **not d
 
 ```
 F  Foundation for absolute beginners + cloud computing fundamentals
-G  Go language G0–G20 + CS/discrete/DS-algo (complete)
-M  Quantitative prereqs used by this syllabus (complete when listed)
+M  Quantitative prereqs (JIT, complete when listed)
 
 0  Billing (full), cost kill-switch, HLD/LLD contract
    + IAM core (policies, conditions, service accounts, Cloud Identity, best practices)
@@ -507,12 +507,13 @@ Required if you cannot yet: use a terminal, explain HTTP, or explain IaaS vs Paa
 - Computer: CPU, RAM, disk, network interface.
 - OS: process, file, user, permission, env var, stdout/stderr. Linux enough to survive Cloud Shell: `ls`, `cd`, `cat`, `chmod`, `ps`, `grep`, `jq`, pipes.
 - CLI vs GUI. Shell, PATH, exit codes.
-- Git: clone, branch, commit, push, PR.
+- Git: clone, branch, commit, push, PR. Recover a broken repo path (**G0**).
 - Networks in one sitting: IP, port, DNS, TCP vs UDP, HTTP methods, status codes, TLS, JSON.
 - **From scratch:** bind a TCP socket, read a request line, write `HTTP/1.1 200` + JSON. This is the first middleware host. FastAPI comes after.
 - Python enough: venv, `pip`, functions, types, pytest, then FastAPI.
-- Go enough (after first Python submit later): modules, `net/http`, `testing`.
-- **Exercise:** Python HTTP server that returns JSON; after submit, Go version.
+- **Go at first submit:** modules, `gofmt`/`go vet`, `main`, types, vars, `for`/`if`/`switch`, arrays, `_` (**G0–G1**). Then slices, maps, `range`, functions, errors, `defer` (**G2**).
+- Discrete JIT: propositions, a counterexample, induction on a loop invariant — with the first algorithm you write, not as a separate math semester.
+- **Exercise:** Python HTTP server that returns JSON; after submit, Go version (`net/http`, `testing`).
 
 ### F2 What is cloud computing
 - On-prem vs colocation vs cloud. Elasticity, pooled resources, metered billing, API-provisioned.
@@ -543,45 +544,7 @@ Required if you cannot yet: use a terminal, explain HTTP, or explain IaaS vs Paa
 
 ---
 
-## Part G — Go language and computer science (complete)
-
-Go is a first-class track, not “whatever after Python.” GCP/Northstar implementable slices remain **Python then Go**. This part is the language, data structures, concurrency, and HTTP/gRPC syntax so later mixed Go work is unlocked.
-
-**G0** Git/SSH, editor, install, modules, `GOROOT`/`GOPATH`/`GOMOD`, `go env`, `gofmt`/`go vet`. Gate: recover a broken module path.
-
-**G1** `main`, types, vars, constants, `for`/`if`/`switch`, arrays, blank identifier; two-pointers, prefix sums.
-
-**G2** slices (len/cap/backing array), maps, `range`, functions, multiple returns, variadic, `defer`, `panic`/`recover`, closures, recursion, errors, strings/runes; stacks, queues, sliding windows, backtracking.
-
-**G3** pointers, structs, methods, interfaces, embedding, tags, generics; linked lists, BST, heaps, union-find, hash tables. Nil-interface traps. Property tests.
-
-**G4** files, `bufio`, paths, `embed`, templates, regex, time; tries, KMP, rolling hash; serialization used by WAL toys (Part 2).
-
-**G5** flags/subcommands, env, logging, JSON/XML. Cobra/Viper at first CLI need (11b).
-
-**G6–G7** goroutines, channels, `select`, `context`, worker pools, WaitGroup, mutex, atomic, `Cond`, `Once`, `Pool`. Race detector. Deadlock lab.
-
-**G8–G9** sorting, binary-search invariant, recurrences, greedy/MST, DP, asymptotics, table tests, benchmarks (explain crossover, don’t just print ns), OS signals, reflection (rarely).
-
-**G10–G12** HTTP/TLS (stdlib; no homemade crypto), REST, middleware `func(http.Handler) http.Handler` (Pedagogy §8 chain), SQL CRUD, pagination, auth primitives. Graph algorithms: BFS/DFS/topo/SCC, shortest paths. **Part 4 owns identity products;** this owns the Go HTTP type.
-
-**G12b** PostgreSQL internals — **Part 2 DB-1–10** (do not duplicate).
-
-**G13–G15** protobuf, compatibility, gRPC, streams, metadata, interceptors, REST+gRPC. **Part 3.2 owns the GCP lab;** this unlocks syntax.
-
-**G16–G18** OpenTelemetry, pprof, Argon2/JWT/CSRF/XSS/`govulncheck`, secrets, audit, Docker, cross-compile, release. **Part 10 owns GCP Monitoring;** this owns the Go instrumentation.
-
-**G19** interview synthesis from unlocked DS/algo, concurrency, API, distributed design.
-
-**G20** payments — **Part 5 owns Stripe/PCI;** this is ledger/idempotency/webhook syntax if needed.
-
-Each G module: syntax unlock → tests → mixed with exactly two earlier tools → hard platform problem. Theoretical floor on complexity, invariants, races.
-
-### G-CS Discrete math and algorithms (complete)
-
-Required before mixed concurrency and before 8.1 hash/bloom. Order: propositions and quantifiers → direct/contrapositive/contradiction/counterexample → sets/functions/relations → induction and invariants → counting and pigeonhole → recurrences → graphs and state machines → arrays/stacks/queues/maps (implemented in G1–G3). Every structure states its representation invariant and proves preservation. Asymptotics and lower-bound intuition with G8. Gate: short proof portfolio + tested packages; one unseen problem where the learner **chooses** the technique.
-
----
+Go language modules G0–G20 are **not a separate semester**. They are unlocked at first use in F, 0–5, 8, 10, and 11b. **Appendix G** is the index (concepts + artifacts + owner). If an artifact in that index is missing when you reach the owner, the owner sub-topic is not complete.
 
 ## Part M — Quantitative prerequisites used by this syllabus (complete when listed)
 
@@ -595,7 +558,7 @@ Not a full analysis/PhD spine. If it is listed, it is taught to the theoretical 
 | Matrices, least squares, SVD/PCA as used | embeddings, not spectral theory as a career | Residual and reconstruction error |
 | Probability: sample space, Bayes, expectation/variance, LLN/CLT | SLO, A/B, 9c.7 | Simulation **verifies** a derivation |
 | Entropy, cross-entropy, KL as used | 9c metrics | Derive CE from likelihood |
-| Recurrences, Master theorem as used | G8 | Match a loop to a recurrence |
+| Recurrences, Master theorem as used | 8.1 hash/bloom, sort | Match a loop to a recurrence |
 
 Hand-trace → derive → tiny Python → tests → then a service may consume the number in Go.
 
@@ -615,7 +578,7 @@ Hand-trace → derive → tiny Python → tests → then a service may consume t
 - Labels vs tags for cost allocation.
 - **Lab:** create/link billing, budget $10 with 50/90/100% alerts, confirm Always Free products, write a one-page cost model for Northstar v0.
 - **Python exercise:** parse a sample Cloud Billing CSV/JSON export; group cost by `service` + `sku` + label; flag any SKU that is not Always Free.
-- **Go version after submit:** same report as a CLI (`cobra` or stdlib flags).
+- **Go version after submit:** same report as a CLI — flags, env, JSON, `--help` (**G5**). Recover a broken `go.mod` if the module path is wrong (**G0**).
 
 ### 0.2 You, the CLI, and Cloud Shell
 - `gcloud` auth, ADC, `gcloud config`, projects, quota.
@@ -670,7 +633,7 @@ Hand-trace → derive → tiny Python → tests → then a service may consume t
 - Revisions, traffic split, tags (canary).
 - **Lab:** containerize a FastAPI health + echo API; deploy Cloud Run service; hit `*.run.app`; read logs.
 - **Python exercise:** implement `/healthz`, `/readyz`, graceful shutdown, structured JSON logs, request ID middleware.
-- **Go after submit:** same contract with `net/http` + `errgroup` + SIGTERM.
+- **Go after submit:** same contract with `net/http` + `errgroup` + SIGTERM. Explicit `http.Server`, timeouts, body limits, graceful shutdown (**G10–G12**). Pointers/structs/interfaces as the handler type (**G3**).
 
 ### 1.3 Frontend hosting (industry options, free-tier path)
 Decision tree:
@@ -729,12 +692,13 @@ Decision tree:
 - Buildpacks vs Dockerfile (Dockerfile is the LLD you already wrote in D1 / 1.2).
 - **Lab:** push → test → build → Cloud Run revision → 10% traffic tag → 100%.
 - After this lab, Part D replaces this ad-hoc deploy with Cloud Deploy, GitOps, and supply-chain gates.
-- **Python / Go:** tests must pass in the build.
+- **Python / Go:** tests must pass in the build. Multi-stage image, nonroot, `govulncheck` on the Go module (**G18**).
 
 ### 1.7 Observability from day one
 - Structured logs, trace context, Error Reporting, uptime check (external IP limitation: Cloud Run URL works).
 - SLIs for the API: availability, latency p95.
 - **Python:** OpenTelemetry or Cloud Trace spans around Firestore later; for now request timing.
+- **Go:** same spans; `pprof` on a local run when chasing CPU (**G16**).
 
 **Part 1A exit criteria:** You can explain and demo: “Here is the frontend, here is the API on Cloud Run, here is how it deploys, here is who it runs as, here is what it costs if I leave it up.”
 
@@ -1232,7 +1196,7 @@ Ops:
 ### 2.6 Config, migrations, jobs
 - Cloud Run Jobs for SQL migrations and reports (vs stuffing DDL into a request).
 - Cloud Scheduler (3 free jobs) to trigger a job.
-- **Python:** Alembic upgrade as a Cloud Run Job (locally invoked if no live SQL). **Go:** golang-migrate job.
+- **Python:** Alembic upgrade as a Cloud Run Job (locally invoked if no live SQL). **Go:** golang-migrate job. File I/O, `bufio`, and WAL-shaped serialize/deserialize (**G4**) feed DB-10.
 
 ---
 
@@ -1253,7 +1217,7 @@ Northstar is still a modular monolith. You impose structure so the later split i
 | I | Small ports: `OrderWriter`, `CatalogReader` — no 40-method god interface. |
 | D | `domain/` and `app/` **must not** import `google.cloud`, `psycopg`, FastAPI. CI grep / import-linter. |
 
-**Hexagonal / Clean / Onion:** same dependency rule (inward). Code layout: `domain/`, `app/` (use cases), `ports/`, `adapters/http|grpc|sql|pubsub`. Driving adapters (HTTP/gRPC) vs driven (SQL, Stripe ACL). Catalog listing may stay layered CRUD; **order/payment is hexagonal**.
+**Hexagonal / Clean / Onion:** same dependency rule (inward). Code layout: `domain/`, `app/` (use cases), `ports/`, `adapters/http|grpc|sql|pubsub`. Driving adapters (HTTP/gRPC) vs driven (SQL, Stripe ACL). Catalog listing may stay layered CRUD; **order/payment is hexagonal**. Go: interfaces as ports, structs as adapters, embedding where it is real composition (**G3**).
 
 **DDD tactical:** Order is an aggregate; line items don’t leak; `OrderPlaced` is a domain event; Pub/Sub carries an *integration* event. Stripe/Identity Platform sit behind an anti-corruption layer. Anemic model is an anti-pattern except honest transaction scripts.
 
@@ -1297,7 +1261,7 @@ Repository, unit of work, adapter, strategy, factory, builder, middleware/decora
 
 **HTTP/2 / HOL:** taught in Part 6.1 (not repeated here). gRPC mapping: `POST /package.Service/Method`, `application/grpc`, 5-byte prefix (compressed flag + length) + protobuf. Unary + server-stream in a toy over HTTP/1 first if needed; all four RPC types with `grpcio` / `google.golang.org/grpc`.
 
-**Production gRPC:** interceptors = middleware (auth, log, deadline). Status codes. Health `grpc.health.v1`. Reflection off in prod. REST BFF calls `catalog.v1.CatalogService`. Same `.proto` → Python then Go stubs.
+**Production gRPC:** interceptors = middleware (auth, log, deadline). Status codes. Health `grpc.health.v1`. Reflection off in prod. REST BFF calls `catalog.v1.CatalogService`. Same `.proto` → Python then Go stubs. Protobuf compatibility and stream RPCs **are this part** (**G13–G15**), not a later language course. Client retries use `context` cancellation (**G6–G7**).
 
 **Lab:** GetProduct gRPC on Cloud Run; BFF REST in front. **Python / Go:** ID-token client + generated stub. N+1 is a fail — batch or stream (Part 8).
 
@@ -1365,30 +1329,86 @@ Repository, unit of work, adapter, strategy, factory, builder, middleware/decora
 | Workload Identity Federation | Machines/CI/other clouds | **No service account keys** |
 | Managed workload identities | GKE/GCE/agents | SPIFFE / mTLS |
 
-### 4.2 Customer auth (Identity Platform)
-- **From scratch first:** HS256 JWT issue/verify middleware (header.payload.signature, `exp`/`nbf`/`aud`/`iss`); then RS256 with a fetched JWKS. Cookie session signer. Password hash via bcrypt/argon2 library — not homemade.
-- Identity separate from credentials. Opaque public IDs. Email/phone as mutable verified attributes. Equivalent controls on login, register, password change, recovery, API login, federation. MFA as a second authenticator, not “email as password.” Session fixation/replay/expiry/revocation tests. Emergency all-session cutoff.
-- JWT verification on Cloud Run (audience, issuer, expiry).
-- Multi-tenancy for B2B SaaS.
-- Blocking functions, MFA (Identity Platform, not Firebase Auth).
-- Session cookies vs bearer tokens.
-- **Lab:** email/password + Google sign-in; API rejects unsigned/wrong-aud tokens.
-- **Python:** `google.oauth2.id_token` verify; FastAPI dependency. **Go:** `idtoken.Validate`.
+### 4.2 Hardened HTTP and middleware (Go type here; Python twin after)
 
-### 4.3 Authorization
-- IAM for GCP. App RBAC/ABAC in Firestore (`owner`, `admin`, `member`).
-- IAP for admin UI (internal) vs Identity Platform for customers.
-- Context-aware access (concept).
-- **Python / Go:** middleware: authenticate JWT → load principal → authorize action on resource.
+Build `func(http.Handler) http.Handler`: chaining, short-circuit, typed request context, cancellation, status/byte capture, panic recovery, capability-preserving ResponseWriter. Prove **order** with tests. This **is** G10–G12 HTTP, not a later language unit. Race-test shared limiter/session (**G6–G7**).
 
-### 4.4 Workload auth
-- Attached SA, impersonation, WIF for GitHub.
-- Org policy `iam.disableServiceAccountKeyCreation` (default on orgs created after 2024-05-23).
-- **Lab:** GitHub Actions → WIF → deploy. Prove no JSON key exists.
+Server: explicit `http.Server`; read-header/read/write/idle timeouts; max header/body; no state change on GET/HEAD/OPTIONS; strict JSON (unknown fields / trailing data); 400/401/403/404/405/406/413/415/429/500; generic external errors; no stack traces; graceful shutdown. Sanitize forwarding headers at the trusted-proxy boundary.
 
-### 4.5 API abuse
-- reCAPTCHA Enterprise (10k/month), rate limits at gateway, App Check for mobile later.
-- **Python:** verify reCAPTCHA on signup.
+Outbound: reusable client/transport; total and phase timeouts; body close; redirect policy; destination allowlist; TLS verify; size limits; bounded concurrency. **SSRF:** parse once; restrict schemes; reject userinfo/fragments when unused; resolve and validate every destination IP; block loopback/private/link-local/multicast/metadata (`169.254.169.254`); DNS rebinding and redirect escape.
+
+Labs: middleware recorder; table-test every short-circuit and order permutation; fuzz headers/paths/JSON/forwarded-host; race-test limiter/session; benchmark rejection paths.
+
+### 4.3 Identity, passwords, recovery, MFA
+Identity ≠ credentials. Opaque non-sequential public IDs. Email/phone are mutable verified attributes. Equivalent controls on login, register, password change, recovery, admin-assisted recovery, API login, federation.
+
+Passwords: long passphrases, ≥64 chars supported, no silent truncate; min 15 if password-only, ≥8 if MFA; spaces/Unicode with documented normalization; no composition theater or periodic rotation; change on compromise; blocklist common/breached/contextual; allow paste/autofill/managers; no security questions.
+
+Storage: Argon2id, unique random salt, versioned record (alg, version, params, salt, derived); input limits; tune memory/time/parallelism; constant-time compare; upgrade params after login; optional pepper with rotation plan. Never plaintext or reversible; never a fast general hash as KDF. Dummy KDF on unknown users. Generic public errors; equivalent timing. Throttle without cheap lockout. Log events without credentials. Recent-auth for high-risk changes.
+
+Recovery: high-entropy single-use expiring tokens, stored hashed, bound to purpose/account, invalidate after use, rotate sessions after auth/privilege change, notify on another channel. Recovery must not be weaker than what it bypasses.
+
+MFA: recovery codes; TOTP (HMAC, trusted time, replay prevention, rate limits, bounded skew, enrollment confirmation, revocation). Then WebAuthn/passkey via a maintained library (challenge freshness, origin/RP binding, UV flags, counters). SMS/OTP is not phishing-resistant.
+
+### 4.4 Opaque sessions, cookies, CSRF, CORS
+≥128 bits randomness; expose only the opaque id; keep identity, assurance, permissions, created/last-active, idle/absolute deadlines, revocation **server-side**. Hash for lookup. Never in query strings.
+
+Cookies: `Secure`, `HttpOnly`, `SameSite=Lax` or `Strict`, host-only, `Path=/`, no extra `Domain`, expiry ≤ server validity. Rotate after login/reauth/privilege change; destroy old state. Idle+absolute expiry; logout; all-session revoke; account-disable revoke; `Cache-Control: no-store` on sensitive responses. No tokens in `localStorage`.
+
+CSRF: no state change on safe methods; synchronizer token or session-bound HMAC double-submit; constant-time compare; never in URLs/logs; Origin/Fetch Metadata. SameSite is defense in depth, not the only control.
+
+CORS: off unless needed; exact origin allowlist; explicit methods/headers; preflight; `Vary: Origin`. Never credentials + `*`. CORS is not authz.
+
+Adversarial tests: fixation, guessing, stale/revoked, privilege-change rotation, logout replay, concurrent renewal, missing/forged CSRF, hostile Origin, cookie attributes.
+
+### 4.5 API keys, signed requests, JWT policy
+API keys: crypto random; show once; store hash + lookup prefix; bind owner, purpose, scopes, env, expiry, revocation; overlapping rotation; never in URLs. Identification/metering, not the sole control for high-value user actions.
+
+Signed requests: versioned canonical string (method, target, selected headers, body digest, timestamp, nonce, key id, audience); HMAC; constant-time; clock window; nonce cache; fuzz canonicalization; replay/body/method substitution tests.
+
+JWT: maintained JOSE library for crypto; **you** own policy. Pin alg allowlist; never `none`; no HMAC/RSA key confusion; one alg+purpose per key; validate every signature layer; iss, aud, exp, nbf, iat, typ, jti/replay, max lifetime, skew. Keys only from preconfigured issuers — never attacker `jku`/`kid` as a URL. Separate keys/rules for access vs ID vs refresh vs reset. Signature ≠ current authorization. Rotation, cache refresh, incident cutoff.
+
+Then Cloud Run: Identity Platform / Google ID tokens; reject wrong aud. Multi-tenancy. Blocking functions. **Lab:** email/password + Google sign-in. Python then Go.
+
+### 4.6 OAuth 2.0 / OIDC
+OAuth = delegated API access; OIDC = authentication. Access vs refresh vs ID tokens are different artifacts.
+
+Client lab: authorization code + high-entropy `state` + PKCE S256 + OIDC `nonce`; bind to session; exact redirect URIs; issuer mix-up defense; codes over TLS; tokens out of URLs and browser storage; least-privilege scopes; BFF when appropriate.
+
+AS literacy (isolated learning implementation, not a production IdP): exact redirects; one-time short-lived codes; mandatory PKCE S256; no implicit, no password grant; refresh rotation / family revoke; 303 not 307 after credential POST.
+
+Resource server: type, iss, aud, lifetime, signature, scope, resource/action, subject vs client. Reject tokens meant for another service.
+
+OIDC RP: discovery only from a preconfigured issuer; exact metadata issuer; ID Token sig, iss, aud, exp, nonce, sub. Namespace by issuer+sub. Access token is not “user is present.”
+
+Identity Platform is the production substitute after these labs.
+
+### 4.7 Authorization (app + GCP)
+Deny by default. Server-side enforcement. Matrix: subject × action × resource × field × tenant × workflow state.
+
+Progression: (1) RBAC with permissions, not scattered role strings; (2) object ownership / IDOR; (3) field-level; (4) tenant isolation in queries, cache keys, jobs, exports, logs, admin paths; (5) ABAC; (6) ReBAC; (7) PDP vs PEP, versioning, cache invalidation.
+
+Tests: allowed and denied; missing policy; stale role/token; confused deputy; guessed ids; batch endpoints; overposting; cross-tenant cache leak; admin separation; policy-store failure.
+
+IAM for GCP resources. IAP for admin UI. Context-aware access. **Python / Go:** authenticate → load principal → authorize action on resource.
+
+### 4.8 Workload auth
+Attached SA, impersonation, WIF for GitHub. `iam.disableServiceAccountKeyCreation`. **Lab:** Actions → WIF → deploy; prove no JSON key.
+
+### 4.9 Application, secrets, supply chain, assurance
+Allowlist validation; parameterized SQL; context-aware encoding; path containment; zip/file limits. Secrets: inventory, no secrets in source/images/logs/traces/prompts; Secret Manager; overlapping rotation; emergency revoke. TLS 1.2+; verify hostnames. Security logs: when/where/who/what/object/outcome/reason/trace id — never passwords, keys, raw session ids, tokens.
+
+**Assurance ladder (learning gates, not a certificate):**
+| Level | Implementation | Evidence |
+|---|---|---|
+| L1 | Hardened server + chain; Argon2id; register/login/change/reset; opaque sessions; CSRF/CORS; RBAC+object; input limits | Threat model, negative authz matrix, no-secret logs, timeouts |
+| L2 | MFA/recovery; session mgmt; OIDC client; JWT RS; ABAC/tenant/field; secrets rotation; SSRF policy | Fuzz, race, rotation drills, multi-tenant suite, runbooks |
+| L3 | WebAuthn or mTLS study; step-up; hardened admin plane | Independent review, revoke exercise, residual-risk memo |
+
+Integrated project: multi-tenant service with public, user, operator, and s2s paths; then **replace** the learning IdP with Identity Platform while keeping learner-owned interfaces and contract tests.
+
+### 4.10 API abuse (GCP)
+reCAPTCHA Enterprise (10k/month), gateway quotas, App Check later. **Python / Go:** verify reCAPTCHA on signup.
 
 ---
 
@@ -1416,7 +1436,7 @@ Repository, unit of work, adapter, strategy, factory, builder, middleware/decora
 - Your DB is not Stripe. Source of truth for money is the PSP; you store tokens, PaymentIntent IDs, amounts, currency, status.
 - Refunds, disputes, idempotent retry.
 - **HLD:** payment orchestrator service; no other service talks to Stripe.
-- **LLD:** state machine `created → requires_action → paid → fulfilled | refunded | failed`.
+- **LLD:** state machine `created → requires_action → paid → fulfilled | refunded | failed`. Go ledger types, idempotency key, webhook verify (**G20**) live here with Stripe — not in a separate payments-in-Go module.
 
 ### 5.4 What we do *not* build (and why)
 - Homegrown card forms posting PAN to Cloud Run = SAQ D. Forbidden in this course.
@@ -1726,6 +1746,8 @@ Tutorial microservices skip these. You do not. Each: small tested toy → Norths
 
 **From-scratch required in this part:** bloom filter + FPR tests; consistent-hash ring; singleflight; load-shed middleware; cursor pager. WAL toy may reuse Pedagogy §6 KV. LSM is a written comparison + optional flush toy.
 
+**Discrete math and algorithms (here, not a side track):** loop/representation invariants on hash ring and bloom; recurrences/asymptotics on the hash and sort you actually write; binary-search invariant on cursor seek. Proof technique is chosen, not listed. Graph BFS/DFS only if a Northstar dependency graph needs it (catalog DAG, workflow). Interview-style synthesis (**G19**) is the Part 8 studios plus one unseen mix of two unlocked primitives.
+
 Worked HLD/LLD studios (primer `solutions/` + GCP analog; Python then Go):
 1. Pastebin / Bitly — Cloud Run + Firestore + GCS; Base62/hash from scratch.
 2. Twitter timeline/search — **full recs/LTR is 9c.2**; here: fan-out vs read-fan-in ADR only.
@@ -1969,7 +1991,7 @@ Not a dump of dumps. After capstone:
 
 ### Part 11b — Control-plane capstone (after Northstar v1)
 
-Second integration, not a replacement for Northstar. Do not start until Northstar v1, Part G through G12, Part 4 identity, Part D enough to ship, and 10.0 tiles are unlocked. Python models stay behind typed contracts; the control plane is Go-first with Python allowed at the adapter.
+Second integration, not a replacement for Northstar. Do not start until Northstar v1, Part 4 identity (including hardened HTTP), Part D enough to ship, and 10.0 tiles are unlocked. Python models stay behind typed contracts; the control plane is Go-first with Python allowed at the adapter. CLI (**G5**), concurrency in the worker (**G6–G7**), and release image (**G18**) are P0/P7/P8, not a prior language semester.
 
 **Inventory (GCP-mapped):** API gateway (Cloud Run + IAP or API Gateway), backend API, auth service, router (9c.5 RAG), registry (Artifact Registry + metadata in SQL/Firestore), chat/history store, orchestrator + worker (Cloud Tasks / Pub/Sub + Cloud Run Jobs + Cloud Build), CLI, sample agents (authenticated JSON-RPC). Optional: Memorystore streams/cache, object storage.
 
@@ -1990,6 +2012,25 @@ Second integration, not a replacement for Northstar. Do not start until Northsta
 | P10 | SLOs, dashboards, load/abuse/fuzz/race, secret scans, key rotation, backup/restore, incident, **ORR** |
 
 **ORR must show, not claim:** data-flow and trust-boundary diagram; abuse register; authorization matrix; identity propagation with no network-location trust; deny-by-default tests; session/JWT fixation/replay/revocation; bounded inputs; no secrets in logs/images/prompts; `go test` + race + fuzz; alerts with owned runbooks; rehearsed key rotation, rollback, restore.
+
+**Spec inventory (required, GCP-mapped). Explicitly dropped:** n8n, NANDA, Kong plugin YAML, Mongo as SoR — those were another stack; concepts (workflow credentials, agent cards, gateway plugins) map as follows.
+
+| Spec group | This course |
+|---|---|
+| Backend health, upload, access, user registration | Cloud Run services + Identity Platform |
+| Build/deploy/update/rollback | Cloud Build + Cloud Deploy / Cloud Run revisions |
+| Registry + AgentCard/skills/upload status | Artifact Registry + SQL/Firestore metadata schema (card JSON, skills, status) |
+| Chat session/history, JSON-RPC `message/send` | Authenticated HTTP/JSON-RPC on Cloud Run; append-only history table |
+| Auth service, GitHub OAuth | Part 4 labs + Identity Platform + IAP |
+| Router algorithm (shortlist → rerank → structured pick) | 9c.5 / P5; documented as `ALG-ROUTE-001` equivalent: embed → kNN/shortlist → rerank → JSON schema pick |
+| Tool calling, per-tool policy, replay | P9; IAM + app authz |
+| Jobs | Cloud Tasks / Pub/Sub (not Redis streams required) |
+| Gateway routes/plugins | API Gateway or IAP + Cloud Armor; URL map |
+| CLI commands, config matrix | 0.1 billing CLI + P8 |
+| Infra/ops/tests | Terraform, Cloud Build, Part 10 dashboards |
+| SQL teaching schema, query-performance fixture, transaction fixture | Part 2 |
+
+Schemas to write: AgentCard, skills, upload status, agent build, deployment, session, message, GitHub credential handle (never raw), plus the Part 2 fixtures.
 
 ---
 
@@ -2493,3 +2534,28 @@ Source: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://g
 - Netflix — Improve Streamning Quality (2018)
 - Booking.com — 150 Successful Machine Learning Models (2019)
 - Chicisimo — Grow User base using vertical ML approch (2019)
+
+---
+
+## Appendix G — Go module reference (not a teaching track)
+
+Unlock each module at the **owner** below. Artifact is required when that owner is taught. Python still comes first on the same slice.
+
+| Module | Concepts | Artifact | Owner |
+|---|---|---|---|
+| **G0** | Git/SSH, install, modules, `go env`, `gofmt`/`go vet` | Recover broken `go.mod`; setup runbook | F1, 0.1 |
+| **G1** | `main`, types, vars, `for`/`if`/`switch`, arrays, `_` | Tested command; predict overflow | F1, 0.1 |
+| **G2** | slices, maps, functions, `defer`, errors, runes; stacks/queues | Slice aliasing + map tests; no ignored errors | F1, first Go submit |
+| **G3** | pointers, structs, methods, interfaces, generics; lists/heap/hash | Ports as interfaces; nil-interface tests | 3.0 |
+| **G4** | files, `bufio`, `embed`, time; serialize | WAL-shaped codec | 2.1 / DB-10 |
+| **G5** | flags, env, JSON; CLI | `--help`, env override | 0.1, 11b P8 |
+| **G6–G7** | goroutines, `select`, `context`, mutex, race detector | Cancelled context stops work; race pass | 3.2, 3.4, 4.2 |
+| **G8–G9** | sort, binary-search invariant, recurrences, DP, benchmarks | Choose paradigm; explain crossover | 8.1 |
+| **G10–G12** | `net/http`, REST, middleware, SQL CRUD, graphs as needed | Hardened server timeouts/limits/4xx table | 1.2, 4.2, Part 2 CRUD |
+| **G12b** | Postgres internals | DB-1–10 artifacts | Part 2 |
+| **G13–G15** | protobuf, gRPC streams, interceptors | Same `.proto` as catalog RPC | 3.2 |
+| **G16–G18** | OTel, pprof, `govulncheck`, Docker, release | Traced service; nonroot image | 1.6, 1.7, 10.0, D1 |
+| **G19** | Synthesis | Unseen DS + API + concurrency from unlocked tools | Part 8 studios |
+| **G20** | Ledger, idempotent charge, webhook | Types + tests with Stripe | Part 5 |
+
+**G-CS (discrete):** with F1 (counterexample, loop invariant) and 8.1 (asymptotics, hash-ring invariant). Not a separate part.

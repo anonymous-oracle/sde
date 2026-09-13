@@ -8,8 +8,8 @@ import (
 )
 
 type Response struct {
-	Data   []byte
-	Status string
+	Data   string `json:"data"`
+	Status string `json:"status"`
 }
 
 func main() {
@@ -51,8 +51,8 @@ func main() {
 	}
 
 	response := Response{
-		Data:   clientData,
-		Status: "OK",
+		Data:   string(clientData),
+		Status: "ok",
 	}
 	fmt.Println("Response prepared:", response)
 	responseVal, err := json.Marshal(response)
@@ -60,8 +60,12 @@ func main() {
 		fmt.Println("Error marshaling response:", err)
 		return
 	}
-	fmt.Println("Response JSON:", string(responseVal))
-	_, err = clientConn.Write(responseVal)
+
+	// build the response
+	fullResponse := fmt.Sprintf("HTTP/1.1 200 OK\r\nContent-Length: %v\r\nContent-Type: application/json\r\n\r\n%v", len(responseVal), string(responseVal))
+
+	fmt.Println("Response JSON:", fullResponse)
+	_, err = clientConn.Write([]byte(fullResponse))
 	if err != nil {
 		fmt.Println("Error writing response to client:", err)
 		return
