@@ -473,6 +473,7 @@ You are a software engineer with little GCP. Prerequisites are **injected at the
 | Go language (G0–G20 index) | JIT in F, 0–5, 8, 10, 11b | Appendix G maps modules to owners. Not a separate track. |
 | Discrete math, DS/algo | F1 + 8.1 + G-CS in Appendix G | Invariants with the first structure; asymptotics with bloom/hash. |
 | Vectors, LA, probability as used | Part M | Complete for listed uses (9c, SLO), not a survey. |
+| Numerical stability (IEEE, κ, Kahan, LSE) | **M.NS** | Full module, Python then Go, before Part 0. |
 | HLD/LLD literacy | 0.4 then every module | Donne Martin loop. |
 | SOLID, hexagonal, DDD | 3.0 | Before split; CI grep on imports. |
 | Protobuf, gRPC | 3.2 | Internal s2s; REST stays public. |
@@ -489,7 +490,7 @@ Linux/OS/sysadmin/networking/cybersecurity from the original request are **not d
 
 ```
 F  Foundation for absolute beginners + cloud computing fundamentals
-M  Quantitative prereqs (JIT, complete when listed)
+M  Quantitative prereqs (including **M.NS numerical stability**, Python then Go)
 
 0  Billing (full), cost kill-switch, HLD/LLD contract
    + IAM core (policies, conditions, service accounts, Cloud Identity, best practices)
@@ -539,6 +540,7 @@ D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running se
 11b Control-plane capstone (gateway, registry, worker, router, CLI, ORR) after Northstar v1
 12 Continuation AFTER 11b: unified S0–S24 (skip-test stages already confirmed in F–11b)
    JIT during F–11b: prereq reference to 12.Sx only, not a full stage
+   Numerical stability is **M.NS** (before Part 0), not Part 12
 ```
 
 This curriculum is the syllabus of record.
@@ -598,7 +600,7 @@ Not a full analysis/PhD spine. If it is listed, it is taught to the theoretical 
 
 | Topic | Why here | Complete means |
 |---|---|---|
-| Bits, integers, floats, error, tolerance | F1, G1, numerics | Predict overflow and rounding before running |
+| Bits, integers, floats, error, tolerance | F1 + **M.NS** (mainstream) | Full IEEE/conditioning/Kahan/logsumexp in M.NS before Part 0 |
 | Functions, composition, inverse | M, 9c metrics | Counterexample to a false inverse claim |
 | Vectors, norms, dot product, cosine | 9c two-tower | Derive cosine; degenerate cases |
 | Matrices, least squares, SVD/PCA as used | embeddings, not spectral theory as a career | Residual and reconstruction error |
@@ -611,6 +613,44 @@ Not a full analysis/PhD spine. If it is listed, it is taught to the theoretical 
 | NumPy `ndarray` | F1, 9c scratch | Predict shape/dtype/strides/broadcast; copy vs view |
 
 Hand-trace → derive → tiny Python → tests → then a service may consume the number in Go. **T-OPT / T-IT** are complete when opened from this table’s rows.
+
+### M.NS Numerical stability (mainstream — Python then Go)
+
+Taught **here**, before Part 0, not in Part 12. Required before 9c softmax/attention, SLO numerics, and money in integer cents (Part 5). Theoretical floor: derive, then implement both languages. Do not reimplement a BLAS.
+
+**Theory (derive, do not slogans):**
+- IEEE-754 binary64/binary32: sign, biased exponent, trailing significand; implicit bit; subnormals; ±0, ±∞, NaN payloads; `qNaN` vs signaling as used.
+- Rounding: RN/RZ/RU/RD; **machine epsilon** ε; **ulp**; `fl(x)` = x(1+δ), |δ|≤ε.
+- Absolute vs relative error. **Forward** error vs **backward** error.
+- **Condition number** of a *problem* κ vs **stability** of an *algorithm*. Ill-conditioned + stable can still be useless; well-conditioned + unstable is a bug.
+- Catastrophic **cancellation**; loss of trailing digits when subtracting close values.
+- FP add is not associative; parallel reductions change results.
+- Overflow / underflow / gradual underflow.
+- Fused multiply-add (FMA) when the platform has it.
+- Unstable recurrences vs reformulation (`log1p`, `expm1`, `hypot`, two-sum / Kahan).
+- Linear systems: κ₂(A)=σ_max/σ_min; residual vs true error; Hilbert matrix as a trap.
+- ML-facing: softmax overflow; **log-sum-exp**; log-space likelihoods; scaled dot-product attention (1/√d).
+- Comparison: never `==` on computed floats. Combined abs+rel tolerance; ulp distance. NaN unordered.
+- **Python integers** are unbounded; **Go** `int`/`int64` wrap (two’s complement). Mixing is a defect. Part 5 money is integer cents.
+
+**Python artifact (`stability` package + pytest):**
+- Classify fp values (`finfo`, `isinf`, `isnan`, subnormal).
+- Measure ε experimentally (`1+ε != 1`).
+- Cancellation: `(1+x)-1` vs `x` for x near ε.
+- Kahan / pairwise sum vs naive; error growth ~nε vs ~ε.
+- `hypot`, `log1p`, `expm1`, log-sum-exp vs naive exp-sum.
+- Residual vs error on a mildly ill-conditioned 2×2; Hilbert n=8 as a warning.
+- Softmax three ways: naive, max-shift, log-softmax; match where finite.
+- Tolerances **justified** from ε, not magic `1e-6`.
+
+**Go artifact (`stability` package + table tests):**
+- Same algorithms in `float64` (`math`, `Nextafter`, `IsNaN`, `IsInf`).
+- Integer: `bits.Add64` overflow flag; wrap of `uint64` max+1.
+- Comparison helper: abs+rel+NaN; tests include ±0, inf, NaN.
+- LogSumExp, Hypot, Kahan; softmax max-shift.
+- When `float32` (memory) vs `float64` (default here).
+
+**Gate:** derive κ vs stability on one example; predict a cancellation failure then show it in **both** languages; ship both packages; one unseen reformulation (`log1p` / `hypot` / Kahan / LSE). Unstable code with `==` or a huge slop is **not** complete.
 
 ---
 
@@ -1931,7 +1971,7 @@ Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → *
 
 ### 9c.5 LLM applications
 Units (institutional GenAI progression, this owner only): (1) generative vs discriminative; (2) LLM tokenization/embeddings/context; (3) PEFT/LoRA as adapters — derive the low-rank update; (4) RAG: retrieve → augment → generate; index IVF/HNSW as used (**T-NLP**); (5) agents: tool loop, memory, authz (11b P5/P9); (6) production: latency, cost, eval, refusal, logging without PII.
-- Gemini pick stays 9b.3. Open **T-DL** when you need backprop/attention derived, not as a prefix to this unit.
+- Gemini pick stays 9b.3. Open **T-DL** when you need backprop/attention derived, not as a prefix to this unit. Softmax/log-sum-exp is **M.NS** (already taught).
 - Prompting, jailbreak, eval (exact match, rubric, LLM-as-judge caveats).
 - **Northstar:** help-doc RAG on Cloud Run + Gemini; eval set; never log PII.
 
@@ -2173,7 +2213,7 @@ IIT/IISc BTech/MTech CSE cores map to owners above; texts extend Appendix B (do 
 
 **Theory:** Sipser, *Introduction to the Theory of Computation*; CLRS (already B); Arora and Barak, *Computational Complexity* only if T-TOC is opened to that ceiling; Hopcroft, Motwani, Ullman automata as T-TOC/T-NLP WFST need.
 
-**Math as used:** Strang (LA); Boyd and Vandenberghe, *Convex Optimization* (T-OPT); Cover and Thomas, *Elements of Information Theory* (T-IT); West, *Introduction to Graph Theory* only if 8.1 needs a graph-theory text beyond CLRS.
+**Math as used:** Strang (LA); Boyd and Vandenberghe, *Convex Optimization* (T-OPT); Cover and Thomas, *Elements of Information Theory* (T-IT); Higham, *Accuracy and Stability of Numerical Algorithms* (**M.NS**); IEEE 754. West, *Introduction to Graph Theory* only if 8.1 needs a graph-theory text beyond CLRS.
 
 **Security theory:** Katz and Lindell, *Introduction to Modern Cryptography* (T-CRYPTO). Goldreich as further reading. Implementation remains vetted stdlib.
 
@@ -2280,9 +2320,9 @@ Do **not** open this part until Northstar v1 and 11b are done or skip-tested. Pe
 ### 12.S0–S4 Foundations
 **S0** Bits/bytes, CPU/memory/disk, paths, process vs program, env, ports, DNS/HTTP/JSON words, shell, Git. Trace one command and one HTTP request. Gate: recover broken path, env, branch, local HTTP; setup runbook.
 
-**S1** Python: literals → mutability → control → functions → collections → venv → exceptions/IO → pytest → NumPy. Predict shape/dtype/strides/broadcast/copy-vs-view. Overflow, float error, tolerance, seeds, vectorize vs matmul. Gate: tested utility; loop and vectorized forms agree.
+**S1** Python: literals → mutability → control → functions → collections → venv → exceptions/IO → pytest → NumPy. Predict shape/dtype/strides/broadcast/copy-vs-view. **Skip-test:** numerical stability was **M.NS**. Gate: tested utility; loop and vectorized forms agree.
 
-**S2** Go: module → types → control → arrays/slices/maps → strings/runes → structs → errors → table tests → vet/benchmarks. Gate: command + package pass tests, vet, format, benchmark explanation.
+**S2** Go: module → types → control → arrays/slices/maps → strings/runes → structs → errors → table tests → vet/benchmarks. Integer wrap vs Python bigint is **M.NS**. Gate: command + package pass tests, vet, format, benchmark explanation.
 
 **S3** Fractions, algebra, inequalities, polynomials, logs, functions as rule/table/graph/code; domain/inverse/composition. Gate: piecewise evaluator; counterexamples to false inverses; fresh parameterized problems.
 
@@ -2297,7 +2337,7 @@ Do **not** open this part until Northstar v1 and 11b are done or skip-tested. Pe
 
 **S8** Asymptotics, binary-search invariant, sorts, heaps, hashing, BFS/DFS/topo/SCC, shortest paths, MST, DP, max-flow entry. Gate: algorithm package; mixed unseen problem that forces the paradigm.
 
-**S9** Limits through FTC, series, gradient/Jacobian/Hessian, ODEs, floating-point, interpolation, Euler/RK4. Gate: analytic vs finite-difference gradients; solver with step-size failure explained.
+**S9** Limits through FTC, series, gradient/Jacobian/Hessian, ODEs, interpolation, Euler/RK4. Floating-point **policy** is **M.NS**. Gate: analytic vs finite-difference gradients within a **justified** ulp/rel bound; solver with step-size failure explained.
 
 **S10** Bayes, RVs, expectation, CLT, MLE/MAP, CIs, tests, bootstrap, entropy/CE/KL, experiment design. Gate: simulation verifies a derivation; A/B analyzer with power and multiple-comparison caveats.
 
