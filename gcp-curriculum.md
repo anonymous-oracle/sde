@@ -428,7 +428,8 @@ You are a software engineer with little GCP. Prerequisites are **injected at the
 | PCI, PAN, tokenization, SAQ | 5.x | Payments. |
 | Terraform HCL | 1.6 onward | All infra after the first manual deploy. |
 | Python 3 typing, pytest, FastAPI | all exercises | Assumed engineer-level; we teach GCP client usage. |
-| Go modules, `context`, `net/http`, table tests | after each Python submit | Taught as a parallel implementation, not a language course first. |
+| Go G0–G20, discrete math, DS/algo | Part G | Complete language/CS track; GCP slices still Python then Go. |
+| Vectors, LA, probability as used | Part M | Complete for listed uses (9c, SLO), not a survey. |
 | HLD/LLD literacy | 0.4 then every module | Donne Martin loop. |
 | SOLID, hexagonal, DDD | 3.0 | Before split; CI grep on imports. |
 | Protobuf, gRPC | 3.2 | Internal s2s; REST stays public. |
@@ -443,10 +444,8 @@ Linux/OS/sysadmin/networking/cybersecurity from the original request are **not d
 
 ```
 F  Foundation for absolute beginners + cloud computing fundamentals
-   F1 Computers, OS, CLI, Git, HTTP, Python/Go enough-to-start
-   F2 What is cloud, deployment models, service models (IaaS/PaaS/SaaS)
-   F3 Google Cloud global infrastructure (regions, zones, PoPs, edge)
-   F4 Account setup: hierarchy, free tier, console, SDK, Cloud Shell, projects, quotas, APIs, admin user
+G  Go language G0–G20 + CS/discrete/DS-algo (complete)
+M  Quantitative prereqs used by this syllabus (complete when listed)
 
 0  Billing (full), cost kill-switch, HLD/LLD contract
    + IAM core (policies, conditions, service accounts, Cloud Identity, best practices)
@@ -492,7 +491,8 @@ D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running se
 
 12 Operations Suite + reliability + FinOps + IaC (Terraform primary, Deployment Manager legacy)
 
-13 Capstone (Northstar v1) + PCA case studies (Altostrat, Cymbal, EHR, KnightMotives)
+13 Capstone (Northstar v1) + PCA case studies
+11b Control-plane capstone (gateway, registry, worker, router, CLI, ORR) after Northstar v1
 ```
 
 This curriculum is the syllabus of record.
@@ -540,6 +540,64 @@ Required if you cannot yet: use a terminal, explain HTTP, or explain IaaS vs Paa
 - Creating and managing projects. Project ID vs number vs name.
 - Limits and quotas: default, how to request, how quotas stop surprise bills.
 - **Lab:** new project, enable APIs, second admin user in a group, `gcloud` from Cloud Shell and from local, hit a quota wall on purpose (e.g. list), document it.
+
+---
+
+## Part G — Go language and computer science (complete)
+
+Go is a first-class track, not “whatever after Python.” GCP/Northstar implementable slices remain **Python then Go**. This part is the language, data structures, concurrency, and HTTP/gRPC syntax so later mixed Go work is unlocked.
+
+**G0** Git/SSH, editor, install, modules, `GOROOT`/`GOPATH`/`GOMOD`, `go env`, `gofmt`/`go vet`. Gate: recover a broken module path.
+
+**G1** `main`, types, vars, constants, `for`/`if`/`switch`, arrays, blank identifier; two-pointers, prefix sums.
+
+**G2** slices (len/cap/backing array), maps, `range`, functions, multiple returns, variadic, `defer`, `panic`/`recover`, closures, recursion, errors, strings/runes; stacks, queues, sliding windows, backtracking.
+
+**G3** pointers, structs, methods, interfaces, embedding, tags, generics; linked lists, BST, heaps, union-find, hash tables. Nil-interface traps. Property tests.
+
+**G4** files, `bufio`, paths, `embed`, templates, regex, time; tries, KMP, rolling hash; serialization used by WAL toys (Part 2).
+
+**G5** flags/subcommands, env, logging, JSON/XML. Cobra/Viper at first CLI need (11b).
+
+**G6–G7** goroutines, channels, `select`, `context`, worker pools, WaitGroup, mutex, atomic, `Cond`, `Once`, `Pool`. Race detector. Deadlock lab.
+
+**G8–G9** sorting, binary-search invariant, recurrences, greedy/MST, DP, asymptotics, table tests, benchmarks (explain crossover, don’t just print ns), OS signals, reflection (rarely).
+
+**G10–G12** HTTP/TLS (stdlib; no homemade crypto), REST, middleware `func(http.Handler) http.Handler` (Pedagogy §8 chain), SQL CRUD, pagination, auth primitives. Graph algorithms: BFS/DFS/topo/SCC, shortest paths. **Part 4 owns identity products;** this owns the Go HTTP type.
+
+**G12b** PostgreSQL internals — **Part 2 DB-1–10** (do not duplicate).
+
+**G13–G15** protobuf, compatibility, gRPC, streams, metadata, interceptors, REST+gRPC. **Part 3.2 owns the GCP lab;** this unlocks syntax.
+
+**G16–G18** OpenTelemetry, pprof, Argon2/JWT/CSRF/XSS/`govulncheck`, secrets, audit, Docker, cross-compile, release. **Part 10 owns GCP Monitoring;** this owns the Go instrumentation.
+
+**G19** interview synthesis from unlocked DS/algo, concurrency, API, distributed design.
+
+**G20** payments — **Part 5 owns Stripe/PCI;** this is ledger/idempotency/webhook syntax if needed.
+
+Each G module: syntax unlock → tests → mixed with exactly two earlier tools → hard platform problem. Theoretical floor on complexity, invariants, races.
+
+### G-CS Discrete math and algorithms (complete)
+
+Required before mixed concurrency and before 8.1 hash/bloom. Order: propositions and quantifiers → direct/contrapositive/contradiction/counterexample → sets/functions/relations → induction and invariants → counting and pigeonhole → recurrences → graphs and state machines → arrays/stacks/queues/maps (implemented in G1–G3). Every structure states its representation invariant and proves preservation. Asymptotics and lower-bound intuition with G8. Gate: short proof portfolio + tested packages; one unseen problem where the learner **chooses** the technique.
+
+---
+
+## Part M — Quantitative prerequisites used by this syllabus (complete when listed)
+
+Not a full analysis/PhD spine. If it is listed, it is taught to the theoretical floor.
+
+| Topic | Why here | Complete means |
+|---|---|---|
+| Bits, integers, floats, error, tolerance | F1, G1, numerics | Predict overflow and rounding before running |
+| Functions, composition, inverse | M, 9c metrics | Counterexample to a false inverse claim |
+| Vectors, norms, dot product, cosine | 9c two-tower | Derive cosine; degenerate cases |
+| Matrices, least squares, SVD/PCA as used | embeddings, not spectral theory as a career | Residual and reconstruction error |
+| Probability: sample space, Bayes, expectation/variance, LLN/CLT | SLO, A/B, 9c.7 | Simulation **verifies** a derivation |
+| Entropy, cross-entropy, KL as used | 9c metrics | Derive CE from likelihood |
+| Recurrences, Master theorem as used | G8 | Match a loop to a recurrence |
+
+Hand-trace → derive → tiny Python → tests → then a service may consume the number in Go.
 
 ---
 
@@ -1083,6 +1141,23 @@ This is a full design track, not “pick Cloud SQL on the exam.”
 
 **LLD artifacts:** ERD, DDL, index list, isolation choice ADR, migration plan.
 
+**Engine slices DB-1–DB-10 (required, complete, local Postgres + Go/Python toys; then Cloud SQL mapping):**
+
+| Slice | Concepts | Artifact |
+|---|---|---|
+| DB-1 | Relational algebra, joins, semi/anti/outer, bag vs set, NULL/3VL | Relational evaluator + SQL edge transcript |
+| DB-2 | Catalogs, `ctid`/`xmin`/`xmax`, types, JSONB, UUID, PK/FK/CHECK, deferred constraints | Schema/migration + constraint tests |
+| DB-3 | CTEs, recursive CTEs, windows, lateral | Reporting queries + `EXPLAIN (ANALYZE, BUFFERS)` |
+| DB-4 | Pages, line pointers, heap tuples, TOAST | Slotted-page package |
+| DB-5 | Shared buffers, pins, clock-sweep, bgwriter, checkpointer | Toy buffer pool + hit-ratio benchmark |
+| DB-6 | B-tree, hash, GIN/GiST/BRIN, index-only/bitmap, visibility map | B-tree + inverted-index toy |
+| DB-7 | Iterator model, `work_mem`, nested-loop/hash/merge, aggregation, spill | Executor nodes + spill lab |
+| DB-8 | Parser/planner, `pg_statistic`, MCV/histograms, selectivity | Predict a plan, then compare |
+| DB-9 | MVCC, snapshots, SSI, row/table locks, deadlocks, HOT, autovacuum, XID freeze | Visibility simulator + isolation + deadlock labs |
+| DB-10 | WAL, full-page writes, checkpoints, redo, streaming replica, archive, PITR | Mini WAL/replay + backup/restore drill |
+
+Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
+
 ### 2.2 GCP relational offerings (decision table)
 
 | Offering | Model | You pick it when |
@@ -1184,10 +1259,14 @@ Northstar is still a modular monolith. You impose structure so the later split i
 
 **CQRS:** two *queries* before two databases. Event-source checkout only if you can defend audit/replay; default is outbox (3.5).
 
-**Patterns you implement once (50–150 lines + tests), then keep:**
-Factory (clients), Adapter (GCP SDK), Decorator/Chain (middleware — Pedagogy §6), Strategy (pricing), State (order machine), Repository, Circuit breaker / Retry / Timeout / Bulkhead (client), Command (use case).
+**Patterns — only when the force is in the code** (implement, test, name when the simpler alternative is better):
+Repository, unit of work, adapter, strategy, factory, builder, middleware/decorator, chain of responsibility, observer/pub-sub, mediator, command, state, outbox, saga, CQRS/read model, idempotent consumer, circuit breaker, bulkhead, retry with jitter, strangler fig.
+
+**Every HLD/LLD lab evidence pack:** functional and quality requirements; assets, actors, trust boundaries, abuse cases, authorization model; capacity estimate; Mermaid HLD; LLD/API/schema/state diagrams; bottleneck/failure/security table; trade-off table; implementation (Python then Go); positive, negative, load, and adversarial tests; observability with secret redaction; rollback/revocation/recovery; one ADR. Authenticating a caller without authorizing action **and** object is incomplete.
 
 **From scratch:** `PlaceOrder` with in-memory adapter tests, then Postgres adapter. Use case file cannot import the DB driver.
+
+**S20 teaching order (do not skip):** quality attributes and measurable SLOs → boundaries/data ownership → LLD contracts, cohesion/coupling → SOLID in code → clean architecture and DDD → modular monolith → sync vs async → retries/timeouts/idempotency/backpressure → cache and queue semantics → replication/partition/consistency → leader election/consensus as needed → transactions/outbox/saga → observability → split a microservice only when justified.
 
 ### 3.1 When to split
 - Modular monolith is the **default until** independent deploy, scale, failure, data, or team.
@@ -1288,6 +1367,7 @@ Factory (clients), Adapter (GCP SDK), Decorator/Chain (middleware — Pedagogy �
 
 ### 4.2 Customer auth (Identity Platform)
 - **From scratch first:** HS256 JWT issue/verify middleware (header.payload.signature, `exp`/`nbf`/`aud`/`iss`); then RS256 with a fetched JWKS. Cookie session signer. Password hash via bcrypt/argon2 library — not homemade.
+- Identity separate from credentials. Opaque public IDs. Email/phone as mutable verified attributes. Equivalent controls on login, register, password change, recovery, API login, federation. MFA as a second authenticator, not “email as password.” Session fixation/replay/expiry/revocation tests. Emergency all-session cutoff.
 - JWT verification on Cloud Run (audience, issuer, expiry).
 - Multi-tenancy for B2B SaaS.
 - Blocking functions, MFA (Identity Platform, not Firebase Auth).
@@ -1656,7 +1736,7 @@ Worked HLD/LLD studios (primer `solutions/` + GCP analog; Python then Go):
 7. Amazon sales rank — Pub/Sub counters + BigQuery.
 8. Scale to millions — global LB, multi-region Run, Spanner or Firestore, CDN (GCP, not AWS).
 
-**OOD (primer notebooks):** hash map + LRU required (cache). Chat server optional after 3.2 streams. Call center / cards / parking lot: skip unless they attach to Northstar.
+**OOD (primer notebooks):** hash map + LRU required (cache). Circular array. Chat server optional after 3.2 streams. Call center / cards / parking lot: skip unless they attach to Northstar. Every studio uses the Part 3.0 evidence pack.
 
 **Appendix D additional primer questions** (design on paper + link to owner; not extra courses): Dropbox-like sync; Google search; Google Docs OT (tiny toy — do not invent CRDT research); Redis; Memcached; Amazon recs → 9c.2; WhatsApp chat; Instagram photos; FB feed/timeline/chat/graph search; Cloudflare CDN → 1.4; Twitter trends → HyperLogLog 8.1; Snowflake IDs; top-k; multi-DC; **API rate limiter** (Stripe blog + §6 token bucket); stock exchange optional.
 
@@ -1887,6 +1967,30 @@ Not a dump of dumps. After capstone:
 - Practice the exam skill: pick the *Google-preferred managed* option unless a constraint forbids it.
 - Optional: sit ACE first if IAM/gcloud is still shaky; PCA is the target.
 
+### Part 11b — Control-plane capstone (after Northstar v1)
+
+Second integration, not a replacement for Northstar. Do not start until Northstar v1, Part G through G12, Part 4 identity, Part D enough to ship, and 10.0 tiles are unlocked. Python models stay behind typed contracts; the control plane is Go-first with Python allowed at the adapter.
+
+**Inventory (GCP-mapped):** API gateway (Cloud Run + IAP or API Gateway), backend API, auth service, router (9c.5 RAG), registry (Artifact Registry + metadata in SQL/Firestore), chat/history store, orchestrator + worker (Cloud Tasks / Pub/Sub + Cloud Run Jobs + Cloud Build), CLI, sample agents (authenticated JSON-RPC). Optional: Memorystore streams/cache, object storage.
+
+**Flow:** upload artifact → registry → build request → worker build/deploy → registry discover → gateway route → router shortlist → model pick → chat logged → traces.
+
+| Phase | Output |
+|---|---|
+| P0 | Go monorepo, dev loop, tooling |
+| P1 | Shared config, secret-safe logs, traces, error model, hardened servers/clients, ordered middleware |
+| P2 | SQL auth/audit schema, tenant constraints, migrations, transactions, backup invariants |
+| P3 | Handlers, repositories, password/OIDC, sessions, JWT validation, CSRF/CORS, idempotency, pagination |
+| P4 | Registry + gateway identity, scoped credentials, route authorization, health, stale cleanup |
+| P5 | Embeddings behind a contract, shortlist/rerank, structured model pick, offline eval, tenant/data boundaries, tool guardrails |
+| P6 | Authenticated history ingest, object/tenant/field authz, append-only audit, retention |
+| P7 | Queue/stream worker, short-lived identity, provenance, deploy/rollback, idempotent consumers |
+| P8 | CLI, device/browser login, least-privilege commands, no credential leakage |
+| P9 | Authorized agent protocol, card validation, per-tool policy, replay control, stream limits |
+| P10 | SLOs, dashboards, load/abuse/fuzz/race, secret scans, key rotation, backup/restore, incident, **ORR** |
+
+**ORR must show, not claim:** data-flow and trust-boundary diagram; abuse register; authorization matrix; identity propagation with no network-location trust; deny-by-default tests; session/JWT fixation/replay/revocation; bounded inputs; no secrets in logs/images/prompts; `go test` + race + fuzz; alerts with owned runbooks; rehearsed key rotation, rollback, restore.
+
 ---
 
 ## Exercise engine (how teaching will actually work)
@@ -1949,6 +2053,20 @@ Sample of early Python exercises (illustrative, not started):
 Each has a Go twin after submission.
 
 ---
+
+## Appendix B — Bibliography (Go, software, architecture, security, discrete math)
+
+Use as a hierarchy: official language and product docs first, then these texts. Security: governing RFC/BCP, then NIST/ASVS, then cheat sheets; record the date checked.
+
+**Go and CS:** Donovan and Kernighan, *The Go Programming Language*; Bodner, *Learning Go*; current Go `net/http`, `crypto/*`, `context`, testing, race detector, and release notes. Rosen or Grimaldi (discrete math). CLRS; Sedgewick & Wayne. Silberschatz/Galvin/Gagne *Operating System Concepts* and Tanenbaum *Computer Networks* when Part 10.6 / 6.1 need a text.
+
+**Architecture and SE:** Evans, *Domain-Driven Design*; Fowler, *Patterns of Enterprise Application Architecture*; Bass et al., *Software Architecture in Practice*; Richards and Ford, *Fundamentals of Software Architecture*; Newman, *Building Microservices*; Kleppmann, *Designing Data-Intensive Applications*; Google SRE work; Microsoft REST API Guidelines; *Software Engineering at Google*; Fowler *Refactoring*.
+
+**Data:** current PostgreSQL documentation (and source when a DB-4–10 toy needs it).
+
+**Auth/security standards:** HTTP Semantics; cookie specs; RFC 7519 and RFC 8725 (JWT); OAuth PKCE RFC 7636; RFC 8414, 8705, 9126, 9207, 9449, 9700; OpenID Connect Core; NIST SP 800-63B; OWASP ASVS and current cheat sheets (authn, session, authz, CSRF, REST, SSRF, logging, secrets, supply chain).
+
+**Production ML / systems:** Huyen; Lakshmanan/Robinson/Munn *Machine Learning Design Patterns*; Google SRE; DORA.
 
 ## Official reading list (course texts, not extras)
 
