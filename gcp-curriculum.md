@@ -89,11 +89,11 @@ GKE, Spanner, AlloyDB, Memorystore, Apigee, Cloud Armor, VPC-SC are **required a
 
 This Pedagogy section **is** the teaching method. The Parts below **are** the content. Bind every lesson to a `###` owner heading in this curriculum. Do not consult a parallel instruction file.
 
-**Purpose.** The learner understands theory, rebuilds important primitives, chooses production trade-offs, and operates real systems on Google Cloud. Using agents, libraries, and consoles is a waypoint, not the destination.
+**Purpose.** The learner understands theory, rebuilds important primitives, chooses production trade-offs, and operates real systems on Google Cloud — Northstar + PCA/PMLE competence. Using agents, libraries, and consoles is a waypoint, not the destination. This Pedagogy absorbs teaching-contract **method** rigor (depth floor, ramp, dependency gate, ledger); it does **not** rewrite the destination into a standalone middle-school-to-Ivy math PhD track.
 
-**How this file was unified.** Concepts from teaching policy, the production GCP spine, and institutional CS/math/ML maps were extracted, aliases merged (SQL/relational algebra, RAG/retrieval, HLD/LLD/architecture), and each concept given **one owner**. Later mentions are applications. Unique reading lists and case indexes live in appendices. The **teaching order is the Course spine below** — never a second numbered degree sequence.
+**How this file was unified.** Concepts from teaching policy (the teaching contract), the production GCP spine, and institutional CS/math/ML maps were extracted, aliases merged (SQL/relational algebra, RAG/retrieval, HLD/LLD/architecture), and each concept given **one owner**. Later mentions are applications. Unique reading lists and case indexes live in appendices. The **teaching order is the Course spine below** (graph-ordered continuation F→11b, then Part 12) — never a second numbered degree sequence and never filename-dependent.
 
-**Mathematical aptitude (theoretical topics).** A non-routine challenge is an unfamiliar formulation, hidden structure or constraint, a deliberate representation choice, several justified reasoning moves, and a check or counterexample. It is not a relabeled formula substitution, library call, or coding chore. Build that aptitude on unlocked objects, then carry it to the topic’s own ceiling (graduate coursework, not original research).
+**Mathematical aptitude (theoretical topics).** A non-routine challenge is an unfamiliar formulation, hidden structure or constraint, a deliberate representation choice, several justified reasoning moves, and a check or counterexample. It is not a relabeled formula substitution, library call, or coding chore. The “JEE-Advanced” reference names that **structure-first aptitude**, not a level cap and not a second contest track: build the habit on unlocked objects, then carry it unchanged in kind to each topic’s own ceiling (graduate coursework / staff-engineer ops — not original research). On platform and GCP slices, translate the same habits into production, adversarial, diagnostic, or design challenges (see §7).
 
 ### 1. One product, growing
 You build **Northstar** — a multi-tenant storefront SaaS (catalog, cart, checkout, orders, webhooks, admin). Every module adds a real production concern to the same system. No toy “hello world” that is thrown away.
@@ -109,6 +109,7 @@ You build **Northstar** — a multi-tenant storefront SaaS (catalog, cart, check
 - Python is the learning language (FastAPI or stdlib `http.server` + `google-cloud-*`).
 - Go is the industry language for many GCP control-plane and high-performance services.
 - You do not get the Go starter until the Python submission exists. Review compares both: types, error handling, context cancellation, goroutines vs async, client libraries.
+- **Lab order is locked:** Python twin first, Go after submit, on every implementable Northstar/GCP slice. Ownership specializations (Python math/ML scratch; Go services/systems/security middleware; hybrid production ML) live in Teaching contract §8 — they clarify *what* each language owns; they do **not** flip this submit sequence.
 
 ### 4. HLD vs LLD (taught as a craft, not a slide)
 | | HLD | LLD |
@@ -189,10 +190,10 @@ This ladder governs **how** each sub-topic in this curriculum is taught. It is n
 **Execution contract (one unit at a time):**
 - One owner heading (`###` in this file) and one coherent idea per unit. Short title, then teach. No destination essays.
 - Walk prerequisites first (the JIT map + earlier confirmed sub-topics). Do not import a later Part’s machinery to make a “harder” question.
-- Confirm with an **unseen check**, not “I understand.”
 - Later appearances of an owned idea: one-line recall + application. Do not re-teach.
-- Persist a compact **learner ledger** (overwrite, do not dump into chat): `part · sub-topic · ramp rung · unlocked · shaky · postponed · next gate`.
-- If they struggle: step **down one rung** and rebuild the missing tool. Do not skip rungs. Skip coding rungs only when the sub-topic is purely definitional (named fact, console-only click, theorem statement).
+- Persist and update the **learner ledger** (see Teaching contract → Learner state). Do not dump it into chat.
+- **Confirmation = unseen check**, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked.
+- If they struggle: step **down one rung** and rebuild the missing tool. Do not skip rungs. Skip coding rungs only when the sub-topic is purely definitional (named fact, console-only click, theorem statement). Productive struggle on an unlocked hard problem is expected — step down only when the attempt reveals a missing prereq, a shaky earlier tool, or repeated dead ends after minimal hints.
 
 **Universal ten-rung sequence** (every non-definitional sub-topic):
 
@@ -241,7 +242,9 @@ Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump
 
 Do not leave a theoretical topic at “I can call the API” or “I sketched the formula.” Do not inflate a definitional topic into fake proofs.
 
-**Top-rung budget (mandatory on every substantial non-definitional `###`):** after mixed transfer passes, pose **one to three** non-routine challenges. Prefer two or three when the topic has distinct representations. At least one is an unseen integrated problem that cannot be completed by copying the worked illustration. These **are** the top rung, not a second problem set. If a full-ceiling item needs a locked tool, postpone it and pose the strongest **unlocked** version now. Fake difficulty (bloated arithmetic, future-module tricks) is forbidden.
+**Skip when definitional.** Named theorem statements, historical labels, product nicknames, and console-only clicks get **no** top-rung challenge and **no** forced scratch implementation. Skip coding rungs only when the idea cannot be meaningfully implemented in the owner language. All other practice happens at teach time — not as a bulk exercise dump stored in this file.
+
+**Top-rung budget (mandatory on every substantial non-definitional `###`):** after mixed transfer passes, pose **one to three** non-routine challenges. Prefer two or three when the topic has distinct representations. At least one is an unseen integrated problem that cannot be completed by copying the worked illustration. These **are** the top rung of the difficulty ramp — not a second parallel problem set and not extra contest homework after the ramp already ended. Do not open the top rung until that sub-topic’s mixed transfer has passed. If a full-ceiling item needs a locked tool, record it under **postponed challenges** on the ledger and pose the strongest **unlocked** version now. Fake difficulty (bloated arithmetic, future-module tricks, disguised later-Part APIs) is forbidden. A derivation followed by a tiny Python/Go check or ablation may form one integrated top rung; reasoning comes first.
 
 **Top-rung by class:**
 
@@ -255,19 +258,36 @@ Do not leave a theoretical topic at “I can call the API” or “I sketched th
 | HLD/LLD | Design under constraint: protocol, data ownership, retry/idempotency, observability, rollback; “I pick X because Y, I accept Z” |
 | Definitional | No top rung, no forced scratch |
 
-**Intuition moves** (pick one or two per unit; do not dump the list): translate representations; smaller/zero/boundary/extreme case first; invariant, symmetry, or repeated substructure; reverse from the target or the incident; bound size/latency/cost/quota/probability before solving; split cases only when it reduces uncertainty; construct or disprove with a minimal failing input; choose the simplest coordinate, schema, or service boundary that exposes the constraint; sanity-check against the original wording, SLO, budget, IAM, or units.
+**Intuition moves / structural aptitude** (pick one or two per unit; lenses, not a checklist dump). The “JEE-Advanced” label names an **aptitude**, not a level cap: read an unfamiliar problem, expose hidden structure, choose/switch representations, plan before computing or coding, check the result. Build that habit on unlocked objects, then carry it upward to this course’s ceilings (graduate coursework / staff-engineer ops — not original research). On theoretical slices (8.1, M.*, 9c metrics/losses), apply it to derive/prove, state precise conditions, counterexample/boundary, conditioning/error/complexity. On platform slices, translate the same habits into production, adversarial, diagnostic, or design challenges.
+
+Move bank (unlocked only; postpone if locked): translate representations (words ↔ diagram ↔ schema ↔ state machine ↔ C4 ↔ `EXPLAIN`); smaller/zero/boundary/extreme case first; invariant, symmetry, conservation, or repeated substructure; reverse from the target or the incident; bound size/latency/cost/quota/probability before solving; split cases only when it reduces uncertainty; construct or disprove with a minimal failing input; choose the simplest coordinate, schema, API, or service boundary that exposes the constraint; sanity-check against the original wording, SLO, budget, IAM, or units.
+
+**Domain application (this course — same ramp, different surface):**
+- **Math / ML (M.*, 8.1, 9c theory):** objective geometry, dimensions, gradients, probability, metrics, generalization **before** coding; top rung = derivation or structural prediction + tiny Python check/ablation. Structure-first plan before computation.
+- **Go / DS / platform:** invariant, complexity, edge-case, and implementation reasoning; top rung = hard platform problem or production-flavored slice after mixed — unlocked syntax/structures only. Audit required tokens and data structures before hard work.
+- **Databases (Part 2):** predict engine behavior before running (`EXPLAIN`, isolation anomaly, index miss, WAL/PITR, lock/deadlock); explain the discrepancy after.
+- **System design / HLD/LLD:** production-flavored design under constraint — trade-offs, failure, observability, rollback, cost, “I pick X because Y, I accept Z.”
+- **Production ML (9c):** hybrid — Python owns model math/eval primitives; Go owns service boundary (evaluator, ranker, feature access, rollout); top rung ties leakage/skew/metric to a serving or ops decision.
+- **Security / IAM / PCI (Parts 4, 6, 7, 5):** adversarial top rung — property at risk, failing test first, confused deputy / replay / least-privilege hole; never attack systems you do not own.
+- **Networking / edge / ops (1.4, 6, 10):** representation choice (packet path, CIDR, SLO burn, quota) + production failure (idle IP, blast radius, rollback, cost leak).
 
 **Theoretical pass signals (stricter than a correct output):** the learner names the representation; states governing assumptions; explains why each important move works; checks a boundary or a plausible wrong path and repairs it. A right number or a green test with no structure named is routine fluency, not close.
 
 **Learner attempts first.** No solution dump. If stuck: what structure do you see → smaller case → smallest unlocked hint. Escalate only if still stuck. After resolution, name the move that made it easy; add one nearby variant if a shaky habit showed.
 
-**Dependency gate (silent):** before any prompt, audit the whole intended solution path. If a tool is not unlocked-and-confirmed, replace the path or postpone the item. Harder is not “smuggle GKE into Cloud Run week.”
+**Dependency gate (silent):** before any explanation, problem, hint, proof, coding exercise, or design prompt, audit the **whole intended solution path** — not only the stem: notation, GCP/product concepts, Python or Go syntax, data structures, library assumptions, production-system ideas, and the likely debugging path. If any required tool is not unlocked-and-confirmed on the live store, replace the path or postpone the item on the ledger. Do **not** jump ahead in the spine to keep a harder wording. Leave the current `###` only when the idea cannot be practiced at all without that tool. Do not print the audit. Harder is not “smuggle GKE into Cloud Run week,” a locked Go token into G0, or a Part 9c metric into Part M before it unlocks. **Readiness-matched ≠ easy:** difficulty comes from structure, hidden constraints, transfer, or production pressure — not from future-module machinery.
+
+**Blocked-path examples (this course):**
+- Part 1 Cloud Run week: may harden the container contract, timeouts, and IAM invoker. May **not** require GKE scheduling, Gateway API, or Autopilot node pools — postpone those to Part 9 / D4.
+- Part M metrics: may derive precision/recall/FPR by hand and in tiny Python. May **not** import Feature Store, shadow traffic, or Vertex Pipelines until 9c unlocks them.
+- Early Go (G0–G5): may use unlocked tokens only. A “harder” CLI that needs channels, `context.Context` cancel trees, or generics before their `SYNTAX UNLOCK` is the same violation as posing the locked method first.
+- Part 2 isolation: may predict anomalies with unlocked MVCC vocabulary. May **not** smuggle Spanner interleaved-table design or full PITR runbooks into the first Postgres transcript if those owners are still locked — use the strongest unlocked prediction task instead.
 
 **Sub-topic complete when** they can: explain it in plain language; **derive or prove** its central results if the topic is theoretical; state assumptions and failure; solve basic + routine; finish mixed (two earlier tools named); **pass** (not merely attempt) the current unlocked top rung; then solve or substantially advance **one fresh nearby transfer** without copying the prior path; name a failure case; implement the core primitive from scratch (Python then Go) unless definitional. A postponed full-ceiling challenge does not block if a genuine prereq is locked — the strongest unlocked challenge is never optional.
 
 **Part / module complete when** every in-scope `###` has been confirmed that way. A postponed top-rung (genuine locked prereq) does not block the part; keep it on the ledger and revisit as soon as the prereq unlocks. End the part with a few lines: unlocked, still shaky, next — not a full ledger reprint.
 
-**Assignments at teach time only.** Rungs 1–3 are illustration + routine write. Mixed then hard is **exactly one** interconnected Northstar scenario, not a list of micro-problems. The scenario should fail to compile, test, or pass the lab if the new concept is omitted.
+**Assignments at teach time only** (not bulk-stored in this file). Rungs 1–3 are illustration + routine write. Mixed then hard/production is **exactly one** interconnected Northstar scenario, not a list of micro-problems. **Structural gate:** the scenario must fail to compile, test, or pass the lab if the new concept is omitted. The two earlier unlocked nodes in mixed **are** the revision pair — name them on one line with part/owner, not a header block. **No dumps:** not a full solution, not a contest editorial, not a primer sample as the learner’s code; guidance only if they struggle (next protocol step or a question). Skip coding rungs only when purely definitional.
 
 ### 8. Teaching contract
 
@@ -277,36 +297,65 @@ This curriculum **is** the syllabus of record and the teaching law. Owner nodes 
 
 **Source of record.** Teach from these headings. Official product documentation, the system-design topic map (Part 8), and the industry ML catalog (Appendix M) are evidence under an owner — not extra courses. If an external article introduces a new idea, attach it to an existing `###` before teaching it.
 
-**Rigor over speed.** Short titles and one idea per unit govern *pacing*, not *depth*. No hand-waved “GCP handles that,” no “it can be shown that,” no skipped justification. Carry every explanation, derivation, and worked argument through in full. When a derivation is long (WAL, HOL, JWT structure, SLO math, isolation, bloom FPR), teach it across as many turns as it needs rather than summarizing the result. Where finishing quickly and finishing rigorously pull apart, **rigor wins**.
+**Curriculum-artifact binding (by role, not path).** This Pedagogy section is a teaching contract that binds to the **active curriculum artifact** for the session — here, this Google Cloud Production Architect syllabus (Northstar + PCA/PMLE). Bind by **role** (active syllabus of record, teaching-ready headings, JIT map, appendices as indexes), never by filename, storage path, or upload order. If more than one curriculum artifact is in play, the learner’s explicit choice is active; otherwise prefer the teaching-ready / deduped spine for lessons and keep source-preserved material for provenance and gap recovery only. Prefer the active artifact for teaching order; use other artifacts only for the least disruptive prerequisite-safe reconciliation. Do not teach prior source streams as parallel courses. If the active artifact lacks an explicit graph, infer owner nodes from `###` headings, tags, prerequisites, and repeated concepts, then record that inferred owner in the learner ledger before teaching.
 
-**Depth floor (per topic, not an average).** Familiarity, “enough to use the library,” and routine fluency are waypoints, not completion. A non-definitional topic is not covered until the learner can, at **that topic’s own academic level**:
+**Rigor over speed.** Short titles and one idea per unit govern *pacing*, not *depth* — **brevity ≠ shallow**. No hand-waved “GCP handles that,” no “it can be shown that,” no skipped justification, no compressed derivation that trades correctness-with-gaps for a faster turn. Carry every explanation, derivation, and worked argument through in full. When a derivation is long (WAL, HOL, JWT structure, SLO math, isolation, bloom FPR), teach it across as many turns as it needs rather than summarizing the result. Where finishing quickly and finishing rigorously pull apart, **rigor wins**.
+
+**Mastery depth floor (per topic, not an average).** Familiarity, “enough to use the library,” and routine fluency are waypoints toward a topic, never a substitute completion criterion. A non-definitional topic is not covered until the learner can, at **that topic’s own academic level**:
 
 - **derive or prove** its central results from first principles when the topic is theoretical — not recall a slogan;
 - state governing assumptions and validity conditions, and say what breaks when each fails;
 - implement the core primitive from scratch in the owner languages (Python then Go) and **predict** behavior before running it, where the topic is implementable;
-- solve an unseen problem at that level without a template (non-routine top rung above);
-- read, use, and critique the primary literature or official documentation the topic rests on;
+- solve an unseen problem at that level without a template (non-routine top rung; structural aptitude as in §7 — not a relabeled drill or library-call chore);
+- read, use, and critique the **primary literature or official documentation** the topic rests on (GCP docs, RFCs/BCPs, Postgres docs, cited papers — not blog paraphrases alone);
 - place the topic in the graph: prerequisites, what it unlocks, trade-offs against nearby alternatives.
 
-Ceiling is graduate **coursework** / staff-engineer operations, not original research: walk into a serious conversation on the topic, not produce novel papers. **Skip when definitional** still applies. A topic that was only mentioned, defined, demoed once, or exercised at routine level has **not** reached the floor, no matter how advanced other topics are. If this curriculum lists a theoretical idea, that idea is taught to this floor — not “partially” or “enough to pick the product.”
+Ceiling is graduate **coursework** / staff-engineer operations, not original research: walk into a serious conversation on the topic, not produce novel papers. **Skip when definitional** still applies: a named theorem statement, historical label, or console-only click gets no derivation demand and no forced scratch it cannot support. A topic that was only mentioned, defined, demoed once, or exercised at routine level has **not** reached the floor, no matter how advanced other topics are. If this curriculum lists a theoretical idea, that idea is taught to this floor — not “partially” or “enough to pick the product.” Industry competence and console fluency remain waypoints on the way to the floor, not an earlier exit.
 
 **Assume nothing until confirmed.** Unseen check, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked.
 
-**Language ownership (this course’s override).** Pedagogy §3 stands: **Python first, Go after submit** for every implementable slice. That is the locked conflict resolution vs “Go-only systems.” Specializations:
+**Learner state (persist; do not lecture).** Overwrite a live ledger beside this curriculum after each confirmed unit. Never paste the ledger into chat as paragraphs.
+
+| Field | Meaning |
+|---|---|
+| Current part / `###` owner | Where teaching is |
+| Sub-topic + ramp rung | Current rung in §7 |
+| Unlocked concepts | Confirmed via unseen check |
+| Unlocked Python features | Only those proven in exercises |
+| Unlocked Go syntax / features | Only after `SYNTAX UNLOCK` |
+| Shaky | Failed or fragile; reuse in mixed until unmarked |
+| Postponed challenges | Full-ceiling items waiting on a locked prereq |
+| Next gate | What must pass before advancing |
+
+If a file write cannot be done or verified: one compact stamp at the **end** of the turn, same fields, one line. Use **one store per turn** (file if it landed, otherwise the stamp), never both. Read from the file if present, else the latest stamp. Empty/missing store → assume nothing confirmed; start at the first unconfirmed owner on the spine (typically F1 or the JIT entry the audience skip-test points to). Postponed challenges stay on the store and are revisited as soon as their prereqs unlock — they do not vanish at part close.
+
+**Language ownership (this course’s override).** Pedagogy §3 stands: **Python first, then Go after submit** on every implementable Northstar/GCP slice. That lab order is locked — do not flip it to Go-first or Go-only. Ownership clarifies *what* each language is for; it does not change the submit sequence:
+- **Python owns math / ML scratch primitives:** mathematics, probability, metrics, numerical methods, ML/DL estimators, ranking/leakage toys (hand trace → pseudocode → tiny function → tests → library compare).
+- **Go owns services / systems / security middleware:** APIs, HTTP middleware, concurrency, DS/algo platform work, HLD/LLD labs, authn/authz protocol state, operations, and the **Part 11b control-plane capstone**. Implement related primitives in Go after the Python twin where the slice is dual-language; vetted crypto only (Pedagogy §6 bans).
+- **Production ML is hybrid:** model math, evaluation, and data-science primitives stay in Python; the service boundary (evaluator, ranker HTTP/gRPC, feature access, registry client, rollout controls, observability) is Go. Reimplement a Python primitive in Go only when a measured deployment or Go/DS objective requires it — not by default.
 - **Systems / APIs / middleware / HLD/LLD / concurrency / GCP clients:** Python stdlib toy, then Go `net/http` / `context` / official clients. Frameworks (FastAPI, Gin) only after stdlib.
-- **Math / ML primitives (8.1, 9c):** Python/NumPy-level first (hand trace → pseudocode → tiny function → tests → library). Go owns the **service boundary** (evaluator, ranker HTTP/gRPC, feature access). Do not maintain two equivalent ML engines unless a measured constraint requires it.
 - **Do not reimplement engines:** Vertex, Dataflow, GFE, Spanner, TLS, QUIC crypto, vLLM, etc. Concept + use the product.
 - **Go syntax:** each keyword/builtin/`:=`/`*`/`&` gets a one-time `SYNTAX UNLOCK` (signature, memory, tiny example, contrast to Python) at first use in the mainstream part that needs it. Do not use locked Go tokens. G0–G20 is a **reference index** (Appendix G), not a separate course.
 
-**Tool teaching (first real use):** problem it solves → concept it hides → minimal lab → failure modes → test/ops check → when not to use it. Third-party APIs (Stripe, Google clients) sit behind **adapters**. Learning tests at the boundary before wrapping.
+**Tool teaching protocol (first real use — six steps):**
+1. What problem it solves.
+2. The underlying concept it hides.
+3. Minimal local lab (stdlib / toy before the managed product).
+4. Failure modes.
+5. Test or operational check.
+6. When **not** to use it.
 
-**Knowledge-graph execution (every lesson):**
-1. Name the target `###` owner.
-2. Walk prerequisites (JIT map + confirmed ledger). Infer a chain from heading order if needed; treat it as provisional.
-3. If the concept already has an owner, **recall + apply** only.
+Third-party APIs (Stripe, Google clients) sit behind **adapters**. Learning tests at the boundary before wrapping. Theory and from-scratch primitive first, then library/tool use — never the reverse as a completion claim.
+
+**Knowledge-graph execution (every lesson — graph-ordered continuation):**
+1. Name the target `###` owner from this active curriculum (heading path / JIT map / owner table).
+2. Walk prerequisites (JIT map + confirmed ledger). If edges are absent, infer a chain from heading order, notation, syntax, and the intended solution path; treat it as provisional until confirmed.
+3. Check anti-repetition: if the concept already has an owner, **recall + apply** only — do not re-prove or re-unlock.
 4. One coherent idea, one confirmation, stop.
-5. **Vertical slice:** walk that idea through §7, then stop. Do not open the next `###` until this one is confirmed.
+5. **Vertical slice:** walk that idea through the §7 difficulty ramp, then stop. Do not open the next `###` until this one is confirmed.
 6. **Branched quest:** if a new mechanism appears (outbox, circuit breaker, Feature Store, MVCC, vector index), pause, finish that lab at its owner, return.
+7. Attach external ideas to an existing owner before teaching; create a new owner only when none honestly fits.
+8. The Course spine (F→11b) is the graph order for this artifact. Part 12 is continuation after 11b — not a licence to reteach owned ideas or to run a second spine in parallel.
 
 **Six-step design protocol** (every HLD/LLD / architecture slice; specializes §4):
 1. Functional and non-functional requirements.
@@ -340,7 +389,7 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 
 **Coding protocol:** learner writes; no solution dump. Hints = next protocol step or a question. Bugs are teaching data: wrong assumption, off-by-one, race, shape mismatch, invariant, contract. Tiny inputs until they can predict the output.
 
-**Minimum exercises:** one learner-written exercise per non-definitional sub-topic at teach time (tracing a worked example does not count), **plus** the one-to-three top-rung challenges at close. The mixed-then-hard Northstar scenario is exactly one interconnected slice and must fail to compile, test, or pass the lab if the new concept is omitted.
+**Minimum exercises:** one learner-written exercise per non-definitional sub-topic at teach time (tracing a worked example does not count), **plus** the one-to-three top-rung challenges at close. The mixed-then-hard Northstar scenario is exactly one interconnected slice under the structural gate above. Hints = next protocol step or a question — never a solution dump before the attempt.
 
 **Diagrams:** ASCII unless a diagram cannot be ASCII. System-design diagrams: Mermaid.
 
@@ -348,30 +397,41 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 
 **Agentic coding:** tools may accelerate; the learner must still inspect, correct, and replace generated work. They cannot finish a topic by prompting an agent to call an SDK they cannot explain.
 
-**Capstone isolation (Part 11):** do not start Northstar v1 integration until Parts 0–5 (billing, deploy, SQL, microservices, auth, payments) plus CI (Part D enough to ship), observability 10.0 tiles, and the hexagonal ports for the services you are wiring are unlocked. Coursework labs (Pastebin studio, bloom filter, gRPC toy) run **during** the spine; they are not the capstone. Optional 9c ML slice is not a gate for v1 payments.
+**Capstone isolation (Part 11 / 11b):** do not start Northstar v1 integration until Parts 0–5 (billing, deploy, SQL, microservices, auth, payments) plus CI (Part D enough to ship), observability 10.0 tiles, and the hexagonal ports for the services you are wiring are unlocked. Do not start the **Part 11b control-plane capstone** until the graph nodes that phase requires (Go as needed, SQL/Postgres literacy, API/service contracts, HLD/LLD, distributed ops, and any production-ML boundary the control plane uses) are unlocked. Coursework labs (Pastebin studio, bloom filter, gRPC toy) run **during** the spine; they are not the capstone. Optional 9c ML slice is not a gate for v1 payments.
 
-**Completion bar (this course):** the learner can design, implement, test, and operate Northstar on GCP: HLD/LLD, hexagonal services, REST+gRPC, IAM/identity, PCI-sane payments, VPC/IPs/CDN literacy, CI/CD without keys, SLO + dollar + quota budgets. They can **derive** the theoretical results this syllabus actually requires (isolation, WAL, HOL, SLO math, bloom FPR, leakage/skew, ranking metrics they use) — not only operate the products. They can implement core primitives from scratch and name the managed substitute. They can sit a PCA-style case with “I pick X because Y.” Library-only or console-only is not done.
+**Completion bar (this course):** the learner can design, implement, test, and operate Northstar on GCP: HLD/LLD, hexagonal services, REST+gRPC, IAM/identity, PCI-sane payments, VPC/IPs/CDN literacy, CI/CD without keys, and the **three budgets** (dollar, error/SLO, quota). They can **derive** the theoretical results this syllabus actually requires (isolation, WAL, HOL, SLO math, bloom FPR, leakage/skew, ranking metrics they use) — not only operate the products. They can implement core primitives from scratch (Python then Go) and name the managed substitute. They can sit a PCA-style case with “I pick X because Y.” Library-only or console-only is not done. Agent tools may accelerate; the learner must still inspect, correct, and replace generated work.
 
-**Resolved conflicts (this file wins):**
+**Resolved conflicts (active curriculum canonical — this file wins):**
 | Conflict | Rule |
 |---|---|
-| Unified Go-only systems vs this course | Python then Go for every implementable slice |
-| Nasiko capstone vs Northstar | Northstar v1 is the capstone |
-| JEE vs production top rung | Production/adversarial/engine-prediction for GCP/platform; structural math only for 8.1 / 9c theory |
-| Dual spines (degree numbering vs this file) | F→11b first. Part 12 is S0–S24 after 11b. During GCP, only prereq refs |
-| Depth vs “enough to use gcloud” | Depth floor; console fluency is a waypoint |
-| Rigor vs short turns | Rigor wins; split across turns |
-| Archive / extra encyclopedias | Appendix M and primer extra questions are indexes; teach at the owner in 9c / 8 |
+| Multiple source streams vs this syllabus | This file is the active curriculum; prior teaching contracts / inventories are provenance only |
+| Unified Go-only systems vs this course | **Python then Go** for every implementable slice (lab order locked) |
+| Python math vs Go systems | Python owns math/ML scratch; Go owns services/systems/security middleware; production ML is hybrid (see Language ownership) |
+| Capstone naming | Northstar v1 is Part 11; control-plane integration is **Part 11b** (maps any external “Nasiko-class” control-plane idea — do not introduce a second product name in the spine) |
+| JEE vs production top rung | Structural aptitude for 8.1 / M.* / 9c theory; production/adversarial/engine-prediction for GCP/platform/Go |
+| Dual spines (degree numbering vs this file) | Graph-ordered continuation: **F→11b first**. Part 12 is S0–S24 after 11b. During GCP, only prereq refs |
+| Depth vs “enough to use gcloud” | Depth floor; console fluency is a waypoint, never completion |
+| Rigor vs pacing / short turns | Brevity governs framing only; rigor wins; split long derivations across turns |
+| Tool/library vs from-scratch | Primitive first, then managed product / library |
+| Archive / encyclopedias vs CORE spine | Appendix M and primer extras are indexes; teach at the owner in 9c / 8. Archive after CORE (see Non-goals) |
 
 **ML-system mastery (9c):** for every model you ship — problem and label; leakage boundary; split; metric and non-ML baseline; error taxonomy; serving path; rollout/shadow; drift monitor; cost. Scratch the estimator you use; do not reimplement Vertex.
+
+**Production ML teaching route (hybrid, aligns with Language ownership):** case-study framing → required math → Python from-scratch baseline → data/label/feature contract → offline metric → online metric or experiment → serving architecture → Go service boundary (evaluator / registry / feature access / rollout) → monitoring, rollback, drift, safety, cost. Case studies are evidence; rebuild a tiny faithful model of the engineering force — do not memorize company prose.
 
 **System-design mastery:** six-step protocol plus evidence pack (3.0). Can defend monolith vs split, sync vs async, data ownership, consistency, retry/idempotency, observability, rollback.
 
 **Database mastery:** Part 2 DB-1–10 complete; predict `EXPLAIN` and isolation before running.
 
-**What this course is not:** a dump of every institutional heading; formula-only drills; unbounded research; a second UI-framework course; homemade cryptography; storing PAN; attacking systems you do not own; a second teaching order that prefixes billing with a multi-year math degree.
+**What this course is not:** a dump of every institutional heading; formula-only drills; unbounded research; a second UI-framework course; homemade cryptography; storing PAN; attacking systems you do not own; a second teaching order that prefixes billing with a multi-year math PhD / middle-school-to-Ivy standalone destination. Purpose stays Google Cloud Production Architect (Northstar + PCA/PMLE). Teaching-*method* rigor is absorbed; a second destination is not.
 
-**Archive.** Material listed in Appendix I as archive (pure topology, PDE, medical, aero, game engines, school arithmetic dumps) is **not taught** unless a CORE owner names a slice. Indexes are not lessons.
+**Coverage tiers (order, not a depth cutoff):**
+- **Tier 1 — destination spine (teach first):** Blocks F→11b, Part M as listed, JIT prereqs, and every `###` owner required for PCA/PMLE / Northstar. Same depth floor and ramp as everywhere else.
+- **Graph-ordered continuation — Part 12 (after 11b):** S0–S24 and retained enrichment that is out of the initial PCA/PMLE gate. Same depth floor and ramp when opened; sequenced after, not exempted. During F–11b emit only `Prereq ref: 12.Sx` — do not teach the full continuation stage early.
+- **Sliver rule:** when a Tier-1 / F–11b topic genuinely needs a Part-12 or Appendix-I idea, pull **only that sliver** forward to its owner, teach it to the floor, then return. The full Part-12 treatment still happens later in its own slot.
+- Do not open Part 12 as a parallel spine while F–11b owners remain unconfirmed, and do not let archive material slow the GCP spine.
+
+**Archive.** Material listed in Appendix I as archive (pure topology, PDE, medical, aero, game engines, school arithmetic dumps) and other retained encyclopedic indexes are **Tier-2 / after-CORE**: provenance and optional continuation, not parallel lessons. Teach a slice early only under the sliver rule when a CORE owner names it. Indexes are not lessons.
 
 **Additional tracks (branched quests).** Open from the mainstream part when that part needs the theory; finish the track to the theoretical floor; return. Never teach these as a wall before Part 0.
 
@@ -399,7 +459,7 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 
 **Research-grounded architecture:** teach a pattern only when the force is in the Northstar code. Case studies (Appendix M, primer) only if they produce an implementable lesson.
 
-**Portfolio:** Northstar v1 (Part 11) then control plane (11b). Track artifacts (T-*) attach to those repos, not extra capstones.
+**Portfolio:** Northstar v1 (Part 11) then **Part 11b control-plane capstone**. Track artifacts (T-*) attach to those repos, not extra capstones.
 
 ### 5. Lab safety (free tier / credits)
 Day 0, before any deploy:
@@ -493,7 +553,7 @@ INITIAL COURSE (F–11b) — GCP + software system/architecture design.
 Closable for PCA v6.1 and PMLE (Jun 2026) without Part 12.
 
 F  Foundation
-M  Quantitative prereqs: M.NS numerical stability; **M.ML** empirical risk/losses/metrics (before 9c)
+M  Quantitative prereqs: M.NS; **M.ML** (+ IPS); **M.TS**; **M.CAUSAL** lite (before 9c); case-study gaps → **9c.0**
 0  Billing, IAM, hierarchy, HLD/LLD contract
 1  Docker + Cloud Run, GCE (**T-ARCH required**), App Engine, Functions, LB/HA
 D  CI/CD, GitOps, SLSA; **CT** for PMLE retraining
@@ -507,7 +567,7 @@ D  CI/CD, GitOps, SLSA; **CT** for PMLE retraining
 8b/8c Hybrid + migration
 9  GKE
 9b Vertex / BQML / AutoML / Model Garden / Feature Store / Pipelines (PCA + PMLE products)
-9c Production ML: classical zoo + family HLDs + Northstar slices + serve/monitor
+9c Production ML: **9c.0** concept atlas + classical zoo + family HLDs + Northstar slices + serve/monitor
 10 Observability, SLO, FinOps, quotas, **T-OS required**
 11 Northstar v1 + PCA four case HLDs + Go matrix + 8.1 toys
 11b Control-plane capstone
@@ -516,7 +576,7 @@ D  CI/CD, GitOps, SLSA; **CT** for PMLE retraining
    (full algebra/calculus, DSP/Kaldi, full DL-from-scratch, five GenAI portfolios, archive)
 ```
 
-**Initial course complete when:** F–11b teaching text is expanded in place (Donne Martin studios, Go owners via Appendix G, ML families in 9c + Appendix M index, PCA `####` lessons under owners, PMLE literacy in 9b/9c); Northstar v1 runs; Appendix G artifacts checked; Part 8 gated toys + primer HLDs done; Appendix M families have evidence-pack HLDs; four official PCA case HLDs (Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives); M.ML derivations + logistic/metrics/skew toy; three budgets (dollar, error, quota). Part 12 remains the continuation for full algebra/calculus, DSP/Kaldi, transformer-from-scratch, five GenAI portfolios, and S24 — not a PCA/PMLE gate.
+**Initial course complete when:** F–11b teaching text is expanded in place (Donne Martin studios, Go owners via Appendix G, ML families in 9c + Appendix M index, PCA `####` lessons under owners, PMLE literacy in 9b/9c); Northstar v1 runs; Appendix G artifacts checked; Part 8 gated toys + primer HLDs done; Appendix M families have evidence-pack HLDs; four official PCA case HLDs (Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives); M.ML derivations + logistic/metrics/skew toy + **IPS / M.TS / M.CAUSAL lite**; **case-study concept map (9c.0) required for initial-track ML literacy**; three budgets (dollar, error, quota). Part 12 remains the continuation for full algebra/calculus, DSP/Kaldi, transformer-from-scratch, full RL/causal/OR depth, five GenAI portfolios, and S24 — not a PCA/PMLE gate.
 
 This curriculum is the syllabus of record.
 
@@ -718,6 +778,9 @@ Not a full analysis/PhD spine. If it is listed, it is taught to the theoretical 
 | Convex sets, convex functions, GD, Lagrange | T-OPT from 9c | KKT as used; not a convex-analysis PhD unless T-OPT ceiling is opened |
 | Sampling theorem / DFT as used | T-SIGNAL from 9c.6 | Predict aliasing |
 | NumPy `ndarray` | F1, 9c scratch | Predict shape/dtype/strides/broadcast; copy vs view |
+| Ranking / IPS / position bias | **M.ML** IPS + **9c.0** / 9c.2 | Derive propensity + Horvitz–Thompson IPS on synthetic click logs; Python tests + Go helper |
+| Classical time series (trend/seasonality/holidays) as used | **M.TS** + **9c.0** / 9c.3 | Decompose tiny series; residual ACF idea; when BQML ARIMA/seasonal beats DL |
+| Causal / uplift lite (potential outcomes; A/B vs observational) | **M.CAUSAL** + **9c.0** / 9c.3 + Marketing | Two-arm toy table; uplift = treatment effect; full DAGs → T-CAUSAL / 12.S14 |
 
 Hand-trace → derive → tiny Python → tests → then a service may consume the number in Go. **T-OPT / T-IT** are complete when opened from this table’s rows.
 
@@ -820,6 +883,73 @@ Port **metric helpers** (not full GD training unless you want it): confusion cou
 - Compute precision/recall/F1 and one ROC point **by hand**, then by package.
 - Name a metric that would **hide** a failure in Northstar fraud vs catalog rank.
 - Ship Python package + Go helpers; unstable `==` on floats or sklearn-only proof is **not** complete.
+
+#### Ranking / IPS / position bias (derive — one home)
+
+Click logs are **not** relevance labels: position \(k\) has propensity \(p_k = P(\text{examined}\mid k)\). Under a position-based examination model, observed click \(c_{i,k}\) has
+\[
+\mathbb{E}[c_{i,k}] = p_k \cdot r_i
+\]
+where \(r_i\) is relevance (or click propensity given examination). The **inverse propensity score (IPS)** / Horvitz–Thompson-style estimator reweights:
+\[
+\hat{R}_{\mathrm{IPS}}(f) = \frac{1}{n}\sum_{i=1}^{n} \frac{c_i}{\hat{p}_{k(i)}}\,\ell\big(f(x_i), \tilde{y}_i\big)
+\]
+(or the equivalent click-through utility with \(c_i/\hat{p}_{k(i)}\) as the weight). If \(\hat{p}_k\) is too small, variance explodes — clip propensities and report effective sample size.
+
+**From scratch (Python, extend `ermetrics` / `erml`):**
+1. Synthetic click log: items with true \(r_i\), positions 1..K with known \(p_k\), Bernoulli clicks.
+2. Naive mean click-by-item vs IPS-weighted estimate; show naive ranks popular-at-top items higher.
+3. Pytest: recover ranking order within tolerance when \(p_k\) known; fail if unweighted “wins.”
+4. Optional SQL: `SUM(click/propensity)` grouped by item on a tiny BQ-shaped table.
+
+**Go helper:** `IPSWeight(click, propensity float64) (float64, error)` with zero/negative propensity errors; table tests for clip + empty.
+
+**Gate:** derive why \(\mathbb{E}[c/p]=r\) under the examination model; run the toy; name one production failure (propensity misspecification). Owner for systems use: **9c.0** / **9c.2** Search pack — do not re-derive elsewhere.
+
+
+### M.TS Classical time series as used (required before 9c.3 ETA / demand literacy)
+
+Not a forecasting PhD. Enough to know when **BQML ARIMA_PLUS / seasonal** beats a default DL stack on sparse or strongly seasonal series.
+
+#### Concept (derive / sketch)
+- **Trend** \(T_t\): slow level change. **Seasonality** \(S_t\): repeating calendar pattern (hour-of-week, week-of-year). **Holiday / event** effects: sparse spikes not in a fixed seasonal period.
+- Additive cartoon: \(y_t = T_t + S_t + R_t\). Multiplicative when amplitude scales with level.
+- **Residual** \(R_t\): what remains after removing \(T,S\). Autocorrelation of residuals (ACF idea): if large lag-1 ACF remains, the classical decomposition is incomplete — or you need a better model.
+- Train/test: **time cut only** (already **M.ML**); no random shuffle of a series.
+
+#### From scratch (Python)
+1. Tiny weekly series (e.g. 52–104 points) with planted trend + day-of-week seasonality + noise.
+2. Moving-average / STL-lite or seasonal differencing sketch; plot or print components.
+3. Residual lag-1 correlation vs raw series (stdlib/NumPy — no “magic library proves understanding”).
+4. One paragraph: when BQML seasonal ARIMA is the right first ship vs tabular/seq DL (data length, interpretability, cold series count).
+
+**Go:** optional metric helper for MAE on a held-out tail; not a second forecasting engine.
+
+**Gate:** decompose one series by hand-ish code; state when classical seasonal beats DL for Northstar ETA/demand. Depth for many-series ops / causal forecast → **9c.0** / **9c.3**; full OR/causal → Part 12.
+
+
+### M.CAUSAL Causal / uplift lite (required before Marketing lift & causal-forecast slogans)
+
+Experiments (**9c.7**) measure interventions under randomization. This module is the **slogan + one toy** so case studies that say “uplift / causal forecast / incrementality” are not empty words. Full DAGs / identification → **T-CAUSAL** / **12.S14**.
+
+#### Concept
+- **Potential outcomes:** for unit \(i\), \(Y_i(1)\) under treatment, \(Y_i(0)\) under control. You observe only one. ATE \(= \mathbb{E}[Y(1)-Y(0)]\).
+- **A/B / holdout** ≈ randomized assignment → difference in means is unbiased for ATE (under SUTVA / no interference caveats you can name in one line).
+- **Observational** data: treatment correlates with confounders → raw difference ≠ causal effect.
+- **Uplift** = conditional treatment effect: who benefits from the message/offer, not who has high baseline \(Y\). Targeting high-\(Y\) responders without uplift wastes budget on always-buyers.
+
+#### From scratch (Python + table)
+1. Two-arm toy table (20–40 rows): `treated`, `outcome`, optional confounder.
+2. Randomized case: show \(\bar{Y}_1-\bar{Y}_0\) recovers planted ATE.
+3. Confounded case: same estimator is wrong; state what an experiment would fix.
+4. Uplift cartoon: segment with high baseline vs high *lift* — different targeting lists.
+5. SQL optional: `AVG(outcome) GROUP BY treated` on the toy.
+
+**Go:** optional `DeltaMeans` helper with table tests; not a causal library.
+
+**Gate:** define potential outcomes in one paragraph; compute the two-arm delta by hand and in code; write “Experiments ≠ full causal (T-CAUSAL / 12.S14)” on the ledger when a case study claims observational causality. Owner for product use: **9c.0** / Marketing pack / 9c.3.
+
+
 ## Part 0 — Day-zero: billing, IAM core, and how we design
 
 **Why first:** You asked for billing at the start. Google’s landing zone series also starts with organization + billing account. You cannot deploy industry software without this. IAM is here because billing without IAM is an open checkbook.
@@ -3554,7 +3684,76 @@ Full one-line index is **Appendix M** (309 studies). You do not re-implement 309
 
 Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → **derive the metric or estimator you use** → offline evaluation → serving → monitor/rollback/cost → one named case. Metrics, leakage, skew, ranking utility, and FPR that appear in the slice are **theoretical** topics: complete floor, not “call Vertex.”
 
-**M.ML is required before this part.** Classical zoo appears **once**, at the end of 9c (after 9c.7). PMLE product depth for scale/serve/pipeline/monitor is **9c.7**; low-code buy-vs-build is **9b.4**.
+**M.ML** (incl. IPS), **M.TS**, and **M.CAUSAL** lite are required before the families that gate on them; see **9c.0**. Classical zoo appears **once**, at the end of 9c (after 9c.7). PMLE product depth for scale/serve/pipeline/monitor is **9c.7**; low-code buy-vs-build is **9b.4**.
+
+### 9c.0 Case-study atlas — unified concepts & prerequisites
+
+Source index: Engineer1999 catalog → **Appendix M** (309 one-liners). Teaching lives in **families** (9c.1–9c.7 + Northstars + classical zoo). This section lists **only gaps** that industry case studies require beyond **M.ML** (+ IPS), **M.TS**, **M.CAUSAL**, 9c.1–9c.7, and the zoo — unified across families, one home each. Do **not** treat Appendix M as a second course; do not paste article text here.
+
+#### Unified gap table (highest-priority MISSING / PARTIAL)
+
+| Concept | Kind | Why case studies need it | Owner (learn under) | Gate (complete means) | Defer? |
+|---|---|---|---|---|---|
+| Position bias + IPS estimator | Math | Click ≠ relevance; Search/Recommend packs name IPS | **M.ML** IPS derive → apply in **9c.2** / Search pack | Derive propensity + HT-style IPS; synthetic click-log toy green | No |
+| Diversity / coverage / multi-objective feed | Math / Theory | Anti-popularity collapse; engagement × satisfaction × safety | **9c.2** (+ Recommend pack) | Formalize 2+ objectives + one re-rank diversity rule on a toy list | No (literacy) |
+| Contextual bandit beyond slogan (regret; cascade literacy) | Theory | Module order / ranked lists (Instacart, Expedia) | **9c.2**; cascade one-pager | State regret vs CTR; cascade-bandit literacy paragraph | Full RL → **Part 12 / T-RL** |
+| BM25 / inverted-index hybrid IR primer | Academic / CS | When semantic/ANN helps vs lexical | **9c.2** Search pack | Score 3 docs with BM25-shaped formula; name hybrid handoff | Depth → 12.S15-C |
+| Ads auction literacy (bid × quality) | Industry | Ads serving constraint | Search / LTR / ads pack | Rank by bid×quality on a 5-ad toy; no mechanism-design PhD | Mechanism design PhD → defer |
+| Deep CTR / wide&deep literacy | Theory | Ads CTR beyond logistic | Search pack | Name wide (memorization) vs deep (generalization); not from-scratch net | Full DL → T-DL / 12.S16 |
+| Classical TS (trend/seasonality/holiday) vs DL | Math | Ocado/Zalando-class; BQML path | **M.TS** → **9c.3** | Decompose tiny series; when ARIMA/seasonal beats DL | No |
+| Causal forecasting / uplift / potential outcomes lite | Theory | Lyft causal forecast; marketing incrementality | **M.CAUSAL** → **9c.3** + Marketing pack | Two-arm toy; holdout vs observational named | Full DAGs → **T-CAUSAL / 12.S14** |
+| Supply–demand + constrained opt with ML predictions | Math / Industry | Pricing / dispatch | **9c.3** literacy | State ML forecast as input to a capacity/price constraint | Solvers → **T-OPT** / 12.S14 |
+| Weak / semi-supervised labels; graph CC for fraud rings; GNN literacy | Theory / CS | Swiggy/Zillow/Grab-class | **9c.4** | Connected-components on a toy graph; weak-label slogan + gate | Full GNN course → Part 12 |
+| Sequence labeling (entity F1); GEC as structured prediction literacy | Academic | Grab tagging; Grammarly-class | NLP pack / **9c** | Entity-F1 on 5-token toy; GEC = structured pred one-liner | Full GEC course → defer |
+| Metric learning / contrastive for CV retrieval; on-device/edge literacy | Theory / Industry | Image search; Apple-class edge | **9c.6**; open **T-CV / T-SIGNAL** | Contrastive pair cartoon + edge constraints paragraph | CV/DSP PhD → T-* |
+| Survival/hazard / CLV depth; lookalikes; send-time as constrained opt | Math / Industry | Churn/CLV/notify cases | Marketing pack | Hazard slogan + lookalike similarity + frequency-cap constraint | Deep survival → Part 12 |
+| Entity resolution; marketplace pricing themes (Other) | Industry | Walmart ER; Lyft pricing | Attach to Forecast/NLP when promoted; else **index-only** | One-liner owner if promoted | Until promoted |
+
+**ALREADY (cross-link only — do not rewrite):** empirical risk / leakage / skew / metrics (**M.ML**, 9c.1); NDCG / pairwise LTR / two-tower+ANN / multi-stage funnel (**9c.2** + zoo); pinball/quantile ETA (**9c.3**); cost-weighted fraud + HITL (**9c.4**); RAG/LoRA slice (**9c.5**); Vision/Speech buy-vs-build (**9c.6**); serve/monitor/CT/experiments (**9c.7**).
+
+#### Academic prerequisite ladder (before opening each family)
+
+| Before family | Must already have | Points at (no duplicate teaching) |
+|---|---|---|
+| Any 9c family | Empirical risk, losses, metrics, leak-free splits | **M.ML**; features/skew **9c.1** |
+| Recommend / Search / ads | Vectors/cosine; ranking metrics; IPS gate | Part M vectors; **M.ML** IPS; **9c.2** |
+| Forecast / ETA | Regression + quantile idea; classical TS gate | **M.ML** MSE; **M.TS**; **9c.3** |
+| Fraud / HITL | Imbalance metrics; graph CC literacy when rings appear | **M.ML**; **9c.4** |
+| LLM / RAG | Softmax/LSE numerics; embeddings slogan | **M.NS**; **9c.5** (not 12.S17 first) |
+| NLP / support | Multiclass F1; DLP awareness | **M.ML**; Part 7; NLP pack |
+| CV / speech | Serving path first; open T-CV/T-SIGNAL as needed | **9c.6**; F1 tensors as used |
+| Marketing / CLV | Holdout lift + causal-lite gate | **M.CAUSAL**; Marketing pack; Experiments **9c.7** |
+| Discrete/systems toys used in packs | Asymptotics / bloom / queues as encountered | **F1**, **8.1**, Parts **2–5** |
+
+#### Industry prerequisite ladder (GCP product-patterns)
+
+GCP products already taught in family packs / 9b / 9c.7 stay as-is (BQ, Feature Store, Vector Search, Run/Endpoint, Pipelines, Monitoring, Experiments, Model Armor, Vision/Speech SKUs). **Add only missing patterns:**
+
+| Pattern | Why | Where |
+|---|---|---|
+| Real-time action stream → **Pub/Sub** → Feature Store (ranker features) | Homefeed engagement freshness (Pinterest-class) | **9c.2** + Recommend pack lab note |
+| Inventory / event stream → Pub/Sub → Feature Store | Availability already sketches this — keep one home | Availability pack / **9c.1** |
+| Batch score → BQ → Scheduler/Tasks notify | Marketing serving (already in pack) | Marketing pack — ALREADY |
+
+#### Explicit DEFER → Part 12 / T-*
+
+- Full **RL** for Netflix-style budget-constrained recs → **T-RL** / **12.S14** (bandits stay in 9c.2).
+- Full **transformer-from-scratch** / attention derive → **T-DL** / **12.S16–S17** (RAG slice stays 9c.5).
+- Full **GNN** course → Part 12 (9c.4 = CC + GNN literacy only).
+- **Kaldi / DSP PhD** → **T-SIGNAL** / **12.S15**.
+- Multimodal gen portfolios → **12.S17**.
+- Combinatorial **OR solvers** beyond literacy → **T-OPT** / **12.S14**.
+- Formal causal DAGs / IV / DiD → **T-CAUSAL** / **12.S14** (**M.CAUSAL** is lite only).
+
+#### Full-density owners (do not duplicate)
+
+| Topic | Density home | Apply / systems home |
+|---|---|---|
+| IPS / position bias | **M.ML** (derive + toy) | 9c.2 / Search + Recommend packs |
+| Classical TS | **M.TS** | 9c.3 + optional zoo cross-link |
+| Causal / uplift lite | **M.CAUSAL** | 9c.3 + Marketing pack |
+| BM25 primer, auction, deep CTR, diversity, bandit regret, weak labels, seq labeling, metric learning, survival/lookalike | Literacy rows in gap table above | Named owner column |
+
 
 ### 9c.1 Features, labels, skew
 
@@ -3570,12 +3769,14 @@ Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → *
 - Bandits / explore-exploit (Instacart, Trivago, DoorDash homepage). Feature flags (8.1) are not bandits.
 - Cases (index): Netflix recs, Instagram Explore, Etsy ranker, Airbnb LTR, Twitter algorithm — **worked HLD packs below** for Netflix + Etsy/Airbnb-class LTR.
 - **Northstar implementation:** § **9c.2 Northstar — Ranker** (full, not a one-liner).
+- **9c.0 gates (do not re-derive here):** IPS + position bias → **M.ML** IPS; diversity / multi-objective re-rank → 9c.0 table; contextual-bandit regret + cascade literacy → 9c.0 (full RL → T-RL); BM25/hybrid IR, ads auction, deep CTR literacy → Search pack via 9c.0; real-time action stream → Pub/Sub → Feature Store pattern → 9c.0 industry ladder.
 
 ### 9c.3 Forecast, ETA, demand
 
 - Time series, cascade/ensemble (DoorDash holidays), DeepETA-class tabular/seq models.
 - Cases: Uber DeepETA, Swiggy delivery time, Grubhub volume — **worked pack: Uber DeepETA**.
 - **Northstar implementation:** § **9c.3 Northstar — ETA**.
+- **9c.0 gates:** classical TS decompose → **M.TS**; causal-forecast / uplift lite → **M.CAUSAL**; supply–demand + constrained-opt literacy → 9c.0 (solvers → T-OPT).
 
 ### 9c.4 Fraud, graph, HITL
 
@@ -3583,8 +3784,11 @@ Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → *
 - Score **tokens**, never PAN. PCI path stays Part 5.
 - Cases: Stripe Radar — **worked pack below**.
 - **Northstar implementation:** § **9c.4 Northstar — Fraud-on-tokens**.
+- **9c.0 gates:** weak/semi-supervised labels; graph connected-components for fraud rings; GNN literacy only (full GNN → Part 12) — see 9c.0 table.
 
 ### 9c.5 LLM applications (GCP RAG slice)
+
+- **9c.0 / defer:** multimodal gen portfolios and full transformer-from-scratch stay **12.S17** / T-DL — not new 9c.5 lessons; appendix concepts decompose in **9c.0**.
 
 Units (institutional GenAI progression, **this owner only** for the initial track): (1) generative vs discriminative; (2) LLM tokenization/embeddings/context; (3) PEFT/LoRA as adapters — derive the low-rank update; (4) RAG: retrieve → augment → generate; index IVF/HNSW as used (**T-NLP**); (5) agents: tool loop, memory, authz (11b P5/P9); (6) production: latency, cost, eval, refusal, logging without PII.
 
@@ -3598,6 +3802,7 @@ Units (institutional GenAI progression, **this owner only** for the initial trac
 - Batch vs online. Cases: Netflix in-video search, Etsy image search, Dropbox OCR, speech/music.
 - Open **T-CV** / **T-SIGNAL** for convolution, sampling, FT as used — then serve; do not start a vision PhD before the serving path.
 - Architect literacy + Agent Platform custom job / prebuilt Vision/Speech APIs; not a CV PhD. Full HLD pack under families below; no second Northstar required in the initial track.
+- **9c.0 gates:** metric learning / contrastive retrieval literacy; on-device/edge ML literacy — see 9c.0; depth → T-CV / T-SIGNAL.
 
 ### 9c.7 Platform, experiments, serving (PMLE 2–6 depth)
 
@@ -3747,6 +3952,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: Recommend / feed
 
+**9c.0 prereq gates:** IPS + diversity / multi-objective — see **9c.0** / **M.ML** IPS (do not re-teach).  
 **Problem.** Personalized feed or “recommended for you” under engagement + satisfaction + safety constraints.  
 **Data.** Impressions, clicks, dwell, hides, follows; catalog metadata; social graph if any.  
 **Labels.** Implicit (click) vs explicit (rating); position bias must be modeled or randomized.  
@@ -3762,6 +3968,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: Search / LTR / ads
 
+**9c.0 prereq gates:** IPS (M.ML); BM25/hybrid IR primer; ads auction literacy; deep CTR / wide&deep literacy — see **9c.0** (one home each).  
 **Problem.** Rank documents/listings/ads for a query under relevance + revenue + fairness.  
 **Data.** Query, context, impressions, clicks, conversions, bid (ads).  
 **Labels.** Graded relevance or click with position debias (IPS).  
@@ -3777,6 +3984,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: Forecast / ETA / demand
 
+**9c.0 prereq gates:** classical TS (**M.TS**); causal-forecast lite (**M.CAUSAL**); supply–demand literacy — see **9c.0**.  
 **Problem.** Predict time, demand, or volume for planning and UX promises.  
 **Data.** Event times, covariates (weather, holidays, capacity).  
 **Labels.** Realized time/volume; censored observations documented.  
@@ -3792,6 +4000,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: Fraud / HITL
 
+**9c.0 prereq gates:** weak/semi-sup labels; graph CC; GNN literacy — see **9c.0** / **9c.4**.  
 **Problem.** Stop abuse/fraud under review capacity and false-positive harm.  
 **Data.** Account/device graphs, velocities, payment tokens, disputes.  
 **Labels.** Chargeback/fraud with delay; partial labels.  
@@ -3822,6 +4031,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: NLP / support
 
+**9c.0 prereq gates:** sequence labeling / entity F1; GEC as structured-prediction literacy — see **9c.0** (not a full GEC course).  
 **Problem.** Route, classify, or summarize support tickets; suggest replies.  
 **Data.** Tickets, macros, CSAT.  
 **Labels.** Queue/topic; resolution quality.  
@@ -3837,6 +4047,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: CV / speech serving
 
+**9c.0 prereq gates:** metric learning / contrastive; on-device/edge literacy — see **9c.0** / **9c.6**.  
 **Problem.** Online or batch perception (OCR, image search, ASR) under latency/cost.  
 **Data.** Images/audio + labels/transcripts.  
 **Labels.** Boxes, transcripts, relevance.  
@@ -3852,6 +4063,7 @@ For **each** family: problem, data, labels, leakage, metric, serving, monitor, c
 
 #### Family: Marketing / CLV / notify
 
+**9c.0 prereq gates:** uplift / potential-outcomes lite (**M.CAUSAL**); survival/hazard + lookalike + send-time constrained-opt literacy — see **9c.0**.  
 **Problem.** Who to message, when, and with what offer under fatigue and unsubscribe.  
 **Data.** Purchases, visits, notify history.  
 **Labels.** Convert / CLV proxy; churn.  
@@ -4413,125 +4625,654 @@ Case studies (required reading before Part 11): Altostrat Media, Cymbal Retail, 
 
 ## Part 12 — Continuation (after 11b)
 
-Do **not** open this part until Northstar v1 and 11b are done or skip-tested. Pedagogy §§7–8 still apply. Python then Go. Theoretical floor is complete for every listed stage.
+Do **not** open this part until Northstar v1 and 11b are done or skip-tested. Pedagogy §§7–8 still apply. This part is the **single graph-ordered continuation** for graduate-depth math, ML, and CS that remain after the initial track closes — not a second parallel spine before 11b.
 
-**Skip-test:** if F–11b already confirmed the same artifacts, stamp the stage complete and do not re-teach. Approximate overlap: S12/S13 ↔ Part 2; S18 ↔ 3.2; S19 ↔ Part 4; S20 ↔ 3.0; S21 ↔ Part 8; S22 ↔ 9c.7; S23 ↔ 11b. All other stages are taught here in order.
+**Initial track closable without Part 12.** F–11b plus Northstar/11b evidence is enough to close PCA/PMLE literacy for the initial course. Part 12 is optional continuation depth: full algebra/calculus/spectral work, DSP/Kaldi gates, transformer-from-scratch, full RL/causal/OR, five GenAI portfolio systems, and S24 archive slices. Do not delay 11b for Part 12.
 
-**12.0 Evidence hierarchy.** Standards and official docs for behavior; university pages for order; textbooks/papers for derivations; tool docs for APIs. Blogs cannot create a stage. Families: Python/NumPy/pytest; Go tour/memory model/security; MIT 6.042/6.006/18.01/18.02/18.06/6.041; Stanford EE364, CS229, CS224N, CS231n, CS224S; CMU 15-445; Sutton & Barto; D2L; PostgreSQL docs; RFC 9110; gRPC; OWASP ASVS 5; NIST 800-63B; MIT 6.5840; Google SRE; Rules of ML; PMLE; NIST AI 600-1; OWASP LLM Top 10.
+**Language ownership (reminder).** Python first for math, numerical methods, probability/statistics, ML/DL, DSP/CV/NLP/ASR, and GenAI primitives (NumPy-level scratch before library shortcuts). Go first for DS/algo, DB toys, APIs, auth/middleware, concurrency, distributed systems, HLD/LLD labs, operations, and the control-plane capstone. Production ML is hybrid: model/eval in Python; service boundaries, gateways, evaluators, registries, rollout, and observability in Go. Cloud/MLOps/vector DBs are tool-backed after the concept is clear. Cryptographic algorithms stay in the Go standard library or vetted packages — **never invent** a cipher, hash, password KDF, signature scheme, RNG, or TLS variant.
+
+**Skip-test (strengthen, do not re-teach).** If F–11b already confirmed the same artifacts, stamp the stage complete and do not re-teach. Approximate overlap:
+
+| Continuation stage | Initial-track owner | What skip-test confirms |
+|---|---|---|
+| S12 / S13 | Part 2 (SQL + Cloud SQL / engine literacy) | FDs, joins, transactions, pagination, planner/`EXPLAIN` literacy as gated in Part 2 |
+| S18 | 3.2 (gRPC / contracts) | Resource semantics, protobuf compatibility, stream/deadline contract tests |
+| S19 | Part 4 (auth / ASVS map) | NIST AAL ladder, OAuth BCP attacks, ASVS 5 control map as gated in 4.2–4.10 |
+| S20 | 3.0 + **8.1 toys** | SOLID/hexagonal; MapReduce/KV/Raft toys — sharded KV only if 8.1 omitted it |
+| S21 | Part 8 (Donne Martin gated studios) | Six-step HLD/LLD dossiers already in Part 8; Part 12 only indexes residual primer problems |
+| S22 | 9c.7 (+ 9c.0 atlas) | PMLE pipeline/monitor block; remainder is ML Test Score + silent-failure restore |
+| S23 | 11b ORR | Control-plane P0–P10 + operational-readiness review |
+
+All other stages (S0–S11, S14–S17, S24, and any unconfirmed residual on skip-tested stages) are taught here in graph order. A readiness test may compress already mastered material but must not reorder a dependency.
+
+### 12.0 Evidence hierarchy and research families
+
+Use sources in this order: **(1)** current standards and official docs for behavioral contracts; **(2)** official university course pages for prerequisite order and assessment shape; **(3)** canonical textbooks and peer-reviewed papers for derivations; **(4)** maintained tool docs for APIs. A blog, vendor tutorial, or preserved note may illustrate a topic but **cannot** overrule a current standard or create a new stage. At teach time, follow only the source portions named by the active sub-topic and record version or access date on the artifact.
+
+| Family | Anchors (pointer) | Imports into continuation |
+|---|---|---|
+| Python / numerical | Python tutorial; NumPy basics; pytest | Shape/dtype/strides; broadcast; copy vs view; tolerance tests |
+| Go | Go docs/tour; memory model; diagnostics; security | Modules, generics, fuzz, concurrency visibility, vuln management |
+| Discrete math / algorithms | MIT 6.042J; MIT 6.006 | Proof before structures; invariants; paradigms; unseen exams |
+| Continuous math | MIT 18.01SC / 18.02SC / 18.06 | Limits→derivatives→integrals; systems/spaces/eigen/SVD |
+| Probability / optimization | MIT 6.041SC; Stanford EE364A/B | RV→inference; convexity/duality/KKT before stochastic methods |
+| Classical ML / RL / causality | Stanford CS229; scikit-learn guide; Sutton & Barto; Brady Neal CI | Supervised→unsupervised; bandits→MDP; estimand before DAG/IV |
+| Signals / CV | MIT 6.003; IPOL; Szeliski; Stanford CS231n | LTI/transforms/sampling before DSP; formation before features |
+| NLP / IR / speech | Stanford CS224N; IR book; Stanford CS224S | Vectors→transformers; Boolean→dense; signal→HMM/CTC/E2E |
+| Deep learning | Dive into Deep Learning; Goodfellow et al. | Scratch-before-framework; MLP/CNN/RNN/attention |
+| GenAI programme shape | IIT Kharagpur GenAI & Agentic AI public EPGC page | Official block order and five named portfolio systems |
+| Retrieval / RAG eng. | FAISS wiki; Sentence Transformers retrieve-rerank; Ragas | Exact search→ANN; bi-encoder→rerank; component + e2e eval |
+| Databases | PostgreSQL docs; CMU 15-445/645 | SQL before internals; pages/indexes/MVCC/WAL/replica |
+| APIs | RFC 9110; gRPC concepts; protobuf guide; Google AIPs | Safety/idempotency; streams/deadlines; field compatibility |
+| Identity / appsec | OWASP ASVS 5; NIST 800-63B; OAuth BCP 240; Go security | AAL; PKCE/refresh rotation; fuzz and reachable-vuln checks |
+| Distributed / SRE | MIT 6.5840; Google SRE book/workbook | MapReduce/KV/Raft/sharded-KV; SLI/SLO/error budgets |
+| Production ML / GenAI risk | Rules of ML; PMLE guide; NIST AI 600-1; OWASP LLM Top 10 | Baseline-first; pipeline tests; Govern-Map-Measure-Manage |
+
+### 12.0.1 Pace table (planning aid, not mastery)
+
+Calendar time plans work; mastery gates do. Roughly 20–25 focused hours/week for a ~12-month intensive continuation, or 10–15 for a ~24-month sustainable path. Slow down when a prerequisite is shaky; accelerate only with unseen checks.
+
+| Phase | Stages | Share of continuation core | Career evidence |
+|---|---|---:|---|
+| Foundations | S0–S4 | 15% | Repos, Python numerical basics, tested Go, proof/DS notes |
+| Mathematical and algorithmic core | S5–S10 | 20% | Numerical kernels, Go DS packages, stats/experiment tools |
+| ML, data, DB, domain primitives | S11–S15 | 25% | Scratch ML, SQL/engine labs, optimizer and DSP/NLP/CV primitives |
+| Deep learning and GenAI | S16–S17 | 15% | Backprop/attention, evaluated retrieval and agent workflows |
+| Services, security, architecture, prod ML | S18–S22 | 15% | Secure Go API, auth package, HLD/LLD dossier, prod-ML slice |
+| Integrated capstone | S23 | 10% | Operable control plane + ORR (often skip-tested via 11b) |
+| Optional archive | S24 | outside core | Only after S23 or a documented CORE dependency |
+
+Every **8–12 weeks** of continuation work, harden one existing artifact into portfolio evidence (problem, setup, derivation/architecture, tests, measurements, failure analysis, security, short demo). Portfolio hardening must not create a parallel course or bypass the graph.
+
+### 12.0.2 Learner-ledger fields (continuation)
+
+Compact stamp still applies (`part · sub-topic · ramp · unlocked · shaky · postponed · next`). For Part 12 stages also record:
+
+| Field | Meaning |
+|---|---|
+| `stage` | Active S0–S24 id |
+| `owner_node` | Canonical owner (see 12.Graph) |
+| `sub_topic` | Exact heading / unit inside the stage |
+| `ramp` | Current difficulty rung |
+| `skip_test` | `pass` / `partial` / `n/a` with initial-track evidence pointer |
+| `artifact` | Path or id of required gate artifact |
+| `shaky` | Tools/ideas that failed unseen transfer |
+| `postponed` | Challenges deferred with reason |
+| `next_gate` | Concrete next unseen check |
+
+No unit advances on reading or verbal confidence alone.
+
+---
+
+### 12.Graph — Knowledge-graph owner map
+
+One owner per concept. Later appearances are recall, transfer, or integration — not a second full lesson. Edge literacy: `requires` (teach A first), `implements` (B is the coding lab for A), `strengthens` / `contrasts` / `revises` (brief recall after both unlocked).
+
+| Node | Owns | Code owner | Primary stages | Key `requires` literacy |
+|---|---|---|---|---|
+| `BASE` | Hardware, files, shell, Git, HTTP/JSON vocabulary | Go shell/repo labs | S0 | — |
+| `PY-CORE` | Python for numerical/ML work, NumPy, pytest | Python | S1 | `BASE` |
+| `GO-CORE` | Go syntax, errors, tests, interfaces, concurrency, HTTP/gRPC | Go | S2, S6, S18 | `BASE` |
+| `MATH-FUND` | Arithmetic, algebra, functions, coordinates, trig | Python | S1, S3, S5 | `PY-CORE` |
+| `PROOF-DISCRETE` | Logic, sets, induction, counting, graphs, automata gate | Go CS labs; Python where feeding ML | S4 | `MATH-FUND` |
+| `MATH-LA` | Vectors, matrices, eigen, SVD/PCA, spectral | Python | S5, S7 | `MATH-FUND` |
+| `MATH-CALC-NUM` | Limits, gradients, ODE, finite differences, RK4 | Python | S9, S14 | `MATH-LA` |
+| `PROB-STAT-INFO` | Probability, inference, bootstrap, information theory | Python | S10, S14 | `MATH-CALC-NUM` |
+| `ML-CORE` | Classical ML, ranking, bandits, causal framing | Python first | S11, S14 | `MATH-LA`, `PROB-STAT-INFO` |
+| `DL-NLP-CV-AUDIO` | Nets, CNN/RNN/transformers, DSP/CV/NLP/ASR | Python first | S15, S16 | `ML-CORE` |
+| `GENAI-RAG-AGENTS` | Prompting, RAG, agents, PEFT, GenAI safety | Python primitives; Go gateways/evals | S17 | `DL-NLP-CV-AUDIO` |
+| `DS-ALGO` | Arrays→graphs, DP, hard practice | Go | S4, S6, S8, S21 | `GO-CORE`, `PROOF-DISCRETE` |
+| `DB-SQL` | Relational algebra, SQL, transactions | SQL + Go | S12 | `GO-CORE` |
+| `DB-ENGINE` | Pages, indexes, MVCC, WAL, replica, PITR | Go + Postgres labs | S13 | `DB-SQL`, `DS-ALGO` |
+| `API-SVC` | REST, gRPC, protobuf, schema evolution | Go | S18 | `GO-CORE`, `DB-SQL` |
+| `SEC-AUTH` | Threat models, authn/z, sessions, OAuth/OIDC, secrets | Go | S19 | `API-SVC`, `DB-SQL` |
+| `ARCH-HLD-LLD` | HLD/LLD, SOLID, DDD, patterns, ADRs | Go | S20 | `API-SVC`, `SEC-AUTH`, `DB-ENGINE` |
+| `DIST-OPS` | Caches, queues, consistency, SLOs, rollout | Go | S20, S22 | `ARCH-HLD-LLD`, `SEC-AUTH` |
+| `ML-SYS-MLOPS` | Pipelines, registry, serving, drift, PMLE, case studies | Hybrid | S22 | `ML-CORE`, `GENAI-RAG-AGENTS`, `API-SVC`, `DIST-OPS` |
+| `SDP-OOD` | System-design and OOD practice bank | Go | S21 | `ARCH-HLD-LLD`, `DS-ALGO`, `SEC-AUTH`, `DIST-OPS` |
+| `NASIKO-CAPSTONE` | P0–P10 control plane → **11b** | Go | S23 | `SDP-OOD`, `ML-SYS-MLOPS`, `SEC-AUTH`, `DB-ENGINE`, `DIST-OPS` |
+| `TOOLS` | Docker/K8s/Terraform/vector DBs/OTEL/MLflow… | Tool labs at first use | first real use | never a sightseeing module |
+| `ARCHIVE` | Game/medical/mechanical/deep pure math/extra NT | None unless pulled | S24 | CORE dependency only |
+
+**Structural ownership rule.** New material about Python/Go mechanics → S1 or S2/S6; proof/math/probability/optimization → S3–S10 or S14; classical ML → S11; SQL/engine → S12–S13; DSP/image/NLP/speech → S15; neural/transformer mechanics → S16; prompting/RAG/agents → S17; API behavior → S18; identity/appsec → S19; architecture/distributed → S20; open design problems → S21; MLOps/governance → S22; integrated product → S23. Legal traversal: `S0 → … → S23`, with S24 closed by default.
+
+---
 
 ### 12.S0–S4 Foundations
-**S0** Bits/bytes, CPU/memory/disk, paths, process vs program, env, ports, DNS/HTTP/JSON words, shell, Git. Trace one command and one HTTP request. Gate: recover broken path, env, branch, local HTTP; setup runbook.
 
-**S1** Python: literals → mutability → control → functions → collections → venv → exceptions/IO → pytest → NumPy. Predict shape/dtype/strides/broadcast/copy-vs-view. **Skip-test:** numerical stability was **M.NS**. Gate: tested utility; loop and vectorized forms agree.
+#### 12.S0 Zero setup — `BASE`
 
-**S2** Go: module → types → control → arrays/slices/maps → strings/runes → structs → errors → table tests → vet/benchmarks. Integer wrap vs Python bigint is **M.NS**. Gate: command + package pass tests, vet, format, benchmark explanation.
+**Theory.** Bits/bytes; CPU–memory–storage; files vs directories; absolute/relative paths; process vs program; environment variables; ports; DNS/HTTP/JSON vocabulary; shell composition, exit status, standard streams; Git working tree/index/commit/remote; reproducible repository layout.
 
-**S3** Fractions, algebra, inequalities, polynomials, logs, functions as rule/table/graph/code; domain/inverse/composition. Gate: piecewise evaluator; counterexamples to false inverses; fresh parameterized problems.
+**Implementation.** Trace one command from shell parse to process exit and one HTTP request from name lookup to response. Repo layout with a first test loop.
 
-**S4** Logic, proof techniques, sets, induction, counting, recurrences, graphs, state machines; arrays/stacks/queues/maps with invariants. Gate: proof portfolio + tested structures; unseen problem that **chooses** the technique.
+| | |
+|---|---|
+| **Prerequisites** | None (entry) |
+| **Artifacts** | Setup runbook that works from a clean directory; recovery notes |
+| **Gate** | Recover deliberately broken path, env, Git branch, and local HTTP call |
+| **Research anchors** | Go install/env docs; shell/`git` official manuals |
+
+#### 12.S1 Python numerical base — `PY-CORE`, `MATH-FUND`
+
+**Order.** Literals and numeric representation → names/mutability → conditions/loops → functions and contracts → strings/lists/tuples/dicts/sets → modules and venvs → exceptions and file/JSON I/O → pytest → NumPy `ndarray`.
+
+**Array discipline.** Before execution, predict `shape`, `ndim`, `size`, `dtype`, strides/axis meaning, indexing result, broadcasting result, and copy/view aliasing. Cover dtype overflow, floating-point representation error, tolerance assertions, seeded generators, vectorization, and elementwise vs matrix multiplication.
+
+**Skip-test note.** Numerical-stability *policy* and floating-point contracts already gated in **M.NS** — recall, do not re-derive the whole stability chapter.
+
+| | |
+|---|---|
+| **Prerequisites** | S0 |
+| **Artifacts** | Tested numerical utility package (loop form ≡ vectorized form) |
+| **Gate** | Agreement on normal, empty, boundary, aliasing, and non-finite inputs |
+| **Research anchors** | Python tutorial; NumPy fundamentals; pytest |
+
+#### 12.S2 Go programming base — `GO-CORE`
+
+**Order.** Module/package/function → scalar types and conversions → control flow → arrays/slices/maps → strings/bytes/runes → structs and zero values → errors and wrapping → table tests → format, vet, benchmarks.
+
+**Discipline.** Trace slice length/capacity/backing arrays and map missing-value behavior; reject unchecked errors and accidental Unicode byte assumptions. Integer wrap vs Python bigint remains an **M.NS** contrast, not a second numerics course.
+
+| | |
+|---|---|
+| **Prerequisites** | S0 |
+| **Artifacts** | One small command + one package |
+| **Gate** | Table tests, edge cases, `go vet`, formatting, and a benchmark *explanation* |
+| **Research anchors** | Tour of Go; Effective Go (supplementary); Go diagnostics |
+
+#### 12.S3 Algebra and functions — `MATH-FUND`, `PY-CORE`
+
+**Order.** Fractions, ratios, units, estimation → equations, inequalities, absolute value → exponents/logs → polynomials, sequences → relations and functions. Represent each function as rule, table, graph, mapping, and code; distinguish domain, codomain, range, inverse, and composition. Top rung combines algebraic structure with a prior numerical representation — not blind substitution.
+
+| | |
+|---|---|
+| **Prerequisites** | S1 |
+| **Artifacts** | Piecewise expression evaluator; inverse/composition counterexample set |
+| **Gate** | Fresh parameterized problems; false-inverse counterexamples |
+| **Research anchors** | Continuous-math family entry via algebra texts; MIT 18.01SC readiness |
+
+#### 12.S4 Proof, discrete math, and basic DS — `PROOF-DISCRETE`, `DS-ALGO`, `GO-CORE`
+
+**Order.** Propositions/quantifiers → direct, contrapositive, contradiction, counterexample → sets/functions/relations → induction and invariants → counting and pigeonhole → recurrences → graphs and state machines → arrays/stacks/queues/maps in Go. Every implementation states its representation invariant and proves preservation by each operation.
+
+| | |
+|---|---|
+| **Prerequisites** | S2, S3 |
+| **Artifacts** | Short proof portfolio + tested Go structures |
+| **Gate** | Unseen problem that **chooses** the technique or structure (not told) |
+| **Research anchors** | MIT 6.042J; Book of Proof–class logic/sets coverage |
+
+---
 
 ### 12.S5–S10 Mathematical and algorithmic core
-**S5** Coordinates, norms, Euclidean/Manhattan/cosine, projections, transforms. Gate: kernels without NumPy first, then compare.
 
-**S6** Pointers, structs, interfaces, generics; lists, BST, heap, union-find, hash table; nil-interface, aliasing. Gate: packages with property tests and crossover benchmarks.
+#### 12.S5 Geometry, coordinates, and vectors — `MATH-FUND`, `MATH-LA`
 
-**S7** Elimination, rank, four subspaces, maps, least squares, eigen, SPD, SVD/PCA, condition. Predict rank/stability before compute. Gate: GE, QR, power iteration, PCA with residuals.
+Build Euclidean geometry and trigonometry into coordinates, affine combinations, norms, distance metrics, dot product, angles, projections, lines/planes, and transformations. Compare Euclidean, Manhattan, and cosine under scaling and translation.
 
-**S8** Asymptotics, binary-search invariant, sorts, heaps, hashing, BFS/DFS/topo/SCC, shortest paths, MST, DP, max-flow entry. Gate: algorithm package; mixed unseen problem that forces the paradigm.
+| | |
+|---|---|
+| **Prerequisites** | S3 |
+| **Artifacts** | NumPy-free vector/matrix kernels, then NumPy comparison |
+| **Gate** | Geometric invariants + degenerate cases |
+| **Research anchors** | MIT 18.06 entry; applied LA texts |
 
-**S9** Limits through FTC, series, gradient/Jacobian/Hessian, ODEs, interpolation, Euler/RK4. Floating-point **policy** is **M.NS**. Gate: analytic vs finite-difference gradients within a **justified** ulp/rel bound; solver with step-size failure explained.
+#### 12.S6 Go types and core data structures — `GO-CORE`, `DS-ALGO`
 
-**S10** Bayes, RVs, expectation, CLT, MLE/MAP, CIs, tests, bootstrap, entropy/CE/KL, experiment design. Gate: simulation verifies a derivation; A/B analyzer with power and multiple-comparison caveats.
+**Order.** Pointers and ownership-by-convention → structs/method sets → interfaces and composition → generics and constraints → linked structures → BST/balanced-tree concepts → heap/priority queue → union-find → hash table. Include allocation/escape intuition, nil-interface traps, comparable constraints, amortized growth, and mutation under aliasing.
+
+| | |
+|---|---|
+| **Prerequisites** | S2, S4 |
+| **Artifacts** | Reusable Go packages with property tests and fuzz seeds |
+| **Gate** | Complexity arguments + benchmarks that explain crossover points |
+| **Research anchors** | Go docs (interfaces/generics); CLRS/Sedgewick for structure contracts |
+
+#### 12.S7 Linear algebra and spectral methods — `MATH-LA`
+
+**Order.** Linear systems and elimination → span/independence/basis/dimension → four fundamental subspaces → linear maps → orthogonality/projection/least squares → determinants as structure (not a solver) → eigenvalues/eigenvectors/diagonalization → symmetric and SPD matrices → SVD/pseudoinverse/condition → PCA and low-rank approximation. **Predict** rank, nullity, shape, and stability before computing.
+
+| | |
+|---|---|
+| **Prerequisites** | S5 |
+| **Artifacts** | GE, QR/Gram-Schmidt, power iteration, PCA with residual checks |
+| **Gate** | Residuals, orthogonality, reconstruction error, adversarial ill-conditioning |
+| **Research anchors** | MIT 18.06; Strang ILA; Axler (rigor track) |
+
+#### 12.S8 Sorting, graphs, and complexity — `DS-ALGO`, `PROOF-DISCRETE`
+
+**Order.** Asymptotic models and lower-bound intuition → loop/recurrence analysis → binary-search invariant → elementary and divide-and-conquer sorting → heaps and selection → hashing/amortization → BFS/DFS/topo/SCC → shortest paths → MST/greedy exchange → DP → max-flow entry. Derive state, invariant, recurrence, or exchange argument **before** code.
+
+| | |
+|---|---|
+| **Prerequisites** | S4, S6 |
+| **Artifacts** | Go algorithm package with differential/property tests |
+| **Gate** | Mixed unseen problem whose constraints force the paradigm |
+| **Research anchors** | MIT 6.006; CLRS paradigm chapters |
+
+#### 12.S9 Calculus and numerical methods — `MATH-CALC-NUM`
+
+**Order.** Limits/continuity → derivative as local linearization → product/chain/implicit → optimization and curve behavior → definite integral and FTC → integration methods → sequences/series → partial/directional derivatives → gradient/Jacobian/Hessian → multiple-integral/vector-calculus intuition → ODE models → floating-point error, conditioning, stability → roots/interpolation/quadrature → Euler/RK4 and finite differences.
+
+**Policy recall.** Floating-point **policy** remains **M.NS** — this stage owns analytic vs numerical agreement within a *justified* bound.
+
+| | |
+|---|---|
+| **Prerequisites** | S7 |
+| **Artifacts** | Gradient checker; numerical integrator; RK4 toy with step-size failure notes |
+| **Gate** | Analytic vs finite-difference gradients within justified ulp/rel bound; stability explanation |
+| **Research anchors** | MIT 18.01SC / 18.02SC; numerical-methods chapter maps |
+
+#### 12.S10 Probability, statistics, and information — `PROB-STAT-INFO`
+
+**Order.** Sample spaces/counting/conditioning/Bayes → discrete and continuous RVs → joint/marginal/conditional → expectation/variance/covariance → transformations → concentration and LLN/CLT → Markov-chain entry → sampling and estimands → likelihood/MLE/MAP/sufficiency → CIs and tests → bootstrap/permutation → regression diagnostics → Bayesian updating → entropy/CE/KL/mutual information → experiment design and sequential caveats.
+
+| | |
+|---|---|
+| **Prerequisites** | S9 |
+| **Artifacts** | Samplers; MLE; bootstrap CI; A/B analyzer; log-loss/perplexity tools |
+| **Gate** | Simulation verifies a derivation (does not replace it); power, uncertainty, multiple-comparison, practical-significance checks |
+| **Research anchors** | MIT 6.041SC; Wasserman/Casella–Berger class coverage; Cover/Thomas for info theory |
+
+---
 
 ### 12.S11–S14 ML, databases, optimization, RL, causality
-**S11** Skip-test if 9c classical zoo + **M.ML** confirmed. Else: baseline → leakage/split → kNN → linear/logistic → trees → forests/boosting → clustering → PCA → ranking. Gate: scratch NumPy, gradient/likelihood checks.
 
-**S12** FDs, normalization, algebra, NULL/3VL, joins, CTE/windows, isolation, pagination. Skip-test if Part 2 confirmed. Gate: SQL transcript + parameterized client.
+#### 12.S11 Classical ML from scratch — `ML-CORE`
 
-**S13** Pages, TOAST, buffers, indexes, iterators, planner, MVCC, WAL, replica, PITR. Skip-test if DB-1–10 confirmed. Gate: toys + predicted `EXPLAIN`.
+**Skip-test.** If 9c classical zoo + **M.ML** confirmed, stamp complete and move on.
 
-**S14** Convexity, GD/momentum, KKT/duality, LP; bandits → MDP/Bellman → DP → MC → TD/Q; then causal estimands, DAGs, backdoor, IV/DiD/RDD. Gate: distinguish prediction vs intervention vs counterfactual; assumption-violation experiments.
+**Else teach order.** Problem/label/metric and a non-ML baseline → split strategy, leakage boundary, preprocessing fit scope, missingness, imbalance, calibration → kNN → linear/regularized regression → logistic/softmax and GLMs → naive Bayes/LDA/QDA → margins/kernels/SVM → trees → bagging/forests/boosting → clustering → GMM/EM → PCA/feature selection → anomaly detection → ranking/recommendation. Every family: objective, assumptions, optimization, complexity, calibration/uncertainty, failure slices, simpler-alternative criterion.
 
-### 12.S15 Domain gates (serial, not parallel)
-**S15-A DSP:** LTI, convolution, FT/DFT/FFT, sampling/aliasing, STFT/MFCC. Evidence: scratch DFT, Parseval, aliasing counterexample.
+| | |
+|---|---|
+| **Prerequisites** | S7, S10 |
+| **Artifacts** | Scratch NumPy models; leakage-safe pipeline; ablation/error taxonomy |
+| **Gate** | Gradient or likelihood checks; library comparison on a fresh dataset |
+| **Research anchors** | Stanford CS229; scikit-learn user guide |
 
-**S15-B Image/CV:** formation, 2D conv, edges, homography/RANSAC, stereo/flow, metrics. Evidence: scratch kernels before OpenCV; one reproducible experiment.
+#### 12.S12 SQL and relational correctness — `DB-SQL`, `GO-CORE`
 
-**S15-C NLP/IR:** Unicode, tokenize, edit distance, n-grams, BM25, eval, word vectors, BPE, WFST only as needed. Evidence: tokenizer, n-gram LM, BM25 evaluator.
+**Skip-test.** If Part 2 confirmed FDs/joins/transactions/pagination/client hygiene, stamp and skip full re-teach.
 
-**S15-D Speech/ASR:** framing, mel/MFCC, HMM/Viterbi, GMM-HMM-DNN, CTC, Conformer/Whisper overview, WER, Kaldi/OpenFst inspection. Evidence: feature pipeline, toy decoder, error taxonomy.
+**Else order.** Relations/keys/FDs/normalization → relational algebra → DDL/types/constraints → SELECT semantics and NULL/3VL → joins including semi/anti/outer → aggregation → subqueries/CTEs/recursion → windows → transactions/isolation → pagination and application access. Predict multiplicity and NULL behavior before execution.
 
-### 12.S16 Deep learning
-Tensors, perceptron, MLP, backprop **derive**, init/stability, CNN/ResNet, RNN/LSTM/GRU, attention from similarity, multi-head, positional, encoder/decoder/enc-dec, pretraining. Gate: scratch NumPy MLP+attention; finite-difference grads; overfit tiny batch; ablations.
+| | |
+|---|---|
+| **Prerequisites** | S2 (and S4 literacy) |
+| **Artifacts** | SQL edge-case transcript; parameterized Go `database/sql` client |
+| **Gate** | Context cancellation, transactions, pool limits, migration rollback, property-based relational checks |
+| **Research anchors** | PostgreSQL SQL docs; CMU 15-445 SQL-before-internals |
 
-### 12.S17 GenAI, RAG, agents
-Official block order: GenAI/LLMs → prompting/RAG → PEFT/alignment → multimodal/agents → deploy/safety.
+#### 12.S13 PostgreSQL internals — `DB-ENGINE`, `DS-ALGO`
 
-1. Generative modeling: AR factorization, decoding, KV cache, cost equations.  
-2. Prompts: hierarchy, tools/schemas, versioning; CoT is not an output contract.  
-3. Retrieval: lexical → dense → ANN → hybrid → rerank → pack. Measure retrieval first.  
-4. RAG eval: recall@k, faithfulness, citation, abstention, latency/cost; diagnose per stage.  
-5. Adaptation: prompt/RAG baseline before LoRA/QLoRA; SFT; DPO/RLHF conceptual.  
-6. Multimodal: contrastive encoders, VQA, diffusion intuition.  
-7. Agents: simplest sufficient pattern; typed tools; least privilege; budgets; stop conditions.  
-8. Safety: OWASP LLM Top 10; NIST Govern-Map-Measure-Manage.
+**Skip-test.** If DB-1–10 (or Part 2 engine literacy equivalent) confirmed, stamp; retain only residual `EXPLAIN` drills if needed.
 
-**Five portfolio systems (replace overlapping 9c.5 tutorials if 9c.5 was only a slice):** enterprise RAG; fine-tuned LLM with baseline; multi-agent workflow; deployed GenAI API; bounded industry capstone with no-deploy if evidence is weak.
+**Else order.** Storage media and row/column/log-structured layouts → pages/tuples/TOAST/catalogs → buffer manager → hash/B-Tree/GIN/GiST/BRIN/vector indexes → iterators, sort/aggregate, join algorithms → statistics/cardinality/cost plans → MVCC snapshots/isolation/locks/deadlocks/vacuum → WAL/checkpoints/recovery → replication/PITR → parallel/distributed trade-offs.
+
+| | |
+|---|---|
+| **Prerequisites** | S12, S8 |
+| **Artifacts** | Slotted-page, B-Tree, iterator, MVCC/WAL toys; predicted `EXPLAIN (ANALYZE, BUFFERS)` |
+| **Gate** | Crash/recovery evidence + plan predictions that match measured plans |
+| **Research anchors** | PostgreSQL internals docs; CMU 15-445/645 |
+
+#### 12.S14 Optimization, RL, and causality — `MATH-CALC-NUM`, `PROB-STAT-INFO`, `ML-CORE`
+
+**Optimization.** Geometry/convexity → first/second-order methods → SGD/momentum/adaptive → constraints/Lagrangian/KKT/duality → proximal and coordinate methods → LP/assignment → robust/stochastic formulations → non-convex diagnostics.
+
+**RL.** Exploration and multi-armed bandits → MDP/Bellman → DP → Monte Carlo → TD/Q-learning → function approximation/policy gradients only after tabular checks.
+
+**Causal.** Question/estimand/intervention → potential outcomes → DAGs/SCMs → randomization → backdoor/frontdoor and identification → estimation/heterogeneous effects → overlap and sensitivity → IV, DiD, RDD, synthetic control.
+
+*(M.CAUSAL lite and 9c observational caveats are recall inputs — this stage owns full identification and assumption-violation experiments.)*
+
+| | |
+|---|---|
+| **Prerequisites** | S9, S10, S11 |
+| **Artifacts** | Optimizers; assignment solver; bandit/MDP simulator; causal estimators |
+| **Gate** | Distinguish prediction vs intervention vs counterfactual; assumption-violation experiments |
+| **Research anchors** | Stanford EE364; Sutton & Barto; Brady Neal CI course |
+
+---
+
+### 12.S15 Domain gates (serial, not parallel) — `DL-NLP-CV-AUDIO`
+
+S15 is **one stage with four serial gates**. Complete shared convolution, transform, probability, and sequence prerequisites once; each later gate recalls them in a new representation. Do not open four parallel tracks.
+
+#### 12.S15-A Signals and DSP
+
+Signal classes, energy/power, complex exponentials, impulse/step, continuous/discrete time, LTI, convolution/correlation, frequency response, Fourier series/transform, Laplace/z intuition, DFT/FFT, sampling/aliasing, windows/leakage, FIR/IIR and pole-zero stability, STFT, filter banks, cepstrum/MFCC, multirate and quantization.
+
+| | |
+|---|---|
+| **Evidence** | Scratch convolution/DFT/FFT/STFT; Parseval and reconstruction; aliasing counterexample; filter response + numerical error report |
+| **Research anchors** | MIT 6.003; DSP chapter maps |
+
+#### 12.S15-B Image processing and classical CV
+
+Image formation, sampling/quantization, color/gamma, point transforms/histograms, 2D convolution/separable filters, denoising/sharpening, gradients/edges, morphology, Fourier image filtering, restoration, segmentation, corners/descriptors/matching, homography/RANSAC, camera calibration, epipolar/stereo, optical flow, detection/recognition metrics and reproducibility.
+
+| | |
+|---|---|
+| **Evidence** | Scratch kernels before OpenCV; synthetic ground truth; noise/blur sweeps; geometric residuals; one IPOL-style reproducible experiment |
+| **Research anchors** | Szeliski CVAA; IPOL; Stanford CS231n classical prefix |
+
+#### 12.S15-C Text, NLP, IR, and finite-state foundations
+
+Unicode/code points/graphemes, normalization and regex → linguistic units → tokenization and sentence splitting → edit distance → n-grams/smoothing/perplexity → inverted indexes/Boolean/TF-IDF/BM25 → evaluation → word vectors → BPE/WordPiece/unigram → tagging/parsing entry → finite automata, weighted semirings, and composition **only as needed** by tokenizer/ASR constraints.
+
+| | |
+|---|---|
+| **Evidence** | Tokenizer and subword trainer; n-gram LM; postings index and BM25 evaluator with multilingual and adversarial normalization cases |
+| **Research anchors** | Stanford CS224N early units; Manning/Raghavan/Schütze IR book |
+
+#### 12.S15-D Speech and ASR
+
+Acoustic phonetics and transcription → waveform/framing/pre-emphasis/windowing → spectrogram/mel/MFCC → pronunciation lexicon and LM interface → HMM/noisy-channel/Viterbi → GMM/HMM-DNN → CTC and encoder-decoder → Conformer and self-supervised speech → decoding/WFST concepts → WER/CER, streaming latency, noise/accents, multilingual/low-resource evaluation → TTS and spoken-dialog overview.
+
+| | |
+|---|---|
+| **Evidence** | Feature pipeline; Viterbi/CTC toy decoder; Kaldi/OpenFst graph inspection; WER error taxonomy and subgroup robustness |
+| **Research anchors** | Stanford CS224S; Kaldi/OpenFst docs as tool evidence |
+
+---
+
+### 12.S16 Deep learning and transformers — `DL-NLP-CV-AUDIO`
+
+**Order.** Tensor contracts and autodiff checks → perceptron/linear units → MLP and backprop (**derive**) → initialization/activation/numerical stability → regularization/generalization → optimizer and learning-rate diagnostics → CNN and modern residual blocks → sequence batching/masking → RNN/BPTT/LSTM/GRU → encoder-decoder and beam search → attention from similarity → multi-head self-attention → positional schemes/masking → encoder-only, decoder-only, and encoder-decoder transformers → pretraining objectives → distributed-compute and memory intuition.
+
+| | |
+|---|---|
+| **Prerequisites** | S11, S15 shared primitives (at least S15-A or S15-C as relevant) |
+| **Artifacts** | Scratch NumPy MLP + attention; PyTorch reimplementation; finite-difference grads |
+| **Gate** | Overfit-a-tiny-batch; ablations; learning curves; seed variance; throughput/memory; failure-slice report |
+| **Research anchors** | Dive into Deep Learning; Deep Learning book; CS224N/CS231n neural units |
+
+---
+
+### 12.S17 GenAI, RAG, agents — `GENAI-RAG-AGENTS`
+
+Official programme block order (public GenAI & Agentic AI EPGC shape): Generative AI / LLMs → prompting / RAG → PEFT / alignment → multimodal / agents → deploy / safety. Entry expectations (Python functions, APIs, docs literacy, basic ML math) are discharged by S1–S16 — not assumed at S0.
+
+#### Learning order (eight serial units)
+
+1. **Generative modeling and inference.** Autoregressive factorization; logits/softmax; likelihood/CE; greedy/beam/temperature/top-k/top-p/repetition; calibration limits; context windows; KV cache; batching; quantization; cost equations. Predict distributional effects before generation experiments.
+2. **Prompt and structured-interaction design.** Instruction hierarchy; delimiters and data/instruction separation; zero/few-shot and decomposition; self-consistency as sampling not truth; structured outputs, constrained decoding, tool schemas, retries, validation; prompt/version datasets and regression tests. Hidden CoT is **never** an output contract.
+3. **Retrieval foundation.** Corpus/access contract → parse/dedupe → chunking/metadata → lexical baseline → dense bi-encoder → exact vector search → ANN recall/latency/memory → hybrid fusion → cross-encoder rerank → context packing/citation → grounded generation. Measure retrieval **before** answer quality.
+4. **RAG evaluation and diagnosis.** Answerable/unanswerable/temporal/conflicting/multilingual/ACL/injection cases. Track recall@k/MRR/NDCG, context precision/recall, faithfulness, answer relevance, citation accuracy, abstention, latency, cost. Diagnose ingestion/retrieval/rerank/packing/generation separately; LLM judges need human-label calibration.
+5. **Adaptation and alignment.** Prompt-only and RAG baselines first; define what should change; clean/split/dedupe instruction or preference data; SFT/LoRA/QLoRA on a tractable model; compare task quality, safety, general capability, memory, latency, cost. RLHF/DPO conceptually — a small lab does not reproduce frontier alignment.
+6. **Multimodal generation.** Contrastive encoders; patches/tokens; projection/cross-attention; caption/VQA/retrieval; AR vs diffusion intuition; conditioning/guidance; safety/provenance. Evaluate shortcuts, OCR, spatial reasoning, demographic slices, perturbations.
+7. **Agentic systems.** Simplest sufficient pattern: single call → augmented LLM → deterministic workflow → bounded agent. Typed tools; least privilege; per-action authorization; idempotency; state vs long-term memory; budgets; stop conditions; human approval. Compare chaining, routing, parallel workers, orchestrator-worker, evaluator-optimizer before multi-agent coordination.
+8. **Evaluation, safety, and governance.** Task-specific eval set and trace schema before deploy. Test OWASP LLM Top 10 families (injection, sensitive disclosure, supply chain, poisoning, improper output, excessive agency, system-prompt leakage assumptions, vector/embedding weaknesses, misinformation, unbounded consumption). Map NIST Govern-Map-Measure-Manage.
+
+#### Five portfolio systems
+
+These replace overlapping 9c.5 tutorial slices when 9c.5 was only a thin cut — they do not duplicate Appendix M’s 309 production case studies.
+
+1. **Enterprise RAG** — hybrid retrieval + rerank; versioned corpus; tenant/ACL filters; golden + adversarial queries; component and e2e metrics; traces; latency/cost budget; citation/abstention.
+2. **Fine-tuned LLM** — LoRA/QLoRA on domain data; dataset card; prompt/RAG baseline; contamination checks; safety/general-capability regression; serve only after measurable benefit.
+3. **Multi-agent workflow** — typed least-privilege tools; bounded planner/worker state; approval for consequential actions; loop/replay/partial-failure tests; success/tool-error/step/latency/cost metrics; deterministic fallback.
+4. **Deployed GenAI API** — concurrency; authz; schema validation; deadlines; rate/spend limits; redacted observability; provider fallback; load/soak; canary/rollback.
+5. **Bounded industry capstone** — healthcare/BFSI/manufacturing-style problem with explicit **no-deploy** if evidence is weak.
+
+| | |
+|---|---|
+| **Prerequisites** | S16 (and S15-B/C as multimodal/text need) |
+| **Gate** | All five systems with acceptance evidence above, or documented skip where an equivalent 9c.5+S22 artifact already covers a system |
+| **Research anchors** | IIT Kharagpur public EPGC page; FAISS/SBERT/Ragas; NIST AI 600-1; OWASP LLM Top 10 |
+
+---
 
 ### 12.S18–S22 Services and operations
-**S18** RFC 9110 resources, safe/idempotent, ETag, protobuf compatibility, gRPC streams/deadlines. Skip-test if 3.2 confirmed. Gate: old-client/new-server contract tests.
 
-**S19** Part 4 order plus NIST AAL1–3, OAuth BCP attacks, ASVS 5 mapping. Skip-test if 4.2–4.10 confirmed.
+#### 12.S18 APIs and service contracts — `API-SVC`, `GO-CORE`, `TOOLS`
 
-**S20** Skip-test SOLID/hexagonal if 3.0 confirmed. Skip-test MapReduce/KV/Raft if **8.1 toys** confirmed. Sharded KV only if 8.1 did not cover it.
+**Skip-test.** If 3.2 confirmed, stamp; keep only residual compatibility drills if needed.
 
-**S21** Primer bank (Part 8). Each problem: six-step write-up + thin implementation. Cover read-heavy, write-heavy, realtime, batch, multi-tenant, global, ML-backed, adversarial. Revisit one design at 10× scale.
+**Else.** RFC 9110 resources, representations, origins, methods, status codes, content negotiation, caching, validators, conditional requests. Derive safe/idempotent/retry behavior; test lost updates with `ETag`/`If-Match`, overload with `Retry-After`, and malformed framing at the server boundary. Then resource-oriented REST; protobuf field presence/numbers/unknown fields/reservations; compatibility matrices; gRPC unary/server/client/bidi streams with deadlines, cancellation, metadata, status, backpressure.
 
-**S22** Skip-test if 9c.7 PMLE pipeline/monitor block confirmed. Remainder: ML Test Score drill, silent-failure restore of prior model/data/config.
+| | |
+|---|---|
+| **Artifacts** | Go REST + gRPC services |
+| **Gate** | Old-client/new-server **and** new-client/old-server contract tests |
+| **Research anchors** | RFC 9110; gRPC core concepts; protobuf guide; Google AIPs |
 
-### 12.S23 Control plane
-Skip-test if 11b ORR passed. Else finish P0–P10 and ORR here.
+#### 12.S19 Go authentication, security, and middleware — `SEC-AUTH`
 
-### 12.S24 Optional archive
-Game/rendering, medical, mechanical, deep pure math, extra number theory — only if a later CORE names a slice.
+**Skip-test.** If Part 4 / 4.2–4.10 confirmed, stamp.
 
-### 12. Assessment
-Each S-stage has the gate above. Part 12 complete when S0–S23 gates pass (skip-tests count). Portfolio: numerical package, DS/algo package, scratch ML, RAG/agent systems, and any remaining control-plane evidence.
+**Else deepen.** NIST SP 800-63B distinctions among passwords, authenticators, sessions, and access tokens; AAL1/AAL2/AAL3; phishing/replay resistance; authenticator intent/binding/recovery/invalidation; syncable passkey trade-offs. OAuth BCP attacks: redirect mismatch, code/access-token injection, mix-up, referer/history leakage, PKCE downgrade, counterfeit resource server, refresh replay, open redirect, unsafe 307, untrusted proxy headers. Map controls to versioned ASVS 5 requirements.
+
+| | |
+|---|---|
+| **Artifacts** | From-scratch Go security package (protocol/middleware/policy — **not** homemade crypto); hardened local service |
+| **Gate** | Positive/negative/fuzz/race/resource-exhaustion/rotation/revocation/recovery tests |
+| **Research anchors** | OWASP ASVS 5; NIST 800-63B; OAuth BCP 240; Go security guidance |
+
+#### 12.S20 HLD, LLD, SOLID, patterns, distributed systems — `ARCH-HLD-LLD`, `DIST-OPS`
+
+**Skip-test.** SOLID/hexagonal if 3.0 confirmed. MapReduce/KV/Raft if **8.1 toys** confirmed. Sharded KV only if 8.1 did not cover it — do not rebuild Raft in Part 12 when 8.1 already owns it.
+
+**Else order.** Quality attributes and measurable SLOs → boundaries/data ownership → LLD contracts, cohesion/coupling → SOLID in idiomatic Go → clean architecture and DDD → modular monolith → sync/async → retries/timeouts/idempotency/backpressure → cache and queue semantics → replication/partition/consistency → leader election/consensus → transactions/outbox/saga → observability/operations → microservice split only when justified.
+
+Teach SOLID as five **testable** heuristics (SRP = one coherent reason to change; OCP via composition; LSP preserves behavioral contracts including errors/side effects/concurrency; ISP = small consumer-owned interfaces; DIP = policy depends on abstractions). Patterns answer named forces and include rejection criteria.
+
+| | |
+|---|---|
+| **Artifacts** | Refactored Go service with before/after dependency evidence; ADRs; sequence/state diagrams |
+| **Gate** | Substitutability and boundary isolation tests; failure injection; SLO/error budget; overload/cascade analysis; recovery evidence |
+| **Research anchors** | MIT 6.5840 progression; Google SRE book/workbook |
+
+#### 12.S21 System-design and OOD practice bank — `SDP-OOD`
+
+**Skip-test to Part 8.** Part 8 already owns Donne Martin gated studios and the six-step protocol (NFRs, capacity, Mermaid HLD, LLD, failures, hardening). **Do not re-teach Part 8 studios.** Part 12.S21 only indexes residual problems and enforces coverage breadth.
+
+**Method (recall).** For each unlocked residual problem: clarify functional/quality/security requirements → estimate load/storage/bandwidth → define API/data/consistency → draw HLD → deep-dive one bottleneck → enumerate failures/abuse/privacy → define observability/rollout/recovery → implement a thin Go slice. Cover at least one read-heavy, write-heavy, realtime, batch, multi-tenant, globally distributed, ML-backed, and adversarial system. Revisit one prior design at **10×** scale or changed consistency/privacy.
+
+**Primer topic checklist (index).** Performance vs scalability; latency vs throughput; availability vs consistency; consistency/availability patterns; DNS; CDN; load balancing; reverse proxies; application layer and microservices; database design and scaling; NoSQL; caches; asynchronism; communication; security; powers of two and latency numbers — teach at Part 8 owners first; use here only as coverage audit.
+
+**Official SDP set (index).** Pastebin/Bitly; Twitter timeline/search; web crawler; Mint.com; social-network data structures; search-engine KV store; Amazon sales ranking; scale to millions on AWS.
+
+**Official OOD set (index).** Hash map; LRU cache; call center; deck of cards; parking lot; chat server; circular array.
+
+**Additional primer questions (residual index — pick gaps after Part 8).** File sync; search engine; scalable crawler; collaborative docs; Redis-like store; Memcached-like cache; recommendations; TinyURL/Bitly; chat; picture sharing; feed/timeline/graph search; CDN; trending topics; Snowflake ID; top-k in a window; multi-datacenter serving; multiplayer card game; garbage collector; API rate limiter; stock exchange.
+
+**Pattern forces (recall, not a second pattern course).** Repository, unit of work, adapter, strategy, factory, builder, middleware/decorator, chain of responsibility, observer/pub-sub, mediator, command, state, outbox, saga, CQRS/read model, idempotent consumer, circuit breaker, bulkhead, retry with jitter, strangler fig — each with rejection criteria.
+
+| | |
+|---|---|
+| **Prerequisites** | S20 (or Part 8 + 3.0 skip-test) |
+| **Gate** | Residual dossiers with threat model + Go slice; breadth coverage checklist checked |
+| **Research anchors** | system-design-primer topic map; Part 8 studios as owner |
+
+#### 12.S22 Production ML systems and MLOps — `ML-SYS-MLOPS`
+
+**Skip-test.** If 9c.7 PMLE pipeline/monitor block confirmed, stamp the bulk; remainder is ML Test Score drill plus silent-failure restore of prior model/data/config.
+
+**Case-study bank — do not duplicate.** Production rotations live in **Appendix M** (complete catalog) and the concept atlas at **9c.0**. Part 12 points; it does not paste the 309 studies. Cluster reminder for rotations: ranking/search/recs/ads; forecasting/ETA/pricing; fraud/risk/spam; LLM/NLP/assistants; CV/audio/documents; feature platforms/MLOps; graph ML/entity resolution; bandits/RL; causal/experimentation — each rotation needs the artifact type already named in 9c.0 / Appendix M headers.
+
+**Else full order.** Decide whether ML is warranted → metric and non-ML baseline → data/label/feature contracts and ownership → reproducible experiment → pipeline components and lineage → registry/promotion → batch/online/stream serving → training-serving parity → automated data/model/infrastructure tests → shadow/canary/A-B → freshness, skew, drift, quality, resource monitoring → retraining policy → rollback/incident/governance/decommission. Code, data, and model are independently versioned change axes. For GenAI add corpus/prompt/model/tool versions, judge calibration, token/spend budgets, safety regressions.
+
+| | |
+|---|---|
+| **Artifacts** | Versioned Python model/data/eval + secure Go feature facade / evaluator CLI; parity fixture; shadow/canary report; drift/freshness alerts |
+| **Gate** | PMLE-style design/build/operationalize/govern defense; ML Test Score; silent-failure restore drill |
+| **Research anchors** | Rules of ML; PMLE exam guide; NIST AI 600-1; Appendix M + 9c.0 |
+
+---
+
+### 12.S23 Control plane — `NASIKO-CAPSTONE` → 11b
+
+**Skip-test.** If 11b ORR passed, stamp Part 12.S23 complete. Capstone phases do not introduce surprise database, security, GenAI, or distributed-systems subcourses — they consume already mastered owner-stage contracts at boundaries.
+
+**Else finish P0–P10 and ORR here.**
+
+| Phase | Output |
+|---|---|
+| P0 Foundations | Go monorepo, dev loop, tooling |
+| P1 Core platform skeleton | Shared config, secret-safe logs/traces, hardened servers/clients, ordered middleware |
+| P2 Data stores and contracts | Stores, tenant constraints, migrations, transactions, backup invariants |
+| P3 Backend API and identity | Handlers/services/repos; password/OIDC; opaque sessions; granular authz; CSRF/CORS; idempotency |
+| P4 Registry and gateway | Discovery, routes/plugins, workload identity, scoped credentials, health/stale cleanup |
+| P5 Router | Python embeddings behind typed contract; shortlist/rerank; structured pick; tenant/data boundaries |
+| P6 Chat history | Authenticated ingest; object/tenant/field authz; append-only audit; retention/deletion |
+| P7 Orchestrator and worker | Streams; short-lived workload identity; provenance; deploy/rollback; idempotent consumers |
+| P8 CLI | Operator workflows; device/browser login; least-privilege commands; no credential leakage |
+| P9 Sample agents | Authenticated A2A; AgentCard validation; per-tool policy; replay control; streaming limits |
+| P10 Production hardening | SLOs, dashboards, alert drills, load/abuse/fuzz/race, scans, rotation, model rollback, backup/restore, incident recovery, security review, **ORR** |
+
+**ORR must show (not claim):** updated data-flow and trust-boundary maps; abuse-case and residual-risk registers; identity propagation without network-location trust; deny-by-default function/object/field/tenant/tool authz with regression tests; password/session/OIDC/JWT behavior inherited from `SEC-AUTH`; bounded inputs and artifact provenance; `go test` + fuzz + race + load/abuse evidence; alerts with owned runbooks; rehearsed credential/key rotation, malicious-agent containment, backup restore, rollback, and post-incident review.
+
+---
+
+### 12.S24 Optional archive / deferral — `ARCHIVE` (Tier 2)
+
+Closed by default. Open **one** specialization only after S23 (or when a documented CORE dependency requires a slice). Entry order: prerequisite gap analysis → bounded question → authoritative syllabus/text → small theory-and-implementation slice → transfer artifact. Archive breadth is **never** counted as incomplete core work.
+
+| Deferred family | When a slice may open | Entry path |
+|---|---|---|
+| Game engines / rendering | CORE needs geometry/GPU pipeline | Geometry/LA → GPU pipeline; not a game-engine semester |
+| Medical / clinical inventories | Supervised domain need | Biology/statistics/ethics + domain supervision |
+| Mechanical / fluid / aerospace | Numerics/PDE need | Calculus/ODE/PDE/numerics |
+| Deep pure math (analysis, algebra, topology, measure, DG, logic, pure combinatorics beyond CORE) | Proof-track dependency | Proof and analysis gate first |
+| Extra number theory | Beyond GCD/modular/CRT/hashing/crypto-practice | Keep GCD/modular/CRT in CORE; deep NT stays archive |
+| Commercial arithmetic encyclopedias | Finance/payment examples only | Examples attach to payments owners; encyclopedia stays archive |
+| Unrelated web stacks (e.g. React/TS sightseeing) | Explicit UI track opened | Otherwise archive |
+| Theory of computation / architecture / OS / networks / compilers beyond ASR or systems gates | Slice already required by a CORE node | Otherwise archive |
+
+---
+
+### 12.Assessment — Mastery, assessment, and portfolio standard
+
+#### Universal stage gate
+
+A continuation stage is complete only when the learner can:
+
+1. Explain the concept in plain language, use the right notation or system vocabulary, and reconstruct the central idea without notes.
+2. Pass unseen basic and routine checks, a mixed transfer using earlier unlocked tools, and the domain-appropriate top rung.
+3. Implement the core primitive in the owner language, where implementable, without a library that hides the learning objective.
+4. Verify the result and explain complexity, numerical stability, uncertainty, security properties, failure behavior, or production trade-offs as appropriate.
+5. Diagnose a deliberately broken or misleading case and state when the idea fails or a simpler alternative is better.
+6. Produce the stage’s required artifact and defend one consequential design choice, one rejected alternative, and one residual risk.
+
+**Minimum pass.** Every prerequisite-critical criterion passes; at least ~80% on the remaining rubric; any failed unseen transfer is repaired and retested with a **different** problem. Speed is recorded only after correctness and explanation are stable. Skip-tests from F–11b count as stage completion when the named artifacts are on the ledger.
+
+#### Domain evidence matrix
+
+| Domain | Unseen assessment | Implementation evidence | Required analysis |
+|---|---|---|---|
+| Mathematics and probability | Basic, routine, mixed, readiness-matched hard problems | Python/NumPy experiment when meaningful | Derivation/proof idea, assumptions, counterexample, numerical error |
+| ML, NLP, CV, DSP, ASR | New dataset slice; shape/gradient/metric prediction; ablation or error diagnosis | Python scratch primitive + library comparison | Baseline, leakage, uncertainty, metric choice, failure slices |
+| Go and DS/algo | New constraints, trace, edge cases, hard platform problem | Idiomatic Go package and tests | Invariant, correctness, time/space, benchmark where relevant |
+| Database and distributed systems | Query/transaction/failure scenario | Go or SQL engine/component lab | Plan or state trace, consistency, recovery, ops trade-off |
+| Security and middleware | Threat or abuse case not in the worked example | Go control + positive/negative/fuzz/race/resource tests | Security invariant, attacker model, residual risk, production boundary |
+| HLD/LLD and production ML | Changed scale, SLO, failure, privacy, or tenancy | Go service slice consuming Python ML artifacts where applicable | Capacity, trust boundaries, alternatives, observability, rollback, incident response |
+
+#### Cadence
+
+- **Every session:** short retrieval of prior unlocked ideas + one immediate unseen check.
+- **Every module:** cumulative mixed transfer, implementation or proof artifact, failure diagnosis, learner explanation.
+- **Every stage:** timed and untimed checks, artifact review against the domain rubric, fresh transfer after feedback.
+- **Every 4–6 weeks:** interleaved review from the learner ledger; weak prerequisites return to the graph before new dependent content.
+- **Every 8–12 weeks of continuation:** portfolio hardening + concise oral/design defense. Do not add unrelated topics merely to enlarge a project.
+- **Before S19, S22, and S23:** cumulative gates for Go concurrency/testing, APIs/databases, and security respectively. The capstone is not where missing foundations are first taught.
+
+#### Portfolio evidence (continuation)
+
+Maintain a small set of deep artifacts rather than many tutorial clones. Each published artifact: precise problem and scope; prerequisite map; reproducible environment; derivation or architecture; owner-language implementation; tests; measured results; failure analysis; security/privacy considerations; operational instructions where relevant; short demonstration. Preserve commit history that shows hypothesis → failure → repair → verification. Remove real credentials and personal/proprietary data.
+
+**By S23** (including skip-tested initial-track evidence), the portfolio should include at least: one mathematics/numerical notebook or report; one Go DS/algo package; one statistics/ML experiment with leakage-safe evaluation; one database/storage lab; one Python domain primitive from NLP/CV/audio/ASR; one secure Go service with auth/middleware evidence; one HLD/LLD dossier; one production-ML boundary joining Python and Go; and the integrated capstone with ORR.
+
+**Part 12 complete when** S0–S23 gates pass (skip-tests count). S24 is outside core completion.
+
+---
+
+### 12.Ref — Continuation atlas (index, not dumps)
+
+Pointers for Part 12 beyond the initial-course Appendices B / C / I / T. **Do not** paste textbook deconstruction corpora or Section-18-style source dumps here. Follow the evidence hierarchy in 12.0; open the named chapter or tool page only for the active sub-topic.
+
+#### Bibliography / course pointers by owner stage
+
+| Stage cluster | Prefer | Role |
+|---|---|---|
+| S0–S2 | Official Python, NumPy, pytest, Go tour/docs | Language and tooling contracts |
+| S3–S4 | Hammack *Book of Proof*; MIT 6.042J | Proof and discrete foundations |
+| S5, S7 | Strang *Introduction to Linear Algebra*; Axler *Linear Algebra Done Right* (rigor track); MIT 18.06 | Computational vs rigorous LA |
+| S6, S8 | CLRS; Sedgewick; MIT 6.006 | Algorithms and DS packages |
+| S9 | MIT 18.01SC / 18.02SC; a standard numerical-methods text | Calculus + numerics |
+| S10 | MIT 6.041SC; Wasserman *All of Statistics*; Cover & Thomas | Probability, inference, information |
+| S11 | Stanford CS229 notes; scikit-learn user guide | Classical ML scratch → library |
+| S12–S13 | PostgreSQL official docs; CMU 15-445/645 | SQL then engine |
+| S14 | Stanford EE364; Sutton & Barto; Brady Neal CI | Optimization, RL, causality |
+| S15 | MIT 6.003; Szeliski; IR book; Stanford CS224S; IPOL | Serial domain gates |
+| S16 | Dive into Deep Learning; Deep Learning book; CS224N/CS231n | Scratch DL / transformers |
+| S17 | IIT Kharagpur GenAI EPGC public page; FAISS; SBERT; Ragas; OWASP LLM Top 10; NIST AI 600-1 | GenAI/RAG/agents + safety |
+| S18 | RFC 9110; gRPC; protobuf; Google AIPs | Service contracts |
+| S19 | OWASP ASVS 5; NIST 800-63B; OAuth BCP 240; Go security | Auth and middleware |
+| S20–S21 | MIT 6.5840; Google SRE; system-design-primer (via Part 8) | Architecture + practice bank |
+| S22 | Rules of ML; PMLE guide; **Appendix M** + **9c.0** | Production ML rotations |
+| S23 | 11b ORR checklist; P0–P10 phase map above | Capstone integration |
+| S24 | Authoritative domain syllabus only when CORE pulls a slice | Archive entry |
+
+#### Tool atlas (first real use only)
+
+| Tool family | Typical first stage | Rule |
+|---|---|---|
+| pytest / NumPy / notebook or script runner | S1 | After mental model of the primitive |
+| `go test` / vet / bench / fuzz | S2, S6 | Always with explanation, not vanity timings |
+| PostgreSQL / `EXPLAIN` | S12–S13 | SQL semantics before internals |
+| OpenCV / Kaldi / OpenFst | S15-B / S15-D | Scratch kernels/decoders before tool depth |
+| PyTorch (or equivalent) | S16 | After NumPy backprop/attention |
+| Vector DB / ANN library | S17 | After exact-search baseline |
+| Docker / Compose / K8s / Terraform / OTEL | S18–S22 / S23 | At the consuming service boundary |
+| MLflow / wandb / Evidently / feature store | S22 | After lineage and metric contracts |
+
+#### Practice-bank cross-links
+
+| Bank | Owner in this curriculum | Part 12 use |
+|---|---|---|
+| Donne Martin gated studios | Part 8 | Skip-test; S21 residual index only |
+| Production ML case studies (309) | Appendix M + 9c.0 | Pointer from S22 — never duplicate |
+| GenAI five systems | 12.S17 | Portfolio artifacts |
+| Capstone P0–P10 / ORR | 11b / 12.S23 | Skip-test or finish here |
 
 ---
 
 ## How we run it
 
 1. This curriculum is the syllabus of record. Pedagogy is the teaching law; the Parts are the content.
-2. Teaching starts at **F** then **0.1 Billing** when you say start. **Part 12 opens only after 11b** (or skip-test). During F–11b, extra theory is a **prereq ref** to 12.Sx, not a full stage.
-3. **One `###` sub-topic at a time**, full difficulty ramp. Unseen check. Ledger stamp. Python then Go.
+2. Teaching starts at **F** then **0.1 Billing** when you say start. **Part 12 opens only after 11b** (or skip-test). During F–11b, extra theory is a **prereq ref** to 12.Sx, not a full stage. The initial track may close for PCA/PMLE without opening Part 12.
+3. **One `###` sub-topic at a time**, full difficulty ramp. Unseen check. Ledger stamp (including continuation fields in 12.0.2). Python then Go per language ownership.
 4. Northstar then 11b in the learner workspace; Part 12 artifacts are separate packages/systems as gated.
 5. Preferred: overwrite a live learner ledger. Compact stamp: `part · sub-topic · ramp · unlocked · shaky · postponed · next`.
+6. Every 8–12 weeks of continuation work: portfolio hardening (12.Assessment). S23 ORR is required unless 11b already passed it.
 
 No teaching content is delivered until you say start.
+
 ## Appendix M — ML system-design case studies (complete catalog)
 
-Source: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) (309 studies, 84 companies). Teach **Part 9c** families; this appendix is the full index. One-liners are `Company — description (year)`.
+Source: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) (309 studies, 84 companies). Teach **Part 9c** families; this appendix is the full index. One-liners are `Company — description (year)`. Concept decomposition and MISSING math/CS/theory/industry prerequisites live in **9c.0** — do **not** treat this appendix as a second course.
 
-
-**Family → Part 9c teaching map** (teach at the owner; this appendix stays the 309 one-liner index — do **not** paste article text into lessons):
+**Family → Part 9c teaching map** (teach at the owner; this appendix stays the 309 one-liner index — do **not** paste article text into lessons; gaps → **9c.0**):
 
 | Appendix M heading | Teach under | Notes |
 |---|---|---|
-| Recommend / personalize / feed | **9c.2** | Northstar ranker; Netflix / Instacart-class packs |
-| Search / rank / ads | **9c.2** | LTR / ads family pack |
-| Forecast / ETA / demand | **9c.3** | Northstar ETA; Uber DeepETA pack |
-| Fraud / trust & safety | **9c.4** | Northstar fraud-on-tokens; Stripe Radar pack |
-| LLM / genAI apps | **9c.5** | Northstar RAG slice; portfolio → **12.S17** |
-| NLP / text / support | **9c.5** (+ family pack) | Support routing / assist; not a second RAG tutorial |
-| CV / video / OCR | **9c.6** | Buy Vision/Document AI unless constraints force custom |
-| Speech / audio | **9c.6** | Serving literacy; T-SIGNAL when opened |
-| Marketing / churn / CLV / notify | **9c family pack** (see 9c) | Batch BQML + holdout lift |
+| Recommend / personalize / feed | **9c.2** (+ **9c.0** gaps) | Northstar ranker; Netflix / Instacart-class packs; IPS/diversity gates → 9c.0 |
+| Search / rank / ads | **9c.2** (+ **9c.0** gaps) | LTR / ads family pack; BM25/auction/CTR literacy → 9c.0 |
+| Forecast / ETA / demand | **9c.3** (+ **9c.0** / M.TS / M.CAUSAL) | Northstar ETA; Uber DeepETA pack |
+| Fraud / trust & safety | **9c.4** (+ **9c.0** gaps) | Northstar fraud-on-tokens; Stripe Radar pack |
+| LLM / genAI apps | **9c.5** | Northstar RAG slice; portfolio → **12.S17**; concept gaps → 9c.0 defer |
+| NLP / text / support | **9c.5** (+ family pack; **9c.0**) | Support routing / assist; seq-label/GEC literacy → 9c.0 |
+| CV / video / OCR | **9c.6** (+ **9c.0**) | Buy Vision/Document AI unless constraints force custom |
+| Speech / audio | **9c.6** (+ **9c.0**) | Serving literacy; T-SIGNAL when opened |
+| Marketing / churn / CLV / notify | **9c family pack** (+ **9c.0** / M.CAUSAL) | Batch BQML + holdout lift; uplift/survival literacy → 9c.0 |
 | Availability / inventory | **9c family pack** | Instacart availability worked example |
 | ML platform / infra | **9c.7** | Michelangelo ↔ Agent Platform |
-| Other (…) | **Index-only** | Attach a one-liner to a family if it becomes a Northstar force |
+| Other (…) | **Index-only** (+ **9c.0** themes) | Attach a one-liner to a family if it becomes a Northstar force |
 
-Features/labels/skew for every family → **9c.1**. Low-code product pick → **9b.4**. Classical models → **end of 9c** zoo only.
+Features/labels/skew for every family → **9c.1**. Case-study concept/prereq gaps → **9c.0**. Low-code product pick → **9b.4**. Classical models → **end of 9c** zoo only.
 
 ### Recommend / personalize / feed (65)
 
