@@ -188,11 +188,11 @@ You do not “call the SDK and call it learned.” For every concept in this cur
 This ladder governs **how** each sub-topic in this curriculum is taught. It is not a second syllabus.
 
 **Execution contract (one unit at a time):**
-- One owner heading (`###` in this file) and one coherent idea per unit. Short title, then teach. No destination essays.
-- Walk prerequisites first (the JIT map + earlier confirmed sub-topics). Do not import a later Part’s machinery to make a “harder” question.
-- Later appearances of an owned idea: one-line recall + application. Do not re-teach.
+- One owner heading (`###` in this file) and one coherent idea per unit. Short title, then teach. No destination essays. Inside a dense `#### Concepts` bullet, **one idea** means one intuition cluster — split before ramping (see Bundled Concepts below). **MUST NOT** dump an entire multi-intuition Concepts bullet in one unit and call the dump the concrete anchor.
+- Walk prerequisites first (the JIT map + earlier confirmed sub-topics). Do not import a later Part’s machinery to make a “harder” question. Within the current `###`, also walk **intra-topic** dependencies: co-listed terms in a bundled `#### Concepts` bullet are **not** prerequisites of each other until each has its own confirmed anchor.
+- Later appearances of an owned idea: one-line recall + application. Do not re-teach. Recall is allowed **only** for ideas already unlocked-and-confirmed on the ledger — never as a cover for a co-listed sibling that was never anchored.
 - Persist and update the **learner ledger** (see Teaching contract → Learner state). Do not dump it into chat.
-- **Confirmation = unseen check**, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked.
+- **Confirmation = unseen check**, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked. An unseen check that uses unanchored terms is invalid confirmation — fix the check, do not mark the learner shaky.
 - If they struggle: step **down one rung** and rebuild the missing tool. Do not skip rungs. Skip coding rungs only when the sub-topic is purely definitional (named fact, console-only click, theorem statement). Productive struggle on an unlocked hard problem is expected — step down only when the attempt reveals a missing prereq, a shaky earlier tool, or repeated dead ends after minimal hints.
 
 **Universal ten-rung sequence** (every non-definitional sub-topic):
@@ -200,7 +200,7 @@ This ladder governs **how** each sub-topic in this curriculum is taught. It is n
 | # | Rung | Pass signal |
 |---|---|---|
 | 1 | **Concrete anchor** | Point at the object (trace, packet, IAM binding, billing line, failing request) and say what changes |
-| 2 | **Vocabulary / notation** | Translate words ↔ GCP name / flag / proto field without a later tool |
+| 2 | **Vocabulary / notation** | Translate words ↔ GCP name / flag / proto field using **only terms anchored this session** — no later tool, no unanchored sibling from the same `#### Concepts` bullet, no new product |
 | 3 | **Representation** | Defend the picture: sequence, state machine, CIDR, SLO burn chart, hexagonal ports, C4, `EXPLAIN` |
 | 4 | **Core move** | Name the new operation or design decision; say when it is illegal / fails |
 | 5 | **Worked illustration** | Trace one clean example; predict one intermediate step |
@@ -208,15 +208,39 @@ This ladder governs **how** each sub-topic in this curriculum is taught. It is n
 | 7 | **Routine variation** | Same method, new numbers / API / region / failure |
 | 8 | **Mixed transfer** | New idea **plus exactly two** earlier unlocked ideas. Name all three before executing |
 | 9 | **Top-rung challenge** | Sub-topic close only, after mixed. Domain-matched (below). Structure-first plan, unlocked tools only, check a boundary / wrong path |
-| 10 | **Reflection + ledger** | Move that mattered, one failure mode, unlocked / shaky / postponed |
+| 10 | **Reflection + ledger** | Move that mattered, one failure mode, unlocked / shaky / postponed; if a process failure occurred, note it as instructor-side (not shaky) and keep confirmed unlocks |
 
-Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump. Productive struggle on an **unlocked** hard problem is expected. Readiness-matched ≠ easy: difficulty comes from structure, hidden constraints, transfer, or production pressure — not from Part 9 GKE while you are still on Part 1 Cloud Run.
+Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump. Productive struggle on an **unlocked** hard problem is expected. Readiness-matched ≠ easy: difficulty comes from structure, hidden constraints, transfer, or production pressure — not from Part 9 GKE while you are still on Part 1 Cloud Run. Readiness-matched also ≠ later machinery: a harder wording that imports an unconfirmed product, Part, Go token, or sibling term from a bundled Concepts bullet is not “raised pressure” — it is a dependency-gate failure.
+
+**Bundled Concepts → split anchors (MUST).** A `#### Concepts` bullet that lists more than two named things is **not** one teachable beat. Before any ramp starts on that bullet:
+1. Split clusters of *genuinely distinct intuitions* into separate rung-1 anchors. Terms that share one intuition (e.g. region vs zone from one VM failure-domain picture) may share an anchor; terms that need a new intuition (e.g. multi-region “named group” vs dual-region “named pair”) **MUST** get their own concrete anchor first. When unsure whether two co-listed terms share one intuition, **MUST** split — false merges caused the vocabulary-check failure mode this rule exists to prevent. **MUST NOT** count reading the Concepts headline aloud, listing the comma-separated names, or a parenthetical aside as an anchor — the learner must be able to point at what changes for that intuition.
+2. **MUST NOT** treat the concept-list headline as the scope of a single rung-2 check. Headline proximity is not teaching.
+3. **One new idea per unit** still binds inside a dense bullet: finish and confirm one intuition cluster before opening the next.
+
+**Rung-2 vocabulary audit (MUST, every pose; also any vocab-bearing item at rungs 6–7 that introduces a new name).** Before posing a vocabulary / notation check, list every term, flag, identifier, or product name the learner must translate, and confirm each was **named and explained in a concrete anchor this session** **or** is already unlocked-and-confirmed on the live ledger — not assumed because it sits in the same Concepts bullet, the same `###` heading, the same table row, or the curriculum file. Audit against what was *actually taught and confirmed*, not against the concept-list headline. Presence on a `#### Concepts` list is **never** evidence the term is unlocked.
+
+**MUST NOT introduce a new product or system inside a vocabulary / notation check.** If a translation item needs a product the current anchors did not use (e.g. object-storage location codes after a compute-only region/zone anchor), give that product its own concrete anchor first (learner can **point at** what the product is doing — a name-drop or parenthetical does **not** count), then translate. A vocab check is for words ↔ names of ideas already in hand — never a stealth product intro.
+
+**Pre-rung-2 self-check (MUST, one line, before every rung-2 pose):** *Every term on this check was point-at anchored this session (or is already unlocked-and-confirmed on the ledger); no unanchored sibling from a bundled bullet; no new product.* If any clause fails, **MUST NOT** pose — split and anchor the missing intuition/product, or postpone that item on the ledger until anchored. Do not permanently delete curriculum content to dodge the audit. Time pressure, “one sitting” wording in the source, or a dense headline **MUST NOT** skip this self-check.
+
+**High-risk bundled Concepts (teach-time audit targets — not a re-teach now):**
+
+| Owner | Bundled bullet | Why audit hard at teach time |
+|---|---|---|
+| **F1** | Networks in one sitting (IP, port, DNS, TCP/UDP, HTTP, TLS, JSON, …) | Many distinct intuitions compressed into “one sitting” |
+| **F2** | Deployment models: public, private, hybrid, community, multi-cloud | Public/private/hybrid share an intuition; community and multi-cloud often need their own anchors |
+| **0.1** | Cloud Billing “SKUs you will actually hit” (long enumerated list) | Whole-list vocab checks repeat the bundled-bullet failure at volume |
+| **0.5** | IAM principals: user, group, service account, domain, workforce federated, workload federated | Near-identical naming pair (workforce vs workload) — same shape as multi-region vs dual-region |
+| **1.12** | Cloud Load Balancing map (many named LB variants) | Overlapping words (regional/global, internal/external, proxy/passthrough) — high conflation if tested as one set |
+| **6.3** | IP addressing: ephemeral/static × regional/global × internal/external | Combinatorial naming space under one headline |
+
+These are flags for the rung-2 audit above at teach time. Do **not** retroactively re-teach them unless the live lesson hits that owner.
 
 **Map onto this course’s artifacts (Pedagogy §§2–6):**
 
 | Ramp | What happens here |
 |---|---|
-| 1–5 | Concept + one worked trace (console or stdlib) |
+| 1–5 | Concept + one worked trace (console or stdlib); **split** bundled Concepts into separate anchors before any rung-2 |
 | 6–7 | Basic/routine: from-scratch write in Python, then Go after submit |
 | 8 | Mixed: HLD/LLD that uses **exactly two** earlier Northstar pieces (e.g. JWT middleware + Pub/Sub inbox) |
 | 9 | Top rung: GCP lab **or** production failure drill **or** ADR under a nasty constraint |
@@ -224,7 +248,7 @@ Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump
 
 **Software-engineering five-rung shorthand** (same ramp, collapsed for Go/DS/platform slices — do not skip the ten internally):
 
-1. **Basic** — vocabulary, one tiny program or one `gcloud` use.
+1. **Basic** — vocabulary **of terms already anchored this session**, one tiny program or one `gcloud` use (same rung-2 audit: no bundled siblings, no new product).
 2. **Guided** — one worked implementation with tests; they read and trace it.
 3. **Routine** — they write the happy path (Python, then Go).
 4. **Mixed** — new idea + exactly two earlier unlocked nodes (errors, edges, a boundary).
@@ -242,7 +266,7 @@ Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump
 
 Do not leave a theoretical topic at “I can call the API” or “I sketched the formula.” Do not inflate a definitional topic into fake proofs.
 
-**Skip when definitional.** Named theorem statements, historical labels, product nicknames, and console-only clicks get **no** top-rung challenge and **no** forced scratch implementation. Skip coding rungs only when the idea cannot be meaningfully implemented in the owner language. All other practice happens at teach time — not as a bulk exercise dump stored in this file.
+**Skip when definitional.** Named theorem statements, historical labels, product nicknames, and console-only clicks get **no** top-rung challenge and **no** forced scratch implementation. Skip coding rungs only when the idea cannot be meaningfully implemented in the owner language. All other practice happens at teach time — not as a bulk exercise dump stored in this file. **MUST NOT** use “definitional” as a license to put an unanchored term or new product on a vocabulary check, or to skip the concrete anchor for a co-listed sibling you still intend to test. If you will test it at rung 2, you **MUST** anchor it first — even when the eventual top rung is skipped.
 
 **Top-rung budget (mandatory on every substantial non-definitional `###`):** after mixed transfer passes, pose **one to three** non-routine challenges. Prefer two or three when the topic has distinct representations. At least one is an unseen integrated problem that cannot be completed by copying the worked illustration. These **are** the top rung of the difficulty ramp — not a second parallel problem set and not extra contest homework after the ramp already ended. Do not open the top rung until that sub-topic’s mixed transfer has passed. If a full-ceiling item needs a locked tool, record it under **postponed challenges** on the ledger and pose the strongest **unlocked** version now. Fake difficulty (bloated arithmetic, future-module tricks, disguised later-Part APIs) is forbidden. A derivation followed by a tiny Python/Go check or ablation may form one integrated top rung; reasoning comes first.
 
@@ -275,13 +299,14 @@ Move bank (unlocked only; postpone if locked): translate representations (words 
 
 **Learner attempts first.** No solution dump. If stuck: what structure do you see → smaller case → smallest unlocked hint. Escalate only if still stuck. After resolution, name the move that made it easy; add one nearby variant if a shaky habit showed.
 
-**Dependency gate (silent):** before any explanation, problem, hint, proof, coding exercise, or design prompt, audit the **whole intended solution path** — not only the stem: notation, GCP/product concepts, Python or Go syntax, data structures, library assumptions, production-system ideas, and the likely debugging path. If any required tool is not unlocked-and-confirmed on the live store, replace the path or postpone the item on the ledger. Do **not** jump ahead in the spine to keep a harder wording. Leave the current `###` only when the idea cannot be practiced at all without that tool. Do not print the audit. Harder is not “smuggle GKE into Cloud Run week,” a locked Go token into G0, or a Part 9c metric into Part M before it unlocks. **Readiness-matched ≠ easy:** difficulty comes from structure, hidden constraints, transfer, or production pressure — not from future-module machinery.
+**Dependency gate (silent):** before any explanation, problem, hint, proof, coding exercise, design prompt, **or vocabulary / notation check**, audit the **whole intended solution path** — not only the stem: notation and vocabulary, GCP/product concepts, Python or Go syntax, data structures, library assumptions, production-system ideas, the likely debugging path, **and every sibling term drawn from a bundled `#### Concepts` bullet**. If any required tool or term is not unlocked-and-confirmed on the live store (anchored this session for vocab checks), replace the path or postpone the item on the ledger. Do **not** jump ahead in the spine to keep a harder wording. Leave the current `###` only when the idea cannot be practiced at all without that tool. Do not print the audit. Harder is not “smuggle GKE into Cloud Run week,” a locked Go token into G0, a Part 9c metric into Part M before it unlocks, **or unanchored siblings from the same Concepts bullet treated as if one anchor covered the set**. **Readiness-matched ≠ easy** and **readiness-matched ≠ later machinery:** difficulty comes from structure, hidden constraints, transfer, or production pressure — not from future-module machinery or unanchored co-listed terms.
 
 **Blocked-path examples (this course):**
 - Part 1 Cloud Run week: may harden the container contract, timeouts, and IAM invoker. May **not** require GKE scheduling, Gateway API, or Autopilot node pools — postpone those to Part 9 / D4.
 - Part M metrics: may derive precision/recall/FPR by hand and in tiny Python. May **not** import Feature Store, shadow traffic, or Vertex Pipelines until 9c unlocks them.
 - Early Go (G0–G5): may use unlocked tokens only. A “harder” CLI that needs channels, `context.Context` cancel trees, or generics before their `SYNTAX UNLOCK` is the same violation as posing the locked method first.
 - Part 2 isolation: may predict anomalies with unlocked MVCC vocabulary. May **not** smuggle Spanner interleaved-table design or full PITR runbooks into the first Postgres transcript if those owners are still locked — use the strongest unlocked prediction task instead.
+- Bundled `#### Concepts` bullet (any owner): may translate terms that received their own concrete anchor this session. May **not** pull co-listed siblings or a new product into the same vocabulary check because the headline listed them together — split, anchor the missing intuition (and product, if any), then check. “Taught in one sitting” in the source text is **not** a waiver of split-anchor or of the rung-2 audit.
 
 **Sub-topic complete when** they can: explain it in plain language; **derive or prove** its central results if the topic is theoretical; state assumptions and failure; solve basic + routine; finish mixed (two earlier tools named); **pass** (not merely attempt) the current unlocked top rung; then solve or substantially advance **one fresh nearby transfer** without copying the prior path; name a failure case; implement the core primitive from scratch (Python then Go) unless definitional. A postponed full-ceiling challenge does not block if a genuine prereq is locked — the strongest unlocked challenge is never optional.
 
@@ -299,7 +324,7 @@ This curriculum **is** the syllabus of record and the teaching law. Owner nodes 
 
 **Curriculum-artifact binding (by role, not path).** This Pedagogy section is a teaching contract that binds to the **active curriculum artifact** for the session — here, this Google Cloud Production Architect syllabus (Northstar + PCA/PMLE). Bind by **role** (active syllabus of record, teaching-ready headings, JIT map, appendices as indexes), never by filename, storage path, or upload order. If more than one curriculum artifact is in play, the learner’s explicit choice is active; otherwise prefer the teaching-ready / deduped spine for lessons and keep source-preserved material for provenance and gap recovery only. Prefer the active artifact for teaching order; use other artifacts only for the least disruptive prerequisite-safe reconciliation. Do not teach prior source streams as parallel courses. If the active artifact lacks an explicit graph, infer owner nodes from `###` headings, tags, prerequisites, and repeated concepts, then record that inferred owner in the learner ledger before teaching.
 
-**Rigor over speed.** Short titles and one idea per unit govern *pacing*, not *depth* — **brevity ≠ shallow**. No hand-waved “GCP handles that,” no “it can be shown that,” no skipped justification, no compressed derivation that trades correctness-with-gaps for a faster turn. Carry every explanation, derivation, and worked argument through in full. When a derivation is long (WAL, HOL, JWT structure, SLO math, isolation, bloom FPR), teach it across as many turns as it needs rather than summarizing the result. Where finishing quickly and finishing rigorously pull apart, **rigor wins**.
+**Rigor over speed.** Short titles and one idea per unit govern *pacing*, not *depth* — **brevity ≠ shallow**. No hand-waved “GCP handles that,” no “it can be shown that,” no skipped justification, no compressed derivation that trades correctness-with-gaps for a faster turn. Carry every explanation, derivation, and worked argument through in full. When a derivation is long (WAL, HOL, JWT structure, SLO math, isolation, bloom FPR), teach it across as many turns as it needs rather than summarizing the result. Where finishing quickly and finishing rigorously pull apart, **rigor wins**. Splitting a bundled Concepts bullet into separate anchors before rung 2 is **required rigor**, not optional delay — collapsing distinct intuitions to “save a turn” is the same failure mode as a skipped justification step.
 
 **Mastery depth floor (per topic, not an average).** Familiarity, “enough to use the library,” and routine fluency are waypoints toward a topic, never a substitute completion criterion. A non-definitional topic is not covered until the learner can, at **that topic’s own academic level**:
 
@@ -314,16 +339,18 @@ Ceiling is graduate **coursework** / staff-engineer operations, not original res
 
 **Assume nothing until confirmed.** Unseen check, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked.
 
+**Instructor process failure ≠ learner “shaky” (MUST).** When a check tested terms or products that were never anchored this session (or never unlocked-and-confirmed on the ledger), that is an **instructor / process failure**, not learner struggle. **MUST** correct the ledger accordingly: **MUST NOT** mark the learner shaky for those items; **MUST** keep every confirmed unlock from the same turn (anchors and items that were actually taught and checked fairly); **MUST** record the gap as postponed / needs-own-anchor on the instructor side; **MUST NOT** re-pose those items until a dedicated concrete anchor has landed. “Shaky” remains reserved for learner-side struggle on material that *was* taught. Do not rewrite a process failure as “the learner is shaky on multi-region” (or any parallel).
+
 **Learner state (persist; do not lecture).** Overwrite a live ledger beside this curriculum after each confirmed unit. Never paste the ledger into chat as paragraphs.
 
 | Field | Meaning |
 |---|---|
 | Current part / `###` owner | Where teaching is |
 | Sub-topic + ramp rung | Current rung in §7 |
-| Unlocked concepts | Confirmed via unseen check |
+| Unlocked concepts | Confirmed via fair unseen check (anchored terms only). Process-failure items stay out until re-anchored and re-checked |
 | Unlocked Python features | Only those proven in exercises |
 | Unlocked Go syntax / features | Only after `SYNTAX UNLOCK` |
-| Shaky | Failed or fragile; reuse in mixed until unmarked |
+| Shaky | Learner-side struggle on material that **was** taught; reuse in mixed until unmarked. **MUST NOT** use for instructor process failures (unanchored terms/products on a check) |
 | Postponed challenges | Full-ceiling items waiting on a locked prereq |
 | Next gate | What must pass before advancing |
 
@@ -345,14 +372,14 @@ If a file write cannot be done or verified: one compact stamp at the **end** of 
 5. Test or operational check.
 6. When **not** to use it.
 
-Third-party APIs (Stripe, Google clients) sit behind **adapters**. Learning tests at the boundary before wrapping. Theory and from-scratch primitive first, then library/tool use — never the reverse as a completion claim.
+Third-party APIs (Stripe, Google clients) sit behind **adapters**. Learning tests at the boundary before wrapping. Theory and from-scratch primitive first, then library/tool use — never the reverse as a completion claim. **MUST NOT** first-introduce a managed product or library inside a rung-2 vocabulary / notation check; run this six-step (or a short concrete anchor the learner can point at — a bare name-drop does not count) before any translation item depends on it.
 
 **Knowledge-graph execution (every lesson — graph-ordered continuation):**
 1. Name the target `###` owner from this active curriculum (heading path / JIT map / owner table).
 2. Walk prerequisites (JIT map + confirmed ledger). If edges are absent, infer a chain from heading order, notation, syntax, and the intended solution path; treat it as provisional until confirmed.
 3. Check anti-repetition: if the concept already has an owner, **recall + apply** only — do not re-prove or re-unlock.
 4. One coherent idea, one confirmation, stop.
-5. **Vertical slice:** walk that idea through the §7 difficulty ramp, then stop. Do not open the next `###` until this one is confirmed.
+5. **Vertical slice:** walk that idea through the §7 difficulty ramp, then stop. Do not open the next `###` until this one is confirmed. If the owner’s `#### Concepts` bullet is bundled, split intuition clusters and ramp each — do not treat the whole bullet as one slice.
 6. **Branched quest:** if a new mechanism appears (outbox, circuit breaker, Feature Store, MVCC, vector index), pause, finish that lab at its owner, return.
 7. Attach external ideas to an existing owner before teaching; create a new owner only when none honestly fits.
 8. The Course spine (F→11b) is the graph order for this artifact. Part 12 is continuation after 11b — not a licence to reteach owned ideas or to run a second spine in parallel.
@@ -413,6 +440,8 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 | Depth vs “enough to use gcloud” | Depth floor; console fluency is a waypoint, never completion |
 | Rigor vs pacing / short turns | Brevity governs framing only; rigor wins; split long derivations across turns |
 | Tool/library vs from-scratch | Primitive first, then managed product / library |
+| Bundled Concepts headline vs rung-2 scope | Split distinct intuitions into separate anchors; audit rung-2 against what was **actually taught/confirmed**; MUST NOT introduce a new product inside a vocab check; headline/list membership ≠ unlocked |
+| Instructor process failure vs learner shaky | Process failure (unanchored terms/products on a check) **MUST NOT** be recorded as shaky; keep confirmed unlocks; re-anchor then re-pose |
 | Archive / encyclopedias vs CORE spine | Appendix M and primer extras are indexes; teach at the owner in 9c / 8. Archive after CORE (see Non-goals) |
 
 **ML-system mastery (9c):** for every model you ship — problem and label; leakage boundary; split; metric and non-ML baseline; error taxonomy; serving path; rollout/shadow; drift monitor; cost. Scratch the estimator you use; do not reimplement Vertex.
