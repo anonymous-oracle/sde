@@ -378,14 +378,14 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 | Track | Open from | Complete contents |
 |---|---|---|
 | **T-TOC** | 8.1 complexity | DFA/NFA/regex, CFG, TM, decidability, P/NP, reductions (Sipser). Arora–Barak only if this ceiling is opened |
-| **T-ARCH** | 1.8 GCE | ISA, pipeline, cache, VM, coherence (Hennessy/Patterson) |
-| **T-OS** | 1.2 / 1.8 / 10.6 | Process/thread, scheduling, virtual memory, FS, sync, deadlock (Silberschatz) |
+| **T-ARCH** | 1.8 GCE **required** | ISA, pipeline, cache, VM, coherence (Hennessy/Patterson) |
+| **T-OS** | 1.2 / 1.8 / 10.7 **required** | Process/thread, scheduling, virtual memory, FS, sync, deadlock (Silberschatz) |
 | **T-PL** | 3.0 / language runtime | Lexer, parser, IR, codegen (Aho et al.) as needed to understand runtimes |
 | **T-CRYPTO** | 4 / 7 | PRG/PRF, semantic security, reductions (Katz/Lindell). No new ciphers |
 | **T-FM** | 3.0 invariants | Hoare triples; model checking if opened |
 | **T-OPT** | 9c / M | Convex sets/functions, GD, Lagrange (Boyd) |
 | **T-IT** | M / 9c | Channel coding only if a 9c slice needs it; entropy already in M |
-| **T-ML** | 9c.1 | kNN → linear/logistic → trees/forests/boosting → clustering/GMM → PCA → ranking; leakage, calibration |
+| **T-ML** | 9c (zoo is **required** there) | Extra families only (GMM, SVM, …) beyond the 9c zoo |
 | **T-DL** | 9c | Perceptron, backprop **derive**, CNN/RNN, attention from first principles |
 | **T-RL** | 9c.2 bandits | MDP, Bellman, policy/value; bandits already in 9c.2 |
 | **T-CAUSAL** | 9c.7 experiments | Confounding, identification; A/B is not causality |
@@ -395,7 +395,7 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 
 **IIT Kharagpur GenAI progression** (live production-first units) is **9c.5**, not a separate certificate course: Generative AI → LLMs → customisation/PEFT → RAG → agents → production deployment.
 
-**Python numerical (S1):** with F1 and Part M — `dtype`, strides, copy vs view, tolerance asserts, vectorization vs matmul. Gate: tested utility whose loop and vectorized forms agree.
+**Python numerical:** F1 and Part M — `dtype`, strides, copy vs view, tolerance asserts. Gate: tested utility whose loop and vectorized forms agree.
 
 **Research-grounded architecture:** teach a pattern only when the force is in the Northstar code. Case studies (Appendix M, primer) only if they produce an implementable lesson.
 
@@ -489,59 +489,34 @@ Linux/OS/sysadmin/networking/cybersecurity from the original request are **not d
 ## Course spine
 
 ```
-F  Foundation for absolute beginners + cloud computing fundamentals
-M  Quantitative prereqs (including **M.NS numerical stability**, Python then Go)
+INITIAL COURSE (F–11b) — GCP + software system/architecture design.
+Closable for PCA v6.1 and PMLE (Jun 2026) without Part 12.
 
-0  Billing (full), cost kill-switch, HLD/LLD contract
-   + IAM core (policies, conditions, service accounts, Cloud Identity, best practices)
+F  Foundation
+M  Quantitative prereqs: M.NS numerical stability; **M.ML** empirical risk/losses/metrics (before 9c)
+0  Billing, IAM, hierarchy, HLD/LLD contract
+1  Docker + Cloud Run, GCE (**T-ARCH required**), App Engine, Functions, LB/HA
+D  CI/CD, GitOps, SLSA; **CT** for PMLE retraining
+2  SQL, Cloud SQL, GCS, Firestore, Spanner, DB-1–10
+3  Hexagonal/SOLID/DDD, microservices, gRPC, async, saga/outbox
+4  Identity + from-scratch auth
+5  Payments / PCI (no PAN)
+6  Networking (**T-NET required**) + HTTP/2/QUIC ideas + CDN/IPs
+7  Cybersecurity, DLP/PII, Model Armor (with 9c.7)
+8  HLD/LLD + Donne Martin **gated studios** + 8.1 primitives including MapReduce/KV/Raft **toys**
+8b/8c Hybrid + migration
+9  GKE
+9b Vertex / BQML / AutoML / Model Garden / Feature Store / Pipelines (PCA + PMLE products)
+9c Production ML: classical zoo + family HLDs + Northstar slices + serve/monitor
+10 Observability, SLO, FinOps, quotas, **T-OS required**
+11 Northstar v1 + PCA four case HLDs + Go matrix + 8.1 toys
+11b Control-plane capstone
 
-1  Compute platforms + first production deploy
-     1A Docker (full) then Cloud Run (deploy frontend + backend first)
-     1B Compute Engine
-     1C App Engine + Cloud Functions
-     1D HA: load balancers + MIGs
-     1E Decision matrix
-
-D  DevOps, CI/CD, GitOps, supply chain (first-class; after you have a running service)
-     D0 Culture: CALMS, DORA, SRE vs DevOps vs platform engineering
-     D1 Docker/OCI/BuildKit (if not already solid from 1A)
-     D2 Continuous integration (Cloud Build, GitHub Actions, WIF, tests, scanners)
-     D3 Continuous delivery + GitOps (Cloud Deploy, Skaffold, kustomize, Helm, Argo/Flux)
-     D4 Progressive delivery (rolling, blue-green, canary) on Cloud Run and GKE
-     D5 Supply chain (SLSA, Binary Authorization, Artifact Analysis, SBOM, cosign)
-     D6 Platform engineering (preview envs, golden paths, policy as code)
-
-2  SQL design + Cloud SQL setup + GCS + Firestore + Spanner + NoSQL map
-
-3  Microservices: SOLID/hexagonal/DDD (3.0) → split → gRPC (3.2) → saga/outbox
-   (no separate architecture or protocol semester)
-
-4  Authentication and authorization (customers + workloads) — Identity Platform, IAP, WIF
-
-5  Payments, webhooks, PCI-aware design
-
-6  Networking in full + HTTP/2 HOL demo + mini-QUIC (ideas only; crypto is stdlib)
-
-7  Network security + cybersecurity (NGFW, Armor, IAP, VPC-SC, KMS, SCC, DLP, org policy, IR)
-
-8  Hybrid connectivity (Cloud VPN, Cloud Interconnect, NCC) + migration (Migration Center)
-
-9  Kubernetes internals + GKE
-9b Vertex / Gemini / BigQuery (PCA product)
-9c Production ML systems (case-study atlas → Northstar slices)
-
-10 HLD/LLD mastery (Donne Martin) + Well-Architected + PCA design domains
-
-11 Vertex AI / Gemini / Big Data (PCA v6.1 §§2.4–2.5 and 1.3 ML/AI)
-
-12 Operations Suite + reliability + FinOps + IaC (Terraform primary, Deployment Manager legacy)
-
-13 Capstone (Northstar v1) + PCA case studies
-11b Control-plane capstone (gateway, registry, worker, router, CLI, ORR) after Northstar v1
-12 Continuation AFTER 11b: unified S0–S24 (skip-test stages already confirmed in F–11b)
-   JIT during F–11b: prereq reference to 12.Sx only, not a full stage
-   Numerical stability is **M.NS** (before Part 0), not Part 12
+12 Continuation AFTER 11b (not an exam gate): S0–S24 remainder
+   (full algebra/calculus, DSP/Kaldi, full DL-from-scratch, five GenAI portfolios, archive)
 ```
+
+**Initial course complete when:** Northstar runs; Appendix G artifacts for F–11b are checked; Part 8 gated toys + primer HLDs done; Appendix M **families** have evidence-pack HLDs; four PCA case one-pagers; PMLE product literacy (9b/9c.7) + M.ML derivations + from-scratch logistic/metrics/skew toy; three budgets. Part 12 is not required for PCA or PMLE.
 
 This curriculum is the syllabus of record.
 
@@ -651,6 +626,18 @@ Taught **here**, before Part 0, not in Part 12. Required before 9c softmax/atten
 - When `float32` (memory) vs `float64` (default here).
 
 **Gate:** derive κ vs stability on one example; predict a cancellation failure then show it in **both** languages; ship both packages; one unseen reformulation (`log1p` / `hypot` / Kahan / LSE). Unstable code with `==` or a huge slop is **not** complete.
+
+### M.ML Empirical risk, losses, metrics (required before 9c / PMLE)
+
+Complete here, not in Part 12. Derive, then Python, then Go metric helpers.
+
+- i.i.d. assumption vs **leakage** (time, group, target). Train / val / test. Empirical risk as average loss.
+- **MSE** and **logistic / log-loss** from first principles; one **gradient descent** step. **L2** (and L1 as sparsity) as complexity control — bias–variance in words + a 1-D cartoon you can plot.
+- Metrics you **implement** (no sklearn as the only proof): precision, recall, F1, confusion matrix, ROC as ranking + AUC, PR curve; calibration (reliability-diagram idea). When accuracy lies.
+- Regularization vs more data vs simpler model. Interpretability: linear/trees vs DNN vs LLM (PMLE 3.1).
+- **From scratch:** leak-free split; logistic **or** linear GD on a tiny table; metric suite; a broken split that leaks — test must fail.
+
+**Gate:** derive d(log-loss)/dw for one example; compute metrics by hand then code; name a metric that would hide a failure in Northstar fraud vs catalog rank.
 
 ---
 
@@ -824,7 +811,7 @@ Curriculum (covers the full Compute Engine video block):
 - **HLD:** lift-and-shift 3-tier (MIG web + MIG app + Cloud SQL). When this loses to Cloud Run.
 - **Python:** use Compute Engine API to list instances, start/stop the sandbox VM, attach a label. **Go:** same with `google.golang.org/api/compute/v1`.
 - **Billing SKUs to memorize:** instance-hours, PD GB-month, snapshot, external IP (idle IP charges), egress, NAT gateway hours.
-- **T-ARCH (complete when this lab needs “why is my VM slow”):** ISA, pipeline hazards, cache hierarchy, virtual memory, coherence. Lab is the e2-micro, not a cycle-accurate simulator.
+- **T-ARCH (required with this GCE lab, not an optional quest):** ISA, pipeline hazards, cache hierarchy, virtual memory, coherence. Lab is the e2-micro, not a cycle-accurate simulator.
 - **T-OS (complete with the systemd unit):** process vs thread, scheduling, user/kernel, VM, filesystems, locks/deadlock, signals. Namespaces/cgroups are the container contract (1.2 / D1).
 
 ### 1.9 App Engine (full offering)
@@ -1545,7 +1532,7 @@ reCAPTCHA Enterprise (10k/month), gateway quotas, App Check later. **Python / Go
 - MAC vs IP vs port. ARP. Default gateway.
 - Subnets, CIDR, public vs RFC1918, NAT, routes, DNS.
 - Stateful firewalls, implicit deny. East-west vs north-south.
-- **T-NET (complete with this part, not a later networks course):** layering; end-to-end argument; routing DV vs LS (converge, count-to-infinity); reliable transfer (seq, ACK, window); congestion control AIMD — derive why window grows/shrinks. GCP products are the deployment of these ideas.
+- **T-NET (required with this part, not an optional quest):** layering; end-to-end argument; routing DV vs LS (converge, count-to-infinity); reliable transfer (seq, ACK, window); congestion control AIMD — derive why window grows/shrinks. GCP products are the deployment of these ideas.
 
 **HTTP/2 subset (why gRPC is multiplexed):**
 - One TCP+TLS connection, many streams, binary frames. Toy frames: SETTINGS, DATA, uncompressed HEADERS (not full HPACK Huffman), RST_STREAM.
@@ -1686,11 +1673,9 @@ GCP offerings:
 - SSL policies, managed certs, HTTPS redirect.
 - Serverless NEGs (Cloud Run, App Engine, Cloud Functions).
 - Forwarding rule **must** have an IP: ephemeral or reserved static (see 6.3). Deleting the rule without deleting a reserved IP leaves a billing leak.
-- Cloud CDN on that same HTTPS LB (see 1.4): cache modes, keys, signed URLs, invalidation, hit ratio.
-- **From scratch:** your L4/L7 proxies from 1.4 sit in front of two local backends; add weighted round-robin and a drain flag (canary). Then map each feature to a GCP LB type.
-- **Cloud Armor:** WAF rules, preconfigured OWASP, rate limiting, bot management, Adaptive Protection, named IP lists.
-- **Cloud CDN:** cache modes, signed URLs, cache invalidation.
-- **reCAPTCHA Enterprise** at the edge.
+- Cloud CDN on that same HTTPS LB — modes, keys, signed URLs, invalidation (**1.4 is the full CDN lesson**; do not re-teach).
+- **From scratch:** L4/L7 proxies from 1.4 in front of two local backends; weighted round-robin + drain (canary). Map each feature to a GCP LB type.
+- Cloud Armor and reCAPTCHA: WAF/OWASP/rate-limit at this edge; details stay 1.4 / 4.10.
 - **Lab:** Cloud Run auth as the free-tier “edge.” Credits-optional: global HTTPS LB + Armor + CDN in front of Cloud Run.
 
 ### 6.14 Zero-trust access
@@ -1808,7 +1793,24 @@ Every Donne Martin building block becomes a GCP decision table plus a Northstar 
 | Kafka | Pub/Sub (3.4) | |
 | Scale-to-millions (primer AWS chapter) | **GCP** global LB + multi-region Run + Spanner/Firestore + CDN — do not teach AWS as the platform | |
 
-Primer 4-step loop is already Pedagogy §4. Interview questions without a GCP lab still use that loop on paper.
+Primer 4-step loop is already Pedagogy §4. **Every row in the table above needs a Northstar ADR using the 3.0 evidence pack** — one sentence is not enough.
+
+**Gated studios (required before Part 11 — not a menu):**
+
+*Implemented (Python then Go, GCP analog):*
+1. Pastebin / Bitly — Cloud Run + Firestore + GCS; Base62/hash.
+2. Query-cache / KV + consistent hash — 8.1 ring + Memorystore/Firestore.
+3. Rate limiter — token bucket (Pedagogy §6) at the API.
+4. LRU — in-process; document when CDN/Memorystore replace it.
+5. Crawler — Cloud Run Jobs + Pub/Sub + GCS.
+6. Unique IDs — Snowflake-style (time+worker+seq); no `ORDER BY now()`.
+
+*Toy distributed (local; not production consensus products):*
+7. MapReduce — map/shuffle/reduce on files; then **recall** Dataflow (9b).
+8. Linearizable KV — single-node log + apply.
+9. **Raft at toy scale** — leader election + log replication on 3 processes. Skip-test 12.S20.
+
+*Evidence-pack HLD (thin slice or paper + sequences):* Twitter/feed; social graph; sales rank; scale-to-millions on **GCP**; Dropbox-like sync; chat; Instagram photos; multi-DC. Feed/recs **detail** is 9c.2.
 
 ### 8.1 Production-scale primitives (from scratch, then product)
 
@@ -1837,25 +1839,13 @@ Tutorial microservices skip these. You do not. Each: small tested toy → Norths
 | **Feature flags** | Deploy ≠ release | In-memory JSON flags | Remote Config / your table |
 | **Poison redrive** | DLQ is not a grave | Redrive API | Pub/Sub DLQ (3.5) |
 
-**From-scratch required in this part:** bloom filter + FPR tests; consistent-hash ring; singleflight; load-shed middleware; cursor pager. WAL toy may reuse Pedagogy §6 KV. LSM is a written comparison + optional flush toy.
+**8.1 from-scratch (required with the gated studios, not a second list):** bloom + FPR; hash ring; singleflight; load-shed; cursor pager. WAL toy may reuse the Pedagogy §6 KV. LSM = written comparison. Unique IDs and rate limiter are studios 3 and 6 above.
 
-**Discrete math and algorithms (here, not a side track):** loop/representation invariants on hash ring and bloom; recurrences/asymptotics on the hash and sort you actually write; binary-search invariant on cursor seek. Proof technique is chosen, not listed. Graph BFS/DFS only if a Northstar dependency graph needs it (catalog DAG, workflow). Interview-style synthesis (**G19**) is the Part 8 studios plus one unseen mix of two unlocked primitives. Open **T-TOC** when NP-completeness or undecidability is the actual obstacle (e.g. “why we approximate”), not as a prefix to bloom filters.
+**Discrete math (here):** invariants on the hash ring and bloom; asymptotics on the hash you write; binary-search on cursor seek. Open **T-TOC** only if NP-completeness is the actual obstacle.
 
-Worked HLD/LLD studios (primer `solutions/` + GCP analog; Python then Go):
-1. Pastebin / Bitly — Cloud Run + Firestore + GCS; Base62/hash from scratch.
-2. Twitter timeline/search — **full recs/LTR is 9c.2**; here: fan-out vs read-fan-in ADR only.
-3. Web crawler — Cloud Run Jobs + Pub/Sub + GCS.
-4. Mint.com — BigQuery path (9b.1).
-5. Social graph — Firestore/Spanner; graph DB recall.
-6. Query-cache / KV — Memorystore + consistent hash (8.1).
-7. Amazon sales rank — Pub/Sub counters + BigQuery.
-8. Scale to millions — global LB, multi-region Run, Spanner or Firestore, CDN (GCP, not AWS).
+**OOD:** hash map + LRU (studio 4). Circular array with the hash map. Chat HLD is in the gated HLD list. Skip call-center/cards/parking-lot.
 
-**OOD (primer notebooks):** hash map + LRU required (cache). Circular array. Chat server optional after 3.2 streams. Call center / cards / parking lot: skip unless they attach to Northstar. Every studio uses the Part 3.0 evidence pack.
-
-**Appendix D additional primer questions** (design on paper + link to owner; not extra courses): Dropbox-like sync; Google search; Google Docs OT (tiny toy — do not invent CRDT research); Redis; Memcached; Amazon recs → 9c.2; WhatsApp chat; Instagram photos; FB feed/timeline/chat/graph search; Cloudflare CDN → 1.4; Twitter trends → HyperLogLog 8.1; Snowflake IDs; top-k; multi-DC; **API rate limiter** (Stripe blog + §6 token bucket); stock exchange optional.
-
-Back-of-envelope: powers of two, latency numbers, GCP SKU napkin math (Part 0). PCA-style: “I pick X because Y, I accept Z.”
+Back-of-envelope: powers of two, latency numbers, SKU napkin math (Part 0). “I pick X because Y, I accept Z.”
 
 ---
 
@@ -1938,11 +1928,18 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 - **Lab (free-tier boxed):** call a Gemini API from Cloud Run with a Vertex/AI Studio key in Secret Manager; never log prompts that contain PII. Python then Go.
 - LLM **application** design (RAG, eval, guardrails) is **9c.5**. This subsection is model/API selection.
 
+### 9b.4 PMLE low-code and platform (required in the initial track)
+- **BQML:** `CREATE MODEL` for classification, regression, forecasting, clustering; `ML.TRANSFORM` / `TRANSFORM` clause = train/serve parity. Fine-tune a **remote** Gemini model with SQL (concept + statement). When BQML vs AutoML vs custom (data in BQ, SQL team, prototype vs control).
+- **AutoML** on Agent Platform: tabular/text/image; forecasting. Debug trained models at a literacy level.
+- **Model Garden:** pick vs wrap vs self-deploy. Document AI, Vision, Translate — buy vs build.
+- **Feature Store, Experiments, ML Metadata, Model Registry, Workbench / Colab Enterprise.** Pipelines vs Composer vs Ray-on-platform (literacy).
+- **Lab:** one BQML model on a public or synthetic table **or** a documented AutoML walk-through; Feature Store or TRANSFORM diagram for Northstar catalog features. Python/SQL then Go client for predict.
+
 ---
 
 ## Part 9c — Production ML systems (industry case-study atlas)
 
-Source catalog: [Engineer1999 ML system-design case studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) — **309** studies, **84** companies. Full one-line index is **Appendix M**. You do not re-implement 309 blogs. You learn **families**, attach **one Northstar slice** each, map to **GCP**. Recall IAM, Cloud Run, Pub/Sub, BQ/Dataflow, Monitoring — do not re-teach them.
+Full one-line index is **Appendix M** (309 studies). You do not re-implement 309 blogs. Learn **families**, attach Northstar slices, map to GCP. Do not re-teach IAM, Cloud Run, Pub/Sub, BQ, Monitoring.
 
 Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → **derive the metric or estimator you use** → offline evaluation → serving → monitor/rollback/cost → one named case. Metrics, leakage, skew, ranking utility, and FPR that appear in the slice are **theoretical** topics: complete floor, not “call Vertex.”
 
@@ -1951,7 +1948,7 @@ Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → *
 - Train/serving skew: name the distribution shift; a test that fails if online features diverge.
 - Feature store (Vertex Feature Store / Feast-shaped toy). Online vs offline features.
 - **From scratch:** a feature table with `event_time` + as-of join that fails if you leak future labels.
-- Open **T-ML** if the slice is a classical model: non-ML baseline → kNN → linear/logistic → trees/forests/boosting → clustering → PCA → ranking; each family: objective, assumptions, complexity, calibration, failure slice. Scratch NumPy; then the service boundary in Go.
+- **M.ML is required before this part.** The classical zoo is listed once at the end of 9c.
 
 ### 9c.2 Retrieval, rank, recommend, bandits
 - Candidate generation → rank → re-rank/diversity. Two-tower + ANN (Vertex Vector Search). LTR, multi-task, cold start.
@@ -1981,12 +1978,24 @@ Units (institutional GenAI progression, this owner only): (1) generative vs disc
 - Architect literacy + Vertex custom job; not a CV PhD.
 
 ### 9c.7 Platform, experiments, serving
-- Michelangelo ≈ Vertex + Feature Store + Pipelines + registry + endpoints.
-- Batch vs online serving. Drift / prediction-quality monitors (product = 10.0).
-- A/B, holdout, shadow, CUPED-style. Cloud Deploy canary (D4) is **release**, not experiment.
-- Training pipelines: Dataflow/BQ **contract** only (jobs already 9b.1).
+Michelangelo ≈ Vertex. A/B/holdout/shadow ≠ Cloud Deploy **app** canary (D4). Product details and PMLE labs are the block immediately below — do not re-teach.
 
-**Optional capstone ML:** one of {ranker, fraud score, ETA, RAG} behind a hexagonal port. Not required to finish payments.
+**Required Northstar implementations (Python then Go ports):** ranker (9c.2), ETA (9c.3), fraud-on-tokens (9c.4), RAG (9c.5).
+
+**Required family HLDs** (evidence pack: problem, labels, leakage, metric, serving, monitor, cost — implement only if it is one of the four slices): recommend/feed; search/LTR/ads; forecast/ETA; fraud/HITL; LLM/RAG; NLP/support; CV/speech serving; marketing/CLV; availability/inventory; ML platform (Michelangelo ↔ Vertex). Appendix M “Other” stays index-only.
+
+**Classical zoo (required in this part, not 12.S11):** kNN → linear/logistic (use **M.ML**) → trees → forests/boosting → clustering → PCA → ranking. Each: objective, assumptions, complexity, when a simpler model wins. Scratch NumPy for logistic or linear; rest may use a library **after** you can state the objective. 12.S11 skip-tests this.
+
+**PMLE scale/serve/pipeline/monitor (required literacy + one lab or diagram each):**
+- Custom training vs AutoML vs BQML vs Tabular Workflows; HP tuning; CPU/GPU/TPU **choice**; data vs model parallelism as **arithmetic** (replica × batch, not a CUDA degree).
+- Batch vs online inference; Model Registry; prebuilt vs custom containers; Feature Store **online**; public vs private endpoints; Cloud Run vs GKE vs Agent Platform; **model** canary/A-B (traffic split on versions), distinct from Cloud Deploy **app** canary (D4).
+- Pipelines: Agent Platform Pipelines, Composer/Airflow, Ray-on-platform (literacy). Cloud Build **CI/CD/CT**. Retraining policy from monitors.
+- Identical preprocess train/serve: scratch transform, then BQ `TRANSFORM`.
+- Monitoring: training-serving **skew**, data **drift**, **concept** drift, **feature-attribution** drift — define; detect on a **synthetic shift** toy. Model Monitoring product; Explainable AI; Model Armor; gen-AI eval / LLM-as-judge caveats; bias/responsible AI.
+
+---
+
+## Part 10 — Observability, reliability, FinOps
 
 Well-Architected pillars, now that you have a system. Operations Suite is the former Stackdriver video block.
 
@@ -2028,11 +2037,11 @@ Day-zero 0.1 already has a $10 budget. Here you **analyze**.
 - Billing export to BigQuery (standard + detailed). Cost by `service.description`, `sku.description`, `project.id`, `labels.env`, `labels.service`.
 - **API/SKU analysis:** which Google APIs are dollars (BigQuery bytes, Cloud Run CPU-seconds, GAE instance hours, Maps/Gemini, Logging ingest, Artifact Registry, idle IPs, NAT, LB forwarding rules).
 - Pricing Calculator vs actual. CUD. Idle waste: unused IPs, unattached PD, old images, log spam.
-- Budget alerts **lag**; pair with Monitoring on consumed API request count (10.7).
+- Budget alerts **lag**; pair with Monitoring on consumed API request count (10.4).
 - **From scratch:** extend the 0.1 parser — top-N SKUs, month-end forecast, flag non-Always-Free, unit economics (`$/1k checkout`).
 - **Lab:** export or synthetic CSV. BigQuery (1 TiB free queries) or DuckDB. Python then Go CLI.
 
-### 10.7 Cloud Quotas, consumed APIs, API budgeting
+### 10.4 Cloud Quotas, consumed APIs, API budgeting
 Quota is a budget equal to money.
 - **Cloud Quotas:** allocation vs rate, project/folder/org, increase requests, usage alerts (~80%).
 - **Service Usage API:** Terraform-enable only what you need; disable unused APIs.
@@ -2044,18 +2053,18 @@ Quota is a budget equal to money.
 - **Lab:** Metrics Explorer on Consumed API for `run.googleapis.com` or `compute.googleapis.com`. Alert at 80%. Document a quota increase you do **not** file unless needed.
 - **Python / Go:** query `api/request_count` by method; fail CI if last hour > N.
 
-### 10.4 Performance
+### 10.5 Performance
 - Concurrency tuning, connection pooling to Firestore, CDN cache hit ratio, payload size.
 
-### 10.5 Sustainability
+### 10.6 Sustainability
 - Region carbon, scale-to-zero as a sustainability feature (pillar added Jan 2026).
 
-### 10.6 Linux / OS internals (earned, after GCE + Cloud Run)
+### 10.7 Linux / OS internals (earned, after GCE + Cloud Run)
 - Namespaces, cgroups (what Cloud Run abstracts; what you still see on GCE).
 - Why the container contract exists.
 - TCP handshake, TLS handshake, HTTP/2, gRPC — packet path you already drew in Part 6.
 - iptables vs VPC firewall vs Cloud NGFW vs Cloud Armor.
-- This is the original Linux/OS request, attached to VMs and containers you already operate. **T-OS** completes here: scheduling classes, page tables, inode vs dentry, deadlock four conditions — predict then observe on the e2-micro.
+- This is the original Linux/OS request, attached to VMs and containers you already operate. **T-OS required here (not optional):** scheduling classes, page tables, inode vs dentry, deadlock four conditions — predict then observe on the e2-micro.
 
 ---
 
@@ -2083,7 +2092,7 @@ Not a dump of dumps. After capstone:
 - Map every ADR to an exam domain.
 - Four official case studies: Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive — full HLD per case.
 - Practice the exam skill: pick the *Google-preferred managed* option unless a constraint forbids it.
-- Optional: sit ACE first if IAM/gcloud is still shaky; PCA is the target.
+**Part 11 gates:** same as the spine “initial course complete when,” plus the e2e demo below. Optional ACE if IAM/`gcloud` is still shaky.
 
 ### Part 11b — Control-plane capstone (after Northstar v1)
 
@@ -2195,7 +2204,7 @@ Each has a Go twin after submission.
 
 Use as a hierarchy: official language and product docs first, then these texts. Security: governing RFC/BCP, then NIST/ASVS, then cheat sheets; record the date checked.
 
-**Go and CS:** Donovan and Kernighan, *The Go Programming Language*; Bodner, *Learning Go*; current Go `net/http`, `crypto/*`, `context`, testing, race detector, and release notes. Rosen or Grimaldi (discrete math). CLRS; Sedgewick & Wayne. Silberschatz/Galvin/Gagne *Operating System Concepts* and Tanenbaum *Computer Networks* when Part 10.6 / 6.1 need a text.
+**Go and CS:** Donovan and Kernighan, *The Go Programming Language*; Bodner, *Learning Go*; current Go `net/http`, `crypto/*`, `context`, testing, race detector, and release notes. Rosen or Grimaldi (discrete math). CLRS; Sedgewick & Wayne. Silberschatz/Galvin/Gagne *Operating System Concepts* and Tanenbaum *Computer Networks* when Part 10.7 / 6.1 need a text.
 
 **Architecture and SE:** Evans, *Domain-Driven Design*; Fowler, *Patterns of Enterprise Application Architecture*; Bass et al., *Software Architecture in Practice*; Richards and Ford, *Fundamentals of Software Architecture*; Newman, *Building Microservices*; Kleppmann, *Designing Data-Intensive Applications*; Google SRE work; Microsoft REST API Guidelines; *Software Engineering at Google*; Fowler *Refactoring*.
 
@@ -2205,9 +2214,28 @@ Use as a hierarchy: official language and product docs first, then these texts. 
 
 **Production ML / systems:** Huyen; Lakshmanan/Robinson/Munn *Machine Learning Design Patterns*; Google SRE; DORA.
 
+## Appendix C — Initial-course coverage (bibliography as gate)
+
+Each Part’s ADR or lab write-up must **use** (cite a section, not a vibe) at least one of:
+
+| Part | Must appear |
+|---|---|
+| M.NS | Higham and/or IEEE 754 |
+| 0 | Cloud Billing / IAM docs |
+| 2–3 | Kleppmann DDIA (storage, replication, or queues as used) |
+| 3.0 | Evans or Fowler PoEAA — one pattern with a **force** |
+| 4 | RFC 7519/8725 or NIST 800-63B or ASVS — one control |
+| 6 | Kurose or Tanenbaum — one mechanism (window, routing, or DNS) |
+| 8 | Primer building block + GCP product in the same ADR |
+| 9b–9c | Official BQML/Vertex/Agent Platform doc for the product you chose; M.ML derivation in the notebook |
+| 10 | Google SRE — SLI/SLO or toil |
+| 11 | PCA exam guide case + Well-Architected pillar |
+
+Not extra homework: if the write-up cannot point to a page, the part is not complete.
+
 ## Appendix I — Institutional CS/math texts and extra tracks
 
-IIT/IISc BTech/MTech CSE cores map to owners above; texts extend Appendix B (do not duplicate). Teach at the owner or as a **T-*** quest, never as a second spine.
+IIT/IISc BTech/MTech CSE cores map to owners above; texts extend Appendix B (do not duplicate). Required tracks (ARCH/OS/NET) are in Parts 1.8, 10.7, 6. Other T-* only when that owner opens them. Never a second spine.
 
 **Systems:** Hennessy and Patterson, *Computer Organization and Design*; Silberschatz, Galvin, Gagne, *Operating System Concepts*; Kurose and Ross, *Computer Networking*; Tanenbaum and Wetherall, *Computer Networks*; Aho, Lam, Sethi, Ullman, *Compilers*.
 
@@ -2229,7 +2257,7 @@ Use the owner’s bibliography; chapters are entered only when that owner is tau
 |---|---|
 | Sipser 1–5, 7 | T-TOC |
 | H&P pipeline/cache/VM chapters | T-ARCH / 1.8 |
-| Silberschatz process/VM/FS/sync | T-OS / 10.6 |
+| Silberschatz process/VM/FS/sync | T-OS / 10.7 |
 | Kurose 1–5 | Part 6 / T-NET |
 | Dragon book front/middle/back | T-PL |
 | Boyd 2–5, 9 | T-OPT |
@@ -2269,16 +2297,9 @@ Use the owner’s bibliography; chapters are entered only when that owner is tau
 
 ## What this course will not do
 
-- Will not start with a month of isolated Linux before any GCP.
-- Will not skip Compute Engine, App Engine, SQL design, Cloud SQL setup, network security, cybersecurity, Docker, Kubernetes internals, CI/CD, GitOps, or supply-chain security — they are first-class.
-- Will not require a **live** Cloud SQL instance, GKE cluster, or global load balancer to complete required labs (Terraform + local Postgres + free-tier GCE/GAE/Cloud Run are required).
-- Will not teach storing card data.
-- Will not treat PCA dumps as architecture education.
-- Will not skip Go; it is sequenced after each Python submit, not as a separate language semester. G0–G20 is Appendix G only.
-- Will not insert a second degree sequence in front of billing. IIT/IISc cores are owners and T-* quests.
-- Will not skip from-scratch implementations (servers, proxies, middleware, bloom filters, gRPC toys, mini-QUIC). Managed GCP is the second step, not the first.
-- Will not duplicate SOLID/gRPC/QUIC in extra parts — one home each (3.0, 3.2, 6.1).
-- Will not have you implement TLS/AES/RSA, store PAN, or attack systems you do not own.
+- Isolated Linux month before GCP; live Cloud SQL/GKE/global LB as **required** (Terraform + local Postgres + free-tier Run/GCE/GAE suffice).
+- Storing PAN; homemade TLS/AES/RSA; attacking systems you do not own; PCA dumps as architecture class.
+- A second teaching order before billing; a second Go semester (Appendix G is an index); duplicate SOLID/gRPC/QUIC homes.
 
 ---
 
@@ -2342,7 +2363,7 @@ Do **not** open this part until Northstar v1 and 11b are done or skip-tested. Pe
 **S10** Bayes, RVs, expectation, CLT, MLE/MAP, CIs, tests, bootstrap, entropy/CE/KL, experiment design. Gate: simulation verifies a derivation; A/B analyzer with power and multiple-comparison caveats.
 
 ### 12.S11–S14 ML, databases, optimization, RL, causality
-**S11** Baseline → leakage/split → kNN → linear/logistic/GLM → NB/LDA → SVM → trees → forests/boosting → clustering → GMM/EM → PCA → anomaly → ranking. Each: objective, assumptions, complexity, calibration, simpler alternative. Gate: scratch NumPy, gradient/likelihood checks, ablation on a fresh set.
+**S11** Skip-test if 9c classical zoo + **M.ML** confirmed. Else: baseline → leakage/split → kNN → linear/logistic → trees → forests/boosting → clustering → PCA → ranking. Gate: scratch NumPy, gradient/likelihood checks.
 
 **S12** FDs, normalization, algebra, NULL/3VL, joins, CTE/windows, isolation, pagination. Skip-test if Part 2 confirmed. Gate: SQL transcript + parameterized client.
 
@@ -2381,11 +2402,11 @@ Official block order: GenAI/LLMs → prompting/RAG → PEFT/alignment → multim
 
 **S19** Part 4 order plus NIST AAL1–3, OAuth BCP attacks, ASVS 5 mapping. Skip-test if 4.2–4.10 confirmed.
 
-**S20** S20 order already in 3.0. **Add here if not done:** toy MapReduce, linearizable KV, Raft, sharded KV — at toy scale, not a production consensus product. Skip-test SOLID/hexagonal if 3.0 confirmed.
+**S20** Skip-test SOLID/hexagonal if 3.0 confirmed. Skip-test MapReduce/KV/Raft if **8.1 toys** confirmed. Sharded KV only if 8.1 did not cover it.
 
 **S21** Primer bank (Part 8). Each problem: six-step write-up + thin implementation. Cover read-heavy, write-heavy, realtime, batch, multi-tenant, global, ML-backed, adversarial. Revisit one design at 10× scale.
 
-**S22** ML warranted? → metric/baseline → contracts → pipeline/lineage → registry → serve → parity → tests → shadow/canary/A-B → drift → retrain → rollback/govern. GenAI: corpus/prompt/model/tool versions, spend budgets. Gate: PMLE-style defense, ML Test Score, silent-failure drill. Skip-test overlap with 9c.7/10.
+**S22** Skip-test if 9c.7 PMLE pipeline/monitor block confirmed. Remainder: ML Test Score drill, silent-failure restore of prior model/data/config.
 
 ### 12.S23 Control plane
 Skip-test if 11b ORR passed. Else finish P0–P10 and ORR here.
@@ -2760,7 +2781,7 @@ Source: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://g
 
 ## Appendix G — Go module reference (not a teaching track)
 
-Unlock each module at the **owner** below. Artifact is required when that owner is taught. Python still comes first on the same slice.
+Unlock each module at the **owner** below. Artifact is required when that owner is taught. Python still comes first on the same slice. **Part 11 cannot close until every owner in F–11b has its Go artifact (or a documented skip-test).** G10–G12 is the **same lab as Part 4.2**, not a second HTTP course.
 
 | Module | Concepts | Artifact | Owner |
 |---|---|---|---|
