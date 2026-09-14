@@ -516,7 +516,7 @@ D  CI/CD, GitOps, SLSA; **CT** for PMLE retraining
    (full algebra/calculus, DSP/Kaldi, full DL-from-scratch, five GenAI portfolios, archive)
 ```
 
-**Initial course complete when:** Northstar runs; Appendix G artifacts for F–11b are checked; Part 8 gated toys + primer HLDs done; Appendix M **families** have evidence-pack HLDs; four PCA case one-pagers; PMLE product literacy (9b/9c.7) + M.ML derivations + from-scratch logistic/metrics/skew toy; three budgets. Part 12 is not required for PCA or PMLE.
+**Initial course complete when:** F–11b teaching text is expanded in place (Donne Martin studios, Go owners via Appendix G, ML families in 9c + Appendix M index, PCA `####` lessons under owners, PMLE literacy in 9b/9c); Northstar v1 runs; Appendix G artifacts checked; Part 8 gated toys + primer HLDs done; Appendix M families have evidence-pack HLDs; four official PCA case HLDs (Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives); M.ML derivations + logistic/metrics/skew toy; three budgets (dollar, error, quota). Part 12 remains the continuation for full algebra/calculus, DSP/Kaldi, transformer-from-scratch, five GenAI portfolios, and S24 — not a PCA/PMLE gate.
 
 This curriculum is the syllabus of record.
 
@@ -527,48 +527,180 @@ This curriculum is the syllabus of record.
 Required if you cannot yet: use a terminal, explain HTTP, or explain IaaS vs PaaS. Software engineers skip-test each F subsection; fail any check and you do that subsection fully.
 
 ### F1 Absolute beginner computing (pre-GCP)
-- Computer: CPU, RAM, disk, network interface.
-- OS: process, file, user, permission, env var, stdout/stderr. Linux enough to survive Cloud Shell: `ls`, `cd`, `cat`, `chmod`, `ps`, `grep`, `jq`, pipes.
-- CLI vs GUI. Shell, PATH, exit codes.
-- Git: clone, branch, commit, push, PR. Recover a broken repo path (**G0**).
-- Networks in one sitting: IP, port, DNS, TCP vs UDP, HTTP methods, status codes, TLS, JSON.
-- **From scratch:** bind a TCP socket, read a request line, write `HTTP/1.1 200` + JSON. This is the first middleware host. FastAPI comes after.
-- Python enough: venv, `pip`, functions, types, pytest, then FastAPI.
-- **Go at first submit:** modules, `gofmt`/`go vet`, `main`, types, vars, `for`/`if`/`switch`, arrays, `_` (**G0–G1**). Then slices, maps, `range`, functions, errors, `defer` (**G2**).
-- Discrete JIT: propositions, a counterexample, induction on a loop invariant — with the first algorithm you write, not as a separate math semester.
-- **Exercise:** Python HTTP server that returns JSON; after submit, Go version (`net/http`, `testing`).
 
-### F2 What is cloud computing
-- On-prem vs colocation vs cloud. Elasticity, pooled resources, metered billing, API-provisioned.
-- **Deployment models:** public, private, hybrid, community, multi-cloud.
-- **Service models:** IaaS (GCE), PaaS (App Engine, Cloud Run), SaaS (Workspace). FaaS as a PaaS slice (Cloud Run functions).
-- Shared responsibility.
-- CapEx vs OpEx (PCA 4.2).
-- **HLD exercise:** classify 10 Northstar components as IaaS/PaaS/SaaS and defend.
+Required if you cannot yet: use a terminal, explain HTTP, or explain a process. Software engineers skip-test; fail any check and you do this subsection fully.
 
-### F3 Google Cloud global infrastructure
-- Regions, zones, multi-region, dual-region. Latency vs data residency.
-- Points of presence, Cloud CDN edge, Google Front End.
-- Resource scope: zonal (GCE VM, PD), regional (Cloud Run, subnet, Cloud SQL HA), global (VPC, IAM, GCS multi-region, global LB).
-- **Python / Go:** given a list of products, tag zonal/regional/global (unit tests).
+#### Concepts
+- **Computer:** CPU executes instructions; RAM holds working state; disk persists; NIC moves packets. You will later map these to Cloud Run CPU/memory, Persistent Disk, and VPC NICs — same words, managed by Google.
+- **OS:** process (address space + threads), file descriptor, user/permission bits, environment variables, stdout/stderr vs logging services. Linux enough for Cloud Shell: `ls`, `cd`, `pwd`, `cat`, `chmod`, `ps`, `grep`, `jq`, pipes, redirect, exit codes.
+- **CLI vs GUI:** the CLI is scriptable and is how CI talks to GCP. Shell, `$PATH`, exit code ≠ 0 means fail the pipeline.
+- **Git:** clone, branch, commit, push, PR. Recover a broken repo path / wrong remote / detached HEAD (**Go G0** lives here for toolchain recover — lesson text under owner, not Appendix G).
+- **Networks in one sitting:** IP, port, DNS A/AAAA, TCP vs UDP, HTTP methods, status codes, TLS (terminate vs pass-through idea), JSON as a media type — not a deep protocol course (that is Part 6.1).
+- **Discrete JIT:** propositions, a counterexample, induction on a loop invariant — attached to the first algorithm you write (e.g. “scanner consumed entire line”), not a separate math semester.
 
-### F4 Account setup (from the video outline, required)
-- Resource hierarchy: org, folder, project, resource. Inheritance.
-- Create / link free-tier + trial. Securing the account (2SV, recovery, super-admin hygiene).
-- Console overview: search, Cloud Shell button, IAM, APIs, billing.
-- Cloud APIs: enable, quotas, why APIs are closed by default.
-- Adding an admin user; Organization Admin vs Project Owner vs Billing Admin (separation of duties — PCA 3.1).
-- Cloud SDK and CLI: install, `gcloud init`, configurations, components, updates, `gcloud` vs `gsutil` vs `bq` vs `kubectl`.
-- Managing Cloud SDK: versions, named configs, `CLOUDSDK_CORE_PROJECT`.
-- Cloud Shell and Editor; Cloud Code (PCA 5.2).
-- Creating and managing projects. Project ID vs number vs name.
-- Limits and quotas: default, how to request, how quotas stop surprise bills.
-- **Lab:** new project, enable APIs, second admin user in a group, `gcloud` from Cloud Shell and from local, hit a quota wall on purpose (e.g. list), document it.
+#### From scratch (required)
+- Bind a TCP socket, read a request line, write `HTTP/1.1 200` + `Content-Type: application/json` + body. This is the first middleware host. FastAPI comes **after** you have spoken HTTP bytes once.
+- Predict status codes for bad method / missing header before coding the branch.
+
+#### Python then Go
+- Python enough: venv, `pip`, functions, types, pytest, then FastAPI wrapping the same JSON contract.
+- **Go at first submit (G0–G2 lesson text pasted under this heading):** modules, `gofmt`/`go vet`, `main`, types, vars, `for`/`if`/`switch`, arrays, `_` (**G0–G1**). Then slices, maps, `range`, functions, errors, `defer` (**G2**). No locked Go tokens before their SYNTAX UNLOCK.
+
+#### Lab / gate
+- **Exercise:** Python HTTP server returns JSON; after submit, Go version (`net/http`, `testing`).
+- **Gate:** can explain process vs thread vs container in one paragraph; Git PR merged; both language servers return the same golden JSON; discrete invariant written above the parse loop.
+
+#### PCA: beginner → cloud literacy bridge
+- **Considerations (exam guide themes):** shared responsibility starts at “what do I patch?”; tooling (Cloud Shell / SDK) is PCA 5.2 adjacent; you cannot design what you cannot operate from a terminal.
+- **Decision table:**
+
+| Situation | Pick | Accept |
+|---|---|---|
+| Never used a shell | Finish F1 fully | Delay all GCP labs |
+| Can write Python HTTP + Git PR | Skip-test F1 | Spot-check network vocab |
+| Can explain TCP/HTTP but not Git recover | Do Git/G0 only | Do not skip toolchain |
+
+- **Scenario prompt:** A teammate’s Cloud Shell shows `command not found: gcloud` after they “installed something with curl.” What do you check first?
+- **Expected:** “I pick verify `$PATH` / Cloud Shell reset / SDK components because Y (tooling before IAM), I accept Z (reinstall beats debugging a broken profile forever).”
+
+#### Go G0 — Toolchain, modules, Git/SSH recovery
+SYNTAX UNLOCK: `go` CLI is not a language keyword. First tokens here are **module path** (`module example.com/northstar`), `go 1.22`, and the fact that `go.mod` is the lock on **what** you import. Contrast Python: `pyproject.toml` / `requirements.txt` name packages; Go names a **module root** and every import is rooted under it. Memory model not yet — this unlock is filesystem + PATH.
+Concept: Install Go once; prove `go env GOPATH GOROOT GO111MODULE`. Every Northstar Go tree is a module. `gofmt` and `go vet` are gates, not style tips. Git/SSH failures (wrong remote, broken `go.mod` module path, missing `replace`) are recovered with a runbook, not by deleting the repo. Same recover path is reused when the billing CLI (0.1) ships with a wrong module path.
+Python twin first: venv + `pip install -e .` + a one-file script that prints version; commit; push; open PR. Only after submit do you touch Go.
+Go artifact: package `tooling`; tests: `TestModPathMatchesDir` (module path equals repo convention), `TestGofmtClean` (no diff after format), `TestVetPasses`; gate: broken `go.mod` fixture restored by documented steps; `go test ./tooling` green; runbook checked into `docs/go-setup.md`.
 
 ---
 
-Go language modules G0–G20 are **not a separate semester**. They are unlocked at first use in F, 0–5, 8, 10, and 11b. **Appendix G** is the index (concepts + artifacts + owner). If an artifact in that index is missing when you reach the owner, the owner sub-topic is not complete.
+#### Go G1 — main, types, control flow, arrays, blank identifier
+SYNTAX UNLOCK: `func main()` is the process entry (signature: no args, no returns — unlike Python `if __name__`). `:=` declares+assigns in function scope only; `var x T` zero-values. `for` is the only loop (`for i := 0; i < n; i++`, `for cond`, `for range`). `if`/`switch` (no paren; `switch` can be expressionless). Arrays: `[N]T` is a value (copied). `_` discards deliberately. Overflow: Go integers wrap; predict before assert.
+Concept: Typed zeros (`0`, `""`, `false`, `nil` later). Explicit types at boundaries. Arrays are fixed length — prefer slices next. Never ignore errors with `_` except for unused imports/range indexes you truly discard.
+Python twin first: typed functions + pytest table for overflow/edge ints; FastAPI not required yet.
+Go artifact: package `cmd/hello` + `basics`; tests: `TestPredictOverflow`, `TestSwitchExhaustiveStatuses`, `TestArrayCopyIsIndependent`; gate: command runs; table tests pass; no `_ = err` in the package.
 
+---
+
+#### Go G2 — slices, maps, functions, defer, errors, runes; stacks/queues
+SYNTAX UNLOCK: slice header = `(ptr, len, cap)` — assignment aliases the backing array (unlike Python list assignment which also aliases, but `append` may reallocate). `map[K]V` is a reference; read with `v, ok := m[k]`. Multiple returns: `(T, error)` — check every `error`. `defer` schedules LIFO on function return (close files/unlock). `range` over slice/map/string; string range yields `rune` (code point), not bytes. Errors are values: `errors.New`, `fmt.Errorf("%w")`.
+Concept: Prefer slices over arrays. Map iteration order is randomized — tests must not assume order. Build stack/queue on slices with documented invariants. Never ignore `error`.
+Python twin first: list/dict aliasing lab + custom exception path; pytest proves alias vs copy.
+Go artifact: package `collections`; tests: `TestSliceAliasThenAppend`, `TestMapMissingOk`, `TestStackInvariant`, `TestDeferOrder`, `TestNoIgnoredError` (static check or grepped CI); gate: all green; first Go submit of the HTTP JSON twin may use this package.
+
+---
+### F2 What is cloud computing
+
+#### PCA: 4.2 Business processes
+
+**Guide themes (matrix):** stakeholders; change management; skills readiness; decision-making; customer success; CapEx/OpEx; BCP. Homes: F2, 0, 10, 11.
+
+| Topic | Prefer | Accept |
+|---|---|---|
+| Spend model | OpEx + budgets/alerts | Untracked CapEx lift |
+| Change | CAB-lite + ADRs | Silent Friday prod edits |
+| Skills | Upskill plan + paired labs | Hire-only freeze |
+| BCP | Tied to technical RTO/RPO | Paper plan never drilled |
+
+**Scenario prompt:** CFO hears “cloud is always cheaper”; eng wants unlimited GPUs.
+
+**Expected answer shape:** “I pick OpEx with SKU budgets and CUD where steady because Y, I accept Z (GPU only with utilization SLO).”
+
+
+#### Concepts
+- **On-prem vs colocation vs cloud:** who owns hardware, who patches hypervisor, who meters. Cloud = elasticity, pooled resources, metered billing, API-provisioned capacity.
+- **Deployment models:** public, private, hybrid, community, multi-cloud. Hybrid appears again in Part 8b (Interconnect / HA VPN / GCVE).
+- **Service models:** IaaS (Compute Engine), PaaS (App Engine, Cloud Run), SaaS (Workspace). FaaS as a PaaS slice (Cloud Run functions / Cloud Functions).
+- **Shared responsibility:** Google secures the cloud; you secure IAM, data, app code, who can invoke. Misconfigured public bucket is on you.
+- **CapEx vs OpEx (PCA 4.2):** buying servers vs paying per second; committed use later is still OpEx with a term.
+
+#### From scratch / exercise
+- **HLD exercise:** classify 10 Northstar components (storefront, API, DB, cache, CI, secrets, CDN, scheduler, webhook worker, admin) as IaaS/PaaS/SaaS and defend each in one sentence.
+
+#### Gate
+- Can draw shared-responsibility line for Cloud Run vs GCE for “who patches the guest OS?”
+
+#### PCA: CapEx / OpEx and service model
+- **Considerations:** finance language on case studies; “move to cloud” without naming IaaS vs PaaS fails.
+- **Decision table:**
+
+| Need | Model | Accept |
+|---|---|---|
+| Custom kernel / appliance | IaaS (GCE) | You patch OS |
+| HTTP container, least ops | PaaS (Cloud Run) | Less OS control |
+| Email/calendar for staff | SaaS | Little customization |
+
+- **Scenario prompt:** CFO wants CapEx for “our own Kubernetes hardware” to save money. Northstar is one API + Postgres.
+- **Expected:** “I pick Cloud Run + Cloud SQL OpEx because Y (elastic, no cluster tax), I accept Z (less bare-metal control, commit discounts later if stable).”
+### F3 Google Cloud global infrastructure
+
+#### Concepts
+- **Regions, zones, multi-region, dual-region.** Zone failure ≠ region failure. Latency vs data residency (EU/US constraints on PCA cases).
+- **Points of presence, Cloud CDN edge, Google Front End (GFE):** users hit GFE/PoP; your origin may be regional.
+- **Resource scope:**
+  - **Zonal:** GCE VM, zonal Persistent Disk.
+  - **Regional:** Cloud Run (regional), subnet, Cloud SQL HA regional.
+  - **Global:** VPC (global private network), IAM, GCS multi-region, global external Application LB (anycast).
+
+#### Lab
+- **Python / Go:** given a list of products, tag zonal/regional/global (unit tests with a fixed table). Wrong tag fails the test — this table is reused in Part 1 and 6.
+
+#### PCA: placement and blast radius
+- **Considerations:** design for locality; HA across zones; global LB vs regional; data residency.
+- **Decision table:**
+
+| Constraint | Placement | Accept |
+|---|---|---|
+| HA API, single region OK | Regional Cloud Run + multi-zone | Region outage downs you |
+| One anycast IP worldwide | Global HTTPS LB | Premium tier / cost |
+| EU-only personal data | EU region + residency controls | Higher latency for US users |
+
+- **Scenario prompt:** Altostrat-style media app needs EU residency but US editors.
+- **Expected:** “I pick EU region for SoR + controlled editor access because Y, I accept Z (cross-region tooling latency, not a second SoR in US).”
+### F4 Account setup (from the video outline, required)
+
+#### PCA: 5.2 Programmatic interaction
+
+**Guide themes (matrix):** Cloud Shell/Code; gcloud/gsutil/bq; Cloud Emulators; Terraform; API clients. Homes: F4, 0.2, 2.7, all labs.
+
+| Task | Prefer | Accept |
+|---|---|---|
+| IaC | Terraform | Console clicks for one-off learn |
+| Local | Emulators (Spanner/Firestore/Pub/Sub/Bigtable) | Live paid always |
+| CLI | gcloud + WIF in CI | Embedded keys |
+
+**Scenario prompt:** Learner refuses Terraform “because console is faster.”
+
+**Expected answer shape:** “I pick Terraform + emulator labs because Y, I accept Z (console only for exploration, then codify).”
+
+
+#### Concepts
+- Resource hierarchy: org → folder → project → resource. IAM and org policies inherit down.
+- Free-tier + trial: link billing carefully; Always Free ≠ “cannot bill.”
+- Securing the account: 2SV, recovery codes, super-admin hygiene (break-glass, not daily Driver).
+- Console: search, Cloud Shell, IAM, APIs & Services, Billing.
+- **APIs closed by default:** enable per project; quotas stop surprise scale; enabling is free until use.
+- Separation of duties (PCA 3.1): Organization Admin ≠ Billing Admin ≠ Project Owner on the same standing account if you can avoid it.
+- Cloud SDK: `gcloud init`, named configurations, components, `gcloud` vs `gsutil` vs `bq` vs `kubectl`.
+- Cloud Shell and Editor; Cloud Code (PCA 5.2 tooling).
+- Project ID vs number vs name — ID is immutable-ish identifier you put in Terraform.
+- Quotas: default, request increase, how quotas are a safety rail.
+
+#### Lab (required)
+- New project; enable APIs you need; second admin user in a **group**; `gcloud` from Cloud Shell and local; hit a quota wall on purpose (e.g. aggressive list); document the error and which quota.
+
+#### Gate
+- Can create a project, set `gcloud config set project`, and explain why Organization Admin should not be the daily deploy identity.
+
+#### PCA: org hierarchy and SoD
+- **Considerations:** PCA 3.1 identity/access; landing zone starts with org + billing; break-glass.
+- **Decision table:**
+
+| Role need | Binding | Accept |
+|---|---|---|
+| Pay invoices only | Billing Admin on billing account | Cannot deploy |
+| Deploy Northstar | Custom/predefined on project via group | No org-wide Owner |
+| Emergency | Break-glass user + monitored | Higher risk if used casually |
+
+- **Scenario prompt:** Startup gives every engineer `roles/owner` at org level “for speed.”
+- **Expected:** “I pick group-scoped project roles + SoD because Y, I accept Z (slightly slower first week, much smaller blast radius).”
 ## Part M — Quantitative prerequisites used by this syllabus (complete when listed)
 
 Not a full analysis/PhD spine. If it is listed, it is taught to the theoretical floor.
@@ -629,89 +761,334 @@ Taught **here**, before Part 0, not in Part 12. Required before 9c softmax/atten
 
 ### M.ML Empirical risk, losses, metrics (required before 9c / PMLE)
 
-Complete here, not in Part 12. Derive, then Python, then Go metric helpers.
+Taught **here**, complete before Part 9c / PMLE. Same density contract as **M.NS**: derive → tiny Python package → Go metric helpers → gate. Do not open Part 12 for this. Softmax / log-sum-exp numerics stay **M.NS**. Classical model zoo stays at the **end of 9c** (one home).
 
-- i.i.d. assumption vs **leakage** (time, group, target). Train / val / test. Empirical risk as average loss.
-- **MSE** and **logistic / log-loss** from first principles; one **gradient descent** step. **L2** (and L1 as sparsity) as complexity control — bias–variance in words + a 1-D cartoon you can plot.
-- Metrics you **implement** (no sklearn as the only proof): precision, recall, F1, confusion matrix, ROC as ranking + AUC, PR curve; calibration (reliability-diagram idea). When accuracy lies.
-- Regularization vs more data vs simpler model. Interpretability: linear/trees vs DNN vs LLM (PMLE 3.1).
-- **From scratch:** leak-free split; logistic **or** linear GD on a tiny table; metric suite; a broken split that leaks — test must fail.
+#### Concept (derive, do not slogans)
 
-**Gate:** derive d(log-loss)/dw for one example; compute metrics by hand then code; name a metric that would hide a failure in Northstar fraud vs catalog rank.
+**i.i.d. and the split.** Training examples \((x_i, y_i)\) are modeled as draws from a joint \(P\). Empirical risk is the average loss on the sample:
+\[
+\hat{R}(f) = \frac{1}{n}\sum_{i=1}^{n} \ell(f(x_i), y_i).
+\]
+The i.i.d. story fails when the split leaks: time (future into past), group (same user/order in train and test), or **target leakage** (a feature that is a function of \(y\) at prediction time). Train / val / test must be justified by the serving time axis. A “random 80/20” on time-ordered events is a defect until proven otherwise.
 
----
+**MSE from first principles.** For regression \(f_w(x)=w^\top x\) (bias folded into \(x\)) and \(\ell=(f-y)^2\):
+\[
+\hat{R}(w)=\frac{1}{n}\sum_i (w^\top x_i - y_i)^2.
+\]
+Gradient (derive component-wise, then vector form):
+\[
+\nabla_w \hat{R}(w) = \frac{2}{n} X^\top (Xw - y).
+\]
+One **gradient descent** step: \(w \leftarrow w - \eta \nabla_w \hat{R}(w)\). Closed form \(w=(X^\top X)^{-1}X^\top y\) is the check, not the production path when \(p\) is large or streaming.
 
+**Logistic / log-loss from likelihood.** Binary \(y\in\{0,1\}\), \(p=\sigma(w^\top x)=\frac{1}{1+e^{-w^\top x}}\). Bernoulli NLL / binary cross-entropy:
+\[
+\ell = -y\log p - (1-y)\log(1-p).
+\]
+Derive \(\frac{\partial \ell}{\partial w} = (p-y)\,x\) (one example by hand). Average over the batch for GD. Numerically stable path uses `log1p` / clipped logits — tie to **M.NS**.
+
+**L2 (and L1 as sparsity).** Complexity control: \(\hat{R}_\lambda = \hat{R} + \frac{\lambda}{2}\|w\|_2^2\) adds \(\lambda w\) to the gradient. Bias–variance in words + a 1-D cartoon you can plot: too little \(\lambda\) → wild fit on noise; too much → underfit. L1 pushes coordinates to zero (feature selection cartoon). Regularization vs more data vs simpler model: name which lever you pull and why (PMLE interpretability literacy: linear/trees explainable; DNN/LLM need different evidence).
+
+**Metrics you implement (no sklearn-as-only-proof).** From the confusion matrix \(TP,FP,FN,TN\):
+- Precision \(= TP/(TP+FP)\); Recall \(= TP/(TP+FN)\); F1 \(= 2PR/(P+R)\).
+- Accuracy lies under imbalance — fraud and rare stockouts.
+- ROC: treat score as a ranking; sweep threshold; plot TPR vs FPR; AUC as pairwise ranking probability (derive on a 4-point toy).
+- PR curve when positives are rare.
+- **Calibration:** reliability diagram idea — among examples with score \(\approx 0.8\), about 80% should be positive. ECE as a coarse check; do not confuse ranking AUC with calibrated probabilities.
+
+**When which metric hides failure.** Catalog rank: high accuracy on “not clicked” is useless — use ranking utility / NDCG / pairwise. Fraud: optimize recall at a fixed FPR budget the HITL queue can afford; AUC alone hides operating-point pain.
+
+#### From scratch (Python `ermetrics` / `erml` package + pytest)
+
+Ship a small package (name in ADR): no sklearn required for the gate proofs.
+
+1. **Leak-free split:** `event_time`-aware cut or group split; unit test that a future-label join fails.
+2. **Linear MSE GD:** one step and multi-step on a tiny table; residual decreases; compare to normal equations within tolerance justified by ε (**M.NS**).
+3. **Logistic GD:** hand-derived \(\partial\ell/\partial w\) for one row matches code; one GD step moves loss down on a linearly separable toy.
+4. **L2:** same problem with \(\lambda>0\); \(\|w\|\) shrinks vs unregularized.
+5. **Metric suite:** confusion matrix, precision, recall, F1, ROC points, AUC (trapezoid or Mann–Whitney form), reliability bins — pure NumPy/stdlib.
+6. **Broken split that leaks:** feature `label_tomorrow` or same-group leakage; test **must fail** a leakage assertion.
+7. **Calibration toy:** overconfident scores → high ECE; temperature or Platt sketch optional, not required.
+
+#### Go artifact (`ermetrics` package + table tests)
+
+Port **metric helpers** (not full GD training unless you want it): confusion counts, precision/recall/F1, ROC/AUC on `[]float64` scores + labels, abs+rel float compare from **M.NS**. Table tests include empty input, all-positive, all-negative, ties in scores. Fraud vs rank fixture: same scores, different operating-point helpers.
+
+#### Gate
+
+- Derive \(\mathrm{d}(\text{log-loss})/\mathrm{d}w\) for one labeled example; match code.
+- Compute precision/recall/F1 and one ROC point **by hand**, then by package.
+- Name a metric that would **hide** a failure in Northstar fraud vs catalog rank.
+- Ship Python package + Go helpers; unstable `==` on floats or sklearn-only proof is **not** complete.
 ## Part 0 — Day-zero: billing, IAM core, and how we design
 
 **Why first:** You asked for billing at the start. Google’s landing zone series also starts with organization + billing account. You cannot deploy industry software without this. IAM is here because billing without IAM is an open checkbook.
 
 ### 0.1 Cloud Billing (full, not a sidebar)
-- Billing account vs project vs organization vs folder.
-- Cloud Billing is **not** in the resource hierarchy; it attaches at project. Reports can roll up by hierarchy.
-- Roles: Billing Account Administrator, User, Viewer, Costs Manager. Least privilege vs Organization Admin.
-- Invoices, credits, Always Free vs $300 trial, committed use (later).
-- SKUs you will actually hit: Cloud Run CPU/memory/requests; GCE instance-hours + idle public IP; App Engine instance-hours above 28 F1/day; Cloud SQL instance-hours (no free tier); PD GB-month; egress; Artifact Registry; Logging beyond 50 GiB; accidental LB forwarding rules and Cloud NAT hours.
-- Budgets, alerts, billing export to BigQuery (export may exceed free tier — teach, optional lab).
-- Labels vs tags for cost allocation.
-- **Lab:** create/link billing, budget $10 with 50/90/100% alerts, confirm Always Free products, write a one-page cost model for Northstar v0.
-- **Python exercise:** parse a sample Cloud Billing CSV/JSON export; group cost by `service` + `sku` + label; flag any SKU that is not Always Free.
-- **Go version after submit:** same report as a CLI — flags, env, JSON, `--help` (**G5**). Recover a broken `go.mod` if the module path is wrong (**G0**).
 
-### 0.2 You, the CLI, and Cloud Shell
-- `gcloud` auth, ADC, `gcloud config`, projects, quota.
-- Cloud Shell vs local SDK.
-- **JIT Linux:** filesystem, `$PATH`, env, permissions, pipes, `jq`.
-- **Lab:** `gcloud` from Cloud Shell; list projects; enable APIs via service usage (and why enabling APIs costs nothing until you use them).
+#### Concepts
+- **Billing account vs project vs organization vs folder.** Cloud Billing is **not** in the resource hierarchy; it **attaches** at project. Reports can roll up by hierarchy and labels.
+- Roles: Billing Account Administrator, User, Viewer, Costs Manager. Least privilege vs Organization Admin (SoD).
+- Invoices, credits, Always Free vs $300 trial, committed use discounts (later — know they exist).
+- **SKUs you will actually hit:** Cloud Run CPU/memory/requests; GCE instance-hours + **idle public IP**; App Engine instance-hours above 28 F1/day; Cloud SQL instance-hours (no free tier); PD GB-month; egress; Artifact Registry; Logging beyond 50 GiB; accidental LB forwarding rules; Cloud NAT gateway hours; reserved static external IPs left idle (Part 6.3).
+- Budgets + threshold alerts (50/90/100%). Billing export to BigQuery (teach; optional lab — export can exceed free tier).
+- Labels vs tags for cost allocation (`env`, `service`, `owner` — Pedagogy lab safety).
 
-### 0.3 Resource hierarchy (minimum to deploy)
-- Organization → folders → projects → resources.
-- Inheritance of IAM and org policies.
-- One org when possible. Projects as trust + billing boundaries.
-- **HLD:** Northstar folder layout: `shared`, `prod`, `nonprod`.
-- **Python:** Resource Manager API — list projects, print ancestry.
+#### From scratch / code
+- Sample Cloud Billing CSV/JSON export checked into the repo as a fixture (never real customer data).
+- **Python exercise:** parse export; group cost by `service` + `sku` + label; flag any SKU that is not Always Free for the Northstar v0 shape.
+- **Go after submit (G5 + G0):** same report as a CLI — flags, env, JSON, `--help`. Recover a broken `go.mod` if the module path is wrong.
 
-### 0.4 HLD/LLD contract + Donne Martin
-- Four steps: constraints → HLD → core LLD → scale.
-- ADR template (context, decision, consequences, status).
-- NFR table: latency, availability (nines), RPO/RTO, threat, cost, compliance.
-- **Exercise (no code):** HLD one-pager for Northstar v0 using Donne Martin’s questions (users, QPS, read/write ratio, data size). This artifact is reused all course.
+#### Lab (required)
+- Create/link billing; budget **$10** with 50/90/100% alerts; confirm Always Free products you will use; write a one-page cost model for Northstar v0 (Run + Firestore/SQL choice + Hosting + Build minutes).
 
-### 0.5 Cloud IAM (full offering — video outline + PCA 3.1)
-- Resource hierarchy as the attachment point for allow policies.
-- Principals: user, group, service account, domain, workforce/workload federated.
-- Roles: basic (Owner/Editor/Viewer — avoid), predefined, custom.
-- Allow policy structure: bindings, conditions (CEL), time/resource attributes.
-- Deny policies. Policy inheritance and effective policy.
-- Service accounts: user-managed vs default (disable defaults). Attach vs impersonate vs keys (keys last resort).
-- Service account best practices: one SA per service, no key files, WIF, `iam.disableServiceAccountKeyCreation`.
-- Cloud Identity vs Google Workspace vs Identity Platform (three different products).
-- Cloud Identity: users, groups, Directory Sync, super admin.
-- IAM best practices: groups, least privilege, SoD, break-glass, audit.
-- **Lab:** custom role with three permissions; condition on time; SA with no keys; group-based binding.
-- **Python / Go:** parse an IAM policy JSON; evaluate whether principal P can do permission X on resource R (simplified).
+#### Gate
+- Cost model names idle IP and Cloud SQL as “destroy same day” risks; CLI golden output matches Python twin.
+
+#### PCA: cost control and financial governance
+- **Considerations:** PCA design includes cost; budgets/alerts; labeling; choosing managed services with eyes open.
+- **Decision table:**
+
+| Risk | Control | Accept |
+|---|---|---|
+| Surprise bill | Budget + alerts + quotas | Alert fatigue if thresholds silly |
+| Idle static IP | Delete address with VM | Must not put ephemeral in DNS |
+| Dev Cloud SQL left up | terraform destroy same day | Credits burned if forgotten |
+
+- **Scenario prompt:** Trial credits half gone; only asset is one e2-micro with a reserved external IP unused for a week.
+- **Expected:** “I pick release/delete the static IP immediately because Y (idle IP SKU), I accept Z (next recreate may get a new ephemeral — do not put it in DNS).”
+
+#### Go G5 — flags, env, JSON; billing CLI
+SYNTAX UNLOCK: `flag.String("o", "-", "output")` then `flag.Parse()`. Env via `os.Getenv` / `os.LookupEnv` — flags override defaults; env overrides hardcoded defaults (document precedence). `encoding/json`: `json.Marshal`/`Decoder`; struct tags `` `json:"service"` ``. `--help` comes free from `flag`. Contrast Python: `argparse` + `os.environ`.
+Concept: Same billing report as the Python exercise: group cost by service+sku+label; flag Always Free violations. CLI is the deliverable, not a notebook.
+Python twin first: parse sample Billing CSV/JSON; group; flag non-Always-Free SKUs.
+Go artifact: package `cmd/billingreport` + `billingparse`; tests: `TestHelpExitZero`, `TestEnvOverridesDefaultProject`, `TestGroupByServiceSkuLabel`, `TestFlagNonFreeSku`; gate: `--help` works; golden JSON output matches Python twin; broken module path recovered with G0 runbook.
 
 ---
+### 0.2 You, the CLI, and Cloud Shell
 
+#### Concepts
+- `gcloud auth login` vs application default credentials (ADC) for local libraries.
+- `gcloud config` (project, region, named configs); quota project for APIs.
+- Cloud Shell: ephemeral home, always-updated SDK, identity is your user — great for labs, not a production bastion architecture.
+- Local SDK: version pin in team docs; `CLOUDSDK_CORE_PROJECT`.
+- **JIT Linux:** filesystem layout, `$PATH`, env, permissions, pipes, `jq` for JSON APIs.
+
+#### Lab
+- `gcloud` from Cloud Shell; list projects; enable APIs via Service Usage; explain why enabling costs nothing until use.
+- Deliberately run a command against the wrong project; show how named configs prevent that.
+
+#### Gate
+- Can switch configs; can print active project; can decode a `gcloud` JSON error with `jq`.
+
+#### PCA: tooling and operational access
+- **Considerations:** PCA 5.2 manage resources with tools; least privilege for human identities.
+- **Decision table:**
+
+| Task | Tool | Accept |
+|---|---|---|
+| Interactive lab | Cloud Shell | Ephemeral disk |
+| Repeatable team deploy | CI + WIF (Part D) | No human Owner key |
+| Break-glass | Logged Cloud Shell / pampered admin | Audited |
+
+- **Scenario prompt:** Intern exports `GOOGLE_APPLICATION_CREDENTIALS` to a JSON key “so Python works.”
+- **Expected:** “I pick ADC user login or WIF because Y (no key files), I accept Z (slightly more setup than a key).”
+### 0.3 Resource hierarchy (minimum to deploy)
+
+#### Concepts
+- Organization → folders → projects → resources.
+- Inheritance of IAM allow policies and organization policies (constraints).
+- One org when possible. Projects as **trust + billing + quota** boundaries.
+- Folders for `shared` / `prod` / `nonprod` (or env × business unit). Avoid folder explosion.
+
+#### HLD
+- Northstar folder layout: `shared` (billing export, CI project), `prod`, `nonprod`. One sentence per folder purpose.
+
+#### Code
+- **Python:** Resource Manager API — list projects, print ancestry. **Go after submit:** same.
+
+#### Gate
+- Diagram of org→folder→project for Northstar; no resources created in the org node “because it was convenient.”
+
+#### PCA: hierarchy as security boundary
+- **Considerations:** PCA 1.x design environments; 3.x org policy; blast radius.
+- **Decision table:**
+
+| Boundary need | Mechanism | Accept |
+|---|---|---|
+| Separate prod data | Separate project | Cross-project IAM complexity |
+| Same VPC / DNS shared | Shared VPC host project (Part 6.7) | Host project becomes critical |
+| Policy “no public IP” | Org policy constraint | Break-glass exceptions |
+
+- **Scenario prompt:** All envs in one project with labels only.
+- **Expected:** “I pick separate projects for prod/nonprod because Y (IAM/quota/billing blast radius), I accept Z (more projects to govern).”
+### 0.4 HLD/LLD contract + Donne Martin
+
+#### PCA: 1.1 Business requirements (design)
+
+**Guide themes (matrix):** business use cases and product strategy; functional vs non-functional requirements; BCP; cost optimization; supporting application design; external integration patterns; data movement; design trade-offs; build/buy/modify/deprecate; KPI/ROI/success metrics; security and compliance; observability. Homes: 0.4, Part 8, 10, 11 (F2 CapEx/OpEx literacy).
+
+| Decision | Prefer | Accept instead when |
+|---|---|---|
+| Managed vs DIY | Cloud Run / managed DB | Constraint forces GCE/appliance or existing Kubernetes estate |
+| Build vs buy | Buy Google AI API / Model Garden | Differentiating IP or latency needs custom Vertex |
+| Consistency | Strong for money/orders | Eventual for feed/analytics |
+| Multi-region | Only if RPO/RTO/KPI demand it | Regional HA if SLO is 99.9% |
+
+**Scenario prompt:** A SaaS product must cut infra admin cost, keep checkout correct under failure, and prove ROI in 90 days. Stakeholders disagree on Spanner vs Cloud SQL.
+
+**Expected answer shape:** “I pick Cloud SQL HA + regional Cloud Run because Y (SLO/cost), I accept Z (no multi-region active-active until KPI proves need).”
+
+
+#### Concepts
+- Four steps (Pedagogy §4): constraints → HLD → core LLD → scale.
+- **HLD audience:** stakeholders, PCA case, new teammates — context diagram, containers, NFR, cost/risk, ADRs.
+- **LLD audience:** implementers, reviewers, on-call — sequence, schema, API, IAM, Terraform, failure matrix.
+- ADR template: context, decision, consequences, status.
+- NFR table: latency, availability (nines), RPO/RTO, threat, cost, compliance.
+
+#### Exercise (no code)
+- HLD one-pager for Northstar v0 using Donne Martin’s questions (users, QPS, read/write ratio, data size, retention). This artifact is **reused all course** — update, do not rewrite from scratch each part.
+
+#### Gate
+- One-pager exists; every later ADR can point at it; “I pick X because Y, I accept Z” appears at least once.
+
+#### PCA: case-study communication
+- **Considerations:** PCA cases reward explicit trade-offs; diagrams beat buzzwords.
+- **Decision table:**
+
+| Artifact | When | Accept |
+|---|---|---|
+| HLD one-pager | Before first deploy | Will be wrong; version it |
+| ADR | Every irreversible pick | Overhead vs silent decisions |
+| LLD sequence | Before coding money path | Slower start, fewer incidents |
+
+- **Scenario prompt:** Case study asks for DR across regions for a student app with 100 users.
+- **Expected:** “I pick single-region + backups because Y (cost/complexity), I accept Z (region outage = downtime) — escalate to multi-region only if NFR demands.”
+### 0.5 Cloud IAM (full offering — video outline + PCA 3.1)
+
+#### PCA: 3.1 Security design
+
+**Guide themes (matrix):** IAM; hierarchy; KMS/secrets; SoD; audit/VPC-SC/CAA/org policy/hierarchical FW; IAP/impersonation/Chrome Enterprise/WIF; supply chain; Model Armor/SDP. Homes: 0.3, 0.5, 4, 7, D5, 9b.
+
+| Control | Prefer | Accept |
+|---|---|---|
+| Humans to cloud | Groups + least privilege + IAP | Long-lived user keys |
+| CI to GCP | WIF | SA keys in GitHub |
+| Data | CMEK where required + Secret Manager | Env secrets in images |
+| AI | Model Armor + SDP | Unfiltered prompts to prod models |
+| Perimeter | VPC-SC for sensitive data | Public APIs with only API keys |
+
+**Scenario prompt:** Pipeline still downloads a JSON SA key; GenAI app logs full prompts with PII.
+
+**Expected answer shape:** “I pick WIF + Secret Manager + Model Armor/SDP because Y, I accept Z (break-glass only with PAM/time-bound).”
+
+
+#### Concepts
+- Resource hierarchy as the attachment point for allow policies.
+- **Principals:** user, group, service account, domain, workforce federated, workload federated.
+- **Roles:** basic (Owner/Editor/Viewer — avoid for standing access), predefined, custom (min permissions).
+- Allow policy: bindings, CEL conditions (time, resource attributes).
+- Deny policies; inheritance; effective policy mental model (who can actually do X?).
+- **Service accounts:** user-managed vs default (disable defaults). Attach vs impersonate vs keys (**keys last resort**).
+- Best practices: one SA per service; no key files; WIF for CI; `iam.disableServiceAccountKeyCreation` org policy.
+- Cloud Identity vs Google Workspace vs Identity Platform — three products (expanded again in Part 4.1).
+- Cloud Identity: users, groups, Directory Sync, super admin hygiene.
+- Groups for humans; SAs for machines; SoD; break-glass; Cloud Audit Logs.
+
+#### Lab
+- Custom role with three permissions; condition on time; SA with **no** keys; group-based binding for humans.
+- **Python / Go:** parse an IAM policy JSON; evaluate whether principal P can do permission X on resource R (simplified — teach the shape, not a full CEL engine).
+
+#### Gate
+- No JSON keys in the repo; defaults disabled or documented exception; custom role evidence in Terraform or console screenshot in notes.
+
+#### PCA: 3.1 identity and access
+- **Considerations:** least privilege, SoD, federation over keys, deny policies, audit.
+- **Decision table:**
+
+| Actor | Authn | Authz |
+|---|---|---|
+| Human engineer | Cloud Identity + group | Predefined/custom on folder/project |
+| CI pipeline | WIF (GitHub) | Deploy SA narrowly scoped |
+| Cloud Run service | Attached SA | `secretAccessor` + invoker as needed — not Editor |
+
+- **Scenario prompt:** Deploy SA has `roles/editor` “temporarily.”
+- **Expected:** “I pick custom role with run.developer + ar.writer because Y, I accept Z (must update role when new product APIs needed).”
 ## Part 1 — Compute platforms, then deploy frontend + backend first
 
 **Goal:** Understand the three first-party compute offerings you will actually be asked about as an architect (Cloud Run, Compute Engine, App Engine), then **ship** Northstar v0 on Cloud Run. GKE comes later.
 
 ### 1.0 Compute landscape (architect, not catalog)
-- Cloud Run if Google manages infra and the workload is a container (request, job, worker pool).
-- App Engine if you want a PaaS with services/versions/traffic split and are in an existing GAE estate — or for the PCA.
-- Compute Engine if you must manage the OS, custom kernels, third-party appliances, or lift-and-shift VMs.
-- GKE if you need Kubernetes (custom networking, sidecars, stateful operators, GPU pools).
-- Cloud Run **functions** = specialized source deploy of a Cloud Run **service**.
-- **ADR-001:** Cloud Run for Northstar v0 default. You will still **implement the same API** on GCE and App Engine so the trade-offs are felt, not memorized.
 
+#### Concepts
+- **Cloud Run** if Google manages infra and the workload is a container (service / job / worker pool).
+- **App Engine** if you want PaaS with services/versions/traffic split and are in an existing GAE estate — or for the PCA.
+- **Compute Engine** if you must manage the OS, custom kernels, third-party appliances, or lift-and-shift VMs.
+- **GKE** if you need Kubernetes (custom networking, sidecars, stateful operators, GPU pools) — taught later; do not default here.
+- **Cloud Run functions** = specialized source deploy of a Cloud Run **service** (branding vs gen2 Functions).
+
+#### ADR-001
+- Cloud Run for Northstar v0 default. You will still **implement the same API** on GCE and App Engine so trade-offs are felt, not memorized.
+
+#### PCA: choose compute
+- **Considerations:** official “choose compute options” tree; ops burden vs control; PCA case studies punish “GKE for a cron.”
+- **Decision table:**
+
+| Force | Pick | Accept |
+|---|---|---|
+| Request-driven HTTP, least ops | Cloud Run | Less OS/SSH |
+| Brownfield GAE + traffic split habits | App Engine | Older sandbox model |
+| Vendor appliance / custom kernel | GCE | You patch |
+| Mesh, custom CNI, operators | GKE | Cluster tax |
+
+- **Scenario prompt:** Team wants GKE “for resume-driven development” for a single JSON API.
+- **Expected:** “I pick Cloud Run because Y (no cluster ops), I accept Z (revisit GKE if sidecars/operators appear).”
 ### 1.2 Container contract (LLD that production depends on)
-- Docker/OCI from Part D1 is assumed: multi-stage image, nonroot, digest, SIGTERM.
-- Listen on `PORT`. Stateless. Ephemeral local disk. SIGTERM drain. Concurrency (default 80, max 1000). CPU allocation (request-based vs instance-based billing). Min instances vs scale-to-zero.
-- Revisions, traffic split, tags (canary).
-- **Lab:** containerize a FastAPI health + echo API; deploy Cloud Run service; hit `*.run.app`; read logs.
-- **Python exercise:** implement `/healthz`, `/readyz`, graceful shutdown, structured JSON logs, request ID middleware.
-- **Go after submit:** same contract with `net/http` + `errgroup` + SIGTERM. Explicit `http.Server`, timeouts, body limits, graceful shutdown (**G10–G12**). Pointers/structs/interfaces as the handler type (**G3**).
 
+Docker/OCI from Part D1 is assumed: multi-stage image, nonroot, digest, SIGTERM. This section is the **Cloud Run runtime contract**. Full hardened HTTP middleware, 4xx table, SSRF — **Part 4.2** (one HTTP lab; G10 here is contract only; G11–G12 home under 4.2).
+
+#### Concepts (Cloud Run contract)
+- Listen on `PORT` (env). Stateless. Ephemeral local disk — not a database.
+- **SIGTERM** drain: stop taking work; finish in-flight; exit. Cloud Run sends SIGTERM before SIGKILL.
+- Concurrency (default 80, max 1000). CPU allocation: request-based vs instance-based billing.
+- Min instances vs scale-to-zero (cold start vs cost).
+- Revisions, traffic split, tags (canary) — first taste; Part D / Cloud Deploy industrializes this.
+- Identity: runtime SA (1.5). Secrets via Secret Manager, not baked into image.
+
+#### From scratch / LLD
+- `/healthz` (liveness-ish), `/readyz` (dependency readiness), structured JSON logs, request ID middleware.
+- Explicit server timeouts (language-appropriate). Body limit stub.
+- Dockerfile: multi-stage, nonroot, digest base — reviewed against D1.
+
+#### Labs
+- Containerize FastAPI health + echo; deploy Cloud Run service; hit `*.run.app`; read logs in Cloud Logging.
+- **Python:** implement the contract above.
+- **Go after submit (G10 — contract slice only):** `net/http` + `errgroup` + SIGTERM; explicit `http.Server` timeouts; pointer/struct/interface handler wiring (**G3**). Paste Go G10 lesson under this heading; **pointer** in text to #### Go G11 / G12 under **4.2** — do not duplicate the hardened lab.
+
+#### Gate
+- Image nonroot; listens on `PORT`; SIGTERM graceful; traffic URL works; cost model notes min-instances.
+
+#### PCA: serverless containers
+- **Considerations:** scale-to-zero, concurrency, revisions; when min-instances; when not Cloud Run (long WS, custom kernel).
+- **Decision table:**
+
+| Need | Knob | Accept |
+|---|---|---|
+| Cheapest idle | min-instances=0 | Cold start |
+| Stable p95 | min-instances≥1 | Pay for idle CPU/RAM |
+| CPU during background | instance-based CPU | Higher bill |
+
+- **Scenario prompt:** Checkout API sees 2s cold starts at 09:00.
+- **Expected:** “I pick min-instances=1 in prod because Y (NFR latency), I accept Z (idle cost) — keep 0 in nonprod.”
+
+#### Go G10 — net/http server surface (container contract slice)
+SYNTAX UNLOCK: `http.Handler` / `http.HandlerFunc`; `http.NewServeMux` (Go 1.22+ method patterns); `srv := &http.Server{Addr, Handler, ReadHeaderTimeout, ReadTimeout, WriteTimeout, IdleTimeout}`. Listen on `os.Getenv("PORT")`. Contrast Python: ASGI lifespan + uvicorn timeouts.
+Concept: **At 1.2 only:** `/healthz`, `/readyz`, structured JSON logs, request ID, SIGTERM graceful shutdown via `errgroup` + `srv.Shutdown(ctx)`, body/header limits stubs. Do **not** duplicate the full 4xx/SSRF/middleware order lab here — that is G11–G12 under **4.2**. Pointers/structs/interfaces for handler types reuse G3.
+Python twin first: FastAPI health/ready + graceful shutdown + JSON logs.
+Go artifact: package `httpserver` (shared with 4.2); tests at 1.2: `TestHealthz`, `TestReadyzFailsWhenNotReady`, `TestShutdownDrains`, `TestPortFromEnv`; gate: image listens on `PORT`, nonroot, SIGTERM exits 0; pointer from 1.2 text to #### Go G11 / G12 under 4.2.
+
+---
 ### 1.3 Frontend hosting (industry options, free-tier path)
 Decision tree:
 | Frontend type | GCP path | Free-tier lab |
@@ -765,82 +1142,205 @@ Decision tree:
 - **Python:** read a secret at startup, never log it, rotate-friendly.
 
 ### 1.6 First pipeline (minimum to ship) — full CI/CD is Part D
-- Enough to stop deploying from a laptop: Cloud Build + Artifact Registry + WIF from GitHub.
-- Buildpacks vs Dockerfile (Dockerfile is the LLD you already wrote in D1 / 1.2).
-- **Lab:** push → test → build → Cloud Run revision → 10% traffic tag → 100%.
-- After this lab, Part D replaces this ad-hoc deploy with Cloud Deploy, GitOps, and supply-chain gates.
-- **Python / Go:** tests must pass in the build. Multi-stage image, nonroot, `govulncheck` on the Go module (**G18**).
 
+#### Concepts
+- Enough to stop deploying from a laptop: Cloud Build **or** GitHub Actions + Artifact Registry + **WIF** from GitHub.
+- Buildpacks vs Dockerfile — Dockerfile is the LLD you wrote in D1 / 1.2.
+- Build once; push **digest**; deploy revision; optional 10% tag → 100%.
+- After this lab, Part D replaces ad-hoc deploy with Cloud Deploy, GitOps, and supply-chain gates.
+
+#### Lab
+- push → test → build → Cloud Run revision → 10% traffic tag → 100%.
+- **Python / Go:** tests must pass in the build. Multi-stage image, nonroot, `govulncheck` on the Go module (**G16 / G18** lesson text under this heading + D1).
+
+#### Gate
+- No JSON key in GitHub secrets for GCP; WIF wired; failing test fails the build.
+
+#### PCA: CI without long-lived keys
+- **Considerations:** supply chain / IAM; PCA hates standing keys.
+- **Decision table:**
+
+| Pattern | Use | Accept |
+|---|---|---|
+| WIF + deploy SA | Production | Setup cost |
+| User `gcloud run deploy` | Break-glass lab only | Not audited CD |
+| JSON key in Actions | Forbidden here | Key leak class |
+
+- **Scenario prompt:** “Just put the SA key in GitHub secrets to unblock Friday.”
+- **Expected:** “I pick WIF because Y (no key material), I accept Z (half-day setup) — Friday slip beats credential incident.”
+
+#### Go G16 — Docker release surface for Go binaries
+SYNTAX UNLOCK: `CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/app`; distroless nonroot final stage. Contrast Python: multi-stage without pip in runtime.
+Concept: Multi-stage Dockerfile is LLD (D1). Digest push to Artifact Registry. Nonroot USER. This unlock is **build/release**, not CI YAML (G18).
+Python twin first: multi-stage FastAPI image; then Go distroless.
+Go artifact: package path builds to `cmd/api`; tests: image smoke (`/healthz`) in CI; gate: `USER nonroot` (or numeric), no shell in final, digest published; Dockerfile reviewed against D1 checklist.
+
+---
+
+#### Go G18 — govulncheck, CI test gate, provenance handoff
+SYNTAX UNLOCK: `govulncheck ./...` fails the build on known vulns in the module graph. Contrast Python: `pip-audit`.
+Concept: `go test ./...` must pass in Cloud Build / Actions before image push. SCA gate is not optional color. Provenance/SBOM handoff is Part D5 — here you only ensure the Go module is scannable and CI-green.
+Python twin first: pytest + pip-audit in CI; then Go.
+Go artifact: CI step documents; tests: module passes `govulncheck` (or justified exception file); gate: failing test fails the pipeline; CRITICAL vuln fails; image promote by digest only.
+
+---
 ### 1.7 Observability from day one
-- Structured logs, trace context, Error Reporting, uptime check (external IP limitation: Cloud Run URL works).
-- SLIs for the API: availability, latency p95.
-- **Python:** OpenTelemetry or Cloud Trace spans around Firestore later; for now request timing.
-- **Go:** same spans; `pprof` on a local run when chasing CPU (**G16**).
 
-**Part 1A exit criteria:** You can explain and demo: “Here is the frontend, here is the API on Cloud Run, here is how it deploys, here is who it runs as, here is what it costs if I leave it up.”
+#### Concepts
+- Structured logs (JSON), trace context propagation, Error Reporting, uptime check against Cloud Run URL.
+- SLIs for the API: availability, latency p95 — even if SLO paperwork waits for Part 10.
+- Cardinality discipline: do not label by user id.
 
+#### Code
+- **Python:** request timing; OpenTelemetry or Cloud Trace spans (Firestore later).
+- **Go (G17):** same spans; `pprof` on localhost-only when chasing CPU — never public on Run.
+
+#### Gate
+- One request shows trace/log correlation; uptime check exists or is sketched with cost note.
+
+#### PCA: operability
+- **Considerations:** reliability domain; you cannot improve what you do not measure.
+- **Decision table:**
+
+| Signal | Where | Accept |
+|---|---|---|
+| RED logs | Cloud Logging | Cost beyond free GiB |
+| Traces | Cloud Trace | Sampling required at scale |
+| pprof | Local only | Not a prod endpoint |
+
+- **Scenario prompt:** On-call only has “it feels slow.”
+- **Expected:** “I pick p95 latency SLI + trace sample because Y, I accept Z (instrumentation work before feature work).”
+
+#### Go G17 — OpenTelemetry + pprof
+SYNTAX UNLOCK: OTel Go SDK spans around handlers; `net/http/pprof` registered on **localhost-only** debug mux in dev. Contrast Python: OTel SDK + py-spy/cProfile.
+Concept: Structured logs with trace id; spans for outbound calls; pprof only when chasing CPU locally — never expose pprof publicly on Cloud Run.
+Python twin first: request timing + trace context propagation; then Go.
+Go artifact: package `obs`; tests: `TestTraceIDInLogs`, `TestSpanAroundHandler`, `TestPprofNotOnPublicMux`; gate: one traced request visible in local exporter or Cloud Trace on deployed revision; pprof gated behind build tag or localhost.
+
+---
 ### 1.8 Compute Engine (full offering)
+
+#### PCA: 2.3 Compute systems (provision)
+
+**Guide themes (matrix):** provisioning; spot vs standard; GCE/GKE/serverless/GCVE networking; orchestration/patch; containers; serverless. Homes: 1, 9, 8b.
+
+| Workload | Prefer | Accept |
+|---|---|---|
+| Stateless HTTP | Cloud Run | GKE Autopilot if K8s API needed |
+| Batch/render | Spot + Batch/Jobs | Standard only if preemption costly |
+| VMware lift | GCVE when required | Refactor to Run/GKE when ROI wins |
+| Patch | OS Config / Autopilot | SSH snowflake |
+
+**Scenario prompt:** Rendering farm and a checkout API share one MIG of standard VMs “for simplicity.”
+
+**Expected answer shape:** “I pick Spot Jobs for render + Cloud Run for checkout because Y, I accept Z (separate blast radii; no Spot on checkout).”
+
+**T-ARCH / T-OS gate on this lab:** predict then observe — `lscpu`/cache sizes; page fault via large mmap; context switch under load; systemd unit cgroup CPU; deadlock four conditions on a mutex toy. Incomplete if only “VM exists.”
+
 
 Concept first: you own the guest OS. Google owns the hypervisor, host, and physical network.
 
-GCP offerings in this family:
-- **Compute Engine VMs** — machine families (E2, N2, N2D, C3, C4, Tau T2A/T2D, GPU/TPU attachments, Axion/Arm).
-- **Persistent Disk / Hyperdisk** — pd-standard, pd-balanced, pd-ssd, Hyperdisk Extreme/Throughput; snapshots; images.
-- **Instance templates + Managed Instance Groups** — autoscaler, autohealing, rolling updates, stateful MIGs.
-- **OS Login, OS Config / VM Manager, OS patch** — the sysadmin surface.
-- **Spot / preemptible VMs**, sole-tenant nodes, confidential VMs, Shielded VMs.
+#### GCP offerings in this family
+- **VMs** — machine families (E2, N2, N2D, C3, C4, Tau T2A/T2D, GPU/TPU attachments, Axion/Arm).
+- **Persistent Disk / Hyperdisk** — pd-standard, pd-balanced, pd-ssd, Hyperdisk; snapshots; images.
+- **Instance templates + MIGs** — autoscaler, autohealing, rolling updates, stateful MIGs.
+- **OS Login, OS Config / VM Manager, OS patch** — sysadmin surface.
+- **Spot / preemptible**, sole-tenant, confidential VMs, Shielded VMs.
 - **IAP TCP forwarding** — SSH without a public IP.
 - **Ops Agent** — logs and metrics.
-- Always Free: **1× e2-micro** in us-central1, us-west1, or us-east1 + 30 GB standard PD.
+- Always Free: **1× e2-micro** in us-central1 / us-west1 / us-east1 + 30 GB standard PD.
 
-Curriculum (covers the full Compute Engine video block):
-- **Virtualization fundamentals:** hypervisor, guest OS, paravirtualization vs HVM; why GCE is IaaS.
+#### Curriculum
+- Virtualization: hypervisor, guest OS, why GCE is IaaS.
 - Machine type selection, families, custom types, shared-core (e2-micro), GPU/TPU, Spot vs standard (PCA 2.3 volatility).
-- Creating and managing instances; live migrate vs terminate; availability policy.
-- Connecting: SSH keys vs OS Login vs IAP TCP (no public IP).
-- Metadata server and startup scripts; project vs instance metadata; why metadata SSRF is a real attack.
-- Compute Engine **billing SKUs**: vCPU, memory, PD, GPU, idle public IP, egress, CUD, Spot discount.
-- **Storage on GCE:** Persistent Disk (standard/balanced/SSD/extreme), Hyperdisk, Local SSD (ephemeral, performance), boot vs additional, resize, attach/detach, zonal vs regional PD.
-- Snapshots, snapshot schedules, images, image families, custom images.
-- Startup scripts vs instance templates vs OS Config / VM Manager / OS patch.
-- VPC NIC, external IP vs no external IP + Cloud NAT + IAP SSH.
+- Create/manage instances; live migrate vs terminate; availability policy.
+- Connecting: SSH keys vs OS Login vs IAP TCP (**prefer no public IP**).
+- Metadata server + startup scripts; project vs instance metadata; **metadata SSRF** is a real attack (ties to 4.2 outbound policy).
+- Billing SKUs: vCPU, memory, PD, GPU, idle public IP, egress, CUD, Spot.
+- Storage: PD types, Hyperdisk, Local SSD (ephemeral), boot vs additional, resize, zonal vs regional PD.
+- Snapshots, schedules, images, image families, custom images.
+- Startup scripts vs templates vs OS Config / VM Manager / patch.
+- VPC NIC; external IP vs none + Cloud NAT + IAP SSH.
 - Unmanaged vs managed instance groups; health checks; backend service for HTTP(S) LB.
-- Patching, image baking (Packer concept), golden images vs cattle.
-- **Deployment Manager** (legacy YAML/Jinja/Python templates) — PCA still mentions IaC broadly; **Terraform is the production default**. Lab: read a DM template, rewrite it in Terraform. Do not start new work in DM.
-- **Lab (Always Free):** e2-micro, no public IP, OS Login + IAP tunnel, Ops Agent, nginx or the Northstar API in a systemd unit, snapshot, custom image. Tear down if you attach a public IP or extra disks that bill.
-- **HLD:** lift-and-shift 3-tier (MIG web + MIG app + Cloud SQL). When this loses to Cloud Run.
-- **Python:** use Compute Engine API to list instances, start/stop the sandbox VM, attach a label. **Go:** same with `google.golang.org/api/compute/v1`.
-- **Billing SKUs to memorize:** instance-hours, PD GB-month, snapshot, external IP (idle IP charges), egress, NAT gateway hours.
-- **T-ARCH (required with this GCE lab, not an optional quest):** ISA, pipeline hazards, cache hierarchy, virtual memory, coherence. Lab is the e2-micro, not a cycle-accurate simulator.
-- **T-OS (complete with the systemd unit):** process vs thread, scheduling, user/kernel, VM, filesystems, locks/deadlock, signals. Namespaces/cgroups are the container contract (1.2 / D1).
+- Patching, Packer-style golden images vs cattle.
+- **Deployment Manager** legacy — read a DM template, rewrite in **Terraform**. Do not start new work in DM.
 
+#### T-ARCH (required with this GCE lab)
+ISA, pipeline hazards, cache hierarchy, virtual memory, coherence — taught against the **e2-micro lab**, not a cycle-accurate simulator. Map: vCPU → time slices; PD latency → memory hierarchy miss tax; live migrate → process state move analogy. One page notes: “what the guest believes vs what the hypervisor does.”
+
+#### T-OS (complete with the systemd unit)
+Process vs thread, scheduling, user/kernel, VM, filesystems, locks/deadlock, signals. Namespaces/cgroups = container contract (1.2 / D1). Lab: Northstar API under **systemd** with restart policy; prove SIGTERM handling matches Cloud Run mental model.
+
+#### Labs
+- **Always Free:** e2-micro, no public IP, OS Login + IAP tunnel, Ops Agent, nginx or Northstar API as systemd unit, snapshot, custom image. Tear down if you attach a public IP or extra disks that bill.
+- **HLD:** lift-and-shift 3-tier (MIG web + MIG app + Cloud SQL). When this loses to Cloud Run.
+- **Python / Go:** Compute Engine API list/start/stop/label.
+
+#### PCA: IaaS vs managed
+- **Considerations:** PCA 2.x provision compute; volatility (Spot); bastion-less admin via IAP.
+- **Decision table:**
+
+| Need | Pick | Accept |
+|---|---|---|
+| SSH + agent | GCE + IAP | You patch |
+| HTTP API least ops | Cloud Run | No SSH |
+| Batch interruptible | Spot | Preemption |
+
+- **Scenario prompt:** Vendor requires their .deb and a kernel module.
+- **Expected:** “I pick GCE (maybe sole-tenant/confidential as required) because Y, I accept Z (patching + MIG discipline) — not Cloud Run.”
 ### 1.9 App Engine (full offering)
 
-Concept: PaaS. You give it code; Google gives you versions, traffic split, cron, and a appspot.com HTTPS URL.
+Concept: PaaS. You give it code; Google gives versions, traffic split, cron, and an appspot.com HTTPS URL.
 
-GCP offerings:
-- **App Engine standard** — sandboxed runtimes (Python, Go, Java, Node, PHP, Ruby), scale-to-zero, 28 F1 hours/day free.
-- **App Engine flexible** — containers on GCE VMs you don't fully manage; no scale-to-zero; rarely the right new choice vs Cloud Run.
-- Services, versions, traffic splitting, App Engine cron, Task Queues (legacy; Cloud Tasks is the successor), app.yaml, dispatch.yaml, cron.yaml, IAP on App Engine.
-- **App Engine vs Cloud Run vs Cloud Run functions** — Google’s current guidance: new container HTTP apps → Cloud Run. App Engine remains on PCA and in brownfield.
+#### Offerings
+- **Standard** — sandboxed runtimes (Python, Go, Java, Node, PHP, Ruby), scale-to-zero, **28 F1 hours/day** free.
+- **Flexible** — containers on GCE VMs you don’t fully manage; no scale-to-zero; rarely the right **new** choice vs Cloud Run.
+- Services, versions, traffic splitting, App Engine cron, Task Queues (legacy; **Cloud Tasks** successor), `app.yaml`, `dispatch.yaml`, `cron.yaml`, IAP on App Engine.
+- Google’s current guidance: new container HTTP apps → **Cloud Run**. App Engine remains on PCA and brownfield.
 
-Curriculum:
+#### Curriculum
 - `app.yaml`, automatic vs basic vs manual scaling, max instances, warmup.
 - Deploy a version, split 50/50, roll back.
-- App Engine firewall, IAP, service-to-service `X-Appengine-*` (legacy) vs IAM.
-- **Lab (Always Free standard):** deploy the same Northstar health API as an App Engine standard Python service; split traffic; then deploy the Go version as a second version. Delete when done so F1 hours stay inside the free 28/day.
-- **Python / Go:** identical handlers on GAE standard.
-- **ADR-001b:** App Engine is taught and labbed; Northstar production path stays Cloud Run unless a constraint (existing GAE org, specific sandbox) wins.
+- App Engine firewall, IAP, legacy `X-Appengine-*` vs IAM invoker model.
 
-**Dashboard & quotas (the analytics template every later dashboard copies):**
-- Open **Console → App Engine** on this lab service first: requests/sec, latency, error rate, instance count, **instance hours**, versions, traffic split — by service and version.
-- Same series in Metrics Explorer: `appengine.googleapis.com/http/server/response_count`, `response_latencies` (p50/p95/p99), `response_count` by `response_code`, instance CPU/memory, instance hours.
-- Instance hours are **health and money**: 28 F1/day Always Free is a quota budget *and* a dollar budget.
-- Split 50/50 and compare version latency (canary analytics).
-- Then rebuild these tiles for Cloud Run in Part 10.0. That is “API analytics” without Apigee.
-- Task queues (if shown): attempts, delay, errors, depth — same RED as Cloud Tasks (3.4 / 10.0). `cron.yaml` is legacy; Cloud Scheduler is the successor (3.4).
+#### Labs
+- **Always Free standard:** same Northstar health API as Python service; split traffic; Go version as second version. Delete/stop when done so F1 hours stay inside 28/day.
+- **Dashboard & quotas:** Console App Engine tiles — RPS, latency, errors, instance count, **instance hours**, versions, split. Metrics Explorer: `appengine.googleapis.com/http/server/response_*`. Instance hours = health **and** money. Split 50/50 compare version latency. Rebuild tiles for Cloud Run in Part 10.0.
+- Task queues if shown: attempts/delay/errors/depth — same RED as Cloud Tasks (3.4). `cron.yaml` literacy; Scheduler is successor.
 
+#### ADR-001b
+- App Engine taught and labbed; Northstar production path stays Cloud Run unless constraint wins.
+
+#### PCA: PaaS literacy
+- **Considerations:** versions/traffic; standard vs flexible; when not to start new on GAE.
+- **Decision table:**
+
+| Estate | Pick | Accept |
+|---|---|---|
+| Greenfield HTTP container | Cloud Run | Learn GAE for exam |
+| Existing GAE + cron.yaml | Stay / strangler | Tech debt |
+| Need flexible custom system libs | Prefer Cloud Run/GCE | Flexible is awkward middle |
+
+- **Scenario prompt:** PCA case already runs App Engine standard.
+- **Expected:** “I pick keep GAE + incremental Cloud Run strangler because Y, I accept Z (two compute styles briefly).”
 ### 1.10 Decision matrix (you will reuse this on the PCA)
+
+#### PCA: 1.3 Network, storage, and compute resources (design)
+
+**Guide themes (matrix):** hybrid/multicloud; ML/AI (Gemini, Agent Builder, Model Garden, Hypercomputer); VPC/peering/FW/LB/routing/containers/Shared VPC/PSC; data processing; storage types; GKE/Cloud Run/functions; spot/custom/specialized compute. Homes: 1, 2, 6, 8b, 9, 9b. **CDN:** full lesson is **1.4**; Part 6.13 is LB types + pointer only.
+
+| Resource | Prefer | Accept |
+|---|---|---|
+| Request HTTP containers | Cloud Run | GKE if sidecars/GPU/custom CNI |
+| Event FaaS | Cloud Run functions / Eventarc | Legacy 1st-gen only if brownfield |
+| Object media | GCS + lifecycle/Autoclass | Filestore only if POSIX required |
+| Hybrid | Shared VPC + HA VPN/Interconnect | Peering when non-transitive OK |
+| Training | Vertex + appropriate accelerator | DIY GPU MIG without ops plan |
+
+**Scenario prompt:** Team wants GKE for a single CRUD API “because Kubernetes,” and a second team wants Spot for the payment API.
+
+**Expected answer shape:** “I pick Cloud Run for the API because Y, I accept Spot only on Z (batch/stateless non-checkout), never on payment path.”
+
 
 | Need | Offering |
 |---|---|
@@ -853,27 +1353,85 @@ Curriculum:
 | Always-on cheap sandbox | e2-micro GCE (not production) |
 
 ### 1.11 Cloud Functions (distinct from Cloud Run functions branding)
-- Event-driven FaaS: HTTP, Pub/Sub, Storage, Firestore triggers.
-- 1st gen vs 2nd gen (2nd gen **is** a Cloud Run service).
-- Cold start, timeout, IAM invoker, VPC connector.
-- Always Free: 2M invocations/month on Blaze.
-- **Lab:** GCS object-finalize → function writes metadata to Firestore. Python then Go.
-- **ADR:** new HTTP APIs → Cloud Run services; glue events → Cloud Run functions / Eventarc.
 
+#### Concepts
+- Event-driven FaaS: HTTP, Pub/Sub, Storage, Firestore triggers.
+- **1st gen vs 2nd gen:** 2nd gen **is** a Cloud Run service under the hood (Eventarc).
+- Cold start, timeout, IAM invoker, VPC connector / Direct VPC as needed.
+- Always Free: 2M invocations/month on Blaze (confirm current Always Free card in lab notes).
+- Branding: “Cloud Run functions” ≈ source deploy path onto Cloud Run; still teach classic Functions triggers.
+
+#### Lab
+- GCS object-finalize → function writes metadata to Firestore. Python then Go.
+- Prove invoker IAM; unauthenticated HTTP only if explicitly required (prefer auth).
+
+#### ADR
+- New HTTP APIs → Cloud Run **services**; glue events → Cloud Run functions / Eventarc / Functions gen2.
+
+#### PCA: event glue vs services
+- **Considerations:** right-sized compute; avoid Functions-as-monolith.
+- **Decision table:**
+
+| Trigger | Pick | Accept |
+|---|---|---|
+| Object finalize glue | Functions gen2 / Eventarc | Cold start |
+| Public multi-route API | Cloud Run service | Not “one function per path” sprawl |
+| Long CPU job | Cloud Run Job | Not Functions timeout boxing |
+
+- **Scenario prompt:** Entire checkout written as 40 Cloud Functions calling each other sync.
+- **Expected:** “I pick modular Cloud Run services (+ async Events) because Y, I accept Z (fewer nano-functions, clearer boundaries).”
 ### 1.12 High availability and autoscaling (video block, required)
-- Why a single VM is not an architecture.
-- **Cloud Load Balancing** in full: HTTP(S) external global/regional, internal HTTP(S), SSL proxy, TCP proxy, network passthrough (external/internal), target pools vs backend services.
-- Health checks, backend services, NEGs (GCE, zonal, internet, serverless, hybrid).
-- Session affinity, CDN enable, SSL policies, URL maps, host/path rules.
-- **Instance templates** + **MIGs**: autoscaler (CPU, load balancing, Cloud Monitoring metric, schedules), autohealing, rolling updates, canary, proactive/opportunistic.
-- Regional MIG vs zonal. Multi-zone HA.
-- **Lab (free-tier boxed):** two e2-micro in a regional MIG is usually **not** free (second VM bills). Diagram + Terraform required; live MIG only if credits. Alternative: Cloud Run min-instances=0 with a second region sketched.
+
+#### PCA: 1.2 Technical requirements + WAF (design)
+
+**Guide themes (matrix):** Well-Architected Framework familiarity; HA/failover; flexibility of cloud resources; scale for growth; performance/latency; Gemini Cloud Assist; backup/recovery. Homes: 1.12, 8, 9b, 10.
+
+| Need | Prefer | Accept |
+|---|---|---|
+| HA for HTTP API | Multi-zone regional Cloud Run / GKE | Single-zone only for non-prod |
+| Failover data | Cloud SQL HA / regional PD | Manual snapshots alone |
+| Growth | Autoscale (Run concurrency, HPA, MIG) | Fixed capacity + pager |
+| Assist | Gemini Cloud Assist as copilot | Blind apply of suggestions |
+| Backup | Automated snapshots + tested restore | Backup without restore drill |
+
+**Scenario prompt:** Exec asks for “five nines everywhere” and wants you to accept every Gemini Cloud Assist suggestion into prod tonight.
+
+**Expected answer shape:** “I pick WAF-aligned regional HA matching the stated SLO because Y, I accept Z (no unreviewed Assist apply; no over-engineered multi-region).”
+
+
+#### Concepts
+- A single VM is not an architecture. HA = redundant zones + health-checked load balancing + autoscaling policies + dependency HA (SQL).
+- **Cloud Load Balancing** map:
+  - External global/regional Application (HTTP/S)
+  - Internal Application HTTP/S
+  - SSL proxy / TCP proxy
+  - Network passthrough (external/internal)
+  - Target pools (legacy) vs **backend services**
+- Health checks; backend services; NEGs (GCE, zonal, internet, serverless, hybrid).
+- Session affinity; CDN enable; SSL policies; URL maps; host/path rules.
+- **Instance templates + MIGs:** autoscaler (CPU, LB utilization, Cloud Monitoring metric, schedules), autohealing, rolling updates, canary, proactive/opportunistic.
+- Regional MIG vs zonal; multi-zone HA.
+- Cloud Run side: multi-region active/active sketch; traffic split as progressive delivery (Part D4).
+
+#### Labs
+- **Free-tier boxed:** two e2-micro in a regional MIG usually **bills** the second VM — diagram + Terraform **required**; live MIG only with credits. Alternative: Cloud Run min-instances=0 with second region sketched on the HLD.
 - **Python / Go:** health endpoint that fails on a file flag — used by LB health checks in the credits lab.
 
-**Part 1 full exit:** Same API proven on Cloud Run (primary), App Engine standard, Cloud Functions (event glue), and a GCE MIG/systemd path. You can defend the choice in an ADR. You can draw an HTTP(S) LB → MIG and an HTTP(S) LB → serverless NEG.
+#### Gate
+- Can draw HTTP(S) LB → MIG and HTTP(S) LB → serverless NEG; can explain autohealing vs autoscaling.
 
----
+#### PCA: HA / LB design
+- **Considerations:** multi-zone; global vs regional LB; health checks; RTO.
+- **Decision table:**
 
+| Need | LB / compute | Accept |
+|---|---|---|
+| Serverless HTTP HA | Global HTTPS LB + serverless NEG → Cloud Run | LB SKUs if not on run.app |
+| VM fleet | Regional MIG + HTTP(S) LB | You manage images |
+| Internal east-west | Internal HTTP(S) or passthrough | No internet exposure |
+
+- **Scenario prompt:** Single zonal VM behind a DNS A record; “HA” claimed because disk snapshots exist.
+- **Expected:** “I pick multi-zone MIG + LB health checks because Y (snapshots ≠ HA), I accept Z (more cost) — or Cloud Run regional.”
 ## Part D — DevOps, Docker, Kubernetes, CI/CD, GitOps
 
 **Goal:** You can build, sign, promote, and roll back Northstar the way a 2026 GCP platform team does — not “a Jenkinsfile that SSHs to a VM.”
@@ -885,6 +1443,22 @@ Free-tier: Cloud Build 2,500 e2-standard-2 minutes/month; Artifact Registry 500 
 ---
 
 ### D0 DevOps culture (concept, then GCP)
+
+#### PCA: 4.1 Technical processes
+
+**Guide themes (matrix):** SDLC; CI/CD; RCA; testing/validation; service catalog/provisioning; DR. Homes: D, 1.6, 10.
+
+| Process | Prefer | Accept |
+|---|---|---|
+| Ship | Cloud Build + WIF + Cloud Deploy | Manual `gcloud` prod push |
+| Test | Unit/contract/integration + emulators | Prod-only validation |
+| DR | Documented RTO/RPO + restore drill | Backup without restore |
+| RCA | Blameless + action items | Blame thread only |
+
+**Scenario prompt:** Team skips staging and pages only when customers tweet.
+
+**Expected answer shape:** “I pick CI/CD with gated promote + SLO burn freeze because Y, I accept Z (feature flags over hotfix-only).”
+
 
 What DevOps is (and is not):
 - Not a job title that “throws code over the wall to the DevOps team.”
@@ -960,97 +1534,133 @@ commit → lint → unit → build image → SCA/SAST/secret scan
       → integration tests (Testcontainers / emulator)
       → push digest to Artifact Registry
       → provenance / SBOM
-      → hand digest to CD (do not kubectl here)
+      → hand digest to CD (do not kubectl / gcloud run deploy to prod here)
 ```
 - Build once, promote the digest. Rebuild-per-env is a defect.
-- Branching: trunk-based as the DORA-friendly default; GitFlow only if you can defend the lead-time cost.
-- Quality gates: tests must be deterministic. Flaky tests are change-failure-rate.
+- Branching: trunk-based default; GitFlow only if you can defend lead-time cost.
+- Flaky tests are change-failure-rate.
 
-#### D2.2 Cloud Build (GCP-native CI)
-- `cloudbuild.yaml` steps, images (`gcr.io/cloud-builders/docker`, `gke-deploy`, official builders).
-- Substitutions, secrets from Secret Manager, available secrets vs worker pool.
-- Triggers: GitHub (2nd gen, **WIF, no PAT in a secret if you can avoid it**), Cloud Source Repositories, Pub/Sub, manual.
-- Private pools (VPC, private GKE, private Cloud SQL). Default pool has no VPC.
-- Caching: Kaniko/BuildKit cache to AR; Kaniko is legacy-ish — Cloud Build docker + buildx is the 2026 path.
-- Provenance: Cloud Build can emit SLSA provenance (trusted builder for Binary Authorization SLSA check).
-- Quotas: 2,500 e2-standard-2 minutes/month Always Free. Use small images.
-- **Lab:** trigger on `main` → pytest → docker build → push `:sha` and digest. No deploy step yet.
-- **Python:** a failing test must fail the build. **Go:** `go test ./...` same.
+#### D2.2 Cloud Build — full `cloudbuild.yaml` (required literacy)
+Minimal production-shaped file (adapt service name):
+```yaml
+steps:
+  - name: python:3.12
+    entrypoint: bash
+    args: ["-c", "pip install -r requirements.txt && pytest -q"]
+  - name: golang:1.22
+    entrypoint: bash
+    args: ["-c", "go test ./... && go install golang.org/x/vuln/cmd/govulncheck@latest && govulncheck ./..."]
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "$_AR/$PROJECT_ID/$_SVC:$SHORT_SHA", "."]
+  - name: gcr.io/cloud-builders/docker
+    args: ["push", "$_AR/$PROJECT_ID/$_SVC:$SHORT_SHA"]
+  - name: gcr.io/cloud-builders/gcloud
+    args: ["artifacts", "docker", "images", "describe",
+           "$_AR/$PROJECT_ID/$_SVC:$SHORT_SHA", "--format=json"]
+substitutions:
+  _AR: us-central1-docker.pkg.dev
+  _SVC: northstar-api
+images:
+  - "$_AR/$PROJECT_ID/$_SVC:$SHORT_SHA"
+options:
+  logging: CLOUD_LOGGING_ONLY
+```
+- Substitutions; secrets from Secret Manager (availableSecrets); private worker pools when VPC/SQL access needed.
+- Triggers: GitHub 2nd gen with **WIF** (no PAT if avoidable), CSR, Pub/Sub, manual.
+- Provenance: trusted builder path for Binary Authorization SLSA check (D5).
+- Quotas: 2,500 e2-standard-2 minutes/month Always Free — small images.
+- **Lab:** trigger on `main` → tests → build → push `:sha` + record digest. **No prod deploy step yet.**
 
-#### D2.3 GitHub Actions (where the code lives)
-- Workflows, jobs, matrix, environments, OIDC.
-- **Workload Identity Federation** from GitHub → GCP. No JSON keys. This is the production pattern.
-- `google-github-actions/auth` then `setup-gcloud` / docker auth to AR.
-- When Actions vs Cloud Build: Actions if the org is GitHub-first; Cloud Build if you want provenance from Google’s trusted builder and builds inside Google’s network (faster AR/GKE push).
-- GitLab CI, CircleCI: same OIDC/WIF idea. Jenkins only as brownfield (PCA may still mention it).
-- Tekton: Kubernetes-native pipelines; Cloud Build is hosted Tekton-ish. Teach as “if you must run CI on GKE.”
+#### D2.3 GitHub Actions + WIF (full pattern)
+1. Create Workload Identity Pool + provider (GitHub `token.actions.githubusercontent.com`).
+2. Bind `roles/iam.workloadIdentityUser` on deploy/build SA to `principalSet://.../attribute.repository/ORG/REPO`.
+3. Workflow:
+```yaml
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/N/locations/global/workloadIdentityPools/P/providers/PR
+          service_account: build@$PROJECT.iam.gserviceaccount.com
+      - uses: google-github-actions/setup-gcloud@v2
+      # docker auth to Artifact Registry, then build/push digest
+```
+- **Lab proof:** Actions log shows federated auth; repo has **zero** `GCP_SA_KEY` secrets.
+- When Actions vs Cloud Build: GitHub-first org → Actions; need Google trusted builder / private network → Cloud Build. Same WIF idea for GitLab/Circle; Jenkins = brownfield only.
 
-#### D2.4 Tests in CI
-- Unit, contract (OpenAPI/schemathesis), integration (Firestore emulator, Pub/Sub emulator, Postgres in Docker — PCA 5.2 emulators).
-- Load is **not** CI-on-every-commit; it is a CD verify job or nightly.
-- **Python / Go:** Testcontainers-style Postgres test for the order transaction from Part 2.
+#### D2.4–D2.5 Tests and scanning
+- Unit, contract (OpenAPI), integration (Firestore/Pub/Sub emulators, Postgres in Docker — PCA 5.2).
+- Secret scan fail on Stripe keys; `pip-audit` / `govulncheck`; Artifact Analysis CRITICAL fail; tfsec/Checkov on Terraform.
+- **Lab:** planted secret fails; CRITICAL base CVE fails.
 
-#### D2.5 Scanning in CI (DevSecOps gates)
-- Secret scanning (gitleaks / GitHub native) — fail on `STRIPE` keys.
-- SAST (lightweight).
-- SCA / `pip-audit` / `govulncheck`.
-- Image scan: Artifact Analysis on AR; fail on CRITICAL. Trivy as local equivalent.
-- IaC: `tflint`, Checkov/tfsec on Terraform.
-- **Lab:** a planted secret must fail the pipeline. A CRITICAL CVE in a base image must fail.
-
----
-
+#### Gate
+- Digest in AR; CI green required; WIF documented in README.
 ### D3 Continuous delivery and GitOps
+
+#### PCA: 5.1 Advising deploy / Apigee / migration tooling
+
+**Guide themes (matrix):** application/infra deploy; Apigee API management; test frameworks; migration tooling; Gemini Cloud Assist. Homes: D3, 3.3, 8c, 9b.
+
+| Concern | Prefer | Accept |
+|---|---|---|
+| External API product | Apigee | API Gateway for simpler Northstar |
+| Deploy | Cloud Deploy / GitOps | SSH to nodes |
+| Migrate | Migration Center + DMS | Untested cutover |
+| Assist | Gemini Cloud Assist reviewed | Auto-merge Assist diffs |
+
+**Scenario prompt:** Partner APIs need quotas/monetization; internal BFF does not.
+
+**Expected answer shape:** “I pick Apigee for partner APIs + Cloud Deploy for services because Y, I accept Z (API Gateway for internal BFF).”
+
 
 CD = the **same digest** moves through environments with an audit trail and a rollback.
 
 #### D3.1 CI vs CD vs GitOps
 | | CI | CD (push) | GitOps (pull) |
 |---|---|---|---|
-| Trigger | commit | pipeline step / promote | Git desired-state change |
-| Actor | Cloud Build / Actions | Cloud Deploy / `gcloud run deploy` | Argo CD / Flux / Cloud Build-on-env-repo |
-| Source of truth | source repo | pipeline config + artifact | **env Git repo** |
+| Trigger | commit | promote | Git desired-state change |
+| Actor | Cloud Build / Actions | Cloud Deploy / controller | Argo CD / Flux |
+| Source of truth | source repo | pipeline + artifact | **env Git repo** |
 | Prod kubectl | forbidden | via controller | via controller |
 
-Google’s two documented patterns:
-1. **Cloud Build + Cloud Deploy + Skaffold** — GCP-native, canary on GKE and Cloud Run, Console promote/rollback.
-2. **Two-repo GitOps** — app repo CI pushes digest; env repo holds manifests; second pipeline/Argo applies to GKE.
+Google patterns: (1) Cloud Build + **Cloud Deploy** + Skaffold; (2) two-repo GitOps (app CI writes digest; env repo manifests; Argo/Flux apply).
 
-**ADR-D01:** Northstar v1 uses Cloud Build → Artifact Registry → Cloud Deploy to **Cloud Run** (free-tier friendly). GKE GitOps is Part 9. Argo CD is taught; not required live.
+**ADR-D01:** Northstar v1 = Cloud Build → AR → Cloud Deploy → **Cloud Run**. GKE GitOps in Part 9. Argo taught; not required live.
 
 #### D3.2 Skaffold
-- Dev/CI/CD parity: `skaffold dev` locally, Cloud Build/Cloud Deploy call `skaffold render` / `apply`.
-- `skaffold.yaml`: manifests (raw YAML / Helm / kustomize), deploy.cloudrun vs deploy.kubectl.
-- Profiles per environment.
-- Version pinning: Cloud Deploy supports specific Skaffold versions on a 12-month window — pin it.
+- `skaffold.yaml`: render/apply parity local ↔ Cloud Deploy. Pin Skaffold version (12-month window). Profiles per env. `deploy.cloudrun` for this track.
 
-#### D3.3 Cloud Deploy (GCP-native CD)
-- Delivery pipeline + **targets** (GKE cluster, Cloud Run service/job/worker pool, custom).
-- Release = a digest + rendered manifests. Promote through stages (dev → staging → prod).
-- Strategies: standard vs **canary** (percentages, verify jobs, pre/post deploy). Cloud Run canary uses traffic splits; GKE canary uses Service/Gateway or pod counts.
-- Parallel deploy (multi-region Cloud Run / multi-cluster).
-- Rollback is a first-class action, not “redeploy old tag.”
-- First active pipeline per billing account is free; extra pipelines bill — destroy labs.
-- **Lab:** Cloud Deploy pipeline with two Cloud Run targets (dev project service, prod-shaped service). Create release from Cloud Build. Promote. Rollback. Python/Go apps are the same image digest.
+#### D3.3 Cloud Deploy canary (required depth)
+- Delivery pipeline + targets (Cloud Run service/job/worker pool, GKE, custom).
+- Release = digest + rendered manifests. Stages: dev → staging → prod.
+- **Canary strategy:** percentages (e.g. 5 → 25 → 50 → 100), **verify jobs**, pre/post deploy hooks. Cloud Run canary = traffic splits on revisions; GKE = Service/Gateway or pod counts.
+- Parallel multi-region optional.
+- Rollback is a first-class Console/API action — not “redeploy old tag by hand.”
+- First active pipeline per billing account free; destroy lab pipelines.
+- **Lab:** two Cloud Run targets; create release from Cloud Build; promote; canary verify that curls `/healthz` and checks 5xx; **rollback**. Same image digest Python/Go.
 
-#### D3.4 Manifest management
-- Raw YAML for v0.
-- **kustomize:** bases + overlays (Google’s modern CI/CD with GKE uses this). Platform team owns base; app team owns overlay.
-- **Helm:** charts, values, when the org already standardized on it. Templating vs kustomize overlay — both taught; pick one per service.
-- Kustomize is the default for Northstar GKE.
+Example canary sketch (conceptual YAML fields — match current Cloud Deploy schema in docs when implementing):
+```yaml
+# serialPipeline stage with strategy.canary.runtimeConfig.cloudRun + percentages + verify
+# verify: container that exits non-zero on SLO burn → automatic halt/rollback policy
+```
 
-#### D3.5 GitOps in depth
-- Desired state in Git. Cluster reconciles. Drift is an event.
-- App repo vs env repo (Google tutorial). Promotion = PR that changes a digest in env repo.
-- Argo CD: UI, Application CR, sync waves, SSO via Cloud Identity/IAP, HA install. Pull model.
-- Flux: Kustomize-controller + HelmRelease, no first-class UI.
-- Cloud Deploy is **push** from Google; Argo/Flux are **pull** in-cluster. Multi-cloud → Argo/Flux. GCP-only progressive delivery → Cloud Deploy.
-- Never `kubectl apply` in prod except break-glass, logged.
+#### D3.4–D3.5 Manifests and GitOps
+- Raw YAML v0 → **kustomize** overlays (default for Northstar GKE) → Helm if org-standard.
+- Desired state in Git; drift is an event; promotion = PR changing digest; never `kubectl apply` in prod except logged break-glass.
+- Cloud Deploy = push from Google; Argo/Flux = pull in-cluster.
 
-**Python / Go:** a small tool that, given a new digest, opens/updates the env-repo kustomization (the “CI writes digest” step).
+#### Code
+- **Python / Go:** tool that updates env-repo kustomization with new digest (CI writes digest step).
 
----
-
+#### Gate
+- Promote + rollback rehearsed; canary verify job exists; no prod deploy from laptop.
 ### D4 Progressive delivery
 
 - Recreate (downtime) — only jobs.
@@ -1067,25 +1677,43 @@ Google’s two documented patterns:
 
 ### D5 Software supply chain
 
-PCA 3.1 “securing software supply chain.” This is not optional color.
+PCA 3.1 “securing software supply chain.” Not optional color.
 
-- Threats: compromised CI, malicious dep, unsigned image, tag mutability, stolen deploy SA.
-- **SLSA** levels: provenance exists (1) → hosted, isolated build (2) → unforgeable provenance from trusted builder (3). Cloud Build is the trusted builder Binary Authorization’s SLSA check accepts.
-- **SBOM** (Syft/gcloud) attached to the image.
-- **cosign** sign/verify (keyless via OIDC or KMS). Artifact Registry + signatures.
-- **Artifact Analysis:** notes/occurrences; vulnerability + attestation storage.
-- **Binary Authorization:**
-  - Policy: require attestations, deny `:latest`, allowlist, dry-run vs enforce.
-  - Attestors + KMS keys.
-  - GKE and Cloud Run.
-  - **Continuous validation** after deploy (policy drift).
-  - SLSA check: `trustedBuilder: GOOGLE_CLOUD_BUILD`, trusted source repo patterns.
-- Separation of duties: builder project ≠ deploy project ≠ attestor project (Google multi-project tutorial).
-- **Lab (local + policy YAML required):** write a BinAuthz policy that would reject an unsigned image. Credits-optional: enforce on a Cloud Run service.
-- **Python / Go:** verify a dummy attestation payload; fail the pipeline if missing.
+#### Threats
+Compromised CI, malicious dep, unsigned image, mutable tags, stolen deploy SA.
 
----
+#### SLSA
+- L1 provenance exists → L2 hosted isolated build → L3 unforgeable provenance from **trusted builder**.
+- Cloud Build is the trusted builder Binary Authorization’s SLSA check accepts.
+- Attach **SBOM** (Syft / `gcloud` artifacts). **cosign** sign/verify (keyless OIDC or KMS).
 
+#### Binary Authorization (full)
+- Policy: require attestations; deny `:latest`; allowlist; dry-run vs **enforce**.
+- Attestors + KMS keys; continuous validation after deploy.
+- SLSA check fields: `trustedBuilder: GOOGLE_CLOUD_BUILD`, trusted source repo patterns.
+- Applies to GKE and Cloud Run.
+- Separation of duties: builder project ≠ deploy project ≠ attestor project (multi-project tutorial).
+
+#### Lab
+- **Required:** write a BinAuthz policy YAML that would reject an unsigned / `:latest` image; document dry-run → enforce path.
+- **Credits-optional:** enforce on a Cloud Run service; prove blocked revision; then attest and pass.
+- **Python / Go:** verify dummy attestation payload; fail pipeline if missing.
+
+#### Gate
+- Policy reviewed; `:latest` cannot promote; attestations required in enforce mode notes.
+
+#### PCA: supply chain
+- **Considerations:** 3.1 securing software supply chain; keys vs attestation.
+- **Decision table:**
+
+| Control | When | Accept |
+|---|---|---|
+| WIF + no keys | Always for CI | Setup |
+| Digest promote | Always | Tag UX loss |
+| BinAuthz enforce | Prod | Break-glass process needed |
+
+- **Scenario prompt:** Prod pulls `api:latest` nightly from a shared mutable tag.
+- **Expected:** “I pick digest + BinAuthz because Y, I accept Z (explicit promote) — `:latest` is a defect.”
 ### D6 Platform engineering and developer experience
 
 - Golden path: `cookiecutter` / template repo with Dockerfile, cloudbuild.yaml, skaffold, Terraform module, CODEOWNERS.
@@ -1167,41 +1795,124 @@ Part 9 GKE product surface (Autopilot vs Standard, private cluster, etc.) contin
 
 This is a full design track, not “pick Cloud SQL on the exam.”
 
-- Conceptual → logical → physical. ER diagrams, entities for catalog, cart, order, payment_intent, user, tenant.
-- Normalization (1NF–3NF, when to denormalize). Keys, FKs, uniqueness, check constraints.
-- Integrity: ACID — **derive** what each letter forbids; isolation levels (read committed vs repeatable read vs serializable); dirty/nonrepeatable/phantom — **predict** before running.
-- Engine internals (required, theoretical floor, not color): relational algebra; Armstrong axioms / FD closure; constraints as invariants; B-tree vs heap vs index-only scan; MVCC snapshots; locks vs deadlocks; WAL, checkpoints, crash recovery, PITR; replication/failover; vacuum/bloat. Hide behind Cloud SQL only after the learner can say what is hidden.
-- Indexing: B-tree, composite, covering, partial; `EXPLAIN (ANALYZE, BUFFERS)`; Firestore indexes vs SQL.
-- Transactions and idempotency (`orders.idempotency_key UNIQUE`).
-- Migrations: expand/contract, never destructive in one step. Tools: Alembic (Python), golang-migrate (Go).
-- Multi-tenant SQL: `tenant_id` on every table vs schema-per-tenant vs DB-per-tenant. Default: shared schema + RLS (Postgres row-level security).
-- OLTP vs OLAP: Cloud SQL/AlloyDB/Spanner vs BigQuery. Do not run analytics scans on the primary.
-- Donne Martin: master-replica, failover, federation, sharding — mapped to Cloud SQL HA/replicas, not to hand-rolled MySQL.
+#### Design spine
+- Conceptual → logical → physical. ER for catalog, cart, order, payment_intent, user, tenant.
+- Normalization 1NF–3NF; deliberate denormalize with ADR. Keys, FKs, uniqueness, CHECKs.
+- ACID — **derive** what each letter forbids; isolation levels; dirty/nonrepeatable/phantom — **predict** before running.
+- Engine floor: relational algebra; FDs; B-tree vs heap; MVCC; locks; WAL/checkpoints/PITR; vacuum. Hide behind Cloud SQL only after you can name what is hidden.
+- Indexing + `EXPLAIN (ANALYZE, BUFFERS)`. Transactions + `orders.idempotency_key UNIQUE`.
+- Migrations expand/contract (Alembic / golang-migrate). Multi-tenant: shared schema + RLS default.
+- OLTP vs OLAP: do not analytics-scan the primary.
 
-**Lab (local, required):** Docker PostgreSQL. You design the Northstar OLTP schema, apply migrations, load seed data, write queries.
+#### Lab (local, required)
+Docker PostgreSQL; Northstar OLTP schema; migrations; seed; queries.
+**Python:** SQLAlchemy/`psycopg` — create order + lines in one txn; concurrent stock decrement must not oversell.
+**Go after submit:** `database/sql` + `pgx`, same tests. **G4** WAL codec feeds DB-10.
 
-**Python exercise:** SQLAlchemy or `psycopg` — create order + line items in one transaction; concurrent stock decrement test (must not oversell). **Go after submit:** `database/sql` + `pgx`, same tests.
+#### LLD artifacts
+ERD, DDL, index list, isolation ADR, migration plan.
 
-**LLD artifacts:** ERD, DDL, index list, isolation choice ADR, migration plan.
+#### Engine slices DB-1–DB-10 (each: toy spec, SQL, EXPLAIN prediction, Cloud SQL mapping)
 
-**Engine slices DB-1–DB-10 (required, complete, local Postgres + Go/Python toys; then Cloud SQL mapping):**
+##### DB-1 — Relational algebra & 3VL
+- **Toy spec:** In-memory bag relations; implement select/project/join/semi/anti/outer; NULL 3VL truth table tests.
+- **SQL:** `SELECT … FROM order_line ol LEFT JOIN product p ON … WHERE p.id IS NULL` (anti-join shape); `EXCEPT` vs `NOT EXISTS`.
+- **EXPLAIN prediction:** Nested loop vs hash join for small vs large build side — write prediction, then `EXPLAIN`.
+- **Cloud SQL mapping:** Same planner; Query Insights shows top queries; no algebra change because managed.
 
-| Slice | Concepts | Artifact |
-|---|---|---|
-| DB-1 | Relational algebra, joins, semi/anti/outer, bag vs set, NULL/3VL | Relational evaluator + SQL edge transcript |
-| DB-2 | Catalogs, `ctid`/`xmin`/`xmax`, types, JSONB, UUID, PK/FK/CHECK, deferred constraints | Schema/migration + constraint tests |
-| DB-3 | CTEs, recursive CTEs, windows, lateral | Reporting queries + `EXPLAIN (ANALYZE, BUFFERS)` |
-| DB-4 | Pages, line pointers, heap tuples, TOAST | Slotted-page package |
-| DB-5 | Shared buffers, pins, clock-sweep, bgwriter, checkpointer | Toy buffer pool + hit-ratio benchmark |
-| DB-6 | B-tree, hash, GIN/GiST/BRIN, index-only/bitmap, visibility map | B-tree + inverted-index toy |
-| DB-7 | Iterator model, `work_mem`, nested-loop/hash/merge, aggregation, spill | Executor nodes + spill lab |
-| DB-8 | Parser/planner, `pg_statistic`, MCV/histograms, selectivity | Predict a plan, then compare |
-| DB-9 | MVCC, snapshots, SSI, row/table locks, deadlocks, HOT, autovacuum, XID freeze | Visibility simulator + isolation + deadlock labs |
-| DB-10 | WAL, full-page writes, checkpoints, redo, streaming replica, archive, PITR | Mini WAL/replay + backup/restore drill |
+##### DB-2 — Catalog, tuples, constraints
+- **Toy spec:** Schema registry struct; enforce PK/FK/CHECK in a toy before SQL; deferred constraint flag.
+- **SQL:** `UUID` PKs; `JSONB` attrs; `CHECK (qty > 0)`; `FOREIGN KEY … DEFERRABLE`; inspect `ctid`/`xmin`/`xmax` in learning DB.
+- **EXPLAIN prediction:** PK lookup = index only; missing FK index on child → seq scan on delete-parent check.
+- **Cloud SQL mapping:** Flags for constraints; migrations via Job (2.6); IAM DB users still have catalogs.
+
+##### DB-3 — CTEs, windows, lateral
+- **Toy spec:** Window functions as framed iterators over sorted partitions (unit-test ranking).
+- **SQL:** Order GMV by day with `SUM() OVER (PARTITION BY day)`; recursive CTE category tree; `LATERAL` top-N per tenant.
+- **EXPLAIN prediction:** Window sorts; recursive CTE worktable; predict `Sort` / `CTE Scan` nodes.
+- **Cloud SQL mapping:** Same SQL; watch `work_mem` for sorts on small tiers (`db-f1-micro` spills early).
+
+##### DB-4 — Heap pages & TOAST
+- **Toy spec:** Slotted page: insert/delete/compact line pointers; overflow TOAST-like external blob store.
+- **SQL:** Wide `TEXT`/`JSONB` row; compare `pg_column_size` in-row vs toasted; `VACUUM` effects later (DB-9).
+- **EXPLAIN prediction:** Seq scan cost rises with toast fetch — predict heap blocks vs toast blocks in `BUFFERS`.
+- **Cloud SQL mapping:** Storage autogrow; you still pay GB-month; Insights won’t replace page literacy.
+
+##### DB-5 — Buffer pool
+- **Toy spec:** Clock-sweep buffer pool with pins; hit-ratio benchmark under sequential vs random read.
+- **SQL:** Warm cache vs cold (`EXPLAIN (ANALYZE, BUFFERS)` shared hit vs read).
+- **EXPLAIN prediction:** Second run of same query → higher shared hit%; predict before measure.
+- **Cloud SQL mapping:** Instance memory tier ≈ shared_buffers headroom; scaling tier is how you “buy” cache.
+
+##### DB-6 — Indexes
+- **Toy spec:** Userspace B-tree (insert/search/range) + inverted index for tokens (GIN-shaped).
+- **SQL:** Composite `(tenant_id, created_at)`; partial `WHERE status = 'open'`; covering `INCLUDE`; `JSONB` GIN.
+- **EXPLAIN prediction:** Equality on leftmost → index scan; leading-wildcard `LIKE` → seq; bitmap for OR of two indexes.
+- **Cloud SQL mapping:** Create indexes concurrently in expand migrations; monitor bloat; AlloyDB/columnar later if HTAP.
+
+##### DB-7 — Executor & spill
+- **Toy spec:** Iterator nodes nested-loop / hash / merge; force spill when “work_mem” exceeded.
+- **SQL:** Join order_line↔product; `SET work_mem = '64kB'` in session to force spill; compare.
+- **EXPLAIN prediction:** Hash join with low `work_mem` → temp written; predict before `ANALYZE`.
+- **Cloud SQL mapping:** Flags `work_mem`/`temp_file` monitoring; do not raise blindly — memory × connections.
+
+##### DB-8 — Planner statistics
+- **Toy spec:** Histogram + MCV sketch; estimate selectivity; pick join algorithm from estimates.
+- **SQL:** `ANALYZE`; inspect `pg_stats`; compare predicted rows vs `EXPLAIN` rows; create skewed tenant data.
+- **EXPLAIN prediction:** Write row estimates for skewed tenant vs uniform; then explain misestimates.
+- **Cloud SQL mapping:** Autovacuum/analyze; Query Insights; extend statistics when needed.
+
+##### DB-9 — MVCC, locks, vacuum
+- **Toy spec:** Visibility simulator (xmin/xmax snapshots); deadlock graph detector; HOT update sketch.
+- **SQL:** Isolation labs (RC vs RR vs Serializable); deliberate deadlock; observe `VACUUM`/bloat.
+- **EXPLAIN prediction:** Under RR, predict anomaly prevented; under RC, predict nonrepeatable — confirm.
+- **Cloud SQL mapping:** HA does not remove need for vacuum; long txns hurt; set statement timeouts.
+
+##### DB-10 — WAL, replica, PITR (**G4**)
+- **Toy spec:** Mini WAL append/CRC/replay; checkpoint; streaming replica mock; backup/restore drill.
+- **SQL:** `pg_switch_wal()` in learning PG; base backup story; promote replica (local compose).
+- **EXPLAIN prediction:** N/A for WAL — instead **predict** recovery: crash after commit → row present; after uncommitted → absent.
+- **Cloud SQL mapping:** Automated backups, PITR window, HA regional standby, replica flags — name each Cloud SQL knob against the toy.
 
 Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 
+#### PCA: storage & consistency
+- **Considerations:** PCA storage types; HA/PITR; transactions across services (outbox later).
+- **Decision table:**
+
+| Need | Pick | Accept |
+|---|---|---|
+| Standard OLTP | Cloud SQL Postgres | Regional limit |
+| Global strong SQL | Spanner | Cost/complexity |
+| Hide WAL forever | Forbidden as learning path | Managed after toys |
+
+- **Scenario prompt:** “We don’t need backups; Cloud SQL is managed.”
+- **Expected:** “I pick PITR + tested restore because Y (managed ≠ immortal), I accept Z (backup storage cost).”
+
+#### Go G4 — files, bufio, embed, time; WAL-shaped serialize
+SYNTAX UNLOCK: `os.Open`/`Create` return `(*File, error)`; always `defer f.Close()`. `bufio.Scanner` / `Writer` for buffered IO. `embed` / `//go:embed` bakes files into the binary (migrations, fixtures). `time.Time`, `time.Duration`, monotonic for deadlines. Binary framing: length-prefix + payload (WAL record shape).
+Concept: Mini WAL: append-only records `{lsn, crc, payload}`; crash = truncate to last good CRC; replay rebuilds state. This is the DB-10 toy — Cloud SQL hides WAL; you still implement the shape once.
+Python twin first: same codec + crash/replay tests in Python; then Go.
+Go artifact: package `waltoy`; tests: `TestAppendReplay`, `TestCorruptTailTruncates`, `TestEmbedFixtureLoads`, `TestBufioRoundTrip`; gate: replay after simulated crash matches pre-crash state; Cloud SQL mapping paragraph written (what `checkpoint`/`pg_waldump` correspond to).
+
+---
 ### 2.2 GCP relational offerings (decision table)
+
+#### PCA: 2.2 Storage systems (provision)
+
+**Guide themes (matrix):** storage allocation; processing; access; transfer/latency; lifecycle; growth; backup/recovery. Home: Part 2.
+
+| Data | Prefer | Accept |
+|---|---|---|
+| OLTP orders | Cloud SQL HA / AlloyDB | Spanner if true multi-region SQL |
+| Objects/media | GCS classes + lifecycle | Filestore if POSIX |
+| Hot telemetry | Bigtable | SQL only if volume tiny |
+| Warehouse | BigQuery | Dataproc if Hadoop lift |
+
+**Scenario prompt:** Media library grows 40%/year; cold assets rarely read; analytics on views needed.
+
+**Expected answer shape:** “I pick GCS Autoclass/lifecycle + BigQuery because Y, I accept Z (no Filestore; restore tested quarterly).”
+
 
 | Offering | Model | You pick it when |
 |---|---|---|
@@ -1287,7 +1998,7 @@ SOLID, hexagonal, DDD, gRPC, and the pattern catalog live **here only**. Later p
 
 Northstar is still a modular monolith. You impose structure so the later split is a cut, not a rewrite.
 
-**SOLID (tests fail if you violate):**
+#### SOLID (tests fail if you violate)
 | | Rule in this repo |
 |---|---|
 | S | HTTP handler, `PlaceOrder` use case, and `OrderRepository` are three modules. A PR that mixes them is rejected. |
@@ -1296,21 +2007,52 @@ Northstar is still a modular monolith. You impose structure so the later split i
 | I | Small ports: `OrderWriter`, `CatalogReader` — no 40-method god interface. |
 | D | `domain/` and `app/` **must not** import `google.cloud`, `psycopg`, FastAPI. CI grep / import-linter. |
 
-**Hexagonal / Clean / Onion:** same dependency rule (inward). Code layout: `domain/`, `app/` (use cases), `ports/`, `adapters/http|grpc|sql|pubsub`. Driving adapters (HTTP/gRPC) vs driven (SQL, Stripe ACL). Catalog listing may stay layered CRUD; **order/payment is hexagonal**. Go: interfaces as ports, structs as adapters, embedding where it is real composition (**G3**).
+#### Hexagonal / Clean / Onion
+Dependency rule inward. Layout: `domain/`, `app/` (use cases), `ports/`, `adapters/http|grpc|sql|pubsub`. Driving vs driven adapters. Catalog may stay layered CRUD; **order/payment is hexagonal**. Go: interfaces as ports (**G3**).
 
-**DDD tactical:** Order is an aggregate; line items don’t leak; `OrderPlaced` is a domain event; Pub/Sub carries an *integration* event. Stripe/Identity Platform sit behind an anti-corruption layer. Anemic model is an anti-pattern except honest transaction scripts.
+#### DDD tactical
+Order aggregate; line items don’t leak; `OrderPlaced` domain event; Pub/Sub carries integration event. Stripe/Identity Platform behind ACL. Anemic model only as honest transaction script.
 
-**CQRS:** two *queries* before two databases. Event-source checkout only if you can defend audit/replay; default is outbox (3.5).
+#### CQRS / patterns
+Two *queries* before two databases. Event-source checkout only if audit/replay defended; default outbox (3.5). Patterns only when the force is in the code (list unchanged from prior curriculum).
 
-**Patterns — only when the force is in the code** (implement, test, name when the simpler alternative is better):
-Repository, unit of work, adapter, strategy, factory, builder, middleware/decorator, chain of responsibility, observer/pub-sub, mediator, command, state, outbox, saga, CQRS/read model, idempotent consumer, circuit breaker, bulkhead, retry with jitter, strangler fig.
+#### Evidence pack (every HLD/LLD lab)
+Functional + quality requirements; assets, actors, trust boundaries, abuse cases, authorization model; capacity estimate; Mermaid HLD; LLD/API/schema/state diagrams; bottleneck/failure/security table; trade-off table; implementation (Python then Go); positive/negative/load/adversarial tests; observability with secret redaction; rollback/revocation/recovery; one ADR. Authenticating without authorizing **action and object** is incomplete.
 
-**Every HLD/LLD lab evidence pack:** functional and quality requirements; assets, actors, trust boundaries, abuse cases, authorization model; capacity estimate; Mermaid HLD; LLD/API/schema/state diagrams; bottleneck/failure/security table; trade-off table; implementation (Python then Go); positive, negative, load, and adversarial tests; observability with secret redaction; rollback/revocation/recovery; one ADR. Authenticating a caller without authorizing action **and** object is incomplete.
+#### S20 teaching order (do not skip) — with worked `PlaceOrder`
+1. **Quality attributes / SLOs** — PlaceOrder success rate, p95 place latency, oversell = 0.
+2. **Boundaries / data ownership** — Order aggregate owns lines; catalog is read model for pricing snapshot at place time.
+3. **LLD contracts / cohesion** — `PlaceOrder(cmd) -> Result`; HTTP DTO ≠ domain.
+4. **SOLID in code** — three modules; CI import lint.
+5. **Clean + DDD** — aggregate invariants: non-empty lines, positive qty, idempotency key required.
+6. **Modular monolith** — same process, separate packages; no network yet.
+7. **Sync vs async** — sync: reserve stock + persist order; async: `OrderPlaced` → email/Tasks.
+8. **Retries / timeouts / idempotency / backpressure** — client idempotency key; server UNIQUE; timeout on payment port.
+9. **Cache / queue semantics** — do not cache “placed” without invalidation story; queue at-least-once ⇒ inbox.
+10. **Replication / partition / consistency** — read-your-writes on order get; catalog replica lag OK for browse.
+11. **Leader / consensus as needed** — skip for PlaceOrder v0; name when stock ledger becomes distributed.
+12. **Transactions / outbox / saga** — single DB txn: insert order + outbox row; publisher drains outbox.
+13. **Observability** — span `PlaceOrder`; metrics `orders_placed`, `orders_rejected_idempotency`.
+14. **Split microservice only when justified** — extract payment adapter first only if deploy cadence forces it.
 
-**From scratch:** `PlaceOrder` with in-memory adapter tests, then Postgres adapter. Use case file cannot import the DB driver.
+#### Worked PlaceOrder example (evidence-pack miniature)
+**Command:** `{idempotency_key, tenant_id, customer_id, lines[{sku, qty}]}`.
+**Happy path:** load catalog prices → validate stock → insert `orders` + `order_lines` + `outbox` in one txn → return `order_id` + `created`.
+**Idempotent replay:** same key → return original `order_id` without double stock decrement (UNIQUE + fetch).
+**Failure:** payment port timeout → order stays `pending_payment` / compensating path per ADR — never silent success.
+**Tests:** concurrent duplicate keys; oversell race; use-case without DB driver import; Go port interfaces (**G3**).
+**ADR one-liner:** “I pick modular monolith + outbox because Y (one txn boundary), I accept Z (async consumers must be idempotent).”
 
-**S20 teaching order (do not skip):** quality attributes and measurable SLOs → boundaries/data ownership → LLD contracts, cohesion/coupling → SOLID in code → clean architecture and DDD → modular monolith → sync vs async → retries/timeouts/idempotency/backpressure → cache and queue semantics → replication/partition/consistency → leader election/consensus as needed → transactions/outbox/saga → observability → split a microservice only when justified.
+#### From scratch
+`PlaceOrder` with in-memory adapter tests, then Postgres adapter. Use case file cannot import the DB driver.
 
+#### Go G3 — pointers, structs, methods, interfaces, generics; lists/heap/hash
+SYNTAX UNLOCK: `*T` / `&x` — pointer is an address; method receivers `(s *Service)` vs `(s Service)` (pointer when mutating or avoiding large copies). Interfaces: method sets; `var p Port = &Adapter{}` — **nil concrete in non-nil interface** is the classic trap (`var a *Adapter; var p Port = a; p != nil` is true). Generics: `func Keys[K comparable, V any](m map[K]V) []K`. Contrast Python: duck typing + protocols; Go interfaces are checked at compile time.
+Concept: Hexagonal ports are interfaces; adapters are structs with methods. Domain types are structs with invariants enforced in constructors. Nil-interface tests are mandatory. Small ports (`OrderWriter`) beat god interfaces.
+Python twin first: Protocol/`abc` ports + in-memory adapter for `PlaceOrder`; CI import-linter forbids domain→driver imports.
+Go artifact: package `orderport` (interfaces) + `orderapp` + `adapters/memory`; tests: `TestNilInterfaceTrap`, `TestInMemorySatisfiesPort`, `TestPlaceOrderNoDriverImport` (analysis or build-tag grep); gate: use-case tests pass with memory adapter only; Postgres adapter later does not change `orderapp`.
+
+---
 ### 3.1 When to split
 - Modular monolith is the **default until** independent deploy, scale, failure, data, or team.
 - Split on bounded contexts (3.0): catalog, cart, order, payment, notification.
@@ -1332,18 +2074,79 @@ Repository, unit of work, adapter, strategy, factory, builder, middleware/decora
 **Review fails:** shared DB, distributed monolith (8 sync hops per click), nano-services, 2PC, chatty HTTP joins.
 
 ### 3.2 Service-to-service + gRPC + protobuf
+
+#### Concepts
 - Public browser API stays **JSON/HTTP**. Internal: **gRPC/HTTP/2** on Cloud Run.
-- Auth: `roles/run.invoker` + ID tokens; service bindings (preview) as direction of travel.
-- Timeouts, retries with jitter, circuit breaker — **your client middleware** (3.0 / §6), not a library you don’t read.
+- Auth: `roles/run.invoker` + **Google ID tokens** (audience = receiving service URL); service bindings as direction of travel.
+- Timeouts, retries with jitter, circuit breaker — **your** client middleware (3.0), not an unread library.
+- HTTP/2 HOL taught in Part 6.1; here map gRPC framing only.
 
-**Protobuf from scratch:** encode/decode `{id, name, price_cents}` (varint, wire type 2). Golden test vs `protoc`. Then official runtime. Field numbers never reused.
+#### Protobuf
+- **From scratch:** encode/decode `{id, name, price_cents}` (varint, wire type 2). Golden vs `protoc`. Field numbers never reused; `reserved` deleted fields.
 
-**HTTP/2 / HOL:** taught in Part 6.1 (not repeated here). gRPC mapping: `POST /package.Service/Method`, `application/grpc`, 5-byte prefix (compressed flag + length) + protobuf. Unary + server-stream in a toy over HTTP/1 first if needed; all four RPC types with `grpcio` / `google.golang.org/grpc`.
+**Protobuf wire (complete here):** key = `(field_number << 3) | wire_type`; wire types 0 (varint), 1 (64-bit), 2 (length-delimited), 5 (32-bit). Varint: 7-bit groups, MSB continuation. Length-delimited: varint length + bytes (string/bytes/embedded message/packed). Golden vectors for field 1 varint, field 2 string, field 3 packed repeated — compare to `protoc --encode`. Compatibility: never reuse field numbers; reserve deleted; default zeros. (**G13–G15** artifact uses this.)
 
-**Production gRPC:** interceptors = middleware (auth, log, deadline). Status codes. Health `grpc.health.v1`. Reflection off in prod. REST BFF calls `catalog.v1.CatalogService`. Same `.proto` → Python then Go stubs. Protobuf compatibility and stream RPCs **are this part** (**G13–G15**), not a later language course. Client retries use `context` cancellation (**G6–G7**).
+- Official runtime after golden. Same `.proto` → Python then Go (**G13**).
 
-**Lab:** GetProduct gRPC on Cloud Run; BFF REST in front. **Python / Go:** ID-token client + generated stub. N+1 is a fail — batch or stream (Part 8).
+#### gRPC mapping
+- `POST /package.Service/Method`, `application/grpc`, 5-byte prefix (compressed flag + length) + protobuf.
+- Unary + server-stream toy over HTTP/1 if needed; all four RPC types with `grpcio` / `google.golang.org/grpc` (**G14**).
 
+#### Interceptors (middleware)
+- Unary/stream interceptors: auth (ID token / SA), log, deadline, metrics (**G15**).
+- Status codes mapped to problem decisions; health `grpc.health.v1`; reflection **off** in prod.
+
+#### Cloud Run + ID tokens (procedure)
+1. Deploy catalog gRPC service; require authentication; grant caller SA `roles/run.invoker`.
+2. Client: `idtoken.NewClient(ctx, audience)` (Go) / `google.oauth2.id_token` (Python) with audience = service URL.
+3. Reject wrong audience; no `allUsers` invoker in prod.
+4. BFF REST on Cloud Run calls `catalog.v1.CatalogService`; N+1 is a fail — batch or stream.
+
+#### Lab
+GetProduct gRPC on Cloud Run; BFF REST in front. Python / Go ID-token client + generated stub. Paste **G13–G15** and **G6–G7** (ctx cancel on retries) lesson text under this heading.
+
+#### Gate
+Same proto both languages; invoker IAM proven; interceptors tested; reflection disabled in prod config.
+
+#### Go G6 — goroutines, channels, select
+SYNTAX UNLOCK: `go f()` starts a goroutine (cheap OS-multiplexed thread). Channels: `ch := make(chan T, n)`; send `ch <- v`; receive `v := <-ch`; close to signal end. `select` waits on multiple channel ops (incl. `default` for non-block). Contrast Python: `asyncio` tasks / threads — Go shares memory by communicating (prefer channels for ownership transfer; mutex when sharing).
+Concept: Never start a goroutine without a stop signal (next unlock: context). Race on shared maps without sync is undefined — race detector is mandatory later (G7). Used in gRPC client pools, Pub/Sub pull loops, HTTP middleware shared limiter.
+Python twin first: asyncio or threading twin of the fan-in pattern with explicit shutdown.
+Go artifact: package `conc/fanin`; tests: `TestFanInAllReceived`, `TestSelectDefaultNonBlock`, `TestNoLeakAfterCancel` (with G7 context); gate: `go test -race` passes on this package.
+
+---
+
+#### Go G7 — context, mutex, race detector
+SYNTAX UNLOCK: `context.Context` carries deadline/cancel/values; `ctx, cancel := context.WithTimeout(parent, d); defer cancel()`. APIs take `ctx` as first arg. `sync.Mutex` / `RWMutex`: `Lock`/`Unlock` (defer Unlock). `go test -race` instruments shared memory. Contrast Python: no stdlib cancel token as universal; `threading.Lock` analogous.
+Concept: Cancelled context must stop work (HTTP client, gRPC, DB queries, task handlers). Shared rate limiter / session store in 4.2 is race-tested. Pub/Sub ack extensions respect ctx.
+Python twin first: timeout/cancel around HTTP client + lock around shared counter.
+Go artifact: package `conc/limit` (shared limiter used by 4.2) + ctx helpers; tests: `TestCancelledContextStopsWork`, `TestMutexProtectsCounter` under `-race`, `TestLimiterRace`; gate: `go test -race ./...` green for HTTP middleware + async handlers that share state.
+
+---
+
+#### Go G13 — protobuf messages and compatibility
+SYNTAX UNLOCK: `.proto` → `protoc-gen-go`; generated structs; `proto.Marshal`/`Unmarshal`. Field numbers are forever. `optional` / presence. Contrast Python: `protobuf` / betterproto — same `.proto` file.
+Concept: Encode/decode golden vectors from the from-scratch varint lab. Never reuse field numbers; reserved deleted fields. Same catalog message as the Python twin.
+Python twin first: golden encode/decode vs hand-rolled varint; then official runtime; then Go stubs from **same** `.proto`.
+Go artifact: package `gen/catalog/v1` (generated) + `catalogcodec` tests; tests: `TestGoldenWireCompatWithPython`, `TestUnknownFieldPreserved`, `TestReservedNumberRejectedInCI`; gate: CI compiles both language stubs from one proto; compatibility doc checked in.
+
+---
+
+#### Go G14 — gRPC unary and streams
+SYNTAX UNLOCK: `grpc.NewServer()`; register generated service; `grpc.DialContext` + credentials. Four RPC shapes: unary, server-stream, client-stream, bidi. Contrast Python: `grpcio` async/sync.
+Concept: Map to HTTP/2 `POST /package.Service/Method`. Cloud Run hosts gRPC. BFF REST calls catalog gRPC — N+1 is a fail (batch or stream).
+Python twin first: unary + server-stream GetProduct(s); then Go.
+Go artifact: package `catalogrpc`; tests: `TestUnaryGetProduct`, `TestServerStreamBatch`, `TestDeadlineExceeded`; gate: all four RPC types exercised in tests (bidi can be toy); same proto as G13.
+
+---
+
+#### Go G15 — interceptors, Cloud Run, ID tokens
+SYNTAX UNLOCK: `grpc.UnaryInterceptor` / `StreamInterceptor` — middleware for gRPC. Google ID token audience = Cloud Run URL; `idtoken.NewClient(ctx, audience)`. Contrast Python: interceptors + `google.oauth2.id_token`.
+Concept: Auth, log, deadline interceptors. `roles/run.invoker` on caller SA. Reflection off in prod. Health `grpc.health.v1`. Retries honor `context` (G7).
+Python twin first: ID-token client to Cloud Run gRPC; then Go.
+Go artifact: package `catalogrpc/interceptors` + `cmd/catalogd`; tests: `TestAuthInterceptorRejectsMissing`, `TestIDTokenAudience`, `TestHealthCheck`; gate: GetProduct on Cloud Run with invoker IAM; BFF REST in front; no public-unauthenticated gRPC in prod config.
+
+---
 ### 3.3 API facade
 - URL map on LB vs **API Gateway** (OpenAPI, API keys, JWT, quotas; cheap) vs **Apigee** (API-as-product, monetization, hybrid).
 - Cloud Endpoints / ESPv2 as sidecar (GKE).
@@ -1352,37 +2155,52 @@ Repository, unit of work, adapter, strategy, factory, builder, middleware/decora
 - **Python:** generate OpenAPI from FastAPI; contract tests.
 
 ### 3.4 Async: Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler
-- **From scratch first:** in-memory broker (topic, pull, ack deadline, nack, DLQ after N, at-least-once). Delayed queue with lease/heartbeat (this *is* Cloud Tasks). A loop that sleeps until the next cron tick and POSTs (this *is* Scheduler — then delete it).
-- At-least-once. Idempotency keys. Dead letter topics. Ordering vs throughput.
-- Eventarc Standard: CloudEvents to Cloud Run.
+
+#### From scratch first
+- In-memory broker: topic, pull, ack deadline, nack, DLQ after N, at-least-once.
+- Delayed queue with lease/heartbeat (= Cloud Tasks shape).
+- Loop sleeping until next cron tick + POST (= Scheduler) — then delete it and use the product.
+
+#### Shared semantics
+- At-least-once ⇒ **idempotency keys / inbox**. Dead letter topics. Ordering vs throughput trade-off.
+- Eventarc Standard: CloudEvents → Cloud Run.
 - Cloud Run **Worker Pools** for pull consumers (2026 model).
+- OIDC to Cloud Run: Scheduler/Tasks attach tokens; **handler verifies** audience/issuer — do not trust network location.
 
-**Cloud Scheduler** (successor to `cron.yaml`; **3 jobs** per billing account Always Free):
+#### Cloud Scheduler (3 Always Free jobs)
 - Targets: HTTP, Pub/Sub, App Engine HTTP. Unix-cron, timezone, attempt deadline.
-- Auth: OIDC to Cloud Run (`audience` = service URL). No API keys in the job.
-- Retry config vs “the handler is idempotent” (required).
-- **Lab:** (1) OIDC HTTP to Cloud Run `/internal/recompute`, (2) Pub/Sub tick. Optional (3) App Engine target on the 1.9 service. Destroy extras. Python then Go: create/pause/run via API.
+- **Auth:** OIDC to Cloud Run (`audience` = service URL). No API keys in the job.
+- Retry config ≠ “handler is idempotent” — you need **both**.
+- **Lab:** (1) OIDC HTTP → `/internal/recompute`, (2) Pub/Sub tick, optional (3) App Engine target on 1.9 service. Destroy extras. Python then Go API create/pause/run.
 
-**Cloud Tasks** (successor to App Engine Task Queues; PCA still names GAE queues):
-- Queue: location, `rateLimits` (maxDispatchesPerSecond, maxConcurrentDispatches, maxBurstSize), `retryConfig` (maxAttempts, min/maxBackoff, doublings).
-- Task: HTTP (Cloud Run) or App Engine target; payload; `scheduleTime`; **name** for dedupe (`ALREADY_EXISTS`).
-- OIDC / dispatch token; handler verifies (same as Scheduler).
-- At-least-once → inbox (3.5). Observability in 10.0: `cloud_tasks_queue` depth, attempt count, attempt delay.
-- **Lab:** enqueue notification HTTP tasks; poison → retry → maxAttempts. Python then Go: create task + handler.
+#### Cloud Tasks
+- Queue: `rateLimits` (maxDispatchesPerSecond, maxConcurrentDispatches, maxBurstSize), `retryConfig` (maxAttempts, min/maxBackoff, doublings).
+- Task: HTTP (Cloud Run) or App Engine; payload; `scheduleTime`; **name** for dedupe (`ALREADY_EXISTS`).
+- OIDC / dispatch token; handler verifies.
+- Poison → retry → maxAttempts → DLQ/ops alert. Observability in 10.0.
+- **Lab:** enqueue notification tasks; prove poison handling. Python then Go.
 
+#### Pub/Sub
+- Fan-out `OrderPlaced`; push vs pull; ack extension; DLQ; ordering keys only when required (throughput cost).
+- Exactly-once delivery is not a substitute for inbox at the app layer for money-adjacent side effects.
+
+#### Decision table
 | Need | Product |
 |---|---|
 | Run at 03:00 UTC | Cloud Scheduler |
 | Delayed/retried HTTP to **one** worker | Cloud Tasks |
 | Fan-out event | Pub/Sub |
-| Run-to-completion batch | Cloud Run Jobs (+ Scheduler trigger) |
+| Run-to-completion batch | Cloud Run Jobs (+ Scheduler) |
 | Multi-step orchestration | Workflows |
 | In-cluster cron | GKE CronJob |
-| Legacy GAE | `cron.yaml` / GAE Task Queues — PCA literacy; don’t start new |
+| Legacy GAE | `cron.yaml` / GAE queues — literacy only |
 
-- **Lab (Pub/Sub path):** `order.placed` → Pub/Sub → notification; poison → DLQ.
-- **Python / Go:** publisher + subscriber with exactly-once *business* effect (idempotency store).
+#### Idempotency sequences (required sketch)
+1. Scheduler fires twice (retry) → handler checks inbox key `recompute:2026-09-14` → second is no-op.
+2. Tasks attempts 1..N on 500 → same task name / business key → single email send.
+3. Pub/Sub redelivery → consumer inbox UNIQUE `(subscription, message_id)` or business key.
 
+Paste **G6–G7** under this heading for pull loops / ctx cancel.
 ### 3.5 Failure design
 - Partial failure. Dual-write (`sql.commit()` + `pubsub.publish()`) is forbidden.
 - **From scratch:** in-process saga + outbox on SQLite; same tests against SQL + Pub/Sub.
@@ -1418,6 +2236,22 @@ Outbound: reusable client/transport; total and phase timeouts; body close; redir
 
 Labs: middleware recorder; table-test every short-circuit and order permutation; fuzz headers/paths/JSON/forwarded-host; race-test limiter/session; benchmark rejection paths.
 
+
+#### Go G11 — middleware chain, REST, status table
+SYNTAX UNLOCK: Middleware is `func(http.Handler) http.Handler`. Chain outside-in. Wrap `ResponseWriter` to capture status/bytes without losing `Flush`/`Hijack` when needed. Contrast Python: Starlette middleware stack.
+Concept: Prove order with tests (auth before handler; panic recover outermost). Strict JSON; no state change on safe methods; status matrix 400/401/403/404/405/406/413/415/429/500. Same `httpserver` package from G10 — extend, do not fork.
+Python twin first: after Go type here (per 4.2 heading) — FastAPI/Starlette twin of the chain order tests.
+Go artifact: package `httpserver/middleware`; tests: `TestChainOrder`, `TestShortCircuit401`, `TestStatusTable`, `TestStrictJSONRejectsUnknown`, `TestPanicBecomes500`; gate: table-test every short-circuit; fuzz headers/paths; this + G10 + G12 = one lab evidence pack.
+
+---
+
+#### Go G12 — outbound client, SSRF policy, SQL CRUD wiring
+SYNTAX UNLOCK: `http.Client{Timeout, Transport}`; `defer resp.Body.Close()`; custom `DialContext` / IP allowlist for SSRF. `database/sql` with `pgx` driver: `QueryContext(ctx, ...)`. Contrast Python: `httpx` + connectors.
+Concept: Reusable transport; destination allowlist; block metadata IP; redirect policy. CRUD handlers use ports from G3; SQL in adapters only. Graphs-as-needed only if a 4.2/Part 2 exercise needs adjacency — do not invent a graph course.
+Python twin first: httpx SSRF tests + psycopg CRUD; then Go (Go is typed first for middleware in 4.2; CRUD Python-first still holds per Pedagogy §3 for Part 2).
+Go artifact: package `httpserver/client` + `adapters/sql`; tests: `TestSSRFBlocksMetadata`, `TestClientTimeout`, `TestCRUDIdempotentInsert`, `TestContextCancelAbortsQuery`; gate: hardened server timeouts/limits/4xx table complete; race-test limiter (G7); Part 11 matrix checks G10–G12 under **4.2** heading (1.2 shows contract only).
+
+---
 ### 4.3 Identity, passwords, recovery, MFA
 Identity ≠ credentials. Opaque non-sequential public IDs. Email/phone are mutable verified attributes. Equivalent controls on login, register, password change, recovery, admin-assisted recovery, API login, federation.
 
@@ -1499,30 +2333,60 @@ reCAPTCHA Enterprise (10k/month), gateway quotas, App Check later. **Python / Go
 - CDE, SAQ A vs A-EP vs D.
 - Google is PCI DSS Level 1 **infrastructure**. You still own the app.
 - Scope reduction: tokenization, no PAN on your servers, dedicated project/VPC if you ever handle cards.
-- **ADR-004:** Stripe Checkout or Elements (hosted/iframe). Northstar is SAQ A. Server never sees card numbers.
-- Stripe **Radar-class fraud ML** is **Part 9c.4** (score on tokens). This part is money movement only.
-
+- **ADR-004:** Stripe Checkout or Elements (hosted/iframe). Northstar is **SAQ A**. Server never sees card numbers.
+- Stripe Radar-class fraud ML is **Part 9c.4**. This part is money movement only.
 ### 5.2 Stripe on GCP (the real integration)
-- Checkout Session from Cloud Run.
-- Webhook endpoint: raw body, `Stripe-Signature`, idempotency, replay window.
-- Map Stripe events → Pub/Sub → order service.
-- Secret Manager for `STRIPE_SECRET_KEY` / webhook secret.
-- Test clocks, test cards, failure injection (card_declined).
-- **Lab:** end-to-end test-mode payment; order becomes `paid` only after verified webhook, not after redirect.
-- **Python:** FastAPI webhook with signature verify + idempotency key in Firestore. **Go:** official Stripe Go SDK, same tests.
 
-### 5.3 Ledger and consistency
-- Your DB is not Stripe. Source of truth for money is the PSP; you store tokens, PaymentIntent IDs, amounts, currency, status.
-- Refunds, disputes, idempotent retry.
-- **HLD:** payment orchestrator service; no other service talks to Stripe.
-- **LLD:** state machine `created → requires_action → paid → fulfilled | refunded | failed`. Go ledger types, idempotency key, webhook verify (**G20**) live here with Stripe — not in a separate payments-in-Go module.
+#### Concepts
+- Create Checkout Session (or PaymentIntent) from Cloud Run using secret from Secret Manager.
+- Success **redirect is not proof of payment** — webhook is.
+- Webhook endpoint: **raw body**, `Stripe-Signature` verify, replay window, idempotent apply.
+- Map Stripe events → (optional) Pub/Sub → order service for fan-out; still idempotent at order aggregate.
+- Test clocks, test cards, `card_declined` injection.
 
-### 5.4 What we do *not* build (and why)
-- Homegrown card forms posting PAN to Cloud Run = SAQ D. Forbidden in this course.
-- Storing PAN in Firestore “encrypted” is still in-scope. Forbidden.
+#### Webhook + idempotency sequences
+1. `checkout.session.completed` arrives → verify sig → inbox insert `event.id` → transition order `paid` → ack 200.
+2. Stripe retries same `event.id` → inbox hit → 200 without double fulfill.
+3. Attacker replays old body → sig fail or outside tolerance → 4xx; no state change.
+4. Redirect returns before webhook → UI shows `pending_payment` until webhook; never `fulfilled` on redirect alone.
+5. Duplicate charge attempts from client → Stripe + your `idempotency_key` on session create → one intent.
+
+#### Lab
+End-to-end test-mode payment; order becomes `paid` only after verified webhook.
+**Python:** FastAPI webhook + signature + idempotency store.
+**Go (G20):** official Stripe Go SDK; same tests; ledger types live in 5.3.
+
+#### Gate
+Secret Manager only; no PAN logs; replay test green; redirect-alone cannot fulfill.
+
+#### Go G20 — Ledger types, idempotent charge, webhook verify
+SYNTAX UNLOCK: none new; money types are ordinary structs + `json` + crypto verify API from Stripe SDK. Prefer `int64` minor units, never `float64` for money.
+Concept: State machine `created → requires_action → paid → fulfilled | refunded | failed`. Idempotency key unique. Webhook: raw body + `Stripe-Signature` verify + replay window + inbox. Order becomes `paid` only after verified webhook.
+Python twin first: FastAPI webhook + Firestore/SQL idempotency; then Go official Stripe SDK.
+Go artifact: package `ledger` + `stripehook`; tests: `TestStateMachineTransitions`, `TestIdempotentCharge`, `TestWebhookRejectsBadSig`, `TestWebhookReplayNoDoubleFulfill`; gate: test-mode e2e; Secret Manager for secrets; no PAN stored; Part 11 matrix checks G20 under Part 5 headings.
 
 ---
+### 5.3 Ledger and consistency
 
+#### Concepts
+- Your DB is not Stripe. SoR for money is the PSP; you store tokens, PaymentIntent/Session IDs, amounts (**minor units int**), currency, status.
+- Refunds, disputes, idempotent retry.
+
+#### State machine (LLD)
+`created → requires_action → paid → fulfilled | refunded | failed` (document guards on each arrow).
+Illegal: `fulfilled` without `paid`; `paid` without verified webhook/event; float money types.
+
+#### HLD
+Payment orchestrator service; no other service talks to Stripe (ACL).
+
+#### Go G20 (home elsewhere — see full `#### Go G20 — …` lesson)
+Stub removed to avoid double-teaching; unlock/check the full **#### Go G20 —** heading.
+#### Gate
+State tests exhaust legal/illegal transitions; refund path rehearsed in test mode.
+### 5.4 What we do *not* build (and why)
+- Homegrown card forms posting PAN to Cloud Run = SAQ D. **Forbidden** in this course.
+- Storing PAN in Firestore “encrypted” is still in-scope. **Forbidden**.
+- Building a card vault “for learning” on GCP free tier. **Forbidden**.
 ## Part 6 — Networking services (full video block) then network security
 
 **Goal:** You can design, draw, and (within free-tier) implement VPC, IPs, firewalls, DNS, NAT, peering, and Shared VPC — then place security controls on that network.
@@ -1534,9 +2398,15 @@ reCAPTCHA Enterprise (10k/month), gateway quotas, App Check later. **Python / Go
 - Stateful firewalls, implicit deny. East-west vs north-south.
 - **T-NET (required with this part, not an optional quest):** layering; end-to-end argument; routing DV vs LS (converge, count-to-infinity); reliable transfer (seq, ACK, window); congestion control AIMD — derive why window grows/shrinks. GCP products are the deployment of these ideas.
 
+**T-NET gate:** derive AIMD sawtooth on paper; show traceroute/flow across your custom VPC lab; map each idea to a GCP control (routes, FW, LB health checks, CDN cache). Incomplete if only product clicks.
+
+
 **HTTP/2 subset (why gRPC is multiplexed):**
 - One TCP+TLS connection, many streams, binary frames. Toy frames: SETTINGS, DATA, uncompressed HEADERS (not full HPACK Huffman), RST_STREAM.
 - **HOL demo (required):** two streams on one TCP socket; drop a byte on stream 1; prove stream 2 stalls. This is TCP HOL. It is why QUIC exists.
+
+**HOL → QUIC (ideas complete on this lab):** HTTP/2 multiplexes streams on one TCP connection — a lost packet stalls *all* streams (HOL). QUIC multiplexes on UDP with per-stream loss recovery — stream 2 continues when stream 1 loses. Lab already proves both sides; write the one-paragraph transfer: “GFE may speak HTTP/3 to browsers; Cloud Run origin remains H1/H2; internal Northstar stays gRPC/H2 unless measured HOL on a lossy path.” Do not implement QUIC crypto.
+
 
 **QUIC / HTTP/3 (ideas, then library):**
 - UDP, connection IDs (survive NAT/IP change), independent stream buffers, 1-RTT with TLS 1.3 integrated, 0-RTT replay-unsafe (never checkout).
@@ -1674,6 +2544,9 @@ GCP offerings:
 - Serverless NEGs (Cloud Run, App Engine, Cloud Functions).
 - Forwarding rule **must** have an IP: ephemeral or reserved static (see 6.3). Deleting the rule without deleting a reserved IP leaves a billing leak.
 - Cloud CDN on that same HTTPS LB — modes, keys, signed URLs, invalidation (**1.4 is the full CDN lesson**; do not re-teach).
+
+**Dedupe:** one CDN lesson only (**1.4**). This subsection lists LB types + pointer. Raft toy lives in **8.1** studio 9; **12.S20** skip-tests it — do not rebuild Raft in Part 12.
+
 - **From scratch:** L4/L7 proxies from 1.4 in front of two local backends; weighted round-robin + drain (canary). Map each feature to a GCP LB type.
 - Cloud Armor and reCAPTCHA: WAF/OWASP/rate-limit at this edge; details stay 1.4 / 4.10.
 - **Lab:** Cloud Run auth as the free-tier “edge.” Credits-optional: global HTTPS LB + Armor + CDN in front of Cloud Run.
@@ -1735,24 +2608,62 @@ GCP offerings:
 ### 7.6 Detection and posture
 GCP offerings:
 - **Cloud Audit Logs** (admin, data access, system).
-- **Security Command Center** (Standard / Premium / Enterprise) — findings, mute rules, attack path.
+- **Security Command Center** (Standard / Premium / Enterprise) — findings, mute rules, attack path, security health analytics.
 - **Web Security Scanner**.
 - **Cloud IDS**.
 - **Google SecOps / Chronicle** (concept; cost).
 - **Assured Workloads** (compliance perimeters).
-- **Lab:** parse audit logs; alert on `SetIamPolicy` and `serviceAccount.keys.create`. **Python / Go.**
+
+**SCC runbook template (copy into Northstar `runbooks/scc.md`):**
+1. **Detect:** SCC finding or log-based alert fires (`category`, `severity`, `resourceName`).
+2. **Triage (15 min):** confirm resource project/folder; check mute rules; ask “active exploit vs misconfig?”
+3. **Contain:** IAM deny / remove public ACE / disable key / close firewall; snapshot disks if GCE compromise suspected.
+4. **Eradicate:** fix Terraform; rotate secrets; redeploy clean revision.
+5. **Recover:** verify SLO; re-enable traffic canary.
+6. **Lessons:** file finding → ticket; add regression test or org policy; update mute only with justification.
+- **Lab:** parse audit logs; alert on `SetIamPolicy` and `serviceAccount.keys.create`. Wire one SCC-style finding (even exported JSON) through the template. **Python / Go.**
 
 ### 7.7 Org policy and landing zone
-- `iam.disableServiceAccountKeyCreation`, `compute.vmExternalIpAccess`, resource locations, uniform bucket access.
+- `iam.disableServiceAccountKeyCreation`, `compute.vmExternalIpAccess`, resource locations, uniform bucket access, `sql.restrictPublicIp`, domain restricted sharing as applicable.
 - Security baseline for orgs created after 2024-05-23.
 - Landing zone: identity, hierarchy, network, security — now you have the product to put in it.
 
+**Org policy change runbook template (`runbooks/org-policy.md`):**
+1. **Propose:** policy constraint + desired value + blast radius (org/folder/project).
+2. **Dry-run:** list resources that would violate; owners notified.
+3. **Stage:** apply at folder `nonprod` first; break-glass project tagged.
+4. **Enforce:** promote to `prod` folder; monitor SCC / Policy Controller rejects for 72h.
+5. **Rollback:** keep previous policy JSON in Git; `gcloud org-policies set-policy` from last good.
+- **Lab:** write Terraform `google_org_policy_policy` for key-creation disable + uniform bucket access (apply only if you own an org; otherwise plan-only).
+
 ### 7.8 Incident response
-- Runbooks: leaked GitHub token, leaked Stripe webhook secret, public bucket, compromised SA.
-- Revoke, rotate, forensics (logs), customer notification.
-- **Exercise:** write both runbooks and a tabletop.
+**Four required runbook templates** (same headings: Detect → Contain → Eradicate → Recover → Comms → Follow-up):
+
+1. **Leaked GitHub token / WIF misbind** — revoke OAuth/PAT; invalidate WIF attribute conditions; rotate; audit `CreateServiceAccountKey` / GitHub Actions logs; notify if repo public.
+2. **Leaked Stripe webhook secret** — roll secret in Stripe + Secret Manager versions; reject old signing secret; replay-safe inbox check; customer impact = none if only signing secret.
+3. **Public bucket / public object ACE** — remove `allUsers`; enable uniform access + org policy; scan object listing; SDP if PII; customer notification if exposure confirmed.
+4. **Compromised SA** — disable SA; kill keys; check last auth in audit logs; rotate workloads to new SA; forensics on caller IP / `principalEmail`.
+
+- **Tabletop:** 60 min clock; facilitator injects one of the four; scribe fills the template; grade = time-to-contain + whether restore was tested.
+- **Exercise:** commit all four runbooks next to Northstar; run one tabletop.
 
 ### 7.9 Compliance mapping
+
+#### PCA: 3.2 Compliance design
+
+**Guide themes (matrix):** health/children’s/privacy/sovereignty legislation; PCI/PII commercial; SOC 2; audits/logs. Homes: 5, 7.9.
+
+| Obligation | Prefer | Accept |
+|---|---|---|
+| PHI | BAA + Assured Workloads / location policy | DIY “we’ll be careful” |
+| PCI | Tokenize; CDE segmentation (Part 5) | Store PAN in GCS |
+| Sovereignty | `resourceLocations` + regional resources | Global bucket “for simplicity” |
+| Evidence | Audit logs retained + access reviews | Screenshots only |
+
+**Scenario prompt:** EU autonomous-driving data and a US analytics team want one global BQ dataset.
+
+**Expected answer shape:** “I pick EU regional processing + Assured Workloads because Y, I accept Z (aggregated non-personal exports only).”
+
 - PCI (Part 5), SOC 2, ISO 27001, HIPAA BAA, GDPR data residency (`resourceLocations`).
 - Compliance Reports Manager — how to pull Google’s attestations vs your own.
 
@@ -1760,7 +2671,13 @@ GCP offerings:
 
 ## Part 8 — HLD/LLD mastery (Donne Martin → GCP)
 
-Every Donne Martin building block becomes a GCP decision table plus a Northstar ADR.
+Every Donne Martin building block becomes a GCP decision table plus a Northstar ADR. Primer 4-step loop is already Pedagogy §4; the full six-step protocol (NFRs, capacity, Mermaid HLD, LLD, failures, hardening) is Pedagogy §8. **Every HLD/LLD lab uses the 3.0 evidence pack** — one sentence is not enough.
+
+**G19 synthesis:** completing the gated studios below **is** the G19 artifact (unseen DS + API + concurrency from unlocked tools). Appendix G indexes G19; it does not re-teach it. Do not invent a “Part G” semester.
+
+---
+
+### 8.0 Donne Martin → GCP building blocks
 
 | Donne Martin | GCP mapping | Northstar use |
 |---|---|---|
@@ -1793,24 +2710,442 @@ Every Donne Martin building block becomes a GCP decision table plus a Northstar 
 | Kafka | Pub/Sub (3.4) | |
 | Scale-to-millions (primer AWS chapter) | **GCP** global LB + multi-region Run + Spanner/Firestore + CDN — do not teach AWS as the platform | |
 
-Primer 4-step loop is already Pedagogy §4. **Every row in the table above needs a Northstar ADR using the 3.0 evidence pack** — one sentence is not enough.
+#### Performance vs scalability
+**Concept:** Performance is single-request latency/resource cost; scalability is how those stay acceptable as load grows. Failure modes: optimizing p50 while p99 burns the error budget; adding min-instances “for speed” and never scale-to-zero; confusing vertical scale with horizontal fan-out.
+**Northstar ADR prompt:** Context = catalog browse vs checkout p95 under Black Friday 10×. Decision = Cloud Run concurrency + min instances vs GKE HPA for each path. Consequences = idle cost, cold-start, blast radius, who owns autoscaling knobs.
+**From scratch / owned:** already owned at Part 1 (Cloud Run / GCE / App Engine autoscaling) and 1.12; apply here in studio HLD packs, do not re-teach platforms.
 
-**Gated studios (required before Part 11 — not a menu):**
+#### Latency vs throughput
+**Concept:** Latency is time to one answer; throughput is completed work per second. Batching, CDN, and locality raise throughput or cut latency at different layers. Failure modes: saturating a region while chasing global QPS; CDN that helps catalog but poisons personalized checkout; measuring only server time and ignoring client RTT.
+**Northstar ADR prompt:** Context = checkout (strict latency) vs catalog browse (throughput). Decision = region pinning, Cloud CDN on static/catalog, Firestore locality vs multi-region. Consequences = consistency lag, cache invalidation, cost of Premium tier.
+**From scratch / owned:** already owned at Part 1.4 (CDN) and 6.13 (LB); back-of-envelope powers-of-two from Part 0.
 
-*Implemented (Python then Go, GCP analog):*
-1. Pastebin / Bitly — Cloud Run + Firestore + GCS; Base62/hash.
-2. Query-cache / KV + consistent hash — 8.1 ring + Memorystore/Firestore.
-3. Rate limiter — token bucket (Pedagogy §6) at the API.
-4. LRU — in-process; document when CDN/Memorystore replace it.
-5. Crawler — Cloud Run Jobs + Pub/Sub + GCS.
-6. Unique IDs — Snowflake-style (time+worker+seq); no `ORDER BY now()`.
+#### CAP / consistency
+**Concept:** Under partition you choose availability or consistency; latency and operational complexity are the usual trade currency. Failure modes: claiming “CP” while serving stale caches; dual-writes without a truth store; using eventual feed semantics for payment capture.
+**Northstar ADR prompt:** Context = payment ledger vs social feed. Decision = Cloud SQL/Spanner (strong) vs Firestore eventual for which aggregates. Consequences = failover behavior, conflict resolution, SLO wording.
+**From scratch / owned:** already owned at Part 2 (Cloud SQL, Firestore, Spanner map); deepen with studio linearizable-KV / Raft toys.
 
-*Toy distributed (local; not production consensus products):*
-7. MapReduce — map/shuffle/reduce on files; then **recall** Dataflow (9b).
-8. Linearizable KV — single-node log + apply.
-9. **Raft at toy scale** — leader election + log replication on 3 processes. Skip-test 12.S20.
+#### DNS
+**Concept:** Name → address with TTL, authority, and failure domains. Failure modes: ephemeral A records, split-horizon surprises, TTL too long for cutover, missing CAA/HTTPS redirect plan.
+**Northstar ADR prompt:** Context = `shop.northstar.dev` cutover. Decision = Cloud DNS public zone + Firebase/Hosting vs GCLB static IP. Consequences = TTL drain, dual-run, rollback DNS.
+**From scratch / owned:** already owned at 6.10; recursive stub toy lives there.
 
-*Evidence-pack HLD (thin slice or paper + sequences):* Twitter/feed; social graph; sales rank; scale-to-millions on **GCP**; Dropbox-like sync; chat; Instagram photos; multi-DC. Feed/recs **detail** is 9c.2.
+#### CDN
+**Concept:** Pull-through edge cache keyed by URL/headers; cuts origin load and RTT. Failure modes: caching personalized or auth responses; missing `Vary`; invalidation lag; treating CDN as a write path.
+**Northstar ADR prompt:** Context = catalog assets + storefront HTML. Decision = Cloud CDN on HTTPS LB vs Firebase CDN; cache keys and TTLs. Consequences = purge cost, stale SKUs, signed-URL needs.
+**From scratch / owned:** already owned at 1.4; in-process LRU studio here is the app-tier analog, not a second CDN course.
+
+#### L4 / L7 LB
+**Concept:** L4 forwards connections; L7 routes on HTTP semantics, TLS, and policies. Failure modes: sticky sessions hiding bad design; idle reserved IPs; health-check flaps; using L4 when you need path-based auth at the edge.
+**Northstar ADR prompt:** Context = public storefront + internal admin. Decision = external HTTPS LB (L7) vs internal LB; Serverless NEG to Cloud Run. Consequences = TLS termination, Armor attachment, IP billing (6.3).
+**From scratch / owned:** already owned at 6.13 + Pedagogy reverse-proxy toy; do not re-teach Maglev/GFE.
+
+#### Reverse proxy
+**Concept:** Edge hop that terminates TLS, routes, and injects policy (authn, rate limit, headers). Failure modes: trusting `X-Forwarded-*` from the internet; proxy as the only authz; buffering that breaks streaming.
+**Northstar ADR prompt:** Context = where Identity Platform / IAP / API Gateway sit relative to Cloud Run. Decision = GFE+IAP for admin, app middleware for public API. Consequences = hop count, header trust boundary, who owns CORS.
+**From scratch / owned:** already owned at Pedagogy §6 reverse-proxy toy + Part 4.2 middleware.
+
+#### Microservices
+**Concept:** Independently deployable bounded contexts with clear data ownership. Failure modes: distributed monolith, shared DB, chatty sync joins, nano-services without operability.
+**Northstar ADR prompt:** Context = catalog/cart/order/payment split criteria. Decision = stay modular monolith until which force appears; first extract. Consequences = saga/outbox need, on-call surface.
+**From scratch / owned:** already owned at Part 3.0–3.1.
+
+#### Service discovery
+**Concept:** How callers find healthy instances without hard-coded IPs. Failure modes: DNS caching past drain; client-side lists without health; cross-project URL sprawl.
+**Northstar ADR prompt:** Context = order → payment internal HTTPS. Decision = Cloud Run service URL + IAM invoker vs Service Directory vs GKE DNS. Consequences = mTLS/identity, regional failover.
+**From scratch / owned:** already owned at Part 3.2 / Cloud Run wiring.
+
+#### RDBMS scaling
+**Concept:** Vertical scale, replicas, sharding/federation, and connection math before “just add Spanner.” Failure modes: read-replica lag treated as strong read; `max_connections` exhaustion; cross-shard joins.
+**Northstar ADR prompt:** Context = OLTP order DB growth. Decision = Cloud SQL HA + replicas vs AlloyDB vs Spanner. Consequences = cost, consistency, migration pain.
+**From scratch / owned:** already owned at 2.1–2.3; connection-pool math recalled in 8.1 table.
+
+#### NoSQL
+**Concept:** Document/KV/wide-column when access patterns beat relational generality. Failure modes: treating Firestore as a SQL dump; hot keys; missing multi-doc transaction boundaries.
+**Northstar ADR prompt:** Context = v0 catalog + sessions + feed fanout. Decision = Firestore vs Bigtable vs Memorystore for each. Consequences = query limits, cost, consistency.
+**From scratch / owned:** already owned at 2.2, 2.4, 2.7; KV studios deepen mechanics.
+
+#### Cache patterns
+**Concept:** Where data is served from memory/edge vs origin; aside/through/behind/refresh-ahead change write visibility. Failure modes: stampede, stampedes after deploy, inconsistent dual source of truth.
+**Northstar ADR prompt:** Context = catalog SKU reads. Decision = CDN + Memorystore cache-aside vs write-through. Consequences = invalidation, stampede controls (8.1 singleflight).
+**From scratch / owned:** LRU + singleflight studios here; Memorystore product depth at 9.1 — one-line recall when wiring labs.
+
+#### Message / task queues
+**Concept:** Async handoff for durability, smoothing, and fan-out. Failure modes: using a queue as a DB; poison without redrive; at-least-once without idempotency.
+**Northstar ADR prompt:** Context = `OrderPlaced` side effects. Decision = Pub/Sub vs Cloud Tasks vs Worker Pools. Consequences = ordering, delay, DLQ ownership (3.4–3.5).
+**From scratch / owned:** already owned at 3.4–3.5; crawler studio reuses the pattern.
+
+#### REST vs RPC
+**Concept:** Public JSON/HTTP for browsers/partners; internal gRPC for typed, efficient s2s. Failure modes: exposing gRPC to browsers without a BFF; REST chatty N+1; protobuf breaking changes without field discipline.
+**Northstar ADR prompt:** Context = storefront BFF vs order→inventory. Decision = public REST, internal gRPC on Cloud Run. Consequences = codegen, deadlines, error model (3.2).
+**From scratch / owned:** already owned at Part 3.2.
+
+#### Security
+**Concept:** Identity, authz, edge abuse controls, secrets, and detection as architecture — not a checklist after HLD. Failure modes: authn without object authz; SA keys; open admin UI; secrets in images.
+**Northstar ADR prompt:** Context = public API + admin + workers. Decision = IAM/IAP/Armor/NGFW/KMS/Secret Manager/VPC-SC bindings per surface. Consequences = blast radius, audit, PCI adjacency.
+**From scratch / owned:** already owned at Parts 4, 6, 7 — apply in every studio evidence pack.
+
+#### CAP / failover / nines
+**Concept:** Availability compounds in series and parallel; error budgets turn nines into change policy. Failure modes: marketing “five nines” without dependency math; failover that fails DNS/TLS/data.
+**Northstar ADR prompt:** Context = checkout SLO. Decision = multi-region active/active vs active/passive; RPO/RTO. Consequences = cost, consistency, runbooks (10.1).
+**From scratch / owned:** SLO math owned at 10.1; compute series/parallel availability napkin here in scale HLD.
+
+#### Consistency patterns
+**Concept:** Weak, eventual, and strong reads/writes — and which UX can tolerate which. Failure modes: read-your-writes broken by replica lag; “eventual” without convergence story.
+**Northstar ADR prompt:** Context = cart vs payment capture vs feed. Decision = per-aggregate consistency class and product. Consequences = conflict UX, support cost.
+**From scratch / owned:** Part 2 + linearizable KV / Raft toys in this Part.
+
+#### Cache-aside / write-through / write-behind / refresh-ahead
+**Concept:** Who writes cache vs store and when refresh happens. Failure modes: write-behind loss on crash; aside without TTL/stampede policy; refresh-ahead storms.
+**Northstar ADR prompt:** Context = catalog. Decision = aside + singleflight vs through for admin writes. Consequences = durability, complexity (9.1).
+**From scratch / owned:** implement aside in LRU/KV studios; product wiring at 9.1.
+
+#### Federation / sharding / denorm / SQL tuning
+**Concept:** Split data by domain or key; denormalize for read paths; tune indexes/queries before new products. Failure modes: premature shards; unbounded denorm drift; `OFFSET` pagination.
+**Northstar ADR prompt:** Context = order history growth. Decision = partition keys, denorm projections, cursor pager (8.1). Consequences = rebalance, backfill.
+**From scratch / owned:** already owned at 2.1–2.3; cursor pager required from-scratch in 8.1.
+
+#### BASE / KV / document / wide-column / graph
+**Concept:** Polyglot persistence matched to access patterns, not fashion. Failure modes: one DB for all; graph queries forced into documents; wide-column without key design.
+**Northstar ADR prompt:** Context = Northstar polyglot map. Decision = which store per bounded context. Consequences = ops skill tax, joins across stores.
+**From scratch / owned:** already owned at 2.2, 2.7; social-graph HLD pack here.
+
+#### Back pressure
+**Concept:** Slow consumers must slow producers or shed load — unbounded queues become outage amplifiers. Failure modes: infinite Pub/Sub backlog treated as success; thread-pool exhaustion without 503.
+**Northstar ADR prompt:** Context = order workers under spike. Decision = Pub/Sub outstanding caps + Cloud Run concurrency + load-shed (8.1). Consequences = retry storms, DLQ growth.
+**From scratch / owned:** load-shed + rate-limiter studios here; Pub/Sub semantics at 3.4.
+
+#### MapReduce / Spark / Storm
+**Concept:** Batch/stream parallel compute with shuffle. Failure modes: reinventing Dataflow for one job; ignoring shuffle cost; exactly-once myths.
+**Northstar ADR prompt:** Context = nightly sales rank / recall features. Decision = toy MapReduce then Dataflow/Dataproc (9b.1). Consequences = ops vs flexibility.
+**From scratch / owned:** MapReduce **toy** studio in this Part; managed recall at 9b.1 — do not move 9b content here.
+
+#### Bigtable / Dynamo / Redis / Memcached
+**Concept:** Wide-column vs KV cache/store trade-offs (latency, durability, data model). Failure modes: Redis as system of record; Bigtable without row-key design; Memcached without stampede plan.
+**Northstar ADR prompt:** Context = session/catalog/hot counters. Decision = Memorystore vs Bigtable vs Firestore. Consequences = persistence, cost, clustering.
+**From scratch / owned:** KV + LRU studios; product labs when 9.1 / Bigtable unlocked — paper ADR allowed earlier.
+
+#### GFS / HDFS
+**Concept:** Object/blob stores for immutable large objects and sequential throughput. Failure modes: using GCS as a low-latency mutex; missing generation preconditions; unbounded listing.
+**Northstar ADR prompt:** Context = paste blobs, crawl warc, photo originals. Decision = GCS classes + lifecycle. Consequences = cost, consistency of overwrite (2.5).
+**From scratch / owned:** already owned at 2.5; studios attach objects, do not re-teach GCS.
+
+#### Chubby / ZK
+**Concept:** Coordination via leases/locks with fencing — not a general DB. Failure modes: Redis `SETNX` as truth; lock without fence token; long critical sections.
+**Northstar ADR prompt:** Context = leader for crawler or ID worker assignment. Decision = lease + fencing toy (8.1) vs Spanner/etcd at GKE. Consequences = split-brain, ops burden.
+**From scratch / owned:** leases/fencing in 8.1; Raft toy is consensus literacy, **not** production etcd.
+
+#### Dapper
+**Concept:** Distributed tracing propagates context across hops. Failure modes: logs without trace ids; tracing secrets; sampling that hides rare failures.
+**Northstar ADR prompt:** Context = checkout path spans. Decision = Cloud Trace + OpenTelemetry propagation. Consequences = cost, PII in spans (10.0).
+**From scratch / owned:** already owned at 1.7 / 10.0; every studio ships redacted request ids.
+
+#### Kafka
+**Concept:** Durable ordered log for pub/sub and event streaming. Failure modes: “Kafka on GCE” without ops story; ordering keys that hot-partition; treating Pub/Sub exactly-once as free.
+**Northstar ADR prompt:** Context = domain events. Decision = Pub/Sub (3.4) unless a hard Kafka constraint appears. Consequences = ordering, replay, cost.
+**From scratch / owned:** already owned at 3.4; do not stand up Kafka in this Part.
+
+#### Scale-to-millions (primer AWS chapter → GCP)
+**Concept:** Global edge + regional compute + appropriate data plane + cache + async — on **GCP**, not an AWS port. Failure modes: copying AWS service names; multi-region without data story; ignoring quotas/SKUs.
+**Northstar ADR prompt:** Context = Northstar “millions of users” napkin. Decision = global HTTPS LB + multi-region Cloud Run + Spanner/Firestore + CDN + Pub/Sub. Consequences = cost, consistency, multi-DC runbooks (evidence HLD below).
+**From scratch / owned:** evidence-pack HLD in this Part; platforms already owned in Parts 1–3, 6.
+
+---
+
+### 8.A Gated studios — implemented (required before Part 11)
+
+Each studio below carries **all six density blocks**. Python stdlib first; Go after submit with the **same** tests. Package names are mandatory for gates.
+
+#### 8.A.1 Pastebin / Bitly (shortlink + paste)
+
+**Concept:** Map a short opaque id to a URL or paste blob; reads dominate; writes must not collide; abuse and expiry matter. Failure modes: sequential ids (enumeration), no rate limit, storing secrets in URLs, missing hash collision plan, GCS without generation preconditions.
+
+**From scratch:** Package `shortlink` (Python) then `shortlink` (Go).
+- Base62 (or hash-truncate) id from crypto-random bits; reject guessable counters.
+- In-memory map + optional file WAL for `(id → target|blob_meta, created, expiry)`.
+- HTTP: `POST /v1/links` `{url}` → `{id}`; `GET /v1/{id}` → 302 or paste body; `DELETE` owner-only stub.
+- Tests: collision resistance smoke; expiry; idempotent create with `Idempotency-Key`; reject javascript: URLs; concurrent creates; table-driven Base62 round-trip.
+- Go: same API surface; `net/http`; race-test map with `-race`.
+
+**HLD:** C4 context/container Mermaid: client → Cloud Run API → Firestore metadata → GCS object (pastes) / redirect. NFRs: p95 redirect < 100 ms warm; durability of mapping; abuse QPS. ADR: opaque id vs hash(url); Firestore vs SQL for metadata.
+
+**LLD:** OpenAPI paths above; Firestore doc schema `{id,url,owner,exp,hash}`; GCS object name `pastes/{id}`; IAM: Run SA `datastore.user` + `storage.objectAdmin` on one bucket; Terraform: `google_cloud_run_v2_service`, `google_firestore_database`, `google_storage_bucket` (uniform access). Errors: 400 bad URL, 404 unknown, 409 idempotency conflict, 429. Idempotency: key → stored id.
+
+**GCP lab (free-tier boxed):** Deploy API to Cloud Run; Firestore Native; GCS bucket for paste bodies > 1 KiB. Custom domain optional (**credits-optional**). `gcloud run deploy` + Terraform plan required even if apply is deferred. Tear down bucket objects same sitting.
+
+**Gate:** Unseen — design collision handling when truncating SHA-256 to 48 bits; estimate birthday risk. Nearby transfer — add “custom alias” with uniqueness constraint without sequential scan.
+
+#### 8.A.2 Query-cache / KV + consistent hash
+
+**Concept:** Partition keys across N cache nodes; consistent hashing minimizes remap on node add/remove. Failure modes: no vnodes (hot spots), ignoring remapped keys on deploy, treating cache as source of truth, thundering herd on miss.
+
+**From scratch:** Package `hashring` + `kvcache` (Python then Go).
+- Ring with virtual nodes; `get/set/delete`; plot or assert % keys moved on +1/−1 node.
+- Optional singleflight on miss (or depend on 8.1 singleflight once unlocked).
+- Tests: determinism; remap bound with vnodes; exhausted TTL; concurrent get-or-load.
+- Go: `hashring` package; benchmarks for lookup (**G8–G9** hook).
+
+**HLD:** Mermaid: API → ring → Memorystore nodes (prod) / local processes (toy). NFRs: remap < X% on one node loss; p99 get. ADR: vnode count; Firestore as origin vs Memorystore-only ephemeral.
+
+**LLD:** Interface `Cache { Get, Set, Delete }`; key encoding; IAM for Memorystore when live; Terraform shape `google_redis_instance` (**credits-optional** live — paper+emulator OK). Errors: 503 shed; origin timeout. Idempotent Set.
+
+**GCP lab:** Local multi-process ring first. Optional Memorystore (**credits-optional**, destroy after). Firestore as origin for one entity type.
+
+**Gate:** Unseen — given vnode histogram skew, propose fix. Nearby — wire catalog SKU cache-aside without dual-write bugs.
+
+#### 8.A.3 Rate limiter (token bucket)
+
+**Concept:** Bound accepted work per key (IP, user, API key) to protect dependency SLOs. Failure modes: global lock bottleneck; only client-side limits; no `Retry-After`; limiter state loss on multi-instance without shared store.
+
+**From scratch:** Package `ratelimit` (Python then Go). Token bucket and/or sliding window; middleware wrapping the Part 4.2 server shape. Tests: burst then deny; refill math; per-key isolation; concurrent take; clock inject. Go race-test.
+
+**HLD:** Where enforced (edge Armor vs app vs gateway). NFRs: false allow under multi-instance; fairness. ADR: in-process vs Memorystore vs Armor policy for public API.
+
+**LLD:** Middleware signature; headers `X-RateLimit-*`, `Retry-After`; Terraform Armor rule sketch (**credits-optional** apply). Errors: 429 only on limit; never 500 for empty bucket. Idempotency orthogonal — do not consume tokens twice on replay of a settled write if your policy says so (document it).
+
+**GCP lab:** In-process on Cloud Run (document multi-instance hole); optional Armor rate limit (**credits-optional**). Free-tier: local + Cloud Run without Armor is enough for gate.
+
+**Gate:** Unseen — two instances without shared state; attacker rotates IPs. Nearby — combine with load-shed (8.1) under queue depth.
+
+#### 8.A.4 LRU cache (+ OOD hash map / circular array)
+
+**Concept:** Bounded in-process cache with O(1) get/put via hash map + doubly linked list (or circular buffer of slots). Failure modes: unbounded dict; caching personalized data without keying tenant; using LRU as distributed cache.
+
+**From scratch:** Packages `lru` and `hashmap` (Python then Go).
+- Hash map from scratch (chaining or open addressing) with tests for overwrite, delete, grow.
+- LRU on top; optional circular array lab for ring buffer of recent keys/events (fixed capacity, overwrite oldest).
+- HTTP middleware optional: cache GET by path+auth principal hash.
+- Tests: capacity eviction order; update moves to front; concurrent LRU with mutex (Go `-race`).
+
+**HLD:** When in-process LRU vs CDN vs Memorystore. NFRs: hit ratio target; memory cap. ADR: document replacement boundary.
+
+**LLD:** Interface; metrics hits/misses; no IAM. Terraform: none for pure library — attach to Cloud Run service already used.
+
+**GCP lab:** Ship as library in Pastebin or catalog service; prove eviction under load test. No paid cache required.
+
+**Gate:** Unseen — implement `GetOrLoad` without stampede (hook singleflight). Nearby — circular array for “last N events” debug endpoint. **OOD:** hash map + LRU + circular array are the code labs; skip parking-lot/cards (one-line: those OOD exercises are out of scope unless a Northstar force appears).
+
+#### 8.A.5 Web crawler
+
+**Concept:** Fetch URLs, respect politeness, extract links, store raw content, avoid cycles. Failure modes: infinite crawl; ignoring robots; unbounded concurrency; storing secrets from pages; no checkpoint.
+
+**From scratch:** Package `crawler` (Python then Go). Frontier queue; seen set (bloom optional from 8.1); per-host token bucket; fetcher with timeouts/size caps; writer to files. Tests: cycle; politeness delay; content-type allowlist; checkpoint resume. Go: `net/http` client policies from Part 4.2 outbound rules (SSRF allowlist for lab hosts only).
+
+**HLD:** Mermaid: Cloud Run Job / worker pool → Pub/Sub frontier → GCS raw → optional indexing later. NFRs: pages/hour; politeness; cost cap. ADR: Jobs vs always-on workers; Pub/Sub vs Tasks.
+
+**LLD:** Message schema `{url,depth,dedup_key}`; GCS `gs://…/raw/{hash}`; IAM: Job SA objectCreator + pubsub subscriber; Terraform: `google_cloud_run_v2_job`, topic/sub, bucket. Errors: retryable fetch vs poison to DLQ. Idempotency: dedup_key uniquely processed.
+
+**GCP lab (free-tier boxed):** Local crawl of a tiny static fixture server first. Then Pub/Sub + GCS + Cloud Run Job on a **self-owned** fixture. **Credits-optional:** Scheduler trigger. Tear down.
+
+**Gate:** Unseen — design checkpoint so a killed job does not re-fetch entire corpus. Nearby — add bloom negative cache for seen URLs (8.1).
+
+#### 8.A.6 Unique IDs — Snowflake-style
+
+**Concept:** Time-ordered unique ids without a central `ORDER BY now()` bottleneck: timestamp | worker | sequence. Failure modes: clock rewind; worker-id collision; sequence overflow; using DB autoincrement across shards without plan.
+
+**From scratch:** Package `snowflakeid` (Python then Go). Configurable epoch, bit layout; reject rewind or wait; overflow error. Tests: monotonic per worker; uniqueness under concurrency; simulated clock backstep; parse components. Go: atomic sequence; benchmark allocs (**G8–G9**).
+
+**HLD:** Who assigns worker ids (config vs lease). NFRs: ids/sec/worker; skew tolerance. ADR: Snowflake vs ULID vs DB sequence vs Firestore alloc — “I pick X because Y.”
+
+**LLD:** `NextID() (int64, error)`; API exposes string form; IAM if worker registration store used; Terraform optional for config map. Errors: `ErrClockRewind`, `ErrWorkerUnassigned`. Idempotency: ids are create-time, not request replay tokens — keep `Idempotency-Key` separate.
+
+**GCP lab:** Cloud Run multi-instance: assign worker id from instance metadata hash **or** small Firestore lease (document split-brain risk). Prefer single-region. Free-tier friendly.
+
+**Gate:** Unseen — bit layout for 10k ids/sec and 100 workers; prove overflow time. Nearby — sort feed by snowflake id instead of `now()`.
+
+---
+
+### 8.B Toy distributed systems (local; not production consensus products)
+
+#### 8.B.1 MapReduce toy
+
+**Concept:** Map → shuffle by key → reduce; parallelism and failure restart at task grain. Failure modes: non-deterministic map; huge hot keys; treating toy as Dataflow.
+
+**From scratch:** Package `mapreduce` (Python then Go). Word-count on local files; spill intermediate files; deterministic reduce order. Tests: empty input; single key; crash mid-map with rerun. **Then recall** Dataflow/Dataproc at 9b.1 — do not re-teach pipelines here.
+
+**HLD:** Paper Mermaid comparing toy to Dataflow job for sales-rank batch. NFRs: throughput on one machine. ADR: when to stop at toy.
+
+**LLD:** Function signatures `Map(k,v)→[]KV`, `Reduce(k,[]v)→[]KV`; no GCP IAM required for toy.
+
+**GCP lab:** None required live; optional upload inputs to GCS and run local MR (**free-tier** storage). Mark Dataflow apply **credits-optional**.
+
+**Gate:** Unseen — skew key straggler mitigation idea. Nearby — sales-rank HLD uses this mental model.
+
+#### 8.B.2 Linearizable KV (single-node log + apply)
+
+**Concept:** Linearizability via a single leader log: append → apply → ack. Failure modes: acknowledging before apply; dual writers; confusing with Redis.
+
+**From scratch:** Package `linKV` (Python then Go). WAL + state machine (`Put`/`Get`); restart replay. Tests: crash recovery; concurrent clients serialized; fencing token on writer. May reuse Pedagogy §6 KV/WAL shape.
+
+**HLD:** Contrast with Spanner TrueTime / Firestore — literacy only. ADR: why Northstar payments do not use this toy.
+
+**LLD:** Client API; log record schema; file permissions local.
+
+**GCP lab:** Local only. Point at Cloud SQL/Spanner as production stand-in (already owned Part 2).
+
+**Gate:** Unseen — show a history that is sequential but not linearizable, then fix. Nearby — Raft studio extends to 3 replicas.
+
+#### 8.B.3 Raft toy (3 processes — NOT etcd/production)
+
+**Concept:** Leader election + log replication under crash/partition at **toy** scale. Failure modes: election storms; committing without quorum; pretending this is production lock service.
+
+**From scratch:** Package `toyraft` (Python then Go). 3 OS processes or goroutines with lossy channels; RequestVote/AppendEntries; persist term/vote/log. Tests: elect leader; replicate; minority partition cannot commit; leader crash re-elect. **Skip-test 12.S20** if this gate confirmed. Do **not** run etcd or claim production consensus.
+
+**HLD:** One Mermaid state diagram; NFR = learning only. ADR: production coordination → Spanner/etcd on GKE / leases — not this package.
+
+**LLD:** RPC messages; on-disk record; no Terraform.
+
+**GCP lab:** Local processes only. Optional: observe GKE etcd **as a product mention**, not a lab to reconfigure.
+
+**Gate:** Unseen — draw what happens when network heals with divergent logs (toy resolution rules). Nearby — fencing tokens (8.1) vs Raft leadership.
+
+---
+
+### 8.C Evidence-pack HLDs (full packs; paper + sequences OK)
+
+Each item is a **full 3.0 evidence pack**: requirements, assets/actors/trust/abuse/authz, capacity napkin, Mermaid C4 HLD, LLD/API/schema sketches, bottleneck/failure/security table, trade-offs, ADR, observability, rollback. Implementation may be thin slice or paper+sequences; if coded, Python then Go. Feed **ML ranking detail** → **9c.2** (one sentence); the HLD pack lives **here**.
+
+#### 8.C.1 Twitter-like feed
+
+**Concept:** Home timeline mixes followed authors’ posts under read-heavy load; fanout-on-write vs fanout-on-read vs hybrid. Failure modes: celebrity hot keys, unread backlog, ranking treated as “sort by time” forever, caching personalized timelines at CDN.
+
+**From scratch:** Package `hldfeed` optional thin slice — merge precomputed timeline + live posts for one user (in-memory). Or paper pack + sequence diagrams explicitly marked. Tests if coded: merge order; empty follow set; celeb path stub.
+
+**HLD:** C4/Mermaid: ingest → post store → fanout workers → timeline store → read API; CDN only for media. NFRs: p95 read, write amplification, stale window. ADR: fanout mode; Firestore vs Bigtable for timelines. Ranking/ML detail → **9c.2**.
+
+**LLD:** `POST /posts`, `GET /timeline?cursor=`; schema `{post_id,author,ts,text}`; IAM Run invoker; Terraform shape Run + Pub/Sub + Firestore/Bigtable. Errors: 404 post, 429; idempotent create with key.
+
+**GCP lab:** Free-tier: Cloud Run + Firestore timeline for N≤100 users. Multi-region / Bigtable **credits-optional**.
+
+**Gate:** Unseen — 10× celeb fanout; pick hybrid and defend. Nearby — Northstar “followers get order-shipped notifications” fanout.
+
+#### 8.C.2 Social graph
+
+**Concept:** Directed follow edges, privacy, and traversal for fanout and recommendations. Failure modes: undirected assumptions, enumerating private graphs, hotspot hubs, graph DB without ops story.
+
+**From scratch:** Package `hldgraph` — adjacency lists + “friends-of-friends” one hop on files; or paper pack. Tests: cycle follow; block list; degree histogram.
+
+**HLD:** Mermaid edge service vs embed edges in user doc. NFRs: follow QPS, traverse latency. ADR: Firestore edges vs dedicated graph product (usually stay Firestore/SQL here).
+
+**LLD:** `POST /follow`, `DELETE /follow`, `GET /followers?cursor=`; composite keys; IAM; Terraform Firestore indexes. Idempotent follow.
+
+**GCP lab:** Firestore edge docs free-tier. **Credits-optional:** Spanner for strong multi-region graph.
+
+**Gate:** Unseen — mutual-follow privacy. Nearby — catalog “related SKUs” graph lite.
+
+#### 8.C.3 Sales rank
+
+**Concept:** Periodic ranking of SKUs by sales with online serve of top-k. Failure modes: ranking on raw counts without window; hot SKU write skew; serving stale rank as stock truth.
+
+**From scratch:** Reuse `mapreduce` toy on order logs → rank file; package `salesrank` serve top-k. Or paper + MR sequence.
+
+**HLD:** Batch Dataflow/MR → GCS artifact → Memorystore/Firestore serve. NFRs: freshness SLA, compute cost. ADR: batch vs continuous; tie to 9b.1 recall for managed.
+
+**LLD:** `GET /ranks?category=`; object generation precondition; IAM objectViewer; Terraform Job/Scheduler shape. Idempotent batch replace.
+
+**GCP lab:** Local MR + GCS upload free-tier. Dataflow apply **credits-optional**.
+
+**Gate:** Unseen — mid-window refund adjustments. Nearby — Northstar bestseller strip.
+
+#### 8.C.4 Scale-to-millions on GCP
+
+**Concept:** Edge + regional compute + data plane + cache + async sized for millions of users **on GCP** (not AWS service mapping). Failure modes: multi-region without data story; ignoring quotas; idle global IPs; “just add GKE.”
+
+**From scratch:** Paper pack required: capacity napkin (Part 0 numbers), dependency graph, failure table. Optional: k6/hey script against local stubs.
+
+**HLD:** Global HTTPS LB + Cloud CDN + multi-region Cloud Run + Spanner or multi-region Firestore + Pub/Sub + Armor sketch. NFRs: availability math, RPO/RTO, cost ceiling. ADR: Spanner vs Firestore; min instances vs cold start.
+
+**LLD:** Terraform module map (LB, Run services, DB, DNS); IAM least privilege diagram; error budgets pointer (10.1).
+
+**GCP lab:** Diagram + Terraform plan; single-region free-tier spike OK. Multi-region Spanner / global LB static IP **credits-optional** and tear down same day (6.3 idle IP warning).
+
+**Gate:** Unseen — region outage + quota exhaustion same week. Nearby — Northstar Black Friday runbook one-pager.
+
+#### 8.C.5 Dropbox-like sync
+
+**Concept:** Client sync of file trees: content-addressed blocks, metadata namespace, conflict policy. Failure modes: checksum mismatches, split-brain clocks, syncing secrets, unbounded version history cost.
+
+**From scratch:** Package `hldsync` — local block chunker + manifest; or paper sequences for upload/download/conflict.
+
+**HLD:** Client → API → metadata DB + GCS blocks; notifications via Pub/Sub. NFRs: resume, dedup ratio. ADR: GCS generations + metadata; conflict = rename vs CRDT (**no CRDT research** — pick rename/last-writer and state it).
+
+**LLD:** Block put with hash name; manifest schema; IAM objectAdmin scoped prefix; Terraform bucket + Run. Idempotent block put by hash.
+
+**GCP lab:** GCS + Firestore manifests free-tier. **Credits-optional:** push notify.
+
+**Gate:** Unseen — two clients offline edit same file. Nearby — Northstar “export invoice PDF” object pipeline.
+
+#### 8.C.6 Chat
+
+**Concept:** Channels, message fanout, presence, history pagination. Failure modes: at-least-once dupes in UI, presence as source of truth, storing messages only in memory, missing authz on channel.
+
+**From scratch:** Package `hldchat` — in-process hub + websocket or long-poll stub + cursor history; or paper pack. Tests: fanout to N members; replay; authz deny.
+
+**HLD:** Mermaid gateway → channel service → history store → Pub/Sub fanout. NFRs: send latency, history retention. ADR: Firestore vs SQL history; WS on Cloud Run caveats.
+
+**LLD:** `POST /channels/{id}/messages`, `GET history?cursor=`; schema; IAM; Terraform Run + Firestore. Idempotency-Key on send.
+
+**GCP lab:** Free-tier Run + Firestore. Load balancer sticky **credits-optional**.
+
+**Gate:** Unseen — member removed mid-fanout. Nearby — Northstar support chat lite.
+
+#### 8.C.7 Instagram-like photos
+
+**Concept:** Upload, async variant generation, CDN read path, feed of media. Failure modes: sync thumbnail in request path, public buckets, huge originals without lifecycle, EXIF PII.
+
+**From scratch:** Package `hldphotos` — accept upload to local store, enqueue resize stub; or paper sequences. Tests: size limit; content-type allowlist.
+
+**HLD:** Client → signed URL → GCS → Pub/Sub → worker variants → CDN. NFRs: upload p95, time-to-first-thumb. ADR: Cloud Run Jobs vs Functions for variants.
+
+**LLD:** Signed URL policy; object metadata; IAM `roles/storage.objectCreator` via signing SA; Terraform bucket + CDN backend bucket shape. Idempotent variant by generation.
+
+**GCP lab:** GCS + Run worker free-tier (tiny images). Cloud CDN live **credits-optional**.
+
+**Gate:** Unseen — hot celebrity album. Nearby — Northstar product image pipeline.
+
+#### 8.C.8 Multi-DC
+
+**Concept:** Serve from multiple regions with explicit RPO/RTO and traffic shifting. Failure modes: DNS-only failover forgetting data; active/active without conflict rules; session affinity as consistency.
+
+**From scratch:** Paper pack + sequences mandatory (no homemade global DB). Optional: dual local processes with partitioned “regions.”
+
+**HLD:** Mermaid users → GCLB → regional Run → regional data + async replication story. NFRs: RPO/RTO, split-brain policy. ADR: active/passive vs multi-region Spanner/Firestore.
+
+**LLD:** Health checks, DNS TTLs, IAM per region SA; Terraform multi-region sketch. Errors during failover documented.
+
+**GCP lab:** Paper + single-region prove. Second region / Spanner multi-region **credits-optional**.
+
+**Gate:** Unseen — region X dies during payment capture. Nearby — checkout SLO series/parallel math (10.1 recall).
+
+---
+
+### 8.D Primer additional questions → HLD prompts (not a second course)
+
+Restore as **HLD prompts under Part 8** only — evidence-pack light or full when marked. Do not open a parallel primer encyclopedia.
+
+| Prompt | Expectation | Cross-link |
+|---|---|---|
+| **Web search** | HLD: crawl → index → query; ranking literacy; abuse | Indexing depth stays shallow; ML LTR families → 9c / Appendix M index |
+| **Docs OT (tiny)** | Collaborative doc: presence, op transform **tiny** example (insert/delete on one string), conflict UX | **No CRDT research agenda**; not a product build |
+| **Chat** | Same as 8.C.6 pack | — |
+| **Photos** | Same as 8.C.7 pack | — |
+| **Trends → HLL** | Cardinality of unique actors on a topic; HyperLogLog toy + BigQuery `HLL_COUNT` mention | Implemented with **8.1 HLL** row / sketch |
+| **Top-k** | Heavy hitters: Count-Min or heap-per-key; serve top-k trends | 8.1 Count-Min row |
+| **Stock exchange (optional)** | Matching engine HLD only: order book, fairness, latency NFR; **no** market connectivity | Optional; skip if time — ledger money movement stays Part 5 |
+
+---
+
+### 8.E OOD code labs (scoped)
+
+| Lab | Package | Gate |
+|---|---|---|
+| Hash map | `hashmap` | Grow, collide, delete; asymptotics note |
+| LRU | `lru` | See 8.A.4 |
+| Circular array | `ringbuf` | Fixed cap, overwrite, iterator; used with hashmap for “last N” |
+
+Skip parking-lot / cards / call-center unless a single paragraph justifies a Northstar force (default: **skip**).
+
+---
 
 ### 8.1 Production-scale primitives (from scratch, then product)
 
@@ -1839,15 +3174,139 @@ Tutorial microservices skip these. You do not. Each: small tested toy → Norths
 | **Feature flags** | Deploy ≠ release | In-memory JSON flags | Remote Config / your table |
 | **Poison redrive** | DLQ is not a grave | Redrive API | Pub/Sub DLQ (3.5) |
 
-**8.1 from-scratch (required with the gated studios, not a second list):** bloom + FPR; hash ring; singleflight; load-shed; cursor pager. WAL toy may reuse the Pedagogy §6 KV. LSM = written comparison. Unique IDs and rate limiter are studios 3 and 6 above.
+**8.1 from-scratch (required with the gated studios, not a second list):** bloom + FPR; hash ring; singleflight; load-shed; cursor pager — expanded below. WAL toy may reuse the Pedagogy §6 KV / linKV. LSM = written comparison. Unique IDs and rate limiter are studios 8.A.6 and 8.A.3. Remaining table rows: concept + tiny toy or written ADR as timebox; do not skip the five required expansions.
 
-**Discrete math (here):** invariants on the hash ring and bloom; asymptotics on the hash you write; binary-search on cursor seek. Open **T-TOC** only if NP-completeness is the actual obstacle.
+**Discrete math (here):** invariants on the hash ring and bloom; asymptotics on the hash you write; binary-search on cursor seek. Open **T-TOC** only if NP-completeness is the actual obstacle. **G-CS** asymptotics/hash-ring invariant live here (Appendix G indexes only).
 
-**OOD:** hash map + LRU (studio 4). Circular array with the hash map. Chat HLD is in the gated HLD list. Skip call-center/cards/parking-lot.
+#### PCA: 1.5 Future improvements + cloud-first
 
-Back-of-envelope: powers of two, latency numbers, SKU napkin math (Part 0). “I pick X because Y, I accept Z.”
+**Guide themes (matrix):** cloud and technology improvements; evolution of business needs; cloud-first design approach. Homes: 8, 11.
+
+| Stance | Prefer | Accept |
+|---|---|---|
+| Default new work | Cloud-first managed | Temporary GCE/GCVE for lift |
+| Evolution | ADR + revisit quarterly | One-way rewrite with no rollback |
+| Tech refresh | Adopt when KPI/SLO benefit | Chase every launch |
+
+**Scenario prompt:** Leadership wants “cloud-first” but also freezes all managed-service spend.
+
+**Expected answer shape:** “I pick cloud-first for new APIs on Run/SQL because Y, I accept Z (freeze applies to idle SKUs, not to replacing toil that burns OpEx).”
+
+**Discrete-as-used (8.1):** prove ring invariant (“key maps to nearest clockwise vnode”); bloom FPR ≈ `(1-e^{-kn/m})^k` — measure vs formula; cursor seek is binary-search-shaped on ordered keys. Raft toy (studio 9) stays here; **12.S20 skip-tests** MapReduce/KV/Raft if these toys pass.
+
+
+#### 8.1.1 Bloom filter + FPR (required)
+
+**Concept:** Probabilistic set: false positives possible, false negatives not (for the standard filter). Use to skip origin lookups. Failure modes: wrong FPR math; forgetting rebuild on capacity; using as authz.
+
+**From scratch:** Package `bloom` (Python then Go). Bit array + `k` hashes (double hashing OK); `Add`/`MightContain`; estimate FPR from formula and Monte Carlo. Tests: no FN on added keys; FPR within tolerance for chosen `m,k,n`; fill ratio. Derive \(m,k\) from target FPR before coding.
+
+**HLD:** Where placed (before Memorystore/Firestore). NFR: FPR ≤ ε at expected `n`. ADR: in-process vs Redis Bloom.
+
+**LLD:** Library API; optional admin reset; no IAM. Errors: refuse Add when saturated if you choose “hard full.”
+
+**GCP lab:** Embed in catalog service; measure hit-skip rate. Free-tier.
+
+**Gate:** Unseen — given ε and n, choose m,k and defend. Nearby — crawler seen-set.
+
+#### 8.1.2 Hash ring (required; shared with 8.A.2)
+
+**Concept:** Continuum of hash(vnode) → node; key maps to successor. Invariant: ownership intervals well-defined; with enough vnodes, load concentrates near mean. Failure modes: poor hash; too few vnodes; no replication factor story.
+
+**From scratch:** Package `hashring` (see 8.A.2). Tests + remap metric; Go benchmark lookup.
+
+**HLD / LLD / GCP / Gate:** same as 8.A.2; do not duplicate work — one artifact satisfies both.
+
+#### 8.1.3 Singleflight / stampede control (required)
+
+**Concept:** Coalesce concurrent misses for the same key into one origin load. Failure modes: coalescing different auth contexts; infinite wait without timeout; suppressing errors forever.
+
+**From scratch:** Package `singleflight` (Python then Go). `Do(key, fn)`; waiters share result/error; context cancel. Tests: 100 goroutines/threads one call; error broadcast; timeout. Race pass in Go.
+
+**HLD:** Client-side vs cache-side. ADR: couple with LRU.
+
+**LLD:** Middleware around `GetOrLoad`. GCP: Memorystore does not replace process-local singleflight.
+
+**GCP lab:** Attach to Cloud Run catalog handler; load-test miss path. Free-tier.
+
+**Gate:** Unseen — tenant A must not receive tenant B’s coalesced payload. Nearby — refresh-ahead vs singleflight.
+
+#### 8.1.4 Load shedding (required)
+
+**Concept:** When overload is detected (queue depth, in-flight, CPU), refuse cheaply with 503 + `Retry-After` so the service stays useful for some traffic. Failure modes: shedding randomly without priority; retry storms; shedding after expensive work.
+
+**From scratch:** Package `loadshed` (Python then Go). Token/in-flight limiter; middleware rejects before handler. Tests: under limit pass; over limit 503; Retry-After present; priority lane optional.
+
+**HLD:** Interaction with autoscaling and Armor. ADR: shed at edge vs app.
+
+**LLD:** Error contract; metrics `shed_total`. Terraform: optional Armor adaptive (**credits-optional**).
+
+**GCP lab:** Cloud Run concurrency setting + app shed; prove 503 under artificial barrier. Free-tier.
+
+**Gate:** Unseen — combine rate limit + shed without deadlock. Nearby — Pub/Sub outstanding backpressure (3.4 recall).
+
+#### 8.1.5 Cursor pagination (required)
+
+**Concept:** Seek by `(created_at, id)` (or snowflake id) instead of `OFFSET`. Failure modes: unstable sort; leaking internal ids without authz; cursors that do not expire/sign.
+
+**From scratch:** Package `cursorpage` (Python then Go). Encode/decode opaque cursor; SQL/Firestore-shaped fake store with binary-search/seek tests. Tests: forward pages; empty; deleted-hole; tampered cursor rejected. Tie **binary-search invariant** to seek (**G8–G9**).
+
+**HLD:** List APIs for orders/catalog. ADR: cursor vs page token vendor APIs.
+
+**LLD:** `GET /items?cursor=&limit=`; schema indexes; IAM unchanged. Idempotent reads.
+
+**GCP lab:** Cloud SQL or Firestore list endpoint on Cloud Run. Free-tier SQL tiny instance or Firestore.
+
+**Gate:** Unseen — design cursor under changing `updated_at`. Nearby — snowflake id ordering.
+
+#### 8.1.6 Other primitives (compressed ownership)
+
+- **WAL / linKV:** owned with 8.B.2 + Pedagogy §6.
+- **LSM vs B-tree:** written comparison + one flush diagram; no full engine.
+- **HLL / Count-Min:** tiny sketch packages `hll`, `countmin` for trends/top-k prompts; BigQuery `HLL_COUNT` recall.
+- **Hedged requests / backpressure / hot partition / schema evolution / leases / clock skew / idempotency / N+1 / pool math / multi-tenant / flags / redrive:** concept + Northstar ADR sentence + pointer to owners in Parts 2–5, 3.2, 3.5, 9.1, 10 — implement a toy only if not already proven.
 
 ---
+
+
+#### Go G8 — sort, binary-search invariant
+SYNTAX UNLOCK: `sort.Slice(xs, func(i,j int) bool { return xs[i] < xs[j] })`; `sort.Search(n, func(i int) bool { return xs[i] >= target })` — Search requires the predicate be true for a suffix (invariant). Contrast Python: `list.sort`, `bisect`.
+Concept: State the invariant before coding (`∀ k < i: !pred(k)` and `∀ k ≥ i: pred(k)` after Search). Bloom/hash-ring neighbors use binary search over sorted rings (8.1 toys).
+Python twin first: bisect lab with written invariant; then Go.
+Go artifact: package `algo/searchsort`; tests: `TestSearchInvariant`, `TestSortStabilityChoice`, `TestEmptyAndSingle`; gate: written invariant comment above Search; tests include empty/dup/all-true/all-false.
+
+---
+
+#### Go G9 — recurrences, DP, benchmarks
+SYNTAX UNLOCK: `testing.B` — `func BenchmarkX(b *testing.B) { for i := 0; i < b.N; i++ { ... } }`; `go test -bench=. -benchmem`. Recurrence → closed form or DP table. Contrast Python: `timeit`; same asymptotics.
+Concept: Choose paradigm (greedy / DP / binary search on answer) and explain crossover with measured benches, not vibes. Hash-ring / bloom FPR toys pick representation based on N.
+Python twin first: DP solution + complexity paragraph; microbench optional.
+Go artifact: package `algo/dp`; tests: `TestDPMatchesRecurrence`, `BenchmarkNaiveVsDP` (document crossover N); gate: README states paradigm + crossover; Part 8.1 toy ADR cites the bench.
+
+---
+### 8.1-G G8–G9 and G19 (specified here; Appendix G is index only)
+
+**G8–G9** unlock with 8.1 / studios. Artifacts:
+
+| Artifact | Package | What “done” means |
+|---|---|---|
+| Sort paradigms | `sortlab` | Implement + test insertion / merge / quick (or stdlib compare); explain crossover on size N; `testing.B` / pytest benchmarks |
+| Binary-search invariant | `binsearch` | Lo/hi invariant written; tests on empty/dup/all-less; used by `cursorpage` seek |
+| Recurrences | notes + tests in `sortlab` | Match loop to \(T(n)\) for merge/hash; Master theorem **as used** (Part M row) |
+| DP entry | `dplab` | One classic (e.g. LIS or knapsack 0/1) + recurrence → table → code; not a DP course |
+| Benchmarks | with above | Fair bench: timer, allocs (Go), interpret crossover |
+
+**Gate G8–G9:** choose paradigm for an unseen problem; explain complexity crossover; binary-search invariant stated before code; benchmarks attached.
+
+**G19 synthesis:** the **Part 8 gated studios (8.A + 8.B + 8.C packs)** are the G19 artifact — unseen combinations of DS + HTTP API + concurrency already unlocked (G0–G9, G10–G12 as available). No separate G19 project. Part 11 cannot waive these studios.
+
+---
+
+### 8.F Back-of-envelope and close bar
+
+Powers of two, latency numbers, SKU napkin math (Part 0). Every ADR ends with “I pick X because Y, I accept Z.”
+
+**Part 8 complete when:** every 8.0 row has concept + ADR prompt + ownership line; all 8.A studios and 8.B toys gated; 8.C evidence packs filed; primer prompts in 8.D addressed or explicitly deferred on ledger; OOD labs green; 8.1 five required primitives gated; G8–G9 artifacts submitted; G19 satisfied by studio set. Do not move Part 12 content here. Do not homemade TLS/AES/RSA.
 
 ## Part 8b — Hybrid connectivity (PCA 2.1)
 
@@ -1859,6 +3318,32 @@ Back-of-envelope: powers of two, latency numbers, SKU napkin math (Part 0). “I
 - **HLD:** on-prem DC ↔ HA VPN ↔ Shared VPC host. No live Interconnect (you cannot buy a 10 Gbps circuit in this course).
 - **Python / Go:** given latency/bandwidth/SLA constraints, pick VPN vs Interconnect vs peering (decision tests).
 
+| Constraint | Prefer | Do not |
+|---|---|---|
+| < ~1–2 Gbps, need crypto path fast | **HA VPN** (2 tunnels) | Classic VPN for new prod |
+| Steady multi-Gbps + SLA | **Partner/Dedicated Interconnect** | Hairpin over public IP for PHI |
+| Consume SaaS without VPC IP | **PSC** | Peering into every producer VPC |
+| Shared landing zone | **Shared VPC** host/service | Per-project snowflake VPCs with overlap |
+| Multi-cloud burst | HA VPN + explicit routes | Transitive peering assumptions |
+| VMware unchanged | **GCVE** | GCVE when refactor to Run is cheaper |
+
+**Decision tests (required):** encode the table as pytest/Go table tests — input `{gbps, rpo_sensitive, phi, vmware}` → expected product set.
+
+#### PCA: 2.1 Network topologies (provision)
+
+**Guide themes (matrix):** hybrid; multi-cloud; IPS/FW; VPC; LB; Google Cloud↔Google Cloud; security protection. Homes: 6, 8b.
+
+| Link | Prefer | Accept |
+|---|---|---|
+| Steady high volume on-prem | Dedicated/Partner Interconnect | HA VPN for lower volume/start |
+| Multi-cloud | HA VPN + PSC patterns | Public HTTPS only if data class allows |
+| East-west GCP | VPC / Shared VPC / PSC | Peering when non-transitive OK |
+| Edge protect | Armor + hierarchical FW / NGFW | VPC rules alone for tiny labs |
+
+**Scenario prompt:** Hospital SaaS must keep insurer file drops on-prem for years and still run GKE in GCP.
+
+**Expected answer shape:** “I pick Partner Interconnect + Shared VPC because Y, I accept Z (HA VPN backup; insurer interfaces stay on-prem).”
+
 ## Part 8c — Migration (PCA 1.4)
 - Migration Center. Assess, wave plan, dependency mapping.
 - 6Rs / Google: rehost (Migrate to VMs), replatform, refactor (GKE/Cloud Run), retire, retain, repurchase.
@@ -1866,6 +3351,39 @@ Back-of-envelope: powers of two, latency numbers, SKU napkin math (Part 0). “I
 - **Exercise:** migration plan for a fictional 3-tier on-prem app into Northstar’s GCP landing zone.
 
 ---
+
+| Workload signal | Prefer R | Landing |
+|---|---|---|
+| COTS VM, little change allowed | Rehost | Migrate to VMs / GCE MIG |
+| Needs managed OS patch + container ready | Replatform | GKE Autopilot / Cloud Run |
+| Bounded context rewrite | Refactor | Cloud Run + Cloud SQL |
+| Unused | Retire | Turn off; remove DNS |
+| Latency to factory OT | Retain (temp) | HA VPN + façade |
+| SaaS equivalent exists | Repurchase | Marketplace / Google API |
+
+| Risk | Control |
+|---|---|
+| License spike | BYOL review before wave 1 |
+| Hidden deps | Migration Center + packet/flow sampling |
+| Data loss | DMS/Datastream + cutover checklist + rollback |
+| Network surprise | Wave-0 connectivity test (8b table) |
+
+**Deliverable:** one diagram + wave table + license line + “I pick X because Y, I accept Z.”
+
+#### PCA: 1.4 Migration plan (documents + diagrams)
+
+**Guide themes (matrix):** Migration Center; methodologies; licenses; diagrams; integrate with existing systems; assess/migrate systems and data; workload testing; network and dependency planning; license/financial impact. Home: 8c.
+
+| Wave | Prefer | Accept |
+|---|---|---|
+| Assess | Migration Center inventory + deps | Spreadsheet-only if tiny estate |
+| Move VM | Migrate to VMs / rehost | Refactor first only if ROI clear |
+| DB | DMS / Datastream | Big-bang cutover |
+| License | BYOL analysis (Windows/Oracle/SQL) | Ignore license until after migrate |
+
+**Scenario prompt:** Colo lease ends in 6 months; one Windows SQL Server app; unclear dependencies.
+
+**Expected answer shape:** “I pick Migration Center + wave plan + DMS for SQL because Y, I accept Z (temporary HA VPN, retain one legacy interface until tested).”
 
 ## Part 9 — Kubernetes internals applied on GKE + mesh + cache
 
@@ -1880,18 +3398,50 @@ Part D8 is the CKA-level object/scheduling/security model. This part is **GKE as
 - **Python / Go:** catalog cache in front of Cloud SQL.
 
 ### 9.2 GKE and Kubernetes concepts
-- Control plane vs nodes. Autopilot vs Standard. Cluster versions, release channels.
+- Control plane vs nodes. Cluster versions, release channels (Rapid/Regular/Stable).
 - Cluster and node management: node pools, machine types, taints/tolerations, autoscaling (cluster + HPA + VPA).
 - Pods, Deployments, ReplicaSets, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets.
 - Kubernetes Services: ClusterIP, NodePort, LoadBalancer, ExternalName, headless.
-- Ingress vs Gateway API. GKE Ingress, HTTP(S) LB, NEG.
 - GKE storage: PD CSI, Filestore, GCS FUSE (when not to), StorageClass, PVC/PV.
-- Workload Identity Federation for GKE. Binary Authorization. Policy Controller / Gatekeeper. Private cluster, master authorized networks, Cloud NAT.
+- Binary Authorization. Policy Controller / Gatekeeper. Private cluster, master authorized networks, Cloud NAT.
 - [Enterprise-grade production GKE template](https://docs.cloud.google.com/application-design-center/docs/enterprise-grade-production-gke).
-- **Local lab (required):** kind/minikube — Deploy, Service, Ingress/Gateway, HPA, PVC, NetworkPolicy, PSA restricted, rolling update + rollback (D8).
-- **GitOps lab:** env-repo kustomize overlay; apply via script or Argo-in-kind (kind required; GKE Autopilot credits-optional).
-- **Credits-optional:** Autopilot, Cloud Deploy target, canary 10%, destroy same day.
 - Exit criteria Cloud Run → GKE: sidecars, custom CNI, stateful operators, GPU/DRA, mesh.
+
+#### Autopilot vs Standard (decision)
+
+| Dimension | Autopilot | Standard |
+|---|---|---|
+| Node ops | Google manages nodes | You manage node pools |
+| Billing | Per-pod requests | Node (VM) hours |
+| Escape hatches | Fewer (hardened defaults) | DaemonSets, privileged exceptions, custom CNI |
+| Default posture | Restricted-leaning | You must enable PSA/BinAuth |
+| Pick when | Most microservices | GPU/DRA, Windows, nested virt, exotic agents |
+
+“I pick Autopilot because Y, I accept Z (move to Standard only when a measured constraint appears).”
+
+#### Workload Identity (GKE)
+- Bind KSA → GSA; pods call GCP APIs without JSON keys.
+- **kind stand-in:** annotate ServiceAccount; mock token exchange in unit tests; on GKE use WI / WIF docs.
+- Fail the lab if any key file is mounted.
+
+#### Gateway API vs Ingress
+- Prefer **Gateway** + HTTPRoute on new work; Ingress remains literacy.
+- GKE Gateway controller → external/internal Application LB + NEGs.
+- **kind:** install Gateway API CRDs; one Gateway + HTTPRoute to the catalog Service.
+
+#### NetworkPolicy + PSA (kind lab steps — required)
+1. `kind create cluster --name northstar` (CNI that enforces NetworkPolicy).
+2. Apply PSA labels: `pod-security.kubernetes.io/enforce=restricted` on `ns-catalog`.
+3. Deploy catalog Deployment (non-root, drop caps, read-only root FS) + ClusterIP Service.
+4. Apply NetworkPolicy: deny ingress by default; allow from `ns-frontend` only on app port.
+5. Prove: curl from a forbidden namespace fails; from frontend pod succeeds.
+6. Install Gateway API; route `/catalog` → Service; curl via gateway.
+7. HPA on CPU; generate load; PVC for a tiny stateful demo (or skip if Autopilot-shaped).
+8. Rolling update + rollback (`kubectl rollout undo`); record PDB.
+9. **GitOps:** kustomize overlay in env-repo; apply via script or Argo-in-kind.
+10. Tear down: `kind delete cluster`.
+
+- **Credits-optional:** Autopilot, Cloud Deploy target, canary 10%, destroy same day.
 
 ### 9.3 Service mesh
 - Cloud Service Mesh / Istio: mTLS, traffic split, retries.
@@ -1914,12 +3464,43 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 - **Lab:** Pub/Sub → BigQuery subscription or batch load of order events; SQL on the warehouse. Python then Go.
 
 ### 9b.2 Vertex AI end-to-end (PCA 2.4)
+
+#### PCA: 2.4 Vertex / Agent Platform ML workflows
+
+**Guide themes (matrix):** Vertex/Agent Platform Pipelines; data integration; Hypercomputer/GPU/TPU; Cloud Run functions + platform for ML; consumption models; large-scale training. Home: 9b.
+
+| Stage | Prefer | Accept |
+|---|---|---|
+| Orchestrate | Vertex/Agent Platform Pipelines | Composer when Airflow estate exists |
+| Train at scale | Hypercomputer / managed accelerators | Unmanaged GPU MIG without quotas plan |
+| Serve | Managed endpoint / Run | Custom GKE serving if needed |
+| Data in | Feature Store / BQ integration | Ad-hoc CSVs in prod |
+
+**Scenario prompt:** Data science wants a permanent GPU GCE fleet for a weekly BQML-sized job.
+
+**Expected answer shape:** “I pick Pipelines + right-sized accelerators (or BQML) because Y, I accept Z (no idle GPU fleet).”
+
 - Vertex AI Pipelines to orchestrate the ML lifecycle.
 - Data integration into Vertex.
 - AI Hypercomputer: GPUs/TPUs, Cloud Run functions + Vertex for serving, consumption models, large-scale training (concept + SKU awareness).
 - **HLD:** Northstar “recommend products” as a Vertex endpoint, not a custom GPU cluster. The **recs system design** (two-tower, LTR, cold start) is **9c.2** — this subsection is the Vertex product, not a second recs course.
 
 ### 9b.3 Pre-built AI APIs and Gemini (PCA 2.5)
+
+#### PCA: 2.5 Prebuilt AI APIs + Model Garden
+
+**Guide themes (matrix):** Google AI APIs (Search, Conversation, Vision, Image, Video, Audio); Gemini Enterprise (Agents, NotebookLM); Model Garden integration. Home: 9b.
+
+| Need | Prefer | Accept |
+|---|---|---|
+| Catalog vision attrs | Vision / Document AI | Custom CV only if API insufficient |
+| Chat support | Gemini Enterprise / Conversational Agents | Homegrown LLM ops first |
+| Model pick | Model Garden wrap | Train from scratch |
+
+**Scenario prompt:** Retail wants a custom vision PhD team before calling Vision API.
+
+**Expected answer shape:** “I pick Vision AI + Model Garden baseline because Y, I accept Z (custom Vertex only after API gap is measured).”
+
 - Google AI APIs: Search, Conversation, Vision, Image, Video, Audio — when to buy vs build.
 - Gemini Enterprise: AI Agents, NotebookLM.
 - Model Garden: pick a model, wrap it, don’t train if an API suffices.
@@ -1929,77 +3510,492 @@ v6.1 made ML/AI a first-class architect domain. This is not a data-scientist car
 - LLM **application** design (RAG, eval, guardrails) is **9c.5**. This subsection is model/API selection.
 
 ### 9b.4 PMLE low-code and platform (required in the initial track)
-- **BQML:** `CREATE MODEL` for classification, regression, forecasting, clustering; `ML.TRANSFORM` / `TRANSFORM` clause = train/serve parity. Fine-tune a **remote** Gemini model with SQL (concept + statement). When BQML vs AutoML vs custom (data in BQ, SQL team, prototype vs control).
-- **AutoML** on Agent Platform: tabular/text/image; forecasting. Debug trained models at a literacy level.
-- **Model Garden:** pick vs wrap vs self-deploy. Document AI, Vision, Translate — buy vs build.
-- **Feature Store, Experiments, ML Metadata, Model Registry, Workbench / Colab Enterprise.** Pipelines vs Composer vs Ray-on-platform (literacy).
-- **Lab:** one BQML model on a public or synthetic table **or** a documented AutoML walk-through; Feature Store or TRANSFORM diagram for Northstar catalog features. Python/SQL then Go client for predict.
 
----
+PMLE domain **1 — Architect low-code AI solutions** (exam guide as of **1 Jun 2026**: Gemini Enterprise **Agent Platform**, BQML, Model Garden). This subsection is **product literacy + decision tables**, not a second 9c systems course. Recs/ETA/fraud/RAG **design** stays Part 9c. Cite the **official PMLE exam guide** in the lab write-up (Appendix C).
 
+#### 1. Low-code selection (when to use which)
+
+| Path | Use when | Avoid when |
+|---|---|---|
+| **BQML** `CREATE MODEL` | Data already in BigQuery; SQL team; tabular classify/regress/forecast/cluster; need `TRANSFORM` train/serve parity; remote Gemini fine-tune via SQL | You need custom architectures, exotic losses, or non-BQ feature pipelines |
+| **AutoML** (Agent Platform) | Tabular/text/image/forecasting with limited ML staff; want managed search over architectures | You must own every layer; strict latency/cost envelopes already known |
+| **Model Garden** | Buy/wrap a foundation or task model (Gemini, Imagen, Veo, open models); one-click or SDK deploy | You confuse “pick a model” with “design the application” (app design → 9c.5) |
+| **Document AI / Vision / Translate** | Buy OCR, classification, translation APIs | Building a CV research stack for a form-digitization SLA |
+| **Gemini / Imagen / Veo selection** | Multimodal generate/understand; choose by modality, context window, cost, safety | Defaulting to largest model without latency/cost math |
+
+**BQML surface (teach statements, not slogans):**
+- Model types: linear/logistic, boosted trees, DNN (as offered), time-series forecasting, k-means, matrix factorization / PCA as listed in current docs — always verify against live `CREATE MODEL` docs for the exam date.
+- `TRANSFORM` / `ML.TRANSFORM`: **identical** preprocess in train and predict; this is the BQ answer to train/serving skew for SQL features.
+- Remote model / fine-tune Gemini with SQL (concept + one worked statement shape): data stays in BQ; model lives on Agent Platform; predict via SQL or endpoint.
+- Decision: BQML vs AutoML vs custom training — data gravity, team skills, need for control, iteration speed.
+
+**AutoML literacy:** tabular/text/image; forecasting; read evaluation panels (AUC, precision@k, RMSE); export/register to Model Registry; know what you cannot debug without leaving AutoML.
+
+**Model Garden:** first-party (Gemini, Imagen, Veo, Chirp, Gemma, …) vs partner vs open; managed API vs self-deploy container; fine-tune notebooks vs prompt-only. Document AI / Vision / Translate: buy vs build table in the ADR.
+
+**Gemini / Imagen / Veo selection checklist:** modality, max input, output type, safety filters, regional availability, $/1k tokens or $/image, latency class, whether RAG/tools are required (app → 9c.5).
+
+#### 2. Data plane for low-code + platform
+
+- **Feature Store** (Agent Platform): entity keys, feature views, offline (training) vs online (serving) consistency — diagram for Northstar catalog/user features.
+- **Workbench / Colab Enterprise:** exploratory notebooks; not the production trainer. Promote code into pipelines (9c.7).
+- **Dataflow vs Dataproc/Spark vs BigQuery SQL vs pandas:** batch/stream volume, existing Spark estate, SQL-centric teams, laptop prototypes. Pick one path in the lab and justify.
+- **DLP / Sensitive Data Protection / PII:** tokenize or drop before prompts and training tables; never log raw PII in notebook outputs (ties Part 7).
+- **Experiments + ML Metadata:** parameters, metrics, artifacts, lineage — enough to reproduce a run; link pipeline run → experiment.
+
+#### Lab (free-tier boxed)
+
+One of: (A) BQML `CREATE MODEL` + `TRANSFORM` on a public/synthetic table with SQL predict; or (B) documented AutoML walk-through with screenshots + Registry export notes; plus a Feature Store **or** TRANSFORM diagram for Northstar catalog features. Python/SQL first; Go client for predict second. ADR cites PMLE guide § low-code + the product doc you used.
+
+**Gate:** choose BQML vs AutoML vs Model Garden API for a stated Northstar constraint; write the `TRANSFORM` (or equivalent) that forbids a named skew; call predict from Go without embedding secrets.
 ## Part 9c — Production ML systems (industry case-study atlas)
 
 Full one-line index is **Appendix M** (309 studies). You do not re-implement 309 blogs. Learn **families**, attach Northstar slices, map to GCP. Do not re-teach IAM, Cloud Run, Pub/Sub, BQ, Monitoring.
 
 Each 9c unit uses the difficulty ramp. Pattern: problem → labels/leakage → **derive the metric or estimator you use** → offline evaluation → serving → monitor/rollback/cost → one named case. Metrics, leakage, skew, ranking utility, and FPR that appear in the slice are **theoretical** topics: complete floor, not “call Vertex.”
 
+**M.ML is required before this part.** Classical zoo appears **once**, at the end of 9c (after 9c.7). PMLE product depth for scale/serve/pipeline/monitor is **9c.7**; low-code buy-vs-build is **9b.4**.
+
 ### 9c.1 Features, labels, skew
-- Leakage: define it; construct a leak; prove a point-in-time join forbids it.
-- Train/serving skew: name the distribution shift; a test that fails if online features diverge.
-- Feature store (Vertex Feature Store / Feast-shaped toy). Online vs offline features.
-- **From scratch:** a feature table with `event_time` + as-of join that fails if you leak future labels.
-- **M.ML is required before this part.** The classical zoo is listed once at the end of 9c.
+
+- Leakage: define it; construct a leak; prove a point-in-time / as-of join forbids it.
+- Train/serving skew: name the distribution shift; a test that fails if online features diverge from training transforms.
+- Feature store (Agent Platform Feature Store / Feast-shaped toy). Online vs offline features; entity keys; point-in-time correctness.
+- **From scratch:** feature table with `event_time` + as-of join that fails if you leak future labels; assert identical preprocess path (scratch transform before BQ `TRANSFORM` in 9c.7).
+- **Gate:** break a join to leak; show the metric inflate; fix with as-of; commit the failing then passing tests.
 
 ### 9c.2 Retrieval, rank, recommend, bandits
-- Candidate generation → rank → re-rank/diversity. Two-tower + ANN (Vertex Vector Search). LTR, multi-task, cold start.
+
+- Candidate generation → rank → re-rank/diversity. Two-tower + ANN (Vector Search). LTR, multi-task, cold start.
 - Bandits / explore-exploit (Instacart, Trivago, DoorDash homepage). Feature flags (8.1) are not bandits.
-- Cases: Netflix recs, Instagram Explore, Etsy ranker, Airbnb LTR, Twitter algorithm.
-- **Northstar:** catalog retrieval + rank toy (cosine + a few LTR features). Python then Go **service boundary**.
+- Cases (index): Netflix recs, Instagram Explore, Etsy ranker, Airbnb LTR, Twitter algorithm — **worked HLD packs below** for Netflix + Etsy/Airbnb-class LTR.
+- **Northstar implementation:** § **9c.2 Northstar — Ranker** (full, not a one-liner).
 
 ### 9c.3 Forecast, ETA, demand
+
 - Time series, cascade/ensemble (DoorDash holidays), DeepETA-class tabular/seq models.
-- Cases: Uber DeepETA, Swiggy delivery time, Grubhub volume.
-- **Northstar:** ETA stub for “order arriving” (features + regression; not a DeepETA clone).
+- Cases: Uber DeepETA, Swiggy delivery time, Grubhub volume — **worked pack: Uber DeepETA**.
+- **Northstar implementation:** § **9c.3 Northstar — ETA**.
 
 ### 9c.4 Fraud, graph, HITL
-- Imbalance, embeddings of journeys (Wayfair Melange), graph anomaly (Grab), HITL (Uber RADAR).
-- Score **tokens**, never PAN. PCI path stays Part 5.
-- **Northstar:** fraud score on Stripe tokens + Cloud Tasks HITL queue.
 
-### 9c.5 LLM applications
-Units (institutional GenAI progression, this owner only): (1) generative vs discriminative; (2) LLM tokenization/embeddings/context; (3) PEFT/LoRA as adapters — derive the low-rank update; (4) RAG: retrieve → augment → generate; index IVF/HNSW as used (**T-NLP**); (5) agents: tool loop, memory, authz (11b P5/P9); (6) production: latency, cost, eval, refusal, logging without PII.
-- Gemini pick stays 9b.3. Open **T-DL** when you need backprop/attention derived, not as a prefix to this unit. Softmax/log-sum-exp is **M.NS** (already taught).
+- Imbalance, embeddings of journeys (Wayfair Melange), graph anomaly (Grab), HITL (Uber RADAR-class review queues).
+- Score **tokens**, never PAN. PCI path stays Part 5.
+- Cases: Stripe Radar — **worked pack below**.
+- **Northstar implementation:** § **9c.4 Northstar — Fraud-on-tokens**.
+
+### 9c.5 LLM applications (GCP RAG slice)
+
+Units (institutional GenAI progression, **this owner only** for the initial track): (1) generative vs discriminative; (2) LLM tokenization/embeddings/context; (3) PEFT/LoRA as adapters — derive the low-rank update; (4) RAG: retrieve → augment → generate; index IVF/HNSW as used (**T-NLP**); (5) agents: tool loop, memory, authz (11b P5/P9); (6) production: latency, cost, eval, refusal, logging without PII.
+
+- Gemini / Model Garden **pick** stays 9b.3 / 9b.4. Open **T-DL** when you need backprop/attention derived, not as a prefix to this unit. Softmax/log-sum-exp is **M.NS**.
 - Prompting, jailbreak, eval (exact match, rubric, LLM-as-judge caveats).
-- **Northstar:** help-doc RAG on Cloud Run + Gemini; eval set; never log PII.
+- **Northstar implementation:** § **9c.5 Northstar — RAG** (help-doc RAG on Cloud Run + Gemini).
+- **Portfolio depth** (multi-agent, PEFT baselines, five systems) is **12.S17** — cross-link only: complete the GCP RAG slice here; open 12.S17 after 11b for the GenAI portfolio, do not duplicate tutorials.
 
 ### 9c.6 CV / speech serving
+
 - Batch vs online. Cases: Netflix in-video search, Etsy image search, Dropbox OCR, speech/music.
 - Open **T-CV** / **T-SIGNAL** for convolution, sampling, FT as used — then serve; do not start a vision PhD before the serving path.
-- Architect literacy + Vertex custom job; not a CV PhD.
+- Architect literacy + Agent Platform custom job / prebuilt Vision/Speech APIs; not a CV PhD. Full HLD pack under families below; no second Northstar required in the initial track.
 
-### 9c.7 Platform, experiments, serving
-Michelangelo ≈ Vertex. A/B/holdout/shadow ≠ Cloud Deploy **app** canary (D4). Product details and PMLE labs are the block immediately below — do not re-teach.
+### 9c.7 Platform, experiments, serving (PMLE 2–6 depth)
 
-**Required Northstar implementations (Python then Go ports):** ranker (9c.2), ETA (9c.3), fraud-on-tokens (9c.4), RAG (9c.5).
+Michelangelo ≈ Agent Platform / Vertex lineage. A/B/holdout/shadow ≠ Cloud Deploy **app** canary (**D4**). Low-code buy-vs-build stays **9b.4**; this block is scale, serve, pipelines, monitor. Cite **PMLE exam guide (1 Jun 2026)** domains: collaborate on data/models; scale prototypes; serve/scale; automate/orchestrate; monitor AI solutions.
 
-**Required family HLDs** (evidence pack: problem, labels, leakage, metric, serving, monitor, cost — implement only if it is one of the four slices): recommend/feed; search/LTR/ads; forecast/ETA; fraud/HITL; LLM/RAG; NLP/support; CV/speech serving; marketing/CLV; availability/inventory; ML platform (Michelangelo ↔ Vertex). Appendix M “Other” stays index-only.
+#### 3. Scale prototypes into models
 
-**Classical zoo (required in this part, not 12.S11):** kNN → linear/logistic (use **M.ML**) → trees → forests/boosting → clustering → PCA → ranking. Each: objective, assumptions, complexity, when a simpler model wins. Scratch NumPy for logistic or linear; rest may use a library **after** you can state the objective. 12.S11 skip-tests this.
+| Choice | Prefer when | Cost / failure notes |
+|---|---|---|
+| **Custom training** | Own architecture, libraries, multi-GPU/TPU | You own containers, retries, checkpointing |
+| **AutoML** | Strong baseline, limited staff | Less control; still Registry + monitor |
+| **BQML** | Data in BQ, SQL team | TRANSFORM parity; remote fine-tune for Gemini |
+| **Tabular Workflows** | Managed tabular path on platform | Literacy: when it replaces DIY pipeline |
 
-**PMLE scale/serve/pipeline/monitor (required literacy + one lab or diagram each):**
-- Custom training vs AutoML vs BQML vs Tabular Workflows; HP tuning; CPU/GPU/TPU **choice**; data vs model parallelism as **arithmetic** (replica × batch, not a CUDA degree).
-- Batch vs online inference; Model Registry; prebuilt vs custom containers; Feature Store **online**; public vs private endpoints; Cloud Run vs GKE vs Agent Platform; **model** canary/A-B (traffic split on versions), distinct from Cloud Deploy **app** canary (D4).
-- Pipelines: Agent Platform Pipelines, Composer/Airflow, Ray-on-platform (literacy). Cloud Build **CI/CD/CT**. Retraining policy from monitors.
-- Identical preprocess train/serve: scratch transform, then BQ `TRANSFORM`.
-- Monitoring: training-serving **skew**, data **drift**, **concept** drift, **feature-attribution** drift — define; detect on a **synthetic shift** toy. Model Monitoring product; Explainable AI; Model Armor; gen-AI eval / LLM-as-judge caveats; bias/responsible AI.
+- **HP tuning:** search space, budget (trials × hours), early stop; log to Experiments.
+- **CPU / GPU / TPU:** arithmetic — examples/sec × params × bytes; memory floor; TPU when large dense matmuls and platform support; GPU default for many custom nets; CPU for classical/BQML/light scoring.
+- **Data vs model parallelism (arithmetic, not a CUDA degree):** data parallel ≈ replica × batch (sync grad); model parallel when one replica cannot hold the model. Write the inequality that forces the choice.
+- **Training failure modes:** OOM, exploding/vanishing loss, data skew across shards, silent wrong labels, non-deterministic pipelines, checkpoint corruption — detect with unit tests + metric floors.
+- **Interpretability:** linear coefficients / tree importances vs Integrated Gradients / example attributions on Agent Platform Explainable AI; LLMs need different eval (9c.5 / monitor).
+
+#### 4. Serve and scale models
+
+- **Batch vs online:** SLA, fan-out, cost. Batch: BQ ML.PREDICT / Dataflow / Run Jobs. Online: Endpoint / Cloud Run / GKE.
+- **Model Registry:** versions, aliases (`staging`/`prod`), lineage to dataset + code digest.
+- **Prebuilt vs custom containers:** framework prebuilts (TF/PyTorch/sklearn/XGBoost as offered) vs custom when native deps or multi-step preprocess must ship with the model.
+- **Feature Store online:** lookup by entity at request time; timeout + fallback defaults; assert parity with training offline store (skew tests).
+- **Public vs private endpoints:** VPC-SC / private IP when data cannot leave; auth via IAM + audience-bound tokens (Part 4).
+- **Cloud Run vs GKE vs Agent Platform endpoints:** Run for spiky HTTP scorers and RAG apps; GKE when mesh/custom scheduling/GPU pools; Agent Platform managed endpoints for standard model serving.
+- **MODEL canary vs APP canary:** traffic split across **model versions** (shadow/holdout/A-B on predictions) ≠ Cloud Deploy progressive delivery of the **service binary** (**D4**). Both can exist; name which dial you turn in an incident.
+
+#### 5. Pipelines and CT
+
+- **Agent Platform Pipelines** (KFP/TFX literacy): DAG, artifacts, caching, retries.
+- **Composer / Airflow:** when ML is one tenant in a broader data estate.
+- **Ray-on-platform:** literacy — distributed Python training/tuning when the team already Ray-shaped.
+- **CI/CD/CT:** Cloud Build builds trainer + serving images; provenance; deploy only attested digests. **CT** = continuous **training** triggered by schedule, data volume, or monitor breach — policy written down (not “retrain when sad”).
+- **Identical preprocess train/serve:** implement scratch transform + tests first; then BQ `TRANSFORM` or shared library imported by trainer and scorer. Skew test must fail if paths diverge.
+
+#### 6. Monitor AI solutions
+
+Define on a **synthetic-shift toy** (you inject the shift):
+
+| Term | Definition | Toy |
+|---|---|---|
+| **Training–serving skew** | Feature or preprocess differs train vs serve | Drop a normalize step online; PSI / max-mean diff trips |
+| **Data drift** | \(P(x)\) shifts | Shift a feature mean in stream |
+| **Concept drift** | \(P(y\mid x)\) shifts | Flip label policy after time \(t\) |
+| **Attribution drift** | Feature importance / attributions shift | Monitor Explainable AI summary stats |
+
+Products: **Model Monitoring**; **Explainable AI**; **Model Armor** (prompt/response filters — Part 7/9b.3); gen-AI eval / **LLM-as-judge caveats** (position bias, self-preference — 9c.5); bias / responsible AI slices on sensitive attributes with documented policy.
+
+**Lab / diagram each:** one scale decision write-up; one serve topology (Run or Endpoint) with Registry version; one pipeline or CT policy ADR; one synthetic-shift monitor that pages. Python then Go where there is a client.
+
+**Gate:** explain model canary ≠ app canary with a Northstar incident story; show skew test red then green; state retraining policy tied to a monitor.
 
 ---
+
+### Required Northstar implementations (FULL — Python then Go port)
+
+Each of the four is a **teachable slice**, not a one-liner: problem, labels, leakage control, **metric derivation**, offline eval, GCP serving, monitor, cost. Shared rule: M.ML metrics package reused; no PAN; no PII in logs/prompts.
+
+#### 9c.2 Northstar — Ranker (catalog retrieval + rank)
+
+**Problem.** Given user/context and Northstar catalog, return a short ranked list for home/search. Business: conversion and diversity, not accuracy on “not clicked.”
+
+**Data / labels.** Impressions → clicks/purchases with `event_time`, `user_id`, `item_id`. Label: click or purchase within a horizon. Negative sampling explicit. Cold-start items/users flagged.
+
+**Leakage.** No future aggregates (e.g. “tomorrow’s popularity”) in features; no target encoding without time-aware folds; group split by user **or** time cut — document which. Point-in-time join for user history.
+
+**Metric (derive).** Offline: pairwise logistic or MSE on relevance; **Recall@K**, **NDCG@K** (derive DCG discount \(\log_2(1+i)\)); AUC on scored pairs as a sanity check. Online: CTR / purchase rate with exploration policy. Show why accuracy is wrong.
+
+**Serving on GCP.** Candidate gen: SQL/BQ or two-tower ANN (Vector Search) → ranker on **Cloud Run** (Python first) reading Feature Store online or precomputed embeddings in Memorystore/Firestore; optional Agent Platform endpoint for the heavy model. Auth: private if needed.
+
+**Monitor.** Feature skew vs training; Recall@K proxy on a held-out stream; latency p95; empty-candidate rate; cost per 1k requests (embedding + rank).
+
+**Cost.** Prefer CPU ranker; ANN quota; cache top queries; batch embedding refresh (Run Job) vs online.
+
+**Python → Go.** Python: train toy two-tower or linear LTR on features; FastAPI/stdlib scorer. Go: same **service boundary** (protobuf/JSON contract), port scoring or call Python/Vertex endpoint; table tests for ordering stability and leakage fixtures.
+
+**Worked company lens (implement the design, not the brand):** Netflix-style candidate → rank → re-rank with diversity; Etsy/Airbnb LTR features (listing quality, historic CTR) — see family packs.
+
+#### 9c.3 Northstar — ETA (“order arriving”)
+
+**Problem.** Predict delivery/ready time band for an order so the UI can show an honest window.
+
+**Data / labels.** Label = `actual_delivery_ts - quote_ts` (or ready time). Features: distance, store load, hour-of-week, courier availability proxies — all known at quote time.
+
+**Leakage.** Forbidding post-quote signals (actual route taken, future weather updates not available at quote). Time-based split.
+
+**Metric (derive).** MAE / RMSE on minutes; **pinball / quantile loss** if you show a window (derive pinball for \(\tau\)); % of arrivals inside promised band (coverage) vs band width (tightness). Optimize the trade-off explicitly.
+
+**Serving.** Online regression on Cloud Run or BQML forecast for batch capacity planning; Feature Store for store load. Pub/Sub order events → optional async refresh.
+
+**Monitor.** Coverage vs width; residual bias by city/hour; drift on distance feature; cost of over-promising (support tickets) as a product metric.
+
+**Cost.** Tabular model on CPU; avoid GPU; batch retrain nightly.
+
+**Python → Go.** Python: scratch linear/quantile GD (**M.ML**) or library GBM after stating objective; Go port of predict API + metric helpers.
+
+**Worked company lens:** Uber DeepETA — cascade/ensemble literacy in the family pack; Northstar stays a honest stub, not a clone.
+
+#### 9c.4 Northstar — Fraud-on-tokens
+
+**Problem.** Score checkout risk using **Stripe payment method tokens** and behavioral features; never PAN/CVV. Escalate uncertain/high scores to HITL via **Cloud Tasks**.
+
+**Data / labels.** Chargeback / fraud label with severe delay — use provisional labels carefully. Features: velocity, device, geo mismatch, amount, history — all token-side.
+
+**Leakage.** No post-chargeback analyst notes in training features; time cut; careful with “prior fraud count” that includes the current case.
+
+**Metric (derive).** Precision/recall at a fixed **FPR** the review queue can handle; expected cost = \(C_{FP}\cdot FP + C_{FN}\cdot FN\); PR-AUC under imbalance. Derive why accuracy is toxic here (**M.ML**).
+
+**Serving.** Sync score on checkout path (Cloud Run, tight timeout + fail-open/closed policy in ADR); async HITL queue (Cloud Tasks) for review; Pub/Sub for chargeback labels back into BQ.
+
+**Monitor.** Score distribution shift; precision at operating point; queue depth/age; Model Armor N/A — but DLP on logs; never log full tokens.
+
+**Cost.** HITL minutes dominate; model CPU; threshold set by queue capacity math.
+
+**Python → Go.** Python: logistic GD from **M.ML** on a tiny token-feature table; Go service enforces timeout, idempotency, Tasks enqueue.
+
+**Worked company lens:** Stripe Radar — rules + ML + list features; human review — family pack.
+
+#### 9c.5 Northstar — RAG (help-doc)
+
+**Problem.** Answer Northstar help questions grounded in owned docs; refuse when ungrounded.
+
+**Data / labels.** Doc chunks with ids; eval set of (question, answer, must-cite chunk ids). No user PII in traces.
+
+**Leakage.** Eval questions must not appear verbatim only in train prompts; version the corpus; don’t tune on the test rubric.
+
+**Metric (derive).** Retrieval Recall@K first; answer faithfulness / citation hit; abstention rate; latency and $/question. LLM-as-judge only with known caveats (position bias) — human spot-check required.
+
+**Serving.** GCS corpus → chunk/embed (batch Job) → Vector Search or pgvector/Firestore-shaped toy → Cloud Run orchestrator → Gemini (Model Garden) with tool-less RAG prompt; Secret Manager for API auth; never log raw prompts with PII.
+
+**Monitor.** Retrieval empty rate; citation miss; refusal rate; token cost; Model Armor / safety filters; skew when docs update but index doesn’t.
+
+**Cost.** Embedding refresh schedule; context token budget; cache frequent queries.
+
+**Python → Go.** Python: chunker, embed client, retrieve, prompt pack, eval harness. Go: same HTTP API + retrieval client; contract tests on citation required fields.
+
+**Cross-link:** deeper GenAI portfolio (agents, PEFT, five systems) → **12.S17** after 11b. This unit is the **GCP RAG slice** only.
+
+---
+
+### Required family HLD packs (evidence pack even if not implemented)
+
+For **each** family: problem, data, labels, leakage, metric, serving, monitor, cost, **GCP products**. Implement code only for the four Northstars above. Appendix M “Other” stays index-only.
+
+#### Family: Recommend / feed
+
+**Problem.** Personalized feed or “recommended for you” under engagement + satisfaction + safety constraints.  
+**Data.** Impressions, clicks, dwell, hides, follows; catalog metadata; social graph if any.  
+**Labels.** Implicit (click) vs explicit (rating); position bias must be modeled or randomized.  
+**Leakage.** Future popularity; same-session target leakage; train/test user overlap when measuring generalization to new users.  
+**Metric.** NDCG@K, Recall@K, calibration of p(click); online A/B on downstream retention — not offline alone.  
+**Serving.** Candidate → rank → re-rank (diversity/authority); Vector Search + ranker endpoint; edge cache for anonymous.  
+**Monitor.** Segment-wise NDCG proxy; skew; empty shelf rate; feedback loops (popularity bias).  
+**Cost.** ANN + rank flops; exploration budget.  
+**GCP.** BQ, Feature Store, Vector Search, Agent Platform / Run, Experiments, Monitoring.  
+**Worked examples:**
+- **Netflix recommendations:** problem = maximize satisfied viewing hours under catalog constraints; data = play, stop, thumb; labels = play quality with debiasing for UI position; leakage = using post-play completion features at recommend time; metric = ranking + online A/B on retention; serving = multi-stage candidate (title similarity, continue-watching) → rank → row construction; monitor = catalog coverage, model age; cost = precompute rows offline + light online re-rank; GCP map = BQ events, batch embedding Job, Feature Store user state, Run/GKE rank, Experiments for A/B (≠ D4 canary).
+- **Instacart homepage / DoorDash-style bandits:** explore-exploit for module order; metric = regret vs CTR; serving = contextual bandit with feature flags **not** substituting for the policy.
+
+#### Family: Search / LTR / ads
+
+**Problem.** Rank documents/listings/ads for a query under relevance + revenue + fairness.  
+**Data.** Query, context, impressions, clicks, conversions, bid (ads).  
+**Labels.** Graded relevance or click with position debias (IPS).  
+**Leakage.** Using click to define features that won’t exist for new ads; advertiser leakage across auctioneers.  
+**Metric.** NDCG, MRR; ads: revenue × quality; calibration of pCTR/pCVR.  
+**Serving.** Retrieval (inverted / semantic) → LTR → auction (ads).  
+**Monitor.** pCTR calibration; latency; junk query rate.  
+**Cost.** Index build vs online features.  
+**GCP.** BQ, Dataflow index build, Vector Search, Run LTR, Armor for abuse.  
+**Worked examples:**
+- **Airbnb search / LTR:** listing quality, historical booking, geography; metric NDCG with booking label; leakage = using post-booking review at rank time; serving = retrieval then GBDT/LTR; GCP = Feature Store for listing stats, endpoint for score.
+- **Etsy ads / marketplace rank:** pCTR model + auction constraints; monitor calibration by category.
+
+#### Family: Forecast / ETA / demand
+
+**Problem.** Predict time, demand, or volume for planning and UX promises.  
+**Data.** Event times, covariates (weather, holidays, capacity).  
+**Labels.** Realized time/volume; censored observations documented.  
+**Leakage.** Future covariates; aligning series with peeking.  
+**Metric.** MAE/MAPE carefully; quantile coverage; peak-hour error.  
+**Serving.** Batch forecasts to BQ; online ETA on Run.  
+**Monitor.** Coverage of intervals; bias by geo.  
+**Cost.** Retrain cadence vs drift.  
+**GCP.** BQML forecasting, Dataflow, Run, Monitoring.  
+**Worked examples:**
+- **Uber DeepETA:** multi-model cascade (route, traffic, handoff); labels = actual trip time; leakage = features unavailable at request; metric = MAE + coverage of ETA band; serving = online low-latency ensemble; monitor = city-level residual; cost = feature compute vs accuracy; GCP map = Feature Store, custom training on GPU optional, Run/GKE scorers, BQ training warehouse.
+- **Swiggy / Grubhub volume:** store-level demand for staffing; batch BQML + Composer schedule.
+
+#### Family: Fraud / HITL
+
+**Problem.** Stop abuse/fraud under review capacity and false-positive harm.  
+**Data.** Account/device graphs, velocities, payment tokens, disputes.  
+**Labels.** Chargeback/fraud with delay; partial labels.  
+**Leakage.** Analyst notes; future graph edges.  
+**Metric.** Recall@FPR; cost-weighted; queue SLA.  
+**Serving.** Sync score + async case management (Tasks).  
+**Monitor.** Threshold stability; adversary drift.  
+**Cost.** Human review dominates.  
+**GCP.** Run, Tasks, BQ, DLP, Monitoring; never store PAN (Part 5).  
+**Worked examples:**
+- **Stripe Radar:** rules + ML on tokenized payments; labels = fraud outcomes; serving = real-time authorize path; HITL for reviews; metric = catch rate at review budget; GCP map = Run scorer, Tasks queue, BQ labels, Feature Store velocities.
+- **Uber RADAR-class / Grab graph:** graph features for collusion; monitor graph-feature drift.
+
+#### Family: LLM / RAG
+
+**Problem.** Grounded generation over private corpora with refusal and cost control.  
+**Data.** Documents, ACLs, eval rubrics.  
+**Labels.** Faithful answers + citations; human grades.  
+**Leakage.** Contaminating eval; prompt stuffing secrets into logs.  
+**Metric.** Recall@K retrieval; faithfulness; cost/latency.  
+**Serving.** Cloud Run RAG + Gemini; Vector Search; Model Armor.  
+**Monitor.** Index staleness; jailbreak hits; token spend.  
+**Cost.** Context tokens dominate.  
+**GCP.** Model Garden Gemini, Vector Search, GCS, Run, Secret Manager, Model Armor.  
+**Worked examples:**
+- **GitHub Copilot-class (assistive code):** problem = suggest code in context; data = permissive training + IDE context; metric = acceptance rate ≠ correctness — need eval harness; serving = low-latency endpoint; monitor = toxic/insecure suggestion rate; GCP map for *your* analog = private RAG over internal eng docs + Gemini, not a Copilot clone.
+- **Enterprise helpdesk RAG:** ACL-aware retrieval; citation required; 9c.5 Northstar is the thin slice.
+
+#### Family: NLP / support
+
+**Problem.** Route, classify, or summarize support tickets; suggest replies.  
+**Data.** Tickets, macros, CSAT.  
+**Labels.** Queue/topic; resolution quality.  
+**Leakage.** Using post-resolution fields at intake.  
+**Metric.** Macro-F1; handle time; deflection rate.  
+**Serving.** Classify on Run; optional Gemini summarize with human send.  
+**Monitor.** Class imbalance drift; toxic reply rate.  
+**Cost.** Human agents vs model.  
+**GCP.** BQML/AutoML text, Gemini, Run, DLP.  
+**Worked examples:**
+- **Airbnb / Zendesk-style support routing:** topic model + priority; metric = misroute cost; serving = online classifier at ticket create.
+- **Grammarly-class assist (bounded):** suggest edits with accept/reject logging — eval on held-out essays, not production keystrokes without policy.
+
+#### Family: CV / speech serving
+
+**Problem.** Online or batch perception (OCR, image search, ASR) under latency/cost.  
+**Data.** Images/audio + labels/transcripts.  
+**Labels.** Boxes, transcripts, relevance.  
+**Leakage.** Train/test near-duplicate images; speaker leakage.  
+**Metric.** mAP / WER / Recall@K; serving latency.  
+**Serving.** Batch Dataflow/Run Jobs; online GPU endpoint only if SLA needs it; prefer Vision/Speech APIs when buy > build (9b.4).  
+**Monitor.** Blur/noise drift; WER by locale.  
+**Cost.** GPU-minutes vs API SKU.  
+**GCP.** Vision/Document AI/Speech APIs, custom training optional, Run/GKE, GCS.  
+**Worked examples:**
+- **Dropbox OCR / Document AI path:** buy Document AI unless custom layout demands; metric = field accuracy; monitor = doc-type drift.
+- **Netflix in-video search / Etsy image search:** embedding index; batch embed; online ANN; cost = embed refresh.
+
+#### Family: Marketing / CLV / notify
+
+**Problem.** Who to message, when, and with what offer under fatigue and unsubscribe.  
+**Data.** Purchases, visits, notify history.  
+**Labels.** Convert / CLV proxy; churn.  
+**Leakage.** Using post-campaign purchases as features pre-send.  
+**Metric.** Incremental lift (need holdout); not raw CTR alone.  
+**Serving.** Batch score to BQ → Scheduler/Tasks notify; frequency caps.  
+**Monitor.** Lift decay; unsubscribe rate.  
+**Cost.** Message cost × expected lift.  
+**GCP.** BQML, Composer, Tasks, Experiments (geo/holdout).  
+**Worked examples:**
+- **Lyft / Meta-style notify personalization:** send-time and content; metric = incremental sessions with holdout; serving = batch.
+- **CLV for Northstar offers:** BQML regress CLV; target top decile with holdout.
+
+#### Family: Availability / inventory
+
+**Problem.** Predict whether an item/store is available to promise (ATP).  
+**Data.** Stock movements, vendor lead times, substitutions.  
+**Labels.** Sold-out / found in aisle / canceled for OOS.  
+**Leakage.** Using post-pick outcomes at browse time incorrectly.  
+**Metric.** Precision/recall on OOS; cost of false “in stock.”  
+**Serving.** Online feature of store-item; cache aggressively with TTL.  
+**Monitor.** Surprise OOS rate; regional drift.  
+**Cost.** Cache vs freshness.  
+**GCP.** Feature Store, Run, BQ, Pub/Sub inventory events.  
+**Worked examples:**
+- **Instacart availability:** browse-time probability item is pickable; labels from shopper finds; leakage = using completed-batch info; metric = calibration of availability prob; serving = online store-item features; monitor = found-rate vs prediction; GCP = Feature Store + Run + stream inventory.
+- **DoorDash store-open prediction:** binary open/closed with hours + exceptions.
+
+#### Family: ML platform (Michelangelo ↔ Agent Platform)
+
+**Problem.** Many teams ship models with shared feature, train, serve, monitor paths.  
+**Data.** Feature definitions, pipelines, registries, access control.  
+**Labels.** N/A — platform SLIs: time-to-train, failed deploy rate, skew incidents.  
+**Leakage.** Platform must enforce point-in-time joins as a service.  
+**Metric.** Developer lead time; incident rate; cost per training hour.  
+**Serving.** Shared Feature Store, Registry, Pipelines, standard endpoints.  
+**Monitor.** Platform-level Model Monitoring defaults; quota.  
+**Cost.** Central GPU/TPU pools vs per-team sprawl.  
+**GCP.** Agent Platform (Pipelines, Feature Store, Registry, Experiments, Monitoring), Composer, Ray literacy, Cloud Build CT.  
+**Worked examples:**
+- **Uber Michelangelo:** feature store, DSL/train jobs, serve, measure — map each box to Agent Platform product; Northstar uses a **thin** subset (one pipeline, one registry alias, one monitor).
+- **King playtesting automation (index):** CI-triggered eval jobs — map to Cloud Build + Pipelines CT policy.
+
+---
+
+### Classical zoo (required here — end of 9c only; not 12.S11 dump)
+
+One home for classical models. **Do not** dump S15 Kaldi or full transformer-from-scratch here. Logistic/linear **GD from scratch** is **M.ML**. For each family: objective, assumptions, complexity, failure mode, when simpler wins, scratch vs library. 12.S11 only skip-tests this block.
+
+#### kNN
+- **Objective.** Predict from majority / average of \(k\) nearest under a metric (Euclidean, cosine).
+- **Assumptions.** Local smoothness; meaningful distance; comparable scales.
+- **Complexity.** Naive \(O(n d)\) per query; indexes help approximately.
+- **Failure.** Curse of dimensionality; slow at scale; sensitive to feature scaling.
+- **Simpler wins.** Tiny tabular baselines; debugging embeddings (retrieval sanity).
+- **Scratch vs library.** Scratch distance + vote on a toy; FAISS/Annoy/Vertex Vector Search for production ANN — don’t hand-roll HNSW for Northstar.
+
+#### Linear regression
+- **Objective.** Minimize MSE \(\|Xw-y\|_2^2\) (optionally + L2).
+- **Assumptions.** Approximate linearity; additive noise; features informative.
+- **Complexity.** \(O(np^2)\) closed form / iterative GD \(O(np)\) per epoch.
+- **Failure.** Collinearity; outliers (MSE); non-linear truth.
+- **Simpler wins.** Strong baseline for ETA minutes, CLV proxies.
+- **Scratch vs library.** **Scratch GD in M.ML**; sklearn/BQML after gradient check.
+
+#### Logistic regression
+- **Objective.** Minimize Bernoulli NLL / log-loss; outputs calibrated-ish scores if model is right.
+- **Assumptions.** Linear log-odds; i.i.d.; no severe separation without regularization.
+- **Complexity.** Same order as linear GD per epoch.
+- **Failure.** Uncalibrated under shift; cannot express XOR-style interactions without features.
+- **Simpler wins.** Fraud token score v1; CTR baselines.
+- **Scratch vs library.** **Scratch GD in M.ML**; library/BQML after matching \(\partial\ell/\partial w\).
+
+#### Decision trees
+- **Objective.** Greedy partition to minimize impurity (Gini/entropy) or variance.
+- **Assumptions.** Axis-aligned splits suffice; enough data per leaf.
+- **Complexity.** Train roughly \(O(n p \log n)\) class implementations; depth limits capacity.
+- **Failure.** Overfit deep trees; unstable splits; poor extrapolation.
+- **Simpler wins.** Interpretable policy rules; when interactions are coarse.
+- **Scratch vs library.** Scratch impurity split on 2-D toy; production = library.
+
+#### Forests / boosting (RF, GBM, XGBoost-class)
+- **Objective.** RF: average high-variance trees. Boosting: stagewise minimize loss (derive one stage additive step in words).
+- **Assumptions.** Tabular features dominate; weak learners combine well.
+- **Complexity.** Many trees × depth × rows; training heavier than linear.
+- **Failure.** Leakage amplifies; distribution shift; huge models for tiny gains.
+- **Simpler wins.** When linear + two features already hits the metric floor.
+- **Scratch vs library.** State objective + one boosting step on a toy; then library/BQML boosted trees. No need to reimplement XGBoost.
+
+#### Clustering (k-means et al.)
+- **Objective.** k-means: minimize within-cluster sum of squares; alternate assign/update.
+- **Assumptions.** Spherical clusters, choose \(k\), scale matters.
+- **Complexity.** \(O(n k d)\) per iteration.
+- **Failure.** Wrong \(k\); non-convex shapes; sensitive to init.
+- **Simpler wins.** Segmentation sketches; initialization for mixture models.
+- **Scratch vs library.** Scratch k-means on 2-D Gaussians; BQML k-means when data in BQ.
+
+#### PCA
+- **Objective.** Orthogonal directions of max variance; minimize reconstruction SSE.
+- **Assumptions.** Variance ≈ signal; roughly linear subspace.
+- **Complexity.** SVD \(O(\min(n p^2, p n^2))\) classically; randomized SVD for large.
+- **Failure.** Scaling; interpreting components as causation; heavy tails.
+- **Simpler wins.** Dimensionality reduction before kNN; noise filter.
+- **Scratch vs library.** Derive reconstruction error on 2-D; NumPy SVD; BQML PCA as used.
+
+#### Ranking models
+- **Objective.** Pointwise (regress relevance), pairwise (e.g. logistic on pairs), listwise (e.g. Softmax/ListNet-style — literacy).
+- **Assumptions.** Comparable items in a list; position bias handled for click data.
+- **Complexity.** Pairwise can be \(O(n^2)\) if naive — sample pairs.
+- **Failure.** Optimizing pairwise AUC while product needs calibration; ignoring position bias.
+- **Simpler wins.** Cosine retrieval + linear re-rank before deep LTR.
+- **Scratch vs library.** Scratch pairwise logistic on a 5-item toy (**M.ML** metrics for AUC); library LTR / two-tower after. Full transformers → not here (T-DL / 12.S17).
+
+**Zoo gate:** for a Northstar metric, pick the simplest model that could work; state objective and one failure mode; logistic or linear GD evidence from **M.ML**; no Kaldi / full transformer-from-scratch in this section.
+
+---
+
+**Required Northstar implementations (summary):** ranker (9c.2), ETA (9c.3), fraud-on-tokens (9c.4), RAG (9c.5) — full sections above.  
+**Required family HLDs:** all ten packs above. Appendix M “Other” = index-only.  
+**Classical zoo:** this end-of-9c block only (deduped).
 
 ## Part 10 — Observability, reliability, FinOps
 
 Well-Architected pillars, now that you have a system. Operations Suite is the former Stackdriver video block.
 
 ### 10.0 Google Cloud Observability (full — PCA 6.2)
+
+#### PCA: 6.x Operations excellence (6.1–6.6)
+
+**Guide themes (matrix):** WAF operational excellence pillar; monitoring/logging/profiling/alerting; release management; support; QC; chaos/load. Homes: D0, D4, 10.
+
+| Pillar ask | Prefer | Accept |
+|---|---|---|
+| 6.1 Ops excellence | Runbooks, IaC, gradual change | Heroics |
+| 6.2 Observability | RED + SLO burn + structured logs | Email-only alerts |
+| 6.3 Release | Canary / Cloud Deploy | Big-bang Friday |
+| 6.4 Support | Owned runbooks + escalation | Undocumented tribal knowledge |
+| 6.5 QC | Tests in CI + progressive delivery | “We tested in prod” |
+| 6.6 Reliability drills | Load + chaos + authorized pentest | Hope |
+
+**Scenario prompt:** Alerts email a list nobody reads; releases are weekend all-hands.
+
+**Expected answer shape:** “I pick SLO burn paging + canary releases because Y, I accept Z (alert SKU budget; freeze when fast-burning).”
+
 
 Three budgets stay distinct: **dollar** (0.1 / 10.3), **error** (10.1), **quota** (10.7).
 
@@ -2021,12 +4017,27 @@ Products:
 - **Lab:** Northstar dashboard = GAE tiles + Run + Tasks depth + Scheduler last-run. Alert on 5xx and SLO burn. Uptime check on Cloud Run URL. Python/Go: custom metric + list time series.
 
 ### 10.1 Reliability + SLO / error budget
-- SLI: availability (success/total), latency (p95 checkout).
-- SLO: e.g. 99.9% monthly → error budget 0.1%. Fast-burn vs slow-burn (`select_slo_burn_rate`).
-- Error budget **gates deploys** (DORA): freeze prod if burned.
-- **From scratch:** remaining budget from a CSV of requests. Then Monitoring SLO API / Terraform `google_monitoring_slo`.
+- **SLI examples:** availability = `good/total` (non-5xx / total); latency = fraction of checkouts with p95 ≤ threshold; freshness = order events age.
+- **SLO:** e.g. 99.9% monthly → error budget = 0.1% of events in window.
+- **Burn-rate math (derive):** budget fraction `B = 1 - SLO`. Burn rate `R` = (error rate in window) / B. At R=1 you exhaust the budget exactly at window end; R=14.4 on 1h vs 30d is a common fast-burn page; R≈6 on 6h vs 30d slow-burn. Implement both alerts (`select_slo_burn_rate` or equivalent ratio).
+- Error budget **gates deploys** (DORA): freeze prod if fast-burn open.
+- **From scratch:** CSV of `{ts, ok}` → remaining budget; unit test a synthetic outage that trips fast-burn but not slow-burn (and the reverse). Then Monitoring SLO API / Terraform `google_monitoring_slo`.
 - Regional Cloud Run is already multi-zone. Multi-region: dual Run + global LB + Firestore multi-region.
 - RPO/RTO. Chaos: kill a revision, fail a Pub/Sub push, stall a Tasks queue, miss a Scheduler run.
+
+#### PCA: 4.3 Chaos / pentest awareness
+
+**Guide themes (matrix):** chaos; pentest (authorized). Homes: 7.4, 10.1.
+
+| Activity | Prefer | Accept |
+|---|---|---|
+| Chaos | Kill revision / fail push / stall Tasks in non-prod first | Random prod kill without budget |
+| Security test | Scoped pentest + fix loop | Unscoped scanning of third parties |
+| Gate | Error-budget policy | Ship while fast-burning |
+
+**Scenario prompt:** Someone proposes production chaos on Black Friday without a budget policy.
+
+**Expected answer shape:** “I pick staged chaos tied to error budget because Y, I accept Z (no unsanctioned pentest).”
 
 ### 10.2 Operational excellence
 - DORA metrics. Terraform modules. Environments. Promotion.
@@ -2040,6 +4051,31 @@ Day-zero 0.1 already has a $10 budget. Here you **analyze**.
 - Budget alerts **lag**; pair with Monitoring on consumed API request count (10.4).
 - **From scratch:** extend the 0.1 parser — top-N SKUs, month-end forecast, flag non-Always-Free, unit economics (`$/1k checkout`).
 - **Lab:** export or synthetic CSV. BigQuery (1 TiB free queries) or DuckDB. Python then Go CLI.
+
+**Billing export SQL (required patterns — run on export or synthetic tables):**
+```sql
+-- Top SKUs last 7 days
+SELECT service.description AS service, sku.description AS sku,
+       ROUND(SUM(cost), 4) AS cost
+FROM `billing_export.gcp_billing_export_v1_XXXX`
+WHERE usage_start_time >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
+GROUP BY 1, 2 ORDER BY cost DESC LIMIT 20;
+
+-- Cost by label.service (requires labels on resources)
+SELECT labels.value AS service, ROUND(SUM(cost), 4) AS cost
+FROM `billing_export.gcp_billing_export_v1_XXXX` t, UNNEST(labels) labels
+WHERE labels.key = 'service'
+  AND usage_start_time >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+GROUP BY 1 ORDER BY cost DESC;
+
+-- Idle-ish waste candidates: forwarding rules / static IPs / NAT (filter by sku.description)
+SELECT sku.description, ROUND(SUM(cost), 4) AS cost
+FROM `billing_export.gcp_billing_export_v1_XXXX`
+WHERE REGEXP_CONTAINS(LOWER(sku.description), r'ip|forwarding|nat|load balanc')
+  AND usage_start_time >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+GROUP BY 1 ORDER BY cost DESC;
+```
+Unit economics: join checkout count from your events table → `$ / 1k checkout`. DuckDB may substitute if export exceeds credits.
 
 ### 10.4 Cloud Quotas, consumed APIs, API budgeting
 Quota is a budget equal to money.
@@ -2090,9 +4126,52 @@ Deliverables: HLD deck, LLD pack (OpenAPI + `.proto`, ERD/DDL, sequences, firewa
 ### PCA alignment (v6.1)
 Not a dump of dumps. After capstone:
 - Map every ADR to an exam domain.
-- Four official case studies: Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive — full HLD per case.
+- Four official case studies below — structured HLD each (read the official Google case text first; do **not** invent a fifth case).
 - Practice the exam skill: pick the *Google-preferred managed* option unless a constraint forbids it.
-**Part 11 gates:** same as the spine “initial course complete when,” plus the e2e demo below. Optional ACE if IAM/`gcloud` is still shaky.
+**Part 11 gates:** same as the spine “initial course complete when,” plus the e2e demo. Optional ACE if IAM/`gcloud` is still shaky.
+
+#### Case HLD template (use for all four)
+For each case deliver one page: **Business** → **Constraints** → **Compute / Data / Net / IAM / Ops** → **Trade-offs** → closing line “I pick X because Y, I accept Z.”
+
+#### Altostrat Media — HLD
+- **Business:** Media library (podcasts, interviews, news, documentaries); modernize CMS/engagement with generative AI — recommendations, natural-language interaction, 24/7 self-service; revenue via dynamic pricing/targeted marketing; reliability and cost management are executive priorities.
+- **Constraints:** Already substantially cloud-native (GKE, GCS, BigQuery, Cloud Run functions) with remaining on-prem ingestion/archive; hybrid connectivity required; AI must detect/filter inappropriate content and stay auditable/explainable; storage cost as volumes grow; CI/CD modernization for containers.
+- **Compute:** Keep customer-facing on GKE; event work on Cloud Run functions; Vertex / Conversational Agents / Vision–Video–NL APIs for summaries, metadata, moderation; GKE Enterprise when on-prem+cloud Kubernetes consistency is required.
+- **Data:** GCS media + lifecycle/Autoclass; BigQuery for behavior/consumption analytics; Workflows/Pipelines for enrichment.
+- **Net:** Secure high-performance hybrid (Interconnect primary, HA VPN backup) for ingestion.
+- **IAM / security:** Model Armor + Sensitive Data Protection; Explainable AI / governed endpoints; Binary Authorization on deploy path; IAP where admin UIs exist.
+- **Ops:** Centralize CI/CD (Cloud Build + Cloud Deploy + Artifact Registry); replace email-only alerts with Cloud Monitoring policies; cost dashboards on storage classes.
+- **Trade-offs:** “I pick layering GenAI on the existing GKE/BQ/GCS estate + Autoclass because Y, I accept Z (no big-bang rewrite of working delivery; Interconnect cost vs reliability).”
+
+#### Cymbal Retail — HLD
+- **Business:** Fast-growing online retailer; three tracks — (1) generative catalog/content enrichment, (2) conversational commerce + product discovery, (3) stack modernization; cut call-center staffing and data-center hosting cost; raise conversion.
+- **Constraints:** Mixed on-prem/cloud; MySQL/SQL Server/Redis/Mongo; Kubernetes apps; legacy SFTP/ETL; IVR + human agents; fragmented open-source monitoring; **associates must review** generated content before catalog updates; customer data in virtual-agent flows must meet regulations.
+- **Compute:** Autoscale GKE/Cloud Run commerce services; Conversational Agents replacing IVR; Vertex AI Search for NL discovery; Imagen-class models for image variations.
+- **Data:** Supplier landing on GCS → Vision/NL/Document AI → HITL review store → production DBs; DMS/Datastream into BigQuery; Memorystore for Redis-shaped cache.
+- **Net:** Private paths for data; Armor at public edge; no customer PII on public buckets.
+- **IAM / security:** SDP, SCC, Assured Workloads as needed; least-privilege SAs for enrichment pipeline; no PAN in ML features.
+- **Ops:** Consolidate Grafana/Nagios/Elastic → Cloud Monitoring; progressive delivery for storefront.
+- **Trade-offs:** “I pick Conversational Agents + Vertex AI Search + HITL catalog pipeline because Y, I accept Z (no auto-publish of generated content; migrate DBs with DMS, not weekend hope).”
+
+#### EHR Healthcare — HLD
+- **Business:** SaaS EHR for clinics/hospitals/insurers; replace colo (lease pressure); onboard insurers fast; **≥99.9%** availability for customer-facing systems; healthcare insights/predictions; lower admin cost; reduce latency; regulatory compliance (HIPAA-class via BAA).
+- **Constraints:** Web apps recently containerized; mixed MySQL/SQL Server/Redis/Mongo; **legacy insurer file/API integrations stay on-prem for years**; AD identities; ignored email alerts; hybrid must remain.
+- **Compute:** Regional multi-zone GKE for customer-facing; GKE Enterprise for consistent container ops across environments; avoid over-building multi-region Spanner for a 99.9% ask.
+- **Data:** Cloud SQL HA (+ Memorystore); Pub/Sub + Dataflow for new insurer feeds → BigQuery analytics; DMS for DB moves.
+- **Net:** Dedicated/Partner Interconnect (+ HA VPN backup); no PHI over unmanaged public paths.
+- **IAM / security:** Cloud Identity Federation / AD sync patterns; CMEK where custody requires; VPC-SC for sensitive projects; audit logs retained.
+- **Ops:** Cloud Monitoring/Logging replace ignored email; Cloud Build + Cloud Deploy; capacity via autoscaling + IaC.
+- **Trade-offs:** “I pick regional HA GKE + Cloud SQL HA + Interconnect because Y (meets 99.9% and hybrid), I accept Z (insurer interfaces remain on-prem; not multi-region active-active).”
+
+#### KnightMotives Automotive — HLD
+- **Business:** Global OEM (BEV/hybrid/ICE + autonomous); modernize in-vehicle and shop/buy/service experience in ~5 years; monetize corporate data to fund AI; improve unreliable build-to-order; better dealer/technician tools.
+- **Constraints:** Largely on-prem + some multi-cloud; outdated mainframe supply chain + ERP; fragmented vehicle codebases; **dealers have no hardware budget**; rural coverage gaps; past breaches; **EU data protection** for autonomous platform; Cloud IoT Core is retired.
+- **Compute:** GKE Enterprise for gradual hybrid modernization; Cloud Run/App Engine + IAP for **cloud-hosted** dealer portal; Vertex + accelerators (Hypercomputer/TPU as needed) for AV training/simulation — not a one-step mainframe rewrite.
+- **Data:** Partner MQTT → Pub/Sub → Dataflow → Bigtable (telemetry) + BigQuery/Dataplex (governed monetization); Apigee for partner/dealer APIs.
+- **Net:** Network Connectivity Center; Interconnect/VPN to plants; edge buffering for offline-tolerant vehicles.
+- **IAM / security:** SCC, SDP, CMEK, Binary Authorization for vehicle software supply chain; Assured Workloads + location org policies for EU.
+- **Ops:** Phased waves; Apigee façades in front of mainframe/ERP; SLOs on dealer portal and ingestion lag.
+- **Trade-offs:** “I pick Pub/Sub/Dataflow/Bigtable + governed BQ + cloud dealer portal + Apigee façades because Y, I accept Z (no dealer appliances; no IoT Core; no big-bang ERP rewrite).”
 
 ### Part 11b — Control-plane capstone (after Northstar v1)
 
@@ -2102,21 +4181,21 @@ Second integration, not a replacement for Northstar. Do not start until Northsta
 
 **Flow:** upload artifact → registry → build request → worker build/deploy → registry discover → gateway route → router shortlist → model pick → chat logged → traces.
 
-| Phase | Output |
-|---|---|
-| P0 | Go monorepo, dev loop, tooling |
-| P1 | Shared config, secret-safe logs, traces, error model, hardened servers/clients, ordered middleware |
-| P2 | SQL auth/audit schema, tenant constraints, migrations, transactions, backup invariants |
-| P3 | Handlers, repositories, password/OIDC, sessions, JWT validation, CSRF/CORS, idempotency, pagination |
-| P4 | Registry + gateway identity, scoped credentials, route authorization, health, stale cleanup |
-| P5 | Embeddings behind a contract, shortlist/rerank, structured model pick, offline eval, tenant/data boundaries, tool guardrails |
-| P6 | Authenticated history ingest, object/tenant/field authz, append-only audit, retention |
-| P7 | Queue/stream worker, short-lived identity, provenance, deploy/rollback, idempotent consumers |
-| P8 | CLI, device/browser login, least-privilege commands, no credential leakage |
-| P9 | Authorized agent protocol, card validation, per-tool policy, replay control, stream limits |
-| P10 | SLOs, dashboards, load/abuse/fuzz/race, secret scans, key rotation, backup/restore, incident, **ORR** |
+| Phase | Output | Acceptance tests (how) | GCP mapping |
+|---|---|---|---|
+| P0 | Go monorepo, dev loop, tooling | `go test ./...`; `gofmt`/`vet` clean; `make run` boots; module graph pinned | Cloud Shell / local; Artifact Registry later |
+| P1 | Shared config, secret-safe logs, traces, error model, hardened servers/clients, ordered middleware | Logs redaction test (secret patterns fail CI); timeouts on all HTTP clients; trace ID propagates; middleware order test | Cloud Logging; Cloud Trace; Secret Manager for config refs |
+| P2 | SQL auth/audit schema, tenant constraints, migrations, transactions, backup invariants | Migration up/down; tenant isolation SQL test; tx rollback test; backup restore dry-run script | Cloud SQL / Postgres Docker; GCS backup bucket |
+| P3 | Handlers, repositories, password/OIDC, sessions, JWT validation, CSRF/CORS, idempotency, pagination | Authz matrix table tests; CSRF negative; JWT alg confusion rejected; idempotent POST; cursor page stable | Identity Platform / IAP; Cloud Run services |
+| P4 | Registry + gateway identity, scoped credentials, route authorization, health, stale cleanup | Route deny-by-default; stale artifact GC; `/healthz` fails if dependency down | Artifact Registry; API Gateway or IAP+URL map |
+| P5 | Embeddings behind a contract, shortlist/rerank, structured model pick, offline eval, tenant/data boundaries, tool guardrails | Eval set score floor; cross-tenant retrieve fails; tool allowlist test; schema-validated pick | Vertex embeddings / Model Garden; VPC-SC as needed |
+| P6 | Authenticated history ingest, object/tenant/field authz, append-only audit, retention | Append-only trigger/test; field-level deny; retention job deletes only expired | Firestore/SQL; GCS objects; DLP optional |
+| P7 | Queue/stream worker, short-lived identity, provenance, deploy/rollback, idempotent consumers | Duplicate message → one effect; rollback revision test; provenance attestation present | Cloud Tasks / Pub/Sub; Cloud Build; Cloud Run Jobs |
+| P8 | CLI, device/browser login, least-privilege commands, no credential leakage | CLI help; creds never printed; command authz tests | `gcloud` patterns; WIF for automation |
+| P9 | Authorized agent protocol, card validation, per-tool policy, replay control, stream limits | Replay rejected; tool policy deny; stream size cap; AgentCard schema validate | Cloud Run JSON-RPC; IAM + app authz |
+| P10 | SLOs, dashboards, load/abuse/fuzz/race, secret scans, key rotation, backup/restore, incident, **ORR** | Burn-rate alert config tested; `go test -race`; fuzz harness; secret scan clean; restore drill recorded | Cloud Monitoring dashboards; SCC; Part 7 runbooks |
 
-**ORR must show, not claim:** data-flow and trust-boundary diagram; abuse register; authorization matrix; identity propagation with no network-location trust; deny-by-default tests; session/JWT fixation/replay/revocation; bounded inputs; no secrets in logs/images/prompts; `go test` + race + fuzz; alerts with owned runbooks; rehearsed key rotation, rollback, restore.
+**ORR must show, not claim:** data-flow and trust-boundary diagram; abuse register; authorization matrix; identity propagation with no network-location trust; deny-by-default tests; session/JWT fixation/replay/revocation; bounded inputs; no secrets in logs/images/prompts; `go test` + race + fuzz; alerts with owned runbooks; rehearsed key rotation, rollback, restore. Each P0–P10 row above is incomplete without its acceptance column passing in CI.
 
 **Spec inventory (required, GCP-mapped). Explicitly dropped:** n8n, NANDA, Kong plugin YAML, Mongo as SoR — those were another stack; concepts (workflow credentials, agent cards, gateway plugins) map as follows.
 
@@ -2227,7 +4306,7 @@ Each Part’s ADR or lab write-up must **use** (cite a section, not a vibe) at l
 | 4 | RFC 7519/8725 or NIST 800-63B or ASVS — one control |
 | 6 | Kurose or Tanenbaum — one mechanism (window, routing, or DNS) |
 | 8 | Primer building block + GCP product in the same ADR |
-| 9b–9c | Official BQML/Vertex/Agent Platform doc for the product you chose; M.ML derivation in the notebook |
+| 9b–9c | **PMLE official exam guide** (as of 1 Jun 2026 — Agent Platform, BQML, Model Garden) **must-cite** in the ADR/lab; plus official BQML/Agent Platform/Model Garden doc for the product you chose; **M.ML** derivation in the notebook |
 | 10 | Google SRE — SLI/SLO or toil |
 | 11 | PCA exam guide case + Well-Architected pillar |
 
@@ -2305,6 +4384,8 @@ Use the owner’s bibliography; chapters are entered only when that owner is tau
 
 ## PCA v6.1 coverage matrix (every official bullet has a home)
 
+**Index only** — teaching text is the `#### PCA: …` blocks under owner parts (not duplicated here). Use this table to navigate.
+
 | Exam | Bullet | Course home |
 |---|---|---|
 | 1.1 | Business requirements, NFR, BCP, cost, integration, data movement, trade-offs, build/buy, KPI/ROI, security, observability | F2, 0.4, 8, 10, 11 |
@@ -2326,7 +4407,7 @@ Use the owner’s bibliography; chapters are entered only when that owner is tau
 | 5.2 | Cloud Shell/Code, gcloud/gsutil/bq, emulators, Terraform, API clients | F4, 0.2, 2.7, all labs |
 | 6.1–6.6 | WAF ops pillar, monitoring/logging/profiling/alerting, release mgmt, support, QC, chaos/load | D0, D4, 10 |
 
-Case studies (required reading before Part 11): Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive.
+Case studies (required reading before Part 11): Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive. — structured HLDs live under Part 11 PCA alignment (four only).
 
 ---
 
@@ -2431,6 +4512,26 @@ No teaching content is delivered until you say start.
 ## Appendix M — ML system-design case studies (complete catalog)
 
 Source: [Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies) (309 studies, 84 companies). Teach **Part 9c** families; this appendix is the full index. One-liners are `Company — description (year)`.
+
+
+**Family → Part 9c teaching map** (teach at the owner; this appendix stays the 309 one-liner index — do **not** paste article text into lessons):
+
+| Appendix M heading | Teach under | Notes |
+|---|---|---|
+| Recommend / personalize / feed | **9c.2** | Northstar ranker; Netflix / Instacart-class packs |
+| Search / rank / ads | **9c.2** | LTR / ads family pack |
+| Forecast / ETA / demand | **9c.3** | Northstar ETA; Uber DeepETA pack |
+| Fraud / trust & safety | **9c.4** | Northstar fraud-on-tokens; Stripe Radar pack |
+| LLM / genAI apps | **9c.5** | Northstar RAG slice; portfolio → **12.S17** |
+| NLP / text / support | **9c.5** (+ family pack) | Support routing / assist; not a second RAG tutorial |
+| CV / video / OCR | **9c.6** | Buy Vision/Document AI unless constraints force custom |
+| Speech / audio | **9c.6** | Serving literacy; T-SIGNAL when opened |
+| Marketing / churn / CLV / notify | **9c family pack** (see 9c) | Batch BQML + holdout lift |
+| Availability / inventory | **9c family pack** | Instacart availability worked example |
+| ML platform / infra | **9c.7** | Michelangelo ↔ Agent Platform |
+| Other (…) | **Index-only** | Attach a one-liner to a family if it becomes a Northstar force |
+
+Features/labels/skew for every family → **9c.1**. Low-code product pick → **9b.4**. Classical models → **end of 9c** zoo only.
 
 ### Recommend / personalize / feed (65)
 
@@ -2801,3 +4902,5 @@ Unlock each module at the **owner** below. Artifact is required when that owner 
 | **G20** | Ledger, idempotent charge, webhook | Types + tests with Stripe | Part 5 |
 
 **G-CS (discrete):** with F1 (counterexample, loop invariant) and 8.1 (asymptotics, hash-ring invariant). Not a separate part.
+
+Every **Owner** cell above is a real `####` / `###` after this expansion — unlock the Go artifact when that owner is taught; do not treat Appendix G as a second track. Appendix M stays an index (no article text added here).
