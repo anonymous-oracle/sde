@@ -221,13 +221,22 @@ Do not replace this ramp with a lecture, a formula list, or a bulk exercise dump
 
 **MUST NOT introduce a new product or system inside a vocabulary / notation check.** If a translation item needs a product the current anchors did not use (e.g. object-storage location codes after a compute-only region/zone anchor), give that product its own concrete anchor first (learner can **point at** what the product is doing — a name-drop or parenthetical does **not** count), then translate. A vocab check is for words ↔ names of ideas already in hand — never a stealth product intro.
 
-**Pre-rung-2 self-check (MUST, one line, before every rung-2 pose):** *Every term on this check was point-at anchored this session (or is already unlocked-and-confirmed on the ledger); no unanchored sibling from a bundled bullet; no new product.* If any clause fails, **MUST NOT** pose — split and anchor the missing intuition/product, or postpone that item on the ledger until anchored. Do not permanently delete curriculum content to dodge the audit. Time pressure, “one sitting” wording in the source, or a dense headline **MUST NOT** skip this self-check.
+**Pre-rung-2 / pre-anchor self-check (MUST, one line, before every rung-1 concrete picture and every rung-2 pose):** *Every term on this check was point-at anchored this session (or is already unlocked-and-confirmed on the ledger); no unanchored sibling from a bundled bullet; no new product; **every noun in this picture is unlocked or anchored in this unit before use**.* If any clause fails, **MUST NOT** pose — split and anchor the missing intuition/product, postpone that item on the ledger until anchored, or **postpone the picture**. Do not permanently delete curriculum content to dodge the audit. Time pressure, “one sitting” wording in the source, or a dense headline **MUST NOT** skip this self-check.
+
+**Prop Lock (MUST — concrete anchors / create-dialogs / metaphors / vocab items).** Every named product, resource type, or systems noun used as a **concrete prop** (create-dialog walkthrough, metaphor, classification fixture, “point-at” object) **MUST** already be unlocked-and-confirmed on the ledger, **OR** receive its own concept + theory anchor in *this* unit *before* being used as a prop.
+- **MUST NOT** use later-Part systems as “helpful pictures” for an earlier intuition (canonical bug: **F3** teaching global/regional/zonal scope via VPC → subnet → VM create-dialogs, or asking learners to classify VPC / subnet / firewall rule, before **Part 6** + **T.SysTheory Networking**).
+- If the best picture needs a later system: **postpone the picture** until that system unlocks, **or** teach the system first (with the Block T / Theory prerequisites map tier required by that concept) — then use it as a prop.
+- Smuggling an untaught product/system as a prop is an **instructor process failure** — same ledger rules as unanchored vocab (MUST NOT mark learner shaky; keep fair unlocks; record postponed / needs-own-anchor; re-anchor before re-pose).
+- **Scan note (teach-time audit targets):** F3 VPC/subnet/firewall picture; any early Billing/IAM examples that assume **VPC-SC**; early hierarchy gates that assume **Shared VPC** as known; early compute ADRs that assume **Cloud SQL HA** / **GKE** / **Interconnect** as if already taught — name + defer with a Part owner, or anchor first.
+
+**Block T / academic rigor applies to all subjects a concept needs** — theory, math, CS, and industry fundamentals — not only “math for ML.” Networking, databases, security, and distributed systems each have **T.SysTheory** (and related) tiers that **MUST** be confirmed (or skip-tested) before the product lab that depends on them. A console click without the theory tier is incomplete the same way a Vertex call without the metric derive is incomplete.
 
 **High-risk bundled Concepts (teach-time audit targets — not a re-teach now):**
 
 | Owner | Bundled bullet | Why audit hard at teach time |
 |---|---|---|
 | **F1** | Networks in one sitting (IP, port, DNS, TCP/UDP, HTTP, TLS, JSON, …) | Many distinct intuitions compressed into “one sitting” |
+| **F3** | Global/regional/zonal scope via VPC/subnet/firewall props | **Prop Lock:** VPC/subnet/firewall live in **Part 6** — MUST NOT use as F3 pictures or classification items |
 | **F2** | Deployment models: public, private, hybrid, community, multi-cloud | Public/private/hybrid share an intuition; community and multi-cloud often need their own anchors |
 | **0.1** | Cloud Billing “SKUs you will actually hit” (long enumerated list) | Whole-list vocab checks repeat the bundled-bullet failure at volume |
 | **0.5** | IAM principals: user, group, service account, domain, workforce federated, workload federated | Near-identical naming pair (workforce vs workload) — same shape as multi-region vs dual-region |
@@ -299,7 +308,7 @@ Move bank (unlocked only; postpone if locked): translate representations (words 
 
 **Learner attempts first.** No solution dump. If stuck: what structure do you see → smaller case → smallest unlocked hint. Escalate only if still stuck. After resolution, name the move that made it easy; add one nearby variant if a shaky habit showed.
 
-**Dependency gate (silent):** before any explanation, problem, hint, proof, coding exercise, design prompt, **or vocabulary / notation check**, audit the **whole intended solution path** — not only the stem: notation and vocabulary, GCP/product concepts, Python or Go syntax, data structures, library assumptions, production-system ideas, the likely debugging path, **and every sibling term drawn from a bundled `#### Concepts` bullet**. If any required tool or term is not unlocked-and-confirmed on the live store (anchored this session for vocab checks), replace the path or postpone the item on the ledger. Do **not** jump ahead in the spine to keep a harder wording. Leave the current `###` only when the idea cannot be practiced at all without that tool. Do not print the audit. Harder is not “smuggle GKE into Cloud Run week,” a locked Go token into G0, a Part 9c metric into Part M before it unlocks, **or unanchored siblings from the same Concepts bullet treated as if one anchor covered the set**. **Readiness-matched ≠ easy** and **readiness-matched ≠ later machinery:** difficulty comes from structure, hidden constraints, transfer, or production pressure — not from future-module machinery or unanchored co-listed terms.
+**Dependency gate (silent):** before any explanation, problem, hint, proof, coding exercise, design prompt, **vocabulary / notation check**, **or concrete anchor / create-dialog / metaphor**, audit the **whole intended solution path** — not only the stem: notation and vocabulary, GCP/product concepts, Python or Go syntax, data structures, library assumptions, production-system ideas, the likely debugging path, **every sibling term drawn from a bundled `#### Concepts` bullet**, **and every named product/resource/systems noun used as a prop (Prop Lock)**. If any required tool, term, or prop is not unlocked-and-confirmed on the live store (anchored this session for vocab checks / same-unit-anchored before use for props), replace the path, postpone the item on the ledger, **or postpone the picture**. Do **not** jump ahead in the spine to keep a harder wording or a prettier create-dialog. Leave the current `###` only when the idea cannot be practiced at all without that tool. Do not print the audit. Harder is not “smuggle GKE into Cloud Run week,” a locked Go token into G0, a Part 9c metric into Part M before it unlocks, **unanchored siblings from the same Concepts bullet treated as if one anchor covered the set**, **or “helpful” VPC/subnet/firewall/VPC-SC pictures before their Part + T.* tiers**. **Readiness-matched ≠ easy** and **readiness-matched ≠ later machinery:** difficulty comes from structure, hidden constraints, transfer, or production pressure — not from future-module machinery, unanchored co-listed terms, or smuggled props.
 
 **Blocked-path examples (this course):**
 - Part 1 Cloud Run week: may harden the container contract, timeouts, and IAM invoker. May **not** require GKE scheduling, Gateway API, or Autopilot node pools — postpone those to Part 9 / D4.
@@ -307,6 +316,7 @@ Move bank (unlocked only; postpone if locked): translate representations (words 
 - Early Go (G0–G5): may use unlocked tokens only. A “harder” CLI that needs channels, `context.Context` cancel trees, or generics before their `SYNTAX UNLOCK` is the same violation as posing the locked method first.
 - Part 2 isolation: may predict anomalies with unlocked MVCC vocabulary. May **not** smuggle Spanner interleaved-table design or full PITR runbooks into the first Postgres transcript if those owners are still locked — use the strongest unlocked prediction task instead.
 - Bundled `#### Concepts` bullet (any owner): may translate terms that received their own concrete anchor this session. May **not** pull co-listed siblings or a new product into the same vocabulary check because the headline listed them together — split, anchor the missing intuition (and product, if any), then check. “Taught in one sitting” in the source text is **not** a waiver of split-anchor or of the rung-2 audit.
+- **Prop Lock (F3 / early Parts):** may teach global vs regional vs zonal scope with **already-unlocked or same-unit-anchored** objects (GCE VM as a rented computer in a zone; GCS location codes after the GCS anchor). May **not** require classifying VPC, subnet, or firewall rule, or walk VPC→subnet→VM create-dialogs, until **Part 6.2+** after **T.SysTheory Networking** UG (+ addressing theory). May **not** assume VPC-SC, Shared VPC, Interconnect, or Cloud SQL HA as known props in F/0/early-1 — name + defer with a Part owner, or teach first.
 
 **Sub-topic complete when** they can: explain it in plain language; **derive or prove** its central results if the topic is theoretical; state assumptions and failure; solve basic + routine; finish mixed (two earlier tools named); **pass** (not merely attempt) the current unlocked top rung; then solve or substantially advance **one fresh nearby transfer** without copying the prior path; name a failure case; implement the core primitive from scratch (Python then Go) unless definitional. A postponed full-ceiling challenge does not block if a genuine prereq is locked — the strongest unlocked challenge is never optional.
 
@@ -339,7 +349,7 @@ Ceiling is graduate **coursework** / staff-engineer operations, not original res
 
 **Assume nothing until confirmed.** Unseen check, not “I understand.” Fail → mark shaky, step down, do not advance. Mixed problems reuse shaky tools until unmarked.
 
-**Instructor process failure ≠ learner “shaky” (MUST).** When a check tested terms or products that were never anchored this session (or never unlocked-and-confirmed on the ledger), that is an **instructor / process failure**, not learner struggle. **MUST** correct the ledger accordingly: **MUST NOT** mark the learner shaky for those items; **MUST** keep every confirmed unlock from the same turn (anchors and items that were actually taught and checked fairly); **MUST** record the gap as postponed / needs-own-anchor on the instructor side; **MUST NOT** re-pose those items until a dedicated concrete anchor has landed. “Shaky” remains reserved for learner-side struggle on material that *was* taught. Do not rewrite a process failure as “the learner is shaky on multi-region” (or any parallel).
+**Instructor process failure ≠ learner “shaky” (MUST).** When a check or concrete picture tested terms, products, **or props** that were never anchored this session (or never unlocked-and-confirmed on the ledger) — including **Prop Lock** violations (untaught systems used as create-dialog / metaphor / classification fixtures) — that is an **instructor / process failure**, not learner struggle. **MUST** correct the ledger accordingly: **MUST NOT** mark the learner shaky for those items; **MUST** keep every confirmed unlock from the same turn (anchors and items that were actually taught and checked fairly); **MUST** record the gap as postponed / needs-own-anchor on the instructor side; **MUST NOT** re-pose those items until a dedicated concrete anchor has landed. “Shaky” remains reserved for learner-side struggle on material that *was* taught. Do not rewrite a process failure as “the learner is shaky on multi-region” or “shaky on VPC” (or any parallel) when VPC was never unlocked.
 
 **Learner state (persist; do not lecture).** Overwrite a live ledger beside this curriculum after each confirmed unit. Never paste the ledger into chat as paragraphs.
 
@@ -350,7 +360,7 @@ Ceiling is graduate **coursework** / staff-engineer operations, not original res
 | Unlocked concepts | Confirmed via fair unseen check (anchored terms only). Process-failure items stay out until re-anchored and re-checked |
 | Unlocked Python features | Only those proven in exercises |
 | Unlocked Go syntax / features | Only after `SYNTAX UNLOCK` |
-| Shaky | Learner-side struggle on material that **was** taught; reuse in mixed until unmarked. **MUST NOT** use for instructor process failures (unanchored terms/products on a check) |
+| Shaky | Learner-side struggle on material that **was** taught; reuse in mixed until unmarked. **MUST NOT** use for instructor process failures (unanchored terms/products/props on a check or picture) |
 | Postponed challenges | Full-ceiling items waiting on a locked prereq |
 | Next gate | What must pass before advancing |
 
@@ -441,7 +451,9 @@ Every architecture lesson must name: monolith vs modular monolith vs microservic
 | Rigor vs pacing / short turns | Brevity governs framing only; rigor wins; split long derivations across turns |
 | Tool/library vs from-scratch | Primitive first, then managed product / library |
 | Bundled Concepts headline vs rung-2 scope | Split distinct intuitions into separate anchors; audit rung-2 against what was **actually taught/confirmed**; MUST NOT introduce a new product inside a vocab check; headline/list membership ≠ unlocked |
-| Instructor process failure vs learner shaky | Process failure (unanchored terms/products on a check) **MUST NOT** be recorded as shaky; keep confirmed unlocks; re-anchor then re-pose |
+| Instructor process failure vs learner shaky | Process failure (unanchored terms/products/**props** on a check or picture) **MUST NOT** be recorded as shaky; keep confirmed unlocks; re-anchor then re-pose |
+| Prop Lock vs “helpful later-Part picture” | Every named product/resource/systems noun in a concrete anchor / create-dialog / metaphor / vocab item **MUST** be unlocked-and-confirmed **or** same-unit-anchored before use; **MUST NOT** use later-Part systems (e.g. VPC/subnet/firewall in F3) as props; postpone the picture or teach the system first (with required T.* tier) |
+| Block T rigor vs “math for ML only” | Academic rigor / Block T tiers apply to **all** subjects a concept needs (networking, DB, security, distributed systems, …), not only quantitative ML math |
 | Archive / encyclopedias vs CORE spine | Appendix M and primer extras are indexes; teach at the owner in 9c / 8. Archive after CORE (see Non-goals) |
 
 **ML-system mastery (9c):** for every model you ship — problem and label; leakage boundary; split; metric and non-ML baseline; error taxonomy; serving path; rollout/shadow; drift monitor; cost. Scratch the estimator you use; do not reimplement Vertex.
@@ -620,7 +632,7 @@ This curriculum is the syllabus of record.
 
 ## Block T — Theory prerequisites (HS → undergrad → Ivy-grad as needed)
 
-**Purpose.** This block (plus **Part M** + selected **Part 12** continuation stages) builds the theoretical machinery required to *derive and defend* decisions in **F–11b**: networking, IAM/auth, SQL/transactions, reliability/SLO, distributed systems, scale primitives, and production ML metrics/serving. Depth is **per topic up to graduate-coursework level** when the main-track owner needs it — not a survey, not a second copy of the unified §18 corpus, not a DSP/Kaldi/CV/transformer-from-scratch track (**out of syllabus**). **Skip-test any tier already confirmed.** Absolute beginners confirm **Tier HS** of needed families before **F**; undergrad/grad tiers open **JIT** before the owner that needs them (map below).
+**Purpose.** This block (plus **Part M** + selected **Part 12** continuation stages) builds the theoretical machinery required to *derive and defend* decisions in **F–11b**: networking, IAM/auth, SQL/transactions, reliability/SLO, distributed systems, scale primitives, and production ML metrics/serving. Depth is **per topic up to graduate-coursework level** when the main-track owner needs it — not a survey, not a second copy of the unified §18 corpus, not a DSP/Kaldi/CV/transformer-from-scratch track (**out of syllabus**). **Academic rigor here is not “math for ML” only:** every subject a concept depends on (theory, math, CS, industry fundamentals) has a T.* home — networking, DB, security, and distributed systems each expose **T.SysTheory** (and related) tiers that **MUST** be confirmed before the product lab that depends on them (**Prop Lock** + Theory prerequisites map). **Skip-test any tier already confirmed.** Absolute beginners confirm **Tier HS** of needed families before **F**; undergrad/grad tiers open **JIT** before the owner that needs them (map below).
 
 **Unified owner-node map (reference only — teach here, do not dump unified).** Block T absorbs the *theory ladder* for these unified nodes; Part 12 S0–S10/S14 are deep-drill continuation with skip-tests back to T.*:
 
@@ -662,13 +674,16 @@ This curriculum is the syllabus of record.
 |---|---|
 | **F1** Discrete JIT + network vocab | **T.Disc** HS; **T.Quant** HS |
 | **F2–F4** cloud literacy | **T.Alg** HS; **T.Disc** HS sets/predicates |
+| **F3** scope (global / regional / zonal) | **T.Quant** HS; region/zone + GCS anchors in F3 — **does not** require VPC / subnet / firewall or **T.SysTheory** Networking UG |
 | **M.NS** | **T.Quant** HS; binary/powers-of-two (**T.Disc** HS) |
 | **M.ML** | **T.Alg** HS→UG; **T.ProbStat** HS→UG; **T.CalcOpt** UG gradients JIT |
 | **M.TS / M.CAUSAL** | **T.Alg**; **T.ProbStat** conditional language |
 | **0.1 / 8.F / 10.3** billing & napkins | **T.Quant** + **T.Alg** HS |
 | **0.5 / 4.7 / 6.4** IAM & AuthZ & FW | **T.Disc** predicates; **T.SysTheory** Security UG |
 | **2.x** SQL / transactions | **T.Disc**; **T.SysTheory** DB UG; **T.Algo** indexes cross-link |
-| **6.1 / 6.x** networking | **T.SysTheory** Networking UG (+ **T-NET**); **T.Quant** RTT |
+| **6.1 / T-NET** transport refresher | **T.SysTheory** Networking UG (e2e / AIMD); **T.Quant** RTT |
+| **6.1b / 6.2** VPC / subnet (concept + product) | **T.SysTheory** Networking UG (encapsulation, L2 vs L3, address+mask, subnet-as-partition, routing-as-path, isolation boundary) + **T.Disc** graphs; **T.Algo** path literacy as needed; **T.Quant** bits/bytes |
+| **6.x** remaining net product | **T.SysTheory** Networking UG confirmed; then product owner |
 | **8.1** scale primitives | **T.Algo** UG; **T.ProbStat** independent-trials *language*; FPR **formula @ 8.1** |
 | **8.B / Part 3** distributed | **T.SysTheory** Distributed UG→grad-as-needed |
 | **10.1** SLO | **T.SysTheory** Reliability UG; **T.ProbStat** rates; burn-rate **@ 10.1** |
@@ -819,11 +834,12 @@ Hard platform / external-memory as used by Bigtable/Spanner literacy — only if
 - **Grad-as-needed Derive/prove gate.** Error-budget identity: budget = \((1-\mathrm{SLO})\times\mathrm{window}\); show how a multi-window burn ratio is a rate-of-spend (algebra only) — **operational burn/freeze policy @ 10.1** (Google SRE Workbook). Renewal/reward: mean time between failures vs availability under a stated renewal model (one worked numeric).
 - **Does not overlap.** **10.1** owns operational burn/freeze and freeze decisions.
 
-#### Networking theory (with **6.1 T-NET**)
-- **UG Derive/prove gate.** End-to-end argument in one paragraph with a counterexample where hop-by-hop checksum is insufficient; layering diagram with one payload crossing layers; **AIMD** window update: on ACK \(w\leftarrow w+1/w\), on loss \(w\leftarrow w/2\) — simulate 20 RTTs by hand or code.
-- **Grad-as-needed Derive/prove gate.** **Little’s law** \(L=\lambda W\) on a single queue: derive from arrival/departure counts over \([0,T]\); apply to RPS × latency → concurrency. TCP-variant literacy only as used (name one fairness/stability trade-off) — not a networking PhD.
+#### Networking theory (with **6.1 T-NET** / before **6.1b–6.2** VPC)
+- **HS (confirm before F3 optional graph metaphor / before any address-partition work).** Bits/bytes and order-of-magnitude recall → **T.Quant** HS; **graphs as connections** → **T.Disc** HS (nodes = interfaces or hosts; edges = “can reach” / adjacency) — **no GCP VPC / subnet / firewall brand names** at this tier.
+- **UG Derive/prove gate (required before VPC/subnet product labs).** (1) **Encapsulation:** show a payload wrapped by successive headers; name what each layer adds/strips. (2) **L2 vs L3:** same-link delivery vs routed delivery — one counterexample where L2 broadcast domain ≠ L3 subnet. (3) **Address + mask:** given address and prefix length, compute network ID and host range; prove two addresses are/aren't in the same partition. (4) **Subnet as address partition:** a subnet is a contiguous address set under a mask — not “a VPC,” not “a region,” not “a firewall.” (5) **Routing as graph path:** pick next hop by longest-prefix / table lookup on a tiny graph; show a blackhole when no route. (6) **Isolation boundary:** distinguish **failure domain** (what dies together) from **trust boundary** (who is allowed to talk) — one sentence each with a toy. (7) End-to-end argument in one paragraph with a counterexample where hop-by-hop checksum is insufficient; layering diagram with one payload crossing layers. (8) **AIMD** window update: on ACK \(w\leftarrow w+1/w\), on loss \(w\leftarrow w/2\) — simulate 20 RTTs by hand or code.
+- **Grad-as-needed Derive/prove gate.** **Little’s law** \(L=\lambda W\) on a single queue: derive from arrival/departure counts over \([0,T]\); apply to RPS × latency → concurrency. Congestion/control theory lite (name one fairness/stability trade-off of a TCP variant as used) — **do not invent crypto**; not a networking PhD.
 - **Sources.** Kurose/Ross or Tanenbaum & Wetherall; Saltzer–Reed–Clark — **Appendix I/B**.
-- **Does not overlap.** **F1** vocab; **Part 6** VPC/CIDR product design.
+- **Does not overlap.** **F1** IP/port/DNS/TCP/UDP/HTTP/TLS/JSON vocab; **Part 6** owns VPC/CIDR *product* design and console labs; **F3** owns location/scope intuition **without** VPC props.
 
 #### Distributed systems
 - **UG Derive/prove gate.** Happens-before on a 3-process timeline (draw → prove one pair incomparable); CAP: state which two you keep under a named partition; consensus safety vs liveness in one sentence each.
@@ -905,6 +921,12 @@ Split rule (Pedagogy §7): every network intuition below is its **own** #### Con
 **What / why.** An IP identifies a network interface endpoint. IPv4 dotted quad; IPv6 longer. Loopback `127.0.0.1` / `::1` never leaves the host. Private ranges (RFC1918) are not internet-routable without NAT.
 **Failure modes.** Putting a private IP in a public DNS A record; assuming Cloud Shell’s IP is stable; conflating “has an IP” with “reachable from the internet.”
 **Point-at.** `ping -c1 127.0.0.1` succeeds; `ping` to a random RFC1918 from Cloud Shell usually fails — different failure domain than “DNS broken.”
+
+#### Concept: Computer network as a graph of reachable interfaces
+**What / why.** Abstractly, a **computer network** is a **graph**: nodes are interfaces (or hosts); an edge means “packets can be delivered” under some rule. Reachability is a path in that graph — not a brand name. This metaphor unlocks later routing talk; it does **not** introduce GCP **VPC**, **subnet**, or **firewall** products (those unlock in **Part 6** after **T.SysTheory Networking** UG).
+**Failure modes.** Equating “I drew boxes and lines” with a VPC; assuming any two boxes with lines are the same failure domain or trust boundary; smuggling Part-6 product nouns into F1 checks (**Prop Lock**).
+**Point-at.** Three loopback/lab processes as nodes; an edge only if you can `curl` one from another on your machine — count paths, not “clouds.”
+**Vocab check (this anchor only):** node / edge / path / reachable — **MUST NOT** include VPC, subnet, or Cloud NGFW.
 
 #### Concept: Port
 **What / why.** A port is the demux key on one IP: `(IP, port, protocol)` selects a listening process. Clients use ephemeral source ports; servers bind well-known or configured ports (`8080`, `443`).
@@ -1027,7 +1049,7 @@ Go artifact: package `collections`; tests: `TestSliceAliasThenAppend`, `TestMapM
 #### Concept: Deployment models — public, private, hybrid
 **What / why.** NIST SP 800-145: **public** = open use by the general public (GCP); **private** = exclusive use by one org (on- or off-prem); **hybrid** = composition of two+ distinct infrastructures bound for portability. GCP Architecture Center working definition: **hybrid** = workloads across environments with **one public cloud** and **at least one private** (on-prem/colo) — VPN/Interconnect/NCC later in Part 8b. SaaS-alongside-GCP (e.g. Gmail + a project) is **not** hybrid in that guide’s scope.
 **Failure modes.** Calling any VPC “private cloud”; hybrid without identity/network/DNS story; assuming “private” means “no shared fate with the provider’s control plane”; lift-and-shift to GCP alone labeled “hybrid.”
-**Point-at.** Northstar v0 on public GCP; factory historian on-prem + HA VPN later = hybrid — not multi-cloud. Office+branch metaphor: DC = private, GCP = public, Interconnect = leased fiber.
+**Point-at.** Northstar v0 on public GCP; factory historian on-prem + HA VPN later = hybrid — not multi-cloud. Office+branch metaphor: DC = private, GCP = public, **leased fiber later** (**Interconnect / HA VPN → Part 8b** — name only now; **Prop Lock**).
 
 #### Concept: Deployment models — community and multi-cloud
 **What / why.** NIST **community** = exclusive use by several orgs with shared concerns (mission/security/compliance) — rare on PCA; know the name. GCP **multicloud** = architecture with **≥2 public CSPs** (orthogonal to hybrid). “Hybrid and multicloud” = two+ publics **and** private. Not a default for Northstar — duplicate skills, networking, identity, egress.
@@ -1094,7 +1116,7 @@ Go artifact: package `collections`; tests: `TestSliceAliasThenAppend`, `TestMapM
 ### F3 Google Cloud global infrastructure
 
 
-**Incident doctrine (Pedagogy §7):** region/zone, multi-region/dual-region (GCS), and global/regional/zonal resource scope are **three separate intuition clusters**. Never one vocabulary check spanning all four location-type words plus an unintroduced product. Anchor GCS before any `US` / `nam4` translation item.
+**Incident doctrine (Pedagogy §7):** region/zone, multi-region/dual-region (GCS), and global/regional/zonal resource scope are **three separate intuition clusters**. Never one vocabulary check spanning all four location-type words plus an unintroduced product. Anchor GCS before any `US` / `nam4` translation item. **Prop Lock:** MUST NOT use VPC / subnet / firewall (Part 6) as create-dialog props or classification items in F3.
 
 #### Concept: Region vs zone (VM failure domain)
 **What / why.** A **region** is an independent geographic area that typically consists of **three or more zones** in three or more physical data centers (example: `us-central1` Iowa). A **zone** is a deployment area inside a region — **treat as a single failure domain** (power/network/cooling). Two VMs in `us-central1-a` and `us-central1-b` survive a **single-zone** outage; a whole-region event can still take both. Zone letter `a` in Iowa is unrelated to `a` in `europe-west1`. Some regions historically pack zones into fewer physical DCs — business-critical data may still need dual-region or cross-region backup (awareness).
@@ -1110,61 +1132,74 @@ Go artifact: package `collections`; tests: `TestSliceAliasThenAppend`, `TestMapM
 **Decision (GCS only):** colocated compute+storage → prefer **region**; precise pair + short RPO → **dual-region** (+turbo if needed); broad content / cost-sensitive geo HA → **multi-region**; short-lived data → prefer region (avoid replication charges).
 
 #### Concept: Global vs regional vs zonal resources
-**What / why.** Every GCP resource has a **scope** (Compute docs: global / regional / zonal):
-- **Zonal:** lives in one zone — GCE VM, zonal Persistent Disk / Hyperdisk. Zone loss ⇒ resource gone until recreate/restore.
-- **Regional:** same region only — subnet, regional static IP, regional disk/MIG, Cloud Run (regional), many regional LB forwarding rules, Cloud SQL HA regional.
-- **Global:** accessible across regions in the project — **VPC network** (global fabric; **subnets are regional**), firewall rules/routes, images/snapshots (resource global even if data multi-region), IAM allow/deny *configuration* (global control plane — not “regional IAM”), global external Application LB (anycast Premium).
-- **GCS nuance (after GCS anchor):** bucket *name* is a global namespace (`gs://…` unique worldwide); *data* residency is the chosen location type (region / dual / multi / zone).
-**Failure modes.** “VPC is regional because my subnet is”; expecting a zonal PD to move without snapshot/clone; assuming IAM is “in us-central1”; believing global LB alone = multi-region HA without multi-region backends; “regional LB means private” (regional **external** is still internet-facing).
-**Point-at.** Three create dialogs: create VPC (no region) → create subnet (pick region) → create VM (pick zone). Table: VM → zonal; subnet/Cloud Run → regional; VPC + global HTTPS LB → global; `US` GCS location → multi-region (after GCS anchor). Firewall rule written once on the VPC applies to VMs in every region of that VPC.
+**What / why.** Every GCP resource has a **scope** (Compute docs: global / regional / zonal). Teach the *scope* idea with **Prop-Lock-safe** objects only — already unlocked or same-unit-anchored **before** use. **MUST NOT** require VPC, subnet, or firewall rule as props or classification items here (those unlock in **Part 6.2+** after **T.SysTheory Networking** UG + addressing theory).
+- **Same-unit minimal anchors (before any scope vocab):**
+  - **GCE VM** = a rented computer that **lives in one zone** (create dialog: pick zone). No VPC story required for this intuition — treat networking as “the VM has connectivity Google provides” until Part 6.
+  - **Zonal Persistent Disk (optional):** a disk resource attached in the **same zone** as the VM; zone loss ⇒ recreate/restore from snapshot.
+  - **Cloud Run (same-unit, light):** a managed container service whose create dialog picks a **region** (not a zone) — enough to contrast with the zonal VM; deep Cloud Run ops stay in **Part 1**.
+  - **GCS** (already anchored above): location *type* (region / dual / multi) is **not** the same question as resource *scope* (zonal / regional / global) — keep the distinction explicit.
+- **Zonal scope:** resource lives in one zone — **GCE VM**, optional zonal PD. Zone loss ⇒ that resource is gone until recreate/restore.
+- **Regional scope:** resource is pinned to one region — **Cloud Run** (after light anchor). (Regional static IPs, regional disks/MIGs, regional LB forwarding rules, Cloud SQL HA — **name + defer** to Parts 1/2/6; do not classify until those owners unlock.)
+- **Global scope (control-plane / namespace — light):** some *configurations* and *names* are project-global (e.g. a machine **image** resource id; GCS **bucket name** uniqueness). **Project-level IAM** as “global IAM control plane” is **postponed to 0.5** — do not vocab-check IAM scope here. **Global HTTPS LB / anycast** — name only; deep dive in **1.12 / 6.13**.
+- **GCS nuance (after GCS anchor):** bucket *name* is a global namespace (`gs://…` unique worldwide); *data* residency is the chosen **location type** (region / dual / multi). Scope ≠ location-type.
+**Failure modes.** Expecting a zonal PD to move without snapshot/clone; treating a GCS `US` **location code** as a “global resource scope” synonym; assuming “IAM is in us-central1” (defer precise IAM scope to **0.5**); believing an edge/anycast front door alone = multi-region HA without multi-region backends; smuggling VPC/subnet/firewall into the scope quiz (**Prop Lock** / instructor process failure).
+**Point-at (Prop-Lock-safe create dialogs only):**
+1. Create **VM** → must pick a **zone** → zonal.
+2. Optional: create/attach **zonal disk** → same zone as VM.
+3. Create **GCS bucket** → pick location type (region / dual / multi) — already anchored; contrast *location type* with *scope*.
+4. Create **Cloud Run** service → pick a **region** → regional (light same-unit anchor).
+**Do not** walk VPC → subnet → VM dialogs. **Do not** ask learners to classify VPC, subnet, or firewall rule.
+**Cross-link:** VPC / subnet / firewall **scope labs and classification** → **6.1b + 6.2+** after **T.SysTheory Networking** UG (+ addressing / subnet-as-partition theory). Official fact when that unlocks: VPC networks (and associated routes/firewall rules) are **global** resources; **subnets are regional** ([VPC networks](https://cloud.google.com/vpc/docs/vpc)).
 
 #### Concept: Edge — PoP, Cloud CDN, GFE
-**What / why.** Users often hit a **Google Front End (GFE)** / **Point of Presence (PoP)** near them; **Cloud CDN** caches at the edge; your **origin** may still be regional. Global anycast LB presents one IP; backends remain regional resources.
+**What / why.** Users often hit a **Google Front End (GFE)** / **Point of Presence (PoP)** near them; **Cloud CDN** caches at the edge; your **origin** may still be regional. A global anycast front door can present one IP while backends remain regional resources (LB SKUs deepen later).
 **Failure modes.** Believing CDN makes the database multi-region; confusing edge TLS terminate with origin residency.
-**Point-at.** Browser → nearby PoP/GFE → (optional CDN hit) → regional Cloud Run in `europe-west1` for EU data.
+**Point-at.** Browser → nearby PoP/GFE → (optional CDN hit) → regional origin in `europe-west1` for EU data (Cloud Run after light anchor, or “regional API” wording).
 
 #### From scratch / classification exercise
-- **Python then Go:** package `gcpscope` — given a fixed table of `(product_or_location, tag)`, assert tags in `{zonal, regional, global, multi-region, dual-region, region, zone}`. Wrong tag fails. Fixture includes: `gce_vm`, `zonal_pd`, `cloud_run`, `subnet`, `vpc`, `global_https_lb`, `us-central1-a`, `us-central1`, `US`, `nam4`.
-- **Answer key (authoritative for gate):** VM/PD zonal; Cloud Run/subnet regional; VPC + global HTTPS LB global; `us-central1-a` zone; `us-central1` region; `US` multi-region (GCS); `nam4` dual-region (GCS). Reused in Part 1 and 6 — do not silently change meanings.
+- **Python then Go:** package `gcpscope` — given a fixed table of `(product_or_location, tag)`, assert tags in `{zonal, regional, multi-region, dual-region, region, zone}`. Wrong tag fails.
+- **Fixture (Prop-Lock-safe — F3 gate):** `gce_vm`, `zonal_pd`, `cloud_run` (only after light regional anchor), `us-central1-a`, `us-central1`, `US`, `nam4`.
+- **MUST NOT include in F3 fixture / vocab check:** `vpc`, `subnet`, `firewall_rule`, `global_https_lb` (postpone to **6.2+** / **1.12**), or IAM principals/roles (postpone to **0.5**).
+- **Answer key (authoritative for F3 gate):** VM/PD zonal; Cloud Run regional; `us-central1-a` zone; `us-central1` region; `US` multi-region (GCS location type); `nam4` dual-region (GCS). Part 6 reuses scope words for VPC/subnet/firewall **after** those anchors — do not silently change meanings; do not pull those items back into F3.
 
 #### HLD / ADR prompt
-- Place Northstar API: single region multi-zone vs multi-region active/active. ADR: “I pick regional Cloud Run in `EUROPE` region for residency because Y, I accept Z (US editors higher latency; not a second SoR).” If using GCS for assets: choose `EU` multi-region vs regional bucket vs dual-region with explicit RPO story.
+- Place Northstar API: single region multi-zone vs multi-region active/active. ADR: “I pick a **regional** managed API (Cloud Run in an EU region after Part 1 depth) for residency because Y, I accept Z (US editors higher latency; not a second SoR).” If using GCS for assets: choose `EU` multi-region vs regional bucket vs dual-region with explicit RPO story. **Do not** require a VPC diagram in this ADR.
 
 #### LLD / IAM / Terraform shape
 ```hcl
 # Illustrative — locations only; do not apply paid dual-region casually
 resource "google_storage_bucket" "assets" {
-  name     = "ns-assets-\${random_id.suf.hex}"
+  name     = "ns-assets-${random_id.suf.hex}"
   location = "EU" # multi-region; or "nam4" dual-region; or "europe-west1" regional
   uniform_bucket_level_access = true
 }
-# Cloud Run regional
+# Cloud Run regional (Part 1 deepens; location illustrates regional scope)
 resource "google_cloud_run_v2_service" "api" {
   name     = "ns-api"
   location = "europe-west1"
 }
 ```
-- IAM: bucket not public; Run SA later (1.5). Org policy residency constraints mentioned as future (0.3/0.5).
+- IAM: bucket not public; Run SA later (1.5). Org policy residency constraints mentioned as future (0.3/0.5). **No** VPC/subnet resources in this LLD sketch.
 
 #### GCP lab (free-tier boxed)
 - `gcloud compute regions list` / `gcloud compute zones list --filter=region:us-central1` (read-only).
-- Classify products with the unit-test table (no create required).
+- Classify **only** the Prop-Lock-safe unit-test table (no VPC/subnet/firewall; no create of those required).
 - **Credits-optional:** create a regional Nearline/Standard bucket in one region, upload a tiny object, delete bucket same sitting. Prefer **not** creating dual-region/multi-region buckets on trial credits without a destroy checklist.
-- Console: Storage → bucket create UI — point at location type dropdown (region / dual / multi) without necessarily creating.
+- Console: Storage → bucket create UI — point at location type dropdown (region / dual / multi) without necessarily creating. Optional: Compute Engine → create VM UI — point at **zone** picker (do not require custom VPC).
 
 #### Gate
-- Unseen: “Media app needs EU residency but US editors” — pick placement + what you accept (PCA shape).
-- Nearby transfer: given only unlocked terms, explain why `nam4` is not a zone and not the `US` multi-region.
-- **Must not** gate on LB SKU deep-dives or Spanner multi-region — those unlock later.
+- Unseen: “Media app needs EU residency but US editors” — pick placement + what you accept (PCA shape) using unlocked location/scope terms only.
+- Nearby transfer: given only unlocked terms, explain why `nam4` is not a zone and not the `US` multi-region; explain why a GCE VM is zonal while a GCS `US` code is a multi-region **location type**.
+- **Must not** gate on VPC/subnet/firewall classification, LB SKU deep-dives, Spanner multi-region, or IAM “global vs regional” — those unlock later (**6.2+**, **1.12**, **0.5**).
 
 #### PCA: placement and blast radius
-- **Considerations:** design for locality; HA across zones; global LB vs regional; data residency.
+- **Considerations:** design for locality; HA across zones; regional origin vs edge front door (deep LB later); data residency.
 - **Decision table:**
 
 | Constraint | Placement | Accept |
 |---|---|---|
-| HA API, single region OK | Regional Cloud Run + multi-zone | Region outage downs you |
-| One anycast IP worldwide | Global HTTPS LB | Premium tier / cost |
+| HA API, single region OK | Regional managed API (Cloud Run) + multi-zone awareness | Region outage downs you |
+| Edge users worldwide | Edge/PoP + regional origin (LB SKUs later) | Origin still regional unless you design multi-region backends |
 | EU-only personal data | EU region + residency controls | Higher latency for US users |
 | GCS durability across US | `US` multi-region or `nam4` dual-region | Cost / placement control trade-off |
 
@@ -1673,7 +1708,7 @@ resource "google_project" "ns_dev" {
 #### Gate
 - Diagram of org→folder→project for Northstar; no resources created in the org node “because it was convenient.”
 - Unseen: all envs in one project with labels only — what boundary did you lose (anchored: IAM/quota/billing)?
-- Nearby: where would a Shared VPC host project live (`shared`) vs app project (Part 6.7 pointer only — no Shared VPC deep dive).
+- Nearby (pointer only — **Prop Lock**): a future **Shared VPC** host project might live under `shared` vs app projects — **do not** require Shared VPC mechanics until **6.7**; name + defer.
 
 #### PCA: hierarchy as security boundary
 - **Considerations:** PCA 1.x design environments; 3.x org policy; blast radius.
@@ -1682,7 +1717,7 @@ resource "google_project" "ns_dev" {
 | Boundary need | Mechanism | Accept |
 |---|---|---|
 | Separate prod data | Separate project | Cross-project IAM complexity |
-| Same VPC / DNS shared | Shared VPC host project (Part 6.7) | Host project becomes critical |
+| Same network / DNS shared (later) | Shared VPC host project (**Part 6.7** — unlock first) | Host project becomes critical; **not** an F/0 prop |
 | Policy “no public IP” | Org policy constraint | Break-glass exceptions |
 
 - **Scenario prompt:** All envs in one project with labels only.
@@ -1704,7 +1739,7 @@ resource "google_project" "ns_dev" {
 
 **Scenario prompt:** A SaaS product must cut infra admin cost, keep checkout correct under failure, and prove ROI in 90 days. Stakeholders disagree on Spanner vs Cloud SQL.
 
-**Expected answer shape:** “I pick Cloud SQL HA + regional Cloud Run because Y (SLO/cost), I accept Z (no multi-region active-active until KPI proves need).”
+**Expected answer shape:** “I pick a **regional managed SQL** (Cloud SQL; HA topology details in **Part 2**) + regional Cloud Run because Y (SLO/cost), I accept Z (no multi-region active-active until KPI proves need).” Do not treat **Cloud SQL HA** as an unlocked prop before Part 2 — name + defer.
 
 #### Concept: Donne Martin four-step loop
 **What / why.** Constraints → HLD → core LLD → scale/security/cost (Pedagogy §4). Full six-step protocol (NFRs, capacity, Mermaid HLD, LLD, failures, hardening) is Pedagogy §8 — this section installs the habit.
@@ -1767,7 +1802,7 @@ resource "google_project" "ns_dev" {
 
 #### PCA: 3.1 Security design
 
-**Guide themes (matrix):** IAM; hierarchy; KMS/secrets; SoD; audit/VPC-SC/CAA/org policy/hierarchical FW; IAP/impersonation/Chrome Enterprise/WIF; supply chain; Model Armor/SDP. Homes: 0.3, 0.5, 4, 7, D5, 9b.
+**Guide themes (matrix):** IAM; hierarchy; KMS/secrets; SoD; audit/VPC-SC/CAA/org policy/hierarchical FW; IAP/impersonation/Chrome Enterprise/WIF; supply chain; Model Armor/SDP. Homes: 0.3, 0.5, 4, 7, D5, 9b. **Prop Lock:** VPC-SC / hierarchical FW are **named** here for PCA map literacy; concept+lab owners are **Part 6/7** — do not use as create-dialog props in 0.5.
 
 | Control | Prefer | Accept |
 |---|---|---|
@@ -1775,7 +1810,7 @@ resource "google_project" "ns_dev" {
 | CI to GCP | WIF | SA keys in GitHub |
 | Data | CMEK where required + Secret Manager | Env secrets in images |
 | AI | Model Armor + SDP | Unfiltered prompts to prod models |
-| Perimeter | VPC-SC for sensitive data | Public APIs with only API keys |
+| Perimeter | VPC-SC for sensitive data (**Part 7** / org perimeter — name now, lab later; **Prop Lock**) | Public APIs with only API keys |
 
 **Scenario prompt:** Pipeline still downloads a JSON SA key; GenAI app logs full prompts with PII.
 
@@ -2440,7 +2475,7 @@ Brownfield: `appspot.com` service + Cloud SQL. Strangler: new routes on Cloud Ru
 | Request HTTP containers | Cloud Run | GKE if sidecars/GPU/custom CNI |
 | Event FaaS | Cloud Run functions / Eventarc | Legacy 1st-gen only if brownfield |
 | Object media | GCS + lifecycle/Autoclass | Filestore only if POSIX required |
-| Hybrid | Shared VPC + HA VPN/Interconnect | Peering when non-transitive OK |
+| Hybrid | Shared VPC + HA VPN/Interconnect (**Parts 6.7 / 8b** — unlock before designing) | Peering when non-transitive OK |
 | Training | Vertex + appropriate accelerator | DIY GPU MIG without ops plan |
 
 **Scenario prompt:** Team wants GKE for a single CRUD API “because Kubernetes,” and a second team wants Spot for the payment API.
@@ -2468,7 +2503,7 @@ Event glue is not a microservice mesh. Functions shine when a **single trigger**
 - **Branding:** “Cloud Run functions” ≈ source-deploy path onto Cloud Run; still teach classic Functions triggers so PCA wording does not confuse you.
 - **Cold start, timeout, memory:** size for the event, not for an entire checkout orchestrator.
 - **IAM invoker:** unauthenticated HTTP only if explicitly required (webhooks with signed payloads are different from “public admin”).
-- **VPC:** Serverless VPC Access connector vs Direct VPC egress — only when the function must reach private IPs (Cloud SQL private IP, memorystore). Default = no VPC complexity.
+- **VPC egress (defer detail):** Serverless VPC Access connector vs Direct VPC egress — only when the function must reach private IPs (Cloud SQL private IP, Memorystore). Default = **no VPC complexity**. **Prop Lock:** do not lab-attach a connector until **6.1b/6.2** VPC concept + theory tiers are confirmed; name the choice here, implement later.
 - Always Free: ~2M invocations/month on Blaze (confirm current Always Free card in lab notes).
 
 #### From scratch / decision exercise
@@ -3972,14 +4007,66 @@ Explicit bans prevent “learning” projects that create real compliance and fr
 
 gRPC service implementation stays in **Part 3.2**. This section is transport only.
 
+### 6.1b Network, VPC, and subnet — concept before console
+
+**One home for the VPC *concept*.** Block T owns networking **theory**; this `###` owns the GCP **VPC / subnet mental model** before console clicks; **6.2** owns routing/PGA/product lab detail. **F3 does not re-teach VPC** — it only deferred scope labs here (**Prop Lock**).
+
+**Theory prerequisites (MUST confirm or skip-test before this unit):** **T.SysTheory Networking** UG (encapsulation, L2 vs L3, address+mask, subnet-as-partition, routing-as-graph-path, isolation boundary / failure vs trust) + **T.Disc** graphs; **T.Quant** bits/bytes; **T.Algo** path literacy as needed. **T-NET** / **6.1** transport (e2e, AIMD) should already be in flight or confirmed with this Part.
+
+#### Concept: What a VPC is (and is not)
+**What / why.** A **VPC network** in Google Cloud is a **global** software-defined private network resource in a project: it is **not** tied to one region or zone. Docs: [VPC networks](https://cloud.google.com/vpc/docs/vpc). It is the fabric that later holds regional **subnets**, routes, and firewall policies. It is **not** “a region,” **not** “a subnet,” **not** “the internet,” and **not** automatic multi-region HA for your app.
+**Failure modes.** Calling any RFC1918 range “my VPC” without the GCP resource; assuming VPC = one data center; treating default/auto networks as production literacy.
+**Point-at.** Console: VPC network create — **no region picker** on the network itself (contrast with subnet create). Paper: one box labeled VPC spanning two region columns.
+
+#### Concept: Subnet as regional address partition inside a VPC
+**What / why.** A **subnet** is a **regional** resource: an IPv4/IPv6 **address partition** (CIDR) inside a VPC, usable by VMs in **any zone of that region**. Theory recall: subnet-as-partition from **T.SysTheory Networking** UG — mask defines the set; region is the GCP placement constraint. One VPC can hold `us-central1` + `europe-west1` subnets without “peering regions together.”
+**Failure modes.** “Subnet is zonal because my VM is”; “VPC is regional because my subnet is”; conflating subnet with firewall; overlapping CIDRs planned for later peering.
+**Point-at.** Subnet create dialog: **must pick a region** + CIDR. Two VMs in `us-central1-a` and `us-central1-b` can share one regional subnet.
+
+#### Concept: Auto vs custom mode (decision, not a click race)
+**What / why.** **Auto mode** auto-creates one subnet per region from a Google-managed block (`10.128.0.0/9` family) — fine for throwaway demos, **forbidden as prod literacy**. **Custom mode** starts with **no** subnets; you create every subnet and CIDR. Learning path: custom mode + delete default network once you can rebuild.
+**Failure modes.** Shipping auto mode “because the console defaulted it”; deleting default network before documenting how you will SSH/egress.
+
+#### Concept: Isolation — failure domain vs trust boundary (VPC edition)
+**What / why.** Region/zone (F3) are **failure domains**. VPC firewall / IAM / later VPC-SC are **trust / policy boundaries**. Being in the same VPC does **not** mean “trusted” or “highly available.” Routing decides where a packet *could* go; firewall decides whether it *may* (**6.4** deepens).
+**Failure modes.** “Same VPC = trusted”; “custom VPC alone = secure”; skipping FW allows after custom VPC create.
+
+#### From scratch (CIDR partition exercise — required)
+- Paper: one VPC `10.10.0.0/16`; subnet A `10.10.0.0/20` in `us-central1`; subnet B `10.10.16.0/20` in `europe-west1`. Compute host counts; prove non-overlap; leave headroom note for later GKE secondary ranges (**Part 9** — name only).
+- Userspace (Python then Go): given address+prefix, return network ID + usable range; `same_subnet(a,b,prefix)`; detect CIDR overlap. Unit tests are the gate — not console.
+
+#### HLD
+Northstar sketch (boxes only): custom VPC → app subnet (usc1) → data subnet or FW-segmented same subnet → no public IPs on VMs (intent) → PGA/NAT named as *later controls* (**6.2** / **6.9**). No Interconnect / Shared VPC required in this first HLD.
+
+#### LLD
+- Names: `ns-vpc`, `ns-subnet-usc1`, `ns-subnet-ew1`.
+- Terraform shape (may be paper): `google_compute_network` with `auto_create_subnetworks=false`; `google_compute_subnetwork` with region + CIDR. PGA flag noted for **6.2**.
+
+#### GCP lab (free-tier boxed) — concept confirmation
+```
+┌─ FREE-TIER BOX ─────────────────────────────────────────────┐
+│ Custom-mode VPC + one regional subnet; narrate: network has │
+│ no region picker; subnet does. Optional second region       │
+│ subnet on diagram if credits tight. Do not skip theory gate.│
+│ Firewall deep-dive is 6.4 — allow only what 6.5 needs later.│
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### Gate
+- Unseen: given two CIDRs and two regions, say which are same-subnet, which need a route story, and whether the **VPC** or the **subnet** is the regional object.
+- Nearby: why F3 correctly refused to classify VPC/subnet — and what theory tier unlocked them now.
+- **Incomplete if** only product clicks without subnet-as-partition derive from T.SysTheory.
+
+---
+
 ### 6.2 VPC, subnets, routing, Private Google Access
 
 
-GCP networking starts with a **global VPC** and **regional subnets**. Almost every later control (firewall, NAT, peering, Shared VPC, LB internal IPs) hangs off this model. Docs: [VPC networks](https://cloud.google.com/vpc/docs/vpc), [Private Google Access](https://cloud.google.com/vpc/docs/private-google-access).
+**Prereq:** **6.1b** concept-before-console (VPC global / subnet regional / CIDR partition) + **T.SysTheory Networking** UG confirmed. This section deepens **routing**, **Private Google Access**, and the production lab — it does **not** re-teach the VPC intuition from scratch (recall + apply). Docs: [VPC networks](https://cloud.google.com/vpc/docs/vpc), [Private Google Access](https://cloud.google.com/vpc/docs/private-google-access).
 
 #### Concepts
-- **VPC is global; subnets are regional** (span all zones in that region). One VPC can hold `us-central1` + `europe-west1` subnets without peering between regions.
-- **Auto vs custom mode:** auto creates regional subnets for you — fine for demos, **forbidden in prod literacy**. Custom mode: you create every subnet and CIDR. **Delete the default network** in learning projects once you can rebuild.
+- **Recall (6.1b):** **VPC is global; subnets are regional** (span all zones in that region). One VPC can hold `us-central1` + `europe-west1` subnets without peering between regions.
+- **Recall — Auto vs custom mode:** auto creates regional subnets for you — fine for demos, **forbidden in prod literacy**. Custom mode: you create every subnet and CIDR. **Delete the default network** in learning projects once you can rebuild.
 - **Primary and secondary ranges:** primary for VM NICs; secondary (alias IPs) for GKE Pods/Services. Plan CIDRs so they never overlap peers or on-prem (Part 8b).
 - **Routes:** system-generated (subnet, default), custom static, dynamic via **Cloud Router / BGP** (VPN/Interconnect). Routing decides path; firewall decides allow/deny.
 - **Private Google Access (PGA):** subnet flag so VMs **without external IPs** can reach `*.googleapis.com` / Google APIs. PGA ≠ general internet. General egress needs **Cloud NAT** (6.9).
