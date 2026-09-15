@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 var scope_map map[string]string
+
 // var scope_map map[string]string = map[string]string{
 // 	"gce_vm": "zonal",
 // 	"zonal_pd": "zonal",
@@ -21,7 +22,7 @@ func classify(identifier string) (string, error) {
 	return val, nil
 }
 
-func main(){
+func main() {
 	scope, _ := classify("us-central1-a")
 	fmt.Printf("For us-central1-a, the classification is %v\n", scope)
 }
