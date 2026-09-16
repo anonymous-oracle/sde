@@ -22,7 +22,7 @@ PART 4   The ceilings — per-family theory, derivations, texts, courses, papers
 PART 5   Go from zero — GO-0…GO-14, taught, not just referenced
 PART 6   The build ladder — B0…B14, what you implement in Go, in order
 PART 7   The Python boundary — where Go stops, and why
-PART 8   Master bibliography — mathematics, CS, systems, SWE, ML, per-domain
+PART 8   Master bibliography — maths, CS, systems, SWE, ML, security/privacy, per-domain
 PART 9   Course index — Ivy League, peer institutions, IIT/IISc/NPTEL
 ```
 
@@ -43,7 +43,7 @@ This file depends on nothing outside itself. Every label it uses — `T.Quant`, 
 | `GO-*` | one of the fifteen Go language rungs | Part 5 |
 | `B*` | one of the fifteen build rungs | Part 6 |
 
-Everything else you are asked to read is a **public book, paper or course**, linked in §8.7,
+Everything else you are asked to read is a **public book, paper or course**, linked in §8.8,
 §9.3 or §9.4. There is no companion document, no prerequisite syllabus, and nothing you need
 permission to open.
 
@@ -616,7 +616,7 @@ first phase, and skipping it is the most reliable way to fail Part 4.
 | **T.CalcOpt** — derivatives, gradients, convexity | UG→GRAD | T-DL, T-OPT |
 | **T.ProbStat** — probability, estimation, information | HS→GRAD | T-CAUSAL, T-RL, T-MLSYS |
 | **T.Algo** — data structures, complexity, hashing | UG→GRAD | T-IR, T-GRAPH, T-ER |
-| **T.SysTheory** — reliability, networks, distributed, DB, security | UG→GRAD | T-STREAM, T-MLSYS, §4.15 |
+| **T.SysTheory** — reliability/tails, networks, distributed, storage, security & privacy, coding | UG→GRAD | T-STREAM, T-MLSYS, T-IR, T-GRAPH, §4.15 |
 | **T.MLTheory** — generalisation, PAC/VC, calibration | UG→GRAD | T-REC, T-IR, T-DL |
 | **M.NS** — floating point, conditioning | — | T-DL, T-MLSYS · build **B0** |
 | **M.ML** — empirical risk, losses, metrics, IPS | — | T-REC, T-IR, T-RL · builds **B2, B3** |
@@ -630,21 +630,21 @@ graph — nothing else gates anything.
 
 | Ceiling | Floor required first |
 |---|---|
-| **T-IR** §4.2 | T.Algo UG · T.Disc UG · M.ML |
-| **T-REC** §4.1 | T.LA UG · M.ML (incl. IPS) · T.MLTheory UG |
+| **T-IR** §4.2 | T.Algo UG · T.Disc UG · M.ML · T.SysTheory Coding UG |
+| **T-REC** §4.1 | T.LA UG · M.ML (incl. IPS) · T.MLTheory UG · T.SysTheory Coding grad (ANN/PQ, for B10b) |
 | **T-AUCTION** §4.3 | T.ProbStat UG · T.Alg UG |
 | **T-TS** §4.4 | M.TS · T.ProbStat UG · T.LA UG |
-| **T-GRAPH** §4.5 | T.Disc UG · T.Algo UG · T.LA GRAD (spectral) |
+| **T-GRAPH** §4.5 | T.Disc UG · T.Algo UG · T.LA GRAD (spectral) · T.SysTheory Security grad (adversarial, for the 24 fraud studies) |
 | **T-DL** §4.6 | T.CalcOpt UG→GRAD · T.LA UG · M.NS |
 | **T-NLP** §4.7 | T.ProbStat UG · T-DL (in part) |
 | **T-CV** §4.8 | T.LA UG · T-DL |
 | **T-SIGNAL** §4.9 | T.CalcOpt UG · T.LA UG |
 | **T-CAUSAL** §4.10 | T.ProbStat UG→GRAD · M.CAUSAL |
-| **T-STREAM** §4.11 | T.SysTheory Distributed UG · T.Disc UG |
-| **T-MLSYS** §4.12 | T.SysTheory Reliability + Net UG · M.NS |
+| **T-STREAM** §4.11 | T.SysTheory Distributed UG · T.SysTheory Storage UG→grad (WAL, LSM, CDC) · T.Disc UG |
+| **T-MLSYS** §4.12 | T.SysTheory Reliability + Net UG · T.SysTheory Storage UG (point-in-time join) · M.NS |
 | **T-OPT / T-ER** §4.13 | T.Alg UG · T.Disc UG · T.LA UG |
 | **T-RL** §4.14 | T.ProbStat GRAD (concentration) · M.ML IPS |
-| **§4.15 SWE** | T.SysTheory UG |
+| **§4.15 SWE** | T.SysTheory UG — all six subfamilies, including Security |
 
 ## 3.3 The nine theory families
 
@@ -704,35 +704,57 @@ graph — nothing else gates anything.
 - **Grad-as-needed.** External-memory and cache-aware structures — needed once B7's index stops fitting in RAM.
 - *Sources:* CLRS; Sedgewick & Wayne; MIT 6.006.
 
-### T.SysTheory — formal models behind the main track
-Product labs stay in Parts 2/4/6/7/8/10. Five subfamilies, each UG + grad-as-needed:
+### T.SysTheory — the systems floor under the 309
+Every gate below is here because a **named family of the 309 needs it**. A general systems
+course teaches much more than this; what no case study in Part 1 requires has been cut, and the
+cut is stated where it used to sit. Six subfamilies, each UG + grad-as-needed. Product labs stay
+in Parts 4, 6 and 7.
 
-**Reliability** — feeds T-MLSYS §4.12 and B14's SLO and rollback logic.
-- *UG.* Series availability \(\prod A_i\), parallel \(1-\prod(1-A_i)\) from independence; name the independence assumption; SLI/SLO vocabulary **without** burn formula.
-- *Grad.* Error-budget identity: budget = \((1-\mathrm{SLO})\times\mathrm{window}\); multi-window burn ratio as rate-of-spend; renewal/reward MTBF vs availability, one worked numeric.
+**1 · Reliability and tail behaviour** — feeds T-MLSYS §4.12, §4.15; builds **B13, B14**.
+- *UG.* (1) Series availability \(\prod A_i\), parallel \(1-\prod(1-A_i)\) from independence — and name the independence assumption out loud, because shared power, shared config push and shared model artefact all break it. (2) SLI/SLO vocabulary **without** the burn formula. (3) **Tail amplification under fan-out**: a request that fans out to \(n\) independent leaves, each slower than \(t\) with probability \(q\), is slow with probability \(1-(1-q)^n\) — at \(q=0.01, n=100\) that is **63%**. Derive it. This single line explains why a 100-shard retrieval tier has a p99 far worse than any shard's p99, and it governs every sharded ranker in families 1, 2 and 4.
+- *UG.* (4) The **degradation ladder**: state, before you build, what the ranker returns when the model server times out — cached scores, then a popularity or recency baseline, then an error. Failing to a heuristic is a designed behaviour, not a bug you discover in an incident.
+- *Grad.* Error-budget identity: budget \(= (1-\mathrm{SLO})\times\mathrm{window}\); multi-window burn ratio as rate-of-spend; renewal/reward MTBF vs availability, one worked numeric. Hedged and tied requests (Dean & Barroso) and the *extra load* they cost; retry budgets and jitter, and why naive retries turn a brownout into an outage; the circuit breaker as an explicit three-state machine.
+- *Gate:* compute end-to-end tail amplification for a two-level fan-out (broker → 50 shards → 3 replicas each), then state which mitigation you would apply and what it costs.
+- *Sources:* Google *SRE* + *SRE Workbook* **[free]**; Dean & Barroso, "The Tail at Scale" (CACM 2013); Nygard, *Release It!* 2e.
 
-**Networking** — feeds T-MLSYS §4.12 (serving economics) and T-STREAM §4.11 (backpressure).
-- *UG.* (1) Encapsulation — payload wrapped by successive headers. (2) L2 vs L3 with one counterexample where broadcast domain ≠ L3 subnet. (3) Address + mask → network ID and host range; prove two addresses share a partition or not. (4) Subnet as address partition — not a virtual network, a region, or a firewall. (5) Routing as graph path — longest-prefix next hop; show a blackhole. (6) Failure domain vs trust boundary. (7) End-to-end argument + counterexample where hop-by-hop checksum is insufficient. (8) AIMD: on ACK \(w\leftarrow w+1/w\), on loss \(w\leftarrow w/2\) — simulate 20 RTTs.
-- *Grad.* Little's law \(L=\lambda W\) derived from arrival/departure counts over \([0,T]\); apply to RPS × latency → concurrency. One fairness/stability trade-off of a TCP variant.
-- *Sources:* Kurose/Ross or Tanenbaum & Wetherall; Saltzer–Reed–Clark.
+**2 · Networking, only where it moves a number** — feeds T-MLSYS §4.12 (serving economics, distributed training) and T-STREAM §4.11 (backpressure); builds **B13, B14**.
+**Cut deliberately:** CIDR arithmetic, subnetting, L2-vs-L3 broadcast domains, routing tables. None of the 309 is a networking case study, and none of those facts changes a latency budget, a batch size or a training cost. What is kept is what appears inside an estimate.
+- *UG.* (1) **Latency budget decomposition**: propagation (distance/\(c\)) + transmission (bytes/bandwidth) + queueing + service time. Compute all four for a 10 kB feature-vector request same-AZ and cross-region, and notice which term you cannot engineer away. (2) **Little's law** \(L=\lambda W\), derived from arrival/departure counts over \([0,T]\) — promoted to UG because every capacity estimate in Part 6 uses it: RPS × latency → in-flight concurrency. (3) **RPC cost model**: serialisation + framing + head-of-line blocking; protobuf/gRPC vs JSON measured on one real payload; connection reuse, and why a cold TLS handshake costs an extra round trip that a warm pool does not. (4) **Bandwidth–delay product** — why a large shard transfer is window-limited, not link-limited. (5) End-to-end argument, with the counterexample where a hop-by-hop checksum is insufficient. (6) AIMD: on ACK \(w\leftarrow w+1/w\), on loss \(w\leftarrow w/2\) — simulate 20 RTTs; this is the mental model you reuse for backpressure. (7) Failure domain vs trust boundary — the vocabulary for replica placement and for §4.15's threat model.
+- *Grad.* The **\(\alpha\)–\(\beta\) cost model** for collective communication: one message of \(n\) bytes costs \(\alpha + \beta n\) per hop. Use it to compare a parameter server (\(2|W|\) bytes through one hotspot per step) against a ring (no hotspot, more hops) — the ring all-reduce volume itself is derived once, at **§4.12 item 2**, not here. Gradient compression and top-\(k\) sparsification as a bandwidth-versus-convergence trade. Edge/CDN caching for image and embedding payloads (the CV and speech families).
+- *Gate:* given target RPS and measured p50/p99, compute required concurrency and pool size; then state what both become when you enable dynamic batching, and why the p99 moves the wrong way first.
+- *Sources:* Kurose & Ross **or** Tanenbaum & Wetherall; Saltzer, Reed & Clark **[free]**; Barroso, Clidaras & Hölzle, *The Datacenter as a Computer* **[free]**.
 
-**Distributed systems.**
-- *UG.* Happens-before on a 3-process timeline (prove one pair incomparable); CAP — which two you keep under a named partition; consensus safety vs liveness.
-- *Grad.* Quorum intersection for majority quorums \(\lfloor n/2\rfloor+1\); FLP impossibility (async + one crash) and why production adds timeouts/partial synchrony; linearizability vs serializability — one schedule serializable but not linearizable.
-- *Sources:* DDIA + Lynch-lite / MIT 6.5840 as used.
+**3 · Distributed systems** — feeds T-STREAM §4.11, T-MLSYS §4.12; builds **B13, B14**.
+- *UG.* Happens-before on a 3-process timeline (prove one pair incomparable); CAP — which two you keep under a *named* partition; consensus safety vs liveness; **at-most-once / at-least-once / effectively-once**, and why a retried training-job submission or a retried payment scoring call must carry an idempotency key.
+- *Grad.* Quorum intersection for majority quorums \(\lfloor n/2\rfloor+1\); FLP impossibility (async + one crash) and why production buys its way out with timeouts and partial synchrony; linearizability vs serializability — exhibit one schedule serializable but not linearizable. **Stragglers:** the slowest worker sets synchronous SGD's step time; state the three answers — backup workers, asynchronous/stale-synchronous updates, drop-and-continue — and what each costs in convergence, not just in wall-clock. **Consistent hashing with virtual nodes**: why an embedding-serving or feature-cache tier re-shards without moving every key.
+- *Gate:* prove one incomparable pair on a 3-process timeline; then compute how many keys move when a 10-node consistent-hash ring gains one node, versus modulo hashing, and explain the cache-miss storm the second one causes.
+- *Sources:* Kleppmann, *DDIA* Ch. 5–9; MIT **6.5840** **[free]**; Lynch, *Distributed Algorithms* as needed; Karger et al., "Consistent Hashing and Random Trees" (STOC 1997); DeCandia et al., "Dynamo" (SOSP 2007).
 
-**DB theory** — feeds T-STREAM §4.11 (exactly-once, checkpoints) and §4.15.
-- *UG.* Push a selection through a join; keys/FDs justifying 3NF on a 4-attribute toy; one dirty-read and one lost-update schedule; WAL durability argument.
-- *Grad.* MVCC snapshot — given begin-ts/commit-ts of two writers, decide which version a reader sees, prove no dirty read under SI; cost-model row estimation given selectivity.
-- *Sources:* Ramakrishnan/Gehrke; PostgreSQL docs; CMU 15-445.
+**4 · Storage, data layout and the data path** — feeds T-STREAM §4.11, T-MLSYS §4.12 (feature store), the dimension-modelling studies inside the **"Other" (101)** family, and the training-data pipeline of every other family. This is the subfamily the 309 lean on hardest.
+- *UG.* (1) **Row vs column layout**: derive the bytes actually read for `SELECT one_column FROM a 100-column table` under each. That ratio is the whole reason training scans use Parquet/ORC while online feature lookups do not. (2) Projection and predicate pushdown; row-group/stripe min–max statistics and the skipping they enable — then the case where skipping does nothing because the data is unsorted on the predicate column. (3) **B-tree vs LSM**: write amplification against read amplification; why a streaming state store and an online feature KV tier are LSM (RocksDB) while an OLTP index is a B-tree; compaction and tombstones. (4) WAL durability argument; one dirty-read and one lost-update schedule. (5) Keys and functional dependencies → 3NF on a 4-attribute toy — *and* the deliberate denormalisation a wide feature table performs, stated as a trade in write cost and hot-key skew, not as a mistake.
+- *UG.* (6) **Join execution**: hash join vs sort-merge cost. The one that matters here is the **as-of (point-in-time) join** — sort both sides by event time and merge with a backward-looking pointer. Its *semantics*, and why violating them is training/serving skew, are derived at **§4.12 item 7**; this subfamily owns its *execution and cost*.
+- *Grad.* MVCC snapshot decision — given begin/commit timestamps of two writers, decide which version a reader sees and prove no dirty read under SI; selectivity-based row estimation in a cost model. **Change data capture:** derive why reading the write-ahead log yields a correct change stream where polling an `updated_at` column does not — polling misses deletes and misses second-order updates inside its own granularity. **Open table formats** (Delta/Iceberg/Hudi) reduced to one sentence: a manifest of immutable files plus snapshot isolation. The table ⟷ stream duality itself is owned by §4.11.
+- *Gate:* compute bytes scanned for one query under row versus columnar layout with row-group skipping; then hand-execute a point-in-time join on a six-row toy and exhibit the label leakage a naive equi-join on entity id produces.
+- *Sources:* Ramakrishnan & Gehrke; Kleppmann, *DDIA* Ch. 3; Abadi, Boncz & Harizopoulos, "The Design and Implementation of Modern Column-Oriented Database Systems" (FnT 2013) **[free]**; O'Neil et al., "The Log-Structured Merge-Tree" (1996); Melnik et al., "Dremel" (VLDB 2010); Armbrust et al., "Delta Lake" (VLDB 2020); PostgreSQL docs **[free]**; CMU **15-445** and **15-721** **[free]**; Kimball & Ross for the dimension studies.
 
-**Security theory.**
-- *UG.* STRIDE-as-used on a toy HTTP+DB diagram; authz as predicate `allow(principal, action, resource)` with a SoD counterexample; state discrete-log / factoring hardness *as used* — no cipher design.
-- *Grad.* Sketch one reduction shape ("if adversary breaks X then oracle Y breaks hardness Z") for a stdlib primitive you **call**. **Never invent ciphers.**
-- *Sources:* Katz–Lindell / Goldreich only if T-CRYPTO ceiling opened.
+**5 · Security, privacy and adversarial ML** — feeds **Fraud / trust & safety (24)**, the **Recommend / personalise (65)** family (which trains on individual user behaviour, and therefore inherits deletion, retention and re-identification obligations), the **LLM / genAI apps (19)** family, and §4.15.
+**Recut:** the generic secure-design material that used to sit here is kept small and pointed at the system you actually build; the half the 309 genuinely need — privacy and adversarial ML — did not exist and is added below.
+- *UG (secure design).* STRIDE applied to **the B14 serving diagram you built**, not a toy: client → gateway → feature store → model server → log sink. Authorisation as a predicate `allow(principal, action, resource)` with a separation-of-duties counterexample. State discrete-log / factoring hardness *as used* — **call vetted crypto, never invent it**. Treat a model artefact as a credential: weights leak training data, and a checkpoint bucket is a data breach waiting for a misconfigured ACL.
+- *UG (data privacy).* PII inventory and minimisation; pseudonymisation vs anonymisation; **why "we removed the names" is not anonymity** — reconstruct the Netflix-Prize de-anonymisation argument (Narayanan & Shmatikov) on a toy ratings table, which is precisely the recommendation family's own kind of data. \(k\)-anonymity and its quasi-identifier failure mode. Deletion as a *pipeline* property: a deleted user still sits in last month's training set, in yesterday's feature snapshot, and inside the model's weights.
+- *Grad (formal privacy).* State \((\varepsilon,\delta)\)-differential privacy; **prove** the Laplace mechanism gives \(\varepsilon\)-DP for a counting query of sensitivity 1; sequential and parallel composition. **DP-SGD** = per-example gradient clipping + Gaussian noise, and what spending the budget costs in accuracy. Federated averaging and secure aggregation as the *architectural* answer to the same question — marked **optional**: no study in the Part 1 catalog is an on-device or federated system, so this is here as the alternative you should be able to name and reject with a reason, not as a gate.
+- *Grad (adversarial ML).* Evasion at inference (FGSM, then PGD as the honest baseline) vs poisoning at training time vs model extraction vs membership inference. Then the point that decides the fraud family: **fraud is adversarial and non-stationary** — the label distribution moves *because* your model shipped, so a static holdout overstates accuracy, blocked transactions never return labels, and drift monitoring is a control loop rather than a dashboard.
+- *Grad (LLM serving).* Prompt injection as a confused-deputy problem: untrusted text entering a context that carries privilege. Why output filtering is not a fix, and why the instruction/data boundary has to be architectural.
+- *Gate:* write the DP guarantee for one counting query and compute the Laplace scale for \(\varepsilon=1\). Separately, take one fraud study from Part 1, name its attacker, that attacker's cost per attempt, and the feedback loop your own blocking decisions create in next month's labels.
+- *Sources:* Anderson, *Security Engineering* 3e **[free]**; Dwork & Roth, *The Algorithmic Foundations of Differential Privacy* **[free]**; Near & Abuah, *Programming Differential Privacy* **[free]**; Abadi et al., "Deep Learning with Differential Privacy" (CCS 2016); McMahan et al., FedAvg (AISTATS 2017); Bonawitz et al., "Practical Secure Aggregation" (CCS 2017); Kairouz et al., "Advances and Open Problems in Federated Learning" (FnT ML 2021); Shokri et al., membership inference (S&P 2017); Carlini et al., "Extracting Training Data from Large Language Models" (USENIX Sec 2021); Goodfellow, Shlens & Szegedy (ICLR 2015); Madry et al. (ICLR 2018); Biggio & Roli, "Wild Patterns" (2018); Narayanan & Shmatikov (S&P 2008); Sweeney, \(k\)-anonymity (2002); OWASP GenAI **LLM Top 10** **[free]**. Katz–Lindell or Goldreich **only** if you open a cryptography ceiling — none of the 309 requires one.
 
-**Information & coding lite.**
-- *UG/Grad.* Erasure vs replication: 3-way replication vs Reed–Solomon k-of-n — storage overhead and surviving-failure count on a toy.
+**6 · Information, coding and compression** — feeds T-IR §4.2 (the index), T-REC §4.1 (embedding stores and ANN), T-MLSYS §4.12 (weight quantisation); builds **B7, B10b, B14**.
+**Recut:** this subfamily used to be a single line about erasure coding — the only part of it the 309 barely touch. Compression *is* required: it is what makes an index and a billion-vector store affordable.
+- *UG.* Entropy \(H(X)=-\sum p\log p\) as the bound no lossless code beats; prefix codes and the Kraft inequality. Then the application: a **gap-encoded posting list** compresses because small gaps have low entropy — exactly what GO-8's varint writer exploits. The IR codecs themselves — variable-byte, Elias-γ, PForDelta/Simple-9 — are implemented at **§4.2 item 3**; what this subfamily owns is the *bound* you measure them against, plus **bitmap indexes (Roaring)** and the density crossover where a bitmap beats a list.
+- *UG.* Cross-entropy and KL read as *coding* quantities: the log-loss you minimise is the excess bits your model costs per example. The derivation stays in **M.ML** (§3.5); the interpretation lives here.
+- *Grad.* Rate–distortion intuition for **lossy vector compression**: scalar quantisation error versus **product quantisation** — split \(D\) dimensions into \(m\) subspaces with \(k\) centroids each, storing \(m\lceil\log_2 k\rceil/8\) bytes per vector instead of \(4D\) — at the usual \(k=256\) that is exactly one byte per subvector, so a 128-d float32 vector goes from 512 bytes to \(m\) — and the recall-versus-memory curve that decides whether an embedding index fits in RAM at all. Binary hashing / LSH as the crude end of the same trade. Weight quantisation shares this arithmetic; its affine map is derived at **§4.12 item 4**.
+- *Grad (durability, one gate).* 3-way replication vs Reed–Solomon \(k\)-of-\(n\): storage overhead and surviving-failure count on a toy, and which one a training-data lake should pick.
+- *Gate:* compress a 1,000-id posting list with gaps + varint, report bytes per posting against the entropy bound, and explain the gap. Then product-quantise 128-dimensional vectors to 16 bytes and measure the recall@10 you lost.
+- *Sources:* MacKay, *ITILA* **[free]**; Cover & Thomas, *Elements of Information Theory* 2e; Manning, Raghavan & Schütze, *IIR* **Ch. 5** **[free]**; Jégou, Douze & Schmid, "Product Quantization for Nearest Neighbor Search" (TPAMI 2011); Malkov & Yashunin, "HNSW" (TPAMI 2018); Lemire et al., Roaring bitmaps (SPE 2016); Weatherspoon & Kubiatowicz, "Erasure Coding vs. Replication" (IPTPS 2002).
 
 ### T.MLTheory — statistical learning theory
 *Feeds:* T-REC §4.1, T-IR §4.2 (LTR objectives), T-DL §4.6 (generalisation). Implementations
@@ -788,8 +810,15 @@ Every formula has exactly **one** home, so revising it revises it everywhere:
 **M.ML** owns empirical risk, losses, P/R/F1, ROC/AUC, calibration, IPS ·
 **M.TS** owns trend/seasonality decomposition · **M.CAUSAL** owns potential outcomes ·
 **T.Algo** owns hashing and the Bloom FPR \((1-e^{-kn/m})^k\) ·
-**T.SysTheory Reliability** owns availability algebra and SLO burn-rate ·
+**T.SysTheory Reliability** owns availability algebra, SLO burn-rate and tail amplification ·
+**T.SysTheory Networking** owns Little's law and the \(\alpha\)–\(\beta\) message cost ·
+**T.SysTheory Storage** owns the row-vs-column scan estimate and the as-of join's *execution* ·
+**T.SysTheory Security** owns \((\varepsilon,\delta)\)-DP, the Laplace mechanism and DP-SGD ·
+**T.SysTheory Coding** owns entropy, Kraft and the bound a code cannot beat, plus product
+quantisation; **T-IR §4.2** owns the IR codecs measured against that bound ·
 **T-IR §4.2** owns BM25 and the index · **T-REC §4.1** owns MF and two-tower ·
+**T-MLSYS §4.12** owns ring all-reduce volume, the affine quantisation map and the
+point-in-time join's *semantics* ·
 **T-RL §4.14** owns regret. **Never invent ciphers** — call a vetted library.
 
 ---
@@ -1056,6 +1085,10 @@ entity-network studies inside family 12.
    derive GraphSAGE mean-aggregation and state the over-smoothing failure at large \(k\).
 7. Fraud-specific: why a ring is a **dense subgraph**, not an outlier, and why per-account
    features cannot find it.
+8. The adversary: fraud is non-stationary *because you shipped a model*. State the attacker's
+   cost per attempt, which features are cheap for them to move, and why blocked transactions
+   never return labels — the full treatment is at **T.SysTheory Security grad**, §3.3, and it
+   is a prerequisite for this ceiling, not an optional extra.
 
 **Text.** Hamilton, *Graph Representation Learning* (Morgan & Claypool 2020) **[free]**,
 author-hosted — **Ch. 2–3** (node embeddings), **Ch. 5–6** (GNNs, expressivity).
@@ -1367,7 +1400,7 @@ family — this is the ceiling with the widest indirect reach.
 5. Chandy–Lamport snapshots and how Flink's aligned barriers turn them into checkpoints.
 6. Log compaction and the "table ⟷ stream" duality.
 7. Backpressure: derive the queue growth from Little's law \(L = \lambda W\) (you already have
-   this at **T.SysTheory Networking grad**, §3.3) and state the shedding policy.
+   this at **T.SysTheory Networking UG**, §3.3) and state the shedding policy.
 
 **Text.** Akidau, Chernyak & Lax, *Streaming Systems* (O'Reilly 2018) **[paid]** —
 **Ch. 1–4** are the core; the *Streaming 101 / 102* articles that became Ch. 1–2 are **[free]**.
@@ -1406,17 +1439,22 @@ every one of the 309 studies. If you read only one ceiling, read this one.
    the factor 6 (2 forward + 4 backward) and use it to estimate a run's cost before launching it.
 2. Data vs model vs pipeline parallelism: for each, state what is split, what is
    communicated, and the communication volume per step. Derive the all-reduce cost
-   \(2(p-1)/p \cdot |W|\) for ring all-reduce.
+   \(2(p-1)/p \cdot |W|\) for ring all-reduce, on the \(\alpha\)–\(\beta\) message-cost
+   primitive from **T.SysTheory Networking grad**, §3.3; the straggler problem underneath
+   synchronous SGD is at **T.SysTheory Distributed grad**.
 3. Mixed precision: why fp16 needs loss scaling, what bf16 changes, and where the master
    weights live.
 4. Quantisation: derive the affine map \(q = \mathrm{round}(x/s) + z\), its dequantisation
-   error bound, and the difference between post-training and quantisation-aware.
+   error bound, and the difference between post-training and quantisation-aware. The
+   rate–distortion view of the same trade — and product quantisation for vectors rather than
+   weights — sits at **T.SysTheory Coding grad**, §3.3.
 5. Serving economics: build the roofline — arithmetic intensity, memory-bandwidth bound vs
    compute bound — and show that LLM decode is bandwidth-bound while prefill is compute-bound.
 6. Batching: derive the latency/throughput curve for static batching, then show why continuous
    batching dominates it for variable-length generation.
 7. Feature stores: derive **training/serving skew** as a definitional mismatch, not a bug; state
-   the point-in-time-correct join that prevents label leakage.
+   the point-in-time-correct join that prevents label leakage. Its *execution* — sort both
+   sides by event time, merge backwards — and its cost are at **T.SysTheory Storage UG**, §3.3.
 8. Monitoring: distinguish data drift, concept drift and label delay; give the statistic for
    each (PSI/KL for the first — you proved \(D_{KL}\ge 0\) at **T.ProbStat grad**, §3.3).
 
@@ -2261,6 +2299,9 @@ on this entire list.
 | Graphs | `gonum.org/v1/gonum/graph` | Topo sort, shortest paths, community detection |
 | Plotting | `gonum.org/v1/plot` | For the residual/ACF plots M.TS asks for |
 | Autodiff / tensors | `gorgonia.org/gorgonia` | Real autodiff in Go; small community — see Part 7 |
+| Compressed bitmaps | `github.com/RoaringBitmap/roaring` | Compare against your own posting lists in B7 (6) |
+| Columnar files | `github.com/parquet-go/parquet-go` | Parquet reader/writer — the row-vs-column measurement in B14 (7) |
+| Embedded LSM store | `github.com/cockroachdb/pebble` | A real LSM to measure write/read amplification against |
 | Full-text search | `github.com/blevesearch/bleve` | Read its source **after** B7, as a comparison |
 | ONNX inference | `github.com/yalue/onnxruntime_go` | The GO-12 serving path |
 | Concurrency helpers | `golang.org/x/sync/errgroup`, `/semaphore` | |
@@ -2418,6 +2459,10 @@ both numbers reported. (3) HNSW recall@10 vs `efSearch` traces the expected curv
 state your index's memory per vector. (4) The LTR reranker improves NDCG@10 over BM25 on a
 held-out query set, and you name the position bias you did **not** correct for and what it cost.
 (5) Index build is parallel (GO-7), `-race` clean, and 10× faster buffered than unbuffered.
+(6) You report **bytes per posting** for gap+varint against the entropy bound of your gap
+distribution, explain the gap between them, and find the posting-list density at which a
+Roaring bitmap beats the list (§3.3 T.SysTheory Coding). (7) Product-quantising your vectors to
+16 bytes costs a stated recall@10, and you report memory-per-vector before and after.
 
 **Covers.** Family 2 (36 studies), the retrieval half of family 5, and every "search food and
 grocery items" study in the catalog.
@@ -2467,7 +2512,10 @@ skip-gram with negative sampling (reusing B2's SGD), and a GraphSAGE mean-aggreg
 the planted communities in an LFR-style synthetic benchmark at a stated mixing parameter.
 (3) Your node2vec embeddings separate the planted communities under k-means better than random,
 measured with NMI. (4) You detect a planted fraud ring — a dense subgraph — that no per-node
-feature flags, and you write down why.
+feature flags, and you write down why. (5) You write the **adversary model** for that ring:
+who the attacker is, what one attempt costs them, which of your features they can cheaply move,
+and what your own blocking decisions do to next month's labels — the non-stationarity argument
+from §3.3 T.SysTheory Security, applied to one named study in Part 1.
 
 **Covers.** Family 4 (24 studies) — Stripe Radar-class, Swiggy/Grab/Zillow trust-and-safety.
 
@@ -2557,6 +2605,14 @@ weeks later. (2) Your drift monitor fires on an injected covariate shift and doe
 resampled in-distribution data — both false-positive and false-negative rates reported.
 (3) The canary rolls back automatically when the fast burn-rate window is exceeded.
 (4) One trace spans retrieval → features → model → response with a latency breakdown that sums.
+(5) You measure **tail amplification**: fan a request out to \(n\) shards, plot the service
+p99 against \(n\), and show it tracking \(1-(1-q)^n\) — then demonstrate one mitigation
+(hedged requests) and report the extra load it cost. (6) A **STRIDE pass** over your own
+serving diagram produces at least one finding you then fix, and your deletion path is tested:
+a deleted user disappears from the online store, the offline snapshot, and the next training
+set — and you state plainly what remains inside already-trained weights.
+(7) You report bytes scanned for one offline feature query under row versus columnar layout,
+with and without row-group skipping.
 
 **Covers.** Family 11 by count, and the real content of nearly all 309.
 
@@ -2684,11 +2740,28 @@ Kurose & Ross, *Computer Networking: A Top-Down Approach* 8e **[paid]** ·
 Tanenbaum & Wetherall, *Computer Networks* 6e **[paid]** ·
 Saltzer, Reed & Clark, "End-to-End Arguments in System Design" (TOCS 1984) **[free]**.
 
+**Information theory and coding.**
+MacKay, *Information Theory, Inference, and Learning Algorithms* (Cambridge 2003) **[free]** —
+author-hosted; Part I is the entropy/Kraft/prefix-code floor for §3.3's coding gates ·
+Cover & Thomas, *Elements of Information Theory* 2e (Wiley) **[paid]** — the reference for
+rate–distortion · Manning, Raghavan & Schütze, *IIR* **Ch. 5** **[free]** — index compression,
+gap encoding, variable-byte and γ-codes, which is the theory directly under **GO-8** and **B7** ·
+Jégou, Douze & Schmid, "Product Quantization for Nearest Neighbor Search" (TPAMI 2011) ·
+Malkov & Yashunin, "Efficient and Robust Approximate Nearest Neighbor Search Using HNSW"
+(TPAMI 2018) · Lemire, Ssi-Yan-Kai & Kaser, "Consistently Faster and Smaller Compressed
+Bitmaps with Roaring" (SPE 2016) · Weatherspoon & Kubiatowicz, "Erasure Coding vs. Replication"
+(IPTPS 2002).
+
 **Databases.**
 Ramakrishnan & Gehrke, *Database Management Systems* 3e **[paid]** ·
 Silberschatz, Korth & Sudarshan, *Database System Concepts* 7e **[paid]** ·
 Hellerstein & Stonebraker (eds.), *Readings in Database Systems* ("the Red Book") 5e **[free]** ·
-PostgreSQL documentation **[free]** — the MVCC chapters are a primary source for §3.3's DB gates.
+PostgreSQL documentation **[free]** — the MVCC chapters are a primary source for §3.3's storage gates ·
+Abadi, Boncz & Harizopoulos, *The Design and Implementation of Modern Column-Oriented Database
+Systems* (FnT Databases 2013) **[free]** — the row-vs-column derivation in §3.3 ·
+O'Neil, Cheng, Gawlick & O'Neil, "The Log-Structured Merge-Tree" (Acta Informatica 1996) ·
+Melnik et al., "Dremel: Interactive Analysis of Web-Scale Datasets" (VLDB 2010) ·
+Armbrust et al., "Delta Lake: High-Performance ACID Table Storage" (VLDB 2020).
 
 ## 8.3 Distributed systems and software engineering
 
@@ -2713,7 +2786,10 @@ Fischer, Lynch & Paterson, "Impossibility of Distributed Consensus with One Faul
 Ongaro & Ousterhout, "In Search of an Understandable Consensus Algorithm" (Raft, USENIX ATC 2014) ·
 DeCandia et al., "Dynamo" (SOSP 2007) · Chang et al., "Bigtable" (OSDI 2006) ·
 Corbett et al., "Spanner" (OSDI 2012) · Dean & Barroso, "The Tail at Scale" (CACM 2013) —
-read this one before setting any p99 budget in B14.
+read this one before setting any p99 budget in B14 ·
+Karger et al., "Consistent Hashing and Random Trees" (STOC 1997) — the sharding argument in
+§3.3 · Barroso, Clidaras & Hölzle, *The Datacenter as a Computer* (Morgan & Claypool)
+**[free]** — where the latency and bandwidth numbers in §3.3's networking gates come from.
 
 ## 8.4 Machine learning and statistics
 
@@ -2743,15 +2819,51 @@ slowly-changing dimensions; the "dimensions" studies in family 12 are literally 
 Inmon, *Building the Data Warehouse* **[paid]** ·
 Reis & Housley, *Fundamentals of Data Engineering* (O'Reilly 2022) **[paid]** ·
 Akidau, Chernyak & Lax, *Streaming Systems* **[paid]** ·
-Narkhede, Shapira & Palino, *Kafka: The Definitive Guide* 2e **[free]**.
+Narkhede, Shapira & Palino, *Kafka: The Definitive Guide* 2e **[free]** ·
+Debezium documentation **[free]** — change data capture as log-reading, the §3.3 CDC gate in
+practice · the Apache **Iceberg** and **Delta Lake** specifications **[free]** — read the table
+spec, not the vendor page.
 
-## 8.6 Go
+## 8.6 Security, privacy and adversarial ML
+
+**Secure design.** Anderson, *Security Engineering: A Guide to Building Dependable Distributed
+Systems* 3e (Wiley 2020) **[free]** — author's Cambridge page; the 2e is free in full and the
+3e chapters were released free in November 2024, though the archived page's own wording still
+describes the older embargo. Read the threat-modelling and access-control chapters before the
+B14 STRIDE pass · Katz & Lindell, *Introduction to Modern
+Cryptography* 3e **[paid]** and Goldreich, *Foundations of Cryptography* **[paid]** — only if
+you open a cryptography ceiling, which **none of the 309 requires**.
+
+**Privacy.** Dwork & Roth, *The Algorithmic Foundations of Differential Privacy* (FnT TCS 2014)
+**[free]** — the definition, the Laplace and Gaussian mechanisms, composition ·
+Near & Abuah, *Programming Differential Privacy* **[free]** — executable, and the gentler first
+pass · Sweeney, "k-Anonymity" (IJUFKS 2002) · Narayanan & Shmatikov, "Robust De-anonymization
+of Large Sparse Datasets" (IEEE S&P 2008) — the Netflix Prize; it is the recommendation
+family's own data · Abadi et al., "Deep Learning with Differential Privacy" (CCS 2016) —
+DP-SGD · McMahan et al., "Communication-Efficient Learning of Deep Networks from Decentralized
+Data" (AISTATS 2017) — FedAvg · Bonawitz et al., "Practical Secure Aggregation for
+Privacy-Preserving Machine Learning" (CCS 2017) · Kairouz et al., "Advances and Open Problems
+in Federated Learning" (FnT ML 2021) **[free]** — the last two are **optional**: no study in
+Part 1 is a federated or on-device system, so read them to be able to reject the architecture
+with a reason, not because a case study demands them.
+
+**Adversarial ML.** Goodfellow, Shlens & Szegedy, "Explaining and Harnessing Adversarial
+Examples" (ICLR 2015) · Madry et al., "Towards Deep Learning Models Resistant to Adversarial
+Attacks" (ICLR 2018) — PGD, and the honest evaluation baseline · Biggio & Roli, "Wild Patterns:
+Ten Years After the Rise of Adversarial Machine Learning" (Pattern Recognition 2018) — the
+history the fraud studies sit inside · Shokri et al., "Membership Inference Attacks Against
+Machine Learning Models" (IEEE S&P 2017) · Carlini et al., "Extracting Training Data from Large
+Language Models" (USENIX Security 2021) · Tramèr et al., "Stealing Machine Learning Models via
+Prediction APIs" (USENIX Security 2016) · OWASP GenAI Security Project, **LLM Top 10**
+**[free]** — the prompt-injection checklist for any LLM-serving study.
+
+## 8.7 Go
 
 See **§5.15** for the full Go shelf. Anchors: the Go spec and memory model **[free]**;
 Donovan & Kernighan **[paid]**; *Learn Go with Tests* **[free]**; Harsanyi, *100 Go Mistakes*
 **[paid]**; gonum documentation **[free]**.
 
-## 8.7 Verified links
+## 8.8 Verified links
 
 | Resource | Link |
 |---|---|
@@ -2773,6 +2885,11 @@ Donovan & Kernighan **[paid]**; *Learn Go with Tests* **[free]**; Harsanyi, *100
 | Tanenbaum & Van Steen, *Distributed Systems* **[free]** | https://www.distributed-systems.net/index.php/books/ds4/ |
 | Google SRE books **[free]** | https://sre.google/books/ |
 | *Software Engineering at Google* **[free]** | https://abseil.io/resources/swe-book |
+| **Security, privacy, adversarial ML** | |
+| Anderson, *Security Engineering* (2e free; 3e released free 2024) | https://www.cl.cam.ac.uk/archive/rja14/book.html |
+| Dwork & Roth, *Algorithmic Foundations of DP* **[free]** | https://www.cis.upenn.edu/~aaroth/privacybook.html |
+| Near & Abuah, *Programming Differential Privacy* **[free]** | https://programming-dp.com/ |
+| OWASP GenAI — LLM Top 10 **[free]** | https://genai.owasp.org/ |
 | **Machine learning** | |
 | ISL 2e (R and Python) **[free]** | https://www.statlearning.com/ |
 | ESL 2e **[free]** | https://hastie.su.domains/ElemStatLearn/ |
@@ -2871,7 +2988,8 @@ Lecture material only. A course earns a place here by having **public notes, sli
 | MIT **6.5940** *TinyML and Efficient Deep Learning* (Han) | quantisation, pruning, distillation | §4.12 |
 | MIT **15.053** *Optimization Methods* | LP, IP, modelling | §4.13 |
 | MIT **6.003** *Signals and Systems* | sampling, transforms | §4.9 |
-| CMU **15-445/645** *Database Systems* (Pavlo) | MVCC, WAL, query processing | §3.3 T.SysTheory DB, §4.11 |
+| CMU **15-445/645** *Database Systems* (Pavlo) | MVCC, WAL, query processing | §3.3 T.SysTheory Storage, §4.11 |
+| CMU **15-721** *Advanced Database Systems* (Pavlo) | columnar layout, Parquet/ORC, in-memory OLAP | §3.3 T.SysTheory Storage |
 | CMU **11-711** *Advanced NLP* (Neubig) | structured prediction, LLMs | §4.7 |
 | CMU **11-642** *Search Engines* | index + ranking implementation | §4.2 |
 | Berkeley **CS186** *Database Systems* | query processing, transactions | §4.11 |
@@ -2931,6 +3049,7 @@ Free, and in several cases the *best* available treatment — not a second-tier 
 | MIT 6.5940 Efficient ML | https://efficientml.ai/ |
 | MIT OpenCourseWare | https://ocw.mit.edu/ |
 | CMU 15-445 Database Systems | https://15445.courses.cs.cmu.edu/ |
+| CMU 15-721 Advanced Database Systems | https://15721.courses.cs.cmu.edu/ |
 | CMU 11-711 Advanced NLP | https://phontron.com/class/anlp2024/ |
 | Cornell CS 4/5780 | https://www.cs.cornell.edu/courses/cs4780/2024sp/ |
 | Princeton COS 226 | https://www.cs.princeton.edu/courses/archive/fall24/cos226/ |
@@ -2946,7 +3065,7 @@ Free, and in several cases the *best* available treatment — not a second-tier 
 
 **Sources.** The 309 one-liners in Part 1 are the Engineer1999 catalog, linked at the top of
 that part. Everything else is either authored here or a public book, paper or course linked in
-§8.7, §9.3 or §9.4. **This file has no external dependency and no companion document.**
+§8.8, §9.3 or §9.4. **This file has no external dependency and no companion document.**
 
 **What has not been done — read this before trusting the file.**
 
@@ -2959,6 +3078,11 @@ that part. Everything else is either authored here or a public book, paper or co
   Synthetic data is specified where an acceptance test needs known ground truth; real public
   datasets are not listed.
 - **Part 6's acceptance tests are specified but not executed.** No code implements them yet.
+- **§3.3's T.SysTheory is cut to the 309, not to a systems syllabus.** CIDR arithmetic,
+  subnetting, L2-vs-L3 and the general cryptography sequence are deliberately absent: no study
+  in Part 1 needs them. Privacy, adversarial ML and storage layout are present because many
+  studies do. If you want a general systems or security education, §8.2, §8.3 and §8.6 are the
+  shelf — this file teaches only what a case study forces.
 - **Tier 0 (§3.0) is a route, not a course.** It points at Khan Academy and OpenStax rather
   than teaching arithmetic itself, which would be a different and much longer document.
 - No excluded host (Scribd, Z-Library, LibGen, Sci-Hub, Internet Archive full-text, epdf.pub,
