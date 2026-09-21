@@ -1,0 +1,1 @@
+/Library/PostgreSQL/15/bin/postgres "-D" "pgdata" "-p" "54329" "-k" "/private/tmp/claude-501/-Users-suhas-sde/4c7c42ac-1b35-48c9-9855-f12e12882fae/scratchpad"
