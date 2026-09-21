@@ -1,0 +1,57 @@
+{
+ "E1.1": {
+  "why": "BETWEEN with the last calendar day",
+  "golden": "162:c85bda05",
+  "err": ""
+ },
+ "E1.3": {
+  "why": "`<>` instead of IS DISTINCT FROM",
+  "golden": "1559:c2797d13",
+  "err": ""
+ },
+ "E2.5": {
+  "why": "integer division",
+  "golden": "5:b83b6ee2",
+  "err": ""
+ },
+ "E3.2": {
+  "why": "NOT IN over a column containing NULL",
+  "golden": "0:d41d8cd9",
+  "err": ""
+ },
+ "E3.5": {
+  "why": "plain JOIN fans out orders with two shipments",
+  "golden": "1:20e027c7",
+  "err": ""
+ },
+ "E3.7": {
+  "why": "rating filter in WHERE after the LEFT JOIN",
+  "golden": "98:43c02740",
+  "err": ""
+ },
+ "E4.5": {
+  "why": "orders JOIN payments then SUM(total_minor)",
+  "golden": "5:45fe10e3",
+  "err": ""
+ },
+ "E4.6": {
+  "why": "forgetting that ALL over an empty set is TRUE",
+  "golden": "68:6cff1edf",
+  "err": ""
+ },
+ "E5.7": {
+  "why": "last_value with the default frame",
+  "golden": "60:99a2d437",
+  "err": ""
+ },
+ "E6.4": {
+  "why": "plain equi-join returns all three price rows",
+  "golden": "808:97a9c21a",
+  "err": ""
+ },
+ "E8.3": {
+  "why": "comparing UTC to UTC (wrong AT TIME ZONE direction)",
+  "golden": "1:c06c9654",
+  "err": ""
+ }
+}
