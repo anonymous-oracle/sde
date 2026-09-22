@@ -88,20 +88,6 @@ The TLS handshake in detail, PKI and certificate chains
 Authentication vs authorization; identity federation, SSO, MFA
 Common attack classes: injection, XSS, CSRF, DDoS, privilege escalation
 Principle of least privilege, defense in depth, zero trust — the conceptual spine of every cloud IAM system
-
-
----
-
-## Companion — Cloud Cybersecurity (standalone)
-
-**Standing stitch rule.** Teach security-relevant sections of this roadmap with [`cloud-cybersecurity-companion.md`](./cloud-cybersecurity-companion.md). Whenever **A5**, **A7 (auth patterns)**, **A10**, **B1 (shared responsibility)**, **B5**, **C1/C2 hardening**, **Phase 4 Networking/Security**, or the **Cloud Security / Network / SecOps** cert tracks are taught, also teach every companion module bound in companion **§2** in the **same session** — one story, never twice.
-
-That companion is **standalone** (no other companion files). It owns attack mechanics, network/cloud cybersecurity, cryptography (`CR-*`), and the exercise bank. This roadmap still owns order, cert mapping, and service vocabulary.
-
-**Lab safety:** local vulnerable-by-design fixtures only; no live DDoS, third-party scanning, malware, or credential stuffing against real accounts.
-
----
-
 A11. Software Delivery & Version Control
 Git deep dive: branches, merges, rebases, conflict resolution, tagging
 SDLC models, Agile/Scrum basics
