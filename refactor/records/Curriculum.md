@@ -744,3 +744,63 @@ Progress lives in the inline `- [ ]` boxes of the five parts, which are authorit
 ````text
 3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → attacker/crypto (cyber).
 ````
+
+**J446** · GAP-1 · anchor-rewrite
+
+````text
+Networking: VPC, Cloud Load Balancing, Cloud CDN, Cloud Interconnect/VPN, Cloud DNS, Cloud Armor
+````
+
+**J447** · GAP-2 · anchor-rewrite
+
+````text
+Storage/DB: Cloud Storage, Cloud SQL, Spanner, Bigtable, Firestore, Memorystore, AlloyDB
+````
+
+**J448** · GAP-3 · anchor-rewrite
+
+````text
+Data/Analytics: BigQuery, Pub/Sub, Dataflow, Dataproc, Cloud Composer, Looker
+````
+
+**J449** · GAP-4 · anchor-rewrite
+
+````text
+AI/ML: Vertex AI (full suite: Workbench, Training, Pipelines, Feature Store, Model Registry, Endpoints, Vizier), Model Garden, Gemini Enterprise/Agent Platform, AutoML, BigQuery ML
+````
+
+**J450** · GAP-5 · anchor-rewrite
+
+````text
+Security: IAM, Cloud KMS, VPC Service Controls, Binary Authorization, Security Command Center, Google SecOps (Chronicle)
+````
+
+**J451** · GAP-6 · anchor-rewrite
+
+````text
+Ops/DevOps: Cloud Build, Cloud Deploy, Artifact Registry, Cloud Monitoring/Logging
+````
+
+**J453** · GAP-8 · anchor-rewrite
+
+````text
+| S8 | Migration & modernization | |
+````
+
+**J454** · GAP-9 · anchor-rewrite
+
+````text
+| S11 | Case-study studio | |
+````
+
+**J455** · GAP-10 · anchor-rewrite
+
+````text
+| M5 | Numerical Methods & Floating Point | IEEE 754, rounding, decimal vs binary |
+````
+
+**J456** · GAP-11 · anchor-rewrite
+
+````text
+| Heavy hitters / sketches / approximate counting | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
+````

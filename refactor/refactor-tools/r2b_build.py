@@ -19,6 +19,7 @@ Usage:  r2b_build.py ROOT [--from-r2]      (ROOT = the refactor workspace)
    name, Northstar pointers, material dependencies) and the new content they insert (D9 gap fills).
 4. (R2c, D12) r2c_go adds the Go Language Companion as a sixth part, rule 0.4.9 in the main course, and the
    tie-ins in the other parts (see r2c_go.py).
+5. (R2c-bis, D13) r2c_gcp adds the few topics the legacy GCP notes held and no part taught (see r2c_gcp.py).
 5. Writes work/, refactor/records/, outputs/r2b/journal.jsonl, and deletes work/northstar-reference-app.md (D5).
 
 Deterministic and idempotent: every run starts again from the frozen R2 snapshot.
@@ -40,6 +41,7 @@ import r2b_sql  # noqa: E402
 import r2b_dp  # noqa: E402
 import r2b_sec  # noqa: E402
 import r2c_go  # noqa: E402
+import r2c_gcp  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -162,6 +164,7 @@ def main():
         generic(files[fn])
     r2b_cur.build(files[CUR], files)
     r2c_go.cur(files[CUR])   # D12: before the companions copy the contract, so rule 0.4.9 is in every copy
+    r2c_gcp.cur(files[CUR])  # D13: the final gap-fill from the legacy GCP notes (material only)
     r2b_pri.build(files[PRI], files)
     r2b_sql.build(files[SQL], files, root)
     r2b_dp.build(files[DPC], files)

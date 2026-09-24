@@ -117,22 +117,38 @@ def d12():
     if "one course in six parts" not in cur or "- **The Go Language Companion" not in cur:
         bad.append("main §0.1 does not list six parts")
     mods = re.findall(r"^#### (GO-\d\d) ", go, re.M)
-    if mods != [f"GO-{i:02d}" for i in range(1, 28)]:
-        bad.append("GO-01…GO-27 headings not in order")
+    total = re.search(r"^\| \*\*Total\*\* \| \| \*\*(\d+)\*\* \|$", go, re.M)
+    n = int(total.group(1)) if total else 0
+    if not n or mods != [f"GO-{i:02d}" for i in range(1, n + 1)]:
+        bad.append(f"GO-01…GO-{n:02d} headings not in order or the ledger total disagrees ({len(mods)} headings)")
+    # D13: one involved problem per module (on its card, after the Check) and one rubric per problem
+    cards = re.split(r"^(?=#### GO-\d\d )", go, flags=re.M)[1:]
+    for c in cards:
+        m = c[5:10]
+        body = c.split("\n\n")[0]
+        if not re.search(rf"^- \*\*Check:\*\* .*\n- \*\*Involved problem {m.replace('GO-', 'GO-P')}:\*\* ", body, re.M):
+            bad.append(f"{m} has no involved problem right after its Check")
+    probs = re.findall(r"^- \*\*Involved problem (GO-P\d\d):\*\*", go, re.M)
+    rubs = re.findall(r"^- \*\*(GO-P\d\d) rubric:\*\*", go, re.M)
+    if probs != [f"GO-P{i:02d}" for i in range(1, n + 1)] or rubs != probs:
+        bad.append(f"involved problems/rubrics not one per module ({len(probs)} problems, {len(rubs)} rubrics)")
+    if "4. **Involved problem** — every GO module ends with one involved problem" not in cur:
+        bad.append("rule 0.4.9 lacks its fourth rule (involved problem)")
     bad += [f"{k} has a GO heading" for k in COURSE if k != "go" and re.search(r"^#{3,4} GO-", text(k), re.M)]
-    refs = {r for k in COURSE for r in re.findall(r"\bGO-(?:\d\d|E\d+\.\d+|CAP\d)\b", text(k))}
+    refs = {r for k in COURSE for r in re.findall(r"\bGO-(?:\d\d|E\d+\.\d+|CAP\d|P\d\d)\b", text(k))}
     ex = set(re.findall(r"^- \[ \] \*\*(GO-E\d+\.\d+)\*\*", go, re.M))
     keys = set(re.findall(r"^- \*\*(GO-E\d+\.\d+):\*\*", go, re.M))
     caps = set(re.findall(r"^- \[ \] \*\*(GO-CAP\d) ·", go, re.M))
     bad += [f"exercise {e} has no key" for e in sorted(ex - keys)] + [f"key {e} has no exercise" for e in sorted(keys - ex)]
-    bad += [f"dangling {r}" for r in sorted(refs) if r not in set(mods) | ex | caps]
+    bad += [f"dangling {r}" for r in sorted(refs) if r not in set(mods) | ex | caps | set(probs)]
     tags = {t.strip() for h in re.findall(r"^#### GO-\d\d .*? — stitch: (.*)$", go, re.M) for t in h.split(" · ")}
     bad += [f"stitch tag {t} not a main-course module" for t in sorted(tags)
             if not re.search(rf"^(?:#{{2,4}} {re.escape(t)}[.: ]|\| {re.escape(t)} \|)", cur, re.M)]   # heading or reserved row
     ties = {"pri": "once its GO-11 is (rule 0.4.9)", "sql": "once the Go Language Companion's GO-22 is taught",
             "dp": "| Go Language Companion | GO-11 renders", "sec": "the Go Language Companion's GO-21 teaches"}
     bad += [f"{k} tie-in missing" for k, v in ties.items() if v not in text(k)]
-    return ok(not bad, f"{len(mods)} modules, {len(ex)} exercises with keys, {len(caps)} capstones, {len(refs)} "
+    return ok(not bad, f"{len(mods)} modules, {len(probs)} involved problems with rubrics, {len(ex)} exercises with "
+                       f"keys, {len(caps)} capstones, {len(refs)} "
                        f"GO IDs referenced, {len(tags)} stitch tags, rule 0.4.9 in {len(COURSE)} parts"
               + (f"; wrong: {bad[:8]}" if bad else ""))
 

@@ -27,8 +27,9 @@ def cur(f):
     f.ins_after("GO-2", "- **The Cloud Cybersecurity Companion** — security, attacks and cryptography.",
                 ["- **The Go Language Companion — Syntax, Semantics, Runtime and Contrasts** — the implementation "
                  "language: Go's grammar, semantics, runtime and toolchain, each construct contrasted with Python, "
-                 "Java, C and JavaScript. Its language core is the Go block of A3; its later modules bind where they "
-                 "are first used (rule 0.4.9)."], EV)
+                 "Java, C and JavaScript, and authentication and payment integration built from scratch in Go. Its "
+                 "language core is the Go block of A3; its later modules bind where they are first used (rule "
+                 "0.4.9)."], EV)
     f.rep("GO-3", "anchor-rewrite", "inline `- [ ]` boxes of the five parts", "inline `- [ ]` boxes of the six parts",
           EV)
     # §0.3 register: owners for the Go material, and the Go additions to rows it touches
@@ -54,7 +55,13 @@ def cur(f):
         "| HTTP server timeouts against slow clients | Cyber DOS-05 (the attack and the values) | Go companion GO-21 "
         "(which `http.Server` field does what) |",
         "| Password hashing in a service | Cyber CR-13 (the KDFs) | Go companion GO-07 + GO-21 (CR-13's build lab "
-        "written in Go) |"], EV)
+        "written in Go); GO-28 (a versioned record with rehash on login) |",
+        "| Authentication built in code: sessions, signed tokens, one-time codes, OAuth client | Cyber AU-01…AU-10 "
+        "and CR-05…CR-07, CR-13, CR-16 (the attacks and the primitives) | Go companion GO-28 (each piece built from "
+        "scratch in Go against its RFC test vectors, then with a vetted library) |",
+        "| Payment-provider integration: idempotent create, signed webhooks, ledger writes, reconciliation | Go "
+        "companion GO-29 (the integration code) | SQL DD-03 (the ledger rules it follows); Cyber PV-03 (tokenization, "
+        "PCI DSS scope) and AB-06/AB-07 (checkout abuse); Primer SD-28 (queues, back-pressure) |"], EV)
     f.rep("GO-6", "anchor-rewrite", "3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → "
           "attacker/crypto (cyber).", "3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns "
           "→ Go implementation (Go companion) → attacker/crypto (cyber).", EV)
@@ -65,7 +72,7 @@ def cur(f):
         "that write a program, and capstones. Python stays the first language of A3, the language of Track D's "
         "machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "
         "\"Python twin\" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is "
-        "the Go block of A3, and its later modules bind where they are first used. Three rules:",
+        "the Go block of A3, and its later modules bind where they are first used. Four rules:",
         "",
         "1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a "
         "check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or "
@@ -78,7 +85,13 @@ def cur(f):
         "3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour "
         "is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. "
         "The go command downloads modules, and whole toolchains when a module's `go` line is newer than the "
-        "installed release: name what a step will fetch before running it."], EV)
+        "installed release: name what a step will fetch before running it.",
+        "4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and "
+        "writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown "
+        "only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` "
+        "only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). "
+        "It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor "
+        "never writes the solution."], EV + "; D13: the learner asked for one involved problem per Go topic")
     f.ins_after("GO-8", "Git fundamentals (deep dive lives in A11)", [
         "Go, the implementation language of the suite's labs and services: the Go companion's GO-01…GO-14, after "
         "the Python block, in four teaching blocks — A3.G1 toolchain, packages, types and control flow · A3.G2 "
