@@ -17,7 +17,9 @@ Usage:  r2b_build.py ROOT [--from-r2]      (ROOT = the refactor workspace)
      G8  N-tags (the withdrawn Track N, D5) in module stitch headers map to main-course anchors
    then the per-file rules in r2b_cur / r2b_pri / r2b_sql / r2b_dp / r2b_sec (file names, the file-style parent
    name, Northstar pointers, material dependencies) and the new content they insert (D9 gap fills).
-4. Writes work/, refactor/records/, outputs/r2b/journal.jsonl, and deletes work/northstar-reference-app.md (D5).
+4. (R2c, D12) r2c_go adds the Go Language Companion as a sixth part, rule 0.4.9 in the main course, and the
+   tie-ins in the other parts (see r2c_go.py).
+5. Writes work/, refactor/records/, outputs/r2b/journal.jsonl, and deletes work/northstar-reference-app.md (D5).
 
 Deterministic and idempotent: every run starts again from the frozen R2 snapshot.
 """
@@ -37,6 +39,7 @@ import r2b_pri  # noqa: E402
 import r2b_sql  # noqa: E402
 import r2b_dp  # noqa: E402
 import r2b_sec  # noqa: E402
+import r2c_go  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -158,11 +161,13 @@ def main():
     for fn in COURSE:
         generic(files[fn])
     r2b_cur.build(files[CUR], files)
+    r2c_go.cur(files[CUR])   # D12: before the companions copy the contract, so rule 0.4.9 is in every copy
     r2b_pri.build(files[PRI], files)
     r2b_sql.build(files[SQL], files, root)
     r2b_dp.build(files[DPC], files)
     r2b_sec.build(files[SEC], files)
-    for fn, f in files.items():
+    go = r2c_go.build(files, root)   # D12: the Go Language Companion and its tie-ins
+    for fn, f in list(files.items()) + [(go.n, go)]:
         open(os.path.join(work, fn), "w", encoding="utf-8").write("\n".join(f.L))
     ns = os.path.join(work, "northstar-reference-app.md")
     if os.path.exists(ns):

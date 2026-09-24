@@ -23,7 +23,7 @@ def contract_copy(files, prefs_no, copy_no):
     src = contract_lines(files[CUR])
     out = [f"### 0.{copy_no} Suite Teaching Contract and Lab Safety (same text in every part)", "",
            "The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. "
-           "The rule numbers stay the main course's (0.4.1…0.4.8, and the five Lab Safety rules), so \"main course "
+           "The rule numbers stay the main course's (0.4.1…0.4.9, and the five Lab Safety rules), so \"main course "
            "§0.4.3\" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's "
            "running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception "
            "register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. "
