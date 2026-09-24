@@ -1,6 +1,6 @@
-# Records for system-design-primer-companion.md (R2b, 2026-09-24)
+# Records for system-design-primer-companion.md (R2b, R2c and R4 build edits, 2026-09-24)
 
-Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line R2b changed or removed out of the course files; decision D3 keeps them here, verbatim. Each entry names the R2b journal number (outputs/r2b/journal.jsonl), the rule and the class.
+Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
 **J60** · G0 · R2 in-file D3 archive, moved out whole
 
@@ -344,4 +344,10 @@ Suite-wide ownership lives in the register in `Curriculum` §0.3 (which also car
 
 ````text
 *Column 2 of the Phase 0–4 rows is generated from `primer-binding-table.md` (2026-09-24): `ID[slice]` = a named ingredient taught before the concept's full session; `ID~` = recall. The pre-refactor rows are in the D3 archive.*
+````
+
+**J877** · R4-8 · anchor-rewrite
+
+````text
+- `V-COMP, V-STOR, V-NET, V-DATA, V-AI, V-SEC, V-OPS` — the main course's Part V service-map categories. `M1…M6`, `U1…U7`, `S1…S11` — the main course's reserved tracks (scope stubs; its reserved-tracks table says what each covers).
 ````

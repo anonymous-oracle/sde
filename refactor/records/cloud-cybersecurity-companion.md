@@ -1,6 +1,6 @@
-# Records for cloud-cybersecurity-companion.md (R2b, 2026-09-24)
+# Records for cloud-cybersecurity-companion.md (R2b, R2c and R4 build edits, 2026-09-24)
 
-Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line R2b changed or removed out of the course files; decision D3 keeps them here, verbatim. Each entry names the R2b journal number (outputs/r2b/journal.jsonl), the rule and the class.
+Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
 **J178** · G0 · R2 in-file D3 archive, moved out whole
 
@@ -2474,4 +2474,88 @@ Why: `Curriculum` owns the *roadmap spine* — what to learn, in what order, tie
 
 ````text
 - **Build lab (password storage):** register and login endpoints on a local service. Store per user `argon2id$v=19$m=65536,t=3,p=1$<salt>$<hash>` from a vetted library (argon2-cffi, `golang.org/x/crypto/argon2`), with parameters from the current OWASP password-storage guidance `(verify)`, a unique 16-byte random salt per user, and a pepper: HMAC-SHA-256 of the password under a key held in Secret Manager (lab: an environment variable), applied before hashing, with a pepper-version field. Steps: (1) time one hash and tune memory and iterations to about 100 ms on the lab machine; (2) import a table of legacy SHA-256 hashes and upgrade each one on its next successful login (rehash-on-login, version field); (3) rate-limit login per account and per IP (AU-08). Tests: the same password gives different stored strings; a wrong pepper version fails closed; a login for an unknown user takes as long as for a known one (hash a dummy value).
+````
+
+**J911** · R4-10 · anchor-rewrite
+
+````text
+- Main-course IDs: module IDs (`A5`, `A7`, `A10`, `B1`, `B5`, `C1`, `C2` …), Part V category IDs (`V-NET`, `V-SEC` …), `Phase 4 Networking` / `Phase 4 Security`, the reserved tracks (`M`, `U`, `S`; scope stubs in the main course), and cert names (PCA, Cloud Security Engineer, …). IDs from the other companions keep their own prefixes and are named with their part, e.g. SQL DD-03, SQL OD-11.
+````
+
+**J912** · R4-10 · anchor-rewrite
+
+````text
+| **A6** | DOS-06, WA-10 (+ U1) | — | — |
+````
+
+**J913** · R4-10 · anchor-rewrite
+
+````text
+| **U7** | PV-05 | — | — |
+````
+
+**J914** · R4-10 · anchor-rewrite
+
+````text
+| **Phase 4 Security** | TH-05 (SecOps), CR-14, CR-15, CR-17, CR-18, CR-20, NT-06 (Prop Lock), WL-04, SC-03, PV-01, PV-02, PV-03, PV-04, CM-01, CM-02 | CL-01 (Lens-3), CL-02 (Lens-3), CL-03 (Lens-3), CL-04 (Lens-3), CL-05 (Lens-3), IR-01 (SecOps), IR-02 (SecOps), IR-04 (SecOps), IR-03, IR-05, IR-06, IR-07, IR-08 | CR-E9…CR-E15, SEC-CAP1 |
+````
+
+**J915** · R4-10 · anchor-rewrite
+
+````text
+#### TH-01 · Attacker models: web vs network vs cloud-admin vs co-tenant — stitch: A10 · S6 · S2 · CS155
+````
+
+**J916** · R4-10 · anchor-rewrite
+
+````text
+#### TH-02 · Trust boundaries & asset inventory for the reference app — stitch: A10 · S6
+````
+
+**J917** · R4-10 · anchor-rewrite
+
+````text
+#### TH-03 · STRIDE applied — stitch: A10 · S6 · Phase 4 Security
+````
+
+**J918** · R4-10 · anchor-rewrite
+
+````text
+#### TH-06 · Distributed-system threat concepts — stitch: A9 · S2 · primer
+````
+
+**J919** · R4-10 · anchor-rewrite
+
+````text
+#### DOS-06 · Resource exhaustion (CPU/mem/conn/disk) — stitch: A6 · S2 · A10
+````
+
+**J920** · R4-10 · anchor-rewrite
+
+````text
+#### DOS-08 · Cache stampedes & thundering herds — stitch: A9 · SD-26 (recall) · S2 · V-STOR
+````
+
+**J921** · R4-10 · anchor-rewrite
+
+````text
+#### WA-10 · Memory/control-flow → cloud RCE (applied) — stitch: A6 + U1 · A10 · CS155 · CK · GCE
+````
+
+**J922** · R4-10 · anchor-rewrite
+
+````text
+#### SC-02 · Noisy neighbor & isolation classes — stitch: B2 · S2 · CMU 95-746
+````
+
+**J923** · R4-10 · anchor-rewrite
+
+````text
+#### PV-05 · Privacy vs security tension (short Embedded EthiCS angle) — stitch: U7 · A10 · Phase 4 Security · XACS235
+````
+
+**J924** · R4-10 · anchor-rewrite
+
+````text
+- **Map to GCP:** DOS-08, architecture studios (security-relevant only)
 ````

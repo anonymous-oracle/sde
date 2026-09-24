@@ -51,7 +51,7 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 - `PQ-S-*` foundations · `TH-*` threat modeling · `CR-*` cryptography · `AU-*` auth/session attacks · `AB-*` API/abuse · `DOS-*` denial of service · `WA-*` web/app attacks · `CL-*` cloud-native attacks · `NT-*` network/zero-trust · `CK-*` containers/K8s · `WL-*` supply chain · `IR-*` detection/IR · `AI-*` AI/LLM threats · `SC-*` side channels/isolation · `PV-*` privacy · `CM-*` compliance literacy
 - `SEC-E*` / `CR-E*` / `SEC-Z0.*` exercises · `SEC-CAP1–SEC-CAP4` capstones
-- Main-course IDs: module IDs (`A5`, `A7`, `A10`, `B1`, `B5`, `C1`, `C2` …), Part V category IDs (`V-NET`, `V-SEC` …), `Phase 4 Networking` / `Phase 4 Security`, the reserved tracks (`M`, `U`, `S`; scope stubs in the main course), and cert names (PCA, Cloud Security Engineer, …). IDs from the other companions keep their own prefixes and are named with their part, e.g. SQL DD-03, SQL OD-11.
+- Main-course IDs: module IDs (`A5`, `A7`, `A10`, `B1`, `B5`, `C1`, `C2` …), Part V category IDs (`V-NET`, `V-SEC` …), `Phase 4 Networking` / `Phase 4 Security`, and cert names (PCA, Cloud Security Engineer, …). IDs from the other companions keep their own prefixes and are named with their part, e.g. SQL DD-03, SQL OD-11.
 - **The reference app** — the one application every scenario, lab and capstone in this part threat-models: an online shop at `shop.example`. A storefront (sessions, catalog, carts) and a customer API (orders, customer data, payment tokens) run on Cloud Run behind a global external Application Load Balancer with Cloud Armor; an admin console for refunds and configuration sits behind IAP; services call each other under service-account identity; data lives in Cloud SQL for PostgreSQL (orders, the payments ledger, customers — the same storefront data as the SQL companion's lab), Cloud Storage (product media, invoices, exports) and BigQuery (analytics), with Pub/Sub between services; a CI/CD pipeline builds with Cloud Build into Artifact Registry; and an AI gateway on Vertex AI has tools and a RAG corpus. Appendix N lists each plane's assets, attackers and modules. The main course teaches the products; each module's Lens-2 lab builds the piece it needs locally, so the app never has to exist in the cloud for the security work.
 
 ### 0.5 University alignment (coverage checklist)
@@ -162,7 +162,7 @@ Every concept module appears once as primary; secondary anchors are previews, re
 |---|---|---|---|
 | **A1** | — | PQ-S-01 (recall) | — |
 | **A5** | PQ-S-04 (HTTP/TLS (preview)), CR-11 (TLS), CR-12 (TLS), DOS-01 (load balancing), DOS-02 (DNS/UDP), NT-01 (NAT/firewalls/proxies), NT-02 (NAT/firewalls/proxies), NT-07 (NAT/firewalls/proxies), NT-03 (DNS), NT-04 (DNS), NT-05 (VPN), NT-08 (TLS) — CR-11/CR-12 at mechanism level plus the minimal public-key intuition bridge | AU-01 (HTTP cookie mechanics (recall)), AU-02 (HTTP cookie mechanics (recall)), AU-03 (HTTP cookie mechanics (recall)), AU-04 (HTTP cookie mechanics (recall)), DOS-05 (HTTP (recall)) | SEC-E4.21, CR-E12 |
-| **A6** | DOS-06, WA-10 (+ U1) | — | — |
+| **A6** | DOS-06, WA-10 | — | — |
 | **A7** | TH-04, AU-05, AU-06, AU-07, AU-11, AU-12, AU-13, AB-01, AB-02, AB-03, AB-04, AB-05, AB-06, AB-07, AB-08 | CL-08 | SEC-E3.5, CR-E4 |
 | **A8** | — | WA-05 (SQL SL-13 owns the SQL mechanics) | — |
 | **A9** | TH-06, DOS-08, CL-06 | — | — |
@@ -178,10 +178,9 @@ Every concept module appears once as primary; secondary anchors are previews, re
 | **C6** | WA-09, IR-01, IR-02, IR-04 | — | — |
 | **C7** | IR-03, IR-05, IR-06, IR-07, IR-08 | — | — |
 | **D4** | AI-01, AI-02, AI-03, AI-04, AI-05 | — | — |
-| **U7** | PV-05 | — | — |
 | **V-NET** | WA-11 (Armor), CL-07 | AB-01 (Armor, Lens-3), AB-02 (Armor, Lens-3), AB-03 (Armor, Lens-3), AB-04 (Armor, Lens-3), AB-05 (Armor, Lens-3) | SEC-E4.3 |
 | **Phase 4 Networking** | DOS-04 (Prop Lock) | — | SEC-E4.16 |
-| **Phase 4 Security** | TH-05 (SecOps), CR-14, CR-15, CR-17, CR-18, CR-20, NT-06 (Prop Lock), WL-04, SC-03, PV-01, PV-02, PV-03, PV-04, CM-01, CM-02 | CL-01 (Lens-3), CL-02 (Lens-3), CL-03 (Lens-3), CL-04 (Lens-3), CL-05 (Lens-3), IR-01 (SecOps), IR-02 (SecOps), IR-04 (SecOps), IR-03, IR-05, IR-06, IR-07, IR-08 | CR-E9…CR-E15, SEC-CAP1 |
+| **Phase 4 Security** | TH-05 (SecOps), CR-14, CR-15, CR-17, CR-18, CR-20, NT-06 (Prop Lock), WL-04, SC-03, PV-01, PV-02, PV-03, PV-04, PV-05, CM-01, CM-02 | CL-01 (Lens-3), CL-02 (Lens-3), CL-03 (Lens-3), CL-04 (Lens-3), CL-05 (Lens-3), IR-01 (SecOps), IR-02 (SecOps), IR-04 (SecOps), IR-03, IR-05, IR-06, IR-07, IR-08 | CR-E9…CR-E15, SEC-CAP1 |
 | **Cloud Security Engineer cert track** | all CL/NT/IR/CR-14+, CM-* | — | SEC-CAP2 |
 | **Cloud Network Engineer cert track** | NT-*, DOS-*, A5 recall | — | SEC-E10.7 |
 | **Security Operations Engineer / SCS-C03** | IR-*, TH-05 ATT&CK, IR capstone | — | SEC-CAP3 |
@@ -267,7 +266,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 
 ### 3.2 Threat taxonomy & modeling (TH-01 … TH-06)
 
-#### TH-01 · Attacker models: web vs network vs cloud-admin vs co-tenant — stitch: A10 · S6 · S2 · CS155
+#### TH-01 · Attacker models: web vs network vs cloud-admin vs co-tenant — stitch: A10 · CS155
 - [ ] unlocked
 - **Attack:** Design only against 'script kiddie on the internet'; miss insider SA, malicious co-tenant probing IMDS, or network MITM on legacy VPN.
 - **Why it works:** Different attackers have different capabilities: web (malicious site, XSS sink), network (on-path), cloud-admin (IAM), co-tenant (noisy/side-channel/isolation).
@@ -276,7 +275,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E1.4
 - **Check:** Which attacker model does VPC-SC primarily frustrate?
 
-#### TH-02 · Trust boundaries & asset inventory for the reference app — stitch: A10 · S6
+#### TH-02 · Trust boundaries & asset inventory for the reference app — stitch: A10
 - [ ] unlocked
 - **Attack:** Flat 'inside VPC = trusted'; secrets treated as code assets.
 - **Why it works:** Breach crosses the weakest unlabeled boundary; assets without owners lack controls.
@@ -285,7 +284,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E1.1
 - **Check:** List five reference-app assets and their trust boundary.
 
-#### TH-03 · STRIDE applied — stitch: A10 · S6 · Phase 4 Security
+#### TH-03 · STRIDE applied — stitch: A10 · Phase 4 Security
 - [ ] unlocked
 - **Attack:** Skipping elevation-of-privilege; treating Spoofing as 'solved by HTTPS'.
 - **Why it works:** STRIDE structures brainstorming; each letter maps to CIA+AuthZ concerns.
@@ -312,7 +311,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E7.3
 - **Check:** State T1552.005 in one sentence.
 
-#### TH-06 · Distributed-system threat concepts — stitch: A9 · S2 · primer
+#### TH-06 · Distributed-system threat concepts — stitch: A9 · primer
 - [ ] unlocked
 - **Attack:** Assuming consensus implies honesty of operators; ignoring poisoned configs across regions.
 - **Why it works:** Replication multiplies trust; control planes are high-value; eventual consistency delays revocation.
@@ -778,7 +777,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E4.8
 - **Check:** Which timeout stops slow-header attacks?
 
-#### DOS-06 · Resource exhaustion (CPU/mem/conn/disk) — stitch: A6 · S2 · A10
+#### DOS-06 · Resource exhaustion (CPU/mem/conn/disk) — stitch: A6 · A10
 - [ ] unlocked
 - **Attack:** Zip bombs; huge JSON; unbounded uploads; regex DoS.
 - **Why it works:** App parses untrusted input into memory.
@@ -796,7 +795,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E7.6
 - **Check:** Name three billable SKUs an attacker can inflate.
 
-#### DOS-08 · Cache stampedes & thundering herds — stitch: A9 · SD-26 (recall) · S2 · V-STOR
+#### DOS-08 · Cache stampedes & thundering herds — stitch: A9 · SD-26 (recall) · V-STOR
 - [ ] unlocked
 - **Attack:** TTL expiry stampede hits origin; retry storms amplify outage.
 - **Why it works:** Synchronized clients; no jitter; no request coalescing.
@@ -888,7 +887,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E7.1
 - **Check:** How does structured logging reduce log injection?
 
-#### WA-10 · Memory/control-flow → cloud RCE (applied) — stitch: A6 + U1 · A10 · CS155 · CK · GCE
+#### WA-10 · Memory/control-flow → cloud RCE (applied) — stitch: A6 · A10 · CS155 · CK · GCE
 - [ ] unlocked
 - **Attack:** Buffer overflow in native VM agent/sidecar; RCE then steal metadata tokens.
 - **Why it works:** Native code in VMs/containers still memory-unsafe; cloud makes post-exploit valuable (IMDS).
@@ -1310,7 +1309,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E17
 - **Check:** When do you escalate from 'software constant-time' to HSM/TEE?
 
-#### SC-02 · Noisy neighbor & isolation classes — stitch: B2 · S2 · CMU 95-746
+#### SC-02 · Noisy neighbor & isolation classes — stitch: B2 · CMU 95-746
 - [ ] unlocked
 - **Attack:** DoS via co-tenant resource contention; assuming strong isolation on shared CPU without evidence.
 - **Why it works:** Cloud isolation is layered (VM/container/serverless) with different residual risks.
@@ -1366,7 +1365,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E8.1
 - **Check:** Name two GCP levers for residency.
 
-#### PV-05 · Privacy vs security tension (short Embedded EthiCS angle) — stitch: U7 · A10 · Phase 4 Security · XACS235
+#### PV-05 · Privacy vs security tension (short Embedded EthiCS angle) — stitch: Phase 4 Security · A10 · XACS235
 - [ ] unlocked
 - **Attack:** Maximizing retention 'for security' vs minimization; employee monitoring vs dignity.
 - **Why it works:** Security logging can become privacy harm; tradeoffs need explicit ethics/policy.
@@ -2074,7 +2073,7 @@ INFO admin login success`.
 - **Scenario:** Attacker forces TTL expiry on hot key.
 - **Predict impact (write first):** Availability impact.
 - **Design control:** Singleflight+jitter+Armor.
-- **Map to GCP:** DOS-08, architecture studios (security-relevant only)
+- **Map to GCP:** DOS-08
 - **Unlocks / depends:** DOS-08
 
 #### SEC-E8.3 · L8 · Prompt injection on Vertex app

@@ -2,7 +2,7 @@
 
 Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace: `refactor/` (the repo's `refactor/` folder; R0–R1 ran at `/Users/suhas/sde/refactor/`, R2 was finished in a cloud checkout of the same repo, branch `gcp`). Outputs go to `refactor/outputs/` and the workspace root.
 
-**Resume point:** R3 Verify is **done** (§6e): `python3 refactor-tools/verify.py .` rebuilds from the frozen R2 snapshot, runs every folded check and writes `manifest-after.json`, `manifest-after-summary.md` and `verification-report-R3.md`, which reports **PASS** with 42 of 42 GATE rows passing, 5 INFO rows and 1 HOLD (D8). The hard gate holds: zero lost items, zero undefined references, zero orphans, zero file names or links. `gcp-curriculum.md` is still in the repo and is not deleted without the learner's say-so (§10 question 2); `audit_r2b.py` alone still exits 1 on D8 for that reason. Read `requirements-hardening.md` §1 first. Next: **R4** (the main course: tracks M/U/S to the §9.1 standard, `dag.json` + `dag_check.py` for C-65, the volatility register and coverage matrix, the A5/A8/A10 splits); stop for "continue" before starting it. After a fresh checkout run `chmod a-w inputs-original/*`. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the deleted legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
+**Resume point:** R4 (main course hardening, D14–D16) is **done** (§6f). Run `python3 refactor-tools/verify.py . --stage R4`: it rebuilds from the frozen R2 snapshot, runs every folded check plus the R4 gates (C-49 teaching blocks, the C-65 DAG, D15, D16), and writes `manifest-after.json`, `dag.json`, `volatility-register.md` and `verification-report-R4.md`. The report says **PASS**: 47 of 47 GATE rows pass, with 5 INFO rows and no HOLD. `verification-report-R3.md` is the R3 record and is left unchanged. D14 keeps `gcp-curriculum.md`, and the audit checks that no build reads it. D16 withdrew tracks M, U and S, so R4 added no new modules. Read `requirements-hardening.md` §1 first. **Next: R5** (the primer, §9.3.1); stop for "continue" before starting it. After a fresh checkout run `chmod a-w inputs-original/*`. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
 
 | Phase | Status | Date | Deliverables |
 |---|---|---|---|
@@ -13,7 +13,8 @@ Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace:
 | R2c Go Language Companion (D12) | **done** | 2026-09-24 | `authored/go-language-companion.md` (source) → `work/go-language-companion.md`; `refactor-tools/r2c_go.py` (run inside `r2b_build.py`); rule 0.4.9 in the main course and every contract copy; tie-ins in the primer, SQL, patterns and cyber companions; D12 check in `audit_r2b.py` |
 | R2c-bis Final legacy check, GO-28/GO-29, involved problems (D13) | **done** | 2026-09-24 | `refactor-tools/r2c_gcp.py` (GAP-1…GAP-17, run inside `r2b_build.py`); GO-28, GO-29, GO-P01…GO-P29 and §10.2 rubrics in `authored/go-language-companion.md`; rule 0.4.9's fourth rule and two §0.3 rows in `r2c_go.py`; D12 audit extended |
 | R3 Verify | **done** | 2026-09-24 | `refactor-tools/verify.py`, `manifest-after.json`, `manifest-after-summary.md`, `verification-report-R3.md`, `outputs/r2c/` (frozen R2c Go source), `records/go-language-companion.md`; fixes SEC-14, SQL-4 (kit trap), SQL-8 |
-| R4–R9 Enhance | pending (R4 next) | | |
+| R4 Main course (D14–D16) | **done** | 2026-09-24 | `refactor-tools/r4_cur.py` (98 journaled rules run inside `r2b_build.py`), `budget.py` (C-49), `dag_check.py` → `dag.json` (C-65), `volatility.py` → `volatility-register.md` (C-48), `verification-report-R4.md`; tracks M/U/S withdrawn (D16) |
+| R5–R9 Enhance | pending (R5 next) | | |
 | R10 Final | pending | | |
 
 ---
@@ -64,6 +65,10 @@ Full table and commands: `r0-reproduction.md` (regenerate with `python3 refactor
 | D5–D11 | Later the same day: course-wide IDs stay as stitch/mapping tags, material dependencies go (D11); companions serve only the Curriculum course; `gcp-curriculum.md` is a content reference with no rules taken from it (D10); drop Northstar and the cookie question (D5); 5 self-contained files, no file names or links, lab kit embedded, bookkeeping moved to `refactor/` (D6); one topic, one home (D7); delete `gcp-curriculum.md` once no longer needed (D8); expand the nine checkpoints and every other gap (D9). | Full text and readings in `requirements-hardening.md` §1. Supersedes the prompt's Track N (§9.4), §7 overlap register and "companion §0 points to `Curriculum`" rules. |
 | D13 | Before R3: a final check of the restored `gcp-curriculum.md` for anything still missing ("not to unnecessarily add curriculum"); Go modules on payment and authentication integration, built from scratch; one involved problem per Go topic; a robustness review. | Full text and reading in `requirements-hardening.md` §1. Results in §6d. |
 | D12 | Before R3: add a rule for teaching Go (language rules, contrasts with other languages) and a new Go companion built from `nasiko-curriculum.md`, tied into the other files. | Full text and reading in `requirements-hardening.md` §1. The sixth part is the Go Language Companion; the rule is 0.4.9. |
+
+| D14 | Keep `gcp-curriculum.md` (answer to §10 question 2). | Supersedes D8's deletion. The file stays in the repo root as a content reference (D10). `audit_r2b.py` now checks that no build reads it: it runs a full rebuild under a Python audit hook and counts opens of the file, which must be 0. |
+| D15 | A bare "Curriculum" is fine as a name, but never as a substitute for material (answer to §10 question 3). | No rename pass. `verify.py` has a GATE: no "see Curriculum" without a target, and every "Curriculum <module / Part>" pointer must land on a real main-course module or Part. |
+| D16 | No tracks M, U or S: "Work with what we already have. I never wanted to copy more bloat from gcp curriculum file." | R4 adds no modules. The M/U/S stubs move to `records/`, and every anchor is rebound to the module that already teaches the topic. Stub material the course lacked goes into the main course only where an existing module owns it (§6f). R4 becomes a hardening pass. |
 
 R0 questions Q1–Q4 are all superseded by D1–D4.
 
@@ -214,9 +219,85 @@ Checked and **not** added: Cloud Run tuning details (min instances, concurrency,
 
 **Not claimed.** The DAG (C-65) is NOT RUN; it is owned by R4. R1-count monotonicity is R10 only. The ID-title heuristic has 49 candidates, all read, all false positives; the row says so only while the count stays at 49. There are 68 bare "Curriculum" occurrences outside the quoted title (primer 59, patterns 6, main course 3, all others 0). They are INFO, and a one-name pass is proposed for R4 (§10 question 3).
 
+## 6f. R4 results (main course hardening; D14–D16)
+
+**Scope after D16.** The meta prompt's R4 planned new tracks: M (mathematics), U (undergraduate CS) and S (software engineering), built to the §9.1 standard. The learner withdrew them. Their stubs came from the legacy file's scope, and the learner does not want that bloat. R4 therefore hardened what exists. It added no module and deepened no scope. All 98 edits are journaled rules in `refactor-tools/r4_cur.py`, run by `r2b_build.py` after the Go build. Every before-line is kept in `records/<file>` (the Go file's under the build-edits marker). Edits per file: main course 28, SQL 33, Go 22, cyber 14, primer 1.
+
+**Withdrawal (R4-1…R4-11).**
+- The stub section "Reserved tracks M, U and S (stubs)" moved to `records/Curriculum.md` (D3: moved, not dropped).
+- Every M/U/S anchor across the six parts was rebound to the module that teaches the topic:
+  - floating point → A2, with GO-03;
+  - relations → SQL PQ-01/PQ-02;
+  - tail latency → primer SD-03/SD-38c;
+  - Little's law → SD-03/SD-28;
+  - consistent hashing → SD-38a;
+  - sketches and data structures → A4;
+  - garbage collection → GO-09;
+  - concurrency → GO-15…GO-19, with SQL CS-05 and A9;
+  - architecture documentation → A7;
+  - migration → the PCA case studies (Phase 4);
+  - the SQL and cyber stitch rows, the SQL tier line and the Go rows followed.
+- Material the stubs named and no module taught went into its owner, one line each:
+  - A2: floating point (IEEE 754, cancellation, Kahan summation, stable reformulations);
+  - A4: probabilistic structures (Bloom filter false-positive rate, count-min sketch, HyperLogLog);
+  - A7: architecture documentation (views, C4, ADRs, HLD/LLD, NFR tables);
+  - the PCA case studies: migration.
+- Scope the course never taught went to `records/` only: number theory, the birthday bound, order statistics, proof sketches, and the "rigorous pass" plans. After the pass no M1–M6 or U1–U7 token remains, and the only S token left is Amazon S3.
+- C-04's "S6 secondary for PQ-S-06" is moot. PQ-S-06 is taught at A10.
+
+**C-49 teaching blocks (R4-12).**
+- `budget.py` counts each module's own topic lines plus the companion concept cards bound to it.
+  - A card is bound when its stitch header names the module, or when a §2 stitch-table row does.
+  - Recall and named-only segments are excluded. Exercises and drills are not cards.
+- Six modules exceed rule 0.4.8's 20-concept threshold: A3 27, A5 37, A7 102, A8 79, A9 49, A10 68.
+- Each has a teaching-block note (A7's was rewritten as A7.1…A7.12). The note names every bound card in an ordered block, closing with a Go-renderings block and a checkpoints block.
+- The GATE checks that each note places every bound card.
+- Revised scope estimate for Phases 0–3: 599 concept units over 27 modules, or 130–211 sessions at 3–5 concepts a session. This is a planning figure; Phase 4 and later are not counted.
+
+**C-65 DAG (`dag_check.py` → `dag.json`).**
+- Sources: primer §4.1 (hard and soft), patterns §10, Go §2 and §12, SQL §6 level gates, the cyber stitch-header gates and capstone line, and the ledger done-set. The done-set is empty under D2; the old ticks are recorded, not merged.
+- Not merged, with the reason in the tool's docstring:
+  - the readiness tiers and skip-test tables, which say what to re-run, not what comes first;
+  - Prop Lock lines naming products (no ID on one side);
+  - the M/U/S tracks, withdrawn by D16.
+- Result: 213 nodes, 651 edges (619 hard, 28 soft, 4 lab). No cycles. 537 hard edges were checked against PRIMARY order in binding.py's suite order; none is out of order. No unknown IDs.
+- Parser choices:
+  - a held-back step in patterns §10 (ARCH-09…12, "hold back and flag") is a side branch, so AP-01…10 follow ARCH-01…08 as §2 teaches them in A7;
+  - the SD-04 prerequisite uses binding.py's C-25 amendment;
+  - Go GO-15…GO-29 and the capstones have no main-course PRIMARY. They follow Go §12, because the blocks teach Go renderings "once the Go companion reaches them".
+- Two soft "helps first" edges run against a hard path: SD-26 ⇢ SD-09 and SD-28 ⇢ SD-12. They are reported as INFO. A soft edge is advice, and the primer's verbatim tables are not edited.
+- Mutation-tested on a scratch copy: an injected cycle, an out-of-order hard prerequisite, an unknown ID and a done card with undone prerequisites each fail.
+
+**D15.** 64 bare occurrences remain: main course 3, primer 55, patterns 6. The primer and patterns counts fell because R4 rewrote some lines. The GATE passes with 0 failures. A mutation that injected "see Curriculum." and "Curriculum C9" failed it.
+
+**D16.** A GATE requires no M/U/S token outside code. "S3" is allowed only on lines that name AWS storage. A mutation injecting "M5" failed it.
+
+**C-48 volatility register.** `volatility.py` built 183 rows from the parts' own markers:
+- main course: 18 checked, 3 dated, 13 to verify;
+- Go: 25 checked, 12 partly checked, 27 to verify;
+- SQL: 22 to verify;
+- cyber: 59 to verify;
+- primer: 3 to verify;
+- patterns: 1 to verify.
+Nothing was re-verified to build it. The category column is a keyword heuristic.
+
+**Checks run (2026-09-24).**
+- `verify.py . --stage R4`: PASS, 47/47 GATE, 5 INFO. C-65 in the conflict re-run is now probed by the DAG and passes. 11,724 items, 926 kept in `records/`, 0 lost.
+- `selfcontained.py`: PASS.
+- `d3_check.py --stage all`: 0 FAIL.
+- `audit_r2b.py`: PASS. The D14 row reports 0 opens of the legacy file across a full rebuild; a mutation that opened it failed the row.
+- `binding.py` runs inside verify on the current primer; standalone it needs a primer path.
+
+**Tool corrections during R4.**
+- `verify.py` Go D3 row 2: a line R4 rewrote counts only when the journal holds it as a before-line and `records/` keeps it.
+- The SQL kit's S1/S2 tokens (code, quoted) are exempt from the undefined-reference check.
+- C-08 got a substance probe, because its original probe looked for the withdrawn M/U anchors.
+
+**Not done in R4.** `coverage-matrix.md` (§12.4) is not built. Part (a) needs the current CS2023 knowledge-area list, which is not in the repo; fetching it needs the learner's permission. Part (b) can be built from Parts V–VII as they stand. It is carried to R5 or later unless the learner says otherwise.
+
 ## 7. Tools (`refactor-tools/`)
 
-`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`; R2 state only) · **R2b:** `r2b_build.py` (pipeline, generic rules), `r2b_common.py` (`F` edit framework, journal, records), `r2b_shared.py` (contract copy, parent-name rewrite), `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py` (per-file rules), `selfcontained.py` (D6 probe V1–V6), `audit_r2b.py` (→ `audit-R2b.md`) · **R3:** `verify.py` (→ `manifest-after.json`, `manifest-after-summary.md`, `verification-report-R3.md`; folds in every check above). No longer runnable after D8 (they read `gcp-curriculum.md`): `r0_reproduce.py`, `r2_build.py`, `r2_sql.py`, `northstar.py`. `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
+`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`; R2 state only) · **R2b:** `r2b_build.py` (pipeline, generic rules), `r2b_common.py` (`F` edit framework, journal, records), `r2b_shared.py` (contract copy, parent-name rewrite), `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py` (per-file rules), `selfcontained.py` (D6 probe V1–V6), `audit_r2b.py` (→ `audit-R2b.md`) · **R3:** `verify.py` (→ `manifest-after.json`, `manifest-after-summary.md`, `verification-report-R3.md`; folds in every check above) · **R4:** `r4_cur.py` (D16 withdrawal, re-homing, C-49 block notes; run inside `r2b_build.py`), `budget.py` (C-49 concept count), `dag_check.py` (C-65 → `dag.json`), `volatility.py` (C-48 → `volatility-register.md`); `verify.py --stage R4` adds section 9. No longer runnable after D8 (they read `gcp-curriculum.md`): `r0_reproduce.py`, `r2_build.py`, `r2_sql.py`, `northstar.py`. `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
 
 `errata.md` is permanent and append-only: `reports.py` writes it only if it does not exist. `diffs/R2-01-renames.diff` is the approved gate diff (renames only); `diffs/<file>.diff` are full input-vs-work diffs.
 
@@ -247,9 +328,9 @@ Checked and **not** added: Cloud Run tuning details (min instances, concurrency,
 ## 10. Open questions (for the learner)
 
 1. RD-1: accept the nine checkpoint mappings (expanded into full cards under D9 either way)?
-2. D8 after D13: `gcp-curriculum.md` is back in the repo. The D13 check is done and no build reads it. Delete it again now (audit D8 then passes), or keep it until R3? R3 passed with D8 reported as HOLD (not an §8.2 gate item); `audit_r2b.py` still exits 1 on D8 until the file goes.
-3. Bare "Curriculum" (not the quoted title) still names the parent in 68 places (primer 59, patterns 6, main course 3). D11 removed only the backticked file-style name. Rename these to "the main course" in R4, so the parent has one name?
+2. *(closed by D14: keep it)* D8 after D13: `gcp-curriculum.md` is back in the repo. The D13 check is done and no build reads it. Delete it again now (audit D8 then passes), or keep it until R3? R3 passed with D8 reported as HOLD (not an §8.2 gate item); `audit_r2b.py` still exits 1 on D8 until the file goes.
+3. *(closed by D15: the bare word is fine as a name; a GATE stops it standing in for material)* Bare "Curriculum" (not the quoted title) still names the parent in 68 places (primer 59, patterns 6, main course 3). D11 removed only the backticked file-style name. Rename these to "the main course" in R4, so the parent has one name?
 
 ## 11. Deferred (not R2 by the prompt's phase rules)
 
-- A5/A8/A10 teaching-block splits → R4. C-59 checks / C-61 examples / the C-60 per-line audit → R7. Northstar content: dropped (D5). Ledger regeneration → R10. Volatility register, coverage matrix, DAG → R4+.
+- A5/A8/A10 teaching-block splits → R4. C-59 checks / C-61 examples / the C-60 per-line audit → R7. Northstar content: dropped (D5). Ledger regeneration → R10. Volatility register and DAG: done in R4. Coverage matrix: not built in R4 (§6f).
