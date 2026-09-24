@@ -28,7 +28,7 @@ This file is a complement to the Curriculum, not a second curriculum. It supplie
 7. **Close** — tick the box; note anything shaky for a later recall.
 
 ### 0.4 Notation
-`PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[C]` = Creational, `[S]` = Structural, `[B]` = Behavioral (GoF's own three categories).
+`PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
 
 ---
 
@@ -156,9 +156,9 @@ Craig Larman's academically rigorous complement to SOLID: given a set of respons
 
 Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure** → **Trade-offs** → **Real-world example**.
 
-### 6.1 Creational [C] — DP-01…05: how objects get created, so the system doesn't depend on the concrete classes it instantiates (PR-07 + PR-05 in action).
+### 6.1 Creational [Cr] — DP-01…05: how objects get created, so the system doesn't depend on the concrete classes it instantiates (PR-07 + PR-05 in action).
 
-**DP-01 · Singleton [C]**
+**DP-01 · Singleton [Cr]**
 - **Intent:** ensure a class has only one instance, with a global access point.
 - **Problem:** some resources (a single DB connection pool) genuinely must not be duplicated.
 - **Structure:** private constructor; a static `getInstance()` returning the same instance every call.
@@ -166,7 +166,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** most DI frameworks offer "singleton scope" as a lifetime option rather than a hand-rolled class — industry has largely migrated away from the textbook form.
 - **Check:** why does a hand-written Singleton make unit testing harder — what can't you do to it that you could do to an injected object?
 
-**DP-02 · Factory Method [C]**
+**DP-02 · Factory Method [Cr]**
 - **Intent:** define an interface for creating an object, letting subclasses decide which class to instantiate.
 - **Problem:** a class can't anticipate which concrete class it needs — the decision belongs to a subclass.
 - **Structure:** an abstract `Creator` with an abstract `factoryMethod()`; concrete `Creator` subclasses return different concrete `Product` types.
@@ -174,7 +174,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** `DocumentCreator.createDocument()`; `PDFCreator`/`WordCreator` subclasses each return their own document type.
 - **Check:** how is Factory Method a direct application of PR-07 combined with PR-05?
 
-**DP-03 · Abstract Factory [C]**
+**DP-03 · Abstract Factory [Cr]**
 - **Intent:** provide an interface for creating **families** of related objects without specifying concrete classes.
 - **Problem:** sometimes you need a whole matched set (a UI toolkit's `Button`+`Checkbox`+`Scrollbar` that must share one visual theme).
 - **Structure:** an `AbstractFactory` interface with one creation method per product; concrete factories (`WindowsFactory`, `MacFactory`) each produce the whole matched family.
@@ -182,7 +182,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** `PostgresFactory` producing `PostgresConnection`+`PostgresQueryBuilder` together, guaranteed never mixed with MySQL's equivalents.
 - **Check:** what breaks specifically if you need to add a `Slider` to every existing theme family?
 
-**DP-04 · Builder [C]**
+**DP-04 · Builder [Cr]**
 - **Intent:** separate construction of a complex object from its representation, so the same process can build different representations.
 - **Problem:** a constructor with 10 optional parameters is unreadable and error-prone (the "telescoping constructor" problem).
 - **Structure:** a `Builder` with chained methods (each returning `this`), and a final `build()` assembling the result.
@@ -190,7 +190,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** cloud SDK request-object construction (`RequestBuilder().setTimeout(30).setRetries(3).build()`).
 - **Check:** why is a fluent Builder a better fit than 10 constructor parameters specifically when several are *optional*?
 
-**DP-05 · Prototype [C]**
+**DP-05 · Prototype [Cr]**
 - **Intent:** specify kinds of objects using a prototypical instance, creating new objects by **copying** it.
 - **Problem:** building from scratch is expensive, or the exact concrete class isn't known until runtime, but a similar instance already exists.
 - **Structure:** a `clone()` method; the caller copies a configured instance instead of re-running expensive setup.
@@ -198,9 +198,9 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** cloning a configured game-character template to spawn instances without re-running expensive initialization.
 - **Check:** you clone an object holding a `List<String> tags`. If the clone is shallow, what breaks when the original's list is modified after cloning?
 
-### 6.2 Structural [S] — DP-06…12: composing classes/objects into larger structures while staying flexible (F-03's "favor composition," and PR-14).
+### 6.2 Structural [St] — DP-06…12: composing classes/objects into larger structures while staying flexible (F-03's "favor composition," and PR-14).
 
-**DP-06 · Adapter [S]**
+**DP-06 · Adapter [St]**
 - **Intent:** convert one class's interface into another interface clients expect.
 - **Problem:** an existing (often unmodifiable) class's interface doesn't match what your code expects.
 - **Structure:** an `Adapter` implementing the target interface, internally delegating to the incompatible adaptee.
@@ -208,7 +208,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** wrapping a legacy XML payment API behind the JSON-based `PaymentGateway` interface your app expects.
 - **Check:** how does Adapter differ from Facade (DP-09) in *intent*, though both "wrap" something?
 
-**DP-07 · Bridge [S]**
+**DP-07 · Bridge [St]**
 - **Intent:** decouple an abstraction from its implementation so both can vary independently.
 - **Problem:** combining "N abstractions × M implementations" via inheritance alone produces a combinatorial subclass explosion.
 - **Structure:** an `Abstraction` holds a reference to an `Implementor` interface (composition) — `Shape` holds a `DrawingAPI`; new shapes and new drawing APIs each grow independently.
@@ -216,7 +216,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** `Notification` (abstraction) bridged to `NotificationChannel` (Email/SMS/Push) — new notification types and channels don't multiply each other.
 - **Check:** without Bridge, how many subclasses for 3 shapes × 4 rendering engines? With Bridge?
 
-**DP-08 · Composite [S]**
+**DP-08 · Composite [St]**
 - **Intent:** compose objects into tree structures for part-whole hierarchies; treat individual objects and compositions uniformly.
 - **Problem:** code handling both a single item and a group of items ends up full of `if (isGroup)` checks.
 - **Structure:** a common `Component` interface implemented by both `Leaf` and `Composite` (which holds other `Component`s) — calling a method on a folder recursively applies it to everything inside.
@@ -224,7 +224,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a filesystem, or a UI widget tree.
 - **Check:** why does `totalSize()` on a top-level folder work correctly without the caller checking "file or folder" itself?
 
-**DP-09 · Facade [S]**
+**DP-09 · Facade [St]**
 - **Intent:** provide a unified, higher-level interface to a subsystem, making it easier to use.
 - **Problem:** a client using a complex subsystem (compiling: lexer→parser→optimizer→codegen) shouldn't need to orchestrate all four steps.
 - **Structure:** one `Facade` exposing a simple method that internally coordinates the subsystem; subsystem classes remain accessible for those needing finer control.
@@ -232,7 +232,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a cloud SDK's high-level client (`.upload(file)`) hiding auth, retries, chunking, and raw HTTP.
 - **Check:** does a Facade remove the subsystem's original interfaces, or only add a simpler option alongside them — and why does that matter?
 
-**DP-10 · Flyweight [S]**
+**DP-10 · Flyweight [St]**
 - **Intent:** use sharing to support large numbers of fine-grained objects efficiently, separating **intrinsic** (shared) from **extrinsic** (context-specific) state.
 - **Problem:** instantiating millions of similar objects wastes memory if each duplicates identical data.
 - **Structure:** a `Flyweight` holds only intrinsic state and is shared; extrinsic state is passed in by the client at use-time, never stored in the flyweight.
@@ -240,7 +240,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a text editor sharing one glyph object per unique character+font, tracking position separately per occurrence.
 - **Check:** name one intrinsic and one extrinsic piece of state in the text-editor example.
 
-**DP-11 · Proxy [S]**
+**DP-11 · Proxy [St]**
 - **Intent:** provide a surrogate for another object to control access to it.
 - **Problem:** you need access control, lazy loading, caching, or logging around an object without changing it or its callers.
 - **Structure:** a `Proxy` implementing the same interface as the `RealSubject`, adding logic before/after delegating.
@@ -248,7 +248,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** an ORM's lazy-loaded related object hits the database only when a real field is actually accessed.
 - **Check:** state the one-word difference in *purpose* for Proxy vs. Adapter vs. Decorator, given near-identical shapes.
 
-**DP-12 · Decorator [S]**
+**DP-12 · Decorator [St]**
 - **Intent:** attach additional responsibilities to an object dynamically — a flexible alternative to subclassing.
 - **Problem:** subclassing every combination of optional feature (`CoffeeWithMilkAndSugar…`) produces the same explosion Bridge solves on a different axis.
 - **Structure:** `Decorator` implements the same interface as the wrapped `Component`, adding behavior before/after delegating — decorators stack, each adding one responsibility.
@@ -256,9 +256,9 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** Java's `BufferedReader(new FileReader(...))` I/O streams.
 - **Check:** in one sentence, why does stacking three Decorators avoid the subclass explosion three optional features via inheritance would cause?
 
-### 6.3 Behavioral [B] — DP-13…23: algorithms and responsibility/communication between objects.
+### 6.3 Behavioral [Bh] — DP-13…23: algorithms and responsibility/communication between objects.
 
-**DP-13 · Strategy [B]**
+**DP-13 · Strategy [Bh]**
 - **Intent:** define a family of algorithms, encapsulate each, make them interchangeable.
 - **Problem:** the direct application of PR-02: an `if/elif` chain picking behavior must be edited for every new behavior.
 - **Structure:** a `Strategy` interface; concrete strategies; a `Context` holds a `Strategy` reference, swappable at runtime.
@@ -266,7 +266,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a payment processor holding a `PaymentStrategy` chosen at checkout.
 - **Check:** what new class do you write to add a payment method, and what existing code stays untouched?
 
-**DP-14 · Observer [B]**
+**DP-14 · Observer [Bh]**
 - **Intent:** define a one-to-many dependency so when one object (`Subject`) changes, all dependents (`Observer`s) are notified automatically.
 - **Problem:** many objects need to react to a state change without the `Subject` being tightly coupled to all of them.
 - **Structure:** `Subject` maintains `Observer`s via `attach()`/`detach()`/`notify()`; each `Observer` implements `update()`.
@@ -274,7 +274,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** the OOP-level version of SD-28 (Pub/Sub) — same decoupled fan-out shape, in-process instead of over a network.
 - **Check:** what does a `Subject`/`Observer` pair share structurally with a Pub/Sub topic, and what differs about the failure modes?
 
-**DP-15 · Template Method [B]**
+**DP-15 · Template Method [Bh]**
 - **Intent:** define an algorithm's skeleton in a method, deferring some steps to subclasses.
 - **Problem:** several classes share an algorithm's shape but need different behavior for one or two steps.
 - **Structure:** a base class's `final templateMethod()` calls several steps in fixed order; some are abstract "hooks" subclasses must implement.
@@ -282,7 +282,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a test framework's `setUp()`→`runTest()`→`tearDown()` skeleton.
 - **Check:** what varies via composition in Strategy, and what varies via inheritance in Template Method — when would you deliberately pick the latter?
 
-**DP-16 · State [B]**
+**DP-16 · State [Bh]**
 - **Intent:** let an object alter its behavior when its internal state changes — it appears to change class.
 - **Problem:** behavior driven by a `status` field scatters `if (status == ...)` across every method.
 - **Structure:** a `State` interface; concrete states each implement behavior appropriately, including transitioning the context to the next state.
@@ -290,7 +290,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** an `Order` whose `ship()`/`cancel()` behavior legitimately differs by status, illegal transitions simply not offered.
 - **Check:** what does a Strategy object *not* do that a State object does?
 
-**DP-17 · Command [B]**
+**DP-17 · Command [Bh]**
 - **Intent:** encapsulate a request as an object, enabling queuing, logging, and undo.
 - **Problem:** decouple "what triggers an action" from "what performs it," often needing to queue/log/undo.
 - **Structure:** a `Command` interface with `execute()` (often `undo()`); an `Invoker` triggers commands without knowing what they do.
@@ -298,7 +298,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a job queue (Cloud Tasks) is Command at the infrastructure level — a serialized "do this later" object.
 - **Check:** why does representing an action as an object make "undo" possible in a way a direct method call cannot?
 
-**DP-18 · Chain of Responsibility [B]**
+**DP-18 · Chain of Responsibility [Bh]**
 - **Intent:** give more than one object a chance to handle a request; chain receivers and pass the request along until handled.
 - **Problem:** a request might need one of several handlers, but the sender shouldn't know which or in what order.
 - **Structure:** each `Handler` holds a reference to the next; `handle()` either processes or passes it along.
@@ -306,7 +306,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** HTTP middleware — auth, then logging, then rate limiting, each short-circuiting or forwarding.
 - **Check:** what plays "the request" and what plays "each handler" in an HTTP middleware chain?
 
-**DP-19 · Mediator [B]**
+**DP-19 · Mediator [Bh]**
 - **Intent:** encapsulate how a set of objects interact, promoting loose coupling.
 - **Problem:** many objects communicating directly with each other produce a tangled many-to-many web.
 - **Structure:** a `Mediator` all colleagues talk *to* instead of each other directly.
@@ -314,7 +314,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** an air traffic control tower (GoF's own example); a chat server mediating clients.
 - **Check:** with 6 UI components all reacting to each other, how many direct reference pairs exist without a Mediator, versus with one?
 
-**DP-20 · Iterator [B]**
+**DP-20 · Iterator [Bh]**
 - **Intent:** access elements of an aggregate sequentially without exposing its underlying representation.
 - **Problem:** code walking a collection shouldn't need to know if it's an array, list, or tree.
 - **Structure:** an `Iterator` interface (`hasNext()`, `next()`); the aggregate returns one via `createIterator()`.
@@ -322,7 +322,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** every `for...of` construct in a modern language *is* this pattern, already implemented.
 - **Check:** why does hiding array-vs-linked-list behind a common iterator let you swap the implementation later without breaking loops over it?
 
-**DP-21 · Memento [B]**
+**DP-21 · Memento [Bh]**
 - **Intent:** capture and externalize an object's internal state, without violating encapsulation, so it can be restored later.
 - **Problem:** implementing undo requires saving past state, but that state is (correctly) private.
 - **Structure:** the `Originator` creates a `Memento`; a `Caretaker` stores mementos but never looks inside them.
@@ -330,7 +330,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a text editor's undo history.
 - **Check:** why does a `Caretaker` that "can't look inside" a memento preserve encapsulation in a way `getInternalState()` would not?
 
-**DP-22 · Visitor [B]**
+**DP-22 · Visitor [Bh]**
 - **Intent:** represent an operation over elements of an object structure, adding new operations without changing element classes.
 - **Problem:** a stable hierarchy (an AST) keeps needing new operations (print, evaluate, optimize) without editing every node class each time.
 - **Structure:** each element implements `accept(visitor)`, calling back `visitor.visitX(this)` — "double dispatch."
@@ -338,7 +338,7 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 - **Real-world example:** a compiler walking an AST to type-check, then again to generate code — each a separate Visitor over the same fixed hierarchy.
 - **Check:** state precisely what becomes easy to add (operations) and what becomes hard (element types), and why that's the opposite of Strategy.
 
-**DP-23 · Interpreter [B]**
+**DP-23 · Interpreter [Bh]**
 - **Intent:** given a grammar, define a representation for it plus an interpreter that evaluates sentences in it.
 - **Problem:** repeatedly evaluating expressions in a small, well-defined grammar.
 - **Structure:** each grammar rule becomes a class implementing `interpret(context)`; a sentence becomes a tree of these (often built with Composite, DP-08).

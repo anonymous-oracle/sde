@@ -22,11 +22,11 @@ Why: gcp-curriculum owns the *product spine* (Northstar on GCP) and, in Part 2, 
 5. **Bank ≠ dump.** The exercise ladder in §6 is a **bank of specifications**, not a worksheet. At teach time issue **one** item at the rung the ledger says is next (never the whole list), let the learner attempt first, escalate hints one notch at a time (*what structure do you see → smaller case → smallest unlocked hint*), and only then open the instructor key (Appendix K). **Never paste a key before an attempt.** Mixed-transfer items name their two earlier tools on one line before executing.
 6. **Predict before you run; explain the discrepancy after.** Every exercise that has a *result shape*, a *row count*, a *plan shape*, or an *isolation outcome* starts with the learner writing the prediction (one line). Then run. A wrong prediction is the best teaching moment in this file — record the discrepancy on the ledger, do not skip it. (gcp-curriculum "Database protocol".)
 7. **Fingerprints, not eyeballs.** Each read-only exercise has a *golden*: `rows:hash` computed by the lab kit (`lab.chk`). Two queries are the same answer iff their fingerprints match. **Goldens are valid only for seed v1 on PostgreSQL 15.x with `timezone = UTC` and the `C` collation** — if any of those change, regenerate; do not "fix" a learner's query to match a stale golden.
-8. **Tracking is inline.** Tick `- [ ]` boxes in this file or say "done" in chat. Do **not** create a separate tracker; the learner ledger of gcp-curriculum ("Teaching contract → Learner state") records unlocked / shaky / postponed for companion modules under their IDs (`SL-08`, `E6.2`…).
+8. **Tracking is inline.** Tick `- [ ]` boxes in this file or say "done" in chat. Do **not** create a separate tracker; the learner ledger of gcp-curriculum ("Teaching contract → Learner state") records unlocked / shaky / postponed for companion modules under their IDs (`SL-08`, `SQL-E6.2`…).
 9. **Honesty flags.** `(verify)` = a GCP or PostgreSQL-version detail that changes often or that I could not confirm here — check live docs before relying on it for an exam or production. **Modern note** marks where industry has moved past a textbook.
 10. **Time, money and secrets.** Labs are free-tier/credits-safe: local Postgres in Docker is the default; Cloud SQL / AlloyDB / Memorystore are credits-optional and *destroyed the same day* (gcp-curriculum Lab safety). Never put a password, key or real customer data in a query, a prompt or this file; the lab data is synthetic.
 11. **User can override anything:** skip a concept already known (run its skip-test; §5 tiers), jump to an exercise, or go hands-on — same rights as gcp-curriculum. **On a conflict:** gcp-curriculum wins on order, Lab Reality, exam time-sensitivity and the ledger; this file wins on SQL/DB content and exercise specs.
-12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's gcp-curriculum module (search by ID: `SL-06`, `CS-05`, `E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
+12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's gcp-curriculum module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
 
 ### 0.3 How one stitched session runs
 
@@ -41,7 +41,7 @@ Why: gcp-curriculum owns the *product spine* (Northstar on GCP) and, in Part 2, 
 ### 0.4 Notation
 
 - `PQ-nn` prerequisites · `RT-nn` relational theory · `SL-nn` SQL language · `CS-nn` computer science under the engine · `DD-nn` data design · `OD-nn` operating databases · `AN-nn` analytics & other engines. All are in §4.
-- `E<level>.<n>` query-writing exercises (§6, levels 1–14; **E11** and **E12** are *labs* in §7) · `Z0.n` level-0 paper drills · `TD-n` theory drills · `PX-n` plan-prediction cards · `TX-n` transaction labs · `BH-n` bug-hunts · `DT-n` dialect-translation drills · `SD-n` schema-design cases · `C1–C4` capstones · `TF-DBn` Terraform database exercises.
+- `SQL-E<level>.<n>` query-writing exercises (§6, levels 1–14; **TX** and **PX** are *labs* in §7) · `SQL-Z0.n` level-0 paper drills · `TD-n` theory drills · `PX-n` plan-prediction cards · `TX-n` transaction labs · `BH-n` bug-hunts · `DT-n` dialect-translation drills · `SD-n` schema-design cases · `SQL-CAP1–SQL-CAP4` capstones · `TF-DBn` Terraform database exercises.
 - `T.*`, `F1…F4`, `M.*`, `0.x`, `1.x`, `D0…D8`, `2.x` … `11b`, `12.Sxx`, `DB-1 … DB-10`, `G4`, `G12b` are **gcp-curriculum** IDs. `SD-13 … SD-27` are **primer-companion** IDs. `TB-…`/`SRC-…` are unified-curriculum source IDs.
 - `Northstar` = the running product of gcp-curriculum; the lab database is its OLTP slice plus an event stream.
 
@@ -51,19 +51,19 @@ Why: gcp-curriculum owns the *product spine* (Northstar on GCP) and, in Part 2, 
 
 | Area | Content | Covered in |
 |---|---|---|
-| **Pre-SQL prerequisites** | sets/relations/functions/bags · propositional & predicate logic, three-valued logic · counting & cardinality · data types, encodings, integer vs decimal vs float · time & time zones · files, CSV/JSON · CLI, `psql`, Docker Postgres · Python DB-API and parameter binding · big-O, hashing, trees, sorting, binary search · storage hierarchy and units | PQ-01 … PQ-08, Z0.1 … Z0.8 |
+| **Pre-SQL prerequisites** | sets/relations/functions/bags · propositional & predicate logic, three-valued logic · counting & cardinality · data types, encodings, integer vs decimal vs float · time & time zones · files, CSV/JSON · CLI, `psql`, Docker Postgres · Python DB-API and parameter binding · big-O, hashing, trees, sorting, binary search · storage hierarchy and units | PQ-01 … PQ-08, SQL-Z0.1 … SQL-Z0.8 |
 | **Relational theory** | relational model, keys, integrity · relational algebra (set and bag) · tuple/domain calculus, safety, Codd equivalence · functional dependencies, closure, cover · 1NF … BCNF, 4NF/5NF-lite, lossless & dependency-preserving decomposition · ER → tables · query equivalence & rewrite rules | RT-01 … RT-08, TD-1 … TD-8 |
-| **SQL language** | DDL, types, constraints · logical evaluation order · NULL & 3VL · joins (inner, outer, cross, self, semi, anti, lateral, non-equi) · aggregation, grouping sets · subqueries, EXISTS, ALL/ANY, division · set operations · CTEs, recursion · window functions and frames · DML, RETURNING, upsert, MERGE · views, materialized views, functions, triggers · dates, time zones, JSON, text, regex · security in SQL (GRANT, RLS, injection) · dialects and the standard | SL-01 … SL-14, E1 … E10, E13 |
+| **SQL language** | DDL, types, constraints · logical evaluation order · NULL & 3VL · joins (inner, outer, cross, self, semi, anti, lateral, non-equi) · aggregation, grouping sets · subqueries, EXISTS, ALL/ANY, division · set operations · CTEs, recursion · window functions and frames · DML, RETURNING, upsert, MERGE · views, materialized views, functions, triggers · dates, time zones, JSON, text, regex · security in SQL (GRANT, RLS, injection) · dialects and the standard | SL-01 … SL-14, SQL-E1 … SQL-E10, SQL-E13 |
 | **CS under the engine** | storage layouts and page arithmetic · B-tree/B+tree math, hash, LSM, bitmap, GIN/GiST/BRIN · buffer caching theory · external sort, join and aggregation algorithms with I/O cost · cardinality estimation and join ordering · concurrency-control theory (conflict serializability, 2PL, timestamp ordering, MVCC/SI, SSI) · recovery theory (WAL, steal/no-force, ARIES) · replication logs, consensus, 2PC, consistency models · columnar/vectorised execution and compression · complexity of queries, recursion, expressiveness | CS-01 … CS-11, TD-9 … TD-16, TX-1 … TX-8, PX-1 … PX-11 |
-| **Data design** | conceptual → logical → physical · keys (natural, surrogate, UUID, snowflake) · money, units, time · hierarchies & graphs in SQL · temporal data & SCD · JSONB vs relational · soft delete, audit, history · denormalisation with ADRs · multi-tenancy · partitioning & sharding-key design · schema evolution (expand/contract) · data quality as constraints | DD-01 … DD-13, SD-1 … SD-6, E10 |
+| **Data design** | conceptual → logical → physical · keys (natural, surrogate, UUID, snowflake) · money, units, time · hierarchies & graphs in SQL · temporal data & SCD · JSONB vs relational · soft delete, audit, history · denormalisation with ADRs · multi-tenancy · partitioning & sharding-key design · schema evolution (expand/contract) · data quality as constraints | DD-01 … DD-13, SCH-1 … SCH-6, SQL-E10 |
 | **Operating databases** | indexing strategy & `EXPLAIN` workflow · statistics & slow-query observability · connection pooling · backup/restore/PITR drills · replication & read-your-writes · vacuum/bloat · retention & partitions · migrations tooling & testing · application data access (N+1, ORMs, prepared statements, injection, pagination) · testing SQL | OD-01 … OD-10, PX-1 … PX-11, BH-1 … BH-6, TF-DB1 … TF-DB6 |
-| **Analytics & other engines** | OLTP vs OLAP, star/snowflake · BigQuery/GoogleSQL dialect · cohorts, funnels, sessionisation, retention · approximate aggregation · Spanner SQL · NoSQL query models vs SQL · search & vectors in SQL | AN-01 … AN-07, E6, E13, DT-1 … DT-8 |
+| **Analytics & other engines** | OLTP vs OLAP, star/snowflake · BigQuery/GoogleSQL dialect · cohorts, funnels, sessionisation, retention · approximate aggregation · Spanner SQL · NoSQL query models vs SQL · search & vectors in SQL | AN-01 … AN-07, SQL-E6, SQL-E13, DT-1 … DT-8 |
 | **Query-creation exercise bank** | 14 levels, ~120 specified items with traps, goldens and instructor keys | §6, Appendix K |
 | **Engine-behaviour labs** | isolation anomalies, deadlock, SKIP LOCKED, oversell under concurrency, EXPLAIN predictions | §7 (TX-1 … TX-8, PX-1 … PX-11) |
-| **Capstones** | fault-injected audit, cash-basis revenue, checkout schema + concurrency, slow-query rescue | §9 (C1–C4) |
+| **Capstones** | fault-injected audit, cash-basis revenue, checkout schema + concurrency, slow-query rescue | §9 (SQL-CAP1–SQL-CAP4) |
 | **Rosetta & IaC** | Postgres ↔ Cloud SQL ↔ AlloyDB ↔ Spanner ↔ BigQuery ↔ MySQL ↔ SQL Server ↔ SQLite ↔ Oracle · Terraform for Cloud SQL / AlloyDB / Spanner / BigQuery | §8 |
 
-Counts (verified by the generator that produced §6): **Level 0** 8 paper drills · **theory** 16 drills · **query exercises** E1–E10, E13, C1–C2, C4 → 111 items (all with fingerprints) · **plan predictions** 11 · **transaction labs** 8 · **bug-hunts** 6 · **dialect drills** 8 · **schema cases** 6 · **capstones** 4.
+Counts (verified by the generator that produced §6): **Level 0** 8 paper drills · **theory** 16 drills · **query exercises** SQL-E1–SQL-E10, SQL-E13, SQL-CAP1–SQL-CAP2, SQL-CAP4 → 111 items (all with fingerprints) · **plan predictions** 11 · **transaction labs** 8 · **bug-hunts** 6 · **dialect drills** 8 · **schema cases** 6 · **capstones** 4.
 
 ---
 
@@ -73,55 +73,55 @@ Each gcp-curriculum module on the left is taught **with** the companion modules 
 
 | gcp-curriculum module | Companion modules taught in the same session | Checkpoint |
 |---|---|---|
-| **T.Disc** (logic, sets, proofs, counting, graphs) — *Tier HS/UG* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | Z0.1 … Z0.6 |
-| **T.Algo** (structures, hashing theory, complexity) | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | Z0.7, TD-10 |
-| **T.Quant** (units, orders of magnitude) | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | Z0.8 |
-| **M.NS** (numerical stability) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M.NS; add decimal semantics* | E2.1, E2.7 |
-| **T.SysTheory — DB theory** (with Part 2) | RT-02 algebra · RT-03 calculus/safety (grad) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **Grad gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
-| **F1** (computer, OS, CLI, Git, JSON, HTTP) | PQ-04 files, CSV/JSON/JSONL, encodings (UTF-8, BOM) · PQ-05 `psql`, env vars, Docker basics for a Postgres container | E0 warm-up: load the lab (§3) |
+| **T.Disc** (logic, sets, proofs, counting, graphs) — *Tier SQL-T-HS/SQL-T-UG* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | SQL-Z0.1 … SQL-Z0.6 |
+| **T.Algo** (structures, hashing theory, complexity) | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | SQL-Z0.7, TD-10 |
+| **T.Quant** (units, orders of magnitude) | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | SQL-Z0.8 |
+| **M.NS** (numerical stability) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M.NS; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
+| **T.SysTheory — DB theory** (with Part 2) | RT-02 algebra · RT-03 calculus/safety (SQL-T-GR) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **SQL-T-UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **SQL-T-GR gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
+| **F1** (computer, OS, CLI, Git, JSON, HTTP) | PQ-04 files, CSV/JSON/JSONL, encodings (UTF-8, BOM) · PQ-05 `psql`, env vars, Docker basics for a Postgres container | SQL-E0 warm-up: load the lab (§3) |
 | **D1** Docker/OCI · **1.2** container contract | PQ-05 `docker compose` Postgres with a named volume and a healthcheck (the lab in §3.2) | lab loads, fingerprints match |
-| **D2** CI | OD-10 SQL tests in CI: a Postgres service container, seed v1, fingerprint assertions, migration up/down | run E3.2 as a CI test |
+| **D2** CI | OD-10 SQL tests in CI: a Postgres service container, seed v1, fingerprint assertions, migration up/down | run SQL-E3.2 as a CI test |
 | **D3/D7** CD, IaC | OD-08 migration ordering in deploys · §8.2 Terraform DB exercises | TF-DB1 … TF-DB2 (plan only) |
-| **0.4** HLD/LLD contract, ADR template, NFR table | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SD-1 |
-| **0.5** IAM (+ **2.3** IAM DB auth) | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | E10.6 (RLS) after 4.7 |
+| **0.4** HLD/LLD contract, ADR template, NFR table | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
+| **0.5** IAM (+ **2.3** IAM DB auth) | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | SQL-E10.6 (RLS) after 4.7 |
 | **1.7** observability day one | OD-02 logs, slow-query log, `pg_stat_statements`, Query Insights vocabulary | PX-1 |
 | **1.12** HA & autoscaling | OD-03 pool arithmetic under autoscaling (instances × pool ≤ `max_connections`); *8.1 owns the spreadsheet — recall it* | TX-8 |
-| **2.1 — SQL design track** (concept, then lab) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | E1 → E10 by level (§6 gates) |
+| **2.1 — SQL design track** (concept, then lab) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates) |
 | **2.2** GCP relational offerings (decision table) | AN-01 OLTP/OLAP · DD-08 JSONB vs relational · §8.1 Rosetta table | DT-1 |
 | **2.3** Cloud SQL setup (required procedure) | OD-03 pooling & pool math · OD-04 backup/restore drills *as runbook (DB-10 owns the toy)* · OD-05 replicas & read-your-writes · SL-13 privileges · §8.2 Terraform | TF-DB1, TX-8, BH-5 |
 | **2.4** Firestore | AN-06 the *same question* in Firestore and SQL — where the document model wins and loses | DT-7 |
-| **2.5** Cloud Storage | PQ-04 `COPY`/import & export of CSV/JSON through GCS; encoding and NULL-vs-empty pitfalls | E8.8 – E8.10 |
-| **2.6** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migration tooling & testing (dirty state, advisory lock) | E9.6, SD-4 |
-| **2.7** Spanner & NoSQL map | AN-05 GoogleSQL/Spanner · DD-13 key design & partitioning · CS-07 TrueTime, 2PC, Paxos groups | DT-6, SD-5 |
+| **2.5** Cloud Storage | PQ-04 `COPY`/import & export of CSV/JSON through GCS; encoding and NULL-vs-empty pitfalls | SQL-E8.8 – SQL-E8.10 |
+| **2.6** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migration tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
+| **2.7** Spanner & NoSQL map | AN-05 GoogleSQL/Spanner · DD-13 key design & partitioning · CS-07 TrueTime, 2PC, Paxos groups | DT-6, SCH-5 |
 | **3.0** software design (repositories) | OD-09 application data access: N+1, ORM pitfalls, prepared statements, transaction boundaries | BH-3 |
-| **3.4** async (Pub/Sub, Tasks, Scheduler) | SL-10 idempotent writes: `INSERT … ON CONFLICT`, unique keys | E9.3 |
+| **3.4** async (Pub/Sub, Tasks, Scheduler) | SL-10 idempotent writes: `INSERT … ON CONFLICT`, unique keys | SQL-E9.3 |
 | **3.5** failure design (outbox/inbox, sagas) | CS-07 why 2PC is not the answer; SL-10 `FOR UPDATE SKIP LOCKED` job claim | TX-5, TX-8 |
-| **4.7** authorization · **4.9** secrets & supply chain | SL-13 RLS, injection, parameterisation, least-privilege roles | E10.6, BH-2 |
-| **5.3** ledger and consistency | DD-05 money (integer minor units), DD-09 audit/history · SL-08 running balances · CS-05 isolation for money | E4.5, C2, BH-4 |
-| **7.3** data protection | SL-13 column-level encryption (`pgcrypto`), masking views, CMEK vocabulary | SD-6 |
-| **8.0** Donne-Martin building blocks · **8.C** evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SD-2, SD-3 |
-| **8.1** primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency | OD-09 keyset SQL and its index (**8.1.5 owns the from-scratch pager**) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, E4.7 |
+| **4.7** authorization · **4.9** secrets & supply chain | SL-13 RLS, injection, parameterisation, least-privilege roles | SQL-E10.6, BH-2 |
+| **5.3** ledger and consistency | DD-05 money (integer minor units), DD-09 audit/history · SL-08 running balances · CS-05 isolation for money | SQL-E4.5, SQL-CAP2, BH-4 |
+| **7.3** data protection | SL-13 column-level encryption (`pgcrypto`), masking views, CMEK vocabulary | SCH-6 |
+| **8.0** Donne-Martin building blocks · **8.C** evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
+| **8.1** primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency | OD-09 keyset SQL and its index (**8.1.5 owns the from-scratch pager**) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, SQL-E4.7 |
 | **9.1** Memorystore | OD-09 cache-aside vs DB read path (query-level vs object-level); *no new concept* | — |
-| **9.4** Spanner, AlloyDB, Bigtable, BigQuery (ops view) | AN-01 · AN-02 · AN-05 · CS-09 columnar & vectorised execution | DT-1 … DT-6, E13.3 |
-| **9b.1** Big-data services (BigQuery, Dataform) | AN-02 partition/cluster and bytes scanned · AN-03 cohorts/funnels · AN-04 approximate aggregation · SL-11 views & materialised views | E6.2, E6.6, E13.1 – E13.3 |
-| **9c.1** features, labels, skew (**as-of join** owner) | SL-08 / SL-04: the **SQL shape** of a point-in-time join (LATERAL / range join). *9c.1 owns leakage; this file owns the join* | E6.4, E13.4, E13.5 |
+| **9.4** Spanner, AlloyDB, Bigtable, BigQuery (ops view) | AN-01 · AN-02 · AN-05 · CS-09 columnar & vectorised execution | DT-1 … DT-6, SQL-E13.3 |
+| **9b.1** Big-data services (BigQuery, Dataform) | AN-02 partition/cluster and bytes scanned · AN-03 cohorts/funnels · AN-04 approximate aggregation · SL-11 views & materialised views | SQL-E6.2, SQL-E6.6, SQL-E13.1 – SQL-E13.3 |
+| **9c.1** features, labels, skew (**as-of join** owner) | SL-08 / SL-04: the **SQL shape** of a point-in-time join (LATERAL / range join). *9c.1 owns leakage; this file owns the join* | SQL-E6.4, SQL-E13.4, SQL-E13.5 |
 | **9c.2 / 9c.5** retrieval, RAG | AN-07 full-text search and vector search in Postgres (`tsvector`, `pgvector`) vs dedicated engines | DT-8 |
-| **10.0** observability · **10.5** performance | OD-01/02 plan reading & workload observation · CS-08 · PX-1 … PX-11 | PX-1 … PX-11, C4 |
+| **10.0** observability · **10.5** performance | OD-01/02 plan reading & workload observation · CS-08 · PX-1 … PX-11 | PX-1 … PX-11, SQL-CAP4 |
 | **10.1** SLO / error budget | OD-05 replication lag as an SLI; recovery-point objective from WAL archiving | BH-5 |
-| **10.3** FinOps + billing-export SQL | AN-03 window analytics on a *billing-export-shaped* table; AN-02 bytes-scanned cost | DT-4, E13.1 |
-| **11** capstone (Northstar v1) | C1 – C4 are the database acceptance tests of the capstone | C1 – C4 |
-| **11b** control-plane capstone | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SD-6 |
-| **12.S12** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if Part 2 confirmed FDs/joins/transactions/pagination/client hygiene, stamp using E3.2, E4.5, E5.4, E9.3, TX-2. **Else** run the S12 order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
-| **12.S13** PostgreSQL internals (`DB-ENGINE`) | **Skip-test map:** residual `EXPLAIN` drills = PX-1 … PX-11; crash/recovery evidence = TD-12 + OD-04 drill. **Else** run the S13 order = CS-01 → CS-04 → CS-02 → CS-03 → CS-08 → CS-05 → CS-06 → CS-07 (§2.3) | see §2.3 |
-| **PCA / PDE / PCDE certs** | PCA 2.2 storage systems: §8.1 + DT-1; PDE: AN-01…AN-04, E13; Professional Cloud Database Engineer: OD-03…OD-05, TF-DB1… (all `verify` against the live exam guide) | §8 |
+| **10.3** FinOps + billing-export SQL | AN-03 window analytics on a *billing-export-shaped* table; AN-02 bytes-scanned cost | DT-4, SQL-E13.1 |
+| **11** capstone (Northstar v1) | SQL-CAP1 – SQL-CAP4 are the database acceptance tests of the capstone | SQL-CAP1 – SQL-CAP4 |
+| **11b** control-plane capstone | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
+| **SQL-SKIP-SQL** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if Part 2 confirmed FDs/joins/transactions/pagination/client hygiene, stamp using SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2. **Else** run the SQL-SKIP-SQL order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
+| **SQL-SKIP-ENGINE** PostgreSQL internals (`DB-ENGINE`) | **Skip-test map:** residual `EXPLAIN` drills = PX-1 … PX-11; crash/recovery evidence = TD-12 + OD-04 drill. **Else** run the SQL-SKIP-ENGINE order = CS-01 → CS-04 → CS-02 → CS-03 → CS-08 → CS-05 → CS-06 → CS-07 (§2.3) | see §2.3 |
+| **PCA / PDE / PCDE certs** | PCA 2.2 storage systems: §8.1 + DT-1; PDE: AN-01…AN-04, SQL-E13; Professional Cloud Database Engineer: OD-03…OD-05, TF-DB1… (all `verify` against the live exam guide) | §8 |
 
 ### 2.1 Overlap register — concepts that appear in both files (teach once, in the owner)
 
 | Concept | Owner (teach here) | This file adds |
 |---|---|---|
-| Relational algebra, 3VL (DB-1) | gcp-curriculum **2.1 / DB-1** (toy: bag relations + truth-table tests) | RT-02 set-vs-bag laws and rewrite equivalences; RT-03 calculus/safety; SL-03 NULL semantics across every clause; Z0.4, TD-5/6 |
-| Catalog, tuples, constraints (DB-2) | **2.1 / DB-2** | SL-01 type system & constraint catalogue; DD-04 key strategies; DD-12; E10 constraint batteries |
-| CTEs, windows, lateral (DB-3) | **2.1 / DB-3** | SL-06/08/09 full semantics (frames, EXCLUDE, RANGE with intervals, recursion termination); E4–E7 ladder |
+| Relational algebra, 3VL (DB-1) | gcp-curriculum **2.1 / DB-1** (toy: bag relations + truth-table tests) | RT-02 set-vs-bag laws and rewrite equivalences; RT-03 calculus/safety; SL-03 NULL semantics across every clause; SQL-Z0.4, TD-5/6 |
+| Catalog, tuples, constraints (DB-2) | **2.1 / DB-2** | SL-01 type system & constraint catalogue; DD-04 key strategies; DD-12; SQL-E10 constraint batteries |
+| CTEs, windows, lateral (DB-3) | **2.1 / DB-3** | SL-06/08/09 full semantics (frames, EXCLUDE, RANGE with intervals, recursion termination); SQL-E4–SQL-E7 ladder |
 | Heap pages & TOAST (DB-4) | **2.1 / DB-4** (toy: slotted page) | CS-01 page/row arithmetic and fill-factor maths (no second toy) |
 | Buffer pool (DB-5) | **2.1 / DB-5** (toy: clock sweep) | CS-04 hit-ratio and working-set reasoning, why sequential flooding needs scan-resistance |
 | Indexes (DB-6) | **2.1 / DB-6** (toy: B-tree + inverted index) | CS-02 height/fan-out/cost formulas; OD-01 index-design workflow; PX-1 … PX-6 |
@@ -130,16 +130,16 @@ Each gcp-curriculum module on the left is taught **with** the companion modules 
 | MVCC, locks, vacuum (DB-9) | **2.1 / DB-9** (toy: visibility simulator, deadlock detector) | CS-05 schedule theory (precedence graphs, 2PL, SSI); TD-8/9; TX-1 … TX-8 |
 | WAL, replica, PITR (DB-10 / G4) | **2.1 / DB-10** (toy: mini-WAL) | CS-06 ARIES and steal/no-force reasoning; TD-12; OD-04 restore-drill runbook |
 | Cloud SQL provisioning, Auth Proxy, private IP, HA, flags | **2.3** | OD-03/04/05 SQL-side consequences (session state vs pooler modes, RPO/RTO arithmetic, replica lag); §8.2 Terraform |
-| Migrations as jobs, expand/contract | **2.6** | DD-11 *lock levels*, `NOT VALID` + `VALIDATE`, `CREATE INDEX CONCURRENTLY`, backfill batching (E9.6) |
+| Migrations as jobs, expand/contract | **2.6** | DD-11 *lock levels*, `NOT VALID` + `VALIDATE`, `CREATE INDEX CONCURRENTLY`, backfill batching (SQL-E9.6) |
 | Spanner, Bigtable, Firestore map | **2.7 / 2.4** | AN-05, AN-06 same-question comparisons; DD-13 key design as SQL |
 | Cursor pagination | **8.1.5** (from-scratch pager) | OD-09 the SQL seek predicate & its supporting index; PX-9 measured against OFFSET |
 | Hot partition, key histogram | **8.1** | DD-13 the skew query on lab data (user 1 = 135 orders; see PX-1) |
 | Connection-pool math | **8.1 / 2.3** | OD-03 pooler modes (session/transaction/statement) and what breaks in transaction mode |
-| RLS multi-tenancy | **8.1 / 2.1** | SL-13 policy syntax, `FORCE`, owner bypass; E10.2 composite FK as defence in depth; E10.6 |
-| Outbox / inbox, idempotency | **3.5 / 3.4** | SL-10 the SQL that makes them true (unique index, `ON CONFLICT`, `SKIP LOCKED`); TX-5, E9.3 |
-| Ledger, minor-unit ints | **5.3** | DD-05 modelling; E4.5/C2 revenue reconciliation; C1 invariants |
+| RLS multi-tenancy | **8.1 / 2.1** | SL-13 policy syntax, `FORCE`, owner bypass; SQL-E10.2 composite FK as defence in depth; SQL-E10.6 |
+| Outbox / inbox, idempotency | **3.5 / 3.4** | SL-10 the SQL that makes them true (unique index, `ON CONFLICT`, `SKIP LOCKED`); TX-5, SQL-E9.3 |
+| Ledger, minor-unit ints | **5.3** | DD-05 modelling; SQL-E4.5/SQL-CAP2 revenue reconciliation; SQL-CAP1 invariants |
 | BigQuery partition/cluster/cost | **9.4 / 9b.1** | AN-02 SQL-level cost reading; DT drills |
-| As-of / point-in-time join | **9c.1** | E6.4 / E13.4 / E13.5 the SQL shapes (lateral, range join, SCD2) |
+| As-of / point-in-time join | **9c.1** | SQL-E6.4 / SQL-E13.4 / SQL-E13.5 the SQL shapes (lateral, range join, SCD2) |
 | Billing-export SQL patterns | **10.3** | AN-03 reused windows; no new concept |
 | SQL scale-out (replication, federation, sharding, denormalisation, SQL tuning) | **primer companion SD-13 … SD-19** | *this file never re-teaches them*; CS-07/DD-13/OD-05/OD-07 add engine-level and SQL-level detail only |
 | ACID, CAP, consistency, big-O, hashing | gcp-curriculum **T.Disc / T.Algo / T.SysTheory / 2.x** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
@@ -150,15 +150,15 @@ The gcp-curriculum slice supplies *toy spec, SQL, EXPLAIN prediction, Cloud SQL 
 
 | Slice (owner) | Companion theory | Companion SQL rung | Prediction / lab cards |
 |---|---|---|---|
-| **DB-1** algebra & 3VL | RT-01, RT-02, RT-08 · TD-5, TD-6, TD-7 | E1.x, E2.x, E3.x (joins, anti/semi/outer), E4.3/E4.4 set ops | — (predict multiplicity & NULL behaviour per exercise) |
-| **DB-2** catalog, tuples, constraints | RT-04/05 (FDs → keys), DD-04, DD-12 · TD-1 … TD-4 | E9.x (DML), E10.1 – E10.6 (constraints as specification) | PX-7 (missing FK index) |
+| **DB-1** algebra & 3VL | RT-01, RT-02, RT-08 · TD-5, TD-6, TD-7 | E1.x, E2.x, E3.x (joins, anti/semi/outer), SQL-E4.3/SQL-E4.4 set ops | — (predict multiplicity & NULL behaviour per exercise) |
+| **DB-2** catalog, tuples, constraints | RT-04/05 (FDs → keys), DD-04, DD-12 · TD-1 … TD-4 | E9.x (DML), SQL-E10.1 – SQL-E10.6 (constraints as specification) | PX-7 (missing FK index) |
 | **DB-3** CTEs, windows, lateral | RT-03 (safety), CS-11 (recursion) · TD-16 | E4.x, E5.x, E6.x, E7.x | PX-10 (sort node for windows) |
-| **DB-4** heap pages & TOAST | CS-01 page arithmetic · Z0.8 | E8.5 – E8.7 (JSONB size intuition) | — |
+| **DB-4** heap pages & TOAST | CS-01 page arithmetic · SQL-Z0.8 | SQL-E8.5 – SQL-E8.7 (JSONB size intuition) | — |
 | **DB-5** buffer pool | CS-04 | — | PX-9 (hit vs read) |
-| **DB-6** indexes | CS-02, CS-10 · TD-10 | E12-style workflow (§7.1) | PX-1 … PX-6, PX-9 |
+| **DB-6** indexes | CS-02, CS-10 · TD-10 | PX-style workflow (§7.1) | PX-1 … PX-6, PX-9 |
 | **DB-7** executor & spill | CS-03 · TD-11 | E13.x aggregation shapes | PX-7, PX-10 |
 | **DB-8** planner statistics | CS-08 · TD-13 | — | PX-8 |
-| **DB-9** MVCC, locks, vacuum | CS-05 · TD-8, TD-9, TD-15 | E9.6 (batching), E11 labs | TX-1 … TX-7 |
+| **DB-9** MVCC, locks, vacuum | CS-05 · TD-8, TD-9, TD-15 | SQL-E9.6 (batching), TX labs | TX-1 … TX-7 |
 | **DB-10** WAL, replica, PITR (**G4**) | CS-06, CS-07 · TD-12, TD-14 | — | BH-5, OD-04 restore drill, TX-8 |
 
 ### 2.3 Parallel calendar — how the companion rides gcp-curriculum's spine
@@ -167,20 +167,20 @@ gcp-curriculum's spine is `T → F → M → 0 → 1 → D → 2 → 3 → …`.
 
 | Window (gcp-curriculum) | Companion work (parallel, small) | Outcome |
 |---|---|---|
-| **Block T** (HS → UG tiers) | PQ-01, PQ-02, PQ-07, PQ-08 with Z0.1 – Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
+| **Block T** (SQL-T-HS → SQL-T-UG tiers) | PQ-01, PQ-02, PQ-07, PQ-08 with SQL-Z0.1 – SQL-Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
 | **F1 – F4, M.NS** | PQ-03 (types, decimals), PQ-04 (files/JSON), PQ-05 (`psql` + Docker Postgres) — the lab loads and fingerprints match (§3) | lab environment ready; no SQL semantics yet |
 | **Parts 0 – 1, D** | OD-10 (tests in CI), OD-02 (logs/slow-query vocabulary), OD-03 recall at 1.12 | vocabulary only; no new SQL |
-| **Part 2 (the main event)** | **2.1 is stretched over ≥ 3 weeks:** week 1 = RT-01/04/05 + SL-01/02/03 + E1–E3 · week 2 = RT-02 + SL-04…SL-09 + E4–E7 + DB-1/DB-3 · week 3 = SL-10 + TX labs + CS-05 + DB-9 · then DB-4…DB-8 with CS-01…CS-04, CS-08 and PX cards · then DB-10 with CS-06, OD-04 · 2.2 – 2.7 as bound in §2 | SQL competency through E9; plan and isolation predictions; the theory tier |
-| **Parts 3 – 5** | E9.3 (3.4), TX-5 (3.5), E10.6 (4.7), E4.5/C2 (5.3) | SQL that makes async/ledger/RLS true |
-| **Part 8** | PX-9 / DD-13 with 8.1; SD-2/SD-3 inside packs | scale primitives with SQL evidence |
-| **Parts 9, 9b, 9c** | AN-01 … AN-05, E6, E13, DT drills (BigQuery), E6.4/E13.4/E13.5 at 9c.1 | analytics dialect and point-in-time joins |
-| **Part 10** | PX cards and C4 at 10.5; DT-4 at 10.3 | performance and cost SQL |
-| **Part 11 / 11b** | C1 – C4 | database acceptance |
-| **Part 12 — S12 / S13** | skip-test via the checkpoints in the stitch table; else run the S12/S13 orders below | continuation, only if the skip-test fails |
+| **Part 2 (the main event)** | **2.1 is stretched over ≥ 3 weeks:** week 1 = RT-01/04/05 + SL-01/02/03 + SQL-E1–SQL-E3 · week 2 = RT-02 + SL-04…SL-09 + SQL-E4–SQL-E7 + DB-1/DB-3 · week 3 = SL-10 + TX labs + CS-05 + DB-9 · then DB-4…DB-8 with CS-01…CS-04, CS-08 and PX cards · then DB-10 with CS-06, OD-04 · 2.2 – 2.7 as bound in §2 | SQL competency through SQL-E9; plan and isolation predictions; the theory tier |
+| **Parts 3 – 5** | SQL-E9.3 (3.4), TX-5 (3.5), SQL-E10.6 (4.7), SQL-E4.5/SQL-CAP2 (5.3) | SQL that makes async/ledger/RLS true |
+| **Part 8** | PX-9 / DD-13 with 8.1; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
+| **Parts 9, 9b, 9c** | AN-01 … AN-05, SQL-E6, SQL-E13, DT drills (BigQuery), SQL-E6.4/SQL-E13.4/SQL-E13.5 at 9c.1 | analytics dialect and point-in-time joins |
+| **Part 10** | PX cards and SQL-CAP4 at 10.5; DT-4 at 10.3 | performance and cost SQL |
+| **Part 11 / 11b** | SQL-CAP1 – SQL-CAP4 | database acceptance |
+| **Part 12 — SQL-SKIP-SQL / SQL-SKIP-ENGINE** | skip-test via the checkpoints in the stitch table; else run the SQL-SKIP-SQL/SQL-SKIP-ENGINE orders below | continuation, only if the skip-test fails |
 
-**12.S12 order → companion modules (unified-curriculum §5.4 order, unchanged):** relations/keys/FDs/normalisation → **RT-01, RT-04, RT-05** · relational algebra → **RT-02** (+ TD-5/6) · DDL/types/constraints → **SL-01, DD-04, DD-12** · SELECT semantics & NULL/3VL → **SL-02, SL-03** · joins incl. semi/anti/outer → **SL-04** · aggregation → **SL-05** · subqueries/CTEs/recursion → **SL-06, SL-07, SL-09** · windows → **SL-08** · transactions/isolation → **CS-05** + TX labs · pagination and application access → **OD-09**. *Predict multiplicity and NULL behaviour before execution.*
+**SQL-SKIP-SQL order → companion modules (unified-curriculum §5.4 order, unchanged):** relations/keys/FDs/normalisation → **RT-01, RT-04, RT-05** · relational algebra → **RT-02** (+ TD-5/6) · DDL/types/constraints → **SL-01, DD-04, DD-12** · SELECT semantics & NULL/3VL → **SL-02, SL-03** · joins incl. semi/anti/outer → **SL-04** · aggregation → **SL-05** · subqueries/CTEs/recursion → **SL-06, SL-07, SL-09** · windows → **SL-08** · transactions/isolation → **CS-05** + TX labs · pagination and application access → **OD-09**. *Predict multiplicity and NULL behaviour before execution.*
 
-**12.S13 order → companion modules:** storage media & layouts → **CS-01, CS-09** · pages/tuples/TOAST/catalogs → **CS-01** · buffer manager → **CS-04** · hash/B-tree/GIN/GiST/BRIN/vector indexes → **CS-02, CS-10** · iterators, sort/aggregate, join algorithms → **CS-03** · statistics/cardinality/cost → **CS-08** · MVCC/isolation/locks/deadlocks/vacuum → **CS-05, OD-06** · WAL/checkpoints/recovery → **CS-06** · replication/PITR → **CS-06, CS-07, OD-04, OD-05** · parallel/distributed trade-offs → **CS-07, CS-09**.
+**SQL-SKIP-ENGINE order → companion modules:** storage media & layouts → **CS-01, CS-09** · pages/tuples/TOAST/catalogs → **CS-01** · buffer manager → **CS-04** · hash/B-tree/GIN/GiST/BRIN/vector indexes → **CS-02, CS-10** · iterators, sort/aggregate, join algorithms → **CS-03** · statistics/cardinality/cost → **CS-08** · MVCC/isolation/locks/deadlocks/vacuum → **CS-05, OD-06** · WAL/checkpoints/recovery → **CS-06** · replication/PITR → **CS-06, CS-07, OD-04, OD-05** · parallel/distributed trade-offs → **CS-07, CS-09**.
 
 ---
 
@@ -232,11 +232,11 @@ Every exercise with a result shape, row count, plan shape, or isolation outcome:
 | Runner | Purpose |
 |---|---|
 | `run_ex.py` | Executes exercise keys inside `BEGIN…ROLLBACK`, prints golden + sample rows |
-| `plans.py` | PX plan catalogue (P1–P11) |
+| `plans.py` | PX plan catalogue (PX-1–PX-11) |
 | `tx_tests.py` + `two.py` | Dual-session TX scenarios |
 | `wrongs.py` | Canonical wrong queries for trap fingerprints |
 | `naive.sql` / `safe.sql` | Oversell RMW vs atomic claim (TX companion) |
-| `slow_bad.sql` / `slow_good.sql` | C4 baseline vs rewrite |
+| `slow_bad.sql` / `slow_good.sql` | SQL-CAP4 baseline vs rewrite |
 
 ## 4. Concept curriculum
 
@@ -249,7 +249,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** A relation is a set of tuples over a heading; SQL tables are *bags* (multisets). Functions map each domain element to at most one value — keys are the database word for that.
 - **Theory:** Cartesian product size = |R|·|S|; projection can shrink or (with bags) keep duplicates. Bag union vs set union.
 - **GCP lens:** Lens-1: BigQuery and Postgres both default to bag semantics (`UNION ALL` preserves). Lens-2: lab seed has deliberate duplicate-risk columns (`idempotency_key` NULL repeats).
-- **Lab:** Z0.1–Z0.3 on paper: draw R⋈S multiplicities for 2×3 bags.
+- **Lab:** SQL-Z0.1–SQL-Z0.3 on paper: draw R⋈S multiplicities for 2×3 bags.
 - **Check:** Why does `SELECT a FROM t UNION SELECT a FROM t` drop duplicates but `UNION ALL` does not? Give multiplicities.
 
 #### PQ-02 · Propositional & predicate logic; 3VL preview — stitch: T.Disc · DB-1
@@ -257,7 +257,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Predicates evaluate to TRUE / FALSE / UNKNOWN. Filters keep only TRUE. `NOT UNKNOWN = UNKNOWN`.
 - **Theory:** Truth tables for AND/OR/NOT with UNKNOWN; why `WHERE col = NULL` never matches.
 - **GCP lens:** Lens-1: Cloud SQL Postgres 3VL matches the standard. Lens-3: BigQuery `IS DISTINCT FROM` exists (verify).
-- **Lab:** Z0.4: fill the 3VL table for `country <> 'US'` when country is NULL.
+- **Lab:** SQL-Z0.4: fill the 3VL table for `country <> 'US'` when country is NULL.
 - **Check:** Does `NOT (x = 1)` include rows where x IS NULL? Prove with a truth table.
 
 #### PQ-03 · Types, encodings, integer money vs float — stitch: M.NS
@@ -265,7 +265,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Prefer `numeric`/`bigint` minor units for money; never `float`/`double` for currency. UTF-8; beware BOM and `char(n)` padding.
 - **Theory:** Half-up vs banker rounding; IEEE recall from M.NS then add decimal semantics.
 - **GCP lens:** Lens-1: Cloud SQL flags for `extra_float_digits`; Spanner NUMERIC. Lens-2: lab stores `price_minor int`.
-- **Lab:** E2.1 / E2.7: predict aggregates stay integer/numeric.
+- **Lab:** SQL-E2.1 / SQL-E2.7: predict aggregates stay integer/numeric.
 - **Check:** Why is `0.1 + 0.2` unsafe for money in float but fine as integer cents?
 
 #### PQ-04 · Files, CSV/JSON, encodings — stitch: F1 · 2.5
@@ -273,7 +273,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** CSV NULL vs empty string; JSON vs JSONL; COPY options; UTF-8.
 - **Theory:** Encoding traps that flip fingerprints (BOM, CRLF).
 - **GCP lens:** Lens-1: GCS → Cloud SQL import; BigQuery load jobs. Lens-2: `stg_import` messy rows in seed.
-- **Lab:** E8.8–E8.10 cleaning ladder.
+- **Lab:** SQL-E8.8–SQL-E8.10 cleaning ladder.
 - **Check:** Name two ways a CSV import silently changes row count.
 
 #### PQ-05 · psql, Docker Postgres, env hygiene — stitch: F1 · D1
@@ -297,20 +297,20 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** These are the primitives behind indexes and joins — not a second CS course.
 - **Theory:** Binary search → B-tree leaf walk; hash → hash join / hash index.
 - **GCP lens:** Lens-1: recall only; formula depth in CS-02. Lens-2: none beyond paper.
-- **Lab:** Z0.7, TD-10 fan-out arithmetic.
+- **Lab:** SQL-Z0.7, TD-10 fan-out arithmetic.
 - **Check:** Given fan-out 100 and 1e6 leaves, about how many levels?
 
 #### PQ-08 · Storage hierarchy & page/row arithmetic — stitch: T.Quant · DB-4
 - [ ] done
 - **Core:** L1/L2/RAM/SSD/HDD orders of magnitude; 8 KiB pages; rows per page ≈ usable/avg_row.
 - **Theory:** Fill-factor and HOT-update intuition (analytic, not a second slotted-page toy).
-- **GCP lens:** Lens-1: Cloud SQL machine memory vs dataset working set. Lens-2: Z0.8 napkin.
-- **Lab:** Z0.8: estimate pages for 20k orders.
+- **GCP lens:** Lens-1: Cloud SQL machine memory vs dataset working set. Lens-2: SQL-Z0.8 napkin.
+- **Lab:** SQL-Z0.8: estimate pages for 20k orders.
 - **Check:** If avg row is 200 B on 8 KiB pages at 90% fill, rows/page ≈ ?
 
 ### 4.2 Relational theory (RT-01 … RT-08)
 
-#### RT-01 · Relational model, keys, integrity — stitch: 2.1 / DB-2 · 12.S12
+#### RT-01 · Relational model, keys, integrity — stitch: 2.1 / DB-2 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** Heading, body, candidate/primary/foreign keys, entity & referential integrity.
 - **Theory:** Superkey vs candidate key; NULLs and uniqueness (UNIQUE allows multiple NULLs in Postgres).
@@ -326,7 +326,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-5, TD-6, TD-7.
 - **Check:** Push `σ_{a=1}` through an equijoin on `a`; show both plans.
 
-#### RT-03 · Tuple/domain calculus & safety (grad) — stitch: T.SysTheory · DB-3
+#### RT-03 · Tuple/domain calculus & safety (SQL-T-GR) — stitch: T.SysTheory · DB-3
 - [ ] done
 - **Core:** Declarative `{t | P(t)}`; domain calculus; safety (finite results); Codd equivalence.
 - **Theory:** Unsafe query examples; how SQL WITH RECURSIVE can leave the safe fragment.
@@ -334,7 +334,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-16 recursion termination.
 - **Check:** Give one unsafe calculus query and its SQL temptation.
 
-#### RT-04 · Functional dependencies, closure, cover — stitch: 2.1 / DB-2 · 12.S12
+#### RT-04 · Functional dependencies, closure, cover — stitch: 2.1 / DB-2 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** X → Y; attribute closure; candidate keys from FDs; canonical cover.
 - **Theory:** Armstrong axioms; why transitive FDs matter for 3NF.
@@ -342,12 +342,12 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-1…TD-4.
 - **Check:** Compute closure of `{tenant_id, sku}` on the product heading.
 
-#### RT-05 · Normal forms 1NF…BCNF (+ 4NF/5NF-lite) — stitch: 2.1 · 12.S12
+#### RT-05 · Normal forms 1NF…BCNF (+ 4NF/5NF-lite) — stitch: 2.1 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** 1NF atomicity; 2NF full FD to key; 3NF no transitive; BCNF; lossless & dependency-preserving decompositions.
 - **Theory:** When BCNF loses dependency preservation; MVDs lite.
 - **GCP lens:** Lens-1: Northstar OLTP stays ≥3NF; analytics star schemas deliberately denormalise (AN-01).
-- **Lab:** TD-3, TD-4; SD-1.
+- **Lab:** TD-3, TD-4; SCH-1.
 - **Check:** Is `product(tenant_id, sku, price, currency)` in BCNF if `tenant_id → currency`?
 
 #### RT-06 · ER → tables — stitch: 0.4 · DD-01
@@ -355,23 +355,23 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Entities, relationships, cardinality, weak entities, ISA → table patterns.
 - **Theory:** Foreign-key placement for 1:N vs N:M.
 - **GCP lens:** Lens-1: schema ADR in HLD pack. Lens-2: lab ER is Northstar OLTP slice.
-- **Lab:** SD-1 draw-and-map.
+- **Lab:** SCH-1 draw-and-map.
 - **Check:** Map a ternary relationship to tables without inventing a hidden FD.
 
-#### RT-07 · Integrity as specification — stitch: DD-12 · E10
+#### RT-07 · Integrity as specification — stitch: DD-12 · SQL-E10
 - [ ] done
 - **Core:** CHECK, UNIQUE, FK, EXCLUDE, deferrable constraints — constraints are the executable spec.
 - **Theory:** NOT VALID + VALIDATE; constraint exclusion vs RLS.
 - **GCP lens:** Lens-1: Cloud SQL supports the Postgres catalogue; Spanner interleaved deletes cascade by design (verify).
-- **Lab:** E10.1–E10.5.
+- **Lab:** SQL-E10.1–SQL-E10.5.
 - **Check:** Name a business rule that needs EXCLUDE rather than UNIQUE.
 
 #### RT-08 · Query equivalence & rewrite rules — stitch: DB-1 · CS-08
 - [ ] done
 - **Core:** Predicate pushdown, join reordering under constraints, outer-join rewrites that are *not* always legal.
 - **Theory:** Why `WHERE` after `LEFT JOIN` can nullify the outer join.
-- **GCP lens:** Lens-1: planner rewrites; you must still predict multiplicity. Lens-2: E3.7 trap.
-- **Lab:** TD-7; E3.7.
+- **GCP lens:** Lens-1: planner rewrites; you must still predict multiplicity. Lens-2: SQL-E3.7 trap.
+- **Lab:** TD-7; SQL-E3.7.
 - **Check:** When is `σ (R ⟕ S)` ≠ `(σ R) ⟕ S`?
 
 ### 4.3 SQL language (SL-01 … SL-14)
@@ -381,15 +381,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** CREATE TABLE, types (`int`, `bigint`, `numeric`, `text`, `timestamptz`, `jsonb`, ranges), PRIMARY/UNIQUE/CHECK/FK.
 - **Theory:** Identity vs serial; domains; collations.
 - **GCP lens:** Lens-1: Cloud SQL Postgres DDL; AlloyDB same dialect family. Lens-2: `lab_schema.sql`.
-- **Lab:** E10 battery; read schema end-to-end once.
+- **Lab:** SQL-E10 battery; read schema end-to-end once.
 - **Check:** Why is `timestamptz` preferred over `timestamp` for event time?
 
-#### SL-02 · Logical evaluation order — stitch: 12.S12
+#### SL-02 · Logical evaluation order — stitch: SQL-SKIP-SQL
 - [ ] done
 - **Core:** FROM → WHERE → GROUP BY → HAVING → WINDOW → SELECT → DISTINCT → ORDER BY → LIMIT. Aliases in SELECT are not visible in WHERE.
 - **Theory:** Lateral and APPLY as left-to-right correlation.
 - **GCP lens:** Lens-1: BigQuery and Postgres share the logical model with dialect wrinkles (DT-1).
-- **Lab:** E1 warm-ups: predict column visibility errors before running.
+- **Lab:** SQL-E1 warm-ups: predict column visibility errors before running.
 - **Check:** Why can you `ORDER BY` a SELECT alias but not `WHERE` it?
 
 #### SL-03 · NULL & three-valued logic — stitch: DB-1 · PQ-02
@@ -397,47 +397,47 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** `IS NULL` / `IS DISTINCT FROM` / `COALESCE` / `NULLIF`; aggregate skip-NULL rules; UNIQUE+NULL.
 - **Theory:** Primary keys forbid NULL; CHECK treats UNKNOWN as pass.
 - **GCP lens:** Lens-1: same 3VL on Cloud SQL; Oracle NULL-empty-string collapse is the Rosetta trap.
-- **Lab:** E1.2, E1.3, E1.5.
+- **Lab:** SQL-E1.2, SQL-E1.3, SQL-E1.5.
 - **Check:** Write the 3VL table for `NOT (country = 'US')`.
 
-#### SL-04 · Joins: inner, outer, cross, self, semi, anti, lateral, non-equi — stitch: DB-1 · 12.S12
+#### SL-04 · Joins: inner, outer, cross, self, semi, anti, lateral, non-equi — stitch: DB-1 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** Join types as filters on the product; semi/anti via EXISTS/NOT EXISTS; LATERAL for dependent subqueries; range joins.
 - **Theory:** Fan-out: joining a 1:N table multiplies rows — sum after join is a classic bug.
-- **GCP lens:** Lens-1: Spanner interleaving physicalises parent-child joins; SQL shape still matters. Lens-2: E3 ladder.
-- **Lab:** E3.1–E3.10; E6.4 as-of shape (leakage owner is 9c.1).
+- **GCP lens:** Lens-1: Spanner interleaving physicalises parent-child joins; SQL shape still matters. Lens-2: SQL-E3 ladder.
+- **Lab:** SQL-E3.1–SQL-E3.10; SQL-E6.4 as-of shape (leakage owner is 9c.1).
 - **Check:** Why does `NOT IN (subquery with NULL)` return empty?
 
-#### SL-05 · Aggregation & grouping sets — stitch: 12.S12 · AN-01
+#### SL-05 · Aggregation & grouping sets — stitch: SQL-SKIP-SQL · AN-01
 - [ ] done
 - **Core:** `COUNT(*)` vs `COUNT(col)` vs `COUNT(DISTINCT)`; `FILTER`; `GROUPING SETS`/`ROLLUP`/`CUBE`; ordered-set aggregates.
 - **Theory:** Functional dependency relaxation in Postgres when grouping by PK.
-- **GCP lens:** Lens-1: BigQuery `GROUP BY ROLLUP` cost = bytes scanned. Lens-2: E2, E13.1.
-- **Lab:** E2.1–E2.8; E13.1–E13.2.
+- **GCP lens:** Lens-1: BigQuery `GROUP BY ROLLUP` cost = bytes scanned. Lens-2: SQL-E2, SQL-E13.1.
+- **Lab:** SQL-E2.1–SQL-E2.8; SQL-E13.1–SQL-E13.2.
 - **Check:** When is `avg(x)` not equal to `sum(x)/count(*)`?
 
-#### SL-06 · Subqueries: scalar, IN, EXISTS, ALL/ANY, division — stitch: 12.S12
+#### SL-06 · Subqueries: scalar, IN, EXISTS, ALL/ANY, division — stitch: SQL-SKIP-SQL
 - [ ] done
 - **Core:** Correlated vs uncorrelated; `= ALL` over empty is TRUE; relational division patterns.
 - **Theory:** Unnesting mentally before asking the planner.
 - **GCP lens:** Lens-1: same shapes on Cloud SQL; Spanner subquery limits (verify).
-- **Lab:** E4.1–E4.8.
+- **Lab:** SQL-E4.1–SQL-E4.8.
 - **Check:** Predict `> ALL (empty)` and `> ANY (empty)`.
 
 #### SL-07 · Set operations — stitch: DB-1
 - [ ] done
 - **Core:** `UNION`/`INTERSECT`/`EXCEPT` (± ALL); column type matching; ORDER BY scope.
 - **Theory:** Bag vs set cardinality.
-- **GCP lens:** Lens-1: BigQuery `EXCEPT DISTINCT` naming. Lens-2: E4.3/E4.4.
-- **Lab:** E4.3, E4.4.
+- **GCP lens:** Lens-1: BigQuery `EXCEPT DISTINCT` naming. Lens-2: SQL-E4.3/SQL-E4.4.
+- **Lab:** SQL-E4.3, SQL-E4.4.
 - **Check:** Does `UNION` ever keep two identical rows?
 
-#### SL-08 · Window functions & frames — stitch: DB-3 · 12.S12
+#### SL-08 · Window functions & frames — stitch: DB-3 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** `RANK`/`DENSE_RANK`/`ROW_NUMBER`; `SUM/AVG` over frames; `ROWS` vs `RANGE`; `EXCLUDE`; running balances; gaps-and-islands.
 - **Theory:** Default frame for ordered windows is `RANGE UNBOUNDED PRECEDING` — surprises `last_value`.
-- **GCP lens:** Lens-1: BigQuery windows; billing-export patterns at 10.3 reuse these shapes. Lens-2: E5–E6.
-- **Lab:** E5.1–E5.8, E6.1–E6.7.
+- **GCP lens:** Lens-1: BigQuery windows; billing-export patterns at 10.3 reuse these shapes. Lens-2: SQL-E5–E6.
+- **Lab:** SQL-E5.1–SQL-E5.8, SQL-E6.1–SQL-E6.7.
 - **Check:** Why is `last_value` wrong with the default frame for 'latest price'?
 
 #### SL-09 · CTEs & recursion — stitch: DB-3 · CS-11
@@ -445,7 +445,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** `WITH`, `WITH RECURSIVE`, working table, termination, cycle detection via path arrays; searchable vs cycle options (PG14+).
 - **Theory:** Recursion expressiveness vs SQL without recursion.
 - **GCP lens:** Lens-1: Spanner has statement timeouts; depth limits differ (verify). Lens-2: E7.
-- **Lab:** E7.1–E7.5.
+- **Lab:** SQL-E7.1–SQL-E7.5.
 - **Check:** How do you detect a cycle without hanging?
 
 #### SL-10 · DML, RETURNING, upsert, MERGE — stitch: 3.4 · 3.5
@@ -453,15 +453,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** `INSERT…ON CONFLICT`, `UPDATE…FROM`, writable CTEs, `MERGE` (PG15+), `DELETE…RETURNING`.
 - **Theory:** Idempotency keys; batching to bound WAL/bloat.
 - **GCP lens:** Lens-1: Cloud SQL PG15 MERGE; Spanner mutations API vs SQL DML. Lens-2: E9.
-- **Lab:** E9.1–E9.7; TX-5.
+- **Lab:** SQL-E9.1–SQL-E9.7; TX-5.
 - **Check:** What uniqueness constraint makes an upsert actually idempotent?
 
 #### SL-11 · Views, materialised views, functions, triggers — stitch: 9b.1
 - [ ] done
 - **Core:** Updatability limits; matview refresh; `SECURITY DEFINER` hazards; triggers as integrity amplifiers (use sparingly).
 - **Theory:** Where business logic should *not* hide.
-- **GCP lens:** Lens-1: BigQuery authorised views; AlloyDB matviews. Lens-2: E9.1 materialise daily GMV.
-- **Lab:** E9.1; SD-6 masking view sketch.
+- **GCP lens:** Lens-1: BigQuery authorised views; AlloyDB matviews. Lens-2: SQL-E9.1 materialise daily GMV.
+- **Lab:** SQL-E9.1; SCH-6 masking view sketch.
 - **Check:** Name one reason a trigger is worse than a constraint for the same rule.
 
 #### SL-12 · Dates, time zones, JSON, text, regex — stitch: 2.5 · 9c.1
@@ -469,15 +469,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** `timestamptz`, `AT TIME ZONE`, `date_trunc`, JSONB operators `@>`/`->`/`JSONB_PATH`, `LIKE`/`regex`.
 - **Theory:** Never `now()` in reproducible labs; DST pitfalls.
 - **GCP lens:** Lens-1: BigQuery `TIMESTAMP` vs `DATETIME`; Postgres JSONB vs Spanner JSON. Lens-2: E8.
-- **Lab:** E8.1–E8.10.
+- **Lab:** SQL-E8.1–SQL-E8.10.
 - **Check:** Which direction of `AT TIME ZONE` converts *stored UTC* to a New York *civil* date?
 
 #### SL-13 · Security in SQL: GRANT, RLS, injection — stitch: 0.5 · 4.7 · 8.1
 - [ ] done
 - **Core:** Roles vs IAM principals; least privilege; RLS policies + `FORCE`; parameter binding; owner bypass.
 - **Theory:** Column encryption vocabulary (`pgcrypto`) — product rules stay in gcp 7.3.
-- **GCP lens:** Lens-1: Cloud SQL IAM DB auth; RLS with `current_setting`. Lens-2: E10.6.
-- **Lab:** E10.6, BH-2.
+- **GCP lens:** Lens-1: Cloud SQL IAM DB auth; RLS with `current_setting`. Lens-2: SQL-E10.6.
+- **Lab:** SQL-E10.6, BH-2.
 - **Check:** Why does table owner bypass RLS unless `FORCE ROW LEVEL SECURITY`?
 
 #### SL-14 · Dialects and the standard — stitch: 2.2 · §8
@@ -494,8 +494,8 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** Heap pages, item identifiers, alignment, TOAST for oversized values — *analytic layer only* (toy is DB-4).
 - **Theory:** Rows/page, fill-factor, update HOT vs non-HOT intuition.
-- **GCP lens:** Lens-1: Cloud SQL storage autosize; AlloyDB columnar extension is separate (CS-09). Lens-2: Z0.8.
-- **Lab:** Z0.8 napkin with lab row widths.
+- **GCP lens:** Lens-1: Cloud SQL storage autosize; AlloyDB columnar extension is separate (CS-09). Lens-2: SQL-Z0.8.
+- **Lab:** SQL-Z0.8 napkin with lab row widths.
 - **Check:** Estimate pages for 20k orders at 150 B/row on 8 KiB pages.
 
 #### CS-02 · B-tree/B+/hash/LSM/bitmap/GIN/GiST/BRIN — stitch: DB-6 · 8.1
@@ -522,7 +522,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** PX-9.
 - **Check:** What workload tanks a clock cache if it is not scan-resistant?
 
-#### CS-05 · Concurrency: serializability, 2PL, TSO, MVCC/SI, SSI — stitch: DB-9 · 12.S13
+#### CS-05 · Concurrency: serializability, 2PL, TSO, MVCC/SI, SSI — stitch: DB-9 · SQL-SKIP-ENGINE
 - [ ] done
 - **Core:** Conflict serializability & precedence graphs; 2PL; snapshot isolation anomalies (write skew); SSI in Postgres SERIALIZABLE.
 - **Theory:** Lost update under RC read-modify-write.
@@ -558,7 +558,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** Late materialisation, SIMD-friendly operators, compression (RLE/dict).
 - **Theory:** OLTP row store vs OLAP column store trade-off.
-- **GCP lens:** Lens-1: BigQuery; AlloyDB columnar. Lens-2: E13 cost reading.
+- **GCP lens:** Lens-1: BigQuery; AlloyDB columnar. Lens-2: SQL-E13 cost reading.
 - **Lab:** DT-2 bytes-scanned napkin.
 - **Check:** Why is `SELECT *` punitive on a column store?
 
@@ -574,8 +574,8 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** Linear recursion; what SQL cannot express without recursion/windows; termination metrics.
 - **Theory:** Complexity of transitive closure.
-- **GCP lens:** Lens-1: graph patterns sometimes leave SQL (AN-06/07). Lens-2: E7.5 cycle.
-- **Lab:** E7.5; TD-16.
+- **GCP lens:** Lens-1: graph patterns sometimes leave SQL (AN-06/07). Lens-2: SQL-E7.5 cycle.
+- **Lab:** SQL-E7.5; TD-16.
 - **Check:** Is graph reachability expressible in relational algebra without recursion/fixpoint?
 
 ### 4.5 Data design (DD-01 … DD-13)
@@ -584,8 +584,8 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** ER/concepts → normalised tables → indexes/partitioning/storage params; schema ADRs.
 - **Theory:** Every physical shortcut needs an ADR ('I pick X because Y, accept Z').
-- **GCP lens:** Lens-1: HLD pack schema section. Lens-2: SD-1.
-- **Lab:** SD-1.
+- **GCP lens:** Lens-1: HLD pack schema section. Lens-2: SCH-1.
+- **Lab:** SCH-1.
 - **Check:** Write one ADR sentence for choosing surrogate keys in `customer_order`.
 
 #### DD-02 · Keys: natural, surrogate, UUID, snowflake — stitch: DB-2
@@ -593,15 +593,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Stability, width, index locality, client generation vs DB generation.
 - **Theory:** UUID v4 random I/O vs time-ordered IDs.
 - **GCP lens:** Lens-1: Spanner bit-reversed sequences for hotspots (verify). Lens-2: lab uses bigint surrogates.
-- **Lab:** SD-2.
+- **Lab:** SCH-2.
 - **Check:** Name one operational pain of random UUIDs as PKs on B-trees.
 
 #### DD-03 · Money, units, time — stitch: 5.3 · M.NS
 - [ ] done
 - **Core:** Integer minor units; explicit currency; `timestamptz` for instants; civil dates as `date`.
 - **Theory:** Never float money; never implicit TZ.
-- **GCP lens:** Lens-1: ledger rules in gcp 5.3 — this file models them. Lens-2: E4.5, C2.
-- **Lab:** E4.5, C2.
+- **GCP lens:** Lens-1: ledger rules in gcp 5.3 — this file models them. Lens-2: SQL-E4.5, SQL-CAP2.
+- **Lab:** SQL-E4.5, SQL-CAP2.
 - **Check:** Why store both `currency` and `total_minor` rather than a float USD conversion?
 
 #### DD-04 · Hierarchies & graphs in SQL — stitch: SL-09
@@ -609,15 +609,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Adjacency list, closure table, path enumeration, nested sets — trade-offs.
 - **Theory:** Lab uses adjacency lists (`category.parent_id`, `app_user.referred_by`).
 - **GCP lens:** Lens-1: when to leave for a graph DB (AN-06). Lens-2: E7.
-- **Lab:** E7.1–E7.4; SD-3.
+- **Lab:** SQL-E7.1–SQL-E7.4; SCH-3.
 - **Check:** Which hierarchy pattern makes 'subtree products' cheap?
 
 #### DD-05 · Temporal data & SCD — stitch: 9c.1 · 5.3
 - [ ] done
 - **Core:** Valid-time vs transaction-time; SCD2 `valid_from`/`valid_to`; as-of join shapes.
 - **Theory:** Leakage prevention is owned by 9c.1; SQL shapes live here.
-- **GCP lens:** Lens-1: feature stores / as-of joins. Lens-2: E6.4, E13.4, E13.5.
-- **Lab:** E13.4–E13.5.
+- **GCP lens:** Lens-1: feature stores / as-of joins. Lens-2: SQL-E6.4, SQL-E13.4, SQL-E13.5.
+- **Lab:** SQL-E13.4–SQL-E13.5.
 - **Check:** Write the predicate for 'price in effect at `placed_at`'.
 
 #### DD-06 · JSONB vs relational — stitch: 2.2
@@ -625,55 +625,55 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Stable queryable attributes → columns; open-ended attrs → JSONB with GIN; hybrid.
 - **Theory:** Constraints are weaker inside JSON.
 - **GCP lens:** Lens-1: Firestore when document model wins (AN-06). Lens-2: `product.attrs`.
-- **Lab:** E8.5–E8.7; DT-7.
+- **Lab:** SQL-E8.5–SQL-E8.7; DT-7.
 - **Check:** When does JSONB become a schema smell?
 
 #### DD-07 · Soft delete, audit, history — stitch: 5.3 · 11b
 - [ ] done
 - **Core:** `deleted_at`; history tables; append-only audit; who-can-see-deleted policies.
 - **Theory:** Unique constraints must consider soft delete (`UNIQUE … WHERE deleted_at IS NULL`).
-- **GCP lens:** Lens-1: control-plane audit in 11b. Lens-2: C1 invariants.
-- **Lab:** E10.3 partial unique; C1.
+- **GCP lens:** Lens-1: control-plane audit in 11b. Lens-2: SQL-CAP1 invariants.
+- **Lab:** SQL-E10.3 partial unique; SQL-CAP1.
 - **Check:** How do you keep email unique among *live* users only?
 
 #### DD-08 · Denormalisation with ADRs — stitch: 8.0 · primer SD-18
 - [ ] done
 - **Core:** Cache columns, aggregate tables, counter fields — only with refresh rules and ADR.
 - **Theory:** Do not re-teach primer SD-18; add SQL maintenance patterns.
-- **GCP lens:** Lens-1: materialised views / nightly jobs. Lens-2: E9.1 daily GMV.
-- **Lab:** SD-2, E9.1.
+- **GCP lens:** Lens-1: materialised views / nightly jobs. Lens-2: SQL-E9.1 daily GMV.
+- **Lab:** SCH-2, SQL-E9.1.
 - **Check:** Write the refresh invariant for a cached `total_minor`.
 
 #### DD-09 · Multi-tenancy — stitch: 8.1 · SL-13
 - [ ] done
 - **Core:** Shared tables + `tenant_id` vs separate DBs/schemas; composite FKs; RLS defence in depth.
 - **Theory:** Hot-tenant skew.
-- **GCP lens:** Lens-1: 8.1 owns RLS primitive; here SQL policies + composite FKs. Lens-2: E10.2, E10.6.
-- **Lab:** E10.2, E10.6, PX-1 hot key.
+- **GCP lens:** Lens-1: 8.1 owns RLS primitive; here SQL policies + composite FKs. Lens-2: SQL-E10.2, SQL-E10.6.
+- **Lab:** SQL-E10.2, SQL-E10.6, PX-1 hot key.
 - **Check:** Why is a single-column FK to `user_id` unsafe in a multi-tenant DB?
 
 #### DD-10 · Partitioning & sharding-key design — stitch: primer SD-17 · 2.7
 - [ ] done
 - **Core:** Range/list/hash partitioning; prune-friendly predicates; shard key = join/locality key.
 - **Theory:** Interview scale-out stays in primer SD-17; here SQL partition pruning.
-- **GCP lens:** Lens-1: Cloud SQL declarative partitioning; Spanner parent keys. Lens-2: SD-5.
-- **Lab:** SD-5; PX prune thought-experiment.
+- **GCP lens:** Lens-1: Cloud SQL declarative partitioning; Spanner parent keys. Lens-2: SCH-5.
+- **Lab:** SCH-5; PX prune thought-experiment.
 - **Check:** What predicate prevents partition pruning?
 
 #### DD-11 · Schema evolution (expand/contract) — stitch: 2.6
 - [ ] done
 - **Core:** Add nullable → backfill → constrain → switch reads → drop old; lock levels; `CREATE INDEX CONCURRENTLY`; `NOT VALID`.
 - **Theory:** gcp 2.6 owns migrations-as-jobs; here lock/SQL craft.
-- **GCP lens:** Lens-1: Cloud SQL maintenance windows. Lens-2: E9.6 chunked backfill.
-- **Lab:** E9.6, SD-4.
+- **GCP lens:** Lens-1: Cloud SQL maintenance windows. Lens-2: SQL-E9.6 chunked backfill.
+- **Lab:** SQL-E9.6, SCH-4.
 - **Check:** Which lock does `ALTER … SET NOT NULL` take on a big table without a rewrite strategy?
 
-#### DD-12 · Data quality as constraints — stitch: RT-07 · E10
+#### DD-12 · Data quality as constraints — stitch: RT-07 · SQL-E10
 - [ ] done
 - **Core:** If it can be expressed as a constraint, it should be — before app code.
 - **Theory:** Deferral for cyclic FKs; EXCLUDE for ranges.
-- **GCP lens:** Lens-1: same on Cloud SQL. Lens-2: E10.1–E10.5.
-- **Lab:** E10 battery.
+- **GCP lens:** Lens-1: same on Cloud SQL. Lens-2: SQL-E10.1–SQL-E10.5.
+- **Lab:** SQL-E10 battery.
 - **Check:** Encode 'no overlapping price intervals' as a constraint type.
 
 #### DD-13 · Hot-key skew & partition keys — stitch: 8.1
@@ -681,7 +681,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Measure skew with SQL; design keys that spread writes; avoid sequential hotspots.
 - **Theory:** Lab: user 1 is hot (~135 orders) — see PX-1.
 - **GCP lens:** Lens-1: 8.1 owns the hot-partition primitive. Lens-2: skew query on lab.
-- **Lab:** PX-1; SD-5.
+- **Lab:** PX-1; SCH-5.
 - **Check:** Write a query that ranks users by order count and spot the hotspot.
 
 ### 4.6 Operating databases (OD-01 … OD-10)
@@ -690,7 +690,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** Hypothesis → `EXPLAIN (ANALYZE, BUFFERS)` → change one thing → re-measure; sargability.
 - **Theory:** Never index every column.
-- **GCP lens:** Lens-1: Query Insights. Lens-2: PX-1…PX-11, C4.
+- **GCP lens:** Lens-1: Query Insights. Lens-2: PX-1…PX-11, SQL-CAP4.
 - **Lab:** §7.1 PX cards.
 - **Check:** What four EXPLAIN fields do you read before changing an index?
 
@@ -730,7 +730,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** MVCC leaves dead tuples; vacuum / autovacuum; bloat detection; xid wraparound vocabulary.
 - **Theory:** Long transactions are vacuum poison.
-- **GCP lens:** Lens-1: Cloud SQL metrics for deadlocks/vacuum. Lens-2: observe after E9.6 batching.
+- **GCP lens:** Lens-1: Cloud SQL metrics for deadlocks/vacuum. Lens-2: observe after SQL-E9.6 batching.
 - **Lab:** TD-15.
 - **Check:** Why does an open idle-in-transaction session block cleanup?
 
@@ -738,8 +738,8 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** Drop old partitions vs mass DELETE; retention jobs; cold storage export.
 - **Theory:** Partition pruning requires the partition key in the predicate; mass DELETE still writes WAL.
-- **GCP lens:** Lens-1: BQ partition expiration as the analytics cousin. Lens-2: SD-5 retention sketch.
-- **Lab:** SD-5.
+- **GCP lens:** Lens-1: BQ partition expiration as the analytics cousin. Lens-2: SCH-5 retention sketch.
+- **Lab:** SCH-5.
 - **Check:** Why is `DROP TABLE …_2024_01` preferable to `DELETE WHERE month=…`?
 
 #### OD-08 · Migrations tooling & testing — stitch: 2.6 · D3
@@ -747,7 +747,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Dirty state, advisory lock, expand/contract in CI, rollback story.
 - **Theory:** gcp owns migrations-as-jobs; here SQL test discipline.
 - **GCP lens:** Lens-1: Cloud Build job applying migrations. Lens-2: OD-10 CI fingerprint test.
-- **Lab:** E9.6, SD-4.
+- **Lab:** SQL-E9.6, SCH-4.
 - **Check:** What does a migration advisory lock prevent?
 
 #### OD-09 · Application data access — stitch: 3.0 · 8.1.5
@@ -755,15 +755,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** N+1, ORM dirty pages, prepared statements, transaction boundaries, keyset pagination SQL.
 - **Theory:** 8.1.5 owns the from-scratch pager — here the seek predicate & index.
 - **GCP lens:** Lens-1: Cloud SQL + app connectors. Lens-2: PX-9 OFFSET vs keyset; BH-3.
-- **Lab:** PX-9, BH-3, E4.7.
+- **Lab:** PX-9, BH-3, SQL-E4.7.
 - **Check:** Write the keyset `WHERE` for `(placed_at, order_id)` descending.
 
 #### OD-10 · Testing SQL — stitch: D2
 - [ ] done
 - **Core:** Postgres service container, seed v1, fingerprint assertions, migration up/down.
 - **Theory:** Golden tests beat screenshot tests.
-- **GCP lens:** Lens-1: Cloud Build running `lab.chk`. Lens-2: wire E3.2 as a CI test.
-- **Lab:** E3.2 in CI.
+- **GCP lens:** Lens-1: Cloud Build running `lab.chk`. Lens-2: wire SQL-E3.2 as a CI test.
+- **Lab:** SQL-E3.2 in CI.
 - **Check:** What three lab pins must CI freeze for goldens to mean anything?
 
 ### 4.7 Analytics & other engines (AN-01 … AN-07)
@@ -772,24 +772,24 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - [ ] done
 - **Core:** Workload shapes; fact/dim; grain; conformed dimensions.
 - **Theory:** Northstar OLTP lab vs analytics copies.
-- **GCP lens:** Lens-1: Cloud SQL vs BigQuery decision table (gcp 2.2). Lens-2: E13.3 star build.
-- **Lab:** E13.3; DT-1.
+- **GCP lens:** Lens-1: Cloud SQL vs BigQuery decision table (gcp 2.2). Lens-2: SQL-E13.3 star build.
+- **Lab:** SQL-E13.3; DT-1.
 - **Check:** What is the grain of `order_line` vs `customer_order`?
 
 #### AN-02 · BigQuery / GoogleSQL cost shapes — stitch: 9.4 · 9b.1
 - [ ] done
 - **Core:** Partition + cluster; selective column projection; bytes scanned as cost.
 - **Theory:** gcp owns ops; here SQL-level reading.
-- **GCP lens:** Lens-1: dry-run bytes. Lens-2: DT-2, E13.1.
+- **GCP lens:** Lens-1: dry-run bytes. Lens-2: DT-2, SQL-E13.1.
 - **Lab:** DT-2–DT-4.
 - **Check:** Name two SQL mistakes that explode bytes scanned.
 
 #### AN-03 · Cohorts, funnels, sessionisation, retention — stitch: 9b.1 · 10.3
 - [ ] done
 - **Core:** Windowed event math; billing-export-shaped windows reuse.
-- **Theory:** Cohort month = trunc(signup); activation window is a half-open interval — same trap as E1.1.
-- **GCP lens:** Lens-1: BQ SQL. Lens-2: E6.2, E6.6.
-- **Lab:** E6.2, E6.6, DT-4.
+- **Theory:** Cohort month = trunc(signup); activation window is a half-open interval — same trap as SQL-E1.1.
+- **GCP lens:** Lens-1: BQ SQL. Lens-2: SQL-E6.2, SQL-E6.6.
+- **Lab:** SQL-E6.2, SQL-E6.6, DT-4.
 - **Check:** Define activation as 'purchase within 7 days of signup' in SQL words.
 
 #### AN-04 · Approximate aggregation — stitch: 9b.1
@@ -823,26 +823,26 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **GCP lens:** Lens-1: Vertex matching vs in-DB vectors (trade-offs). Lens-2: DT-8 sketch.
 - **Lab:** DT-8.
 - **Check:** When does in-DB vector search stop being enough?
-## 5. Skip tests / readiness tiers (12.S12 / 12.S13)
+## 5. Skip tests / readiness tiers (SQL-SKIP-SQL / SQL-SKIP-ENGINE)
 
-Mapped to unified-curriculum `DB-SQL` / `DB-ENGINE` and gcp-curriculum continuation modules **12.S12** / **12.S13**. If Part 2 already confirmed the skill, **stamp and skip**; else run the order in §2.3.
+Mapped to unified-curriculum `DB-SQL` / `DB-ENGINE` and gcp-curriculum continuation modules **SQL-SKIP-SQL** / **SQL-SKIP-ENGINE**. If Part 2 already confirmed the skill, **stamp and skip**; else run the order in §2.3.
 
 ### 5.1 Tier map
 
 | Tier | Ready for… | Evidence to stamp | If missing, run |
 |---|---|---|---|
-| **S12-A** Foundations | FDs, keys, 3NF talk-through | TD-1, TD-3 | RT-01, RT-04, RT-05 |
-| **S12-B** Algebra ↔ SQL | Multiplicity + NULL predictions | E1.3, E3.2, E3.5 | RT-02, SL-03, SL-04 |
-| **S12-C** Aggregation & subqueries | Clean GROUP BY + EXISTS | E2.5, E4.5 | SL-05, SL-06 |
-| **S12-D** Windows & recursion | Frame + termination | E5.4, E7.3 | SL-08, SL-09 |
-| **S12-E** Transactions & app access | Isolation + upsert + keyset | TX-2, E9.3, E4.7 | CS-05, SL-10, OD-09 |
-| **S13-A** Storage/index math | Page napkin + height | Z0.8, TD-10 | CS-01, CS-02 |
-| **S13-B** Executor/planner | Join/spill/stats predictions | PX-7, PX-8, PX-10 | CS-03, CS-08 |
-| **S13-C** MVCC/WAL | Schedule + durability paragraph | TD-9, TD-12 + OD-04 outline | CS-05, CS-06, OD-06 |
+| **SQL-SKIP-SQL-A** Foundations | FDs, keys, 3NF talk-through | TD-1, TD-3 | RT-01, RT-04, RT-05 |
+| **SQL-SKIP-SQL-B** Algebra ↔ SQL | Multiplicity + NULL predictions | SQL-E1.3, SQL-E3.2, SQL-E3.5 | RT-02, SL-03, SL-04 |
+| **SQL-SKIP-SQL-C** Aggregation & subqueries | Clean GROUP BY + EXISTS | SQL-E2.5, SQL-E4.5 | SL-05, SL-06 |
+| **SQL-SKIP-SQL-D** Windows & recursion | Frame + termination | SQL-E5.4, SQL-E7.3 | SL-08, SL-09 |
+| **SQL-SKIP-SQL-E** Transactions & app access | Isolation + upsert + keyset | TX-2, SQL-E9.3, SQL-E4.7 | CS-05, SL-10, OD-09 |
+| **SQL-SKIP-ENGINE-A** Storage/index math | Page napkin + height | SQL-Z0.8, TD-10 | CS-01, CS-02 |
+| **SQL-SKIP-ENGINE-B** Executor/planner | Join/spill/stats predictions | PX-7, PX-8, PX-10 | CS-03, CS-08 |
+| **SQL-SKIP-ENGINE-C** MVCC/WAL | Schedule + durability paragraph | TD-9, TD-12 + OD-04 outline | CS-05, CS-06, OD-06 |
 
 ### 5.2 Official skip-test checkpoints (from §2 stitch table)
-- **12.S12:** E3.2, E4.5, E5.4, E9.3, TX-2 (if Part 2 confirmed FDs/joins/transactions/pagination/client hygiene).
-- **12.S13:** PX-1…PX-11 residual EXPLAIN drills; TD-12 + OD-04 for crash/recovery evidence.
+- **SQL-SKIP-SQL:** SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2 (if Part 2 confirmed FDs/joins/transactions/pagination/client hygiene).
+- **SQL-SKIP-ENGINE:** PX-1…PX-11 residual EXPLAIN drills; TD-12 + OD-04 for crash/recovery evidence.
 
 ### 5.3 Readiness before exercise levels
 Use §6 prereq gates. Never issue E_n if the gate names unanchored vocabulary — postpone or teach first (Prop Lock).
@@ -851,11 +851,11 @@ Use §6 prereq gates. Never issue E_n if the gate names unanchored vocabulary �
 
 **Bank ≠ dump** (§0.2 rule 5): issue **one** item at the ledger rung; learner attempts; escalate hints; only then Appendix K. Every read-only golden below is from `goldens_ex_*.json` executed on PostgreSQL 15.8 / seed v1 / UTC / C collation.
 
-### 6.0 Level 0 — paper drills (Z0.*)
+### 6.0 Level 0 — paper drills (SQL-Z0.*)
 
 No database. Predict on paper; then optionally confirm later. Gate: PQ modules as tagged.
 
-#### Z0.1 · Bag vs set multiplicity
+#### SQL-Z0.1 · Bag vs set multiplicity
 - **Tags:** PQ-01
 - **Prompt:** On paper: relation R={1,1,2} as a bag. Compute R ∪ R, R ∪_set R, π(R).
 - **Output shape:** multiplicity table
@@ -863,7 +863,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.2 · Join cardinality bound
+#### SQL-Z0.2 · Join cardinality bound
 - **Tags:** PQ-01·RT-01
 - **Prompt:** R has 4 rows, S has 6, join key has 2 distinct values with skew 3/1 on R and 4/2 on S. Bound |R⋈S|.
 - **Output shape:** integer bound + sketch
@@ -871,7 +871,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.3 · Function vs relation
+#### SQL-Z0.3 · Function vs relation
 - **Tags:** PQ-01
 - **Prompt:** Is `email → user_id` a function on lab UNIQUE(tenant_id,email)? Explain.
 - **Output shape:** one paragraph
@@ -879,7 +879,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.4 · 3VL truth table
+#### SQL-Z0.4 · 3VL truth table
 - **Tags:** PQ-02·SL-03
 - **Prompt:** Fill TRUE/FALSE/UNKNOWN for `country = 'US'`, `country <> 'US'`, `NOT (country = 'US')` when country is NULL.
 - **Output shape:** 3×3 table
@@ -887,7 +887,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.5 · Counting distinct pairs
+#### SQL-Z0.5 · Counting distinct pairs
 - **Tags:** PQ-01
 - **Prompt:** How many ordered pairs (user, product) if 2000 users and 500 products? How many if each user orders ≤4 products (lab-ish)?
 - **Output shape:** two integers
@@ -895,7 +895,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.6 · Predicate safety
+#### SQL-Z0.6 · Predicate safety
 - **Tags:** PQ-02
 - **Prompt:** Which of `{x | x=x}`, `{x | ∃y R(x,y)}` are safe? Why?
 - **Output shape:** safe/unsafe labels
@@ -903,7 +903,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.7 · Binary search steps
+#### SQL-Z0.7 · Binary search steps
 - **Tags:** PQ-07
 - **Prompt:** Sorted 1e6 keys, fan-out 1 (binary search). Approx comparisons? Then fan-out 100 B-tree height?
 - **Output shape:** two numbers
@@ -911,7 +911,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 - **Golden fingerprint:** _(paper — no `lab.chk`)_
 - **Prereq gate:** matching PQ unlocked
 
-#### Z0.8 · Pages napkin
+#### SQL-Z0.8 · Pages napkin
 - **Tags:** PQ-08·CS-01
 - **Prompt:** 20k orders × 150 B/row, 8 KiB pages, 90% fill. Approx pages? Compare to 1 RAM GB.
 - **Output shape:** pages + fit/not
@@ -1056,7 +1056,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 **Prereq gate:** SL-01, SL-02, SL-03 unlocked; lab fingerprints match (§3)
 
-#### E1.1 · Q2-2024 signups from GB or DE
+#### SQL-E1.1 · Q2-2024 signups from GB or DE
 - **Tags:** WHERE · half-open ranges
 - **Prompt:** Users whose country is GB or DE and who were created in the second quarter of 2024 (April, May and June, UTC).
 - **Output shape:** `user_id, email` (order-insensitive — `lab.chk`)
@@ -1064,7 +1064,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `164:d17041f6`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.2 · Unknown country
+#### SQL-E1.2 · Unknown country
 - **Tags:** NULL · IS NULL
 - **Prompt:** Users whose country is unknown (stored as NULL).
 - **Output shape:** `user_id` (order-insensitive — `lab.chk`)
@@ -1072,7 +1072,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `181:ab2f2d8e`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.3 · Everyone not known to be in the US
+#### SQL-E1.3 · Everyone not known to be in the US
 - **Tags:** NULL · 3VL · IS DISTINCT FROM
 - **Prompt:** All users who are not known to be in the US — this **includes** users whose country is unknown.
 - **Output shape:** `user_id` (order-insensitive — `lab.chk`)
@@ -1080,7 +1080,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1740:d7106dd7`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.4 · Mid-priced live catalogue, top 20
+#### SQL-E1.4 · Mid-priced live catalogue, top 20
 - **Tags:** WHERE · ORDER BY · LIMIT · determinism
 - **Prompt:** Products with `price_minor` from 1000 to 2000 inclusive that are not discontinued, most expensive first, ties broken by lowest `product_id`; first 20 rows only.
 - **Output shape:** `product_id, price_minor` (ordered) (ordered — use `lab.chk_o`)
@@ -1088,7 +1088,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `20:1af04ff2`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.5 · Reviews with no text
+#### SQL-E1.5 · Reviews with no text
 - **Tags:** NULL vs empty string · COALESCE
 - **Prompt:** Reviews whose body is missing — treat NULL and the empty string as the same thing.
 - **Output shape:** `review_id` (order-insensitive — `lab.chk`)
@@ -1096,7 +1096,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2036:aa6dda6b`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.6 · Order status buckets
+#### SQL-E1.6 · Order status buckets
 - **Tags:** CASE · expressions
 - **Prompt:** Label every order: `open` for created/paid, `done` for fulfilled, `closed` for cancelled/refunded.
 - **Output shape:** `order_id, bucket` (order-insensitive — `lab.chk`)
@@ -1104,7 +1104,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `20000:a58f4910`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.7 · Ten priciest live products
+#### SQL-E1.7 · Ten priciest live products
 - **Tags:** ORDER BY · LIMIT · tie-break
 - **Prompt:** The ten most expensive products that are not discontinued (ties → lowest `product_id`).
 - **Output shape:** `product_id, price_minor` (ordered) (ordered — use `lab.chk_o`)
@@ -1112,19 +1112,19 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `10:558e94b1`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
-#### E1.8 · Pattern search
+#### SQL-E1.8 · Pattern search
 - **Tags:** LIKE · ILIKE · escaping
 - **Prompt:** Products whose SKU starts with `SKU-01` and ends with `7`.
 - **Output shape:** `product_id` (order-insensitive — `lab.chk`)
-- **Trap:** `_` and `%` are wildcards — to match a literal underscore you need `ESCAPE`. A leading-wildcard pattern (`'%7'`) cannot use a B-tree index (see the P3 prediction card).
+- **Trap:** `_` and `%` are wildcards — to match a literal underscore you need `ESCAPE`. A leading-wildcard pattern (`'%7'`) cannot use a B-tree index (see the PX-3 prediction card).
 - **Golden fingerprint:** `10:986cf4ec`
 - **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 
 ### 6.2 Level 2 — Aggregation
 
-**Prereq gate:** E1 gate passed; SL-05
+**Prereq gate:** SQL-E1 gate passed; SL-05
 
-#### E2.1 · Orders and revenue by status
+#### SQL-E2.1 · Orders and revenue by status
 - **Tags:** GROUP BY · SUM
 - **Prompt:** For each order status: number of orders and the sum of `total_minor`.
 - **Output shape:** `status, n_orders, sum_minor` (order-insensitive — `lab.chk`)
@@ -1132,7 +1132,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:2495a69d`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.2 · Monthly fulfilled GMV, 2025
+#### SQL-E2.2 · Monthly fulfilled GMV, 2025
 - **Tags:** date_trunc · GROUP BY · time zones
 - **Prompt:** For fulfilled orders placed in calendar 2025 (UTC): month start, order count, and GMV (`sum(total_minor)`).
 - **Output shape:** `month, n_orders, gmv_minor` (order-insensitive — `lab.chk`)
@@ -1140,7 +1140,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `12:c6eb674e`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.3 · Well-reviewed products
+#### SQL-E2.3 · Well-reviewed products
 - **Tags:** HAVING · WHERE vs HAVING · ROUND
 - **Prompt:** Products with at least 10 reviews: review count and average rating rounded to 2 decimals.
 - **Output shape:** `product_id, n, avg_rating` (order-insensitive — `lab.chk`)
@@ -1148,7 +1148,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `467:68a601d1`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.4 · Buyers per tenant
+#### SQL-E2.4 · Buyers per tenant
 - **Tags:** COUNT(DISTINCT) · count(*) vs count(col)
 - **Prompt:** Per tenant: number of orders and number of *distinct* users who placed at least one order.
 - **Output shape:** `tenant_id, n_orders, n_buyers` (order-insensitive — `lab.chk`)
@@ -1156,7 +1156,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:0cf3aaa2`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.5 · Refund rate by tenant
+#### SQL-E2.5 · Refund rate by tenant
 - **Tags:** FILTER · conditional aggregation · integer division
 - **Prompt:** Per tenant: total orders, refunded orders, and refund rate = refunded / total rounded to 4 decimals.
 - **Output shape:** `tenant_id, n_orders, n_refunded, refund_rate` (order-insensitive — `lab.chk`)
@@ -1164,7 +1164,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:9fbfe463`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.6 · Users by country including unknown
+#### SQL-E2.6 · Users by country including unknown
 - **Tags:** GROUP BY NULL · COALESCE
 - **Prompt:** Number of users per country; label unknown as `'??'`.
 - **Output shape:** `country, n` (order-insensitive — `lab.chk`)
@@ -1172,7 +1172,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `8:94127f65`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.7 · Median order value per tenant
+#### SQL-E2.7 · Median order value per tenant
 - **Tags:** ordered-set aggregates · percentile_disc
 - **Prompt:** Per tenant, the median `total_minor` of fulfilled orders, defined as `percentile_disc(0.5)` (an actual value from the data).
 - **Output shape:** `tenant_id, median_minor` (order-insensitive — `lab.chk`)
@@ -1180,7 +1180,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:74a001bd`
 - **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 
-#### E2.8 · Price histogram
+#### SQL-E2.8 · Price histogram
 - **Tags:** bucketing · integer division
 - **Prompt:** Bucket **live** products (not discontinued) into price bands of width 1000 minor units: band start (0, 1000, 2000, …) and product count.
 - **Output shape:** `band_start, n` (order-insensitive — `lab.chk`)
@@ -1190,9 +1190,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.3 Level 3 — Joins
 
-**Prereq gate:** E2 gate; SL-04
+**Prereq gate:** SQL-E2 gate; SL-04
 
-#### E3.1 · Paid orders with buyer and tenant
+#### SQL-E3.1 · Paid orders with buyer and tenant
 - **Tags:** INNER JOIN · multi-table
 - **Prompt:** Orders with status `paid` placed in March 2025, tenant 2: order id, buyer email, tenant name, total.
 - **Output shape:** `order_id, email, tenant_name, total_minor` (order-insensitive — `lab.chk`)
@@ -1200,7 +1200,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `50:787a0b9d`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.2 · Users who never referred anyone
+#### SQL-E3.2 · Users who never referred anyone
 - **Tags:** anti-join · NOT IN + NULL trap
 - **Prompt:** Users who are not the referrer of any other user.
 - **Output shape:** `user_id` (order-insensitive — `lab.chk`)
@@ -1208,7 +1208,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1291:ce8f0411`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.3 · Users who never ordered
+#### SQL-E3.3 · Users who never ordered
 - **Tags:** LEFT JOIN … IS NULL · anti-join
 - **Prompt:** Users with no order at all (any status).
 - **Output shape:** `user_id` (order-insensitive — `lab.chk`)
@@ -1216,7 +1216,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `200:e5ab3ae1`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.4 · Products not sold in a week
+#### SQL-E3.4 · Products not sold in a week
 - **Tags:** anti-join · date ranges
 - **Prompt:** Products that appear on **no** order line of a fulfilled order placed during 2025-01-01 … 2025-01-07 (inclusive, UTC).
 - **Output shape:** `product_id` (order-insensitive — `lab.chk`)
@@ -1224,7 +1224,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `180:d18c224e`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.5 · Revenue of delivered orders
+#### SQL-E3.5 · Revenue of delivered orders
 - **Tags:** semi-join · fan-out trap
 - **Prompt:** Total `total_minor` of fulfilled orders that have **at least one** delivered shipment (`delivered_at IS NOT NULL`). One number.
 - **Output shape:** `revenue_minor` (order-insensitive — `lab.chk`)
@@ -1232,7 +1232,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:6c39466d`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.6 · Cross-tenant referrals
+#### SQL-E3.6 · Cross-tenant referrals
 - **Tags:** self-join · data-quality find
 - **Prompt:** Users whose referrer belongs to a **different tenant**. This is a multi-tenancy integrity leak, not a feature.
 - **Output shape:** `user_id, referrer_id` (order-insensitive — `lab.chk`)
@@ -1240,7 +1240,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1172:9f8ebbd0`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.7 · One-star counts including zeros
+#### SQL-E3.7 · One-star counts including zeros
 - **Tags:** LEFT JOIN · filter in ON · empty groups
 - **Prompt:** For **every** product of tenant 1 (all of them), the number of 1-star reviews it has — 0 where none.
 - **Output shape:** `product_id, one_star` (order-insensitive — `lab.chk`)
@@ -1248,7 +1248,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `100:1b05fa94`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.8 · Who ordered vs who reviewed (Q1 2025)
+#### SQL-E3.8 · Who ordered vs who reviewed (Q1 2025)
 - **Tags:** FULL OUTER JOIN · reconciliation
 - **Prompt:** For 2025 Q1 (Jan–Mar UTC): every user who placed **or** reviewed, with two booleans — did they order, did they review.
 - **Output shape:** `user_id, ordered, reviewed` (order-insensitive — `lab.chk`)
@@ -1256,7 +1256,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1845:6f7a9372`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.9 · Deletions per month with zero-fill
+#### SQL-E3.9 · Deletions per month with zero-fill
 - **Tags:** calendar spine · generate_series · LEFT JOIN
 - **Prompt:** For every month from 2024-05 through 2025-06 (inclusive, 14 rows), the number of users deleted (`deleted_at`) in that month — including months with zero.
 - **Output shape:** `month, n_deleted` (order-insensitive — `lab.chk`)
@@ -1264,19 +1264,19 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `14:cb9ff4e8`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
-#### E3.10 · Duplicate-safe reviewers per product
+#### SQL-E3.10 · Duplicate-safe reviewers per product
 - **Tags:** multiplicity · DISTINCT vs GROUP BY
 - **Prompt:** Per product: distinct reviewers and total reviews, only products where those two numbers differ.
 - **Output shape:** `product_id, n_reviewers, n_reviews` (order-insensitive — `lab.chk`)
-- **Trap:** A user may review the same product several times in this seed (see E9.4). `count(*)` ≠ `count(DISTINCT user_id)` exactly there.
+- **Trap:** A user may review the same product several times in this seed (see SQL-E9.4). `count(*)` ≠ `count(DISTINCT user_id)` exactly there.
 - **Golden fingerprint:** `241:47e3b13f`
 - **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 
 ### 6.4 Level 4 — Subqueries, CTEs, set ops
 
-**Prereq gate:** E3 gate; SL-06, SL-07
+**Prereq gate:** SQL-E3 gate; SL-06, SL-07
 
-#### E4.1 · Above-average spenders
+#### SQL-E4.1 · Above-average spenders
 - **Tags:** scalar subquery · CTE
 - **Prompt:** Users whose total fulfilled spend is strictly greater than the average spend **across users who spent anything** (exclude users with no fulfilled orders from the average).
 - **Output shape:** `user_id, spend_minor` (order-insensitive — `lab.chk`)
@@ -1284,15 +1284,15 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `675:19348832`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.2 · Latest review rating per product
+#### SQL-E4.2 · Latest review rating per product
 - **Tags:** correlated subquery · DISTINCT ON
 - **Prompt:** For each product that has reviews: the rating of its most recent review (newest `created_at`; ties → highest `review_id`).
 - **Output shape:** `product_id, rating` (order-insensitive — `lab.chk`)
-- **Trap:** `max(created_at)` alone does not give you the rating from that row. Use a correlated subquery, `DISTINCT ON`, or a window (E5.4) — then prove they agree.
+- **Trap:** `max(created_at)` alone does not give you the rating from that row. Use a correlated subquery, `DISTINCT ON`, or a window (SQL-E5.4) — then prove they agree.
 - **Golden fingerprint:** `500:7463fec9`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.3 · Both fulfilled and refunded
+#### SQL-E4.3 · Both fulfilled and refunded
 - **Tags:** EXISTS · INTERSECT
 - **Prompt:** Users who have at least one fulfilled order **and** at least one refunded order.
 - **Output shape:** `user_id` (order-insensitive — `lab.chk`)
@@ -1300,7 +1300,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `391:6319def9`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.4 · Reviewed but never bought
+#### SQL-E4.4 · Reviewed but never bought
 - **Tags:** EXCEPT · NOT EXISTS · set semantics
 - **Prompt:** Distinct `(user_id, product_id)` pairs where the user reviewed the product but has **no** order line for it (in any of their orders, any status).
 - **Output shape:** `user_id, product_id` (order-insensitive — `lab.chk`)
@@ -1308,7 +1308,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `4559:2e92d1fa`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.5 · Net revenue per tenant without double counting
+#### SQL-E4.5 · Net revenue per tenant without double counting
 - **Tags:** CTE · pre-aggregation · fan-out
 - **Prompt:** Per tenant: GMV of fulfilled and refunded orders placed in 2025 (`sum(total_minor)`), sum of **succeeded refund** payments on those orders, and net = gmv − refunds.
 - **Output shape:** `tenant_id, gmv_minor, refunded_minor, net_minor` (order-insensitive — `lab.chk`)
@@ -1316,7 +1316,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:77344493`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.6 · Strictly the priciest in its category
+#### SQL-E4.6 · Strictly the priciest in its category
 - **Tags:** ALL · empty-set trap
 - **Prompt:** Products strictly more expensive than every *other* product in the same category. Uncategorised products (NULL category) are excluded.
 - **Output shape:** `product_id` (order-insensitive — `lab.chk`)
@@ -1324,15 +1324,15 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `30:d5ca9e54`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.7 · Latest order per user (tenant 3)
+#### SQL-E4.7 · Latest order per user (tenant 3)
 - **Tags:** LATERAL · top-1 per group
 - **Prompt:** For each user of tenant 3 who has orders: their most recent order (`placed_at DESC`, tie → higher `order_id`).
 - **Output shape:** `user_id, order_id, placed_at` (order-insensitive — `lab.chk`)
-- **Trap:** `LATERAL` runs the subquery once per outer row and can reference it — the SQL for-each loop. Missing index on `(user_id, placed_at)` makes it a seq scan per user (E12.1).
+- **Trap:** `LATERAL` runs the subquery once per outer row and can reference it — the SQL for-each loop. Missing index on `(user_id, placed_at)` makes it a seq scan per user (PX-1).
 - **Golden fingerprint:** `360:3dd4aace`
 - **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 
-#### E4.8 · Relational division: bought all three
+#### SQL-E4.8 · Relational division: bought all three
 - **Tags:** division · GROUP BY / HAVING · double NOT EXISTS
 - **Prompt:** Users who have ordered **all** of products 1, 6 and 11 (any status).
 - **Output shape:** `user_id` (order-insensitive — `lab.chk`)
@@ -1342,9 +1342,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.5 Level 5 — Window functions
 
-**Prereq gate:** E4 gate; SL-08
+**Prereq gate:** SQL-E4 gate; SL-08
 
-#### E5.1 · Top-3 price ranks per category
+#### SQL-E5.1 · Top-3 price ranks per category
 - **Tags:** dense_rank · rank vs row_number
 - **Prompt:** For every category (ignore uncategorised products): products whose **dense** price rank (highest price = 1) is 1, 2 or 3 within the category.
 - **Output shape:** `category_id, product_id, price_minor, rnk` (order-insensitive — `lab.chk`)
@@ -1352,7 +1352,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `90:0444fd32`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.2 · Running GMV, tenant 1, March 2025
+#### SQL-E5.2 · Running GMV, tenant 1, March 2025
 - **Tags:** running total · frame · aggregate then window
 - **Prompt:** Tenant 1, fulfilled orders placed in March 2025: per UTC day the GMV, plus the cumulative GMV since 1 March.
 - **Output shape:** `day, gmv_minor, cum_gmv_minor` (ordered by day) (ordered — use `lab.chk_o`)
@@ -1360,7 +1360,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `31:1c8f130e`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.3 · Days since the previous order
+#### SQL-E5.3 · Days since the previous order
 - **Tags:** lag · partitions
 - **Prompt:** For users 1–20: each order with the number of whole days since the same user's previous order (NULL for their first). Use calendar days (`placed_at::date`).
 - **Output shape:** `user_id, order_id, placed_at, gap_days` (order-insensitive — `lab.chk`)
@@ -1368,7 +1368,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `996:d7137b70`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.4 · Top-2 orders per user
+#### SQL-E5.4 · Top-2 orders per user
 - **Tags:** row_number · top-N per group
 - **Prompt:** For users 1–50: their two largest orders by `total_minor` (ties → lower `order_id`), with the position 1 or 2.
 - **Output shape:** `user_id, order_id, total_minor, rn` (order-insensitive — `lab.chk`)
@@ -1376,7 +1376,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `100:8a1679d3`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.5 · Tenant share of 2025 GMV
+#### SQL-E5.5 · Tenant share of 2025 GMV
 - **Tags:** sum() OVER () · ratio to total
 - **Prompt:** Per tenant: fulfilled GMV in 2025 and its percentage of the all-tenant total, rounded to 2 decimals.
 - **Output shape:** `tenant_id, gmv_minor, pct` (order-insensitive — `lab.chk`)
@@ -1384,7 +1384,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:4bec02c5`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.6 · Price quartiles, tenant 2
+#### SQL-E5.6 · Price quartiles, tenant 2
 - **Tags:** ntile · bucket boundaries
 - **Prompt:** Live products of tenant 2 split into 4 price quartiles with `ntile(4)` ordered by price ascending then `product_id`.
 - **Output shape:** `product_id, price_minor, quartile` (order-insensitive — `lab.chk`)
@@ -1392,7 +1392,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `94:71892706`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.7 · First and last price
+#### SQL-E5.7 · First and last price
 - **Tags:** first_value · last_value · frame trap
 - **Prompt:** For products 1–20: the first and last `price_minor` in `product_price_history` (by `valid_from`) and the change (last − first).
 - **Output shape:** `product_id, first_price, last_price, delta` (order-insensitive — `lab.chk`)
@@ -1400,7 +1400,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `20:7ddcb09e`
 - **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 
-#### E5.8 · 7-day moving average of daily orders
+#### SQL-E5.8 · 7-day moving average of daily orders
 - **Tags:** ROWS frame · moving average · warm-up rows
 - **Prompt:** Tenant 2, orders placed in February 2025: per day the order count and the average of the current and previous 6 days' counts, rounded to 2 decimals. Emit the average only when a full 7-day window exists inside February (from 7 Feb).
 - **Output shape:** `day, n, avg7` (ordered by day) (ordered — use `lab.chk_o`)
@@ -1410,9 +1410,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.6 Level 6 — Advanced windows
 
-**Prereq gate:** E5 gate; SL-08 frames
+**Prereq gate:** SQL-E5 gate; SL-08 frames
 
-#### E6.1 · Longest login streak
+#### SQL-E6.1 · Longest login streak
 - **Tags:** gaps and islands · row_number difference
 - **Prompt:** From `login_day` (users 1–200, 120 days): each user's longest run of **consecutive** days and the day it started (earliest start on ties).
 - **Output shape:** `user_id, streak_len, streak_start` (order-insensitive — `lab.chk`)
@@ -1420,7 +1420,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `200:3d4d4f51`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
-#### E6.2 · Sessionise the event stream
+#### SQL-E6.2 · Sessionise the event stream
 - **Tags:** sessionization · lag · cumulative sum
 - **Prompt:** For identified users (`user_id IS NOT NULL`): a new session starts when the gap to the user's previous event is **> 30 minutes** (or there is no previous event). Return one row per session: user, session number (1-based per user, by time), event count, first and last event time.
 - **Output shape:** `user_id, session_no, n_events, started_at, ended_at` (order-insensitive — `lab.chk`)
@@ -1428,7 +1428,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `7500:311fb683`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
-#### E6.3 · Ordered funnel
+#### SQL-E6.3 · Ordered funnel
 - **Tags:** conditional aggregation · ordered steps
 - **Prompt:** How many identified users performed `add_to_cart`, later `checkout_start`, later `purchase` — in that order (each step strictly after the previous, using each user's **first** occurrence of the step)? One number, plus the counts that reached step 1 and step 2 as a funnel.
 - **Output shape:** `n_cart, n_checkout, n_purchase` (one row) (order-insensitive — `lab.chk`)
@@ -1436,7 +1436,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:2f3673b3`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
-#### E6.4 · Price in effect at order time (as-of join)
+#### SQL-E6.4 · Price in effect at order time (as-of join)
 - **Tags:** as-of join · LATERAL · temporal correctness
 - **Prompt:** For order lines of orders placed **before 2025-01-04**: the list price that was in effect at `placed_at` (the history row with the greatest `valid_from <= placed_at`), and the lines where the price actually charged (`unit_price_minor`) differs from it.
 - **Output shape:** `order_id, line_no, unit_price_minor, price_at_order` (order-insensitive — `lab.chk`)
@@ -1444,7 +1444,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `404:4f5a2a10`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
-#### E6.5 · Orders in the previous 30 days
+#### SQL-E6.5 · Orders in the previous 30 days
 - **Tags:** RANGE frame with interval · self-window
 - **Prompt:** For users 1–20: each order and how many **other** orders the same user placed in the 30 days before it (`placed_at − 30 days` up to and including this order's time, excluding itself).
 - **Output shape:** `user_id, order_id, prior_30d` (order-insensitive — `lab.chk`)
@@ -1452,7 +1452,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `996:7e7490f1`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
-#### E6.6 · Signup-cohort activation
+#### SQL-E6.6 · Signup-cohort activation
 - **Tags:** cohort analysis · date_trunc · conditional counts
 - **Prompt:** Cohort = signup month (`date_trunc('month', created_at)`). For each cohort: size, and how many of its users placed at least one order in the **calendar month after** their signup month.
 - **Output shape:** `cohort_month, size, active_next_month` (order-insensitive — `lab.chk`)
@@ -1460,7 +1460,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `10:79a8b3a1`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
-#### E6.7 · Dedupe events, keep the first
+#### SQL-E6.7 · Dedupe events, keep the first
 - **Tags:** row_number · deduplication · planted test data
 - **Prompt:** Some pipelines deliver twice. Treat two events as the same delivery when `(user_id, event_type, occurred_at)` are equal (NULL users count as equal to each other). Run your query against this **planted** input `e` (the real table plus 6,000 duplicate deliveries with ids +1,000,000): `SELECT * FROM lab.event UNION ALL SELECT event_id + 1000000, tenant_id, user_id, event_type, occurred_at, payload FROM lab.event WHERE event_id % 10 = 0`. Return the `event_id`s that are **not** the lowest id in their duplicate group.
 - **Output shape:** `event_id` (order-insensitive — `lab.chk`)
@@ -1470,17 +1470,17 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.7 Level 7 — Recursion
 
-**Prereq gate:** E6 gate; SL-09
+**Prereq gate:** SQL-E6 gate; SL-09
 
-#### E7.1 · Category paths
+#### SQL-E7.1 · Category paths
 - **Tags:** recursive CTE · tree · path
 - **Prompt:** For tenant 1's category tree: every category with its depth (root = 0) and the `' > '`-joined path of **names** from the root.
 - **Output shape:** `category_id, depth, path` (order-insensitive — `lab.chk`)
-- **Trap:** A recursive CTE = anchor (roots: `parent_id IS NULL`) `UNION ALL` recursive step joining on `parent_id`. Termination is guaranteed only if the data has no cycles — the seed does, a hostile import might not (E7.5).
+- **Trap:** A recursive CTE = anchor (roots: `parent_id IS NULL`) `UNION ALL` recursive step joining on `parent_id`. Termination is guaranteed only if the data has no cycles — the seed does, a hostile import might not (SQL-E7.5).
 - **Golden fingerprint:** `10:82a25fd0`
 - **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 
-#### E7.2 · Products in a subtree
+#### SQL-E7.2 · Products in a subtree
 - **Tags:** recursive CTE · rollup up the tree
 - **Prompt:** For every category of tenant 1: the number of products attached to it **or any descendant**.
 - **Output shape:** `category_id, subtree_products` (order-insensitive — `lab.chk`)
@@ -1488,7 +1488,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `10:13320b85`
 - **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 
-#### E7.3 · Referral roots and depth
+#### SQL-E7.3 · Referral roots and depth
 - **Tags:** recursive CTE · forest · depth
 - **Prompt:** Users form a referral forest (`referred_by` → parent). For every user: the root user of their tree and their depth (root = 0).
 - **Output shape:** `user_id, root_id, depth` (order-insensitive — `lab.chk`)
@@ -1496,7 +1496,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2000:97e6e0a2`
 - **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 
-#### E7.4 · Biggest referral tree
+#### SQL-E7.4 · Biggest referral tree
 - **Tags:** recursive CTE · aggregate over recursion
 - **Prompt:** The root user whose tree (including the root) has the most members; ties → lowest `user_id`.
 - **Output shape:** `root_id, tree_size` (ordered — use `lab.chk_o`)
@@ -1504,7 +1504,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:36a7110f`
 - **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 
-#### E7.5 · Find the cycle
+#### SQL-E7.5 · Find the cycle
 - **Tags:** recursive CTE · cycle detection · path array
 - **Prompt:** Directed edges are given inline: `(1,2),(2,3),(3,1),(4,5),(5,6)`. Return every node that lies on a cycle.
 - **Output shape:** `node` (order-insensitive — `lab.chk`)
@@ -1514,9 +1514,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.8 Level 8 — Time, JSON, text, cleaning
 
-**Prereq gate:** E7 gate; SL-12
+**Prereq gate:** SQL-E7 gate; SL-12
 
-#### E8.1 · Average delivery time by carrier
+#### SQL-E8.1 · Average delivery time by carrier
 - **Tags:** interval arithmetic · extract(epoch)
 - **Prompt:** For delivered shipments: per carrier, the count and the mean transit time in **days** (shipped → delivered) rounded to 2 decimals.
 - **Output shape:** `carrier, n, avg_days` (order-insensitive — `lab.chk`)
@@ -1524,7 +1524,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `3:72b2a44b`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.2 · Stuck shipments as of a fixed instant
+#### SQL-E8.2 · Stuck shipments as of a fixed instant
 - **Tags:** reproducible time · never now()
 - **Prompt:** Shipments not delivered more than 14 days after shipping, **as of `2026-01-01 00:00 UTC`** (undelivered and shipped before 2025-12-18).
 - **Output shape:** `shipment_id` (order-insensitive — `lab.chk`)
@@ -1532,7 +1532,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1825:dc65c0f1`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.3 · UTC day vs New York day
+#### SQL-E8.3 · UTC day vs New York day
 - **Tags:** AT TIME ZONE · DST
 - **Prompt:** How many orders have a **different calendar date** in `America/New_York` than in UTC? One number.
 - **Output shape:** `n` (order-insensitive — `lab.chk`)
@@ -1540,7 +1540,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:f10d5c9a`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.4 · Orders per ISO week
+#### SQL-E8.4 · Orders per ISO week
 - **Tags:** date_trunc('week') · week boundaries
 - **Prompt:** Orders placed in 2025 grouped by ISO week (Monday start): week start date and count.
 - **Output shape:** `week_start, n` (order-insensitive — `lab.chk`)
@@ -1548,7 +1548,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `53:15bc9aa0`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.5 · Red eco products
+#### SQL-E8.5 · Red eco products
 - **Tags:** JSONB · @> · ? operator
 - **Prompt:** Products whose `attrs` has `color = 'red'` **and** whose `attrs.tags` array contains `'eco'`.
 - **Output shape:** `product_id` (order-insensitive — `lab.chk`)
@@ -1556,7 +1556,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `41:a5be7c78`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.6 · Search latency by query term
+#### SQL-E8.6 · Search latency by query term
 - **Tags:** JSONB extraction · casts
 - **Prompt:** For `search` events: per query term (`payload->>'q'`) the number of events and the average `payload->>'ms'` rounded to 1 decimal.
 - **Output shape:** `q, n, avg_ms` (order-insensitive — `lab.chk`)
@@ -1564,7 +1564,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `4:eaf94d2b`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.7 · Products per tag
+#### SQL-E8.7 · Products per tag
 - **Tags:** jsonb_array_elements_text · unnesting
 - **Prompt:** Explode `attrs.tags` and count products per tag.
 - **Output shape:** `tag, n` (order-insensitive — `lab.chk`)
@@ -1572,7 +1572,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2:71943e30`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.8 · Clean and dedupe emails
+#### SQL-E8.8 · Clean and dedupe emails
 - **Tags:** trim · lower · regex · dedupe
 - **Prompt:** From `lab.stg_import`: normalise `email_text` with `lower(trim(…))`, keep only values that match `^[^@\s]+@[^@\s]+\.[^@\s]+$`, and keep the **lowest `row_id`** for each normalised address.
 - **Output shape:** `row_id, email_norm` (order-insensitive — `lab.chk`)
@@ -1580,7 +1580,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `8:4fc20676`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.9 · Parse money text into minor units
+#### SQL-E8.9 · Parse money text into minor units
 - **Tags:** regexp · CASE · safe casts
 - **Prompt:** Convert `amount_text` to integer **minor units** (×100, rounded half up). Accept an optional leading `-`, optional `$`, thousands separators `,` (only in groups of exactly three) and an optional decimal part with `.`; surrounding spaces are ignored. Anything else — `12,50`, `abc`, `1e3`, NULL — becomes NULL.
 - **Output shape:** `row_id, amount_minor` (order-insensitive — `lab.chk`)
@@ -1588,7 +1588,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `15:bafc9e47`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
-#### E8.10 · Write a total date parser
+#### SQL-E8.10 · Write a total date parser
 - **Tags:** user-defined function · exception handling · dialect
 - **Prompt:** Create `work.try_date(text) RETURNS date` that returns a date for: ISO `YYYY-MM-DD` (after trimming, and also when followed by a `T…` time), `MM/DD/YYYY`, and `D Mon YYYY` (e.g. `1 Mar 2025`); **NULL** for anything else, including impossible dates like `2025-13-40` and `2025-02-29`. Then `SELECT row_id, work.try_date(signup_text)` over `stg_import`.
 - **Output shape:** `row_id, d` (order-insensitive — `lab.chk`)
@@ -1598,9 +1598,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.9 Level 9 — DML
 
-**Prereq gate:** E8 gate; SL-10
+**Prereq gate:** SQL-E8 gate; SL-10
 
-#### E9.1 · Materialise a daily GMV table
+#### SQL-E9.1 · Materialise a daily GMV table
 - **Tags:** CREATE TABLE · INSERT … SELECT · PK
 - **Prompt:** In schema `work`, create `tenant_daily_gmv(tenant_id int, day date, gmv_minor bigint NOT NULL, PRIMARY KEY (tenant_id, day))` and fill it with fulfilled-order GMV per tenant per UTC day for **January 2025**.
 - **Output shape:** table contents `tenant_id, day, gmv_minor` (order-insensitive — `lab.chk`)
@@ -1608,7 +1608,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `155:9a2d7927`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
-#### E9.2 · Repair corrupted totals
+#### SQL-E9.2 · Repair corrupted totals
 - **Tags:** UPDATE … FROM · IS DISTINCT FROM
 - **Prompt:** Setup gives you `work.o`, a copy of `customer_order` in which every 100th order (`order_id % 100 = 0`, 200 rows) has `total_minor = 0`. Repair **only the wrong rows** so that `total_minor` equals the sum of `qty × unit_price_minor` of its lines. The statement must report `UPDATE 200`.
 - **Output shape:** `work.o` equals `lab.customer_order` on `(order_id, total_minor)` (order-insensitive — `lab.chk`)
@@ -1616,7 +1616,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `20000:12518931`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
-#### E9.3 · Idempotent daily load (upsert)
+#### SQL-E9.3 · Idempotent daily load (upsert)
 - **Tags:** INSERT … ON CONFLICT DO UPDATE · idempotency
 - **Prompt:** Create `work.daily_orders(day date PRIMARY KEY, n int NOT NULL)`. Write one statement that loads the count of orders per UTC day for all of 2025 and can be **run twice with the same result**.
 - **Output shape:** `day, n` (order-insensitive — `lab.chk`)
@@ -1624,7 +1624,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `365:60b9c8d0`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
-#### E9.4 · Delete the double-submitted reviews
+#### SQL-E9.4 · Delete the double-submitted reviews
 - **Tags:** DELETE … USING · self-join delete · RETURNING
 - **Prompt:** Setup gives `work.r`, a copy of `review`. Delete duplicate `(product_id, user_id)` reviews, **keeping the newest** (highest `review_id`). Report how many were deleted (`DELETE 400`).
 - **Output shape:** `work.r` keeps 6,000 rows (order-insensitive — `lab.chk`)
@@ -1632,7 +1632,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `6000:bc58a9d4`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
-#### E9.5 · Sync stock with MERGE
+#### SQL-E9.5 · Sync stock with MERGE
 - **Tags:** MERGE (PG15+) · three-way sync
 - **Prompt:** Setup gives `work.stock_t` (products 1–10 with `on_hand`) and `work.stock_feed` (a partner feed). With **one `MERGE`**: rows in both → update `on_hand`, **except** feed `on_hand = 0` → delete the target row; feed rows not in target → insert.
 - **Output shape:** `work.stock_t` afterwards (small — check by eye) (ordered — use `lab.chk_o`)
@@ -1640,7 +1640,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `11:61ddd589`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
-#### E9.6 · Chunked backfill
+#### SQL-E9.6 · Chunked backfill
 - **Tags:** batching · SKIP LOCKED · WAL/bloat awareness
 - **Prompt:** Setup gives `work.o` (copy of `customer_order`) with a new nullable column `total_major numeric(12,2)`. Backfill `total_minor / 100.0` in chunks of **1,000 rows**, looping until no rows are left. (Here one transaction; in production every chunk commits separately — gcp-curriculum 2.6 expand/contract.)
 - **Output shape:** all 20,000 rows have `total_major` set (order-insensitive — `lab.chk`)
@@ -1648,7 +1648,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `20000:f913007e`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
-#### E9.7 · Archive refunded orders atomically
+#### SQL-E9.7 · Archive refunded orders atomically
 - **Tags:** writable CTE · DELETE … RETURNING
 - **Prompt:** Setup gives `work.o` (copy of `customer_order`) and an empty `work.o_archive (LIKE work.o)`. In **one statement**, move every refunded order from `work.o` into `work.o_archive`.
 - **Output shape:** `live, archived` counts (18000, 2000) (order-insensitive — `lab.chk`)
@@ -1658,9 +1658,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.10 Level 10 — DDL & constraints
 
-**Prereq gate:** E9 gate; SL-01, DD-12, SL-13
+**Prereq gate:** SQL-E9 gate; SL-01, DD-12, SL-13
 
-#### E10.1 · Coupon table: constraints as a specification
+#### SQL-E10.1 · Coupon table: constraints as a specification
 - **Tags:** CHECK · UNIQUE · exactly-one-of · citext-free case-insensitive unique
 - **Prompt:** Create `work.coupon` so that this **battery of 8 inserts gives exactly the pass/fail vector `T T F F F F F T`**:
 1. `('SAVE10', percent_off=10, amount_off_minor=NULL, 2025-01-01 → 2025-02-01)` succeeds · 2. a percent coupon with `percent_off=100` succeeds · 3. `percent_off=0` fails · 4. `percent_off=101` fails · 5. **both** `percent_off` and `amount_off_minor` set fails · 6. **neither** set fails · 7. a second code `'save10'` (different case) fails · 8. an amount coupon `amount_off_minor=500` with `valid_until` NULL succeeds.
@@ -1670,7 +1670,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `8:e5c729de`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
-#### E10.2 · Tenant-safe foreign key
+#### SQL-E10.2 · Tenant-safe foreign key
 - **Tags:** composite FK · multi-tenancy · integrity at the schema level
 - **Prompt:** Create `work.note(note_id bigint PK, tenant_id int NOT NULL, user_id bigint NOT NULL, body text)` so that a note can only reference a user **of the same tenant**. Battery (Appendix B.2) must give `T F F F`: (1) tenant 1 / user 1 ok · (2) tenant 2 / user 1 fails (user 1 is tenant 1's) · (3) tenant 1 / user 999999 fails · (4) NULL tenant fails.
 - **Output shape:** vector of booleans (ordered — use `lab.chk_o`)
@@ -1678,7 +1678,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `4:8c4ee581`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
-#### E10.3 · One active subscription per user
+#### SQL-E10.3 · One active subscription per user
 - **Tags:** partial unique index · state machine invariants
 - **Prompt:** `work.subscription(sub_id bigint PK, user_id bigint NOT NULL, status text CHECK (status IN ('active','cancelled')))`. Enforce **at most one `active` row per user**, any number of cancelled. Battery (Appendix B.3) expects `T T T F T`: (1) user 1 active · (2) user 1 cancelled · (3) user 1 cancelled again · (4) user 1 second active — fails · (5) user 2 active.
 - **Output shape:** vector of booleans (ordered — use `lab.chk_o`)
@@ -1686,7 +1686,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:7a0a9605`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
-#### E10.4 · No overlapping price validity
+#### SQL-E10.4 · No overlapping price validity
 - **Tags:** EXCLUDE constraint · range types · btree_gist
 - **Prompt:** `work.price_period(product_id bigint, during daterange, price_minor int)`. Forbid two rows of the **same product** whose periods overlap. Battery (Appendix B.4) expects `T T F T F`: (1) p1 `[2025-01-01,2025-02-01)` · (2) p1 `[2025-02-01,2025-03-01)` (touching is fine) · (3) p1 `[2025-01-15,2025-01-20)` overlaps → fails · (4) p2 same dates as (1) fine · (5) p1 `[2025-02-28,2025-04-01)` overlaps (2) → fails.
 - **Output shape:** vector of booleans (ordered — use `lab.chk_o`)
@@ -1694,7 +1694,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:a6c6c4a9`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
-#### E10.5 · Circular references with DEFERRABLE
+#### SQL-E10.5 · Circular references with DEFERRABLE
 - **Tags:** DEFERRABLE INITIALLY DEFERRED · constraint timing
 - **Prompt:** Two tables reference each other: `work.a(id PK, b_id → b)` and `work.b(id PK, a_id → a)`. Make it possible to insert `a(1, b_id=1)` and `b(1, a_id=1)` **in one transaction** but impossible to commit a dangling reference. Battery (Appendix B.5) is a `DO` block — expected: block succeeds; then a lone `INSERT INTO a VALUES (2, 99)` inside its own transaction **fails at COMMIT** (not at the INSERT).
 - **Output shape:** commit-time failure demonstrated (order-insensitive — `lab.chk`)
@@ -1702,7 +1702,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:fb0ce7c2`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
-#### E10.6 · Row-level security by tenant
+#### SQL-E10.6 · Row-level security by tenant
 - **Tags:** RLS · policies · current_setting · roles
 - **Prompt:** Enable RLS on `work.o` (a copy of `customer_order`) so that a role `app_rls` sees **only rows where `tenant_id = current_setting('app.tenant_id')::int`**. Then, as `app_rls` with `app.tenant_id = '2'`, count rows per tenant. Predict first: how many rows, which tenants? What happens if the setting is unset?
 - **Output shape:** `tenant_id, n` (a single row for tenant 2) (order-insensitive — `lab.chk`)
@@ -1712,9 +1712,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.13 Level 13 — Analytics SQL
 
-**Prereq gate:** E10 gate; AN-01…AN-03, SL-05/08
+**Prereq gate:** SQL-E10 gate; AN-01…AN-03, SL-05/08
 
-#### E13.1 · Subtotals with ROLLUP
+#### SQL-E13.1 · Subtotals with ROLLUP
 - **Tags:** GROUP BY ROLLUP · GROUPING() · subtotals
 - **Prompt:** Fulfilled 2025 orders: GMV by `(tenant_id, currency)` with **per-tenant subtotals** and a **grand total** row. Add a column `level` = `'detail'`, `'tenant'` or `'grand'` computed with `GROUPING()`.
 - **Output shape:** `tenant_id, currency, gmv_minor, level` (order-insensitive — `lab.chk`)
@@ -1722,7 +1722,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `11:bbcd158f`
 - **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 
-#### E13.2 · Pivot statuses into columns
+#### SQL-E13.2 · Pivot statuses into columns
 - **Tags:** conditional aggregation · pivot
 - **Prompt:** One row per tenant with five count columns `created, paid, fulfilled, refunded, cancelled` (orders placed in 2025).
 - **Output shape:** `tenant_id, created, paid, fulfilled, refunded, cancelled` (order-insensitive — `lab.chk`)
@@ -1730,7 +1730,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `5:f64390e3`
 - **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 
-#### E13.3 · Build a star schema
+#### SQL-E13.3 · Build a star schema
 - **Tags:** dimensional modelling · fact/dim · surrogate keys
 - **Prompt:** In `work`, build `dim_product(product_id, name, category_name)` (category name or `'(none)'`), `dim_date(date_key, year, month)` for 2025 and `fact_sales(order_id, line_no, date_key, product_id, qty, revenue_minor)` from **fulfilled** order lines. Then answer with the star: *revenue by category name and month for 2025*.
 - **Output shape:** `category_name, month, revenue_minor` (order-insensitive — `lab.chk`)
@@ -1738,17 +1738,17 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `372:22383318`
 - **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 
-#### E13.4 · Price history as a Type-2 dimension
+#### SQL-E13.4 · Price history as a Type-2 dimension
 - **Tags:** SCD2 · lead() · valid_to
 - **Prompt:** From `product_price_history` build a Type-2 slowly-changing dimension: `product_id, price_minor, valid_from, valid_to, is_current` where `valid_to` is the next row's `valid_from` (NULL for the current row). Products 1–10 only.
 - **Output shape:** `product_id, price_minor, valid_from, valid_to, is_current` (order-insensitive — `lab.chk`)
-- **Trap:** `valid_to` = `lead(valid_from)` — half-open `[from, to)`. Keep `is_current` derived (`valid_to IS NULL`), never hand-set. Overlap is prevented by E10.4's exclusion constraint.
+- **Trap:** `valid_to` = `lead(valid_from)` — half-open `[from, to)`. Keep `is_current` derived (`valid_to IS NULL`), never hand-set. Overlap is prevented by SQL-E10.4's exclusion constraint.
 - **Golden fingerprint:** `30:12ca6f21`
 - **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 
-#### E13.5 · Revenue at the price in effect
+#### SQL-E13.5 · Revenue at the price in effect
 - **Tags:** as-of join · SCD2 join · range join
-- **Prompt:** Using the SCD2 shape of E13.4, re-derive each fulfilled order line of **January 2025** at the *list price in effect at `placed_at`* and return the total difference `sum(qty × (list_price_at_order − unit_price_minor))` per tenant. (Expect a large positive number: the seed charged the *current* price, not the historical one.)
+- **Prompt:** Using the SCD2 shape of SQL-E13.4, re-derive each fulfilled order line of **January 2025** at the *list price in effect at `placed_at`* and return the total difference `sum(qty × (list_price_at_order − unit_price_minor))` per tenant. (Expect a large positive number: the seed charged the *current* price, not the historical one.)
 - **Output shape:** `tenant_id, price_gap_minor` (order-insensitive — `lab.chk`)
 - **Trap:** Join on the *range* `valid_from <= placed_at AND (valid_to IS NULL OR placed_at < valid_to)` — the half-open form makes every order match exactly one row. Check that: `count(*)` of the join must equal `count(*)` of the lines.
 - **Golden fingerprint:** `5:7656600a`
@@ -1756,9 +1756,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 ### 6.14 Level 14 — Capstone audits & performance
 
-**Prereq gate:** E13 gate; C1 after E3+E4; C2 after E4.5; C4 after PX cards
+**Prereq gate:** SQL-E13 gate; SQL-CAP1 after SQL-E3+SQL-E4; SQL-CAP2 after SQL-E4.5; SQL-CAP4 after PX cards
 
-#### C1.1 · Order total ≠ sum of its lines
+#### SQL-CAP1.1 · Order total ≠ sum of its lines
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *order total ≠ sum of its lines*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `order_id` (order-insensitive — `lab.chk`)
@@ -1766,7 +1766,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `3:7cc530bb`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.2 · Order lines with no order (orphans)
+#### SQL-CAP1.2 · Order lines with no order (orphans)
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *order lines with no order (orphans)*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `order_id, line_no` (order-insensitive — `lab.chk`)
@@ -1774,7 +1774,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:ec2bf809`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.3 · Paid/fulfilled/refunded order with no succeeded charge
+#### SQL-CAP1.3 · Paid/fulfilled/refunded order with no succeeded charge
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *paid/fulfilled/refunded order with no succeeded charge*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `order_id` (order-insensitive — `lab.chk`)
@@ -1782,7 +1782,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2:addb7d1b`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.4 · Refunds exceed charges
+#### SQL-CAP1.4 · Refunds exceed charges
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *refunds exceed charges*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `order_id` (order-insensitive — `lab.chk`)
@@ -1790,7 +1790,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2:23dae8cd`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.5 · Reserved stock above on-hand
+#### SQL-CAP1.5 · Reserved stock above on-hand
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *reserved stock above on-hand*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `product_id` (order-insensitive — `lab.chk`)
@@ -1798,7 +1798,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2:cc6c5a8d`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.6 · Duplicate idempotency keys within a tenant
+#### SQL-CAP1.6 · Duplicate idempotency keys within a tenant
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *duplicate idempotency keys within a tenant*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `tenant_id, idempotency_key, n` (order-insensitive — `lab.chk`)
@@ -1806,7 +1806,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `1:3402ab9a`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.7 · Delivered before shipped
+#### SQL-CAP1.7 · Delivered before shipped
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *delivered before shipped*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `shipment_id` (order-insensitive — `lab.chk`)
@@ -1814,23 +1814,23 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** `2:b713c027`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C1.8 · Fulfilled order with no shipment
+#### SQL-CAP1.8 · Fulfilled order with no shipment
 - **Tags:** audit invariant · anti-join / aggregate · data quality
 - **Prompt:** On the fault-injected copies in schema `audit` (Appendix B.6): find every violation of the invariant *fulfilled order with no shipment*. Also run it against the clean `lab.*` tables — it must return **0 rows** there.
 - **Output shape:** `order_id` (order-insensitive — `lab.chk`)
-- **Trap:** Anti-join again. Contrast with E3.5 (semi-join).
+- **Trap:** Anti-join again. Contrast with SQL-E3.5 (semi-join).
 - **Golden fingerprint:** `2:7bd384d1`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C2 · Cash-basis monthly revenue report
+#### SQL-CAP2 · Cash-basis monthly revenue report
 - **Tags:** capstone · payments · accrual vs cash
-- **Prompt:** Per tenant and **payment** month (UTC, by `payment.created_at`): sum of **succeeded charges**, sum of **succeeded refunds**, and net = charges − refunds. Failed and pending payments never count. Then write two sentences reconciling this *cash* report with the *accrual* report of E4.5 (orders by placement date).
+- **Prompt:** Per tenant and **payment** month (UTC, by `payment.created_at`): sum of **succeeded charges**, sum of **succeeded refunds**, and net = charges − refunds. Failed and pending payments never count. Then write two sentences reconciling this *cash* report with the *accrual* report of SQL-E4.5 (orders by placement date).
 - **Output shape:** `tenant_id, month, charged_minor, refunded_minor, net_minor` (order-insensitive — `lab.chk`)
 - **Trap:** A refund posted five days after an order can land in the next month — cash vs accrual differences are **timing**, not error. Aggregate `payment` on its own (no join to lines/orders except to get `tenant_id`). Money never leaves integer minor units.
 - **Golden fingerprint:** `65:b63b5f6f`
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 
-#### C4 · Explain and fix the slow query
+#### SQL-CAP4 · Explain and fix the slow query
 - **Tags:** capstone · performance · correlated subquery → join
 - **Prompt:** For every identified user who ever made a `purchase` event: the number of `page_view` events in the 24 hours **before their first purchase**. The baseline query (Appendix B.7) uses three correlated subqueries per user and takes ~1.5 s on this seed. Deliverable: (1) `EXPLAIN (ANALYZE)` of the baseline with your written diagnosis, (2) a rewrite that returns the **identical fingerprint** in under 50 ms without adding an index, (3) a second fix that keeps the baseline text and adds an index — name it.
 - **Output shape:** `user_id, views_24h` (order-insensitive — `lab.chk`)
@@ -1841,7 +1841,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 ### 6.L Plan-prediction cards (PX-1 … PX-11) — full labs in §7.1
 
 #### PX-1 · Hot key vs cold key plans
-- **Tags:** plans.py P1
+- **Tags:** plans.py PX-1
 - **Prompt:** Predict Seq Scan vs Index Scan for `user_id=1` (hot), `=42`, `=1900` (never ordered) on `customer_order`. Then run §7.1.
 - **Output shape:** plan shape + row est
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1849,7 +1849,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-2 · Sargability of `::date`
-- **Tags:** P2
+- **Tags:** PX-2
 - **Prompt:** Predict whether `placed_at::date = '2025-03-01'` uses `o_placed` B-tree; rewrite as range.
 - **Output shape:** used/not + rewrite
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1857,7 +1857,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-3 · Leading wildcard vs pattern_ops
-- **Tags:** P3
+- **Tags:** PX-3
 - **Prompt:** Predict `LIKE '%@t1…'` vs `LIKE 'user1%'` with btree vs `text_pattern_ops`.
 - **Output shape:** three plan shapes
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1865,7 +1865,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-4 · Leftmost prefix
-- **Tags:** P4
+- **Tags:** PX-4
 - **Prompt:** Index `(tenant_id,status,placed_at)`: which of eq+eq+range / skip-leading / OR two cols uses it?
 - **Output shape:** per-query yes/no
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1873,7 +1873,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-5 · Covering INCLUDE
-- **Tags:** P5
+- **Tags:** PX-5
 - **Prompt:** Predict index-only sum of `total_minor` with `(tenant_id,placed_at) INCLUDE (total_minor)` after VACUUM.
 - **Output shape:** heap fetches 0/≠0
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1881,7 +1881,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-6 · Partial index
-- **Tags:** P6
+- **Tags:** PX-6
 - **Prompt:** Index `(order_id) WHERE status='created'`: hit vs miss when filter differs.
 - **Output shape:** hit/miss
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1889,7 +1889,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-7 · Join large vs selective
-- **Tags:** P7
+- **Tags:** PX-7
 - **Prompt:** Predict hash/merge/nested for `order_line⋈product` full vs `product_id=42`.
 - **Output shape:** node types
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1897,7 +1897,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-8 · Correlated stats
-- **Tags:** P8
+- **Tags:** PX-8
 - **Prompt:** Before/after `CREATE STATISTICS … (dependencies)` on `(tenant_id,currency)` — predict est rows move.
 - **Output shape:** est before/after
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1905,7 +1905,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-9 · OFFSET vs keyset
-- **Tags:** P9 · OD-09 · 8.1.5
+- **Tags:** PX-9 · OD-09 · 8.1.5
 - **Prompt:** Predict cost of `OFFSET 19000` vs `WHERE order_id>19000 LIMIT 20`.
 - **Output shape:** relative cost
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1913,7 +1913,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-10 · Sort / window memory
-- **Tags:** P10
+- **Tags:** PX-10
 - **Prompt:** Predict external sort when `work_mem='64kB'` on `event ORDER BY occurred_at`.
 - **Output shape:** in-memory vs disk
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1921,7 +1921,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-11 · Hash agg spill
-- **Tags:** P11
+- **Tags:** PX-11
 - **Prompt:** Predict hash aggregate spill under tiny `work_mem` for `GROUP BY user_id` on events.
 - **Output shape:** spill yes/no
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1997,11 +1997,11 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 ### 6.B Bug-hunts (BH-1 … BH-6)
 
 #### BH-1 · Fan-out double count
-- **Tags:** E3.5 wrong
+- **Tags:** SQL-E3.5 wrong
 - **Prompt:** Find why summing orders joined to shipments inflates revenue.
 - **Output shape:** diagnosis
 - **Trap:** fixing symptoms without naming the invariant
-- **Golden / ref:** goldens_wrong E3.5
+- **Golden / ref:** goldens_wrong SQL-E3.5
 - **Prereq gate:** matching SL/OD modules
 
 #### BH-2 · Injection / string format
@@ -2048,7 +2048,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 #### DT-1 · Postgres → BigQuery SELECT
 - **Tags:** AN-02
-- **Prompt:** Translate E2.2 monthly GMV to GoogleSQL; note `date_trunc` vs `DATE_TRUNC`.
+- **Prompt:** Translate SQL-E2.2 monthly GMV to GoogleSQL; note `date_trunc` vs `DATE_TRUNC`.
 - **Output shape:** SQL
 - **Trap:** translating tokens without translating semantics (NULL=empty, time zones)
 - **Golden fingerprint:** _(dialect — instructor compares meaning)_
@@ -2064,7 +2064,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 #### DT-3 · Postgres → MySQL LIMIT/upsert
 - **Tags:** SL-14
-- **Prompt:** Translate E1.7 and E9.3 upsert shapes.
+- **Prompt:** Translate SQL-E1.7 and SQL-E9.3 upsert shapes.
 - **Output shape:** SQL
 - **Trap:** translating tokens without translating semantics (NULL=empty, time zones)
 - **Golden fingerprint:** _(dialect — instructor compares meaning)_
@@ -2072,7 +2072,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 #### DT-4 · Billing-export windows
 - **Tags:** 10.3·AN-03
-- **Prompt:** Sketch a window query on a billing-export-shaped table (reuse E5.2 idea).
+- **Prompt:** Sketch a window query on a billing-export-shaped table (reuse SQL-E5.2 idea).
 - **Output shape:** SQL
 - **Trap:** translating tokens without translating semantics (NULL=empty, time zones)
 - **Golden fingerprint:** _(dialect — instructor compares meaning)_
@@ -2088,7 +2088,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 #### DT-6 · Postgres → Spanner
 - **Tags:** AN-05
-- **Prompt:** Translate E3.1 join; note interleaved alternative as comment only.
+- **Prompt:** Translate SQL-E3.1 join; note interleaved alternative as comment only.
 - **Output shape:** SQL
 - **Trap:** translating tokens without translating semantics (NULL=empty, time zones)
 - **Golden fingerprint:** _(dialect — instructor compares meaning)_
@@ -2096,7 +2096,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 #### DT-7 · Same question in Firestore
 - **Tags:** AN-06·2.4
-- **Prompt:** Top products by GMV for tenant 2 as documents + as SQL (E2 style).
+- **Prompt:** Top products by GMV for tenant 2 as documents + as SQL (SQL-E2 style).
 - **Output shape:** two plans
 - **Trap:** translating tokens without translating semantics (NULL=empty, time zones)
 - **Golden fingerprint:** _(dialect — instructor compares meaning)_
@@ -2110,9 +2110,9 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** _(dialect — instructor compares meaning)_
 - **Prereq gate:** SL-14, AN-* as tagged
 
-### 6.S Schema-design cases (SD-1 … SD-6)
+### 6.S Schema-design cases (SCH-1 … SCH-6)
 
-#### SD-1 · Checkout ER → tables
+#### SCH-1 · Checkout ER → tables
 - **Tags:** DD-01·0.4
 - **Prompt:** Model cart→order→line→payment with cardinalities; map to DDL sketch matching lab names.
 - **Output shape:** ER+DDL
@@ -2120,7 +2120,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** _(design review)_
 - **Prereq gate:** DD-* as tagged
 
-#### SD-2 · Surrogate vs natural ADR
+#### SCH-2 · Surrogate vs natural ADR
 - **Tags:** DD-02·8.0
 - **Prompt:** ADR for `product_id` bigint vs SKU-as-PK.
 - **Output shape:** ADR
@@ -2128,7 +2128,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** _(design review)_
 - **Prereq gate:** DD-* as tagged
 
-#### SD-3 · Category hierarchy pick
+#### SCH-3 · Category hierarchy pick
 - **Tags:** DD-04
 - **Prompt:** Choose adjacency vs closure for lab-scale categories; justify.
 - **Output shape:** ADR
@@ -2136,7 +2136,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** _(design review)_
 - **Prereq gate:** DD-* as tagged
 
-#### SD-4 · Expand/contract email verify
+#### SCH-4 · Expand/contract email verify
 - **Tags:** DD-11·2.6
 - **Prompt:** Add `email_verified_at` without downtime; list steps + locks.
 - **Output shape:** step list
@@ -2144,7 +2144,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** _(design review)_
 - **Prereq gate:** DD-* as tagged
 
-#### SD-5 · Shard key for multi-tenant
+#### SCH-5 · Shard key for multi-tenant
 - **Tags:** DD-13·2.7
 - **Prompt:** Propose partition/shard key for orders; address user-1 hotspot.
 - **Output shape:** design note
@@ -2152,7 +2152,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Golden fingerprint:** _(design review)_
 - **Prereq gate:** DD-* as tagged
 
-#### SD-6 · Audit log + masking view
+#### SCH-6 · Audit log + masking view
 - **Tags:** DD-07·7.3
 - **Prompt:** Design append-only audit and a masking view for support roles.
 - **Output shape:** DDL sketch
@@ -2162,20 +2162,20 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 ## 7. Engine-behaviour labs
 
 ### 7.1 Plan predictions (`plans.py` → PX-1…PX-11)
-Setup copies `lab.customer_order` / `app_user` into `work.*`, builds indexes step-wise, and prints `EXPLAIN (ANALYZE, … FORMAT JSON)` walks. **Protocol:** for each PX card in §6.L, write the predicted node types and row estimates, then run the matching `show("P…")` block. Change **one** variable between predictions (index present, `work_mem`, statistics).
+Setup copies `lab.customer_order` / `app_user` into `work.*`, builds indexes step-wise, and prints `EXPLAIN (ANALYZE, … FORMAT JSON)` walks. **Protocol:** for each PX card in §6.L, write the predicted node types and row estimates, then run the matching `show("PX-…")` block. Change **one** variable between predictions (index present, `work_mem`, statistics).
 
 Catalogue (labels in script):
-- **P1** — index on `(user_id, placed_at DESC)`; hot user 1 vs 42 vs 1900; latest-5 limit.
-- **P2** — `placed_at::date` non-sargable vs half-open range.
-- **P3** — leading-wildcard `LIKE`; `text_pattern_ops` for prefix.
-- **P4** — leftmost prefix on `(tenant_id, status, placed_at)`; OR across cols.
-- **P5** — covering `INCLUDE (total_minor)` + `VACUUM` for index-only.
-- **P6** — partial index `WHERE status='created'`.
-- **P7** — large join vs selective product_id probe.
-- **P8** — `CREATE STATISTICS (dependencies)` on `(tenant_id, currency)`.
-- **P9** — deep `OFFSET` vs keyset seek.
-- **P10** — sort under default vs `work_mem='64kB'`.
-- **P11** — hash agg under tiny `work_mem`.
+- **PX-1** — index on `(user_id, placed_at DESC)`; hot user 1 vs 42 vs 1900; latest-5 limit.
+- **PX-2** — `placed_at::date` non-sargable vs half-open range.
+- **PX-3** — leading-wildcard `LIKE`; `text_pattern_ops` for prefix.
+- **PX-4** — leftmost prefix on `(tenant_id, status, placed_at)`; OR across cols.
+- **PX-5** — covering `INCLUDE (total_minor)` + `VACUUM` for index-only.
+- **PX-6** — partial index `WHERE status='created'`.
+- **PX-7** — large join vs selective product_id probe.
+- **PX-8** — `CREATE STATISTICS (dependencies)` on `(tenant_id, currency)`.
+- **PX-9** — deep `OFFSET` vs keyset seek.
+- **PX-10** — sort under default vs `work_mem='64kB'`.
+- **PX-11** — hash agg under tiny `work_mem`.
 
 ### 7.2 Transaction scenarios (`tx_tests.py` → TX-1…TX-8)
 Dual sessions via `two.py`. Always predict commit/abort/blocking **before** running. Scenarios: lost update RMW (T1), atomic UPDATE (T1b), RR conflict (T1c), non-repeatable RC vs RR (T2), write skew RR vs SERIALIZABLE (T3), phantom (T3b), deadlock (T4), `SKIP LOCKED` queue (T5), `SELECT FOR UPDATE` (T6).
@@ -2184,9 +2184,9 @@ Companion SQL files:
 - `naive.sql` — classic check-then-act oversell (app-side RMW).
 - `safe.sql` — single-statement `UPDATE…RETURNING` claim.
 
-### 7.3 Slow-query rescue fodder (feeds C4)
+### 7.3 Slow-query rescue fodder (feeds SQL-CAP4)
 - `slow_bad.sql` — three correlated subqueries per user (~1.5 s on seed).
-- `slow_good.sql` — CTE of first purchase + join (`C4` key).
+- `slow_good.sql` — CTE of first purchase + join (`SQL-CAP4` key).
 - `slow_bad_idx.sql` — index-assisted path keeping baseline text shape.
 
 ## 8. Rosetta & Terraform
@@ -2226,26 +2226,26 @@ Mirror gcp-curriculum C5 posture: **`terraform plan` reads the graph; apply only
 | **TF-DB5** | BigQuery dataset + partitioned table + clustering | AN-02 bytes napkin |
 | **TF-DB6** | IAM bindings for DB roles / BQ dataset access | SL-13 least privilege |
 
-## 9. Capstones (C1–C4)
+## 9. Capstones (SQL-CAP1–SQL-CAP4)
 
 Database acceptance tests for gcp Part 11 / Northstar. Issue after the §6 level-14 gate. **Predict; run; reconcile.**
 
 | ID | Title | Soft gate | Fingerprint source |
 |---|---|---|---|
-| **C1.1–C1.8** | Fault-injected audit invariants | E3 + E4 anti/semi-join fluency | `goldens_ex_l14.json` |
-| **C2** | Cash-basis monthly revenue | E4.5 accrual report done | same |
-| **C3** | Checkout schema + concurrency | SD-1 + TX-2/TX-8 | design + TX evidence (no single chk) |
-| **C4** | Slow-query rescue | PX cards; `slow_*.sql` | `C4` golden in l14 JSON |
+| **SQL-CAP1.1–SQL-CAP1.8** | Fault-injected audit invariants | SQL-E3 + SQL-E4 anti/semi-join fluency | `goldens_ex_l14.json` |
+| **SQL-CAP2** | Cash-basis monthly revenue | SQL-E4.5 accrual report done | same |
+| **SQL-CAP3** | Checkout schema + concurrency | SCH-1 + TX-2/TX-8 | design + TX evidence (no single chk) |
+| **SQL-CAP4** | Slow-query rescue | PX cards; `slow_*.sql` | `SQL-CAP4` golden in l14 JSON |
 
-**C3 spec (consistent with lab):** design checkout that cannot oversell `stock` under concurrency (`safe.sql` pattern), uses idempotency keys (`UNIQUE (tenant_id, idempotency_key)`), and records payments as ledger-friendly minor units. Deliver: DDL delta, TX evidence transcript, ADR for isolation level.
+**SQL-CAP3 spec (consistent with lab):** design checkout that cannot oversell `stock` under concurrency (`safe.sql` pattern), uses idempotency keys (`UNIQUE (tenant_id, idempotency_key)`), and records payments as ledger-friendly minor units. Deliver: DDL delta, TX evidence transcript, ADR for isolation level.
 
-Cards for C1.*, C2, C4 are in §6.14; keys in Appendix K.
+Cards for SQL-CAP1.*, SQL-CAP2, SQL-CAP4 are in §6.14; keys in Appendix K.
 
 ## Appendix K — Instructor keys (AFTER attempt only)
 
 Do **not** open until the learner has attempted the item. Keys are the reference SQL from `ex_*.py` `key=` fields; fingerprints from `goldens_ex_*.json`.
 
-### E1.1 — Q2-2024 signups from GB or DE
+### SQL-E1.1 — Q2-2024 signups from GB or DE
 - **Fingerprint:** `164:d17041f6`
 ```sql
 SELECT user_id, email
@@ -2254,19 +2254,19 @@ WHERE country IN ('GB','DE')
   AND created_at >= '2024-04-01' AND created_at < '2024-07-01'
 ```
 
-### E1.2 — Unknown country
+### SQL-E1.2 — Unknown country
 - **Fingerprint:** `181:ab2f2d8e`
 ```sql
 SELECT user_id FROM lab.app_user WHERE country IS NULL
 ```
 
-### E1.3 — Everyone not known to be in the US
+### SQL-E1.3 — Everyone not known to be in the US
 - **Fingerprint:** `1740:d7106dd7`
 ```sql
 SELECT user_id FROM lab.app_user WHERE country IS DISTINCT FROM 'US'
 ```
 
-### E1.4 — Mid-priced live catalogue, top 20
+### SQL-E1.4 — Mid-priced live catalogue, top 20
 - **Fingerprint:** `20:1af04ff2`
 ```sql
 SELECT product_id, price_minor
@@ -2276,13 +2276,13 @@ ORDER BY price_minor DESC, product_id
 LIMIT 20
 ```
 
-### E1.5 — Reviews with no text
+### SQL-E1.5 — Reviews with no text
 - **Fingerprint:** `2036:aa6dda6b`
 ```sql
 SELECT review_id FROM lab.review WHERE coalesce(body, '') = ''
 ```
 
-### E1.6 — Order status buckets
+### SQL-E1.6 — Order status buckets
 - **Fingerprint:** `20000:a58f4910`
 ```sql
 SELECT order_id,
@@ -2293,7 +2293,7 @@ SELECT order_id,
 FROM lab.customer_order
 ```
 
-### E1.7 — Ten priciest live products
+### SQL-E1.7 — Ten priciest live products
 - **Fingerprint:** `10:558e94b1`
 ```sql
 SELECT product_id, price_minor FROM lab.product
@@ -2301,19 +2301,19 @@ WHERE discontinued_at IS NULL
 ORDER BY price_minor DESC, product_id LIMIT 10
 ```
 
-### E1.8 — Pattern search
+### SQL-E1.8 — Pattern search
 - **Fingerprint:** `10:986cf4ec`
 ```sql
 SELECT product_id FROM lab.product WHERE sku LIKE 'SKU-01%' AND sku LIKE '%7'
 ```
 
-### E2.1 — Orders and revenue by status
+### SQL-E2.1 — Orders and revenue by status
 - **Fingerprint:** `5:2495a69d`
 ```sql
 SELECT status, count(*) AS n_orders, sum(total_minor) AS sum_minor FROM lab.customer_order GROUP BY status
 ```
 
-### E2.2 — Monthly fulfilled GMV, 2025
+### SQL-E2.2 — Monthly fulfilled GMV, 2025
 - **Fingerprint:** `12:c6eb674e`
 ```sql
 SELECT date_trunc('month', placed_at) AS month, count(*) AS n_orders, sum(total_minor) AS gmv_minor
@@ -2322,21 +2322,21 @@ WHERE status = 'fulfilled' AND placed_at >= '2025-01-01' AND placed_at < '2026-0
 GROUP BY 1
 ```
 
-### E2.3 — Well-reviewed products
+### SQL-E2.3 — Well-reviewed products
 - **Fingerprint:** `467:68a601d1`
 ```sql
 SELECT product_id, count(*) AS n, round(avg(rating), 2) AS avg_rating
 FROM lab.review GROUP BY product_id HAVING count(*) >= 10
 ```
 
-### E2.4 — Buyers per tenant
+### SQL-E2.4 — Buyers per tenant
 - **Fingerprint:** `5:0cf3aaa2`
 ```sql
 SELECT tenant_id, count(*) AS n_orders, count(DISTINCT user_id) AS n_buyers
 FROM lab.customer_order GROUP BY tenant_id
 ```
 
-### E2.5 — Refund rate by tenant
+### SQL-E2.5 — Refund rate by tenant
 - **Fingerprint:** `5:9fbfe463`
 ```sql
 SELECT tenant_id, count(*) AS n_orders,
@@ -2345,27 +2345,27 @@ SELECT tenant_id, count(*) AS n_orders,
 FROM lab.customer_order GROUP BY tenant_id
 ```
 
-### E2.6 — Users by country including unknown
+### SQL-E2.6 — Users by country including unknown
 - **Fingerprint:** `8:94127f65`
 ```sql
 SELECT coalesce(country, '??') AS country, count(*) AS n FROM lab.app_user GROUP BY 1
 ```
 
-### E2.7 — Median order value per tenant
+### SQL-E2.7 — Median order value per tenant
 - **Fingerprint:** `5:74a001bd`
 ```sql
 SELECT tenant_id, percentile_disc(0.5) WITHIN GROUP (ORDER BY total_minor) AS median_minor
 FROM lab.customer_order WHERE status = 'fulfilled' GROUP BY tenant_id
 ```
 
-### E2.8 — Price histogram
+### SQL-E2.8 — Price histogram
 - **Fingerprint:** `10:dc13b2c1`
 ```sql
 SELECT (price_minor / 1000) * 1000 AS band_start, count(*) AS n
 FROM lab.product WHERE discontinued_at IS NULL GROUP BY 1
 ```
 
-### E3.1 — Paid orders with buyer and tenant
+### SQL-E3.1 — Paid orders with buyer and tenant
 - **Fingerprint:** `50:787a0b9d`
 ```sql
 SELECT o.order_id, u.email, t.name AS tenant_name, o.total_minor
@@ -2376,14 +2376,14 @@ WHERE o.tenant_id = 2 AND o.status = 'paid'
   AND o.placed_at >= '2025-03-01' AND o.placed_at < '2025-04-01'
 ```
 
-### E3.2 — Users who never referred anyone
+### SQL-E3.2 — Users who never referred anyone
 - **Fingerprint:** `1291:ce8f0411`
 ```sql
 SELECT u.user_id FROM lab.app_user u
 WHERE NOT EXISTS (SELECT 1 FROM lab.app_user r WHERE r.referred_by = u.user_id)
 ```
 
-### E3.3 — Users who never ordered
+### SQL-E3.3 — Users who never ordered
 - **Fingerprint:** `200:e5ab3ae1`
 ```sql
 SELECT u.user_id FROM lab.app_user u
@@ -2391,7 +2391,7 @@ LEFT JOIN lab.customer_order o ON o.user_id = u.user_id
 WHERE o.order_id IS NULL
 ```
 
-### E3.4 — Products not sold in a week
+### SQL-E3.4 — Products not sold in a week
 - **Fingerprint:** `180:d18c224e`
 ```sql
 SELECT p.product_id FROM lab.product p
@@ -2401,7 +2401,7 @@ WHERE NOT EXISTS (
     AND o.placed_at >= '2025-01-01' AND o.placed_at < '2025-01-08')
 ```
 
-### E3.5 — Revenue of delivered orders
+### SQL-E3.5 — Revenue of delivered orders
 - **Fingerprint:** `1:6c39466d`
 ```sql
 SELECT sum(o.total_minor) AS revenue_minor FROM lab.customer_order o
@@ -2409,7 +2409,7 @@ WHERE o.status = 'fulfilled'
   AND EXISTS (SELECT 1 FROM lab.shipment s WHERE s.order_id = o.order_id AND s.delivered_at IS NOT NULL)
 ```
 
-### E3.6 — Cross-tenant referrals
+### SQL-E3.6 — Cross-tenant referrals
 - **Fingerprint:** `1172:9f8ebbd0`
 ```sql
 SELECT u.user_id, r.user_id AS referrer_id
@@ -2417,7 +2417,7 @@ FROM lab.app_user u JOIN lab.app_user r ON r.user_id = u.referred_by
 WHERE r.tenant_id <> u.tenant_id
 ```
 
-### E3.7 — One-star counts including zeros
+### SQL-E3.7 — One-star counts including zeros
 - **Fingerprint:** `100:1b05fa94`
 ```sql
 SELECT p.product_id, count(r.review_id) AS one_star
@@ -2425,7 +2425,7 @@ FROM lab.product p LEFT JOIN lab.review r ON r.product_id = p.product_id AND r.r
 WHERE p.tenant_id = 1 GROUP BY p.product_id
 ```
 
-### E3.8 — Who ordered vs who reviewed (Q1 2025)
+### SQL-E3.8 — Who ordered vs who reviewed (Q1 2025)
 - **Fingerprint:** `1845:6f7a9372`
 ```sql
 WITH o AS (SELECT DISTINCT user_id FROM lab.customer_order WHERE placed_at >= '2025-01-01' AND placed_at < '2025-04-01'),
@@ -2434,7 +2434,7 @@ SELECT coalesce(o.user_id, r.user_id) AS user_id, o.user_id IS NOT NULL AS order
 FROM o FULL JOIN r ON r.user_id = o.user_id
 ```
 
-### E3.9 — Deletions per month with zero-fill
+### SQL-E3.9 — Deletions per month with zero-fill
 - **Fingerprint:** `14:cb9ff4e8`
 ```sql
 SELECT m::date AS month, count(u.user_id) AS n_deleted
@@ -2443,28 +2443,28 @@ LEFT JOIN lab.app_user u ON date_trunc('month', u.deleted_at) = m
 GROUP BY m
 ```
 
-### E3.10 — Duplicate-safe reviewers per product
+### SQL-E3.10 — Duplicate-safe reviewers per product
 - **Fingerprint:** `241:47e3b13f`
 ```sql
 SELECT product_id, count(DISTINCT user_id) AS n_reviewers, count(*) AS n_reviews
 FROM lab.review GROUP BY product_id HAVING count(DISTINCT user_id) <> count(*)
 ```
 
-### E4.1 — Above-average spenders
+### SQL-E4.1 — Above-average spenders
 - **Fingerprint:** `675:19348832`
 ```sql
 WITH s AS (SELECT user_id, sum(total_minor) AS spend_minor FROM lab.customer_order WHERE status = 'fulfilled' GROUP BY user_id)
 SELECT user_id, spend_minor FROM s WHERE spend_minor > (SELECT avg(spend_minor) FROM s)
 ```
 
-### E4.2 — Latest review rating per product
+### SQL-E4.2 — Latest review rating per product
 - **Fingerprint:** `500:7463fec9`
 ```sql
 SELECT DISTINCT ON (product_id) product_id, rating
 FROM lab.review ORDER BY product_id, created_at DESC, review_id DESC
 ```
 
-### E4.3 — Both fulfilled and refunded
+### SQL-E4.3 — Both fulfilled and refunded
 - **Fingerprint:** `391:6319def9`
 ```sql
 SELECT user_id FROM lab.customer_order WHERE status = 'fulfilled'
@@ -2472,7 +2472,7 @@ INTERSECT
 SELECT user_id FROM lab.customer_order WHERE status = 'refunded'
 ```
 
-### E4.4 — Reviewed but never bought
+### SQL-E4.4 — Reviewed but never bought
 - **Fingerprint:** `4559:2e92d1fa`
 ```sql
 SELECT user_id, product_id FROM lab.review
@@ -2480,7 +2480,7 @@ EXCEPT
 SELECT o.user_id, l.product_id FROM lab.customer_order o JOIN lab.order_line l USING (order_id)
 ```
 
-### E4.5 — Net revenue per tenant without double counting
+### SQL-E4.5 — Net revenue per tenant without double counting
 - **Fingerprint:** `5:77344493`
 ```sql
 WITH g AS (
@@ -2496,7 +2496,7 @@ SELECT g.tenant_id, g.gmv_minor, coalesce(r.refunded_minor, 0) AS refunded_minor
 FROM g LEFT JOIN r USING (tenant_id)
 ```
 
-### E4.6 — Strictly the priciest in its category
+### SQL-E4.6 — Strictly the priciest in its category
 - **Fingerprint:** `30:d5ca9e54`
 ```sql
 SELECT p.product_id FROM lab.product p
@@ -2505,7 +2505,7 @@ WHERE p.category_id IS NOT NULL
                            WHERE q.category_id = p.category_id AND q.product_id <> p.product_id)
 ```
 
-### E4.7 — Latest order per user (tenant 3)
+### SQL-E4.7 — Latest order per user (tenant 3)
 - **Fingerprint:** `360:3dd4aace`
 ```sql
 SELECT u.user_id, o.order_id, o.placed_at
@@ -2515,7 +2515,7 @@ CROSS JOIN LATERAL (SELECT order_id, placed_at FROM lab.customer_order c WHERE c
 WHERE u.tenant_id = 3
 ```
 
-### E4.8 — Relational division: bought all three
+### SQL-E4.8 — Relational division: bought all three
 - **Fingerprint:** `5:286c82f6`
 ```sql
 SELECT o.user_id FROM lab.customer_order o JOIN lab.order_line l USING (order_id)
@@ -2523,7 +2523,7 @@ WHERE l.product_id IN (1, 6, 11)
 GROUP BY o.user_id HAVING count(DISTINCT l.product_id) = 3
 ```
 
-### E5.1 — Top-3 price ranks per category
+### SQL-E5.1 — Top-3 price ranks per category
 - **Fingerprint:** `90:0444fd32`
 ```sql
 SELECT category_id, product_id, price_minor, rnk FROM (
@@ -2533,7 +2533,7 @@ SELECT category_id, product_id, price_minor, rnk FROM (
 WHERE rnk <= 3
 ```
 
-### E5.2 — Running GMV, tenant 1, March 2025
+### SQL-E5.2 — Running GMV, tenant 1, March 2025
 - **Fingerprint:** `31:1c8f130e`
 ```sql
 WITH d AS (SELECT placed_at::date AS day, sum(total_minor) AS gmv_minor FROM lab.customer_order
@@ -2542,7 +2542,7 @@ SELECT day, gmv_minor, sum(gmv_minor) OVER (ORDER BY day ROWS BETWEEN UNBOUNDED 
 FROM d ORDER BY day
 ```
 
-### E5.3 — Days since the previous order
+### SQL-E5.3 — Days since the previous order
 - **Fingerprint:** `996:d7137b70`
 ```sql
 SELECT user_id, order_id, placed_at,
@@ -2550,7 +2550,7 @@ SELECT user_id, order_id, placed_at,
 FROM lab.customer_order WHERE user_id BETWEEN 1 AND 20
 ```
 
-### E5.4 — Top-2 orders per user
+### SQL-E5.4 — Top-2 orders per user
 - **Fingerprint:** `100:8a1679d3`
 ```sql
 SELECT user_id, order_id, total_minor, rn FROM (
@@ -2559,7 +2559,7 @@ SELECT user_id, order_id, total_minor, rn FROM (
   FROM lab.customer_order WHERE user_id BETWEEN 1 AND 50) x WHERE rn <= 2
 ```
 
-### E5.5 — Tenant share of 2025 GMV
+### SQL-E5.5 — Tenant share of 2025 GMV
 - **Fingerprint:** `5:4bec02c5`
 ```sql
 SELECT tenant_id, sum(total_minor) AS gmv_minor,
@@ -2569,14 +2569,14 @@ WHERE status = 'fulfilled' AND placed_at >= '2025-01-01' AND placed_at < '2026-0
 GROUP BY tenant_id
 ```
 
-### E5.6 — Price quartiles, tenant 2
+### SQL-E5.6 — Price quartiles, tenant 2
 - **Fingerprint:** `94:71892706`
 ```sql
 SELECT product_id, price_minor, ntile(4) OVER (ORDER BY price_minor, product_id) AS quartile
 FROM lab.product WHERE tenant_id = 2 AND discontinued_at IS NULL
 ```
 
-### E5.7 — First and last price
+### SQL-E5.7 — First and last price
 - **Fingerprint:** `20:7ddcb09e`
 ```sql
 SELECT DISTINCT product_id,
@@ -2587,7 +2587,7 @@ FROM lab.product_price_history WHERE product_id BETWEEN 1 AND 20
 WINDOW w AS (PARTITION BY product_id ORDER BY valid_from ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
 ```
 
-### E5.8 — 7-day moving average of daily orders
+### SQL-E5.8 — 7-day moving average of daily orders
 - **Fingerprint:** `22:55be0551`
 ```sql
 SELECT day, n, avg7 FROM (
@@ -2598,7 +2598,7 @@ SELECT day, n, avg7 FROM (
 WHERE rn >= 7 ORDER BY day
 ```
 
-### E6.1 — Longest login streak
+### SQL-E6.1 — Longest login streak
 - **Fingerprint:** `200:3d4d4f51`
 ```sql
 WITH g AS (SELECT user_id, day, day - (row_number() OVER (PARTITION BY user_id ORDER BY day))::int AS grp FROM lab.login_day),
@@ -2607,7 +2607,7 @@ ranked AS (SELECT *, row_number() OVER (PARTITION BY user_id ORDER BY streak_len
 SELECT user_id, streak_len, streak_start FROM ranked WHERE rn = 1
 ```
 
-### E6.2 — Sessionise the event stream
+### SQL-E6.2 — Sessionise the event stream
 - **Fingerprint:** `7500:311fb683`
 ```sql
 WITH e AS (SELECT user_id, event_id, occurred_at,
@@ -2619,7 +2619,7 @@ SELECT user_id, session_no, count(*) AS n_events, min(occurred_at) AS started_at
 FROM s GROUP BY user_id, session_no
 ```
 
-### E6.3 — Ordered funnel
+### SQL-E6.3 — Ordered funnel
 - **Fingerprint:** `1:2f3673b3`
 ```sql
 WITH t AS (SELECT user_id,
@@ -2633,7 +2633,7 @@ SELECT count(*) FILTER (WHERE t_cart IS NOT NULL) AS n_cart,
 FROM t
 ```
 
-### E6.4 — Price in effect at order time (as-of join)
+### SQL-E6.4 — Price in effect at order time (as-of join)
 - **Fingerprint:** `404:4f5a2a10`
 ```sql
 SELECT l.order_id, l.line_no, l.unit_price_minor, h.price_minor AS price_at_order
@@ -2644,7 +2644,7 @@ CROSS JOIN LATERAL (SELECT price_minor FROM lab.product_price_history h
 WHERE o.placed_at < '2025-01-04' AND l.unit_price_minor <> h.price_minor
 ```
 
-### E6.5 — Orders in the previous 30 days
+### SQL-E6.5 — Orders in the previous 30 days
 - **Fingerprint:** `996:7e7490f1`
 ```sql
 SELECT user_id, order_id,
@@ -2652,7 +2652,7 @@ SELECT user_id, order_id,
 FROM lab.customer_order WHERE user_id BETWEEN 1 AND 20
 ```
 
-### E6.6 — Signup-cohort activation
+### SQL-E6.6 — Signup-cohort activation
 - **Fingerprint:** `10:79a8b3a1`
 ```sql
 SELECT date_trunc('month', u.created_at)::date AS cohort_month, count(*) AS size,
@@ -2663,7 +2663,7 @@ SELECT date_trunc('month', u.created_at)::date AS cohort_month, count(*) AS size
 FROM lab.app_user u GROUP BY 1
 ```
 
-### E6.7 — Dedupe events, keep the first
+### SQL-E6.7 — Dedupe events, keep the first
 - **Fingerprint:** `6000:a46392ec`
 ```sql
 SELECT event_id FROM (
@@ -2673,7 +2673,7 @@ SELECT event_id FROM (
 WHERE rn > 1
 ```
 
-### E7.1 — Category paths
+### SQL-E7.1 — Category paths
 - **Fingerprint:** `10:82a25fd0`
 ```sql
 WITH RECURSIVE t AS (
@@ -2684,7 +2684,7 @@ WITH RECURSIVE t AS (
 SELECT category_id, depth, path FROM t
 ```
 
-### E7.2 — Products in a subtree
+### SQL-E7.2 — Products in a subtree
 - **Fingerprint:** `10:13320b85`
 ```sql
 WITH RECURSIVE a AS (
@@ -2695,7 +2695,7 @@ SELECT a.anc AS category_id, count(p.product_id) AS subtree_products
 FROM a LEFT JOIN lab.product p ON p.category_id = a.des GROUP BY a.anc
 ```
 
-### E7.3 — Referral roots and depth
+### SQL-E7.3 — Referral roots and depth
 - **Fingerprint:** `2000:97e6e0a2`
 ```sql
 WITH RECURSIVE f AS (
@@ -2705,7 +2705,7 @@ WITH RECURSIVE f AS (
 SELECT user_id, root_id, depth FROM f
 ```
 
-### E7.4 — Biggest referral tree
+### SQL-E7.4 — Biggest referral tree
 - **Fingerprint:** `1:36a7110f`
 ```sql
 WITH RECURSIVE f AS (
@@ -2714,7 +2714,7 @@ WITH RECURSIVE f AS (
 SELECT root_id, count(*) AS tree_size FROM f GROUP BY root_id ORDER BY tree_size DESC, root_id LIMIT 1
 ```
 
-### E7.5 — Find the cycle
+### SQL-E7.5 — Find the cycle
 - **Fingerprint:** `3:62171a21`
 ```sql
 WITH RECURSIVE e(a, b) AS (VALUES (1,2),(2,3),(3,1),(4,5),(5,6)),
@@ -2725,7 +2725,7 @@ w AS (
 SELECT DISTINCT start AS node FROM w WHERE node = start
 ```
 
-### E8.1 — Average delivery time by carrier
+### SQL-E8.1 — Average delivery time by carrier
 - **Fingerprint:** `3:72b2a44b`
 ```sql
 SELECT carrier, count(*) AS n,
@@ -2733,48 +2733,48 @@ SELECT carrier, count(*) AS n,
 FROM lab.shipment WHERE delivered_at IS NOT NULL GROUP BY carrier
 ```
 
-### E8.2 — Stuck shipments as of a fixed instant
+### SQL-E8.2 — Stuck shipments as of a fixed instant
 - **Fingerprint:** `1825:dc65c0f1`
 ```sql
 SELECT shipment_id FROM lab.shipment
 WHERE delivered_at IS NULL AND shipped_at < timestamptz '2026-01-01 00:00+00' - interval '14 days'
 ```
 
-### E8.3 — UTC day vs New York day
+### SQL-E8.3 — UTC day vs New York day
 - **Fingerprint:** `1:f10d5c9a`
 ```sql
 SELECT count(*) AS n FROM lab.customer_order
 WHERE (placed_at AT TIME ZONE 'America/New_York')::date <> (placed_at AT TIME ZONE 'UTC')::date
 ```
 
-### E8.4 — Orders per ISO week
+### SQL-E8.4 — Orders per ISO week
 - **Fingerprint:** `53:15bc9aa0`
 ```sql
 SELECT date_trunc('week', placed_at)::date AS week_start, count(*) AS n
 FROM lab.customer_order WHERE placed_at >= '2025-01-01' AND placed_at < '2026-01-01' GROUP BY 1
 ```
 
-### E8.5 — Red eco products
+### SQL-E8.5 — Red eco products
 - **Fingerprint:** `41:a5be7c78`
 ```sql
 SELECT product_id FROM lab.product WHERE attrs @> '{"color":"red"}' AND attrs->'tags' ? 'eco'
 ```
 
-### E8.6 — Search latency by query term
+### SQL-E8.6 — Search latency by query term
 - **Fingerprint:** `4:eaf94d2b`
 ```sql
 SELECT payload->>'q' AS q, count(*) AS n, round(avg((payload->>'ms')::int), 1) AS avg_ms
 FROM lab.event WHERE event_type = 'search' GROUP BY 1
 ```
 
-### E8.7 — Products per tag
+### SQL-E8.7 — Products per tag
 - **Fingerprint:** `2:71943e30`
 ```sql
 SELECT tag, count(*) AS n FROM lab.product p
 CROSS JOIN LATERAL jsonb_array_elements_text(p.attrs->'tags') AS tag GROUP BY tag
 ```
 
-### E8.8 — Clean and dedupe emails
+### SQL-E8.8 — Clean and dedupe emails
 - **Fingerprint:** `8:4fc20676`
 ```sql
 SELECT row_id, email_norm FROM (
@@ -2785,7 +2785,7 @@ SELECT row_id, email_norm FROM (
 WHERE rn = 1
 ```
 
-### E8.9 — Parse money text into minor units
+### SQL-E8.9 — Parse money text into minor units
 - **Fingerprint:** `15:bafc9e47`
 ```sql
 SELECT row_id,
@@ -2794,14 +2794,14 @@ SELECT row_id,
 FROM (SELECT row_id, replace(trim(amount_text), '$', '') AS c FROM lab.stg_import) s
 ```
 
-### E8.10 — Write a total date parser
+### SQL-E8.10 — Write a total date parser
 - **Fingerprint:** `15:3eed39e7`
 ```sql
 -- function body as in the setup above; then:
 SELECT row_id, work.try_date(signup_text) AS d FROM lab.stg_import
 ```
 
-### E9.1 — Materialise a daily GMV table
+### SQL-E9.1 — Materialise a daily GMV table
 - **Fingerprint:** `155:9a2d7927`
 ```sql
 CREATE TABLE work.tenant_daily_gmv (tenant_id int, day date, gmv_minor bigint NOT NULL, PRIMARY KEY (tenant_id, day));
@@ -2810,7 +2810,7 @@ SELECT tenant_id, placed_at::date, sum(total_minor) FROM lab.customer_order
 WHERE status = 'fulfilled' AND placed_at >= '2025-01-01' AND placed_at < '2025-02-01' GROUP BY 1, 2;
 ```
 
-### E9.2 — Repair corrupted totals
+### SQL-E9.2 — Repair corrupted totals
 - **Fingerprint:** `20000:12518931`
 ```sql
 UPDATE work.o o SET total_minor = s.t
@@ -2818,7 +2818,7 @@ FROM (SELECT order_id, sum(qty::bigint * unit_price_minor) AS t FROM lab.order_l
 WHERE s.order_id = o.order_id AND o.total_minor IS DISTINCT FROM s.t;
 ```
 
-### E9.3 — Idempotent daily load (upsert)
+### SQL-E9.3 — Idempotent daily load (upsert)
 - **Fingerprint:** `365:60b9c8d0`
 ```sql
 INSERT INTO work.daily_orders (day, n)
@@ -2826,14 +2826,14 @@ SELECT placed_at::date, count(*) FROM lab.customer_order GROUP BY 1
 ON CONFLICT (day) DO UPDATE SET n = EXCLUDED.n;
 ```
 
-### E9.4 — Delete the double-submitted reviews
+### SQL-E9.4 — Delete the double-submitted reviews
 - **Fingerprint:** `6000:bc58a9d4`
 ```sql
 DELETE FROM work.r a USING work.r b
 WHERE a.product_id = b.product_id AND a.user_id = b.user_id AND a.review_id < b.review_id;
 ```
 
-### E9.5 — Sync stock with MERGE
+### SQL-E9.5 — Sync stock with MERGE
 - **Fingerprint:** `11:61ddd589`
 ```sql
 MERGE INTO work.stock_t t USING work.stock_feed f ON t.product_id = f.product_id
@@ -2842,7 +2842,7 @@ WHEN MATCHED THEN UPDATE SET on_hand = f.on_hand
 WHEN NOT MATCHED THEN INSERT (product_id, on_hand) VALUES (f.product_id, f.on_hand);
 ```
 
-### E9.6 — Chunked backfill
+### SQL-E9.6 — Chunked backfill
 - **Fingerprint:** `20000:f913007e`
 ```sql
 DO $$ DECLARE n int; BEGIN
@@ -2855,14 +2855,14 @@ DO $$ DECLARE n int; BEGIN
 END $$;
 ```
 
-### E9.7 — Archive refunded orders atomically
+### SQL-E9.7 — Archive refunded orders atomically
 - **Fingerprint:** `1:06897331`
 ```sql
 WITH moved AS (DELETE FROM work.o WHERE status = 'refunded' RETURNING *)
 INSERT INTO work.o_archive SELECT * FROM moved;
 ```
 
-### E10.1 — Coupon table: constraints as a specification
+### SQL-E10.1 — Coupon table: constraints as a specification
 - **Fingerprint:** `8:e5c729de`
 ```sql
 CREATE TABLE work.coupon (
@@ -2876,20 +2876,20 @@ CREATE TABLE work.coupon (
 CREATE UNIQUE INDEX coupon_code_ci ON work.coupon (lower(code));
 ```
 
-### E10.2 — Tenant-safe foreign key
+### SQL-E10.2 — Tenant-safe foreign key
 - **Fingerprint:** `4:8c4ee581`
 ```sql
 CREATE TABLE work.note (note_id bigint PRIMARY KEY, tenant_id int NOT NULL, user_id bigint NOT NULL, body text,
   FOREIGN KEY (tenant_id, user_id) REFERENCES lab.app_user (tenant_id, user_id));
 ```
 
-### E10.3 — One active subscription per user
+### SQL-E10.3 — One active subscription per user
 - **Fingerprint:** `5:7a0a9605`
 ```sql
 CREATE UNIQUE INDEX one_active ON work.subscription (user_id) WHERE status = 'active';
 ```
 
-### E10.4 — No overlapping price validity
+### SQL-E10.4 — No overlapping price validity
 - **Fingerprint:** `5:a6c6c4a9`
 ```sql
 CREATE EXTENSION IF NOT EXISTS btree_gist;
@@ -2897,14 +2897,14 @@ CREATE TABLE work.price_period (product_id bigint NOT NULL, during daterange NOT
   EXCLUDE USING gist (product_id WITH =, during WITH &&));
 ```
 
-### E10.5 — Circular references with DEFERRABLE
+### SQL-E10.5 — Circular references with DEFERRABLE
 - **Fingerprint:** `1:fb0ce7c2`
 ```sql
 ALTER TABLE work.a ADD FOREIGN KEY (b_id) REFERENCES work.b (id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE work.b ADD FOREIGN KEY (a_id) REFERENCES work.a (id) DEFERRABLE INITIALLY DEFERRED;
 ```
 
-### E10.6 — Row-level security by tenant
+### SQL-E10.6 — Row-level security by tenant
 - **Fingerprint:** `1:86599c11`
 ```sql
 ALTER TABLE work.o ENABLE ROW LEVEL SECURITY;
@@ -2912,7 +2912,7 @@ CREATE POLICY tenant_iso ON work.o USING (tenant_id = current_setting('app.tenan
 -- as the app role:  SET LOCAL app.tenant_id = '2';  SELECT tenant_id, count(*) FROM work.o GROUP BY 1;
 ```
 
-### E13.1 — Subtotals with ROLLUP
+### SQL-E13.1 — Subtotals with ROLLUP
 - **Fingerprint:** `11:bbcd158f`
 ```sql
 SELECT tenant_id, currency, sum(total_minor) AS gmv_minor,
@@ -2922,7 +2922,7 @@ WHERE status = 'fulfilled' AND placed_at >= '2025-01-01' AND placed_at < '2026-0
 GROUP BY ROLLUP (tenant_id, currency)
 ```
 
-### E13.2 — Pivot statuses into columns
+### SQL-E13.2 — Pivot statuses into columns
 - **Fingerprint:** `5:f64390e3`
 ```sql
 SELECT tenant_id,
@@ -2932,7 +2932,7 @@ SELECT tenant_id,
 FROM lab.customer_order WHERE placed_at >= '2025-01-01' AND placed_at < '2026-01-01' GROUP BY tenant_id
 ```
 
-### E13.3 — Build a star schema
+### SQL-E13.3 — Build a star schema
 - **Fingerprint:** `372:22383318`
 ```sql
 -- DDL as in the setup above, then:
@@ -2940,7 +2940,7 @@ SELECT p.category_name, d.month, sum(f.revenue_minor) AS revenue_minor
 FROM work.fact_sales f JOIN work.dim_product p USING (product_id) JOIN work.dim_date d USING (date_key) GROUP BY 1, 2
 ```
 
-### E13.4 — Price history as a Type-2 dimension
+### SQL-E13.4 — Price history as a Type-2 dimension
 - **Fingerprint:** `30:12ca6f21`
 ```sql
 SELECT product_id, price_minor, valid_from,
@@ -2949,7 +2949,7 @@ SELECT product_id, price_minor, valid_from,
 FROM lab.product_price_history WHERE product_id BETWEEN 1 AND 10
 ```
 
-### E13.5 — Revenue at the price in effect
+### SQL-E13.5 — Revenue at the price in effect
 - **Fingerprint:** `5:7656600a`
 ```sql
 WITH h AS (SELECT product_id, price_minor, valid_from,
@@ -2962,55 +2962,55 @@ WHERE o.status = 'fulfilled' AND o.placed_at >= '2025-01-01' AND o.placed_at < '
 GROUP BY o.tenant_id
 ```
 
-### C1.1 — Order total ≠ sum of its lines
+### SQL-CAP1.1 — Order total ≠ sum of its lines
 - **Fingerprint:** `3:7cc530bb`
 ```sql
 SELECT o.order_id FROM audit.o o JOIN (SELECT order_id, sum(qty::bigint * unit_price_minor) AS s FROM audit.l GROUP BY order_id) x USING (order_id) WHERE o.total_minor <> x.s
 ```
 
-### C1.2 — Order lines with no order (orphans)
+### SQL-CAP1.2 — Order lines with no order (orphans)
 - **Fingerprint:** `1:ec2bf809`
 ```sql
 SELECT l.order_id, l.line_no FROM audit.l l WHERE NOT EXISTS (SELECT 1 FROM audit.o o WHERE o.order_id = l.order_id)
 ```
 
-### C1.3 — Paid/fulfilled/refunded order with no succeeded charge
+### SQL-CAP1.3 — Paid/fulfilled/refunded order with no succeeded charge
 - **Fingerprint:** `2:addb7d1b`
 ```sql
 SELECT o.order_id FROM audit.o o WHERE o.status IN ('paid','fulfilled','refunded') AND NOT EXISTS (SELECT 1 FROM audit.p p WHERE p.order_id = o.order_id AND p.kind = 'charge' AND p.status = 'succeeded')
 ```
 
-### C1.4 — Refunds exceed charges
+### SQL-CAP1.4 — Refunds exceed charges
 - **Fingerprint:** `2:23dae8cd`
 ```sql
 SELECT order_id FROM audit.p GROUP BY order_id HAVING coalesce(sum(amount_minor) FILTER (WHERE kind='refund' AND status='succeeded'),0) > coalesce(sum(amount_minor) FILTER (WHERE kind='charge' AND status='succeeded'),0)
 ```
 
-### C1.5 — Reserved stock above on-hand
+### SQL-CAP1.5 — Reserved stock above on-hand
 - **Fingerprint:** `2:cc6c5a8d`
 ```sql
 SELECT product_id FROM audit.st WHERE reserved > on_hand
 ```
 
-### C1.6 — Duplicate idempotency keys within a tenant
+### SQL-CAP1.6 — Duplicate idempotency keys within a tenant
 - **Fingerprint:** `1:3402ab9a`
 ```sql
 SELECT tenant_id, idempotency_key, count(*) AS n FROM audit.o WHERE idempotency_key IS NOT NULL GROUP BY 1, 2 HAVING count(*) > 1
 ```
 
-### C1.7 — Delivered before shipped
+### SQL-CAP1.7 — Delivered before shipped
 - **Fingerprint:** `2:b713c027`
 ```sql
 SELECT shipment_id FROM audit.sh WHERE delivered_at < shipped_at
 ```
 
-### C1.8 — Fulfilled order with no shipment
+### SQL-CAP1.8 — Fulfilled order with no shipment
 - **Fingerprint:** `2:7bd384d1`
 ```sql
 SELECT o.order_id FROM audit.o o WHERE o.status = 'fulfilled' AND NOT EXISTS (SELECT 1 FROM audit.sh s WHERE s.order_id = o.order_id)
 ```
 
-### C2 — Cash-basis monthly revenue report
+### SQL-CAP2 — Cash-basis monthly revenue report
 - **Fingerprint:** `65:b63b5f6f`
 ```sql
 SELECT o.tenant_id, date_trunc('month', p.created_at)::date AS month,
@@ -3022,7 +3022,7 @@ FROM lab.payment p JOIN lab.customer_order o USING (order_id)
 GROUP BY 1, 2
 ```
 
-### C4 — Explain and fix the slow query
+### SQL-CAP4 — Explain and fix the slow query
 - **Fingerprint:** `250:eb4c8d2a`
 ```sql
 WITH fp AS (SELECT user_id, min(occurred_at) AS t FROM lab.event WHERE event_type = 'purchase' AND user_id IS NOT NULL GROUP BY user_id)
@@ -3032,9 +3032,9 @@ FROM fp LEFT JOIN lab.event e
 GROUP BY fp.user_id
 ```
 
-### Z0 / TD sketch keys
+### SQL-Z0 / TD sketch keys
 
-- **Z0.4:** `country<>'US'` is UNKNOWN when country IS NULL; include NULLs via `IS DISTINCT FROM`.
+- **SQL-Z0.4:** `country<>'US'` is UNKNOWN when country IS NULL; include NULLs via `IS DISTINCT FROM`.
 
 - **TD-8:** dirty read = read uncommitted write; lost update = two RMW; forbidden by RR/SI for the latter with atomic update or FOR UPDATE.
 
@@ -3046,8 +3046,8 @@ GROUP BY fp.user_id
 - **Goldens:** 92/92 exercise cards carry fingerprints from local JSON artefacts (`goldens_ex_l1_4.json`, `goldens_ex_l5_8.json`, `goldens_ex_l9_13.json`, `goldens_ex_l14.json`). They were produced by `run_ex.py` against seed v1; this build **wires those values verbatim** and does not re-execute Postgres in the markdown generator.
 - **Wrong-path set:** 11 entries from `goldens_wrong.json` referenced in traps where IDs overlap.
 - **`(verify)` markers:** Cloud SQL/AlloyDB/Spanner/BigQuery UI labels, exam-guide domain lists, and version-specific syntax (MERGE on older PG, Spanner JSON functions, SQL Server `IS DISTINCT FROM` availability) — check live docs before exams or production.
-- **E3.7 note:** `out_ex_l1_4.txt` contains a duplicate run line with a divergent hash; **JSON golden `100:1b05fa94` is authoritative**.
-- **C3:** design/TX evidence capstone — no single `lab.chk` fingerprint (stub: acceptance via transcript + ADR).
+- **SQL-E3.7 note:** `out_ex_l1_4.txt` contains a duplicate run line with a divergent hash; **JSON golden `100:1b05fa94` is authoritative**.
+- **SQL-CAP3:** design/TX evidence capstone — no single `lab.chk` fingerprint (stub: acceptance via transcript + ADR).
 - **TF-DB*:** plan-only stubs; no checked-in `.tf` in this companion (owned by learner under Lab Reality).
 - **Primer SD-13…SD-19:** intentionally not re-taught; cross-links only.
 - **gcp toys DB-1…DB-10:** not duplicated; analytic layer only.
