@@ -272,7 +272,7 @@ def orphans(after):
     table. Every stitch anchor that looks like a main-course module ID must exist in the main course."""
     cur = rd("work", "Curriculum.md")
     mods = set(re.findall(r"^#{1,6} ([A-D]\d{1,2})\b", cur, re.M)) | set(re.findall(r"^\| ([MUS]\d{1,2}) \|", cur, re.M))
-    EXER = re.compile(r"^(?:SQL|SEC)-(?:E|Z0|CAP|SKIP)|^GO-(?:E|P|CAP)|^[EZ]\d|^[POQ]\d{2}$|^C\d\.|^SDP-")
+    EXER = re.compile(r"^(?:SQL|SEC)-(?:E|Z0|CAP|SKIP)|^GO-(?:E|P|CAP)|^CR-E\d|^[EZ]\d|^[POQ]\d{2}$|^C\d\.|^SDP-")
     orph, undefined_anchor, n_mod = [], [], 0
     for f in COURSE[1:]:
         t = rd("work", f)
@@ -594,7 +594,91 @@ def conflicts():
         r = dag_check.check(*dag_check.build(ROOT))
         ok = not (r["cycles"] or r["order_bad"] or r["unknown"] or r["ledger_bad"])
         return ("PASS" if ok else "FAIL"), f"R4 probe: dag_check.py — {r['nodes']} nodes, {r['edges']} edges, clean: {ok}"
-    OWNED = {"C-65": c65} if STAGE != "R3" else {}   # deferred conflicts whose owner phase has now run
+    def c23():
+        ok, ev, y = ledger_gate()
+        cps = {"O01", "O02", "O07", "P08", "SEC-E4.21", "CR-E12", "O03", "O04", "O05", "O06", "P01"}
+        ids = (y or {}).get("ids") or {}
+        miss = sorted(cps - set(ids))
+        started = sorted(k for k in cps & set(ids) if ids[k].get("state") != "not-started")
+        good = ok and not miss and not started and ids.get("P08", {}).get("at") == "A5"
+        return ("PASS" if good else "FAIL"), f"regenerated ledger lists the checkpoints (missing {miss}); D2: all " \
+            f"not-started (started {started}); P08 first placed at A5 with its narrowed slice; schema: {ev}"
+
+    def c66():
+        ok, ev, _ = ledger_gate()
+        return ("PASS" if ok else "FAIL"), f"§14 YAML block validated against the ID registry and the DAG: {ev}"
+
+    def c38():
+        import manifest as mf
+        # same left boundary as the manifest: a token glued to "/" or "." is not read as an ID anywhere (paths, and
+        # slash-joined lists such as "CR-E4/CR-E26"); those are counted, not failed
+        want = re.compile(r"(?<![\w./-])(SD-\d{2}[a-c]|CR-E\d{1,2}|SD-\d{2}(?=\[)|SD-\d{2}(?=~))(?![\w-])")
+        gl = [t for f in COURSE for t in re.findall(r"/(SD-\d{2}[a-c]|CR-E\d{1,2})(?![\w-])", rd("work", f))]
+        alone = all(re.search(rf"(?<![\w./-]){t}(?![\w-])", "\n".join(rd("work", f) for f in COURSE)) for t in gl)
+        glued = len(gl)
+        miss, n = [], 0
+        for f in COURSE:
+            for l in rd("work", f).split("\n"):
+                got = {m.group(0) for m in mf.ID_RE.finditer(l)}
+                for m in want.finditer(l):
+                    n += 1
+                    if m.group(1) not in got:
+                        miss.append(m.group(1))
+        return ("PASS" if n and not miss and alone else "FAIL"), f"manifest ID regex reads {n} sub-ID, slice and recall " \
+            f"tokens (SD-38a, CR-E12, SD-38[...], SD-37~) as IDs; unread {sorted(set(miss))[:6]}; {glued} " \
+            f"slash-joined second IDs are not read (the manifest's path boundary); each also stands alone: {alone}"
+
+    def c40():
+        before = rd("outputs", "r2b", "in", "system-design-primer-companion.md").count("verify")
+        now = pri.count("verify")
+        ok = "**Web check of 2026-09-24**" in pri and now >= before and "Memcached" in pri
+        return ("PASS" if ok else "FAIL"), f"primer's volatile GCP details checked by web search on 2026-09-24 and " \
+            f"dated in place; `verify` flags {before} → {now} (none dropped, invariant 7)"
+
+    def c50():
+        import kit_verify
+        rep = rd("kit-verification.md")
+        m = re.search(r"Keys run: (\d+) · match: (\d+) · golden-unreproduced: (\d+)", rep)
+        h = re.search(r"Kit text sha256: `([0-9a-f]{64})`", rep)
+        cur_h = kit_verify.kit_hash(ROOT)
+        ok = bool(m and h) and m.group(1) == m.group(2) and int(m.group(1)) >= 100 and h.group(1) == cur_h
+        return ("PASS" if ok else "FAIL"), (f"verify-in-place: the kit printed in the SQL companion was run and "
+                                            f"{m.group(2)}/{m.group(1)} keys match their printed goldens (goldens "
+                                            f"compared, never edited); the report is for the current kit text: "
+                                            f"{bool(h) and h.group(1) == cur_h}" if m else "kit-verification.md "
+                                            "has no result line; run refactor-tools/kit_verify.py")
+
+    def c56():
+        ok = all(x in sql for x in ("def pins():", "LAB_ALLOW_PG_MAJOR", "\n    pins()\n", "SHOW TimeZone",
+                                     "datcollate", "The pins are checked, not trusted"))
+        return ("PASS" if ok else "FAIL"), "run_ex.py checks the pins before any key runs (major version 15 unless " \
+            "LAB_ALLOW_PG_MAJOR, UTC, C collation, seed row counts); the bring-up steps say so"
+
+    def c59():
+        arch = re.split(r"^(?=\*\*ARCH-\d\d · )", dp, flags=re.M)[1:]
+        ids = [re.match(r"\*\*(ARCH-\d\d)", a).group(1) for a in arch]
+        nochk = [i for i, a in zip(ids, arch) if not re.search(r"^(?:- )?\*\*Check:\*\*", a.split("\n## ")[0], re.M)]
+        ok = ids == [f"ARCH-{i:02d}" for i in range(1, 13)] and not nochk
+        return ("PASS" if ok else "FAIL"), f"all {len(ids)} ARCH modules have a check (the 11 that lacked one at R0 " \
+            f"— not 10 — were given one); without {nochk}"
+
+    def c61():
+        n = len(re.findall(r"^- \*\*Named real examples:\*\*", dp, re.M))
+        g = len(re.findall(r"^- \*\*GCP lens:\*\*", dp, re.M))
+        ok = n == 23 and g >= 23
+        return ("PASS" if ok else "FAIL"), f"each of the 23 patterns has named real examples ({n}) and a GCP lens " \
+            f"({g} lens lines in the file)"
+
+    def cnew08():
+        MG = re.compile(r"(?<![\w-])(?:[EZ]\d*[AB]5 (?:IAM|TLS)|[EZ][A-Z]\d)(?<!EC2)(?![\w-])")
+        a2a = sum(l.count("A2A") for l in cur.split("\n"))
+        flagged = [x.group(0) for l in cur.split("\n") for x in MG.finditer(l) if "A2A" in x.group(0)]
+        return ("PASS" if a2a and not flagged else "FAIL"), f"`A2A` appears {a2a}× in the main course and the " \
+            f"corruption regex flags none of it (whitelisted in section 5 as well)"
+
+    OWNED = ({"C-65": c65, "C-23": c23, "C-66": c66, "C-38": c38, "C-40": c40, "C-50": c50, "C-NEW-02": c50,
+              "C-56": c56, "C-59": c59, "C-61": c61, "C-NEW-08": cnew08}
+             if STAGE != "R3" else {})   # deferred conflicts whose owner phase has now run
     rows = []
     for cid, ph, probe, note in a.REG + a.CNEW:
         if probe is None and cid in OWNED:
@@ -877,6 +961,9 @@ def r5_checks():
                 drift.append(f"dp{n_:02d}/{name}")
     row("10 R5", "the 23 Go katas and their reference solutions in the Design Patterns companion are byte-identical to "
         "authored/academic/katas", "PASS" if not drift else "FAIL", f"46 files; differing {drift[:6]}")
+    ok, ev, _ = ledger_gate()
+    row("10 R5", "the regenerated ledger's YAML block follows the §14 schema and names only defined IDs, in states "
+        "rule 0.4.5 allows, in DAG order (C-23, C-66)", "PASS" if ok else "FAIL", ev)
     kd = os.path.join(ROOT, "authored", "academic", "katas")
     env = dict(os.environ, GOTOOLCHAIN="go1.27.1", GOPROXY="off")
     try:
@@ -891,6 +978,67 @@ def r5_checks():
                                                                            for a, b, c in res))
     except (OSError, subprocess.TimeoutExpired) as e:
         row("10 R5", "the Go katas pass offline on Go 1.27.1", "N/A (no Go toolchain)", str(e)[:120], "INFO")
+
+
+def ledger_gate():
+    """C-66 (§14): the regenerated ledger's fenced YAML block, checked against the ID registry and the DAG. C-23: the
+    checkpoints the parts place at A4…A8 are listed, and under the fresh start (D2) all of them are not-started."""
+    import yaml
+    import dag_check
+    import r5_acad
+    t = rd("work", r5_acad.LED)
+    blocks = re.findall(r"^```yaml\n(.*?)^```", t, re.M | re.S)
+    if len(blocks) != 1:
+        return False, f"{len(blocks)} fenced YAML blocks (want 1)", {}
+    y = yaml.safe_load(blocks[0])
+    bad = []
+    top = {"ledger_version", "as_of", "learner", "position", "ids", "misconceptions", "overrides", "errata_refs"}
+    bad += [f"missing key {k}" for k in sorted(top - set(y))]
+    if y.get("ledger_version") != 2:
+        bad.append("ledger_version is not 2")
+    ln, pos = y.get("learner") or {}, y.get("position") or {}
+    bad += [f"learner.{k} missing" for k in ("preferences", "error_pattern") if k not in ln]
+    bad += [f"position.{k} missing" for k in ("module", "block", "resume_concept", "open_question") if k not in pos]
+    old = rd("outputs", "r2b", "in", r5_acad.LED).split("\n")
+    want = [l[2:] for l in r5_acad.prefs(old)]
+    if ln.get("preferences") != want:
+        bad.append("learner.preferences are not the earlier ledger's §5 bullets verbatim")
+    if any(l not in t.split("\n") for l in r5_acad.prefs(old)):
+        bad.append("§5 bullets not restated verbatim in the prose")
+    dag, reg = dag_check.build(ROOT)
+    defs = {k for k, v in json.load(open(os.path.join(ROOT, "manifest-after.json")))["suite"]["defined_in"].items()
+            if set(v) - set(OTHER)} | reg
+    E = [(e["from"], e["to"]) for e in dag["edges"] if e["kind"] == "hard"]
+    mod = pos.get("module")
+    if mod not in dag_check.RANK:
+        bad.append(f"position.module {mod!r} is not a module")
+    else:
+        cur = rd("work", "Curriculum.md")
+        sec = re.search(rf"^### {re.escape(mod)}\. .*?(?=^### |\Z)", cur, re.M | re.S)
+        if not sec or pos.get("resume_concept") not in sec.group(0).split("\n"):
+            bad.append("resume_concept is not a line of the position module")
+    ids = y.get("ids") or {}
+    done = {k for k, v in ids.items() if (v or {}).get("state") in ("taught", "mastered", "sliced")}
+    for k, v in ids.items():
+        v = v or {}
+        if k not in defs:
+            bad.append(f"{k} is not defined in any part")
+        if v.get("state") not in r5_acad.STATES:
+            bad.append(f"{k} state {v.get('state')!r}")
+        if v.get("at") is not None and v["at"] not in dag_check.RANK:
+            bad.append(f"{k} at {v['at']!r} is not a module")
+        bad += [f"{k} after {a} (undefined)" for a in v.get("after", []) if a not in defs]
+        if v.get("state") not in ("not-started", None):   # its own prerequisites, then the DAG's hard edges
+            bad += [f"{k} is {v['state']} before {a}" for a in v.get("after", []) if a not in done]
+            if v.get("at") in dag_check.RANK and mod in dag_check.RANK and dag_check.RANK[v["at"]] > dag_check.RANK[mod]:
+                bad.append(f"{k} is {v['state']} but placed at {v['at']}, after the position {mod}")
+            for a, b in E:
+                if b == k and a not in done and not (a in dag_check.RANK and mod in dag_check.RANK and
+                                                     dag_check.RANK[a] <= dag_check.RANK[mod]):
+                    bad.append(f"{k} is {v['state']} before its hard prerequisite {a}")
+    er = set(re.findall(r"E-\d{3}", rd("errata.md")))
+    bad += [f"errata_ref {e} not in the errata file" for e in y.get("errata_refs") or [] if e not in er]
+    return not bad, f"{len(ids)} IDs, position {mod}; problems {bad[:6]}", y
 
 
 # ---------------------------------------------------------------- report

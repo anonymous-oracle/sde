@@ -94,3 +94,14 @@ The academic pass of this companion: the mathematics and the classic results und
 - **SDA-P8** — Expected: every balancer reading the same stale report sends its traffic to the same "least loaded" server, which overloads before the next report (herding); two random choices spread requests across servers while still avoiding the worst ones, and its ln ln n bound degrades gracefully with stale data. · Wrong: "least loaded is always optimal" — it is optimal only with fresh, exact load.
 - **SDA-P9** — Expected: at most b + r·t = 50 + 100 × 2 = 250. · Wrong: 200 — forgets the burst the full bucket allows.
 - **SDA-P10** — Expected: E[W_q] ∝ (1 + C²)/2; M/D/1 gives ρE[S]/(2(1 − ρ)), exactly half the M/M/1 value ρE[S]/(1 − ρ). · Wrong: "the same, because ρ is the same" — waiting depends on variability as well as load.
+@@@ c40-note
+  - **Web check of 2026-09-24** (by web search against Google's own product pages, release notes and blogs; the `verify` flags stay, because these details keep changing):
+    - Firestore with MongoDB compatibility: generally available since 26 August 2025, on the Firestore Enterprise edition.
+    - Spanner Graph: generally available since 30 January 2025, queried in ISO GQL and interoperable with SQL.
+    - Memorystore: the engines are Valkey, Redis Cluster, Redis and Memcached. Memorystore for Valkey is generally available with a 99.99% SLA and is the recommended default for new caches. Memorystore for Memcached is deprecated: from 1 February 2027 no new instances in new projects, and shutdown on 31 January 2029.
+    - Pub/Sub: topic and subscription retention up to 31 days (subscriptions default to 7 days); exactly-once delivery is an opt-in setting for pull subscriptions, within one region.
+    - The always-free `e2-micro`: one instance-month in us-west1, us-central1 or us-east1, with 30 GB-months of standard persistent disk.
+    - Managed Service for Apache Kafka: the search found Kafka Connect, VPC Service Controls and mTLS announced as GA, but did not settle the status of the service as a whole. It stays `verify`.
+    - Not checked that day: SLA percentages other than those above, HTTP/3 on the load balancers, Cloud Armor rule names, TTL support per store, LB timeouts, managed connection pooling, and Vertex AI Search for commerce.
+@@@ c40-memcached
+  - *Checked 2026-09-24:* Memorystore for Memcached is deprecated (no new instances in new projects from 1 February 2027; shutdown on 31 January 2029). Choose Valkey for a new cache-grade KV store.

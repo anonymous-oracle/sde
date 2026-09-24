@@ -4332,18 +4332,9 @@
   "in_progress": null,
   "done_cards": [],
   "ignored_under_D2": {
-   "done_modules": [
-    "A1",
-    "A2",
-    "A3",
-    "A4"
-   ],
-   "in_progress": "A5",
-   "done_cards": [
-    "SD-08",
-    "SD-30",
-    "SD-31"
-   ]
+   "done_modules": [],
+   "in_progress": null,
+   "done_cards": []
   }
  }
 }

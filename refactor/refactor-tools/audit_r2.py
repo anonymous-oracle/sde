@@ -481,8 +481,10 @@ def inv_checks():
                                                        [f"P0{i}" for i in range(1, 9)] + [f"O0{i}" for i in range(1, 8)]),
                                                    "P01–P08, O01–O07 present (full manifest diff in R3)")))
     import hashlib
+    # R5 regenerates the ledger (C-66, D2); the R2 output of it is the frozen copy beside the R2 snapshot
+    r2_out = lambda f: next(p for p in (os.path.join(ROOT, "outputs", "r2b", "in", f), os.path.join(W, f)) if os.path.exists(p))
     same = all(hashlib.sha256(open(os.path.join(ROOT, "inputs-original", FILES[k]), "rb").read()).hexdigest() ==
-               hashlib.sha256(open(os.path.join(W, FILES[k]), "rb").read()).hexdigest() for k in ("led", "skl"))
+               hashlib.sha256(open(r2_out(FILES[k]), "rb").read()).hexdigest() for k in ("led", "skl"))
     ro = all(not os.stat(os.path.join(ROOT, "inputs-original", f)).st_mode & 0o222 for f in os.listdir(os.path.join(ROOT, "inputs-original")))
     out.append(("14 inputs read-only; skill + ledger untouched in R2", *ok(same and ro, f"ledger/skill byte-identical: {same}; "
                                                                                   f"inputs-original mode a-w: {ro} (a fresh git checkout resets modes: run `chmod a-w inputs-original/*`)")))

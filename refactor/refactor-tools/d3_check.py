@@ -28,7 +28,8 @@ COURSE = FILES[:5]
 
 def stage_r2b(root):
     lost_all = 0
-    for f in COURSE:
+    # the ledger joins once R5 regenerates it from its frozen copy beside the R2 snapshot (C-66, D2)
+    for f in COURSE + [x for x in FILES[5:] if os.path.exists(os.path.join(root, "outputs", "r2b", "in", x))]:
         before = open(os.path.join(root, "outputs", "r2b", "in", f), encoding="utf-8").read().split("\n")
         hay = (open(os.path.join(root, "work", f), encoding="utf-8").read() + "\n" +
                open(os.path.join(root, "records", f), encoding="utf-8").read())

@@ -132,8 +132,9 @@ GO_MARK = "## Journaled build edits (written by r2b_build.py; do not edit below 
 def write_records(root):
     rd = os.path.join(root, "records")
     os.makedirs(rd, exist_ok=True)
-    for fn in COURSE:
-        out = [f"# Records for {fn} (R2b, R2c and R4 build edits, {DATE})", "",
+    for fn in COURSE + [f for f in RECORDS if f not in COURSE and f != r4_cur.GOF]:
+        phase = "R5 build edits" if fn == r5_acad.LED else "R2b, R2c and R4 build edits"
+        out = [f"# Records for {fn} ({phase}, {DATE})", "",
                "Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and "
                "every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course "
                "files; decision D3 keeps them here, verbatim. Each entry names the build journal number "
@@ -168,12 +169,12 @@ def main():
         sys.argv = [sys.argv[0], root]
         r2_build.main()
         os.makedirs(snap, exist_ok=True)
-        for fn in COURSE:
+        for fn in COURSE + [r5_acad.LED]:   # R2 leaves the ledger untouched; R5 regenerates it from this copy
             shutil.copyfile(os.path.join(work, fn), os.path.join(snap, fn))
         with open(sums, "w", encoding="utf-8") as fh:
-            fh.writelines(f"{sha256(os.path.join(snap, fn))}  {fn}\n" for fn in COURSE)
+            fh.writelines(f"{sha256(os.path.join(snap, fn))}  {fn}\n" for fn in COURSE + [r5_acad.LED])
     want = dict(reversed(l.split()) for l in open(sums, encoding="utf-8") if l.strip())
-    for fn in COURSE:
+    for fn in COURSE + [r5_acad.LED]:
         if sha256(os.path.join(snap, fn)) != want.get(fn):
             raise SystemExit(f"r2b_build: frozen R2 snapshot {fn} does not match outputs/r2b/in.sha256")
     files = {fn: F(fn, open(os.path.join(snap, fn), encoding="utf-8").read().split("\n")) for fn in COURSE}
@@ -190,12 +191,18 @@ def main():
     go = r2c_go.build(files, root)   # D12: the Go Language Companion and its tie-ins
     r4_cur.build(files, go)          # R4 (D16): no Track M, U or S; every anchor rebound, material re-homed
     r5_acad.build(files, go, root)   # R5 (D17): the academic pass of every part
-    for fn, f in list(files.items()) + [(go.n, go)]:
+    led = r5_acad.led(root)          # C-23, C-66 (D2): the regenerated ledger
+    for fn, f in list(files.items()) + [(go.n, go), (led.n, led)]:
         open(os.path.join(work, fn), "w", encoding="utf-8").write("\n".join(f.L))
     ns = os.path.join(work, "northstar-reference-app.md")
     if os.path.exists(ns):
         os.remove(ns)
     write_records(root)
+    # the finished course, in one folder beside the workspace: the six parts and the progress ledger
+    course = os.path.join(os.path.dirname(root), "course")
+    os.makedirs(course, exist_ok=True)
+    for fn in COURSE + [go.n, led.n]:
+        shutil.copyfile(os.path.join(work, fn), os.path.join(course, fn))
     with open(os.path.join(root, "outputs", "r2b", "journal.jsonl"), "w", encoding="utf-8") as fh:
         for k, j in enumerate(JOURNAL, 1):
             fh.write(json.dumps({"n": k, **j}, ensure_ascii=False, sort_keys=True) + "\n")
