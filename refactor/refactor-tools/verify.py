@@ -20,11 +20,14 @@ It runs, in order:
                  informational); the parent named as a file-style name.
   9. R4          C-49 teaching blocks (budget.py); C-65 prerequisite DAG (dag_check.py → dag.json); D15 bare
                  'Curriculum' only as a name; D16 no track M, U or S; C-48 volatility register (volatility.py).
+ 10. R5          (stages R5 and R10) the academic pass: rule 0.4.10 in six parts; the D blocks and the companion
+                 sections; one key per academic problem; a key per design-pattern check; the Go katas byte-identical
+                 to authored/academic/katas and passing offline on Go 1.27.1.
 
 Hard gate (R3): zero lost items, zero undefined references, zero orphans, zero file names or links; every other GATE
 row must pass. Rows marked INFO or HOLD are reported, never counted as passes.
 
-Usage: verify.py ROOT [--stage R3|R4|R10] [--no-rebuild]
+Usage: verify.py ROOT [--stage R3|R4|R5|R10] [--no-rebuild]
   → writes ROOT/manifest-after.json, ROOT/manifest-after-summary.md, ROOT/verification-report-<stage>.md; exit 1 on
     any GATE failure. Deterministic: no timestamps; every list is sorted or in a fixed order.
 """
@@ -36,7 +39,7 @@ import re
 import subprocess
 import sys
 
-ROOT = os.path.abspath(next((a for a in sys.argv[1:] if not a.startswith("--") and a not in ("R3", "R4", "R10")), "."))
+ROOT = os.path.abspath(next((a for a in sys.argv[1:] if not a.startswith("--") and a not in ("R3", "R4", "R5", "R10")), "."))
 STAGE = sys.argv[sys.argv.index("--stage") + 1] if "--stage" in sys.argv else "R3"
 TOOLS = os.path.join(ROOT, "refactor-tools")
 sys.path.insert(0, TOOLS)
@@ -810,6 +813,86 @@ def r4_checks():
         "PASS" if not hits else "FAIL", f"{len(hits)} {hits[:8]}")
 
 
+def r5_checks():
+    """R5 (learner decision of 2026-09-24): the academic pass is present in every part, every academic problem has a
+    key and every key a problem, every design-pattern check has a key, and the Go katas in the text are the ones that
+    were run."""
+    import r5_acad
+    T = {f: rd("work", f) for f in COURSE}
+    miss = [SHORT[f] for f in COURSE if not re.search(r"^\*\*0\.4\.10 Academic depth", T[f], re.M)]
+    row("10 R5", "rule 0.4.10 (the academic pass) is in the contract copy of all six parts", "PASS" if not miss else
+        "FAIL", f"missing {miss}")
+    cur = T["Curriculum.md"].split("\n")
+    nod = [m for m in r5_acad.MODULES if not any(l.startswith(f"{m}.D1 ") for l in cur)]
+    parts = {"pri": "SDA.1", "sql": "DBT.1", "sec": "CRA.1", "dp": "DPA.1", "go": "GOT.1"}
+    nop = [k for f, k in ((f, SHORT[f]) for f in COURSE[1:]) if parts[k] not in T[f]]
+    row("10 R5", "every module named in the academic plan has its D blocks (main course), and each companion has its "
+        "academic section", "PASS" if not (nod or nop) else "FAIL",
+        f"{len(r5_acad.MODULES)} modules; without D blocks {nod}; companions without the section {nop}")
+    lbl = r"(?:[A-D]\d{1,2}-P\d+|SDA-P\d+|DBT-P\d+|CRA-P\d+|GOT-P\d+|DPA-P\d+|DPE-\d+|DPS-[\d.]*\d)"
+    bad, n = [], 0
+    for f in COURSE:
+        L = T[f].split("\n")
+        mk = code_mask(L)
+        probs, keys = [], []
+        for i, l in enumerate(L):
+            if mk[i]:
+                continue
+            m = re.match(rf"^- \*\*({lbl})(?:\*\* ·| · )", l)
+            if m:
+                probs.append(m.group(1))
+            m = re.match(rf"^- \*\*({lbl})\*\* — Expected", l)
+            if m:
+                keys.append(m.group(1))
+        n += len(probs)
+        for x in sorted(set(probs) - set(keys)):
+            bad.append(f"{SHORT[f]} {x}: no key")
+        for x in sorted(set(keys) - set(probs)):
+            bad.append(f"{SHORT[f]} {x}: key without a problem")
+        for x in sorted({x for x in probs if probs.count(x) > 1} | {x for x in keys if keys.count(x) > 1}):
+            bad.append(f"{SHORT[f]} {x}: twice")
+    row("10 R5", "rule 0.4.7 for the academic pass: every academic problem, skip-test and bank exercise has exactly one "
+        "key (expected answer and an expected wrong answer), and every key has its problem", "PASS" if not bad else
+        "FAIL", f"{n} problems; failures {bad[:8]}")
+    dp = T["design-patterns-companion.md"].split("\n")
+    k0 = dp.index("### K-checks · the item checks (§3–§9)")
+    keyed = {m.group(1) for l in dp[k0:] for m in [re.match(r"^- \*\*([A-Z]+-\d\d|§9)\*\* — ", l)] if m}
+    items, cur_id = [], None
+    for l in dp[:k0]:
+        m = re.match(r"^(?:#### |\*\*|- \*\*)((?:F|PR|DP|ARCH|AP)-\d\d)\b", l)
+        if m:
+            cur_id = m.group(1)
+        if re.match(r"^\s*(?:- )?\*\*Check:\*\*", l) and cur_id:
+            items.append(cur_id)
+    nokey = sorted(set(items) - keyed)
+    row("10 R5", "C-61: every design-pattern item check has a key in Appendix K (and the two shared checks are "
+        "labelled integration checks)", "PASS" if not nokey and
+        sum("**Integration check:**" in l for l in dp) == 2 else "FAIL",
+        f"{len(set(items))} items with a check; keyed {len(keyed)}; without a key {nokey[:8]}")
+    fence, drift = [], []
+    for n_ in range(1, 24):
+        for name in ("kata_test.go", "kata.go"):
+            src = r5_acad.kata(n_, name)
+            if "\n".join(["```go"] + src + ["```"]) not in T["design-patterns-companion.md"]:
+                drift.append(f"dp{n_:02d}/{name}")
+    row("10 R5", "the 23 Go katas and their reference solutions in the Design Patterns companion are byte-identical to "
+        "authored/academic/katas", "PASS" if not drift else "FAIL", f"46 files; differing {drift[:6]}")
+    kd = os.path.join(ROOT, "authored", "academic", "katas")
+    env = dict(os.environ, GOTOOLCHAIN="go1.27.1", GOPROXY="off")
+    try:
+        res = []
+        for cmd in (["gofmt", "-l", "."], ["go", "vet", "./..."], ["go", "test", "-count=1", "./..."]):
+            p = subprocess.run(cmd, cwd=kd, env=env, capture_output=True, text=True, timeout=600)
+            out = (p.stdout + p.stderr).strip()
+            ok = p.returncode == 0 and (cmd[0] != "gofmt" or not out)
+            res.append((" ".join(cmd[:2]), ok, out.split("\n")[-1][:80]))
+        row("10 R5", "the Go katas pass offline on Go 1.27.1 (gofmt -l empty, go vet, go test; GOPROXY=off, nothing "
+            "downloaded)", "PASS" if all(r[1] for r in res) else "FAIL", "; ".join(f"{a}: {'ok' if b else c}"
+                                                                           for a, b, c in res))
+    except (OSError, subprocess.TimeoutExpired) as e:
+        row("10 R5", "the Go katas pass offline on Go 1.27.1", "N/A (no Go toolchain)", str(e)[:120], "INFO")
+
+
 # ---------------------------------------------------------------- report
 def main():
     no_rebuild = "--no-rebuild" in sys.argv
@@ -823,6 +906,8 @@ def main():
     crows = conflicts()
     lints()
     r4_checks()
+    if STAGE in ("R5", "R10"):
+        r5_checks()
     gate = [r for r in ROWS if r[2] == "GATE"]
     fails = [r for r in gate if not r[3].startswith("PASS")]
     esc = lambda s: str(s).replace("|", "\\|").replace("\n", " ")

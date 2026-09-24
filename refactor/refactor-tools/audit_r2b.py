@@ -130,7 +130,7 @@ def d12():
     if len(rule) != 1:
         bad.append("main course has no single rule 0.4.9")
     bad += [f"{k} lacks rule 0.4.9" for k in COURSE if k != "cur" and rule and rule[0] not in text(k).split("\n")]
-    bad += [f"{k} contract intro not 0.4.9" for k in COURSE if k != "cur" and "(0.4.1…0.4.9, and" not in text(k)]
+    bad += [f"{k} contract intro not 0.4.10" for k in COURSE if k != "cur" and "(0.4.1…0.4.10, and" not in text(k)]
     if "one course in six parts" not in cur or "- **The Go Language Companion" not in cur:
         bad.append("main §0.1 does not list six parts")
     mods = re.findall(r"^#### (GO-\d\d) ", go, re.M)

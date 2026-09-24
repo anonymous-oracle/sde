@@ -262,91 +262,91 @@ Refactor bookkeeping only, not course material. Decision D6 keeps provenance, th
 - If a companion file references module IDs that don't exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
 ````
 
-**J463** · PRI-1 · anchor-rewrite
+**J464** · PRI-1 · anchor-rewrite
 
 ````text
 Companion to `Curriculum` ("The Consolidated Cloud Mastery Curriculum")
 ````
 
-**J464** · PRI-1 · anchor-rewrite
+**J465** · PRI-1 · anchor-rewrite
 
 ````text
 Modified by the curriculum refactor on 2026-09-24; changes listed in CHANGELOG.md.
 ````
 
-**J465** · PRI-2 · anchor-rewrite
+**J466** · PRI-2 · anchor-rewrite
 
 ````text
 **This file is a complement to `Curriculum`, not a second curriculum. Read both. Whenever a Curriculum module is taught, also teach every companion concept bound to it (Section 2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
 ````
 
-**J466** · PRI-2 · anchor-rewrite
+**J467** · PRI-2 · anchor-rewrite
 
 ````text
    *Exception (added by the refactor):* `session-progress-ledger.md` is the single sanctioned cross-file tracker; inline `- [ ]` ticks remain authoritative and the ledger mirrors them. Refactor artifacts (`refactor-state.md`, manifests, reports) are build tooling, not trackers, and are not uploaded to teaching sessions.
 ````
 
-**J467** · PRI-2 · anchor-rewrite
+**J468** · PRI-2 · anchor-rewrite
 
 ````text
 When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
 ````
 
-**J468** · PRI-3 · anchor-rewrite
+**J469** · PRI-3 · anchor-rewrite
 
 ````text
 - `V-COMP, V-STOR, V-NET, V-DATA, V-AI, V-SEC, V-OPS` — `Curriculum` Part V service-map categories. `M1…M6`, `U1…U7`, `S1…S11` — new `Curriculum` tracks (stubs until R4). `Nx.y` — sections of `northstar-reference-app.md`.
 ````
 
-**J469** · PRI-3 · anchor-rewrite
+**J470** · PRI-3 · anchor-rewrite
 
 ````text
 - Binding notation: `SD-21@A8` primary · `SD-21[hash-table slice]@A4` slice · `SD-21~C2` recall. The single source is `primer-binding-table.md`; the header stitches, §2 and §4.5 are generated from it.
 ````
 
-**J470** · PRI-4 · anchor-rewrite
+**J471** · PRI-4 · anchor-rewrite
 
 ````text
 *Generated from `primer-binding-table.md` (2026-09-24).* Columns: PRIMARY = the session that teaches the concept in full; slices = one named ingredient taught earlier (or a continuation after); recalls = a one-line reference back; also in this session = the problem-level work (and, for V rows, the Lens-3 service wording) the pre-refactor row named, kept verbatim. The full pre-refactor table is kept verbatim in the D3 archive at the end of this file.
 ````
 
-**J471** · PRI-4 · anchor-rewrite
+**J472** · PRI-4 · anchor-rewrite
 
 ````text
 Suite-wide ownership lives in the register in `Curriculum` §0.3 (which also carries the v1.1 rows for PACELC, cache stampede, tail latency, Little's law, consistent hashing, CRDTs, sketches, unique IDs, GC, event sourcing and credential storage). This table is the primer's slice of it; on a conflict §0.3 wins.
 ````
 
-**J472** · PRI-4 · anchor-rewrite
+**J473** · PRI-4 · anchor-rewrite
 
 ````text
 - **Taught by (index module):** in transit → `Curriculum` A5 TLS + cyber CR-11/CR-12 (the A5 transit slice) · at rest → CR-14 @ Phase 4 · XSS → WA-02 @ A10 · SQL injection / parameterized queries → SQL SL-13 (mechanics) + cyber WA-05 (attacker model) · least privilege → B5 + CL-03 · the P08 network hardening → NT-01, NT-05, NT-07 @ A5.
 ````
 
-**J473** · PRI-4 · anchor-rewrite
+**J474** · PRI-4 · anchor-rewrite
 
 ````text
 > **Note:** SD-04's prerequisite `A9` reads as: `Curriculum` A8 gives the CAP statement and intuition; A9 gives the formal limits and PACELC (A8 lists "CAP theorem"). SD-14, SD-15 and SD-17 are PRIMARY at A9 with an A8 forward pointer. The checked order is in `primer-binding-table.md` §2.
 ````
 
-**J474** · PRI-4 · anchor-rewrite
+**J475** · PRI-4 · anchor-rewrite
 
 ````text
 > **Note:** SD-04's prerequisite `A9` reads as: A8 gives the CAP statement and intuition; A9 gives the formal limits and PACELC (A8 lists "CAP theorem"). SD-14, SD-15 and SD-17 are PRIMARY at A9 with an A8 forward pointer. The checked order is in `primer-binding-table.md` §2.
 ````
 
-**J475** · PRI-4 · anchor-rewrite
+**J476** · PRI-4 · anchor-rewrite
 
 ````text
 > **Note:** O01, O02 and O07 are A4 recall checkpoints (practice, not re-teaching). O03–O06 are A7 checkpoints: O03 after DP-18 Chain of Responsibility and DP-16 State; O04 and O05 after F-01…F-04 and SOLID (PR-01…PR-05); O06 after SD-12. The "defects to find" lists double as anti-pattern practice: cross-reference design-patterns AP-01…AP-10 (`design-patterns-companion.md` §8). Card text unchanged.
 ````
 
-**J476** · PRI-4 · anchor-rewrite
+**J477** · PRI-4 · anchor-rewrite
 
 ````text
 *Column 2 of the Phase 0–4 rows is generated from `primer-binding-table.md` (2026-09-24): `ID[slice]` = a named ingredient taught before the concept's full session; `ID~` = recall. The pre-refactor rows are in the D3 archive.*
 ````
 
-**J877** · R4-8 · anchor-rewrite
+**J878** · R4-8 · anchor-rewrite
 
 ````text
 - `V-COMP, V-STOR, V-NET, V-DATA, V-AI, V-SEC, V-OPS` — the main course's Part V service-map categories. `M1…M6`, `U1…U7`, `S1…S11` — the main course's reserved tracks (scope stubs; its reserved-tracks table says what each covers).
