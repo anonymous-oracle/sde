@@ -59,7 +59,7 @@ Full table and commands: `r0-reproduction.md` (regenerate with `python3 refactor
 | D3 | `gcp.md` is the primary Curriculum; content may be rearranged, never removed. | Stale text gets dated notes. Every line changed by a correction or regeneration keeps its pre-refactor text in the file's closing "Pre-refactor text archive (D3)". Checked by `d3_check.py`. Applied to all companions too. |
 | D4 | Verify and keep all 18 certifications. | `cert-verification.md`; R2 annotated each cert (box, Lab Reality, D4 note) and corrected "fifteen" → "eighteen". |
 
-| D5–D9 | Later the same day: drop Northstar and the cookie question (D5); 5 self-contained files, no file names or links, lab kit embedded, bookkeeping moved to `refactor/` (D6); one topic, one home (D7); delete `gcp-curriculum.md` once no longer needed (D8); expand the nine checkpoints and every other gap (D9). | Full text and readings in `requirements-hardening.md` §1. Supersedes the prompt's Track N (§9.4), §7 overlap register and "companion §0 points to `Curriculum`" rules. |
+| D5–D11 | Later the same day: course-wide IDs stay as stitch/mapping tags, material dependencies go (D11); companions serve only the Curriculum course; `gcp-curriculum.md` is a content reference with no rules taken from it (D10); drop Northstar and the cookie question (D5); 5 self-contained files, no file names or links, lab kit embedded, bookkeeping moved to `refactor/` (D6); one topic, one home (D7); delete `gcp-curriculum.md` once no longer needed (D8); expand the nine checkpoints and every other gap (D9). | Full text and readings in `requirements-hardening.md` §1. Supersedes the prompt's Track N (§9.4), §7 overlap register and "companion §0 points to `Curriculum`" rules. |
 
 R0 questions Q1–Q4 are all superseded by D1–D4.
 
@@ -115,7 +115,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 | RD-6 | Gate defaults R2-Q1, SQL-07/SEC-08, SQL-17, SQL-02/03, SEC-06, SEC-11 | As applied at the rename gate (`outputs/r2-gate/rename-dryrun-summary.md`). SQL `T1…T6` stay as `tx_tests.py` scenario labels. |
 | RD-7 | `errata.md` seed | C-67's two chat errors dropped (D2). Seeded with the 3 content errors R2 corrected (C-44 ×2, C-60). |
 | RD-8 | §6.2 "NT-04 already taught — mark done" | Not ticked (D2 fresh start). |
-| RD-10 | Complementing without links (D6/D7) | Primary file keeps one study-order table naming companion parts by title only. |
+| RD-10 | Complementing without links (D6/D7) | Superseded by D11: IDs stay as tags; each companion keeps its stitch table; shared rules copied into each companion §0. |
 
 ## 9. What R3's verify.py must know
 
@@ -129,8 +129,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 
 ## 10. Open questions (for the learner)
 
-1. RD-10: title-only study-order table in the primary file acceptable?
-2. RD-1: accept the nine checkpoint mappings (expanded into full cards under D9 either way)?
+1. RD-1: accept the nine checkpoint mappings (expanded into full cards under D9 either way)?
 
 ## 11. Deferred (not R2 by the prompt's phase rules)
 

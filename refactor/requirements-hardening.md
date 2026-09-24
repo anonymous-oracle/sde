@@ -17,6 +17,8 @@ Evidence for everything below "R2" is in `audit-R2.md`. Re-run it with `python3 
 | D7 | "you free to collect required material from files, just make sure topics do not overlap." | One topic, one home. Every topic is taught in exactly one of the 5 files. Where two files teach the same topic today, the fuller treatment is kept in the owning file and the other file's unique lines are moved into it (D3: moved, never dropped). This replaces the prompt's "owner teaches, others add" overlap register (§7). |
 | D8 | "gcp curriculum file is a legacy course, keep that file only until it's useful and then delete it, otherwise that will only confuse you." | `gcp-curriculum.md` (repo root) is source material only. It is deleted in the phase that finishes borrowing from it, once a check shows no course file still needs it. Git history keeps it. |
 | D9 | "expand the nine mappings and any other such missing gaps so that we have a proper, robust self contained curriculum." | The nine checkpoint IDs (C-11) each become a full checkpoint card with a scenario, a prediction step, a check question and an answer key, inside the file that owns the topic. The same applies to every other thin or missing item a gap scan finds (stub sections, pointer-only modules, empty Lab/Check lines). |
+| D10 | "the companion files are strictly for the gcp.md course or the Curriculum course. Both have same content. @gcp-curriculum.md is strictly a helper or content reference file. for curriculum material and nothing else. No rule, instruction, should be used from it." | The 4 companions exist only to serve the Curriculum course (`gcp.md` = `Curriculum`). `gcp-curriculum.md` may be consulted for facts and material only. No rule, instruction, structure, numbering, ownership split, milestone or "N" section from it enters the course. A companion line that hands part of a topic to the legacy course ("N4.3 owns the lab; here we add…") is resolved by the companion teaching the whole topic itself. Only the missing piece is written, in the companion's own style. |
+| D11 | Asked whether companions may keep the course's module numbers (A5, C3, V-NET…) as tags: "if they help in mapping and stitching the curriculum material as a one single course, keep them." | Course-wide IDs (all unique across the 5 files since the R2 renames) stay as mapping and stitching tags: stitch tables, prerequisite maps, "study with A5", and "recall CR-17" all stay. What must go: file names, links, the backticked file-style name `Curriculum` (it becomes "the main course"), Northstar and every `N…` section, and every **material dependency**. A material dependency is a line that sends the learner outside the 5 files, or to a file that does not actually contain the material ("A10 owns the password lab" when A10 has no such lab). Within the 5 files, each topic has one home (D7). Other files tag it by ID and recall it; they do not re-teach it. |
 
 ### What the decisions change in the prompt
 
@@ -44,7 +46,7 @@ RD-1…RD-8 are in `refactor-state.md` §8. RD-2 and RD-3 lapse under D5 (there 
 
 | # | Item | Default taken |
 |---|---|---|
-| RD-10 | How the files complement each other with no links | The primary file holds the one course plan. Its study-order table names each companion part by **title** only (e.g. "Cloud Cybersecurity companion, Part 3"): no file names, no section links. Companions carry no pointers back; each module states its prerequisites as plain topics. |
+| RD-10 | How the files complement each other with no links | Superseded by D11: course-wide IDs stay as tags. Each companion keeps its own stitch table. The main course's §0.1 names the companions by title, with no file names. Shared rules (teaching contract, lab safety) are written into each companion's §0 so none depends on another file for them. |
 
 ## 4. Facts corrected against the prompt (the files win)
 
@@ -130,7 +132,6 @@ Each phase ends with its report and the 5-question self-review (§2 hardening 4)
 
 ## 7. Open questions for the learner
 
-1. **RD-10:** is a title-only study-order table in the primary file acceptable, or must even that go?
-2. **RD-1, the nine checkpoint mappings:** do you accept them? They are expanded into full cards under D9 either way.
+1. **RD-1, the nine checkpoint mappings:** do you accept them? They are expanded into full cards under D9 either way.
 
 Closed by D5: N6.16 meaning, the Northstar rename timing, and the cookie question.
