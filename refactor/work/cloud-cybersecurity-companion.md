@@ -158,7 +158,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 
 Every concept module appears once as primary; secondary anchors are previews, recalls or Lens-3 passes. The Checkpoint column names the card to run once the module and its stitched concepts are done; each is a full card in §5 (scenario, prediction, design, check) with its key in Appendix K. VPC-SC is NT-06.
 
-| Main-course anchor | Taught here (primary, §6.2) | Also in this session (secondary) | Checkpoint |
+| Main-course anchor | Taught here (primary) | Also in this session (secondary) | Checkpoint |
 |---|---|---|---|
 | **A1** | — | PQ-S-01 (recall) | — |
 | **A5** | PQ-S-04 (HTTP/TLS (preview)), CR-11 (TLS), CR-12 (TLS), DOS-01 (load balancing), DOS-02 (DNS/UDP), NT-01 (NAT/firewalls/proxies), NT-02 (NAT/firewalls/proxies), NT-07 (NAT/firewalls/proxies), NT-03 (DNS), NT-04 (DNS), NT-05 (VPN), NT-08 (TLS) — CR-11/CR-12 at mechanism level plus the minimal public-key intuition bridge | AU-01 (HTTP cookie mechanics (recall)), AU-02 (HTTP cookie mechanics (recall)), AU-03 (HTTP cookie mechanics (recall)), AU-04 (HTTP cookie mechanics (recall)), DOS-05 (HTTP (recall)) | SEC-E4.21, CR-E12 |

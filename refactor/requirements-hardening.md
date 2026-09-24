@@ -78,6 +78,7 @@ Each phase ends with its report and the 5-question self-review (§2 hardening 4)
   - the ID regex accepts `SD-\d{2}[a-c]?` and slice/recall notation (C-38).
 - **Pass with:** zero orphans, zero undefined references, zero lost items, and zero live foreign-parent names or pseudo-anchors. It must also pass all primer §8.2 checks: the CC BY line, the mermaid edge superset, verbatim-table hashes, "my addition" 9/9, and C-31's 20-word rule (primer-authored paragraphs only).
 - **Stop rule:** if the gate fails twice after fixes, stop and report. Never weaken a check.
+- **Done (2026-09-24):** PASS on the first run after fixes; 42 of 42 GATE rows pass, D8 is HOLD. Results, fixes and tool corrections are in `refactor-state.md` §6e.
 
 **R4 (`Curriculum`).**
 - New tracks M/U/S follow the §9.1 13-part standard, with a skip-test.
@@ -138,6 +139,8 @@ Each phase ends with its report and the 5-question self-review (§2 hardening 4)
 
 2. **D12 scope:** the Go companion takes only Nasiko's Go language and engineering nodes. Payments are now taught by GO-29 (D13), written from the standards and the owner modules rather than from the payments addendum. Do you also want the control-plane reconstruction phases (P0–P10), the service specifications, or the mathematics / ML tracks brought in? Each would need its own home under D7.
 
-3. **D8 after D13:** delete the restored `gcp-curriculum.md` now, or keep it until R3? R3's hard gate cannot pass D8 while it is present.
+3. **D8 after D13:** R3 passed with D8 as HOLD. Delete the restored `gcp-curriculum.md` now (`audit_r2b.py` then passes D8 too), or keep it?
+
+4. **Bare "Curriculum":** 68 places still use it as the parent's name (primer 59, patterns 6, main course 3). Rename them to "the main course" in R4?
 
 Closed by D5: N6.16 meaning, the Northstar rename timing, and the cookie question.

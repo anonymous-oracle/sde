@@ -152,12 +152,12 @@ Each main-course module on the left is taught **with** the companion modules on 
 | **B5** IAM (+ **OD-11** IAM DB auth) | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | SQL-E10.6 (RLS) after A10 |
 | **C6** observability day one | OD-02 logs, slow-query log, `pg_stat_statements`, Query Insights vocabulary | PX-1 |
 | **B3** HA & autoscaling | OD-03 pool arithmetic under autoscaling (instances × pool ≤ `max_connections`), with the OD-03 worksheet | TX-8 |
-| **A8 — SQL design track** (concept, then lab; engine slices §4.0) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates) |
+| **A8 — SQL design track** (concept, then lab; engine slices §4.0) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates); BH-1 after SQL-E3.5 |
 | **A8** + **V-STOR** GCP relational offerings (decision table) | AN-01 OLTP/OLAP · DD-08 JSONB vs relational · §8.1 Rosetta table | DT-1 |
 | **V-STOR** Cloud SQL setup (required procedure) | **OD-11** provisioning, connectivity, security, operations · OD-03 pooling & pool math · OD-04 backup/restore drills *as runbook (DB-10 owns the toy)* · OD-05 replicas & read-your-writes · SL-13 privileges · §8.2 Terraform | TF-DB1, TX-8, BH-5 |
 | **A8** (NoSQL) + **V-STOR** Firestore (primer SD-22) | AN-06 the *same question* in Firestore and SQL — where the document model wins and loses | DT-7 |
 | **V-STOR** Cloud Storage | PQ-04 `COPY`/import & export of CSV/JSON through GCS; encoding and NULL-vs-empty pitfalls | SQL-E8.8 – SQL-E8.10 |
-| **A8** + **C4** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migrations as jobs, tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
+| **A8** + **C4** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migrations as jobs, tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4, BH-6 |
 | **A9** + **V-STOR** Spanner & NoSQL map (primer SD-25) | AN-05 GoogleSQL/Spanner · DD-13 key design & partitioning · CS-07 TrueTime, 2PC, Paxos groups | DT-6, SCH-5 |
 | **A7** software design (repositories; design-patterns Repository, Unit of Work) | OD-09 application data access: N+1, ORM pitfalls, prepared statements, transaction boundaries | BH-3 |
 | **A7** async (Pub/Sub, Tasks, Scheduler) | SL-10 idempotent writes: `INSERT … ON CONFLICT`, unique keys | SQL-E9.3 |
@@ -974,7 +974,7 @@ WHERE p.category_id IS NOT NULL
 ex(id="E4.7", level=4, title="Latest order per user (tenant 3)", tags="LATERAL · top-1 per group",
    prompt="For each user of tenant 3 who has orders: their most recent order (`placed_at DESC`, tie → higher `order_id`).",
    out="`user_id, order_id, placed_at`",
-   trap="`LATERAL` runs the subquery once per outer row and can reference it — the SQL for-each loop. Missing index on `(user_id, placed_at)` makes it a seq scan per user (E12.1).",
+   trap="`LATERAL` runs the subquery once per outer row and can reference it — the SQL for-each loop. Missing index on `(user_id, placed_at)` makes it a seq scan per user (PX-1).",
    key="""SELECT u.user_id, o.order_id, o.placed_at
 FROM lab.app_user u
 CROSS JOIN LATERAL (SELECT order_id, placed_at FROM lab.customer_order c WHERE c.user_id = u.user_id
