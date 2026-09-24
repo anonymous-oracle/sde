@@ -23,7 +23,7 @@ def _r(prefix, a, b):
     return [f"{prefix}-{n:02d}" for n in range(a, b + 1)]
 
 
-_b(["PQ-S-01"], "A10", ["A1 recall"])
+_b(["PQ-S-01"], "A10 (gate for CR-01)", ["A1 recall"])
 _b(["PQ-S-02", "PQ-S-05", "PQ-S-06"], "A10")
 _b(["PQ-S-03"], "B1")
 _b(["PQ-S-04"], "A5 HTTP/TLS (preview)", ["A10"])
@@ -38,7 +38,7 @@ _b(["CR-14", "CR-15", "CR-17", "CR-18", "CR-20"], "Phase 4 Security", ["N7.x"])
 _b(["CR-16"], "A10", ["SC-01"])
 _b(_r("AU", 1, 4), "A10", ["A5 HTTP cookie mechanics (recall)"])
 _b(_r("AU", 5, 7), "A7", ["A10 federation/SSO"])
-_b(_r("AU", 8, 10), "A10")
+_b(_r("AU", 8, 10), "A10 (MFA)")
 _b(_r("AU", 11, 13), "A7", ["A10"])
 _b(["AU-14"], "B5")
 _b(_r("AB", 1, 5), "A7", ["V-NET (Armor, Lens-3)"])
@@ -127,7 +127,7 @@ def header_stitch(mid, old):
         elif tok in ("B5", "A5", "A10", "A7"):
             if not any(a.startswith(tok) for a in anchors):
                 keep.append(tok)
-        else:
+        elif tok not in anchors and tok not in keep:  # drop exact duplicates of a BIND anchor
             keep.append(tok)
     for n in nf:
         if n not in anchors:
@@ -199,6 +199,9 @@ def stitch_table(old_rows):
         if re.match(r"\| \*\*(Cloud Security Engineer|Cloud Network Engineer|Security Operations|GenAI|AWS Security)", r):
             r = r.replace("E-NT3", "SEC-E10.7 (was E-NT3)").replace("A5 revisit", "A5 recall")
             r = r.replace("`gcp.md` provider tables", "`Curriculum` Part VIII tables")
+            cells = [c.strip() for c in r.strip().strip("|").split(" | ")]
+            if len(cells) == 3:  # the old table had 3 columns; the regenerated one has a secondary column
+                r = f"| {cells[0]} | {cells[1]} | — | {cells[2]} |"
             rows.append(r)
     return rows
 

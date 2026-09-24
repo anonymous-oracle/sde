@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""R2b audit: are the five course files self-contained, loss-free and reproducible (learner decisions D2–D11)?
+
+Runs the self-containment probe, the D3 loss check (both stages), the frozen-snapshot check, an idempotency rebuild,
+the invariants that R2b could break, and one probe per learner decision. Writes ROOT/audit-R2b.md; exits 1 on a FAIL.
+
+Usage: audit_r2b.py ROOT
+Deterministic: no timestamps; every list is in a fixed order.
+"""
+import hashlib
+import os
+import re
+import subprocess
+import sys
+
+ROOT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
+W = os.path.join(ROOT, "work")
+IN = os.path.join(ROOT, "inputs-original")
+COURSE = {"cur": "Curriculum.md", "pri": "system-design-primer-companion.md", "sql": "sql-databases-companion.md",
+          "dp": "design-patterns-companion.md", "sec": "cloud-cybersecurity-companion.md"}
+
+
+def text(k, base=W):
+    return open(os.path.join(base, COURSE[k]), encoding="utf-8").read()
+
+
+def ok(cond, ev):
+    return ("PASS" if cond else "FAIL"), ev
+
+
+def run(*args):
+    p = subprocess.run([sys.executable, *args], cwd=ROOT, capture_output=True, text=True)
+    return p.returncode, [l for l in (p.stdout + p.stderr).strip().split("\n") if l]
+
+
+def tree_hash():
+    h = hashlib.sha256()
+    for d in ("work", "records"):
+        for fn in sorted(os.listdir(os.path.join(ROOT, d))):
+            h.update(fn.encode() + open(os.path.join(ROOT, d, fn), "rb").read())
+    h.update(open(os.path.join(ROOT, "outputs", "r2b", "journal.jsonl"), "rb").read())
+    return h.hexdigest()
+
+
+def heading(k, mid):
+    return len(re.findall(rf"^#{{3,4}} {re.escape(mid)} ", text(k), re.M))
+
+
+def checks():
+    out = []
+    rc, o = run("refactor-tools/selfcontained.py", ".")
+    out.append(("D6 self-contained (V1–V6)", *ok(rc == 0, "; ".join(l for l in o if l.startswith(("PASS", "FAIL"))))))
+    rc, o = run("refactor-tools/d3_check.py", ".", "--stage", "all")
+    out.append(("D3 no content loss (R2 and R2b)", *ok(rc == 0, f"{sum(l.startswith('PASS') for l in o)} PASS, "
+                                                                f"{sum(l.startswith('FAIL') for l in o)} FAIL")))
+    before = tree_hash()
+    rc, o = run("refactor-tools/r2b_build.py", ".")
+    after = tree_hash()
+    out.append(("Reproducible from the frozen R2 snapshot", *ok(rc == 0 and before == after,
+                "rebuild " + ("left work/, records/ and the journal byte-identical" if before == after else "CHANGED output")
+                + (f"; {o[-1][:60]}" if o else ""))))
+
+    ins = text("sql", IN)
+    g = lambda t: sorted(re.findall(r"\b\d+:[0-9a-f]{8}\b", t))
+    blk = lambda t: re.findall(r"```sql\n.*?```", t, re.S)
+    # the kit's goldens JSON (printed in full in §3.8) repeats every fingerprint once more, so compare the sets
+    out.append(("Invariant 6: goldens immutable", *ok(set(g(ins)) == set(g(text("sql"))) and set(blk(ins)) <= set(blk(text("sql"))),
+                f"{len(set(g(ins)))} distinct fingerprints, same set before and after (the §3.8 goldens JSON repeats "
+                f"them); {len(blk(ins))} input SQL blocks all present")))
+    vf = {k: (text(k, IN).count("(verify"), text(k).count("(verify")) for k in COURSE}
+    out.append(("Invariant 7: `(verify)` flags kept", *ok(all(b >= a for a, b in vf.values()), f"before→after {vf}")))
+    cc = [l for l in text("pri", IN).split("\n") if "CC BY" in l]
+    out.append(("Invariant 11: CC BY line + change notice", *ok(all(l in text("pri") for l in cc) and
+                "Modified on 2026-09-24, when this companion was fitted into the five-part course." in text("pri"),
+                f"{len(cc)} CC BY lines unchanged; the change notice is in words")))
+    out.append(("Invariant 12: primer numbers", *ok(all(f"**{p}**" in text("pri") for p in
+                [f"P0{i}" for i in range(1, 9)] + [f"O0{i}" for i in range(1, 8)]), "P01–P08, O01–O07 present")))
+
+    ticked = {k: len(re.findall(r"^\s*- \[[xX]\] ", text(k), re.M)) for k in COURSE}
+    out.append(("D2 fresh start", *ok(not any(ticked.values()), f"ticked boxes {ticked}")))
+    ns = {k: len(re.findall(r"Northstar|northstar", text(k))) for k in COURSE}
+    out.append(("D5 Northstar deleted", *ok(not os.path.exists(os.path.join(W, "northstar-reference-app.md"))
+                                           and not any(ns.values()), f"file absent; mentions {ns}")))
+    homes = [("pri", "SD-22"), ("pri", "SD-23"), ("pri", "SD-25"), ("sql", "OD-03"), ("sql", "OD-08"),
+             ("sql", "OD-09"), ("sql", "OD-11"), ("sql", "DD-03"), ("sql", "DD-05"), ("sql", "DD-09"),
+             ("sql", "DD-13"), ("sql", "CS-02"), ("sql", "AN-02"), ("sec", "PV-03"), ("sec", "CR-14")]
+    bad = [f"{k}:{m}" for k, m in homes if heading(k, m) != 1 or any(heading(o, m) for o in COURSE if o != k)]
+    out.append(("D7 one home per topic", *ok(not bad, f"{len(homes)} home modules, each one heading in its own file "
+                                                      f"only" + (f"; wrong: {bad}" if bad else ""))))
+    legacy = os.path.join(ROOT, "..", "gcp-curriculum.md")
+    out.append(("D8 legacy file deleted", *ok(not os.path.exists(legacy), "gcp-curriculum.md " +
+                                              ("absent" if not os.path.exists(legacy) else "still present"))))
+    sec, sql, pri = text("sec"), text("sql"), text("pri")
+    cards = ["SEC-Z0.5", "SEC-E3.1", "SEC-E3.5", "SEC-E4.3", "SEC-E4.16", "SEC-E4.21", "SEC-E6.5", "SEC-E6.8", "SEC-E10.7"]
+    miss = [c for c in cards if not re.search(rf"^- \*\*{re.escape(c)}:\*\*", sec, re.M)]
+    fills = {"nine checkpoint keys": not miss, "TF-DB plan acceptance": "**What each plan must show**" in sql,
+             "SQL-CAP3 acceptance": "**SQL-CAP3 acceptance**" in sql, "SQL lab kit": "Every file of the kit, in full" in sql,
+             "SD-25 Filestore row": "| Filestore |" in pri, "reference app defined": "`shop.example`" in sec}
+    out.append(("D9 gaps filled", *ok(all(fills.values()), "; ".join(f"{k} {'yes' if v else 'NO'}" for k, v in fills.items())
+                                      + (f"; keys missing {miss}" if miss else ""))))
+    bt = {k: text(k).count("`Curriculum`") for k in COURSE}
+    out.append(("D11 parent named 'the main course'", *ok(not any(bt.values()), f"backticked `Curriculum` {bt}")))
+    return out
+
+
+def main():
+    rows = checks()
+    fails = sum(1 for _, s, _ in rows if s == "FAIL")
+    esc = lambda s: str(s).replace("|", "\\|").replace("\n", " ")
+    md = ["# R2b audit", "",
+          "Generated by `refactor-tools/audit_r2b.py` (re-run: `python3 refactor-tools/audit_r2b.py .`). It checks the "
+          "five course files in `work/` after R2b.", "",
+          f"**Result: {'PASS' if not fails else f'{fails} FAIL'}**", "",
+          "| Check | Status | Evidence |", "|---|---|---|"]
+    md += [f"| {a} | {s} | {esc(e)} |" for a, s, e in rows]
+    open(os.path.join(ROOT, "audit-R2b.md"), "w", encoding="utf-8").write("\n".join(md) + "\n")
+    for a, s, e in rows:
+        print(s, a, "—", e[:150])
+    print(f"audit_r2b: {'PASS' if not fails else str(fails) + ' FAIL'}")
+    sys.exit(1 if fails else 0)
+
+
+if __name__ == "__main__":
+    main()

@@ -15,6 +15,14 @@ SCAN = ["Curriculum.md", "system-design-primer-companion.md", "sql-databases-com
 SHORT = {"Curriculum.md": "Curriculum", "system-design-primer-companion.md": "primer",
          "sql-databases-companion.md": "SQL", "design-patterns-companion.md": "patterns",
          "cloud-cybersecurity-companion.md": "cyber"}
+# C-06: each 8.1 primitive gets a `Curriculum` anchor. The old parent numbers them 8.1.1–8.1.6 (RD-2); C-06's seven
+# primitives live in 8.1.5 (cursor pagination) and 8.1.6 (the compressed-ownership list).
+C06 = {
+    "N8.1.5": "cursor pagination → A8",
+    "N8.1.6": "RLS multi-tenancy → A8 · schema evolution → A8 · LSM vs B-tree comparison toy → A8 · hot partition / "
+              "key histogram → A9 · idempotency → A9 · connection-pool math → A5/A8 recall (SD-30 already covers the "
+              "connection budget)",
+}
 PARTS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "9b", "9c", "10", "11", "11b", "12"]
 HEAD_ID = re.compile(r"^#{2,4} (?:[A-Z]{2,4}(?:-S)?-\d{2}|SEC-E[\d.]+|SQL-E[\d.]+|SEC-Z0\.\d+|SQL-Z0\.\d+|SCH-\d|"
                      r"TX-\d|PX-\d+|BH-\d|DT-\d|DB-\d+|SEC-CAP\d|SQL-CAP\d|CR-E\d+)\b")
@@ -101,6 +109,8 @@ def build(root):
                                              "not found in `gcp-curriculum.md`; listed as an open question."))
             rb = sorted(R.get(s, set()))
             out.append("- **Referenced by:** " + ("; ".join(rb) if rb else "— (named by C-06)"))
+            if s in C06:
+                out.append(f"- **`Curriculum` anchors (C-06):** {C06[s]}.")
             out.append("- **Status:** [stub — authored in R9]")
             out.append("")
     missing = sorted(i for i in ids if not any(l.startswith(f"## {i} · ") or l.startswith(f"### {i} · ") for l in out))
