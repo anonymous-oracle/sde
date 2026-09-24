@@ -574,805 +574,805 @@ Why: `Curriculum` owns the order and the module spine; `northstar-reference-app.
 #### AN-07 · Search & vectors in SQL — stitch: D4 + N9c.2 / N9c.5
 ````
 
-**J463** · SQL-1 · anchor-rewrite
+**J480** · SQL-1 · anchor-rewrite
 
 ````text
 Companion to `Curriculum` ("The Consolidated Cloud Mastery Curriculum") and to its reference application `northstar-reference-app.md` (Track N).
 ````
 
-**J464** · SQL-1 · anchor-rewrite
+**J481** · SQL-1 · anchor-rewrite
 
 ````text
 Sibling of `system-design-primer-companion.md` (its SD-13 … SD-27 own the *scale-out and interview* layer of databases; this file owns *SQL semantics, relational and storage theory, schema craft, and a query-writing exercise ladder*).
 ````
 
-**J465** · SQL-1 · anchor-rewrite
+**J482** · SQL-1 · anchor-rewrite
 
 ````text
 > **Note:** the `TB-…` / `SRC-…` labels in the line above are this file's bibliography keys. They were first assigned in `unified-curriculum.md`; the labels are kept, the books and courses are named in full beside them.
 ````
 
-**J466** · SQL-1 · anchor-rewrite
+**J483** · SQL-1 · anchor-rewrite
 
 ````text
 Why: `Curriculum` owns the order and the module spine; `northstar-reference-app.md` owns the *product spine* (Northstar on GCP) and the Cloud SQL procedure (N2.3). Since the refactor this file also owns the engine slices DB-1 … DB-10 (§4.0). `Curriculum` deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the `Curriculum` module that needs it, **at the moment that module needs it**.
 ````
 
-**J467** · SQL-1 · anchor-rewrite
+**J484** · SQL-1 · anchor-rewrite
 
 ````text
 2. **Ownership split (memorise).** *`Curriculum` and Northstar own:* Cloud SQL setup (N2.3), Firestore (N2.4), migrations-as-jobs (N2.6), the Spanner/NoSQL map (N2.7), the primitives of N8.1 (cursor pager, hot partition, pool math, RLS, LSM-vs-B-tree comparison), outbox/inbox (A9 theory; design-patterns ARCH-11 shape), the ledger (N5.3), BigQuery ops (N9.4/N9b.1), as-of joins as *leakage prevention* (D3, N9c.1), billing-export SQL (B4). *This file owns:* SQL-language mastery (SL), relational theory (RT), the CS theory tier under the slices (CS), data-design method (DD), operating-a-database craft (OD), analytics and dialect craft (AN), pre-SQL prerequisites (PQ), the exercise ladder (§6), and — since the refactor — the engine slices DB-1 … DB-10 and their toys (§4.0). **Where a §4.0 slice toy exists (WAL codec, slotted page, B-tree, iterator executor, visibility simulator) this file never asks for a second toy — it adds the analytic layer (formulas, schedules, cost models) that the toy's tests do not reach.**
 ````
 
-**J468** · SQL-1 · anchor-rewrite
+**J485** · SQL-1 · anchor-rewrite
 
 ````text
 3. **Same ten-rung ramp, same locks.** Companion concepts are taught through the suite's ten-rung sequence (`Curriculum` §0.4.3) (anchor → vocabulary → representation → core move → worked illustration → basic unseen check → routine variation → mixed transfer → top-rung challenge → reflection + ledger). The **dependency gate**, **rung-2 vocabulary audit** and **Prop Lock** apply unchanged: never use a later system as a prop (no Spanner interleaving in the first Postgres transcript; no full PITR runbook before its owner; no Cloud SQL HA as a "known" prop before its N2.3 session). If an exercise needs machinery not yet unlocked, **postpone the exercise** — or teach the machinery first. A smuggled prop is an *instructor process failure*, never "shaky", exactly as in `Curriculum` §0.4.6.
 ````
 
-**J469** · SQL-1 · anchor-rewrite
+**J486** · SQL-1 · anchor-rewrite
 
 ````text
 3. **Same ten-rung ramp, same locks.** Companion concepts are taught through the suite's ten-rung sequence (rule 0.4.3, §0.6) (anchor → vocabulary → representation → core move → worked illustration → basic unseen check → routine variation → mixed transfer → top-rung challenge → reflection + ledger). The **dependency gate**, **rung-2 vocabulary audit** and **Prop Lock** apply unchanged: never use a later system as a prop (no Spanner interleaving in the first Postgres transcript; no full PITR runbook before its owner; no Cloud SQL HA as a "known" prop before its N2.3 session). If an exercise needs machinery not yet unlocked, **postpone the exercise** — or teach the machinery first. A smuggled prop is an *instructor process failure*, never "shaky", exactly as in `Curriculum` §0.4.6.
 ````
 
-**J470** · SQL-1 · anchor-rewrite
+**J487** · SQL-1 · anchor-rewrite
 
 ````text
 3. **Same ten-rung ramp, same locks.** Companion concepts are taught through the suite's ten-rung sequence (rule 0.4.3, §0.6) (anchor → vocabulary → representation → core move → worked illustration → basic unseen check → routine variation → mixed transfer → top-rung challenge → reflection + ledger). The **dependency gate**, **rung-2 vocabulary audit** and **Prop Lock** apply unchanged: never use a later system as a prop (no Spanner interleaving in the first Postgres transcript; no full PITR runbook before its owner; no Cloud SQL HA as a "known" prop before its OD-11 session). If an exercise needs machinery not yet unlocked, **postpone the exercise** — or teach the machinery first. A smuggled prop is an *instructor process failure*, never "shaky", exactly as in `Curriculum` §0.4.6.
 ````
 
-**J471** · SQL-1 · anchor-rewrite
+**J488** · SQL-1 · anchor-rewrite
 
 ````text
 6. **Predict before you run; explain the discrepancy after.** Every exercise that has a *result shape*, a *row count*, a *plan shape*, or an *isolation outcome* starts with the learner writing the prediction (one line). Then run. A wrong prediction is the best teaching moment in this file — record the discrepancy on the ledger, do not skip it. (`Curriculum` §0.4.4, predict → run → discrepancy; C-53.)
 ````
 
-**J472** · SQL-1 · anchor-rewrite
+**J489** · SQL-1 · anchor-rewrite
 
 ````text
 8. **Tracking is inline.** Tick `- [ ]` boxes in this file or say "done" in chat. Do **not** create a separate tracker; the learner ledger `session-progress-ledger.md` (C-57; it replaces the old parent's "Teaching contract → Learner state") records unlocked / shaky / postponed for companion modules under their IDs (`SL-08`, `SQL-E6.2`…).
 ````
 
-**J473** · SQL-1 · anchor-rewrite
+**J490** · SQL-1 · anchor-rewrite
 
 ````text
 10. **Time, money and secrets.** Labs are free-tier/credits-safe: local Postgres in Docker is the default; Cloud SQL / AlloyDB / Memorystore are credits-optional and *destroyed the same day* (`Curriculum` §0.5 Lab Safety). Never put a password, key or real customer data in a query, a prompt or this file; the lab data is synthetic.
 ````
 
-**J474** · SQL-1 · anchor-rewrite
+**J491** · SQL-1 · anchor-rewrite
 
 ````text
 11. **User can override anything:** skip a concept already known (run its skip-test; §5 tiers), jump to an exercise, or go hands-on — same rights as `Curriculum` §0.4.1. **On a conflict:** `Curriculum` wins on order, Lab Reality, exam time-sensitivity and the ledger; this file wins on SQL/DB content and exercise specs.
 ````
 
-**J475** · SQL-1 · anchor-rewrite
+**J492** · SQL-1 · anchor-rewrite
 
 ````text
 When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
 ````
 
-**J476** · SQL-1 · anchor-rewrite
+**J493** · SQL-1 · anchor-rewrite
 
 ````text
 - The old parent's labels (`T.*`, `F1…F4`, `M.*`, `0.x`, `1.x`, `D0…D8`, `2.x` … `11b`, `12.Sxx`, `G4`, `G12b`) were rebound on 2026-09-24 to `Curriculum` IDs (`A1…D4`, `M1…M6`, `U1…U7`, `S1…S11`, the Part V category IDs `V-…`) and Northstar sections (`Nx.y`); `crosswalk.md` §1 has every mapping. `DB-1 … DB-10` are this file's engine slices (§4.0). `SD-13 … SD-27` are primer-companion IDs. `TB-…`/`SRC-…` are this file's bibliography labels (title block).
 ````
 
-**J477** · SQL-1 · anchor-rewrite
+**J494** · SQL-1 · anchor-rewrite
 
 ````text
 - Tiers: `SQL-T-HS` high-school · `SQL-T-UG` undergraduate · `SQL-T-GR` graduate — the depth tier of a theory item or gate (§2 rows for M1 and A8 + A9; renamed from `HS` / `UG` / `grad` in §5 of the refactor).
 ````
 
-**J478** · SQL-1 · anchor-rewrite
+**J495** · SQL-1 · anchor-rewrite
 
 ````text
 - `Northstar` = the running reference application (`northstar-reference-app.md`, Track N); the lab database is its OLTP slice plus an event stream.
 ````
 
-**J479** · SQL-1 · anchor-rewrite
+**J496** · SQL-1 · anchor-rewrite
 
 ````text
 | `Curriculum` module (was: old-parent label) | Companion modules taught in the same session | Checkpoint |
 ````
 
-**J480** · SQL-1 · anchor-rewrite
+**J497** · SQL-1 · anchor-rewrite
 
 ````text
 | **S2** + **N0.4** HLD/LLD contract, ADR template, NFR table | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
 ````
 
-**J481** · SQL-1 · anchor-rewrite
+**J498** · SQL-1 · anchor-rewrite
 
 ````text
 | **B5** IAM (+ **N2.3** IAM DB auth) | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | SQL-E10.6 (RLS) after A10 |
 ````
 
-**J482** · SQL-1 · anchor-rewrite
+**J499** · SQL-1 · anchor-rewrite
 
 ````text
 | **B3** HA & autoscaling | OD-03 pool arithmetic under autoscaling (instances × pool ≤ `max_connections`); *N8.1 owns the spreadsheet — recall it* | TX-8 |
 ````
 
-**J483** · SQL-1 · anchor-rewrite
+**J500** · SQL-1 · anchor-rewrite
 
 ````text
 | **N2.3** Cloud SQL setup (required procedure) | OD-03 pooling & pool math · OD-04 backup/restore drills *as runbook (DB-10 owns the toy)* · OD-05 replicas & read-your-writes · SL-13 privileges · §8.2 Terraform | TF-DB1, TX-8, BH-5 |
 ````
 
-**J484** · SQL-1 · anchor-rewrite
+**J501** · SQL-1 · anchor-rewrite
 
 ````text
 | **A8** (NoSQL) + **N2.4** Firestore | AN-06 the *same question* in Firestore and SQL — where the document model wins and loses | DT-7 |
 ````
 
-**J485** · SQL-1 · anchor-rewrite
+**J502** · SQL-1 · anchor-rewrite
 
 ````text
 | **N2.5** Cloud Storage | PQ-04 `COPY`/import & export of CSV/JSON through GCS; encoding and NULL-vs-empty pitfalls | SQL-E8.8 – SQL-E8.10 |
 ````
 
-**J486** · SQL-1 · anchor-rewrite
+**J503** · SQL-1 · anchor-rewrite
 
 ````text
 | **A8** + **C4** + **N2.6** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migration tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
 ````
 
-**J487** · SQL-1 · anchor-rewrite
+**J504** · SQL-1 · anchor-rewrite
 
 ````text
 | **A8** + **C4** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migration tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
 ````
 
-**J488** · SQL-1 · anchor-rewrite
+**J505** · SQL-1 · anchor-rewrite
 
 ````text
 | **A9** + **V-STOR** + **N2.7** Spanner & NoSQL map | AN-05 GoogleSQL/Spanner · DD-13 key design & partitioning · CS-07 TrueTime, 2PC, Paxos groups | DT-6, SCH-5 |
 ````
 
-**J489** · SQL-1 · anchor-rewrite
+**J506** · SQL-1 · anchor-rewrite
 
 ````text
 | **A8** + **N5.3** ledger and consistency | DD-05 money (integer minor units), DD-09 audit/history · SL-08 running balances · CS-05 isolation for money | SQL-E4.5, SQL-CAP2, BH-4 |
 ````
 
-**J490** · SQL-1 · anchor-rewrite
+**J507** · SQL-1 · anchor-rewrite
 
 ````text
 | **A8** ledger and consistency | DD-05 money (integer minor units), DD-09 audit/history · SL-08 running balances · CS-05 isolation for money | SQL-E4.5, SQL-CAP2, BH-4 |
 ````
 
-**J491** · SQL-1 · anchor-rewrite
+**J508** · SQL-1 · anchor-rewrite
 
 ````text
 | **Phase 4 Security** + **N7.3** data protection | SL-13 column-level encryption (`pgcrypto`), masking views, CMEK vocabulary | SCH-6 |
 ````
 
-**J492** · SQL-1 · anchor-rewrite
+**J509** · SQL-1 · anchor-rewrite
 
 ````text
 | **S2** + **N8.0** Donne-Martin building blocks · **N8.C** evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
 ````
 
-**J493** · SQL-1 · anchor-rewrite
+**J510** · SQL-1 · anchor-rewrite
 
 ````text
 | **N8.1** primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency | OD-09 keyset SQL and its index (**N8.1.5 owns the from-scratch pager**) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, SQL-E4.7 |
 ````
 
-**J494** · SQL-1 · anchor-rewrite
+**J511** · SQL-1 · anchor-rewrite
 
 ````text
 | **A9** scale primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency | OD-09 keyset SQL and its index (**N8.1.5 owns the from-scratch pager**) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, SQL-E4.7 |
 ````
 
-**J495** · SQL-1 · anchor-rewrite
+**J512** · SQL-1 · anchor-rewrite
 
 ````text
 | **V-STOR** + **N9.1** Memorystore | OD-09 cache-aside vs DB read path (query-level vs object-level); *no new concept* | — |
 ````
 
-**J496** · SQL-1 · anchor-rewrite
+**J513** · SQL-1 · anchor-rewrite
 
 ````text
 | **V-STOR** + **N9.4** Spanner, AlloyDB, Bigtable, BigQuery (ops view) | AN-01 · AN-02 · AN-05 · CS-09 columnar & vectorised execution | DT-1 … DT-6, SQL-E13.3 |
 ````
 
-**J497** · SQL-1 · anchor-rewrite
+**J514** · SQL-1 · anchor-rewrite
 
 ````text
 | **V-DATA** + **N9b.1** Big-data services (BigQuery, Dataform) | AN-02 partition/cluster and bytes scanned · AN-03 cohorts/funnels · AN-04 approximate aggregation · SL-11 views & materialised views | SQL-E6.2, SQL-E6.6, SQL-E13.1 – SQL-E13.3 |
 ````
 
-**J498** · SQL-1 · anchor-rewrite
+**J515** · SQL-1 · anchor-rewrite
 
 ````text
 | **D3** + **N9c.1** features, labels, skew (**as-of join** owner) | SL-08 / SL-04: the **SQL shape** of a point-in-time join (LATERAL / range join). *N9c.1 owns leakage; this file owns the join* | SQL-E6.4, SQL-E13.4, SQL-E13.5 |
 ````
 
-**J499** · SQL-1 · anchor-rewrite
+**J516** · SQL-1 · anchor-rewrite
 
 ````text
 | **D3** features, labels, skew | DD-05 leakage and point-in-time correctness · SL-08 / SL-04: the **SQL shape** of a point-in-time join (LATERAL / range join). *N9c.1 owns leakage; this file owns the join* | SQL-E6.4, SQL-E13.4, SQL-E13.5 |
 ````
 
-**J500** · SQL-1 · anchor-rewrite
+**J517** · SQL-1 · anchor-rewrite
 
 ````text
 | **D4** + **N9c.2 / N9c.5** retrieval, RAG | AN-07 full-text search and vector search in Postgres (`tsvector`, `pgvector`) vs dedicated engines | DT-8 |
 ````
 
-**J501** · SQL-1 · anchor-rewrite
+**J518** · SQL-1 · anchor-rewrite
 
 ````text
 | **N11** capstone (Northstar v1) | SQL-CAP1 – SQL-CAP4 are the database acceptance tests of the capstone | SQL-CAP1 – SQL-CAP4 |
 ````
 
-**J502** · SQL-1 · anchor-rewrite
+**J519** · SQL-1 · anchor-rewrite
 
 ````text
 | **N11b** control-plane capstone | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
 ````
 
-**J503** · SQL-1 · anchor-rewrite
+**J520** · SQL-1 · anchor-rewrite
 
 ````text
 > **Note:** the suite-wide register is `Curriculum` §0.3; this table is the SQL slice of it, and on a conflict the main course's register wins. DB-1 … DB-10 are owned by this file since C-05 (§4.0).
 ````
 
-**J504** · SQL-1 · anchor-rewrite
+**J521** · SQL-1 · anchor-rewrite
 
 ````text
 > **Note:** the suite-wide register is the main course §0.3; this table is the SQL slice of it, and on a conflict the main course's register wins. DB-1 … DB-10 are owned by this file since C-05 (§4.0).
 ````
 
-**J505** · SQL-1 · anchor-rewrite
+**J522** · SQL-1 · anchor-rewrite
 
 ````text
 | Relational algebra, 3VL (DB-1) | **§4.0 DB-1** (this file since C-05; A8) (toy: bag relations + truth-table tests) | RT-02 set-vs-bag laws and rewrite equivalences; RT-03 calculus/safety; SL-03 NULL semantics across every clause; SQL-Z0.4, TD-5/6 |
 ````
 
-**J506** · SQL-1 · anchor-rewrite
+**J523** · SQL-1 · anchor-rewrite
 
 ````text
 | WAL, replica, PITR (DB-10; foreign `G4` → N2.3) | **§4.0 DB-10** (toy: mini-WAL) | CS-06 ARIES and steal/no-force reasoning; TD-12; OD-04 restore-drill runbook |
 ````
 
-**J507** · SQL-1 · anchor-rewrite
+**J524** · SQL-1 · anchor-rewrite
 
 ````text
 | Cloud SQL provisioning, Auth Proxy, private IP, HA, flags | **N2.3** | OD-03/04/05 SQL-side consequences (session state vs pooler modes, RPO/RTO arithmetic, replica lag); §8.2 Terraform |
 ````
 
-**J508** · SQL-1 · anchor-rewrite
+**J525** · SQL-1 · anchor-rewrite
 
 ````text
 | Migrations as jobs, expand/contract | **N2.6** | DD-11 *lock levels*, `NOT VALID` + `VALIDATE`, `CREATE INDEX CONCURRENTLY`, backfill batching (SQL-E9.6) |
 ````
 
-**J509** · SQL-1 · anchor-rewrite
+**J526** · SQL-1 · anchor-rewrite
 
 ````text
 | Spanner, Bigtable, Firestore map | **N2.7 / N2.4** | AN-05, AN-06 same-question comparisons; DD-13 key design as SQL |
 ````
 
-**J510** · SQL-1 · anchor-rewrite
+**J527** · SQL-1 · anchor-rewrite
 
 ````text
 | Cursor pagination | **N8.1.5** (from-scratch pager) | OD-09 the SQL seek predicate & its supporting index; PX-9 measured against OFFSET |
 ````
 
-**J511** · SQL-1 · anchor-rewrite
+**J528** · SQL-1 · anchor-rewrite
 
 ````text
 | Hot partition, key histogram | **N8.1** | DD-13 the skew query on lab data (user 1 = 135 orders; see PX-1) |
 ````
 
-**J512** · SQL-1 · anchor-rewrite
+**J529** · SQL-1 · anchor-rewrite
 
 ````text
 | Connection-pool math | **N8.1 / N2.3** | OD-03 pooler modes (session/transaction/statement) and what breaks in transaction mode |
 ````
 
-**J513** · SQL-1 · anchor-rewrite
+**J530** · SQL-1 · anchor-rewrite
 
 ````text
 | RLS multi-tenancy | **N8.1 / A8** | SL-13 policy syntax, `FORCE`, owner bypass; SQL-E10.2 composite FK as defence in depth; SQL-E10.6 |
 ````
 
-**J514** · SQL-1 · anchor-rewrite
+**J531** · SQL-1 · anchor-rewrite
 
 ````text
 | Outbox / inbox, idempotency | **A9 / A7** (`Curriculum` §0.3: 2PC/Saga/outbox) | SL-10 the SQL that makes them true (unique index, `ON CONFLICT`, `SKIP LOCKED`); TX-5, SQL-E9.3 |
 ````
 
-**J515** · SQL-1 · anchor-rewrite
+**J532** · SQL-1 · anchor-rewrite
 
 ````text
 | Ledger, minor-unit ints | **N5.3** | DD-05 modelling; SQL-E4.5/SQL-CAP2 revenue reconciliation; SQL-CAP1 invariants |
 ````
 
-**J516** · SQL-1 · anchor-rewrite
+**J533** · SQL-1 · anchor-rewrite
 
 ````text
 | BigQuery partition/cluster/cost | **N9.4 / N9b.1** | AN-02 SQL-level cost reading; DT drills |
 ````
 
-**J517** · SQL-1 · anchor-rewrite
+**J534** · SQL-1 · anchor-rewrite
 
 ````text
 | As-of / point-in-time join | **N9c.1** (D3) | SQL-E6.4 / SQL-E13.4 / SQL-E13.5 the SQL shapes (lateral, range join, SCD2) |
 ````
 
-**J518** · SQL-1 · anchor-rewrite
+**J535** · SQL-1 · anchor-rewrite
 
 ````text
 | ACID, CAP, consistency, big-O, hashing | `Curriculum` **M1 / A4 + U2 / A8 + A9 / A8** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
 ````
 
-**J519** · SQL-1 · anchor-rewrite
+**J536** · SQL-1 · anchor-rewrite
 
 ````text
 | **DB-10** WAL, replica, PITR (**N2.3**) | CS-06, CS-07 · TD-12, TD-14 | — | BH-5, OD-04 restore drill, TX-8 |
 ````
 
-**J520** · SQL-1 · anchor-rewrite
+**J537** · SQL-1 · anchor-rewrite
 
 ````text
 `Curriculum`'s spine is Phases 0–3 (Tracks A–D, mostly in parallel) → Phase 4 → …, with the reserved M/U/S tracks placed by R4. SQL does not first *appear* until A8, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until A8 needs it (Prop Lock: no SQL vocabulary before it is anchored).
 ````
 
-**J521** · SQL-1 · anchor-rewrite
+**J538** · SQL-1 · anchor-rewrite
 
 ````text
 | **A8 (the main event)** | **The A8 SQL block is stretched over ≥ 3 weeks:** week 1 = RT-01/04/05 + SL-01/02/03 + SQL-E1–SQL-E3 · week 2 = RT-02 + SL-04…SL-09 + SQL-E4–SQL-E7 + DB-1/DB-3 · week 3 = SL-10 + TX labs + CS-05 + DB-9 · then DB-4…DB-8 with CS-01…CS-04, CS-08 and PX cards · then DB-10 with CS-06, OD-04 · the V-STOR and N2.3…N2.7 rows as bound in §2 | SQL competency through SQL-E9; plan and isolation predictions; the theory tier |
 ````
 
-**J522** · SQL-1 · anchor-rewrite
+**J539** · SQL-1 · anchor-rewrite
 
 ````text
 | **A7, A9, A10 + N5.3** | SQL-E9.3 (A7), TX-5 (A9), SQL-E10.6 (A10), SQL-E4.5/SQL-CAP2 (N5.3) | SQL that makes async/ledger/RLS true |
 ````
 
-**J523** · SQL-1 · anchor-rewrite
+**J540** · SQL-1 · anchor-rewrite
 
 ````text
 | **N8.0/N8.1/N8.C + S2** | PX-9 / DD-13 with N8.1; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
 ````
 
-**J524** · SQL-1 · anchor-rewrite
+**J541** · SQL-1 · anchor-rewrite
 
 ````text
 | **V-STOR, V-DATA, D3/D4 + N9.1/N9.4/N9b.1/N9c.1** | AN-01 … AN-05, SQL-E6, SQL-E13, DT drills (BigQuery), SQL-E6.4/SQL-E13.4/SQL-E13.5 at D3 (N9c.1) | analytics dialect and point-in-time joins |
 ````
 
-**J525** · SQL-1 · anchor-rewrite
+**J542** · SQL-1 · anchor-rewrite
 
 ````text
 | **V-STOR, V-DATA, D3/D4** | AN-01 … AN-05, SQL-E6, SQL-E13, DT drills (BigQuery), SQL-E6.4/SQL-E13.4/SQL-E13.5 at D3 (N9c.1) | analytics dialect and point-in-time joins |
 ````
 
-**J526** · SQL-1 · anchor-rewrite
+**J543** · SQL-1 · anchor-rewrite
 
 ````text
 | **N11 / N11b** | SQL-CAP1 – SQL-CAP4 | database acceptance |
 ````
 
-**J527** · SQL-1 · anchor-rewrite
+**J544** · SQL-1 · anchor-rewrite
 
 ````text
 **SQL-SKIP-SQL order → companion modules (order unchanged; provenance: `unified-curriculum.md` §5.4):** relations/keys/FDs/normalisation → **RT-01, RT-04, RT-05** · relational algebra → **RT-02** (+ TD-5/6) · DDL/types/constraints → **SL-01, DD-04, DD-12** · SELECT semantics & NULL/3VL → **SL-02, SL-03** · joins incl. semi/anti/outer → **SL-04** · aggregation → **SL-05** · subqueries/CTEs/recursion → **SL-06, SL-07, SL-09** · windows → **SL-08** · transactions/isolation → **CS-05** + TX labs · pagination and application access → **OD-09**. *Predict multiplicity and NULL behaviour before execution.*
 ````
 
-**J528** · SQL-1 · anchor-rewrite
+**J545** · SQL-1 · anchor-rewrite
 
 ````text
 ## 3. Lab kit — deterministic Northstar SQL lab
 ````
 
-**J529** · SQL-1 · anchor-rewrite
+**J546** · SQL-1 · anchor-rewrite
 
 ````text
 Local PostgreSQL 15.x database `labdb` with schema `lab` (OLTP slice of Northstar) plus `work` (scratch) and fingerprint functions `lab.chk` / `lab.chk_o`. Sources on this box: `sql-companion-work/lab_schema.sql`, `lab_seed.sql`, runners `run_ex.py`, `plans.py`, `tx_tests.py`.
 ````
 
-**J530** · SQL-1 · anchor-rewrite
+**J547** · SQL-1 · anchor-rewrite
 
 ````text
 Cloud SQL / AlloyDB: same SQL; create an instance only when Lab Reality allows and **destroy the same day** (`Curriculum` §0.5). Auth Proxy for IAM DB auth when N2.3 is unlocked — not required for local goldens.
 ````
 
-**J531** · SQL-1 · anchor-rewrite
+**J548** · SQL-1 · anchor-rewrite
 
 ````text
 Every exercise with a result shape, row count, plan shape, or isolation outcome: write the prediction (one line) **before** `psql`. Record discrepancies on the ledger — wrong predictions are the teaching moment (gcp "Database protocol").
 ````
 
-**J532** · SQL-1 · anchor-rewrite
+**J549** · SQL-1 · anchor-rewrite
 
 ````text
 ### 3.7 How runners relate
 ````
 
-**J533** · SQL-1 · anchor-rewrite
+**J550** · SQL-1 · anchor-rewrite
 
 ````text
 Format per module (same contract as `system-design-primer-companion.md`): **Core** · **Theory** · **GCP lens** (Lens-1 always) · **Lab** · **Check** (answer before explanation). Tick `- [ ]` when taught *and* checks answered. Ownership: where a §4.0 slice toy exists, the concept modules add analysis only.
 ````
 
-**J534** · SQL-1 · anchor-rewrite
+**J551** · SQL-1 · anchor-rewrite
 
 ````text
 *Ported by the refactor (2026-09-24, C-05; decision D1).* **Source material:** `gcp-curriculum.md` lines 3118–3179 ("Engine slices DB-1–DB-10"), copied verbatim except for the ID rebinding marked in `crosswalk.md`. Since the refactor this file **owns** the slices; `Curriculum` A8 points here, and each slice is taught as one session with the companion theory paired to it in §2.2. The Cloud SQL procedure they map onto is N2.3.
 ````
 
-**J535** · SQL-1 · anchor-rewrite
+**J552** · SQL-1 · anchor-rewrite
 
 ````text
 - **Cloud SQL mapping:** Flags for constraints; migrations via Job (N2.6); IAM DB users still have catalogs.
 ````
 
-**J536** · SQL-1 · anchor-rewrite
+**J553** · SQL-1 · anchor-rewrite
 
 ````text
 #### DB-10 — WAL, replica, PITR (foreign `G4` WAL codec → N2.3)
 ````
 
-**J537** · SQL-1 · anchor-rewrite
+**J554** · SQL-1 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Northstar OLTP stays ≥3NF; analytics star schemas deliberately denormalise (AN-01).
 ````
 
-**J538** · SQL-1 · anchor-rewrite
+**J555** · SQL-1 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: schema ADR in HLD pack. Lens-2: lab ER is Northstar OLTP slice.
 ````
 
-**J539** · SQL-1 · anchor-rewrite
+**J556** · SQL-1 · anchor-rewrite
 
 ````text
 - **Lab:** SQL-E3.1–SQL-E3.10; SQL-E6.4 as-of shape (leakage owner is N9c.1).
 ````
 
-**J540** · SQL-1 · anchor-rewrite
+**J557** · SQL-1 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: N8.1 owns LSM-vs-B-tree comparison toy; here formulas + PX cards. Lens-2: PX-1…PX-6.
 ````
 
-**J542** · SQL-1 · anchor-rewrite
+**J559** · SQL-1 · anchor-rewrite
 
 ````text
 - **Theory:** TrueTime/Paxos *vocabulary* when A9 / N2.7 is unlocked — no second Spanner toy.
 ````
 
-**J543** · SQL-1 · anchor-rewrite
+**J560** · SQL-1 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: ledger rules in N5.3 — this file models them. Lens-2: SQL-E4.5, SQL-CAP2.
 ````
 
-**J545** · SQL-2 · new-content
+**J562** · SQL-2 · new-content
 
 ````text
 - **Theory:** Leakage prevention is owned by N9c.1; SQL shapes live here.
 ````
 
-**J546** · SQL-1 · anchor-rewrite
+**J563** · SQL-1 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: N8.1 owns RLS primitive; here SQL policies + composite FKs. Lens-2: SQL-E10.2, SQL-E10.6.
 ````
 
-**J547** · SQL-1 · anchor-rewrite
+**J564** · SQL-1 · anchor-rewrite
 
 ````text
 - **Theory:** Hot-tenant skew.
 ````
 
-**J548** · SQL-1 · anchor-rewrite
+**J565** · SQL-1 · anchor-rewrite
 
 ````text
 - **Theory:** N2.6 owns migrations-as-jobs; here lock/SQL craft.
 ````
 
-**J549** · SQL-1 · anchor-rewrite
+**J566** · SQL-1 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: N8.1 owns the hot-partition primitive. Lens-2: skew query on lab.
 ````
 
-**J551** · SQL-2 · new-content
+**J568** · SQL-2 · new-content
 
 ````text
 - **Theory:** N8.1 owns the spreadsheet — recall it.
 ````
 
-**J552** · SQL-2 · new-content
+**J569** · SQL-2 · new-content
 
 ````text
 - **Theory:** gcp owns migrations-as-jobs; here SQL test discipline.
 ````
 
-**J553** · SQL-2 · new-content
+**J570** · SQL-2 · new-content
 
 ````text
 - **Theory:** N8.1.5 owns the from-scratch pager — here the seek predicate & index.
 ````
 
-**J554** · SQL-1 · anchor-rewrite
+**J571** · SQL-1 · anchor-rewrite
 
 ````text
 ### 4.6 Operating databases (OD-01 … OD-10)
 ````
 
-**J555** · SQL-1 · anchor-rewrite
+**J572** · SQL-1 · anchor-rewrite
 
 ````text
 | **Operating databases** | indexing strategy & `EXPLAIN` workflow · statistics & slow-query observability · connection pooling · backup/restore/PITR drills · replication & read-your-writes · vacuum/bloat · retention & partitions · migrations tooling & testing · application data access (N+1, ORMs, prepared statements, injection, pagination) · testing SQL | OD-01 … OD-10, PX-1 … PX-11, BH-1 … BH-6, TF-DB1 … TF-DB6 |
 ````
 
-**J557** · SQL-1 · anchor-rewrite
+**J574** · SQL-1 · anchor-rewrite
 
 ````text
 - **Theory:** Northstar OLTP lab vs analytics copies.
 ````
 
-**J558** · SQL-2 · new-content
+**J575** · SQL-2 · new-content
 
 ````text
 - **Theory:** gcp owns ops; here SQL-level reading.
 ````
 
-**J559** · SQL-1 · anchor-rewrite
+**J576** · SQL-1 · anchor-rewrite
 
 ````text
 - **Theory:** Firestore when it wins/loses — gcp owns product; here same-question drill.
 ````
 
-**J560** · SQL-1 · anchor-rewrite
+**J577** · SQL-1 · anchor-rewrite
 
 ````text
 Mapped to the A8 skip-tests **SQL-SKIP-SQL** / **SQL-SKIP-ENGINE** (provenance: `unified-curriculum.md` nodes `DB-SQL` / `DB-ENGINE`). If the A8 sessions already confirmed the skill, **stamp and skip**; else run the order in §2.3.
 ````
 
-**J561** · SQL-1 · anchor-rewrite
+**J578** · SQL-1 · anchor-rewrite
 
 ````text
 - **Trap:** A plain equi-join on `product_id` returns three rows per line. Use `LATERAL … ORDER BY valid_from DESC LIMIT 1` (or `DISTINCT ON`, or a window). The `<=` boundary is inclusive: an order at exactly `valid_from` sees the *new* price. This is the same shape as **N9c.1** (D3) point-in-time joins. Wrong-path fingerprint (do not chase): `808:97a9c21a` — plain equi-join returns all three price rows.
 ````
 
-**J562** · SQL-1 · anchor-rewrite
+**J579** · SQL-1 · anchor-rewrite
 
 ````text
 - **Trap:** Never call `now()` in a graded query — the answer changes daily. Parameterise the 'as-of' instant. Same principle as the Northstar ledger's (N5.3) determinism rules.
 ````
 
-**J563** · SQL-1 · anchor-rewrite
+**J580** · SQL-1 · anchor-rewrite
 
 ````text
 - **Prompt:** Setup gives `work.o` (copy of `customer_order`) with a new nullable column `total_major numeric(12,2)`. Backfill `total_minor / 100.0` in chunks of **1,000 rows**, looping until no rows are left. (Here one transaction; in production every chunk commits separately — N2.6 expand/contract.)
 ````
 
-**J564** · SQL-1 · anchor-rewrite
+**J581** · SQL-1 · anchor-rewrite
 
 ````text
 - **Trap:** `user_id REFERENCES app_user` alone only proves the user *exists*. The composite `FOREIGN KEY (tenant_id, user_id) REFERENCES app_user (tenant_id, user_id)` needs a matching unique constraint on the parent — that is why the lab's `app_user` carries `UNIQUE (tenant_id, user_id)`. This is defence in depth beneath RLS (N8.1).
 ````
 
-**J565** · SQL-1 · anchor-rewrite
+**J582** · SQL-1 · anchor-rewrite
 
 ````text
 - **Trap:** RLS does **not** apply to the table owner or superusers unless `FORCE ROW LEVEL SECURITY`. `current_setting('x', true)` returns NULL when unset (no rows), without `true` it raises. Connection-pool reuse means the setting must be `SET LOCAL` per transaction — N8.1 RLS.
 ````
 
-**J566** · SQL-1 · anchor-rewrite
+**J583** · SQL-1 · anchor-rewrite
 
 ````text
 - **Trap:** Facts hold measures + foreign keys at one **grain** (an order line); dimensions hold descriptions. Decide grain first, write it in one sentence. In BigQuery you would partition the fact by date and cluster by product (V-DATA, N9b.1) and often *denormalise* the dimensions in.
 ````
 
-**J567** · SQL-1 · anchor-rewrite
+**J584** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** PX-9 · OD-09 · N8.1.5
 ````
 
-**J568** · SQL-1 · anchor-rewrite
+**J585** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** N5.3·DD-05
 ````
 
-**J569** · SQL-1 · anchor-rewrite
+**J586** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** AN-06·N2.4
 ````
 
-**J570** · SQL-1 · anchor-rewrite
+**J587** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** DD-02·N8.0
 ````
 
-**J571** · SQL-1 · anchor-rewrite
+**J588** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** DD-11·N2.6
 ````
 
-**J572** · SQL-1 · anchor-rewrite
+**J589** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** DD-13·N2.7
 ````
 
-**J573** · SQL-1 · anchor-rewrite
+**J590** · SQL-1 · anchor-rewrite
 
 ````text
 - **Tags:** DD-07·N7.3
 ````
 
-**J574** · SQL-1 · anchor-rewrite
+**J591** · SQL-1 · anchor-rewrite
 
 ````text
 Mirror `Curriculum` C5 posture: **`terraform plan` reads the graph; apply only if Lab Reality + credits allow, destroy same day.**
 ````
 
-**J575** · SQL-1 · anchor-rewrite
+**J592** · SQL-1 · anchor-rewrite
 
 ````text
 | **TF-DB1** | Cloud SQL Postgres instance + private IP + flags sketch | Ties OD-03/04; Auth Proxy as separate module |
 ````
 
-**J576** · SQL-1 · anchor-rewrite
+**J593** · SQL-1 · anchor-rewrite
 
 ````text
 Database acceptance tests for N11 (Northstar). Issue after the §6 level-14 gate. **Predict; run; reconcile.**
 ````
 
-**J577** · SQL-1 · anchor-rewrite
+**J594** · SQL-1 · anchor-rewrite
 
 ````text
 - **Goldens:** 92/92 exercise cards carry fingerprints from local JSON artefacts (`goldens_ex_l1_4.json`, `goldens_ex_l5_8.json`, `goldens_ex_l9_13.json`, `goldens_ex_l14.json`). They were produced by `run_ex.py` against seed v1; this build **wires those values verbatim** and does not re-execute Postgres in the markdown generator.
 ````
 
-**J578** · SQL-1 · anchor-rewrite
+**J595** · SQL-1 · anchor-rewrite
 
 ````text
 - **SQL-E3.7 note:** `out_ex_l1_4.txt` contains a duplicate run line with a divergent hash; **JSON golden `100:1b05fa94` is authoritative**.
 ````
 
-**J579** · SQL-1 · anchor-rewrite
+**J596** · SQL-1 · anchor-rewrite
 
 ````text
 - **gcp toys DB-1…DB-10:** not duplicated; analytic layer only.
 ````
 
-**J581** · SQL-4 · anchor-rewrite
+**J598** · SQL-4 · anchor-rewrite
 
 ````text
 -- Northstar SQL Lab — schema v1 (PostgreSQL 15+; runs unchanged on Cloud SQL / AlloyDB for PostgreSQL)
 ````
 
-**J582** · SQL-4 · anchor-rewrite
+**J599** · SQL-4 · anchor-rewrite
 
 ````text
 -- Northstar SQL Lab — deterministic seed v1. No random(): every value is a pure function of its ids.
 ````
 
-**J583** · SQL-4 · anchor-rewrite
+**J600** · SQL-4 · anchor-rewrite
 
 ````text
    trap="A plain equi-join on `product_id` returns three rows per line. Use `LATERAL … ORDER BY valid_from DESC LIMIT 1` (or `DISTINCT ON`, or a window). The `<=` boundary is inclusive: an order at exactly `valid_from` sees the *new* price. This is the same shape as gcp-curriculum **9c.1** point-in-time joins.",
 ````
 
-**J584** · SQL-4 · anchor-rewrite
+**J601** · SQL-4 · anchor-rewrite
 
 ````text
    trap="Never call `now()` in a graded query — the answer changes daily. Parameterise the 'as-of' instant. Same principle as the gcp-curriculum ledger's determinism rules.",
 ````
 
-**J585** · SQL-4 · anchor-rewrite
+**J602** · SQL-4 · anchor-rewrite
 
 ````text
    trap="`SET n = daily_orders.n + EXCLUDED.n` is *not* idempotent (a re-run doubles). `SET n = EXCLUDED.n` is. If your source query returned two rows for one day in a single statement you would get `ON CONFLICT DO UPDATE command cannot affect row a second time` — aggregate first. Idempotent writes are the whole point of gcp-curriculum 3.4/3.5.",
 ````
 
-**J586** · SQL-4 · anchor-rewrite
+**J603** · SQL-4 · anchor-rewrite
 
 ````text
    prompt="Setup gives `work.o` (copy of `customer_order`) with a new nullable column `total_major numeric(12,2)`. Backfill `total_minor / 100.0` in chunks of **1,000 rows**, looping until no rows are left. (Here one transaction; in production every chunk commits separately — gcp-curriculum 2.6 expand/contract.)",
 ````
 
-**J587** · SQL-4 · anchor-rewrite
+**J604** · SQL-4 · anchor-rewrite
 
 ````text
    trap="`user_id REFERENCES app_user` alone only proves the user *exists*. The composite `FOREIGN KEY (tenant_id, user_id) REFERENCES app_user (tenant_id, user_id)` needs a matching unique constraint on the parent — that is why the lab's `app_user` carries `UNIQUE (tenant_id, user_id)`. This is defence in depth beneath RLS (gcp-curriculum 8.1).",
 ````
 
-**J588** · SQL-4 · anchor-rewrite
+**J605** · SQL-4 · anchor-rewrite
 
 ````text
    trap="RLS does **not** apply to the table owner or superusers unless `FORCE ROW LEVEL SECURITY`. `current_setting('x', true)` returns NULL when unset (no rows), without `true` it raises. Connection-pool reuse means the setting must be `SET LOCAL` per transaction — gcp-curriculum 8.1 RLS.",
 ````
 
-**J589** · SQL-4 · anchor-rewrite
+**J606** · SQL-4 · anchor-rewrite
 
 ````text
    trap="Facts hold measures + foreign keys at one **grain** (an order line); dimensions hold descriptions. Decide grain first, write it in one sentence. In BigQuery you would partition the fact by date and cluster by product (gcp-curriculum 9b.1) and often *denormalise* the dimensions in.",
 ````
 
-**J591** · SQL-6 · anchor-rewrite
+**J608** · SQL-6 · anchor-rewrite
 
 ````text
 ## 0. Read this first — how this file complements `Curriculum`
 ````
 
-**J592** · SQL-6 · anchor-rewrite
+**J609** · SQL-6 · anchor-rewrite
 
 ````text
 **This file is a complement to `Curriculum`, not a second curriculum. Read both. Whenever a `Curriculum` module is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
 ````
 
-**J593** · SQL-6 · anchor-rewrite
+**J610** · SQL-6 · anchor-rewrite
 
 ````text
 Why: the main course owns the order and the module spine. This file owns the engine slices DB-1 … DB-10 (§4.0) and the Cloud SQL procedure (OD-11). The main course deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the `Curriculum` module that needs it, **at the moment that module needs it**.
 ````
 
-**J594** · SQL-6 · anchor-rewrite
+**J611** · SQL-6 · anchor-rewrite
 
 ````text
 12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's `Curriculum` module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
 ````
 
-**J595** · SQL-6 · anchor-rewrite
+**J612** · SQL-6 · anchor-rewrite
 
 ````text
 1. **Anchor** — announce the `Curriculum` module and list the companion modules bound to it (§2). Run the one-line pre-rung-2 self-check: every term to be used is anchored this session or on the ledger; no unanchored sibling; no new product; every noun in the picture unlocked.
 ````
 
-**J596** · SQL-6 · anchor-rewrite
+**J613** · SQL-6 · anchor-rewrite
 
 ````text
 2. **Concept** — teach the shared idea once (`Curriculum` depth), then layer this file's SQL / theory / craft on top. Derive before you name.
 ````
 
-**J597** · SQL-6 · anchor-rewrite
+**J614** · SQL-6 · anchor-rewrite
 
 ````text
 Each `Curriculum` module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
 ````
 
-**J598** · SQL-6 · anchor-rewrite
+**J615** · SQL-6 · anchor-rewrite
 
 ````text
 ### 2.3 Parallel calendar — how the companion rides `Curriculum`'s spine
 ````
 
-**J599** · SQL-6 · anchor-rewrite
+**J616** · SQL-6 · anchor-rewrite
 
 ````text
 | Window (`Curriculum`) | Companion work (parallel, small) | Outcome |
 ````
 
-**J602** · SQL-7 · anchor-rewrite
+**J619** · SQL-7 · anchor-rewrite
 
 ````text
 - **SQL-CAP3:** design/TX evidence capstone — no single `lab.chk` fingerprint (stub: acceptance via transcript + ADR).
 ````
 
-**J603** · SQL-7 · anchor-rewrite
+**J620** · SQL-7 · anchor-rewrite
 
 ````text
 - **TF-DB*:** plan-only stubs; no checked-in `.tf` in this companion (owned by learner under Lab Reality).
 ````
 
-**J823** · GO-11 · anchor-rewrite
+**J840** · GO-11 · anchor-rewrite
 
 ````text
 - **Build lab `[local]`:** a `cursorpage` package (Python, then Go). Encode and decode an opaque, signed cursor over `(placed_at, order_id)`; run it against a fake ordered store searched by binary search, then against the lab's `customer_order`. Tests: forward pages; the empty result; a row deleted between two pages; a tampered cursor rejected. API shape: `GET /items?cursor=&limit=`.

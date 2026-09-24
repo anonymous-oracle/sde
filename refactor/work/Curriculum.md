@@ -24,7 +24,7 @@ This course is one course in six parts. This roadmap, the **main course**, is th
 - **The SQL & Databases Companion — GCP-Native Edition** — SQL, relational theory and engine internals. It owns the engine slices DB-1…DB-10.
 - **Design Patterns, SOLID & Clean Architecture — A Companion Curriculum** — OOP design theory, patterns and architecture styles (A7, A9).
 - **The Cloud Cybersecurity Companion** — security, attacks and cryptography.
-- **The Go Language Companion — Syntax, Semantics, Runtime and Contrasts** — the implementation language: Go's grammar, semantics, runtime and toolchain, each construct contrasted with Python, Java, C and JavaScript. Its language core is the Go block of A3; its later modules bind where they are first used (rule 0.4.9).
+- **The Go Language Companion — Syntax, Semantics, Runtime and Contrasts** — the implementation language: Go's grammar, semantics, runtime and toolchain, each construct contrasted with Python, Java, C and JavaScript, and authentication and payment integration built from scratch in Go. Its language core is the Go block of A3; its later modules bind where they are first used (rule 0.4.9).
 
 Progress lives in the inline `- [ ]` boxes of the six parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes: each ID's mastery state (§0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point (§0.4.8).
 
@@ -81,7 +81,7 @@ When two files touch the same concept, the **owner** teaches it and the others o
 | MapReduce / scatter-gather | A9 (distributed computation model) | Primer SD-38b/c, SX-08 (job patterns); V-DATA (Dataflow/Dataproc) |
 | CRDTs, operational transform | A9 deepening | Primer Q04 (Google Docs design problem) |
 | Vector clocks, quorums, gossip | A9 deepening | Primer Q05 (Redis-like KV design problem), SD-39 papers |
-| Heavy hitters / sketches / approximate counting | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
+| Heavy hitters / sketches / approximate counting (count-min sketch, HyperLogLog, Bloom filters with their false-positive rate (1 − e^(−kn/m))^k) | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
 | Unique ID generation (Base62, Snowflake) | Primer SX-02/Q17 | M1 (counting, birthday bound for collisions); A1 recall (bit layout) |
 | Garbage collection | U4 (memory management) | Primer Q21 (design problem); SX-04 (data GC/TTL); Go companion GO-09 (Go's collector, `GOGC`, `GOMEMLIMIT`) |
 | Event sourcing | Design-patterns ARCH-10 (shape) + A9 (theory) | Primer Q23 (stock exchange design); SQL IR/audit designs |
@@ -96,7 +96,9 @@ When two files touch the same concept, the **owner** teaches it and the others o
 | Data-structure implementations in code | A4 / U2 (concepts and costs) | Go companion GO-27 (the Go code); Primer O01, O02, O07 (the checkpoints) |
 | Design patterns in Go | Design-patterns companion (the patterns) | Go companion GO-11 (the Go shape: implicit interfaces, embedding, functional options, middleware, iterators) |
 | HTTP server timeouts against slow clients | Cyber DOS-05 (the attack and the values) | Go companion GO-21 (which `http.Server` field does what) |
-| Password hashing in a service | Cyber CR-13 (the KDFs) | Go companion GO-07 + GO-21 (CR-13's build lab written in Go) |
+| Password hashing in a service | Cyber CR-13 (the KDFs) | Go companion GO-07 + GO-21 (CR-13's build lab written in Go); GO-28 (a versioned record with rehash on login) |
+| Authentication built in code: sessions, signed tokens, one-time codes, OAuth client | Cyber AU-01…AU-10 and CR-05…CR-07, CR-13, CR-16 (the attacks and the primitives) | Go companion GO-28 (each piece built from scratch in Go against its RFC test vectors, then with a vetted library) |
+| Payment-provider integration: idempotent create, signed webhooks, ledger writes, reconciliation | Go companion GO-29 (the integration code) | SQL DD-03 (the ledger rules it follows); Cyber PV-03 (tokenization, PCI DSS scope) and AB-06/AB-07 (checkout abuse); Primer SD-28 (queues, back-pressure) |
 
 ### 0.4 Suite Teaching Contract
 
@@ -132,11 +134,12 @@ One contract for every part; each companion carries the same contract in its own
 
 **0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
 
-**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Three rules:
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
 
 1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
 2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
 3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
+4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor never writes the solution.
 
 ### 0.5 Lab Safety
 
@@ -214,6 +217,7 @@ Processes, threads, memory management, the filesystem hierarchy
 Linux shell essentials: navigation, permissions (chmod/chown), package managers, systemd/services
 Containers vs VMs at the OS level: namespaces and cgroups (sets up Docker)
 SSH and remote access
+Observing a live system: `/proc`, `ps`, `ss`, the OOM killer and cgroup memory limits (why a Cloud Run instance is killed), predicted before they are observed, on your own VM only
 ### A7. Software Architecture & APIs
 - [ ] A7 done
 Client-server model, monoliths vs microservices, trade-offs of each
@@ -273,11 +277,13 @@ Provider-specific framework nuance: GCP's Architecture Framework (Operational Ex
 Pay-as-you-go vs reserved/committed-use pricing, spot/preemptible instances
 Cost visibility and optimization tooling per provider
 Budget alerts, tagging/labeling for cost allocation
+Three budgets per system: money (billing account → project link, budgets, the billing export for analysis), errors (the C7 error budget) and quota (per-project API and resource quotas, raised before launch). GCP's discount forms: sustained-use, committed-use, Spot. Carbon as a cost-adjacent signal (region choice, the provider's footprint report)
 ### B5. Cloud IAM Concepts (deep provider dives happen later; the model is universal)
 - [ ] B5 done
 Principals, roles/policies, resource hierarchies (org → folder/OU → project/account)
 RBAC vs ABAC, policy inheritance, least-privilege design
 Service accounts / managed identities and workload identity federation
+Role types (basic, predefined, custom), conditional bindings (IAM Conditions), deny policies, and workforce federation for people beside workload federation for machines
 ## PART III — The DevOps / Containers / CI-CD Spine (Track C)
 This is the cross-cutting engineering core you asked to be taught "in parallel" and "exhaustively." It underlies the DevOps Engineer, Cloud Developer, Cloud Architect, and DOP-C02/AZ-400 certs directly, and shows up as scenario content everywhere else.
  
@@ -318,6 +324,7 @@ Provider-native tooling, mapped side by side:
 Build: Cloud Build (GCP) ↔ CodeBuild (AWS) ↔ Azure Pipelines (build stage)
 Deploy: Cloud Deploy (GCP) ↔ CodePipeline/CodeDeploy (AWS) ↔ Azure Pipelines/Release (Azure)
 Universal/cross-cloud: GitHub Actions, Jenkins, GitLab CI
+Delivery performance: the four DORA metrics (deployment frequency, lead time for changes, change failure rate, failed-deployment recovery time), and platform engineering — a golden-path service template and preview environments destroyed on merge
 ### C5. Infrastructure as Code
 - [ ] C5 done
 Declarative vs imperative provisioning, state management, drift detection
@@ -333,6 +340,7 @@ Open standards: Prometheus + Grafana, OpenTelemetry — increasingly tested beca
 SLIs, SLOs, SLAs and how they relate; error budgets and burn-rate alerting
 Toil and why eliminating it is an SRE's actual job
 Incident management, on-call, postmortem culture (blameless postmortems)
+Proving reliability: load tests against the SLO, and chaos experiments (kill a revision, fail a push subscription, stall a queue) in non-production first, each with its error-budget cost written down
 This shows up explicitly and heavily on the PCA exam's Reliability domain and on DOP-C02/AZ-400 — it is not optional reading.
 ## PART IV — Machine Learning & AI Foundations (Track D)
 Required for PMLE, AIP-C01, and Agentic Architect specifically — but every architect-level cert now touches "how do I put AI in this design" too.
@@ -345,6 +353,7 @@ Train/validation/test splits, cross-validation
 Evaluation metrics: accuracy, precision, recall, F1, ROC/AUC, confusion matrices — and why accuracy alone lies to you on imbalanced data
 Overfitting/underfitting, the bias-variance tradeoff, regularization
 Feature engineering: scaling, encoding categoricals, handling missing data, imbalanced datasets (SMOTE, class weighting)
+Applied problem families, as literacy: retrieve-then-rank recommenders (two-tower retrieval, learning to rank), bandits for exploration, time-series forecasting (seasonality, backtesting), fraud and anomaly detection with human review, and uplift measurement (why a lift claim needs a control group)
 ### D2. Deep Learning
 - [ ] D2 done
 Neural network basics: neurons, layers, activation functions, forward pass
@@ -378,7 +387,7 @@ The companions anchor to these IDs. Each ID is reserved here with its scope; the
 | M2 | Linear Algebra | rigorous pass on A2 |
 | M3 | Calculus | rigorous pass on A2 |
 | M4 | Probability & Statistics | rigorous pass on A2 |
-| M5 | Numerical Methods & Floating Point | IEEE 754, rounding, decimal vs binary |
+| M5 | Numerical Methods & Floating Point | IEEE 754, rounding, decimal vs binary; catastrophic cancellation, compensated (Kahan) summation, stable reformulations (`log1p`, log-sum-exp) |
 | M6 | Information Theory & Performance Modeling | queueing, Little's law, tail latency |
 | U1 | Computer Architecture & Systems Programming | machine-level representation, memory hierarchy |
 | U2 | Algorithms: Design & Analysis | rigorous pass on A4 |
@@ -394,10 +403,10 @@ The companions anchor to these IDs. Each ID is reserved here with its scope; the
 | S5 | Data architecture | |
 | S6 | Security architecture | threat-model-driven design |
 | S7 | Integration & event-driven architecture | |
-| S8 | Migration & modernization | |
+| S8 | Migration & modernization | the six Rs mapped to landings (rehost with Migrate to Virtual Machines, replatform, re-architect for GKE or Cloud Run, retire, retain, repurchase); Migration Center discovery, dependency mapping and wave planning; licence impact (bring-your-own vs included) before wave 1; data movement (Database Migration Service, Datastream, Storage Transfer Service, Transfer Appliance); wave-0 connectivity; cutover checklist with a written rollback (PCA 1.4) |
 | S9 | Cost architecture & unit economics | |
 | S10 | Architecture evaluation | |
-| S11 | Case-study studio | |
+| S11 | Case-study studio | the four published PCA case studies, each as an HLD with its trade-off answers |
 
 ## PART V — Google Cloud Platform
 Service map by category (the vocabulary we'll build fluency in)
@@ -415,12 +424,12 @@ Service map by category (the vocabulary we'll build fluency in)
 | V-OPS | Ops/DevOps |
 
 Compute: Compute Engine, GKE, Cloud Run, App Engine, Cloud Functions
-Storage/DB: Cloud Storage, Cloud SQL, Spanner, Bigtable, Firestore, Memorystore, AlloyDB
-Networking: VPC, Cloud Load Balancing, Cloud CDN, Cloud Interconnect/VPN, Cloud DNS, Cloud Armor
-Data/Analytics: BigQuery, Pub/Sub, Dataflow, Dataproc, Cloud Composer, Looker
-AI/ML: Vertex AI (full suite: Workbench, Training, Pipelines, Feature Store, Model Registry, Endpoints, Vizier), Model Garden, Gemini Enterprise/Agent Platform, AutoML, BigQuery ML
-Security: IAM, Cloud KMS, VPC Service Controls, Binary Authorization, Security Command Center, Google SecOps (Chronicle)
-Ops/DevOps: Cloud Build, Cloud Deploy, Artifact Registry, Cloud Monitoring/Logging
+Storage/DB: Cloud Storage, Cloud SQL, Spanner, Bigtable, Firestore, Memorystore, AlloyDB, Filestore, Persistent Disk / Hyperdisk, Backup and DR Service
+Networking: VPC, Cloud Load Balancing, Cloud CDN, Cloud Interconnect/VPN, Cloud DNS, Cloud Armor, Cloud Router, Cloud NAT, Private Service Connect, Network Connectivity Center, Cloud NGFW
+Data/Analytics: BigQuery, Pub/Sub, Dataflow, Dataproc, Cloud Composer, Looker, Datastream, Data Fusion, Dataplex, BigLake, Analytics Hub
+AI/ML: Vertex AI (full suite: Workbench, Training, Pipelines, Feature Store, Model Registry, Endpoints, Vizier), Model Garden, Gemini Enterprise/Agent Platform, AutoML, BigQuery ML, the pre-built AI APIs (Vision, Video Intelligence, Speech-to-Text, Natural Language, Translation, Document AI)
+Security: IAM, Cloud KMS, VPC Service Controls, Binary Authorization, Security Command Center, Google SecOps (Chronicle), Identity-Aware Proxy, Identity Platform, Secret Manager, Certificate Manager, Sensitive Data Protection, Organization Policy Service, Cloud Asset Inventory, Assured Workloads
+Ops/DevOps: Cloud Build, Cloud Deploy, Artifact Registry, Cloud Monitoring/Logging, Cloud Trace, Cloud Profiler, Error Reporting, Managed Service for Prometheus, Service Health, Cloud Billing reports and the billing export to BigQuery, Recommender (Active Assist), Cloud Quotas, Carbon Footprint
 Certification-by-certification breakdown
 (Domain weights below are from the current official exam guides where I verified them directly; where I didn't verify exact percentages, I've given you the topic structure and flagged it — always cross-check the live guide a few weeks before you actually schedule.)
  
@@ -433,6 +442,7 @@ Format: 50 scenario-based questions, 2 hours, includes 4 published case studies 
 Domains (verified): Designing (24%) · Provisioning (15%) · Security & Securing AI (20%) · Optimization (18%) · Implementation (11%) · Reliability & Well-Architected Framework (12%)
 > **Verified 2026-09-24 against the vendor's live page:** the live guide's weights are 25 / 17.5 / 17.5 / 15 / 12.5 / 12.5, under different section names. The line above keeps the 2026-09-16 reading. (verify live before scheduling)
 What makes it hard: it's not "what does this service do," it's "given these constraints, which trade-off is correct" — architectural judgment, tested through the case studies
+The published case studies (exam guide v6.1): Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive `(verify)` against the live guide. Each gets a written HLD and one "I pick X because Y, I accept Z" answer per requirement in S11.
 2. Professional Machine Learning Engineer (PMLE) — your named priority #2
 - [ ] PMLE passed
 - **Lab Reality**: `[local]` notebooks · `[credit ~$X]` timeboxed Vertex AI training/prediction (Part V note) · `[plan-only]` large training runs.

@@ -81,25 +81,25 @@ Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure*
 > **Note:** the suite-wide register is `Curriculum` §0.3; this table is the patterns slice of it, and on a conflict §0.3 wins.
 ````
 
-**J604** · DP-1 · anchor-rewrite
+**J621** · DP-1 · anchor-rewrite
 
 ````text
 Companion to `Curriculum` ("The Consolidated Cloud Mastery Curriculum"). Sibling to `system-design-primer-companion.md` and `sql-databases-companion.md`.
 ````
 
-**J605** · DP-1 · anchor-rewrite
+**J622** · DP-1 · anchor-rewrite
 
 ````text
 When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
 ````
 
-**J607** · DP-3 · anchor-rewrite
+**J624** · DP-3 · anchor-rewrite
 
 ````text
 | **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…08, then AP-01…10. ARCH-09…12 are taught in the A9 session (next row). `Curriculum` A7 splits this into teaching blocks A7.3–A7.7 | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
 ````
 
-**J608** · DP-3 · anchor-rewrite
+**J625** · DP-3 · anchor-rewrite
 
 ````text
 > **Note:** the suite-wide register is `Curriculum` §0.3; this table is the patterns slice of it, and on a conflict the main course's register wins.
