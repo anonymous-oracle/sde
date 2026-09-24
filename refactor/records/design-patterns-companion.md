@@ -105,13 +105,13 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 > **Note:** the suite-wide register is `Curriculum` §0.3; this table is the patterns slice of it, and on a conflict the main course's register wins.
 ````
 
-**J1039** · R5-11 · relabel
+**J1046** · R5-11 · relabel
 
 ````text
 **Check:** a `PaymentValidator` exists purely to check payment rules, representing no real-world "thing." Which GRASP principle justifies it, and which one answers "why isn't this just inside `Payment`?"
 ````
 
-**J1040** · R5-11 · relabel
+**J1047** · R5-11 · relabel
 
 ````text
 **Check:** a `UserManager` has 40 methods covering auth, email, reports, and DB migrations. Name the anti-pattern and the SOLID violation at its root.
