@@ -1,6 +1,6 @@
 --- /dev/null
 +++ work/northstar-reference-app.md
-@@ -0,0 +1,418 @@
+@@ -0,0 +1,420 @@
 +# Northstar Reference Application (Track N)
 +
 +*Skeleton created by the curriculum refactor on 2026-09-24 (R2; C-03, C-05, C-06, C-07, §6.3). R9 authors it.* Northstar is the one running reference application every file builds on: storefront, customer API, admin, service-to-service, data, CI/CD and AI-gateway planes (the cybersecurity companion's Appendix N sketches its threat model). `Curriculum` owns order and cert timing; this file will own the concrete build, milestone by milestone.
@@ -309,12 +309,14 @@
 +
 +- **Meaning:** `gcp-curriculum.md`:5577 (§8.1.5).
 +- **Referenced by:** SQL 2. Stitch table; SQL 2.1 Overlap register; SQL OD-09; SQL PX-9
++- **`Curriculum` anchors (C-06):** cursor pagination → A8.
 +- **Status:** [stub — authored in R9]
 +
 +### N8.1.6 · Other primitives (compressed ownership)
 +
 +- **Meaning:** `gcp-curriculum.md`:5591 (§8.1.6).
 +- **Referenced by:** — (named by C-06)
++- **`Curriculum` anchors (C-06):** RLS multi-tenancy → A8 · schema evolution → A8 · LSM vs B-tree comparison toy → A8 · hot partition / key histogram → A9 · idempotency → A9 · connection-pool math → A5/A8 recall (SD-30 already covers the connection budget).
 +- **Status:** [stub — authored in R9]
 +
 +### N8.C · Evidence-pack HLDs (full packs; paper + sequences OK)
