@@ -426,6 +426,16 @@ def build(f, files, root):
                   "transaction — DD-09 RLS."),
                  ("cluster by product (gcp-curriculum 9b.1)", "cluster by product (AN-02)")]:
         f.rep("SQL-4", "anchor-rewrite", o, n, evk, fence=True)
+    f.rep("SQL-4", "anchor-rewrite", "makes it a seq scan per user (E12.1).", "makes it a seq scan per user (PX-1).",
+          "R3 + C-51: the kit's copy of the E4.7 trap kept the undefined label E12.1, which the rename resolved to PX-1 "
+          "in the course text (note text only, so no golden fingerprint changes)", fence=True)
+
+    # R3 zero-orphans gate: BH-1 and BH-6 were bound nowhere in §2 since the input (their Tags name the home)
+    ev8 = ("R3 §8.2 zero orphans: the bug-hunt card was bound in no §2 row since the input; its own Tags line names "
+           "the module it belongs to")
+    f.rep("SQL-8", "anchor-rewrite", "| SQL-E1 → SQL-E10 by level (§6 gates) |",
+          "| SQL-E1 → SQL-E10 by level (§6 gates); BH-1 after SQL-E3.5 |", ev8 + " (SQL-E3.5, the fan-out join)")
+    f.rep("SQL-8", "anchor-rewrite", "| SQL-E9.6, SCH-4 |", "| SQL-E9.6, SCH-4, BH-6 |", ev8 + " (DD-11 expand/contract)")
 
     # shared contract after the preferences (§0.5), then the file-style parent name everywhere else
     h = f.heading("0.5 Learner teaching preferences")

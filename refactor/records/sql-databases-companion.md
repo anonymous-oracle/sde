@@ -1306,73 +1306,91 @@ Database acceptance tests for N11 (Northstar). Issue after the §6 level-14 gate
    trap="Facts hold measures + foreign keys at one **grain** (an order line); dimensions hold descriptions. Decide grain first, write it in one sentence. In BigQuery you would partition the fact by date and cluster by product (gcp-curriculum 9b.1) and often *denormalise* the dimensions in.",
 ````
 
-**J608** · SQL-6 · anchor-rewrite
+**J607** · SQL-4 · anchor-rewrite
 
 ````text
-## 0. Read this first — how this file complements `Curriculum`
+   trap="`LATERAL` runs the subquery once per outer row and can reference it — the SQL for-each loop. Missing index on `(user_id, placed_at)` makes it a seq scan per user (E12.1).",
 ````
 
-**J609** · SQL-6 · anchor-rewrite
+**J608** · SQL-8 · anchor-rewrite
 
 ````text
-**This file is a complement to `Curriculum`, not a second curriculum. Read both. Whenever a `Curriculum` module is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
+| **A8 — SQL design track** (concept, then lab; engine slices §4.0) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates) |
 ````
 
-**J610** · SQL-6 · anchor-rewrite
+**J609** · SQL-8 · anchor-rewrite
 
 ````text
-Why: the main course owns the order and the module spine. This file owns the engine slices DB-1 … DB-10 (§4.0) and the Cloud SQL procedure (OD-11). The main course deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the `Curriculum` module that needs it, **at the moment that module needs it**.
+| **A8** + **C4** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migrations as jobs, tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
 ````
 
 **J611** · SQL-6 · anchor-rewrite
 
 ````text
-12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's `Curriculum` module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
+## 0. Read this first — how this file complements `Curriculum`
 ````
 
 **J612** · SQL-6 · anchor-rewrite
 
 ````text
-1. **Anchor** — announce the `Curriculum` module and list the companion modules bound to it (§2). Run the one-line pre-rung-2 self-check: every term to be used is anchored this session or on the ledger; no unanchored sibling; no new product; every noun in the picture unlocked.
+**This file is a complement to `Curriculum`, not a second curriculum. Read both. Whenever a `Curriculum` module is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
 ````
 
 **J613** · SQL-6 · anchor-rewrite
 
 ````text
-2. **Concept** — teach the shared idea once (`Curriculum` depth), then layer this file's SQL / theory / craft on top. Derive before you name.
+Why: the main course owns the order and the module spine. This file owns the engine slices DB-1 … DB-10 (§4.0) and the Cloud SQL procedure (OD-11). The main course deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the `Curriculum` module that needs it, **at the moment that module needs it**.
 ````
 
 **J614** · SQL-6 · anchor-rewrite
 
 ````text
-Each `Curriculum` module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
+12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's `Curriculum` module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
 ````
 
 **J615** · SQL-6 · anchor-rewrite
 
 ````text
-### 2.3 Parallel calendar — how the companion rides `Curriculum`'s spine
+1. **Anchor** — announce the `Curriculum` module and list the companion modules bound to it (§2). Run the one-line pre-rung-2 self-check: every term to be used is anchored this session or on the ledger; no unanchored sibling; no new product; every noun in the picture unlocked.
 ````
 
 **J616** · SQL-6 · anchor-rewrite
 
 ````text
+2. **Concept** — teach the shared idea once (`Curriculum` depth), then layer this file's SQL / theory / craft on top. Derive before you name.
+````
+
+**J617** · SQL-6 · anchor-rewrite
+
+````text
+Each `Curriculum` module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
+````
+
+**J618** · SQL-6 · anchor-rewrite
+
+````text
+### 2.3 Parallel calendar — how the companion rides `Curriculum`'s spine
+````
+
+**J619** · SQL-6 · anchor-rewrite
+
+````text
 | Window (`Curriculum`) | Companion work (parallel, small) | Outcome |
 ````
 
-**J619** · SQL-7 · anchor-rewrite
+**J622** · SQL-7 · anchor-rewrite
 
 ````text
 - **SQL-CAP3:** design/TX evidence capstone — no single `lab.chk` fingerprint (stub: acceptance via transcript + ADR).
 ````
 
-**J620** · SQL-7 · anchor-rewrite
+**J623** · SQL-7 · anchor-rewrite
 
 ````text
 - **TF-DB*:** plan-only stubs; no checked-in `.tf` in this companion (owned by learner under Lab Reality).
 ````
 
-**J840** · GO-11 · anchor-rewrite
+**J844** · GO-11 · anchor-rewrite
 
 ````text
 - **Build lab `[local]`:** a `cursorpage` package (Python, then Go). Encode and decode an opaque, signed cursor over `(placed_at, order_id)`; run it against a fake ordered store searched by binary search, then against the lab's `customer_order`. Tests: forward pages; the empty result; a row deleted between two pages; a tampered cursor rejected. API shape: `GET /items?cursor=&limit=`.

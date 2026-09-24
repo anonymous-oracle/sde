@@ -291,6 +291,7 @@ def build(f, files):
            "a full card in §5 (scenario, prediction, design, check) with its key in Appendix K. VPC-SC is NT-06.",
            EV6 + "; D3 archive and refactor bookkeeping leave course text; " + EV9C)
     R("SEC-4", "| `Curriculum` anchor | Taught here", "| Main-course anchor | Taught here", EV11)
+    R("SEC-14", "Taught here (primary, §6.2)", "Taught here (primary)", EV6 + "; R3: the §6.2 pointer named the refactor's crosswalk, not a section of this file")
 
     # §3.3 cryptography: the product labs now live in the owning modules
     f.line("SEC-5", "anchor-rewrite", "*Equal scale to AU/AB/CL. `Curriculum` A7 (API auth patterns) + A10 own",

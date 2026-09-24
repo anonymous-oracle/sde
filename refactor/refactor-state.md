@@ -2,7 +2,7 @@
 
 Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace: `refactor/` (the repo's `refactor/` folder; R0–R1 ran at `/Users/suhas/sde/refactor/`, R2 was finished in a cloud checkout of the same repo, branch `gcp`). Outputs go to `refactor/outputs/` and the workspace root.
 
-**Resume point:** R2b, R2c and R2c-bis are **done**. R2c (D12) added the sixth part, the Go Language Companion, plus rule 0.4.9 and the tie-ins; see §6c. R2c-bis (D13) made the final gap check of the legacy GCP notes (17 small additions, `refactor-tools/r2c_gcp.py`), added GO-28 (authentication from scratch) and GO-29 (payment integration from scratch), and gave every GO module an involved problem with a rubric (rule 0.4.9's fourth rule); see §6d. `audit-R2b.md` has **one FAIL, D8**: the learner put `gcp-curriculum.md` back for the D13 check, and it is not deleted again without the learner's say-so (§10 question 2). No build step opens it (checked with an audit hook on every `open`, §6d). The six course files in `work/` are self-contained (D6), Northstar is gone (D5), each topic has one home (D7), and the gaps are filled (D9). Read `requirements-hardening.md` §1 first. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (fold in `d3_check.py`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py` and the R2 probes of `audit_r2.py` that still apply after R2b; see §9), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items, zero file names or links. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild first with `python3 refactor-tools/r2b_build.py .`: it starts from the frozen R2 snapshot (`outputs/r2b/in/`, checked against `outputs/r2b/in.sha256`) and must reproduce the committed `work/`, `records/` and journal byte for byte. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the deleted legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
+**Resume point:** R3 Verify is **done** (§6e): `python3 refactor-tools/verify.py .` rebuilds from the frozen R2 snapshot, runs every folded check and writes `manifest-after.json`, `manifest-after-summary.md` and `verification-report-R3.md`, which reports **PASS** with 42 of 42 GATE rows passing, 5 INFO rows and 1 HOLD (D8). The hard gate holds: zero lost items, zero undefined references, zero orphans, zero file names or links. `gcp-curriculum.md` is still in the repo and is not deleted without the learner's say-so (§10 question 2); `audit_r2b.py` alone still exits 1 on D8 for that reason. Read `requirements-hardening.md` §1 first. Next: **R4** (the main course: tracks M/U/S to the §9.1 standard, `dag.json` + `dag_check.py` for C-65, the volatility register and coverage matrix, the A5/A8/A10 splits); stop for "continue" before starting it. After a fresh checkout run `chmod a-w inputs-original/*`. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the deleted legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
 
 | Phase | Status | Date | Deliverables |
 |---|---|---|---|
@@ -12,8 +12,8 @@ Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace:
 | R2b Self-contained rework (D5–D11) | **done** | 2026-09-24 | `work/*` (5 self-contained files; Northstar deleted), `records/<file>`, `outputs/r2b/journal.jsonl`, `outputs/r2b/in/` + `in.sha256`, `audit-R2b.md`; tools listed in §7; `gcp-curriculum.md` deleted |
 | R2c Go Language Companion (D12) | **done** | 2026-09-24 | `authored/go-language-companion.md` (source) → `work/go-language-companion.md`; `refactor-tools/r2c_go.py` (run inside `r2b_build.py`); rule 0.4.9 in the main course and every contract copy; tie-ins in the primer, SQL, patterns and cyber companions; D12 check in `audit_r2b.py` |
 | R2c-bis Final legacy check, GO-28/GO-29, involved problems (D13) | **done** | 2026-09-24 | `refactor-tools/r2c_gcp.py` (GAP-1…GAP-17, run inside `r2b_build.py`); GO-28, GO-29, GO-P01…GO-P29 and §10.2 rubrics in `authored/go-language-companion.md`; rule 0.4.9's fourth rule and two §0.3 rows in `r2c_go.py`; D12 audit extended |
-| R3 Verify | **next** | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
-| R4–R9 Enhance | pending | | |
+| R3 Verify | **done** | 2026-09-24 | `refactor-tools/verify.py`, `manifest-after.json`, `manifest-after-summary.md`, `verification-report-R3.md`, `outputs/r2c/` (frozen R2c Go source), `records/go-language-companion.md`; fixes SEC-14, SQL-4 (kit trap), SQL-8 |
+| R4–R9 Enhance | pending (R4 next) | | |
 | R10 Final | pending | | |
 
 ---
@@ -117,7 +117,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 **What R2b did.**
 - **All files:** the D3 archive, provenance / `Source material:` lines and `(was …)` notes moved to `records/<file>` (D6; D3 still holds there, verbatim). File names, links and the backticked `Curriculum` are gone ("the main course"); course IDs stay as stitch tags (D11). Each companion carries a copy of the main course's §0.4 teaching contract and §0.5 Lab Safety in its own §0 (primer, SQL, patterns §0.6; cyber §0.7). "On a conflict §0.3 wins" now names the main course's register (G10).
 - **Northstar (D5, D10):** every `N…` pointer is mapped to the course module that teaches the topic (cyber `NMAP`, 34 N-IDs; stitch headers via G8). Where the legacy text handed a lab to Northstar, the owning module now holds the lab: cyber CR-06, CR-13, CR-14, AU-03, AU-11, DOS-05, CL-01, WL-04 build labs and an IR-05 runbook. "The reference app" is defined once, in cyber §0.4 (the shop at `shop.example`).
-- **SQL:** the whole lab kit (seed, scripts, goldens JSON, `run_ex.py` family) is printed in §3.8 from `sql-companion-work/`; only its two header comments and seven notes that named the legacy course were reworded (comments only, so no fingerprint changed). §8.2 now lists what each TF-DB plan must show; §9 gives SQL-CAP3 four acceptance tests and a tutor key.
+- **SQL:** the whole lab kit (seed, scripts, goldens JSON, `run_ex.py` family) is printed in §3.8 from `sql-companion-work/`; only its two header comments, seven notes that named the legacy course, and (R3) one exercise trap note that kept the undefined label E12.1 were reworded (comments only, so no fingerprint changed). §8.2 now lists what each TF-DB plan must show; §9 gives SQL-CAP3 four acceptance tests and a tutor key.
 - **Cyber (D9):** the nine checkpoints (RD-1) are full cards with a check question and key: SEC-Z0.5, SEC-E3.1, SEC-E3.5, SEC-E4.3, SEC-E4.16, SEC-E4.21, SEC-E6.5, SEC-E6.8, SEC-E10.7. Bare legacy section numbers (6.16, 7.2, …) rebound (SEC-13).
 - **Primer (D7, D9):** SD-25 is the one home of the store-choice map; it gained the Filestore row and the anti-choices.
 - **One home per topic (D7):** store choice, Firestore, Bigtable → primer SD-22/23/25; Cloud SQL → SQL OD-11; migrations OD-08; cursor pager OD-09; pool math OD-03; ledger DD-03; point-in-time joins DD-05; tenant RLS DD-09; key design DD-13; LSM vs B-tree CS-02; BigQuery ops AN-02; tokenization cyber PV-03; KMS/CMEK CR-14. Other files recall these by ID in one line.
@@ -184,9 +184,39 @@ Checked and **not** added: Cloud Run tuning details (min instances, concurrency,
 
 **Checks at the end of R2c-bis.** `selfcontained.py` 6/6 PASS; `d3_check.py --stage all` 12/12 PASS; `audit_r2b.py` all rows PASS except D8 (the restored legacy file). D12 now derives the module count from the ledger total, and requires one involved problem per card right after its Check and one rubric per problem; mutation-tested (a deleted problem and a renamed rubric each made D12 fail, naming the fault). A Python audit hook on `open` during a full rebuild saw 88 files opened and none of them `gcp-curriculum.md` or the Nasiko notes.
 
+## 6e. R3 results (§8.2 verify)
+
+**Tool.** `refactor-tools/verify.py ROOT [--stage R3|R10] [--no-rebuild]`. Sections: 1 inputs (the §1 hashes, `outputs/r2b/in.sha256`, the frozen R2c Go source, read-only mode); 2 rebuild + decisions (`audit_r2b.py` rows, D8 → HOLD); 3 folded checks (`selfcontained.py`, `d3_check.py --stage all`, `rename_checks.py` on the renamed snapshot, `binding.py`); 4 manifest (`manifest.py` on `work/`, which now also knows the Go file and the `GO-` families; re-running it on `inputs-original/` gives a byte-identical `manifest-before.json`); 5 §8.2 (item survival through renamed input → R2 journal → R2b journal → `work/` or `records/`, defined-count, references, orphans, pseudo-anchors, mangled IDs, unqualified labels, primer checks); 6 Go D3 against the frozen R2c source (`outputs/r2c/`; the 17 lines R2c-bis extended are kept verbatim in `records/go-language-companion.md`); 7 conflicts C-01…C-75 and C-NEW-01…09 via `audit_r2.py`'s probes, with substance probes or lineage where R2b removed a tag on purpose; 8 lints (ragged tables and `§` cross-references are GATE; numeric facts; ID titles, bare "Curriculum" and the DAG are INFO). The report has no timestamps; two runs under different `PYTHONHASHSEED`s produce the same bytes.
+
+**Result.** PASS: 42 of 42 GATE rows pass; 5 INFO; 1 HOLD (D8). Summary: 11,743 R1 items in the course text, 907 kept verbatim in `records/`, 0 lost; 848 defined tokens, 0 primary collisions; 0 undefined references; 340 module cards, 0 orphans, 0 undefined stitch anchors; 416 `§` references, all resolved; conflicts: 40 PASS, 27 PASS by substance or lineage, 11 deferred to their owner phase, 6 D2, 0 FAIL.
+
+**Defects found and fixed (journaled rules, rebuilt from the frozen snapshot).**
+- SEC-14: the cyber §2 header said "Taught here (primary, §6.2)", where §6.2 was the refactor's crosswalk, not a section of the file.
+- SQL-4 (kit): the kit's copy of the SQL-E4.7 trap still named `E12.1`, which the rename resolved to PX-1 in the course text. Note text only; the golden fingerprints are unchanged.
+- SQL-8: BH-1 and BH-6 had been bound in no §2 row since the input. They are now bound at their homes, which their Tags lines name: BH-1 on the A8 SQL design track, after SQL-E3.5; BH-6 on the A8 + C4 migrations row (DD-11).
+
+**Tool errors corrected (each checked against its source).**
+- The orphan check did not expand §2 ranges such as "PX-1 … PX-11" and "F-01…04".
+- The "Edition" probe ran on every file. The meta-prompt and `audit_r2.py` c10 scope it to the cyber file; the primer and SQL companions are titled "… — GCP-Native Edition" on purpose.
+- Three Go tokens are not IDs:
+  - C11 is the ISO C standard, in a language contrast;
+  - T0 is the RFC 6238 epoch;
+  - A12 is sample data inside a code span.
+  Each exemption requires its context on every occurrence.
+- The C-31 21-word-run check matched the SQL companion's own "complement to the main course" paragraph. That paragraph was the SQL input's own line 12, and it lined up with the primer's copy once D11 gave both the same parent name. A run is now exempt only when the line traces back through both journals (rewrites, never moves) to the same file's own input line. The report lists the exempt run (`sql:L13`).
+
+**Mutation test.** The following edits were injected into `work/sql-databases-companion.md` and verify was run with `--no-rebuild`:
+- a primer paragraph;
+- a fake ID PX-99;
+- BH-6 unbound again.
+
+8 GATE rows failed, each naming its fault; among them were D3, orphans, undefined references, C-31 and C-01. A rebuild restored PASS.
+
+**Not claimed.** The DAG (C-65) is NOT RUN; it is owned by R4. R1-count monotonicity is R10 only. The ID-title heuristic has 49 candidates, all read, all false positives; the row says so only while the count stays at 49. There are 68 bare "Curriculum" occurrences outside the quoted title (primer 59, patterns 6, main course 3, all others 0). They are INFO, and a one-name pass is proposed for R4 (§10 question 3).
+
 ## 7. Tools (`refactor-tools/`)
 
-`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`; R2 state only) · **R2b:** `r2b_build.py` (pipeline, generic rules), `r2b_common.py` (`F` edit framework, journal, records), `r2b_shared.py` (contract copy, parent-name rewrite), `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py` (per-file rules), `selfcontained.py` (D6 probe V1–V6), `audit_r2b.py` (→ `audit-R2b.md`). No longer runnable after D8 (they read `gcp-curriculum.md`): `r0_reproduce.py`, `r2_build.py`, `r2_sql.py`, `northstar.py`. `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
+`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`; R2 state only) · **R2b:** `r2b_build.py` (pipeline, generic rules), `r2b_common.py` (`F` edit framework, journal, records), `r2b_shared.py` (contract copy, parent-name rewrite), `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py` (per-file rules), `selfcontained.py` (D6 probe V1–V6), `audit_r2b.py` (→ `audit-R2b.md`) · **R3:** `verify.py` (→ `manifest-after.json`, `manifest-after-summary.md`, `verification-report-R3.md`; folds in every check above). No longer runnable after D8 (they read `gcp-curriculum.md`): `r0_reproduce.py`, `r2_build.py`, `r2_sql.py`, `northstar.py`. `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
 
 `errata.md` is permanent and append-only: `reports.py` writes it only if it does not exist. `diffs/R2-01-renames.diff` is the approved gate diff (renames only); `diffs/<file>.diff` are full input-vs-work diffs.
 
@@ -204,7 +234,7 @@ Checked and **not** added: Cloud Run tuning details (min instances, concurrency,
 | RD-8 | §6.2 "NT-04 already taught — mark done" | Not ticked (D2 fresh start). |
 | RD-10 | Complementing without links (D6/D7) | Superseded by D11: IDs stay as tags; each companion keeps its stitch table; shared rules copied into each companion §0. |
 
-## 9. What R3's verify.py must know
+## 9. What R3's verify.py must know (done at R3; kept as the spec `verify.py` implements)
 
 - Fold in `d3_check.py --stage all`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py`, `binding.py`'s topo check, and the probes of `audit_r2.py` that still apply after R2b (not those that look for provenance lines, the in-file D3 archive or Northstar). Report D2-vacuous §8.2/§11 items as `N/A (D2)`.
 - File set: the 6 course files (the 5 originals plus the Go Language Companion, D12). Northstar is deleted (D5); no `N…` ID is defined or referenced. The Go companion has no input in `inputs-original/`: its source is `authored/go-language-companion.md`, and its D3 baseline is that source.
@@ -217,7 +247,8 @@ Checked and **not** added: Cloud Run tuning details (min instances, concurrency,
 ## 10. Open questions (for the learner)
 
 1. RD-1: accept the nine checkpoint mappings (expanded into full cards under D9 either way)?
-2. D8 after D13: `gcp-curriculum.md` is back in the repo. The D13 check is done and no build reads it. Delete it again now (audit D8 then passes), or keep it until R3? R3's hard gate cannot pass D8 while it is present.
+2. D8 after D13: `gcp-curriculum.md` is back in the repo. The D13 check is done and no build reads it. Delete it again now (audit D8 then passes), or keep it until R3? R3 passed with D8 reported as HOLD (not an §8.2 gate item); `audit_r2b.py` still exits 1 on D8 until the file goes.
+3. Bare "Curriculum" (not the quoted title) still names the parent in 68 places (primer 59, patterns 6, main course 3). D11 removed only the backticked file-style name. Rename these to "the main course" in R4, so the parent has one name?
 
 ## 11. Deferred (not R2 by the prompt's phase rules)
 
