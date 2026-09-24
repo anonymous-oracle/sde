@@ -34,7 +34,7 @@ _b(["TH-06"], "A9")
 _b(_r("CR", 1, 10) + ["CR-13"], "A10")
 _b(["CR-11", "CR-12"], "A5 TLS", ["A10"])
 _b(["CR-19"], "A10", ["after CR-11/CR-12"])
-_b(["CR-14", "CR-15", "CR-17", "CR-18", "CR-20"], "Phase 4 Security")
+_b(["CR-14", "CR-15", "CR-17", "CR-18", "CR-20"], "Phase 4 Security", ["N7.x"])
 _b(["CR-16"], "A10", ["SC-01"])
 _b(_r("AU", 1, 4), "A10", ["A5 HTTP cookie mechanics (recall)"])
 _b(_r("AU", 5, 7), "A7", ["A10 federation/SSO"])
@@ -295,6 +295,10 @@ def build_sec(d, prefs):
           [("Roadmap A10 / B5 / API auth patterns owns", "`Curriculum` A7 (API auth patterns) + A10 own"),
            ("GCP KMS / CMEK (Phase 4 Security) owns CMEK *product* spine",
             "Phase 4 Security (N7.3) owns the CMEK *product* spine")], "C-10 pseudo-anchor")
+    pairs(d, "C-10", "Stanford CS255 alignment: see §B5 IAM.*",
+          [("see §B5 IAM.", "see §0.5.")],
+          "C-10: \"0.5\" → \"B5 IAM\" is the corruption the prompt names; §0.5 is this file's University alignment "
+          "table, whose Stanford CS255 row maps CR-01…CR-20 (R0 reported 0 hits for this token; that was wrong)")
     s = d.one("**Recommended CR session bundles (when spine allows):**")
     assert d.L[s + 1].startswith("1. CR-01…04") and d.L[s + 5].startswith("5. CR-16…19")
     d.replace_block("C-14", "correction", s + 1, s + 6, [

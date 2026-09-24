@@ -203,7 +203,7 @@ Wildcard references (`N2.x`, `N3.x`, `N5.x`, `N6.x`) resolve to the milestone of
 ## N7 · Cybersecurity (concept + GCP offerings)
 
 - **Meaning:** `gcp-curriculum.md`:4767 (Part 7).
-- **Referenced by:** — (milestone container)
+- **Referenced by:** cyber CR-14; cyber CR-15; cyber CR-17; cyber CR-18; cyber CR-20
 - **Status:** [stub — authored in R9]
 
 ### N7.1 · Security principles
