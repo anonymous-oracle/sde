@@ -21,6 +21,7 @@ import rename  # noqa: E402
 import binding  # noqa: E402
 import r2_cur  # noqa: E402
 import r2_sql  # noqa: E402
+import r2_sec  # noqa: E402
 
 from r2_common import JOURNAL, Doc, note, ledger_prefs, PREFS_HEAD, C29_POINTER, DATE, CUR, PRI, SQL, DPC, SEC, LED, SKL  # noqa: E402
 
@@ -297,11 +298,17 @@ def main():
     open(os.path.join(root, "primer-binding-table.md"), "w", encoding="utf-8").write(
         binding.table_md(errors, notes, topo, hard, cand))
 
+    # renamed-only snapshot: rename_checks.py runs here (the repairs below add Curriculum C-track anchors on purpose)
+    snap = os.path.join(outd, "renamed")
+    os.makedirs(snap, exist_ok=True)
+    for f, cur in renamed.items():
+        open(os.path.join(snap, f), "w", encoding="utf-8").write("\n".join(cur))
     prefs = ledger_prefs(renamed[LED])
     docs = {f: Doc(f, renamed[f]) for f in renamed}
     build_primer(docs[PRI], prefs, tmp_primer)
     r2_cur.build_curriculum(docs[CUR], prefs)
     r2_sql.build_sql(docs[SQL], prefs, root)
+    r2_sec.build_sec(docs[SEC], prefs)
 
     for f, d in docs.items():
         out = d.finish()
