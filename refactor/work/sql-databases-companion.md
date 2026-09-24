@@ -1,49 +1,61 @@
 # The SQL & Databases Companion — GCP-Native Edition
-Companion to `gcp-curriculum.md` ("The Consolidated Cloud Mastery Curriculum", initial course T–11b + Part 12 continuation) and to the owner nodes `DB-SQL` and `DB-ENGINE` of `unified-curriculum.md`.
+Companion to `Curriculum` ("The Consolidated Cloud Mastery Curriculum") and to its reference application `northstar-reference-app.md` (Track N).
+*Provenance (C-01, 2026-09-24):* originally authored against `gcp-curriculum.md` and the `unified-curriculum.md` nodes `DB-SQL` / `DB-ENGINE`; rebound to `Curriculum` + `northstar-reference-app.md` on 2026-09-24. Every foreign label and its new anchor is listed in `crosswalk.md` §1.
 Sibling of `system-design-primer-companion.md` (its SD-13 … SD-27 own the *scale-out and interview* layer of databases; this file owns *SQL semantics, relational and storage theory, schema craft, and a query-writing exercise ladder*).
 Sources: PostgreSQL documentation · Silberschatz/Korth/Sudarshan *Database System Concepts* (`TB-DB-001`) · Rogov *PostgreSQL 14 Internals* (`TB-DB-002`) · Kleppmann *Designing Data-Intensive Applications* (`TB-DIST-001`) · CMU 15-445/645 (`SRC-DB-002`) · Google Cloud documentation for Cloud SQL, AlloyDB, Spanner, BigQuery. Built September 21, 2026. **Every reference query and every golden value in §6 and Appendix K was executed on PostgreSQL 15.8 against the deterministic "seed v1" of §3** — nothing in the exercise ladder is typed from memory.
+> **Refactor note (2026-09-24, C-53):** the `TB-…` / `SRC-…` labels in the line above are this file's bibliography keys. They were first assigned in `unified-curriculum.md`; the labels are kept, the books and courses are named in full beside them.
 
 ---
 
-## 0. Read this first — how this file complements gcp-curriculum.md
+## 0. Read this first — how this file complements `Curriculum`
 
 ### 0.1 Standing instruction (for Claude, every session)
 
-**This file is a complement to `gcp-curriculum.md`, not a second curriculum. Read both. Whenever a gcp-curriculum module is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
+**This file is a complement to `Curriculum`, not a second curriculum. Read both. Whenever a `Curriculum` module is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
 
-Why: gcp-curriculum owns the *product spine* (Northstar on GCP) and, in Part 2, the engine slices DB-1 … DB-10 and the Cloud SQL procedure. It deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the gcp-curriculum module that needs it, **at the moment that module needs it**.
+Why: `Curriculum` owns the order and the module spine; `northstar-reference-app.md` owns the *product spine* (Northstar on GCP) and the Cloud SQL procedure (N2.3). Since the refactor this file also owns the engine slices DB-1 … DB-10 (§4.0, C-05). `Curriculum` deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the `Curriculum` module that needs it, **at the moment that module needs it**.
 
 ### 0.2 Stitching rules
 
 1. **One concept, one teaching.** If both files teach an idea, it is taught once, in the module that owns it (§2.1 overlap register), and the other file only *adds*. Later sessions recall in one line; they do not re-teach. Ideas already unlocked-and-confirmed on the ledger are recalled, never re-taught.
-2. **Ownership split (memorise).** *gcp-curriculum owns:* Cloud SQL setup (2.3), the ten engine slices DB-1 … DB-10 and their toys, Firestore (2.4), migrations-as-jobs (2.6), the Spanner/NoSQL map (2.7), the primitives of 8.1 (cursor pager, hot partition, pool math, RLS, LSM-vs-B-tree comparison), outbox/inbox (3.5), the ledger (5.3), BigQuery ops (9.4/9b.1), as-of joins as *leakage prevention* (9c.1), billing-export SQL (10.3). *This file owns:* SQL-language mastery (SL), relational theory (RT), the CS theory tier under the slices (CS), data-design method (DD), operating-a-database craft (OD), analytics and dialect craft (AN), pre-SQL prerequisites (PQ), and the exercise ladder (§6). **Where a gcp-curriculum toy exists (WAL codec, slotted page, B-tree, iterator executor, visibility simulator) this file never asks for a second toy — it adds the analytic layer (formulas, schedules, cost models) that the toy's tests do not reach.**
-3. **Same ten-rung ramp, same locks.** Companion concepts are taught through gcp-curriculum's universal ten-rung sequence (anchor → vocabulary → representation → core move → worked illustration → basic unseen check → routine variation → mixed transfer → top-rung challenge → reflection + ledger). The **dependency gate**, **rung-2 vocabulary audit** and **Prop Lock** apply unchanged: never use a later system as a prop (no Spanner interleaving in the first Postgres transcript; no full PITR runbook before its owner; no Cloud SQL HA as a "known" prop before Part 2). If an exercise needs machinery not yet unlocked, **postpone the exercise** — or teach the machinery first. A smuggled prop is an *instructor process failure*, never "shaky", exactly as in gcp-curriculum.
+2. **Ownership split (memorise).** *`Curriculum` and Northstar own:* Cloud SQL setup (N2.3), Firestore (N2.4), migrations-as-jobs (N2.6), the Spanner/NoSQL map (N2.7), the primitives of N8.1 (cursor pager, hot partition, pool math, RLS, LSM-vs-B-tree comparison), outbox/inbox (A9 theory; design-patterns ARCH-11 shape), the ledger (N5.3), BigQuery ops (N9.4/N9b.1), as-of joins as *leakage prevention* (D3, N9c.1), billing-export SQL (B4). *This file owns:* SQL-language mastery (SL), relational theory (RT), the CS theory tier under the slices (CS), data-design method (DD), operating-a-database craft (OD), analytics and dialect craft (AN), pre-SQL prerequisites (PQ), the exercise ladder (§6), and — since the refactor (C-05) — the engine slices DB-1 … DB-10 and their toys (§4.0). **Where a §4.0 slice toy exists (WAL codec, slotted page, B-tree, iterator executor, visibility simulator) this file never asks for a second toy — it adds the analytic layer (formulas, schedules, cost models) that the toy's tests do not reach.**
+3. **Same ten-rung ramp, same locks.** Companion concepts are taught through the suite's ten-rung sequence (`Curriculum` §0.4.3) (anchor → vocabulary → representation → core move → worked illustration → basic unseen check → routine variation → mixed transfer → top-rung challenge → reflection + ledger). The **dependency gate**, **rung-2 vocabulary audit** and **Prop Lock** apply unchanged: never use a later system as a prop (no Spanner interleaving in the first Postgres transcript; no full PITR runbook before its owner; no Cloud SQL HA as a "known" prop before its N2.3 session). If an exercise needs machinery not yet unlocked, **postpone the exercise** — or teach the machinery first. A smuggled prop is an *instructor process failure*, never "shaky", exactly as in `Curriculum` §0.4.6.
 4. **Every concept gets a GCP lens the moment it is taught**, at three depths (same definitions as the primer companion): **Lens-1** name the GCP resource and show one `gcloud`/console/Terraform line; **Lens-2** touch it (local Docker Postgres is the default lab; Cloud SQL / AlloyDB / Spanner emulator / BigQuery sandbox only when Lab Reality allows); **Lens-3** cert-depth trade-offs and limits (PCA storage systems; Professional Data Engineer / Database Engineer overlap).
 5. **Bank ≠ dump.** The exercise ladder in §6 is a **bank of specifications**, not a worksheet. At teach time issue **one** item at the rung the ledger says is next (never the whole list), let the learner attempt first, escalate hints one notch at a time (*what structure do you see → smaller case → smallest unlocked hint*), and only then open the instructor key (Appendix K). **Never paste a key before an attempt.** Mixed-transfer items name their two earlier tools on one line before executing.
-6. **Predict before you run; explain the discrepancy after.** Every exercise that has a *result shape*, a *row count*, a *plan shape*, or an *isolation outcome* starts with the learner writing the prediction (one line). Then run. A wrong prediction is the best teaching moment in this file — record the discrepancy on the ledger, do not skip it. (gcp-curriculum "Database protocol".)
+6. **Predict before you run; explain the discrepancy after.** Every exercise that has a *result shape*, a *row count*, a *plan shape*, or an *isolation outcome* starts with the learner writing the prediction (one line). Then run. A wrong prediction is the best teaching moment in this file — record the discrepancy on the ledger, do not skip it. (`Curriculum` §0.4.4, predict → run → discrepancy; C-53.)
 7. **Fingerprints, not eyeballs.** Each read-only exercise has a *golden*: `rows:hash` computed by the lab kit (`lab.chk`). Two queries are the same answer iff their fingerprints match. **Goldens are valid only for seed v1 on PostgreSQL 15.x with `timezone = UTC` and the `C` collation** — if any of those change, regenerate; do not "fix" a learner's query to match a stale golden.
-8. **Tracking is inline.** Tick `- [ ]` boxes in this file or say "done" in chat. Do **not** create a separate tracker; the learner ledger of gcp-curriculum ("Teaching contract → Learner state") records unlocked / shaky / postponed for companion modules under their IDs (`SL-08`, `SQL-E6.2`…).
+8. **Tracking is inline.** Tick `- [ ]` boxes in this file or say "done" in chat. Do **not** create a separate tracker; the learner ledger `session-progress-ledger.md` (C-57; it replaces the old parent's "Teaching contract → Learner state") records unlocked / shaky / postponed for companion modules under their IDs (`SL-08`, `SQL-E6.2`…).
 9. **Honesty flags.** `(verify)` = a GCP or PostgreSQL-version detail that changes often or that I could not confirm here — check live docs before relying on it for an exam or production. **Modern note** marks where industry has moved past a textbook.
-10. **Time, money and secrets.** Labs are free-tier/credits-safe: local Postgres in Docker is the default; Cloud SQL / AlloyDB / Memorystore are credits-optional and *destroyed the same day* (gcp-curriculum Lab safety). Never put a password, key or real customer data in a query, a prompt or this file; the lab data is synthetic.
-11. **User can override anything:** skip a concept already known (run its skip-test; §5 tiers), jump to an exercise, or go hands-on — same rights as gcp-curriculum. **On a conflict:** gcp-curriculum wins on order, Lab Reality, exam time-sensitivity and the ledger; this file wins on SQL/DB content and exercise specs.
-12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's gcp-curriculum module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
+10. **Time, money and secrets.** Labs are free-tier/credits-safe: local Postgres in Docker is the default; Cloud SQL / AlloyDB / Memorystore are credits-optional and *destroyed the same day* (`Curriculum` §0.5 Lab Safety). Never put a password, key or real customer data in a query, a prompt or this file; the lab data is synthetic.
+11. **User can override anything:** skip a concept already known (run its skip-test; §5 tiers), jump to an exercise, or go hands-on — same rights as `Curriculum` §0.4.1. **On a conflict:** `Curriculum` wins on order, Lab Reality, exam time-sensitivity and the ledger; this file wins on SQL/DB content and exercise specs.
+12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's `Curriculum` module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
 
 ### 0.3 How one stitched session runs
 
-1. **Anchor** — announce the gcp-curriculum module and list the companion modules bound to it (§2). Run the one-line pre-rung-2 self-check: every term to be used is anchored this session or on the ledger; no unanchored sibling; no new product; every noun in the picture unlocked.
-2. **Concept** — teach the shared idea once (gcp-curriculum depth), then layer this file's SQL / theory / craft on top. Derive before you name.
+1. **Anchor** — announce the `Curriculum` module and list the companion modules bound to it (§2). Run the one-line pre-rung-2 self-check: every term to be used is anchored this session or on the ledger; no unanchored sibling; no new product; every noun in the picture unlocked.
+2. **Concept** — teach the shared idea once (`Curriculum` depth), then layer this file's SQL / theory / craft on top. Derive before you name.
 3. **GCP lens** — the resource(s): Lens-1 always, Lens-2 when Lab Reality allows.
 4. **Numbers** — one back-of-the-envelope estimate (rows per page, index height, pool arithmetic, bytes scanned).
 5. **Exercise** — issue **one** item from §6/§7 at the current rung (prediction first). For a mixed-transfer item, name the new idea plus exactly two earlier unlocked ideas.
 6. **Check** — the module's check questions; the learner answers before you explain. An unseen check that uses unanchored terms is invalid — fix the check, don't mark the learner shaky.
 7. **Close** — tick boxes in both files' sense; ledger line: what unlocked, what is shaky, what is postponed.
 
+When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
+
 ### 0.4 Notation
 
 - `PQ-nn` prerequisites · `RT-nn` relational theory · `SL-nn` SQL language · `CS-nn` computer science under the engine · `DD-nn` data design · `OD-nn` operating databases · `AN-nn` analytics & other engines. All are in §4.
-- `SQL-E<level>.<n>` query-writing exercises (§6, levels 1–14; **TX** and **PX** are *labs* in §7) · `SQL-Z0.n` level-0 paper drills · `TD-n` theory drills · `PX-n` plan-prediction cards · `TX-n` transaction labs · `BH-n` bug-hunts · `DT-n` dialect-translation drills · `SD-n` schema-design cases · `SQL-CAP1–SQL-CAP4` capstones · `TF-DBn` Terraform database exercises.
-- `T.*`, `F1…F4`, `M.*`, `0.x`, `1.x`, `D0…D8`, `2.x` … `11b`, `12.Sxx`, `DB-1 … DB-10`, `G4`, `G12b` are **gcp-curriculum** IDs. `SD-13 … SD-27` are **primer-companion** IDs. `TB-…`/`SRC-…` are unified-curriculum source IDs.
-- `Northstar` = the running product of gcp-curriculum; the lab database is its OLTP slice plus an event stream.
+- `SQL-E<level>.<n>` query-writing exercises (§6, levels 1–14; **TX** and **PX** are *labs* in §7) · `SQL-Z0.n` level-0 paper drills · `TD-n` theory drills · `PX-n` plan-prediction cards · `TX-n` transaction labs · `BH-n` bug-hunts · `DT-n` dialect-translation drills · `SCH-n` schema-design cases · `SQL-CAP1–SQL-CAP4` capstones · `TF-DBn` Terraform database exercises.
+- The old parent's labels (`T.*`, `F1…F4`, `M.*`, `0.x`, `1.x`, `D0…D8`, `2.x` … `11b`, `12.Sxx`, `G4`, `G12b`) were rebound on 2026-09-24 to `Curriculum` IDs (`A1…D4`, `M1…M6`, `U1…U7`, `S1…S11`, the Part V category IDs `V-…`) and Northstar sections (`Nx.y`); `crosswalk.md` §1 has every mapping. `DB-1 … DB-10` are this file's engine slices (§4.0). `SD-13 … SD-27` are primer-companion IDs. `TB-…`/`SRC-…` are this file's bibliography labels (title block).
+- Tiers: `SQL-T-HS` high-school · `SQL-T-UG` undergraduate · `SQL-T-GR` graduate — the depth tier of a theory item or gate (§2 rows for M1 and A8 + A9; renamed from `HS` / `UG` / `grad` in §5 of the refactor). *(Legend added by the refactor, C-08.)*
+- `Northstar` = the running reference application (`northstar-reference-app.md`, Track N); the lab database is its OLTP slice plus an event stream.
+
+### 0.5 Learner teaching preferences (binding; copied unchanged from session-progress-ledger.md §5, invariant 4)
+
+- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
+- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
+- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a `Curriculum` module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
+- If a companion file references module IDs that don't exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
 
 ---
 
@@ -69,116 +81,118 @@ Counts (verified by the generator that produced §6): **Level 0** 8 paper drills
 
 ## 2. Stitch table — teach these together
 
-Each gcp-curriculum module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
+Each `Curriculum` module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
 
-| gcp-curriculum module | Companion modules taught in the same session | Checkpoint |
+| `Curriculum` module (was: old-parent label) | Companion modules taught in the same session | Checkpoint |
 |---|---|---|
-| **T.Disc** (logic, sets, proofs, counting, graphs) — *Tier SQL-T-HS/SQL-T-UG* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | SQL-Z0.1 … SQL-Z0.6 |
-| **T.Algo** (structures, hashing theory, complexity) | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | SQL-Z0.7, TD-10 |
-| **T.Quant** (units, orders of magnitude) | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | SQL-Z0.8 |
-| **M.NS** (numerical stability) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M.NS; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
-| **T.SysTheory — DB theory** (with Part 2) | RT-02 algebra · RT-03 calculus/safety (SQL-T-GR) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **SQL-T-UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **SQL-T-GR gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
-| **F1** (computer, OS, CLI, Git, JSON, HTTP) | PQ-04 files, CSV/JSON/JSONL, encodings (UTF-8, BOM) · PQ-05 `psql`, env vars, Docker basics for a Postgres container | SQL-E0 warm-up: load the lab (§3) |
-| **D1** Docker/OCI · **1.2** container contract | PQ-05 `docker compose` Postgres with a named volume and a healthcheck (the lab in §3.2) | lab loads, fingerprints match |
-| **D2** CI | OD-10 SQL tests in CI: a Postgres service container, seed v1, fingerprint assertions, migration up/down | run SQL-E3.2 as a CI test |
-| **D3/D7** CD, IaC | OD-08 migration ordering in deploys · §8.2 Terraform DB exercises | TF-DB1 … TF-DB2 (plan only) |
-| **0.4** HLD/LLD contract, ADR template, NFR table | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
-| **0.5** IAM (+ **2.3** IAM DB auth) | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | SQL-E10.6 (RLS) after 4.7 |
-| **1.7** observability day one | OD-02 logs, slow-query log, `pg_stat_statements`, Query Insights vocabulary | PX-1 |
-| **1.12** HA & autoscaling | OD-03 pool arithmetic under autoscaling (instances × pool ≤ `max_connections`); *8.1 owns the spreadsheet — recall it* | TX-8 |
-| **2.1 — SQL design track** (concept, then lab) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates) |
-| **2.2** GCP relational offerings (decision table) | AN-01 OLTP/OLAP · DD-08 JSONB vs relational · §8.1 Rosetta table | DT-1 |
-| **2.3** Cloud SQL setup (required procedure) | OD-03 pooling & pool math · OD-04 backup/restore drills *as runbook (DB-10 owns the toy)* · OD-05 replicas & read-your-writes · SL-13 privileges · §8.2 Terraform | TF-DB1, TX-8, BH-5 |
-| **2.4** Firestore | AN-06 the *same question* in Firestore and SQL — where the document model wins and loses | DT-7 |
-| **2.5** Cloud Storage | PQ-04 `COPY`/import & export of CSV/JSON through GCS; encoding and NULL-vs-empty pitfalls | SQL-E8.8 – SQL-E8.10 |
-| **2.6** config, migrations, jobs | DD-11 expand/contract with **lock levels** · OD-08 migration tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
-| **2.7** Spanner & NoSQL map | AN-05 GoogleSQL/Spanner · DD-13 key design & partitioning · CS-07 TrueTime, 2PC, Paxos groups | DT-6, SCH-5 |
-| **3.0** software design (repositories) | OD-09 application data access: N+1, ORM pitfalls, prepared statements, transaction boundaries | BH-3 |
-| **3.4** async (Pub/Sub, Tasks, Scheduler) | SL-10 idempotent writes: `INSERT … ON CONFLICT`, unique keys | SQL-E9.3 |
-| **3.5** failure design (outbox/inbox, sagas) | CS-07 why 2PC is not the answer; SL-10 `FOR UPDATE SKIP LOCKED` job claim | TX-5, TX-8 |
-| **4.7** authorization · **4.9** secrets & supply chain | SL-13 RLS, injection, parameterisation, least-privilege roles | SQL-E10.6, BH-2 |
-| **5.3** ledger and consistency | DD-05 money (integer minor units), DD-09 audit/history · SL-08 running balances · CS-05 isolation for money | SQL-E4.5, SQL-CAP2, BH-4 |
-| **7.3** data protection | SL-13 column-level encryption (`pgcrypto`), masking views, CMEK vocabulary | SCH-6 |
-| **8.0** Donne-Martin building blocks · **8.C** evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
-| **8.1** primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency | OD-09 keyset SQL and its index (**8.1.5 owns the from-scratch pager**) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, SQL-E4.7 |
-| **9.1** Memorystore | OD-09 cache-aside vs DB read path (query-level vs object-level); *no new concept* | — |
-| **9.4** Spanner, AlloyDB, Bigtable, BigQuery (ops view) | AN-01 · AN-02 · AN-05 · CS-09 columnar & vectorised execution | DT-1 … DT-6, SQL-E13.3 |
-| **9b.1** Big-data services (BigQuery, Dataform) | AN-02 partition/cluster and bytes scanned · AN-03 cohorts/funnels · AN-04 approximate aggregation · SL-11 views & materialised views | SQL-E6.2, SQL-E6.6, SQL-E13.1 – SQL-E13.3 |
-| **9c.1** features, labels, skew (**as-of join** owner) | SL-08 / SL-04: the **SQL shape** of a point-in-time join (LATERAL / range join). *9c.1 owns leakage; this file owns the join* | SQL-E6.4, SQL-E13.4, SQL-E13.5 |
-| **9c.2 / 9c.5** retrieval, RAG | AN-07 full-text search and vector search in Postgres (`tsvector`, `pgvector`) vs dedicated engines | DT-8 |
-| **10.0** observability · **10.5** performance | OD-01/02 plan reading & workload observation · CS-08 · PX-1 … PX-11 | PX-1 … PX-11, SQL-CAP4 |
-| **10.1** SLO / error budget | OD-05 replication lag as an SLI; recovery-point objective from WAL archiving | BH-5 |
-| **10.3** FinOps + billing-export SQL | AN-03 window analytics on a *billing-export-shaped* table; AN-02 bytes-scanned cost | DT-4, SQL-E13.1 |
-| **11** capstone (Northstar v1) | SQL-CAP1 – SQL-CAP4 are the database acceptance tests of the capstone | SQL-CAP1 – SQL-CAP4 |
-| **11b** control-plane capstone | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
-| **SQL-SKIP-SQL** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if Part 2 confirmed FDs/joins/transactions/pagination/client hygiene, stamp using SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2. **Else** run the SQL-SKIP-SQL order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
+| **M1** (logic, sets, proofs, counting, graphs) — *Tier SQL-T-HS/SQL-T-UG* *(was `T.Disc`)* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | SQL-Z0.1 … SQL-Z0.6 |
+| **A4** (recall) + **U2** (structures, hashing theory, complexity) *(was `T.Algo`)* | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | SQL-Z0.7, TD-10 |
+| **A1/A2** (recall) + **M6** (units, orders of magnitude) *(was `T.Quant`)* | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | SQL-Z0.8 |
+| **M5** (numerical stability) *(was `M.NS`)* | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M5; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
+| **A8 + A9** (+ U5) — DB theory (with the A8 SQL sessions) *(was `T.SysTheory`, Part 2)* | RT-02 algebra · RT-03 calculus/safety (SQL-T-GR) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **SQL-T-UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **SQL-T-GR gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
+| **A3 + A6** (computer, OS, CLI, Git, JSON, HTTP) *(was `F1`)* | PQ-04 files, CSV/JSON/JSONL, encodings (UTF-8, BOM) · PQ-05 `psql`, env vars, Docker basics for a Postgres container | SQL-E0 warm-up: load the lab (§3) |
+| **C1** Docker/OCI, container contract *(was `D1`, `1.2`)* | PQ-05 `docker compose` Postgres with a named volume and a healthcheck (the lab in §3.2) | lab loads, fingerprints match |
+| **C4** CI *(was `D2`)* | OD-10 SQL tests in CI: a Postgres service container, seed v1, fingerprint assertions, migration up/down | run SQL-E3.2 as a CI test |
+| **C4 + C5** CD, IaC *(was `D3/D7`)* | OD-08 migration ordering in deploys · §8.2 Terraform DB exercises | TF-DB1 … TF-DB2 (plan only) |
+| **S2** + **N0.4** HLD/LLD contract, ADR template, NFR table *(was `0.4`)* | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
+| **B5** IAM (+ **N2.3** IAM DB auth) *(was `0.5`, `2.3`)* | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | SQL-E10.6 (RLS) after A10 |
+| **C6** observability day one *(was `1.7`)* | OD-02 logs, slow-query log, `pg_stat_statements`, Query Insights vocabulary | PX-1 |
+| **B3** HA & autoscaling *(was `1.12`)* | OD-03 pool arithmetic under autoscaling (instances × pool ≤ `max_connections`); *N8.1 owns the spreadsheet — recall it* | TX-8 |
+| **A8 — SQL design track** (concept, then lab; engine slices §4.0) *(was `2.1`)* | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates) |
+| **A8** + **V-STOR** GCP relational offerings (decision table) *(was `2.2`)* | AN-01 OLTP/OLAP · DD-08 JSONB vs relational · §8.1 Rosetta table | DT-1 |
+| **N2.3** Cloud SQL setup (required procedure) *(was `2.3`)* | OD-03 pooling & pool math · OD-04 backup/restore drills *as runbook (DB-10 owns the toy)* · OD-05 replicas & read-your-writes · SL-13 privileges · §8.2 Terraform | TF-DB1, TX-8, BH-5 |
+| **A8** (NoSQL) + **N2.4** Firestore *(was `2.4`)* | AN-06 the *same question* in Firestore and SQL — where the document model wins and loses | DT-7 |
+| **N2.5** Cloud Storage *(was `2.5`)* | PQ-04 `COPY`/import & export of CSV/JSON through GCS; encoding and NULL-vs-empty pitfalls | SQL-E8.8 – SQL-E8.10 |
+| **A8** + **C4** + **N2.6** config, migrations, jobs *(was `2.6`)* | DD-11 expand/contract with **lock levels** · OD-08 migration tooling & testing (dirty state, advisory lock) | SQL-E9.6, SCH-4 |
+| **A9** + **V-STOR** + **N2.7** Spanner & NoSQL map *(was `2.7`)* | AN-05 GoogleSQL/Spanner · DD-13 key design & partitioning · CS-07 TrueTime, 2PC, Paxos groups | DT-6, SCH-5 |
+| **A7** software design (repositories; design-patterns Repository, Unit of Work) *(was `3.0`)* | OD-09 application data access: N+1, ORM pitfalls, prepared statements, transaction boundaries | BH-3 |
+| **A7** async (Pub/Sub, Tasks, Scheduler) *(was `3.4`)* | SL-10 idempotent writes: `INSERT … ON CONFLICT`, unique keys | SQL-E9.3 |
+| **A9** + design-patterns **ARCH-11** failure design (outbox/inbox, sagas) *(was `3.5`)* | CS-07 why 2PC is not the answer; SL-10 `FOR UPDATE SKIP LOCKED` job claim | TX-5, TX-8 |
+| **A10 + B5** authorization · **C1** + **Phase 4 Security** secrets & supply chain *(was `4.7`, `4.9`)* | SL-13 RLS, injection, parameterisation, least-privilege roles | SQL-E10.6, BH-2 |
+| **A8** + **N5.3** ledger and consistency *(was `5.3`)* | DD-05 money (integer minor units), DD-09 audit/history · SL-08 running balances · CS-05 isolation for money | SQL-E4.5, SQL-CAP2, BH-4 |
+| **Phase 4 Security** + **N7.3** data protection *(was `7.3`)* | SL-13 column-level encryption (`pgcrypto`), masking views, CMEK vocabulary | SCH-6 |
+| **S2** + **N8.0** Donne-Martin building blocks · **N8.C** evidence packs *(was `8.0`, `8.C`)* | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
+| **N8.1** primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency *(was `8.1`)* | OD-09 keyset SQL and its index (**N8.1.5 owns the from-scratch pager**) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, SQL-E4.7 |
+| **V-STOR** + **N9.1** Memorystore *(was `9.1`)* | OD-09 cache-aside vs DB read path (query-level vs object-level); *no new concept* | — |
+| **V-STOR** + **N9.4** Spanner, AlloyDB, Bigtable, BigQuery (ops view) *(was `9.4`)* | AN-01 · AN-02 · AN-05 · CS-09 columnar & vectorised execution | DT-1 … DT-6, SQL-E13.3 |
+| **V-DATA** + **N9b.1** Big-data services (BigQuery, Dataform) *(was `9b.1`)* | AN-02 partition/cluster and bytes scanned · AN-03 cohorts/funnels · AN-04 approximate aggregation · SL-11 views & materialised views | SQL-E6.2, SQL-E6.6, SQL-E13.1 – SQL-E13.3 |
+| **D3** + **N9c.1** features, labels, skew (**as-of join** owner) *(was `9c.1`)* | SL-08 / SL-04: the **SQL shape** of a point-in-time join (LATERAL / range join). *N9c.1 owns leakage; this file owns the join* | SQL-E6.4, SQL-E13.4, SQL-E13.5 |
+| **D4** + **N9c.2 / N9c.5** retrieval, RAG *(was `9c.2 / 9c.5`)* | AN-07 full-text search and vector search in Postgres (`tsvector`, `pgvector`) vs dedicated engines | DT-8 |
+| **C6** observability, performance *(was `10.0`, `10.5`)* | OD-01/02 plan reading & workload observation · CS-08 · PX-1 … PX-11 | PX-1 … PX-11, SQL-CAP4 |
+| **C7** SLO / error budget *(was `10.1`)* | OD-05 replication lag as an SLI; recovery-point objective from WAL archiving | BH-5 |
+| **B4** FinOps + billing-export SQL *(was `10.3`)* | AN-03 window analytics on a *billing-export-shaped* table; AN-02 bytes-scanned cost | DT-4, SQL-E13.1 |
+| **N11** capstone (Northstar v1) *(was `11`)* | SQL-CAP1 – SQL-CAP4 are the database acceptance tests of the capstone | SQL-CAP1 – SQL-CAP4 |
+| **N11b** control-plane capstone *(was `11b`)* | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
+| **SQL-SKIP-SQL** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if the A8 sessions confirmed FDs/joins/transactions/pagination/client hygiene, stamp using SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2. **Else** run the SQL-SKIP-SQL order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
 | **SQL-SKIP-ENGINE** PostgreSQL internals (`DB-ENGINE`) | **Skip-test map:** residual `EXPLAIN` drills = PX-1 … PX-11; crash/recovery evidence = TD-12 + OD-04 drill. **Else** run the SQL-SKIP-ENGINE order = CS-01 → CS-04 → CS-02 → CS-03 → CS-08 → CS-05 → CS-06 → CS-07 (§2.3) | see §2.3 |
-| **PCA / PDE / PCDE certs** | PCA 2.2 storage systems: §8.1 + DT-1; PDE: AN-01…AN-04, SQL-E13; Professional Cloud Database Engineer: OD-03…OD-05, TF-DB1… (all `verify` against the live exam guide) | §8 |
+| **Part V cert rows 1, 3, 8** (PCA / PDE / PCDE certs) | PCA 2.2 storage systems: §8.1 + DT-1; PDE: AN-01…AN-04, SQL-E13; Professional Cloud Database Engineer: OD-03…OD-05, TF-DB1… (all `verify` against the live exam guide) | §8 |
 
 ### 2.1 Overlap register — concepts that appear in both files (teach once, in the owner)
 
+> **Refactor note (2026-09-24, §7):** the suite-wide register is `Curriculum` §0.3; this table is the SQL slice of it, and on a conflict §0.3 wins. DB-1 … DB-10 are owned by this file since C-05 (§4.0).
+
 | Concept | Owner (teach here) | This file adds |
 |---|---|---|
-| Relational algebra, 3VL (DB-1) | gcp-curriculum **2.1 / DB-1** (toy: bag relations + truth-table tests) | RT-02 set-vs-bag laws and rewrite equivalences; RT-03 calculus/safety; SL-03 NULL semantics across every clause; SQL-Z0.4, TD-5/6 |
-| Catalog, tuples, constraints (DB-2) | **2.1 / DB-2** | SL-01 type system & constraint catalogue; DD-04 key strategies; DD-12; SQL-E10 constraint batteries |
-| CTEs, windows, lateral (DB-3) | **2.1 / DB-3** | SL-06/08/09 full semantics (frames, EXCLUDE, RANGE with intervals, recursion termination); SQL-E4–SQL-E7 ladder |
-| Heap pages & TOAST (DB-4) | **2.1 / DB-4** (toy: slotted page) | CS-01 page/row arithmetic and fill-factor maths (no second toy) |
-| Buffer pool (DB-5) | **2.1 / DB-5** (toy: clock sweep) | CS-04 hit-ratio and working-set reasoning, why sequential flooding needs scan-resistance |
-| Indexes (DB-6) | **2.1 / DB-6** (toy: B-tree + inverted index) | CS-02 height/fan-out/cost formulas; OD-01 index-design workflow; PX-1 … PX-6 |
-| Executor & spill (DB-7) | **2.1 / DB-7** (toy: iterators, forced spill) | CS-03 I/O cost formulas (block-NL, Grace hash, sort-merge), TD-11; PX-7, PX-10 |
-| Planner statistics (DB-8) | **2.1 / DB-8** (toy: histogram + MCV) | CS-08 Selinger DP, estimation error propagation, TD-13; PX-8 |
-| MVCC, locks, vacuum (DB-9) | **2.1 / DB-9** (toy: visibility simulator, deadlock detector) | CS-05 schedule theory (precedence graphs, 2PL, SSI); TD-8/9; TX-1 … TX-8 |
-| WAL, replica, PITR (DB-10 / G4) | **2.1 / DB-10** (toy: mini-WAL) | CS-06 ARIES and steal/no-force reasoning; TD-12; OD-04 restore-drill runbook |
-| Cloud SQL provisioning, Auth Proxy, private IP, HA, flags | **2.3** | OD-03/04/05 SQL-side consequences (session state vs pooler modes, RPO/RTO arithmetic, replica lag); §8.2 Terraform |
-| Migrations as jobs, expand/contract | **2.6** | DD-11 *lock levels*, `NOT VALID` + `VALIDATE`, `CREATE INDEX CONCURRENTLY`, backfill batching (SQL-E9.6) |
-| Spanner, Bigtable, Firestore map | **2.7 / 2.4** | AN-05, AN-06 same-question comparisons; DD-13 key design as SQL |
-| Cursor pagination | **8.1.5** (from-scratch pager) | OD-09 the SQL seek predicate & its supporting index; PX-9 measured against OFFSET |
-| Hot partition, key histogram | **8.1** | DD-13 the skew query on lab data (user 1 = 135 orders; see PX-1) |
-| Connection-pool math | **8.1 / 2.3** | OD-03 pooler modes (session/transaction/statement) and what breaks in transaction mode |
-| RLS multi-tenancy | **8.1 / 2.1** | SL-13 policy syntax, `FORCE`, owner bypass; SQL-E10.2 composite FK as defence in depth; SQL-E10.6 |
-| Outbox / inbox, idempotency | **3.5 / 3.4** | SL-10 the SQL that makes them true (unique index, `ON CONFLICT`, `SKIP LOCKED`); TX-5, SQL-E9.3 |
-| Ledger, minor-unit ints | **5.3** | DD-05 modelling; SQL-E4.5/SQL-CAP2 revenue reconciliation; SQL-CAP1 invariants |
-| BigQuery partition/cluster/cost | **9.4 / 9b.1** | AN-02 SQL-level cost reading; DT drills |
-| As-of / point-in-time join | **9c.1** | SQL-E6.4 / SQL-E13.4 / SQL-E13.5 the SQL shapes (lateral, range join, SCD2) |
-| Billing-export SQL patterns | **10.3** | AN-03 reused windows; no new concept |
+| Relational algebra, 3VL (DB-1) | **§4.0 DB-1** (this file since C-05; A8) (toy: bag relations + truth-table tests) | RT-02 set-vs-bag laws and rewrite equivalences; RT-03 calculus/safety; SL-03 NULL semantics across every clause; SQL-Z0.4, TD-5/6 |
+| Catalog, tuples, constraints (DB-2) | **§4.0 DB-2** | SL-01 type system & constraint catalogue; DD-04 key strategies; DD-12; SQL-E10 constraint batteries |
+| CTEs, windows, lateral (DB-3) | **§4.0 DB-3** | SL-06/08/09 full semantics (frames, EXCLUDE, RANGE with intervals, recursion termination); SQL-E4–SQL-E7 ladder |
+| Heap pages & TOAST (DB-4) | **§4.0 DB-4** (toy: slotted page) | CS-01 page/row arithmetic and fill-factor maths (no second toy) |
+| Buffer pool (DB-5) | **§4.0 DB-5** (toy: clock sweep) | CS-04 hit-ratio and working-set reasoning, why sequential flooding needs scan-resistance |
+| Indexes (DB-6) | **§4.0 DB-6** (toy: B-tree + inverted index) | CS-02 height/fan-out/cost formulas; OD-01 index-design workflow; PX-1 … PX-6 |
+| Executor & spill (DB-7) | **§4.0 DB-7** (toy: iterators, forced spill) | CS-03 I/O cost formulas (block-NL, Grace hash, sort-merge), TD-11; PX-7, PX-10 |
+| Planner statistics (DB-8) | **§4.0 DB-8** (toy: histogram + MCV) | CS-08 Selinger DP, estimation error propagation, TD-13; PX-8 |
+| MVCC, locks, vacuum (DB-9) | **§4.0 DB-9** (toy: visibility simulator, deadlock detector) | CS-05 schedule theory (precedence graphs, 2PL, SSI); TD-8/9; TX-1 … TX-8 |
+| WAL, replica, PITR (DB-10; foreign `G4` → N2.3) | **§4.0 DB-10** (toy: mini-WAL) | CS-06 ARIES and steal/no-force reasoning; TD-12; OD-04 restore-drill runbook |
+| Cloud SQL provisioning, Auth Proxy, private IP, HA, flags | **N2.3** | OD-03/04/05 SQL-side consequences (session state vs pooler modes, RPO/RTO arithmetic, replica lag); §8.2 Terraform |
+| Migrations as jobs, expand/contract | **N2.6** | DD-11 *lock levels*, `NOT VALID` + `VALIDATE`, `CREATE INDEX CONCURRENTLY`, backfill batching (SQL-E9.6) |
+| Spanner, Bigtable, Firestore map | **N2.7 / N2.4** | AN-05, AN-06 same-question comparisons; DD-13 key design as SQL |
+| Cursor pagination | **N8.1.5** (from-scratch pager) | OD-09 the SQL seek predicate & its supporting index; PX-9 measured against OFFSET |
+| Hot partition, key histogram | **N8.1** | DD-13 the skew query on lab data (user 1 = 135 orders; see PX-1) |
+| Connection-pool math | **N8.1 / N2.3** | OD-03 pooler modes (session/transaction/statement) and what breaks in transaction mode |
+| RLS multi-tenancy | **N8.1 / A8** | SL-13 policy syntax, `FORCE`, owner bypass; SQL-E10.2 composite FK as defence in depth; SQL-E10.6 |
+| Outbox / inbox, idempotency | **A9 / A7** (`Curriculum` §0.3: 2PC/Saga/outbox) | SL-10 the SQL that makes them true (unique index, `ON CONFLICT`, `SKIP LOCKED`); TX-5, SQL-E9.3 |
+| Ledger, minor-unit ints | **N5.3** | DD-05 modelling; SQL-E4.5/SQL-CAP2 revenue reconciliation; SQL-CAP1 invariants |
+| BigQuery partition/cluster/cost | **N9.4 / N9b.1** | AN-02 SQL-level cost reading; DT drills |
+| As-of / point-in-time join | **N9c.1** (D3) | SQL-E6.4 / SQL-E13.4 / SQL-E13.5 the SQL shapes (lateral, range join, SCD2) |
+| Billing-export SQL patterns | **B4** | AN-03 reused windows; no new concept |
 | SQL scale-out (replication, federation, sharding, denormalisation, SQL tuning) | **primer companion SD-13 … SD-19** | *this file never re-teaches them*; CS-07/DD-13/OD-05/OD-07 add engine-level and SQL-level detail only |
-| ACID, CAP, consistency, big-O, hashing | gcp-curriculum **T.Disc / T.Algo / T.SysTheory / 2.x** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
+| ACID, CAP, consistency, big-O, hashing | `Curriculum` **M1 / A4 + U2 / A8 + A9 / A8** *(was T.Disc / T.Algo / T.SysTheory / 2.x)* | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
 
-### 2.2 Part 2.1 slice pairing — the engine slices DB-1 … DB-10 and what rides with each
+### 2.2 A8 slice pairing — the engine slices DB-1 … DB-10 and what rides with each
 
-The gcp-curriculum slice supplies *toy spec, SQL, EXPLAIN prediction, Cloud SQL mapping*. The companion supplies the **SQL ladder rung, the theory tier, and the prediction card**. Teach the pair as **one session**.
+The §4.0 slice supplies *toy spec, SQL, EXPLAIN prediction, Cloud SQL mapping*. The companion supplies the **SQL ladder rung, the theory tier, and the prediction card**. Teach the pair as **one session**.
 
 | Slice (owner) | Companion theory | Companion SQL rung | Prediction / lab cards |
 |---|---|---|---|
-| **DB-1** algebra & 3VL | RT-01, RT-02, RT-08 · TD-5, TD-6, TD-7 | E1.x, E2.x, E3.x (joins, anti/semi/outer), SQL-E4.3/SQL-E4.4 set ops | — (predict multiplicity & NULL behaviour per exercise) |
-| **DB-2** catalog, tuples, constraints | RT-04/05 (FDs → keys), DD-04, DD-12 · TD-1 … TD-4 | E9.x (DML), SQL-E10.1 – SQL-E10.6 (constraints as specification) | PX-7 (missing FK index) |
-| **DB-3** CTEs, windows, lateral | RT-03 (safety), CS-11 (recursion) · TD-16 | E4.x, E5.x, E6.x, E7.x | PX-10 (sort node for windows) |
+| **DB-1** algebra & 3VL | RT-01, RT-02, RT-08 · TD-5, TD-6, TD-7 | SQL-E1.x, SQL-E2.x, SQL-E3.x (joins, anti/semi/outer), SQL-E4.3/SQL-E4.4 set ops | — (predict multiplicity & NULL behaviour per exercise) |
+| **DB-2** catalog, tuples, constraints | RT-04/05 (FDs → keys), DD-04, DD-12 · TD-1 … TD-4 | SQL-E9.x (DML), SQL-E10.1 – SQL-E10.6 (constraints as specification) | PX-7 (missing FK index) |
+| **DB-3** CTEs, windows, lateral | RT-03 (safety), CS-11 (recursion) · TD-16 | SQL-E4.x, SQL-E5.x, SQL-E6.x, SQL-E7.x | PX-10 (sort node for windows) |
 | **DB-4** heap pages & TOAST | CS-01 page arithmetic · SQL-Z0.8 | SQL-E8.5 – SQL-E8.7 (JSONB size intuition) | — |
 | **DB-5** buffer pool | CS-04 | — | PX-9 (hit vs read) |
 | **DB-6** indexes | CS-02, CS-10 · TD-10 | PX-style workflow (§7.1) | PX-1 … PX-6, PX-9 |
-| **DB-7** executor & spill | CS-03 · TD-11 | E13.x aggregation shapes | PX-7, PX-10 |
+| **DB-7** executor & spill | CS-03 · TD-11 | SQL-E13.x aggregation shapes | PX-7, PX-10 |
 | **DB-8** planner statistics | CS-08 · TD-13 | — | PX-8 |
 | **DB-9** MVCC, locks, vacuum | CS-05 · TD-8, TD-9, TD-15 | SQL-E9.6 (batching), TX labs | TX-1 … TX-7 |
-| **DB-10** WAL, replica, PITR (**G4**) | CS-06, CS-07 · TD-12, TD-14 | — | BH-5, OD-04 restore drill, TX-8 |
+| **DB-10** WAL, replica, PITR (**N2.3**) | CS-06, CS-07 · TD-12, TD-14 | — | BH-5, OD-04 restore drill, TX-8 |
 
-### 2.3 Parallel calendar — how the companion rides gcp-curriculum's spine
+### 2.3 Parallel calendar — how the companion rides `Curriculum`'s spine
 
-gcp-curriculum's spine is `T → F → M → 0 → 1 → D → 2 → 3 → …`. SQL does not first *appear* until Part 2, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until Part 2 needs it (Prop Lock: no SQL vocabulary before it is anchored).
+`Curriculum`'s spine is Phases 0–3 (Tracks A–D, mostly in parallel) → Phase 4 → …, with the reserved M/U/S tracks placed by R4. SQL does not first *appear* until A8, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until A8 needs it (Prop Lock: no SQL vocabulary before it is anchored).
 
-| Window (gcp-curriculum) | Companion work (parallel, small) | Outcome |
+| Window (`Curriculum`) | Companion work (parallel, small) | Outcome |
 |---|---|---|
-| **Block T** (SQL-T-HS → SQL-T-UG tiers) | PQ-01, PQ-02, PQ-07, PQ-08 with SQL-Z0.1 – SQL-Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
-| **F1 – F4, M.NS** | PQ-03 (types, decimals), PQ-04 (files/JSON), PQ-05 (`psql` + Docker Postgres) — the lab loads and fingerprints match (§3) | lab environment ready; no SQL semantics yet |
-| **Parts 0 – 1, D** | OD-10 (tests in CI), OD-02 (logs/slow-query vocabulary), OD-03 recall at 1.12 | vocabulary only; no new SQL |
-| **Part 2 (the main event)** | **2.1 is stretched over ≥ 3 weeks:** week 1 = RT-01/04/05 + SL-01/02/03 + SQL-E1–SQL-E3 · week 2 = RT-02 + SL-04…SL-09 + SQL-E4–SQL-E7 + DB-1/DB-3 · week 3 = SL-10 + TX labs + CS-05 + DB-9 · then DB-4…DB-8 with CS-01…CS-04, CS-08 and PX cards · then DB-10 with CS-06, OD-04 · 2.2 – 2.7 as bound in §2 | SQL competency through SQL-E9; plan and isolation predictions; the theory tier |
-| **Parts 3 – 5** | SQL-E9.3 (3.4), TX-5 (3.5), SQL-E10.6 (4.7), SQL-E4.5/SQL-CAP2 (5.3) | SQL that makes async/ledger/RLS true |
-| **Part 8** | PX-9 / DD-13 with 8.1; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
-| **Parts 9, 9b, 9c** | AN-01 … AN-05, SQL-E6, SQL-E13, DT drills (BigQuery), SQL-E6.4/SQL-E13.4/SQL-E13.5 at 9c.1 | analytics dialect and point-in-time joins |
-| **Part 10** | PX cards and SQL-CAP4 at 10.5; DT-4 at 10.3 | performance and cost SQL |
-| **Part 11 / 11b** | SQL-CAP1 – SQL-CAP4 | database acceptance |
-| **Part 12 — SQL-SKIP-SQL / SQL-SKIP-ENGINE** | skip-test via the checkpoints in the stitch table; else run the SQL-SKIP-SQL/SQL-SKIP-ENGINE orders below | continuation, only if the skip-test fails |
+| **A1–A4 + M1** (SQL-T-HS → SQL-T-UG tiers) *(was Block T)* | PQ-01, PQ-02, PQ-07, PQ-08 with SQL-Z0.1 – SQL-Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
+| **A3, A6, A11 + M5** *(was F1 – F4, M.NS)* | PQ-03 (types, decimals), PQ-04 (files/JSON), PQ-05 (`psql` + Docker Postgres) — the lab loads and fingerprints match (§3) | lab environment ready; no SQL semantics yet |
+| **Tracks B and C (B3, C1, C4, C6)** *(was Parts 0 – 1, D)* | OD-10 (tests in CI), OD-02 (logs/slow-query vocabulary), OD-03 recall at B3 | vocabulary only; no new SQL |
+| **A8 (the main event)** *(was Part 2)* | **The A8 SQL block is stretched over ≥ 3 weeks:** week 1 = RT-01/04/05 + SL-01/02/03 + SQL-E1–SQL-E3 · week 2 = RT-02 + SL-04…SL-09 + SQL-E4–SQL-E7 + DB-1/DB-3 · week 3 = SL-10 + TX labs + CS-05 + DB-9 · then DB-4…DB-8 with CS-01…CS-04, CS-08 and PX cards · then DB-10 with CS-06, OD-04 · the V-STOR and N2.3…N2.7 rows as bound in §2 | SQL competency through SQL-E9; plan and isolation predictions; the theory tier |
+| **A7, A9, A10 + N5.3** *(was Parts 3 – 5)* | SQL-E9.3 (A7), TX-5 (A9), SQL-E10.6 (A10), SQL-E4.5/SQL-CAP2 (N5.3) | SQL that makes async/ledger/RLS true |
+| **N8.0/N8.1/N8.C + S2** *(was Part 8)* | PX-9 / DD-13 with N8.1; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
+| **V-STOR, V-DATA, D3/D4 + N9.1/N9.4/N9b.1/N9c.1** *(was Parts 9, 9b, 9c)* | AN-01 … AN-05, SQL-E6, SQL-E13, DT drills (BigQuery), SQL-E6.4/SQL-E13.4/SQL-E13.5 at D3 (N9c.1) | analytics dialect and point-in-time joins |
+| **C6, C7, B4** *(was Part 10)* | PX cards and SQL-CAP4 at C6; DT-4 at B4 | performance and cost SQL |
+| **N11 / N11b** *(was Part 11 / 11b)* | SQL-CAP1 – SQL-CAP4 | database acceptance |
+| **A8 skip-tests — SQL-SKIP-SQL / SQL-SKIP-ENGINE** *(was Part 12)* | skip-test via the checkpoints in the stitch table; else run the SQL-SKIP-SQL/SQL-SKIP-ENGINE orders below | continuation, only if the skip-test fails |
 
-**SQL-SKIP-SQL order → companion modules (unified-curriculum §5.4 order, unchanged):** relations/keys/FDs/normalisation → **RT-01, RT-04, RT-05** · relational algebra → **RT-02** (+ TD-5/6) · DDL/types/constraints → **SL-01, DD-04, DD-12** · SELECT semantics & NULL/3VL → **SL-02, SL-03** · joins incl. semi/anti/outer → **SL-04** · aggregation → **SL-05** · subqueries/CTEs/recursion → **SL-06, SL-07, SL-09** · windows → **SL-08** · transactions/isolation → **CS-05** + TX labs · pagination and application access → **OD-09**. *Predict multiplicity and NULL behaviour before execution.*
+**SQL-SKIP-SQL order → companion modules (order unchanged; provenance: `unified-curriculum.md` §5.4):** relations/keys/FDs/normalisation → **RT-01, RT-04, RT-05** · relational algebra → **RT-02** (+ TD-5/6) · DDL/types/constraints → **SL-01, DD-04, DD-12** · SELECT semantics & NULL/3VL → **SL-02, SL-03** · joins incl. semi/anti/outer → **SL-04** · aggregation → **SL-05** · subqueries/CTEs/recursion → **SL-06, SL-07, SL-09** · windows → **SL-08** · transactions/isolation → **CS-05** + TX labs · pagination and application access → **OD-09**. *Predict multiplicity and NULL behaviour before execution.*
 
 **SQL-SKIP-ENGINE order → companion modules:** storage media & layouts → **CS-01, CS-09** · pages/tuples/TOAST/catalogs → **CS-01** · buffer manager → **CS-04** · hash/B-tree/GIN/GiST/BRIN/vector indexes → **CS-02, CS-10** · iterators, sort/aggregate, join algorithms → **CS-03** · statistics/cardinality/cost → **CS-08** · MVCC/isolation/locks/deadlocks/vacuum → **CS-05, OD-06** · WAL/checkpoints/recovery → **CS-06** · replication/PITR → **CS-06, CS-07, OD-04, OD-05** · parallel/distributed trade-offs → **CS-07, CS-09**.
 
@@ -197,7 +211,7 @@ Local PostgreSQL 15.x database `labdb` with schema `lab` (OLTP slice of Northsta
 3. Pin session: `SET TIME ZONE 'UTC';` and use `C` collation (image default `C`/`POSIX` for the lab). **Goldens are invalid if timezone or collation drift.**
 4. Smoke: `SELECT lab.chk('SELECT 1');` — non-null `1:…` fingerprint.
 
-Cloud SQL / AlloyDB: same SQL; create an instance only when Lab Reality allows and **destroy the same day** (gcp-curriculum Lab safety). Auth Proxy for IAM DB auth when 2.3 is unlocked — not required for local goldens.
+Cloud SQL / AlloyDB: same SQL; create an instance only when Lab Reality allows and **destroy the same day** (`Curriculum` §0.5). Auth Proxy for IAM DB auth when N2.3 is unlocked — not required for local goldens.
 
 ### 3.3 Schema overview (v1)
 | Table | Role |
@@ -240,11 +254,80 @@ Every exercise with a result shape, row count, plan shape, or isolation outcome:
 
 ## 4. Concept curriculum
 
-Format per module (same contract as `system-design-primer-companion.md`): **Core** · **Theory** · **GCP lens** (Lens-1 always) · **Lab** · **Check** (answer before explanation). Tick `- [ ]` when taught *and* checks answered. Ownership: where a gcp toy exists, this file adds analysis only.
+Format per module (same contract as `system-design-primer-companion.md`): **Core** · **Theory** · **GCP lens** (Lens-1 always) · **Lab** · **Check** (answer before explanation). Tick `- [ ]` when taught *and* checks answered. Ownership: where a §4.0 slice toy exists, the concept modules add analysis only.
+
+### 4.0 Engine slices (DB-1 … DB-10)
+
+*Ported by the refactor (2026-09-24, C-05; decision D1).* **Source material:** `gcp-curriculum.md` lines 3118–3179 ("Engine slices DB-1–DB-10"), copied verbatim except for the ID rebinding marked in `crosswalk.md`. Since the refactor this file **owns** the slices; `Curriculum` A8 points here, and each slice is taught as one session with the companion theory paired to it in §2.2. The Cloud SQL procedure they map onto is N2.3.
+
+Each slice: toy spec, SQL, EXPLAIN prediction, Cloud SQL mapping.
+
+
+#### DB-1 — Relational algebra & 3VL
+- **Toy spec:** In-memory bag relations; implement select/project/join/semi/anti/outer; NULL 3VL truth table tests.
+- **SQL:** `SELECT … FROM order_line ol LEFT JOIN product p ON … WHERE p.id IS NULL` (anti-join shape); `EXCEPT` vs `NOT EXISTS`.
+- **EXPLAIN prediction:** Nested loop vs hash join for small vs large build side — write prediction, then `EXPLAIN`.
+- **Cloud SQL mapping:** Same planner; Query Insights shows top queries; no algebra change because managed.
+
+#### DB-2 — Catalog, tuples, constraints
+- **Toy spec:** Schema registry struct; enforce PK/FK/CHECK in a toy before SQL; deferred constraint flag.
+- **SQL:** `UUID` PKs; `JSONB` attrs; `CHECK (qty > 0)`; `FOREIGN KEY … DEFERRABLE`; inspect `ctid`/`xmin`/`xmax` in learning DB.
+- **EXPLAIN prediction:** PK lookup = index only; missing FK index on child → seq scan on delete-parent check.
+- **Cloud SQL mapping:** Flags for constraints; migrations via Job (N2.6); IAM DB users still have catalogs.
+
+#### DB-3 — CTEs, windows, lateral
+- **Toy spec:** Window functions as framed iterators over sorted partitions (unit-test ranking).
+- **SQL:** Order GMV by day with `SUM() OVER (PARTITION BY day)`; recursive CTE category tree; `LATERAL` top-N per tenant.
+- **EXPLAIN prediction:** Window sorts; recursive CTE worktable; predict `Sort` / `CTE Scan` nodes.
+- **Cloud SQL mapping:** Same SQL; watch `work_mem` for sorts on small tiers (`db-f1-micro` spills early).
+
+#### DB-4 — Heap pages & TOAST
+- **Toy spec:** Slotted page: insert/delete/compact line pointers; overflow TOAST-like external blob store.
+- **SQL:** Wide `TEXT`/`JSONB` row; compare `pg_column_size` in-row vs toasted; `VACUUM` effects later (DB-9).
+- **EXPLAIN prediction:** Seq scan cost rises with toast fetch — predict heap blocks vs toast blocks in `BUFFERS`.
+- **Cloud SQL mapping:** Storage autogrow; you still pay GB-month; Insights won’t replace page literacy.
+
+#### DB-5 — Buffer pool
+- **Toy spec:** Clock-sweep buffer pool with pins; hit-ratio benchmark under sequential vs random read.
+- **SQL:** Warm cache vs cold (`EXPLAIN (ANALYZE, BUFFERS)` shared hit vs read).
+- **EXPLAIN prediction:** Second run of same query → higher shared hit%; predict before measure.
+- **Cloud SQL mapping:** Instance memory tier ≈ shared_buffers headroom; scaling tier is how you “buy” cache.
+
+#### DB-6 — Indexes
+- **Toy spec:** Userspace B-tree (insert/search/range) + inverted index for tokens (GIN-shaped).
+- **SQL:** Composite `(tenant_id, created_at)`; partial `WHERE status = 'open'`; covering `INCLUDE`; `JSONB` GIN.
+- **EXPLAIN prediction:** Equality on leftmost → index scan; leading-wildcard `LIKE` → seq; bitmap for OR of two indexes.
+- **Cloud SQL mapping:** Create indexes concurrently in expand migrations; monitor bloat; AlloyDB/columnar later if HTAP.
+
+#### DB-7 — Executor & spill
+- **Toy spec:** Iterator nodes nested-loop / hash / merge; force spill when “work_mem” exceeded.
+- **SQL:** Join order_line↔product; `SET work_mem = '64kB'` in session to force spill; compare.
+- **EXPLAIN prediction:** Hash join with low `work_mem` → temp written; predict before `ANALYZE`.
+- **Cloud SQL mapping:** Flags `work_mem`/`temp_file` monitoring; do not raise blindly — memory × connections.
+
+#### DB-8 — Planner statistics
+- **Toy spec:** Histogram + MCV sketch; estimate selectivity; pick join algorithm from estimates.
+- **SQL:** `ANALYZE`; inspect `pg_stats`; compare predicted rows vs `EXPLAIN` rows; create skewed tenant data.
+- **EXPLAIN prediction:** Write row estimates for skewed tenant vs uniform; then explain misestimates.
+- **Cloud SQL mapping:** Autovacuum/analyze; Query Insights; extend statistics when needed.
+
+#### DB-9 — MVCC, locks, vacuum
+- **Toy spec:** Visibility simulator (xmin/xmax snapshots); deadlock graph detector; HOT update sketch.
+- **SQL:** Isolation labs (RC vs RR vs Serializable); deliberate deadlock; observe `VACUUM`/bloat.
+- **EXPLAIN prediction:** Under RR, predict anomaly prevented; under RC, predict nonrepeatable — confirm.
+- **Cloud SQL mapping:** HA does not remove need for vacuum; long txns hurt; set statement timeouts.
+
+#### DB-10 — WAL, replica, PITR (foreign `G4` WAL codec → N2.3)
+- **Toy spec:** Mini WAL append/CRC/replay; checkpoint; streaming replica mock; backup/restore drill.
+- **SQL:** `pg_switch_wal()` in learning PG; base backup story; promote replica (local compose).
+- **EXPLAIN prediction:** N/A for WAL — instead **predict** recovery: crash after commit → row present; after uncommitted → absent.
+- **Cloud SQL mapping:** Automated backups, PITR window, HA regional standby, replica flags — name each Cloud SQL knob against the toy.
+
+Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 
 ### 4.1 Pre-SQL prerequisites (PQ-01 … PQ-08)
 
-#### PQ-01 · Sets, relations, functions, bags — stitch: T.Disc
+#### PQ-01 · Sets, relations, functions, bags — stitch: M1
 - [ ] done
 - **Core:** A relation is a set of tuples over a heading; SQL tables are *bags* (multisets). Functions map each domain element to at most one value — keys are the database word for that.
 - **Theory:** Cartesian product size = |R|·|S|; projection can shrink or (with bags) keep duplicates. Bag union vs set union.
@@ -252,7 +335,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-Z0.1–SQL-Z0.3 on paper: draw R⋈S multiplicities for 2×3 bags.
 - **Check:** Why does `SELECT a FROM t UNION SELECT a FROM t` drop duplicates but `UNION ALL` does not? Give multiplicities.
 
-#### PQ-02 · Propositional & predicate logic; 3VL preview — stitch: T.Disc · DB-1
+#### PQ-02 · Propositional & predicate logic; 3VL preview — stitch: M1 · DB-1
 - [ ] done
 - **Core:** Predicates evaluate to TRUE / FALSE / UNKNOWN. Filters keep only TRUE. `NOT UNKNOWN = UNKNOWN`.
 - **Theory:** Truth tables for AND/OR/NOT with UNKNOWN; why `WHERE col = NULL` never matches.
@@ -260,15 +343,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-Z0.4: fill the 3VL table for `country <> 'US'` when country is NULL.
 - **Check:** Does `NOT (x = 1)` include rows where x IS NULL? Prove with a truth table.
 
-#### PQ-03 · Types, encodings, integer money vs float — stitch: M.NS
+#### PQ-03 · Types, encodings, integer money vs float — stitch: M5
 - [ ] done
 - **Core:** Prefer `numeric`/`bigint` minor units for money; never `float`/`double` for currency. UTF-8; beware BOM and `char(n)` padding.
-- **Theory:** Half-up vs banker rounding; IEEE recall from M.NS then add decimal semantics.
+- **Theory:** Half-up vs banker rounding; IEEE recall from M5 then add decimal semantics.
 - **GCP lens:** Lens-1: Cloud SQL flags for `extra_float_digits`; Spanner NUMERIC. Lens-2: lab stores `price_minor int`.
 - **Lab:** SQL-E2.1 / SQL-E2.7: predict aggregates stay integer/numeric.
 - **Check:** Why is `0.1 + 0.2` unsafe for money in float but fine as integer cents?
 
-#### PQ-04 · Files, CSV/JSON, encodings — stitch: F1 · 2.5
+#### PQ-04 · Files, CSV/JSON, encodings — stitch: A3 + A6 · N2.5
 - [ ] done
 - **Core:** CSV NULL vs empty string; JSON vs JSONL; COPY options; UTF-8.
 - **Theory:** Encoding traps that flip fingerprints (BOM, CRLF).
@@ -276,7 +359,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E8.8–SQL-E8.10 cleaning ladder.
 - **Check:** Name two ways a CSV import silently changes row count.
 
-#### PQ-05 · psql, Docker Postgres, env hygiene — stitch: F1 · D1
+#### PQ-05 · psql, Docker Postgres, env hygiene — stitch: A3 + A6 · C1
 - [ ] done
 - **Core:** `psql` meta-commands, `ON_ERROR_STOP`, connection env vars, Docker volume + healthcheck.
 - **Theory:** Session `TimeZone` and `lc_collate` affect fingerprints.
@@ -284,7 +367,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** Bring lab up; `lab.chk` of `SELECT 1` returns `1:…`.
 - **Check:** Which two session settings invalidate every golden in this file?
 
-#### PQ-06 · Python DB-API & parameter binding — stitch: F1 · 4.9
+#### PQ-06 · Python DB-API & parameter binding — stitch: A3 + A6 · C1 + Phase 4 Security
 - [ ] done
 - **Core:** Placeholders, never string format for SQL; transactions at the connection; cursor hygiene.
 - **Theory:** Injection is a binding failure, not a clever-escape problem.
@@ -292,7 +375,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** BH-2 injection hunt.
 - **Check:** Rewrite a f-string query into a parameterised call.
 
-#### PQ-07 · Sorting, hashing, trees, binary search as access-path raw material — stitch: T.Algo · DB-6
+#### PQ-07 · Sorting, hashing, trees, binary search as access-path raw material — stitch: A4 + U2 · DB-6
 - [ ] done
 - **Core:** These are the primitives behind indexes and joins — not a second CS course.
 - **Theory:** Binary search → B-tree leaf walk; hash → hash join / hash index.
@@ -300,7 +383,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-Z0.7, TD-10 fan-out arithmetic.
 - **Check:** Given fan-out 100 and 1e6 leaves, about how many levels?
 
-#### PQ-08 · Storage hierarchy & page/row arithmetic — stitch: T.Quant · DB-4
+#### PQ-08 · Storage hierarchy & page/row arithmetic — stitch: A1/A2 recall + M6 · DB-4
 - [ ] done
 - **Core:** L1/L2/RAM/SSD/HDD orders of magnitude; 8 KiB pages; rows per page ≈ usable/avg_row.
 - **Theory:** Fill-factor and HOT-update intuition (analytic, not a second slotted-page toy).
@@ -310,7 +393,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 
 ### 4.2 Relational theory (RT-01 … RT-08)
 
-#### RT-01 · Relational model, keys, integrity — stitch: 2.1 / DB-2 · SQL-SKIP-SQL
+#### RT-01 · Relational model, keys, integrity — stitch: A8 / DB-2 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** Heading, body, candidate/primary/foreign keys, entity & referential integrity.
 - **Theory:** Superkey vs candidate key; NULLs and uniqueness (UNIQUE allows multiple NULLs in Postgres).
@@ -318,7 +401,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-1; lab composite FK `(tenant_id, user_id)`.
 - **Check:** Why does UNIQUE allow two NULLs in Postgres but PRIMARY KEY does not?
 
-#### RT-02 · Relational algebra (set and bag) — stitch: 2.1 / DB-1
+#### RT-02 · Relational algebra (set and bag) — stitch: A8 / DB-1
 - [ ] done
 - **Core:** σ π ⋈ ∪ ∩ − ×; bag variants; rewrite laws (push σ through ⋈).
 - **Theory:** Equivalence of expressions; why bag projection is not idempotent.
@@ -326,7 +409,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-5, TD-6, TD-7.
 - **Check:** Push `σ_{a=1}` through an equijoin on `a`; show both plans.
 
-#### RT-03 · Tuple/domain calculus & safety (SQL-T-GR) — stitch: T.SysTheory · DB-3
+#### RT-03 · Tuple/domain calculus & safety (SQL-T-GR) — stitch: A8 + A9 + U5 · DB-3
 - [ ] done
 - **Core:** Declarative `{t | P(t)}`; domain calculus; safety (finite results); Codd equivalence.
 - **Theory:** Unsafe query examples; how SQL WITH RECURSIVE can leave the safe fragment.
@@ -334,7 +417,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-16 recursion termination.
 - **Check:** Give one unsafe calculus query and its SQL temptation.
 
-#### RT-04 · Functional dependencies, closure, cover — stitch: 2.1 / DB-2 · SQL-SKIP-SQL
+#### RT-04 · Functional dependencies, closure, cover — stitch: A8 / DB-2 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** X → Y; attribute closure; candidate keys from FDs; canonical cover.
 - **Theory:** Armstrong axioms; why transitive FDs matter for 3NF.
@@ -342,7 +425,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-1…TD-4.
 - **Check:** Compute closure of `{tenant_id, sku}` on the product heading.
 
-#### RT-05 · Normal forms 1NF…BCNF (+ 4NF/5NF-lite) — stitch: 2.1 · SQL-SKIP-SQL
+#### RT-05 · Normal forms 1NF…BCNF (+ 4NF/5NF-lite) — stitch: A8 · SQL-SKIP-SQL
 - [ ] done
 - **Core:** 1NF atomicity; 2NF full FD to key; 3NF no transitive; BCNF; lossless & dependency-preserving decompositions.
 - **Theory:** When BCNF loses dependency preservation; MVDs lite.
@@ -350,7 +433,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-3, TD-4; SCH-1.
 - **Check:** Is `product(tenant_id, sku, price, currency)` in BCNF if `tenant_id → currency`?
 
-#### RT-06 · ER → tables — stitch: 0.4 · DD-01
+#### RT-06 · ER → tables — stitch: S2 + N0.4 · DD-01
 - [ ] done
 - **Core:** Entities, relationships, cardinality, weak entities, ISA → table patterns.
 - **Theory:** Foreign-key placement for 1:N vs N:M.
@@ -376,7 +459,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 
 ### 4.3 SQL language (SL-01 … SL-14)
 
-#### SL-01 · DDL, types, constraints — stitch: 2.1 / DB-2
+#### SL-01 · DDL, types, constraints — stitch: A8 / DB-2
 - [ ] done
 - **Core:** CREATE TABLE, types (`int`, `bigint`, `numeric`, `text`, `timestamptz`, `jsonb`, ranges), PRIMARY/UNIQUE/CHECK/FK.
 - **Theory:** Identity vs serial; domains; collations.
@@ -405,7 +488,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Core:** Join types as filters on the product; semi/anti via EXISTS/NOT EXISTS; LATERAL for dependent subqueries; range joins.
 - **Theory:** Fan-out: joining a 1:N table multiplies rows — sum after join is a classic bug.
 - **GCP lens:** Lens-1: Spanner interleaving physicalises parent-child joins; SQL shape still matters. Lens-2: SQL-E3 ladder.
-- **Lab:** SQL-E3.1–SQL-E3.10; SQL-E6.4 as-of shape (leakage owner is 9c.1).
+- **Lab:** SQL-E3.1–SQL-E3.10; SQL-E6.4 as-of shape (leakage owner is N9c.1).
 - **Check:** Why does `NOT IN (subquery with NULL)` return empty?
 
 #### SL-05 · Aggregation & grouping sets — stitch: SQL-SKIP-SQL · AN-01
@@ -448,7 +531,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E7.1–SQL-E7.5.
 - **Check:** How do you detect a cycle without hanging?
 
-#### SL-10 · DML, RETURNING, upsert, MERGE — stitch: 3.4 · 3.5
+#### SL-10 · DML, RETURNING, upsert, MERGE — stitch: A7 · A9 + ARCH-11
 - [ ] done
 - **Core:** `INSERT…ON CONFLICT`, `UPDATE…FROM`, writable CTEs, `MERGE` (PG15+), `DELETE…RETURNING`.
 - **Theory:** Idempotency keys; batching to bound WAL/bloat.
@@ -456,7 +539,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E9.1–SQL-E9.7; TX-5.
 - **Check:** What uniqueness constraint makes an upsert actually idempotent?
 
-#### SL-11 · Views, materialised views, functions, triggers — stitch: 9b.1
+#### SL-11 · Views, materialised views, functions, triggers — stitch: V-DATA + N9b.1
 - [ ] done
 - **Core:** Updatability limits; matview refresh; `SECURITY DEFINER` hazards; triggers as integrity amplifiers (use sparingly).
 - **Theory:** Where business logic should *not* hide.
@@ -464,7 +547,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E9.1; SCH-6 masking view sketch.
 - **Check:** Name one reason a trigger is worse than a constraint for the same rule.
 
-#### SL-12 · Dates, time zones, JSON, text, regex — stitch: 2.5 · 9c.1
+#### SL-12 · Dates, time zones, JSON, text, regex — stitch: N2.5 · D3 + N9c.1
 - [ ] done
 - **Core:** `timestamptz`, `AT TIME ZONE`, `date_trunc`, JSONB operators `@>`/`->`/`JSONB_PATH`, `LIKE`/`regex`.
 - **Theory:** Never `now()` in reproducible labs; DST pitfalls.
@@ -472,7 +555,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E8.1–SQL-E8.10.
 - **Check:** Which direction of `AT TIME ZONE` converts *stored UTC* to a New York *civil* date?
 
-#### SL-13 · Security in SQL: GRANT, RLS, injection — stitch: 0.5 · 4.7 · 8.1
+#### SL-13 · Security in SQL: GRANT, RLS, injection — stitch: B5 · A10 · N8.1
 - [ ] done
 - **Core:** Roles vs IAM principals; least privilege; RLS policies + `FORCE`; parameter binding; owner bypass.
 - **Theory:** Column encryption vocabulary (`pgcrypto`) — product rules stay in gcp 7.3.
@@ -480,7 +563,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E10.6, BH-2.
 - **Check:** Why does table owner bypass RLS unless `FORCE ROW LEVEL SECURITY`?
 
-#### SL-14 · Dialects and the standard — stitch: 2.2 · §8
+#### SL-14 · Dialects and the standard — stitch: A8 + V-STOR · §8
 - [ ] done
 - **Core:** What is ISO SQL vs vendor; common deltas (LIMIT/TOP/FETCH, UPSERT shapes, NULL=empty).
 - **Theory:** Rosetta discipline: translate the *idea*, then the spelling.
@@ -498,11 +581,11 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-Z0.8 napkin with lab row widths.
 - **Check:** Estimate pages for 20k orders at 150 B/row on 8 KiB pages.
 
-#### CS-02 · B-tree/B+/hash/LSM/bitmap/GIN/GiST/BRIN — stitch: DB-6 · 8.1
+#### CS-02 · B-tree/B+/hash/LSM/bitmap/GIN/GiST/BRIN — stitch: DB-6 · N8.1
 - [ ] done
 - **Core:** Height ≈ log_fanout(n); leftmost prefix rule; LSM write amp vs B-tree read amp; GIN for JSONB/arrays; BRIN for append-mostly.
 - **Theory:** Partial and covering indexes.
-- **GCP lens:** Lens-1: 8.1 owns LSM-vs-B-tree comparison toy; here formulas + PX cards. Lens-2: PX-1…PX-6.
+- **GCP lens:** Lens-1: N8.1 owns LSM-vs-B-tree comparison toy; here formulas + PX cards. Lens-2: PX-1…PX-6.
 - **Lab:** PX-1…PX-6; TD-10.
 - **Check:** Why does `LIKE '%x'` refuse a default B-tree?
 
@@ -538,10 +621,10 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** TD-12.
 - **Check:** Why does no-force still need redo after a crash?
 
-#### CS-07 · Replication, consensus, 2PC, consistency models — stitch: DB-10 · 2.7 · 3.5
+#### CS-07 · Replication, consensus, 2PC, consistency models — stitch: DB-10 · A9 + V-STOR + N2.7 · ARCH-11
 - [ ] done
 - **Core:** Physical vs logical replication; failover; why 2PC is not the default answer (outbox owns the product pattern).
-- **Theory:** TrueTime/Paxos *vocabulary* when 2.7 is unlocked — no second Spanner toy.
+- **Theory:** TrueTime/Paxos *vocabulary* when A9 / N2.7 is unlocked — no second Spanner toy.
 - **GCP lens:** Lens-1: Cloud SQL replicas; Spanner; recall primer SD-14…17 for scale-out *interview* layer (do not re-teach).
 - **Lab:** TD-14; BH-5 lag SLI.
 - **Check:** Name one failure mode 2PC does not solve that outbox does.
@@ -554,7 +637,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** PX-8.
 - **Check:** Why can a 10× estimate error flip hash join to nested loop?
 
-#### CS-09 · Columnar & vectorised execution — stitch: 9.4 · AN-02
+#### CS-09 · Columnar & vectorised execution — stitch: V-STOR + N9.4 · AN-02
 - [ ] done
 - **Core:** Late materialisation, SIMD-friendly operators, compression (RLE/dict).
 - **Theory:** OLTP row store vs OLAP column store trade-off.
@@ -580,7 +663,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 
 ### 4.5 Data design (DD-01 … DD-13)
 
-#### DD-01 · Conceptual → logical → physical — stitch: 0.4 · 8.0
+#### DD-01 · Conceptual → logical → physical — stitch: S2 + N0.4 · N8.0
 - [ ] done
 - **Core:** ER/concepts → normalised tables → indexes/partitioning/storage params; schema ADRs.
 - **Theory:** Every physical shortcut needs an ADR ('I pick X because Y, accept Z').
@@ -596,11 +679,11 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SCH-2.
 - **Check:** Name one operational pain of random UUIDs as PKs on B-trees.
 
-#### DD-03 · Money, units, time — stitch: 5.3 · M.NS
+#### DD-03 · Money, units, time — stitch: A8 + N5.3 · M5
 - [ ] done
 - **Core:** Integer minor units; explicit currency; `timestamptz` for instants; civil dates as `date`.
 - **Theory:** Never float money; never implicit TZ.
-- **GCP lens:** Lens-1: ledger rules in gcp 5.3 — this file models them. Lens-2: SQL-E4.5, SQL-CAP2.
+- **GCP lens:** Lens-1: ledger rules in N5.3 — this file models them. Lens-2: SQL-E4.5, SQL-CAP2.
 - **Lab:** SQL-E4.5, SQL-CAP2.
 - **Check:** Why store both `currency` and `total_minor` rather than a float USD conversion?
 
@@ -612,15 +695,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E7.1–SQL-E7.4; SCH-3.
 - **Check:** Which hierarchy pattern makes 'subtree products' cheap?
 
-#### DD-05 · Temporal data & SCD — stitch: 9c.1 · 5.3
+#### DD-05 · Temporal data & SCD — stitch: D3 + N9c.1 · A8 + N5.3
 - [ ] done
 - **Core:** Valid-time vs transaction-time; SCD2 `valid_from`/`valid_to`; as-of join shapes.
-- **Theory:** Leakage prevention is owned by 9c.1; SQL shapes live here.
+- **Theory:** Leakage prevention is owned by N9c.1; SQL shapes live here.
 - **GCP lens:** Lens-1: feature stores / as-of joins. Lens-2: SQL-E6.4, SQL-E13.4, SQL-E13.5.
 - **Lab:** SQL-E13.4–SQL-E13.5.
 - **Check:** Write the predicate for 'price in effect at `placed_at`'.
 
-#### DD-06 · JSONB vs relational — stitch: 2.2
+#### DD-06 · JSONB vs relational — stitch: A8 + V-STOR
 - [ ] done
 - **Core:** Stable queryable attributes → columns; open-ended attrs → JSONB with GIN; hybrid.
 - **Theory:** Constraints are weaker inside JSON.
@@ -628,7 +711,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E8.5–SQL-E8.7; DT-7.
 - **Check:** When does JSONB become a schema smell?
 
-#### DD-07 · Soft delete, audit, history — stitch: 5.3 · 11b
+#### DD-07 · Soft delete, audit, history — stitch: A8 + N5.3 · N11b
 - [ ] done
 - **Core:** `deleted_at`; history tables; append-only audit; who-can-see-deleted policies.
 - **Theory:** Unique constraints must consider soft delete (`UNIQUE … WHERE deleted_at IS NULL`).
@@ -636,7 +719,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E10.3 partial unique; SQL-CAP1.
 - **Check:** How do you keep email unique among *live* users only?
 
-#### DD-08 · Denormalisation with ADRs — stitch: 8.0 · primer SD-18
+#### DD-08 · Denormalisation with ADRs — stitch: S2 + N8.0 · primer SD-18
 - [ ] done
 - **Core:** Cache columns, aggregate tables, counter fields — only with refresh rules and ADR.
 - **Theory:** Do not re-teach primer SD-18; add SQL maintenance patterns.
@@ -644,15 +727,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SCH-2, SQL-E9.1.
 - **Check:** Write the refresh invariant for a cached `total_minor`.
 
-#### DD-09 · Multi-tenancy — stitch: 8.1 · SL-13
+#### DD-09 · Multi-tenancy — stitch: N8.1 · SL-13
 - [ ] done
 - **Core:** Shared tables + `tenant_id` vs separate DBs/schemas; composite FKs; RLS defence in depth.
 - **Theory:** Hot-tenant skew.
-- **GCP lens:** Lens-1: 8.1 owns RLS primitive; here SQL policies + composite FKs. Lens-2: SQL-E10.2, SQL-E10.6.
+- **GCP lens:** Lens-1: N8.1 owns RLS primitive; here SQL policies + composite FKs. Lens-2: SQL-E10.2, SQL-E10.6.
 - **Lab:** SQL-E10.2, SQL-E10.6, PX-1 hot key.
 - **Check:** Why is a single-column FK to `user_id` unsafe in a multi-tenant DB?
 
-#### DD-10 · Partitioning & sharding-key design — stitch: primer SD-17 · 2.7
+#### DD-10 · Partitioning & sharding-key design — stitch: primer SD-17 · A9 + V-STOR + N2.7
 - [ ] done
 - **Core:** Range/list/hash partitioning; prune-friendly predicates; shard key = join/locality key.
 - **Theory:** Interview scale-out stays in primer SD-17; here SQL partition pruning.
@@ -660,10 +743,10 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SCH-5; PX prune thought-experiment.
 - **Check:** What predicate prevents partition pruning?
 
-#### DD-11 · Schema evolution (expand/contract) — stitch: 2.6
+#### DD-11 · Schema evolution (expand/contract) — stitch: A8 + C4 + N2.6
 - [ ] done
 - **Core:** Add nullable → backfill → constrain → switch reads → drop old; lock levels; `CREATE INDEX CONCURRENTLY`; `NOT VALID`.
-- **Theory:** gcp 2.6 owns migrations-as-jobs; here lock/SQL craft.
+- **Theory:** N2.6 owns migrations-as-jobs; here lock/SQL craft.
 - **GCP lens:** Lens-1: Cloud SQL maintenance windows. Lens-2: SQL-E9.6 chunked backfill.
 - **Lab:** SQL-E9.6, SCH-4.
 - **Check:** Which lock does `ALTER … SET NOT NULL` take on a big table without a rewrite strategy?
@@ -676,17 +759,17 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E10 battery.
 - **Check:** Encode 'no overlapping price intervals' as a constraint type.
 
-#### DD-13 · Hot-key skew & partition keys — stitch: 8.1
+#### DD-13 · Hot-key skew & partition keys — stitch: N8.1
 - [ ] done
 - **Core:** Measure skew with SQL; design keys that spread writes; avoid sequential hotspots.
 - **Theory:** Lab: user 1 is hot (~135 orders) — see PX-1.
-- **GCP lens:** Lens-1: 8.1 owns the hot-partition primitive. Lens-2: skew query on lab.
+- **GCP lens:** Lens-1: N8.1 owns the hot-partition primitive. Lens-2: skew query on lab.
 - **Lab:** PX-1; SCH-5.
 - **Check:** Write a query that ranks users by order count and spot the hotspot.
 
 ### 4.6 Operating databases (OD-01 … OD-10)
 
-#### OD-01 · Indexing strategy & EXPLAIN workflow — stitch: 10.5 · DB-6
+#### OD-01 · Indexing strategy & EXPLAIN workflow — stitch: C6 · DB-6
 - [ ] done
 - **Core:** Hypothesis → `EXPLAIN (ANALYZE, BUFFERS)` → change one thing → re-measure; sargability.
 - **Theory:** Never index every column.
@@ -694,7 +777,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** §7.1 PX cards.
 - **Check:** What four EXPLAIN fields do you read before changing an index?
 
-#### OD-02 · Statistics & slow-query observability — stitch: 1.7 · 10.0
+#### OD-02 · Statistics & slow-query observability — stitch: C6
 - [ ] done
 - **Core:** `pg_stat_statements`, auto_explain, wait events; stale analyze symptoms.
 - **Theory:** Logs are evidence packs, not vibes.
@@ -702,15 +785,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** PX-8.
 - **Check:** Name two symptoms of stale statistics.
 
-#### OD-03 · Connection pooling & pool math — stitch: 1.12 · 8.1 · 2.3
+#### OD-03 · Connection pooling & pool math — stitch: B3 · N8.1 · N2.3
 - [ ] done
 - **Core:** instances × pool ≤ `max_connections`; session vs transaction vs statement pooler modes; what breaks in transaction mode (session locals, prepared statements, advisory locks).
-- **Theory:** 8.1 owns the spreadsheet — recall it.
+- **Theory:** N8.1 owns the spreadsheet — recall it.
 - **GCP lens:** Lens-1: Cloud SQL + managed pooler / Auth Proxy. Lens-2: TX-8 thought-lab.
 - **Lab:** TX-8.
 - **Check:** Which pooler mode breaks `SET LOCAL` lasting across statements?
 
-#### OD-04 · Backup / restore / PITR drills — stitch: DB-10 · G4
+#### OD-04 · Backup / restore / PITR drills — stitch: DB-10 · N2.3 + DB-10
 - [ ] done
 - **Core:** Runbook literacy: schedule, retain, test restore to a *new* instance, measure RPO/RTO.
 - **Theory:** Toy WAL is DB-10; this is the operator checklist.
@@ -742,7 +825,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SCH-5.
 - **Check:** Why is `DROP TABLE …_2024_01` preferable to `DELETE WHERE month=…`?
 
-#### OD-08 · Migrations tooling & testing — stitch: 2.6 · D3
+#### OD-08 · Migrations tooling & testing — stitch: A8 + C4 + N2.6 · C5
 - [ ] done
 - **Core:** Dirty state, advisory lock, expand/contract in CI, rollback story.
 - **Theory:** gcp owns migrations-as-jobs; here SQL test discipline.
@@ -750,15 +833,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E9.6, SCH-4.
 - **Check:** What does a migration advisory lock prevent?
 
-#### OD-09 · Application data access — stitch: 3.0 · 8.1.5
+#### OD-09 · Application data access — stitch: A7 · N8.1.5
 - [ ] done
 - **Core:** N+1, ORM dirty pages, prepared statements, transaction boundaries, keyset pagination SQL.
-- **Theory:** 8.1.5 owns the from-scratch pager — here the seek predicate & index.
+- **Theory:** N8.1.5 owns the from-scratch pager — here the seek predicate & index.
 - **GCP lens:** Lens-1: Cloud SQL + app connectors. Lens-2: PX-9 OFFSET vs keyset; BH-3.
 - **Lab:** PX-9, BH-3, SQL-E4.7.
 - **Check:** Write the keyset `WHERE` for `(placed_at, order_id)` descending.
 
-#### OD-10 · Testing SQL — stitch: D2
+#### OD-10 · Testing SQL — stitch: C4
 - [ ] done
 - **Core:** Postgres service container, seed v1, fingerprint assertions, migration up/down.
 - **Theory:** Golden tests beat screenshot tests.
@@ -768,15 +851,15 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 
 ### 4.7 Analytics & other engines (AN-01 … AN-07)
 
-#### AN-01 · OLTP vs OLAP; star/snowflake — stitch: 2.2 · 9.4
+#### AN-01 · OLTP vs OLAP; star/snowflake — stitch: A8 + V-STOR · N9.4
 - [ ] done
 - **Core:** Workload shapes; fact/dim; grain; conformed dimensions.
 - **Theory:** Northstar OLTP lab vs analytics copies.
-- **GCP lens:** Lens-1: Cloud SQL vs BigQuery decision table (gcp 2.2). Lens-2: SQL-E13.3 star build.
+- **GCP lens:** Lens-1: Cloud SQL vs BigQuery decision table (A8 + V-STOR). Lens-2: SQL-E13.3 star build.
 - **Lab:** SQL-E13.3; DT-1.
 - **Check:** What is the grain of `order_line` vs `customer_order`?
 
-#### AN-02 · BigQuery / GoogleSQL cost shapes — stitch: 9.4 · 9b.1
+#### AN-02 · BigQuery / GoogleSQL cost shapes — stitch: V-STOR + N9.4 · V-DATA + N9b.1
 - [ ] done
 - **Core:** Partition + cluster; selective column projection; bytes scanned as cost.
 - **Theory:** gcp owns ops; here SQL-level reading.
@@ -784,7 +867,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** DT-2–DT-4.
 - **Check:** Name two SQL mistakes that explode bytes scanned.
 
-#### AN-03 · Cohorts, funnels, sessionisation, retention — stitch: 9b.1 · 10.3
+#### AN-03 · Cohorts, funnels, sessionisation, retention — stitch: V-DATA + N9b.1 · B4
 - [ ] done
 - **Core:** Windowed event math; billing-export-shaped windows reuse.
 - **Theory:** Cohort month = trunc(signup); activation window is a half-open interval — same trap as SQL-E1.1.
@@ -792,7 +875,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** SQL-E6.2, SQL-E6.6, DT-4.
 - **Check:** Define activation as 'purchase within 7 days of signup' in SQL words.
 
-#### AN-04 · Approximate aggregation — stitch: 9b.1
+#### AN-04 · Approximate aggregation — stitch: V-DATA + N9b.1
 - [ ] done
 - **Core:** `HLL`, t-digest / quantile sketches — error bars are part of the answer.
 - **Theory:** Bias/variance trade-off; never mix approx and exact in one KPI without labelling.
@@ -800,7 +883,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** DT-5.
 - **Check:** When is a 2% count error unacceptable?
 
-#### AN-05 · Spanner SQL dialect map — stitch: 2.7 · 9.4
+#### AN-05 · Spanner SQL dialect map — stitch: A9 + V-STOR + N2.7 · N9.4
 - [ ] done
 - **Core:** GoogleSQL in Spanner: types, interleaved joins, no arbitrary cross-DB features.
 - **Theory:** Same *question* as Postgres — different spelling and limits.
@@ -808,7 +891,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** DT-6.
 - **Check:** Name two Postgres features you must rewrite for Spanner.
 
-#### AN-06 · NoSQL query models vs SQL — stitch: 2.4
+#### AN-06 · NoSQL query models vs SQL — stitch: A8 + N2.4
 - [ ] done
 - **Core:** Document / KV access patterns; what joins become application fan-out.
 - **Theory:** Firestore when it wins/loses — gcp owns product; here same-question drill.
@@ -816,7 +899,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Lab:** DT-7.
 - **Check:** Express 'top 10 products by GMV for tenant 2' as a document access plan and as SQL.
 
-#### AN-07 · Search & vectors in SQL — stitch: 9c.2 / 9c.5
+#### AN-07 · Search & vectors in SQL — stitch: D4 + N9c.2 / N9c.5
 - [ ] done
 - **Core:** `tsvector`/`tsquery`; `pgvector` similarity — vs dedicated search engines.
 - **Theory:** Ranking quality, hybrid lexical+vector, and operational isolation from OLTP.
@@ -825,7 +908,7 @@ Format per module (same contract as `system-design-primer-companion.md`): **Core
 - **Check:** When does in-DB vector search stop being enough?
 ## 5. Skip tests / readiness tiers (SQL-SKIP-SQL / SQL-SKIP-ENGINE)
 
-Mapped to unified-curriculum `DB-SQL` / `DB-ENGINE` and gcp-curriculum continuation modules **SQL-SKIP-SQL** / **SQL-SKIP-ENGINE**. If Part 2 already confirmed the skill, **stamp and skip**; else run the order in §2.3.
+Mapped to the A8 skip-tests **SQL-SKIP-SQL** / **SQL-SKIP-ENGINE** (provenance: `unified-curriculum.md` nodes `DB-SQL` / `DB-ENGINE`). If the A8 sessions already confirmed the skill, **stamp and skip**; else run the order in §2.3.
 
 ### 5.1 Tier map
 
@@ -841,7 +924,7 @@ Mapped to unified-curriculum `DB-SQL` / `DB-ENGINE` and gcp-curriculum continuat
 | **SQL-SKIP-ENGINE-C** MVCC/WAL | Schedule + durability paragraph | TD-9, TD-12 + OD-04 outline | CS-05, CS-06, OD-06 |
 
 ### 5.2 Official skip-test checkpoints (from §2 stitch table)
-- **SQL-SKIP-SQL:** SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2 (if Part 2 confirmed FDs/joins/transactions/pagination/client hygiene).
+- **SQL-SKIP-SQL:** SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2 (if the A8 sessions confirmed FDs/joins/transactions/pagination/client hygiene).
 - **SQL-SKIP-ENGINE:** PX-1…PX-11 residual EXPLAIN drills; TD-12 + OD-04 for crash/recovery evidence.
 
 ### 5.3 Readiness before exercise levels
@@ -921,7 +1004,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 
 ### 6.0b Theory drills (TD-1 … TD-16)
 
-Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketches).
+Issued one at a time with the A8 + A9 (+ U5) theory and the §4.0 slices. Keys in Appendix K (sketches).
 
 #### TD-1 · Keys from FDs
 - **Tags:** RT-04
@@ -1440,7 +1523,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Tags:** as-of join · LATERAL · temporal correctness
 - **Prompt:** For order lines of orders placed **before 2025-01-04**: the list price that was in effect at `placed_at` (the history row with the greatest `valid_from <= placed_at`), and the lines where the price actually charged (`unit_price_minor`) differs from it.
 - **Output shape:** `order_id, line_no, unit_price_minor, price_at_order` (order-insensitive — `lab.chk`)
-- **Trap:** A plain equi-join on `product_id` returns three rows per line. Use `LATERAL … ORDER BY valid_from DESC LIMIT 1` (or `DISTINCT ON`, or a window). The `<=` boundary is inclusive: an order at exactly `valid_from` sees the *new* price. This is the same shape as gcp-curriculum **9c.1** point-in-time joins. Wrong-path fingerprint (do not chase): `808:97a9c21a` — plain equi-join returns all three price rows.
+- **Trap:** A plain equi-join on `product_id` returns three rows per line. Use `LATERAL … ORDER BY valid_from DESC LIMIT 1` (or `DISTINCT ON`, or a window). The `<=` boundary is inclusive: an order at exactly `valid_from` sees the *new* price. This is the same shape as **N9c.1** (D3) point-in-time joins. Wrong-path fingerprint (do not chase): `808:97a9c21a` — plain equi-join returns all three price rows.
 - **Golden fingerprint:** `404:4f5a2a10`
 - **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 
@@ -1528,7 +1611,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Tags:** reproducible time · never now()
 - **Prompt:** Shipments not delivered more than 14 days after shipping, **as of `2026-01-01 00:00 UTC`** (undelivered and shipped before 2025-12-18).
 - **Output shape:** `shipment_id` (order-insensitive — `lab.chk`)
-- **Trap:** Never call `now()` in a graded query — the answer changes daily. Parameterise the 'as-of' instant. Same principle as the gcp-curriculum ledger's determinism rules.
+- **Trap:** Never call `now()` in a graded query — the answer changes daily. Parameterise the 'as-of' instant. Same principle as the Northstar ledger's (N5.3) determinism rules.
 - **Golden fingerprint:** `1825:dc65c0f1`
 - **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 
@@ -1620,7 +1703,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Tags:** INSERT … ON CONFLICT DO UPDATE · idempotency
 - **Prompt:** Create `work.daily_orders(day date PRIMARY KEY, n int NOT NULL)`. Write one statement that loads the count of orders per UTC day for all of 2025 and can be **run twice with the same result**.
 - **Output shape:** `day, n` (order-insensitive — `lab.chk`)
-- **Trap:** `SET n = daily_orders.n + EXCLUDED.n` is *not* idempotent (a re-run doubles). `SET n = EXCLUDED.n` is. If your source query returned two rows for one day in a single statement you would get `ON CONFLICT DO UPDATE command cannot affect row a second time` — aggregate first. Idempotent writes are the whole point of gcp-curriculum 3.4/3.5.
+- **Trap:** `SET n = daily_orders.n + EXCLUDED.n` is *not* idempotent (a re-run doubles). `SET n = EXCLUDED.n` is. If your source query returned two rows for one day in a single statement you would get `ON CONFLICT DO UPDATE command cannot affect row a second time` — aggregate first. Idempotent writes are the whole point of A7/A9.
 - **Golden fingerprint:** `365:60b9c8d0`
 - **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 
@@ -1642,7 +1725,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 
 #### SQL-E9.6 · Chunked backfill
 - **Tags:** batching · SKIP LOCKED · WAL/bloat awareness
-- **Prompt:** Setup gives `work.o` (copy of `customer_order`) with a new nullable column `total_major numeric(12,2)`. Backfill `total_minor / 100.0` in chunks of **1,000 rows**, looping until no rows are left. (Here one transaction; in production every chunk commits separately — gcp-curriculum 2.6 expand/contract.)
+- **Prompt:** Setup gives `work.o` (copy of `customer_order`) with a new nullable column `total_major numeric(12,2)`. Backfill `total_minor / 100.0` in chunks of **1,000 rows**, looping until no rows are left. (Here one transaction; in production every chunk commits separately — N2.6 expand/contract.)
 - **Output shape:** all 20,000 rows have `total_major` set (order-insensitive — `lab.chk`)
 - **Trap:** `WHERE total_major IS NULL … LIMIT` inside a CTE + `UPDATE … RETURNING` is the loop body. One giant `UPDATE` holds locks and WAL for minutes on a real table and blocks vacuum. Chunk size is a *tuning knob*, not a constant.
 - **Golden fingerprint:** `20000:f913007e`
@@ -1674,7 +1757,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Tags:** composite FK · multi-tenancy · integrity at the schema level
 - **Prompt:** Create `work.note(note_id bigint PK, tenant_id int NOT NULL, user_id bigint NOT NULL, body text)` so that a note can only reference a user **of the same tenant**. Battery (Appendix B.2) must give `T F F F`: (1) tenant 1 / user 1 ok · (2) tenant 2 / user 1 fails (user 1 is tenant 1's) · (3) tenant 1 / user 999999 fails · (4) NULL tenant fails.
 - **Output shape:** vector of booleans (ordered — use `lab.chk_o`)
-- **Trap:** `user_id REFERENCES app_user` alone only proves the user *exists*. The composite `FOREIGN KEY (tenant_id, user_id) REFERENCES app_user (tenant_id, user_id)` needs a matching unique constraint on the parent — that is why the lab's `app_user` carries `UNIQUE (tenant_id, user_id)`. This is defence in depth beneath RLS (gcp-curriculum 8.1).
+- **Trap:** `user_id REFERENCES app_user` alone only proves the user *exists*. The composite `FOREIGN KEY (tenant_id, user_id) REFERENCES app_user (tenant_id, user_id)` needs a matching unique constraint on the parent — that is why the lab's `app_user` carries `UNIQUE (tenant_id, user_id)`. This is defence in depth beneath RLS (N8.1).
 - **Golden fingerprint:** `4:8c4ee581`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
@@ -1706,7 +1789,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Tags:** RLS · policies · current_setting · roles
 - **Prompt:** Enable RLS on `work.o` (a copy of `customer_order`) so that a role `app_rls` sees **only rows where `tenant_id = current_setting('app.tenant_id')::int`**. Then, as `app_rls` with `app.tenant_id = '2'`, count rows per tenant. Predict first: how many rows, which tenants? What happens if the setting is unset?
 - **Output shape:** `tenant_id, n` (a single row for tenant 2) (order-insensitive — `lab.chk`)
-- **Trap:** RLS does **not** apply to the table owner or superusers unless `FORCE ROW LEVEL SECURITY`. `current_setting('x', true)` returns NULL when unset (no rows), without `true` it raises. Connection-pool reuse means the setting must be `SET LOCAL` per transaction — gcp-curriculum 8.1 RLS.
+- **Trap:** RLS does **not** apply to the table owner or superusers unless `FORCE ROW LEVEL SECURITY`. `current_setting('x', true)` returns NULL when unset (no rows), without `true` it raises. Connection-pool reuse means the setting must be `SET LOCAL` per transaction — N8.1 RLS.
 - **Golden fingerprint:** `1:86599c11`
 - **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 
@@ -1734,7 +1817,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Tags:** dimensional modelling · fact/dim · surrogate keys
 - **Prompt:** In `work`, build `dim_product(product_id, name, category_name)` (category name or `'(none)'`), `dim_date(date_key, year, month)` for 2025 and `fact_sales(order_id, line_no, date_key, product_id, qty, revenue_minor)` from **fulfilled** order lines. Then answer with the star: *revenue by category name and month for 2025*.
 - **Output shape:** `category_name, month, revenue_minor` (order-insensitive — `lab.chk`)
-- **Trap:** Facts hold measures + foreign keys at one **grain** (an order line); dimensions hold descriptions. Decide grain first, write it in one sentence. In BigQuery you would partition the fact by date and cluster by product (gcp-curriculum 9b.1) and often *denormalise* the dimensions in.
+- **Trap:** Facts hold measures + foreign keys at one **grain** (an order line); dimensions hold descriptions. Decide grain first, write it in one sentence. In BigQuery you would partition the fact by date and cluster by product (V-DATA, N9b.1) and often *denormalise* the dimensions in.
 - **Golden fingerprint:** `372:22383318`
 - **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 
@@ -1905,7 +1988,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** OD-01, CS-02/03/08 as relevant
 
 #### PX-9 · OFFSET vs keyset
-- **Tags:** PX-9 · OD-09 · 8.1.5
+- **Tags:** PX-9 · OD-09 · N8.1.5
 - **Prompt:** Predict cost of `OFFSET 19000` vs `WHERE order_id>19000 LIMIT 20`.
 - **Output shape:** relative cost
 - **Trap:** reading EXPLAIN after changing three things at once
@@ -1987,7 +2070,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** CS-05
 
 #### TX-8 · SKIP LOCKED queue + FOR UPDATE RMW
-- **Tags:** T5+T6 · 3.5
+- **Tags:** T5+T6 · A9
 - **Prompt:** Two workers SKIP LOCKED claim distinct jobs; then FOR UPDATE fixes lost update. Predict claimed ids + final bal.
 - **Output shape:** ids + bal
 - **Trap:** predicting SERIALIZABLE behaviour under RR
@@ -2021,7 +2104,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** matching SL/OD modules
 
 #### BH-4 · Ledger money float
-- **Tags:** 5.3·DD-05
+- **Tags:** N5.3·DD-05
 - **Prompt:** Spot a `double precision` balance; propose minor-unit int migration.
 - **Output shape:** ADR+DDL
 - **Trap:** fixing symptoms without naming the invariant
@@ -2095,7 +2178,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** SL-14, AN-* as tagged
 
 #### DT-7 · Same question in Firestore
-- **Tags:** AN-06·2.4
+- **Tags:** AN-06·N2.4
 - **Prompt:** Top products by GMV for tenant 2 as documents + as SQL (SQL-E2 style).
 - **Output shape:** two plans
 - **Trap:** translating tokens without translating semantics (NULL=empty, time zones)
@@ -2121,7 +2204,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** DD-* as tagged
 
 #### SCH-2 · Surrogate vs natural ADR
-- **Tags:** DD-02·8.0
+- **Tags:** DD-02·N8.0
 - **Prompt:** ADR for `product_id` bigint vs SKU-as-PK.
 - **Output shape:** ADR
 - **Trap:** jumping to physical indexes before logical keys
@@ -2137,7 +2220,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** DD-* as tagged
 
 #### SCH-4 · Expand/contract email verify
-- **Tags:** DD-11·2.6
+- **Tags:** DD-11·N2.6
 - **Prompt:** Add `email_verified_at` without downtime; list steps + locks.
 - **Output shape:** step list
 - **Trap:** jumping to physical indexes before logical keys
@@ -2145,7 +2228,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** DD-* as tagged
 
 #### SCH-5 · Shard key for multi-tenant
-- **Tags:** DD-13·2.7
+- **Tags:** DD-13·N2.7
 - **Prompt:** Propose partition/shard key for orders; address user-1 hotspot.
 - **Output shape:** design note
 - **Trap:** jumping to physical indexes before logical keys
@@ -2153,7 +2236,7 @@ Issued one at a time with T.SysTheory / Part 2 slices. Keys in Appendix K (sketc
 - **Prereq gate:** DD-* as tagged
 
 #### SCH-6 · Audit log + masking view
-- **Tags:** DD-07·7.3
+- **Tags:** DD-07·N7.3
 - **Prompt:** Design append-only audit and a masking view for support roles.
 - **Output shape:** DDL sketch
 - **Trap:** jumping to physical indexes before logical keys
@@ -2215,7 +2298,7 @@ SQLite / Oracle: Rosetta footnotes only (Oracle NULL-empty collapse; SQLite type
 
 ### 8.2 Terraform DB exercises (plan-only default)
 
-Mirror gcp-curriculum C5 posture: **`terraform plan` reads the graph; apply only if Lab Reality + credits allow, destroy same day.**
+Mirror `Curriculum` C5 posture: **`terraform plan` reads the graph; apply only if Lab Reality + credits allow, destroy same day.**
 
 | ID | Goal | Notes |
 |---|---|---|
@@ -2228,7 +2311,7 @@ Mirror gcp-curriculum C5 posture: **`terraform plan` reads the graph; apply only
 
 ## 9. Capstones (SQL-CAP1–SQL-CAP4)
 
-Database acceptance tests for gcp Part 11 / Northstar. Issue after the §6 level-14 gate. **Predict; run; reconcile.**
+Database acceptance tests for N11 (Northstar). Issue after the §6 level-14 gate. **Predict; run; reconcile.**
 
 | ID | Title | Soft gate | Fingerprint source |
 |---|---|---|---|
@@ -3054,3 +3137,46 @@ GROUP BY fp.user_id
 - **Modern notes:** SSI write-skew behaviour, `MERGE` in PG15+, `EXCLUDE` with `btree_gist`, recursive cycle clause PG14+ — confirm on your minor version.
 - **Built:** 2026-09-21 from on-box sources only.
 
+
+
+---
+
+## Pre-refactor text archive (D3)
+
+*Refactor-authored section (2026-09-24).* Decision D3 says content may be re-arranged but never removed. Each block below is the exact pre-refactor text (after the §5 ID renames) of a line that R2 corrected or regenerated. It is kept for provenance only and is **not authoritative**; the live text above wins. Tooling excludes this section from ID and anchor checks.
+
+**D3-01** · C-01 · title block, parent line
+
+```text
+Companion to `gcp-curriculum.md` ("The Consolidated Cloud Mastery Curriculum", initial course T–11b + Part 12 continuation) and to the owner nodes `DB-SQL` and `DB-ENGINE` of `unified-curriculum.md`.
+```
+
+**D3-02** · C-05 · §0.1 "Why" line
+
+```text
+Why: gcp-curriculum owns the *product spine* (Northstar on GCP) and, in Part 2, the engine slices DB-1 … DB-10 and the Cloud SQL procedure. It deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the gcp-curriculum module that needs it, **at the moment that module needs it**.
+```
+
+**D3-03** · C-05 · §0.2 rule 2
+
+```text
+2. **Ownership split (memorise).** *gcp-curriculum owns:* Cloud SQL setup (2.3), the ten engine slices DB-1 … DB-10 and their toys, Firestore (2.4), migrations-as-jobs (2.6), the Spanner/NoSQL map (2.7), the primitives of 8.1 (cursor pager, hot partition, pool math, RLS, LSM-vs-B-tree comparison), outbox/inbox (3.5), the ledger (5.3), BigQuery ops (9.4/9b.1), as-of joins as *leakage prevention* (9c.1), billing-export SQL (10.3). *This file owns:* SQL-language mastery (SL), relational theory (RT), the CS theory tier under the slices (CS), data-design method (DD), operating-a-database craft (OD), analytics and dialect craft (AN), pre-SQL prerequisites (PQ), and the exercise ladder (§6). **Where a gcp-curriculum toy exists (WAL codec, slotted page, B-tree, iterator executor, visibility simulator) this file never asks for a second toy — it adds the analytic layer (formulas, schedules, cost models) that the toy's tests do not reach.**
+```
+
+**D3-04** · C-37 · replaced line
+
+```text
+- `SQL-E<level>.<n>` query-writing exercises (§6, levels 1–14; **TX** and **PX** are *labs* in §7) · `SQL-Z0.n` level-0 paper drills · `TD-n` theory drills · `PX-n` plan-prediction cards · `TX-n` transaction labs · `BH-n` bug-hunts · `DT-n` dialect-translation drills · `SD-n` schema-design cases · `SQL-CAP1–SQL-CAP4` capstones · `TF-DBn` Terraform database exercises.
+```
+
+**D3-05** · C-53 · §0.4 notation, ID legend
+
+```text
+- `T.*`, `F1…F4`, `M.*`, `0.x`, `1.x`, `D0…D8`, `2.x` … `11b`, `12.Sxx`, `DB-1 … DB-10`, `G4`, `G12b` are **gcp-curriculum** IDs. `SD-13 … SD-27` are **primer-companion** IDs. `TB-…`/`SRC-…` are unified-curriculum source IDs.
+```
+
+**D3-06** · C-02 · §2.3 intro
+
+```text
+gcp-curriculum's spine is `T → F → M → 0 → 1 → D → 2 → 3 → …`. SQL does not first *appear* until Part 2, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until Part 2 needs it (Prop Lock: no SQL vocabulary before it is anchored).
+```
