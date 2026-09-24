@@ -41,7 +41,7 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 ### 0.6 Suite Teaching Contract and Lab Safety (same text in every part)
 
-The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.8, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
+The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.9, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
 
 **Suite Teaching Contract (main course §0.4).**
 
@@ -58,7 +58,7 @@ One contract for every part; each companion carries the same contract in its own
 
 1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
 2. **Concept** — taught once, by the owner in main course §0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → attacker/crypto (cyber).
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
 4. **GCP lens.**
 5. **One Numbers step** for the whole session.
 6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
@@ -76,6 +76,12 @@ One contract for every part; each companion carries the same contract in its own
 **0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
 
 **0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
+
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Three rules:
+
+1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
+2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
+3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
 
 **Lab Safety (main course §0.5).**
 
@@ -116,6 +122,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | C2 Kubernetes | DP-14 Observer (recall) for controller watch-loops; DP-18 Chain of Responsibility (recall) for admission webhooks | The K8s "Operator pattern" itself is taught in C2 natively; cross-reference only |
 | C4 CI/CD | ARCH-12's Strangler Fig, recalled as the pattern behind incremental legacy migration via pipelines | — |
 | System-design-primer companion | DP-14 Observer ↔ SD-28 Pub/Sub; PR-01 (SRP) ↔ SD-12 microservices; DP-09 Facade ↔ SD-11 reverse proxy | Cross-reference only, not a re-teach |
+| Go Language Companion | GO-11 renders the patterns in Go: PR-05 and PR-04 as small consumer-owned interfaces, F-03 as embedding (which delegates and never dispatches back), DP-04 as functional options, DP-12 and DP-18 as `http.Handler` middleware, DP-01 as `sync.Once`, DP-13 as a function type, DP-14 as channels, DP-20 as `iter.Seq` | This file owns the patterns; the Go companion owns only their Go shape. DP-15 Template Method cannot be built by overriding in Go |
 
 ### 2.1 Overlap register — what is intentionally *not* re-taught here
 > **Note:** the suite-wide register is the main course §0.3; this table is the patterns slice of it, and on a conflict the main course's register wins.

@@ -708,3 +708,39 @@ The companions' foreign anchors were rebound to these IDs by the §6 crosswalks 
 ````text
 > **Note:** status as of 2026-09-24: the three notes below were re-checked that day (`cert-verification.md`). New dated items are in the Part V–VII verification notes. R4 moves every date-bearing line into `volatility-register.md` with a last-checked date.
 ````
+
+**J436** · GO-1 · anchor-rewrite
+
+````text
+This course is one course in five parts. This roadmap, the **main course**, is the **only parent**: every companion binds its modules to the IDs below, and a module ID from any part may be used as a stitch tag in any other part. The parts:
+````
+
+**J438** · GO-3 · anchor-rewrite
+
+````text
+Progress lives in the inline `- [ ]` boxes of the five parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes: each ID's mastery state (§0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point (§0.4.8).
+````
+
+**J439** · GO-4 · anchor-rewrite
+
+````text
+| Rate limiting | Cyber AB-01 (algorithms + abuse) | Primer Q22 is the design exercise and recalls AB-01 |
+````
+
+**J440** · GO-4 · anchor-rewrite
+
+````text
+| SQL injection / parameterisation | SQL SL-13 (the SQL mechanics) | Cyber WA-05 (attacker model across the whole injection family) |
+````
+
+**J441** · GO-4 · anchor-rewrite
+
+````text
+| Garbage collection | U4 (memory management) | Primer Q21 (design problem); SX-04 (data GC/TTL) |
+````
+
+**J443** · GO-6 · anchor-rewrite
+
+````text
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → attacker/crypto (cyber).
+````
