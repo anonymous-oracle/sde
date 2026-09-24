@@ -2,15 +2,15 @@
 
 Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace: `refactor/` (the repo's `refactor/` folder; R0–R1 ran at `/Users/suhas/sde/refactor/`, R2 was finished in a cloud checkout of the same repo, branch `gcp`). Outputs go to `refactor/outputs/` and the workspace root.
 
-**Resume point:** R2 is **done** and audited (`audit-R2.md`: PASS). The learner then ruled D5–D9, so **R2b (self-contained rework) comes before R3**: drop Northstar and rebind every `N…` pointer to the owning module; remove all file names and cross-file links; embed the SQL lab kit; move provenance and archive text to `refactor/`; de-duplicate topics (one home each); expand the nine checkpoints and other gaps; then delete `gcp-curriculum.md`. Read `requirements-hardening.md` §1 first. R3's `verify.py` then checks D6/D7 (zero file names, zero cross-file links, zero duplicate topics) as hard-gate items. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (it must fold in `d3_check.py`, `rename_checks.py` and `audit_r2.py`; see §9 for what it must know), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild everything first with `python3 refactor-tools/r2_build.py .`; it is idempotent, so the output must be byte-identical to what is committed.
+**Resume point:** R2b is **done** and audited (`audit-R2b.md`: PASS). The five course files in `work/` are self-contained (D6), Northstar is gone (D5), each topic has one home (D7), the gaps are filled (D9), and `gcp-curriculum.md` is deleted (D8). Read `requirements-hardening.md` §1 first. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (fold in `d3_check.py`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py` and the R2 probes of `audit_r2.py` that still apply after R2b; see §9), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items, zero file names or links. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild first with `python3 refactor-tools/r2b_build.py .`: it starts from the frozen R2 snapshot (`outputs/r2b/in/`, checked against `outputs/r2b/in.sha256`) and must reproduce the committed `work/`, `records/` and journal byte for byte. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the deleted legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
 
 | Phase | Status | Date | Deliverables |
 |---|---|---|---|
 | R0 Ingest | **done** | 2026-09-24 | `refactor-state.md`, `r0-reproduction.md`, `cert-verification.md`, `refactor-tools/r0_reproduce.py`, `refactor-tools/primer_bindings.py`, `inputs-original/` |
 | R1 Manifest | **done** | 2026-09-24 | `manifest-before.json`, `manifest-before-summary.md`, `refactor-tools/manifest.py`, `refactor-tools/count_boxes.py` |
 | R2 Repair | **done** | 2026-09-24 | `work/*` (5 repaired files + new `northstar-reference-app.md`), `id-rename-map.csv`, `crosswalk.md`, `primer-binding-table.md`, `CHANGELOG.md`, `errata.md`, `diffs/<file>.diff`, `outputs/r2/journal.jsonl`, `outputs/r2-gate/*`, tools listed in §7; pre-R3 audit `audit-R2.md` + `requirements-hardening.md` |
-| R2b Self-contained rework (D5–D9) | **next** | | per `requirements-hardening.md` §1 |
-| R3 Verify | pending | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
+| R2b Self-contained rework (D5–D11) | **done** | 2026-09-24 | `work/*` (5 self-contained files; Northstar deleted), `records/<file>`, `outputs/r2b/journal.jsonl`, `outputs/r2b/in/` + `in.sha256`, `audit-R2b.md`; tools listed in §7; `gcp-curriculum.md` deleted |
+| R3 Verify | **next** | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
 | R4–R9 Enhance | pending | | |
 | R10 Final | pending | | |
 
@@ -97,9 +97,34 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 - Audit fixes (2026-09-24): cyber cert-row cells re-padded to 4 columns; duplicate CR-16 in a header stitch; §6.2 qualifiers (`A10 (gate for CR-01)`, `A10 (MFA)`); C-06 `Curriculum` anchors on N8.1.5/N8.1.6; C-71/C-74 tags in §0.4.
 - `manifest.py work` preview: 0 primary collisions. Its 32 "unresolved" references are all expected and must be handled by verify.py, not by edits (§9).
 
+## 6b. R2b results (D5–D11)
+
+**Pipeline.** `python3 refactor-tools/r2b_build.py .` reads the frozen R2 output (`outputs/r2b/in/`, hash-checked), applies the generic rules G0–G5, G8–G10 to all five files, then the per-file rules in `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py`, and writes `work/`, `records/<file>` and `outputs/r2b/journal.jsonl`. **811 journaled edits.** Two runs give byte-identical `work/`, `records/` and journal.
+
+| File | Lines R2 → R2b | Records entries | Journal classes |
+|---|---|---|---|
+| Curriculum | 643 → 612 | 109 | anchor-rewrite 107, move 2 |
+| primer | 1202 → 1117 | 35 | anchor-rewrite 34, move 1, append 1, new-content 2 |
+| SQL | 3182 → 6555 | 221 | anchor-rewrite 165, move 51, append 1, new-content 12 |
+| patterns | 524 → 546 | 13 | anchor-rewrite 12, move 1, append 1 |
+| cyber | 2936 → 2812 | 397 | anchor-rewrite 262, move 135, append 1, new-content 23 |
+| Northstar | 419 → deleted | — | D5 |
+
+**What R2b did.**
+- **All files:** the D3 archive, provenance / `Source material:` lines and `(was …)` notes moved to `records/<file>` (D6; D3 still holds there, verbatim). File names, links and the backticked `Curriculum` are gone ("the main course"); course IDs stay as stitch tags (D11). Each companion carries a copy of the main course's §0.4 teaching contract and §0.5 Lab Safety in its own §0 (primer, SQL, patterns §0.6; cyber §0.7). "On a conflict §0.3 wins" now names the main course's register (G10).
+- **Northstar (D5, D10):** every `N…` pointer is mapped to the course module that teaches the topic (cyber `NMAP`, 34 N-IDs; stitch headers via G8). Where the legacy text handed a lab to Northstar, the owning module now holds the lab: cyber CR-06, CR-13, CR-14, AU-03, AU-11, DOS-05, CL-01, WL-04 build labs and an IR-05 runbook. "The reference app" is defined once, in cyber §0.4 (the shop at `shop.example`).
+- **SQL:** the whole lab kit (seed, scripts, goldens JSON, `run_ex.py` family) is printed in §3.8 from `sql-companion-work/`; only its two header comments and seven notes that named the legacy course were reworded (comments only, so no fingerprint changed). §8.2 now lists what each TF-DB plan must show; §9 gives SQL-CAP3 four acceptance tests and a tutor key.
+- **Cyber (D9):** the nine checkpoints (RD-1) are full cards with a check question and key: SEC-Z0.5, SEC-E3.1, SEC-E3.5, SEC-E4.3, SEC-E4.16, SEC-E4.21, SEC-E6.5, SEC-E6.8, SEC-E10.7. Bare legacy section numbers (6.16, 7.2, …) rebound (SEC-13).
+- **Primer (D7, D9):** SD-25 is the one home of the store-choice map; it gained the Filestore row and the anti-choices.
+- **One home per topic (D7):** store choice, Firestore, Bigtable → primer SD-22/23/25; Cloud SQL → SQL OD-11; migrations OD-08; cursor pager OD-09; pool math OD-03; ledger DD-03; point-in-time joins DD-05; tenant RLS DD-09; key design DD-13; LSM vs B-tree CS-02; BigQuery ops AN-02; tokenization cyber PV-03; KMS/CMEK CR-14. Other files recall these by ID in one line.
+
+**Checks run at the end of R2b.** `selfcontained.py .` → 5/5 PASS (V1 file names, with an allow-list of names whose full content is printed in the same file; V2 links; V3 Northstar and `N…` pointers; V4 backticked `Curriculum`; V5 legacy parent names; V6 legacy section numbers; V3/V4/V6 also inside code fences). `d3_check.py . --stage all` → 12/12 PASS (0 lost lines, R2 and R2b stages). `audit_r2b.py .` → PASS (`audit-R2b.md`): probe, D3, reproducibility from the snapshot, invariants 6/7/11/12, D2, D5, D7, D8, D9, D11. A Python audit hook confirmed the build opens no legacy file.
+
+**Known limits (disclosed).** The reserved tracks M1–M6, U1–U7, S1–S11 are scope stubs in the main course and are authored in R4. Invariant 4 deviation: the ledger preferences copied into each file's §0 changed only in file-name tokens (D6). `audit_r2.py` probes the R2 state (provenance lines, the in-file D3 archive, Northstar in `work/`): run on the R2b `work/` it stops with a missing-file error on `northstar-reference-app.md`, so it is kept only as the record of R2; verify.py keeps only its probes that still apply.
+
 ## 7. Tools (`refactor-tools/`)
 
-`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`). `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
+`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`; R2 state only) · **R2b:** `r2b_build.py` (pipeline, generic rules), `r2b_common.py` (`F` edit framework, journal, records), `r2b_shared.py` (contract copy, parent-name rewrite), `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py` (per-file rules), `selfcontained.py` (D6 probe V1–V6), `audit_r2b.py` (→ `audit-R2b.md`). No longer runnable after D8 (they read `gcp-curriculum.md`): `r0_reproduce.py`, `r2_build.py`, `r2_sql.py`, `northstar.py`. `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
 
 `errata.md` is permanent and append-only: `reports.py` writes it only if it does not exist. `diffs/R2-01-renames.diff` is the approved gate diff (renames only); `diffs/<file>.diff` are full input-vs-work diffs.
 
@@ -119,13 +144,13 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 
 ## 9. What R3's verify.py must know
 
-- Fold in `d3_check.py`, `rename_checks.py`, `binding.py`'s topo check and every R2-due probe of `audit_r2.py`, so R3 re-proves R2. Report D2-vacuous §8.2/§11 items as `N/A (D2)` (see `requirements-hardening.md` §1).
-- File set: the 5 course files **plus `northstar-reference-app.md`**. `manifest.py` does not scan Northstar yet, so every `Nx` shows as unresolved.
-- Not references: `- **Provenance**` lines, `*(was …)*` / `(was E-…)` notes, `Source material:` lines, the D3 archive section, and SQL §0 legend lines that list rebound labels (`D8`, `G12b`).
+- Fold in `d3_check.py --stage all`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py`, `binding.py`'s topo check, and the probes of `audit_r2.py` that still apply after R2b (not those that look for provenance lines, the in-file D3 archive or Northstar). Report D2-vacuous §8.2/§11 items as `N/A (D2)`.
+- File set: the 5 course files only. Northstar is deleted (D5); no `N…` ID is defined or referenced.
+- Not references: SQL §0 legend lines that list rebound labels, and the kit file names that `selfcontained.py` allow-lists (each is printed in full in the same file; `audit.sh` is a table name in a query).
 - Definitions: the SQL tier legend (`SQL-T-HS/UG/GR`, SQL §0) defines those tiers. SQL `T\d` are script labels (RD-6). Whitelist `A2A` (C-NEW-08).
-- Current unresolved list from the preview: Curriculum `N12`; SQL `D8`, `N5/N7/N9`, `SQL-T-*`, `T1–T6`; cyber `D8`, the 9 `E-XX` (all in `(was …)` or archive), `N1/N3–N7/N9/N10`. Every one of them is covered by the rules above.
-- Compare after the rename map (§8.2). The anchor-rewrite and regenerate originals are in `outputs/r2/journal.jsonl`; `d3_check.py` shows how to chain them.
-- Primer §8.2 checks: CC BY line identical + modification note; mermaid edge superset (after C-39 label rewrite); binding-table topo check (`binding.py`); §2/§4.5/headers derive from the table; "my addition" labels present; verbatim-table hashes.
+- Compare after the rename map (§8.2), chaining `outputs/r2/journal.jsonl` and then `outputs/r2b/journal.jsonl`; lines R2b changed or moved are verbatim in `records/<file>` (`d3_check.py` shows how).
+- Goldens: compare the *set* of fingerprints; §3.8 prints the goldens JSON, so each fingerprint now appears once more.
+- Primer §8.2 checks: CC BY line identical + the change notice (now in words: "Modified on 2026-09-24, when this companion was fitted into the five-part course."); mermaid edge superset; binding-table topo check; "my addition" labels present; verbatim-table hashes.
 
 ## 10. Open questions (for the learner)
 
@@ -133,4 +158,4 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 
 ## 11. Deferred (not R2 by the prompt's phase rules)
 
-- A5/A8/A10 teaching-block splits → R4. C-59 checks / C-61 examples / the C-60 per-line audit → R7. Northstar content → R9. Ledger regeneration → R10. Volatility register, coverage matrix, DAG → R4+.
+- A5/A8/A10 teaching-block splits → R4. C-59 checks / C-61 examples / the C-60 per-line audit → R7. Northstar content: dropped (D5). Ledger regeneration → R10. Volatility register, coverage matrix, DAG → R4+.
