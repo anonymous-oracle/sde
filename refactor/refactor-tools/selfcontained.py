@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Self-containment probe for the five course files (learner decisions D5, D6, D10, D11; R2b gate, R3 hard gate).
+"""Self-containment probe for the six course files (learner decisions D5, D6, D10, D11; R2b gate, R3 hard gate).
 
 A course file passes when its text (the whole file; after R2b there is no archive section) has:
   V1 no file names — `name.ext` tokens for course, tooling or data files. Allowed only: a name that the same file
      defines itself (a heading or bold "File `name`" line above an embedded code block, one intro line allowed), and the
      learner-created artefact names in ALLOWED_NAMES (concept names such as robots.txt, or files a lab step tells
      the learner to create). The allow-list is printed in the report so it stays visible.
-  V2 no links to files — markdown links whose target is not an in-page anchor. The CC BY 4.0 attribution link in
+  V2 no links to files — markdown links whose target is not an in-page anchor (outside code spans, which never
+     render as links: Go's `Map[T any](s []T)` is code, not a link). The CC BY 4.0 attribution link in
      the primer is the one exception (license requirement).
   V3 no Northstar / Track N / `N…` section IDs (D5).
   V4 no file-style parent name (`Curriculum` in backticks, "Curriculum.md") (D11).
@@ -24,7 +25,7 @@ import re
 import sys
 
 FILES = ["Curriculum.md", "system-design-primer-companion.md", "sql-databases-companion.md",
-         "design-patterns-companion.md", "cloud-cybersecurity-companion.md"]
+         "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md"]
 
 EXT = r"(?:md|py|sql|json|jsonl|txt|sh|tgz|csv|ya?ml|tf|go|pdf|proto|ipynb|toml|ini|cfg|log|out)"
 FILE_RE = re.compile(r"(?<![\w@])((?:[\w-]+/)*[\w.-]*[A-Za-z0-9_]\." + EXT + r")\b")
@@ -44,6 +45,7 @@ ALLOWED_NAMES = {
     "001_init.sql": "example migration file name the learner writes (DD-11 / OD-08 build lab)",
     "002_add_column.sql": "example migration file name the learner writes (OD-08 build lab)",
     "service.proto": "example protobuf file name the learner writes",
+    "_test.go": "the Go test-file suffix (a naming rule the Go companion teaches), not a file",
     "user.proto": "example protobuf file name the learner writes",
     "schema.proto": "example protobuf file name the learner writes",
     "audit.sh": "SQL table reference (schema audit, table sh) in a query, not a file",
@@ -66,6 +68,7 @@ BOOK = [("provenance line", re.compile(r"\*\*Provenance\*\*|\*Provenance[ (]|^\s
         ("conflict ID", re.compile(r"(?<![\w-])C-(?:\d{2}|NEW-\d{2})(?![\w-])")),
         ("D3 archive", re.compile(r"Pre-refactor text archive|D3 archive|\bD3-\d{2}\b")),
         ("refactor word", re.compile(r"\brefactor(?:ed|ing)?\b", re.I))]
+CODESPAN = re.compile(r"`[^`]*`")
 MDLINK = re.compile(r"\[[^\]]*\]\((?!#)([^)]+)\)")
 LINK_OK = {"https://github.com/donnemartin/system-design-primer"}
 
@@ -111,7 +114,7 @@ def probe(path):
             if re.match(r"^\d+(\.\d+)+$", name.rsplit(".", 1)[0]):  # version-like numbers, e.g. 1.2.md never
                 continue
             v.append(("V1 file name", n, name, l))
-        for m in MDLINK.finditer(l):
+        for m in MDLINK.finditer(CODESPAN.sub("``", l)):   # a code span never renders as a link
             if m.group(1) not in LINK_OK and not fenced:
                 v.append(("V2 link", n, m.group(1), l))
         for m in NORTH.finditer(l):          # V3 Northstar, V4, V6 also inside code blocks: embedded kit text is

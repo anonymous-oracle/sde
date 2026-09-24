@@ -17,15 +17,16 @@ Your hands-on reality (given $300 GCP credit, permanent free tier, a workplace G
  
 ### 0.1 The course parts and the companion stitch rule
 
-This course is one course in five parts. This roadmap, the **main course**, is the **only parent**: every companion binds its modules to the IDs below, and a module ID from any part may be used as a stitch tag in any other part. The parts:
+This course is one course in six parts. This roadmap, the **main course**, is the **only parent**: every companion binds its modules to the IDs below, and a module ID from any part may be used as a stitch tag in any other part. The parts:
 
 - **The Consolidated Cloud Mastery Curriculum** (this part, the main course) — order, cert timing, Lab Reality and track structure.
 - **The System Design Primer Companion — GCP-Native Edition** — the system-design layer (SD, SX, P, O, Q, TF). Its §2 stitch table binds its IDs to the modules here.
 - **The SQL & Databases Companion — GCP-Native Edition** — SQL, relational theory and engine internals. It owns the engine slices DB-1…DB-10.
 - **Design Patterns, SOLID & Clean Architecture — A Companion Curriculum** — OOP design theory, patterns and architecture styles (A7, A9).
 - **The Cloud Cybersecurity Companion** — security, attacks and cryptography.
+- **The Go Language Companion — Syntax, Semantics, Runtime and Contrasts** — the implementation language: Go's grammar, semantics, runtime and toolchain, each construct contrasted with Python, Java, C and JavaScript. Its language core is the Go block of A3; its later modules bind where they are first used (rule 0.4.9).
 
-Progress lives in the inline `- [ ]` boxes of the five parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes: each ID's mastery state (§0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point (§0.4.8).
+Progress lives in the inline `- [ ]` boxes of the six parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes: each ID's mastery state (§0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point (§0.4.8).
 
 Each companion's §2 lists what it binds to each module. When a module is taught, every bound companion ID is taught in the same session, once, by its owner (§0.3), in the order §0.4 gives. The cybersecurity stitch rule, first added to this roadmap on 2026-09-22 between A10 and A11:
 
@@ -59,9 +60,9 @@ When two files touch the same concept, the **owner** teaches it and the others o
 | Cookie attributes (`Domain`, `Secure`, `HttpOnly`, `SameSite`, `__Host-`) | A5 HTTP | Cyber AU-01…04 adds attacks at A10 |
 | TLS | A5 (mechanics) / A10 (formal) | Primer SD-35 transit slice; cyber CR-11/12, NT-08 |
 | Load balancing, reverse proxy | A5 / C3 | Primer SD-10/11; cyber NT-07, DOS-01 |
-| Rate limiting | Cyber AB-01 (algorithms + abuse) | Primer Q22 is the design exercise and recalls AB-01 |
+| Rate limiting | Cyber AB-01 (algorithms + abuse) | Primer Q22 is the design exercise and recalls AB-01; Go companion GO-19 (`golang.org/x/time/rate`) |
 | Caching | Primer SD-26/27 | Cyber DOS-08 (stampede as an attack); SQL OD-09 (read path) |
-| SQL injection / parameterisation | SQL SL-13 (the SQL mechanics) | Cyber WA-05 (attacker model across the whole injection family) |
+| SQL injection / parameterisation | SQL SL-13 (the SQL mechanics) | Cyber WA-05 (attacker model across the whole injection family); Go companion GO-22 (placeholders in `database/sql`) |
 | Field / column encryption | Cyber CR-17 (the cryptography) | SQL SL-13 `pgcrypto` syntax |
 | Backup/restore | SQL OD-04 (runbook) + OD-11 (Cloud SQL backups and PITR) | Cyber IR-07 (ransomware integrity) |
 | 2PC / Saga / outbox | A9 (theory) | SQL CS-07 + SL-10 (SQL); design-patterns ARCH-11 (shape) |
@@ -82,7 +83,7 @@ When two files touch the same concept, the **owner** teaches it and the others o
 | Vector clocks, quorums, gossip | A9 deepening | Primer Q05 (Redis-like KV design problem), SD-39 papers |
 | Heavy hitters / sketches / approximate counting | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
 | Unique ID generation (Base62, Snowflake) | Primer SX-02/Q17 | M1 (counting, birthday bound for collisions); A1 recall (bit layout) |
-| Garbage collection | U4 (memory management) | Primer Q21 (design problem); SX-04 (data GC/TTL) |
+| Garbage collection | U4 (memory management) | Primer Q21 (design problem); SX-04 (data GC/TTL); Go companion GO-09 (Go's collector, `GOGC`, `GOMEMLIMIT`) |
 | Event sourcing | Design-patterns ARCH-10 (shape) + A9 (theory) | Primer Q23 (stock exchange design); SQL IR/audit designs |
 | Credential storage & replay | Cyber CR-13 (password KDFs) + CR-17/PV-03 (tokenization/encryption for replayable secrets) | Primer P04 (design context) + SD-35 check question |
 | OOD problems O01–O07 | Primer (problems) | Design-patterns (principles and patterns they exercise); A4 recall |
@@ -90,6 +91,12 @@ When two files touch the same concept, the **owner** teaches it and the others o
 | Scaling evolution (single box → millions) | Primer P08 + SX-12 | Track S4/S9 recall |
 | Terraform labs | Primer TF-1…TF-7 (P08/P01/P07 infra) | SQL TF-DB1…TF-DB6 |
 | Real-world architecture papers (Dynamo, Bigtable, Spanner, GFS, Chubby, MapReduce, Dapper, Kafka, ZooKeeper…) | Primer SD-39 / §6.4 (index) | A9 deepening and the university alignment appendix cite the same papers; the reading list lives once, in the primer |
+| Go: language, toolchain, runtime | Go companion GO-01…GO-14 (the Go block of A3) | every Go lab in every part recalls it (rule 0.4.9); A3's Python block stays the first language |
+| Concurrency | U5 (theory; reserved) | Go companion GO-15…GO-19 (goroutines, channels, `context`, the Go memory model, the race detector); A9 (distributed theory) |
+| Data-structure implementations in code | A4 / U2 (concepts and costs) | Go companion GO-27 (the Go code); Primer O01, O02, O07 (the checkpoints) |
+| Design patterns in Go | Design-patterns companion (the patterns) | Go companion GO-11 (the Go shape: implicit interfaces, embedding, functional options, middleware, iterators) |
+| HTTP server timeouts against slow clients | Cyber DOS-05 (the attack and the values) | Go companion GO-21 (which `http.Server` field does what) |
+| Password hashing in a service | Cyber CR-13 (the KDFs) | Go companion GO-07 + GO-21 (CR-13's build lab written in Go) |
 
 ### 0.4 Suite Teaching Contract
 
@@ -106,7 +113,7 @@ One contract for every part; each companion carries the same contract in its own
 
 1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
 2. **Concept** — taught once, by the owner in §0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → attacker/crypto (cyber).
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
 4. **GCP lens.**
 5. **One Numbers step** for the whole session.
 6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
@@ -124,6 +131,12 @@ One contract for every part; each companion carries the same contract in its own
 **0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
 
 **0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
+
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Three rules:
+
+1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
+2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
+3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
 
 ### 0.5 Lab Safety
 
@@ -175,6 +188,7 @@ Python: variables, control flow, functions, data structures (list/dict/set/tuple
 Bash/shell scripting: variables, loops, conditionals, pipes, redirection, exit codes — essential for CI/CD scripts and automation everywhere
 Working with APIs from code: HTTP clients, JSON parsing, SDKs (google-cloud-*, boto3, azure-sdk)
 Git fundamentals (deep dive lives in A11)
+Go, the implementation language of the suite's labs and services: the Go companion's GO-01…GO-14, after the Python block, in four teaching blocks — A3.G1 toolchain, packages, types and control flow · A3.G2 slices and maps, functions, errors, strings · A3.G3 pointers and memory, structs and methods, interfaces, generics · A3.G4 I/O, JSON, command-line programs and logging — every construct contrasted with Python (rule 0.4.9)
 ### A4. Data Structures & Algorithms (engineering-practical depth, not competitive-programming depth)
 - [ ] A4 done
 Arrays, linked lists, hash maps, stacks/queues, trees, graphs

@@ -2,7 +2,7 @@
 
 Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace: `refactor/` (the repo's `refactor/` folder; R0–R1 ran at `/Users/suhas/sde/refactor/`, R2 was finished in a cloud checkout of the same repo, branch `gcp`). Outputs go to `refactor/outputs/` and the workspace root.
 
-**Resume point:** R2b is **done** and audited (`audit-R2b.md`: PASS). The five course files in `work/` are self-contained (D6), Northstar is gone (D5), each topic has one home (D7), the gaps are filled (D9), and `gcp-curriculum.md` is deleted (D8). Read `requirements-hardening.md` §1 first. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (fold in `d3_check.py`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py` and the R2 probes of `audit_r2.py` that still apply after R2b; see §9), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items, zero file names or links. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild first with `python3 refactor-tools/r2b_build.py .`: it starts from the frozen R2 snapshot (`outputs/r2b/in/`, checked against `outputs/r2b/in.sha256`) and must reproduce the committed `work/`, `records/` and journal byte for byte. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the deleted legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
+**Resume point:** R2b and R2c are **done** and audited (`audit-R2b.md`: PASS). R2c (D12) added the sixth part, the Go Language Companion, plus rule 0.4.9 and the tie-ins; see §6c. R2b is **done** and audited (`audit-R2b.md`: PASS). The six course files in `work/` are self-contained (D6), Northstar is gone (D5), each topic has one home (D7), the gaps are filled (D9), and `gcp-curriculum.md` is deleted (D8). Read `requirements-hardening.md` §1 first. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (fold in `d3_check.py`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py` and the R2 probes of `audit_r2.py` that still apply after R2b; see §9), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items, zero file names or links. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild first with `python3 refactor-tools/r2b_build.py .`: it starts from the frozen R2 snapshot (`outputs/r2b/in/`, checked against `outputs/r2b/in.sha256`) and must reproduce the committed `work/`, `records/` and journal byte for byte. The R2 pipeline (`r2_build.py`, `northstar.py`, `r2_sql.py`'s slice port) and `r0_reproduce.py` read the deleted legacy file, so they no longer run; their outputs are frozen in `outputs/r2/` and `outputs/r2b/in/`.
 
 | Phase | Status | Date | Deliverables |
 |---|---|---|---|
@@ -10,6 +10,7 @@ Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace:
 | R1 Manifest | **done** | 2026-09-24 | `manifest-before.json`, `manifest-before-summary.md`, `refactor-tools/manifest.py`, `refactor-tools/count_boxes.py` |
 | R2 Repair | **done** | 2026-09-24 | `work/*` (5 repaired files + new `northstar-reference-app.md`), `id-rename-map.csv`, `crosswalk.md`, `primer-binding-table.md`, `CHANGELOG.md`, `errata.md`, `diffs/<file>.diff`, `outputs/r2/journal.jsonl`, `outputs/r2-gate/*`, tools listed in §7; pre-R3 audit `audit-R2.md` + `requirements-hardening.md` |
 | R2b Self-contained rework (D5–D11) | **done** | 2026-09-24 | `work/*` (5 self-contained files; Northstar deleted), `records/<file>`, `outputs/r2b/journal.jsonl`, `outputs/r2b/in/` + `in.sha256`, `audit-R2b.md`; tools listed in §7; `gcp-curriculum.md` deleted |
+| R2c Go Language Companion (D12) | **done** | 2026-09-24 | `authored/go-language-companion.md` (source) → `work/go-language-companion.md`; `refactor-tools/r2c_go.py` (run inside `r2b_build.py`); rule 0.4.9 in the main course and every contract copy; tie-ins in the primer, SQL, patterns and cyber companions; D12 check in `audit_r2b.py` |
 | R3 Verify | **next** | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
 | R4–R9 Enhance | pending | | |
 | R10 Final | pending | | |
@@ -60,6 +61,7 @@ Full table and commands: `r0-reproduction.md` (regenerate with `python3 refactor
 | D4 | Verify and keep all 18 certifications. | `cert-verification.md`; R2 annotated each cert (box, Lab Reality, D4 note) and corrected "fifteen" → "eighteen". |
 
 | D5–D11 | Later the same day: course-wide IDs stay as stitch/mapping tags, material dependencies go (D11); companions serve only the Curriculum course; `gcp-curriculum.md` is a content reference with no rules taken from it (D10); drop Northstar and the cookie question (D5); 5 self-contained files, no file names or links, lab kit embedded, bookkeeping moved to `refactor/` (D6); one topic, one home (D7); delete `gcp-curriculum.md` once no longer needed (D8); expand the nine checkpoints and every other gap (D9). | Full text and readings in `requirements-hardening.md` §1. Supersedes the prompt's Track N (§9.4), §7 overlap register and "companion §0 points to `Curriculum`" rules. |
+| D12 | Before R3: add a rule for teaching Go (language rules, contrasts with other languages) and a new Go companion built from `nasiko-curriculum.md`, tied into the other files. | Full text and reading in `requirements-hardening.md` §1. The sixth part is the Go Language Companion; the rule is 0.4.9. |
 
 R0 questions Q1–Q4 are all superseded by D1–D4.
 
@@ -122,6 +124,49 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 
 **Known limits (disclosed).** The reserved tracks M1–M6, U1–U7, S1–S11 are scope stubs in the main course and are authored in R4. Invariant 4 deviation: the ledger preferences copied into each file's §0 changed only in file-name tokens (D6). `audit_r2.py` probes the R2 state (provenance lines, the in-file D3 archive, Northstar in `work/`): run on the R2b `work/` it stops with a missing-file error on `northstar-reference-app.md`, so it is kept only as the record of R2; verify.py keeps only its probes that still apply.
 
+## 6c. R2c results (D12, the Go Language Companion)
+
+**Pipeline.** `refactor-tools/r2c_go.py` runs inside `r2b_build.py`, which is why the rebuild still starts from the frozen R2 snapshot and reproduces byte for byte. `r2c_go.cur` runs right after `r2b_cur.build`, so every companion's contract copy (made later) already carries rule 0.4.9. `r2c_go.build` runs last. It turns the authored source `authored/go-language-companion.md` into `work/go-language-companion.md`: the markers `@@PREFS@@` and `@@CONTRACT@@` become the main course's §0.2 (as §0.5) and `contract_copy(files, 5, 6)` (as §0.6). It also writes the tie-ins. Journal: 16 new entries, rule IDs GO-0…GO-8 and GO-10…GO-14. The new file is one new-content insert with no records entry, because nothing was replaced.
+
+**What R2c did.**
+- **Main course:**
+  - §0.1 lists six parts and adds a sixth bullet.
+  - §0.3 has three owner rows extended (rate limiting, SQL injection, GC) and six new rows (Go language; concurrency; data-structure code; patterns in Go; HTTP server timeouts; password hashing in a service).
+  - Rule 0.4.2's layers are now: primer → SQL → patterns → **Go** → cyber.
+  - New **rule 0.4.9**.
+  - A3 gains the Go line (teaching blocks A3.G1–G4).
+  - The shared contract intro now reads 0.4.1…0.4.9.
+- **Go companion (663 lines):**
+  - §0 (standing instruction, stitching rules, session shape with the unlock block, an unlock list per module, the preferences and contract copies).
+  - Coverage ledger; stitch table (A3 primary; A4, A5, A6, A7, A8, A9, A10, A11, C1, C4, C6, U4, U5); overlap register.
+  - 27 module cards, each with a Contrast line.
+  - §9 contrast atlas; §10 54 exercises with keys (expected answer + expected wrong answer); §11 GO-CAP1–3 on `shop.example`; §12 dependency gate; §13 sources and honesty notes.
+- **Tie-ins:**
+  - Primer: an O-checkpoints note (Go after GO-27 / GO-11).
+  - SQL OD-09: `cursorpage` in Go after GO-22.
+  - Patterns: a §2 stitch-table row (the Go shape of PR-04/05, F-03, DP-01/04/12/13/14/18/20; DP-15 cannot be built by overriding).
+  - Cyber: DOS-05 names GO-21; CR-13's Go library waits for GO-07 + GO-21.
+- **Evidence behind the Go claims:**
+  - Every `(checked on 1.27.1)` claim and every exercise-key output was run on Go 1.27.1 (linux/amd64) in a scratch module, with `GOTOOLCHAIN=go1.27.1 GOPROXY=off`.
+  - The 1.27.1 toolchain itself was auto-downloaded once, when `go version` ran in the repo root under `GOTOOLCHAIN=auto` (the root `go.mod` says `go 1.27.1`). The download was not asked for first, and GO-01 and §13 of the companion say so.
+  - Claims that were not run carry `(verify)`.
+
+**Tool changes.**
+- `selfcontained.py`:
+  - covers six files;
+  - allow-lists `_test.go` (the Go test-file suffix);
+  - V2 now ignores code spans, which never render as links. Go generics such as `Map[T any](s []T)` had matched the link pattern.
+- `audit_r2b.py`:
+  - covers six files (invariant 7 only on the five with inputs);
+  - gains **D12**: rule 0.4.9 is identical in all six parts; every contract intro reads 0.4.9; §0.1 lists six parts; GO-01…GO-27 are in order and only in the Go file; every GO / GO-E / GO-CAP reference resolves; every exercise has a key; every stitch tag is a main-course module (heading or reserved row); the four tie-ins are present.
+  - Mutation-tested: removing a key and a tie-in made D12 fail with both named.
+
+**Checks run at the end of R2c.**
+- `selfcontained.py .` → 6/6 PASS.
+- `d3_check.py . --stage all` → 12/12 PASS.
+- `audit_r2b.py .` → PASS, 15 rows including D12 and the byte-identical rebuild.
+- The 34 cross-part IDs the Go file cites (SD-, DP-, WA-, WL-, OD- and others) were checked against the headings of their owning files.
+
 ## 7. Tools (`refactor-tools/`)
 
 `r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`; R2 state only) · **R2b:** `r2b_build.py` (pipeline, generic rules), `r2b_common.py` (`F` edit framework, journal, records), `r2b_shared.py` (contract copy, parent-name rewrite), `r2b_cur.py`, `r2b_pri.py`, `r2b_sql.py`, `r2b_dp.py`, `r2b_sec.py` (per-file rules), `selfcontained.py` (D6 probe V1–V6), `audit_r2b.py` (→ `audit-R2b.md`). No longer runnable after D8 (they read `gcp-curriculum.md`): `r0_reproduce.py`, `r2_build.py`, `r2_sql.py`, `northstar.py`. `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
@@ -145,7 +190,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 ## 9. What R3's verify.py must know
 
 - Fold in `d3_check.py --stage all`, `selfcontained.py`, `audit_r2b.py`, `rename_checks.py`, `binding.py`'s topo check, and the probes of `audit_r2.py` that still apply after R2b (not those that look for provenance lines, the in-file D3 archive or Northstar). Report D2-vacuous §8.2/§11 items as `N/A (D2)`.
-- File set: the 5 course files only. Northstar is deleted (D5); no `N…` ID is defined or referenced.
+- File set: the 6 course files (the 5 originals plus the Go Language Companion, D12). Northstar is deleted (D5); no `N…` ID is defined or referenced. The Go companion has no input in `inputs-original/`: its source is `authored/go-language-companion.md`, and its D3 baseline is that source.
 - Not references: SQL §0 legend lines that list rebound labels, and the kit file names that `selfcontained.py` allow-lists (each is printed in full in the same file; `audit.sh` is a table name in a query).
 - Definitions: the SQL tier legend (`SQL-T-HS/UG/GR`, SQL §0) defines those tiers. SQL `T\d` are script labels (RD-6). Whitelist `A2A` (C-NEW-08).
 - Compare after the rename map (§8.2), chaining `outputs/r2/journal.jsonl` and then `outputs/r2b/journal.jsonl`; lines R2b changed or moved are verbatim in `records/<file>` (`d3_check.py` shows how).
