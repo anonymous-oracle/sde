@@ -676,7 +676,31 @@ def conflicts():
         return ("PASS" if a2a and not flagged else "FAIL"), f"`A2A` appears {a2a}× in the main course and the " \
             f"corruption regex flags none of it (whitelisted in section 5 as well)"
 
-    OWNED = ({"C-65": c65, "C-23": c23, "C-66": c66, "C-38": c38, "C-40": c40, "C-50": c50, "C-NEW-02": c50,
+    def cnew03():
+        # D2 fresh start: the regenerated ledger records nothing as done and every listed ID as not-started
+        led = rd("work", "session-progress-ledger.md")
+        ok, ev, _ = ledger_gate()
+        done = led.split("## 3. Done", 1)[1].split("\n---", 1)[0] if "## 3. Done" in led else ""
+        states = set(re.findall(r"state: ([\w-]+)", led))
+        good = ok and "- None yet." in done and states == {"not-started"}
+        return ("PASS" if good else "FAIL"), f"ledger regenerated blank (R5-16): §3 done = none; states {sorted(states)}; {ev}"
+
+    PARTS6 = ("Curriculum.md", "system-design-primer-companion.md", "sql-databases-companion.md",
+              "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md")
+
+    def kept_rule(needles, where):
+        # D2 dropped the chat-only evidence; the rule itself must still be in the contract copy of every part
+        miss = [f for f in PARTS6 if not all(n in rd("work", f) for n in needles)]
+        return ("PASS" if not miss else "FAIL"), f"chat-only evidence dropped under D2; the rule is present in " \
+            f"{where} of all six parts; missing in {miss or 'none'}"
+
+    def c69():
+        return kept_rule(("exactly one question", "split a multi-part check across turns"), "the one-question rule (0.4.7)")
+
+    def c73():
+        return kept_rule(("Every session ends by",), "the session-close rule (0.4.8)")
+
+    OWNED = ({"C-NEW-03": cnew03, "C-69": c69, "C-73": c73, "C-65": c65, "C-23": c23, "C-66": c66, "C-38": c38, "C-40": c40, "C-50": c50, "C-NEW-02": c50,
               "C-56": c56, "C-59": c59, "C-61": c61, "C-NEW-08": cnew08}
              if STAGE != "R3" else {})   # deferred conflicts whose owner phase has now run
     rows = []
@@ -938,6 +962,7 @@ def r5_checks():
     row("10 R5", "rule 0.4.7 for the academic pass: every academic problem, skip-test and bank exercise has exactly one "
         "key (expected answer and an expected wrong answer), and every key has its problem", "PASS" if not bad else
         "FAIL", f"{n} problems; failures {bad[:8]}")
+    r5_blocks(T, lbl)
     dp = T["design-patterns-companion.md"].split("\n")
     k0 = dp.index("### K-checks · the item checks (§3–§9)")
     keyed = {m.group(1) for l in dp[k0:] for m in [re.match(r"^- \*\*([A-Z]+-\d\d|§9)\*\* — ", l)] if m}
@@ -978,6 +1003,80 @@ def r5_checks():
                                                                            for a, b, c in res))
     except (OSError, subprocess.TimeoutExpired) as e:
         row("10 R5", "the Go katas pass offline on Go 1.27.1", "N/A (no Go toolchain)", str(e)[:120], "INFO")
+
+
+def r5_blocks(T, lbl):
+    """R5 hardening (audit of 2026-09-24). Rule 0.4.10.3 makes a block `mastered` only when a proof (or derivation)
+    problem and a computational problem in it pass, so a block without both can never be mastered; rule 0.4.7 asks for
+    an expected wrong answer in every key; rule 0.4.10.4 names readings; and the D lines and CRA/SDA/DBT/GOT/DPA
+    sections other text points to must exist."""
+    import r5_acad
+    cur = T["Curriculum.md"].split("\n")
+    # A8's pass is owned by the SQL companion (its A8.D1 says so), so A8 has no problem set of its own
+    owned = {"A8": "the SQL companion's academic pass (DBT)"}
+    mods = [m for m in re.findall(r"^### ([A-D]\d{1,2})\. ", T["Curriculum.md"], re.M)]
+    unplanned = [m for m in mods if m not in r5_acad.MODULES]
+    types, bad_t, bad_r, bad_rng, noread = {}, [], [], [], []
+    for l in cur:
+        m = re.match(r"^- \*\*([A-D]\d{1,2})-P(\d+)\*\* · (\w+) · ", l)
+        if m:
+            types.setdefault(m.group(1), []).append((int(m.group(2)), m.group(3)))
+    for m in r5_acad.MODULES:
+        if m in owned:
+            continue
+        ts = {x for _, x in types.get(m, [])}
+        if not ts & {"proof", "derive"} or "compute" not in ts:
+            bad_t.append(f"{m} {sorted(ts)}")
+        nums = sorted(n for n, _ in types.get(m, []))
+        if nums != list(range(1, len(nums) + 1)):
+            bad_rng.append(f"{m}: numbered {nums}")
+        n = len(nums)
+        want = f"{m}-P1" if n == 1 else (f"{m}-P1, {m}-P2" if n == 2 else f"{m}-P1…{m}-P{n}")
+        block = [l for l in cur if re.match(rf"^> \*\*(?:Readings|Problem set):\*\*.*\b{m}-P1\b", l)]
+        if not block or f"**Problem set:** {want} (" not in block[0]:
+            bad_rng.append(f"{m}: problem-set line does not say {want}")
+        if not block or "**Readings:**" not in block[0]:
+            noread.append(m)
+    for f in COURSE[1:]:
+        k = SHORT[f]
+        ts = set(re.findall(r"^- \*\*(?:SDA|DBT|CRA|GOT|DPA)-P\d+\*\* · (\w+) · ", T[f], re.M))
+        if ts and (not ts & {"proof", "derive"} or "compute" not in ts):
+            bad_t.append(f"{k} {sorted(ts)}")
+    row("10 R5", "rule 0.4.10.3: every academic block (a main-course module's pass; a companion's pass) has a proof or "
+        "derivation problem and a computational problem, so it can be mastered; every module of Tracks A–D has a "
+        "pass", "PASS" if not (bad_t or unplanned) else "FAIL",
+        f"{len(r5_acad.MODULES)} planned of {len(mods)} modules; not planned {unplanned}; without both kinds "
+        f"{bad_t}; delegated: " + "; ".join(f"{a} → {b}" for a, b in owned.items()))
+    row("10 R5", "each module's problem-set line names exactly its problems (P1…Pn, no gaps) and its pass names "
+        "readings (rule 0.4.10.4)", "PASS" if not (bad_rng or noread) else "FAIL",
+        f"range mismatches {bad_rng[:6]}; without readings {noread}")
+    nowrong = []
+    for f in COURSE:
+        for l in T[f].split("\n"):
+            m = re.match(rf"^- \*\*({lbl})\*\* — Expected", l)
+            if m and "Wrong" not in l:
+                nowrong.append(f"{SHORT[f]} {m.group(1)}")
+    row("10 R5", "rule 0.4.7: every academic key names at least one expected wrong answer", "PASS" if not nowrong
+        else "FAIL", f"without a wrong answer {nowrong[:8]}")
+    # D lines and companion sections that the text points to must exist
+    defd = {m.group(1) for l in cur for m in [re.match(r"^([A-D]\d{1,2}\.D\d+) ", l)] if m}
+    sect = {}
+    for f in COURSE[1:]:
+        sect[SHORT[f]] = set(re.findall(r"^#{2,4} [\d.]+ ((?:SDA|DBT|CRA|GOT|DPA)\.\d+) ·", T[f], re.M))
+    alls = set().union(*sect.values())
+    dang = []
+    for f in COURSE:
+        for i, l in enumerate(T[f].split("\n")):
+            for x in re.findall(r"(?<![\w.])([A-D]\d{1,2}\.D\d+)(?![\d])", l):
+                if x not in defd:
+                    dang.append(f"{SHORT[f]}:{x} (L{i + 1})")
+            for a, b, c in re.findall(r"(?<![\w.])((?:SDA|DBT|CRA|GOT|DPA)\.)(\d+)(?:[–…-](?:(?:SDA|DBT|CRA|GOT|DPA)\.)?(\d+))?", l):
+                for x in ([f"{a}{b}"] + ([f"{a}{c}"] if c else [])):
+                    if x not in alls:
+                        dang.append(f"{SHORT[f]}:{x} (L{i + 1})")
+    row("10 R5", "every academic cross-reference resolves: X.Dn names a D line of the main course, and SDA/DBT/CRA/GOT/"
+        "DPA.n names a section heading of its companion", "PASS" if not dang else "FAIL",
+        f"{len(defd)} D lines; {len(alls)} companion sections; dangling {dang[:8]}")
 
 
 def ledger_gate():

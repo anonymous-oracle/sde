@@ -19,9 +19,10 @@ SRC = os.path.join(os.path.dirname(HERE), "authored", "academic")
 EV = ("D17 (2026-09-24): the learner asked for \"a full practical cloud+system architecture design course with all "
       "undergraduate pre-requisites taught in academic depth and thoroughness\"; the academic pass is taught inside "
       "the existing module (rule 0.4.10), from named textbooks and university courses checked by web search that day.")
-MODULES = {"A1": "A1. ", "A2": "A2. ", "A3": "A3. ", "A4": "A4. ", "A5": "A5. ", "A6": "A6. ", "A7": "A7. ",
-           "A8": "A8. ", "A9": "A9. ", "A10": "A10. ", "A11": "A11. ", "B2": "B2. ", "B3": "B3. ", "B4": "B4. ",
-           "B5": "B5. ", "C2": "C2. ", "C6": "C6. ", "C7": "C7. ", "D1": "D1. ", "D2": "D2. "}
+MODULES = {m: m + ". " for m in ("A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 B1 B2 B3 B4 B5 C1 C2 C3 C4 C5 C6 C7 D1 D2 D3 "
+                                  "D4").split()}
+# D4's section ends with the Track D lab-reality line, which belongs to the whole track, so D4's pass goes before it
+LAST_LINE = {"D4": "Responsible AI: bias, fairness, explainability, safety evaluation"}
 
 
 def fragments(name):
@@ -61,7 +62,10 @@ def cur(f):
                 "written.", fr["A2-note"], EV)
     f.ins_after("R5-3", "> **Note:** First-pass scope: A4 stays at engineering-practical depth.", fr["A4-note"], EV)
     for key, head in MODULES.items():
-        f.ins_section_end("R5-4", head, fr[key], EV + f" The academic pass of {key}.")
+        if key in LAST_LINE:
+            f.ins_after("R5-4", LAST_LINE[key], [""] + fr[key] + [""], EV + f" The academic pass of {key}.")
+        else:
+            f.ins_section_end("R5-4", head, fr[key], EV + f" The academic pass of {key}.")
     f.ins("R5-5", len(f.L), [""] + fr["appendix-P"] + [""] + fr["appendix-K"], EV + " The problem sets and their "
           "keys (rule 0.4.7: an expected answer and at least one expected wrong answer each).")
 
@@ -99,8 +103,9 @@ def sec(f):
                 "the courses the academic pass is aligned with.")
     f.ins_after("R5-8", "| CMU 95-746 |", fr["u-row"], EV)
     f.ins("R5-8", f.heading("Appendix K"), fr["section"] + [""], EV + " The Cloud Cybersecurity companion's academic "
-          "pass: cryptography with definitions and proofs (main course A10.D3).")
-    f.ins("R5-8", f.heading("Appendix N"), fr["keys"] + [""], EV + " Keys for CRA-P1…CRA-P10 (rule 0.4.7).")
+          "pass: cryptography with definitions and proofs (main course A10.D3), then the formal core of the web, "
+          "authentication, network, denial-of-service, threat-modelling, privacy and AI families (CRA.11-CRA.17).")
+    f.ins("R5-8", f.heading("Appendix N"), fr["keys"] + [""], EV + " Keys for CRA-P1…CRA-P24 (rule 0.4.7).")
 
 
 def gof(f):

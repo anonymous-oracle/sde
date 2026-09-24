@@ -452,7 +452,7 @@ def table_lint():
 CNEW = [
     ("C-NEW-01", "D1", lambda: DECISIONS[0][1](), "borrow with `Source material:` lines; nothing points back"),
     ("C-NEW-02", "R3 · R7", None, "C-50 becomes verify-in-place; `pgdata/` never copied"),
-    ("C-NEW-03", "D2", None, "ledger predates the prompt's learner state; regenerated blank in R10"),
+    ("C-NEW-03", "D2", None, "ledger predates the prompt's learner state; regenerated blank in R5 (learner decision of 2026-09-24)"),
     ("C-NEW-04", "R2", cn04, ""), ("C-NEW-05", "R2", cn05, "RD-5"), ("C-NEW-06", "R2", c29, "via the C-29 pointer"),
     ("C-NEW-07", "R2", cn07, ""), ("C-NEW-08", "R3", None, "whitelist `A2A` in verify.py's corruption regex"),
     ("C-NEW-09", "R2", cn09, "same probe as C-10"),
