@@ -110,7 +110,7 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 | **A7** | TH-04, AU-05, AU-06, AU-07, AU-11, AU-12, AU-13, AB-01, AB-02, AB-03, AB-04, AB-05, AB-06, AB-07, AB-08 | CL-08 | SEC-E3.5 (was E-AU3), CR-E4 |
 | **A8** | — | WA-05 (SQL SL-13 owns the SQL mechanics) | — |
 | **A9** | TH-06, DOS-08, CL-06 | — | — |
-| **A10** | PQ-S-01, PQ-S-02, PQ-S-05, PQ-S-06, TH-01, TH-02, TH-03, CR-01, CR-02, CR-03, CR-04, CR-05, CR-06, CR-07, CR-08, CR-09, CR-10, CR-13, CR-19, CR-16, AU-01, AU-02, AU-03, AU-04, AU-08, AU-09, AU-10, DOS-03, DOS-05, WA-01, WA-02, WA-03, WA-04, WA-06, WA-07, WA-08, WA-12, WA-05, SC-01 — formalizes the A5 bridge in one recall line (C-14) | PQ-S-04, TH-04, CR-11, CR-12, AU-05 (federation/SSO), AU-06 (federation/SSO), AU-07 (federation/SSO), AU-11, AU-12, AU-13, WA-10, PV-05 | CR-E1…CR-E8, SEC-Z0.* |
+| **A10** | PQ-S-01 (gate for CR-01), PQ-S-02, PQ-S-05, PQ-S-06, TH-01, TH-02, TH-03, CR-01, CR-02, CR-03, CR-04, CR-05, CR-06, CR-07, CR-08, CR-09, CR-10, CR-13, CR-19, CR-16, AU-01, AU-02, AU-03, AU-04, AU-08 (MFA), AU-09 (MFA), AU-10 (MFA), DOS-03, DOS-05, WA-01, WA-02, WA-03, WA-04, WA-06, WA-07, WA-08, WA-12, WA-05, SC-01 — formalizes the A5 bridge in one recall line (C-14) | PQ-S-04, TH-04, CR-11, CR-12, AU-05 (federation/SSO), AU-06 (federation/SSO), AU-07 (federation/SSO), AU-11, AU-12, AU-13, WA-10, PV-05 | CR-E1…CR-E8, SEC-Z0.* |
 | **A11** | — | WL-02, WL-03, WL-05, WL-06 | — |
 | **B1** | PQ-S-03 | PV-01, PV-02, PV-03, PV-04, CM-01, CM-02 | SEC-Z0.5 (was E-CL1) |
 | **B2** | CL-08, SC-02 | CK-01, CK-02, CK-04 | — |
@@ -126,11 +126,11 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 | **V-NET** | WA-11 (Armor), CL-07 | AB-01 (Armor, Lens-3), AB-02 (Armor, Lens-3), AB-03 (Armor, Lens-3), AB-04 (Armor, Lens-3), AB-05 (Armor, Lens-3) | SEC-E4.3 (was E-AB1) |
 | **Phase 4 Networking** | DOS-04 (Prop Lock) | — | SEC-E4.16 (was E-DD2) |
 | **Phase 4 Security** | TH-05 (SecOps), CR-14, CR-15, CR-17, CR-18, CR-20, NT-06 (Prop Lock), WL-04, SC-03, PV-01, PV-02, PV-03, PV-04, CM-01, CM-02 | CL-01 (Lens-3), CL-02 (Lens-3), CL-03 (Lens-3), CL-04 (Lens-3), CL-05 (Lens-3), IR-01 (SecOps), IR-02 (SecOps), IR-04 (SecOps), IR-03, IR-05, IR-06, IR-07, IR-08 | CR-E9…CR-E15, SEC-CAP1 |
-| **Cloud Security Engineer cert track** | all CL/NT/IR/CR-14+, CM-* | SEC-CAP2 |
-| **Cloud Network Engineer cert track** | NT-*, DOS-*, A5 recall | SEC-E10.7 (was E-NT3) |
-| **Security Operations Engineer / SCS-C03** | IR-*, TH-05 ATT&CK, IR capstone | SEC-CAP3 |
-| **GenAI / Agentic (Phase 3–4 / Agentic Architect)** | AI-*, CR-18 awareness, PV-* | SEC-CAP4 |
-| **AWS Security Specialty / Azure SC-100 (later phases)** | same mechanics; map controls via `Curriculum` Part VIII tables — no new theory | IR mapping drill |
+| **Cloud Security Engineer cert track** | all CL/NT/IR/CR-14+, CM-* | — | SEC-CAP2 |
+| **Cloud Network Engineer cert track** | NT-*, DOS-*, A5 recall | — | SEC-E10.7 (was E-NT3) |
+| **Security Operations Engineer / SCS-C03** | IR-*, TH-05 ATT&CK, IR capstone | — | SEC-CAP3 |
+| **GenAI / Agentic (Phase 3–4 / Agentic Architect)** | AI-*, CR-18 awareness, PV-* | — | SEC-CAP4 |
+| **AWS Security Specialty / Azure SC-100 (later phases)** | same mechanics; map controls via `Curriculum` Part VIII tables — no new theory | — | IR mapping drill |
 
 ### 2.1 Overlap register — teach once
 
@@ -155,8 +155,8 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 
 ### 3.1 Security prerequisites (PQ-S-01 … PQ-S-06)
 
-#### PQ-S-01 · Crypto hygiene recall (not a course) — stitch: A10 · A1 recall · CR-01 gate
-- **Provenance** *(refactor, 2026-09-24)*: foreign labels rebound: `T.SysTheory` (§6.1 → A8 + A9 (+ U5)); primary anchor per the §6.2 crosswalk: A10.
+#### PQ-S-01 · Crypto hygiene recall (not a course) — stitch: A10 (gate for CR-01) · A1 recall · CR-01 gate
+- **Provenance** *(refactor, 2026-09-24)*: foreign labels rebound: `T.SysTheory` (§6.1 → A8 + A9 (+ U5)); primary anchor per the §6.2 crosswalk: A10 (gate for CR-01).
 - [ ] unlocked
 - **Attack:** Learner treats Base64 or a homemade XOR as 'encryption'; ships secrets in URLs; uses `Math.random` for tokens.
 - **Why it works:** Encoding ≠ confidentiality; non-CSPRNG is predictable; Kerckhoffs: assume algorithm is public.
@@ -431,7 +431,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E7.5, CR-E16
 - **Check:** List five steps after a DEK leak vs a KEK leak.
 
-#### CR-16 · Side channels applied: timing, padding oracle, cache; constant-time APIs — stitch: A10 · SC-01 · MIT 6.858 · SC-01
+#### CR-16 · Side channels applied: timing, padding oracle, cache; constant-time APIs — stitch: A10 · SC-01 · MIT 6.858
 - **Provenance** *(refactor, 2026-09-24)*: primary anchor per the §6.2 crosswalk: A10.
 - [ ] unlocked
 - **Attack:** Early-exit compare on MACs; error messages distinguishing padding vs MAC failure; sharing cores with hostile tenants for high-value keys without threat model.
@@ -571,8 +571,8 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E3.7
 - **Check:** In one sentence, what is signature wrapping?
 
-#### AU-08 · Credential stuffing & password spraying — stitch: A10 · N4.10
-- **Provenance** *(refactor, 2026-09-24)*: old numbered sections kept in N-form (N4.10; C-03); corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.3` (C-10); primary anchor per the §6.2 crosswalk: A10.
+#### AU-08 · Credential stuffing & password spraying — stitch: A10 (MFA) · N4.10
+- **Provenance** *(refactor, 2026-09-24)*: old numbered sections kept in N-form (N4.10; C-03); corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.3` (C-10); primary anchor per the §6.2 crosswalk: A10 (MFA).
 - [ ] unlocked
 - **Attack:** Automated replay of breached username/password pairs; spraying few passwords across many accounts to avoid lockouts.
 - **Why it works:** Password reuse + predictable spray below threshold.
@@ -581,8 +581,8 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E3.3
 - **Check:** Contrast stuffing vs spraying.
 
-#### AU-09 · MFA fatigue & SIM swap — stitch: A10
-- **Provenance** *(refactor, 2026-09-24)*: corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.3` (C-10); primary anchor per the §6.2 crosswalk: A10.
+#### AU-09 · MFA fatigue & SIM swap — stitch: A10 (MFA)
+- **Provenance** *(refactor, 2026-09-24)*: corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.3` (C-10); primary anchor per the §6.2 crosswalk: A10 (MFA).
 - [ ] unlocked
 - **Attack:** Push-bomb until victim accepts; SIM swap steals SMS OTP.
 - **Why it works:** Human compliance under spam; SMS is not phishing-resistant.
@@ -591,8 +591,8 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** SEC-E3.10
 - **Check:** Why is SMS OTP weaker than WebAuthn?
 
-#### AU-10 · Recovery & account-takeover paths — stitch: A10
-- **Provenance** *(refactor, 2026-09-24)*: corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.3` (C-10); primary anchor per the §6.2 crosswalk: A10.
+#### AU-10 · Recovery & account-takeover paths — stitch: A10 (MFA)
+- **Provenance** *(refactor, 2026-09-24)*: corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.3` (C-10); primary anchor per the §6.2 crosswalk: A10 (MFA).
 - [ ] unlocked
 - **Attack:** Weaker recovery than login; knowledge questions; long-lived reset tokens in logs.
 - **Why it works:** Attackers choose the weakest equivalent path.

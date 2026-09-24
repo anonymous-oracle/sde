@@ -2,13 +2,13 @@
 
 Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace: `refactor/` (the repo's `refactor/` folder; R0–R1 ran at `/Users/suhas/sde/refactor/`, R2 was finished in a cloud checkout of the same repo, branch `gcp`). Outputs go to `refactor/outputs/` and the workspace root.
 
-**Resume point:** R2 is **done** and waiting for "continue". Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (it must fold in `d3_check.py` and `rename_checks.py`; see §9 for what it must know), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items. Rebuild everything first with `python3 refactor-tools/r2_build.py .`; it is idempotent, so the output must be byte-identical to what is committed.
+**Resume point:** R2 is **done**, audited before R3 (`audit-R2.md`: PASS), and waiting for "continue". Read `requirements-hardening.md` first. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (it must fold in `d3_check.py`, `rename_checks.py` and `audit_r2.py`; see §9 for what it must know), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild everything first with `python3 refactor-tools/r2_build.py .`; it is idempotent, so the output must be byte-identical to what is committed.
 
 | Phase | Status | Date | Deliverables |
 |---|---|---|---|
 | R0 Ingest | **done** | 2026-09-24 | `refactor-state.md`, `r0-reproduction.md`, `cert-verification.md`, `refactor-tools/r0_reproduce.py`, `refactor-tools/primer_bindings.py`, `inputs-original/` |
 | R1 Manifest | **done** | 2026-09-24 | `manifest-before.json`, `manifest-before-summary.md`, `refactor-tools/manifest.py`, `refactor-tools/count_boxes.py` |
-| R2 Repair | **done** | 2026-09-24 | `work/*` (5 repaired files + new `northstar-reference-app.md`), `id-rename-map.csv`, `crosswalk.md`, `primer-binding-table.md`, `CHANGELOG.md`, `errata.md`, `diffs/<file>.diff`, `outputs/r2/journal.jsonl`, `outputs/r2-gate/*`, tools listed in §7 |
+| R2 Repair | **done** | 2026-09-24 | `work/*` (5 repaired files + new `northstar-reference-app.md`), `id-rename-map.csv`, `crosswalk.md`, `primer-binding-table.md`, `CHANGELOG.md`, `errata.md`, `diffs/<file>.diff`, `outputs/r2/journal.jsonl`, `outputs/r2-gate/*`, tools listed in §7; pre-R3 audit `audit-R2.md` + `requirements-hardening.md` |
 | R3 Verify | **next** | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
 | R4–R9 Enhance | pending | | |
 | R10 Final | pending | | |
@@ -54,7 +54,7 @@ Full table and commands: `r0-reproduction.md` (regenerate with `python3 refactor
 | # | Decision | Effect |
 |---|---|---|
 | D1 | `gcp-curriculum.md` is not part of the course. Any `.md` on disk may be borrowed from. | Foreign references rebound via §6 crosswalks. Missing owner content is written into the suite, with `Source material:` lines (SQL §4.0 DB-1…DB-10 ported in R2; Northstar sections in R9). |
-| D2 | Fresh start: no progress carried over. | Invariant 3 does not apply. Ledger regenerated in R10 as a clean §14 template. C-43, C-67, C-68, C-69, C-73 dropped. All boxes unticked (NT-04 too). Ledger §5 preferences **kept** and copied into every file's §0. |
+| D2 | Fresh start: no progress carried over. | Invariant 3 does not apply. Ledger regenerated in R10 as a clean §14 template. C-43, C-67, C-68 dropped; C-69/C-73 evidence was chat-only and is dropped, but their §13.5/§13.9 rules are kept (`Curriculum` §0.4.7/§0.4.8). All boxes unticked (NT-04 too). Ledger §5 preferences **kept** and copied into every file's §0. |
 | D3 | `gcp.md` is the primary Curriculum; content may be rearranged, never removed. | Stale text gets dated notes. Every line changed by a correction or regeneration keeps its pre-refactor text in the file's closing "Pre-refactor text archive (D3)". Checked by `d3_check.py`. Applied to all companions too. |
 | D4 | Verify and keep all 18 certifications. | `cert-verification.md`; R2 annotated each cert (box, Lab Reality, D4 note) and corrected "fifteen" → "eighteen". |
 
@@ -75,7 +75,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 | SQL | 3056 → 3182 | rename 572, anchor-rewrite 173, append 5, correction 5, new-content 2 |
 | patterns | 439 → 524 | rename 29, append 49, correction 3, new-content 1 |
 | cyber | 2715 → 2936 | rename 461, anchor-rewrite 258, append 127, correction 5, new-content 1, regenerate 1 |
-| Northstar (new) | — → 417 | skeleton: 16 milestones + 52 sections, all stubs for R9 |
+| Northstar (new) | — → 419 | skeleton: 16 milestones + 52 sections, all stubs for R9 |
 | ledger, skill | unchanged | — |
 
 **What R2 did, by file.**
@@ -90,11 +90,13 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 - `rename_checks.py outputs/r2/renamed` → 23/23 PASS. (Runs on the renamed snapshot; `work/` adds Curriculum C-track anchors on purpose.)
 - `d3_check.py .` → 0 lost lines in all 7 files. Every original non-blank line is verbatim in `work/` or reachable through the journal. A mutation test (one deleted primer line) makes it fail.
 - `crosswalk.md` §0: 0 old-parent names left in live text outside provenance; §6: 0 live pseudo-anchors.
+- `audit_r2.py .` → PASS (pre-R3 audit, `audit-R2.md`): C-01…C-75 + C-NEW-01…09 each assigned an owner phase; 67 R2-due probes PASS, 11 deferred, 6 D2; invariants 1/6/7/11/12/14/15-16, table lint, no live D8, D1–D4 and chat commitments checked. Only OPEN item: the R1 promise that verify.py normalises through the rename map (R3).
+- Audit fixes (2026-09-24): cyber cert-row cells re-padded to 4 columns; duplicate CR-16 in a header stitch; §6.2 qualifiers (`A10 (gate for CR-01)`, `A10 (MFA)`); C-06 `Curriculum` anchors on N8.1.5/N8.1.6; C-71/C-74 tags in §0.4.
 - `manifest.py work` preview: 0 primary collisions. Its 32 "unresolved" references are all expected and must be handled by verify.py, not by edits (§9).
 
 ## 7. Tools (`refactor-tools/`)
 
-`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal).
+`r0_reproduce.py`, `primer_bindings.py` (R0) · `manifest.py`, `count_boxes.py` (R1) · `rename.py`, `rename_checks.py` (R2 gate) · `binding.py` (C-24/C-25 binding table + topological check) · `r2_build.py` (pipeline + primer builder) · `r2_common.py` (Doc/journal framework, constants, ledger preferences) · `r2_cur.py`, `r2_sql.py`, `r2_sec.py`, `r2_dp.py` (per-file builders) · `northstar.py` (Northstar skeleton) · `reports.py` (crosswalk, CHANGELOG, errata seed, id-rename-map copy, diffs) · `d3_check.py` (D3 no-removal) · `audit_r2.py` (pre-R3 audit → `audit-R2.md`). `requirements-hardening.md` pins how the prompt applies (decisions, gate rulings, corrected facts, per-phase acceptance checks).
 
 `errata.md` is permanent and append-only: `reports.py` writes it only if it does not exist. `diffs/R2-01-renames.diff` is the approved gate diff (renames only); `diffs/<file>.diff` are full input-vs-work diffs.
 
@@ -110,9 +112,11 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 | RD-6 | Gate defaults R2-Q1, SQL-07/SEC-08, SQL-17, SQL-02/03, SEC-06, SEC-11 | As applied at the rename gate (`outputs/r2-gate/rename-dryrun-summary.md`). SQL `T1…T6` stay as `tx_tests.py` scenario labels. |
 | RD-7 | `errata.md` seed | C-67's two chat errors dropped (D2). Seeded with the 3 content errors R2 corrected (C-44 ×2, C-60). |
 | RD-8 | §6.2 "NT-04 already taught — mark done" | Not ticked (D2 fresh start). |
+| RD-9 | Prompt's open cookie question (HttpOnly + `Domain=.example.com`) | Not an open learner item (D2); added as an ordinary unticked exercise on the cyber cookie card in R8. |
 
 ## 9. What R3's verify.py must know
 
+- Fold in `d3_check.py`, `rename_checks.py`, `binding.py`'s topo check and every R2-due probe of `audit_r2.py`, so R3 re-proves R2. Report D2-vacuous §8.2/§11 items as `N/A (D2)` (see `requirements-hardening.md` §1).
 - File set: the 5 course files **plus `northstar-reference-app.md`**. `manifest.py` does not scan Northstar yet, so every `Nx` shows as unresolved.
 - Not references: `- **Provenance**` lines, `*(was …)*` / `(was E-…)` notes, `Source material:` lines, the D3 archive section, and SQL §0 legend lines that list rebound labels (`D8`, `G12b`).
 - Definitions: the SQL tier legend (`SQL-T-HS/UG/GR`, SQL §0) defines those tiers. SQL `T\d` are script labels (RD-6). Whitelist `A2A` (C-NEW-08).
@@ -125,6 +129,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 1. **N6.16 meaning** (RD-3): keep "DNS and DDoS (security view)" from the old parent, or use §6.3's "Edge/DNS teardown"?
 2. **C-11 mappings** (RD-1): accept the nine phantom → card mappings?
 3. **"the reference cloud app"** (×36 in the cyber input): rename to "Northstar" in R9 (the plan), or earlier? One corrupted cookie example (`Domain=.the reference cloud app.example`) is left untouched until then.
+4. **RD-9:** keep the cookie question as an ordinary cyber exercise?
 
 ## 11. Deferred (not R2 by the prompt's phase rules)
 

@@ -306,12 +306,14 @@ Wildcard references (`N2.x`, `N3.x`, `N5.x`, `N6.x`) resolve to the milestone of
 
 - **Meaning:** `gcp-curriculum.md`:5577 (§8.1.5).
 - **Referenced by:** SQL 2. Stitch table; SQL 2.1 Overlap register; SQL OD-09; SQL PX-9
+- **`Curriculum` anchors (C-06):** cursor pagination → A8.
 - **Status:** [stub — authored in R9]
 
 ### N8.1.6 · Other primitives (compressed ownership)
 
 - **Meaning:** `gcp-curriculum.md`:5591 (§8.1.6).
 - **Referenced by:** — (named by C-06)
+- **`Curriculum` anchors (C-06):** RLS multi-tenancy → A8 · schema evolution → A8 · LSM vs B-tree comparison toy → A8 · hot partition / key histogram → A9 · idempotency → A9 · connection-pool math → A5/A8 recall (SD-30 already covers the connection budget).
 - **Status:** [stub — authored in R9]
 
 ### N8.C · Evidence-pack HLDs (full packs; paper + sequences OK)
