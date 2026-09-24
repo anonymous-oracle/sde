@@ -1,0 +1,294 @@
+file,old,new,rule,source,class,occurrences,lines,note
+system-design-primer-companion.md,T0,SDP-T0,SDP-01,§5 primer rules,rename,8,629 650 651 652 653 654 656 677,tiers; lines 625–680 only
+system-design-primer-companion.md,T1,SDP-T1,SDP-01,§5 primer rules,rename,2,630 642,tiers; lines 625–680 only
+system-design-primer-companion.md,T2,SDP-T2,SDP-01,§5 primer rules,rename,4,631 643 655 664,tiers; lines 625–680 only
+system-design-primer-companion.md,T3,SDP-T3,SDP-01,§5 primer rules,rename,2,632 673,tiers; lines 625–680 only
+system-design-primer-companion.md,T4,SDP-T4,SDP-01,§5 primer rules,rename,10,633 642 644 645 646 647 648 649 662 678,tiers; lines 625–680 only
+system-design-primer-companion.md,T5,SDP-T5,SDP-01,§5 primer rules,rename,20,634 642 657 658 659 660 661 663 665 666 667 668 …,tiers; lines 625–680 only
+sql-databases-companion.md,12.S12,SQL-SKIP-SQL,SQL-10,§5,rename,13,114 181 313 337 345 387 403 411 419 435 826 828 …,skip-test
+sql-databases-companion.md,12.S13,SQL-SKIP-ENGINE,SQL-11,§5,rename,6,115 183 525 826 828 845,skip-test
+sql-databases-companion.md,C1,SQL-CAP1,SQL-09,§5,rename,30,44 63 66 112 140 178 635 636 1759 1761 1769 1777 …,capstones (incl. C1.1…C1.8)
+sql-databases-companion.md,C2,SQL-CAP2,SQL-09,§5,rename,11,66 100 140 174 603 604 1759 1825 2236 2242 3013,capstones (incl. C1.1…C1.8)
+sql-databases-companion.md,C3,SQL-CAP3,SQL-09,§5,rename,3,2237 2240 3050,capstones (incl. C1.1…C1.8)
+sql-databases-companion.md,C4,SQL-CAP4,SQL-09,§5,rename,19,44 63 66 109 112 177 178 239 693 1759 1833 2187 …,capstones (incl. C1.1…C1.8)
+sql-databases-companion.md,E0,SQL-E0,SQL-07,§5 [resolved-by-default],rename,1,81,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E1,SQL-E1,SQL-07,§5 [resolved-by-default],rename,6,56 66 89 173 392 1125,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E1.1,SQL-E1.1,SQL-06,§5,rename,3,790 1059 2248,exercise ladder
+sql-databases-companion.md,E1.2,SQL-E1.2,SQL-06,§5,rename,3,400 1067 2257,exercise ladder
+sql-databases-companion.md,E1.3,SQL-E1.3,SQL-06,§5,rename,4,400 835 1075 2263,exercise ladder
+sql-databases-companion.md,E1.4,SQL-E1.4,SQL-06,§5,rename,2,1083 2269,exercise ladder
+sql-databases-companion.md,E1.5,SQL-E1.5,SQL-06,§5,rename,3,400 1091 2279,exercise ladder
+sql-databases-companion.md,E1.6,SQL-E1.6,SQL-06,§5,rename,2,1099 2285,exercise ladder
+sql-databases-companion.md,E1.7,SQL-E1.7,SQL-06,§5,rename,3,1107 2067 2296,exercise ladder
+sql-databases-companion.md,E1.8,SQL-E1.8,SQL-06,§5,rename,2,1115 2304,exercise ladder
+sql-databases-companion.md,E2,SQL-E2,SQL-07,§5 [resolved-by-default],rename,3,415 1193 2099,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E2.1,SQL-E2.1,SQL-06,§5,rename,5,79 268 416 1127 2310,exercise ladder
+sql-databases-companion.md,E2.2,SQL-E2.2,SQL-06,§5,rename,3,1135 2051 2316,exercise ladder
+sql-databases-companion.md,E2.3,SQL-E2.3,SQL-06,§5,rename,2,1143 2325,exercise ladder
+sql-databases-companion.md,E2.4,SQL-E2.4,SQL-06,§5,rename,2,1151 2332,exercise ladder
+sql-databases-companion.md,E2.5,SQL-E2.5,SQL-06,§5,rename,3,836 1159 2339,exercise ladder
+sql-databases-companion.md,E2.6,SQL-E2.6,SQL-06,§5,rename,2,1167 2348,exercise ladder
+sql-databases-companion.md,E2.7,SQL-E2.7,SQL-06,§5,rename,4,79 268 1175 2354,exercise ladder
+sql-databases-companion.md,E2.8,SQL-E2.8,SQL-06,§5,rename,3,416 1183 2361,exercise ladder
+sql-databases-companion.md,E3,SQL-E3,SQL-07,§5 [resolved-by-default],rename,5,173 407 1277 1759 2235,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E3.1,SQL-E3.1,SQL-06,§5,rename,4,408 1195 2091 2368,exercise ladder
+sql-databases-companion.md,E3.2,SQL-E3.2,SQL-06,§5,rename,8,83 114 765 766 835 844 1203 2379,exercise ladder
+sql-databases-companion.md,E3.3,SQL-E3.3,SQL-06,§5,rename,2,1211 2386,exercise ladder
+sql-databases-companion.md,E3.4,SQL-E3.4,SQL-06,§5,rename,2,1219 2394,exercise ladder
+sql-databases-companion.md,E3.5,SQL-E3.5,SQL-06,§5,rename,6,835 1227 1821 2000 2004 2404,exercise ladder
+sql-databases-companion.md,E3.6,SQL-E3.6,SQL-06,§5,rename,2,1235 2412,exercise ladder
+sql-databases-companion.md,E3.7,SQL-E3.7,SQL-06,§5,rename,5,373 374 1243 2420 3049,exercise ladder
+sql-databases-companion.md,E3.8,SQL-E3.8,SQL-06,§5,rename,2,1251 2428,exercise ladder
+sql-databases-companion.md,E3.9,SQL-E3.9,SQL-06,§5,rename,2,1259 2437,exercise ladder
+sql-databases-companion.md,E3.10,SQL-E3.10,SQL-06,§5,rename,3,408 1267 2446,exercise ladder
+sql-databases-companion.md,E4,SQL-E4,SQL-07,§5 [resolved-by-default],rename,5,124 173 1345 1759 2235,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E4.1,SQL-E4.1,SQL-06,§5,rename,3,424 1279 2453,exercise ladder
+sql-databases-companion.md,E4.2,SQL-E4.2,SQL-06,§5,rename,2,1287 2460,exercise ladder
+sql-databases-companion.md,E4.3,SQL-E4.3,SQL-06,§5,rename,5,153 431 432 1295 2467,exercise ladder
+sql-databases-companion.md,E4.4,SQL-E4.4,SQL-06,§5,rename,5,153 431 432 1303 2475,exercise ladder
+sql-databases-companion.md,E4.5,SQL-E4.5,SQL-06,§5,rename,14,29 100 114 140 174 603 604 836 844 1311 1759 1827 …,exercise ladder
+sql-databases-companion.md,E4.6,SQL-E4.6,SQL-06,§5,rename,2,1319 2499,exercise ladder
+sql-databases-companion.md,E4.7,SQL-E4.7,SQL-06,§5,rename,5,103 758 838 1327 2508,exercise ladder
+sql-databases-companion.md,E4.8,SQL-E4.8,SQL-06,§5,rename,3,424 1335 2518,exercise ladder
+sql-databases-companion.md,E5,SQL-E5,SQL-07,§5 [resolved-by-default],rename,2,439 1413,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E5.1,SQL-E5.1,SQL-06,§5,rename,3,440 1347 2526,exercise ladder
+sql-databases-companion.md,E5.2,SQL-E5.2,SQL-06,§5,rename,3,1355 2075 2536,exercise ladder
+sql-databases-companion.md,E5.3,SQL-E5.3,SQL-06,§5,rename,2,1363 2545,exercise ladder
+sql-databases-companion.md,E5.4,SQL-E5.4,SQL-06,§5,rename,6,114 837 844 1291 1371 2553,exercise ladder
+sql-databases-companion.md,E5.5,SQL-E5.5,SQL-06,§5,rename,2,1379 2562,exercise ladder
+sql-databases-companion.md,E5.6,SQL-E5.6,SQL-06,§5,rename,2,1387 2572,exercise ladder
+sql-databases-companion.md,E5.7,SQL-E5.7,SQL-06,§5,rename,2,1395 2579,exercise ladder
+sql-databases-companion.md,E5.8,SQL-E5.8,SQL-06,§5,rename,3,440 1403 2590,exercise ladder
+sql-databases-companion.md,E6,SQL-E6,SQL-07,§5 [resolved-by-default],rename,3,60 176 1473,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E6.1,SQL-E6.1,SQL-06,§5,rename,3,440 1415 2601,exercise ladder
+sql-databases-companion.md,E6.2,SQL-E6.2,SQL-06,§5,rename,6,25 106 791 792 1423 2610,exercise ladder
+sql-databases-companion.md,E6.3,SQL-E6.3,SQL-06,§5,rename,2,1431 2622,exercise ladder
+sql-databases-companion.md,E6.4,SQL-E6.4,SQL-06,§5,rename,7,107 142 176 408 619 1439 2636,exercise ladder
+sql-databases-companion.md,E6.5,SQL-E6.5,SQL-06,§5,rename,2,1447 2647,exercise ladder
+sql-databases-companion.md,E6.6,SQL-E6.6,SQL-06,§5,rename,5,106 791 792 1455 2655,exercise ladder
+sql-databases-companion.md,E6.7,SQL-E6.7,SQL-06,§5,rename,3,440 1463 2666,exercise ladder
+sql-databases-companion.md,E7,SQL-E7,SQL-07,§5 [resolved-by-default],rename,3,124 173 1517,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E7.1,SQL-E7.1,SQL-06,§5,rename,4,448 612 1475 2676,exercise ladder
+sql-databases-companion.md,E7.2,SQL-E7.2,SQL-06,§5,rename,2,1483 2687,exercise ladder
+sql-databases-companion.md,E7.3,SQL-E7.3,SQL-06,§5,rename,3,837 1491 2698,exercise ladder
+sql-databases-companion.md,E7.4,SQL-E7.4,SQL-06,§5,rename,3,612 1499 2708,exercise ladder
+sql-databases-companion.md,E7.5,SQL-E7.5,SQL-06,§5,rename,6,448 577 578 1479 1507 2717,exercise ladder
+sql-databases-companion.md,E8,SQL-E8,SQL-07,§5 [resolved-by-default],rename,1,1601,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E8.1,SQL-E8.1,SQL-06,§5,rename,3,472 1519 2728,exercise ladder
+sql-databases-companion.md,E8.2,SQL-E8.2,SQL-06,§5,rename,2,1527 2736,exercise ladder
+sql-databases-companion.md,E8.3,SQL-E8.3,SQL-06,§5,rename,2,1535 2743,exercise ladder
+sql-databases-companion.md,E8.4,SQL-E8.4,SQL-06,§5,rename,2,1543 2750,exercise ladder
+sql-databases-companion.md,E8.5,SQL-E8.5,SQL-06,§5,rename,4,156 628 1551 2757,exercise ladder
+sql-databases-companion.md,E8.6,SQL-E8.6,SQL-06,§5,rename,2,1559 2763,exercise ladder
+sql-databases-companion.md,E8.7,SQL-E8.7,SQL-06,§5,rename,4,156 628 1567 2770,exercise ladder
+sql-databases-companion.md,E8.8,SQL-E8.8,SQL-06,§5,rename,4,93 276 1575 2777,exercise ladder
+sql-databases-companion.md,E8.9,SQL-E8.9,SQL-06,§5,rename,2,1583 2788,exercise ladder
+sql-databases-companion.md,E8.10,SQL-E8.10,SQL-06,§5,rename,5,93 276 472 1591 2797,exercise ladder
+sql-databases-companion.md,E9,SQL-E9,SQL-07,§5 [resolved-by-default],rename,2,173 1661,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E9.1,SQL-E9.1,SQL-06,§5,rename,7,456 463 464 643 644 1603 2804,exercise ladder
+sql-databases-companion.md,E9.2,SQL-E9.2,SQL-06,§5,rename,2,1611 2813,exercise ladder
+sql-databases-companion.md,E9.3,SQL-E9.3,SQL-06,§5,rename,9,97 114 139 174 838 844 1619 2067 2821,exercise ladder
+sql-databases-companion.md,E9.4,SQL-E9.4,SQL-06,§5,rename,3,1271 1627 2829,exercise ladder
+sql-databases-companion.md,E9.5,SQL-E9.5,SQL-06,§5,rename,2,1635 2836,exercise ladder
+sql-databases-companion.md,E9.6,SQL-E9.6,SQL-06,§5,rename,9,94 133 161 667 668 733 750 1643 2845,exercise ladder
+sql-databases-companion.md,E9.7,SQL-E9.7,SQL-06,§5,rename,3,456 1651 2858,exercise ladder
+sql-databases-companion.md,E10,SQL-E10,SQL-07,§5 [resolved-by-default],rename,10,56 58 66 89 123 361 384 671 676 1715,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E10.1,SQL-E10.1,SQL-06,§5,rename,5,154 366 675 1663 2865,exercise ladder
+sql-databases-companion.md,E10.2,SQL-E10.2,SQL-06,§5,rename,5,138 651 652 1673 2879,exercise ladder
+sql-databases-companion.md,E10.3,SQL-E10.3,SQL-06,§5,rename,3,636 1681 2886,exercise ladder
+sql-databases-companion.md,E10.4,SQL-E10.4,SQL-06,§5,rename,3,1689 1745 2892,exercise ladder
+sql-databases-companion.md,E10.5,SQL-E10.5,SQL-06,§5,rename,4,366 675 1697 2900,exercise ladder
+sql-databases-companion.md,E10.6,SQL-E10.6,SQL-06,§5,rename,11,86 99 138 154 174 479 480 651 652 1705 2907,exercise ladder
+sql-databases-companion.md,E11,TX,SQL-02,C-51,rename,2,44 161,E11 labs = transaction labs (§7.2)
+sql-databases-companion.md,E12,PX,SQL-03,C-51,rename,2,44 158,E12 labs = plan predictions (§7.1)
+sql-databases-companion.md,E12.1,PX-1,SQL-01,C-51,rename,1,1331,"undefined E12.1 = missing (user_id, placed_at) index seq scan = PX-1 hot/cold key plans"
+sql-databases-companion.md,E13,SQL-E13,SQL-07,§5 [resolved-by-default],rename,7,56 60 66 116 176 561 1759,"bare level form ('E3 gate', 'E1–E10')"
+sql-databases-companion.md,E13.1,SQL-E13.1,SQL-06,§5,rename,7,106 111 415 416 783 1717 2915,exercise ladder
+sql-databases-companion.md,E13.2,SQL-E13.2,SQL-06,§5,rename,3,416 1725 2925,exercise ladder
+sql-databases-companion.md,E13.3,SQL-E13.3,SQL-06,§5,rename,6,105 106 775 776 1733 2935,exercise ladder
+sql-databases-companion.md,E13.4,SQL-E13.4,SQL-06,§5,rename,8,107 142 176 619 620 1741 1751 2943,exercise ladder
+sql-databases-companion.md,E13.5,SQL-E13.5,SQL-06,§5,rename,7,107 142 176 619 620 1749 2952,exercise ladder
+sql-databases-companion.md,Grad,SQL-T-GR,SQL-16,§5,rename,1,80,tier
+sql-databases-companion.md,HS,SQL-T-HS,SQL-14,§5,rename,2,76 170,tier
+sql-databases-companion.md,P1,PX-1,SQL-17,C-52 [resolved-by-default],rename,3,235 1844 2168,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P2,PX-2,SQL-17,C-52 [resolved-by-default],rename,2,1852 2169,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P3,PX-3,SQL-17,C-52 [resolved-by-default],rename,3,1119 1860 2170,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P4,PX-4,SQL-17,C-52 [resolved-by-default],rename,2,1868 2171,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P5,PX-5,SQL-17,C-52 [resolved-by-default],rename,2,1876 2172,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P6,PX-6,SQL-17,C-52 [resolved-by-default],rename,2,1884 2173,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P7,PX-7,SQL-17,C-52 [resolved-by-default],rename,2,1892 2174,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P8,PX-8,SQL-17,C-52 [resolved-by-default],rename,2,1900 2175,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P9,PX-9,SQL-17,C-52 [resolved-by-default],rename,2,1908 2176,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P10,PX-10,SQL-17,C-52 [resolved-by-default],rename,2,1916 2177,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,P11,PX-11,SQL-17,C-52 [resolved-by-default],rename,3,235 1924 2178,runner table + script labels + card tags (all 1:1 with PX-n)
+sql-databases-companion.md,S12,SQL-SKIP-SQL,SQL-12,§5,rename,8,114 179 834 835 836 837 838,bare form and S12-A…E rows
+sql-databases-companion.md,S13,SQL-SKIP-ENGINE,SQL-13,§5,rename,6,115 179 839 840 841,bare form and S13-A…C rows
+sql-databases-companion.md,SD-1,SCH-1,SQL-04,"§5, C-37",rename,9,58 85 350 358 587 588 2113 2115 2237,schema-design cases
+sql-databases-companion.md,SD-2,SCH-2,SQL-04,"§5, C-37",rename,5,102 175 596 644 2123,schema-design cases
+sql-databases-companion.md,SD-3,SCH-3,SQL-04,"§5, C-37",rename,4,102 175 612 2131,schema-design cases
+sql-databases-companion.md,SD-4,SCH-4,SQL-04,"§5, C-37",rename,4,94 668 750 2139,schema-design cases
+sql-databases-companion.md,SD-5,SCH-5,SQL-04,"§5, C-37",rename,7,95 659 660 684 741 742 2147,schema-design cases
+sql-databases-companion.md,SD-6,SCH-6,SQL-04,"§5, C-37",rename,6,58 101 113 464 2113 2155,schema-design cases
+sql-databases-companion.md,UG,SQL-T-UG,SQL-15,§5,rename,3,76 80 170,tier
+sql-databases-companion.md,Z0,SQL-Z0,SQL-08,§5,rename,31,44 54 76 77 78 122 156 170 252 260 300 307 …,paper drills
+sql-databases-companion.md,`E<level>.<n>`,`SQL-E<level>.<n>`,SQL-05,§5,rename,1,44,notation line
+sql-databases-companion.md,grad,SQL-T-GR,SQL-16,§5,rename,2,80 329,tier
+sql-databases-companion.md,"show(""P…"")","show(""PX-…"")",SQL-18,C-52,rename,1,2165,script-label placeholder
+design-patterns-companion.md,[B],[Bh],DP-03,C-63,rename,13,31 259 261 269 277 285 293 301 309 317 325 333 …,GoF behavioral
+design-patterns-companion.md,[C],[Cr],DP-01,C-63,rename,7,31 159 161 169 177 185 193,GoF creational
+design-patterns-companion.md,[S],[St],DP-02,C-63,rename,9,31 201 203 211 219 227 235 243 251,GoF structural
+cloud-cybersecurity-companion.md,C1,SEC-CAP1,SEC-11,§5,rename,8,51 88 104 423 2481 2485 2521 2528,capstones; lines 52/101/102/120 are Curriculum Track C (Docker/K8s) and stay
+cloud-cybersecurity-companion.md,C2,SEC-CAP2,SEC-11,§5,rename,6,105 1154 1160 2491 2522 2528,capstones; lines 52/101/102/120 are Curriculum Track C (Docker/K8s) and stay
+cloud-cybersecurity-companion.md,C3,SEC-CAP3,SEC-11,§5,rename,4,107 2497 2523 2528,capstones; lines 52/101/102/120 are Curriculum Track C (Docker/K8s) and stay
+cloud-cybersecurity-companion.md,C4,SEC-CAP4,SEC-11,§5,rename,7,51 88 108 2481 2503 2524 2528,capstones; lines 52/101/102/120 are Curriculum Track C (Docker/K8s) and stay
+cloud-cybersecurity-companion.md,DD,DOS,SEC-02,§5,rename,6,58 62 98 119 1946 2528,"bare family code (source tables, bundles)"
+cloud-cybersecurity-companion.md,DD-01,DOS-01,SEC-01,§5,rename,9,96 645 647 1317 1604 1605 2391 2394 2655,denial of service
+cloud-cybersecurity-companion.md,DD-02,DOS-02,SEC-01,§5,rename,3,656 1702 1703,denial of service
+cloud-cybersecurity-companion.md,DD-03,DOS-03,SEC-01,§5,rename,8,665 1604 1646 1647 2242 2498 2655 2671,denial of service
+cloud-cybersecurity-companion.md,DD-04,DOS-04,SEC-01,§5,rename,3,674 1709 1710,denial of service
+cloud-cybersecurity-companion.md,DD-05,DOS-05,SEC-01,§5,rename,6,683 1611 1612 1653 1654 2655,denial of service
+cloud-cybersecurity-companion.md,DD-06,DOS-06,SEC-01,§5,rename,4,692 820 1716 1717,denial of service
+cloud-cybersecurity-companion.md,DD-07,DOS-07,SEC-01,§5,rename,8,701 1646 1947 1948 2478 2479 2545 2655,denial of service
+cloud-cybersecurity-companion.md,DD-08,DOS-08,SEC-01,§5,rename,4,645 710 1977 1978,denial of service
+cloud-cybersecurity-companion.md,DD-*,DOS-*,SEC-01,§5,rename,6,50 78 103 106 2393 2689,denial of service
+cloud-cybersecurity-companion.md,DT,IR,SEC-04,§5,rename,6,60 63 65 105 109 2528,bare family code
+cloud-cybersecurity-companion.md,DT-01,IR-01,SEC-03,§5,rename,7,793 1089 1091 1912 2270 2271 2560,detection / IR
+cloud-cybersecurity-companion.md,DT-02,IR-02,SEC-03,§5,rename,4,1100 1926 1927 2543,detection / IR
+cloud-cybersecurity-companion.md,DT-03,IR-03,SEC-03,§5,rename,6,1109 1933 1934 2449 2450 2451,detection / IR
+cloud-cybersecurity-companion.md,DT-04,IR-04,SEC-03,§5,rename,1,1118,detection / IR
+cloud-cybersecurity-companion.md,DT-05,IR-05,SEC-03,§5,rename,10,372 377 1127 1767 1919 1920 1939 1940 2149 2249,detection / IR
+cloud-cybersecurity-companion.md,DT-06,IR-06,SEC-03,§5,rename,5,1136 1795 1953 1954 1955,detection / IR
+cloud-cybersecurity-companion.md,DT-07,IR-07,SEC-03,§5,rename,4,1145 1961 1962 2567,detection / IR
+cloud-cybersecurity-companion.md,DT-08,IR-08,SEC-03,§5,rename,2,1089 1154,detection / IR
+cloud-cybersecurity-companion.md,DT-*,IR-*,SEC-03,§5,rename,9,50 84 104 107 1320 2492 2562 2687 2690,detection / IR
+cloud-cybersecurity-companion.md,E1.1,SEC-E1.1,SEC-07,§5,rename,5,183 203 212 1377 2588,exercise bank
+cloud-cybersecurity-companion.md,E1.2,SEC-E1.2,SEC-07,§5,rename,2,156 1384,exercise bank
+cloud-cybersecurity-companion.md,E1.3,SEC-E1.3,SEC-07,§5,rename,3,174 1391 2589,exercise bank
+cloud-cybersecurity-companion.md,E1B5 IAM,SEC-E10.5,SEC-00a,"C-10, §5",correction+rename,1,2453,mangled E10.5 (neighbours E10.1…E10.8)
+cloud-cybersecurity-companion.md,E2.1,SEC-E2.1,SEC-07,§5,rename,2,351 1407,exercise bank
+cloud-cybersecurity-companion.md,E2.2,SEC-E2.2,SEC-07,§5,rename,3,451 1414 2592,exercise bank
+cloud-cybersecurity-companion.md,E2.3,SEC-E2.3,SEC-07,§5,rename,3,460 1421 2593,exercise bank
+cloud-cybersecurity-companion.md,E2.4,SEC-E2.4,SEC-07,§5,rename,2,221 1428,exercise bank
+cloud-cybersecurity-companion.md,E2.5,SEC-E2.5,SEC-07,§5,rename,3,736 1435 2594,exercise bank
+cloud-cybersecurity-companion.md,E2.6,SEC-E2.6,SEC-07,§5,rename,2,478 1442,exercise bank
+cloud-cybersecurity-companion.md,E2.7,SEC-E2.7,SEC-07,§5,rename,3,727 1449 2595,exercise bank
+cloud-cybersecurity-companion.md,E2.8,SEC-E2.8,SEC-07,§5,rename,2,745 1456,exercise bank
+cloud-cybersecurity-companion.md,E2.9,SEC-E2.9,SEC-07,§5,rename,2,754 1463,exercise bank
+cloud-cybersecurity-companion.md,E2.10,SEC-E2.10,SEC-07,§5,rename,2,763 1470,exercise bank
+cloud-cybersecurity-companion.md,E2.11,SEC-E2.11,SEC-07,§5,rename,2,974 1477,exercise bank
+cloud-cybersecurity-companion.md,E3.1,SEC-E3.1,SEC-07,§5,rename,1,1486,exercise bank
+cloud-cybersecurity-companion.md,E3.2,SEC-E3.2,SEC-07,§5,rename,3,837 1493 2598,exercise bank
+cloud-cybersecurity-companion.md,E3.3,SEC-E3.3,SEC-07,§5,rename,2,514 1500,exercise bank
+cloud-cybersecurity-companion.md,E3.4,SEC-E3.4,SEC-07,§5,rename,2,469 1507,exercise bank
+cloud-cybersecurity-companion.md,E3.5,SEC-E3.5,SEC-07,§5,rename,4,333 487 1514 2599,exercise bank
+cloud-cybersecurity-companion.md,E3.6,SEC-E3.6,SEC-07,§5,rename,3,496 1521 2600,exercise bank
+cloud-cybersecurity-companion.md,E3.7,SEC-E3.7,SEC-07,§5,rename,2,505 1528,exercise bank
+cloud-cybersecurity-companion.md,E3.8,SEC-E3.8,SEC-07,§5,rename,4,541 881 1535 2601,exercise bank
+cloud-cybersecurity-companion.md,E3.9,SEC-E3.9,SEC-07,§5,rename,1,1542,exercise bank
+cloud-cybersecurity-companion.md,E3.10,SEC-E3.10,SEC-07,§5,rename,3,523 1549 2602,exercise bank
+cloud-cybersecurity-companion.md,E3.11,SEC-E3.11,SEC-07,§5,rename,2,532 1556,exercise bank
+cloud-cybersecurity-companion.md,E3.12,SEC-E3.12,SEC-07,§5,rename,2,550 1563,exercise bank
+cloud-cybersecurity-companion.md,E3.13,SEC-E3.13,SEC-07,§5,rename,2,559 1570,exercise bank
+cloud-cybersecurity-companion.md,E3.14,SEC-E3.14,SEC-07,§5,rename,2,772 1577,exercise bank
+cloud-cybersecurity-companion.md,E3.15,SEC-E3.15,SEC-07,§5,rename,2,781 1584,exercise bank
+cloud-cybersecurity-companion.md,E3.16,SEC-E3.16,SEC-07,§5,rename,2,790 1591,exercise bank
+cloud-cybersecurity-companion.md,E4.1,SEC-E4.1,SEC-07,§5,rename,2,653 1600,exercise bank
+cloud-cybersecurity-companion.md,E4.2,SEC-E4.2,SEC-07,§5,rename,1,1607,exercise bank
+cloud-cybersecurity-companion.md,E4.3,SEC-E4.3,SEC-07,§5,rename,3,579 1614 2605,exercise bank
+cloud-cybersecurity-companion.md,E4.4,SEC-E4.4,SEC-07,§5,rename,3,588 1621 2606,exercise bank
+cloud-cybersecurity-companion.md,E4.5,SEC-E4.5,SEC-07,§5,rename,2,965 1628,exercise bank
+cloud-cybersecurity-companion.md,E4.6,SEC-E4.6,SEC-07,§5,rename,1,1635,exercise bank
+cloud-cybersecurity-companion.md,E4.7,SEC-E4.7,SEC-07,§5,rename,2,671 1642,exercise bank
+cloud-cybersecurity-companion.md,E4.8,SEC-E4.8,SEC-07,§5,rename,3,689 1649 2607,exercise bank
+cloud-cybersecurity-companion.md,E4.9,SEC-E4.9,SEC-07,§5,rename,2,597 1656,exercise bank
+cloud-cybersecurity-companion.md,E4.10,SEC-E4.10,SEC-07,§5,rename,2,606 1663,exercise bank
+cloud-cybersecurity-companion.md,E4.11,SEC-E4.11,SEC-07,§5,rename,2,615 1670,exercise bank
+cloud-cybersecurity-companion.md,E4.12,SEC-E4.12,SEC-07,§5,rename,2,624 1677,exercise bank
+cloud-cybersecurity-companion.md,E4.13,SEC-E4.13,SEC-07,§5,rename,2,633 1684,exercise bank
+cloud-cybersecurity-companion.md,E4.14,SEC-E4.14,SEC-07,§5,rename,2,642 1691,exercise bank
+cloud-cybersecurity-companion.md,E4.15,SEC-E4.15,SEC-07,§5,rename,3,662 1698 2608,exercise bank
+cloud-cybersecurity-companion.md,E4.16,SEC-E4.16,SEC-07,§5,rename,2,680 1705,exercise bank
+cloud-cybersecurity-companion.md,E4.17,SEC-E4.17,SEC-07,§5,rename,2,698 1712,exercise bank
+cloud-cybersecurity-companion.md,E4.18,SEC-E4.18,SEC-07,§5,rename,2,817 1719,exercise bank
+cloud-cybersecurity-companion.md,E4.19,SEC-E4.19,SEC-07,§5,rename,2,826 1726,exercise bank
+cloud-cybersecurity-companion.md,E4.20,SEC-E4.20,SEC-07,§5,rename,2,929 1733,exercise bank
+cloud-cybersecurity-companion.md,E4.21,SEC-E4.21,SEC-07,§5,rename,2,938 1740,exercise bank
+cloud-cybersecurity-companion.md,E5.1,SEC-E5.1,SEC-07,§5,rename,3,568 855 1749,exercise bank
+cloud-cybersecurity-companion.md,E5.2,SEC-E5.2,SEC-07,§5,rename,2,882 1756,exercise bank
+cloud-cybersecurity-companion.md,E5.3,SEC-E5.3,SEC-07,§5,rename,3,864 1763 2611,exercise bank
+cloud-cybersecurity-companion.md,E5.4,SEC-E5.4,SEC-07,§5,rename,2,920 1770,exercise bank
+cloud-cybersecurity-companion.md,E5.5,SEC-E5.5,SEC-07,§5,rename,3,911 947 1777,exercise bank
+cloud-cybersecurity-companion.md,E5.6,SEC-E5.6,SEC-07,§5,rename,4,891 956 1784 2612,exercise bank
+cloud-cybersecurity-companion.md,E5.7,SEC-E5.7,SEC-07,§5,rename,3,846 1791 2613,exercise bank
+cloud-cybersecurity-companion.md,E5.8,SEC-E5.8,SEC-07,§5,rename,2,873 1798,exercise bank
+cloud-cybersecurity-companion.md,E5.9,SEC-E5.9,SEC-07,§5,rename,2,900 1805,exercise bank
+cloud-cybersecurity-companion.md,E6.1,SEC-E6.1,SEC-07,§5,rename,3,985 1814 2616,exercise bank
+cloud-cybersecurity-companion.md,E6.2,SEC-E6.2,SEC-07,§5,rename,3,1012 1077 1821,exercise bank
+cloud-cybersecurity-companion.md,E6.3,SEC-E6.3,SEC-07,§5,rename,2,1247 1828,exercise bank
+cloud-cybersecurity-companion.md,E6.4,SEC-E6.4,SEC-07,§5,rename,4,1021 1068 1835 2617,exercise bank
+cloud-cybersecurity-companion.md,E6.5,SEC-E6.5,SEC-07,§5,rename,2,1041 1842,exercise bank
+cloud-cybersecurity-companion.md,E6.6,SEC-E6.6,SEC-07,§5,rename,3,808 1849 2618,exercise bank
+cloud-cybersecurity-companion.md,E6.7,SEC-E6.7,SEC-07,§5,rename,2,994 1856,exercise bank
+cloud-cybersecurity-companion.md,E6.8,SEC-E6.8,SEC-07,§5,rename,2,1003 1863,exercise bank
+cloud-cybersecurity-companion.md,E6.9,SEC-E6.9,SEC-07,§5,rename,2,1030 1870,exercise bank
+cloud-cybersecurity-companion.md,E6.10,SEC-E6.10,SEC-07,§5,rename,2,1050 1877,exercise bank
+cloud-cybersecurity-companion.md,E6.11,SEC-E6.11,SEC-07,§5,rename,2,1059 1884,exercise bank
+cloud-cybersecurity-companion.md,E6.12,SEC-E6.12,SEC-07,§5,rename,2,1086 1891,exercise bank
+cloud-cybersecurity-companion.md,E6.13,SEC-E6.13,SEC-07,§5,rename,2,1265 1898,exercise bank
+cloud-cybersecurity-companion.md,E7.1,SEC-E7.1,SEC-07,§5,rename,3,799 1097 1907,exercise bank
+cloud-cybersecurity-companion.md,E7.2,SEC-E7.2,SEC-07,§5,rename,3,1133 1915 2621,exercise bank
+cloud-cybersecurity-companion.md,E7.3,SEC-E7.3,SEC-07,§5,rename,4,230 1106 1124 1922,exercise bank
+cloud-cybersecurity-companion.md,E7.4,SEC-E7.4,SEC-07,§5,rename,3,1115 1929 2622,exercise bank
+cloud-cybersecurity-companion.md,E7.5,SEC-E7.5,SEC-07,§5,rename,4,378 1133 1936 2621,exercise bank
+cloud-cybersecurity-companion.md,E7.6,SEC-E7.6,SEC-07,§5,rename,2,707 1943,exercise bank
+cloud-cybersecurity-companion.md,E7.7,SEC-E7.7,SEC-07,§5,rename,2,1142 1950,exercise bank
+cloud-cybersecurity-companion.md,E7.8,SEC-E7.8,SEC-07,§5,rename,2,1151 1957,exercise bank
+cloud-cybersecurity-companion.md,E8.1,SEC-E8.1,SEC-07,§5,rename,4,1274 1294 1303 1966,exercise bank
+cloud-cybersecurity-companion.md,E8.2,SEC-E8.2,SEC-07,§5,rename,3,239 716 1973,exercise bank
+cloud-cybersecurity-companion.md,E8.3,SEC-E8.3,SEC-07,§5,rename,3,1171 1980 2625,exercise bank
+cloud-cybersecurity-companion.md,E8.4,SEC-E8.4,SEC-07,§5,rename,2,1180 1987,exercise bank
+cloud-cybersecurity-companion.md,E8.5,SEC-E8.5,SEC-07,§5,rename,3,405 1994 2627,exercise bank
+cloud-cybersecurity-companion.md,E8.6,SEC-E8.6,SEC-07,§5,rename,4,1189 1256 2001 2626,exercise bank
+cloud-cybersecurity-companion.md,E8.7,SEC-E8.7,SEC-07,§5,rename,2,1198 2008,exercise bank
+cloud-cybersecurity-companion.md,E8.8,SEC-E8.8,SEC-07,§5,rename,2,1207 2015,exercise bank
+cloud-cybersecurity-companion.md,E8.9,SEC-E8.9,SEC-07,§5,rename,2,1227 2022,exercise bank
+cloud-cybersecurity-companion.md,E8.10,SEC-E8.10,SEC-07,§5,rename,2,1283 2029,exercise bank
+cloud-cybersecurity-companion.md,E9,SEC-E9,SEC-08,§5 [resolved-by-default],rename,1,2644,bare level form; CR-E shorthand ('CR-E1…E8') excluded
+cloud-cybersecurity-companion.md,E9.1,SEC-E9.1,SEC-07,§5,rename,2,2238 2645,exercise bank
+cloud-cybersecurity-companion.md,E9.2,SEC-E9.2,SEC-07,§5,rename,2,2245 2646,exercise bank
+cloud-cybersecurity-companion.md,E9.3,SEC-E9.3,SEC-07,§5,rename,2,2252 2647,exercise bank
+cloud-cybersecurity-companion.md,E9.4,SEC-E9.4,SEC-07,§5,rename,1,2259,exercise bank
+cloud-cybersecurity-companion.md,E9.5,SEC-E9.5,SEC-07,§5,rename,2,2266 2648,exercise bank
+cloud-cybersecurity-companion.md,E9.6,SEC-E9.6,SEC-07,§5,rename,1,2273,exercise bank
+cloud-cybersecurity-companion.md,E9.7,SEC-E9.7,SEC-07,§5,rename,1,2280,exercise bank
+cloud-cybersecurity-companion.md,E9.8,SEC-E9.8,SEC-07,§5,rename,1,2287,exercise bank
+cloud-cybersecurity-companion.md,E9.9,SEC-E9.9,SEC-07,§5,rename,1,2294,exercise bank
+cloud-cybersecurity-companion.md,E9.10,SEC-E9.10,SEC-07,§5,rename,2,2301 2649,exercise bank
+cloud-cybersecurity-companion.md,E10.1,SEC-E10.1,SEC-07,§5,rename,1,2425,exercise bank
+cloud-cybersecurity-companion.md,E10.2,SEC-E10.2,SEC-07,§5,rename,1,2432,exercise bank
+cloud-cybersecurity-companion.md,E10.3,SEC-E10.3,SEC-07,§5,rename,1,2439,exercise bank
+cloud-cybersecurity-companion.md,E10.4,SEC-E10.4,SEC-07,§5,rename,1,2446,exercise bank
+cloud-cybersecurity-companion.md,E10.6,SEC-E10.6,SEC-07,§5,rename,1,2460,exercise bank
+cloud-cybersecurity-companion.md,E10.7,SEC-E10.7,SEC-07,§5,rename,1,2467,exercise bank
+cloud-cybersecurity-companion.md,E10.8,SEC-E10.8,SEC-07,§5,rename,1,2474,exercise bank
+cloud-cybersecurity-companion.md,E*,SEC-E*,SEC-09,§5,rename,1,51,wildcard in notation
+cloud-cybersecurity-companion.md,EA5 TLS / Phase 4 Armor,SEC-E1.4,SEC-00c,"C-10, §5",correction+rename,2,194 1398,mangled E1.4 (sequence E1.1–E1.3 / E2.1; TH-01 lab = attacker-model picker)
+cloud-cybersecurity-companion.md,PR,PV,SEC-06,§5,rename,1,1201,bare family code; only line 1201 (other bare 'PR' = pull request)
+cloud-cybersecurity-companion.md,PR-01,PV-01,SEC-05,§5,rename,7,1239 1241 1831 1832 1833 2291 2555,privacy
+cloud-cybersecurity-companion.md,PR-02,PV-02,SEC-05,§5,rename,7,1183 1250 2005 2277 2504 2559 2677,privacy
+cloud-cybersecurity-companion.md,PR-03,PV-03,SEC-05,§5,rename,4,1259 1901 1902 1903,privacy
+cloud-cybersecurity-companion.md,PR-04,PV-04,SEC-05,§5,rename,1,1268,privacy
+cloud-cybersecurity-companion.md,PR-05,PV-05,SEC-05,§5,rename,5,1239 1277 2032 2033 2034,privacy
+cloud-cybersecurity-companion.md,PR-*,PV-*,SEC-05,§5,rename,5,50 87 108 2675 2687,privacy
+cloud-cybersecurity-companion.md,T0,SEC-T0,SEC-12,§5,rename,1,1312,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T1,SEC-T1,SEC-12,§5,rename,2,428 1313,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T2,SEC-T2,SEC-12,§5,rename,3,428 1314 1323,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T3,SEC-T3,SEC-12,§5,rename,1,1315,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T4,SEC-T4,SEC-12,§5,rename,1,1316,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T5,SEC-T5,SEC-12,§5,rename,1,1317,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T6,SEC-T6,SEC-12,§5,rename,1,1318,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T7,SEC-T7,SEC-12,§5,rename,1,1319,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T8,SEC-T8,SEC-12,§5,rename,1,1320,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,T9,SEC-T9,SEC-12,§5,rename,1,1321,tiers T0–T9 (ATT&CK T1552.005 untouched)
+cloud-cybersecurity-companion.md,Z0,SEC-Z0,SEC-10,§5,rename,25,51 98 138 147 165 1331 1333 1340 1347 1354 1368 2359 …,paper drills
+cloud-cybersecurity-companion.md,ZB5 IAM,SEC-Z0.5,SEC-00b,"C-10, §5",correction+rename,1,1361,mangled Z0.5

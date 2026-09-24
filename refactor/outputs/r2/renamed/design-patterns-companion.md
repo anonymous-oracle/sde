@@ -27,17 +27,8 @@ This file is a complement to the Curriculum, not a second curriculum. It supplie
 6. **Check** — the module's check question; the learner answers before being told the answer.
 7. **Close** — tick the box; note anything shaky for a later recall.
 
-When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
-
 ### 0.4 Notation
-`F-nn` OOP foundations · `PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
-
-### 0.5 Learner teaching preferences (binding; copied unchanged from session-progress-ledger.md §5, invariant 4)
-
-- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
-- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
-- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a `Curriculum` module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
-- If a companion file references module IDs that don't exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+`PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
 
 ---
 
@@ -62,7 +53,7 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 | Curriculum module | Companion modules taught alongside | Notes |
 |---|---|---|
 | A3 (recall only, not retaught) | — | classes/objects/`self`/inheritance mechanics already covered there |
-| **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…08, then AP-01…10. ARCH-09…12 are taught in the A9 session (next row; C-16). `Curriculum` A7 splits this into teaching blocks A7.3–A7.7 (C-49) | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
+| **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…12 (minus ARCH-09…12 if A9 isn't done yet), then AP-01…10 | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
 | A9 Distributed Systems Theory | ARCH-09 (CQRS), ARCH-10 (Event Sourcing), ARCH-11 (Saga), ARCH-12 (Circuit Breaker/Strangler/Bulkhead) — gated behind A9 being complete | These are distributed-systems theory wearing OOP-pattern clothing; A9 owns the consistency/failure theory, this file owns the shape |
 | B3 Architecture Patterns & Well-Architected | ARCH-01…04 recalled when discussing HA/DR patterns, one line only | Different axis: B3 is *deployment* resilience, this file is *code* structure — do not conflate (rule 5) |
 | C2 Kubernetes | DP-14 Observer (recall) for controller watch-loops; DP-18 Chain of Responsibility (recall) for admission webhooks | The K8s "Operator pattern" itself is taught in C2 natively; cross-reference only |
@@ -70,8 +61,6 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 | System-design-primer companion | DP-14 Observer ↔ SD-28 Pub/Sub; PR-01 (SRP) ↔ SD-12 microservices; DP-09 Facade ↔ SD-11 reverse proxy | Cross-reference only, not a re-teach |
 
 ### 2.1 Overlap register — what is intentionally *not* re-taught here
-> **Refactor note (2026-09-24, §7):** the suite-wide register is `Curriculum` §0.3; this table is the patterns slice of it, and on a conflict §0.3 wins.
-
 | Concept | Already owned by | What this file adds instead |
 |---|---|---|
 | Classes, objects, `self`, constructors | A3 | Formal theory built on top (F-01…04) |
@@ -87,25 +76,21 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 A3 taught *how* to write a class. These four are the *why*, at the rigor a formal CS curriculum demands — "encapsulation means hiding stuff" fails a rigorous interview and doesn't actually guide a design decision.
 
 #### F-01 · Encapsulation
-- [ ] F-01
 **Formal statement:** bundling data and the operations on that data into a single unit, restricting direct access to that data from outside the unit.
 **Why it's not just "private variables":** encapsulation protects an **invariant** — a fact that must always be true about an object's state. A `BankAccount` with a public `balance` field lets any code set `balance = -1000000`, violating "balance is never negative." Routing every state change through a method (`withdraw()`) lets that method *enforce* the invariant.
 **Check:** what invariant does hiding `balance` behind `withdraw(amount)` protect, that a public field cannot?
 
 #### F-02 · Abstraction
-- [ ] F-02
 **Formal statement:** exposing only the essential features of an object relevant to the current context, hiding implementation complexity. Where encapsulation hides *data*, abstraction hides *complexity of behavior*.
 **The distinction that trips people up:** encapsulation is a *mechanism* (access control); abstraction is a *design concept* (what to expose at all). A class can be encapsulated (private fields) but a poor abstraction (40 pointless getters/setters that still force callers to think about internals) — conflating the two is a common interview trap.
 **Check:** describe a class that is encapsulated but is *not* a good abstraction.
 
 #### F-03 · Inheritance
-- [ ] F-03
 **Recall from A3**, formalized: inheritance models an **"is-a"** relationship. It serves two distinct purposes often conflated: (1) code reuse and (2) polymorphic substitutability (F-04). Reason (1) alone is a trap — "reuse via inheritance" without an honest is-a relationship is exactly how a hierarchy ends up violating the Liskov Substitution Principle (PR-03).
 **The load-bearing rule:** prefer **composition** ("has-a") over **inheritance** ("is-a") whenever the relationship isn't a true taxonomic one. A `Car` *has an* `Engine`; it is not a kind of `Engine`. This single rule is arguably the most consequential piece of OOP wisdom in this file — DP-08 (Decorator) and DP-13 (Strategy) exist specifically as composition-based alternatives to problems people instinctively solve with inheritance.
 **Check:** a `Square` inherits from `Rectangle`, overriding `setWidth`/`setHeight` to keep both sides equal. Why does this break substitutability even though "a square is-a rectangle" is mathematically true?
 
 #### F-04 · Polymorphism
-- [ ] F-04
 **Formal statement:** different objects respond to the same method call in ways appropriate to their own type. Two kinds worth distinguishing: **subtype polymorphism** (a `Dog` and `Cat`, both `Animal`s, implement `makeSound()` differently — what A3 covered) and **parametric polymorphism** (a generic `List<T>` works identically regardless of `T` — the *same* code, not different implementations). GoF-pattern polymorphism is almost always the subtype kind.
 **Why it matters for everything after this:** nearly every GoF Behavioral pattern is, mechanically, "define an interface, write several implementations, let the caller hold a reference to the interface and never know which implementation is running." That sentence *is* subtype polymorphism, used as a design tool.
 **Check:** in one sentence, why does polymorphism let you add a new `Animal` subclass without modifying code that already calls `makeSound()`? (This is Open/Closed, PR-02, arriving early.)
@@ -117,35 +102,30 @@ A3 taught *how* to write a class. These four are the *why*, at the rigor a forma
 Five principles from Robert C. Martin, each naming a specific way a class design rots, and the rule that prevents it.
 
 #### PR-01 · Single Responsibility Principle (SRP)
-- [ ] PR-01
 **Formal statement (Martin's sharper, later version):** a class should have only one reason to change — one *actor* (stakeholder) it answers to.
 **Why "does one thing" misleads:** the precise test is **actors**. If an `Employee` class's `calculatePay()` changes when Finance's rules change, and its `save()` changes when the DBA's schema changes, those are two different reasons to change, driven by two different stakeholders — split them, even though both feel "about an employee."
 **Cloud-relevant example:** a Cloud Function that validates input, calls a payment API, *and* writes an audit log serves three actors in one function — an audit-format change now risks silently breaking payment logic.
 **Check:** a `ReportGenerator` both formats a report as HTML and saves it to Cloud Storage. Name the two actors, and what happens to each responsibility once split.
 
 #### PR-02 · Open/Closed Principle (OCP)
-- [ ] PR-02
 **Formal statement (Bertrand Meyer, 1988):** software entities should be **open for extension, closed for modification** — add new behavior without editing existing, already-tested code.
 **The mechanism:** polymorphism (F-04). Instead of `calculateArea(shape)` with an `if/elif` chain on `shape.type`, give every shape an `area()` method behind a common interface — a new shape means a new class, not an edited function.
 **Direct link forward:** the formal justification for **DP-13 Strategy** and **DP-15 Template Method**.
 **Check:** rewrite this in words as OCP-compliant: `if (shape.type == "circle") {...} else if (shape.type == "square") {...}`. What do you add for a triangle, and what do you never touch?
 
 #### PR-03 · Liskov Substitution Principle (LSP)
-- [ ] PR-03
 **Formal statement (Barbara Liskov, 1987):** if `S` is a subtype of `T`, objects of `T` may be replaced with objects of `S` **without altering program correctness**.
 **Precise technical conditions:** a valid override may only **weaken preconditions** and may only **strengthen postconditions**, while preserving the parent's invariants. `Square extends Rectangle` violates this: `setWidth()` on a `Square` has a *stronger, surprising* side effect (height changes too) that breaks the postcondition "only width changed" that callers rely on.
 **Why it's the hardest SOLID letter in practice:** it's a *behavioral contract*, not something a compiler fully checks — violations surface only when a subclass is used polymorphically, exactly the situation OCP encourages.
 **Check:** a `Bird` base class has `fly()`; `Penguin` overrides it to throw. Which LSP condition is violated, and what's the actual fix (is "is-a" even the right relationship)?
 
 #### PR-04 · Interface Segregation Principle (ISP)
-- [ ] PR-04
 **Formal statement:** no client should be forced to depend on methods it does not use — many small, specific interfaces beat one large, general one.
 **Concrete failure:** a `Worker` interface with `work()` and `eat()` forces `RobotWorker` to implement a nonsensical `eat()`. Split into `Workable` and `Eatable`.
 **Relation to SRP:** ISP is SRP applied to interfaces — a "fat interface" is an SRP violation one level up.
 **Check:** a `Printer` interface has `print()`, `scan()`, `fax()`. A print-only inkjet is forced to implement all three. Redesign it.
 
 #### PR-05 · Dependency Inversion Principle (DIP)
-- [ ] PR-05
 **Formal statement:** high-level modules should not depend on low-level modules — both should depend on **abstractions**; abstractions should not depend on details, details should depend on abstractions.
 **What "inversion" means:** traditionally `PaymentService` (high-level) directly instantiates `StripeAPI` (low-level detail) — a downward dependency. DIP inverts this: `PaymentService` depends on a `PaymentGateway` **interface**; `StripeAPI` implements it. The *detail* now depends on the abstraction the high-level module defined.
 **Distinguish from Dependency Injection:** DIP is the *principle* ("depend on abstractions"); Dependency Injection is the *mechanism* handing the concrete implementation to the high-level module instead of it constructing one itself. DIP is the why, DI is the how — conflating them is extremely common and worth actively correcting.
@@ -168,20 +148,17 @@ Craig Larman's academically rigorous complement to SOLID: given a set of respons
 - **PR-13 Indirection:** assign responsibility to an intermediate object to avoid direct coupling — the formal root of DP-19 (Mediator) and DP-06 (Adapter).
 - **PR-14 Protected Variations:** wrap a stable interface around points of predicted instability — nearly the motivation clause behind every GoF Structural pattern.
 
-- [ ] PR-06 · [ ] PR-07 · [ ] PR-08 · [ ] PR-09 · [ ] PR-10 · [ ] PR-11 · [ ] PR-12 · [ ] PR-13 · [ ] PR-14
-
 **Check:** a `PaymentValidator` exists purely to check payment rules, representing no real-world "thing." Which GRASP principle justifies it, and which one answers "why isn't this just inside `Payment`?"
 
 ---
 
 ## 6. The GoF Catalog — 23 Design Patterns
 
-Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Structure** → **Trade-offs** → **Real-world example**.
+Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure** → **Trade-offs** → **Real-world example**.
 
 ### 6.1 Creational [Cr] — DP-01…05: how objects get created, so the system doesn't depend on the concrete classes it instantiates (PR-07 + PR-05 in action).
 
 **DP-01 · Singleton [Cr]**
-- [ ] DP-01
 - **Intent:** ensure a class has only one instance, with a global access point.
 - **Problem:** some resources (a single DB connection pool) genuinely must not be duplicated.
 - **Structure:** private constructor; a static `getInstance()` returning the same instance every call.
@@ -190,7 +167,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** why does a hand-written Singleton make unit testing harder — what can't you do to it that you could do to an injected object?
 
 **DP-02 · Factory Method [Cr]**
-- [ ] DP-02
 - **Intent:** define an interface for creating an object, letting subclasses decide which class to instantiate.
 - **Problem:** a class can't anticipate which concrete class it needs — the decision belongs to a subclass.
 - **Structure:** an abstract `Creator` with an abstract `factoryMethod()`; concrete `Creator` subclasses return different concrete `Product` types.
@@ -199,7 +175,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** how is Factory Method a direct application of PR-07 combined with PR-05?
 
 **DP-03 · Abstract Factory [Cr]**
-- [ ] DP-03
 - **Intent:** provide an interface for creating **families** of related objects without specifying concrete classes.
 - **Problem:** sometimes you need a whole matched set (a UI toolkit's `Button`+`Checkbox`+`Scrollbar` that must share one visual theme).
 - **Structure:** an `AbstractFactory` interface with one creation method per product; concrete factories (`WindowsFactory`, `MacFactory`) each produce the whole matched family.
@@ -208,7 +183,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** what breaks specifically if you need to add a `Slider` to every existing theme family?
 
 **DP-04 · Builder [Cr]**
-- [ ] DP-04
 - **Intent:** separate construction of a complex object from its representation, so the same process can build different representations.
 - **Problem:** a constructor with 10 optional parameters is unreadable and error-prone (the "telescoping constructor" problem).
 - **Structure:** a `Builder` with chained methods (each returning `this`), and a final `build()` assembling the result.
@@ -217,7 +191,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** why is a fluent Builder a better fit than 10 constructor parameters specifically when several are *optional*?
 
 **DP-05 · Prototype [Cr]**
-- [ ] DP-05
 - **Intent:** specify kinds of objects using a prototypical instance, creating new objects by **copying** it.
 - **Problem:** building from scratch is expensive, or the exact concrete class isn't known until runtime, but a similar instance already exists.
 - **Structure:** a `clone()` method; the caller copies a configured instance instead of re-running expensive setup.
@@ -228,7 +201,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 ### 6.2 Structural [St] — DP-06…12: composing classes/objects into larger structures while staying flexible (F-03's "favor composition," and PR-14).
 
 **DP-06 · Adapter [St]**
-- [ ] DP-06
 - **Intent:** convert one class's interface into another interface clients expect.
 - **Problem:** an existing (often unmodifiable) class's interface doesn't match what your code expects.
 - **Structure:** an `Adapter` implementing the target interface, internally delegating to the incompatible adaptee.
@@ -237,7 +209,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** how does Adapter differ from Facade (DP-09) in *intent*, though both "wrap" something?
 
 **DP-07 · Bridge [St]**
-- [ ] DP-07
 - **Intent:** decouple an abstraction from its implementation so both can vary independently.
 - **Problem:** combining "N abstractions × M implementations" via inheritance alone produces a combinatorial subclass explosion.
 - **Structure:** an `Abstraction` holds a reference to an `Implementor` interface (composition) — `Shape` holds a `DrawingAPI`; new shapes and new drawing APIs each grow independently.
@@ -246,7 +217,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** without Bridge, how many subclasses for 3 shapes × 4 rendering engines? With Bridge?
 
 **DP-08 · Composite [St]**
-- [ ] DP-08
 - **Intent:** compose objects into tree structures for part-whole hierarchies; treat individual objects and compositions uniformly.
 - **Problem:** code handling both a single item and a group of items ends up full of `if (isGroup)` checks.
 - **Structure:** a common `Component` interface implemented by both `Leaf` and `Composite` (which holds other `Component`s) — calling a method on a folder recursively applies it to everything inside.
@@ -255,7 +225,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** why does `totalSize()` on a top-level folder work correctly without the caller checking "file or folder" itself?
 
 **DP-09 · Facade [St]**
-- [ ] DP-09
 - **Intent:** provide a unified, higher-level interface to a subsystem, making it easier to use.
 - **Problem:** a client using a complex subsystem (compiling: lexer→parser→optimizer→codegen) shouldn't need to orchestrate all four steps.
 - **Structure:** one `Facade` exposing a simple method that internally coordinates the subsystem; subsystem classes remain accessible for those needing finer control.
@@ -264,7 +233,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** does a Facade remove the subsystem's original interfaces, or only add a simpler option alongside them — and why does that matter?
 
 **DP-10 · Flyweight [St]**
-- [ ] DP-10
 - **Intent:** use sharing to support large numbers of fine-grained objects efficiently, separating **intrinsic** (shared) from **extrinsic** (context-specific) state.
 - **Problem:** instantiating millions of similar objects wastes memory if each duplicates identical data.
 - **Structure:** a `Flyweight` holds only intrinsic state and is shared; extrinsic state is passed in by the client at use-time, never stored in the flyweight.
@@ -273,7 +241,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** name one intrinsic and one extrinsic piece of state in the text-editor example.
 
 **DP-11 · Proxy [St]**
-- [ ] DP-11
 - **Intent:** provide a surrogate for another object to control access to it.
 - **Problem:** you need access control, lazy loading, caching, or logging around an object without changing it or its callers.
 - **Structure:** a `Proxy` implementing the same interface as the `RealSubject`, adding logic before/after delegating.
@@ -282,7 +249,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** state the one-word difference in *purpose* for Proxy vs. Adapter vs. Decorator, given near-identical shapes.
 
 **DP-12 · Decorator [St]**
-- [ ] DP-12
 - **Intent:** attach additional responsibilities to an object dynamically — a flexible alternative to subclassing.
 - **Problem:** subclassing every combination of optional feature (`CoffeeWithMilkAndSugar…`) produces the same explosion Bridge solves on a different axis.
 - **Structure:** `Decorator` implements the same interface as the wrapped `Component`, adding behavior before/after delegating — decorators stack, each adding one responsibility.
@@ -293,7 +259,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 ### 6.3 Behavioral [Bh] — DP-13…23: algorithms and responsibility/communication between objects.
 
 **DP-13 · Strategy [Bh]**
-- [ ] DP-13
 - **Intent:** define a family of algorithms, encapsulate each, make them interchangeable.
 - **Problem:** the direct application of PR-02: an `if/elif` chain picking behavior must be edited for every new behavior.
 - **Structure:** a `Strategy` interface; concrete strategies; a `Context` holds a `Strategy` reference, swappable at runtime.
@@ -302,7 +267,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** what new class do you write to add a payment method, and what existing code stays untouched?
 
 **DP-14 · Observer [Bh]**
-- [ ] DP-14
 - **Intent:** define a one-to-many dependency so when one object (`Subject`) changes, all dependents (`Observer`s) are notified automatically.
 - **Problem:** many objects need to react to a state change without the `Subject` being tightly coupled to all of them.
 - **Structure:** `Subject` maintains `Observer`s via `attach()`/`detach()`/`notify()`; each `Observer` implements `update()`.
@@ -311,7 +275,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** what does a `Subject`/`Observer` pair share structurally with a Pub/Sub topic, and what differs about the failure modes?
 
 **DP-15 · Template Method [Bh]**
-- [ ] DP-15
 - **Intent:** define an algorithm's skeleton in a method, deferring some steps to subclasses.
 - **Problem:** several classes share an algorithm's shape but need different behavior for one or two steps.
 - **Structure:** a base class's `final templateMethod()` calls several steps in fixed order; some are abstract "hooks" subclasses must implement.
@@ -320,7 +283,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** what varies via composition in Strategy, and what varies via inheritance in Template Method — when would you deliberately pick the latter?
 
 **DP-16 · State [Bh]**
-- [ ] DP-16
 - **Intent:** let an object alter its behavior when its internal state changes — it appears to change class.
 - **Problem:** behavior driven by a `status` field scatters `if (status == ...)` across every method.
 - **Structure:** a `State` interface; concrete states each implement behavior appropriately, including transitioning the context to the next state.
@@ -329,7 +291,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** what does a Strategy object *not* do that a State object does?
 
 **DP-17 · Command [Bh]**
-- [ ] DP-17
 - **Intent:** encapsulate a request as an object, enabling queuing, logging, and undo.
 - **Problem:** decouple "what triggers an action" from "what performs it," often needing to queue/log/undo.
 - **Structure:** a `Command` interface with `execute()` (often `undo()`); an `Invoker` triggers commands without knowing what they do.
@@ -338,7 +299,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** why does representing an action as an object make "undo" possible in a way a direct method call cannot?
 
 **DP-18 · Chain of Responsibility [Bh]**
-- [ ] DP-18
 - **Intent:** give more than one object a chance to handle a request; chain receivers and pass the request along until handled.
 - **Problem:** a request might need one of several handlers, but the sender shouldn't know which or in what order.
 - **Structure:** each `Handler` holds a reference to the next; `handle()` either processes or passes it along.
@@ -347,7 +307,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** what plays "the request" and what plays "each handler" in an HTTP middleware chain?
 
 **DP-19 · Mediator [Bh]**
-- [ ] DP-19
 - **Intent:** encapsulate how a set of objects interact, promoting loose coupling.
 - **Problem:** many objects communicating directly with each other produce a tangled many-to-many web.
 - **Structure:** a `Mediator` all colleagues talk *to* instead of each other directly.
@@ -356,7 +315,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** with 6 UI components all reacting to each other, how many direct reference pairs exist without a Mediator, versus with one?
 
 **DP-20 · Iterator [Bh]**
-- [ ] DP-20
 - **Intent:** access elements of an aggregate sequentially without exposing its underlying representation.
 - **Problem:** code walking a collection shouldn't need to know if it's an array, list, or tree.
 - **Structure:** an `Iterator` interface (`hasNext()`, `next()`); the aggregate returns one via `createIterator()`.
@@ -365,7 +323,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** why does hiding array-vs-linked-list behind a common iterator let you swap the implementation later without breaking loops over it?
 
 **DP-21 · Memento [Bh]**
-- [ ] DP-21
 - **Intent:** capture and externalize an object's internal state, without violating encapsulation, so it can be restored later.
 - **Problem:** implementing undo requires saving past state, but that state is (correctly) private.
 - **Structure:** the `Originator` creates a `Memento`; a `Caretaker` stores mementos but never looks inside them.
@@ -374,7 +331,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** why does a `Caretaker` that "can't look inside" a memento preserve encapsulation in a way `getInternalState()` would not?
 
 **DP-22 · Visitor [Bh]**
-- [ ] DP-22
 - **Intent:** represent an operation over elements of an object structure, adding new operations without changing element classes.
 - **Problem:** a stable hierarchy (an AST) keeps needing new operations (print, evaluate, optimize) without editing every node class each time.
 - **Structure:** each element implements `accept(visitor)`, calling back `visitor.visitX(this)` — "double dispatch."
@@ -383,7 +339,6 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 - **Check:** state precisely what becomes easy to add (operations) and what becomes hard (element types), and why that's the opposite of Strategy.
 
 **DP-23 · Interpreter [Bh]**
-- [ ] DP-23
 - **Intent:** given a grammar, define a representation for it plus an interpreter that evaluates sentences in it.
 - **Problem:** repeatedly evaluating expressions in a small, well-defined grammar.
 - **Structure:** each grammar rule becomes a class implementing `interpret(context)`; a sentence becomes a tree of these (often built with Composite, DP-08).
@@ -398,49 +353,36 @@ Format per pattern: **Intent** (paraphrased from GoF) → **Problem** → **Stru
 Where §6 shaped classes, this section shapes *systems* — often built by applying several §4–§6 tools at once, at scale. Per stitching rule 5: don't confuse with B3's deployment-resilience patterns.
 
 **ARCH-01 · Layered (N-Tier) Architecture** — horizontal layers (Presentation→Business Logic→Data Access), each calling only the layer below. Simple and default for a reason, but strict layering forces pass-through code and lets business logic quietly leak into data-access over time.
-- [ ] ARCH-01
 
 **ARCH-02 · Hexagonal Architecture (Ports & Adapters)** — Alistair Cockburn. The application core defines **ports** (interfaces expressing what it needs); external technology plugs in via **adapters** implementing them. The core knows nothing about the database, framework, or external APIs. DIP (PR-05) applied at whole-application scale.
-- [ ] ARCH-02
 
 **ARCH-03 · Onion Architecture** — Jeffrey Palermo. Concentric rings: Domain Model at center, Domain Services, Application Services, Infrastructure/UI outermost. Dependencies point only inward. Structurally near-identical to Hexagonal; the two names largely describe the same idea from different angles.
-- [ ] ARCH-03
 
 **ARCH-04 · Clean Architecture** — Robert C. Martin. Synthesizes Hexagonal/Onion: **Entities** → **Use Cases** → **Interface Adapters** → **Frameworks & Drivers**. **The Dependency Rule:** source dependencies point only inward; an inner circle may know nothing about an outer one, not even its name. Data crossing a boundary must be framework-independent (plain structures), never a leaking ORM entity or HTTP object.
-- [ ] ARCH-04
 **Why it matters practically:** a Clean Architecture codebase can swap its database, web framework, or UI without touching business logic, because business logic never depended on any of them.
 **Check:** why is it a dependency-rule violation for a `UseCase` to import an ORM's `@Entity` annotation onto its own domain object, even for "just one annotation"?
 
 **ARCH-05 · MVC / MVP / MVVM family** — **MVC:** `Model` holds data/logic, `View` renders, `Controller` handles input; the View typically observes the Model (DP-14). **MVP:** the View is passive; a `Presenter` handles all UI logic, updating the View via an interface — more testable than MVC's often-blurry line. **MVVM:** a `ViewModel` exposes state the View **data-binds** to automatically. All three apply PR-08 (Controller) and DP-14 (Observer) at UI-architecture scale.
-- [ ] ARCH-05
 
 **ARCH-06 · Domain-Driven Design — tactical building blocks** — Eric Evans.
-- [ ] ARCH-06
 - **Entity:** defined by identity, not attributes.
 - **Value Object:** defined entirely by attributes, no identity, typically immutable.
 - **Aggregate:** a cluster of Entities/Value Objects as one consistency boundary, with a single **Aggregate Root** as the only external entry point.
 - **Repository:** collection-like access to Aggregates, hiding persistence (PR-12 in action).
-  - *Owner pointer (C-62):* Repository's definition is owned by ARCH-07 (Fowler, PoEAA). Here, recall it in one line and add the DDD constraint: one repository per aggregate root.
 - **Domain Event:** something significant that happened, often triggering decoupled side effects (DP-14 at domain scale).
 - **Bounded Context:** an explicit boundary within which a model is internally consistent — the same word can mean different things in different contexts, deliberately.
 
 **ARCH-07 · Enterprise patterns (Fowler, PoEAA)** — **Repository:** collection-like interface between domain and data-mapping. **Unit of Work:** tracks changes during a transaction, writes them out atomically. **DTO:** a plain, no-behavior object moving data across a boundary — deliberately not the domain Entity, avoiding structure leakage (connects to Clean Architecture's boundary rule). **Service Layer:** defines an application boundary with use-case-shaped operations.
-- [ ] ARCH-07
 
 **ARCH-08 · Dependency Injection & IoC Containers** — recall PR-05: DIP is the principle, DI is the mechanism. **Constructor injection** (generally preferred — dependencies are visible, impossible to forget), **setter injection**, **interface injection**. An **IoC Container** automates wiring at scale, typically at app startup.
-- [ ] ARCH-08
 
 **ARCH-09 · CQRS** *(gated behind A9)* — separate the **write** model (Commands, invariant-enforcing) from the **read** model (Queries, often denormalized). Not universal — earns its keep when read/write shapes and scale diverge significantly; the read model may lag the write model, which is SD-05's eventual consistency, reapplied.
-- [ ] ARCH-09
 
 **ARCH-10 · Event Sourcing** *(gated behind A9)* — store the sequence of **events** (`OrderCreated`, `ItemAdded`) rather than current state; current state is derived by replaying. Gains a full audit trail and point-in-time reconstruction; costs cheap "current state" queries (hence the common pairing with ARCH-09) and requires periodic **snapshots** to bound replay cost.
-- [ ] ARCH-10
 
 **ARCH-11 · Saga Pattern** *(gated behind A9)* — manages a distributed transaction across services (no cross-service ACID, per A9's CAP material) via local transactions each with a **compensating transaction** to undo on failure. **Choreography** (each service reacts to events — Observer-shaped) vs. **orchestration** (one coordinator calls each step — Mediator-shaped).
-- [ ] ARCH-11
 
 **ARCH-12 · Resilience micro-patterns** *(gated behind A9)* — **Circuit Breaker:** wraps a remote call; after enough failures, "opens" and fails fast for a cooldown, protecting the caller. **Strangler Fig:** incrementally migrate a legacy system by routing growing traffic shares to new services via a facade/proxy layer until legacy is retired — the formal pattern behind C4's legacy-migration-via-CI/CD question. **Bulkhead:** isolate resources per downstream dependency so one failing dependency can't exhaust resources needed elsewhere.
-- [ ] ARCH-12
 
 ---
 
@@ -458,8 +400,6 @@ Most arise from a *correct* pattern applied poorly, or a principle ignored under
 - **AP-08 Magic Numbers/Strings:** unexplained literals (`if (status == 3)`) — a small-scale Encapsulation failure, since the meaning is hidden nowhere.
 - **AP-09 Shotgun Surgery:** one logical change requires editing many unrelated classes — the mirror image of SRP done right.
 - **AP-10 Interface Bloat:** the ISP (PR-04) violation restated as a smell — an interface with far more methods than any implementer needs.
-
-- [ ] AP-01 · [ ] AP-02 · [ ] AP-03 · [ ] AP-04 · [ ] AP-05 · [ ] AP-06 · [ ] AP-07 · [ ] AP-08 · [ ] AP-09 · [ ] AP-10
 
 **Check:** a `UserManager` has 40 methods covering auth, email, reports, and DB migrations. Name the anti-pattern and the SOLID violation at its root.
 
@@ -497,28 +437,3 @@ Most arise from a *correct* pattern applied poorly, or a principle ignored under
 - GRASP (§5) is from Larman, *Applying UML and Patterns* — less universally taught than SOLID/GoF, included for full theoretical rigor.
 - ARCH-02/03 (Hexagonal/Onion) predate and directly informed ARCH-04 (Clean Architecture) — treat the three as one lineage, not three unrelated ideas.
 - `(debated)` flags (Singleton, primarily) reflect genuine, ongoing industry disagreement — present both sides, don't adjudicate.
-
-
----
-
-## Pre-refactor text archive (D3)
-
-*Refactor-authored section (2026-09-24).* Decision D3 says content may be re-arranged but never removed. Each block below is the exact pre-refactor text (after the §5 ID renames) of a line that R2 corrected or regenerated. It is kept for provenance only and is **not authoritative**; the live text above wins. Tooling excludes this section from ID and anchor checks.
-
-**D3-01** · C-64 · §0.4 notation
-
-```text
-`PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
-```
-
-**D3-02** · C-16 · §2 A7 row
-
-```text
-| **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…12 (minus ARCH-09…12 if A9 isn't done yet), then AP-01…10 | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
-```
-
-**D3-03** · C-60 · §6 format line
-
-```text
-Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure** → **Trade-offs** → **Real-world example**.
-```
