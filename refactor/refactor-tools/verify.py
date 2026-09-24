@@ -18,12 +18,13 @@ It runs, in order:
                  every R2 journal edit of that conflict is traced to live text through the R2b journal.
   8. lints       §12.7: tables not ragged; every "§x" resolves; repeated numeric facts agree; ID titles (heuristic,
                  informational); the parent named as a file-style name.
-  9. holds       items that are not §8.2 gate items but are open with the learner (D8).
+  9. R4          C-49 teaching blocks (budget.py); C-65 prerequisite DAG (dag_check.py → dag.json); D15 bare
+                 'Curriculum' only as a name; D16 no track M, U or S; C-48 volatility register (volatility.py).
 
 Hard gate (R3): zero lost items, zero undefined references, zero orphans, zero file names or links; every other GATE
 row must pass. Rows marked INFO or HOLD are reported, never counted as passes.
 
-Usage: verify.py ROOT [--stage R3|R10] [--no-rebuild]
+Usage: verify.py ROOT [--stage R3|R4|R10] [--no-rebuild]
   → writes ROOT/manifest-after.json, ROOT/manifest-after-summary.md, ROOT/verification-report-<stage>.md; exit 1 on
     any GATE failure. Deterministic: no timestamps; every list is sorted or in a fixed order.
 """
@@ -35,7 +36,7 @@ import re
 import subprocess
 import sys
 
-ROOT = os.path.abspath(next((a for a in sys.argv[1:] if not a.startswith("--") and a not in ("R3", "R10")), "."))
+ROOT = os.path.abspath(next((a for a in sys.argv[1:] if not a.startswith("--") and a not in ("R3", "R4", "R10")), "."))
 STAGE = sys.argv[sys.argv.index("--stage") + 1] if "--stage" in sys.argv else "R3"
 TOOLS = os.path.join(ROOT, "refactor-tools")
 sys.path.insert(0, TOOLS)
@@ -108,11 +109,7 @@ def rebuild():
         if not m:
             continue
         st, name, ev = m.groups()
-        if name.startswith("D8 "):
-            row("9 holds", "D8 legacy file deleted (audit_r2b)", "HOLD" if st == "FAIL" else "PASS",
-                ev + " — kept on purpose until the learner answers refactor-state.md §10 question 2", "HOLD")
-        else:
-            row("2 rebuild + decisions", name, st, ev[:300])
+        row("2 rebuild + decisions", name, st, ev[:300])   # D8's hold ended with D14 (keep the legacy file)
 
 
 # ---------------------------------------------------------------- 3. folded tools
@@ -236,6 +233,11 @@ def references(after):
             if f == "sql-databases-companion.md" and re.fullmatch(r"T[1-6]", tok) and \
                     any(mask[i] and re.search(rf"\b{tok}\b", l) for i, l in enumerate(sql)):
                 ex.setdefault("SQL tx_tests scenario label T<n>, defined in the kit's tx_tests code (RD-6)", []).append(tok)
+                continue
+            if f == "sql-databases-companion.md" and tok in ("S1", "S2") and only_code and \
+                    all(re.search(rf'"[^"]*\b{tok}\b[^"]*"', sql[n - 1]) for n in allrefs):
+                ex.setdefault("SQL kit session label S1/S2: inside a string literal in the kit's Python (the session "
+                              "helper's name and its printouts), code only, every occurrence", []).append(tok)
                 continue
             if f == "sql-databases-companion.md" and tok in ("SQL-T-HS", "SQL-T-UG", "SQL-T-GR") and \
                     any(l.startswith("- Tiers:") and f"`{tok}`" in l for l in sql):
@@ -464,9 +466,21 @@ def go_d3():
         else "FAIL", f"{sum(1 for l in old if l.strip())} lines; {kept} extended in R2c-bis and kept in records/; "
         f"lost {len(lost)} {lost[:3]}")
     work = rd("work", "go-language-companion.md")
-    miss = [l[:80] for l in src.split("\n") if l.strip() and not l.startswith("@@") and l.strip() not in work]
-    row("6 Go D3", "every line of the authored Go source is in work/ (markers replaced)", "PASS" if not miss else "FAIL",
-        f"missing {len(miss)} {miss[:3]}")
+    # a line the build rewrote after assembly (R4 rules) counts only if the journal holds it as a before-line for the
+    # Go file AND records/ keeps it verbatim
+    J = [json.loads(l) for l in open(os.path.join(ROOT, "outputs", "r2b", "journal.jsonl"), encoding="utf-8")]
+    jb = {b for j in J if j["file"] == "go-language-companion.md" for b in j["before"]}
+    miss, rew = [], 0
+    for l in src.split("\n"):
+        if not l.strip() or l.startswith("@@") or l.strip() in work:
+            continue
+        if l in jb and l.strip() in rec:
+            rew += 1
+        else:
+            miss.append(l[:80])
+    row("6 Go D3", "every line of the authored Go source is in work/ (markers replaced), or was rewritten by a "
+        "journaled build rule and is kept verbatim in records/", "PASS" if not miss else "FAIL",
+        f"{rew} rewritten by journaled rules (R4) and kept in records/; missing {len(miss)} {miss[:3]}")
 
 
 # ---------------------------------------------------------------- 7. conflict register (audit_r2 probes)
@@ -514,6 +528,16 @@ def lineage(cid):
     return res
 
 
+def c08_substance(cur, sql):
+    """C-08 test: 'the gate tables resolve' — re-read under D16 (no M/U/S): every anchor resolves to a real module"""
+    heads = set(re.findall(r"^#{1,6} ([A-D]\d{1,2})\b", cur, re.M))
+    s2 = re.search(r"^## 2\. .*?(?=^## 3\.|\Z)", sql, re.M | re.S).group(0)
+    first = [l.split("|")[1] for l in s2.split("\n") if l.startswith("| **")]
+    ids = {t for c in first for t in re.findall(r"(?<![\w-])([A-DMUS]\d{1,2})(?![\w-])", c)}
+    return ("`SQL-T-HS` high-school" in sql and "**SQL-T-UG gate items**" in sql and ids and ids <= heads
+            and "Floating point: IEEE 754" in cur and "IEEE recall from A2" in sql)
+
+
 def conflicts():
     a = load_audit_r2()
     cur, pri, sql, dp, sec = (rd("work", f) for f in ORIG5)
@@ -552,14 +576,28 @@ def conflicts():
                  "rule 0.4.5 mastery states"),
         "C-74": (lambda: "says explicitly when unsure" in cur, "rule 0.4.7 accuracy standard"),
         "C-75": (lambda: "- Overrides: the learner may skip" in cur, "rule 0.4.1 overrides"),
+        "C-08": (lambda: c08_substance(cur, sql), "D16 withdrew M/U/S, so the gates re-anchor to modules that exist: "
+                 "SQL tier legend present; the SQL-T-UG gate row present; every main-course module ID in the SQL "
+                 "§2 anchor column is a main-course heading; the IEEE material (M.NS) is taught in A2 and PQ-03 "
+                 "recalls it from A2"),
         "C-NEW-01": (lambda: "Source material:" not in sql and "Source material:" in rd("records", "sql-databases-companion.md"),
                      "D6 moved the `Source material:` lines to records/ (D1 borrowing is recorded there)"),
         "C-NEW-06": (lambda: all("**0.4.2 Suite Session Protocol" in t for t in (pri, sql, dp, sec)), "as C-29"),
     }
     NOTE = {c: "conflict tag dropped from course text (D6 V5); the note itself is traced below" for c in
             ("C-17", "C-18", "C-19", "C-20", "C-21", "C-48")}
+    def c65():
+        import dag_check
+        r = dag_check.check(*dag_check.build(ROOT))
+        ok = not (r["cycles"] or r["order_bad"] or r["unknown"] or r["ledger_bad"])
+        return ("PASS" if ok else "FAIL"), f"R4 probe: dag_check.py — {r['nodes']} nodes, {r['edges']} edges, clean: {ok}"
+    OWNED = {"C-65": c65} if STAGE != "R3" else {}   # deferred conflicts whose owner phase has now run
     rows = []
     for cid, ph, probe, note in a.REG + a.CNEW:
+        if probe is None and cid in OWNED:
+            st, ev = OWNED[cid]()
+            rows.append((cid, ph, st, ev))
+            continue
         if probe is None:
             rows.append((cid, ph, "deferred" if not ph.startswith("D2") else "D2", note or "—"))
             continue
@@ -685,12 +723,91 @@ def lints():
             "The R3 run's 49 were read one by one: all use '·' or '—' as a separator or a description, none renames "
             "a module" if hits == 49 else "The count differs from the 49 read at R3: the new candidates are unread"),
         "INFO")
-    bare = {SHORT[f]: len(re.findall(r"(?<![\"\w])Curriculum(?![\"\w])", T[f])) for f in COURSE}
-    row("8 lints", "the parent is named one way ('the main course'); bare 'Curriculum' left from R2's gcp.md rewrite",
-        "INFO", f"bare 'Curriculum' (not the quoted title): {bare}. D11's binding reading removes only the backticked "
-                "file-style name, so this is a naming inconsistency, not a D11 failure; proposed for R4", "INFO")
-    row("8 lints", "global prerequisite DAG (§12.5, dag_check.py)", "NOT RUN",
-        "dag.json does not exist yet: the audit assigns C-65 (the DAG) to R4. Not claimed as a pass", "INFO")
+
+
+# ---------------------------------------------------------------- R4 (C-49, C-65, D15, D16)
+def r4_checks():
+    import budget
+    import dag_check
+    T = {f: rd("work", f) for f in COURSE}
+    cur = T["Curriculum.md"].split("\n")
+    # C-49: a module over 20 bound concepts is split into teaching blocks, and its block note places every bound card
+    own, bound = budget.count(ROOT)
+    over, miss = [], []
+    for m in own:
+        if own[m] + len(bound[m]) <= 20:
+            continue
+        over.append(f"{m} {own[m] + len(bound[m])}")
+        note = [l for l in cur if re.match(rf"^> \*\*Note:\*\* {m} binds", l)]
+        named = set()
+        for l in note:
+            named |= set(re.findall(r"(?<![\w-])([A-Z]{1,4}(?:-[A-Z])?-\d{1,2}[a-z]?)(?![\w-])", l)) | budget.expand(l)
+        lost = sorted(set(bound[m]) - named)
+        if not note or lost:
+            miss.append(f"{m}: {'no block note' if not note else lost[:6]}")
+    row("9 R4", "C-49: every module over 20 bound concepts has a teaching-block note that places every bound card "
+        "(budget.py count; explicit IDs and ranges)", "PASS" if not miss else "FAIL",
+        f"over 20: {over}; unplaced {miss}")
+    # C-65: the global prerequisite DAG
+    dag, reg = dag_check.build(ROOT)
+    r = dag_check.check(dag, reg)
+    open(os.path.join(ROOT, "dag.json"), "w", encoding="utf-8").write(json.dumps(dag, indent=1, ensure_ascii=False) + "\n")
+    row("9 R4", "C-65 §12.5 DAG (dag_check.py → dag.json): no cycles; no PRIMARY before a hard prerequisite; no unknown "
+        "ID; the ledger's done-set (empty under D2) respects the hard edges", "PASS" if not (r["cycles"] or r["order_bad"] or r["unknown"]
+                                                                              or r["ledger_bad"]) else "FAIL",
+        f"{r['nodes']} nodes, {r['edges']} edges {r['by_kind']}; cycles {r['cycles'][:2]}; order checked "
+        f"{r['order_checked']}, bad {r['order_bad'][:4]}; unknown {r['unknown'][:6]}; ledger {r['ledger_bad'][:4]}")
+    row("9 R4", "C-65: 'helps first' edges that run against a must-come-first path; IDs with no main-course PRIMARY "
+        "(ordered by their own gates only)", "INFO", f"soft against hard {r['soft_against_hard']}; unplaced "
+        f"{len(r['unplaced'])} (Go GO-15…GO-29 and capstones follow the Go §12 order; SQL levels and capstones follow "
+        "§6; cyber capstones follow §6)", "INFO")
+    # D15: bare 'Curriculum' is a name; a pointer must land on real material, never stand in for it
+    heads = set(re.findall(r"^### ([A-D]\d{1,2})\. ", T["Curriculum.md"], re.M))
+    parts = set(re.findall(r"^## PART ([IVX]+) ", T["Curriculum.md"], re.M))
+    vcat = {"V-COMP", "V-STOR", "V-NET", "V-DATA", "V-AI", "V-SEC", "V-OPS"}
+    bare = re.compile(r'(?<!["\w])Curriculum(?!["\w])')
+    unq = re.compile(r"(?i)\b(?:see|refer to|per|as in|covered in|described in|detailed in|explained in)\s+(?:the\s+)?"
+                     r"Curriculum\b(?!'s| (?:module |Part )?[A-D]?\d| Part)")
+    tgt = re.compile(r"Curriculum (?:Part ([IVX]+)\b|((?:[A-D]\d{1,2}|V-[A-Z]+)(?:\s*/\s*(?:[A-D]\d{1,2}|V-[A-Z]+))*))")
+    n, bad, per = 0, [], {}
+    for f in COURSE:
+        L = T[f].split("\n")
+        mk = code_mask(L)
+        for i, l in enumerate(L, 1):
+            if mk[i - 1]:
+                continue
+            k = len(bare.findall(l))
+            n += k
+            per[SHORT[f]] = per.get(SHORT[f], 0) + k
+            if unq.search(l):
+                bad.append(f"{SHORT[f]}:{i} unqualified pointer")
+            for x in tgt.finditer(l):
+                if x.group(1) and x.group(1) not in parts:
+                    bad.append(f"{SHORT[f]}:{i} Part {x.group(1)}")
+                for t in re.split(r"\s*/\s*", x.group(2) or ""):
+                    if t and t not in heads and t not in vcat:
+                        bad.append(f"{SHORT[f]}:{i} {t}")
+    row("9 R4", "D15: bare 'Curriculum' is only a name — no 'see Curriculum' without a target, and every "
+        "'Curriculum <module / Part>' pointer lands on a real main-course module or Part", "PASS" if not bad else "FAIL",
+        f"{n} bare occurrences {per}; failures {bad[:8]}. Whether the named module covers the exact topic is the "
+        "overlap register's claim (D7), not re-judged here")
+    # D16: no track M, U or S survives outside code
+    hits = []
+    for f in COURSE:
+        L = T[f].split("\n")
+        mk = code_mask(L)
+        for i, l in enumerate(L, 1):
+            if mk[i - 1]:
+                continue
+            for x in re.finditer(r"(?<![\w-])([MUS]\d{1,2})(?![\w-])|\b[Tt]racks? [MUS]\b", l):
+                if x.group(1) == "S3" and re.search(r"RDS|DynamoDB|EBS|Blob Storage|Cloud Storage|Redshift|AWS|ELB", l):
+                    continue   # Amazon S3, the object store
+                hits.append(f"{SHORT[f]}:{i} {x.group(0)}")
+    rc, out = run([sys.executable, os.path.join(TOOLS, "volatility.py"), "."])
+    row("9 R4", "C-48 §12.3 volatility register (volatility.py → volatility-register.md) from the parts' own markers",
+        "INFO", (out[-1] if out else f"exit {rc}") + ". Built, not re-verified: no live source was read", "INFO")
+    row("9 R4", "D16: no track M, U or S token outside code (Amazon S3 excepted, on lines that name AWS storage)",
+        "PASS" if not hits else "FAIL", f"{len(hits)} {hits[:8]}")
 
 
 # ---------------------------------------------------------------- report
@@ -705,6 +822,7 @@ def main():
     go_d3()
     crows = conflicts()
     lints()
+    r4_checks()
     gate = [r for r in ROWS if r[2] == "GATE"]
     fails = [r for r in gate if not r[3].startswith("PASS")]
     esc = lambda s: str(s).replace("|", "\\|").replace("\n", " ")

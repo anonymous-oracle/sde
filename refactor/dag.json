@@ -1,0 +1,4349 @@
+{
+ "schema": "dag/1",
+ "edges": [
+  {
+   "from": "A1",
+   "to": "SD-36",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A10",
+   "to": "SD-35",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A10",
+   "to": "SEC-CAP1",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "A2",
+   "to": "SD-00",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A2",
+   "to": "SD-03",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A2",
+   "to": "SD-07",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A4",
+   "to": "SD-13",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A4",
+   "to": "SD-19",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A4",
+   "to": "SD-21",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A4",
+   "to": "SD-24",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A4",
+   "to": "SD-38",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A5",
+   "to": "SD-01",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A5",
+   "to": "SD-08",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A5",
+   "to": "SD-29",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A5",
+   "to": "SD-30",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A6",
+   "to": "SD-01",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A6",
+   "to": "SD-30",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A6",
+   "to": "SD-37",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A7",
+   "to": "SD-29",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A7",
+   "to": "SD-32",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A7",
+   "to": "SD-33",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A7",
+   "to": "SEC-CAP1",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "A8",
+   "to": "SD-04",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A8",
+   "to": "SD-04",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A8",
+   "to": "SD-13",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "A9",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "A9",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "A9",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "A9",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "AB-01",
+   "to": "SEC-CAP3",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "AB-02",
+   "to": "SEC-CAP3",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "AN-01",
+   "to": "SQL-E13",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "AN-02",
+   "to": "SQL-E13",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "AN-03",
+   "to": "SQL-E13",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-01",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-02",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-03",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-04",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-05",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-06",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-07",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "AP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "ARCH-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "ARCH-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "ARCH-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "ARCH-08",
+   "to": "ARCH-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "AU-01",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "AU-02",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "AU-03",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "AU-04",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "AU-05",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "AU-06",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "B2",
+   "to": "SD-01",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "B3",
+   "to": "SD-06",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "B5",
+   "to": "SD-35",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "C1",
+   "to": "SD-01",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "C3",
+   "to": "SD-11",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "C6",
+   "to": "SD-03",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "C6",
+   "to": "SD-19",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "C7",
+   "to": "SD-07",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "CR-05",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "CR-06",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "CR-07",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "CR-11",
+   "to": "CR-19",
+   "kind": "hard",
+   "source": "cyber stitch"
+  },
+  {
+   "from": "CR-12",
+   "to": "CR-19",
+   "kind": "hard",
+   "source": "cyber stitch"
+  },
+  {
+   "from": "CR-13",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "CR-15",
+   "to": "SEC-CAP2",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "CR-20",
+   "to": "SEC-CAP1",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "D3",
+   "to": "SEC-CAP4",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "D4",
+   "to": "SEC-CAP4",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "DD-03",
+   "to": "GO-29",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "DD-12",
+   "to": "SQL-E10",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-01",
+   "to": "DP-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-02",
+   "to": "DP-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-03",
+   "to": "DP-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-04",
+   "to": "DP-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-05",
+   "to": "DP-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-06",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-07",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-08",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-09",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-10",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-11",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-15",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-16",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-17",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-18",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-19",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-20",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-21",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-22",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-12",
+   "to": "DP-23",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-13",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-14",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-15",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-16",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-17",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-18",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-19",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-20",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-21",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-22",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "DP-23",
+   "to": "ARCH-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-01",
+   "to": "PR-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-01",
+   "to": "PR-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-01",
+   "to": "PR-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-01",
+   "to": "PR-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-01",
+   "to": "PR-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-02",
+   "to": "PR-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-02",
+   "to": "PR-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-02",
+   "to": "PR-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-02",
+   "to": "PR-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-02",
+   "to": "PR-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-03",
+   "to": "PR-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-03",
+   "to": "PR-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-03",
+   "to": "PR-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-03",
+   "to": "PR-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-03",
+   "to": "PR-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-04",
+   "to": "PR-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-04",
+   "to": "PR-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-04",
+   "to": "PR-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-04",
+   "to": "PR-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "F-04",
+   "to": "PR-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "GO-01",
+   "to": "GO-02",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-01",
+   "to": "GO-02",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-02",
+   "to": "GO-03",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-02",
+   "to": "GO-03",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-03",
+   "to": "GO-04",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-03",
+   "to": "GO-04",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-04",
+   "to": "GO-05",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-05",
+   "to": "GO-06",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-05",
+   "to": "GO-06",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-06",
+   "to": "GO-07",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-06",
+   "to": "GO-07",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-07",
+   "to": "CR-13",
+   "kind": "lab",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-07",
+   "to": "GO-08",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-07",
+   "to": "GO-08",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-08",
+   "to": "GO-09",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-09",
+   "to": "GO-10",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-09",
+   "to": "GO-10",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-10",
+   "to": "GO-11",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-10",
+   "to": "GO-11",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-11",
+   "to": "GO-12",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-11",
+   "to": "GO-12",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-12",
+   "to": "GO-13",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-12",
+   "to": "GO-20",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-12",
+   "to": "GO-26",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-12",
+   "to": "GO-27",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-13",
+   "to": "GO-14",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-13",
+   "to": "GO-14",
+   "kind": "hard",
+   "source": "go §2"
+  },
+  {
+   "from": "GO-13",
+   "to": "GO-20",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-15",
+   "to": "GO-16",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-16",
+   "to": "GO-17",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-16",
+   "to": "GO-P15",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-17",
+   "to": "GO-18",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-17",
+   "to": "GO-21",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-17",
+   "to": "GO-22",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-18",
+   "to": "GO-19",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-18",
+   "to": "GO-21",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-19",
+   "to": "GO-29",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-19",
+   "to": "GO-CAP2",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-20",
+   "to": "GO-25",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-20",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-21",
+   "to": "CR-13",
+   "kind": "lab",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-21",
+   "to": "DOS-05",
+   "kind": "lab",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-21",
+   "to": "GO-22",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-21",
+   "to": "GO-23",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-21",
+   "to": "GO-24",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-21",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-22",
+   "to": "GO-28",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-22",
+   "to": "GO-29",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-22",
+   "to": "GO-CAP1",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-22",
+   "to": "GO-CAP2",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-22",
+   "to": "OD-09",
+   "kind": "lab",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-25",
+   "to": "GO-CAP3",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "GO-28",
+   "to": "GO-29",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "IR-05",
+   "to": "SEC-CAP2",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "NT-04",
+   "to": "SEC-CAP3",
+   "kind": "hard",
+   "source": "cyber §6"
+  },
+  {
+   "from": "PQ-S-01",
+   "to": "CR-01",
+   "kind": "hard",
+   "source": "cyber stitch"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-01",
+   "to": "PR-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-02",
+   "to": "PR-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-03",
+   "to": "PR-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-04",
+   "to": "PR-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-06",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-07",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-08",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-09",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-10",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-11",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-12",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-13",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-05",
+   "to": "PR-14",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-06",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-06",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-06",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-06",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-06",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-07",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-07",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-07",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-07",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-07",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-08",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-08",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-08",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-08",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-08",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-09",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-09",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-09",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-09",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-09",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-10",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-10",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-10",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-10",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-10",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-11",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-11",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-11",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-11",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-11",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-12",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-12",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-12",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-12",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-12",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-13",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-13",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-13",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-13",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-13",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-14",
+   "to": "DP-01",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-14",
+   "to": "DP-02",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-14",
+   "to": "DP-03",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-14",
+   "to": "DP-04",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PR-14",
+   "to": "DP-05",
+   "kind": "hard",
+   "source": "patterns §10"
+  },
+  {
+   "from": "PV-03",
+   "to": "GO-29",
+   "kind": "hard",
+   "source": "go §12"
+  },
+  {
+   "from": "SD-01",
+   "to": "SD-02",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-02",
+   "to": "SD-03",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-02",
+   "to": "SD-04",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-02",
+   "to": "SD-10",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-04",
+   "to": "SD-05",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-04",
+   "to": "SD-06",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-04",
+   "to": "SD-15",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-04",
+   "to": "SD-20",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-05",
+   "to": "SD-06",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-05",
+   "to": "SD-14",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-05",
+   "to": "SD-20",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-05",
+   "to": "SD-26",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-05",
+   "to": "SD-27",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-06",
+   "to": "SD-07",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-06",
+   "to": "SD-14",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-08",
+   "to": "SD-09",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-08",
+   "to": "SD-10",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-08",
+   "to": "SD-12",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-09",
+   "to": "SD-26",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-10",
+   "to": "SD-06",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-10",
+   "to": "SD-11",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-10",
+   "to": "SD-12",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-10",
+   "to": "SD-28",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-11",
+   "to": "SD-12",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-12",
+   "to": "SD-16",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-12",
+   "to": "SD-28",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-14",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-16",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-18",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-19",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-20",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-13",
+   "to": "SD-35",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-14",
+   "to": "SD-15",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-14",
+   "to": "SD-16",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-14",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-15",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-16",
+   "to": "SD-17",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-16",
+   "to": "SD-18",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-16",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-17",
+   "to": "SD-18",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-17",
+   "to": "SD-23",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-17",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-17",
+   "to": "SD-38",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-18",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-19",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-20",
+   "to": "SD-21",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-20",
+   "to": "SD-24",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-20",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-21",
+   "to": "SD-22",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-21",
+   "to": "SD-23",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-21",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-21",
+   "to": "SD-26",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-21",
+   "to": "SD-38",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-22",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-23",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-23",
+   "to": "SD-38",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-24",
+   "to": "SD-25",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-26",
+   "to": "SD-09",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-26",
+   "to": "SD-27",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-26",
+   "to": "SD-38",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-27",
+   "to": "SD-28",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-28",
+   "to": "SD-12",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-28",
+   "to": "SD-27",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-28",
+   "to": "SD-38",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-29",
+   "to": "SD-09",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-29",
+   "to": "SD-10",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-29",
+   "to": "SD-11",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-29",
+   "to": "SD-32",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-29",
+   "to": "SD-33",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-29",
+   "to": "SD-35",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-30",
+   "to": "SD-10",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-30",
+   "to": "SD-31",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-30",
+   "to": "SD-32",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-32",
+   "to": "SD-34",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-33",
+   "to": "SD-34",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-36",
+   "to": "SD-00",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-36",
+   "to": "SD-37",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-37",
+   "to": "SD-00",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-37",
+   "to": "SD-19",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-37",
+   "to": "SD-26",
+   "kind": "hard",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SD-38a",
+   "to": "SD-17",
+   "kind": "soft",
+   "source": "primer §4.1"
+  },
+  {
+   "from": "SL-01",
+   "to": "SQL-E1",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-01",
+   "to": "SQL-E10",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-02",
+   "to": "SQL-E1",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-03",
+   "to": "SQL-E1",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-04",
+   "to": "SQL-E3",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-05",
+   "to": "SQL-E13",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-05",
+   "to": "SQL-E2",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-06",
+   "to": "SQL-E4",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-07",
+   "to": "SQL-E4",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-08",
+   "to": "SQL-E13",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-08",
+   "to": "SQL-E5",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-08",
+   "to": "SQL-E6",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-09",
+   "to": "SQL-E7",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-10",
+   "to": "SQL-E9",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-12",
+   "to": "SQL-E8",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SL-13",
+   "to": "SQL-E10",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E1",
+   "to": "SQL-E2",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E10",
+   "to": "SQL-E13",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E13",
+   "to": "SQL-E14",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E2",
+   "to": "SQL-E3",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E3",
+   "to": "SQL-CAP1",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E3",
+   "to": "SQL-E4",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E4",
+   "to": "SQL-CAP1",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E4",
+   "to": "SQL-CAP2",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E4",
+   "to": "SQL-E5",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E5",
+   "to": "SQL-E6",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E6",
+   "to": "SQL-E7",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E7",
+   "to": "SQL-E8",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E8",
+   "to": "SQL-E9",
+   "kind": "hard",
+   "source": "sql §6"
+  },
+  {
+   "from": "SQL-E9",
+   "to": "SQL-E10",
+   "kind": "hard",
+   "source": "sql §6"
+  }
+ ],
+ "primary": {
+  "AB-01": "A7",
+  "AB-02": "A7",
+  "AB-03": "A7",
+  "AB-04": "A7",
+  "AB-05": "A7",
+  "AB-06": "A7",
+  "AB-07": "A7",
+  "AB-08": "A7",
+  "AI-01": "D4",
+  "AI-02": "D4",
+  "AI-03": "D4",
+  "AI-04": "D4",
+  "AI-05": "D4",
+  "AN-01": "A8",
+  "AN-02": "B4",
+  "AN-03": "B4",
+  "AN-04": "D3",
+  "AN-05": "A9",
+  "AN-06": "A8",
+  "AN-07": "D4",
+  "AP-01": "A7",
+  "AP-02": "A7",
+  "AP-03": "A7",
+  "AP-04": "A7",
+  "AP-05": "A7",
+  "AP-06": "A7",
+  "AP-07": "A7",
+  "AP-08": "A7",
+  "AP-09": "A7",
+  "AP-10": "A7",
+  "ARCH-01": "A7",
+  "ARCH-02": "A7",
+  "ARCH-03": "A7",
+  "ARCH-04": "A7",
+  "ARCH-05": "A7",
+  "ARCH-06": "A7",
+  "ARCH-07": "A7",
+  "ARCH-08": "A7",
+  "ARCH-09": "A9",
+  "ARCH-10": "A9",
+  "ARCH-11": "A9",
+  "ARCH-12": "A9",
+  "AU-01": "A10",
+  "AU-02": "A10",
+  "AU-03": "A10",
+  "AU-04": "A10",
+  "AU-05": "A7",
+  "AU-06": "A7",
+  "AU-07": "A7",
+  "AU-08": "A10",
+  "AU-09": "A10",
+  "AU-10": "A10",
+  "AU-11": "A7",
+  "AU-12": "A7",
+  "AU-13": "A7",
+  "AU-14": "B5",
+  "CK-01": "C1",
+  "CK-02": "C1",
+  "CK-03": "C2",
+  "CK-04": "C1",
+  "CK-05": "C2",
+  "CK-06": "C2",
+  "CL-01": "B5",
+  "CL-02": "B5",
+  "CL-03": "B5",
+  "CL-04": "B5",
+  "CL-05": "B5",
+  "CL-06": "A9",
+  "CL-08": "B2",
+  "CM-01": "Phase 4",
+  "CM-02": "Phase 4",
+  "CR-01": "A10",
+  "CR-02": "A10",
+  "CR-03": "A10",
+  "CR-04": "A10",
+  "CR-05": "A10",
+  "CR-06": "A10",
+  "CR-07": "A10",
+  "CR-08": "A10",
+  "CR-09": "A10",
+  "CR-10": "A10",
+  "CR-11": "A5",
+  "CR-12": "A5",
+  "CR-13": "A10",
+  "CR-14": "Phase 4",
+  "CR-15": "Phase 4",
+  "CR-16": "A10",
+  "CR-17": "Phase 4",
+  "CR-18": "Phase 4",
+  "CR-19": "A10",
+  "CR-20": "Phase 4",
+  "CS-01": "A8",
+  "CS-02": "A4",
+  "CS-03": "A8",
+  "CS-04": "A8",
+  "CS-05": "A8",
+  "CS-06": "A8",
+  "CS-07": "A8",
+  "CS-08": "A8",
+  "DB-1": "A8",
+  "DB-10": "A8",
+  "DB-2": "A8",
+  "DB-3": "A8",
+  "DB-4": "A8",
+  "DB-5": "A8",
+  "DB-6": "A8",
+  "DB-7": "A8",
+  "DB-8": "A8",
+  "DB-9": "A8",
+  "DD-01": "A7",
+  "DD-02": "A8",
+  "DD-03": "A8",
+  "DD-04": "A8",
+  "DD-05": "A8",
+  "DD-06": "A8",
+  "DD-07": "A8",
+  "DD-08": "A8",
+  "DD-09": "Phase 4",
+  "DD-10": "A7",
+  "DD-11": "A8",
+  "DD-12": "A7",
+  "DD-13": "A7",
+  "DOS-01": "A5",
+  "DOS-02": "A5",
+  "DOS-03": "A10",
+  "DOS-04": "Phase 4",
+  "DOS-05": "A10",
+  "DOS-06": "A6",
+  "DOS-07": "B4",
+  "DOS-08": "A9",
+  "DP-01": "A7",
+  "DP-02": "A7",
+  "DP-03": "A7",
+  "DP-04": "A7",
+  "DP-05": "A7",
+  "DP-06": "A7",
+  "DP-07": "A7",
+  "DP-08": "A7",
+  "DP-09": "A7",
+  "DP-10": "A7",
+  "DP-11": "A7",
+  "DP-12": "A7",
+  "DP-13": "A7",
+  "DP-14": "A7",
+  "DP-15": "A7",
+  "DP-16": "A7",
+  "DP-17": "A7",
+  "DP-18": "A7",
+  "DP-19": "A7",
+  "DP-20": "A7",
+  "DP-21": "A7",
+  "DP-22": "A7",
+  "DP-23": "A7",
+  "DT-4": "B4",
+  "F-01": "A7",
+  "F-02": "A7",
+  "F-03": "A7",
+  "F-04": "A7",
+  "GO-01": "A3",
+  "GO-02": "A3",
+  "GO-03": "A3",
+  "GO-04": "A3",
+  "GO-05": "A3",
+  "GO-06": "A3",
+  "GO-07": "A3",
+  "GO-08": "A3",
+  "GO-09": "A3",
+  "GO-10": "A3",
+  "GO-11": "A3",
+  "GO-12": "A3",
+  "GO-13": "A3",
+  "GO-14": "A3",
+  "IR-01": "C6",
+  "IR-02": "C6",
+  "IR-03": "C7",
+  "IR-04": "C6",
+  "IR-05": "C7",
+  "IR-06": "C7",
+  "IR-07": "C7",
+  "IR-08": "C7",
+  "NT-01": "A5",
+  "NT-02": "A5",
+  "NT-03": "A5",
+  "NT-04": "A5",
+  "NT-05": "A5",
+  "NT-06": "Phase 4",
+  "NT-07": "A5",
+  "NT-08": "A5",
+  "OD-01": "A8",
+  "OD-02": "C6",
+  "OD-03": "A9",
+  "OD-04": "A8",
+  "OD-05": "C7",
+  "OD-08": "A8",
+  "OD-09": "A7",
+  "OD-10": "C4",
+  "OD-11": "A8",
+  "PQ-01": "A1",
+  "PQ-02": "A1",
+  "PQ-03": "A2",
+  "PQ-04": "A2",
+  "PQ-05": "A2",
+  "PQ-06": "A3",
+  "PQ-07": "A1",
+  "PQ-08": "A1",
+  "PQ-S-01": "A10",
+  "PQ-S-02": "A10",
+  "PQ-S-03": "B1",
+  "PQ-S-04": "A5",
+  "PQ-S-05": "A10",
+  "PQ-S-06": "A10",
+  "PR-01": "A7",
+  "PR-02": "A7",
+  "PR-03": "A7",
+  "PR-04": "A7",
+  "PR-05": "A7",
+  "PR-06": "A7",
+  "PR-07": "A7",
+  "PR-08": "A7",
+  "PR-09": "A7",
+  "PR-10": "A7",
+  "PR-11": "A7",
+  "PR-12": "A7",
+  "PR-13": "A7",
+  "PR-14": "A7",
+  "PV-01": "Phase 4",
+  "PV-02": "Phase 4",
+  "PV-03": "Phase 4",
+  "PV-04": "Phase 4",
+  "PV-05": "Phase 4",
+  "PX-1": "C6",
+  "PX-10": "C6",
+  "PX-11": "C6",
+  "PX-2": "C6",
+  "PX-3": "C6",
+  "PX-4": "C6",
+  "PX-5": "C6",
+  "PX-6": "C6",
+  "PX-7": "C6",
+  "PX-8": "C6",
+  "PX-9": "A7",
+  "RT-01": "A8",
+  "RT-02": "A8",
+  "RT-03": "A8",
+  "RT-04": "A8",
+  "RT-05": "A8",
+  "RT-06": "A8",
+  "RT-07": "A8",
+  "RT-08": "A8",
+  "SC-01": "A10",
+  "SC-02": "B2",
+  "SC-03": "Phase 4",
+  "SCH-2": "A7",
+  "SCH-3": "A7",
+  "SD-00": "A2",
+  "SD-01": "A6",
+  "SD-02": "B3",
+  "SD-03": "B3",
+  "SD-04": "A8",
+  "SD-05": "A9",
+  "SD-06": "A9",
+  "SD-07": "A9",
+  "SD-08": "A5",
+  "SD-09": "A5",
+  "SD-10": "A5",
+  "SD-11": "A5",
+  "SD-12": "A7",
+  "SD-13": "A8",
+  "SD-14": "A9",
+  "SD-15": "A9",
+  "SD-16": "A9",
+  "SD-17": "A9",
+  "SD-18": "A9",
+  "SD-19": "A8",
+  "SD-20": "A8",
+  "SD-21": "A8",
+  "SD-22": "A8",
+  "SD-23": "A8",
+  "SD-24": "A8",
+  "SD-25": "A9",
+  "SD-26": "A8",
+  "SD-27": "A9",
+  "SD-28": "A7",
+  "SD-29": "A5",
+  "SD-30": "A5",
+  "SD-31": "A5",
+  "SD-32": "A7",
+  "SD-33": "A7",
+  "SD-34": "A7",
+  "SD-35": "A10",
+  "SD-36": "A1",
+  "SD-37": "A1",
+  "SD-38": "A9",
+  "SD-39": "A9",
+  "SL-01": "A8",
+  "SL-02": "A8",
+  "SL-03": "A8",
+  "SL-04": "A8",
+  "SL-05": "A8",
+  "SL-06": "A8",
+  "SL-07": "A8",
+  "SL-08": "A8",
+  "SL-09": "A8",
+  "SL-10": "A7",
+  "SL-11": "A8",
+  "SL-12": "A8",
+  "SL-13": "A9",
+  "SL-14": "A8",
+  "SQL-CAP1": "Phase 4",
+  "SQL-CAP2": "A7",
+  "SQL-CAP4": "B4",
+  "SX-01": "A8",
+  "SX-02": "A8",
+  "SX-03": "A8",
+  "SX-04": "A8",
+  "SX-06": "D4",
+  "SX-11": "A4",
+  "SX-12": "A6",
+  "TD-1": "A8",
+  "TD-12": "A8",
+  "TD-13": "A8",
+  "TD-2": "A8",
+  "TD-8": "A8",
+  "TD-9": "A8",
+  "TH-01": "A10",
+  "TH-02": "A10",
+  "TH-03": "A10",
+  "TH-04": "A7",
+  "TH-05": "Phase 4",
+  "TH-06": "A9",
+  "TX-5": "A7",
+  "WA-01": "A10",
+  "WA-02": "A10",
+  "WA-03": "A10",
+  "WA-04": "A10",
+  "WA-05": "A10",
+  "WA-06": "A10",
+  "WA-07": "A10",
+  "WA-08": "A10",
+  "WA-09": "C6",
+  "WA-10": "A6",
+  "WA-12": "A10",
+  "WL-01": "C1",
+  "WL-02": "C4",
+  "WL-03": "C4",
+  "WL-04": "Phase 4",
+  "WL-05": "C4",
+  "WL-06": "C4"
+ },
+ "primer_slices": {
+  "SD-01": [
+   "A5"
+  ],
+  "SD-02": [
+   "A2",
+   "A5"
+  ],
+  "SD-03": [
+   "A2"
+  ],
+  "SD-04": [
+   "A9"
+  ],
+  "SD-05": [
+   "A8"
+  ],
+  "SD-07": [
+   "A2"
+  ],
+  "SD-16": [
+   "A7",
+   "A8"
+  ],
+  "SD-18": [
+   "A8"
+  ],
+  "SD-19": [
+   "A4",
+   "A6"
+  ],
+  "SD-21": [
+   "A3",
+   "A4"
+  ],
+  "SD-24": [
+   "A4"
+  ],
+  "SD-25": [
+   "A8"
+  ],
+  "SD-26": [
+   "A5"
+  ],
+  "SD-27": [
+   "A3"
+  ],
+  "SD-28": [
+   "A2"
+  ],
+  "SD-30": [
+   "A6"
+  ],
+  "SD-32": [
+   "A3"
+  ],
+  "SD-33": [
+   "A3"
+  ],
+  "SD-34": [
+   "A3"
+  ],
+  "SD-35": [
+   "A5"
+  ],
+  "SD-38": [
+   "A4"
+  ]
+ },
+ "ledger": {
+  "done_modules": [],
+  "in_progress": null,
+  "done_cards": [],
+  "ignored_under_D2": {
+   "done_modules": [
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+   ],
+   "in_progress": "A5",
+   "done_cards": [
+    "SD-08",
+    "SD-30",
+    "SD-31"
+   ]
+  }
+ }
+}

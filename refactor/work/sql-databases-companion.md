@@ -45,8 +45,8 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 - `PQ-nn` prerequisites · `RT-nn` relational theory · `SL-nn` SQL language · `CS-nn` computer science under the engine · `DD-nn` data design · `OD-nn` operating databases · `AN-nn` analytics & other engines. All are in §4.
 - `SQL-E<level>.<n>` query-writing exercises (§6, levels 1–14; **TX** and **PX** are *labs* in §7) · `SQL-Z0.n` level-0 paper drills · `TD-n` theory drills · `PX-n` plan-prediction cards · `TX-n` transaction labs · `BH-n` bug-hunts · `DT-n` dialect-translation drills · `SCH-n` schema-design cases · `SQL-CAP1–SQL-CAP4` capstones · `TF-DBn` Terraform database exercises.
-- Main-course IDs (`A1…D4`, `M1…M6`, `U1…U7`, `S1…S11`, the Part V category IDs `V-…`) are stitch tags into the main course. `DB-1 … DB-10` are this file's engine slices (§4.0). `SD-…` are primer-companion IDs. `TB-…`/`SRC-…` are this file's bibliography labels (title block).
-- Tiers: `SQL-T-HS` high-school · `SQL-T-UG` undergraduate · `SQL-T-GR` graduate — the depth tier of a theory item or gate (§2 rows for M1 and A8 + A9).
+- Main-course IDs (`A1…D4`, `Phase 4`, the Part V category IDs `V-…`) are stitch tags into the main course. `DB-1 … DB-10` are this file's engine slices (§4.0). `SD-…` are primer-companion IDs. `TB-…`/`SRC-…` are this file's bibliography labels (title block).
+- Tiers: `SQL-T-HS` high-school · `SQL-T-UG` undergraduate · `SQL-T-GR` graduate — the depth tier of a theory item or gate (§2 rows for A2 and A8 + A9).
 - **The lab database** (§3) is a small multi-tenant storefront — tenants, users, categories, products with effective-dated prices, stock, orders and order lines, payments, shipments and reviews — plus a semi-structured event stream and a deliberately messy staging table.
 
 ### 0.5 Learner teaching preferences (binding)
@@ -139,16 +139,16 @@ Each main-course module on the left is taught **with** the companion modules on 
 
 | Main-course module | Companion modules taught in the same session | Checkpoint |
 |---|---|---|
-| **M1** (logic, sets, proofs, counting, graphs) — *Tier SQL-T-HS/SQL-T-UG* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | SQL-Z0.1 … SQL-Z0.6 |
-| **A4** (recall) + **U2** (structures, hashing theory, complexity) | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | SQL-Z0.7, TD-10 |
-| **A1/A2** (recall) + **M6** (units, orders of magnitude) | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | SQL-Z0.8 |
-| **M5** (numerical stability) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M5; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
-| **A8 + A9** (+ U5) — DB theory (with the A8 SQL sessions) | RT-02 algebra · RT-03 calculus/safety (SQL-T-GR) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **SQL-T-UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **SQL-T-GR gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
+| **A2** (math recall; PQ-01/PQ-02 teach the sets, logic and counting SQL needs) — *Tier SQL-T-HS/SQL-T-UG* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | SQL-Z0.1 … SQL-Z0.6 |
+| **A4** (recall: structures, hashing, complexity) | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | SQL-Z0.7, TD-10 |
+| **A1/A2** (recall: units, orders of magnitude) | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | SQL-Z0.8 |
+| **A2** (floating point) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from A2; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
+| **A8 + A9** — DB theory (with the A8 SQL sessions) | RT-02 algebra · RT-03 calculus/safety (SQL-T-GR) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **SQL-T-UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **SQL-T-GR gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
 | **A3 + A6** (computer, OS, CLI, Git, JSON, HTTP) | PQ-04 files, CSV/JSON/JSONL, encodings (UTF-8, BOM) · PQ-05 `psql`, env vars, Docker basics for a Postgres container | SQL-E0 warm-up: load the lab (§3) |
 | **C1** Docker/OCI, container contract | PQ-05 `docker compose` Postgres with a named volume and a healthcheck (the lab in §3.2) | lab loads, fingerprints match |
 | **C4** CI | OD-10 SQL tests in CI: a Postgres service container, seed v1, fingerprint assertions, migration up/down | run SQL-E3.2 as a CI test |
 | **C4 + C5** CD, IaC | OD-08 migration ordering in deploys · §8.2 Terraform DB exercises | TF-DB1 … TF-DB2 (plan only) |
-| **S2** HLD/LLD contract, ADR template, NFR table | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
+| **A7** architecture documentation (HLD/LLD contract, ADR template, NFR table) | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
 | **B5** IAM (+ **OD-11** IAM DB auth) | SL-13 database roles vs IAM principals, `GRANT`/`REVOKE`, least privilege | SQL-E10.6 (RLS) after A10 |
 | **C6** observability day one | OD-02 logs, slow-query log, `pg_stat_statements`, Query Insights vocabulary | PX-1 |
 | **B3** HA & autoscaling | OD-03 pool arithmetic under autoscaling (instances × pool ≤ `max_connections`), with the OD-03 worksheet | TX-8 |
@@ -165,7 +165,7 @@ Each main-course module on the left is taught **with** the companion modules on 
 | **A10 + B5** authorization · **C1** + **Phase 4 Security** secrets & supply chain | SL-13 RLS, injection, parameterisation, least-privilege roles | SQL-E10.6, BH-2 |
 | **A8** ledger and consistency | DD-03 money and ledger rules (integer minor units), DD-07 audit/history · SL-08 running balances · CS-05 isolation for money | SQL-E4.5, SQL-CAP2, BH-4 |
 | **Phase 4 Security** data protection (cyber CR-14) | SL-13 column-level encryption (`pgcrypto`), masking views, CMEK vocabulary | SCH-6 |
-| **S2** + primer building blocks · HLD evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
+| **A7** architecture documentation + primer building blocks · HLD evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
 | **A9** scale primitives — cursor pagination · hot partition · pool math · RLS · LSM vs B-tree · schema evolution · idempotency | OD-09 keyset SQL and its index (with the from-scratch pager) · DD-13 hot-key skew query · OD-03 · SL-13 · CS-02 arithmetic · DD-11 | PX-9, SQL-E4.7 |
 | **V-STOR** Memorystore | OD-09 cache-aside vs DB read path (query-level vs object-level); *no new concept* | — |
 | **V-STOR** Spanner, AlloyDB, Bigtable, BigQuery (ops view) | AN-01 · AN-02 · AN-05 · CS-09 columnar & vectorised execution | DT-1 … DT-6, SQL-E13.3 |
@@ -175,8 +175,8 @@ Each main-course module on the left is taught **with** the companion modules on 
 | **C6** observability, performance | OD-01/02 plan reading & workload observation · CS-08 · PX-1 … PX-11 | PX-1 … PX-11, SQL-CAP4 |
 | **C7** SLO / error budget | OD-05 replication lag as an SLI; recovery-point objective from WAL archiving | BH-5 |
 | **B4** FinOps + billing-export SQL | AN-03 window analytics on a *billing-export-shaped* table; AN-02 bytes-scanned cost | DT-4, SQL-E13.1 |
-| **S11** case-study capstone | SQL-CAP1 – SQL-CAP4 are its database acceptance tests | SQL-CAP1 – SQL-CAP4 |
-| **S11** control-plane case study | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
+| **Phase 4** case-study capstone (the PCA case studies) | SQL-CAP1 – SQL-CAP4 are its database acceptance tests | SQL-CAP1 – SQL-CAP4 |
+| **Phase 4** case-study HLDs (a control-plane store) | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
 | **SQL-SKIP-SQL** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if the A8 sessions confirmed FDs/joins/transactions/pagination/client hygiene, stamp using SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2. **Else** run the SQL-SKIP-SQL order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
 | **SQL-SKIP-ENGINE** PostgreSQL internals (`DB-ENGINE`) | **Skip-test map:** residual `EXPLAIN` drills = PX-1 … PX-11; crash/recovery evidence = TD-12 + OD-04 drill. **Else** run the SQL-SKIP-ENGINE order = CS-01 → CS-04 → CS-02 → CS-03 → CS-08 → CS-05 → CS-06 → CS-07 (§2.3) | see §2.3 |
 | **Part V cert rows 1, 3, 8** (PCA / PDE / PCDE certs) | PCA 2.2 storage systems: §8.1 + DT-1; PDE: AN-01…AN-04, SQL-E13; Professional Cloud Database Engineer: OD-03…OD-05, TF-DB1… (all `verify` against the live exam guide) | §8 |
@@ -210,7 +210,7 @@ Each main-course module on the left is taught **with** the companion modules on 
 | As-of / point-in-time join | **DD-05** (leakage; D3) | SQL-E6.4 / SQL-E13.4 / SQL-E13.5 the SQL shapes (lateral, range join, SCD2) |
 | Billing-export SQL patterns | **B4** | AN-03 reused windows; no new concept |
 | SQL scale-out (replication, federation, sharding, denormalisation, SQL tuning) | **primer companion SD-13 … SD-19** | *this file never re-teaches them*; CS-07/DD-13/OD-05/OD-07 add engine-level and SQL-level detail only |
-| ACID, CAP, consistency, big-O, hashing | **M1 / A4 + U2 / A8 + A9 / A8** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
+| ACID, CAP, consistency, big-O, hashing | **A2 / A4 / A8 + A9 / A8** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
 
 ### 2.2 A8 slice pairing — the engine slices DB-1 … DB-10 and what rides with each
 
@@ -231,19 +231,19 @@ The §4.0 slice supplies *toy spec, SQL, EXPLAIN prediction, Cloud SQL mapping*.
 
 ### 2.3 Parallel calendar — how the companion rides the main course's spine
 
-The main course's spine is Phases 0–3 (Tracks A–D, mostly in parallel) → Phase 4 → …; the reserved M/U/S tracks are not placed yet. SQL does not first *appear* until A8, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until A8 needs it (Prop Lock: no SQL vocabulary before it is anchored).
+The main course's spine is Phases 0–3 (Tracks A–D, mostly in parallel) → Phase 4 → …. SQL does not first *appear* until A8, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until A8 needs it (Prop Lock: no SQL vocabulary before it is anchored).
 
 | Window (main course) | Companion work (parallel, small) | Outcome |
 |---|---|---|
-| **A1–A4 + M1** (SQL-T-HS → SQL-T-UG tiers) | PQ-01, PQ-02, PQ-07, PQ-08 with SQL-Z0.1 – SQL-Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
-| **A3, A6, A11 + M5** | PQ-03 (types, decimals), PQ-04 (files/JSON), PQ-05 (`psql` + Docker Postgres) — the lab loads and fingerprints match (§3) | lab environment ready; no SQL semantics yet |
+| **A1–A4** (SQL-T-HS → SQL-T-UG tiers) | PQ-01, PQ-02, PQ-07, PQ-08 with SQL-Z0.1 – SQL-Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
+| **A2, A3, A6, A11** | PQ-03 (types, decimals), PQ-04 (files/JSON), PQ-05 (`psql` + Docker Postgres) — the lab loads and fingerprints match (§3) | lab environment ready; no SQL semantics yet |
 | **Tracks B and C (B3, C1, C4, C6)** | OD-10 (tests in CI), OD-02 (logs/slow-query vocabulary), OD-03 recall at B3 | vocabulary only; no new SQL |
 | **A8 (the main event)** | **The A8 SQL block is stretched over ≥ 3 weeks:** week 1 = RT-01/04/05 + SL-01/02/03 + SQL-E1–SQL-E3 · week 2 = RT-02 + SL-04…SL-09 + SQL-E4–SQL-E7 + DB-1/DB-3 · week 3 = SL-10 + TX labs + CS-05 + DB-9 · then DB-4…DB-8 with CS-01…CS-04, CS-08 and PX cards · then DB-10 with CS-06, OD-04 · the V-STOR, OD-11 and OD-08 rows as bound in §2 | SQL competency through SQL-E9; plan and isolation predictions; the theory tier |
 | **A7, A8, A9, A10** | SQL-E9.3 (A7), TX-5 (A9), SQL-E10.6 (A10), SQL-E4.5/SQL-CAP2 (A8 ledger, DD-03) | SQL that makes async/ledger/RLS true |
-| **A9 + S2** | PX-9 / DD-13 with the scale primitives; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
+| **A7 + A9** | PX-9 / DD-13 with the scale primitives; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
 | **V-STOR, V-DATA, D3/D4** | AN-01 … AN-05, SQL-E6, SQL-E13, DT drills (BigQuery), SQL-E6.4/SQL-E13.4/SQL-E13.5 at D3 (DD-05) | analytics dialect and point-in-time joins |
 | **C6, C7, B4** | PX cards and SQL-CAP4 at C6; DT-4 at B4 | performance and cost SQL |
-| **S11** | SQL-CAP1 – SQL-CAP4 | database acceptance |
+| **Phase 4** (PCA case studies) | SQL-CAP1 – SQL-CAP4 | database acceptance |
 | **A8 skip-tests — SQL-SKIP-SQL / SQL-SKIP-ENGINE** | skip-test via the checkpoints in the stitch table; else run the SQL-SKIP-SQL/SQL-SKIP-ENGINE orders below | continuation, only if the skip-test fails |
 
 **SQL-SKIP-SQL order → companion modules (order unchanged):** relations/keys/FDs/normalisation → **RT-01, RT-04, RT-05** · relational algebra → **RT-02** (+ TD-5/6) · DDL/types/constraints → **SL-01, DD-04, DD-12** · SELECT semantics & NULL/3VL → **SL-02, SL-03** · joins incl. semi/anti/outer → **SL-04** · aggregation → **SL-05** · subqueries/CTEs/recursion → **SL-06, SL-07, SL-09** · windows → **SL-08** · transactions/isolation → **CS-05** + TX labs · pagination and application access → **OD-09**. *Predict multiplicity and NULL behaviour before execution.*
@@ -3713,7 +3713,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 
 ### 4.1 Pre-SQL prerequisites (PQ-01 … PQ-08)
 
-#### PQ-01 · Sets, relations, functions, bags — stitch: M1
+#### PQ-01 · Sets, relations, functions, bags — stitch: A2
 - [ ] done
 - **Core:** A relation is a set of tuples over a heading; SQL tables are *bags* (multisets). Functions map each domain element to at most one value — keys are the database word for that.
 - **Theory:** Cartesian product size = |R|·|S|; projection can shrink or (with bags) keep duplicates. Bag union vs set union.
@@ -3721,7 +3721,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** SQL-Z0.1–SQL-Z0.3 on paper: draw R⋈S multiplicities for 2×3 bags.
 - **Check:** Why does `SELECT a FROM t UNION SELECT a FROM t` drop duplicates but `UNION ALL` does not? Give multiplicities.
 
-#### PQ-02 · Propositional & predicate logic; 3VL preview — stitch: M1 · DB-1
+#### PQ-02 · Propositional & predicate logic; 3VL preview — stitch: A2 · DB-1
 - [ ] done
 - **Core:** Predicates evaluate to TRUE / FALSE / UNKNOWN. Filters keep only TRUE. `NOT UNKNOWN = UNKNOWN`.
 - **Theory:** Truth tables for AND/OR/NOT with UNKNOWN; why `WHERE col = NULL` never matches.
@@ -3729,10 +3729,10 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** SQL-Z0.4: fill the 3VL table for `country <> 'US'` when country is NULL.
 - **Check:** Does `NOT (x = 1)` include rows where x IS NULL? Prove with a truth table.
 
-#### PQ-03 · Types, encodings, integer money vs float — stitch: M5
+#### PQ-03 · Types, encodings, integer money vs float — stitch: A2
 - [ ] done
 - **Core:** Prefer `numeric`/`bigint` minor units for money; never `float`/`double` for currency. UTF-8; beware BOM and `char(n)` padding.
-- **Theory:** Half-up vs banker rounding; IEEE recall from M5 then add decimal semantics.
+- **Theory:** Half-up vs banker rounding; IEEE recall from A2 then add decimal semantics.
 - **GCP lens:** Lens-1: Cloud SQL flags for `extra_float_digits`; Spanner NUMERIC. Lens-2: lab stores `price_minor int`.
 - **Lab:** SQL-E2.1 / SQL-E2.7: predict aggregates stay integer/numeric.
 - **Check:** Why is `0.1 + 0.2` unsafe for money in float but fine as integer cents?
@@ -3761,7 +3761,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** BH-2 injection hunt.
 - **Check:** Rewrite a f-string query into a parameterised call.
 
-#### PQ-07 · Sorting, hashing, trees, binary search as access-path raw material — stitch: A4 + U2 · DB-6
+#### PQ-07 · Sorting, hashing, trees, binary search as access-path raw material — stitch: A4 · DB-6
 - [ ] done
 - **Core:** These are the primitives behind indexes and joins — not a second CS course.
 - **Theory:** Binary search → B-tree leaf walk; hash → hash join / hash index.
@@ -3769,7 +3769,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** SQL-Z0.7, TD-10 fan-out arithmetic.
 - **Check:** Given fan-out 100 and 1e6 leaves, about how many levels?
 
-#### PQ-08 · Storage hierarchy & page/row arithmetic — stitch: A1/A2 recall + M6 · DB-4
+#### PQ-08 · Storage hierarchy & page/row arithmetic — stitch: A1/A2 recall · DB-4
 - [ ] done
 - **Core:** L1/L2/RAM/SSD/HDD orders of magnitude; 8 KiB pages; rows per page ≈ usable/avg_row.
 - **Theory:** Fill-factor and HOT-update intuition (analytic, not a second slotted-page toy).
@@ -3795,7 +3795,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** TD-5, TD-6, TD-7.
 - **Check:** Push `σ_{a=1}` through an equijoin on `a`; show both plans.
 
-#### RT-03 · Tuple/domain calculus & safety (SQL-T-GR) — stitch: A8 + A9 + U5 · DB-3
+#### RT-03 · Tuple/domain calculus & safety (SQL-T-GR) — stitch: A8 + A9 · DB-3
 - [ ] done
 - **Core:** Declarative `{t | P(t)}`; domain calculus; safety (finite results); Codd equivalence.
 - **Theory:** Unsafe query examples; how SQL WITH RECURSIVE can leave the safe fragment.
@@ -3819,7 +3819,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** TD-3, TD-4; SCH-1.
 - **Check:** Is `product(tenant_id, sku, price, currency)` in BCNF if `tenant_id → currency`?
 
-#### RT-06 · ER → tables — stitch: S2 · DD-01
+#### RT-06 · ER → tables — stitch: A7 · DD-01
 - [ ] done
 - **Core:** Entities, relationships, cardinality, weak entities, ISA → table patterns.
 - **Theory:** Foreign-key placement for 1:N vs N:M.
@@ -4050,7 +4050,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 
 ### 4.5 Data design (DD-01 … DD-13)
 
-#### DD-01 · Conceptual → logical → physical — stitch: S2
+#### DD-01 · Conceptual → logical → physical — stitch: A7
 - [ ] done
 - **Core:** ER/concepts → normalised tables → indexes/partitioning/storage params; schema ADRs.
 - **Theory:** Every physical shortcut needs an ADR ('I pick X because Y, accept Z').
@@ -4066,7 +4066,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** SCH-2.
 - **Check:** Name one operational pain of random UUIDs as PKs on B-trees.
 
-#### DD-03 · Money, units, time — stitch: A8 · M5
+#### DD-03 · Money, units, time — stitch: A8 · A2
 - [ ] done
 - **Core:** Integer minor units; explicit currency; `timestamptz` for instants; civil dates as `date`.
 - **Theory:** Never float money; never implicit TZ.
@@ -4101,7 +4101,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** SQL-E8.5–SQL-E8.7; DT-7.
 - **Check:** When does JSONB become a schema smell?
 
-#### DD-07 · Soft delete, audit, history — stitch: A8 · S11
+#### DD-07 · Soft delete, audit, history — stitch: A8
 - [ ] done
 - **Core:** `deleted_at`; history tables; append-only audit; who-can-see-deleted policies.
 - **Theory:** Unique constraints must consider soft delete (`UNIQUE … WHERE deleted_at IS NULL`).
@@ -4109,7 +4109,7 @@ Do not reimplement PostgreSQL. Do not skip a slice because Cloud SQL hides it.
 - **Lab:** SQL-E10.3 partial unique; SQL-CAP1.
 - **Check:** How do you keep email unique among *live* users only?
 
-#### DD-08 · Denormalisation with ADRs — stitch: S2 · primer SD-18
+#### DD-08 · Denormalisation with ADRs — stitch: A7 · primer SD-18
 - [ ] done
 - **Core:** Cache columns, aggregate tables, counter fields — only with refresh rules and ADR.
 - **Theory:** Do not re-teach primer SD-18; add SQL maintenance patterns.
@@ -4411,7 +4411,7 @@ No database. Predict on paper; then optionally confirm later. Gate: PQ modules a
 
 ### 6.0b Theory drills (TD-1 … TD-16)
 
-Issued one at a time with the A8 + A9 (+ U5) theory and the §4.0 slices. Keys in Appendix K (sketches).
+Issued one at a time with the A8 + A9 theory and the §4.0 slices. Keys in Appendix K (sketches).
 
 #### TD-1 · Keys from FDs
 - **Tags:** RT-04
@@ -5611,7 +5611,7 @@ Issued one at a time with the A8 + A9 (+ U5) theory and the §4.0 slices. Keys i
 - **Prereq gate:** DD-* as tagged
 
 #### SCH-2 · Surrogate vs natural ADR
-- **Tags:** DD-02·S2
+- **Tags:** DD-02·A7
 - **Prompt:** ADR for `product_id` bigint vs SKU-as-PK.
 - **Output shape:** ADR
 - **Trap:** jumping to physical indexes before logical keys
@@ -5727,7 +5727,7 @@ Mirror the C5 posture: **`terraform plan` reads the graph; apply only if Lab Rea
 
 ## 9. Capstones (SQL-CAP1–SQL-CAP4)
 
-Database acceptance tests for the S11 case-study capstone. Issue after the §6 level-14 gate. **Predict; run; reconcile.**
+Database acceptance tests for the Phase 4 case-study capstone (the PCA case studies). Issue after the §6 level-14 gate. **Predict; run; reconcile.**
 
 | ID | Title | Soft gate | Fingerprint source |
 |---|---|---|---|

@@ -1,6 +1,6 @@
-# Records for sql-databases-companion.md (R2b, 2026-09-24)
+# Records for sql-databases-companion.md (R2b, R2c and R4 build edits, 2026-09-24)
 
-Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line R2b changed or removed out of the course files; decision D3 keeps them here, verbatim. Each entry names the R2b journal number (outputs/r2b/journal.jsonl), the rule and the class.
+Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
 **J81** · G0 · R2 in-file D3 archive, moved out whole
 
@@ -1394,4 +1394,202 @@ Each `Curriculum` module on the left is taught **with** the companion modules on
 
 ````text
 - **Build lab `[local]`:** a `cursorpage` package (Python, then Go). Encode and decode an opaque, signed cursor over `(placed_at, order_id)`; run it against a fake ordered store searched by binary search, then against the lab's `customer_order`. Tests: forward pages; the empty result; a row deleted between two pages; a tampered cursor rejected. API shape: `GET /items?cursor=&limit=`.
+````
+
+**J878** · R4-9 · anchor-rewrite
+
+````text
+- Main-course IDs (`A1…D4`, `M1…M6`, `U1…U7`, `S1…S11`, the Part V category IDs `V-…`) are stitch tags into the main course. `DB-1 … DB-10` are this file's engine slices (§4.0). `SD-…` are primer-companion IDs. `TB-…`/`SRC-…` are this file's bibliography labels (title block).
+````
+
+**J879** · R4-9 · anchor-rewrite
+
+````text
+- Tiers: `SQL-T-HS` high-school · `SQL-T-UG` undergraduate · `SQL-T-GR` graduate — the depth tier of a theory item or gate (§2 rows for M1 and A8 + A9).
+````
+
+**J880** · R4-9 · anchor-rewrite
+
+````text
+| **M1** (logic, sets, proofs, counting, graphs) — *Tier SQL-T-HS/SQL-T-UG* | PQ-01 sets, relations, functions, **bags** · PQ-02 predicate logic and **3-valued logic (preview)** · counting/cardinality bounds of joins (RT-01) | SQL-Z0.1 … SQL-Z0.6 |
+````
+
+**J881** · R4-9 · anchor-rewrite
+
+````text
+| **A4** (recall) + **U2** (structures, hashing theory, complexity) | PQ-07 sorting, hashing, trees, binary search *as the raw material of access paths* · CS-02 B-tree fan-out and height arithmetic (formula only — the toy is DB-6) | SQL-Z0.7, TD-10 |
+````
+
+**J882** · R4-9 · anchor-rewrite
+
+````text
+| **A1/A2** (recall) + **M6** (units, orders of magnitude) | PQ-08 storage hierarchy, page/row arithmetic · latency numbers (recall of primer SD-37) | SQL-Z0.8 |
+````
+
+**J883** · R4-9 · anchor-rewrite
+
+````text
+| **M5** (numerical stability) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M5; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
+````
+
+**J884** · R4-9 · anchor-rewrite
+
+````text
+| **A2** (floating point) | PQ-03 `numeric` vs float, rounding modes (half-up vs banker's), integer money — *recall IEEE from M5; add decimal semantics* | SQL-E2.1, SQL-E2.7 |
+````
+
+**J885** · R4-9 · anchor-rewrite
+
+````text
+| **A8 + A9** (+ U5) — DB theory (with the A8 SQL sessions) | RT-02 algebra · RT-03 calculus/safety (SQL-T-GR) · RT-04/05 FDs & normal forms · RT-08 rewrites · CS-05 serializability & SI · CS-06 recovery · CS-08 cardinality. **SQL-T-UG gate items** map to TD-2 (push σ through ⋈), TD-1/2/3 (keys, FDs, 3NF), TD-8 (dirty-read & lost-update schedules), TD-12 (WAL durability). **SQL-T-GR gate items** map to TD-9 (snapshot visibility), TD-13 (selectivity estimate) | TD-1 … TD-16 (as gated) |
+````
+
+**J886** · R4-9 · anchor-rewrite
+
+````text
+| **S2** HLD/LLD contract, ADR template, NFR table | DD-01 conceptual → logical → physical; **schema ADRs** ("I pick X because Y, I accept Z") · DD-12 constraints as spec | SCH-1 |
+````
+
+**J887** · R4-9 · anchor-rewrite
+
+````text
+| **S2** + primer building blocks · HLD evidence packs | DD-01 schema ADRs inside HLD packs; DD-10 denormalisation ADR; **recall** primer SD-13 … SD-19 for scale-out | SCH-2, SCH-3 |
+````
+
+**J888** · R4-9 · anchor-rewrite
+
+````text
+| **S11** case-study capstone | SQL-CAP1 – SQL-CAP4 are its database acceptance tests | SQL-CAP1 – SQL-CAP4 |
+````
+
+**J889** · R4-9 · anchor-rewrite
+
+````text
+| **S11** control-plane case study | DD-09 audit/event log design; OD-08 migrations for the control-plane store | SCH-6 |
+````
+
+**J890** · R4-9 · anchor-rewrite
+
+````text
+| ACID, CAP, consistency, big-O, hashing | **M1 / A4 + U2 / A8 + A9 / A8** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
+````
+
+**J891** · R4-9 · anchor-rewrite
+
+````text
+The main course's spine is Phases 0–3 (Tracks A–D, mostly in parallel) → Phase 4 → …; the reserved M/U/S tracks are not placed yet. SQL does not first *appear* until A8, so the calendar front-loads only **cheap, unlockable prerequisites** and holds the language until A8 needs it (Prop Lock: no SQL vocabulary before it is anchored).
+````
+
+**J892** · R4-9 · anchor-rewrite
+
+````text
+| **A1–A4 + M1** (SQL-T-HS → SQL-T-UG tiers) | PQ-01, PQ-02, PQ-07, PQ-08 with SQL-Z0.1 – SQL-Z0.8 (≈ 6 short sessions) | paper fluency: sets/bags/3VL/counting/units |
+````
+
+**J893** · R4-9 · anchor-rewrite
+
+````text
+| **A3, A6, A11 + M5** | PQ-03 (types, decimals), PQ-04 (files/JSON), PQ-05 (`psql` + Docker Postgres) — the lab loads and fingerprints match (§3) | lab environment ready; no SQL semantics yet |
+````
+
+**J894** · R4-9 · anchor-rewrite
+
+````text
+| **A9 + S2** | PX-9 / DD-13 with the scale primitives; SCH-2/SCH-3 inside packs | scale primitives with SQL evidence |
+````
+
+**J895** · R4-9 · anchor-rewrite
+
+````text
+| **S11** | SQL-CAP1 – SQL-CAP4 | database acceptance |
+````
+
+**J896** · R4-9 · anchor-rewrite
+
+````text
+#### PQ-01 · Sets, relations, functions, bags — stitch: M1
+````
+
+**J897** · R4-9 · anchor-rewrite
+
+````text
+#### PQ-02 · Propositional & predicate logic; 3VL preview — stitch: M1 · DB-1
+````
+
+**J898** · R4-9 · anchor-rewrite
+
+````text
+#### PQ-03 · Types, encodings, integer money vs float — stitch: M5
+````
+
+**J899** · R4-9 · anchor-rewrite
+
+````text
+- **Theory:** Half-up vs banker rounding; IEEE recall from M5 then add decimal semantics.
+````
+
+**J900** · R4-9 · anchor-rewrite
+
+````text
+#### PQ-07 · Sorting, hashing, trees, binary search as access-path raw material — stitch: A4 + U2 · DB-6
+````
+
+**J901** · R4-9 · anchor-rewrite
+
+````text
+#### PQ-08 · Storage hierarchy & page/row arithmetic — stitch: A1/A2 recall + M6 · DB-4
+````
+
+**J902** · R4-9 · anchor-rewrite
+
+````text
+#### RT-03 · Tuple/domain calculus & safety (SQL-T-GR) — stitch: A8 + A9 + U5 · DB-3
+````
+
+**J903** · R4-9 · anchor-rewrite
+
+````text
+#### RT-06 · ER → tables — stitch: S2 · DD-01
+````
+
+**J904** · R4-9 · anchor-rewrite
+
+````text
+#### DD-01 · Conceptual → logical → physical — stitch: S2
+````
+
+**J905** · R4-9 · anchor-rewrite
+
+````text
+#### DD-03 · Money, units, time — stitch: A8 · M5
+````
+
+**J906** · R4-9 · anchor-rewrite
+
+````text
+#### DD-07 · Soft delete, audit, history — stitch: A8 · S11
+````
+
+**J907** · R4-9 · anchor-rewrite
+
+````text
+#### DD-08 · Denormalisation with ADRs — stitch: S2 · primer SD-18
+````
+
+**J908** · R4-9 · anchor-rewrite
+
+````text
+Issued one at a time with the A8 + A9 (+ U5) theory and the §4.0 slices. Keys in Appendix K (sketches).
+````
+
+**J909** · R4-9 · anchor-rewrite
+
+````text
+- **Tags:** DD-02·S2
+````
+
+**J910** · R4-9 · anchor-rewrite
+
+````text
+Database acceptance tests for the S11 case-study capstone. Issue after the §6 level-14 gate. **Predict; run; reconcile.**
 ````

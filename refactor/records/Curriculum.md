@@ -1,6 +1,6 @@
-# Records for Curriculum.md (R2b, 2026-09-24)
+# Records for Curriculum.md (R2b, R2c and R4 build edits, 2026-09-24)
 
-Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line R2b changed or removed out of the course files; decision D3 keeps them here, verbatim. Each entry names the R2b journal number (outputs/r2b/journal.jsonl), the rule and the class.
+Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
 **J1** · G0 · R2 in-file D3 archive, moved out whole
 
@@ -803,4 +803,148 @@ Ops/DevOps: Cloud Build, Cloud Deploy, Artifact Registry, Cloud Monitoring/Loggi
 
 ````text
 | Heavy hitters / sketches / approximate counting | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
+````
+
+**J849** · R4-1 · reserved-track stub section
+
+````text
+### Reserved tracks M, U and S (stubs)
+
+The companions anchor to these IDs. Each ID is reserved here with its scope; the modules themselves are not written yet, so nothing here is teaching content yet. Until a module is written, a pointer to it names its scope only: say so plainly (§0.2) and teach the concept from the part that owns it in §0.3.
+
+| ID | Title | Scope (what the rebound references need) |
+|---|---|---|
+| M1 | Discrete Mathematics & Proof | logic, proof techniques, sets and relations, counting, graphs, elementary number theory |
+| M2 | Linear Algebra | rigorous pass on A2 |
+| M3 | Calculus | rigorous pass on A2 |
+| M4 | Probability & Statistics | rigorous pass on A2 |
+| M5 | Numerical Methods & Floating Point | IEEE 754, rounding, decimal vs binary; catastrophic cancellation, compensated (Kahan) summation, stable reformulations (`log1p`, log-sum-exp) |
+| M6 | Information Theory & Performance Modeling | queueing, Little's law, tail latency |
+| U1 | Computer Architecture & Systems Programming | machine-level representation, memory hierarchy |
+| U2 | Algorithms: Design & Analysis | rigorous pass on A4 |
+| U3 | Theory of Computation | automata, grammars, decidability |
+| U4 | Programming Languages & Paradigms | paradigms, types, memory management |
+| U5 | Concurrency & Parallel Computing | races, locks, deadlock, memory models |
+| U6 | Software Engineering & Testing | requirements, testing theory, specification |
+| U7 | Professional Practice, Ethics & Law | ethics, privacy law literacy, licensing |
+| S1 | Requirements & quality attributes | Track S — System Architecture Design Studio |
+| S2 | Architecture documentation | views, C4, ADRs, the HLD/LLD contract and NFR tables |
+| S3 | Capacity & performance engineering | |
+| S4 | Reliability architecture | |
+| S5 | Data architecture | |
+| S6 | Security architecture | threat-model-driven design |
+| S7 | Integration & event-driven architecture | |
+| S8 | Migration & modernization | the six Rs mapped to landings (rehost with Migrate to Virtual Machines, replatform, re-architect for GKE or Cloud Run, retire, retain, repurchase); Migration Center discovery, dependency mapping and wave planning; licence impact (bring-your-own vs included) before wave 1; data movement (Database Migration Service, Datastream, Storage Transfer Service, Transfer Appliance); wave-0 connectivity; cutover checklist with a written rollback (PCA 1.4) |
+| S9 | Cost architecture & unit economics | |
+| S10 | Architecture evaluation | |
+| S11 | Case-study studio | the four published PCA case studies, each as an HLD with its trade-off answers |
+
+````
+
+**J853** · R4-4 · anchor-rewrite
+
+````text
+> **Note:** A7 binds several dozen suite concepts, so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A7. A7.1 client-server and API styles (+ SD-32…SD-34) · A7.2 async and queues (+ SD-28) · A7.3 OOP foundations + SOLID · A7.4 GRASP + creational patterns · A7.5 structural patterns · A7.6 behavioral patterns · A7.7 architecture styles + DDD (ARCH-01…ARCH-08) · A7.8 API authentication/authorization + attacks · A7.9 abuse and rate limits · A7.10 S1–S2 · A7.11 checkpoints. A5, A8 and A10 get the same split, from the §0.4.8 pacing budget, when they are taught.
+````
+
+**J854** · R4-5 · anchor-rewrite
+
+````text
+The published case studies (exam guide v6.1): Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive `(verify)` against the live guide. Each gets a written HLD and one "I pick X because Y, I accept Z" answer per requirement in S11.
+````
+
+**J856** · R4-6 · anchor-rewrite
+
+````text
+> **Note:** First-pass scope: this intuition pass is the first pass and is complete as written. The rigorous passes follow in M2 (linear algebra), M3 (calculus) and M4 (probability & statistics).
+````
+
+**J857** · R4-6 · anchor-rewrite
+
+````text
+> **Note:** First-pass scope: A4 stays at engineering-practical depth. The rigorous pass (proofs, recurrences, and implementing a balanced search tree) is U2.
+````
+
+**J858** · R4-7 · anchor-rewrite
+
+````text
+| Floating point | M5 | SQL PQ-03 (decimal semantics) |
+````
+
+**J859** · R4-7 · anchor-rewrite
+
+````text
+| Discrete-math foundations of relations | M1 | SQL PQ-01/02, RT-01 |
+````
+
+**J860** · R4-7 · move
+
+````text
+| Number theory for cryptography | M1 | Cyber CR-01…10 |
+````
+
+**J861** · R4-7 · anchor-rewrite
+
+````text
+| Tail latency, percentiles, hedged requests | M6 (the math: order statistics, fan-out amplification) | Primer SD-03/SD-38c (design levers: timeouts, hedging, replicas); C6/C7 (alerting/SLOs) |
+````
+
+**J862** · R4-7 · anchor-rewrite
+
+````text
+| Little's law | M6 (statement + proof sketch) | Primer SD-03/SD-28 (sizing checks, e.g. 400 rps × 250 ms); the A2 slice (primer §2 stitch table) |
+````
+
+**J863** · R4-7 · anchor-rewrite
+
+````text
+| Consistent hashing | U2 (analysis: expected movement 1/N, virtual nodes, load bounds) | Primer SD-38a (sharding/rebalancing design); A4 ring slice |
+````
+
+**J864** · R4-7 · anchor-rewrite
+
+````text
+| Heavy hitters / sketches / approximate counting (count-min sketch, HyperLogLog, Bloom filters with their false-positive rate (1 − e^(−kn/m))^k) | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
+````
+
+**J865** · R4-7 · anchor-rewrite
+
+````text
+| Unique ID generation (Base62, Snowflake) | Primer SX-02/Q17 | M1 (counting, birthday bound for collisions); A1 recall (bit layout) |
+````
+
+**J866** · R4-7 · anchor-rewrite
+
+````text
+| Garbage collection | U4 (memory management) | Primer Q21 (design problem); SX-04 (data GC/TTL); Go companion GO-09 (Go's collector, `GOGC`, `GOMEMLIMIT`) |
+````
+
+**J867** · R4-7 · anchor-rewrite
+
+````text
+| Interview/design method, back-of-the-envelope | Primer SD-00 | Track S1–S3 recall it; they never restate it |
+````
+
+**J868** · R4-7 · anchor-rewrite
+
+````text
+| Scaling evolution (single box → millions) | Primer P08 + SX-12 | Track S4/S9 recall |
+````
+
+**J869** · R4-7 · anchor-rewrite
+
+````text
+| Concurrency | U5 (theory; reserved) | Go companion GO-15…GO-19 (goroutines, channels, `context`, the Go memory model, the race detector); A9 (distributed theory) |
+````
+
+**J870** · R4-7 · anchor-rewrite
+
+````text
+| Data-structure implementations in code | A4 / U2 (concepts and costs) | Go companion GO-27 (the Go code); Primer O01, O02, O07 (the checkpoints) |
+````
+
+**J871** · R4-12 · anchor-rewrite
+
+````text
+> **Note:** A7 binds several dozen suite concepts, so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A7. A7.1 client-server and API styles (+ SD-32…SD-34) · A7.2 async and queues (+ SD-28) · A7.3 OOP foundations + SOLID · A7.4 GRASP + creational patterns · A7.5 structural patterns · A7.6 behavioral patterns · A7.7 architecture styles + DDD (ARCH-01…ARCH-08) · A7.8 API authentication/authorization + attacks · A7.9 abuse and rate limits · A7.10 architecture documentation (views, C4, ADRs, HLD/LLD, NFR tables) · A7.11 checkpoints. A5, A8 and A10 get the same split, from the §0.4.8 pacing budget, when they are taught.
 ````

@@ -1,6 +1,6 @@
-# Records for design-patterns-companion.md (R2b, 2026-09-24)
+# Records for design-patterns-companion.md (R2b, R2c and R4 build edits, 2026-09-24)
 
-Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line R2b changed or removed out of the course files; decision D3 keeps them here, verbatim. Each entry names the R2b journal number (outputs/r2b/journal.jsonl), the rule and the class.
+Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
 **J169** · G0 · R2 in-file D3 archive, moved out whole
 

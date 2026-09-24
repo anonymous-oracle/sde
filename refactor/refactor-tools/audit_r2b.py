@@ -89,9 +89,26 @@ def checks():
     bad = [f"{k}:{m}" for k, m in homes if heading(k, m) != 1 or any(heading(o, m) for o in COURSE if o != k)]
     out.append(("D7 one home per topic", *ok(not bad, f"{len(homes)} home modules, each one heading in its own file "
                                                       f"only" + (f"; wrong: {bad}" if bad else ""))))
+    # D14 (2026-09-24) replaces D8: the learner keeps gcp-curriculum.md. What must hold instead is that no build step
+    # reads it. A full rebuild runs under an audit hook that records every file the process opens.
+    probe = ("import sys, os\n"
+             "seen = []\n"
+             "sys.addaudithook(lambda ev, a: seen.append(str(a[0])) if ev == 'open' and a and isinstance(a[0], (str, "
+             "bytes, os.PathLike)) else None)\n"
+             f"sys.argv = ['r2b_build.py', {ROOT!r}]\n"
+             f"sys.path.insert(0, {os.path.join(ROOT, 'refactor-tools')!r})\n"
+             "import r2b_build\n"
+             "r2b_build.main()\n"
+             "print('OPENED', len(seen))\n"
+             "print('LEGACY', sum(1 for s in seen if 'gcp-curriculum.md' in s))\n")
+    res = subprocess.run([sys.executable, "-c", probe], capture_output=True, text=True, cwd=ROOT)
+    got = dict(l.split() for l in res.stdout.splitlines() if l.startswith(("OPENED", "LEGACY")))
     legacy = os.path.join(ROOT, "..", "gcp-curriculum.md")
-    out.append(("D8 legacy file deleted", *ok(not os.path.exists(legacy), "gcp-curriculum.md " +
-                                              ("absent" if not os.path.exists(legacy) else "still present"))))
+    out.append(("D14 legacy file kept; no build reads it", *ok(
+        res.returncode == 0 and got.get("LEGACY") == "0" and int(got.get("OPENED", 0)) > 0,
+        f"gcp-curriculum.md {'present' if os.path.exists(legacy) else 'absent'} (kept by D14, which replaces D8); "
+        f"full rebuild under an open() audit hook: {got.get('OPENED', '?')} opens, {got.get('LEGACY', '?')} of the "
+        f"legacy file; build exit {res.returncode}")))
     sec, sql, pri = text("sec"), text("sql"), text("pri")
     cards = ["SEC-Z0.5", "SEC-E3.1", "SEC-E3.5", "SEC-E4.3", "SEC-E4.16", "SEC-E4.21", "SEC-E6.5", "SEC-E6.8", "SEC-E10.7"]
     miss = [c for c in cards if not re.search(rf"^- \*\*{re.escape(c)}:\*\*", sec, re.M)]

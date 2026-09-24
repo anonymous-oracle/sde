@@ -20,7 +20,8 @@ Usage:  r2b_build.py ROOT [--from-r2]      (ROOT = the refactor workspace)
 4. (R2c, D12) r2c_go adds the Go Language Companion as a sixth part, rule 0.4.9 in the main course, and the
    tie-ins in the other parts (see r2c_go.py).
 5. (R2c-bis, D13) r2c_gcp adds the few topics the legacy GCP notes held and no part taught (see r2c_gcp.py).
-5. Writes work/, refactor/records/, outputs/r2b/journal.jsonl, and deletes work/northstar-reference-app.md (D5).
+6. (R4, D16) r4_cur withdraws the reserved tracks M, U and S and rebinds every anchor to them (see r4_cur.py).
+7. Writes work/, refactor/records/, outputs/r2b/journal.jsonl, and deletes work/northstar-reference-app.md (D5).
 
 Deterministic and idempotent: every run starts again from the frozen R2 snapshot.
 """
@@ -42,6 +43,7 @@ import r2b_dp  # noqa: E402
 import r2b_sec  # noqa: E402
 import r2c_go  # noqa: E402
 import r2c_gcp  # noqa: E402
+import r4_cur  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -123,17 +125,31 @@ def generic(f):
             f.block("G8", "anchor-rewrite", i, i + 1, [new], ev5)
 
 
+GO_MARK = "## Journaled build edits (written by r2b_build.py; do not edit below this line)"
+
+
 def write_records(root):
     rd = os.path.join(root, "records")
     os.makedirs(rd, exist_ok=True)
     for fn in COURSE:
-        out = [f"# Records for {fn} (R2b, {DATE})", "",
+        out = [f"# Records for {fn} (R2b, R2c and R4 build edits, {DATE})", "",
                "Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and "
-               "every line R2b changed or removed out of the course files; decision D3 keeps them here, verbatim. "
-               "Each entry names the R2b journal number (outputs/r2b/journal.jsonl), the rule and the class.", ""]
+               "every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course "
+               "files; decision D3 keeps them here, verbatim. Each entry names the build journal number "
+               "(outputs/r2b/journal.jsonl), the rule and the class.", ""]
         for n, rule, what, lines in RECORDS[fn]:
             out += [f"**J{n}** · {rule} · {what}", "", "````text"] + lines + ["````", ""]
         open(os.path.join(rd, fn), "w", encoding="utf-8").write("\n".join(out))
+    # the Go companion's records file is hand-kept above the marker (R2c-bis, D13); the build owns what follows it
+    gp = os.path.join(rd, r4_cur.GOF)
+    head = open(gp, encoding="utf-8").read().split(GO_MARK)[0].rstrip("\n")
+    out = [head, "", GO_MARK, "",
+           "Journaled edits the build applies to the Go companion after it is assembled from its authored source "
+           "(R4 onward). Each entry names the journal number (outputs/r2b/journal.jsonl), the rule and the class, "
+           "and keeps the line as the authored source has it.", ""]
+    for n, rule, what, lines in RECORDS.get(r4_cur.GOF, []):
+        out += [f"**J{n}** · {rule} · {what}", "", "````text"] + lines + ["````", ""]
+    open(gp, "w", encoding="utf-8").write("\n".join(out))
 
 
 def sha256(p):
@@ -170,6 +186,7 @@ def main():
     r2b_dp.build(files[DPC], files)
     r2b_sec.build(files[SEC], files)
     go = r2c_go.build(files, root)   # D12: the Go Language Companion and its tie-ins
+    r4_cur.build(files, go)          # R4 (D16): no Track M, U or S; every anchor rebound, material re-homed
     for fn, f in list(files.items()) + [(go.n, go)]:
         open(os.path.join(work, fn), "w", encoding="utf-8").write("\n".join(f.L))
     ns = os.path.join(work, "northstar-reference-app.md")

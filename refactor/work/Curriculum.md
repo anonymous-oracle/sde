@@ -69,31 +69,30 @@ When two files touch the same concept, the **owner** teaches it and the others o
 | Pub/Sub | A7 | Primer SD-28; design-patterns DP-14 (Observer) |
 | Shared responsibility | B1 | Cyber PQ-S-03, CM-01 |
 | Least privilege / IAM | B5 | Primer SD-35; cyber CL-03…05, AU-14 |
-| Floating point | M5 | SQL PQ-03 (decimal semantics) |
-| Discrete-math foundations of relations | M1 | SQL PQ-01/02, RT-01 |
-| Number theory for cryptography | M1 | Cyber CR-01…10 |
+| Floating point | A2 | SQL PQ-03 (decimal semantics); Go companion GO-03 (no implicit conversions) |
+| Discrete-math foundations of relations | SQL PQ-01/02 | SQL RT-01 |
 | Security checklist (encrypt in transit/at rest, XSS, SQLi, least privilege) | Distributed per A5/A10/B5 + cyber modules | Primer SD-35 is an index module that points to each owner; its lab is shared with WA-05/SL-13 |
 | Cache stampede / thundering herd | Primer SD-27 (mechanics: locking, request coalescing, TTL jitter; primer "my addition") | Cyber DOS-08 (adversarially triggered stampede) |
-| Tail latency, percentiles, hedged requests | M6 (the math: order statistics, fan-out amplification) | Primer SD-03/SD-38c (design levers: timeouts, hedging, replicas); C6/C7 (alerting/SLOs) |
-| Little's law | M6 (statement + proof sketch) | Primer SD-03/SD-28 (sizing checks, e.g. 400 rps × 250 ms); the A2 slice (primer §2 stitch table) |
+| Tail latency, percentiles, hedged requests | Primer SD-03/SD-38c (percentiles; design levers: timeouts, hedging, replicas) | C6/C7 (alerting/SLOs) |
+| Little's law | Primer SD-03/SD-28 (L = λW; sizing checks, e.g. 400 rps × 250 ms) | the A2 slice (primer §2 stitch table) |
 | CAP / PACELC | A8 (CAP statement) → A9 (formal limits, PACELC) | Primer SD-04/SD-05 (per-dataset choice, GCP store mapping) |
-| Consistent hashing | U2 (analysis: expected movement 1/N, virtual nodes, load bounds) | Primer SD-38a (sharding/rebalancing design); A4 ring slice |
+| Consistent hashing | Primer SD-38a (the ring: ~1/N of keys move, virtual nodes; sharding/rebalancing) | A4 ring slice |
 | MapReduce / scatter-gather | A9 (distributed computation model) | Primer SD-38b/c, SX-08 (job patterns); V-DATA (Dataflow/Dataproc) |
 | CRDTs, operational transform | A9 deepening | Primer Q04 (Google Docs design problem) |
 | Vector clocks, quorums, gossip | A9 deepening | Primer Q05 (Redis-like KV design problem), SD-39 papers |
-| Heavy hitters / sketches / approximate counting (count-min sketch, HyperLogLog, Bloom filters with their false-positive rate (1 − e^(−kn/m))^k) | U2 (randomized algorithms) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
-| Unique ID generation (Base62, Snowflake) | Primer SX-02/Q17 | M1 (counting, birthday bound for collisions); A1 recall (bit layout) |
-| Garbage collection | U4 (memory management) | Primer Q21 (design problem); SX-04 (data GC/TTL); Go companion GO-09 (Go's collector, `GOGC`, `GOMEMLIMIT`) |
+| Heavy hitters / sketches / approximate counting | A4 (probabilistic structures) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
+| Unique ID generation (Base62, Snowflake) | Primer SX-02/Q17 | A1 recall (bit layout) |
+| Garbage collection | Go companion GO-09 (Go's collector, escape analysis, `GOGC`, `GOMEMLIMIT`) | Primer Q21 (design problem); SX-04 (data GC/TTL) |
 | Event sourcing | Design-patterns ARCH-10 (shape) + A9 (theory) | Primer Q23 (stock exchange design); SQL IR/audit designs |
 | Credential storage & replay | Cyber CR-13 (password KDFs) + CR-17/PV-03 (tokenization/encryption for replayable secrets) | Primer P04 (design context) + SD-35 check question |
 | OOD problems O01–O07 | Primer (problems) | Design-patterns (principles and patterns they exercise); A4 recall |
-| Interview/design method, back-of-the-envelope | Primer SD-00 | Track S1–S3 recall it; they never restate it |
-| Scaling evolution (single box → millions) | Primer P08 + SX-12 | Track S4/S9 recall |
+| Interview/design method, back-of-the-envelope | Primer SD-00 | every later design exercise recalls it; none restates it |
+| Scaling evolution (single box → millions) | Primer P08 + SX-12 | recalled wherever scale comes up; never restated |
 | Terraform labs | Primer TF-1…TF-7 (P08/P01/P07 infra) | SQL TF-DB1…TF-DB6 |
 | Real-world architecture papers (Dynamo, Bigtable, Spanner, GFS, Chubby, MapReduce, Dapper, Kafka, ZooKeeper…) | Primer SD-39 / §6.4 (index) | A9 deepening and the university alignment appendix cite the same papers; the reading list lives once, in the primer |
 | Go: language, toolchain, runtime | Go companion GO-01…GO-14 (the Go block of A3) | every Go lab in every part recalls it (rule 0.4.9); A3's Python block stays the first language |
-| Concurrency | U5 (theory; reserved) | Go companion GO-15…GO-19 (goroutines, channels, `context`, the Go memory model, the race detector); A9 (distributed theory) |
-| Data-structure implementations in code | A4 / U2 (concepts and costs) | Go companion GO-27 (the Go code); Primer O01, O02, O07 (the checkpoints) |
+| Concurrency | Go companion GO-15…GO-19 (goroutines, channels, `context`, `sync`, the Go memory model, data races, deadlock, the race detector) | SQL CS-05 (serializability, 2PL, snapshot isolation); A9 (distributed theory) |
+| Data-structure implementations in code | A4 (concepts and costs) | Go companion GO-27 (the Go code); Primer O01, O02, O07 (the checkpoints) |
 | Design patterns in Go | Design-patterns companion (the patterns) | Go companion GO-11 (the Go shape: implicit interfaces, embedding, functional options, middleware, iterators) |
 | HTTP server timeouts against slow clients | Cyber DOS-05 (the attack and the values) | Go companion GO-21 (which `http.Server` field does what) |
 | Password hashing in a service | Cyber CR-13 (the KDFs) | Go companion GO-07 + GO-21 (CR-13's build lab written in Go); GO-28 (a versioned record with rehash on login) |
@@ -183,8 +182,9 @@ Algebra refresher: functions, exponents, logarithms (logs matter for scaling, en
 Linear algebra essentials: vectors, matrices, dot products, matrix multiplication (the literal computation inside every neural network)
 Probability & statistics: distributions, mean/variance/std-dev, conditional probability, Bayes' theorem, correlation vs causation
 Calculus intuition: derivatives as "rate of change," gradients, why gradient descent trains ML models (no need for proof-level rigor — engineering intuition is the target)
-> **Note:** First-pass scope: this intuition pass is the first pass and is complete as written. The rigorous passes follow in M2 (linear algebra), M3 (calculus) and M4 (probability & statistics).
+> **Note:** First-pass scope: this intuition pass is the first pass and is complete as written.
 Big-O notation for algorithm/cost reasoning
+Floating point: IEEE 754, rounding, decimal vs binary; catastrophic cancellation, compensated (Kahan) summation, stable reformulations (`log1p`, log-sum-exp)
 ### A3. Programming Foundations
 - [ ] A3 done
 Python: variables, control flow, functions, data structures (list/dict/set/tuple), OOP basics, virtual environments, package management (pip)
@@ -192,12 +192,15 @@ Bash/shell scripting: variables, loops, conditionals, pipes, redirection, exit c
 Working with APIs from code: HTTP clients, JSON parsing, SDKs (google-cloud-*, boto3, azure-sdk)
 Git fundamentals (deep dive lives in A11)
 Go, the implementation language of the suite's labs and services: the Go companion's GO-01…GO-14, after the Python block, in four teaching blocks — A3.G1 toolchain, packages, types and control flow · A3.G2 slices and maps, functions, errors, strings · A3.G3 pointers and memory, structs and methods, interfaces, generics · A3.G4 I/O, JSON, command-line programs and logging — every construct contrasted with Python (rule 0.4.9)
+
+> **Note:** A3 binds more than twenty suite concepts (rule 0.4.8), so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A3. A3.P1 Python (+ primer SD-21 [dict as a hash table], SD-27 [cache-aside code]) · A3.P2 Bash, APIs from code and Git (+ primer SD-32…SD-34 [RPC and REST calls in Python and curl]; SQL PQ-04 files and encodings, PQ-05 `psql` and a Docker Postgres, PQ-06 DB-API parameter binding) · A3.G1…A3.G4 the Go blocks above (GO-01…GO-14) · A3.C checkpoints.
 ### A4. Data Structures & Algorithms (engineering-practical depth, not competitive-programming depth)
 - [ ] A4 done
 Arrays, linked lists, hash maps, stacks/queues, trees, graphs
 Big-O in practice: why a hash lookup beats a linear scan, why indexes matter in databases
 Sorting/searching intuition (enough to reason about algorithmic choices, not to implement red-black trees from memory)
-> **Note:** First-pass scope: A4 stays at engineering-practical depth. The rigorous pass (proofs, recurrences, and implementing a balanced search tree) is U2.
+Probabilistic structures: Bloom filters with their false-positive rate (1 − e^(−kn/m))^k, count-min sketch, HyperLogLog
+> **Note:** First-pass scope: A4 stays at engineering-practical depth.
 ### A5. Computer Networking (heavily tested across every cloud architect/network/security cert)
 - [ ] A5 done
 The OSI model and TCP/IP model — what actually lives at each layer
@@ -211,6 +214,8 @@ TLS/SSL: the handshake, certificates, certificate authorities (ties into A10 sec
 NAT, firewalls, proxies vs reverse proxies (sets up NGINX in Track C)
 Load balancing concepts: L4 vs L7, algorithms (round robin, least connections, consistent hashing)
 VPNs and private connectivity concepts
+
+> **Note:** A5 binds more than twenty suite concepts (rule 0.4.8), so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A5. A5.1 layers, addressing, routing, TCP and UDP (+ primer SD-30, SD-31, SD-01 [clones + single-box ceiling], SD-02 [performance vs scalability]) · A5.2 DNS (+ primer SD-08; cyber DOS-02, NT-03, NT-04) · A5.3 HTTP and HTTP-layer caching (+ primer SD-29, SD-09, SD-26 [HTTP-layer caching]; cyber PQ-S-04) · A5.4 TLS mechanics (+ cyber CR-11, CR-12, NT-08; primer SD-35 [TLS in transit]) · A5.5 NAT, firewalls and proxies (+ primer SD-11; cyber NT-01, NT-02, NT-07) · A5.6 load balancing (+ primer SD-10; cyber DOS-01) · A5.7 VPNs and private connectivity (+ cyber NT-05) · A5.8 the Go renderings, once the Go companion reaches them (GO-21 `net/http`, GO-28 cookies, GO-17 deadlines, GO-23 gRPC) · A5.9 checkpoints.
 ### A6. Linux & Operating Systems
 - [ ] A6 done
 Processes, threads, memory management, the filesystem hierarchy
@@ -224,8 +229,9 @@ Client-server model, monoliths vs microservices, trade-offs of each
 REST principles, gRPC, GraphQL (awareness-level)
 Synchronous vs asynchronous communication; message queues and event-driven architecture (sets up Pub/Sub, SQS/SNS, Service Bus)
 API authentication patterns: API keys, OAuth 2.0, JWTs, service accounts
+Architecture documentation: views, C4, ADRs ("I pick X because Y, I accept Z"), the HLD/LLD contract and NFR tables
 
-> **Note:** A7 binds several dozen suite concepts, so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A7. A7.1 client-server and API styles (+ SD-32…SD-34) · A7.2 async and queues (+ SD-28) · A7.3 OOP foundations + SOLID · A7.4 GRASP + creational patterns · A7.5 structural patterns · A7.6 behavioral patterns · A7.7 architecture styles + DDD (ARCH-01…ARCH-08) · A7.8 API authentication/authorization + attacks · A7.9 abuse and rate limits · A7.10 S1–S2 · A7.11 checkpoints. A5, A8 and A10 get the same split, from the §0.4.8 pacing budget, when they are taught.
+> **Note:** A7 binds several dozen suite concepts, so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A7. A7.1 client-server and API styles (+ primer SD-12, SD-32…SD-34) · A7.2 async and queues (+ primer SD-28; SQL SL-10 idempotent writes) · A7.3 OOP foundations + SOLID (patterns F-01…F-04, PR-01…PR-05) · A7.4 GRASP + creational patterns (PR-06…PR-14, DP-01…DP-05) · A7.5 structural patterns (DP-06…DP-12) · A7.6 behavioral patterns (DP-13…DP-23) · A7.7 architecture styles + DDD (ARCH-01…ARCH-08, anti-patterns AP-01…AP-10; primer SD-16 [functional partitioning as service design]; SQL OD-09 data access through repositories) · A7.8 API authentication/authorization + attacks (cyber AU-05…AU-08, AU-11…AU-13, CR-10, TH-04, CL-08) · A7.9 abuse and rate limits (cyber AB-01…AB-08) · A7.10 architecture documentation (views, C4, ADRs, HLD/LLD, NFR tables; SQL DD-01, RT-06, DD-08, DD-10, DD-12 as schema ADRs) · A7.11 the Go renderings, once the Go companion reaches them (GO-10, GO-11, GO-21, GO-22, GO-23, GO-28, GO-29) · A7.12 checkpoints. A3, A5, A8, A9 and A10 are split the same way (their notes).
 ### A8. Databases & Data Modeling
 - [ ] A8 done
 Relational model, SQL fundamentals (SELECT/JOIN/GROUP BY, normalization)
@@ -234,12 +240,16 @@ NoSQL families: key-value, document, wide-column, graph — and when each fits
 CAP theorem and its real engineering trade-offs
 Data warehousing basics: OLTP vs OLAP, star schemas
 Engine slices DB-1…DB-10 (bag relations, slotted page, buffer clock sweep, B-tree + inverted index, iterators + spill, histograms, MVCC visibility + deadlock detection, mini-WAL): owned and taught by the SQL companion (§4.0) inside the A8 sessions
+
+> **Note:** A8 binds more than twenty suite concepts (rule 0.4.8), so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A8. A8.1 relational model, keys, dependencies and normal forms; DDL, evaluation order, NULL (SQL RT-01, RT-04, RT-05, RT-07, SL-01…SL-03, DD-12; slice DB-2; primer SD-13) · A8.2 relational algebra and the query language (SQL RT-02, RT-03, RT-08, SL-04…SL-09, SL-14; slices DB-1, DB-3) · A8.3 transactions and isolation (SQL SL-10, CS-05; slice DB-9; primer SD-04 [the CAP statement], SD-05 [strong vs eventual as the C in CAP]) · A8.4 storage, indexes and the executor (SQL CS-01…CS-04, CS-08, OD-01; slices DB-4…DB-8; primer SD-19) · A8.5 recovery and replication in the engine (SQL CS-06, CS-07; slice DB-10) · A8.6 data modeling (SQL RT-06, DD-01…DD-08, DD-11, OD-08, SL-11, SL-12; primer SD-16 [schema view], SD-18 [denormalization as the inverse of normalization]; cyber PV-03, CM-02) · A8.7 NoSQL families and the choice (primer SD-20…SD-25, SD-26; SQL AN-06) · A8.8 warehousing: OLTP vs OLAP (SQL AN-01) · A8.9 attacks on the data layer (cyber WA-05, AB-06, AB-07) · A8.10 the Go renderings, once the Go companion reaches them (GO-22, GO-29) · A8.11 checkpoints.
 ### A9. Distributed Systems Theory
 - [ ] A9 done
 Consistency models (strong, eventual), replication strategies
 Partitioning/sharding, consensus (Raft/Paxos at a conceptual level — Spanner, etcd, and Kubernetes all depend on this)
 Availability vs durability, failure modes, idempotency
 Why "the network is reliable" is the first fallacy of distributed computing (and the other seven)
+
+> **Note:** A9 binds more than twenty suite concepts (rule 0.4.8), so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A9. A9.1 consistency models and CAP in full (primer SD-04 [formal limits + PACELC], SD-05) · A9.2 replication, availability and durability (primer SD-06, SD-07, SD-14, SD-15; SQL CS-06) · A9.3 partitioning and sharding (primer SD-16, SD-17, SD-18, SD-25, SD-38; SQL DD-10, DD-13, AN-05) · A9.4 consensus, distributed transactions and failure design (SQL CS-07, SL-10; patterns ARCH-09…ARCH-12) · A9.5 caching at scale (primer SD-27; cyber DOS-08) · A9.6 scale primitives with SQL evidence (SQL OD-03, OD-09, DD-11; multi-tenancy: SQL DD-09, SL-13, cyber CL-06; cyber AB-05) · A9.7 the database theory tier, taught with the A8 sessions (SQL RT-02, RT-03, RT-04, RT-08, CS-02, CS-05, CS-08) · A9.8 the fallacies and distributed threats (cyber TH-06); the papers (primer SD-39) · A9.9 the Go renderings, once the Go companion reaches them (GO-15…GO-19, GO-29) · A9.10 checkpoints.
 ### A10. Security & Cryptography Fundamentals
 - [ ] A10 done
 Symmetric vs asymmetric encryption, hashing vs encryption, digital signatures
@@ -248,6 +258,8 @@ The TLS handshake in detail, PKI and certificate chains
 Authentication vs authorization; identity federation, SSO, MFA
 Common attack classes: injection, XSS, CSRF, DDoS, privilege escalation
 Principle of least privilege, defense in depth, zero trust — the conceptual spine of every cloud IAM system
+
+> **Note:** A10 binds more than twenty suite concepts (rule 0.4.8), so it is taught as ordered teaching blocks. These are sessions, not new modules; the module ID stays A10. A10.1 principles, economics and threat modeling (cyber PQ-S-02, PQ-S-05, PQ-S-06, TH-01…TH-04) · A10.2 cryptographic primitives (cyber PQ-S-01, CR-01…CR-10, CR-13, CR-16, CR-17, CR-19, SC-01) · A10.3 TLS and PKI, formally (cyber CR-11, CR-12; primer SD-35) · A10.4 authentication, sessions, federation and MFA (cyber AU-01…AU-13) · A10.5 web attack classes (cyber PQ-S-04, WA-01…WA-08, WA-10, WA-12; SQL SL-13) · A10.6 denial of service and resource exhaustion (cyber DOS-03, DOS-05, DOS-06) · A10.7 least privilege, defense in depth, zero trust (cyber CL-05, CK-04, PV-05) · A10.8 the Go renderings, once the Go companion reaches them (GO-07, GO-13, GO-21, GO-25, GO-26, GO-28) · A10.9 checkpoints.
 
 
 
@@ -377,37 +389,6 @@ Agentic patterns: tool use, planning/reasoning loops, multi-agent orchestration,
 Responsible AI: bias, fairness, explainability, safety evaluation
 Lab Reality (Track D): D1 `[local]` notebooks (scikit-learn) · D2 `[local]` small models on CPU, `[plan-only]` for large training · D3 `[local]` tracking and pipelines, `[free-tier]` Vertex AI pieces where a free tier exists `(verify)` · D4 `[local]` RAG and agent prototypes, `[credit ~$X]` timeboxed model API calls `(verify)`.
 
-### Reserved tracks M, U and S (stubs)
-
-The companions anchor to these IDs. Each ID is reserved here with its scope; the modules themselves are not written yet, so nothing here is teaching content yet. Until a module is written, a pointer to it names its scope only: say so plainly (§0.2) and teach the concept from the part that owns it in §0.3.
-
-| ID | Title | Scope (what the rebound references need) |
-|---|---|---|
-| M1 | Discrete Mathematics & Proof | logic, proof techniques, sets and relations, counting, graphs, elementary number theory |
-| M2 | Linear Algebra | rigorous pass on A2 |
-| M3 | Calculus | rigorous pass on A2 |
-| M4 | Probability & Statistics | rigorous pass on A2 |
-| M5 | Numerical Methods & Floating Point | IEEE 754, rounding, decimal vs binary; catastrophic cancellation, compensated (Kahan) summation, stable reformulations (`log1p`, log-sum-exp) |
-| M6 | Information Theory & Performance Modeling | queueing, Little's law, tail latency |
-| U1 | Computer Architecture & Systems Programming | machine-level representation, memory hierarchy |
-| U2 | Algorithms: Design & Analysis | rigorous pass on A4 |
-| U3 | Theory of Computation | automata, grammars, decidability |
-| U4 | Programming Languages & Paradigms | paradigms, types, memory management |
-| U5 | Concurrency & Parallel Computing | races, locks, deadlock, memory models |
-| U6 | Software Engineering & Testing | requirements, testing theory, specification |
-| U7 | Professional Practice, Ethics & Law | ethics, privacy law literacy, licensing |
-| S1 | Requirements & quality attributes | Track S — System Architecture Design Studio |
-| S2 | Architecture documentation | views, C4, ADRs, the HLD/LLD contract and NFR tables |
-| S3 | Capacity & performance engineering | |
-| S4 | Reliability architecture | |
-| S5 | Data architecture | |
-| S6 | Security architecture | threat-model-driven design |
-| S7 | Integration & event-driven architecture | |
-| S8 | Migration & modernization | the six Rs mapped to landings (rehost with Migrate to Virtual Machines, replatform, re-architect for GKE or Cloud Run, retire, retain, repurchase); Migration Center discovery, dependency mapping and wave planning; licence impact (bring-your-own vs included) before wave 1; data movement (Database Migration Service, Datastream, Storage Transfer Service, Transfer Appliance); wave-0 connectivity; cutover checklist with a written rollback (PCA 1.4) |
-| S9 | Cost architecture & unit economics | |
-| S10 | Architecture evaluation | |
-| S11 | Case-study studio | the four published PCA case studies, each as an HLD with its trade-off answers |
-
 ## PART V — Google Cloud Platform
 Service map by category (the vocabulary we'll build fluency in)
 
@@ -442,7 +423,8 @@ Format: 50 scenario-based questions, 2 hours, includes 4 published case studies 
 Domains (verified): Designing (24%) · Provisioning (15%) · Security & Securing AI (20%) · Optimization (18%) · Implementation (11%) · Reliability & Well-Architected Framework (12%)
 > **Verified 2026-09-24 against the vendor's live page:** the live guide's weights are 25 / 17.5 / 17.5 / 15 / 12.5 / 12.5, under different section names. The line above keeps the 2026-09-16 reading. (verify live before scheduling)
 What makes it hard: it's not "what does this service do," it's "given these constraints, which trade-off is correct" — architectural judgment, tested through the case studies
-The published case studies (exam guide v6.1): Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive `(verify)` against the live guide. Each gets a written HLD and one "I pick X because Y, I accept Z" answer per requirement in S11.
+The published case studies (exam guide v6.1): Altostrat Media, Cymbal Retail, EHR Healthcare, KnightMotives Automotive `(verify)` against the live guide. Each gets a written HLD and one "I pick X because Y, I accept Z" answer per requirement.
+Migration and modernization (PCA 1.4): the six Rs mapped to landings (rehost with Migrate to Virtual Machines, replatform, re-architect for GKE or Cloud Run, retire, retain, repurchase); Migration Center discovery, dependency mapping and wave planning; licence impact (bring-your-own vs included) before wave 1; data movement (Database Migration Service, Datastream, Storage Transfer Service, Transfer Appliance); wave-0 connectivity; cutover checklist with a written rollback
 2. Professional Machine Learning Engineer (PMLE) — your named priority #2
 - [ ] PMLE passed
 - **Lab Reality**: `[local]` notebooks · `[credit ~$X]` timeboxed Vertex AI training/prediction (Part V note) · `[plan-only]` large training runs.
