@@ -24,6 +24,7 @@ import r2_sql  # noqa: E402
 import r2_sec  # noqa: E402
 import r2_dp  # noqa: E402
 import northstar  # noqa: E402
+import reports  # noqa: E402
 
 from r2_common import JOURNAL, Doc, note, ledger_prefs, PREFS_HEAD, C29_POINTER, DATE, CUR, PRI, SQL, DPC, SEC, LED, SKL  # noqa: E402
 
@@ -320,7 +321,9 @@ def main():
     with open(os.path.join(outd, "journal.jsonl"), "w", encoding="utf-8") as fh:
         for k, j in enumerate(JOURNAL, 1):
             fh.write(json.dumps({"n": k, **j}, ensure_ascii=False, sort_keys=True) + "\n")
-    print(f"r2_build: {len(JOURNAL)} journaled edits")
+    stats = reports.build(root, [{"n": k, **j} for k, j in enumerate(JOURNAL, 1)])
+    print(f"r2_build: {len(JOURNAL)} journaled edits; diff +/- lines: "
+          + ", ".join(f"{f.split('-')[0].split('.')[0]} +{a}/-{b}" for f, (a, b) in stats.items()))
 
 
 if __name__ == "__main__":

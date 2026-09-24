@@ -279,7 +279,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 
 ### 3.3 Cryptography — first-class pillar (CR-01 … CR-20)
 
-*Equal scale to AU/AB/CL. `Curriculum` A7 (API auth patterns) + A10 own password/JWT *product* labs; Phase 4 Security (N7.3) owns the CMEK *product* spine; CR owns cryptographic justification and failure modes. Stanford CS255 alignment: see §B5 IAM.*
+*Equal scale to AU/AB/CL. `Curriculum` A7 (API auth patterns) + A10 own password/JWT *product* labs; Phase 4 Security (N7.3) owns the CMEK *product* spine; CR owns cryptographic justification and failure modes. Stanford CS255 alignment: see §0.5.*
 
 #### CR-01 · Crypto goals & threat models (IND-CPA/CCA; EUF-CMA; Kerckhoffs) — stitch: A10 · CS255 · PQ-S-01
 - **Provenance** *(refactor, 2026-09-24)*: primary anchor per the §6.2 crosswalk: A10.
@@ -411,7 +411,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E8
 - **Check:** Why is bcrypt/Argon2id preferred over SHA-256 for passwords?
 
-#### CR-14 · Key management: hierarchy, envelope, rotation, SoD; KMS/HSM/EKM/CMEK/CSEK — stitch: Phase 4 Security
+#### CR-14 · Key management: hierarchy, envelope, rotation, SoD; KMS/HSM/EKM/CMEK/CSEK — stitch: Phase 4 Security · N7.x
 - **Provenance** *(refactor, 2026-09-24)*: corrupted pseudo-anchors removed, not reverse-engineered: `Phase4-Sec.3 owner product` (C-10); primary anchor per the §6.2 crosswalk: Phase 4 Security.
 - [ ] unlocked
 - **Attack:** One master key encrypts everything forever; DEKs logged; humans export private keys; CSEK in client without threat model.
@@ -421,7 +421,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E9, CR-E10
 - **Check:** Draw KEKs and DEKs for a GCS object + a DB field.
 
-#### CR-15 · Key compromise & crypto agility; IR for leaked keys — stitch: Phase 4 Security · IR-05
+#### CR-15 · Key compromise & crypto agility; IR for leaked keys — stitch: Phase 4 Security · N7.x · IR-05
 - **Provenance** *(refactor, 2026-09-24)*: corrupted pseudo-anchors removed, not reverse-engineered: `Phase4-Sec.8` (C-10); primary anchor per the §6.2 crosswalk: Phase 4 Security.
 - [ ] unlocked
 - **Attack:** No inventory of where a key was used; rotation that leaves old ciphertext forever decryptable without policy; JWT keys without cutoff.
@@ -441,7 +441,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E17
 - **Check:** Why should MAC compare not short-circuit?
 
-#### CR-17 · Secure channels beyond TLS: mTLS, app AEAD, field-level encryption — stitch: Phase 4 Security · N4.8
+#### CR-17 · Secure channels beyond TLS: mTLS, app AEAD, field-level encryption — stitch: Phase 4 Security · N7.x · N4.8
 - **Provenance** *(refactor, 2026-09-24)*: old numbered sections kept in N-form (N4.8; C-03); corrupted pseudo-anchors removed, not reverse-engineered: `Phase4-Sec.3` (C-10); primary anchor per the §6.2 crosswalk: Phase 4 Security.
 - [ ] unlocked
 - **Attack:** Stopping at TLS termination and writing plaintext PII to logs/DB; mTLS without cert lifecycle.
@@ -451,7 +451,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E18
 - **Check:** When is field-level encryption worth the query-friction cost?
 
-#### CR-18 · Privacy-enhancing crypto survey: TEEs, MPC, HE, ZKP awareness — stitch: Phase 4 Security · N9c · XACS235 · SC-03
+#### CR-18 · Privacy-enhancing crypto survey: TEEs, MPC, HE, ZKP awareness — stitch: Phase 4 Security · N7.x · N9c · XACS235 · SC-03
 - **Provenance** *(refactor, 2026-09-24)*: old numbered sections kept in N-form (N9c; C-03); primary anchor per the §6.2 crosswalk: Phase 4 Security.
 - [ ] unlocked
 - **Attack:** Assuming Confidential VM stops SQL injection; assuming HE is free performance; marketing ZKP without a statement.
@@ -471,7 +471,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E20
 - **Check:** What is store-now-decrypt-later?
 
-#### CR-20 · Crypto engineering checklist for the reference cloud app — stitch: Phase 4 Security · N7.3 · all CR
+#### CR-20 · Crypto engineering checklist for the reference cloud app — stitch: Phase 4 Security · N7.x · N7.3 · all CR
 - **Provenance** *(refactor, 2026-09-24)*: old numbered sections kept in N-form (N7.3; C-03); corrupted pseudo-anchors removed, not reverse-engineered: `A10/B5.9` (C-10); primary anchor per the §6.2 crosswalk: Phase 4 Security.
 - [ ] unlocked
 - **Attack:** One-off decisions without a checklist; copying Stack Overflow crypto.
