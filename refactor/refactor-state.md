@@ -2,14 +2,15 @@
 
 Meta prompt: `curriculum-refactor-meta-prompt.md` v1.2 (repo root) · Workspace: `refactor/` (the repo's `refactor/` folder; R0–R1 ran at `/Users/suhas/sde/refactor/`, R2 was finished in a cloud checkout of the same repo, branch `gcp`). Outputs go to `refactor/outputs/` and the workspace root.
 
-**Resume point:** R2 is **done**, audited before R3 (`audit-R2.md`: PASS), and waiting for "continue". Read `requirements-hardening.md` first. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (it must fold in `d3_check.py`, `rename_checks.py` and `audit_r2.py`; see §9 for what it must know), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild everything first with `python3 refactor-tools/r2_build.py .`; it is idempotent, so the output must be byte-identical to what is committed.
+**Resume point:** R2 is **done** and audited (`audit-R2.md`: PASS). The learner then ruled D5–D9, so **R2b (self-contained rework) comes before R3**: drop Northstar and rebind every `N…` pointer to the owning module; remove all file names and cross-file links; embed the SQL lab kit; move provenance and archive text to `refactor/`; de-duplicate topics (one home each); expand the nine checkpoints and other gaps; then delete `gcp-curriculum.md`. Read `requirements-hardening.md` §1 first. R3's `verify.py` then checks D6/D7 (zero file names, zero cross-file links, zero duplicate topics) as hard-gate items. Next: **R3 Verify** (§8.2). Write `refactor-tools/verify.py` (it must fold in `d3_check.py`, `rename_checks.py` and `audit_r2.py`; see §9 for what it must know), run it on `work/` to produce `manifest-after.json` and `verification-report-R3.md`. Hard gate: zero orphans, zero undefined references, zero lost items. After a fresh checkout run `chmod a-w inputs-original/*`. Rebuild everything first with `python3 refactor-tools/r2_build.py .`; it is idempotent, so the output must be byte-identical to what is committed.
 
 | Phase | Status | Date | Deliverables |
 |---|---|---|---|
 | R0 Ingest | **done** | 2026-09-24 | `refactor-state.md`, `r0-reproduction.md`, `cert-verification.md`, `refactor-tools/r0_reproduce.py`, `refactor-tools/primer_bindings.py`, `inputs-original/` |
 | R1 Manifest | **done** | 2026-09-24 | `manifest-before.json`, `manifest-before-summary.md`, `refactor-tools/manifest.py`, `refactor-tools/count_boxes.py` |
 | R2 Repair | **done** | 2026-09-24 | `work/*` (5 repaired files + new `northstar-reference-app.md`), `id-rename-map.csv`, `crosswalk.md`, `primer-binding-table.md`, `CHANGELOG.md`, `errata.md`, `diffs/<file>.diff`, `outputs/r2/journal.jsonl`, `outputs/r2-gate/*`, tools listed in §7; pre-R3 audit `audit-R2.md` + `requirements-hardening.md` |
-| R3 Verify | **next** | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
+| R2b Self-contained rework (D5–D9) | **next** | | per `requirements-hardening.md` §1 |
+| R3 Verify | pending | | `refactor-tools/verify.py`, `manifest-after.json`, `verification-report-R3.md` |
 | R4–R9 Enhance | pending | | |
 | R10 Final | pending | | |
 
@@ -57,6 +58,8 @@ Full table and commands: `r0-reproduction.md` (regenerate with `python3 refactor
 | D2 | Fresh start: no progress carried over. | Invariant 3 does not apply. Ledger regenerated in R10 as a clean §14 template. C-43, C-67, C-68 dropped; C-69/C-73 evidence was chat-only and is dropped, but their §13.5/§13.9 rules are kept (`Curriculum` §0.4.7/§0.4.8). All boxes unticked (NT-04 too). Ledger §5 preferences **kept** and copied into every file's §0. |
 | D3 | `gcp.md` is the primary Curriculum; content may be rearranged, never removed. | Stale text gets dated notes. Every line changed by a correction or regeneration keeps its pre-refactor text in the file's closing "Pre-refactor text archive (D3)". Checked by `d3_check.py`. Applied to all companions too. |
 | D4 | Verify and keep all 18 certifications. | `cert-verification.md`; R2 annotated each cert (box, Lab Reality, D4 note) and corrected "fifteen" → "eighteen". |
+
+| D5–D9 | Later the same day: drop Northstar and the cookie question (D5); 5 self-contained files, no file names or links, lab kit embedded, bookkeeping moved to `refactor/` (D6); one topic, one home (D7); delete `gcp-curriculum.md` once no longer needed (D8); expand the nine checkpoints and every other gap (D9). | Full text and readings in `requirements-hardening.md` §1. Supersedes the prompt's Track N (§9.4), §7 overlap register and "companion §0 points to `Curriculum`" rules. |
 
 R0 questions Q1–Q4 are all superseded by D1–D4.
 
@@ -112,7 +115,7 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 | RD-6 | Gate defaults R2-Q1, SQL-07/SEC-08, SQL-17, SQL-02/03, SEC-06, SEC-11 | As applied at the rename gate (`outputs/r2-gate/rename-dryrun-summary.md`). SQL `T1…T6` stay as `tx_tests.py` scenario labels. |
 | RD-7 | `errata.md` seed | C-67's two chat errors dropped (D2). Seeded with the 3 content errors R2 corrected (C-44 ×2, C-60). |
 | RD-8 | §6.2 "NT-04 already taught — mark done" | Not ticked (D2 fresh start). |
-| RD-9 | Prompt's open cookie question (HttpOnly + `Domain=.example.com`) | Not an open learner item (D2); added as an ordinary unticked exercise on the cyber cookie card in R8. |
+| RD-10 | Complementing without links (D6/D7) | Primary file keeps one study-order table naming companion parts by title only. |
 
 ## 9. What R3's verify.py must know
 
@@ -126,10 +129,8 @@ Regenerate with `python3 refactor-tools/manifest.py work --out manifest-before.j
 
 ## 10. Open questions (for the learner)
 
-1. **N6.16 meaning** (RD-3): keep "DNS and DDoS (security view)" from the old parent, or use §6.3's "Edge/DNS teardown"?
-2. **C-11 mappings** (RD-1): accept the nine phantom → card mappings?
-3. **"the reference cloud app"** (×36 in the cyber input): rename to "Northstar" in R9 (the plan), or earlier? One corrupted cookie example (`Domain=.the reference cloud app.example`) is left untouched until then.
-4. **RD-9:** keep the cookie question as an ordinary cyber exercise?
+1. RD-10: title-only study-order table in the primary file acceptable?
+2. RD-1: accept the nine checkpoint mappings (expanded into full cards under D9 either way)?
 
 ## 11. Deferred (not R2 by the prompt's phase rules)
 

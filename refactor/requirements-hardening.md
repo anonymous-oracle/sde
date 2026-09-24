@@ -1,4 +1,4 @@
-# Revamp requirements — hardened (as of the end of R2, 2026-09-24)
+# Revamp requirements — hardened (as of the end of R2, 2026-09-24; D5–D9 added the same day)
 
 This file pins down how the meta-prompt (`curriculum-refactor-meta-prompt.md`, "the prompt") applies to this repo. It merges the prompt with the learner's decisions, the rulings made at the R2 gate, and the defaults taken during R0–R2. It also records what each later phase has to prove. When it disagrees with the prompt, it wins only where it cites a higher rung of the precedence ladder: a learner decision (rung 1), or a gate ruling the learner approved.
 
@@ -12,6 +12,11 @@ Evidence for everything below "R2" is in `audit-R2.md`. Re-run it with `python3 
 | D2 | "You may forget about any progress related refactoring, consider this revamp task as something we are doing fresh." | Nothing counts as done. Every box stays unticked. Chat-only learner state is dropped (C-43, C-67, C-68 evidence; C-69/C-73 evidence). The R10 ledger is a blank §14 template. Ledger §5 **teaching preferences** are course content, not progress, so they are kept. |
 | D3 | "Yes, gcp.md is the primary curriculum. But do not remove any curriculum content, you are only allowed to re-arrange, not remove." | Applies to all 7 files. Content may be moved, renamed, annotated or corrected, never deleted. A corrected or regenerated line keeps its pre-refactor text in the file's closing `## Pre-refactor text archive (D3)` section. |
 | D4 | "Verify all 18 and retain them." | 18 certifications, each verified on 2026-09-24 (`cert-verification.md`) and kept, with a dated note. "Fifteen" became "eighteen". |
+| D5 | "Northstar was a gcp-curriculum.md thing. Not relevant. I hope you did not simply copy @gcp-curriculum.md into this course. That is not required, only use it's content or material if it helps." · "Forget the open question, we are tackling this as if it is a new fresh course." | Track N and `northstar-reference-app.md` are out of scope and are deleted. Every `N…` pointer and every "the reference cloud app" is rebound to the course module that teaches the topic, and missing material is written into that file. Nothing is copied wholesale; material is borrowed only where it fills a gap. The prompt's open cookie question is dropped: the course has no carried-over open items. |
+| D6 | "Make the main curriculum file and the 4 companion files self contained but complementing to each other for the sake of the course. No filename references should exist in any of them. Add the material directly instead of referencing." · "1 primary file and 4 companion files, all self contained and no reference links. Ensure that you have all the material added within the files, no file dependencies are tolerated." | Each of the 5 files can be studied with nothing else open. **Zero** file names (`*.md`, `*.py`, `*.sql`, `*.json`, paths) and zero "see file X §y" links in live text. Shared rules (teaching contract, lab safety, session protocol, learner preferences) are written out in each file that needs them. The SQL lab kit is embedded as code blocks, and the golden answers are embedded verbatim, so goldens stay byte-identical. Refactor bookkeeping (provenance lines, the D3 archive, `Source material:` lines) moves out of the course files into `refactor/` records, so D3 still holds and nothing is deleted. |
+| D7 | "you free to collect required material from files, just make sure topics do not overlap." | One topic, one home. Every topic is taught in exactly one of the 5 files. Where two files teach the same topic today, the fuller treatment is kept in the owning file and the other file's unique lines are moved into it (D3: moved, never dropped). This replaces the prompt's "owner teaches, others add" overlap register (§7). |
+| D8 | "gcp curriculum file is a legacy course, keep that file only until it's useful and then delete it, otherwise that will only confuse you." | `gcp-curriculum.md` (repo root) is source material only. It is deleted in the phase that finishes borrowing from it, once a check shows no course file still needs it. Git history keeps it. |
+| D9 | "expand the nine mappings and any other such missing gaps so that we have a proper, robust self contained curriculum." | The nine checkpoint IDs (C-11) each become a full checkpoint card with a scenario, a prediction step, a check question and an answer key, inside the file that owns the topic. The same applies to every other thin or missing item a gap scan finds (stub sections, pointer-only modules, empty Lab/Check lines). |
 
 ### What the decisions change in the prompt
 
@@ -35,11 +40,11 @@ Evidence for everything below "R2" is in `audit-R2.md`. Re-run it with `python3 
 
 ## 3. Defaults taken (`[resolved-by-default]`; the learner may overrule any)
 
-RD-1…RD-8 are in `refactor-state.md` §8. One default was added in this audit:
+RD-1…RD-8 are in `refactor-state.md` §8. RD-2 and RD-3 lapse under D5 (there is no N-track). RD-9 (the cookie question) is withdrawn under D5. One interpretation default follows from D6/D7:
 
 | # | Item | Default taken |
 |---|---|---|
-| RD-9 | The prompt's "open cookie question" (prompt line 77: HttpOnly + `Domain=.example.com`) | Not carried over as an open learner item (D2). The question is course material, so R8 adds it as an ordinary, unticked exercise on the cyber cookie card. |
+| RD-10 | How the files complement each other with no links | The primary file holds the one course plan. Its study-order table names each companion part by **title** only (e.g. "Cloud Cybersecurity companion, Part 3"): no file names, no section links. Companions carry no pointers back; each module states its prerequisites as plain topics. |
 
 ## 4. Facts corrected against the prompt (the files win)
 
@@ -125,7 +130,7 @@ Each phase ends with its report and the 5-question self-review (§2 hardening 4)
 
 ## 7. Open questions for the learner
 
-1. **N6.16 meaning** (RD-3): "DNS and DDoS (security view)" from the old parent, or the prompt's "Edge/DNS teardown"?
-2. **The nine C-11 phantom → card mappings** (RD-1): accept them?
-3. **Timing of "the reference cloud app" → "Northstar"**: R8/R9 as planned, or earlier?
-4. **RD-9**: keep the cookie question as an ordinary cyber exercise?
+1. **RD-10:** is a title-only study-order table in the primary file acceptable, or must even that go?
+2. **RD-1, the nine checkpoint mappings:** do you accept them? They are expanded into full cards under D9 either way.
+
+Closed by D5: N6.16 meaning, the Northstar rename timing, and the cookie question.
