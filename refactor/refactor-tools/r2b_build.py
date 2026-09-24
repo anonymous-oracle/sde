@@ -44,6 +44,7 @@ import r2b_sec  # noqa: E402
 import r2c_go  # noqa: E402
 import r2c_gcp  # noqa: E402
 import r4_cur  # noqa: E402
+import r5_acad  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -181,12 +182,14 @@ def main():
     r2b_cur.build(files[CUR], files)
     r2c_go.cur(files[CUR])   # D12: before the companions copy the contract, so rule 0.4.9 is in every copy
     r2c_gcp.cur(files[CUR])  # D13: the final gap-fill from the legacy GCP notes (material only)
+    r5_acad.cur_contract(files[CUR])  # D17: rule 0.4.10 before the companions copy the contract
     r2b_pri.build(files[PRI], files)
     r2b_sql.build(files[SQL], files, root)
     r2b_dp.build(files[DPC], files)
     r2b_sec.build(files[SEC], files)
     go = r2c_go.build(files, root)   # D12: the Go Language Companion and its tie-ins
     r4_cur.build(files, go)          # R4 (D16): no Track M, U or S; every anchor rebound, material re-homed
+    r5_acad.build(files, go, root)   # R5 (D17): the academic pass of every part
     for fn, f in list(files.items()) + [(go.n, go)]:
         open(os.path.join(work, fn), "w", encoding="utf-8").write("\n".join(f.L))
     ns = os.path.join(work, "northstar-reference-app.md")

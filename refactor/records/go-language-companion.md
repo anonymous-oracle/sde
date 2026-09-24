@@ -210,133 +210,133 @@ now:
 
 Journaled edits the build applies to the Go companion after it is assembled from its authored source (R4 onward). Each entry names the journal number (outputs/r2b/journal.jsonl), the rule and the class, and keeps the line as the authored source has it.
 
-**J925** · R4-11 · anchor-rewrite
+**J926** · R4-11 · anchor-rewrite
 
 ````text
 2. **One concept, one teaching.** Concepts owned elsewhere are recalled in one line, never re-taught: data-structure theory (A4, U2), HTTP (A5), concurrency theory in general (U5), design patterns (the Design Patterns companion), the SQL itself (the SQL companion), attacks and cryptography (the Cloud Cybersecurity companion). This part owns only the Go rendering of each: the syntax, the semantics, the runtime behaviour and the idiom.
 ````
 
-**J926** · R4-11 · anchor-rewrite
+**J927** · R4-11 · anchor-rewrite
 
 ````text
 | A9 Distributed Systems Theory | GO-17 (deadline propagation), GO-19 (bounded concurrency, retries), GO-29 (idempotency keys, at-least-once webhooks); GO-CAP2 | A9 owns the theory; U5 owns concurrency theory in general |
 ````
 
-**J927** · R4-11 · anchor-rewrite
+**J928** · R4-11 · anchor-rewrite
 
 ````text
 | U4 Programming Languages & Paradigms (reserved) | GO-09, GO-11, GO-12 are the worked instance: value semantics, structural typing, parametric polymorphism | U4 is reserved and not written; say so plainly (the learner preferences, §0.5) |
 ````
 
-**J928** · R4-11 · anchor-rewrite
+**J929** · R4-11 · anchor-rewrite
 
 ````text
 | U5 Concurrency & Parallel Computing (reserved) | GO-15…GO-19 are the worked instance: CSP, the memory model, data races, deadlock | U5 is reserved and not written; say so plainly |
 ````
 
-**J929** · R4-11 · anchor-rewrite
+**J930** · R4-11 · anchor-rewrite
 
 ````text
 | Races, locks, deadlock, memory models in general | U5 | GO-15…GO-19: goroutines, channels, `sync`, the Go memory model, the race detector |
 ````
 
-**J930** · R4-11 · anchor-rewrite
+**J931** · R4-11 · anchor-rewrite
 
 ````text
 | Garbage-collection theory | U4 | GO-09: Go's collector, escape analysis, `GOGC`/`GOMEMLIMIT` |
 ````
 
-**J931** · R4-11 · anchor-rewrite
+**J932** · R4-11 · anchor-rewrite
 
 ````text
 | Data-structure theory and costs | A4 / U2 | GO-27: the Go implementations |
 ````
 
-**J932** · R4-11 · anchor-rewrite
+**J933** · R4-11 · anchor-rewrite
 
 ````text
 U5 (reserved) owns concurrency theory in general and A9 owns distributed-systems theory. These five modules own how Go does it: the goroutine, the channel, `select`, `context`, the `sync` package, the Go memory model and the race detector. Order is enforced: GO-15 → GO-16 → GO-17 → GO-18 → GO-19.
 ````
 
-**J933** · R4-11 · anchor-rewrite
+**J934** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-03 · Types, zero values, constants and conversions — stitch: A3 · A1 · M5
 ````
 
-**J934** · R4-11 · anchor-rewrite
+**J935** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-09 · Pointers, values and memory — stitch: A3 · A6 · U4
 ````
 
-**J935** · R4-11 · anchor-rewrite
+**J936** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-12 · Generics and iterators — stitch: A3 · A4 · U4
 ````
 
-**J936** · R4-11 · anchor-rewrite
+**J937** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-15 · Goroutines and the scheduler — stitch: A6 · U5
 ````
 
-**J937** · R4-11 · anchor-rewrite
+**J938** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-16 · Channels and `select` — stitch: A9 · U5
 ````
 
-**J938** · R4-11 · anchor-rewrite
+**J939** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-18 · `sync`, `sync/atomic` and the Go memory model — stitch: U5 · A9
 ````
 
-**J939** · R4-11 · anchor-rewrite
+**J940** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-19 · Concurrency patterns and failure modes — stitch: A9 · U5 · C7
 ````
 
-**J940** · R4-11 · anchor-rewrite
+**J941** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-20 · Testing, benchmarks and fuzzing — stitch: C4 · U6
 ````
 
-**J941** · R4-11 · anchor-rewrite
+**J942** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-26 · Reflection, `unsafe` and cgo (recognition) — stitch: U4 · A10
 ````
 
-**J942** · R4-11 · anchor-rewrite
+**J943** · R4-11 · anchor-rewrite
 
 ````text
 #### GO-27 · Data structures in Go (the A4 implementations) — stitch: A4 · U2
 ````
 
-**J943** · R4-11 · anchor-rewrite
+**J944** · R4-11 · anchor-rewrite
 
 ````text
 - **Core:** A4 owns the concepts and costs and U2 their analysis; this module owns only the Go. Stack, queue and deque on slices; a ring buffer; a singly and a doubly linked list (and `container/list`); a hash map with separate chaining; an LRU cache (map plus `container/list`); a binary heap through `container/heap` (implementing `heap.Interface`); a priority queue with an index for decrease-key; union-find with union by rank and path compression; a trie; a binary search tree; `sort.Slice`, `slices.SortFunc` and `slices.BinarySearch` (and `sort.Search` for binary search on a predicate).
 ````
 
-**J944** · R4-11 · anchor-rewrite
+**J945** · R4-11 · anchor-rewrite
 
 ````text
 - [ ] **GO-CAP2 · The concurrent event worker.** *After:* GO-17, GO-19, GO-22. *Stitch:* A9 · U5. A worker that consumes order events from a local queue (a Postgres table used as a queue with `FOR UPDATE SKIP LOCKED`, or a local emulator), processes them with bounded concurrency (`errgroup` with `SetLimit`), and is **idempotent**: each event ID is recorded in the same transaction as its effect, so redelivery changes nothing. Retries use exponential backoff with jitter under a context deadline; a poisoned event goes to a dead-letter table after N attempts. **Acceptance:** a test that delivers every event twice and checks the totals; a test that cancels the context mid-batch and checks that nothing is half-applied and no goroutine is left; `-race` clean; a goroutine profile taken under load, read aloud.
 ````
 
-**J945** · R4-11 · anchor-rewrite
+**J946** · R4-11 · anchor-rewrite
 
 ````text
 - **Semantics and runtime:** **no implicit conversions**, not even `int32` to `int64` or `int` to `float64`: mixed-type arithmetic is a compile error and every conversion is written `T(x)`. **Untyped constants** have arbitrary precision (the specification requires at least 256 bits for integer constants) and take a type only where used: `const big = 1 << 100` is legal, `float64(big)` is fine, `int(big)` is a compile error. **Integer division truncates toward zero:** `-7/2` is `-3` and `-7%2` is `-1` `(checked on 1.27.1)`. **Signed overflow wraps** in two's complement and is defined behaviour: an `int8` holding 127, incremented, is -128 `(checked on 1.27.1)`. Integer division by a zero variable panics at run time; by a zero constant it does not compile. Floating point is IEEE 754 (recall M5 when it is written; the SQL companion's PQ-03 for decimals): `NaN != NaN`, and float division by a zero variable gives ±Inf. Go has no enum type: a named integer type plus an `iota` block, with no exhaustiveness check in `switch`.
 ````
 
-**J946** · R4-11 · anchor-rewrite
+**J947** · R4-11 · anchor-rewrite
 
 ````text
 - **Where the material came from.** The module list follows the Go nodes of the learner's Nasiko course notes (orientation and tooling; foundations I and II; types, interfaces and generics; files and I/O; CLI and logging; concurrency I and II; rate limiting; testing and reflection; advanced concurrency; HTTP; the REST project; Protocol Buffers; gRPC; observability; security; deployment), re-cut into 27 modules with a contrast line each and bound to the main course; GO-28 and GO-29 were added later, at the learner's request, and are written from the standards listed above and from the sibling parts' owner modules (AU, CR, PV-03, AB-06, AB-07, DD-03, SD-28), not from those notes. Not brought in: the Nasiko control-plane reconstruction phases and its service specifications, the machine-learning and mathematics tracks, the payments addendum (payments are taught instead by GO-29, from the owners named above), and the contest problem ladder — those belong to a different project, and the data-structure and database material they carry is already owned by A4, U2, the System Design Primer and the SQL companion.

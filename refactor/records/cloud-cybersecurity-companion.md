@@ -1324,484 +1324,478 @@ This file is **standalone**. It does not depend on other companion files. It cov
 #### CM-02 · PCI / HIPAA / SOC2 / FedRAMP idea → control map — stitch: Phase 4 Security · B1 · N5
 ````
 
-**J629** · SEC-1 · anchor-rewrite
+**J630** · SEC-1 · anchor-rewrite
 
 ````text
 **Companion to [`Curriculum`](./Curriculum.md)** (the cloud mastery / certification roadmap).
 ````
 
-**J630** · SEC-1 · anchor-rewrite
+**J631** · SEC-1 · anchor-rewrite
 
 ````text
 When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
 ````
 
-**J631** · SEC-2 · anchor-rewrite
+**J632** · SEC-2 · anchor-rewrite
 
 ````text
 - `Curriculum` IDs: module IDs (`A5`, `A7`, `A10`, `B1`, `B5`, `C1`, `C2` …), Part V category IDs (`V-NET`, `V-SEC` …), `Phase 4 Networking` / `Phase 4 Security`, the reserved tracks (`M`, `U`, `S`), and cert names (PCA, Cloud Security Engineer, …). `Nx.y` = a section of `northstar-reference-app.md`; it carries the old parent's number and meaning. The old pseudo-anchors (`Phase4-Sec.n`, `A5/Phase4-Net.n`, `A10/B5.n`) are gone.
 ````
 
-**J632** · SEC-3 · anchor-rewrite
+**J633** · SEC-3 · anchor-rewrite
 
 ````text
 | CCM domain | Companion homes | the reference cloud app evidence sketch |
 ````
 
-**J633** · SEC-3 · anchor-rewrite
+**J634** · SEC-3 · anchor-rewrite
 
 ````text
 - **Lab:** SEC-Z0.3: map each Saltzer principle to one the reference cloud app control.
 ````
 
-**J634** · SEC-3 · anchor-rewrite
+**J635** · SEC-3 · anchor-rewrite
 
 ````text
 - **Lab:** SEC-E1.3: one the reference cloud app ADR that prices a control vs accept risk.
 ````
 
-**J635** · SEC-3 · anchor-rewrite
+**J636** · SEC-3 · anchor-rewrite
 
 ````text
 - **Check:** List five the reference cloud app assets and their trust boundary.
 ````
 
-**J636** · SEC-3 · anchor-rewrite
+**J637** · SEC-3 · anchor-rewrite
 
 ````text
 - **Lab:** CR-E1: for three the reference cloud app fields, name goal + required game.
 ````
 
-**J637** · SEC-3 · anchor-rewrite
+**J638** · SEC-3 · anchor-rewrite
 
 ````text
 - **Check:** Name five CCM domains and one the reference cloud app control each.
 ````
 
-**J638** · SEC-3 · anchor-rewrite
+**J639** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** Five the reference cloud app controls listed.
 ````
 
-**J639** · SEC-3 · anchor-rewrite
+**J640** · SEC-3 · anchor-rewrite
 
 ````text
 - **Check:** Give a the reference cloud app Elevation example that HTTPS does not stop.
 ````
 
-**J640** · SEC-3 · anchor-rewrite
+**J641** · SEC-3 · anchor-rewrite
 
 ````text
 - **Check:** Name an expensive the reference cloud app endpoint to protect first.
 ````
 
-**J641** · SEC-3 · anchor-rewrite
+**J642** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** Standing global HTTPS LB+Armor vs Hosting+Run for early the reference cloud app.
 ````
 
-**J642** · SEC-3 · anchor-rewrite
+**J643** · SEC-3 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: resource hierarchy. Lens-2: annotate existing the reference cloud app HLD.
 ````
 
-**J643** · SEC-3 · anchor-rewrite
+**J644** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** Marketing site on `www` sets cookie Domain=.the reference cloud app.example.
 ````
 
-**J644** · SEC-3 · anchor-rewrite
+**J645** · SEC-3 · anchor-rewrite
 
 ````text
 #### SEC-E1.1 · L1 · the reference cloud app STRIDE one-pager
 ````
 
-**J645** · SEC-3 · anchor-rewrite
+**J646** · SEC-3 · anchor-rewrite
 
 ````text
 ### SEC-CAP1 · the reference cloud app hardening pass
 ````
 
-**J646** · SEC-3 · anchor-rewrite
+**J647** · SEC-3 · anchor-rewrite
 
 ````text
 Victim API decrypts CBC and returns HTTP 400 "bad padding" vs 403 "bad mac". Attacker flips bits in ciphertext block \(C_i\) and observes which error returns. Over many queries they recover plaintext bytes (Vaudenay). **Teaching move:** derive why *integrity first* (AEAD or EtM) collapses the oracle; connect to CR-03 lab card CR-E3. **the reference cloud app link:** never expose distinct crypto error classes on legacy token decrypt paths.
 ````
 
-**J647** · SEC-3 · anchor-rewrite
+**J648** · SEC-3 · anchor-rewrite
 
 ````text
 #### SEC-E3.9 · L3 · OWASP map the reference cloud app
 ````
 
-**J648** · SEC-3 · anchor-rewrite
+**J649** · SEC-3 · anchor-rewrite
 
 ````text
 - **Defense pattern:** Map the reference cloud app detections to a few techniques; do not boil the ocean.
 ````
 
-**J649** · SEC-3 · anchor-rewrite
+**J650** · SEC-3 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: watch Google Cloud PQ/TLS announcements (verify). Lens-2: inventory the reference cloud app keys by lifetime.
 ````
 
-**J650** · SEC-3 · anchor-rewrite
+**J651** · SEC-3 · anchor-rewrite
 
 ````text
 - **Check:** Recite eight non-negotiables for the reference cloud app crypto.
 ````
 
-**J651** · SEC-3 · anchor-rewrite
+**J652** · SEC-3 · anchor-rewrite
 
 ````text
 - **Check:** Give a BFLA example on the reference cloud app admin.
 ````
 
-**J652** · SEC-3 · anchor-rewrite
+**J653** · SEC-3 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: N6.11 map. Lens-2: redraw the reference cloud app path.
 ````
 
-**J653** · SEC-3 · anchor-rewrite
+**J654** · SEC-3 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: SDP infoTypes; resource labels. Lens-2: classify the reference cloud app fields.
 ````
 
-**J654** · SEC-3 · anchor-rewrite
+**J655** · SEC-3 · anchor-rewrite
 
 ````text
 - **Predict impact (write first):** Map A01–A05 to the reference cloud app controls.
 ````
 
-**J655** · SEC-3 · anchor-rewrite
+**J656** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** the reference cloud app controls known.
 ````
 
-**J656** · SEC-3 · anchor-rewrite
+**J657** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** the reference cloud app crypto ADR blank.
 ````
 
-**J657** · SEC-3 · anchor-rewrite
+**J658** · SEC-3 · anchor-rewrite
 
 ````text
 Use as a *gap finder*, not a dump. Mark the reference cloud app evidence paths.
 ````
 
-**J658** · SEC-3 · anchor-rewrite
+**J659** · SEC-3 · anchor-rewrite
 
 ````text
 10. **Line-count / completeness note:** This companion prioritizes stitchable attack+crypto depth over encyclopedic CCM dumps; use §8 as a gap finder when auditing the reference cloud app evidence.
 ````
 
-**J659** · SEC-3 · anchor-rewrite
+**J660** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** the reference cloud app has IAM deny, parameterized SQL, IAP admin, org policy default deny public buckets.
 ````
 
-**J660** · SEC-3 · anchor-rewrite
+**J661** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** the reference app's controls known.
 ````
 
-**J661** · SEC-3 · anchor-rewrite
+**J662** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** the reference app's crypto ADR blank.
 ````
 
-**J662** · SEC-3 · anchor-rewrite
+**J663** · SEC-3 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: the reference cloud app ledger invariants (N5.3). Lens-2: race test.
 ````
 
-**J663** · SEC-3 · anchor-rewrite
+**J664** · SEC-3 · anchor-rewrite
 
 ````text
 9. **Built** 2026-09-22 for the reference cloud app / `Curriculum` pairing.
 ````
 
-**J664** · SEC-3 · anchor-rewrite
+**J665** · SEC-3 · anchor-rewrite
 
 ````text
 #### TH-02 · Trust boundaries & asset inventory for the reference cloud app — stitch: A10 · S6
 ````
 
-**J665** · SEC-3 · anchor-rewrite
+**J666** · SEC-3 · anchor-rewrite
 
 ````text
 #### CR-20 · Crypto engineering checklist for the reference cloud app — stitch: Phase 4 Security · all CR
 ````
 
-**J666** · SEC-3 · anchor-rewrite
+**J667** · SEC-3 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: ADR linking checklist to Secret Manager/KMS/Armor TLS. Lens-2: audit the reference cloud app against checklist.
 ````
 
-**J667** · SEC-3 · anchor-rewrite
+**J668** · SEC-3 · anchor-rewrite
 
 ````text
 **Skip-test for CR track (SEC-T1+SEC-T2 in §4):** learner must, unaided: (1) state IND-CPA vs integrity goals with one example each; (2) explain why ECB and raw RSA fail; (3) give GCM nonce-reuse consequence; (4) prefer AEAD over CBC+HMAC DIY; (5) sketch envelope KEK/DEK with KMS; (6) name TLS 1.3 0-RTT risk; (7) justify Argon2id over SHA-256 for passwords; (8) list eight CR-20 checklist items for the reference cloud app.
 ````
 
-**J668** · SEC-3 · anchor-rewrite
+**J669** · SEC-3 · anchor-rewrite
 
 ````text
 - **Defense pattern:** Map the reference cloud app to subset: IAM, EKM/CEK, LOG, IVS, TVM, AIS, SEF — evidence paths.
 ````
 
-**J669** · SEC-3 · anchor-rewrite
+**J670** · SEC-3 · anchor-rewrite
 
 ````text
 - **Scenario:** Cloud Run + Cloud SQL + GCS for the reference cloud app.
 ````
 
-**J670** · SEC-4 · anchor-rewrite
+**J671** · SEC-4 · anchor-rewrite
 
 ````text
 *Generated from the §6.2 crosswalk (2026-09-24).* Every concept module appears once as primary; secondary anchors are previews, recalls or Lens-3 passes. The nine old checkpoint IDs that were never defined (shown below as 'was E-…') are mapped to existing cards by content (`crosswalk.md` §3; `[resolved-by-default]`). VPC-SC is NT-06. The pre-refactor table is kept in the D3 archive.
 ````
 
-**J671** · SEC-4 · anchor-rewrite
+**J672** · SEC-4 · anchor-rewrite
 
 ````text
 | `Curriculum` anchor | Taught here (primary, §6.2) | Also in this session (secondary) | Checkpoint |
 ````
 
-**J672** · SEC-14 · anchor-rewrite
+**J673** · SEC-14 · anchor-rewrite
 
 ````text
 | Main-course anchor | Taught here (primary, §6.2) | Also in this session (secondary) | Checkpoint |
 ````
 
-**J673** · SEC-5 · anchor-rewrite
+**J674** · SEC-5 · anchor-rewrite
 
 ````text
 *Equal scale to AU/AB/CL. `Curriculum` A7 (API auth patterns) + A10 own password/JWT *product* labs; Phase 4 Security (N7.3) owns the CMEK *product* spine; CR owns cryptographic justification and failure modes. Stanford CS255 alignment: see §0.5.*
 ````
 
-**J674** · SEC-5 · anchor-rewrite
+**J675** · SEC-5 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: signed requests in N4.5 use HMAC — recall roadmap lab; CR adds composition rules.
 ````
 
-**J675** · SEC-5 · anchor-rewrite
+**J676** · SEC-5 · anchor-rewrite
 
 ````text
 - **Defense pattern:** *Roadmap N4.3 owns product labs.* CR adds: threat model (online vs offline), parameter tuning rationale, pepper in KMS, migration/version field.
 ````
 
-**J676** · SEC-5 · anchor-rewrite
+**J677** · SEC-5 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: pepper in Secret Manager/KMS. Lens-2: recall N4.3 Argon2id lab — add threat-model paragraph.
 ````
 
-**J677** · SEC-5 · anchor-rewrite
+**J678** · SEC-5 · anchor-rewrite
 
 ````text
 - **Defense pattern:** *N7.3 owns CMEK lab.* CR adds: hierarchy diagram, rewrap vs re-encrypt, key purpose separation, when CMEK vs CSEK vs Google-managed.
 ````
 
-**J678** · SEC-5 · anchor-rewrite
+**J679** · SEC-5 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Cloud KMS key ring/key; CMEK on GCS/SQL (verify); Cloud HSM/EKM literacy. Lens-2: local envelope toy from N7.3 + hierarchy labels.
 ````
 
-**J679** · SEC-5 · anchor-rewrite
+**J680** · SEC-5 · anchor-rewrite
 
 ````text
 **Prop Lock for crypto props:** do not use Cloud HSM, EKM, Confidential Space, or Binary Authorization as assumed props before their Northstar sections (N7.3 / N7.5) and companion CR-14 / CR-18 / WL-04 are unlocked. Local AEAD/HMAC toys may use Tink without those props.
 ````
 
-**J680** · SEC-5 · anchor-rewrite
+**J681** · SEC-5 · anchor-rewrite
 
 ````text
 **Pairing rule with A7 (API auth patterns) + A10 & N7.3:** A7 (API auth patterns) + A10 own password *product* labs and JWT *policy* labs; CR-13/CR-10 own the cryptographic *why* and failure modes. Phase 4 Security (N7.3) owns CMEK *clickpath*; CR-14 owns hierarchy theory and SoD. Teach as one story per §2 stitch rows.
 ````
 
-**J681** · SEC-5 · anchor-rewrite
+**J682** · SEC-5 · anchor-rewrite
 
 ````text
 3. CR-05…07 + CR-13 at A10 (password/KDF day; the A7 API-auth product labs are recalled, N4.3).
 ````
 
-**J682** · SEC-5 · anchor-rewrite
+**J683** · SEC-5 · anchor-rewrite
 
 ````text
 5. CR-14…15 + CR-20 at Phase 4 Security (KMS + key IR; N7.8).
 ````
 
-**J683** · SEC-5 · anchor-rewrite
+**J684** · SEC-5 · anchor-rewrite
 
 ````text
 6. CR-16 at A10; CR-17…18 at Phase 4 Security, with Confidential Computing literacy + N9c privacy (survey depth).
 ````
 
-**J684** · SEC-5 · anchor-rewrite
+**J685** · SEC-5 · anchor-rewrite
 
 ````text
 Object bytes encrypted with DEK_AES-GCM; DEK wrapped by KMS KEK; metadata stores wrapped DEK + key version. Compromise of object store without `cloudkms.cryptoKeyEncrypterDecrypter` yields ciphertext only. **Teaching move:** draw trust boundary between storage IAM and KMS IAM; SoD. Cards CR-E9/E10/E34. Roadmap N7.3 owns the product clickpath.
 ````
 
-**J685** · SEC-5 · anchor-rewrite
+**J686** · SEC-5 · anchor-rewrite
 
 ````text
 SHA-256(password) at \(10^9\) guesses/s/GPU vs Argon2id ~64MB ~100 ms. Show order-of-magnitude table; salt kills rainbows; pepper in KMS raises bar after DB leak. Roadmap N4.3 owns implementation; CR-13 owns the math story. Card CR-E8.
 ````
 
-**J686** · SEC-6 · anchor-rewrite
+**J687** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Cloud Run vs GCE vs GCS rows. Lens-2: annotate N0 hierarchy with trust boundaries.
 ````
 
-**J687** · SEC-6 · anchor-rewrite
+**J688** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: app middleware (N4.4 lab). Lens-2: forged Origin test.
 ````
 
-**J688** · SEC-6 · anchor-rewrite
+**J689** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: app PEP; IAP is not object AuthZ. Lens-2: IDOR fail-then-pass (N4.7).
 ````
 
-**J689** · SEC-6 · anchor-rewrite
+**J690** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: recall N8.1 cursor pager — add abuse tests.
 ````
 
-**J690** · SEC-6 · anchor-rewrite
+**J691** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Cloud Run request timeout + `http.Server` timeouts (N4.2). Lens-2: slowloris against *local* fixture only.
 ````
 
-**J691** · SEC-6 · anchor-rewrite
+**J692** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Cloud Run CORS middleware. Lens-2: hostile Origin tests (N4.4).
 ````
 
-**J692** · SEC-6 · anchor-rewrite
+**J693** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: GCE metadata server; Cloud Run identity. Lens-2: local SSRF fixture + guard tests (N4.2).
 ````
 
-**J693** · SEC-6 · anchor-rewrite
+**J694** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: org policy `storage.publicAccessPrevention` (verify). Lens-2: paper IR for public ACE (N7.8).
 ````
 
-**J694** · SEC-6 · anchor-rewrite
+**J695** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: N6.11 map. Lens-2: redraw the reference app's path.
 ````
 
-**J695** · SEC-6 · anchor-rewrite
+**J696** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Binary Authorization + Artifact Registry. Lens-2: recall N7.5 lab analytic layer.
 ````
 
-**J696** · SEC-6 · anchor-rewrite
+**J697** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Binary Authorization API. Lens-2: N7.5 toy attestation analytic.
 ````
 
-**J697** · SEC-6 · anchor-rewrite
+**J698** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: SCC findings + log-based metrics. Lens-2: wire one alert to N7.6 template.
 ````
 
-**J698** · SEC-6 · anchor-rewrite
+**J699** · SEC-6 · anchor-rewrite
 
 ````text
 - **Defense pattern:** Disable SA/keys → hunt audit → rotate workloads → rewrap secrets → postmortem. Use roadmap N7.8 template; CR-15 for crypto keys.
 ````
 
-**J699** · SEC-6 · anchor-rewrite
+**J700** · SEC-6 · anchor-rewrite
 
 ````text
 - **Defense pattern:** PAN: tokenize (N5); secrets: Secret Manager; fields: AEAD when needed.
 ````
 
-**J700** · SEC-6 · anchor-rewrite
+**J701** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: PCI themes N5 + SDP. Lens-2: decision table.
 ````
 
-**J701** · SEC-6 · anchor-rewrite
+**J702** · SEC-6 · anchor-rewrite
 
 ````text
 - **GCP lens:** Lens-1: Well-Architected + CCM crosswalk lite. Lens-2: gap spreadsheet.
 ````
 
-**J702** · SEC-6 · anchor-rewrite
+**J703** · SEC-6 · anchor-rewrite
 
 ````text
 Skip a companion family only by passing its skip-test. `Curriculum` and Northstar still own product labs — skipping companion theory does not skip Armor attach / IAP / CMEK product evidence.
 ````
 
-**J712** · SEC-7 · anchor-rewrite
+**J713** · SEC-7 · anchor-rewrite
 
 ````text
 - **Map to GCP:** A5 TLS / N6.11 path
 ````
 
-**J713** · SEC-7 · anchor-rewrite
+**J714** · SEC-7 · anchor-rewrite
 
 ````text
 - **Map to GCP:** N7.1 recall + PQ-S-02
 ````
 
-**J714** · SEC-7 · anchor-rewrite
+**J715** · SEC-7 · anchor-rewrite
 
 ````text
 - **Map to GCP:** N0.4 HLD
 ````
 
-**J715** · SEC-7 · anchor-rewrite
+**J716** · SEC-7 · anchor-rewrite
 
 ````text
 - **Map to GCP:** N0.4
 ````
 
-**J716** · SEC-7 · anchor-rewrite
-
-````text
-- **Map to GCP:** N6.14
-````
-
 **J717** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** N4.4
+- **Map to GCP:** N6.14
 ````
 
 **J718** · SEC-7 · anchor-rewrite
@@ -1813,163 +1807,163 @@ Skip a companion family only by passing its skip-test. `Curriculum` and Northsta
 **J719** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** N7.4
+- **Map to GCP:** N4.4
 ````
 
 **J720** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CR-14, N7.3 toy
+- **Map to GCP:** N7.4
 ````
 
 **J721** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** N3.0, AB-06
+- **Map to GCP:** CR-14, N7.3 toy
 ````
 
 **J722** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** WA-01, N4.4
+- **Map to GCP:** N3.0, AB-06
 ````
 
 **J723** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-01, N4.2
+- **Map to GCP:** WA-01, N4.4
 ````
 
 **J724** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AU-08, AB-03, N4.10
+- **Map to GCP:** CL-01, N4.2
 ````
 
 **J725** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AU-11, N4.7
+- **Map to GCP:** AU-08, AB-03, N4.10
 ````
 
 **J726** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** DOS-05, N4.2
+- **Map to GCP:** AU-11, N4.7
 ````
 
 **J727** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AB-02, N4.10
+- **Map to GCP:** DOS-05, N4.2
 ````
 
 **J728** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** N6.11, NT-07
+- **Map to GCP:** AB-02, N4.10
 ````
 
 **J729** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CR-12, N6.13
+- **Map to GCP:** N6.11, NT-07
 ````
 
 **J730** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AB-03, N4.10
+- **Map to GCP:** CR-12, N6.13
 ````
 
 **J731** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** NT-04, N6.16
+- **Map to GCP:** AB-03, N4.10
 ````
 
 **J732** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-03, N7.2
+- **Map to GCP:** NT-04, N6.16
 ````
 
 **J733** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-04, IR-05, N7.8
+- **Map to GCP:** CL-03, N7.2
 ````
 
 **J734** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** NT-02, N6.12
+- **Map to GCP:** CL-04, IR-05, N7.8
 ````
 
 **J735** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** NT-05, N6.14
+- **Map to GCP:** NT-02, N6.12
 ````
 
 **J736** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** NT-06, N6.15
+- **Map to GCP:** NT-05, N6.14
 ````
 
 **J737** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** PV-01, N7.3
+- **Map to GCP:** NT-06, N6.15
 ````
 
 **J738** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** WL-04, CK-05, N7.5
+- **Map to GCP:** PV-01, N7.3
 ````
 
 **J739** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** PV-03, N5
+- **Map to GCP:** WL-04, CK-05, N7.5
 ````
 
 **J740** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** IR-05, N7.8
+- **Map to GCP:** PV-03, N5
 ````
 
 **J741** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** DOS-07, N10.3
+- **Map to GCP:** IR-05, N7.8
 ````
 
 **J742** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CM-01, N7.9
+- **Map to GCP:** DOS-07, N10.3
 ````
 
 **J743** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AI-01, AI-02, N9c
+- **Map to GCP:** CM-01, N7.9
 ````
 
 **J744** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CR-13, N4.3
+- **Map to GCP:** AI-01, AI-02, N9c
 ````
 
 **J745** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CR-14, N7.3
+- **Map to GCP:** CR-13, N4.3
 ````
 
 **J746** · SEC-7 · anchor-rewrite
@@ -1981,580 +1975,586 @@ Skip a companion family only by passing its skip-test. `Curriculum` and Northsta
 **J747** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AB-02, DOS-03, N4.10, N6.16
+- **Map to GCP:** CR-14, N7.3
 ````
 
 **J748** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-04, IR-05, N4.8, N7.8
+- **Map to GCP:** AB-02, DOS-03, N4.10, N6.16
 ````
 
 **J749** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AU-03, AU-04, N4.4
+- **Map to GCP:** CL-04, IR-05, N4.8, N7.8
 ````
 
 **J750** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** WL-04, CK-05, N7.5
+- **Map to GCP:** AU-03, AU-04, N4.4
 ````
 
 **J751** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** IR-01, N7.6, N10
+- **Map to GCP:** WL-04, CK-05, N7.5
 ````
 
 **J752** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AI-01, AI-03, PV-02, N9c
+- **Map to GCP:** IR-01, N7.6, N10
 ````
 
 **J753** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-02, PV-01, N7.3, N7.7
+- **Map to GCP:** AI-01, AI-03, PV-02, N9c
 ````
 
 **J754** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AB-04, N4.10
+- **Map to GCP:** CL-02, PV-01, N7.3, N7.7
 ````
 
 **J755** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AU-06, N4.6
+- **Map to GCP:** AB-04, N4.10
 ````
 
 **J756** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CR-14, CR-15, N7.3
+- **Map to GCP:** AU-06, N4.6
 ````
 
 **J757** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CR-13, N4.3, N4.9
+- **Map to GCP:** CR-14, CR-15, N7.3
 ````
 
 **J758** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** PQ-S-03, N2.3
+- **Map to GCP:** CR-13, N4.3, N4.9
 ````
 
 **J759** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-01, CL-02, NT-06, N4.2, N6.15
+- **Map to GCP:** PQ-S-03, N2.3
 ````
 
 **J760** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** WL-01, WL-04, CK-05, N7.5
+- **Map to GCP:** CL-01, CL-02, NT-06, N4.2, N6.15
 ````
 
 **J761** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** WA-05, WA-11, N7.4
+- **Map to GCP:** WL-01, WL-04, CK-05, N7.5
 ````
 
 **J762** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** IR-03, CR-15, N7.8
+- **Map to GCP:** WA-05, WA-11, N7.4
 ````
 
 **J763** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AI-01, AI-02, N9c
+- **Map to GCP:** IR-03, CR-15, N7.8
 ````
 
 **J764** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** AU-05, CR-10, N4.5
+- **Map to GCP:** AI-01, AI-02, N9c
 ````
 
 **J765** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** CL-07, NT-02, N6.15
+- **Map to GCP:** AU-05, CR-10, N4.5
 ````
 
 **J766** · SEC-7 · anchor-rewrite
 
 ````text
-- **Map to GCP:** DOS-07, AB-01, N10.3
+- **Map to GCP:** CL-07, NT-02, N6.15
 ````
 
 **J767** · SEC-7 · anchor-rewrite
 
 ````text
-- **Design control:** Follow N7.8 public ACE runbook + evidence.
+- **Map to GCP:** DOS-07, AB-01, N10.3
 ````
 
 **J768** · SEC-7 · anchor-rewrite
 
 ````text
-- **Design control:** Argon2id+salt+pepper plan (N4.3 owns lab).
+- **Design control:** Follow N7.8 public ACE runbook + evidence.
 ````
 
 **J769** · SEC-7 · anchor-rewrite
 
 ````text
-- **Design control:** Fill N7.8 template; grade order.
+- **Design control:** Argon2id+salt+pepper plan (N4.3 owns lab).
 ````
 
-**J770** · SEC-8 · anchor-rewrite
+**J770** · SEC-7 · anchor-rewrite
 
 ````text
-- **Depends:** AU-*, WA-* core, AB-01/02, CL-01, CR-12/13/14/20, A7 (API auth patterns) + A10 + N7.3–N7.4.
+- **Design control:** Fill N7.8 template; grade order.
 ````
 
 **J771** · SEC-8 · anchor-rewrite
 
 ````text
-- **Depends:** IR-*, CL-02/04, CR-15, roadmap N7.8 templates.
+- **Depends:** AU-*, WA-* core, AB-01/02, CL-01, CR-12/13/14/20, A7 (API auth patterns) + A10 + N7.3–N7.4.
 ````
 
 **J772** · SEC-8 · anchor-rewrite
 
 ````text
-- **Depends:** AB-*, DOS-03/05/07, AU-08, N4.10, 6.16.
+- **Depends:** IR-*, CL-02/04, CR-15, roadmap N7.8 templates.
 ````
 
 **J773** · SEC-8 · anchor-rewrite
 
 ````text
-- **Depends:** AI-01…05, PV-02, CR-18 lite, 9c.
+- **Depends:** AB-*, DOS-03/05/07, AU-08, N4.10, 6.16.
 ````
 
 **J774** · SEC-8 · anchor-rewrite
 
 ````text
-Run **SEC-CAP1** after A7 (API auth patterns) + A10 + CR-20 unlocked; **SEC-CAP2** after N7.8 + IR/CR-15; **SEC-CAP3** after N4.10 + N6.16 + AB/DOS; **SEC-CAP4** after N9c + AI-*. Never schedule a capstone that smuggles a locked prop — postpone or unlock first (Prop Lock).
+- **Depends:** AI-01…05, PV-02, CR-18 lite, 9c.
 ````
 
 **J775** · SEC-8 · anchor-rewrite
 
 ````text
-3. **Prop Lock examples:** no VPC-SC before N6.15; no BinAuth before N7.5; no Confidential VM as assumed before CR-18/SC-03.
+Run **SEC-CAP1** after A7 (API auth patterns) + A10 + CR-20 unlocked; **SEC-CAP2** after N7.8 + IR/CR-15; **SEC-CAP3** after N4.10 + N6.16 + AB/DOS; **SEC-CAP4** after N9c + AI-*. Never schedule a capstone that smuggles a locked prop — postpone or unlock first (Prop Lock).
 ````
 
 **J776** · SEC-8 · anchor-rewrite
 
 ````text
-8. **SCC green ≠ secure:** pair N7.6 with IR-02 alert design on day one of detection.
+3. **Prop Lock examples:** no VPC-SC before N6.15; no BinAuth before N7.5; no Confidential VM as assumed before CR-18/SC-03.
 ````
 
-**J777** · SEC-9 · anchor-rewrite
+**J777** · SEC-8 · anchor-rewrite
 
 ````text
-| IAM | CL-03, AU-*, B5 / N7.2 | Least privilege bindings |
+8. **SCC green ≠ secure:** pair N7.6 with IR-02 alert design on day one of detection.
 ````
 
 **J778** · SEC-9 · anchor-rewrite
 
 ````text
-| GRC | CM-01, N7.9 | ADRs, risk register |
+| IAM | CL-03, AU-*, B5 / N7.2 | Least privilege bindings |
 ````
 
 **J779** · SEC-9 · anchor-rewrite
 
 ````text
-| A&A | CM-02, N7.9 | Control matrix |
+| GRC | CM-01, N7.9 | ADRs, risk register |
 ````
 
 **J780** · SEC-9 · anchor-rewrite
 
 ````text
-| UEM | NT-05, N6.14 | IAP device signals literacy |
+| A&A | CM-02, N7.9 | Control matrix |
 ````
 
 **J781** · SEC-9 · anchor-rewrite
 
 ````text
-| EKM / CEK | CR-14…15, N7.3 | KMS keys, CMEK |
+| UEM | NT-05, N6.14 | IAP device signals literacy |
 ````
 
 **J782** · SEC-9 · anchor-rewrite
 
 ````text
-| DSP | PV-02, N7.3 | SDP jobs |
+| EKM / CEK | CR-14…15, N7.3 | KMS keys, CMEK |
 ````
 
 **J783** · SEC-9 · anchor-rewrite
 
 ````text
-| IVS | CK-*, WL-*, N7.5 | Hardened runtime |
+| DSP | PV-02, N7.3 | SDP jobs |
 ````
 
 **J784** · SEC-9 · anchor-rewrite
 
 ````text
-| MSC | NT-*, N6.x | Network segmentation |
+| IVS | CK-*, WL-*, N7.5 | Hardened runtime |
 ````
 
 **J785** · SEC-9 · anchor-rewrite
 
 ````text
-| Plane | Assets | Primary attackers | Top companion modules | Roadmap anchors |
+| MSC | NT-*, N6.x | Network segmentation |
 ````
 
 **J786** · SEC-9 · anchor-rewrite
 
 ````text
-| Storefront | Session, catalog, carts | Web attacker, bots | AU-01…04, WA-02, AB-03, DOS-03 | A5 TLS, N4.4, N4.10 |
+| Plane | Assets | Primary attackers | Top companion modules | Roadmap anchors |
 ````
 
 **J787** · SEC-9 · anchor-rewrite
 
 ````text
-| Customer API | Orders, PII, tokens | Web, stuffing, IDOR | AU-08, AU-11, WA-05, AB-01, CL-01 | N4.2–N4.7, N4.10 |
+| Storefront | Session, catalog, carts | Web attacker, bots | AU-01…04, WA-02, AB-03, DOS-03 | A5 TLS, N4.4, N4.10 |
 ````
 
 **J788** · SEC-9 · anchor-rewrite
 
 ````text
-| Admin | Refunds, config | Stolen session, CSRF, BFLA | AU-03, AU-12, NT-05 | N4.4, N4.7, N6.14 |
+| Customer API | Orders, PII, tokens | Web, stuffing, IDOR | AU-08, AU-11, WA-05, AB-01, CL-01 | N4.2–N4.7, N4.10 |
 ````
 
 **J789** · SEC-9 · anchor-rewrite
 
 ````text
-| Service-to-service | SA identity, internal RPC | Confused deputy, key theft | AU-14, CL-04, CR-17 | N4.8, N7.2 |
+| Admin | Refunds, config | Stolen session, CSRF, BFLA | AU-03, AU-12, NT-05 | N4.4, N4.7, N6.14 |
 ````
 
 **J790** · SEC-9 · anchor-rewrite
 
 ````text
-| Data | SQL, GCS, BQ | Public ACE, SSRF→cred, insider | CL-02, CR-14, PV-*, NT-06 | N7.3, N6.15 |
+| Service-to-service | SA identity, internal RPC | Confused deputy, key theft | AU-14, CL-04, CR-17 | N4.8, N7.2 |
 ````
 
 **J791** · SEC-9 · anchor-rewrite
 
 ````text
-| CI/CD | Build SA, images | Poisoned PR, unsigned deploy | WL-02, WL-04, CK-05 | N4.8, N7.5 |
+| Data | SQL, GCS, BQ | Public ACE, SSRF→cred, insider | CL-02, CR-14, PV-*, NT-06 | N7.3, N6.15 |
 ````
 
 **J792** · SEC-9 · anchor-rewrite
 
 ````text
-| AI gateway | Tools, RAG corpus | Prompt injection, tool abuse | AI-01…05, PV-02 | N9c |
+| CI/CD | Build SA, images | Poisoned PR, unsigned deploy | WL-02, WL-04, CK-05 | N4.8, N7.5 |
 ````
 
 **J793** · SEC-9 · anchor-rewrite
 
 ````text
-11. **When in doubt on a GCP SKU name:** prefer the `Curriculum` / Northstar product lab + live docs; companion scenarios stay valid even if a SKU renames.
+| AI gateway | Tools, RAG corpus | Prompt injection, tool abuse | AI-01…05, PV-02 | N9c |
 ````
 
-**J794** · SEC-13 · anchor-rewrite
+**J794** · SEC-9 · anchor-rewrite
 
 ````text
-- **Defense pattern:** Complete mediation; fail-safe defaults; economy of mechanism; least common mechanism; psychological acceptability — *recall* CIA/least-privilege/defense-in-depth/assume-breach/zero-trust/shared-responsibility from 7.1.
+11. **When in doubt on a GCP SKU name:** prefer the `Curriculum` / Northstar product lab + live docs; companion scenarios stay valid even if a SKU renames.
 ````
 
 **J795** · SEC-13 · anchor-rewrite
 
 ````text
-- **GCP lens:** Lens-1: Policy Analyzer / IAM recommender (verify). Lens-2: toy effective-access from 7.2.
+- **Defense pattern:** Complete mediation; fail-safe defaults; economy of mechanism; least common mechanism; psychological acceptability — *recall* CIA/least-privilege/defense-in-depth/assume-breach/zero-trust/shared-responsibility from 7.1.
 ````
 
 **J796** · SEC-13 · anchor-rewrite
 
 ````text
-- **GCP lens:** Lens-1: Cloud DNS DNSSEC; destroy-order checklist 6.16. Lens-2: paper only.
+- **GCP lens:** Lens-1: Policy Analyzer / IAM recommender (verify). Lens-2: toy effective-access from 7.2.
 ````
 
 **J797** · SEC-13 · anchor-rewrite
 
 ````text
-- **GCP lens:** Lens-1: IAP lab 6.14. Lens-2: compare threat tables.
+- **GCP lens:** Lens-1: Cloud DNS DNSSEC; destroy-order checklist 6.16. Lens-2: paper only.
 ````
 
 **J798** · SEC-13 · anchor-rewrite
 
 ````text
-- **GCP lens:** Lens-1: Cloud Build provenance (verify). Lens-2: cosign-shaped toy from 7.5.
+- **GCP lens:** Lens-1: IAP lab 6.14. Lens-2: compare threat tables.
 ````
 
 **J799** · SEC-13 · anchor-rewrite
 
 ````text
-**Prop Lock reminder:** passing SEC-T2 does not unlock VPC-SC props before 6.15.
+- **GCP lens:** Lens-1: Cloud Build provenance (verify). Lens-2: cosign-shaped toy from 7.5.
 ````
 
 **J800** · SEC-13 · anchor-rewrite
 
 ````text
-- **Design control:** Redesign per 4.3+AU-10.
+**Prop Lock reminder:** passing SEC-T2 does not unlock VPC-SC props before 6.15.
 ````
 
 **J801** · SEC-13 · anchor-rewrite
 
 ````text
-- **Design control:** Set timeout suite from 4.2.
+- **Design control:** Redesign per 4.3+AU-10.
 ````
 
 **J802** · SEC-13 · anchor-rewrite
 
 ````text
-| AIS | 3.0/4.x, WA-* | Secure SDLC tests |
+- **Design control:** Set timeout suite from 4.2.
 ````
 
-**J803** · SEC-10 · anchor-rewrite
+**J803** · SEC-13 · anchor-rewrite
 
 ````text
-- **Scenario:** GCE guest OS CVE; Cloud Run app SQLi; GCS public ACE; Google DC physical.
+| AIS | 3.0/4.x, WA-* | Secure SDLC tests |
 ````
 
 **J804** · SEC-10 · anchor-rewrite
 
 ````text
-- **Scenario:** Docs skim (verify).
+- **Scenario:** GCE guest OS CVE; Cloud Run app SQLi; GCS public ACE; Google DC physical.
 ````
 
 **J805** · SEC-10 · anchor-rewrite
 
 ````text
-- **Scenario:** CNAME to deleted Cloud Run.
+- **Scenario:** Docs skim (verify).
 ````
 
-**J821** · SEC-12 · anchor-rewrite
+**J806** · SEC-10 · anchor-rewrite
 
 ````text
-This file has **self-contained content**; ownership is shared per the suite overlap register (`Curriculum` §0.3). It covers **cloud security, cybersecurity, cryptography, and network security** for cloud infrastructure and cloud-hosted distributed systems — taught in parallel with the matching sections of `Curriculum`.
+- **Scenario:** CNAME to deleted Cloud Run.
 ````
 
 **J822** · SEC-12 · anchor-rewrite
 
 ````text
-**Does not own:** non-security tracks in `Curriculum` (ML math, general DSA, FinOps deep-dives, non-security data modeling). Those stay in `Curriculum` only.
+This file has **self-contained content**; ownership is shared per the suite overlap register (`Curriculum` §0.3). It covers **cloud security, cybersecurity, cryptography, and network security** for cloud infrastructure and cloud-hosted distributed systems — taught in parallel with the matching sections of `Curriculum`.
 ````
 
 **J823** · SEC-12 · anchor-rewrite
 
 ````text
-## 0. Read this first — how this file complements `Curriculum`
+**Does not own:** non-security tracks in `Curriculum` (ML math, general DSA, FinOps deep-dives, non-security data modeling). Those stay in `Curriculum` only.
 ````
 
 **J824** · SEC-12 · anchor-rewrite
 
 ````text
-**This file is a complement to `Curriculum`, not a second roadmap. Read both. Whenever a security-relevant `Curriculum` section is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping security concepts are stitched and taught in parallel — never in separate sessions, never twice.**
+## 0. Read this first — how this file complements `Curriculum`
 ````
 
 **J825** · SEC-12 · anchor-rewrite
 
 ````text
-Why: `Curriculum` owns the *roadmap spine* — what to learn, in what order, tied to certs (PCA, Cloud Security Engineer, Network Engineer, SecOps, SCS-C03, etc.) and the provider service maps. It lists security topics at outline depth (A5 networking, A10 crypto/security fundamentals, B1 shared responsibility, B5 IAM model, Track C container/K8s hardening, Phase 4 GCP Security services). It does not own attacker playbooks, misuse cases, rate-limit/WAF craft, session/JWT/OAuth failure modes, supply-chain attacker paths, IR tabletop depth, AI threat mechanics, or a full applied-cryptography track. This file supplies those and hangs each piece on the `Curriculum` section that needs it **when that section is taught**.
+**This file is a complement to `Curriculum`, not a second roadmap. Read both. Whenever a security-relevant `Curriculum` section is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping security concepts are stitched and taught in parallel — never in separate sessions, never twice.**
 ````
 
 **J826** · SEC-12 · anchor-rewrite
 
 ````text
-2. **Ownership split.** *`Curriculum` owns:* learning order, cert mapping, service vocabulary (IAM, Armor, VPC-SC, KMS, SCC, SecOps), shared-responsibility framing at roadmap level. *This file owns:* attack mechanics, defensive design patterns, cryptography depth (`CR-*`), network-security attacks, exercise/scenario bank, IR tabletops.
+Why: `Curriculum` owns the *roadmap spine* — what to learn, in what order, tied to certs (PCA, Cloud Security Engineer, Network Engineer, SecOps, SCS-C03, etc.) and the provider service maps. It lists security topics at outline depth (A5 networking, A10 crypto/security fundamentals, B1 shared responsibility, B5 IAM model, Track C container/K8s hardening, Phase 4 GCP Security services). It does not own attacker playbooks, misuse cases, rate-limit/WAF craft, session/JWT/OAuth failure modes, supply-chain attacker paths, IR tabletop depth, AI threat mechanics, or a full applied-cryptography track. This file supplies those and hangs each piece on the `Curriculum` section that needs it **when that section is taught**.
 ````
 
 **J827** · SEC-12 · anchor-rewrite
 
 ````text
-3. **Same teaching discipline.** Issue **one** exercise at a time; learner attempts before keys; predict blast radius / control placement before revealing the answer. Prop Lock: do not use a later control (VPC-SC, Confidential VM, Binary Authorization) as a "known" prop before its `Curriculum` section has been covered (suite-wide rule: `Curriculum` §0.4.6) — postpone the exercise or teach the prerequisite first.
+2. **Ownership split.** *`Curriculum` owns:* learning order, cert mapping, service vocabulary (IAM, Armor, VPC-SC, KMS, SCC, SecOps), shared-responsibility framing at roadmap level. *This file owns:* attack mechanics, defensive design patterns, cryptography depth (`CR-*`), network-security attacks, exercise/scenario bank, IR tabletops.
 ````
 
 **J828** · SEC-12 · anchor-rewrite
 
 ````text
-4. **GCP lens at three depths** when a concept is taught: **Lens-1** name the GCP (and AWS/Azure twin from `Curriculum` mapping tables) resource; **Lens-2** touch via local vulnerable-by-design fixture or credits-safe lab; **Lens-3** cert-depth trade-offs (Cloud Security Engineer / PCA Security / SCS-C03).
+3. **Same teaching discipline.** Issue **one** exercise at a time; learner attempts before keys; predict blast radius / control placement before revealing the answer. Prop Lock: do not use a later control (VPC-SC, Confidential VM, Binary Authorization) as a "known" prop before its `Curriculum` section has been covered (suite-wide rule: `Curriculum` §0.4.6) — postpone the exercise or teach the prerequisite first.
 ````
 
 **J829** · SEC-12 · anchor-rewrite
 
 ````text
-11. **User can override** skip/jump. On conflict: `Curriculum` wins on order and cert timing; this file wins on security/crypto content and exercise specs.
+4. **GCP lens at three depths** when a concept is taught: **Lens-1** name the GCP (and AWS/Azure twin from `Curriculum` mapping tables) resource; **Lens-2** touch via local vulnerable-by-design fixture or credits-safe lab; **Lens-3** cert-depth trade-offs (Cloud Security Engineer / PCA Security / SCS-C03).
 ````
 
 **J830** · SEC-12 · anchor-rewrite
 
 ````text
-1. **Anchor** — name the `Curriculum` section (e.g. A10, B5, Phase 4 Security) and list bound companion IDs from §2.
+11. **User can override** skip/jump. On conflict: `Curriculum` wins on order and cert timing; this file wins on security/crypto content and exercise specs.
 ````
 
 **J831** · SEC-12 · anchor-rewrite
 
 ````text
-## 2. Stitch table — teach these with `Curriculum`
+1. **Anchor** — name the `Curriculum` section (e.g. A10, B5, Phase 4 Security) and list bound companion IDs from §2.
 ````
 
 **J832** · SEC-12 · anchor-rewrite
 
 ````text
-| **AWS Security Specialty / Azure SC-100 (later phases)** | same mechanics; map controls via `Curriculum` Part VIII tables — no new theory | — | IR mapping drill |
+## 2. Stitch table — teach these with `Curriculum`
 ````
 
 **J833** · SEC-12 · anchor-rewrite
 
 ````text
-> **Note:** the suite-wide register is `Curriculum` §0.3; this table is the security slice of it, and on a conflict the main course's register wins.
+| **AWS Security Specialty / Azure SC-100 (later phases)** | same mechanics; map controls via `Curriculum` Part VIII tables — no new theory | — | IR mapping drill |
 ````
 
 **J834** · SEC-12 · anchor-rewrite
 
 ````text
-| Shared responsibility one-liner | `Curriculum` B1 | PQ-S-03 matrices by service model |
+> **Note:** the suite-wide register is `Curriculum` §0.3; this table is the security slice of it, and on a conflict the main course's register wins.
 ````
 
 **J835** · SEC-12 · anchor-rewrite
 
 ````text
-| TLS handshake vocabulary | `Curriculum` A5 (mechanics) / A10 (formal) | CR-12 attacks, 0-RTT, validation bugs |
+| Shared responsibility one-liner | `Curriculum` B1 | PQ-S-03 matrices by service model |
 ````
 
 **J836** · SEC-12 · anchor-rewrite
 
 ````text
-| IAM principals/roles | `Curriculum` B5 | CL IAM privesc / key sprawl playbooks |
+| TLS handshake vocabulary | `Curriculum` A5 (mechanics) / A10 (formal) | CR-12 attacks, 0-RTT, validation bugs |
 ````
 
 **J837** · SEC-12 · anchor-rewrite
 
 ````text
-| "Use KMS/CMEK" | `Curriculum` Phase 4 Security | CR-14 envelope hierarchy + compromise IR |
+| IAM principals/roles | `Curriculum` B5 | CL IAM privesc / key sprawl playbooks |
 ````
 
 **J838** · SEC-12 · anchor-rewrite
 
 ````text
-| Armor / DDoS product names | `Curriculum` V-NET / Phase 4 Networking | DOS taxonomy + rate-limit/bot design |
+| "Use KMS/CMEK" | `Curriculum` Phase 4 Security | CR-14 envelope hierarchy + compromise IR |
 ````
 
 **J839** · SEC-12 · anchor-rewrite
 
 ````text
-| Container non-root / PSS | `Curriculum` C1/C2 | CK escape & supply-chain attacker paths |
+| Armor / DDoS product names | `Curriculum` V-NET / Phase 4 Networking | DOS taxonomy + rate-limit/bot design |
 ````
 
 **J840** · SEC-12 · anchor-rewrite
 
 ````text
-| OAuth/JWT mentioned | `Curriculum` A7 | AU/CR failure modes (alg confusion, mix-up) |
+| Container non-root / PSS | `Curriculum` C1/C2 | CK escape & supply-chain attacker paths |
 ````
 
 **J841** · SEC-12 · anchor-rewrite
 
 ````text
-1. CR-11 + CR-12 on the `Curriculum` A5 TLS day, at mechanism level, with the minimal public-key intuition bridge (what a key pair does, what a signature proves, why DH gives a shared secret) — CR-E12.
+| OAuth/JWT mentioned | `Curriculum` A7 | AU/CR failure modes (alg confusion, mix-up) |
 ````
 
 **J842** · SEC-12 · anchor-rewrite
 
 ````text
+1. CR-11 + CR-12 on the `Curriculum` A5 TLS day, at mechanism level, with the minimal public-key intuition bridge (what a key pair does, what a signature proves, why DH gives a shared secret) — CR-E12.
+````
+
+**J843** · SEC-12 · anchor-rewrite
+
+````text
 *End of The Cloud Cybersecurity Companion. Stitch with `Curriculum`; bank ≠ dump; CR-* is a first-class pillar.*
 ````
 
-**J846** · GO-13 · anchor-rewrite
+**J847** · GO-13 · anchor-rewrite
 
 ````text
 - **Build lab (hardened HTTP server):** on a Go `http.Server` set `ReadHeaderTimeout` 5 s, `ReadTimeout` 15 s, `WriteTimeout` 15 s, `IdleTimeout` 60 s and `MaxHeaderBytes` 1 MiB; wrap request bodies in `http.MaxBytesReader`; cap in-flight requests with a semaphore that answers 503 when full (the Python twin sets the same limits in its ASGI server `(verify)` the option names). Against a *local* copy only, run a slow-header client (200 connections, one header byte every 10 s) before and after: before, the workers fill; after, each connection closes at the header timeout. Write the Cloud Run request timeout and the load balancer's backend timeout beside the server values so the three agree.
 ````
 
-**J847** · GO-14 · anchor-rewrite
+**J848** · GO-14 · anchor-rewrite
 
 ````text
 - **Build lab (password storage):** register and login endpoints on a local service. Store per user `argon2id$v=19$m=65536,t=3,p=1$<salt>$<hash>` from a vetted library (argon2-cffi, `golang.org/x/crypto/argon2`), with parameters from the current OWASP password-storage guidance `(verify)`, a unique 16-byte random salt per user, and a pepper: HMAC-SHA-256 of the password under a key held in Secret Manager (lab: an environment variable), applied before hashing, with a pepper-version field. Steps: (1) time one hash and tune memory and iterations to about 100 ms on the lab machine; (2) import a table of legacy SHA-256 hashes and upgrade each one on its next successful login (rehash-on-login, version field); (3) rate-limit login per account and per IP (AU-08). Tests: the same password gives different stored strings; a wrong pepper version fails closed; a login for an unknown user takes as long as for a known one (hash a dummy value).
 ````
 
-**J911** · R4-10 · anchor-rewrite
+**J912** · R4-10 · anchor-rewrite
 
 ````text
 - Main-course IDs: module IDs (`A5`, `A7`, `A10`, `B1`, `B5`, `C1`, `C2` …), Part V category IDs (`V-NET`, `V-SEC` …), `Phase 4 Networking` / `Phase 4 Security`, the reserved tracks (`M`, `U`, `S`; scope stubs in the main course), and cert names (PCA, Cloud Security Engineer, …). IDs from the other companions keep their own prefixes and are named with their part, e.g. SQL DD-03, SQL OD-11.
 ````
 
-**J912** · R4-10 · anchor-rewrite
+**J913** · R4-10 · anchor-rewrite
 
 ````text
 | **A6** | DOS-06, WA-10 (+ U1) | — | — |
 ````
 
-**J913** · R4-10 · anchor-rewrite
+**J914** · R4-10 · anchor-rewrite
 
 ````text
 | **U7** | PV-05 | — | — |
 ````
 
-**J914** · R4-10 · anchor-rewrite
+**J915** · R4-10 · anchor-rewrite
 
 ````text
 | **Phase 4 Security** | TH-05 (SecOps), CR-14, CR-15, CR-17, CR-18, CR-20, NT-06 (Prop Lock), WL-04, SC-03, PV-01, PV-02, PV-03, PV-04, CM-01, CM-02 | CL-01 (Lens-3), CL-02 (Lens-3), CL-03 (Lens-3), CL-04 (Lens-3), CL-05 (Lens-3), IR-01 (SecOps), IR-02 (SecOps), IR-04 (SecOps), IR-03, IR-05, IR-06, IR-07, IR-08 | CR-E9…CR-E15, SEC-CAP1 |
 ````
 
-**J915** · R4-10 · anchor-rewrite
+**J916** · R4-10 · anchor-rewrite
 
 ````text
 #### TH-01 · Attacker models: web vs network vs cloud-admin vs co-tenant — stitch: A10 · S6 · S2 · CS155
 ````
 
-**J916** · R4-10 · anchor-rewrite
+**J917** · R4-10 · anchor-rewrite
 
 ````text
 #### TH-02 · Trust boundaries & asset inventory for the reference app — stitch: A10 · S6
 ````
 
-**J917** · R4-10 · anchor-rewrite
+**J918** · R4-10 · anchor-rewrite
 
 ````text
 #### TH-03 · STRIDE applied — stitch: A10 · S6 · Phase 4 Security
 ````
 
-**J918** · R4-10 · anchor-rewrite
+**J919** · R4-10 · anchor-rewrite
 
 ````text
 #### TH-06 · Distributed-system threat concepts — stitch: A9 · S2 · primer
 ````
 
-**J919** · R4-10 · anchor-rewrite
+**J920** · R4-10 · anchor-rewrite
 
 ````text
 #### DOS-06 · Resource exhaustion (CPU/mem/conn/disk) — stitch: A6 · S2 · A10
 ````
 
-**J920** · R4-10 · anchor-rewrite
+**J921** · R4-10 · anchor-rewrite
 
 ````text
 #### DOS-08 · Cache stampedes & thundering herds — stitch: A9 · SD-26 (recall) · S2 · V-STOR
 ````
 
-**J921** · R4-10 · anchor-rewrite
+**J922** · R4-10 · anchor-rewrite
 
 ````text
 #### WA-10 · Memory/control-flow → cloud RCE (applied) — stitch: A6 + U1 · A10 · CS155 · CK · GCE
 ````
 
-**J922** · R4-10 · anchor-rewrite
+**J923** · R4-10 · anchor-rewrite
 
 ````text
 #### SC-02 · Noisy neighbor & isolation classes — stitch: B2 · S2 · CMU 95-746
 ````
 
-**J923** · R4-10 · anchor-rewrite
+**J924** · R4-10 · anchor-rewrite
 
 ````text
 #### PV-05 · Privacy vs security tension (short Embedded EthiCS angle) — stitch: U7 · A10 · Phase 4 Security · XACS235
 ````
 
-**J924** · R4-10 · anchor-rewrite
+**J925** · R4-10 · anchor-rewrite
 
 ````text
 - **Map to GCP:** DOS-08, architecture studios (security-relevant only)

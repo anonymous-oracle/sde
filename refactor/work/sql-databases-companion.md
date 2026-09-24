@@ -58,7 +58,7 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 ### 0.6 Suite Teaching Contract and Lab Safety (same text in every part)
 
-The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.9, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
+The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.10, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
 
 **Suite Teaching Contract (main course §0.4).**
 
@@ -100,6 +100,13 @@ One contract for every part; each companion carries the same contract in its own
 2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
 3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
 4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor never writes the solution.
+
+**0.4.10 Academic depth (undergraduate prerequisites).** The course teaches every undergraduate prerequisite of cloud and system architecture at the depth of a university course, not only at the engineering depth of a first pass. Each Track A module, and each companion, carries an **academic pass**: formal definitions, theorems with their proofs or proof sketches, derivations, named readings, and a numbered problem set whose written keys (an expected answer and at least one expected wrong answer, rule 0.4.7) sit in the owning part's keys. The University and textbook alignment table (main course §0.6) says which university courses and textbooks each pass is aligned with. Four rules:
+
+1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
+2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
+3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks).
+4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
 
 **Lab Safety (main course §0.5).**
 
@@ -5749,6 +5756,102 @@ Evidence: the DDL delta, the transcript of tests 1–3 (commands and final `SELE
 
 Cards for SQL-CAP1.*, SQL-CAP2, SQL-CAP4 are in §6.14; keys in Appendix K.
 
+## 10. Academic depth (rule 0.4.10)
+
+The academic pass of this companion: database theory at the depth of a university databases course (CMU 15-445/645, Berkeley CS 186; main course §0.6). It is the proof layer of the cards named in each block, taught after that card's engineering pass and in the same A8 teaching block (main course A8.D1). The engine slices DB-1…DB-10 stay the build layer; this section proves why they work. Problems DBT-P1…DBT-P14 are in §10.11, with keys in Appendix K under "K-DBT" (after the attempt only). Rule 0.4.10: a block is `mastered` only when one proof problem and one computational problem in it pass. Transactions are written T₁, T₂ and operations r₁(A), w₂(B), c₁ (read, write, commit, with the transaction as subscript).
+
+### 10.1 DBT.1 · Query languages and their equivalence (proves RT-02, RT-03, RT-08)
+
+- The relational algebra's five basic operators (selection, projection, product, union, difference) and the derived ones (join, intersection, division), over sets and over bags (PQ-01, DB-1).
+- The tuple and domain relational calculi. Safety: a calculus query is safe when its answer can be computed from the values in the database and the query (the active domain); `{t | ¬R(t)}` is unsafe.
+- Codd's theorem (1972), stated with a proof sketch: the relational algebra and the safe relational calculus express exactly the same queries. Algebra to calculus is by induction on the expression; calculus to algebra builds the active domain as a union of projections and translates each connective. SQL without recursion or aggregation is "relationally complete" in this sense.
+- Equivalence rules that the planner may use (RT-08), each justified from the definitions: selection pushdown σ_p(R ⋈ S) = σ_p(R) ⋈ S when p mentions only R's attributes; join commutativity and associativity; projection pushdown. Under bag semantics, some set identities fail (R ∪ R ≠ R), which is why `UNION` and `UNION ALL` differ.
+- Readings: Abiteboul, Hull and Vianu, *Foundations of Databases* (1995), chapters 3–5; Silberschatz, Korth and Sudarshan, *Database System Concepts*, 7th ed. (2019), chapters 2 and 27 `(verify)`.
+
+### 10.2 DBT.2 · Functional dependencies (proves RT-04)
+
+- Armstrong's axioms: reflexivity (Y ⊆ X ⇒ X → Y), augmentation (X → Y ⇒ XZ → YZ), transitivity (X → Y, Y → Z ⇒ X → Z); the derived union, decomposition and pseudo-transitivity rules.
+- Soundness: each axiom preserves truth in every relation instance (proved directly from the definition of an FD).
+- Completeness: if F does not derive X → Y, a two-tuple instance that agrees exactly on X⁺ satisfies F and violates X → Y (proved as DBT-P3).
+- The attribute-closure algorithm, its correctness (it computes exactly X⁺) and its polynomial running time. Membership (does F imply X → Y?) is tested by Y ⊆ X⁺. Candidate keys: an attribute that appears on no right-hand side is in every key.
+- Canonical (minimal) cover: singleton right-hand sides, no extraneous left-hand attributes, no redundant dependency.
+
+### 10.3 DBT.3 · Decomposition and normal forms (proves RT-05, RT-06)
+
+- A decomposition of R into R₁ and R₂ is lossless-join if and only if R₁ ∩ R₂ → R₁ or R₁ ∩ R₂ → R₂ is in F⁺ (proof: the natural join returns exactly R in every instance satisfying F). For more than two parts, the chase test decides losslessness.
+- Dependency preservation: the union of the projected dependency sets implies F.
+- BCNF decomposition always terminates with a lossless decomposition but may lose a dependency; the example R(city, street, zip) with {city, street} → zip and zip → city has no dependency-preserving BCNF decomposition.
+- 3NF synthesis from a canonical cover (one relation per dependency, plus a key if none contains one) is always lossless and dependency-preserving.
+- Multivalued dependencies and 4NF (a relation with independent multi-valued facts about one key); join dependencies and 5NF named.
+- Readings: Garcia-Molina, Ullman and Widom, *Database Systems: The Complete Book*, 2nd ed. (2008), chapter 3; Abiteboul, Hull and Vianu, chapters 8–11.
+
+### 10.4 DBT.4 · Cost models for query processing (proves CS-01, CS-03)
+
+- The I/O cost model: cost counted in page transfers, with B buffer pages available; CPU work named, not counted.
+- External merge sort: pass 0 writes ⌈N/B⌉ sorted runs; each later pass merges B − 1 runs. Total cost 2N · (1 + ⌈log_{B−1}⌈N/B⌉⌉) I/Os, so two passes sort N pages whenever N ≤ B(B − 1).
+- Joins of R (M pages) and S (N pages): simple nested loops M + (tuples of R) · N; block nested loops M + ⌈M/(B − 2)⌉ · N; index nested loops M + (tuples of R) · (cost of one probe); sort–merge about the sort costs plus M + N; Grace hash join 3(M + N) when B > √(the smaller relation's pages), with recursive partitioning otherwise.
+- Aggregation by sorting or by hashing, and the same cost bounds.
+- Readings: Ramakrishnan and Gehrke, *Database Management Systems*, 3rd ed. (2003), chapters 13–14; Graefe, "Query Evaluation Techniques for Large Databases", *ACM Computing Surveys* 25(2), 1993.
+
+### 10.5 DBT.5 · Query optimization (proves CS-08, CS-10)
+
+- The Selinger optimizer (System R, 1979): dynamic programming over subsets of relations; left-deep plans; "interesting orders" kept alongside the cheapest plan because a sorted output can make a later merge join or `ORDER BY` free.
+- Cardinality estimation: selectivity of `col = const` as 1/NDV under the uniformity assumption; conjunctions multiplied under the independence assumption; histograms and most-common-value lists (DB-8). Errors compound multiplicatively through a join tree, which is why plans go wrong on correlated columns.
+- Complexity: choosing the optimal join order is NP-hard in general (Ibaraki and Kameda, 1984), so optimizers use dynamic programming up to a limit and heuristics or genetic search beyond it (PostgreSQL's GEQO past `geqo_threshold`).
+- Index selection as an optimization problem (CS-10): choosing a set of indexes under a storage budget to minimize workload cost is NP-hard; advisors use greedy search with the optimizer's own cost estimates.
+- Reading: Selinger et al., "Access Path Selection in a Relational Database Management System" (SIGMOD 1979).
+
+### 10.6 DBT.6 · Access methods, analysed (proves CS-02, PQ-07)
+
+- B+ tree: with fanout F and N keys the height is ⌈log_F N⌉, so a lookup costs that many page reads (fewer with the upper levels cached). Split and merge keep every node at least half full; range scans follow the leaf chain.
+- Hash indexes: static hashing and overflow chains; extendible hashing (directory doubling) and linear hashing (split one bucket at a time); expected O(1) probes when the load factor is bounded.
+- LSM trees: write amplification, read amplification and space amplification trade against each other (the RUM conjecture, Athanassoulis et al., 2016); leveled versus tiered compaction; Bloom filters per run (main course A4.D6) to skip runs on point lookups.
+- Readings: Comer, "The Ubiquitous B-Tree", *ACM Computing Surveys* 11(2), 1979; O'Neil, Cheng, Gawlick and O'Neil, "The Log-Structured Merge-Tree", *Acta Informatica* 33, 1996.
+
+### 10.7 DBT.7 · Concurrency control theory (proves CS-05)
+
+- Schedules, conflicts (two operations on the same item, from different transactions, at least one a write) and conflict equivalence. The precedence-graph theorem: a schedule is conflict-serializable if and only if its precedence graph is acyclic (DBT-P8). View serializability is broader, and testing it is NP-complete.
+- Two-phase locking: every 2PL schedule is conflict-serializable, ordered by lock points (DBT-P9). Strict 2PL also gives recoverable, cascadeless schedules. Deadlock handling: detection on the waits-for graph (DB-9), or prevention by wait-die and wound-wait.
+- Timestamp ordering, and the Thomas write rule (an obsolete write is ignored rather than aborting), which admits some view-serializable schedules that are not conflict-serializable.
+- Multiversion concurrency and snapshot isolation: SI prevents dirty reads, non-repeatable reads and lost updates but allows write skew. Serializable snapshot isolation (Cahill, Röhm and Fekete, 2008; PostgreSQL's `SERIALIZABLE`) aborts one transaction of any "dangerous structure": two consecutive read–write antidependencies between concurrent transactions.
+- The anomaly-based definitions of isolation levels and their critique: Berenson et al., "A Critique of ANSI SQL Isolation Levels" (SIGMOD 1995); Adya's graph-based definitions (PhD thesis, MIT, 1999).
+
+### 10.8 DBT.8 · Recovery theory (proves CS-06, DB-10)
+
+- Buffer policies: steal (a dirty page of an uncommitted transaction may be written) needs undo; no-force (committed pages need not be written at commit) needs redo. Steal/no-force is the fastest and needs both.
+- The write-ahead-logging rule: a log record must be durable before the page it describes, and all of a transaction's log records must be durable before it commits.
+- ARIES (Mohan et al., 1992): log sequence numbers; each page's pageLSN; the dirty-page table and transaction table in checkpoints. Recovery runs three passes. **Analysis** rebuilds both tables. **Redo** repeats history from the smallest recLSN, applying a record only when its LSN is greater than the page's pageLSN, which makes redo idempotent. **Undo** rolls back the losers, writing a compensation log record (CLR) for each step so that a crash during recovery never undoes the same step twice.
+- Reading: Mohan, Haderle, Lindsay, Pirahesh and Schwarz, "ARIES: A Transaction Recovery Method…", *ACM Transactions on Database Systems* 17(1), 1992.
+
+### 10.9 DBT.9 · Distributed transactions and consistency (proves CS-07)
+
+- Two-phase commit, its correctness (all-or-nothing when participants follow the protocol) and its blocking window, recalled from main course A9.D8 with the database-side detail: prepared transactions hold locks until the decision arrives.
+- Spanner's external consistency: commit timestamps chosen within TrueTime's uncertainty interval, and commit-wait until that interval has passed, so timestamp order matches real-time order (Corbett et al., OSDI 2012).
+- Deterministic databases (Calvin, 2012) as the alternative that orders transactions before executing them, named only.
+
+### 10.10 DBT.10 · Recursion and expressiveness (proves CS-11, SL-09)
+
+- First-order queries (the relational algebra) cannot express transitive closure (a consequence of the locality of first-order logic, stated without proof; Libkin, *Elements of Finite Model Theory*, 2004).
+- Datalog: rules, the least fixpoint semantics, naive and semi-naive evaluation (each round joins only the new facts), and stratified negation. SQL's `WITH RECURSIVE` is linear Datalog with a union; a monotone query reaches its fixpoint in at most as many rounds as the longest shortest path.
+- Readings for the whole pass: the CMU 15-445/645 and Berkeley CS 186 lecture notes; Hellerstein, Stonebraker and Hamilton, "Architecture of a Database System", *Foundations and Trends in Databases* 1(2), 2007.
+
+### 10.11 Problem set (DBT-P1…DBT-P14)
+
+- **DBT-P1** · proof · From Armstrong's three axioms, derive the union rule: X → Y and X → Z imply X → YZ.
+- **DBT-P2** · compute · R(A, B, C, D, E) with F = {A → B, BC → D, D → E, E → A}. Compute {A, C}⁺ and list every candidate key.
+- **DBT-P3** · proof · Prove completeness: if Y ⊄ X⁺ (closure under F), build a two-row instance that satisfies every dependency in F and violates X → Y.
+- **DBT-P4** · compute · R(A, B, C) with F = {A → B}. Is the decomposition into (A, B) and (A, C) lossless? Is the decomposition into (A, B) and (B, C)? For the lossy one, give an instance whose join has a spurious row.
+- **DBT-P5** · compute · Decompose R(A, B, C, D) with F = {A → B, B → C} into BCNF. Is the result dependency-preserving?
+- **DBT-P6** · compute · Sort a file of 10,000 pages with 101 buffer pages. How many runs does pass 0 produce, how many passes are there in total, and what is the I/O cost?
+- **DBT-P7** · compute · R has 1,000 pages and S has 500 pages; 102 buffer pages. Give the cost of block nested loops with S as the outer relation, and of Grace hash join. Is the buffer large enough for a two-pass hash join?
+- **DBT-P8** · proof · Prove that a schedule is conflict-serializable if its precedence graph is acyclic, and not conflict-serializable if the graph has a cycle.
+- **DBT-P9** · proof · Prove that every schedule produced under two-phase locking is conflict-serializable.
+- **DBT-P10** · compute · Is the schedule r₁(A) w₂(A) w₂(B) c₂ r₁(B) w₁(B) c₁ conflict-serializable? Draw the precedence graph.
+- **DBT-P11** · proof · Two on-call doctors each run: "if at least two doctors are on call, set my own row to off-call". Show that snapshot isolation lets both commit, leaving nobody on call, and name the structure that serializable snapshot isolation detects.
+- **DBT-P12** · compute · A page on disk has pageLSN 30. During redo, ARIES meets log records for that page with LSNs 25 and 40. Which does it apply, and why is redo safe to repeat after a second crash?
+- **DBT-P13** · compute · A B+ tree has fanout 200 and leaves holding 100 entries each; the table has 100,000,000 rows, one entry per row. How many levels does the tree have, and how many page reads does a lookup cost when only the root is cached?
+- **DBT-P14** · compute · A table has 1,000,000 rows. Column a has 50 distinct values and column b has 10, both uniform. Estimate the rows matching `a = 1 AND b = 2` under the independence assumption, and say when the estimate fails.
+
 ## Appendix K — Instructor keys (AFTER attempt only)
 
 Do **not** open until the learner has attempted the item. Keys are the reference SQL from `ex_*.py` `key=` fields; fingerprints from `goldens_ex_*.json`.
@@ -6549,6 +6652,23 @@ GROUP BY fp.user_id
 - **TD-12:** no-force ⇒ dirty pages may be unwritten ⇒ redo from last checkpoint; steal ⇒ loser tx may have written ⇒ undo.
 
 - **TX expected finals:** see §6.T `Expected` lines.
+### K-DBT — academic problem keys (§10.11)
+
+- **DBT-P1** — Expected: augment X → Y by X to get X → XY; augment X → Z by Y to get XY → YZ; transitivity gives X → YZ. · Wrong: "union is an axiom" — it is derived, and the exercise is the derivation.
+- **DBT-P2** — Expected: {A, C}⁺ = {A, C, B, D, E} (A → B, then BC → D, then D → E). C is on no right-hand side, so every key contains C, and {C}⁺ = {C}. Adding any one of A, B, D or E to C reaches all five attributes, so the candidate keys are AC, BC, CD and CE. · Wrong: "A is a key" — A⁺ = {A, B} never reaches C.
+- **DBT-P3** — Expected: take two rows that agree on every attribute of X⁺ and differ on all others. For any V → W in F: if V ⊆ X⁺ then W ⊆ X⁺ (X⁺ is closed under F), so the rows agree on W; if V ⊄ X⁺ they disagree on V, and the dependency holds vacuously. Y has an attribute outside X⁺, so the rows agree on X but differ on Y: X → Y fails. · Wrong: using a one-row instance — every FD holds on one row.
+- **DBT-P4** — Expected: (A, B) and (A, C): the common attribute A determines AB, so the decomposition is lossless. (A, B) and (B, C): B determines neither side, so it is lossy; the instance {(1, x, 2), (3, x, 4)} joins back to include (1, x, 4) and (3, x, 2). · Wrong: "every decomposition that keeps all attributes is lossless" — the join can add rows.
+- **DBT-P5** — Expected: the only key is AD. A → B violates BCNF; split on A⁺ = {A, B, C} into R₁(A, B, C) and R₂(A, D). In R₁, B → C violates BCNF (B is not a key of R₁); split into (B, C) and (A, B). Result: (A, B), (B, C), (A, D). Both dependencies are inside one relation, so it is dependency-preserving. · Wrong: stopping at (A, B, C) and (A, D) — R₁ still has the transitive B → C.
+- **DBT-P6** — Expected: pass 0 gives ⌈10,000 / 101⌉ = 100 runs; one merge pass with fan-in 100 finishes, so 2 passes; cost 2 × 10,000 × 2 = 40,000 I/Os. · Wrong: 1 + ⌈log₂ 100⌉ = 8 passes — that is a two-way merge, which ignores the 100-way fan-in the buffer allows.
+- **DBT-P7** — Expected: block nested loops with S outer: 500 + ⌈500 / 100⌉ × 1,000 = 500 + 5,000 = 5,500 I/Os. Grace hash join: 3 × (1,000 + 500) = 4,500 I/Os; it needs B > √500 ≈ 22.4, and 102 pages suffice. · Wrong: 500 × 1,000 = 500,000 — that is page-at-a-time nested loops, ignoring the buffer.
+- **DBT-P8** — Expected: acyclic ⇒ take a topological order of the graph; every conflicting pair already appears in that order, so swapping adjacent non-conflicting operations turns the schedule into that serial schedule without changing any conflict's order. Cycle T₁ → T₂ → … → T₁ ⇒ an equivalent serial schedule must put each transaction before the next along the cycle, including T₁ before itself: impossible. · Wrong: "acyclic means no conflicts" — the graph's edges are the conflicts.
+- **DBT-P9** — Expected: each transaction's lock point is the moment it takes its last lock. An edge Tᵢ → Tⱼ means Tᵢ released a lock that Tⱼ later acquired, so lp(Tᵢ) < lp(Tⱼ). A cycle would give lp(T₁) < … < lp(T₁), a contradiction, so the graph is acyclic and the precedence-graph theorem applies. · Wrong: "2PL prevents deadlock" — it does not; it guarantees serializability.
+- **DBT-P10** — Expected: r₁(A) before w₂(A) gives T₁ → T₂; w₂(B) before r₁(B) gives T₂ → T₁. The graph has a cycle, so the schedule is not conflict-serializable. · Wrong: "serializable, since T₂ commits first" — commit order is not conflict order.
+- **DBT-P11** — Expected: each transaction reads the snapshot with two doctors on call, sees the condition true, and updates only its own row; the write sets are disjoint, so first-committer-wins does not fire, and both commit, leaving zero on call. Each read a row the other then wrote: two read–write antidependencies T₁ → T₂ → T₁ between concurrent transactions, the dangerous structure that SSI aborts. · Wrong: "SI prevents this because it prevents lost updates" — there is no lost update; the two writes touch different rows.
+- **DBT-P12** — Expected: skip LSN 25 (25 ≤ pageLSN 30, so its effect is already on the page); apply LSN 40 and set pageLSN to 40. A repeat after a second crash meets pageLSN ≥ LSN for everything already applied and skips it, so redo is idempotent. · Wrong: "apply both, redo repeats history" — history is repeated only for changes the page lacks.
+- **DBT-P13** — Expected: leaves = 100,000,000 / 100 = 1,000,000; next level ⌈1,000,000 / 200⌉ = 5,000; next 25; then the root. Four levels; with the root cached a lookup reads 3 pages. · Wrong: log₂(10⁸) ≈ 27 reads — that is a binary tree, not a fanout-200 B+ tree.
+- **DBT-P14** — Expected: 1,000,000 × (1/50) × (1/10) = 2,000 rows. It fails when a and b are correlated: if every row with a = 1 has b = 2, the true count is 20,000; if none does, it is 0. Extended statistics on (a, b) fix it. · Wrong: 1,000,000 × (1/50 + 1/10) — adding selectivities models OR, not AND.
+
 ## Appendix V — Verification notes (honesty flags)
 
 - **Goldens:** 92/92 exercise cards carry fingerprints from local JSON artefacts (`goldens_ex_l1_4.json`, `goldens_ex_l5_8.json`, `goldens_ex_l9_13.json`, `goldens_ex_l14.json`). They were produced by `run_ex.py` against seed v1; this build **wires those values verbatim** and does not re-execute Postgres when this file is assembled. The goldens files are printed in full in §3.8.
