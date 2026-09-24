@@ -47,22 +47,22 @@ Why: `gcp.md` owns the *roadmap spine* — what to learn, in what order, tied to
 
 ### 0.4 Notation
 
-- `PQ-S-*` foundations · `TH-*` threat modeling · `CR-*` cryptography · `AU-*` auth/session attacks · `AB-*` API/abuse · `DD-*` denial of service · `WA-*` web/app attacks · `CL-*` cloud-native attacks · `NT-*` network/zero-trust · `CK-*` containers/K8s · `WL-*` supply chain · `DT-*` detection/IR · `AI-*` AI/LLM threats · `SC-*` side channels/isolation · `PR-*` privacy · `CM-*` compliance literacy
-- `E*` / `CR-E*` / `Z0.*` exercises · `C1–C4` capstones
+- `PQ-S-*` foundations · `TH-*` threat modeling · `CR-*` cryptography · `AU-*` auth/session attacks · `AB-*` API/abuse · `DOS-*` denial of service · `WA-*` web/app attacks · `CL-*` cloud-native attacks · `NT-*` network/zero-trust · `CK-*` containers/K8s · `WL-*` supply chain · `IR-*` detection/IR · `AI-*` AI/LLM threats · `SC-*` side channels/isolation · `PV-*` privacy · `CM-*` compliance literacy
+- `SEC-E*` / `CR-E*` / `SEC-Z0.*` exercises · `SEC-CAP1–SEC-CAP4` capstones
 - `gcp.md` IDs: `A5`, `A7`, `A10`, `B1`, `B5`, `C1`, `C2`, `Phase4-Sec`, `Phase4-Net`, cert names (PCA, Cloud Security Engineer, …)
 
 ### 0.5 University alignment (coverage checklist)
 
 | Course / framework | Maps into |
 |---|---|
-| Stanford CS155 | TH, AU, WA, NT, DD, CL, AI |
+| Stanford CS155 | TH, AU, WA, NT, DOS, CL, AI |
 | Stanford CS255 | CR-01 … CR-20 |
-| Stanford XACS235 Cloud Security | B1/CL shared responsibility, CK/WL, CR-14, DT, CM, SC/TEEs |
+| Stanford XACS235 Cloud Security | B1/CL shared responsibility, CK/WL, CR-14, IR, CM, SC/TEEs |
 | MIT 6.858 / 6.566 | TH, CK isolation, WA, NT/TLS, SC, AU |
-| Berkeley CS161 | CR foundations, NT, DD, WA, AU |
-| CMU Cloud Security | CL multi-tenancy, B5/IAM abuse, DT, CM |
+| Berkeley CS161 | CR foundations, NT, DOS, WA, AU |
+| CMU Cloud Security | CL multi-tenancy, B5/IAM abuse, IR, CM |
 | CSA CCM v4.x | §8 checklist (not a control dump) |
-| OWASP Top 10:2025 · ATT&CK Cloud | WA, AU, CL, WL, DT |
+| OWASP Top 10:2025 · ATT&CK Cloud | WA, AU, CL, WL, IR |
 
 ---
 
@@ -75,17 +75,17 @@ Why: `gcp.md` owns the *roadmap spine* — what to learn, in what order, tied to
 | Cryptography | goals/games → AEAD → PKI/TLS → passwords → KMS → side channels → TEEs → PQC | CR-01…CR-20 |
 | AuthN/AuthZ attacks | hijack, fixation, CSRF, JWT/OAuth failures, stuffing, MFA fatigue, IDOR | AU-* |
 | API abuse | rate limits, bots, scraping, GraphQL DoS, enumeration | AB-* |
-| Denial of service | L3–L7, amplification, slowloris, economic DoS, Adaptive Protection | DD-* |
+| Denial of service | L3–L7, amplification, slowloris, economic DoS, Adaptive Protection | DOS-* |
 | Web/app attacks | injection, XSS, SSTI, deserialization, CSP, clickjacking | WA-* |
 | Cloud-native | SSRF/metadata, public buckets, IAM privesc, confused deputy, tenant isolation | CL-* |
 | Network / zero trust | lateral movement, egress exfil, DNS tunneling, IAP vs VPN threat models | NT-* |
 | Containers / K8s | escape patterns, privileged pods, RBAC wildcards, secrets | CK-* |
 | Supply chain | poisoned images/deps, CI compromise, SBOM/signing | WL-* |
-| Detection / IR | log gaps, alert design, ephemeral forensics, ransomware | DT-* |
+| Detection / IR | log gaps, alert design, ephemeral forensics, ransomware | IR-* |
 | AI / LLM apps | prompt injection, tool abuse, RAG leakage | AI-* |
 | Side channels / TEEs | timing/cache awareness, confidential computing | SC-* |
-| Privacy / compliance lite | classification, DLP, CCM/SOC2/PCI literacy | PR-*, CM-* |
-| Exercises & capstones | scenario bank + C1–C4 | §5–§6 |
+| Privacy / compliance lite | classification, DLP, CCM/SOC2/PCI literacy | PV-*, CM-* |
+| Exercises & capstones | scenario bank + SEC-CAP1–SEC-CAP4 | §5–§6 |
 
 ---
 
@@ -93,20 +93,20 @@ Why: `gcp.md` owns the *roadmap spine* — what to learn, in what order, tied to
 
 | `gcp.md` section | Companion modules (same session) | Checkpoint |
 |---|---|---|
-| **A5 Networking** (OSI/TCP/IP, DNS, HTTP, TLS intro, LB, firewalls, VPN) | NT-*, DD-01…03, CR-11/CR-12 (TLS depth), WA-01 (HTTP attacker model) | E-NT1, CR-E12 |
+| **A5 Networking** (OSI/TCP/IP, DNS, HTTP, TLS intro, LB, firewalls, VPN) | NT-*, DOS-01…03, CR-11/CR-12 (TLS depth), WA-01 (HTTP attacker model) | E-NT1, CR-E12 |
 | **A7 APIs** (OAuth/JWT/API keys awareness) | AU-05…10, AB-*, CR-10 (JWT as signed object) | E-AU3, CR-E4 |
-| **A10 Security & Cryptography Fundamentals** | PQ-S-*, TH-*, **CR-01…CR-13**, AU-01…04, WA-* overview, DD overview | CR-E1…E8, Z0.* |
+| **A10 Security & Cryptography Fundamentals** | PQ-S-*, TH-*, **CR-01…CR-13**, AU-01…04, WA-* overview, DOS overview | CR-E1…E8, SEC-Z0.* |
 | **B1 Shared responsibility** | PQ-S-03, CL-01, CM-01 | E-CL1 |
 | **B5 Cloud IAM Concepts** | AU-11…14, CL-03…05 (IAM abuse / SA keys / confused deputy) | E-CL3 |
 | **C1 Docker security** | CK-01…03, WL-01 (image poison), CR-14 secrets | E-CK1 |
 | **C2 Kubernetes RBAC / PSS / admission** | CK-04…06, WL-02…03, NT-04 (east-west) | E-CK2 |
-| **Phase 4 GCP — Networking + Cloud Armor / Armor** | DD-*, AB-01…04, NT-05…06, WA-WAF cards | E-DD2, E-AB1 |
-| **Phase 4 GCP — Security (IAM, KMS, VPC-SC, BinAuth, SCC, SecOps)** | CR-14…CR-20, CL-*, WL-*, DT-*, SC-*, VPC-SC exfil (NT-07) | CR-E9…E15, C1 |
-| **Cloud Security Engineer cert track** | all CL/NT/DT/CR-14+, CM-* | C2 |
-| **Cloud Network Engineer cert track** | NT-*, DD-*, A5 revisit | E-NT3 |
-| **Security Operations Engineer / SCS-C03** | DT-*, TH-05 ATT&CK, IR capstone | C3 |
-| **GenAI / Agentic (Phase 3–4 / Agentic Architect)** | AI-*, CR-18 awareness, PR-* | C4 |
-| **AWS Security Specialty / Azure SC-100 (later phases)** | same mechanics; map controls via `gcp.md` provider tables — no new theory | DT mapping drill |
+| **Phase 4 GCP — Networking + Cloud Armor / Armor** | DOS-*, AB-01…04, NT-05…06, WA-WAF cards | E-DD2, E-AB1 |
+| **Phase 4 GCP — Security (IAM, KMS, VPC-SC, BinAuth, SCC, SecOps)** | CR-14…CR-20, CL-*, WL-*, IR-*, SC-*, VPC-SC exfil (NT-07) | CR-E9…E15, SEC-CAP1 |
+| **Cloud Security Engineer cert track** | all CL/NT/IR/CR-14+, CM-* | SEC-CAP2 |
+| **Cloud Network Engineer cert track** | NT-*, DOS-*, A5 revisit | E-NT3 |
+| **Security Operations Engineer / SCS-C03** | IR-*, TH-05 ATT&CK, IR capstone | SEC-CAP3 |
+| **GenAI / Agentic (Phase 3–4 / Agentic Architect)** | AI-*, CR-18 awareness, PV-* | SEC-CAP4 |
+| **AWS Security Specialty / Azure SC-100 (later phases)** | same mechanics; map controls via `gcp.md` provider tables — no new theory | IR mapping drill |
 
 ### 2.1 Overlap register — teach once
 
@@ -116,7 +116,7 @@ Why: `gcp.md` owns the *roadmap spine* — what to learn, in what order, tied to
 | TLS handshake vocabulary | `gcp.md` A5/A10 | CR-12 attacks, 0-RTT, validation bugs |
 | IAM principals/roles | `gcp.md` B5 | CL IAM privesc / key sprawl playbooks |
 | "Use KMS/CMEK" | `gcp.md` Phase 4 Security | CR-14 envelope hierarchy + compromise IR |
-| Armor / DDoS product names | `gcp.md` Phase 4 Net | DD taxonomy + rate-limit/bot design |
+| Armor / DDoS product names | `gcp.md` Phase 4 Net | DOS taxonomy + rate-limit/bot design |
 | Container non-root / PSS | `gcp.md` C1/C2 | CK escape & supply-chain attacker paths |
 | OAuth/JWT mentioned | `gcp.md` A7 | AU/CR failure modes (alg confusion, mix-up) |
 
@@ -135,7 +135,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Encoding ≠ confidentiality; non-CSPRNG is predictable; Kerckhoffs: assume algorithm is public.
 - **Defense pattern:** Only vetted AEAD + CSPRNG; never invent crypto; mark every secret path for Secret Manager.
 - **GCP lens:** Lens-1: Secret Manager + KMS names. Lens-2: local CSPRNG token gen. Lens-3: PCA 'protect data' themes.
-- **Lab:** Z0.1: classify 8 snippets as encoding / hashing / MAC / encryption / nothing.
+- **Lab:** SEC-Z0.1: classify 8 snippets as encoding / hashing / MAC / encryption / nothing.
 - **Check:** Can you state Kerckhoffs and name one encoding-vs-encryption confusion?
 
 #### PQ-S-02 · Principles beyond CIA (Saltzer/Schroeder add-ons) — stitch: Phase4-Sec.1 recall
@@ -144,7 +144,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Attackers use the path you forgot to check; complexity hides bugs; shared mechanism couples blast radius.
 - **Defense pattern:** Complete mediation; fail-safe defaults; economy of mechanism; least common mechanism; psychological acceptability — *recall* CIA/least-privilege/defense-in-depth/assume-breach/zero-trust/shared-responsibility from 7.1.
 - **GCP lens:** Lens-1: IAM deny policies + org policy as fail-safe defaults. Lens-2: paper control matrix.
-- **Lab:** Z0.3: map each Saltzer principle to one the reference cloud app control.
+- **Lab:** SEC-Z0.3: map each Saltzer principle to one the reference cloud app control.
 - **Check:** Name three principles beyond CIA and one GCP embodiment each.
 
 #### PQ-S-03 · Shared responsibility matrices (IaaS/PaaS/SaaS/serverless) — stitch: B5 IAM · 7.1 · XACS235
@@ -153,7 +153,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Responsibility splits by abstraction: you always own identity, data classification, who can invoke, logging config; CSP owns physical/hypervisor/baseline managed hardening — but *misconfig is on you*.
 - **Defense pattern:** Fill a matrix per service: patch guest OS? network ACL? app AuthZ? key custody? For serverless, still own IAM invoker + app bugs.
 - **GCP lens:** Lens-1: Cloud Run vs GCE vs GCS rows. Lens-2: annotate Part 0 hierarchy with trust boundaries.
-- **Lab:** E1.2: complete matrix for Cloud Run + Cloud SQL + GCS.
+- **Lab:** SEC-E1.2: complete matrix for Cloud Run + Cloud SQL + GCS.
 - **Check:** Who owns guest OS patching on GCE vs runtime CVE response on Cloud Run?
 
 #### PQ-S-04 · HTTP/TLS bits & browser security model preview — stitch: A5 TLS / Phase 4 Armor · F1 · WA-01
@@ -162,7 +162,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** HTTP is request/response with deferred security; browsers enforce SOP; TLS authenticates the *server cert to name*, not your AuthZ.
 - **Defense pattern:** Separate transport security (CR-12) from session (AU-*) from AuthZ (AU-11). Draw Client→GFE→LB→Run.
 - **GCP lens:** Lens-1: managed cert on Application LB. Lens-2: curl -v TLS to run.app.
-- **Lab:** Z0.2: label each hop's trust assumption.
+- **Lab:** SEC-Z0.2: label each hop's trust assumption.
 - **Check:** Does HTTPS alone stop CSRF? Why/why not?
 
 #### PQ-S-05 · Security economics & incentives — stitch: Phase4-Sec.1 · MIT 6.858
@@ -171,7 +171,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Attackers amortize tooling; defenders pay per asset; asymmetric information; moral hazard in shared cloud.
 - **Defense pattern:** Price residual risk in ADRs; prefer controls with high attacker cost / low user friction; measure MTTD/MTTR.
 - **GCP lens:** Lens-1: SCC finding severity as prioritization input. Lens-2: cost of standing global LB vs Hosting edge.
-- **Lab:** E1.3: one the reference cloud app ADR that prices a control vs accept risk.
+- **Lab:** SEC-E1.3: one the reference cloud app ADR that prices a control vs accept risk.
 - **Check:** Give one example of checkbox security that fails incentive alignment.
 
 #### PQ-S-06 · Threat-modeling warmup (STRIDE one-pager) — stitch: B4 · TH-02
@@ -180,7 +180,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Without assets + trust boundaries + STRIDE, controls are ornaments.
 - **Defense pattern:** For `PlaceOrder`: diagram · STRIDE row · one abuse case · one residual risk sentence.
 - **GCP lens:** Lens-1: none yet — paper. Lens-2: attach later products only after threats named.
-- **Lab:** E1.1
+- **Lab:** SEC-E1.1
 - **Check:** What is the difference between a threat and a control?
 
 ### 3.2 Threat taxonomy & modeling (TH-01 … TH-06)
@@ -191,7 +191,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Different attackers have different capabilities: web (malicious site, XSS sink), network (on-path), cloud-admin (IAM), co-tenant (noisy/side-channel/isolation).
 - **Defense pattern:** Name the attacker model at the top of every threat model; pick controls that match capabilities.
 - **GCP lens:** Lens-1: IAP reduces network-attacker relevance for admin UI. Lens-2: paper table.
-- **Lab:** EA5 TLS / Phase 4 Armor
+- **Lab:** SEC-E1.4
 - **Check:** Which attacker model does VPC-SC primarily frustrate?
 
 #### TH-02 · Trust boundaries & asset inventory for the reference cloud app — stitch: B4
@@ -200,7 +200,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Breach crosses the weakest unlabeled boundary; assets without owners lack controls.
 - **Defense pattern:** Draw org/folder/project · FE/API/admin/s2s/data/CI planes · label data classes.
 - **GCP lens:** Lens-1: resource hierarchy. Lens-2: annotate existing the reference cloud app HLD.
-- **Lab:** E1.1
+- **Lab:** SEC-E1.1
 - **Check:** List five the reference cloud app assets and their trust boundary.
 
 #### TH-03 · STRIDE applied — stitch: B4 · 7.4
@@ -209,7 +209,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** STRIDE structures brainstorming; each letter maps to CIA+AuthZ concerns.
 - **Defense pattern:** One STRIDE table per critical flow; link to tests.
 - **GCP lens:** Lens-1: map Spoofing→Identity Platform/IAM; Tampering→KMS/Binary Auth; DoS→Armor.
-- **Lab:** E1.1
+- **Lab:** SEC-E1.1
 - **Check:** Give a the reference cloud app Elevation example that HTTPS does not stop.
 
 #### TH-04 · Attack trees & abuse cases as tests — stitch: 3.0 · 4.7
@@ -218,7 +218,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Trees force AND/OR attacker paths; abuse cases become negative tests.
 - **Defense pattern:** Convert top 3 trees into table-driven deny tests.
 - **GCP lens:** Lens-1: Cloud Build test job runs abuse suite.
-- **Lab:** E2.4
+- **Lab:** SEC-E2.4
 - **Check:** What makes an abuse case 'testable'?
 
 #### TH-05 · ATT&CK cloud TTPs (incl. T1552.005) — stitch: Phase4-Sec.6 · CL-01
@@ -227,7 +227,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** ATT&CK gives shared vocabulary for detection; T1552.005 is classic SSRF→IMDS.
 - **Defense pattern:** Map the reference cloud app detections to a few techniques; do not boil the ocean.
 - **GCP lens:** Lens-1: SCC + Chronicle literacy. Lens-2: parse one audit log for GetAccessToken-like events (verify names).
-- **Lab:** E7.3
+- **Lab:** SEC-E7.3
 - **Check:** State T1552.005 in one sentence.
 
 #### TH-06 · Distributed-system threat concepts — stitch: 8 · primer
@@ -236,7 +236,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Replication multiplies trust; control planes are high-value; eventual consistency delays revocation.
 - **Defense pattern:** Threat-model the control plane separately; pin digests multi-region.
 - **GCP lens:** Lens-1: org policy + Binary Authorization across projects.
-- **Lab:** E8.2
+- **Lab:** SEC-E8.2
 - **Check:** Why is revoke-propagation latency a security property?
 
 ### 3.3 Cryptography — first-class pillar (CR-01 … CR-20)
@@ -330,7 +330,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Verification must pin algorithm+key; agility without policy is an attack surface; ECDSA needs trustworthy nonce.
 - **Defense pattern:** Allowlist alg; one purpose per key; use maintained JOSE; Ed25519/RSA-PSS from libs; pin JWKS from config not URL.
 - **GCP lens:** Lens-1: Binary Authorization attestations / Sigstore literacy (verify). Lens-2: AU-05 lab pairing.
-- **Lab:** CR-E4, E3.5
+- **Lab:** CR-E4, SEC-E3.5
 - **Check:** Explain JWT algorithm confusion in one sentence.
 
 #### CR-11 · Certificates & PKI: X.509, chains, CT, pinning, ACME — stitch: A5 TLS / Phase 4 Armor · CS255
@@ -348,7 +348,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** TLS 1.3 cleans handshake and forbids many legacy options; 0-RTT is replayable; validation bugs are perennial in custom code.
 - **Defense pattern:** Min TLS 1.2+ (prefer 1.3); SSL policies; no custom verify; HSTS with care; treat 0-RTT as unsafe for non-idempotent.
 - **GCP lens:** Lens-1: `google_compute_ssl_policy` min_tls_version (verify). Lens-2: compare handshake wire shapes on paper.
-- **Lab:** CR-E15, E2.1
+- **Lab:** CR-E15, SEC-E2.1
 - **Check:** Why can TLS 1.3 0-RTT be dangerous for POST /transfer?
 
 #### CR-13 · Password cryptography: Argon2id/scrypt/bcrypt; salt; pepper — stitch: A10/B5.3 owner labs
@@ -369,13 +369,13 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E9, CR-E10
 - **Check:** Draw KEKs and DEKs for a GCS object + a DB field.
 
-#### CR-15 · Key compromise & crypto agility; IR for leaked keys — stitch: Phase4-Sec.8 · DT-05
+#### CR-15 · Key compromise & crypto agility; IR for leaked keys — stitch: Phase4-Sec.8 · IR-05
 - [ ] unlocked
 - **Attack:** No inventory of where a key was used; rotation that leaves old ciphertext forever decryptable without policy; JWT keys without cutoff.
 - **Why it works:** Compromise requires: detect → contain (disable) → rewrap/reissue → invalidate sessions/tokens → hunt usage window.
 - **Defense pattern:** Key inventory; dual-key overlap rotation; incident cutoff timestamps for JWT; runbook branch for KMS disable + SA key delete.
-- **GCP lens:** Lens-1: KMS key state disable/destroy schedule (verify); Secret Manager versions. Lens-2: tabletop CR-15+DT-05.
-- **Lab:** E7.5, CR-E16
+- **GCP lens:** Lens-1: KMS key state disable/destroy schedule (verify); Secret Manager versions. Lens-2: tabletop CR-15+IR-05.
+- **Lab:** SEC-E7.5, CR-E16
 - **Check:** List five steps after a DEK leak vs a KEK leak.
 
 #### CR-16 · Side channels applied: timing, padding oracle, cache; constant-time APIs — stitch: MIT 6.858 · SC-01
@@ -402,7 +402,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** TEEs reduce operator/host visibility with attestation trust; MPC/HE/ZKP buy specific properties at cost; none replace AuthZ.
 - **Defense pattern:** Threat-model what TEE covers (memory confidentiality vs app bugs); know HE/MPC/ZKP exist for multi-party analytics — survey depth only.
 - **GCP lens:** Lens-1: Confidential VM / Confidential GKE / Confidential Space literacy (verify). Lens-2: write 'buys/costs' paragraph.
-- **Lab:** CR-E19, E8.5
+- **Lab:** CR-E19, SEC-E8.5
 - **Check:** Name one threat Confidential VM mitigates and one it does not.
 
 #### CR-19 · Post-quantum migration awareness — stitch: CR-11 · CR-12
@@ -420,12 +420,12 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Checklists catch omitted integrity, nonce policy, key purpose, library choice.
 - **Defense pattern:** Mandatory: vetted lib (Tink/libsodium/stdlib); AEAD; CSPRNG; KMS for KEKs; no tokens in URLs; TLS verify on; alg allowlists; versioned password records; inventory.
 - **GCP lens:** Lens-1: ADR linking checklist to Secret Manager/KMS/Armor TLS. Lens-2: audit the reference cloud app against checklist.
-- **Lab:** C1 uses this checklist
+- **Lab:** SEC-CAP1 uses this checklist
 - **Check:** Recite eight non-negotiables for the reference cloud app crypto.
 
 ### 3.3.1 Cryptography pillar coda — assessment & Prop Lock
 
-**Skip-test for CR track (T1+T2 in §4):** learner must, unaided: (1) state IND-CPA vs integrity goals with one example each; (2) explain why ECB and raw RSA fail; (3) give GCM nonce-reuse consequence; (4) prefer AEAD over CBC+HMAC DIY; (5) sketch envelope KEK/DEK with KMS; (6) name TLS 1.3 0-RTT risk; (7) justify Argon2id over SHA-256 for passwords; (8) list eight CR-20 checklist items for the reference cloud app.
+**Skip-test for CR track (SEC-T1+SEC-T2 in §4):** learner must, unaided: (1) state IND-CPA vs integrity goals with one example each; (2) explain why ECB and raw RSA fail; (3) give GCM nonce-reuse consequence; (4) prefer AEAD over CBC+HMAC DIY; (5) sketch envelope KEK/DEK with KMS; (6) name TLS 1.3 0-RTT risk; (7) justify Argon2id over SHA-256 for passwords; (8) list eight CR-20 checklist items for the reference cloud app.
 
 **Prop Lock for crypto props:** do not use Cloud HSM, EKM, Confidential Space, or Binary Authorization as assumed props before their gcp.md gcp.md sections (7.3 / 7.5) and companion CR-14 / CR-18 / WL-04 are unlocked. Local AEAD/HMAC toys may use Tink without those props.
 
@@ -448,7 +448,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Bearer cookie is capability; XSS bypasses HttpOnly? No — HttpOnly blocks JS, but XSS still can drive CSRF-like actions if CSRF weak; network theft if no Secure/TLS.
 - **Defense pattern:** Secure+HttpOnly+SameSite; TLS everywhere; rotate on privilege change; bind to UA/IP *carefully* (false positives); short idle+absolute; XSS defense (WA-02).
 - **GCP lens:** Lens-1: Identity Platform session policy literacy (verify). Lens-2: local cookie jar attack on fixture.
-- **Lab:** E2.2
+- **Lab:** SEC-E2.2
 - **Check:** Which cookie flags stop which theft paths?
 
 #### AU-02 · Session fixation — stitch: A10/B5.4
@@ -457,7 +457,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** If server accepts client-chosen session id or fails to rotate on login, fixation binds attacker to authenticated session.
 - **Defense pattern:** Always mint new session id on login/reauth/privilege change; destroy old; reject client-supplied ids.
 - **GCP lens:** Lens-1: app session store. Lens-2: fixation test fails then passes.
-- **Lab:** E2.3
+- **Lab:** SEC-E2.3
 - **Check:** What single server behavior defeats classical fixation?
 
 #### AU-03 · CSRF — stitch: A10/B5.4 · WA-01
@@ -466,7 +466,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Browsers attach cookies on cross-site requests per policy; without CSRF token / Fetch Metadata checks, server cannot tell intent.
 - **Defense pattern:** Synchronizer token or session-bound double-submit HMAC; SameSite as defense in depth; no state change on safe methods; Origin checks.
 - **GCP lens:** Lens-1: app middleware (4.4 lab). Lens-2: forged Origin test.
-- **Lab:** E3.4
+- **Lab:** SEC-E3.4
 - **Check:** Why is SameSite alone insufficient historically?
 
 #### AU-04 · Cookie jar & theft vectors — stitch: A10/B5.4
@@ -475,7 +475,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Cookie scope is a confused-deputy surface across apps on related hosts.
 - **Defense pattern:** Host-only cookies; Path=/; no extra Domain; __Host- prefix where applicable; separate sites for untrusted content.
 - **GCP lens:** Lens-1: Hosting vs API cookie domains ADR.
-- **Lab:** E2.6
+- **Lab:** SEC-E2.6
 - **Check:** What does the __Host- prefix require?
 
 #### AU-05 · JWT algorithm & key confusion — stitch: A10/B5.5 · CR-10
@@ -484,7 +484,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Libraries historically trusted header `alg`; agility without allowlist becomes auth bypass.
 - **Defense pattern:** Pin allowlist; ignore header alg except to select among allowlisted; keys from config; validate iss/aud/exp/nbf/jti.
 - **GCP lens:** Lens-1: Identity Platform / Google ID token verify with audience. Lens-2: unit tests for none/confusion.
-- **Lab:** E3.5
+- **Lab:** SEC-E3.5
 - **Check:** Show the RS256/HS256 confusion in one diagram.
 
 #### AU-06 · OAuth redirect / mix-up / PKCE bypass — stitch: A10/B5.6
@@ -493,7 +493,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Code interception and client confusion let attackers attach codes to their session.
 - **Defense pattern:** Exact redirect allowlist; PKCE S256; high-entropy state bound to session; issuer mix-up defenses; no implicit grant.
 - **GCP lens:** Lens-1: Identity Platform OIDC. Lens-2: negative tests wrong redirect.
-- **Lab:** E3.6
+- **Lab:** SEC-E3.6
 - **Check:** What does PKCE protect in a public client?
 
 #### AU-07 · SAML / XML signature wrapping (lite) — stitch: A10/B5.6 literacy
@@ -502,7 +502,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** XML signature references can be satisfied while application reads a different unsigned element.
 - **Defense pattern:** Prefer OIDC when possible; if SAML, use maintained library, strict schema, verify before interpret, disable XXE.
 - **GCP lens:** Lens-1: Workforce Federation SAML literacy (verify). Lens-2: paper wrapping diagram.
-- **Lab:** E3.7
+- **Lab:** SEC-E3.7
 - **Check:** In one sentence, what is signature wrapping?
 
 #### AU-08 · Credential stuffing & password spraying — stitch: A10/B5.3 · 4.10
@@ -511,7 +511,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Password reuse + predictable spray below threshold.
 - **Defense pattern:** Breach blocklists; rate limits + device/bot signals; MFA; generic errors; credential stuffing detection; never lockout-only.
 - **GCP lens:** Lens-1: reCAPTCHA Enterprise on login; Armor rate; Identity Platform MFA. Lens-2: limiter tests.
-- **Lab:** E3.3
+- **Lab:** SEC-E3.3
 - **Check:** Contrast stuffing vs spraying.
 
 #### AU-09 · MFA fatigue & SIM swap — stitch: A10/B5.3
@@ -520,7 +520,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Human compliance under spam; SMS is not phishing-resistant.
 - **Defense pattern:** Number matching / phishing-resistant WebAuthn; rate-limit pushes; prefer TOTP/passkeys over SMS; notify on MFA changes.
 - **GCP lens:** Lens-1: Identity Platform MFA factors (verify). Lens-2: policy ADR: SMS deprecated for high risk.
-- **Lab:** E3.10
+- **Lab:** SEC-E3.10
 - **Check:** Why is SMS OTP weaker than WebAuthn?
 
 #### AU-10 · Recovery & account-takeover paths — stitch: A10/B5.3
@@ -529,7 +529,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Attackers choose the weakest equivalent path.
 - **Defense pattern:** Recovery ≥ login strength; hashed single-use tokens; notify out-of-band; step-up for sensitive.
 - **GCP lens:** Lens-1: Identity Platform reset flows. Lens-2: abuse-case tests.
-- **Lab:** E3.11
+- **Lab:** SEC-E3.11
 - **Check:** State the 'recovery not weaker' rule.
 
 #### AU-11 · IDOR / BOLA — stitch: A10/B5.7 · OWASP
@@ -538,7 +538,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** AuthN ≠ AuthZ; guessable ids without `(subject, action, resource, tenant)` checks.
 - **Defense pattern:** Server-side authorize every object; opaque ids defense in depth; tenant in every query; negative matrix.
 - **GCP lens:** Lens-1: app PEP; IAP is not object AuthZ. Lens-2: IDOR fail-then-pass (4.7).
-- **Lab:** E3.8
+- **Lab:** SEC-E3.8
 - **Check:** Why does a valid JWT not stop BOLA?
 
 #### AU-12 · BFLA & function-level AuthZ — stitch: A10/B5.7
@@ -547,7 +547,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Missing function checks; client-side gating.
 - **Defense pattern:** Explicit permission constants; deny by default; test every admin RPC.
 - **GCP lens:** Lens-1: IAM for GCP APIs + app permissions separate.
-- **Lab:** E3.12
+- **Lab:** SEC-E3.12
 - **Check:** Give a BFLA example on the reference cloud app admin.
 
 #### AU-13 · Mass assignment / overposting — stitch: A10/B5.7
@@ -556,7 +556,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Framework convenience binds untrusted fields into models.
 - **Defense pattern:** Allowlist DTO fields; never bind roles/prices from client; server-side pricing.
 - **GCP lens:** Lens-1: API schema validation. Lens-2: overpost test.
-- **Lab:** E3.13
+- **Lab:** SEC-E3.13
 - **Check:** Name two fields that must never be client-bound.
 
 #### AU-14 · Confused deputy — stitch: A10/B5.8 · B5 IAM
@@ -565,7 +565,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Deputy has authority victim lacks; confused about who asked.
 - **Defense pattern:** Least privilege per service; audience-restricted tokens; capability tokens; user context propagation carefully.
 - **GCP lens:** Lens-1: SA per service; ID token aud = receiver URL. Lens-2: toy confused-deputy test.
-- **Lab:** E5.1
+- **Lab:** SEC-E5.1
 - **Check:** Define confused deputy in GCP SA terms.
 
 ### 3.5 API & abuse (AB-01 … AB-08)
@@ -576,7 +576,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Different algorithms trade burstiness, memory, and fairness.
 - **Defense pattern:** Token bucket for bursts; sliding window for smoother; key by tenant+user+IP layers; return 429+Retry-After; fail mode explicit.
 - **GCP lens:** Lens-1: app limiter + Armor rate + API Gateway quotas — placement ADR. Lens-2: table tests burst/throttle.
-- **Lab:** E4.3
+- **Lab:** SEC-E4.3
 - **Check:** When does per-IP limiting fail fairness?
 
 #### AB-02 · Where to place limits (edge vs gateway vs app) — stitch: A10/B5.10 · 6.13
@@ -585,7 +585,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Volumetric at edge; identity-aware at app; quotas at gateway.
 - **Defense pattern:** Defense in depth: Armor for L7 flood; Gateway quota; app token bucket per tenant.
 - **GCP lens:** Lens-1: Cloud Armor + API Gateway + middleware. Lens-2: ADR table.
-- **Lab:** E4.4
+- **Lab:** SEC-E4.4
 - **Check:** Draw three layers and one abuse each stops.
 
 #### AB-03 · Bot management & scraping — stitch: A10/B5.10
@@ -594,7 +594,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Bots mimic clients; pure rate limits punish humans on shared IP.
 - **Defense pattern:** reCAPTCHA Enterprise scores; device signals; poison pills carefully; AuthZ still required.
 - **GCP lens:** Lens-1: reCAPTCHA Enterprise Always Free tier literacy (verify 10k/mo). Lens-2: verify assessment server-side.
-- **Lab:** E4.9
+- **Lab:** SEC-E4.9
 - **Check:** Why is captcha not AuthZ?
 
 #### AB-04 · GraphQL complexity & batching abuse — stitch: A10/B5.10 · 3.x
@@ -603,7 +603,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Single endpoint multiplexes expensive resolvers.
 - **Defense pattern:** Depth/cost analysis; timeouts; persisted queries; disable introspection in prod; authz per field.
 - **GCP lens:** Lens-1: Cloud Run timeouts + app GraphQL limits. Lens-2: cost-limit unit test.
-- **Lab:** E4.10
+- **Lab:** SEC-E4.10
 - **Check:** Name two GraphQL-specific DoS knobs.
 
 #### AB-05 · Pagination & enumeration abuse — stitch: A10/B5.7 · 8.1
@@ -612,7 +612,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** List endpoints leak existence and enable inventory theft.
 - **Defense pattern:** Keyset pagination caps; authz on lists; rate limits; consistent errors for missing vs forbidden *carefully* (UX vs security trade).
 - **GCP lens:** Lens-1: recall 8.1 cursor pager — add abuse tests.
-- **Lab:** E4.11
+- **Lab:** SEC-E4.11
 - **Check:** How does keyset pagination help abuse resistance?
 
 #### AB-06 · Business-logic abuse — stitch: 5.x · 3.0
@@ -621,7 +621,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** AuthZ can pass while business invariants fail.
 - **Defense pattern:** Invariant tests; idempotency keys; server-side price; transactional constraints.
 - **GCP lens:** Lens-1: the reference cloud app ledger invariants (5.3). Lens-2: race test.
-- **Lab:** E4.12
+- **Lab:** SEC-E4.12
 - **Check:** Give one business-logic abuse Armor cannot see.
 
 #### AB-07 · Inventory hoarding & checkout abuse — stitch: 5 · AB-03
@@ -630,7 +630,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Scarce goods + open reservation APIs.
 - **Defense pattern:** Per-account reservation caps; bot signals; fair queue; short holds.
 - **GCP lens:** Lens-1: reCAPTCHA on checkout start + app caps.
-- **Lab:** E4.13
+- **Lab:** SEC-E4.13
 - **Check:** What app-level cap stops hoarding?
 
 #### AB-08 · Export & expensive fan-out abuse — stitch: 9b · 4.10
@@ -639,81 +639,81 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Asymmetric cost: cheap request, expensive backend.
 - **Defense pattern:** Async jobs with quotas; confirm step-up; cost governors; alert on fan-out.
 - **GCP lens:** Lens-1: BigQuery bytes controls; Tasks rate.
-- **Lab:** E4.14
+- **Lab:** SEC-E4.14
 - **Check:** Define economic asymmetry in one sentence.
 
-### 3.6 Denial of service (DD-01 … DD-08)
+### 3.6 Denial of service (DOS-01 … DOS-08)
 
-#### DD-01 · L3/L4 volumetric taxonomy — stitch: A5/Phase4-Net.16 · A5 TLS / Phase 4 Armor
+#### DOS-01 · L3/L4 volumetric taxonomy — stitch: A5/Phase4-Net.16 · A5 TLS / Phase 4 Armor
 - [ ] unlocked
 - **Attack:** UDP/SYN floods, reflection/amplification filling pipes.
 - **Why it works:** Bandwidth and state tables exhaust before L7 logic runs.
 - **Defense pattern:** Rely on GFE/Maglev absorption in front of Cloud LB; do not build DIY scrubbing on free tier; architecture: anycast edge.
 - **GCP lens:** Lens-1: Cloud Load Balancing + Armor. Lens-2: paper only — **no live DDoS**.
-- **Lab:** E4.1
+- **Lab:** SEC-E4.1
 - **Check:** What does GFE absorb vs what Armor adds?
 
-#### DD-02 · Amplification & reflection — stitch: A5/Phase4-Net.16
+#### DOS-02 · Amplification & reflection — stitch: A5/Phase4-Net.16
 - [ ] unlocked
 - **Attack:** DNS/NTP/memcached-style amplification using spoofed source.
 - **Why it works:** Small query → large response to victim; cloud misconfig can make you an amplifier.
 - **Defense pattern:** No open resolvers; filter spoofing where you control nets; monitor egress.
 - **GCP lens:** Lens-1: Cloud DNS security posture. Lens-2: conceptual card.
-- **Lab:** E4.15
+- **Lab:** SEC-E4.15
 - **Check:** Why does source spoofing enable reflection?
 
-#### DD-03 · L7 application floods — stitch: A10/B5.10 · 6.16
+#### DOS-03 · L7 application floods — stitch: A10/B5.10 · 6.16
 - [ ] unlocked
 - **Attack:** HTTP floods on expensive endpoints (search, login, checkout).
 - **Why it works:** Requests look legitimate; CPU/DB saturates.
 - **Defense pattern:** Armor rate/WAF; cache; app quotas; challenge bots; scale+shed load.
 - **GCP lens:** Lens-1: Cloud Armor rate-based rules (verify). Lens-2: local flood against fixture only.
-- **Lab:** E4.7
+- **Lab:** SEC-E4.7
 - **Check:** Name an expensive the reference cloud app endpoint to protect first.
 
-#### DD-04 · Adaptive Protection literacy — stitch: A5/Phase4-Net.16 · Armor docs
+#### DOS-04 · Adaptive Protection literacy — stitch: A5/Phase4-Net.16 · Armor docs
 - [ ] unlocked
 - **Attack:** Assuming Adaptive Protection is on by default everywhere; ignoring learning period.
 - **Why it works:** ML-assisted L7 anomaly detection complements static rules (verify current SKU).
 - **Defense pattern:** Know when to enable; still need baseline rate rules; (verify) billing.
 - **GCP lens:** Lens-1: Cloud Armor Adaptive Protection (verify). Lens-2: read docs; no attack.
-- **Lab:** E4.16
+- **Lab:** SEC-E4.16
 - **Check:** What problem does Adaptive Protection target that static rate limits miss?
 
-#### DD-05 · Slowloris / slow-POST / slow-read — stitch: A10/B5.2 · 6.13
+#### DOS-05 · Slowloris / slow-POST / slow-read — stitch: A10/B5.2 · 6.13
 - [ ] unlocked
 - **Attack:** Hold many connections half-open/slow body to exhaust workers.
 - **Why it works:** Timeouts too generous; unlimited concurrent conns per IP.
 - **Defense pattern:** Server read/write/header/idle timeouts; conn limits; LB/backend timeouts aligned.
 - **GCP lens:** Lens-1: Cloud Run request timeout + `http.Server` timeouts (4.2). Lens-2: slowloris against *local* fixture only.
-- **Lab:** E4.8
+- **Lab:** SEC-E4.8
 - **Check:** Which timeout stops slow-header attacks?
 
-#### DD-06 · Resource exhaustion (CPU/mem/conn/disk) — stitch: 8 · 4.2
+#### DOS-06 · Resource exhaustion (CPU/mem/conn/disk) — stitch: 8 · 4.2
 - [ ] unlocked
 - **Attack:** Zip bombs; huge JSON; unbounded uploads; regex DoS.
 - **Why it works:** App parses untrusted input into memory.
 - **Defense pattern:** Body size limits; streaming; timeouts; cgroup/Cloud Run memory caps; reject weird content-types.
 - **GCP lens:** Lens-1: Cloud Run memory/CPU; Armor body size if offered (verify).
-- **Lab:** E4.17
+- **Lab:** SEC-E4.17
 - **Check:** Give two app-level exhaustion controls.
 
-#### DD-07 · Economic DoS (cloud bill) — stitch: 10.3 · FinOps
+#### DOS-07 · Economic DoS (cloud bill) — stitch: 10.3 · FinOps
 - [ ] unlocked
 - **Attack:** Force expensive egress, logging, LB hours, LLM tokens, image pulls.
 - **Why it works:** Pay-per-use means attacker spends *your* money.
 - **Defense pattern:** Budgets+alerts; quotas; auth on expensive ops; cache; rate limits; kill switches.
 - **GCP lens:** Lens-1: budgets, quotas, Armor, API Gateway. Lens-2: FinOps alert drill.
-- **Lab:** E7.6
+- **Lab:** SEC-E7.6
 - **Check:** Name three billable SKUs an attacker can inflate.
 
-#### DD-08 · Cache stampedes & thundering herds — stitch: 8 · 9.1
+#### DOS-08 · Cache stampedes & thundering herds — stitch: 8 · 9.1
 - [ ] unlocked
 - **Attack:** TTL expiry stampede hits origin; retry storms amplify outage.
 - **Why it works:** Synchronized clients; no jitter; no request coalescing.
 - **Defense pattern:** Jittered TTL; singleflight/coalesce; soft TTL; circuit breakers; retry budgets.
 - **GCP lens:** Lens-1: Memorystore + CDN TTLs (A5 TLS / Phase 4 Armor). Lens-2: paper stampede math.
-- **Lab:** E8.2
+- **Lab:** SEC-E8.2
 - **Check:** What is singleflight doing for security/availability?
 
 ### 3.7 Web & application attacks (WA-01 … WA-12)
@@ -724,7 +724,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** SOP isolates origins; CORS is a loosening; misconfig grants hostile sites privilege.
 - **Defense pattern:** Exact allowlist; never credentials+`*`; `Vary: Origin`; validate `event.origin` on postMessage.
 - **GCP lens:** Lens-1: Cloud Run CORS middleware. Lens-2: hostile Origin tests (4.4).
-- **Lab:** E2.7
+- **Lab:** SEC-E2.7
 - **Check:** Is CORS an authorization mechanism?
 
 #### WA-02 · XSS: stored, reflected, DOM — stitch: Phase4-Sec.4 · OWASP
@@ -733,7 +733,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Browser executes attacker script in victim origin → cookie theft (non-HttpOnly), actions, exfil.
 - **Defense pattern:** Context-aware encoding; CSP + Trusted Types; sanitize carefully; HttpOnly cookies; frameworks auto-escape.
 - **GCP lens:** Lens-1: security headers on Hosting/LB. Lens-2: local XSS fixture then fix.
-- **Lab:** E2.5
+- **Lab:** SEC-E2.5
 - **Check:** Contrast stored vs DOM XSS.
 
 #### WA-03 · Clickjacking / UI redress — stitch: Phase4-Sec.4
@@ -742,7 +742,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** User thinks they click attacker UI; actually click victim app.
 - **Defense pattern:** CSP `frame-ancestors`; `X-Frame-Options` legacy; critical actions need re-auth.
 - **GCP lens:** Lens-1: Helmet-like headers on FE. Lens-2: frame test.
-- **Lab:** E2.8
+- **Lab:** SEC-E2.8
 - **Check:** Which CSP directive stops framing?
 
 #### WA-04 · CSP & Trusted Types — stitch: A5 TLS / Phase 4 Armor · WA-02
@@ -751,7 +751,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** CSP reduces XSS impact when tightened; Trusted Types lock DOM sinks.
 - **Defense pattern:** Report-only → enforce; nonces/hashes; Trusted Types for modern browsers; never as sole control.
 - **GCP lens:** Lens-1: FE headers via Hosting/LB custom response headers (verify).
-- **Lab:** E2.9
+- **Lab:** SEC-E2.9
 - **Check:** Why roll out CSP in report-only first?
 
 #### WA-05 · Injection: SQLi, command, path traversal — stitch: A10/B5.9 · 7.4 · Part 2
@@ -760,7 +760,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Interpreter metacharacters change meaning.
 - **Defense pattern:** Parameterized SQL; allowlists; no shell; path containment + chroot-like roots; least OS privilege.
 - **GCP lens:** Lens-1: Cloud SQL + parameterized drivers. Lens-2: weak fixture exploit-then-fix *localhost*.
-- **Lab:** E2.10
+- **Lab:** SEC-E2.10
 - **Check:** Why isn't blacklisting quotes enough for SQLi?
 
 #### WA-06 · XXE & SSTI — stitch: Phase4-Sec.4
@@ -769,7 +769,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Confused parsers/engines treat data as code.
 - **Defense pattern:** Disable external entities; never `render(user)`; sandbox templates; prefer non-XML.
 - **GCP lens:** Lens-1: app-level. Lens-2: paper XXE→SSRF→metadata chain.
-- **Lab:** E3.14
+- **Lab:** SEC-E3.14
 - **Check:** How does SSTI differ from XSS?
 
 #### WA-07 · Unsafe deserialization — stitch: Phase4-Sec.4 · CK
@@ -778,7 +778,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Object graphs run code on restore.
 - **Defense pattern:** Avoid native deserialize of untrusted data; use JSON with schema; sign blobs; allowlist types.
 - **GCP lens:** Lens-1: ban pickle in Cloud Run services. Lens-2: conceptual RCE path card.
-- **Lab:** E3.15
+- **Lab:** SEC-E3.15
 - **Check:** Name one safe alternative to pickle for untrusted input.
 
 #### WA-08 · Open redirect & header injection — stitch: A10/B5.6 · 4.2
@@ -787,16 +787,16 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** User trust + header parsing flaws.
 - **Defense pattern:** Allowlist redirects; encode; reject CR/LF; use URL parsers carefully.
 - **GCP lens:** Lens-1: IAP/app redirect config. Lens-2: open-redirect tests.
-- **Lab:** E3.16
+- **Lab:** SEC-E3.16
 - **Check:** Why do open redirects amplify OAuth attacks?
 
-#### WA-09 · Log injection & forensic pollution — stitch: 10 · DT-01
+#### WA-09 · Log injection & forensic pollution — stitch: 10 · IR-01
 - [ ] unlocked
 - **Attack:** Crafted input breaks log lines / injects fake events.
 - **Why it works:** Downstream SIEM trusts structure.
 - **Defense pattern:** Structured JSON logs; encode; never log secrets; integrity of audit trails.
 - **GCP lens:** Lens-1: Cloud Logging jsonPayload. Lens-2: inject-then-detect exercise on fixture.
-- **Lab:** E7.1
+- **Lab:** SEC-E7.1
 - **Check:** How does structured logging reduce log injection?
 
 #### WA-10 · Memory/control-flow → cloud RCE (applied) — stitch: CS155 · CK · GCE
@@ -805,7 +805,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Native code in VMs/containers still memory-unsafe; cloud makes post-exploit valuable (IMDS).
 - **Defense pattern:** Memory-safe languages where possible; ASLR/DEP/CFI intuition; minimal native surface; sandbox; patch.
 - **GCP lens:** Lens-1: Container-Optimized OS / Shielded VM literacy; prefer managed runtimes. Lens-2: paper exploit chain to metadata.
-- **Lab:** E6.6
+- **Lab:** SEC-E6.6
 - **Check:** Why does a VM buffer overflow become a cloud credential incident?
 
 #### WA-11 · WAF rule craft & bypass attempts — stitch: A5 TLS / Phase 4 Armor · 6.16 · Armor
@@ -814,16 +814,16 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** WAFs are pattern filters — incomplete mediation if app still vulnerable.
 - **Defense pattern:** Armor OWASP rules + custom; *still* fix app; preview/analyze mode; log false positives.
 - **GCP lens:** Lens-1: Cloud Armor WAF rules (verify). Lens-2: bypass *conceptual* card — no attacking Google.
-- **Lab:** E4.18
+- **Lab:** SEC-E4.18
 - **Check:** Why is WAF defense-in-depth not a substitute for parameterized SQL?
 
-#### WA-12 · File upload & zip bombs — stitch: A10/B5.9 · DD-06
+#### WA-12 · File upload & zip bombs — stitch: A10/B5.9 · DOS-06
 - [ ] unlocked
 - **Attack:** Upload webshell; zip bomb expands to disk DoS; SVG XSS.
 - **Why it works:** Content-type lies; archives amplify.
 - **Defense pattern:** Allowlist types; size limits; scan; store outside web root; re-encode images; no exec from bucket.
 - **GCP lens:** Lens-1: GCS + virus scan patterns; Cloud Run never serves exec from uploads.
-- **Lab:** E4.19
+- **Lab:** SEC-E4.19
 - **Check:** List four upload controls.
 
 ### 3.8 Cloud-specific attacks (CL-01 … CL-08)
@@ -834,7 +834,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Server is a deputy with network path to metadata; SSRF turns that into credential access.
 - **Defense pattern:** Allowlist schemes/hosts; block link-local/metadata; no redirects to private; prefer Cloud Run tighter metadata; IMDSv2-like headers where applicable (verify GCP metadata headers).
 - **GCP lens:** Lens-1: GCE metadata server; Cloud Run identity. Lens-2: local SSRF fixture + guard tests (4.2).
-- **Lab:** E3.2
+- **Lab:** SEC-E3.2
 - **Check:** State T1552.005 and one GCP defense.
 
 #### CL-02 · Public buckets & object ACL mistakes — stitch: Phase4-Sec.3 · 7.7
@@ -843,7 +843,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Misconfig is customer responsibility; data exfil without exploit code.
 - **Defense pattern:** Uniform bucket-level access; org policy public prevention; VPC-SC; short-lived signed URLs; audit.
 - **GCP lens:** Lens-1: org policy `storage.publicAccessPrevention` (verify). Lens-2: paper IR for public ACE (7.8).
-- **Lab:** E5.7
+- **Lab:** SEC-E5.7
 - **Check:** Name two controls that prevent accidental public GCS.
 
 #### CL-03 · IAM privilege escalation paths — stitch: B5 IAM · 7.2
@@ -852,7 +852,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Permissions compose into paths not obvious from one binding.
 - **Defense pattern:** Least privilege; analyze effective policy; deny policies; break-glass JIT; Policy Analyzer literacy.
 - **GCP lens:** Lens-1: Policy Analyzer / IAM recommender (verify). Lens-2: toy effective-access from 7.2.
-- **Lab:** E5.1
+- **Lab:** SEC-E5.1
 - **Check:** Give one classic SA escalation pairing.
 
 #### CL-04 · Service account key theft & sprawl — stitch: A10/B5.8 · 7.8
@@ -861,7 +861,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Keys are bearer credentials; sprawl multiplies leak paths.
 - **Defense pattern:** Disable key creation org policy; WIF; attached SAs; inventory+rotate; IR for leaked key.
 - **GCP lens:** Lens-1: `iam.disableServiceAccountKeyCreation`. Lens-2: WIF lab recall + negative test.
-- **Lab:** E5.3
+- **Lab:** SEC-E5.3
 - **Check:** Why prefer WIF over JSON keys for GitHub Actions?
 
 #### CL-05 · Confused deputy in cloud APIs — stitch: AU-14 · 4.8
@@ -870,7 +870,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Broad deputies + insufficient audience/resource binding.
 - **Defense pattern:** Per-resource roles; request signing with audience; VPC-SC; user project checks.
 - **GCP lens:** Lens-1: VPC-SC + least SA roles.
-- **Lab:** E5.8
+- **Lab:** SEC-E5.8
 - **Check:** How does VPC-SC reduce confused-deputy exfil?
 
 #### CL-06 · Tenant isolation failures — stitch: A10/B5.7 · 8.1
@@ -878,8 +878,8 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Attack:** Missing `tenant_id` in query/cache key; cross-tenant log bleed.
 - **Why it works:** Multi-tenant bugs are high-severity data breaches.
 - **Defense pattern:** Tenant in every query/cache/job/export; RLS; tests for cross-tenant; separate projects for strong isolation.
-- **GCP lens:** Lens-1: Identity Platform multi-tenancy literacy; Cloud SQL RLS. Lens-2: E3.8 cross-tenant.
-- **Lab:** E5.2
+- **GCP lens:** Lens-1: Identity Platform multi-tenancy literacy; Cloud SQL RLS. Lens-2: SEC-E3.8 cross-tenant.
+- **Lab:** SEC-E5.2
 - **Check:** Name three places tenant id must appear.
 
 #### CL-07 · VPC peering / Shared VPC trust mistakes — stitch: A5/Phase4-Net.15
@@ -888,7 +888,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Peering extends network reach without identity.
 - **Defense pattern:** Segment; FW defaults deny; prefer PSC; treat peered projects as semi-trusted.
 - **GCP lens:** Lens-1: Shared VPC host/service project model. Lens-2: diagram trust.
-- **Lab:** E5.6
+- **Lab:** SEC-E5.6
 - **Check:** Contrast peering trust with VPC-SC.
 
 #### CL-08 · Serverless event injection & hypervisor escape awareness — stitch: 3.4 · XACS235
@@ -897,7 +897,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Event producers may be untrusted; CSP owns hypervisor — customer still owns config/IAM.
 - **Defense pattern:** AuthN events; validate payloads; least privilege functions; shared-responsibility clarity for escapes.
 - **GCP lens:** Lens-1: Eventarc/Pub/Sub IAM; Cloud Run invoker. Lens-2: poison-event unit test.
-- **Lab:** E5.9
+- **Lab:** SEC-E5.9
 - **Check:** Who owns hypervisor escape mitigation vs who owns event AuthZ?
 
 ### 3.9 Network & zero-trust attacks (NT-01 … NT-08)
@@ -908,7 +908,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Breach + lateral movement; VPN-only is not zero trust.
 - **Defense pattern:** Authenticate every request; micro-segment; IAP; mTLS/s2s IAM.
 - **GCP lens:** Lens-1: IAP + service IAM. Lens-2: HLD redraw.
-- **Lab:** E5.5
+- **Lab:** SEC-E5.5
 - **Check:** Why is VPN alone not zero trust?
 
 #### NT-02 · Lateral movement — stitch: A5/Phase4-Net.12 · 7.6
@@ -917,7 +917,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Over-broad east-west reachability.
 - **Defense pattern:** Deny-by-default FW; SA-targeted rules; private SQL; break-glass only.
 - **GCP lens:** Lens-1: VPC FW / NGFW. Lens-2: path diagram.
-- **Lab:** E5.4
+- **Lab:** SEC-E5.4
 - **Check:** Name two lateral-movement blockers on GCP.
 
 #### NT-03 · Egress exfil & DNS tunneling — stitch: A5/Phase4-Net.15 · 6.16
@@ -926,7 +926,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** DNS often allowed; hard to inspect.
 - **Defense pattern:** Egress allowlists; DNS logging/monitoring; VPC-SC; DLP on egress paths; alert unusual DNS volume.
 - **GCP lens:** Lens-1: Cloud DNS logging; VPC-SC; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties.
-- **Lab:** E4.20
+- **Lab:** SEC-E4.20
 - **Check:** Why is DNS a popular exfil channel?
 
 #### NT-04 · BGP / DNS threats (conceptual) — stitch: A5/Phase4-Net.16 · CS161
@@ -935,7 +935,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Routing/DNS integrity failures redirect victims at scale.
 - **Defense pattern:** DNSSEC for authenticity; delete DNS with services; inventory dangling; RPKI literacy (conceptual).
 - **GCP lens:** Lens-1: Cloud DNS DNSSEC; destroy-order checklist 6.16. Lens-2: paper only.
-- **Lab:** E4.21
+- **Lab:** SEC-E4.21
 - **Check:** What does DNSSEC provide that plain DNS lacks?
 
 #### NT-05 · IAP vs VPN threat models — stitch: A5/Phase4-Net.14
@@ -944,7 +944,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** IAP authorizes *application* access by identity; VPN authorizes *network* presence.
 - **Defense pattern:** Prefer IAP for admin UIs/SSH TCP; VPN only for legacy; still need app AuthZ.
 - **GCP lens:** Lens-1: IAP lab 6.14. Lens-2: compare threat tables.
-- **Lab:** E5.5
+- **Lab:** SEC-E5.5
 - **Check:** Which attacker capability does IAP remove vs VPN?
 
 #### NT-06 · VPC-SC exfil controls — stitch: A5/Phase4-Net.15
@@ -953,7 +953,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** IAM alone insufficient if credentials valid.
 - **Defense pattern:** Perimeters dry-run then enforce; private paths; combine with CMEK.
 - **GCP lens:** Lens-1: VPC Service Controls. Lens-2: diagram — live optional.
-- **Lab:** E5.6
+- **Lab:** SEC-E5.6
 - **Check:** What class of exfil does VPC-SC target?
 
 #### NT-07 · Control placement on the packet path — stitch: A5/Phase4-Net.11
@@ -962,7 +962,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Confusion wastes money and leaves gaps.
 - **Defense pattern:** Internet→GFE/Armor→URL map→NEG→Run→(VPC-SC)→data — one primary control per hop.
 - **GCP lens:** Lens-1: 6.11 map. Lens-2: redraw the reference cloud app path.
-- **Lab:** E4.5
+- **Lab:** SEC-E4.5
 - **Check:** Place Armor vs NGFW vs IAP vs VPC-SC on one path.
 
 #### NT-08 · TLS interception risks — stitch: CR-12 · corp proxies
@@ -971,7 +971,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Breaking TLS end-to-end for inspection introduces new trust anchors.
 - **Defense pattern:** Minimize interception; pin only with ops; protect private keys of intercept CAs; prefer modern SSE alternatives where appropriate.
 - **GCP lens:** Lens-1: understand GFE terminates TLS — still Google's trust model. Lens-2: discussion card.
-- **Lab:** E2.11
+- **Lab:** SEC-E2.11
 - **Check:** What new asset appears when you intercept TLS?
 
 ### 3.10 Containers & Kubernetes (CK-01 … CK-06)
@@ -982,7 +982,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Shared kernel; privileged = near-host.
 - **Defense pattern:** Non-root; no privileged; drop caps; read-only FS; no docker.sock; patch runtime; prefer Cloud Run/GKE Autopilot constraints.
 - **GCP lens:** Lens-1: GKE security posture; Cloud Run contract. Lens-2: review Pod security context.
-- **Lab:** E6.1
+- **Lab:** SEC-E6.1
 - **Check:** Name three escape-enabling configs.
 
 #### CK-02 · Privileged pods & hostPath — stitch: D8 · 9.2
@@ -991,7 +991,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Direct host FS/devices bypass isolation.
 - **Defense pattern:** Pod Security Standards/admission deny; no hostPath except tightly reviewed; Autopilot restrictions.
 - **GCP lens:** Lens-1: GKE Policy Controller / Binary Authorization pairing. Lens-2: deny policy sketch.
-- **Lab:** E6.7
+- **Lab:** SEC-E6.7
 - **Check:** Why is hostPath to /var/run/docker.sock catastrophic?
 
 #### CK-03 · K8s RBAC wildcards — stitch: 9.2 · 7.2
@@ -1000,7 +1000,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Wildcards violate least privilege; credentials in etcd/API.
 - **Defense pattern:** Least verbs/resources; separate SA per workload; audit RoleBindings.
 - **GCP lens:** Lens-1: GKE RBAC + IAM for cluster control plane. Lens-2: review one Role yaml.
-- **Lab:** E6.8
+- **Lab:** SEC-E6.8
 - **Check:** What is dangerous about `secrets/*` read?
 
 #### CK-04 · Secrets in etcd / env / images — stitch: Phase4-Sec.3 · 4.9
@@ -1009,7 +1009,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Readable by many principals; image history leaks.
 - **Defense pattern:** Secret Manager; CSI drivers; encrypt etcd; never bake secrets; file mounts with tight RBAC.
 - **GCP lens:** Lens-1: Secret Manager + GKE integration (verify). Lens-2: `docker history` scan.
-- **Lab:** E6.2
+- **Lab:** SEC-E6.2
 - **Check:** Why are env vars a weak secret channel?
 
 #### CK-05 · Admission & supply-chain gates — stitch: Phase4-Sec.5 · WL
@@ -1018,7 +1018,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Runtime IAM cannot save a poisoned image.
 - **Defense pattern:** Binary Authorization; digest pins; vulnerability fail-on-CRITICAL; mutate deny.
 - **GCP lens:** Lens-1: Binary Authorization + Artifact Registry. Lens-2: recall 7.5 lab analytic layer.
-- **Lab:** E6.4
+- **Lab:** SEC-E6.4
 - **Check:** What does an attestation assert?
 
 #### CK-06 · NetworkPolicy & service mesh mTLS lite — stitch: A5/Phase4-Net.15 · 9.2
@@ -1027,7 +1027,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Lateral movement inside cluster.
 - **Defense pattern:** Default-deny NetworkPolicy; mesh mTLS literacy; still IAM at GCP APIs.
 - **GCP lens:** Lens-1: GKE NetworkPolicy / Dataplane. Lens-2: default-deny sketch.
-- **Lab:** E6.9
+- **Lab:** SEC-E6.9
 - **Check:** Does NetworkPolicy replace IAM for Cloud SQL?
 
 ### 3.11 Workload & supply chain (WL-01 … WL-06)
@@ -1038,7 +1038,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Build trusts upstream names; pulls mutable tags.
 - **Defense pattern:** Pin digests; private proxies; lockfiles; scan; signed builds; review owners.
 - **GCP lens:** Lens-1: Artifact Registry remote repos literacy (verify). Lens-2: pin digest in TF.
-- **Lab:** E6.5
+- **Lab:** SEC-E6.5
 - **Check:** What is dependency confusion?
 
 #### WL-02 · CI/CD poisoned pipeline — stitch: A10/B5.8 · D2
@@ -1047,7 +1047,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** CI has deploy authority — high-value.
 - **Defense pattern:** Least privilege WIF; protected branches; none on fork PRs for secrets; ephemeral runners; audit.
 - **GCP lens:** Lens-1: GitHub OIDC + WIF. Lens-2: negative wrong-repo claim test.
-- **Lab:** E6.10
+- **Lab:** SEC-E6.10
 - **Check:** Why are fork PRs dangerous with secrets?
 
 #### WL-03 · SBOM meaning & limits — stitch: Phase4-Sec.5
@@ -1056,7 +1056,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** SBOM is inventory — not verification.
 - **Defense pattern:** Generate SBOM; alert on CVE; still need attestations + admission.
 - **GCP lens:** Lens-1: Artifact Analysis / AR scanning (verify). Lens-2: read one SBOM sample.
-- **Lab:** E6.11
+- **Lab:** SEC-E6.11
 - **Check:** What decision does an SBOM enable that it does not automate alone?
 
 #### WL-04 · Binary Authorization meaning — stitch: Phase4-Sec.5
@@ -1065,7 +1065,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** BinAuth is admission policy on provenance.
 - **Defense pattern:** Attestors; Cloud Build signs; break-glass documented; dry-run.
 - **GCP lens:** Lens-1: Binary Authorization API. Lens-2: 7.5 toy attestation analytic.
-- **Lab:** E6.4
+- **Lab:** SEC-E6.4
 - **Check:** BinAuth vs vulnerability scan — contrast.
 
 #### WL-05 · Secret sprawl in repos/images/logs/prompts — stitch: A10/B5.9 · 9c
@@ -1074,7 +1074,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Many sinks; hard to revoke all.
 - **Defense pattern:** Inventory; pre-commit secret scan; Secret Manager; never prompt secrets; redaction.
 - **GCP lens:** Lens-1: Secret Manager; SDP for prompts. Lens-2: git history secret hunt on *synthetic* repo.
-- **Lab:** E6.2
+- **Lab:** SEC-E6.2
 - **Check:** List five sprawl sinks.
 
 #### WL-06 · Build provenance / SLSA literacy — stitch: Phase4-Sec.5 · CR-10
@@ -1083,81 +1083,81 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Without provenance, attestation is theater.
 - **Defense pattern:** Hermetic builds; provenance documents; verify before deploy; SLSA as maturity story.
 - **GCP lens:** Lens-1: Cloud Build provenance (verify). Lens-2: cosign-shaped toy from 7.5.
-- **Lab:** E6.12
+- **Lab:** SEC-E6.12
 - **Check:** What is a hermetic build?
 
-### 3.12 Detection & incident response (DT-01 … DT-08)
+### 3.12 Detection & incident response (IR-01 … IR-08)
 
-#### DT-01 · Log gaps & trail integrity — stitch: Phase4-Sec.6 · 10.0
+#### IR-01 · Log gaps & trail integrity — stitch: Phase4-Sec.6 · 10.0
 - [ ] unlocked
 - **Attack:** Data Access logs off; logs writable by attacker SA; no retention; clocks skewed.
 - **Why it works:** You cannot investigate what you did not record; attackers delete or pollute trails.
 - **Defense pattern:** Enable Admin+Data Access where needed; immutable sinks to separate project; retention; time sync; never log secrets.
 - **GCP lens:** Lens-1: Cloud Audit Logs sinks to protected bucket/BQ. Lens-2: prove SetIamPolicy appears.
-- **Lab:** E7.1
+- **Lab:** SEC-E7.1
 - **Check:** Why sink logs to a *separate* project?
 
-#### DT-02 · Alert design failures — stitch: Phase4-Sec.6
+#### IR-02 · Alert design failures — stitch: Phase4-Sec.6
 - [ ] unlocked
 - **Attack:** Alert on everything → fatigue; alert on nothing; no owner; no runbook link.
 - **Why it works:** Humans ignore noisy pages; silent failures miss breaches.
 - **Defense pattern:** Few high-precision detections (key create, public ACE, SetIamPolicy anomaly); mute with justification; page → runbook.
 - **GCP lens:** Lens-1: SCC findings + log-based metrics. Lens-2: wire one alert to 7.6 template.
-- **Lab:** E7.3
+- **Lab:** SEC-E7.3
 - **Check:** Name three high-value low-noise alerts.
 
-#### DT-03 · Containment on ephemeral compute — stitch: Phase4-Sec.8 · Cloud Run
+#### IR-03 · Containment on ephemeral compute — stitch: Phase4-Sec.8 · Cloud Run
 - [ ] unlocked
 - **Attack:** Trying to 'SSH and forensics' a scaled-to-zero revision that is gone; redeploying over evidence.
 - **Why it works:** Ephemeral instances destroy disk state; containment must be identity/traffic/config based.
 - **Defense pattern:** Disable SA; revoke tokens; remove invoker IAM; pin traffic to known-good revision; snapshot *only if GCE*; preserve logs first.
 - **GCP lens:** Lens-1: Cloud Run revision traffic; IAM deny. Lens-2: tabletop ephemeral containment.
-- **Lab:** E7.4
+- **Lab:** SEC-E7.4
 - **Check:** List containment steps when the compromised revision no longer exists.
 
-#### DT-04 · Detection engineering for cloud TTPs — stitch: TH-05 · 7.6
+#### IR-04 · Detection engineering for cloud TTPs — stitch: TH-05 · 7.6
 - [ ] unlocked
 - **Attack:** Only CVE scanning; no credential-access detections.
 - **Why it works:** Cloud attacks often are API abuse with valid creds.
 - **Defense pattern:** Detect key create, anomalous IAM, public bindings, metadata token use patterns, impossible travel for admins.
 - **GCP lens:** Lens-1: SCC + Cloud IDS literacy + SecOps. Lens-2: map 5 ATT&CK techniques to signals.
-- **Lab:** E7.3
+- **Lab:** SEC-E7.3
 - **Check:** Give one detection for T1552.005 aftermath.
 
-#### DT-05 · IR: compromised SA / leaked key — stitch: Phase4-Sec.8 · CR-15 · CL-04
+#### IR-05 · IR: compromised SA / leaked key — stitch: Phase4-Sec.8 · CR-15 · CL-04
 - [ ] unlocked
 - **Attack:** Slow rotate; leaving keys enabled; not checking audit for usage window.
 - **Why it works:** Bearer keys work until disabled; delay expands blast radius.
 - **Defense pattern:** Disable SA/keys → hunt audit → rotate workloads → rewrap secrets → postmortem. Use roadmap 7.8 template; CR-15 for crypto keys.
 - **GCP lens:** Lens-1: `serviceAccount.keys` audit; disable SA. Lens-2: timed tabletop.
-- **Lab:** E7.2, E7.5
+- **Lab:** SEC-E7.2, SEC-E7.5
 - **Check:** Order of operations: disable first or redeploy first? Why?
 
-#### DT-06 · IR: public data exposure — stitch: Phase4-Sec.8 · CL-02
+#### IR-06 · IR: public data exposure — stitch: Phase4-Sec.8 · CL-02
 - [ ] unlocked
 - **Attack:** Quietly un-public without checking what leaked or notifying.
 - **Why it works:** Exposure may already be scraped; legal/comms matter.
 - **Defense pattern:** Remove ACE → inventory objects → SDP/DLP classify → assess notification → org policy → lessons.
 - **GCP lens:** Lens-1: SCC public bucket finding; SDP. Lens-2: tabletop.
-- **Lab:** E7.7
+- **Lab:** SEC-E7.7
 - **Check:** What evidence do you collect before/after removing allUsers?
 
-#### DT-07 · Ransomware / backup integrity (cloud) — stitch: Phase4-Sec.8 · 2.3
+#### IR-07 · Ransomware / backup integrity (cloud) — stitch: Phase4-Sec.8 · 2.3
 - [ ] unlocked
 - **Attack:** Immutable backups missing; same SA can encrypt data *and* delete backups.
 - **Why it works:** Ransomware targets backups; identity separation matters.
 - **Defense pattern:** Immutable/object-lock style retention where offered; separate backup project/SA; test restore; MFA on break-glass.
 - **GCP lens:** Lens-1: Cloud Storage retention / Backup for GKE literacy (verify). Lens-2: restore drill paper.
-- **Lab:** E7.8
+- **Lab:** SEC-E7.8
 - **Check:** Why must backup admin be separate from data admin?
 
-#### DT-08 · Tabletop facilitation craft — stitch: Phase4-Sec.8 · C2
+#### IR-08 · Tabletop facilitation craft — stitch: Phase4-Sec.8 · SEC-CAP2
 - [ ] unlocked
 - **Attack:** Tabletop without clock or scribe; arguments about blame.
 - **Why it works:** Practice builds muscle for contain order under stress.
 - **Defense pattern:** 60-min clock; injects; scribe fills Detect→Contain→…; grade time-to-contain + restore tested.
 - **GCP lens:** Lens-1: four roadmap runbooks + CR-15 branch. Lens-2: run one tabletop.
-- **Lab:** C2
+- **Lab:** SEC-CAP2
 - **Check:** What two metrics grade a tabletop?
 
 ### 3.13 AI / LLM cloud-app threats (AI-01 … AI-05)
@@ -1168,7 +1168,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Model follows instructions in untrusted text; retrieval expands attack surface.
 - **Defense pattern:** Separate system vs user channels; harden tools; output filtering; least-privilege tools; human confirm high risk; treat retrieved text as data.
 - **GCP lens:** Lens-1: Vertex AI + Model Armor literacy (verify); SDP before prompts. Lens-2: red-team prompts on *local* stub.
-- **Lab:** E8.3
+- **Lab:** SEC-E8.3
 - **Check:** Contrast direct vs indirect prompt injection.
 
 #### AI-02 · Tool / agent abuse — stitch: 9c
@@ -1177,16 +1177,16 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Tools turn LLM into an executor with your credentials.
 - **Defense pattern:** Narrow tools; confirmations; SANDboxed credentials; allowlists; audit tool calls.
 - **GCP lens:** Lens-1: Vertex agents / extensions IAM (verify). Lens-2: deny-by-default tool test.
-- **Lab:** E8.4
+- **Lab:** SEC-E8.4
 - **Check:** Why is a SQL tool on an LLM high risk?
 
-#### AI-03 · RAG data leakage — stitch: 9c.2 · PR-02
+#### AI-03 · RAG data leakage — stitch: 9c.2 · PV-02
 - [ ] unlocked
 - **Attack:** RAG corpus includes secrets/PII; model quotes them; cross-tenant retrieval.
 - **Why it works:** Retrieval ignores AuthZ if not enforced at fetch.
 - **Defense pattern:** AuthZ at retrieval; per-tenant indexes; DLP; no secrets in corpus; citation+redaction.
 - **GCP lens:** Lens-1: Vertex Search / matching engine IAM patterns (verify). Lens-2: cross-tenant retrieval negative test design.
-- **Lab:** E8.6
+- **Lab:** SEC-E8.6
 - **Check:** Where must AuthZ be enforced in RAG?
 
 #### AI-04 · Model / data poisoning & supply chain — stitch: 9c · WL
@@ -1195,16 +1195,16 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Integrity of data/models is supply chain.
 - **Defense pattern:** Curate data; sign models; private registries; eval for backdoors; pin digests.
 - **GCP lens:** Lens-1: Artifact Registry for models; Vertex model garden caution (verify).
-- **Lab:** E8.7
+- **Lab:** SEC-E8.7
 - **Check:** Name one control for model artifact integrity.
 
-#### AI-05 · Shadow AI & sensitive paste — stitch: 9c · PR
+#### AI-05 · Shadow AI & sensitive paste — stitch: 9c · PV
 - [ ] unlocked
 - **Attack:** Engineers paste production data into public LLM UIs.
 - **Why it works:** Bypasses DLP and contracts.
 - **Defense pattern:** Policy; approved Vertex endpoints; DLP; training; block public LLM at egress if required.
 - **GCP lens:** Lens-1: Chrome Enterprise / egress controls literacy; SDP. Lens-2: policy ADR.
-- **Lab:** E8.8
+- **Lab:** SEC-E8.8
 - **Check:** What is shadow AI in one sentence?
 
 ### 3.14 Side channels & isolation (SC-01 … SC-03)
@@ -1224,7 +1224,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Cloud isolation is layered (VM/container/serverless) with different residual risks.
 - **Defense pattern:** Pick isolation class matching data sensitivity; quotas; Confidential VM when needed.
 - **GCP lens:** Lens-1: sole-tenant / Confidential VM literacy (verify). Lens-2: isolation ADR.
-- **Lab:** E8.9
+- **Lab:** SEC-E8.9
 - **Check:** Compare container vs VM isolation for a key-managing service.
 
 #### SC-03 · Confidential Computing threat model — stitch: CR-18 · 7.3
@@ -1236,51 +1236,51 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Lab:** CR-E19
 - **Check:** List two in-scope and two out-of-scope threats for Confidential VM.
 
-### 3.15 Privacy & data (PR-01 … PR-05)
+### 3.15 Privacy & data (PV-01 … PV-05)
 
-#### PR-01 · Data classification & handling — stitch: Phase4-Sec.3 · 7.9
+#### PV-01 · Data classification & handling — stitch: Phase4-Sec.3 · 7.9
 - [ ] unlocked
 - **Attack:** Treat all data equal; PII in debug logs.
 - **Why it works:** Controls follow class; without class, over/under-protect.
 - **Defense pattern:** Public/Internal/Confidential/Restricted labels; handling rules; default deny for Restricted.
 - **GCP lens:** Lens-1: SDP infoTypes; resource labels. Lens-2: classify the reference cloud app fields.
-- **Lab:** E6.3
+- **Lab:** SEC-E6.3
 - **Check:** Give handling rule differences Confidential vs Restricted.
 
-#### PR-02 · DLP / tokenization before analytics & prompts — stitch: Phase4-Sec.3 · 9c
+#### PV-02 · DLP / tokenization before analytics & prompts — stitch: Phase4-Sec.3 · 9c
 - [ ] unlocked
 - **Attack:** Raw PII to shared BQ or LLM context.
 - **Why it works:** Analytics/AI expand readership beyond original purpose.
 - **Defense pattern:** SDP inspect/de-identify; tokenize; purpose limitation.
 - **GCP lens:** Lens-1: Sensitive Data Protection. Lens-2: synthetic payload inspect.
-- **Lab:** E8.6
+- **Lab:** SEC-E8.6
 - **Check:** Why de-identify before prompt assembly?
 
-#### PR-03 · Tokenization vs encryption — stitch: CR-17 · 5
+#### PV-03 · Tokenization vs encryption — stitch: CR-17 · 5
 - [ ] unlocked
 - **Attack:** Encrypting PANs but still needing format for PSP — wrong tool.
 - **Why it works:** Tokenization replaces value with surrogate; encryption is reversible with key.
 - **Defense pattern:** PAN: tokenize (Part 5); secrets: Secret Manager; fields: AEAD when needed.
 - **GCP lens:** Lens-1: PCI themes Part 5 + SDP. Lens-2: decision table.
-- **Lab:** E6.13
+- **Lab:** SEC-E6.13
 - **Check:** When is tokenization preferred over field encryption?
 
-#### PR-04 · Residency & sovereignty controls — stitch: Phase4-Sec.9 · 6.15
+#### PV-04 · Residency & sovereignty controls — stitch: Phase4-Sec.9 · 6.15
 - [ ] unlocked
 - **Attack:** Global BQ 'for simplicity' with EU personal data.
 - **Why it works:** Law may constrain location/transfers.
 - **Defense pattern:** `resourceLocations`; regional resources; Assured Workloads literacy; no legal advice — map to products.
 - **GCP lens:** Lens-1: org policy resourceLocations. Lens-2: plan-only TF.
-- **Lab:** E8.1
+- **Lab:** SEC-E8.1
 - **Check:** Name two GCP levers for residency.
 
-#### PR-05 · Privacy vs security tension (short Embedded EthiCS angle) — stitch: XACS235 · 7.9
+#### PV-05 · Privacy vs security tension (short Embedded EthiCS angle) — stitch: XACS235 · 7.9
 - [ ] unlocked
 - **Attack:** Maximizing retention 'for security' vs minimization; employee monitoring vs dignity.
 - **Why it works:** Security logging can become privacy harm; tradeoffs need explicit ethics/policy.
 - **Defense pattern:** Minimize; purpose-bind; access-review security logs; document tension in ADR.
 - **GCP lens:** Lens-1: audit log access controls. Lens-2: one-page ethics memo on login telemetry retention.
-- **Lab:** E8.10
+- **Lab:** SEC-E8.10
 - **Check:** Give one example where more security logging harms privacy.
 
 ### 3.16 Compliance literacy lite (CM-01 … CM-02)
@@ -1291,7 +1291,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** CCM organizes domains — use to find gaps, not to memorize 100s of controls.
 - **Defense pattern:** Map the reference cloud app to subset: IAM, EKM/CEK, LOG, IVS, TVM, AIS, SEF — evidence paths.
 - **GCP lens:** Lens-1: Well-Architected + CCM crosswalk lite. Lens-2: gap spreadsheet.
-- **Lab:** E8.1
+- **Lab:** SEC-E8.1
 - **Check:** Name five CCM domains and one the reference cloud app control each.
 
 #### CM-02 · PCI / HIPAA / SOC2 / FedRAMP idea → control map — stitch: Phase4-Sec.9 · 5
@@ -1300,7 +1300,7 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - **Why it works:** Regimes demand evidence+scope+location mapped to real controls.
 - **Defense pattern:** Obligation→control→GCP product→artifact; BAA/Assured Workloads literacy; no legal advice.
 - **GCP lens:** Lens-1: Compliance Reports Manager for *Google* attestations vs *your* evidence. Lens-2: matrix rows.
-- **Lab:** E8.1
+- **Lab:** SEC-E8.1
 - **Check:** Contrast Google's SOC report vs your SOC evidence.
 
 ## 4. Skip tests / readiness tiers
@@ -1309,18 +1309,18 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 | Tier | Meaning | Skip-test (learner does unaided) | If fail |
 |---|---|---|---|
-| **T0** | Security literacy | Explain CIA+assume-breach+shared responsibility in 5 sentences; name web vs network vs cloud-admin attackers | PQ-S + TH-01…03 |
-| **T1** | Applied crypto baseline | State IND-CPA vs integrity; why ECB dies; AEAD nonce rule; EtM; password KDF vs SHA; envelope KEK/DEK | CR-01…07, CR-13–14 |
-| **T2** | TLS/PKI | TLS 1.3 vs 1.2 headline; 0-RTT risk; cert chain validate; HSTS purpose | CR-11, CR-12 |
-| **T3** | Auth attacks | Distinguish hijack vs fixation; CSRF recipe; JWT confusion; OAuth PKCE purpose; stuffing vs spray | AU-01…09 |
-| **T4** | AuthZ / cloud IDOR | BOLA example + fix; confused deputy; tenant isolation checklist | AU-11…14, CL-06 |
-| **T5** | Abuse / DoS | Token bucket vs sliding window; place edge vs app limits; L3 vs L7; slowloris control; economic DoS | AB-01…02, DD-01…07 |
-| **T6** | Cloud TTPs | T1552.005 path; public bucket controls; SA key vs WIF; VPC-SC purpose | CL-01…04, NT-06 |
-| **T7** | Supply chain / K8s | Privileged pod risk; BinAuth meaning; CI poison path; SBOM limit | CK-*, WL-* |
-| **T8** | Detect / IR | Log sink separation; ephemeral containment order; tabletop metrics | DT-* |
-| **T9** | AI surface | Direct vs indirect injection; tool abuse; RAG AuthZ point | AI-* |
+| **SEC-T0** | Security literacy | Explain CIA+assume-breach+shared responsibility in 5 sentences; name web vs network vs cloud-admin attackers | PQ-S + TH-01…03 |
+| **SEC-T1** | Applied crypto baseline | State IND-CPA vs integrity; why ECB dies; AEAD nonce rule; EtM; password KDF vs SHA; envelope KEK/DEK | CR-01…07, CR-13–14 |
+| **SEC-T2** | TLS/PKI | TLS 1.3 vs 1.2 headline; 0-RTT risk; cert chain validate; HSTS purpose | CR-11, CR-12 |
+| **SEC-T3** | Auth attacks | Distinguish hijack vs fixation; CSRF recipe; JWT confusion; OAuth PKCE purpose; stuffing vs spray | AU-01…09 |
+| **SEC-T4** | AuthZ / cloud IDOR | BOLA example + fix; confused deputy; tenant isolation checklist | AU-11…14, CL-06 |
+| **SEC-T5** | Abuse / DoS | Token bucket vs sliding window; place edge vs app limits; L3 vs L7; slowloris control; economic DoS | AB-01…02, DOS-01…07 |
+| **SEC-T6** | Cloud TTPs | T1552.005 path; public bucket controls; SA key vs WIF; VPC-SC purpose | CL-01…04, NT-06 |
+| **SEC-T7** | Supply chain / K8s | Privileged pod risk; BinAuth meaning; CI poison path; SBOM limit | CK-*, WL-* |
+| **SEC-T8** | Detect / IR | Log sink separation; ephemeral containment order; tabletop metrics | IR-* |
+| **SEC-T9** | AI surface | Direct vs indirect injection; tool abuse; RAG AuthZ point | AI-* |
 
-**Prop Lock reminder:** passing T2 does not unlock VPC-SC props before 6.15.
+**Prop Lock reminder:** passing SEC-T2 does not unlock VPC-SC props before 6.15.
 
 ---
 
@@ -1328,44 +1328,44 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 **Bank ≠ dump.** Issue **one** card per teaching moment. Levels 0–8. Crypto cards use `CR-E*` ids and also appear mixed in levels. Appendix K opens only after attempt. No invented lab DB goldens — qualitative keys only.
 
-### 5.0 Level 0 — paper drills (Z0)
+### 5.0 Level 0 — paper drills (SEC-Z0)
 
-#### Z0.1 · L0 · Encoding vs encryption
+#### SEC-Z0.1 · L0 · Encoding vs encryption
 - **Scenario:** Eight snippets: Base64, AES-GCM, SHA-256, HMAC, homemade XOR, URL-encoding, bcrypt, rot13.
 - **Predict impact (write first):** Which provide confidentiality against Kerckhoffs attacker?
 - **Design control:** Classify each; mark misuse.
 - **Map to GCP:** N/A — hygiene
 - **Unlocks / depends:** PQ-S-01
 
-#### Z0.2 · L0 · Hop trust labels
+#### SEC-Z0.2 · L0 · Hop trust labels
 - **Scenario:** Client → DNS → GFE → Armor → LB → Cloud Run → Cloud SQL.
 - **Predict impact (write first):** Which hop authenticates the user? The service? Encrypts in transit?
 - **Design control:** Label each hop's trust assumption in one phrase.
 - **Map to GCP:** A5 TLS / Phase 4 Armor / 6.11 path
 - **Unlocks / depends:** PQ-S-04
 
-#### Z0.3 · L0 · Saltzer mapping
+#### SEC-Z0.3 · L0 · Saltzer mapping
 - **Scenario:** the reference cloud app has IAM deny, parameterized SQL, IAP admin, org policy default deny public buckets.
 - **Predict impact (write first):** Which Saltzer principle each embodies?
 - **Design control:** Map four controls → principles.
 - **Map to GCP:** 7.1 recall + PQ-S-02
 - **Unlocks / depends:** PQ-S-02
 
-#### Z0.4 · L0 · STRIDE warm-up
+#### SEC-Z0.4 · L0 · STRIDE warm-up
 - **Scenario:** `PlaceOrder` flow sketch provided.
 - **Predict impact (write first):** One threat per STRIDE letter.
 - **Design control:** Write six one-liners.
 - **Map to GCP:** 0.4
 - **Unlocks / depends:** TH-03
 
-#### ZB5 IAM · L0 · Shared responsibility quiz
+#### SEC-Z0.5 · L0 · Shared responsibility quiz
 - **Scenario:** GCE guest OS CVE; Cloud Run app SQLi; GCS public ACE; Google DC physical.
 - **Predict impact (write first):** Who owns each?
 - **Design control:** Fill matrix.
 - **Map to GCP:** PQ-S-03
 - **Unlocks / depends:** PQ-S-03
 
-#### Z0.6 · L0 · ATT&CK metadata one-liner
+#### SEC-Z0.6 · L0 · ATT&CK metadata one-liner
 - **Scenario:** T1552.005 description blank.
 - **Predict impact (write first):** Write the technique in one sentence for GCP.
 - **Design control:** Name SSRF→IMDS.
@@ -1374,28 +1374,28 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 ### 5.1 Level 1 — modeling
 
-#### E1.1 · L1 · the reference cloud app STRIDE one-pager
+#### SEC-E1.1 · L1 · the reference cloud app STRIDE one-pager
 - **Scenario:** Storefront checkout.
 - **Predict impact (write first):** Highest residual risk after listing threats?
 - **Design control:** STRIDE table + one abuse-case test stub.
 - **Map to GCP:** 0.4 HLD
 - **Unlocks / depends:** TH-02, TH-03
 
-#### E1.2 · L1 · Responsibility matrix
+#### SEC-E1.2 · L1 · Responsibility matrix
 - **Scenario:** Cloud Run + Cloud SQL + GCS for the reference cloud app.
 - **Predict impact (write first):** Where do teams wrongly assume CSP ownership?
 - **Design control:** Complete IaaS/PaaS/serverless matrix rows.
 - **Map to GCP:** PQ-S-03
 - **Unlocks / depends:** PQ-S-03
 
-#### E1.3 · L1 · Economics ADR
+#### SEC-E1.3 · L1 · Economics ADR
 - **Scenario:** Standing global HTTPS LB+Armor vs Hosting+Run for early the reference cloud app.
 - **Predict impact (write first):** Attack cost vs $ cost?
 - **Design control:** ADR: I pick X because Y, accept Z.
 - **Map to GCP:** A5 TLS / Phase 4 Armor FinOps
 - **Unlocks / depends:** PQ-S-05
 
-#### EA5 TLS / Phase 4 Armor · L1 · Attacker model picker
+#### SEC-E1.4 · L1 · Attacker model picker
 - **Scenario:** Admin UI currently on VPN-only flat VPC.
 - **Predict impact (write first):** Which attacker models remain?
 - **Design control:** Propose IAP shift and name defeated model.
@@ -1404,77 +1404,77 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 ### 5.2 Level 2 — web/session
 
-#### E2.1 · L2 · TLS termination misconception
+#### SEC-E2.1 · L2 · TLS termination misconception
 - **Scenario:** Intern says 'TLS at LB means body encrypted to SQL'.
 - **Predict impact (write first):** What is actually in plaintext where?
 - **Design control:** Redraw trust; say where CR-17 field AEAD helps.
 - **Map to GCP:** A5 TLS / Phase 4 Armor, CR-12, CR-17
 - **Unlocks / depends:** CR-12
 
-#### E2.2 · L2 · Session hijacking
+#### SEC-E2.2 · L2 · Session hijacking
 - **Scenario:** Cookie without Secure on HTTP admin path; XSS on blog subdomain sharing Domain=.example.com.
 - **Predict impact (write first):** Blast radius?
 - **Design control:** Flags + domain fix + session rotate policy.
 - **Map to GCP:** 4.4
 - **Unlocks / depends:** AU-01, AU-04
 
-#### E2.3 · L2 · Session fixation
+#### SEC-E2.3 · L2 · Session fixation
 - **Scenario:** API accepts `X-Session-Id` from client and authenticates into it.
 - **Predict impact (write first):** Attack steps?
 - **Design control:** Server-mint + rotate on login test plan.
 - **Map to GCP:** 4.4
 - **Unlocks / depends:** AU-02
 
-#### E2.4 · L2 · Abuse case → test
+#### SEC-E2.4 · L2 · Abuse case → test
 - **Scenario:** Threat: negative quantity order.
 - **Predict impact (write first):** What does the failing test assert?
 - **Design control:** Write table-driven test case.
 - **Map to GCP:** 3.0, AB-06
 - **Unlocks / depends:** TH-04
 
-#### E2.5 · L2 · Stored XSS
+#### SEC-E2.5 · L2 · Stored XSS
 - **Scenario:** Product review field reflects raw HTML.
 - **Predict impact (write first):** Impact on HttpOnly session cookie? On CSRF token in DOM?
 - **Design control:** Encoding + CSP plan.
 - **Map to GCP:** WA-02, WA-04
 - **Unlocks / depends:** WA-02
 
-#### E2.6 · L2 · Cookie jar subdomain
+#### SEC-E2.6 · L2 · Cookie jar subdomain
 - **Scenario:** Marketing site on `www` sets cookie Domain=.the reference cloud app.example.
 - **Predict impact (write first):** How does XSS on marketing steal API session?
 - **Design control:** Host-only + split domains.
 - **Map to GCP:** AU-04
 - **Unlocks / depends:** AU-04
 
-#### E2.7 · L2 · CORS credentials+*
+#### SEC-E2.7 · L2 · CORS credentials+*
 - **Scenario:** API returns ACAO `*` with credentials true (broken).
 - **Predict impact (write first):** What can evil.com do?
 - **Design control:** Exact allowlist design.
 - **Map to GCP:** WA-01, 4.4
 - **Unlocks / depends:** WA-01
 
-#### E2.8 · L2 · Clickjacking admin
+#### SEC-E2.8 · L2 · Clickjacking admin
 - **Scenario:** Admin 'Delete shop' button frameable.
 - **Predict impact (write first):** Attack storyboard.
 - **Design control:** frame-ancestors + reauth.
 - **Map to GCP:** WA-03
 - **Unlocks / depends:** WA-03
 
-#### E2.9 · L2 · CSP rollout
+#### SEC-E2.9 · L2 · CSP rollout
 - **Scenario:** SPA has inline scripts.
 - **Predict impact (write first):** Breakage risk of enforce-now?
 - **Design control:** Report-only → nonces plan.
 - **Map to GCP:** WA-04
 - **Unlocks / depends:** WA-04
 
-#### E2.10 · L2 · SQLi → data
+#### SEC-E2.10 · L2 · SQLi → data
 - **Scenario:** Search `q` concatenated into SQL.
 - **Predict impact (write first):** Worst credible impact on multi-tenant DB?
 - **Design control:** Parameterize + authz still required.
 - **Map to GCP:** WA-05, CL-06
 - **Unlocks / depends:** WA-05
 
-#### E2.11 · L2 · TLS intercept tradeoff
+#### SEC-E2.11 · L2 · TLS intercept tradeoff
 - **Scenario:** Corp wants HTTPS inspection on all egress.
 - **Predict impact (write first):** New crown-jewel asset?
 - **Design control:** Risk memo.
@@ -1483,112 +1483,112 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 ### 5.3 Level 3 — authn/authz attacks
 
-#### E3.1 · L3 · IAM privesc path
+#### SEC-E3.1 · L3 · IAM privesc path
 - **Scenario:** CI SA has `actAs` on deploy SA that is `roles/owner` on prod.
 - **Predict impact (write first):** Escalation narrative.
 - **Design control:** Break path; least privilege bindings.
 - **Map to GCP:** CL-03, B5 IAM
 - **Unlocks / depends:** CL-03
 
-#### E3.2 · L3 · SSRF → metadata
+#### SEC-E3.2 · L3 · SSRF → metadata
 - **Scenario:** Webhook URL fetcher; no allowlist.
 - **Predict impact (write first):** Predict tokens stolen; blast radius.
 - **Design control:** Guard design + tests; IMDSv2-like headers if any (verify).
 - **Map to GCP:** CL-01, 4.2
 - **Unlocks / depends:** CL-01
 
-#### E3.3 · L3 · Credential stuffing
+#### SEC-E3.3 · L3 · Credential stuffing
 - **Scenario:** Login endpoint no bot signal, per-IP limit only.
 - **Predict impact (write first):** Why spray still works from botnet?
 - **Design control:** reCAPTCHA + per-account + MFA design.
 - **Map to GCP:** AU-08, AB-03, 4.10
 - **Unlocks / depends:** AU-08
 
-#### E3.4 · L3 · CSRF state change
+#### SEC-E3.4 · L3 · CSRF state change
 - **Scenario:** POST /transfer with SameSite=None Secure cookies, no CSRF token.
 - **Predict impact (write first):** Exploit sketch from evil.com.
 - **Design control:** Token + SameSite strategy.
 - **Map to GCP:** AU-03
 - **Unlocks / depends:** AU-03
 
-#### E3.5 · L3 · JWT alg confusion
+#### SEC-E3.5 · L3 · JWT alg confusion
 - **Scenario:** Library trusts header alg; RS256 public key configured.
 - **Predict impact (write first):** How does HS256 confusion forge admin?
 - **Design control:** Allowlist + tests; link CR-10.
 - **Map to GCP:** AU-05, CR-10
 - **Unlocks / depends:** AU-05
 
-#### E3.6 · L3 · OAuth redirect
+#### SEC-E3.6 · L3 · OAuth redirect
 - **Scenario:** redirect_uri prefix match `https://app.example.com`.
 - **Predict impact (write first):** Attack using `https://app.example.com.evil.com` or path tricks.
 - **Design control:** Exact match allowlist + PKCE.
 - **Map to GCP:** AU-06
 - **Unlocks / depends:** AU-06
 
-#### E3.7 · L3 · SAML wrapping lite
+#### SEC-E3.7 · L3 · SAML wrapping lite
 - **Scenario:** XML IdP assertion processed by hand-rolled code.
 - **Predict impact (write first):** Where does wrapping bite?
 - **Design control:** Library + verify-before-use; prefer OIDC ADR.
 - **Map to GCP:** AU-07
 - **Unlocks / depends:** AU-07
 
-#### E3.8 · L3 · IDOR orders
+#### SEC-E3.8 · L3 · IDOR orders
 - **Scenario:** `GET /orders/{id}` checks only authn.
 - **Predict impact (write first):** Cross-tenant read steps.
 - **Design control:** Authz predicate + test matrix.
 - **Map to GCP:** AU-11, 4.7
 - **Unlocks / depends:** AU-11
 
-#### E3.9 · L3 · OWASP map the reference cloud app
+#### SEC-E3.9 · L3 · OWASP map the reference cloud app
 - **Scenario:** Pick Top 10:2025 list (verify live).
 - **Predict impact (write first):** Map A01–A05 to the reference cloud app controls.
 - **Design control:** Table.
 - **Map to GCP:** 7.4
 - **Unlocks / depends:** WA-*
 
-#### E3.10 · L3 · MFA fatigue
+#### SEC-E3.10 · L3 · MFA fatigue
 - **Scenario:** Push MFA without number matching.
 - **Predict impact (write first):** Attacker with password outcome?
 - **Design control:** Number matching / passkeys plan.
 - **Map to GCP:** AU-09
 - **Unlocks / depends:** AU-09
 
-#### E3.11 · L3 · Weak recovery
+#### SEC-E3.11 · L3 · Weak recovery
 - **Scenario:** Reset token 6-digit, 24h, logged in clear.
 - **Predict impact (write first):** ATO path.
 - **Design control:** Redesign per 4.3+AU-10.
 - **Map to GCP:** AU-10
 - **Unlocks / depends:** AU-10
 
-#### E3.12 · L3 · BFLA admin RPC
+#### SEC-E3.12 · L3 · BFLA admin RPC
 - **Scenario:** UI hides `/admin/refund`; API still open.
 - **Predict impact (write first):** Exploit.
 - **Design control:** Permission check + test.
 - **Map to GCP:** AU-12
 - **Unlocks / depends:** AU-12
 
-#### E3.13 · L3 · Mass assignment
+#### SEC-E3.13 · L3 · Mass assignment
 - **Scenario:** PATCH /users binds entire JSON into ORM.
 - **Predict impact (write first):** Privilege field?
 - **Design control:** DTO allowlist.
 - **Map to GCP:** AU-13
 - **Unlocks / depends:** AU-13
 
-#### E3.14 · L3 · XXE → SSRF
+#### SEC-E3.14 · L3 · XXE → SSRF
 - **Scenario:** XML invoice upload with external entity.
 - **Predict impact (write first):** Chain to metadata?
 - **Design control:** Disable entities + SSRF guard.
 - **Map to GCP:** WA-06, CL-01
 - **Unlocks / depends:** WA-06
 
-#### E3.15 · L3 · Pickle RCE
+#### SEC-E3.15 · L3 · Pickle RCE
 - **Scenario:** Cache deserializes pickle from Redis without auth.
 - **Predict impact (write first):** Impact.
 - **Design control:** JSON+schema; sign if needed.
 - **Map to GCP:** WA-07
 - **Unlocks / depends:** WA-07
 
-#### E3.16 · L3 · Open redirect×OAuth
+#### SEC-E3.16 · L3 · Open redirect×OAuth
 - **Scenario:** Login `next=` open redirect.
 - **Predict impact (write first):** How it upgrades OAuth code theft.
 - **Design control:** Allowlist.
@@ -1597,147 +1597,147 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 ### 5.4 Level 4 — abuse & DoS
 
-#### E4.1 · L4 · L3 vs L7 story
+#### SEC-E4.1 · L4 · L3 vs L7 story
 - **Scenario:** Outage with tiny RPS but huge SYN; another with 2k RPS on /search.
 - **Predict impact (write first):** Which control class each?
 - **Design control:** GFE vs Armor vs app.
-- **Map to GCP:** DD-01, DD-03
-- **Unlocks / depends:** DD-01
+- **Map to GCP:** DOS-01, DOS-03
+- **Unlocks / depends:** DOS-01
 
-#### E4.2 · L4 · Timeouts vs slowloris
+#### SEC-E4.2 · L4 · Timeouts vs slowloris
 - **Scenario:** Go server no ReadHeaderTimeout.
 - **Predict impact (write first):** Predict failure mode.
 - **Design control:** Set timeout suite from 4.2.
-- **Map to GCP:** DD-05, 4.2
-- **Unlocks / depends:** DD-05
+- **Map to GCP:** DOS-05, 4.2
+- **Unlocks / depends:** DOS-05
 
-#### E4.3 · L4 · Rate limit design
+#### SEC-E4.3 · L4 · Rate limit design
 - **Scenario:** Tenant A must not starve tenant B; bursts of 20 OK; sustained 5 rps.
 - **Predict impact (write first):** Pick algorithm+keys.
 - **Design control:** Token bucket sketch + tests.
 - **Map to GCP:** AB-01
 - **Unlocks / depends:** AB-01
 
-#### E4.4 · L4 · Placement ADR
+#### SEC-E4.4 · L4 · Placement ADR
 - **Scenario:** Stuffing + L7 flood + per-SKU quota.
 - **Predict impact (write first):** Armor vs Gateway vs app — who owns what?
 - **Design control:** ADR table.
 - **Map to GCP:** AB-02, 4.10
 - **Unlocks / depends:** AB-02
 
-#### E4.5 · L4 · Overlay map
+#### SEC-E4.5 · L4 · Overlay map
 - **Scenario:** Blank packet path.
 - **Predict impact (write first):** Place NGFW, Armor, IAP, VPC-SC, LB TLS.
 - **Design control:** One primary duty each.
 - **Map to GCP:** 6.11, NT-07
 - **Unlocks / depends:** NT-07
 
-#### E4.6 · L4 · SSL policy
+#### SEC-E4.6 · L4 · SSL policy
 - **Scenario:** Legacy clients want TLS 1.0.
 - **Predict impact (write first):** Risk?
 - **Design control:** Min version policy + exception process.
 - **Map to GCP:** CR-12, 6.13
 - **Unlocks / depends:** CR-12
 
-#### E4.7 · L4 · L7 flood expensive search
+#### SEC-E4.7 · L4 · L7 flood expensive search
 - **Scenario:** /search hits BQ job path.
 - **Predict impact (write first):** Bill + latency impact?
 - **Design control:** Cache+Armor+quota+async.
-- **Map to GCP:** DD-03, DD-07
-- **Unlocks / depends:** DD-03
+- **Map to GCP:** DOS-03, DOS-07
+- **Unlocks / depends:** DOS-03
 
-#### E4.8 · L4 · Slowloris local only
+#### SEC-E4.8 · L4 · Slowloris local only
 - **Scenario:** Local fixture vulnerable.
 - **Predict impact (write first):** Predict worker exhaustion.
 - **Design control:** Fix timeouts; **do not** attack cloud.
-- **Map to GCP:** DD-05
-- **Unlocks / depends:** DD-05
+- **Map to GCP:** DOS-05
+- **Unlocks / depends:** DOS-05
 
-#### E4.9 · L4 · Anti-bot signup
+#### SEC-E4.9 · L4 · Anti-bot signup
 - **Scenario:** Fake accounts flood.
 - **Predict impact (write first):** Where captcha fails alone?
 - **Design control:** reCAPTCHA+mail verify+limits.
 - **Map to GCP:** AB-03, 4.10
 - **Unlocks / depends:** AB-03
 
-#### E4.10 · L4 · GraphQL batching
+#### SEC-E4.10 · L4 · GraphQL batching
 - **Scenario:** 1000 aliases in one POST.
 - **Predict impact (write first):** Impact.
 - **Design control:** Cost analysis limits.
 - **Map to GCP:** AB-04
 - **Unlocks / depends:** AB-04
 
-#### E4.11 · L4 · Pagination scrape
+#### SEC-E4.11 · L4 · Pagination scrape
 - **Scenario:** pageSize=10000 accepted.
 - **Predict impact (write first):** Inventory theft math.
 - **Design control:** Caps+authz+rate.
 - **Map to GCP:** AB-05
 - **Unlocks / depends:** AB-05
 
-#### E4.12 · L4 · Coupon logic abuse
+#### SEC-E4.12 · L4 · Coupon logic abuse
 - **Scenario:** Stacking coupons race.
 - **Predict impact (write first):** Money impact.
 - **Design control:** Invariant+transaction.
 - **Map to GCP:** AB-06
 - **Unlocks / depends:** AB-06
 
-#### E4.13 · L4 · Inventory hoarding
+#### SEC-E4.13 · L4 · Inventory hoarding
 - **Scenario:** Bot holds all SKUs 30m.
 - **Predict impact (write first):** Fairness fix.
 - **Design control:** Caps+bot+short hold.
 - **Map to GCP:** AB-07
 - **Unlocks / depends:** AB-07
 
-#### E4.14 · L4 · Export fan-out
+#### SEC-E4.14 · L4 · Export fan-out
 - **Scenario:** API triggers email to all users.
 - **Predict impact (write first):** Economic+privacy impact.
 - **Design control:** Step-up+quota+async.
 - **Map to GCP:** AB-08
 - **Unlocks / depends:** AB-08
 
-#### E4.15 · L4 · Amplification ethics
+#### SEC-E4.15 · L4 · Amplification ethics
 - **Scenario:** Someone asks to 'test reflection' against third party.
 - **Predict impact (write first):** Response?
 - **Design control:** Refuse; explain lab safety.
-- **Map to GCP:** DD-02, §0.2.10
-- **Unlocks / depends:** DD-02
+- **Map to GCP:** DOS-02, §0.2.10
+- **Unlocks / depends:** DOS-02
 
-#### E4.16 · L4 · Adaptive Protection meaning
+#### SEC-E4.16 · L4 · Adaptive Protection meaning
 - **Scenario:** Docs skim (verify).
 - **Predict impact (write first):** What static rate limits miss?
 - **Design control:** When enable ADR.
-- **Map to GCP:** DD-04
-- **Unlocks / depends:** DD-04
+- **Map to GCP:** DOS-04
+- **Unlocks / depends:** DOS-04
 
-#### E4.17 · L4 · Zip bomb upload
+#### SEC-E4.17 · L4 · Zip bomb upload
 - **Scenario:** Multipart zip expands 1000×.
 - **Predict impact (write first):** Disk impact.
 - **Design control:** Limits+re-encode.
-- **Map to GCP:** DD-06, WA-12
-- **Unlocks / depends:** DD-06
+- **Map to GCP:** DOS-06, WA-12
+- **Unlocks / depends:** DOS-06
 
-#### E4.18 · L4 · WAF bypass conceptual
+#### SEC-E4.18 · L4 · WAF bypass conceptual
 - **Scenario:** SQLi with encoding tricks; WAF on.
 - **Predict impact (write first):** Why app fix still required?
 - **Design control:** Armor+parameterize defense in depth.
 - **Map to GCP:** WA-11
 - **Unlocks / depends:** WA-11
 
-#### E4.19 · L4 · Upload SVG XSS
+#### SEC-E4.19 · L4 · Upload SVG XSS
 - **Scenario:** SVG with script served from same origin.
 - **Predict impact (write first):** Impact.
 - **Design control:** Separate domain+CSP+re-encode.
 - **Map to GCP:** WA-12
 - **Unlocks / depends:** WA-12
 
-#### E4.20 · L4 · DNS exfil conceptual
+#### SEC-E4.20 · L4 · DNS exfil conceptual
 - **Scenario:** Compromised job encodes data in DNS labels.
 - **Predict impact (write first):** What logs catch it?
 - **Design control:** DNS logging+egress policy.
 - **Map to GCP:** NT-03
 - **Unlocks / depends:** NT-03
 
-#### E4.21 · L4 · Subdomain takeover
+#### SEC-E4.21 · L4 · Subdomain takeover
 - **Scenario:** CNAME to deleted Cloud Run.
 - **Predict impact (write first):** Hijack path.
 - **Design control:** Destroy-order checklist.
@@ -1746,63 +1746,63 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 ### 5.5 Level 5 — cloud identity & data
 
-#### E5.1 · L5 · IAM privesc analysis
+#### SEC-E5.1 · L5 · IAM privesc analysis
 - **Scenario:** Bindings dump with `tokenCreator` + `run.admin` on same human.
 - **Predict impact (write first):** Path to prod owner?
 - **Design control:** Remove edges; JIT admin proposal.
 - **Map to GCP:** CL-03, 7.2
 - **Unlocks / depends:** CL-03
 
-#### E5.2 · L5 · Cross-tenant bleed
+#### SEC-E5.2 · L5 · Cross-tenant bleed
 - **Scenario:** Redis cache key `order:{id}` without tenant.
 - **Predict impact (write first):** Bleed scenario.
 - **Design control:** Key layout + tests.
 - **Map to GCP:** CL-06, AU-11
 - **Unlocks / depends:** CL-06
 
-#### E5.3 · L5 · SA JSON in GitHub
+#### SEC-E5.3 · L5 · SA JSON in GitHub
 - **Scenario:** Key committed 40 days ago; Actions used it.
 - **Predict impact (write first):** Containment order?
 - **Design control:** Disable+hunt+WIF migration.
-- **Map to GCP:** CL-04, DT-05, 7.8
+- **Map to GCP:** CL-04, IR-05, 7.8
 - **Unlocks / depends:** CL-04
 
-#### E5.4 · L5 · Lateral after Run compromise
+#### SEC-E5.4 · L5 · Lateral after Run compromise
 - **Scenario:** Compromised Cloud Run can reach SQL public IP.
 - **Predict impact (write first):** Pivot story.
 - **Design control:** Private IP+FW+SA scopes.
 - **Map to GCP:** NT-02, 6.12
 - **Unlocks / depends:** NT-02
 
-#### E5.5 · L5 · IAP vs VPN tabletop
+#### SEC-E5.5 · L5 · IAP vs VPN tabletop
 - **Scenario:** Laptop malware on VPN.
 - **Predict impact (write first):** What changes with IAP for admin UI?
 - **Design control:** Threat table.
 - **Map to GCP:** NT-05, 6.14
 - **Unlocks / depends:** NT-05
 
-#### E5.6 · L5 · VPC-SC exfil story
+#### SEC-E5.6 · L5 · VPC-SC exfil story
 - **Scenario:** Stolen user OAuth can `gsutil cp` to personal project.
 - **Predict impact (write first):** Does VPC-SC stop it? Conditions?
 - **Design control:** Perimeter design sketch.
 - **Map to GCP:** NT-06, 6.15
 - **Unlocks / depends:** NT-06
 
-#### E5.7 · L5 · Public bucket IR
+#### SEC-E5.7 · L5 · Public bucket IR
 - **Scenario:** SCC: `allUsers` on invoices bucket.
 - **Predict impact (write first):** 15-min actions?
 - **Design control:** Follow 7.8 public ACE runbook + evidence.
-- **Map to GCP:** CL-02, DT-06
+- **Map to GCP:** CL-02, IR-06
 - **Unlocks / depends:** CL-02
 
-#### E5.8 · L5 · Confused deputy copy job
+#### SEC-E5.8 · L5 · Confused deputy copy job
 - **Scenario:** ETL SA with `storage.admin` org-wide takes `src` param.
 - **Predict impact (write first):** Exfil design by attacker.
 - **Design control:** Resource-bound role + VPC-SC.
 - **Map to GCP:** CL-05
 - **Unlocks / depends:** CL-05
 
-#### E5.9 · L5 · Poisoned GCS event
+#### SEC-E5.9 · L5 · Poisoned GCS event
 - **Scenario:** Object finalize triggers privileged function without signed event trust.
 - **Predict impact (write first):** Injection?
 - **Design control:** Invoker IAM + payload authz.
@@ -1811,227 +1811,227 @@ Skip a companion family only by passing its skip-test. gcp.md still owns product
 
 ### 5.6 Level 6 — supply chain & K8s
 
-#### E6.1 · L6 · Privileged pod review
+#### SEC-E6.1 · L6 · Privileged pod review
 - **Scenario:** YAML: privileged, hostNetwork, hostPath `/`.
 - **Predict impact (write first):** Escape narrative.
 - **Design control:** PSS restricted + deny admissions.
 - **Map to GCP:** CK-01, CK-02
 - **Unlocks / depends:** CK-01
 
-#### E6.2 · L6 · Secret sprawl hunt
+#### SEC-E6.2 · L6 · Secret sprawl hunt
 - **Scenario:** Synthetic repo with fake keys in Dockerfile env, TF, CI logs.
 - **Predict impact (write first):** Find five sinks.
 - **Design control:** Remediation to Secret Manager.
 - **Map to GCP:** WL-05, CK-04
 - **Unlocks / depends:** WL-05
 
-#### E6.3 · L6 · Classify then CMEK
+#### SEC-E6.3 · L6 · Classify then CMEK
 - **Scenario:** Fields: email, PAN token, product SKU, debug dump.
 - **Predict impact (write first):** Class + control each.
-- **Design control:** PR-01 + CR-14 mapping.
-- **Map to GCP:** PR-01, 7.3
-- **Unlocks / depends:** PR-01
+- **Design control:** PV-01 + CR-14 mapping.
+- **Map to GCP:** PV-01, 7.3
+- **Unlocks / depends:** PV-01
 
-#### E6.4 · L6 · BinAuth meaning
+#### SEC-E6.4 · L6 · BinAuth meaning
 - **Scenario:** Cluster admits unsigned `:latest`.
 - **Predict impact (write first):** Attack.
 - **Design control:** Attestor policy dry-run→enforce.
 - **Map to GCP:** WL-04, CK-05, 7.5
 - **Unlocks / depends:** WL-04
 
-#### E6.5 · L6 · Poisoned base image
+#### SEC-E6.5 · L6 · Poisoned base image
 - **Scenario:** Dockerfile `FROM node:latest`.
 - **Predict impact (write first):** Supply-chain path.
 - **Design control:** Digest pin + AR + scan gate.
 - **Map to GCP:** WL-01
 - **Unlocks / depends:** WL-01
 
-#### E6.6 · L6 · Native crash → metadata
+#### SEC-E6.6 · L6 · Native crash → metadata
 - **Scenario:** C++ sidecar overflows; same task SA.
 - **Predict impact (write first):** Cloud impact beyond RCE.
 - **Design control:** Memory-safe rewrite + metadata restrict.
 - **Map to GCP:** WA-10, CL-01
 - **Unlocks / depends:** WA-10
 
-#### E6.7 · L6 · hostPath docker.sock
+#### SEC-E6.7 · L6 · hostPath docker.sock
 - **Scenario:** Debug pod mounts docker.sock.
 - **Predict impact (write first):** Instant impact.
 - **Design control:** Admission deny.
 - **Map to GCP:** CK-02
 - **Unlocks / depends:** CK-02
 
-#### E6.8 · L6 · RBAC wildcard secrets
+#### SEC-E6.8 · L6 · RBAC wildcard secrets
 - **Scenario:** Role: resources secrets, verbs *.
 - **Predict impact (write first):** Blast radius.
 - **Design control:** Least verbs + split SA.
 - **Map to GCP:** CK-03
 - **Unlocks / depends:** CK-03
 
-#### E6.9 · L6 · NetworkPolicy default deny
+#### SEC-E6.9 · L6 · NetworkPolicy default deny
 - **Scenario:** Flat GKE namespace.
 - **Predict impact (write first):** Lateral path.
 - **Design control:** Default-deny + allowlist.
 - **Map to GCP:** CK-06
 - **Unlocks / depends:** CK-06
 
-#### E6.10 · L6 · Poisoned pipeline PR
+#### SEC-E6.10 · L6 · Poisoned pipeline PR
 - **Scenario:** Fork PR runs workflow with cloud WIF.
 - **Predict impact (write first):** How to steal?
 - **Design control:** Permissions + environment gates.
 - **Map to GCP:** WL-02
 - **Unlocks / depends:** WL-02
 
-#### E6.11 · L6 · SBOM false comfort
+#### SEC-E6.11 · L6 · SBOM false comfort
 - **Scenario:** Team publishes SBOM, no admissions.
 - **Predict impact (write first):** What still fails?
 - **Design control:** SBOM+scan+attest chain.
 - **Map to GCP:** WL-03
 - **Unlocks / depends:** WL-03
 
-#### E6.12 · L6 · Hermetic build
+#### SEC-E6.12 · L6 · Hermetic build
 - **Scenario:** Build curls internet for deps ad hoc.
 - **Predict impact (write first):** Poison risk.
 - **Design control:** Hermetic+provenance sketch.
 - **Map to GCP:** WL-06
 - **Unlocks / depends:** WL-06
 
-#### E6.13 · L6 · Tokenize vs encrypt PAN
+#### SEC-E6.13 · L6 · Tokenize vs encrypt PAN
 - **Scenario:** Need PSP display last4 + charge.
 - **Predict impact (write first):** Pick control.
-- **Design control:** Decision table PR-03.
-- **Map to GCP:** PR-03, Part 5
-- **Unlocks / depends:** PR-03
+- **Design control:** Decision table PV-03.
+- **Map to GCP:** PV-03, Part 5
+- **Unlocks / depends:** PV-03
 
 ### 5.7 Level 7 — detection & IR
 
-#### E7.1 · L7 · Log injection
+#### SEC-E7.1 · L7 · Log injection
 - **Scenario:** Username field `
 INFO admin login success`.
 - **Predict impact (write first):** SIEM confusion?
 - **Design control:** JSON logs + encode.
-- **Map to GCP:** WA-09, DT-01
+- **Map to GCP:** WA-09, IR-01
 - **Unlocks / depends:** WA-09
 
-#### E7.2 · L7 · Leaked SA tabletop
+#### SEC-E7.2 · L7 · Leaked SA tabletop
 - **Scenario:** GitHub secret scanning alert on SA key.
 - **Predict impact (write first):** First 15 minutes?
 - **Design control:** Fill 7.8 template; grade order.
-- **Map to GCP:** DT-05, 7.8
-- **Unlocks / depends:** DT-05
+- **Map to GCP:** IR-05, 7.8
+- **Unlocks / depends:** IR-05
 
-#### E7.3 · L7 · Alert precision
+#### SEC-E7.3 · L7 · Alert precision
 - **Scenario:** 50 daily SCC mediums, ignored.
 - **Predict impact (write first):** Which three to page?
 - **Design control:** Retune mutes+runbooks.
-- **Map to GCP:** DT-02
-- **Unlocks / depends:** DT-02
+- **Map to GCP:** IR-02
+- **Unlocks / depends:** IR-02
 
-#### E7.4 · L7 · Ephemeral containment
+#### SEC-E7.4 · L7 · Ephemeral containment
 - **Scenario:** Malicious Run revision scaled to zero.
 - **Predict impact (write first):** What evidence remains? Contain how?
 - **Design control:** IAM+traffic+logs playbook.
-- **Map to GCP:** DT-03
-- **Unlocks / depends:** DT-03
+- **Map to GCP:** IR-03
+- **Unlocks / depends:** IR-03
 
-#### E7.5 · L7 · KMS key leak branch
+#### SEC-E7.5 · L7 · KMS key leak branch
 - **Scenario:** Suspect DEK in logs; KEK in KMS.
 - **Predict impact (write first):** Different steps?
-- **Design control:** CR-15 + DT-05 combined.
-- **Map to GCP:** CR-15, DT-05
+- **Design control:** CR-15 + IR-05 combined.
+- **Map to GCP:** CR-15, IR-05
 - **Unlocks / depends:** CR-15
 
-#### E7.6 · L7 · Economic DoS bill spike
+#### SEC-E7.6 · L7 · Economic DoS bill spike
 - **Scenario:** LB egress + logging + LLM tokens 10× overnight.
 - **Predict impact (write first):** Is it attack or bug?
-- **Design control:** Budget kill switch + AB/DD controls.
-- **Map to GCP:** DD-07, 10.3
-- **Unlocks / depends:** DD-07
+- **Design control:** Budget kill switch + AB/DOS controls.
+- **Map to GCP:** DOS-07, 10.3
+- **Unlocks / depends:** DOS-07
 
-#### E7.7 · L7 · Public object scrape window
+#### SEC-E7.7 · L7 · Public object scrape window
 - **Scenario:** Bucket public 3 hours.
 - **Predict impact (write first):** What can you still know?
-- **Design control:** DT-06 evidence plan.
-- **Map to GCP:** DT-06
-- **Unlocks / depends:** DT-06
+- **Design control:** IR-06 evidence plan.
+- **Map to GCP:** IR-06
+- **Unlocks / depends:** IR-06
 
-#### E7.8 · L7 · Backup ransomware
+#### SEC-E7.8 · L7 · Backup ransomware
 - **Scenario:** Same SA deletes SQL + GCS backups.
 - **Predict impact (write first):** Design flaw?
 - **Design control:** Separation + immutability.
-- **Map to GCP:** DT-07
-- **Unlocks / depends:** DT-07
+- **Map to GCP:** IR-07
+- **Unlocks / depends:** IR-07
 
 ### 5.8 Level 8 — AI, privacy, compliance, scale
 
-#### E8.1 · L8 · CCM gap lite
+#### SEC-E8.1 · L8 · CCM gap lite
 - **Scenario:** the reference cloud app controls known.
 - **Predict impact (write first):** Map to five CCM domains; one gap.
 - **Design control:** CM-01 spreadsheet.
 - **Map to GCP:** CM-01, 7.9
 - **Unlocks / depends:** CM-01
 
-#### E8.2 · L8 · Cache stampede under attack
+#### SEC-E8.2 · L8 · Cache stampede under attack
 - **Scenario:** Attacker forces TTL expiry on hot key.
 - **Predict impact (write first):** Availability impact.
 - **Design control:** Singleflight+jitter+Armor.
-- **Map to GCP:** DD-08, architecture studios (security-relevant only)
-- **Unlocks / depends:** DD-08
+- **Map to GCP:** DOS-08, architecture studios (security-relevant only)
+- **Unlocks / depends:** DOS-08
 
-#### E8.3 · L8 · Prompt injection on Vertex app
+#### SEC-E8.3 · L8 · Prompt injection on Vertex app
 - **Scenario:** Support bot with tool `refund(orderId)`.
 - **Predict impact (write first):** Indirect injection via ticket body.
 - **Design control:** Tool allowlist+confirm+AI-01 controls.
 - **Map to GCP:** AI-01, AI-02, 9c
 - **Unlocks / depends:** AI-01
 
-#### E8.4 · L8 · Agent tool abuse
+#### SEC-E8.4 · L8 · Agent tool abuse
 - **Scenario:** Agent has GCS read on all buckets.
 - **Predict impact (write first):** Exfil via prompt.
 - **Design control:** Narrow SA+confirm.
 - **Map to GCP:** AI-02
 - **Unlocks / depends:** AI-02
 
-#### E8.5 · L8 · Confidential VM buys/costs
+#### SEC-E8.5 · L8 · Confidential VM buys/costs
 - **Scenario:** Store DEKs in memory on GCE.
 - **Predict impact (write first):** Does Confidential VM stop SSRF? SQLi?
 - **Design control:** Memo CR-18/SC-03.
 - **Map to GCP:** CR-18, SC-03
 - **Unlocks / depends:** CR-18
 
-#### E8.6 · L8 · RAG AuthZ hole
+#### SEC-E8.6 · L8 · RAG AuthZ hole
 - **Scenario:** Retriever ignores caller tenant.
 - **Predict impact (write first):** Leak story.
 - **Design control:** Enforce AuthZ at fetch.
-- **Map to GCP:** AI-03, PR-02
+- **Map to GCP:** AI-03, PV-02
 - **Unlocks / depends:** AI-03
 
-#### E8.7 · L8 · Poisoned fine-tune set
+#### SEC-E8.7 · L8 · Poisoned fine-tune set
 - **Scenario:** Crowdsourced examples include jailbreaks.
 - **Predict impact (write first):** Risk.
 - **Design control:** Curation+eval+sign model.
 - **Map to GCP:** AI-04
 - **Unlocks / depends:** AI-04
 
-#### E8.8 · L8 · Shadow AI policy
+#### SEC-E8.8 · L8 · Shadow AI policy
 - **Scenario:** Dev pastes prod order CSV into public chatbot.
 - **Predict impact (write first):** Controls.
 - **Design control:** Policy+approved Vertex+DLP.
 - **Map to GCP:** AI-05
 - **Unlocks / depends:** AI-05
 
-#### E8.9 · L8 · Isolation class ADR
+#### SEC-E8.9 · L8 · Isolation class ADR
 - **Scenario:** HSM-class signing keys proposed on multi-tenant Cloud Run.
 - **Predict impact (write first):** Isolation enough?
 - **Design control:** SC-02 ADR → KMS/HSM.
 - **Map to GCP:** SC-02, CR-14
 - **Unlocks / depends:** SC-02
 
-#### E8.10 · L8 · Privacy vs security logging
+#### SEC-E8.10 · L8 · Privacy vs security logging
 - **Scenario:** Security wants 2-year raw HTTP bodies.
 - **Predict impact (write first):** Privacy tension?
-- **Design control:** PR-05 memo minimize+purpose.
-- **Map to GCP:** PR-05
-- **Unlocks / depends:** PR-05
+- **Design control:** PV-05 memo minimize+purpose.
+- **Map to GCP:** PV-05
+- **Unlocks / depends:** PV-05
 
 ### 5.9 Cryptography cards (CR-E*) — ≥25
 
@@ -2146,7 +2146,7 @@ INFO admin login success`.
 - **Scenario:** Two incidents: DEK in log; KMS IAM abuse on KEK.
 - **Predict impact (write first):** Different blast radii.
 - **Design control:** CR-15 runbooks.
-- **Map to GCP:** CR-15, DT-05
+- **Map to GCP:** CR-15, IR-05
 - **Unlocks / depends:** CR-15
 
 #### CR-E17 · L4 · Timing compare
@@ -2235,70 +2235,70 @@ INFO admin login success`.
 
 ## 5.10 Extra mixed-transfer cards (E9.*)
 
-#### E9.1 · L4 · Armor + app limiter cooperation
+#### SEC-E9.1 · L4 · Armor + app limiter cooperation
 - **Scenario:** Armor throttles by IP; app by tenant. NAT many users share IP.
 - **Predict impact (write first):** Who is unfairly throttled?
 - **Design control:** Edge for volumetric; app for tenant; NAT-aware IP as secondary signal.
-- **Map to GCP:** AB-02, DD-03, 4.10, 6.16
+- **Map to GCP:** AB-02, DOS-03, 4.10, 6.16
 - **Unlocks / depends:** AB-01, AB-02
 
-#### E9.2 · L5 · WIF misbind tabletop
+#### SEC-E9.2 · L5 · WIF misbind tabletop
 - **Scenario:** Attribute condition missing `repository`; any repo in org can mint tokens.
 - **Predict impact (write first):** Blast radius to prod deploy SA.
 - **Design control:** Tighten attributes; audit federated principals; rotate.
-- **Map to GCP:** CL-04, DT-05, 4.8, 7.8
+- **Map to GCP:** CL-04, IR-05, 4.8, 7.8
 - **Unlocks / depends:** CL-04, WL-02
 
-#### E9.3 · L3 · SameSite=Lax vs CSRF on subdomain
+#### SEC-E9.3 · L3 · SameSite=Lax vs CSRF on subdomain
 - **Scenario:** Evil on `evil.marketing.example.com` with cookie Domain=.example.com; Lax cookies.
 - **Predict impact (write first):** Which requests still carry cookies?
 - **Design control:** Host-only cookies; CSRF tokens; origin checks.
 - **Map to GCP:** AU-03, AU-04, 4.4
 - **Unlocks / depends:** AU-03, AU-04
 
-#### E9.4 · L6 · Cosign attestation gap
+#### SEC-E9.4 · L6 · Cosign attestation gap
 - **Scenario:** BinAuth requires attestor A; CI signs with attestor B keys in break-glass.
 - **Predict impact (write first):** Who can deploy?
 - **Design control:** Dual control; break-glass audited; dry-run first.
 - **Map to GCP:** WL-04, CK-05, 7.5
 - **Unlocks / depends:** WL-04
 
-#### E9.5 · L7 · Audit log sink IAM weak
+#### SEC-E9.5 · L7 · Audit log sink IAM weak
 - **Scenario:** Same project SA can overwrite log sink destination objects.
 - **Predict impact (write first):** Integrity of IR evidence?
 - **Design control:** Sink to separate project; bucket retention; deny overwrite.
-- **Map to GCP:** DT-01, 7.6, 10
-- **Unlocks / depends:** DT-01
+- **Map to GCP:** IR-01, 7.6, 10
+- **Unlocks / depends:** IR-01
 
-#### E9.6 · L8 · Model Armor / prompt firewall literacy
+#### SEC-E9.6 · L8 · Model Armor / prompt firewall literacy
 - **Scenario:** Vertex app; untrusted docs in RAG.
 - **Predict impact (write first):** Indirect injection paths.
 - **Design control:** AuthZ at retrieval; DLP; prompt firewall `(verify)` product; tool confirmations.
-- **Map to GCP:** AI-01, AI-03, PR-02, 9c
+- **Map to GCP:** AI-01, AI-03, PV-02, 9c
 - **Unlocks / depends:** AI-01
 
-#### E9.7 · L2 · HSTS preload tradeoff
+#### SEC-E9.7 · L2 · HSTS preload tradeoff
 - **Scenario:** Marketing wants HTTP landing A/B; security wants HSTS preload.
 - **Predict impact (write first):** What breaks if preload?
 - **Design control:** HSTS on app origins first; preload only when all subdomains HTTPS.
 - **Map to GCP:** CR-12, A5 TLS / Phase 4 Armor
 - **Unlocks / depends:** CR-12
 
-#### E9.8 · L5 · Public BigQuery dataset ACLs
+#### SEC-E9.8 · L5 · Public BigQuery dataset ACLs
 - **Scenario:** Analyst grants `allAuthenticatedUsers` on dataset "temporarily".
 - **Predict impact (write first):** Exfil class.
 - **Design control:** Remove; org policy; VPC-SC; SDP classify.
-- **Map to GCP:** CL-02, PR-01, 7.3, 7.7
+- **Map to GCP:** CL-02, PV-01, 7.3, 7.7
 - **Unlocks / depends:** CL-02
 
-#### E9.9 · L4 · GraphQL persisted queries only
+#### SEC-E9.9 · L4 · GraphQL persisted queries only
 - **Scenario:** Public `/graphql` with introspection on.
 - **Predict impact (write first):** Schema recon + DoS.
 - **Design control:** Persist allowlist; disable introspection; depth/cost limits.
 - **Map to GCP:** AB-04, 4.10
 - **Unlocks / depends:** AB-04
 
-#### E9.10 · L3 · PKCE downgrade
+#### SEC-E9.10 · L3 · PKCE downgrade
 - **Scenario:** AS still accepts auth code without code_verifier for "compat".
 - **Predict impact (write first):** Intercept path on public clients.
 - **Design control:** Mandatory S256 PKCE; reject missing verifier.
@@ -2356,44 +2356,44 @@ INFO admin login success`.
 - **Map to GCP:** CR-13, 4.3, 4.9
 - **Unlocks / depends:** CR-13
 
-## 5.12 Paper drills Z0.7–Z0.12
+## 5.12 Paper drills SEC-Z0.7–SEC-Z0.12
 
-#### Z0.7 · L0 · IND-CPA cartoon
+#### SEC-Z0.7 · L0 · IND-CPA cartoon
 - **Scenario:** Two message lengths equal; adversary sees ciphertext.
 - **Predict impact (write first):** What IND-CPA forbids the adversary from learning.
 - **Design control:** State game steps in 4 bullets.
 - **Map to GCP:** CR-01
 - **Unlocks / depends:** CR-01
 
-#### Z0.8 · L0 · Shared responsibility Cloud SQL
+#### SEC-Z0.8 · L0 · Shared responsibility Cloud SQL
 - **Scenario:** Unpatched app SQLi; Google patches MySQL engine.
 - **Predict impact (write first):** Who owns which?
 - **Design control:** Matrix row.
 - **Map to GCP:** PQ-S-03, 2.3
 - **Unlocks / depends:** PQ-S-03
 
-#### Z0.9 · L0 · ATT&CK tactic pick
+#### SEC-Z0.9 · L0 · ATT&CK tactic pick
 - **Scenario:** Attacker uses stolen SA JSON to list buckets.
 - **Predict impact (write first):** Tactic+technique family.
 - **Design control:** Name detection signal.
 - **Map to GCP:** TH-05, CL-04
 - **Unlocks / depends:** TH-05
 
-#### Z0.10 · L0 · Cookie flag table
+#### SEC-Z0.10 · L0 · Cookie flag table
 - **Scenario:** Blank table Secure/HttpOnly/SameSite/Host-only.
 - **Predict impact (write first):** Threat each flag mitigates.
 - **Design control:** Fill table.
 - **Map to GCP:** AU-01, AU-04
 - **Unlocks / depends:** AU-01
 
-#### Z0.11 · L0 · DoS layer label
+#### SEC-Z0.11 · L0 · DoS layer label
 - **Scenario:** 100 Gbps SYN; 5k rps login; slow headers; bill spike from logging.
-- **Predict impact (write first):** Label DD-01/03/05/07.
+- **Predict impact (write first):** Label DOS-01/03/05/07.
 - **Design control:** One control each.
-- **Map to GCP:** DD-*
-- **Unlocks / depends:** DD-01
+- **Map to GCP:** DOS-*
+- **Unlocks / depends:** DOS-01
 
-#### Z0.12 · L0 · CCM domain match
+#### SEC-Z0.12 · L0 · CCM domain match
 - **Scenario:** Five the reference cloud app controls listed.
 - **Predict impact (write first):** Match to IAM/EKM/LOG/TVM/AIS.
 - **Design control:** CM-01 checklist row.
@@ -2422,86 +2422,86 @@ SHA-256(password) at \(10^9\) guesses/s/GPU vs Argon2id ~64MB ~100 ms. Show orde
 
 ## 5.13 Integration drills (multi-module)
 
-#### E10.1 · L5 · SSRF → metadata → GCS exfil chain
+#### SEC-E10.1 · L5 · SSRF → metadata → GCS exfil chain
 - **Scenario:** Image-fetch API; Compute SA can read prod buckets; no egress deny.
 - **Predict impact (write first):** Step chain T1552.005 → object list → exfil.
 - **Design control:** Block metadata; minimize SA; VPC-SC; URL allowlist.
 - **Map to GCP:** CL-01, CL-02, NT-06, 4.2, 6.15
 - **Unlocks / depends:** CL-01, CL-04
 
-#### E10.2 · L6 · Poisoned base image through BinAuth gap
+#### SEC-E10.2 · L6 · Poisoned base image through BinAuth gap
 - **Scenario:** `:latest` tag mutable; attestor not required on one cluster.
 - **Predict impact (write first):** Persistence + credential theft.
 - **Design control:** Digest pin; BinAuth default deny; break-glass ticketed.
 - **Map to GCP:** WL-01, WL-04, CK-05, 7.5
 - **Unlocks / depends:** WL-04
 
-#### E10.3 · L4 · Armor bypass attempt + app still safe
+#### SEC-E10.3 · L4 · Armor bypass attempt + app still safe
 - **Scenario:** Encoded SQLi slips a coarse WAF rule.
 - **Predict impact (write first):** DB compromise if app concatenates.
 - **Design control:** Parameterized queries primary; WAF depth; logging.
 - **Map to GCP:** WA-05, WA-11, 7.4
 - **Unlocks / depends:** WA-05
 
-#### E10.4 · L7 · Ephemeral IR with key leak
+#### SEC-E10.4 · L7 · Ephemeral IR with key leak
 - **Scenario:** Cloud Run revision gone; DEK printed in structured log.
 - **Predict impact (write first):** Evidence left; crypto IR branch.
-- **Design control:** DT-03 + CR-15; disable versions; rewrap.
-- **Map to GCP:** DT-03, CR-15, 7.8
-- **Unlocks / depends:** DT-03, CR-15
+- **Design control:** IR-03 + CR-15; disable versions; rewrap.
+- **Map to GCP:** IR-03, CR-15, 7.8
+- **Unlocks / depends:** IR-03, CR-15
 
-#### E1B5 IAM · L8 · Indirect prompt injection → refund tool
+#### SEC-E10.5 · L8 · Indirect prompt injection → refund tool
 - **Scenario:** Attacker ticket body instructs agent to call `refund`.
 - **Predict impact (write first):** Fraud without login to admin.
 - **Design control:** Human confirm; tool allowlist; AuthZ; treat docs as data.
 - **Map to GCP:** AI-01, AI-02, 9c
 - **Unlocks / depends:** AI-01
 
-#### E10.6 · L3 · JWT kid pointing to attacker JWKS
+#### SEC-E10.6 · L3 · JWT kid pointing to attacker JWKS
 - **Scenario:** Library fetches JWKS from `jku` URL.
 - **Predict impact (write first):** Full auth bypass.
 - **Design control:** Pin JWKS; ignore jku; CR-10 + AU-05.
 - **Map to GCP:** AU-05, CR-10, 4.5
 - **Unlocks / depends:** AU-05
 
-#### E10.7 · L5 · Shared VPC trust creep
+#### SEC-E10.7 · L5 · Shared VPC trust creep
 - **Scenario:** Service project peers broadly; flat allow.
 - **Predict impact (write first):** Lateral from low to PCI-like tier.
 - **Design control:** Segmentation; PSC; deny default; treat peer as hostile.
 - **Map to GCP:** CL-07, NT-02, 6.15
 - **Unlocks / depends:** CL-07
 
-#### E10.8 · L2 · Economic DoS via log flood
+#### SEC-E10.8 · L2 · Economic DoS via log flood
 - **Scenario:** Unauthenticated endpoint logs full request bodies at 10k rps.
 - **Predict impact (write first):** Logging/LB bill spike.
 - **Design control:** Sample; body size limits; Armor; budget alerts.
-- **Map to GCP:** DD-07, AB-01, 10.3
-- **Unlocks / depends:** DD-07
+- **Map to GCP:** DOS-07, AB-01, 10.3
+- **Unlocks / depends:** DOS-07
 
-## 6. Capstones (C1–C4)
+## 6. Capstones (SEC-CAP1–SEC-CAP4)
 
 Issue only when stitch prerequisites unlocked. Each produces an ADR pack + tests/tabletop evidence — not a second product walkthrough.
 
-### C1 · the reference cloud app hardening pass
+### SEC-CAP1 · the reference cloud app hardening pass
 - **Depends:** AU-*, WA-* core, AB-01/02, CL-01, CR-12/13/14/20, A10 / B5 / API auth patterns + 7.3–7.4.
 - **Deliverable:** Threat model delta; control matrix; CR-20 checklist audit; failing→passing abuse tests (IDOR, CSRF, SSRF guard, JWT alg); residual risk ADR.
 - **GCP map:** Identity Platform / IAP, Armor policy *design* (attach only if Lab Reality), KMS/Secret Manager, Run IAM.
 - **Check:** Instructor grades prediction-vs-actual on two abuse tests + checklist completeness.
 
-### C2 · IR tabletop (60–90 min)
-- **Depends:** DT-*, CL-02/04, CR-15, roadmap 7.8 templates.
+### SEC-CAP2 · IR tabletop (60–90 min)
+- **Depends:** IR-*, CL-02/04, CR-15, roadmap 7.8 templates.
 - **Deliverable:** Facilitator injects one of: leaked SA key · public bucket · poisoned CI · KEK misuse; scribe fills Detect→…→Follow-up; grade time-to-contain + whether restore/rewrap tested.
 - **GCP map:** Audit logs, IAM disable, SCC finding JSON (synthetic OK).
 - **Check:** Order-of-operations correct; no 'redeploy before disable' failure.
 
-### C3 · Abuse-resistant public API
-- **Depends:** AB-*, DD-03/05/07, AU-08, 4.10, 6.16.
+### SEC-CAP3 · Abuse-resistant public API
+- **Depends:** AB-*, DOS-03/05/07, AU-08, 4.10, 6.16.
 - **Deliverable:** Placement ADR (Armor vs Gateway vs app); token-bucket implementation tests; bot signal plan; economic DoS budget alerts; GraphQL or search cost governors if in scope.
 - **GCP map:** Armor rate rules (credits-optional), reCAPTCHA Enterprise, Cloud Monitoring budgets.
 - **Check:** Tenant fairness test; 429+Retry-After; bill-spike kill switch named.
 
-### C4 · AI-gateway threat model
-- **Depends:** AI-01…05, PR-02, CR-18 lite, 9c.
+### SEC-CAP4 · AI-gateway threat model
+- **Depends:** AI-01…05, PV-02, CR-18 lite, 9c.
 - **Deliverable:** DFDs for prompt/tools/RAG; abuse cases (injection, tool exfil, cross-tenant RAG); controls; shadow-AI policy; residual risk.
 - **GCP map:** Vertex AI endpoint IAM, SDP, Model Armor literacy `(verify)`, Secret Manager.
 - **Check:** AuthZ-at-retrieval named; tool confirmations; DLP before prompt.
@@ -2518,14 +2518,14 @@ Issue only when stitch prerequisites unlocked. Each produces an ADR pack + tests
 | Ownership | Respects roadmap vs companion split | Minor bleed | Re-teaches A10 / shared-responsibility principles as new |
 | Safety | Local/synthetic only | OK | Proposes live attack on third parties |
 
-**C1 bar:** ≥4 abuse tests go red→green; CR-20 checklist marked with evidence paths.
-**C2 bar:** Containment order correct on clock; scribe sheet complete; one crypto-key branch exercised.
-**C3 bar:** Placement ADR + fairness test + budget kill switch named.
-**C4 bar:** AuthZ-at-retrieval explicit; tool confirmation; DLP before prompt.
+**SEC-CAP1 bar:** ≥4 abuse tests go red→green; CR-20 checklist marked with evidence paths.
+**SEC-CAP2 bar:** Containment order correct on clock; scribe sheet complete; one crypto-key branch exercised.
+**SEC-CAP3 bar:** Placement ADR + fairness test + budget kill switch named.
+**SEC-CAP4 bar:** AuthZ-at-retrieval explicit; tool confirmation; DLP before prompt.
 
 ### Capstone scheduling note
 
-Run **C1** after A10 / B5 / API auth patterns + CR-20 unlocked; **C2** after 7.8 + DT/CR-15; **C3** after 4.10 + 6.16 + AB/DD; **C4** after 9c + AI-*. Never schedule a capstone that smuggles a locked prop — postpone or unlock first (Prop Lock).
+Run **SEC-CAP1** after A10 / B5 / API auth patterns + CR-20 unlocked; **SEC-CAP2** after 7.8 + IR/CR-15; **SEC-CAP3** after 4.10 + 6.16 + AB/DOS; **SEC-CAP4** after 9c + AI-*. Never schedule a capstone that smuggles a locked prop — postpone or unlock first (Prop Lock).
 
 ### Exercise issuance reminder
 
@@ -2540,9 +2540,9 @@ Bank ≠ dump: issue **one** card; prediction line first; escalate hints; open A
 5. **Crypto library rule:** Tink / libsodium / lang stdlib — inventing AES is an automatic redo.
 6. **When roadmap and companion conflict on order:** roadmap wins; postpone companion exercise.
 7. **Mixed-transfer utterance:** "We'll use AU-05 and CR-10 together; name both before solving."
-8. **SCC green ≠ secure:** pair 7.6 with DT-02 alert design on day one of detection.
+8. **SCC green ≠ secure:** pair 7.6 with IR-02 alert design on day one of detection.
 9. **AI session:** always AuthZ-at-retrieval; never "the model will refuse."
-10. **FinOps security:** DD-07 budget alerts are security controls.
+10. **FinOps security:** DOS-07 budget alerts are security controls.
 
 ## 8. CSA CCM v4.x coverage checklist (lite)
 
@@ -2552,19 +2552,19 @@ Use as a *gap finder*, not a dump. Mark the reference cloud app evidence paths.
 |---|---|---|
 | GRC | CM-01, 7.9 | ADRs, risk register |
 | A&A | CM-02, 7.9 | Control matrix |
-| ILM | PR-01…04 | Classification labels |
+| ILM | PV-01…04 | Classification labels |
 | IAM | CL-03, AU-*, B5 IAM/7.2 | Least privilege bindings |
 | UEM | NT-05, 6.14 | IAP device signals literacy |
 | EKM / CEK | CR-14…15, 7.3 | KMS keys, CMEK |
-| DSP | PR-02, 7.3 | SDP jobs |
-| LOG | DT-01, 10 | Audit sinks separate project |
+| DSP | PV-02, 7.3 | SDP jobs |
+| LOG | IR-01, 10 | Audit sinks separate project |
 | IVS | CK-*, WL-*, 7.5 | Hardened runtime |
-| SEF / TVM | DT-*, WL-01 | IR + scanning |
+| SEF / TVM | IR-*, WL-01 | IR + scanning |
 | STA | WL-*, CR-10 | Attestations |
 | AIS | 3.0/4.x, WA-* | Secure SDLC tests |
 | DCS | PQ-S-03 | Shared responsibility matrix |
 | MSC | NT-*, 6.x | Network segmentation |
-| BCE | DT-07 | Backup immutability |
+| BCE | IR-07 | Backup immutability |
 
 ## 9. ATT&CK cloud quick map (teaching)
 
@@ -2582,49 +2582,49 @@ Use as a *gap finder*, not a dump. Mark the reference cloud app evidence paths.
 *Qualitative. Do not paste before learner attempt. No numeric DB goldens.*
 
 ### K-Z0 / K-E1
-- **Z0.1:** Only AES-GCM (AEAD) gives confidentiality under Kerckhoffs among typical lists; bcrypt is password KDF not general encryption; Base64/URL/rot13 none; SHA-256 integrity-ish not conf; HMAC authenticity; XOR homemade fails.
-- **Z0.2:** User AuthN at app/IAP/IdP — not GFE alone; service AuthN via SA/mTLS/ID tokens; TLS hop-by-hop may terminate at LB.
-- **Z0.3:** Deny default→fail-safe; parameterized SQL→economy/complete mediation; IAP→complete mediation/least privilege; org policy→fail-safe.
-- **E1.1:** Accept any coherent STRIDE; must include AuthZ elevation (BOLA) and SSRF/DoS somewhere if checkout talks outbound.
-- **E1.3:** Prefer cheaper edge early if threat model allows; accept residual volumetric risk on Hosting-only — explicit Z.
+- **SEC-Z0.1:** Only AES-GCM (AEAD) gives confidentiality under Kerckhoffs among typical lists; bcrypt is password KDF not general encryption; Base64/URL/rot13 none; SHA-256 integrity-ish not conf; HMAC authenticity; XOR homemade fails.
+- **SEC-Z0.2:** User AuthN at app/IAP/IdP — not GFE alone; service AuthN via SA/mTLS/ID tokens; TLS hop-by-hop may terminate at LB.
+- **SEC-Z0.3:** Deny default→fail-safe; parameterized SQL→economy/complete mediation; IAP→complete mediation/least privilege; org policy→fail-safe.
+- **SEC-E1.1:** Accept any coherent STRIDE; must include AuthZ elevation (BOLA) and SSRF/DoS somewhere if checkout talks outbound.
+- **SEC-E1.3:** Prefer cheaper edge early if threat model allows; accept residual volumetric risk on Hosting-only — explicit Z.
 
 ### K-session / CSRF / XSS (E2.x)
-- **E2.2:** Secure+HttpOnly+SameSite; split cookie domains; rotate session; XSS fix on marketing.
-- **E2.3:** Server mints id; regenerate on login; never accept client session id.
-- **E2.5:** HttpOnly stops JS cookie read but XSS still drives actions; CSRF token in DOM readable — use cookie+header pattern carefully; encode+CSP.
-- **E2.7:** Credentials+`*` is illegal/broken; evil.com can call API as user if reflection bug; exact origins.
+- **SEC-E2.2:** Secure+HttpOnly+SameSite; split cookie domains; rotate session; XSS fix on marketing.
+- **SEC-E2.3:** Server mints id; regenerate on login; never accept client session id.
+- **SEC-E2.5:** HttpOnly stops JS cookie read but XSS still drives actions; CSRF token in DOM readable — use cookie+header pattern carefully; encode+CSP.
+- **SEC-E2.7:** Credentials+`*` is illegal/broken; evil.com can call API as user if reflection bug; exact origins.
 
 ### K-auth (E3.x)
-- **E3.2:** Block link-local/metadata; allowlist; no open redirects; tests for 169.254.169.254; Run preferred over broad GCE scopes.
-- **E3.5:** Attacker signs HS256 with PEM public key as secret if library switches alg; fix allowlist RS256 only + key from config.
-- **E3.6:** Exact redirect URI; PKCE; state bound.
-- **E3.8:** Authz `(user, action, order)` + tenant predicate; negative tests.
-- **E3.10:** Number matching or WebAuthn; rate-limit pushes.
+- **SEC-E3.2:** Block link-local/metadata; allowlist; no open redirects; tests for 169.254.169.254; Run preferred over broad GCE scopes.
+- **SEC-E3.5:** Attacker signs HS256 with PEM public key as secret if library switches alg; fix allowlist RS256 only + key from config.
+- **SEC-E3.6:** Exact redirect URI; PKCE; state bound.
+- **SEC-E3.8:** Authz `(user, action, order)` + tenant predicate; negative tests.
+- **SEC-E3.10:** Number matching or WebAuthn; rate-limit pushes.
 
 ### K-abuse / DoS (E4.x)
-- **E4.3:** Token bucket keyed by tenant then user; IP secondary; burst 20 capacity, refill 5/s — numbers illustrative.
-- **E4.4:** Armor volumetric/L7 flood; Gateway API quotas; app business limits+bot.
-- **E4.8:** Local only — safety.
-- **E4.15:** Refuse third-party attack.
+- **SEC-E4.3:** Token bucket keyed by tenant then user; IP secondary; burst 20 capacity, refill 5/s — numbers illustrative.
+- **SEC-E4.4:** Armor volumetric/L7 flood; Gateway API quotas; app business limits+bot.
+- **SEC-E4.8:** Local only — safety.
+- **SEC-E4.15:** Refuse third-party attack.
 
 ### K-cloud (E5.x)
-- **E5.3:** Disable key/SA first; audit window; rotate; migrate WIF; never 'rotate later'.
-- **E5.6:** VPC-SC stops copy to projects outside perimeter *when enforced and services in scope* `(verify)`; IAM theft alone insufficient.
-- **E5.7:** Remove ACE → inventory → classify → notify decision → org policy.
+- **SEC-E5.3:** Disable key/SA first; audit window; rotate; migrate WIF; never 'rotate later'.
+- **SEC-E5.6:** VPC-SC stops copy to projects outside perimeter *when enforced and services in scope* `(verify)`; IAM theft alone insufficient.
+- **SEC-E5.7:** Remove ACE → inventory → classify → notify decision → org policy.
 
 ### K-supply (E6.x)
-- **E6.1:** Privileged+hostPath=/ ≈ host root.
-- **E6.4:** BinAuth admits only attested digests — not a vuln scanner substitute.
-- **E6.6:** RCE→metadata token→cloud API as SA.
+- **SEC-E6.1:** Privileged+hostPath=/ ≈ host root.
+- **SEC-E6.4:** BinAuth admits only attested digests — not a vuln scanner substitute.
+- **SEC-E6.6:** RCE→metadata token→cloud API as SA.
 
 ### K-IR (E7.x)
-- **E7.2/E7.5:** Disable/contain before rebuild; DEK leak re-encrypt data; KEK leak rewrap DEKs + disable KMS versions.
-- **E7.4:** Logs+IAM+artifact registry image; traffic to last known good; no disk forensics on vanished revision.
+- **SEC-E7.2/SEC-E7.5:** Disable/contain before rebuild; DEK leak re-encrypt data; KEK leak rewrap DEKs + disable KMS versions.
+- **SEC-E7.4:** Logs+IAM+artifact registry image; traffic to last known good; no disk forensics on vanished revision.
 
 ### K-AI / privacy (E8.x)
-- **E8.3:** Ticket body injects tool call; require human confirm refund; narrow tool.
-- **E8.6:** Retrieval layer enforces tenant AuthZ — model cannot be trusted to filter.
-- **E8.5:** TEE does not stop SQLi/SSRF/IAM misbind.
+- **SEC-E8.3:** Ticket body injects tool call; require human confirm refund; narrow tool.
+- **SEC-E8.6:** Retrieval layer enforces tenant AuthZ — model cannot be trusted to filter.
+- **SEC-E8.5:** TEE does not stop SQLi/SSRF/IAM misbind.
 
 ### K-crypto (CR-E*)
 - **CR-E1:** Cookie: integrity+auth (MAC/AEAD session store id); image: often integrity/CDN TLS; PAN token: tokenization preferred / AEAD if stored.
@@ -2641,18 +2641,18 @@ Use as a *gap finder*, not a dump. Mark the reference cloud app evidence paths.
 
 ---
 
-### K-extra (E9 / CR-E29+ / Z0.7+)
-- **E9.1:** Per-IP edge unfair on NAT; tenant key in app; document layered ADR.
-- **E9.2:** Missing repo attribute → any workflow in org; fix condition; audit STS; treat as key leak IR.
-- **E9.3:** Cross-site subdomain cookie; Host-only + CSRF.
-- **E9.5:** Log sink overwrite = evidence destruction; separate project + retention.
-- **E9.10:** PKCE optional = code intercept on public clients.
+### K-extra (SEC-E9 / CR-E29+ / SEC-Z0.7+)
+- **SEC-E9.1:** Per-IP edge unfair on NAT; tenant key in app; document layered ADR.
+- **SEC-E9.2:** Missing repo attribute → any workflow in org; fix condition; audit STS; treat as key leak IR.
+- **SEC-E9.3:** Cross-site subdomain cookie; Host-only + CSRF.
+- **SEC-E9.5:** Log sink overwrite = evidence destruction; separate project + retention.
+- **SEC-E9.10:** PKCE optional = code intercept on public clients.
 - **CR-E29:** Dual purpose keys couple TLS and identity compromise.
 - **CR-E30:** Rewrap DEKs under new KEK; destroy old version on schedule; no full reencrypt required for CMEK objects `(verify)` product behavior.
 - **CR-E31:** Fixed IV ⇒ deterministic ciphertext leaks equality.
 - **CR-E35:** Pepper in git collapses to unsalted after repo leak.
-- **Z0.7:** IND-CPA: adversary cannot distinguish encryptions of equal-length chosen messages.
-- **Z0.11:** SYN→DD-01; login flood→DD-03; slow header→DD-05; logging bill→DD-07.
+- **SEC-Z0.7:** IND-CPA: adversary cannot distinguish encryptions of equal-length chosen messages.
+- **SEC-Z0.11:** SYN→DOS-01; login flood→DOS-03; slow header→DOS-05; logging bill→DOS-07.
 
 ### K-worked-illustrations
 - Padding oracle: distinct errors leak plaintext via adaptive CBC malleability; AEAD removes oracle.
@@ -2668,13 +2668,13 @@ Use as a *gap finder*, not a dump. Mark the reference cloud app evidence paths.
 
 | Plane | Assets | Primary attackers | Top companion modules | Roadmap anchors |
 |---|---|---|---|---|
-| Storefront | Session, catalog, carts | Web attacker, bots | AU-01…04, WA-02, AB-03, DD-03 | A5 TLS / Phase 4 Armor, 4.4, 4.10 |
+| Storefront | Session, catalog, carts | Web attacker, bots | AU-01…04, WA-02, AB-03, DOS-03 | A5 TLS / Phase 4 Armor, 4.4, 4.10 |
 | Customer API | Orders, PII, tokens | Web, stuffing, IDOR | AU-08, AU-11, WA-05, AB-01, CL-01 | 4.2–4.7, 4.10 |
 | Admin | Refunds, config | Stolen session, CSRF, BFLA | AU-03, AU-12, NT-05 | 4.4, 4.7, 6.14 |
 | Service-to-service | SA identity, internal RPC | Confused deputy, key theft | AU-14, CL-04, CR-17 | 4.8, 7.2 |
-| Data | SQL, GCS, BQ | Public ACE, SSRF→cred, insider | CL-02, CR-14, PR-*, NT-06 | 7.3, 6.15 |
+| Data | SQL, GCS, BQ | Public ACE, SSRF→cred, insider | CL-02, CR-14, PV-*, NT-06 | 7.3, 6.15 |
 | CI/CD | Build SA, images | Poisoned PR, unsigned deploy | WL-02, WL-04, CK-05 | 4.8, 7.5 |
-| AI gateway | Tools, RAG corpus | Prompt injection, tool abuse | AI-01…05, PR-02 | 9c |
+| AI gateway | Tools, RAG corpus | Prompt injection, tool abuse | AI-01…05, PV-02 | 9c |
 
 **Always-on residual risks to name in ADRs:** insider with legitimate IAM; 0-day in managed runtime; economic DoS under budget; supply chain of transitive deps; prompt injection on any LLM tool with side effects.
 
@@ -2684,10 +2684,10 @@ Use as a *gap finder*, not a dump. Mark the reference cloud app evidence paths.
 |---|---|---|
 | Stanford CS255 | Games; PRFs; AES; AEAD; DH; RSA; signatures; TLS; randomness | CR-01…CR-12, CR-07 |
 | Stanford CS155 | Control hijack; web attacker; network attacker; cloud apps; AI security | WA-10, TH-01, WA-*, NT-*, AI-* |
-| Stanford XACS235 | Shared responsibility; K8s; IAM; KMS; SecOps; bots; CCM; privacy; TEEs | PQ-S-03, CK-*, CL-*, CR-14, CR-18, DT-*, AB-03, CM-*, PR-*, SC-03 |
+| Stanford XACS235 | Shared responsibility; K8s; IAM; KMS; SecOps; bots; CCM; privacy; TEEs | PQ-S-03, CK-*, CL-*, CR-14, CR-18, IR-*, AB-03, CM-*, PV-*, SC-03 |
 | MIT 6.858/6.566 | Threat models; privsep; sandbox; web; TLS; side channels; economics | TH-*, WA-*, CR-12, CR-16, SC-*, PQ-S-05 |
-| Berkeley CS161 | Crypto; ACL/capabilities; spoofing/TCP/BGP/DNS; TLS; DoS; XSS/CSRF; anonymity | CR-* lite, NT-04, DD-*, WA-01…03, PR-anon lite |
-| CMU 95-746 | Cloud transfer; IAM CSP/CSC; data states; TTPs; compliance; isolation | PQ-S-03, CL-*, CR-14/17/18, CM-*, DT-*, SC-02 |
+| Berkeley CS161 | Crypto; ACL/capabilities; spoofing/TCP/BGP/DNS; TLS; DoS; XSS/CSRF; anonymity | CR-* lite, NT-04, DOS-*, WA-01…03, PR-anon lite |
+| CMU 95-746 | Cloud transfer; IAM CSP/CSC; data states; TTPs; compliance; isolation | PQ-S-03, CL-*, CR-14/17/18, CM-*, IR-*, SC-02 |
 
 *This index is a stitch aid — not a claim that the companion replaces those courses.*
 
