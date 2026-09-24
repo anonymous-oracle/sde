@@ -44,6 +44,18 @@ def extract(root, dest):
     return names
 
 
+def kit_hash(root):
+    """sha256 over the §3.8 kit files as the course text prints them (name, then content, in text order), so a report
+    can be tied to the text it ran"""
+    import hashlib
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        h = hashlib.sha256()
+        for n in extract(root, d):
+            h.update(n.encode() + b"\0" + open(os.path.join(d, n), "rb").read() + b"\0")
+        return h.hexdigest()
+
+
 def sh(cmd, **kw):
     return subprocess.run(cmd, capture_output=True, text=True, **kw)
 
@@ -112,6 +124,7 @@ def main():
           "throwaway local cluster with timezone UTC and C collation, and every exercise key is run by the kit's own "
           "`run_ex.py`. The printed goldens are compared, never edited (invariant 6).", "",
           f"- Files extracted from §3.8: {len(names)} ({', '.join(names)})",
+          f"- Kit text sha256: `{kit_hash(root)}`",
           f"- Server: PostgreSQL {report.get('version', '?')} (the kit pins 15.x; run under `LAB_ALLOW_PG_MAJOR`, "
           "so the deviation is recorded here)",
           f"- Keys run: {len(rows)} · match: {ok} · golden-unreproduced: {len(rows) - ok}", "",

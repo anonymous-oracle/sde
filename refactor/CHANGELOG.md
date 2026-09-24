@@ -316,3 +316,20 @@ Old anchor → new anchor inside a line; meaning unchanged. The mapping is in `c
 | cyber | SEC-10 | 25 |
 | cyber | SEC-11 | 25 |
 | cyber | SEC-12 | 13 |
+
+## R5 Academic depth and conflict close-out (D17) — 2026-09-24
+
+Build rules R5-1…R5-16 in `refactor-tools/r5_acad.py`, 98 journal entries in `outputs/r2b/journal.jsonl`. Every replaced line is kept verbatim in `records/`.
+
+| Rule | Part | What |
+|---|---|---|
+| R5-1 | all six | rule 0.4.10 (academic depth) joins the §0.4 contract that every part copies |
+| R5-2…R5-5 | main course | §0.6 university and textbook alignment; A2 and A4 first-pass notes; academic passes (D blocks) in 20 modules; Appendix P problem sets and Appendix K keys |
+| R5-6, R5-15 | primer | academic section (queueing, tails, hashing, caching, quorums, CAP); C-40 dated web check of the volatile GCP facts, `verify` flags kept |
+| R5-7, R5-14 | SQL | academic section; C-56 pins checked by `run_ex.py` before any key runs, and the bring-up notes |
+| R5-8 | cyber | academic section |
+| R5-9 | Go | academic section |
+| R5-10…R5-13 | patterns | C-61 named real examples and GCP lens per pattern; C-59 checks for the ARCH, GRASP and AP items (two relabelled as integration checks); the kata gate; §12–§15 and Appendix K with 23 Go katas and their reference solutions |
+| R5-16 | ledger | C-23, C-66: regenerated as a clean template (D2) with one YAML block; §5 preferences kept verbatim; checkpoints listed, all not-started |
+
+Conflicts closed by probe in `verify.py`: C-23, C-38, C-40, C-50, C-56, C-59, C-61, C-66, C-NEW-02, C-NEW-08 (C-65 at R4). The finished course is copied to the repo's `course/` folder by the build.

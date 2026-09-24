@@ -72,11 +72,25 @@ def pri(f):
           "cards (queueing, tails, hashing, load balancing, caching, quorums, CAP).")
 
 
+def pri_c40(f):
+    fr = fragments("primer.md")
+    ev = ("C-40: the primer's GCP details came from a January 2026 knowledge cutoff; the volatile ones were checked by "
+          "web search on 2026-09-24 and the results are dated in place. Every `verify` flag is kept (invariant 7).")
+    f.ins_after("R5-15", "- **GCP mappings come from my own knowledge (cutoff January 2026)", fr["c40-note"], ev)
+    f.ins_after("R5-15", "- **GCP lens:** **Memorystore** (Redis, Redis Cluster, Memcached, Valkey", fr["c40-memcached"], ev)
+
+
 def sql(f):
     fr, fk = fragments("sql.md"), fragments("sql-keys.md")
     f.ins("R5-7", f.heading("Appendix K"), fr["section"] + [""], EV + " The SQL companion's academic pass: the "
           "proof layer of its RT and CS cards (main course A8.D1).")
     f.ins("R5-7", f.heading("Appendix V"), fk["keys"] + [""], EV + " Keys for DBT-P1…DBT-P14 (rule 0.4.7).")
+    ev = ("C-56 and C-NEW-02: the goldens' pins (seed v1, PostgreSQL 15.x, UTC, C collation) were stated only in prose; "
+          "run_ex.py now asserts them, and the kit was re-verified in place from the course text (goldens unchanged).")
+    f.ins("R5-14", f.idx("    return p.returncode, p.stdout, p.stderr") + 1, fr["run-ex-pins"], ev)
+    f.ins("R5-14", f.idx('    mods = sys.argv[1].split(",")'), fr["run-ex-call"], ev)
+    f.ins("R5-14", f.heading("3.2 Bring-up") , fr["s3.1-note"] + [""], ev)
+    f.ins_after("R5-14", "4. Smoke: `SELECT lab.chk('SELECT 1');`", fr["s3.2-note"], ev)
 
 
 def sec(f):
@@ -157,7 +171,41 @@ def dp(f):
 def build(files, go, root):
     cur(files[CUR])
     pri(files[PRI])
+    pri_c40(files[PRI])
     sql(files[SQL])
     sec(files[SEC])
     dp(files[DPC])
     gof(go)
+
+
+LED = "session-progress-ledger.md"
+STATES = ("not-started", "in-progress", "taught", "mastered", "shaky", "unverified", "sliced")   # rule 0.4.5
+
+
+def prefs(lines):
+    """the earlier ledger's §5 bullets, verbatim (D2 keeps them)"""
+    s = next(i for i, l in enumerate(lines) if l.startswith("## 5. "))
+    e = next(i for i in range(s + 1, len(lines)) if lines[i].strip() == "---")
+    return [l for l in lines[s + 1:e] if l.startswith("- ")]
+
+
+def led(root):
+    """C-23, C-66 (D2): the ledger is regenerated as a clean template with the §14 YAML block. The earlier ledger is
+    read from its frozen copy beside the R2 snapshot; every line of it goes to records/ (D3)."""
+    from r2b_common import F
+    old = open(os.path.join(root, "outputs", "r2b", "in", LED), encoding="utf-8").read().split("\n")
+    f = F(LED, old)
+    RECORDS.setdefault(LED, [])
+    p, new = prefs(old), []
+    for l in fragments("ledger.md")["ledger"]:
+        if l == "@@@PREFS@@@":
+            new += p
+        elif l == "@@@PREFS-YAML@@@":
+            new += ["    - '" + x[2:].replace("'", "''") + "'" for x in p]
+        else:
+            new.append(l)
+    f.block("R5-16", "regenerate", 0, len(old), new + [""],
+            "D2 (fresh start): the ledger is regenerated as a clean template, nothing carried over as done, the §5 "
+            "preferences kept verbatim. C-66: the §14 schema (one fenced YAML block, validated by verify.py against "
+            "the ID registry and the DAG). C-23: the A4, A5, A6 and A7 checkpoints are listed, all not-started.")
+    return f

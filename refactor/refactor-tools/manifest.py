@@ -31,6 +31,7 @@ ID_RE = re.compile(
     r"|GO-(?:E\d+\.\d+|P\d{2}|CAP\d|\d{2})"                 # Go companion (D12, D13)
     r"|SDP-T[0-5]"
     r"|E-[A-Z]{2}\d"                               # cyber checkpoint IDs (E-NT1 …)
+    r"|CR-E\d{1,2}"                                # cyber crypto exercises (CR-E1 … CR-E35; C-38)
     r"|(?:" + HY + r")-\d{1,2}[a-c]?(?:\.\d+)?"    # hyphenated families
     r"|[EZ]\d+\.\d+[a-z]?"                         # exercise levels / Z0 drills
     r"|C[1-4]\.\d+"                                # capstone sub-items

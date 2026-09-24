@@ -94,3 +94,32 @@ The academic pass of this companion: database theory at the depth of a universit
 - **DBT-P12** · compute · A page on disk has pageLSN 30. During redo, ARIES meets log records for that page with LSNs 25 and 40. Which does it apply, and why is redo safe to repeat after a second crash?
 - **DBT-P13** · compute · A B+ tree has fanout 200 and leaves holding 100 entries each; the table has 100,000,000 rows, one entry per row. How many levels does the tree have, and how many page reads does a lookup cost when only the root is cached?
 - **DBT-P14** · compute · A table has 1,000,000 rows. Column a has 50 distinct values and column b has 10, both uniform. Estimate the rows matching `a = 1 AND b = 2` under the independence assumption, and say when the estimate fails.
+@@@ run-ex-pins
+
+def pins():
+    """The goldens hold only for seed v1 on PostgreSQL 15.x with timezone UTC and the C collation; refuse to run on drift."""
+    rc, out, err = psql("SHOW server_version_num;\nSHOW TimeZone;\n"
+                        "SELECT datcollate FROM pg_database WHERE datname = current_database();\n"
+                        "SELECT count(*) FROM lab.tenant;\nSELECT count(*) FROM lab.app_user;\n"
+                        "SELECT count(*) FROM lab.product;\nSELECT count(*) FROM lab.customer_order;\n")
+    if rc != 0:
+        sys.exit("pins: " + err.strip())
+    num, tz, coll, *counts = out.split()
+    major = str(int(num) // 10000)
+    bad = []
+    if major != "15" and major != os.environ.get("LAB_ALLOW_PG_MAJOR"):
+        bad.append(f"PostgreSQL {major}.x, not 15.x (set LAB_ALLOW_PG_MAJOR={major} to run anyway, and record the deviation)")
+    if tz not in ("UTC", "Etc/UTC"):
+        bad.append(f"TimeZone {tz}, not UTC")
+    if coll not in ("C", "POSIX"):
+        bad.append(f"collation {coll}, not C")
+    if counts != ["5", "2000", "500", "20000"]:
+        bad.append(f"seed counts {counts}, not seed v1's 5 tenants, 2000 users, 500 products, 20000 orders")
+    if bad:
+        sys.exit("pins: " + "; ".join(bad))
+@@@ run-ex-call
+    pins()
+@@@ s3.1-note
+> **Note:** Kit check of 2026-09-24: every file in §3.8 was extracted from this companion and run against a fresh local cluster (timezone UTC, C collation, seed v1). All 103 printed fingerprints (the exercise goldens and the trap fingerprints) were reproduced exactly. That server was PostgreSQL 16.13, so the run was a recorded deviation from the 15.x pin, made under `LAB_ALLOW_PG_MAJOR=16`. The pin stays at 15.x until a full run on another major is recorded.
+@@@ s3.2-note
+5. The pins are checked, not trusted: `run_ex.py` first reads `server_version_num`, `TimeZone`, the database collation and the seed's row counts, and refuses to run if any of them drifts from seed v1 on PostgreSQL 15.x with UTC and C. To run on another major version on purpose, set `LAB_ALLOW_PG_MAJOR` to that major and record the deviation beside the goldens you compare. If the collation check fails on a stock container image whose default locale is not C, create the database with the C collation: `CREATE DATABASE labdb LC_COLLATE 'C' LC_CTYPE 'C' TEMPLATE template0` (or initialise the cluster with `--locale=C`).

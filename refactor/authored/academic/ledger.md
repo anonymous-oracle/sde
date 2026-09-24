@@ -1,3 +1,4 @@
+@@@ ledger
 # Session Progress Ledger — the main course and its five companions
 Regenerated on 2026-09-24 as a clean template. The learner chose a fresh start (decision D2), so nothing from the earlier ledger counts as done: every module and card begins `not-started`. The earlier ledger's standing teaching preferences are kept word for word (§5). Upload this file alongside the six parts of the course: the main course (The Consolidated Cloud Mastery Curriculum) and its five companions (System Design Primer, SQL & Databases, Design Patterns, Cloud Cybersecurity, Go Language).
 
@@ -48,10 +49,7 @@ Regenerated on 2026-09-24 as a clean template. The learner chose a fresh start (
 
 ## 5. Standing teaching preferences confirmed this session (binding — don't re-ask)
 
-- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
-- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
-- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a `Curriculum` module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
-- If a companion file references module IDs that don't exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+@@@PREFS@@@
 
 ---
 
@@ -80,10 +78,7 @@ ledger_version: 2
 as_of: 2026-09-24
 learner:
   preferences:        # §5, verbatim strings
-    - '**Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.'
-    - '**"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.'
-    - 'When companion-file content (system-design-primer, SQL, design-patterns) overlaps a `Curriculum` module, **teach it once, stitched into the same session** — never as a separate pass, per each companion''s own §0.2 stitching rules.'
-    - 'If a companion file references module IDs that don''t exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.'
+@@@PREFS-YAML@@@
   error_pattern: null # fresh start: the earlier pattern is not carried over
 position:
   module: A1
