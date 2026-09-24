@@ -22,6 +22,8 @@ import binding  # noqa: E402
 import r2_cur  # noqa: E402
 import r2_sql  # noqa: E402
 import r2_sec  # noqa: E402
+import r2_dp  # noqa: E402
+import northstar  # noqa: E402
 
 from r2_common import JOURNAL, Doc, note, ledger_prefs, PREFS_HEAD, C29_POINTER, DATE, CUR, PRI, SQL, DPC, SEC, LED, SKL  # noqa: E402
 
@@ -309,10 +311,12 @@ def main():
     r2_cur.build_curriculum(docs[CUR], prefs)
     r2_sql.build_sql(docs[SQL], prefs, root)
     r2_sec.build_sec(docs[SEC], prefs)
+    r2_dp.build_dp(docs[DPC], prefs)
 
     for f, d in docs.items():
         out = d.finish()
         open(os.path.join(work, f), "w", encoding="utf-8").write("\n".join(out))
+    northstar.build(root)
     with open(os.path.join(outd, "journal.jsonl"), "w", encoding="utf-8") as fh:
         for k, j in enumerate(JOURNAL, 1):
             fh.write(json.dumps({"n": k, **j}, ensure_ascii=False, sort_keys=True) + "\n")
