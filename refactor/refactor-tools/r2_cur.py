@@ -130,7 +130,7 @@ S03_HEAD = [
 S04 = [
     "### 0.4 Suite Teaching Contract",
     "",
-    f"*Refactor-authored ({DATE}, C-29, C-47, C-53, C-54, C-55, C-69, C-70, C-72, C-73, C-75).* One contract for "
+    f"*Refactor-authored ({DATE}, C-29, C-47, C-53, C-54, C-55, C-69, C-70, C-71, C-72, C-73, C-74, C-75).* One contract for "
     "every file. Each companion keeps its own §0.3 session text and points here. When two rules conflict, the higher "
     "one wins: (1) the learner's explicit instruction in the current chat · (2) the ledger §5 preferences (§0.2) · "
     "(3) the refactor invariants · (4) this file on order, cert timing and Lab Reality · (5) the owning companion on "
@@ -172,7 +172,7 @@ S04 = [
     "isolation outcome or attack outcome starts with a one-line prediction. Then run. A wrong prediction is recorded "
     "in the ledger and taught from.",
     "",
-    "**0.4.5 Mastery states.** Every ID is `not-started` → `in-progress` → `taught` (explained, first check "
+    "**0.4.5 Mastery states (C-71).** Every ID is `not-started` → `in-progress` → `taught` (explained, first check "
     "answered) → `mastered` (passed a rung-3 or rung-4 item, or the skip-test). It may also be `shaky` (missed a "
     "check after teaching), `unverified` (claimed done without evidence) or `sliced` (only a named slice taught). "
     "Taught and mastered IDs get one-question recalls woven into later relevant sessions at about +1, +3, +7 and "
@@ -189,8 +189,9 @@ S04 = [
     "answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never "
     "answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency "
     "(for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer "
-    "derivable from what was taught · any numbers computed. An error found later is corrected openly in the next "
-    "turn and logged in `errata.md`.",
+    "derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says "
+    "explicitly when unsure (C-74). An error found later is corrected openly in the next turn and logged in "
+    "`errata.md`.",
     "",
     "**0.4.8 Pacing, checkpoints and session close (C-72, C-73).** Each module is budgeted at roughly 3–5 concepts "
     "per session at full depth; an over-budget module is split into teaching blocks (C-49). The budget is a plan, "

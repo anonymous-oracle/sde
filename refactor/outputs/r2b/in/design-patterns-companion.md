@@ -1,5 +1,5 @@
 # Design Patterns, SOLID & Clean Architecture — A Companion Curriculum
-Companion to the main course, "The Consolidated Cloud Mastery Curriculum". Sibling to the System Design Primer companion and the SQL & Databases companion.
+Companion to `Curriculum` ("The Consolidated Cloud Mastery Curriculum"). Sibling to `system-design-primer-companion.md` and `sql-databases-companion.md`.
 Built September 21, 2026. Sources: Gamma, Helm, Johnson, Vlissides — *Design Patterns: Elements of Reusable Object-Oriented Software* (1994, "GoF"); Robert C. Martin — *Clean Architecture* (2017) and *Agile Software Development, Principles, Patterns, and Practices* (2002, SOLID's origin); Martin Fowler — *Patterns of Enterprise Application Architecture* (2002); Craig Larman — *Applying UML and Patterns* (GRASP); Alistair Cockburn — Hexagonal Architecture; Jeffrey Palermo — Onion Architecture; Eric Evans — *Domain-Driven Design* (2003).
 
 ---
@@ -27,65 +27,17 @@ This file is a complement to the Curriculum, not a second curriculum. It supplie
 6. **Check** — the module's check question; the learner answers before being told the answer.
 7. **Close** — tick the box; note anything shaky for a later recall.
 
-When other companions bind to the same session, the Suite Session Protocol (rule 0.4.2 in §0.6) governs.
+When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
 
 ### 0.4 Notation
 `F-nn` OOP foundations · `PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
 
-### 0.5 Learner teaching preferences (binding)
+### 0.5 Learner teaching preferences (binding; copied unchanged from session-progress-ledger.md §5, invariant 4)
 
 - **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
 - **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
-- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
-- If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
-
-### 0.6 Suite Teaching Contract and Lab Safety (same text in every part)
-
-The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.8, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
-
-**Suite Teaching Contract (main course §0.4).**
-
-One contract for every part; each companion carries the same contract in its own §0 and adds its session detail. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.5 here) · (3) the main course on order, cert timing and Lab Reality · (4) the owning part on its content (main course §0.3) · (5) the companions' defaults.
-
-**0.4.1 Rhythm.**
-
-- One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
-- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.5 rule out separate calibrating questions). A turn may be as long as one concept needs.
-- Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
-- Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
-
-**0.4.2 Suite Session Protocol.** When several files bind to one module, the session runs:
-
-1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
-2. **Concept** — taught once, by the owner in main course §0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → attacker/crypto (cyber).
-4. **GCP lens.**
-5. **One Numbers step** for the whole session.
-6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
-7. **Checks**, woven in per §0.5.
-8. **Close**, ticking boxes in every file (§0.4.8).
-
-**0.4.3 Exercise progression.** The first five rungs of the ten-rung ramp (anchor, vocabulary, representation, core move, worked illustration) are the teaching turns. Exercises then climb, one item per turn, advancing only when the current rung is passed: basic unseen check → routine variation → mixed transfer (the new idea plus exactly two earlier mastered ideas) → top-rung challenge → reflection (the learner explains back or invents an example).
-
-**0.4.4 Predict → run → discrepancy.** Every exercise with a result shape, row count, plan shape, isolation outcome or attack outcome starts with a one-line prediction. Then run. A wrong prediction is recorded in the ledger and taught from.
-
-**0.4.5 Mastery states.** Every ID is `not-started` → `in-progress` → `taught` (explained, first check answered) → `mastered` (passed a rung-3 or rung-4 item, or the skip-test). It may also be `shaky` (missed a check after teaching), `unverified` (claimed done without evidence) or `sliced` (only a named slice taught). Taught and mastered IDs get one-question recalls woven into later relevant sessions at about +1, +3, +7 and +21 sessions; a missed recall sets `shaky` and re-teaches only the gap. The misconception register lives in the ledger; checks probe each entry until two consecutive correct answers retire it.
-
-**0.4.6 Anchoring and suite-wide Prop Lock.** No term, product or control is used in an explanation, example or check unless it is anchored: taught this session, or at least `taught` on the ledger. A named-but-not-taught mention is allowed only when labelled "we'll cover this in X". A check that relies on unanchored terms is invalid: fix the check; don't mark the learner shaky.
-
-**0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
-
-**0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
-
-**Lab Safety (main course §0.5).**
-
-One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the main course's Lab Reality paragraph.
-
-1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
-2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
-3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
-4. **The workplace console is read-only:** look, never create or change.
-5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
+- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a `Curriculum` module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
+- If a companion file references module IDs that don't exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
 
 ---
 
@@ -110,7 +62,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | Curriculum module | Companion modules taught alongside | Notes |
 |---|---|---|
 | A3 (recall only, not retaught) | — | classes/objects/`self`/inheritance mechanics already covered there |
-| **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…08, then AP-01…10. ARCH-09…12 are taught in the A9 session (next row). A7 splits this into teaching blocks A7.3–A7.7 | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
+| **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…08, then AP-01…10. ARCH-09…12 are taught in the A9 session (next row; C-16). `Curriculum` A7 splits this into teaching blocks A7.3–A7.7 (C-49) | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
 | A9 Distributed Systems Theory | ARCH-09 (CQRS), ARCH-10 (Event Sourcing), ARCH-11 (Saga), ARCH-12 (Circuit Breaker/Strangler/Bulkhead) — gated behind A9 being complete | These are distributed-systems theory wearing OOP-pattern clothing; A9 owns the consistency/failure theory, this file owns the shape |
 | B3 Architecture Patterns & Well-Architected | ARCH-01…04 recalled when discussing HA/DR patterns, one line only | Different axis: B3 is *deployment* resilience, this file is *code* structure — do not conflate (rule 5) |
 | C2 Kubernetes | DP-14 Observer (recall) for controller watch-loops; DP-18 Chain of Responsibility (recall) for admission webhooks | The K8s "Operator pattern" itself is taught in C2 natively; cross-reference only |
@@ -118,7 +70,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | System-design-primer companion | DP-14 Observer ↔ SD-28 Pub/Sub; PR-01 (SRP) ↔ SD-12 microservices; DP-09 Facade ↔ SD-11 reverse proxy | Cross-reference only, not a re-teach |
 
 ### 2.1 Overlap register — what is intentionally *not* re-taught here
-> **Note:** the suite-wide register is the main course §0.3; this table is the patterns slice of it, and on a conflict the main course's register wins.
+> **Refactor note (2026-09-24, §7):** the suite-wide register is `Curriculum` §0.3; this table is the patterns slice of it, and on a conflict §0.3 wins.
 
 | Concept | Already owned by | What this file adds instead |
 |---|---|---|
@@ -468,7 +420,7 @@ Where §6 shaped classes, this section shapes *systems* — often built by apply
 - **Value Object:** defined entirely by attributes, no identity, typically immutable.
 - **Aggregate:** a cluster of Entities/Value Objects as one consistency boundary, with a single **Aggregate Root** as the only external entry point.
 - **Repository:** collection-like access to Aggregates, hiding persistence (PR-12 in action).
-  - *Owner pointer:* Repository's definition is owned by ARCH-07 (Fowler, PoEAA). Here, recall it in one line and add the DDD constraint: one repository per aggregate root.
+  - *Owner pointer (C-62):* Repository's definition is owned by ARCH-07 (Fowler, PoEAA). Here, recall it in one line and add the DDD constraint: one repository per aggregate root.
 - **Domain Event:** something significant that happened, often triggering decoupled side effects (DP-14 at domain scale).
 - **Bounded Context:** an explicit boundary within which a model is internally consistent — the same word can mean different things in different contexts, deliberately.
 
@@ -545,3 +497,28 @@ Most arise from a *correct* pattern applied poorly, or a principle ignored under
 - GRASP (§5) is from Larman, *Applying UML and Patterns* — less universally taught than SOLID/GoF, included for full theoretical rigor.
 - ARCH-02/03 (Hexagonal/Onion) predate and directly informed ARCH-04 (Clean Architecture) — treat the three as one lineage, not three unrelated ideas.
 - `(debated)` flags (Singleton, primarily) reflect genuine, ongoing industry disagreement — present both sides, don't adjudicate.
+
+
+---
+
+## Pre-refactor text archive (D3)
+
+*Refactor-authored section (2026-09-24).* Decision D3 says content may be re-arranged but never removed. Each block below is the exact pre-refactor text (after the §5 ID renames) of a line that R2 corrected or regenerated. It is kept for provenance only and is **not authoritative**; the live text above wins. Tooling excludes this section from ID and anchor checks.
+
+**D3-01** · C-64 · §0.4 notation
+
+```text
+`PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
+```
+
+**D3-02** · C-16 · §2 A7 row
+
+```text
+| **A7 — Software Architecture & APIs** | **Everything in this file**, in order: F-01…04, then PR-01…14, then DP-01…23, then ARCH-01…12 (minus ARCH-09…12 if A9 isn't done yet), then AP-01…10 | Primary landing module — flagged as a curriculum gap during the A5 networking session, filled here |
+```
+
+**D3-03** · C-60 · §6 format line
+
+```text
+Format per pattern: **Intent** (GoF's own line) → **Problem** → **Structure** → **Trade-offs** → **Real-world example**.
+```

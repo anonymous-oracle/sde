@@ -110,9 +110,9 @@ Source: `r2_sec.BIND` (125 modules). *Old stitch* is the header after the §5 re
 | AU-05 | A7 | A10 federation/SSO | A10/B5.5 · CR-10 | A7 · A10 federation/SSO · CR-10 |
 | AU-06 | A7 | A10 federation/SSO | A10/B5.6 | A7 · A10 federation/SSO |
 | AU-07 | A7 | A10 federation/SSO | A10/B5.6 literacy | A7 · A10 federation/SSO |
-| AU-08 | A10 | — | A10/B5.3 · 4.10 | A10 · N4.10 |
-| AU-09 | A10 | — | A10/B5.3 | A10 |
-| AU-10 | A10 | — | A10/B5.3 | A10 |
+| AU-08 | A10 (MFA) | — | A10/B5.3 · 4.10 | A10 (MFA) · N4.10 |
+| AU-09 | A10 (MFA) | — | A10/B5.3 | A10 (MFA) |
+| AU-10 | A10 (MFA) | — | A10/B5.3 | A10 (MFA) |
 | AU-11 | A7 | A10 | A10/B5.7 · OWASP | A7 · A10 · OWASP |
 | AU-12 | A7 | A10 | A10/B5.7 | A7 · A10 |
 | AU-13 | A7 | A10 | A10/B5.7 | A7 · A10 |
@@ -148,7 +148,7 @@ Source: `r2_sec.BIND` (125 modules). *Old stitch* is the header after the §5 re
 | CR-13 | A10 | — | A10/B5.3 owner labs | A10 |
 | CR-14 | Phase 4 Security | N7.x | Phase4-Sec.3 owner product | Phase 4 Security · N7.x |
 | CR-15 | Phase 4 Security | N7.x | Phase4-Sec.8 · IR-05 | Phase 4 Security · N7.x · IR-05 |
-| CR-16 | A10 | SC-01 | MIT 6.858 · SC-01 | A10 · SC-01 · MIT 6.858 · SC-01 |
+| CR-16 | A10 | SC-01 | MIT 6.858 · SC-01 | A10 · SC-01 · MIT 6.858 |
 | CR-17 | Phase 4 Security | N7.x | Phase4-Sec.3 · 4.8 | Phase 4 Security · N7.x · N4.8 |
 | CR-18 | Phase 4 Security | N7.x | XACS235 · SC-03 · 9c | Phase 4 Security · N7.x · N9c · XACS235 · SC-03 |
 | CR-19 | A10 | after CR-11/CR-12 | CR-11 · CR-12 | A10 · after CR-11/CR-12 · CR-11 · CR-12 |
@@ -177,7 +177,7 @@ Source: `r2_sec.BIND` (125 modules). *Old stitch* is the header after the §5 re
 | NT-06 | Phase 4 Security (Prop Lock) | — | A5/Phase4-Net.15 | Phase 4 Security (Prop Lock) |
 | NT-07 | A5 NAT/firewalls/proxies | — | A5/Phase4-Net.11 | A5 NAT/firewalls/proxies |
 | NT-08 | A5 TLS | — | CR-12 · corp proxies | A5 TLS · CR-12 · corp proxies |
-| PQ-S-01 | A10 | A1 recall | T.SysTheory · CR-01 gate | A10 · A1 recall · CR-01 gate |
+| PQ-S-01 | A10 (gate for CR-01) | A1 recall | T.SysTheory · CR-01 gate | A10 (gate for CR-01) · A1 recall · CR-01 gate |
 | PQ-S-02 | A10 | — | Phase4-Sec.1 recall | A10 |
 | PQ-S-03 | B1 | — | B5 IAM · 7.1 · XACS235 | B1 · N7.1 · XACS235 |
 | PQ-S-04 | A5 HTTP/TLS (preview) | A10 | A5 TLS / Phase 4 Armor · F1 · WA-01 | A5 HTTP/TLS (preview) · A10 · WA-01 |
