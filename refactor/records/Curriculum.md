@@ -979,7 +979,91 @@ Terraform as our primary cross-cloud tool: providers, resources, modules, plan/a
 REST principles, gRPC, GraphQL (awareness-level)
 ````
 
-**J1070** · R7-1 · rules 0.1–0.5 moved to the course guide
+**J1071** · FDE-2 · anchor-rewrite
+
+````text
+- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.2 rule out separate calibrating questions). A turn may be as long as one concept needs.
+````
+
+**J1072** · FDE-3 · anchor-rewrite
+
+````text
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
+````
+
+**J1073** · FDE-4 · anchor-rewrite
+
+````text
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
+````
+
+**J1074** · FDE-5 · anchor-rewrite
+
+````text
+1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
+````
+
+**J1075** · FDE-5 · anchor-rewrite
+
+````text
+2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
+````
+
+**J1076** · FDE-5 · anchor-rewrite
+
+````text
+3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
+````
+
+**J1078** · FDE-7 · anchor-rewrite
+
+````text
+Python: variables, control flow, functions, data structures (list/dict/set/tuple), OOP basics, virtual environments, package management (pip)
+````
+
+**J1082** · FDE-10 · anchor-rewrite
+
+````text
+Required for PMLE, AIP-C01, and Agentic Architect specifically — but every architect-level cert now touches "how do I put AI in this design" too.
+````
+
+**J1084** · FDE-12 · anchor-rewrite
+
+````text
+Lab Reality (Track D): D1 `[local]` notebooks (scikit-learn) · D2 `[local]` small models on CPU, `[plan-only]` for large training · D3 `[local]` tracking and pipelines, `[free-tier]` Vertex AI pieces where a free tier exists `(verify)` · D4 `[local]` RAG and agent prototypes, `[credit ~$X]` timeboxed model API calls `(verify)`.
+````
+
+**J1085** · FDE-13 · anchor-rewrite
+
+````text
+Why this order: everything in Phases 0–3 is provider-agnostic and is tested, in some form, on every single one of your eighteen certs. Front-loading it means each subsequent cert is 60–70% "same concepts, new console." GCP goes first because you named PCA/PMLE explicitly and have a workplace GCP account to look around in. AWS and Azure then go faster because you already know what a load balancer, an IAM policy, and a Kubernetes pod are — you're just learning new names and new console layouts for concepts you already own.
+````
+
+**J1086** · FDE-14 · anchor-rewrite
+
+````text
+| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5) |
+````
+
+**J1087** · FDE-14 · anchor-rewrite
+
+````text
+| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
+````
+
+**J1088** · FDE-14 · anchor-rewrite
+
+````text
+| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch · Stanford CS 276 Information Retrieval and Web Search `(verify)` | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
+````
+
+**J1096** · PR-2 · anchor-rewrite
+
+````text
+Why this order: everything in Phases 0–3 is provider-agnostic and is tested, in some form, on every single one of your eighteen certs. Front-loading it means each subsequent cert is 60–70% "same concepts, new console." GCP goes first because you named PCA/PMLE explicitly and have a workplace GCP account to look around in. AWS and Azure then go faster because you already know what a load balancer, an IAM policy, and a Kubernetes pod are — you're just learning new names and new console layouts for concepts you already own. CCDV-F, Anthropic's Claude Certified Developer – Foundations, is the one certification outside the cloud providers: it is sat once D5's capstones pass, and the Forward Deployed Engineer companion's §15 prepares it.
+````
+
+**J1102** · R7-1 · rules 0.1–0.5 moved to the course guide
 
 ````text
 ### 0.1 The course parts and the companion stitch rule
@@ -1015,6 +1099,11 @@ That companion owns attack mechanics, network/cloud cybersecurity, cryptography 
 - **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
 - When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
 - If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+- **Build it by hand, then use the library** (the learner's brief of 2026-09-25). A concept that can be built at toy size is taught in three passes: a small toy built by hand, just enough to show how it works; then the real library, naming what it handles that the toy did not (edge cases, performance, security, standards); then the library in production code. Hand-written cryptography is the exception: built only to learn, never used for real (Lab Safety, rule 0.5).
+- **Languages in order: Python, then Go, then TypeScript** (rule 0.4.9). Assume no prior knowledge of code, of mathematics beyond school level, of networking or of AI.
+- **Tone: warm and direct; no emoji, no cheerleading.** When something is hard, say "this trips most people up", never "anyone can do this". Praise only specific, earned things; say plainly and kindly when code or reasoning is wrong or weak, and what to do about it.
+- **Stop when it is understood.** When the learner explains a concept back correctly or applies it to a new case, say so plainly, summarize what was covered, and move on; do not keep probing past understanding.
+- **No time boxes.** Modules and phases have no fixed durations; the learner advances by passing checkpoints.
 
 ### 0.3 Suite overlap and ownership register
 
@@ -1073,7 +1162,7 @@ One contract for every part; each companion carries the same contract in its own
 **0.4.1 Rhythm.**
 
 - One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
-- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.2 rule out separate calibrating questions). A turn may be as long as one concept needs.
+- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.2 rule out separate calibrating questions). A new topic's first check is the calibrating one, woven into its first teaching turn: predict an output, or give a best guess. A turn may be as long as one concept needs.
 - Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
 - Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
 
@@ -1081,7 +1170,7 @@ One contract for every part; each companion carries the same contract in its own
 
 1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
 2. **Concept** — taught once, by the owner in §0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → Claude application (Forward Deployed Engineer companion) → attacker/crypto (cyber).
 4. **GCP lens.**
 5. **One Numbers step** for the whole session.
 6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
@@ -1100,7 +1189,7 @@ One contract for every part; each companion carries the same contract in its own
 
 **0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
 
-**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. TypeScript is the third language, after Python and Go: the Forward Deployed Engineer companion's FDE-01 teaches it when D5 begins, for Claude clients and MCP servers; rule 1 binds it as it binds Go, and that companion's §0 gives its lab acceptance. Four rules:
 
 1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
 2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
@@ -1118,15 +1207,15 @@ One contract for every part; each companion carries the same contract in its own
 
 One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the Lab Reality paragraph above.
 
-1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
-2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
-3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
+1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only; cryptography written by hand (a JWT signer, a hash, a TLS toy) is built only to learn, is never deployed, and the tutor says so each time it is built.
+2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply. Model API calls are replayed from recorded responses first; a live call runs only inside a workspace whose spend limit is set before the first call.
+3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file; an API key lives in an environment variable or a secret manager, never in code, a client or a transcript. Lab data is synthetic.
 4. **The workplace console is read-only:** look, never create or change.
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 
 ````
 
-**J1071** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
+**J1103** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
 
 ````text
 ## PART X — How We'll Actually Work
@@ -1143,7 +1232,7 @@ We start with A1: Digital Logic & Data Representation below, right now.
 
 ````
 
-**J1072** · R7-1 · anchor-rewrite
+**J1104** · R7-1 · anchor-rewrite
 
 ````text
 A5.D7 Naming and measurement: DNS as a distributed, hierarchical, cached database whose consistency is bounded by TTLs (A9's eventual consistency); anycast; measurement as experiment — `ping`, `traceroute` (TTL expiry), `dig +trace`, and packet capture with `tcpdump` on your own host only (§0.5)

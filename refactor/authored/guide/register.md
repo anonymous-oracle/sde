@@ -70,3 +70,21 @@
 | BigQuery partitioning, clustering, cost | SQL AN-02 | SQL DT drills |
 | As-of (point-in-time) joins | SQL DD-05 (leakage) | SQL-E6.4, SQL-E13.4, SQL-E13.5 (lateral, range join, SCD2) |
 | The SQL engine slices DB-1…DB-10 | SQL §4.0 (each slice and its toy) | the pairing table in SQL §2.1 names the theory, rung and cards that ride with each; no slice gets a second toy |
+| LLM mechanics: tokenization, next-token prediction, attention, decoding, alignment | D4 (D4.D1–D4.D5); D2 (backpropagation) | Forward Deployed Engineer companion LB-1…LB-6 (the from-scratch builds; they recall the theory, never re-teach it) |
+| Prompt engineering | D4 (zero-shot, few-shot and system prompts as concepts) | Forward Deployed Engineer companion FDE-08 (the craft, templates, versioning) |
+| Embeddings, retrieval-augmented generation, hybrid search | D4 (the concept; D4.D5); D5.D1 (ranking theory) | Forward Deployed Engineer companion LB-7 (the rankers built) and FDE-25 (the production pipeline); SQL AN-07 (search and vectors in Postgres); cyber AI-03 (leakage through retrieval) |
+| Prompt injection; tool and agent abuse | Cyber AI-01, AI-02 (the attacks; labs SEC-E8.3, SEC-E8.4) | Forward Deployed Engineer companion FDE-20 (the learner's own agent attacked; the Claude-side controls, hooks, the lethal trifecta) |
+| Agentic patterns and agents | D4 (named as concepts) | Forward Deployed Engineer companion FDE-15…FDE-17 (built, with the Agent SDK); the Agentic Architect certification (ADK, A2A) |
+| Evaluating LLM applications | Forward Deployed Engineer companion FDE-22, FDE-23 | D1 (metrics), D3.D4 (online experiments) and D5.D2 (the statistics) are recalled |
+| Retries, backoff and overload handling for model APIs | Design-patterns ARCH-12 (retry, backoff, jitter, degradation) | Forward Deployed Engineer companion FDE-04 (429 and 529), FDE-24 (retry storms); Go companion GO-19 |
+| TypeScript and Node | Forward Deployed Engineer companion FDE-01, FDE-02 | rule 0.4.9 (the third language) |
+| JSON Schema, JSON-RPC 2.0, Server-Sent Events | Forward Deployed Engineer companion FDE-03 | FDE-04 (the Messages API stream), FDE-13 (MCP's envelope) |
+| Model Context Protocol (MCP) | Forward Deployed Engineer companion FDE-13, FDE-14 | the Agentic Architect certification's notes name it |
+| OAuth for remote tool servers | Cyber AU modules (OAuth, tokens, the attacks); Go companion GO-28 (PKCE built) | Forward Deployed Engineer companion FDE-14 (MCP authorization: protected-resource metadata, audience checks) |
+| Architecture decisions and decision records | A7.10 (the record, its form and the documentation around it); A7.D4 (evaluating an architecture against quality-attribute scenarios) | Main course B6 (how a decision is made: options, premortem, reversibility, review date; B6.D1–B6.D3 its mathematics); rule 0.4.12 (the decision journal) |
+| Estimation | System Design Primer companion SD-00 and SDA.10 (sizing a system: back-of-the-envelope numbers) | Main course A7.D6 (estimation error); B6.D3 (forecasting work and outcomes: calibration, the Brier score, reference classes) |
+| Migrating a running system | Design-patterns ARCH-12 (the strangler fig); C4 (canaries and progressive delivery); SQL companion DD-11 (expand/contract) | Main course B6 (the migration as a sequence of reversible steps: parallel runs, shadow traffic, dark launches, the point of no return); the PCA part's migration line (the six Rs mapped to landings) |
+| Incidents and postmortems | C7 (incident management, the blameless postmortem, C7.D3; the case library of public postmortems) | Main course B6.5 (reading a postmortem as a design review in hindsight); Forward Deployed Engineer companion FDE-24 (debugging a Claude application) |
+| Conway's law and team design | A7.D1 (Conway's law) | Main course B6 (the inverse Conway manoeuvre, team types and interaction modes, cognitive load) |
+| Track record and portfolio | Forward Deployed Engineer companion §15 (the FDE track record and interviews) | Main course B6 (the architect's portfolio and interview, which extend it) |
+| Build or buy, and total cost of ownership | B4.D1 (total cost of ownership, break-even) | Main course B6 (build, buy, rent or adopt; lock-in priced as a switching cost) |

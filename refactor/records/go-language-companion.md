@@ -416,7 +416,19 @@ U5 (reserved) owns concurrency theory in general and A9 owns distributed-systems
 - **Where the material came from.** The module list follows the Go nodes of the learner's Nasiko course notes (orientation and tooling; foundations I and II; types, interfaces and generics; files and I/O; CLI and logging; concurrency I and II; rate limiting; testing and reflection; advanced concurrency; HTTP; the REST project; Protocol Buffers; gRPC; observability; security; deployment), re-cut into 27 modules with a contrast line each and bound to the main course; GO-28 and GO-29 were added later, at the learner's request, and are written from the standards listed above and from the sibling parts' owner modules (AU, CR, PV-03, AB-06, AB-07, DD-03, SD-28), not from those notes. Not brought in: the Nasiko control-plane reconstruction phases and its service specifications, the machine-learning and mathematics tracks, the payments addendum (payments are taught instead by GO-29, from the owners named above), and the contest problem ladder — those belong to a different project, and the data-structure and database material they carry is already owned by A4, U2, the System Design Primer and the SQL companion.
 ````
 
-**J1089** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+**J1091** · FDE-16 · anchor-rewrite
+
+````text
+| GO-21 | `net/http` server and client, `ServeMux` patterns, `http.Handler`, middleware, `crypto/tls` config, `signal.NotifyContext`, graceful shutdown |
+````
+
+**J1092** · FDE-16 · anchor-rewrite
+
+````text
+- **Build lab `[local]`:** the `shop.example` orders API skeleton (the reference application defined in the Cloud Cybersecurity companion): `GET /orders/{id}`, `POST /orders`, JSON in and out with a size limit, middleware for recovery, request ID and structured logging, the DOS-05 timeouts, `CrossOriginProtection`, graceful shutdown, and `httptest` tests for 200, 400, 404, 405 and 413.
+````
+
+**J1121** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
 
 ````text
 ## 0. Read this first
@@ -451,13 +463,13 @@ When other parts bind to the same session, the Suite Session Protocol (rule 0.4.
 
 ````
 
-**J1090** · R7-2 · anchor-rewrite
+**J1122** · R7-2 · anchor-rewrite
 
 ````text
 ### 0.4 Notation and the unlock list
 ````
 
-**J1091** · R7-2 · copied preferences, contract and Lab Safety moved out
+**J1123** · R7-2 · copied preferences, contract and Lab Safety moved out
 
 ````text
 ### 0.5 Learner teaching preferences (binding)
@@ -530,7 +542,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 ````
 
-**J1092** · R7-3 · overlap-register slice moved to rule 0.3
+**J1124** · R7-3 · overlap-register slice moved to rule 0.3
 
 ````text
 ### 2.1 Overlap register — what is intentionally *not* re-taught here
@@ -554,13 +566,13 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | Queues, back-pressure, asynchronous work | the System Design Primer (SD-28) | GO-29: acknowledge a webhook fast and apply its effect from a queue |
 ````
 
-**J1110** · R7-4 · anchor-rewrite
+**J1142** · R7-4 · anchor-rewrite
 
 ````text
 One rubric per module's involved problem (rule 8 of §0.2). Each says what a passing submission shows and names the trap the problem is built around. A submission that misses one point is returned with that point only, not with the fix.
 ````
 
-**J1112** · R7-4 · anchor-rewrite
+**J1144** · R7-4 · anchor-rewrite
 
 ````text
 Companion to the main course, "The Consolidated Cloud Mastery Curriculum". Sibling to the System Design Primer companion, the SQL & Databases companion, the Design Patterns companion and the Cloud Cybersecurity companion.

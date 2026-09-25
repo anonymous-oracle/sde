@@ -20,7 +20,7 @@ import re
 import sys
 
 COMP = ["system-design-primer-companion.md", "sql-databases-companion.md", "design-patterns-companion.md",
-        "cloud-cybersecurity-companion.md", "go-language-companion.md"]
+        "cloud-cybersecurity-companion.md", "go-language-companion.md", "fde-companion.md"]
 EXER = re.compile(r"^(?:TD|PX|TX|BH|SCH|DT)-|^(?:SQL|SEC)-(?:E|Z0|CAP|SKIP)|^GO-(?:E|P|CAP)|^CR-E|^[EZ]\d|^[POQ]\d{2}$|^C\d\.|^SDP-|^SQL-")
 CARD = re.compile(r"^#{3,4} ([A-Z]{1,4}(?:-[A-Z])?-\d{1,2}[a-z]?)\b")
 LABEL = re.compile(r"^(?:- )?\*\*([A-Z]{1,4}-\d{1,2})(?: ·| [A-Z][^*]*:\*\*)")   # design-patterns cards: bold labels

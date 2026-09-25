@@ -1,12 +1,14 @@
 # Course Guide — how to teach the Consolidated Cloud Mastery course
 
-For the tutor. Read this file first, at the start of every session, before any course file. The course has six parts, one file each. The parts hold the material; this guide holds everything about *how* the course is taught and kept, and holds it once:
+For the tutor. Read this file first, at the start of every session, before any course file. The course has seven parts, one file each. The parts hold the material; this guide holds everything about *how* the course is taught and kept, and holds it once:
 
 - §1 — how every session starts, and where to find things;
-- §2 — the six course files: what each owns, its IDs, and where its keys are;
+- §2 — the seven course files: what each owns, its IDs, and where its keys are;
 - §3 — the rules every part follows (rules 0.1–0.5). A reference to "rule 0.x" in any part means a rule in this section;
 - §4 — how to manage the course files, so that nothing is taught or written twice;
-- §5 — the outline of all six parts, generated from their headings.
+- §5 — the outline of all seven parts, generated from their headings.
+
+**The aim** is the role, not the certificates; the main course states it at the end of "Why this order" (its §1). Every session serves it through rule 0.4.12.
 
 The learner reads the parts. The tutor reads this guide as well.
 
@@ -31,21 +33,24 @@ Where to find things:
 | The order inside a companion | The companion's dependency gate or prerequisite map (§2 below) |
 | Which university course or textbook a pass follows | Main course §0.6 |
 | Lab tags and what may be run | Rule 0.5 |
+| How an architect decides, forecasts, shapes teams and strategy, keeps current, and reaches the role | Main course B6 (its capstone B6.C is the course's last); C7's case library of public postmortems; rule 0.4.12 for how every session exercises it |
+| Claude, LLM applications, the Forward Deployed Engineer role and the CCDV-F exam | Main course D5; the Forward Deployed Engineer companion's §1 (where each topic of the learner's FDE brief is taught) and §3 (the exam and its domains CF1…CF8) |
 
 **The progress ledger** is the tutor's running record, kept beside the boxes (rule 0.1). The boxes remain authoritative. The ledger is not a file in the course folder: the learner removed that file on 2026-09-25. It is carried as the delta block emitted at each close (rule 0.4.8). The learner keeps it between sessions and gives it back at the start of the next one.
 
 ## 2. The course files
 
-All six files sit in this folder. The main course is the only parent (rule 0.1); every companion binds its modules to main-course IDs.
+All seven files sit in this folder. The main course is the only parent (rule 0.1); every companion binds its modules to main-course IDs.
 
 | File | Part | Owns | IDs | Keys, rubrics, skip-tests and order |
 |---|---|---|---|---|
-| `Curriculum.md` | The Consolidated Cloud Mastery Curriculum (the **main course**) | Order and phases, certification timing, Lab Reality, Tracks A–D (fundamentals, cloud core, the DevOps spine, ML/AI), the GCP, AWS and Azure certification parts, the cross-provider map, the university alignment table (§0.6) | `A1`…`A11`, `B1`…`B5`, `C1`…`C7`, `D1`…`D4`; academic blocks `A4.D6` and the like; problems `A4-P3`; Part V categories `V-COMP`…`V-OPS` | Appendix P (problem sets), Appendix K (keys); the phase plan in §1 |
+| `Curriculum.md` | The Consolidated Cloud Mastery Curriculum (the **main course**) | Order and phases, certification timing, Lab Reality, Tracks A–D (fundamentals, cloud core with the architect's practice in B6, the DevOps spine, ML/AI), the GCP, AWS and Azure certification parts, the cross-provider map, the university alignment table (§0.6) | `A1`…`A11`, `B1`…`B6`, `C1`…`C7`, `D1`…`D5`; academic blocks `A4.D6` and the like; problems `A4-P3`; Part V categories `V-COMP`…`V-OPS` | Appendix P (problem sets), Appendix K (keys); the phase plan in §1 |
 | `system-design-primer-companion.md` | The System Design Primer Companion — GCP-Native Edition | The system-design layer: trade-offs, numbers, interview framing, GCP resources; the primer's problems; Terraform labs TF-1…TF-7; the primer's reference tables | `SD-nn`, `SX-nn`, `P01`–`P08`, `O01`–`O07`, `Q01`–`Q23`, `TF-n`, `SDA.n`, `SDA-Pn` | §4.1–§4.3 (prerequisites and readiness tiers), §4.5 (the ladder), §8.12 (academic keys) |
 | `sql-databases-companion.md` | The SQL & Databases Companion — GCP-Native Edition | SQL, relational theory, the engine slices DB-1…DB-10, data design, operating databases (Cloud SQL), analytics engines, the lab kit and query ladder | `PQ-nn`, `RT-nn`, `SL-nn`, `CS-nn`, `DD-nn`, `OD-nn`, `AN-nn`, `DB-n`, `SQL-E…`, `SQL-Z0.n`, `TD-n`, `PX-n`, `TX-n`, `BH-n`, `DT-n`, `SCH-n`, `SQL-CAPn`, `TF-DBn`, `DBT.n`, `DBT-Pn` | §5 (skip tests and tiers), Appendix K (keys, including the academic keys); the lab kit in §3 computes the goldens |
 | `design-patterns-companion.md` | Design Patterns, SOLID & Clean Architecture — A Companion Curriculum | OOP design theory, SOLID and GRASP, the 23 GoF patterns with a Go kata each, architecture styles and DDD, anti-patterns | `F-nn`, `PR-nn`, `DP-nn`, `ARCH-nn`, `AP-nn`, `DPE-nn`, `DPA.n`, `DPA-Pn` | §10 (dependency gate), §12 (skip-tests), Appendix K (keys, kata solutions, exercise and academic keys) |
 | `cloud-cybersecurity-companion.md` | The Cloud Cybersecurity Companion | Attack mechanics and defences, applied cryptography, network and cloud security, detection and response, AI-application threats, privacy and compliance literacy | `PQ-S-nn`, `TH`, `CR`, `AU`, `AB`, `DOS`, `WA`, `CL`, `NT`, `CK`, `WL`, `IR`, `AI`, `SC`, `PV`, `CM` modules; `SEC-E…`, `CR-E…`, `SEC-Z0.n`, `SEC-CAPn`, `CRA.n`, `CRA-Pn` | §4 (skip tests and tiers), Appendix K (keys); Appendix U (university index) |
 | `go-language-companion.md` | The Go Language Companion — Syntax, Semantics, Runtime and Contrasts | The implementation language (rule 0.4.9): Go's grammar, semantics, runtime and toolchain, contrasted with Python, Java, C and JavaScript; authentication and payment integration built in Go | `GO-nn`, `GO-Em.n`, `GO-Pnn`, `GO-CAPn`, `GOT.n`, `GOT-Pn` | §0.3 (the unlock list), §12 (dependency gate), §10.1 (keys), §10.2 (rubrics), §14.11 (academic keys) |
+| `fde-companion.md` | The Forward Deployed Engineer Companion — Claude Applications in Production and the CCDV-F Certification | Building production applications with Claude: from-scratch builds of the models D2 and D4 explain, TypeScript and the wire formats, the Claude API, prompts and context, tools and MCP, agents, Claude Code, the Claude-side security controls, evaluation, architecture and the delivery craft; the FDE role and the CCDV-F preparation | `LB-n`, `FDE-nn`, `FDE-CKn`, `FDE-CAPn`, the exam domains `CF1`…`CF8` | §16 (dependency gate), Appendix K (check keys and rubrics); its academic pass is main course D5.D (keys in the main course's Appendix K) |
 
 Within a part, a module card carries its own fields: `- [ ]` box, content, GCP lens, lab with its Lab Reality tag, and check. Each part's §0 names the fields that are particular to it.
 
@@ -53,11 +58,11 @@ Within a part, a module card carries its own fields: `- [ ]` box, content, GCP l
 
 ### 0.1 The course parts and the stitch rule
 
-The course is one course in six parts (§2). The main course is the **only parent**. It owns order, certification timing and Lab Reality, and every companion binds its modules to the main course's IDs. A module ID from any part may be used as a stitch tag in any other part.
+The course is one course in seven parts (§2). The main course is the **only parent**. It owns order, certification timing and Lab Reality, and every companion binds its modules to the main course's IDs. A module ID from any part may be used as a stitch tag in any other part.
 
 **The stitch rule.** Each companion's §2 lists what it binds to each main-course module. When a module is taught, every bound companion ID is taught in the same session, once, by its owner (rule 0.3), in the layer order of rule 0.4.2. It is one story, never a separate pass, and never taught twice. A companion ID with no main-course anchor is a defect: say so plainly (rule 0.2) rather than guess a mapping.
 
-**Progress** lives in the inline `- [ ]` boxes of the six parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes. It holds each ID's mastery state (rule 0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point (rule 0.4.8). §1 says where the ledger is kept.
+**Progress** lives in the inline `- [ ]` boxes of the seven parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes. It holds each ID's mastery state (rule 0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, the decision journal and its Brier score for each phase (rule 0.4.12), the frontier list (rule 0.4.12), the projects the learner has built (with repository links), and the exact resume point (rule 0.4.8). §1 says where the ledger is kept.
 
 ### 0.2 Learner teaching preferences (binding)
 
@@ -65,6 +70,11 @@ The course is one course in six parts (§2). The main course is the **only paren
 - **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
 - When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per the stitch rule (rule 0.1).
 - If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+- **Build it by hand, then use the library** (the learner's brief of 2026-09-25). A concept that can be built at toy size is taught in three passes: a small toy built by hand, just enough to show how it works; then the real library, naming what it handles that the toy did not (edge cases, performance, security, standards); then the library in production code. Hand-written cryptography is the exception: built only to learn, never used for real (Lab Safety, rule 0.5).
+- **Languages in order: Python, then Go, then TypeScript** (rule 0.4.9). Assume no prior knowledge of code, of mathematics beyond school level, of networking or of AI.
+- **Tone: warm and direct; no emoji, no cheerleading.** When something is hard, say "this trips most people up", never "anyone can do this". Praise only specific, earned things; say plainly and kindly when code or reasoning is wrong or weak, and what to do about it.
+- **Stop when it is understood.** When the learner explains a concept back correctly or applies it to a new case, say so plainly, summarize what was covered, and move on; do not keep probing past understanding.
+- **No time boxes.** Modules and phases have no fixed durations; the learner advances by passing checkpoints.
 
 ### 0.3 Suite overlap and ownership register
 
@@ -142,6 +152,24 @@ When two parts touch the same concept, the **owner** teaches it and the others o
 | BigQuery partitioning, clustering, cost | SQL AN-02 | SQL DT drills |
 | As-of (point-in-time) joins | SQL DD-05 (leakage) | SQL-E6.4, SQL-E13.4, SQL-E13.5 (lateral, range join, SCD2) |
 | The SQL engine slices DB-1…DB-10 | SQL §4.0 (each slice and its toy) | the pairing table in SQL §2.1 names the theory, rung and cards that ride with each; no slice gets a second toy |
+| LLM mechanics: tokenization, next-token prediction, attention, decoding, alignment | D4 (D4.D1–D4.D5); D2 (backpropagation) | Forward Deployed Engineer companion LB-1…LB-6 (the from-scratch builds; they recall the theory, never re-teach it) |
+| Prompt engineering | D4 (zero-shot, few-shot and system prompts as concepts) | Forward Deployed Engineer companion FDE-08 (the craft, templates, versioning) |
+| Embeddings, retrieval-augmented generation, hybrid search | D4 (the concept; D4.D5); D5.D1 (ranking theory) | Forward Deployed Engineer companion LB-7 (the rankers built) and FDE-25 (the production pipeline); SQL AN-07 (search and vectors in Postgres); cyber AI-03 (leakage through retrieval) |
+| Prompt injection; tool and agent abuse | Cyber AI-01, AI-02 (the attacks; labs SEC-E8.3, SEC-E8.4) | Forward Deployed Engineer companion FDE-20 (the learner's own agent attacked; the Claude-side controls, hooks, the lethal trifecta) |
+| Agentic patterns and agents | D4 (named as concepts) | Forward Deployed Engineer companion FDE-15…FDE-17 (built, with the Agent SDK); the Agentic Architect certification (ADK, A2A) |
+| Evaluating LLM applications | Forward Deployed Engineer companion FDE-22, FDE-23 | D1 (metrics), D3.D4 (online experiments) and D5.D2 (the statistics) are recalled |
+| Retries, backoff and overload handling for model APIs | Design-patterns ARCH-12 (retry, backoff, jitter, degradation) | Forward Deployed Engineer companion FDE-04 (429 and 529), FDE-24 (retry storms); Go companion GO-19 |
+| TypeScript and Node | Forward Deployed Engineer companion FDE-01, FDE-02 | rule 0.4.9 (the third language) |
+| JSON Schema, JSON-RPC 2.0, Server-Sent Events | Forward Deployed Engineer companion FDE-03 | FDE-04 (the Messages API stream), FDE-13 (MCP's envelope) |
+| Model Context Protocol (MCP) | Forward Deployed Engineer companion FDE-13, FDE-14 | the Agentic Architect certification's notes name it |
+| OAuth for remote tool servers | Cyber AU modules (OAuth, tokens, the attacks); Go companion GO-28 (PKCE built) | Forward Deployed Engineer companion FDE-14 (MCP authorization: protected-resource metadata, audience checks) |
+| Architecture decisions and decision records | A7.10 (the record, its form and the documentation around it); A7.D4 (evaluating an architecture against quality-attribute scenarios) | Main course B6 (how a decision is made: options, premortem, reversibility, review date; B6.D1–B6.D3 its mathematics); rule 0.4.12 (the decision journal) |
+| Estimation | System Design Primer companion SD-00 and SDA.10 (sizing a system: back-of-the-envelope numbers) | Main course A7.D6 (estimation error); B6.D3 (forecasting work and outcomes: calibration, the Brier score, reference classes) |
+| Migrating a running system | Design-patterns ARCH-12 (the strangler fig); C4 (canaries and progressive delivery); SQL companion DD-11 (expand/contract) | Main course B6 (the migration as a sequence of reversible steps: parallel runs, shadow traffic, dark launches, the point of no return); the PCA part's migration line (the six Rs mapped to landings) |
+| Incidents and postmortems | C7 (incident management, the blameless postmortem, C7.D3; the case library of public postmortems) | Main course B6.5 (reading a postmortem as a design review in hindsight); Forward Deployed Engineer companion FDE-24 (debugging a Claude application) |
+| Conway's law and team design | A7.D1 (Conway's law) | Main course B6 (the inverse Conway manoeuvre, team types and interaction modes, cognitive load) |
+| Track record and portfolio | Forward Deployed Engineer companion §15 (the FDE track record and interviews) | Main course B6 (the architect's portfolio and interview, which extend it) |
+| Build or buy, and total cost of ownership | B4.D1 (total cost of ownership, break-even) | Main course B6 (build, buy, rent or adopt; lock-in priced as a switching cost) |
 
 ### 0.4 Suite Teaching Contract
 
@@ -150,7 +178,7 @@ One contract for every part; each part's §0 adds only what is particular to tha
 **0.4.1 Rhythm.**
 
 - One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
-- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in rule 0.2 rule out separate calibrating questions). A turn may be as long as one concept needs.
+- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in rule 0.2 rule out separate calibrating questions). A new topic's first check is the calibrating one, woven into its first teaching turn: predict an output, or give a best guess. A turn may be as long as one concept needs.
 - Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
 - Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
 
@@ -158,7 +186,7 @@ One contract for every part; each part's §0 adds only what is particular to tha
 
 1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
 2. **Concept** — taught once, by the owner in rule 0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → Claude application (Forward Deployed Engineer companion) → attacker/crypto (cyber).
 4. **GCP lens.**
 5. **One Numbers step** for the whole session.
 6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
@@ -177,7 +205,7 @@ One contract for every part; each part's §0 adds only what is particular to tha
 
 **0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
 
-**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. TypeScript is the third language, after Python and Go: the Forward Deployed Engineer companion's FDE-01 teaches it when D5 begins, for Claude clients and MCP servers; rule 1 binds it as it binds Go, and that companion's §0 gives its lab acceptance. Four rules:
 
 1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
 2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
@@ -199,31 +227,39 @@ One contract for every part; each part's §0 adds only what is particular to tha
 4. **Honesty flags.** `(verify)` marks a detail that changes often or was not confirmed when written; check it against live documentation before it is relied on for an exam or production. `(checked on …)` marks a behaviour that was run on that release. **Modern note** marks where industry has moved past the source. A part may add its own flags in its §0.
 5. **Read economically.** Each session reads this guide, then each bound part's §0 and §2, then only the blocks bound to today's module (§1). Material is never copied from one file into another (§4).
 
+**0.4.12 Thinking as an architect and a Forward Deployed Engineer.** The aim (the head of this guide) is reached by habit, not by one module. Main course B6 teaches the practice once; this rule exercises it in every part from A1 on. Until B6.1 is taught, each habit is asked in plain words (rule 0.4.6); after it, by its B6 name. Five habits:
+
+1. **The judgment turn.** Each module's reflection rung (rule 0.4.3) is one judgment question about what was just taught, answered as a one-line decision record: "I pick X because Y, I accept Z" (A7.10). The questions rotate: which requirement or constraint decides it; the alternatives, including doing nothing and buying; what it costs in money, latency, operations and people; how it fails and how far the failure spreads; whether it can be undone, and at what price; what breaks at ten times the load; how you would know in production that it works; how you would explain it to the customer. It is woven into the teaching like every check (rule 0.2). A sound answer names the requirement it serves, one rejected alternative with its reason, and the cost it accepts; an answer that names only benefits is incomplete, and the tutor says which part is missing.
+2. **The decision journal.** Every build lab, checkpoint and capstone records its decisions as decision records in the learner's repository (A7.10). Each record carries one prediction the lab can measure, with a probability: "p95 latency under 300 ms at 50 requests a second: 80%". The lab measures it (rule 0.4.4). The ledger keeps each prediction, its probability and its outcome, and the Brier score for each phase (B6.D3). Confidences that come to match outcomes are the evidence that judgment is improving.
+3. **Failure recall.** When a case in C7's case library names a module being taught, and the other modules it names are at least `taught`, the case is recalled in one or two lines in that session: what the design assumed, and what broke. After B6.5 a case may be the session's application item (rule 0.4.2), read by B6's method.
+4. **The frontier turn.** At the close of each phase, and of D4 and D5, the learner takes one development newer than the course (a paper, a specification, release notes or a model card), reads it by B6.6's method, checks one claim at toy size or against their own eval suite, and writes a one-page take: what is new, the evidence, what it would change in a design they have built, and adopt, trial, assess or hold. The `(verify)` flags met in the phase are rechecked in the same turn. The tutor looks up anything newer than its own knowledge in a primary source, and never presents a recalled detail as current. The take's title and verdict go in the ledger's frontier list.
+5. **Design review and the customer.** From B6.4 on, one application item in each phase is a design review: the tutor presents a design with seeded defects, having written the defect list down first (rule 0.4.7's pre-flight), and shows the list only after the learner's review. In every build lab the learner also says, in two sentences, what a customer who is not an engineer would be told.
+
 ### 0.5 Lab Safety
 
 One rule set for every part. The main course's Lab Reality paragraph (its §0) sets the budget these rules protect.
 
-1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
-2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
-3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
+1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only; cryptography written by hand (a JWT signer, a hash, a TLS toy) is built only to learn, is never deployed, and the tutor says so each time it is built.
+2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply. Model API calls are replayed from recorded responses first; a live call runs only inside a workspace whose spend limit is set before the first call.
+3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file; an API key lives in an environment variable or a secret manager, never in code, a client or a transcript. Lab data is synthetic.
 4. **The workplace console is read-only:** look, never create or change.
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 
 ## 4. Managing the course files
 
-These rules keep the six parts free of repeated material. They bind the tutor, and anyone else who edits the course.
+These rules keep the seven parts free of repeated material. They bind the tutor, and anyone else who edits the course.
 
 1. **One home for everything.** A concept is taught in the part and module that owns it (rule 0.3). Any other part names it by ID and adds only its own layer, or recalls it in one line. Rules, the session protocol, the learner's preferences and Lab Safety live only in this guide; a part's §0 holds only what is particular to that part. The university and textbook alignment lives only in main course §0.6, with the cybersecurity companion's Appendix U as its security index.
 2. **Refer; never copy.** A part refers to another part by the part's name and an ID or section: "the SQL companion's OD-11", "main course §0.6". It never repeats their text, and never names or links a course file (a lab's own files, such as the SQL lab kit's, are named where they are used). Only this guide names the course files (§2).
-3. **Search before adding.** Before adding material, search all six parts for the concept, by name and by ID. If it is already taught, add to its owner or add a one-line recall; never write a second explanation. A new concept goes into the module that owns its subject, with a row in rule 0.3 if a second part touches it. Never create a new part, list or appendix to hold additions.
+3. **Search before adding.** Before adding material, search all seven parts for the concept, by name and by ID. If it is already taught, add to its owner or add a one-line recall; never write a second explanation. A new concept goes into the module that owns its subject, with a row in rule 0.3 if a second part touches it. Never create a new part, list or appendix to hold additions.
 4. **What the tutor may change while teaching.** Tick `- [ ]` boxes. Everything else waits for the learner's instruction. An error found in a part is corrected openly in the next turn and logged in the ledger's errata list (rule 0.4.7); the fix to the file is made only when the learner asks for it.
 5. **Every check and problem keeps its key with its owner.** The key has an expected answer and at least one expected wrong answer (rule 0.4.7), and sits in the owning part's keys section (§2). A new problem is numbered on from the end of its set, and the set's range line is updated with it.
 6. **Honesty flags travel with the fact.** A new fact that was not checked carries `(verify)` (rule 0.4.11). A fact that was run carries the release it was run on.
-7. **The files are built.** The six parts and this guide are generated by the build in the refactor workspace beside this folder (`../refactor`), from its frozen inputs, authored sources and journaled rules. An edit made only in this folder is overwritten by the next build, and so are ticked boxes. A lasting change to material is made in the workspace and rebuilt. After a rebuild, re-tick the boxes from the ledger. §5 of this guide is regenerated from the parts' headings, so it is never edited by hand.
+7. **The files are built.** The seven parts and this guide are generated by the build in the refactor workspace beside this folder (`../refactor`), from its frozen inputs, authored sources and journaled rules. An edit made only in this folder is overwritten by the next build, and so are ticked boxes. A lasting change to material is made in the workspace and rebuilt. After a rebuild, re-tick the boxes from the ledger. §5 of this guide is regenerated from the parts' headings, so it is never edited by hand.
 
 ## 5. Course outline
 
-Generated from the six parts' headings and module cards at build time. Each entry is a section of the named file, in teaching-document order. The order of *teaching* is the main course's phase plan (§1 of the main course) with each companion riding its bound modules (rule 0.1). A companion's own order is its dependency gate or prerequisite map (§2).
+Generated from the seven parts' headings and module cards at build time. Each entry is a section of the named file, in teaching-document order. The order of *teaching* is the main course's phase plan (§1 of the main course) with each companion riding its bound modules (rule 0.1). A companion's own order is its dependency gate or prerequisite map (§2).
 
 ### 5.1 The main course — `Curriculum.md`
 
@@ -248,6 +284,7 @@ Generated from the six parts' headings and module cards at build time. Each entr
   - B3. Architecture Patterns & the Well-Architected Frameworks
   - B4. Cloud Economics & FinOps
   - B5. Cloud IAM Concepts (deep provider dives happen later; the model is universal)
+  - B6. The Architect's Practice — decisions, strategy, keeping current, and the road to the role
 - **PART III — The DevOps / Containers / CI-CD Spine (Track C)**
   - C1. Docker — full depth
   - C2. Kubernetes — full depth
@@ -261,6 +298,7 @@ Generated from the six parts' headings and module cards at build time. Each entr
   - D2. Deep Learning
   - D3. MLOps
   - D4. Generative AI, LLMs & Agents
+  - D5. Building with Claude — LLM applications in production, the Forward Deployed Engineer role, and CCDV-F
 - **PART V — Google Cloud Platform**
   - Professional Cloud Architect (PCA)
   - Professional Machine Learning Engineer (PMLE)
@@ -614,3 +652,41 @@ Generated from the six parts' headings and module cards at build time. Each entr
   - 14.9 GOT.9 · Where Go sits among languages (deepens GO-11, §9)
   - 14.10 Problem set (GOT-P1…GOT-P10)
   - 14.11 Keys (reveal only after the learner answers)
+
+### 5.7 The Forward Deployed Engineer Companion — `fde-companion.md`
+
+- **0. Read this first — what this part adds**
+  - 0.1 What this part owns
+  - 0.2 Rules particular to this part
+  - 0.3 Notation
+- **1. Coverage ledger**
+- **2. Stitch table — where this binds into the main course**
+- **3. The role and the exam**
+  - 3.1 The Forward Deployed Engineer
+  - 3.2 CCDV-F, the exam
+  - 3.3 Exam against job
+- **4. LLMs from scratch — the builds under D2 and D4**
+    - **LB-1** A byte-pair-encoding tokenizer · **LB-2** A bigram language model · **LB-3** An autodiff engine and a small neural network · **LB-4** A tiny GPT · **LB-5** A sampler · **LB-6** Frontier models · **LB-7** Embeddings and retrieval · **FDE-CK1** Checkpoint — why a model loses track in a long context
+- **5. TypeScript and the wire formats**
+    - **FDE-01** TypeScript and Node · **FDE-02** Runtime validation with Zod, and a minimal React client · **FDE-03** Wire formats: JSON, JSON Schema, JSON-RPC 2.0 and Server-Sent Events
+- **6. The Claude API**
+    - **FDE-04** The Messages API by hand · **FDE-05** The SDKs and the anatomy of a request · **FDE-06** Documents, images and citations · **FDE-07** Cost, caching, batches and model choice
+- **7. Prompt, context and output engineering**
+    - **FDE-08** Prompt engineering · **FDE-09** Context engineering · **FDE-10** Output handling
+- **8. Tools and the Model Context Protocol**
+    - **FDE-11** The tool loop by hand · **FDE-12** Tool design · **FDE-13** MCP: the protocol, and a server by hand in Go · **FDE-14** MCP in production, and customizing Claude
+- **9. Agents and workflows**
+    - **FDE-15** An agent loop by hand · **FDE-16** Workflows or agents, and the patterns · **FDE-17** The Agent SDK, harnesses and multi-agent systems
+- **10. Claude Code**
+    - **FDE-18** Configuring Claude Code · **FDE-19** Claude Code headless and in CI
+- **11. Security and safety**
+    - **FDE-20** Attacking and defending your own agent · **FDE-21** Identity, secrets and data
+- **12. Evaluation, testing and debugging**
+    - **FDE-22** Success criteria and an eval harness · **FDE-23** Model-graded evaluation and regression · **FDE-24** Systematic debugging and observability · **FDE-CK2** Checkpoint — a tested, attacked and measured assistant
+- **13. Application design and the FDE craft**
+    - **FDE-25** Retrieval-augmented generation end to end · **FDE-26** The architecture of Claude applications · **FDE-27** Discovery and scoping · **FDE-28** Delivering inside an enterprise · **FDE-CK3** Checkpoint — a scoped design
+- **14. Capstones**
+    - **FDE-CAP1** A support agent with tools, guardrails and an eval suite · **FDE-CAP2** An authenticated remote MCP server · **FDE-CAP3** A document pipeline · **FDE-CAP4** Claude Code headless in CI · **FDE-CAP5** A simulated engagement
+- **15. CCDV-F, interviews and a track record**
+- **16. Dependency gate**
+- **Appendix K — Keys (AFTER attempt only)**

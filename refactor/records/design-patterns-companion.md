@@ -147,7 +147,7 @@ When other companions bind to the same session, the Suite Session Protocol in `C
 - **AP-09 Shotgun Surgery:** one logical change requires editing many unrelated classes — the mirror image of SRP done right.
 ````
 
-**J1081** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+**J1113** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
 
 ````text
 ## 0. Read this first
@@ -177,13 +177,13 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 ````
 
-**J1082** · R7-2 · anchor-rewrite
+**J1114** · R7-2 · anchor-rewrite
 
 ````text
 ### 0.4 Notation
 ````
 
-**J1083** · R7-2 · copied preferences, contract and Lab Safety moved out
+**J1115** · R7-2 · copied preferences, contract and Lab Safety moved out
 
 ````text
 ### 0.5 Learner teaching preferences (binding)
@@ -256,7 +256,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 ````
 
-**J1084** · R7-3 · overlap-register slice moved to rule 0.3
+**J1116** · R7-3 · overlap-register slice moved to rule 0.3
 
 ````text
 ### 2.1 Overlap register — what is intentionally *not* re-taught here
@@ -271,7 +271,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | HA/DR patterns (active-active, warm standby) | B3 | Explicitly distinguished as infrastructure, not code architecture |
 ````
 
-**J1111** · R7-4 · anchor-rewrite
+**J1143** · R7-4 · anchor-rewrite
 
 ````text
 Companion to the main course, "The Consolidated Cloud Mastery Curriculum". Sibling to the System Design Primer companion and the SQL & Databases companion.

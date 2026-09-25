@@ -47,6 +47,8 @@ import r4_cur  # noqa: E402
 import r5_acad  # noqa: E402
 import r6_gaps  # noqa: E402
 import r7_guide  # noqa: E402
+import r8_fde  # noqa: E402
+import r9_practice  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -194,19 +196,21 @@ def main():
     r4_cur.build(files, go)          # R4 (D16): no Track M, U or S; every anchor rebound, material re-homed
     r5_acad.build(files, go, root)   # R5 (D17): the academic pass of every part
     r6_gaps.build(files)             # R6: gap fills from the learn-anything.xyz cross-check
-    gd = r7_guide.build(files, go)   # R7 (D18): the course guide; the rules move there once
+    fde = r8_fde.build(files, go, root)   # R8 (D19): the Forward Deployed Engineer companion; its rules join the guide's
+    r9_practice.build(files)         # R9 (D20): the architect's practice, B6, C7's case library
+    gd = r7_guide.build(files, go, fde)   # R7 (D18): the course guide; the rules move there once
     led = r5_acad.led(root)          # C-23, C-66 (D2): the regenerated ledger
-    for fn, f in list(files.items()) + [(go.n, go), (gd.n, gd), (led.n, led)]:
+    for fn, f in list(files.items()) + [(go.n, go), (fde.n, fde), (gd.n, gd), (led.n, led)]:
         open(os.path.join(work, fn), "w", encoding="utf-8").write("\n".join(f.L))
     ns = os.path.join(work, "northstar-reference-app.md")
     if os.path.exists(ns):
         os.remove(ns)
     write_records(root)
-    # the finished course, in one folder beside the workspace: the six parts and the course guide (D18). The progress
+    # the finished course, in one folder beside the workspace: the seven parts (D19) and the course guide (D18). The progress
     # ledger stays in work/ (the learner removed it from course/ on 2026-09-25)
     course = os.path.join(os.path.dirname(root), "course")
     os.makedirs(course, exist_ok=True)
-    for fn in COURSE + [go.n, gd.n]:
+    for fn in COURSE + [go.n, fde.n, gd.n]:
         shutil.copyfile(os.path.join(work, fn), os.path.join(course, fn))
     with open(os.path.join(root, "outputs", "r2b", "journal.jsonl"), "w", encoding="utf-8") as fh:
         for k, j in enumerate(JOURNAL, 1):

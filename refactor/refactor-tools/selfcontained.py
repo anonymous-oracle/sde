@@ -25,7 +25,8 @@ import re
 import sys
 
 FILES = ["Curriculum.md", "system-design-primer-companion.md", "sql-databases-companion.md",
-         "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md"]
+         "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md",
+         "fde-companion.md"]
 
 EXT = r"(?:md|py|sql|json|jsonl|txt|sh|tgz|csv|ya?ml|tf|go|pdf|proto|ipynb|toml|ini|cfg|log|out)"
 FILE_RE = re.compile(r"(?<![\w@])((?:[\w-]+/)*[\w.-]*[A-Za-z0-9_]\." + EXT + r")\b")
@@ -48,6 +49,11 @@ ALLOWED_NAMES = {
     "_test.go": "the Go test-file suffix (a naming rule the Go companion teaches), not a file",
     "user.proto": "example protobuf file name the learner writes",
     "schema.proto": "example protobuf file name the learner writes",
+    "CLAUDE.md": "the Claude Code memory file a lab tells the learner to write (FDE-18)",
+    "settings.json": "the Claude Code settings file a lab tells the learner to write (FDE-18)",
+    "settings.local.json": "the Claude Code local settings file (FDE-18)",
+    ".mcp.json": "the project MCP configuration file a lab tells the learner to write (FDE-18)",
+    "package.json": "the Node package file the learner creates (FDE-01)",
     "audit.sh": "SQL table reference (schema audit, table sh) in a query, not a file",
 }
 
