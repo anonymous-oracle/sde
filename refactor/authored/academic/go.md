@@ -1,7 +1,7 @@
 @@@ section
 ## 14. Academic depth (rule 0.4.10)
 
-The academic pass of this companion: the theory of the language. It covers the specification as a formal object, the type system, the concurrency model and its memory model, the scheduler, and the memory manager, at the depth of a programming-languages and systems course (main course §0.6: the programming and operating-systems rows). Each block is taught after the GO module it names and before that module's involved problem, and it obeys the syntax unlock (rule 0.4.9). Problems GOT-P1…GOT-P8 are in §14.10, with keys in §14.11 (reveal only after the learner answers). Rule 0.4.10: a block is `mastered` only when one proof problem and one computational problem in it pass. Program outputs marked `(checked on 1.27.1)` were run on Go 1.27.1, linux/amd64, on 2026-09-24, offline.
+The academic pass of this companion: the theory of the language. It covers the specification as a formal object, the type system, the concurrency model and its memory model, the scheduler, and the memory manager, at the depth of a programming-languages and systems course (main course §0.6: the programming and operating-systems rows). Each block is taught after the GO module it names and before that module's involved problem, and it obeys the syntax unlock (rule 0.4.9). Problems GOT-P1…GOT-P10 are in §14.10, with keys in §14.11 (reveal only after the learner answers). A block is `mastered` by rule 0.4.10.3. Program outputs marked `(checked on 1.27.1)` were run on Go 1.27.1, linux/amd64, on 2026-09-24, offline.
 
 ### 14.1 GOT.1 · The specification as a formal object (deepens GO-02, GO-04)
 
@@ -16,6 +16,7 @@ The academic pass of this companion: the theory of the language. It covers the s
 - Method sets: the method set of T contains the value-receiver methods; that of *T contains both kinds. So a T value does not satisfy an interface whose method has a pointer receiver (GOT-P3); the reason is that an interface holding a copy of T has no addressable variable to take a pointer to.
 - Generics: a constraint denotes a type set; `~int` means every type whose underlying type is int. Type inference unifies argument types with parameter types. The implementation (GC-shape stenciling with dictionaries) sits between full monomorphization, as in C++ and Rust, and uniform boxed representation, as in Java's erasure.
 - Parametric polymorphism versus subtype polymorphism (main course A3.D3), and why Go has no variance on generic types.
+- Sum types. An interface is an *open* sum: any type in any package that has the methods is a member. Go has no *closed* sum (Rust's `enum` with payloads, an algebraic data type in ML or Haskell). The idiom that approximates one is the sealed interface: an interface with an unexported marker method, `type Event interface{ isEvent() }`, which only types declared in the same package can implement (GOT-P9). The compiler still does not check that a type switch covers every member, and `go vet` is silent, so a new variant falls through to `default` without warning. This is the expression problem (Wadler, 1998): open sums make new types cheap and new operations expensive, closed sums the reverse, and Visitor (the Design Patterns companion's DP-22) trades one for the other.
 - Reading: Griesemer et al., "Featherweight Go" (OOPSLA 2020), the formal core of Go's generics.
 
 ### 14.3 GOT.3 · Evaluation semantics (deepens GO-06, GO-07)
@@ -35,9 +36,10 @@ The academic pass of this companion: the theory of the language. It covers the s
 ### 14.5 GOT.5 · The memory model (deepens GO-18)
 
 - Happens-before (main course A9.D2) inside one process. A send on a channel happens before the matching receive completes. The k-th receive on a channel of capacity C happens before the (k + C)-th send completes. An `Unlock` happens before the next `Lock` returns, and `sync.Once`'s function returns before any `Do` returns.
+- Progress conditions (main course A6.D4). A structure guarded by a `Mutex` is blocking: a goroutine descheduled while holding the lock stops everyone. A compare-and-swap retry loop (`for { old := c.Load(); if c.CompareAndSwap(old, old+1) { break } }`) is lock-free but not wait-free (GOT-P10). `atomic.Int64.Add` has no retry loop: on amd64 it compiles to one `LOCK XADDQ` instruction (checked on 1.27.1, `GOARCH=amd64`, with `go tool objdump`). Herlihy's consensus hierarchy (1991) explains why hardware provides compare-and-swap: atomic read/write registers have consensus number 1, so no wait-free queue or stack for two goroutines can be built from loads and stores alone, while compare-and-swap has an infinite consensus number. The ABA problem (a value changes from A to B and back, so a compare-and-swap wrongly succeeds) needs reused memory; Go's collector does not reuse an object that is still referenced, so a lock-free structure that swaps pointers to fresh nodes avoids it, but one that recycles nodes through a free list or `sync.Pool`, or swaps indices, does not.
 - The Go memory model, revised in 2022 for Go 1.19, guarantees DRF-SC: a program without data races behaves as if its goroutines were interleaved on one processor (sequential consistency). The `sync/atomic` operations are sequentially consistent.
 - A data race on a multi-word value (an interface, a slice or a string) can produce a value that was never written, which is why races are bugs and not just stale reads. The race detector finds races that happen during a run, not every possible race.
-- Reading: The Go Memory Model (the version for the installed release); Adve and Boehm, "Memory Models: A Case for Rethinking Parallel Languages and Hardware", *Communications of the ACM* 53(8), 2010.
+- Reading: The Go Memory Model (the version for the installed release); Adve and Boehm, "Memory Models: A Case for Rethinking Parallel Languages and Hardware", *Communications of the ACM* 53(8), 2010; Herlihy, "Wait-Free Synchronization", *ACM Transactions on Programming Languages and Systems* 13(1), 1991; Herlihy, Shavit, Luchangco and Spear, *The Art of Multiprocessor Programming*, 2nd ed. (2020), chapters 3 and 5.
 
 ### 14.6 GOT.6 · The scheduler (deepens GO-15)
 
@@ -62,7 +64,7 @@ The academic pass of this companion: the theory of the language. It covers the s
 - Go is a garbage-collected, statically typed language with structural interfaces and CSP concurrency. The contrast atlas of §9 compares its habits with other languages; this block names the design space instead. The axes are manual memory management versus GC versus ownership (Rust), nominal versus structural typing, exceptions versus error values, and threads with locks versus actors versus CSP.
 - Reading: Pike, "Go at Google: Language Design in the Service of Software Engineering" (SPLASH 2012 keynote); Donovan and Kernighan, *The Go Programming Language* (2015), chapters 7–9.
 
-### 14.10 Problem set (GOT-P1…GOT-P8)
+### 14.10 Problem set (GOT-P1…GOT-P10)
 
 - **GOT-P1** · compute · Predict the exact output (after GO-06):
   ```go
@@ -90,6 +92,8 @@ The academic pass of this companion: the theory of the language. It covers the s
   }
   ```
 - **GOT-P8** · compute · What happens when `main` runs `ch := make(chan int); ch <- 1; println(<-ch)`? Why, and what is the smallest fix?
+- **GOT-P9** · compute · Package `shape` declares `type Event interface{ isEvent() }` with members `Paid` and `Refunded`, and `Describe(e Event) string` switches on `e.(type)` with a case for `Paid` only. (a) Does `shape` compile, and does `go vet` report anything? (b) Package `other` declares `type Chargeback struct{}` with `func (Chargeback) isEvent() {}` and `var _ shape.Event = Chargeback{}`. Does it compile? (c) What does sealing buy, and what does it not buy?
+- **GOT-P10** · proof · A counter's `Inc` runs `for { old := c.Load(); if c.CompareAndSwap(old, old+1) { return } }`. Prove that `Inc` is lock-free, and show by a schedule that it is not wait-free.
 
 ### 14.11 Keys (reveal only after the learner answers)
 
@@ -101,3 +105,5 @@ The academic pass of this companion: the theory of the language. It covers the s
 - **GOT-P6** — Expected: in f, x escapes (`moved to heap: x`) because its address is returned and outlives the call; in g, x stays on the stack because the pointer never leaves g (checked on 1.27.1 with `-gcflags=-m`). · Wrong: "any `&x` puts x on the heap" — escape depends on where the pointer flows, not on taking an address.
 - **GOT-P7** — Expected: `012` with `go 1.27.1`, because each iteration has its own i; `333` with `go 1.21`, because all closures share one i, which is 3 after the loop (both checked on 1.27.1, varying only the module's `go` line). · Wrong: "the output depends on the installed toolchain" — it depends on the module's `go` line.
 - **GOT-P8** — Expected: `fatal error: all goroutines are asleep - deadlock!` (checked on 1.27.1). An unbuffered send waits for a receiver, and the only receiver is the same goroutine, after the send. Fix: `make(chan int, 1)`, or send from another goroutine. · Wrong: "it prints 1" — that needs a buffer or a second goroutine.
+- **GOT-P9** — Expected: (a) it compiles, and `go vet` is silent; `Describe(Refunded{})` returns the fall-through value (checked on 1.27.1). (b) It does not compile: `Chargeback does not implement shape.Event (unexported method isEvent)` (checked on 1.27.1): an unexported method name belongs to its package, so `other`'s `isEvent` is a different method. (c) Sealing closes the set of members to the declaring package; it does not make the compiler check that a switch is exhaustive, so each switch needs a `default` that fails loudly, or a test that lists every member. · Wrong: "a missing case is a compile error" — that holds for Rust's `match`, not for a Go type switch.
+- **GOT-P10** — Expected: lock-free: a CAS fails only if `c` changed between the `Load` and the CAS, and `c` changes only when another `Inc` succeeds, so every failed attempt is matched by a completed `Inc` elsewhere; the system as a whole always makes progress. Not wait-free: let goroutine G load `old`, then let another goroutine complete an `Inc` before G's CAS, and repeat forever; G fails on every attempt while the others succeed, so G's number of steps has no bound. · Wrong: "it is wait-free because it never blocks" — not blocking gives lock-freedom at best; wait-freedom bounds every goroutine's own steps.

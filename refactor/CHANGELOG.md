@@ -352,3 +352,74 @@ New gates in `verify.py` (`r5_blocks`), each confirmed to fail when its fault is
 4. Every `X.Dn` and companion-section reference resolves.
 
 There are new conflict probes for C-NEW-03, C-69 and C-73; the C-73 probe was confirmed to fail when its rule text is absent.
+
+## R6 Gap fills from the learn-anything.xyz cross-check — 2026-09-25
+
+The learner asked for the course to be cross-checked against learn-anything.xyz and the gaps added properly. Fourteen topic pages (Go, SQL, Databases, PostgreSQL, System Design, Distributed systems, Design patterns, Security, Cryptography, Kubernetes, Cloud computing, Networking, Concurrency, Microservices) were read and every idea on them searched for in the six parts. Four were missing or thin:
+
+| Gap | Where it is taught now | Problem |
+|---|---|---|
+| PostgreSQL `LISTEN`/`NOTIFY` (commit-time, at-most-once, not durable) | SQL SL-10 (Core, Theory) and the A7 stitch row, by `refactor-tools/r6_gaps.py` rule R6-1; SQL DBT.9 | DBT-P15 |
+| Closed sum types through sealed interfaces; no exhaustiveness check | Go GO-11 (Core, Pitfalls); GOT.2 | GOT-P9 |
+| Progress conditions (blocking, lock-free, wait-free), consensus numbers, ABA | main course A6.D4; Go GO-18 (Semantics, Pitfalls); GOT.5 and its readings | GOT-P10 |
+| Checking a history for linearizability (Knossos, Porcupine) | main course A9.D9 | A9-P10 |
+
+Go facts marked `(checked on 1.27.1)` were run that day: the sealed-interface compile error, the silent type switch under `go vet`, and `LOCK XADDQ` for `atomic.Int64.Add` under `GOARCH=amd64`. The four GO-11 and GO-18 lines replaced in the authored Go source are kept as G18–G21 in `records/go-language-companion.md`. The build no longer copies the progress ledger into `course/` (the learner removed it there); it stays in `work/`. `verify.py . --stage R5` → PASS, 58 of 58; `audit_r2b.py` → PASS.
+
+### R6-2 Topic cross-check against roadmap.sh and College Compendium — 2026-09-25
+
+The learner asked for roadmap.sh and College Compendium to replace learn-anything.xyz as the reference, used for topics rather than pasted in. The topic trees of fourteen roadmap.sh roadmaps (backend, system design, Go, SQL, PostgreSQL DBA, cyber security, DevOps, DevSecOps, Kubernetes, software design and architecture, software architect, computer science, API design, Terraform; read from github.com/nilbuild/developer-roadmap) were searched for in all six parts. Most were already taught. Vendor products, certifications and consumer-security items were ruled out of scope. College Compendium's catalogue of 782 university courses was used to fill the reference-course column of the §0.6 alignment table. Each gap found went into the module that owns it:
+
+| Gap | Where it is taught now |
+|---|---|
+| `SAVEPOINT` and partial rollback | SQL SL-10 Core (rule R6-2) |
+| Live triage: `pg_stat_activity`, `pg_blocking_pids`, cancel/terminate, timeouts | SQL OD-02 Core (R6-2) |
+| Logical backup (`pg_dump`/`pg_restore`) versus base backup plus WAL archive (PITR) | SQL OD-04 Core (R6-2) |
+| Logical replication, change data capture, replication-slot WAL retention | SQL CS-07 Core (R6-2) |
+| Skip lists (LSM memtables, sorted sets); Rabin–Karp and the rolling hash | main course A4.D6; SQL CS-02 pointer (R6-2) |
+| Pod anti-affinity, topology spread, PodDisruptionBudgets, CRDs | main course C2 list (R6-2) |
+| Terraform `count`/`for_each`, `depends_on`, static IaC scanning | main course C5 list (R6-2) |
+| Gateway offloading, Backend for Frontend | main course A7 list (R6-2) |
+| Content negotiation, `Vary`, API contracts (OpenAPI, `.proto`) | main course A7.D5 |
+| Architectural styles (Garlan and Shaw; Richards and Ford) | main course A7.D4 |
+| Anti-Corruption Layer | Design Patterns ARCH-06 (R6-2) |
+| Graceful degradation; retry with backoff, jitter and a budget | Design Patterns ARCH-12 (R6-2) |
+| Law of Demeter, Tell Don't Ask | Design Patterns PR-09 (R6-2) |
+| YAGNI and KISS; DRY and the rule of three | Design Patterns AP-07, AP-09 (R6-2) |
+| SPF, DKIM, DMARC | Cyber NT-04 (R6-2) |
+| Honeytokens | Cyber IR-04 (R6-2) |
+| Kerberos (pass-the-ticket, Kerberoasting, golden ticket); RBAC, ABAC, ReBAC and Zanzibar | Cyber CRA.12 |
+| Delve, `GOTRACEBACK`; golangci-lint | Go GO-24, GO-25 (records G22, G23) |
+| Reference courses: CMU 17-214, MIT 6.005, Waterloo CS 446; CMU 15-719, Cornell CS 5412 | main course §0.6 |
+
+Facts not run here are marked `(verify)`: the Delve commands, the golangci-lint linter set, the Kerberos RFC, Zanzibar's paper, the RBAC paper, the architectural-styles citations, RFC 9110 and the new course numbers. The `GOTRACEBACK` behaviour is taken from `go doc runtime` on 1.27.1. No new problems were added: each pass already has its proof and compute problems.
+
+
+
+## R7 The course guide (D18) — 2026-09-25
+
+The learner asked for one file that holds the course outline and tables of contents, points to the course files, tells the tutor how to teach the whole course and how to manage the other files, and for no repeated material in any course file. `refactor-tools/r7_guide.py` runs inside `r2b_build.py` after R6 and writes `COURSE-GUIDE.md` beside the six parts. Its authored text is in `authored/guide/`. Every removed or changed line is journaled and kept in `records/` (D3).
+
+| Rule | What it does |
+|---|---|
+| R7-1 | Moves the main course's §0.1–§0.5 (parts and stitch rule, learner preferences, ownership register, Suite Teaching Contract, Lab Safety) and Part X into the guide. The main course keeps a one-paragraph pointer and its §0.6 alignment table. |
+| R7-2 | Replaces each companion's §0 copy of the preferences, contract and Lab Safety with a short §0: what the part owns, the rules particular to it, and its notation. |
+| R7-3 | Folds the five companion "overlap register" slices into the one register (rule 0.3), 72 rows. |
+| R7-4 | Rewrites references to sections that moved. Cyber §0.5 (frameworks) is merged into its Appendix U. The "sibling" lists are dropped: the guide's §2 lists the parts once. |
+| R7-5 | Rewrites the moved rule text so that "§0.x" means "rule 0.x" (only inside the guide's §3). Rule 0.4.11 (GCP lens depths, bank ≠ dump, inline tracking, honesty flags, read economically) replaces the five companions' copies of those conventions. |
+| R7-6 | Drops the SQL bank's 100 per-card "Prereq gate" lines. Each one repeated the gate its level already states once; the bank's introduction says so once. |
+
+The academic passes in the five companions no longer restate rule 0.4.10.3. They cite it (`authored/academic/*.md`).
+
+**Guide layout.** §1 session start and where to find things · §2 the six files (part, ownership, ID families, keys/skip-test/order sections) · §3 rules 0.1–0.5 · §4 seven rules for managing the course files (one home; refer, never copy; search before adding; the tutor only ticks boxes; keys stay with their owner; honesty flags travel with the fact; the files are built from `../refactor`) · §5 the outline, generated at build time from every part's headings, module cards and certification lines.
+
+**Gates updated for D18.** `audit_r2b.py` D12 checks that rule 0.4.9 is in the guide once, that no part copies it, and that every part points at the guide. `verify.py`:
+- IDs defined in the guide (Lens-1…3) count as defined;
+- `kept_rule` and the R5 row want the rule once in the guide and in no part;
+- the substance probes for C-29, C-30, C-36, C-47, C-54, C-55, C-57, C-70–C-72, C-74, C-75, C-NEW-04 and C-NEW-06 read the guide.
+
+`verify.py . --stage R5` passes.
+
+**Duplicate scan.** No line of 70 characters or more repeats within a file. Across the seven files, no run of 20 words repeats except two kinds: the one-line pointer at the head of each companion's §0 ("This part follows the rules of the course guide"), and one citation shared by the main course and the primer (Mitzenmacher, power of two choices), since a reading is named where it is used.
+
+**Trade-off.** The parts are no longer self-contained (this partly reverses D6's "same text in every part"). A session must read the guide with the parts.
