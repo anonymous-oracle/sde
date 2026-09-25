@@ -1,0 +1,4 @@
+# __init__.py — line-by-line analysis
+
+## Lines 1-1
+- Comment describes CLI command grouping module.

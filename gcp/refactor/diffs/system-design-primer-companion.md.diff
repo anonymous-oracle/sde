@@ -1,0 +1,990 @@
+--- inputs-original/system-design-primer-companion.md
++++ work/system-design-primer-companion.md
+@@ -1,48 +1,61 @@
+ # The System Design Primer Companion — GCP-Native Edition
+-Companion to `/Users/Suhas.KS/gcp.md` ("The Consolidated Cloud Mastery Curriculum")
++Companion to `Curriculum` ("The Consolidated Cloud Mastery Curriculum")
+ Source: [donnemartin/system-design-primer](https://github.com/donnemartin/system-design-primer) (CC BY 4.0) — the full README, all 8 system-design solutions, all 6 object-oriented-design solutions, and the 3 Anki decks. Built September 21, 2026.
++Modified by the curriculum refactor on 2026-09-24; changes listed in CHANGELOG.md.
+ 
+ ---
+ 
+-## 0. Read this first — how this file complements gcp.md
++## 0. Read this first — how this file complements Curriculum
+ 
+ ### 0.1 Standing instruction (for Claude, every session)
+ 
+-**This file is a complement to `/Users/Suhas.KS/gcp.md`, not a second curriculum. Read both. Whenever a gcp.md module is taught, also teach every companion concept bound to it (Section 2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
+-
+-Why: the primer teaches *what* scalable systems are made of, in vendor-neutral words (load balancer, cache, queue, shard). gcp.md teaches *which real cloud resources* those words become, and the exam-grade judgment around them. Industry builds high-scale systems out of cloud resources, so every primer concept must arrive with its GCP resource attached — and every GCP resource should arrive with the primer's trade-off reasoning attached.
++**This file is a complement to `Curriculum`, not a second curriculum. Read both. Whenever a Curriculum module is taught, also teach every companion concept bound to it (Section 2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
++
++Why: the primer teaches *what* scalable systems are made of, in vendor-neutral words (load balancer, cache, queue, shard). Curriculum teaches *which real cloud resources* those words become, and the exam-grade judgment around them. Industry builds high-scale systems out of cloud resources, so every primer concept must arrive with its GCP resource attached — and every GCP resource should arrive with the primer's trade-off reasoning attached.
+ 
+ ### 0.2 Stitching rules
+ 
+-1. **One concept, one teaching.** Where both files cover the same idea (L4 vs L7 load balancing, CAP, least privilege, queues, Big-O, TLS, replication), teach it once, in the gcp.md module that owns it. This file adds the *system-design layer*: trade-offs and disadvantages, numbers, interview framing, and the GCP resource. Later sessions refer back; they don't re-teach.
++1. **One concept, one teaching.** Where both files cover the same idea (L4 vs L7 load balancing, CAP, least privilege, queues, Big-O, TLS, replication), teach it once, in the Curriculum module that owns it. This file adds the *system-design layer*: trade-offs and disadvantages, numbers, interview framing, and the GCP resource. Later sessions refer back; they don't re-teach.
+ 2. **Every concept gets a GCP lens the moment it is taught**, at three depths:
+    - **Lens-1 (name it):** name the GCP resource, say why it is the answer, show one `gcloud`/console/Terraform line. Used throughout Phases 0–3.
+    - **Lens-2 (touch it):** hands-on inside Lab Reality (free tier, a slice of the $300, a local emulator, or `terraform plan`).
+    - **Lens-3 (design with it):** cert-depth trade-offs and limits. Phase 4 onward, alongside the PCA/PMLE/Data/Network/Database/DevOps material.
+-3. **AWS and Azure names come from gcp.md Part VIII — don't teach three times.** The primer's own examples are AWS-flavoured (S3, RDS, ELB, CloudFront, ElastiCache, SQS, Route 53, DynamoDB, Redshift, CloudWatch); every concept below translates them to GCP, and Part VIII gives the Azure side.
+-4. **Order and pacing belong to gcp.md** (Phase plan, Part X, "skip ahead" rights). **SD content and problems belong to this file.** On a conflict, gcp.md wins on order, Lab Reality, and exam time-sensitivity; this file wins on system-design content.
++3. **AWS and Azure names come from Curriculum Part VIII — don't teach three times.** The primer's own examples are AWS-flavoured (S3, RDS, ELB, CloudFront, ElastiCache, SQS, Route 53, DynamoDB, Redshift, CloudWatch); every concept below translates them to GCP, and Part VIII gives the Azure side.
++4. **Order and pacing belong to Curriculum** (Phase plan, Part X, "skip ahead" rights). **SD content and problems belong to this file.** On a conflict, Curriculum wins on order, Lab Reality, and exam time-sensitivity; this file wins on system-design content.
+ 5. **Problems are checkpoints, not detours.** Run a problem from the ladder (Section 4.5) only when its prerequisite gate is met (Section 4.3). A problem session introduces at most one new concept and otherwise integrates what is already learned.
+ 6. **Tracking is inline.** Tick the `- [ ]` box on a concept or problem in this file, or say "done" in chat. Do **not** create a separate tracker, log, or research file.
++   *Exception (added by the refactor, C-30):* `session-progress-ledger.md` is the single sanctioned cross-file tracker; inline `- [ ]` ticks remain authoritative and the ledger mirrors them. Refactor artifacts (`refactor-state.md`, manifests, reports) are build tooling, not trackers, and are not uploaded to teaching sessions.
+ 7. **Honesty flags.** `(verify)` marks a GCP detail that changes often or that I could not confirm here — check the live docs before you rely on it for an exam or production. The primer itself is 2017-vintage; where industry has moved on, the concept block says so under **Modern note**.
+-8. **User can override anything:** skip a concept already known, jump to a specific problem, or go hands-on — same rights as gcp.md Part X.
+-9. **Read economically.** This file is large by design. Each session read §0 and §2, then only the blocks bound to today's gcp.md module (search by ID: `SD-10`, `SX-05`, `P02`…). Do not reload the whole file, and do not copy its contents into other files.
++8. **User can override anything:** skip a concept already known, jump to a specific problem, or go hands-on — same rights as Curriculum Part X.
++9. **Read economically.** This file is large by design. Each session read §0 and §2, then only the blocks bound to today's Curriculum module (search by ID: `SD-10`, `SX-05`, `P02`…). Do not reload the whole file, and do not copy its contents into other files.
+ 
+ ### 0.3 How one stitched session runs
+ 
+-1. **Anchor** — announce the gcp.md module and list the companion concepts bound to it (Section 2).
+-2. **Concept** — teach the shared idea once (gcp.md depth) and layer the primer's trade-offs and disadvantages on top.
++1. **Anchor** — announce the Curriculum module and list the companion concepts bound to it (Section 2).
++2. **Concept** — teach the shared idea once (Curriculum depth) and layer the primer's trade-offs and disadvantages on top.
+ 3. **GCP lens** — the resource(s), Lens-1 always, Lens-2 when Lab Reality allows.
+ 4. **Numbers** — one back-of-the-envelope calculation using Appendix 6.1–6.3.
+ 5. **Micro-problem** — apply the concept to a ladder problem, or to the "Users+" step of P08 that introduces it.
+ 6. **Check** — the concept's check questions; the user answers before I explain.
+-7. **Close** — tick the boxes in both files' sense (gcp.md module + companion concepts).
++7. **Close** — tick the boxes in both files' sense (Curriculum module + companion concepts).
++
++When other companions bind to the same session, the Suite Session Protocol in `Curriculum` §0.4 governs.
+ 
+ ### 0.4 Notation
+ 
+ - `SD-nn` — primer concept modules (Section 3A). `SX-nn` — techniques embedded in the primer's solutions (Section 3B).
+ - `P01–P08` — primer system-design problems with solutions. `O01–O07` — object-oriented-design problems. `Q01–Q23` — the primer's "additional questions" (references only, no solution in the repo).
+-- `A1…A11, B1…B5, C1…C7, D1…D4` — gcp.md module IDs. `Part V` = gcp.md's GCP service map.
++- `A1…A11, B1…B5, C1…C7, D1…D4` — Curriculum module IDs. `Part V` = Curriculum's GCP service map.
++- `V-COMP, V-STOR, V-NET, V-DATA, V-AI, V-SEC, V-OPS` — `Curriculum` Part V service-map categories (C-22). `M1…M6`, `U1…U7`, `S1…S11` — new `Curriculum` tracks (stubs until R4). `Nx.y` — sections of `northstar-reference-app.md`.
++- Binding notation (C-24): `SD-21@A8` primary · `SD-21[hash-table slice]@A4` slice · `SD-21~C2` recall. The single source is `primer-binding-table.md`; the header stitches, §2 and §4.5 are generated from it.
+ - Primer numbers ("primer:") are quoted from the primer; GCP details are mine and carry `(verify)` where needed.
++
++### 0.5 Learner teaching preferences (binding; copied unchanged from session-progress-ledger.md §5, invariant 4)
++
++- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
++- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
++- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a `Curriculum` module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
++- If a companion file references module IDs that don't exist in `Curriculum` (as `sql-databases-companion.md` does), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+ 
+ ---
+ 
+@@ -79,64 +92,68 @@
+ 
+ ## 2. Stitch table — teach these together
+ 
+-Each gcp.md module on the left is taught **with** the companion concepts on the right, in the same session (Section 0.2 rule 1). "Checkpoint" is the problem to run once that module and its stitched concepts are done.
+-
+-| gcp.md module | Companion concepts taught in the same session | Checkpoint |
+-|---|---|---|
+-| **A1** Digital logic & data representation | SD-36 powers of two (exact vs approximate; KiB vs KB), SD-37 units (ns/µs/ms) | — |
+-| **A2** Math for cloud & ML | SD-03 throughput/latency arithmetic · SD-07 availability math (series vs parallel, nines) · SX-02 key-space math (62^7) · Little's law (SD-28) · SD-00 back-of-envelope | BoE drills on P01 |
+-| **A3** Programming foundations | SD-33/34 REST vs RPC calls in Python + curl · SD-27 cache-aside code · SX-02 Base62 code · all O-problems' Python | O01, O02 |
+-| **A4** Data structures & algorithms | SD-21 hash table · SD-19 B-tree index · SX-11 LRU (hash map + doubly linked list) · SX-10 BFS · SD-38 consistent-hash ring · heaps/sorted sets (SX-07, SX-09) | O01, O02, O07 |
+-| **A5** Computer networking | SD-08 DNS · SD-09 CDN · SD-10 load balancer (L4/L7) · SD-11 reverse proxy · SD-29 HTTP · SD-30 TCP · SD-31 UDP · SD-35 (TLS in transit) | P08 steps "single box → DNS → Users++" |
+-| **A6** Linux & OS | SD-01 single-box baseline · SD-19 profiling tools · SD-37 memory/disk numbers · connection & file-descriptor limits (feeds SD-30) | P08 step 0 |
+-| **A7** Software architecture & APIs | SD-12 app layer/microservices/service discovery · SD-28 queues · SD-32 RPC · SD-33 REST · SD-34 · SD-02 | P01, O03 |
+-| **A8** Databases & data modeling | SD-13 … SD-25 (all of SQL, NoSQL, SQL-vs-NoSQL) | P01, P04 |
+-| **A9** Distributed systems theory | SD-04 CAP · SD-05 consistency · SD-06 fail-over/replication · SD-07 nines · SD-15 multi-master · SD-17 sharding · SD-38 consistent hashing/scatter-gather · SD-39 papers (Dynamo, Bigtable, Spanner, Chubby, GFS) | P05, P06 |
+-| **A10** Security & crypto | SD-35 (encrypt in transit/at rest, XSS, SQL injection, parameterized queries, least privilege) | P04 (credential storage) |
+-| **A11** Software delivery | SD-00 iterative loop (benchmark → profile → fix → repeat) · P08 "automate DevOps" step | — |
+-| **B1** What is cloud computing | P08 (why managed services beat self-run at each step) | P08 |
+-| **B2** Virtualization & containers | SD-01 "clones" · SD-10 horizontal scaling (identical images) | — |
+-| **B3** Architecture patterns & Well-Architected | SD-02 · SD-03 · SD-06 (active-passive ≈ warm standby/pilot light; active-active ≈ multi-site) · SD-07 · vertical vs horizontal (SD-10) | P08 |
+-| **B4** Cloud economics & FinOps | CDN cost vs origin cost (SD-09) · cache vs DB cost (SD-26) · autoscaling savings (P08 "Users++++") · storage tiering (SX-01) | P07 |
+-| **B5** Cloud IAM concepts | SD-35 least privilege · service-to-service auth for SD-12 | — |
+-| **C1** Docker | SD-01 clones · stateless servers (SD-10 horizontal-scaling disadvantages) | — |
+-| **C2** Kubernetes | SD-12 microservices & service discovery (Services, CoreDNS) · SD-10 (Service/Ingress = L4/L7) · P08 autoscaling (HPA) · StatefulSet ↔ stateful tier (SD-14, SD-21) | P08, P06 |
+-| **C3** NGINX | SD-11 reverse proxy · SD-10 · SD-26 web-server caching (Varnish/NGINX cache) · TLS termination (SD-10, SD-35) | P01 |
+-| **C4** CI/CD | SD-00 iterative delivery · blue-green/canary ↔ SD-06 active-active/passive | — |
+-| **C5** IaC (Terraform) | every P-problem's reference architecture (Section 5) as a `terraform plan` exercise | P01, P08 |
+-| **C6** Observability | SD-19 benchmark/profile · P08 monitoring list (host, aggregate, logs, external, alerts, errors) · SD-03 tail latency · Dapper (SD-39) | P08 |
+-| **C7** SRE principles | SD-07 nines ↔ SLO/error budget · SD-06 fail-over · SD-28 back pressure/retries · SD-03 percentiles | P08, Q19 |
+-| **D1** Classical ML | Q07 recommendation system · Q16 trending topics (score models) | Q07 |
+-| **D3** MLOps | Q07 feature store, batch vs online serving | Q07 |
+-| **D4** GenAI, embeddings, RAG | SX-06 reverse index ↔ embeddings/vector index · Q02 search engine · Q14 graph search | Q02, Q14 |
+-| **Part V — Compute** (GCE, GKE, Cloud Run, App Engine, Functions) | SD-01, SD-10 (MIG + autoscaling), SD-12 microservices, SD-28 workers | P08 |
+-| **Part V — Storage/DB** | SD-13 … SD-27, SX-01 | P01, P04, P06 |
+-| **Part V — Networking** | SD-08, SD-09, SD-10, SD-11, SD-30/31 | P08 |
+-| **Part V — Data/Analytics** | SD-28 (Pub/Sub) · SD-38 MapReduce → Dataflow/Dataproc · SX-03/08 log analytics → BigQuery | P07, P04 |
+-| **Part V — AI/ML** | Q07, Q02 | Q07 |
+-| **Part V — Security** | SD-35 | — |
+-| **Part V — Ops/DevOps** | SD-19, SD-00 loop, P08 | — |
+-| **PCA / Data Eng / Network Eng / Database Eng / DevOps / Developer certs** | PCA: all P-problems are constraint→trade-off drills (matches "which trade-off is correct"). Data Eng: SD-28, SD-38, P04, P07, Q16, Q18. Network Eng: SD-08–SD-11, SD-30/31, Q15. Database Eng: SD-13–SD-25, P05, Q05, Q17, Q19. DevOps: SD-07, SD-19, SD-28, P08. Developer: SD-26–SD-28, SD-32–SD-34 | Phase 4 |
+-| **Part VI AWS / Part VII Azure** | The primer's own AWS wording is the AWS-track reference: P08 is literally the AWS build. When Phase 6/7 arrives, re-run P08 with Part VIII names — no new concepts needed | P08 (AWS), P08 (Azure) |
++Each Curriculum module on the left is taught **with** the companion concepts on the right, in the same session (Section 0.2 rule 1). "Checkpoint" is the problem to run once that module and its stitched concepts are done.
++
++*Generated from `primer-binding-table.md` (2026-09-24, C-24).* Columns: PRIMARY = the session that teaches the concept in full; slices = one named ingredient taught earlier (or a continuation after); recalls = a one-line reference back; also in this session = the problem-level work (and, for V rows, the Lens-3 service wording) the pre-refactor row named, kept verbatim. The full pre-refactor table is kept verbatim in the D3 archive at the end of this file.
++
++| Curriculum module | Taught in full here (PRIMARY) | Slices and forward pointers | Recalls | Also in this session | Checkpoint |
++|---|---|---|---|---|---|
++| **A1** Digital logic & data representation | SD-36, SD-37 | — | — | — | — |
++| **A2** Math for cloud & ML | SD-00 | SD-02[proportional-scaling arithmetic] · SD-03[throughput/latency arithmetic; Little's law sizing] · SD-07[availability math: series vs parallel, nines] · SD-28[Little's law] · SX-02[62^7 key-space math] | — | SD-00 back-of-envelope drills | BoE drills on P01 |
++| **A3** Programming foundations | — | SD-21[dict as a hash table] · SD-27[cache-aside code] · SD-32[RPC calls in Python] · SD-33[REST calls in Python + curl] · SD-34[REST vs RPC calls in Python + curl] · SX-02[Base62 code] | — | all O-problems' Python | — (O01, O02 move to the A4 recall checkpoints, C-34) |
++| **A4** Data structures & algorithms | SX-11 (via O02) | SD-19[B-tree index slice] · SD-21[hash-table slice] · SD-24[graph representation slice] · SD-38[consistent-hash ring slice (SD-38a)] · SX-07[heaps/sorted sets] · SX-09[heaps] · SX-10[BFS slice] | — | — | O01, O02, O07 — recall checkpoints, run as practice, not re-teaching (C-34) |
++| **A5** Computer networking | SD-08, SD-29, SD-09, SD-30, SD-10, SD-11, SD-31 | SD-01[clones + single-box ceiling slice] · SD-02[performance-vs-scalability slice] · SD-06 *(named only: P08 Users++ networking slice)* · SD-12 *(named only: P08 Users++ networking slice)* · SD-26[HTTP-layer caching slice: client/browser cache, Cache-Control/ETag, CDN-as-cache, reverse-proxy cache] · SD-35[transit-encryption slice (TLS in transit)] | — | — | P08 *Single box* step (SD-08 + the P08 network hardening → NT-01, NT-05) and the *Users++* networking slice (SD-09, SD-10, SD-11); SD-06 → A9 and SD-12 → A7 are named, not taught (C-33) |
++| **A6** Linux & OS | SD-01, SX-12 (via P08) | SD-19[profiling tools] · SD-30[connection and file-descriptor limits] | SD-37~ (memory/disk numbers) | — | P08 step 0 (the single-box OS view), then the full P08 first pass (outline) (C-33) |
++| **A7** Software architecture & APIs | SD-12, SD-28, SD-32, SD-33, SD-34 | SD-16[functional partitioning as service decomposition] | SD-02~ · SD-29~ | — | P01, O03 (after DP-18 + DP-16 State), O04, O05 (after F-01…F-04 + PR-01…PR-05 SOLID), O06 (C-34) |
++| **A8** Databases & data modeling | SD-04, SD-13, SD-19, SD-20, SD-21, SD-22, SD-23, SD-24, SD-26, SX-01 (via P01), SX-02 (via P01), SX-03 (via P01), SX-04 (via P01) | SD-05[strong vs eventual consistency as the C in CAP] · SD-14 *(named only)* · SD-15 *(named only)* · SD-16[split databases by function: schema view] · SD-17 *(named only)* · SD-18[denormalization as the inverse of normalization] · SD-25[SQL-vs-NoSQL decision lists, family level] | — | — | P01, P04 |
++| **A9** Distributed systems theory | SD-05, SD-06, SD-07, SD-14, SD-15, SD-16, SD-17, SD-18, SD-25, SD-27, SD-38, SD-39 | SD-04[formal limits + PACELC] | SD-20~ (BASE ↔ eventual consistency) · SD-23~ | — | P05, P06 |
++| **A10** Security & crypto | SD-35 | — | — | — | P04 (credential storage) |
++| **A11** Software delivery | — | — | SD-00~ (iterative loop: benchmark → profile → fix → repeat) | P08 "automate DevOps" step | — |
++| **B1** What is cloud computing | — | — | — | P08 (why managed services beat self-run at each step) | P08 |
++| **B2** Virtualization & containers | — | — | SD-01~ (clones) · SD-10~ (horizontal scaling from identical images) | — | — |
++| **B3** Architecture patterns & Well-Architected | SD-02, SD-03 | — | SD-00~ · SD-06~ (active-passive ≈ warm standby/pilot light; active-active ≈ multi-site) · SD-07~ · SD-10~ (vertical vs horizontal) | P08 walk-through | P08 |
++| **B4** Cloud economics & FinOps | — | — | SD-09~ (CDN cost vs origin cost) · SD-26~ (cache vs DB cost) · SX-01~ (storage tiering) | autoscaling savings (P08 "Users++++") | P07 |
++| **B5** Cloud IAM concepts | — | — | SD-12~ (service-to-service auth) · SD-35~ (least privilege) | — | — |
++| **C1** Docker | — | — | SD-01~ (clones) · SD-10~ (stateless servers) | — | — |
++| **C2** Kubernetes | — | — | SD-10~ (Service/Ingress = L4/L7; HPA) · SD-11~ · SD-12~ (Services, CoreDNS) · SD-14~ (StatefulSet ↔ stateful tier) · SD-21~ (StatefulSet ↔ stateful tier) | P08 autoscaling (HPA) | P08, P06 |
++| **C3** NGINX | — | — | SD-10~ · SD-11~ (reverse proxy in NGINX) · SD-12~ · SD-26~ (NGINX/Varnish web-server cache) · SD-29~ · SD-35~ (TLS termination) | — | P01 |
++| **C4** CI/CD | — | — | SD-00~ (iterative delivery) · SD-06~ (blue-green/canary ↔ active-active/passive) | — | — |
++| **C5** IaC (Terraform) | — | — | — | every P-problem's reference architecture (Section 5) as a `terraform plan` exercise | P01, P08 |
++| **C6** Observability | — | — | SD-03~ (tail latency) · SD-19~ (benchmark/profile) · SD-37~ · SD-39~ (Dapper) | P08 monitoring list (host, aggregate, logs, external, alerts, errors) | P08 |
++| **C7** SRE principles | — | — | SD-03~ (percentiles) · SD-06~ (fail-over) · SD-07~ (nines ↔ SLO/error budget) · SD-28~ (back pressure/retries) | — | P08, Q19 |
++| **D1** Classical ML | — | — | — | Q07 recommendation system · Q16 trending topics (score models) | Q07 |
++| **D3** MLOps | — | — | — | Q07 feature store, batch vs online serving | Q07 |
++| **D4** GenAI, embeddings, RAG | SX-06 (via Q02) | — | — | SX-06 reverse index ↔ embeddings/vector index · Q02 search engine · Q14 graph search | Q02, Q14 |
++| **V-COMP** Part V — Compute (GCE, GKE, Cloud Run, App Engine, Functions) (Lens-3 in Phase 4) | — | — | SD-01~ · SD-10~ (MIG + autoscaling) · SD-12~ · SD-28~ (workers) · SD-39~ | SD-01, SD-10 (MIG + autoscaling), SD-12 microservices, SD-28 workers | P08 |
++| **V-STOR** Part V — Storage/DB (Lens-3 in Phase 4) | — | — | SD-13~ · SD-14~ · SD-15~ · SD-16~ · SD-17~ · SD-18~ · SD-19~ · SD-20~ · SD-21~ · SD-22~ · SD-23~ · SD-24~ · SD-25~ · SD-26~ · SD-27~ · SD-39~ · SX-01~ | SD-13 … SD-27, SX-01 | P01, P04, P06 |
++| **V-NET** Part V — Networking (Lens-3 in Phase 4) | — | — | SD-08~ · SD-09~ · SD-10~ · SD-11~ · SD-30~ · SD-31~ · SD-39~ | SD-08, SD-09, SD-10, SD-11, SD-30/31 | P08 |
++| **V-DATA** Part V — Data/Analytics (Lens-3 in Phase 4) | — | — | SD-28~ (Pub/Sub) · SD-38~ (MapReduce → Dataflow/Dataproc) · SD-39~ · SX-03~ (log analytics → BigQuery) · SX-08~ (log analytics → BigQuery) | SD-28 (Pub/Sub) · SD-38 MapReduce → Dataflow/Dataproc · SX-03/08 log analytics → BigQuery | P07, P04 |
++| **V-AI** Part V — AI/ML (Lens-3 in Phase 4) | — | — | SD-39~ | Q07, Q02 | Q07 |
++| **V-SEC** Part V — Security (Lens-3 in Phase 4) | — | — | SD-35~ · SD-39~ | SD-35 | — |
++| **V-OPS** Part V — Ops/DevOps (Lens-3 in Phase 4) | — | — | SD-00~ (the SD-00 loop) · SD-19~ · SD-39~ | SD-19, SD-00 loop, P08 | — |
++| **PCA / Data Eng / Network Eng / Database Eng / DevOps / Developer certs** | — | — | — | PCA: all P-problems are constraint→trade-off drills (matches "which trade-off is correct"). Data Eng: SD-28, SD-38, P04, P07, Q16, Q18. Network Eng: SD-08–SD-11, SD-30/31, Q15. Database Eng: SD-13–SD-25, P05, Q05, Q17, Q19. DevOps: SD-07, SD-19, SD-28, P08. Developer: SD-26–SD-28, SD-32–SD-34 | Phase 4 |
++| **Part VI AWS / Part VII Azure** | — | — | — | The primer's own AWS wording is the AWS-track reference: P08 is literally the AWS build. When Phase 6/7 arrives, re-run P08 with Part VIII names — no new concepts needed | P08 (AWS), P08 (Azure) |
+ 
+ ### 2.1 Overlap register — concepts that appear in both files (teach once, here)
++
++Suite-wide ownership lives in the register in `Curriculum` §0.3 (which also carries the v1.1 rows for PACELC, cache stampede, tail latency, Little's law, consistent hashing, CRDTs, sketches, unique IDs, GC, event sourcing and credential storage). This table is the primer's slice of it; on a conflict §0.3 wins.
+ 
+ | Concept | Owner (teach here) | Companion adds |
+ |---|---|---|
+-| L4 vs L7 load balancing, algorithms | gcp.md A5 | SD-10: SSL termination, session persistence, LB failover, disadvantages |
+-| Reverse proxy vs forward proxy | gcp.md A5 / C3 | SD-11: benefits list, LB-vs-RP decision rule |
+-| DNS record types | gcp.md A5 | SD-08: TTL staleness, weighted/latency/geo routing, DNS-as-SPOF |
+-| TCP vs UDP | gcp.md A5 | SD-30/31: when-to-use rules, connection pooling |
+-| Message queues / event-driven | gcp.md A7 | SD-28: task queues, back pressure, delivery semantics |
+-| REST / gRPC | gcp.md A7 | SD-32/33/34: RPC-vs-REST decision, HATEOAS |
+-| ACID, NoSQL families, CAP | gcp.md A8 / A9 | SD-13…SD-25: scaling techniques, SQL-vs-NoSQL decision lists |
+-| Replication, sharding, consensus | gcp.md A9 | SD-06, SD-14, SD-15, SD-17, SD-38 |
+-| Availability vs durability, nines | gcp.md A9 / C7 | SD-07 tables and series/parallel formulas |
+-| HA, horizontal vs vertical scaling, DR | gcp.md B3 | SD-06, SD-10, P08 walk-through |
+-| Least privilege, encryption | gcp.md A10 / B5 | SD-35 checklist |
+-| Big-O, hash lookup, indexes | gcp.md A2 / A4 | SD-19 index trade-offs, SX-11 |
+-| Observability, SRE | gcp.md C6 / C7 | P08 monitoring list, back pressure |
+-| Autoscaling (HPA, MIG) | gcp.md C2 / Part V | P08 "Users++++" |
++| L4 vs L7 load balancing, algorithms | Curriculum A5 | SD-10: SSL termination, session persistence, LB failover, disadvantages |
++| Reverse proxy vs forward proxy | Curriculum A5 / C3 | SD-11: benefits list, LB-vs-RP decision rule |
++| DNS record types | Curriculum A5 | SD-08: TTL staleness, weighted/latency/geo routing, DNS-as-SPOF |
++| TCP vs UDP | Curriculum A5 | SD-30/31: when-to-use rules, connection pooling |
++| Message queues / event-driven | Curriculum A7 | SD-28: task queues, back pressure, delivery semantics |
++| REST / gRPC | Curriculum A7 | SD-32/33/34: RPC-vs-REST decision, HATEOAS |
++| ACID, NoSQL families, CAP | Curriculum A8 / A9 | SD-13…SD-25: scaling techniques, SQL-vs-NoSQL decision lists |
++| Replication, sharding, consensus | Curriculum A9 | SD-06, SD-14, SD-15, SD-17, SD-38 |
++| Availability vs durability, nines | Curriculum A9 / C7 | SD-07 tables and series/parallel formulas |
++| HA, horizontal vs vertical scaling, DR | Curriculum B3 | SD-06, SD-10, P08 walk-through |
++| Least privilege, encryption | Curriculum A10 / B5 | SD-35 checklist |
++| Big-O, hash lookup, indexes | Curriculum A2 / A4 | SD-19 index trade-offs, SX-11 |
++| Observability, SRE | Curriculum C6 / C7 | P08 monitoring list, back pressure |
++| Autoscaling (HPA, MIG) | Curriculum C2 / V-COMP | P08 "Users++++" |
+ 
+ ---
+ 
+@@ -146,15 +163,15 @@
+ 
+ Format per module: **Primer** (what the primer teaches) · **Trade-offs** (its disadvantages/limits) · **GCP lens** · **Lab** (inside Lab Reality) · **Check** (answer before I explain). Tick the box when the module is taught *and* the check questions are answered.
+ 
+-#### SD-00 · The interview method + back-of-the-envelope — stitch: A2, A11, B3
++#### SD-00 · The interview method + back-of-the-envelope — stitch: A2 (primary) · recall: A11, B3, C4, V-OPS
+ - [ ] done
+ - **Primer:** four steps. (1) Outline use cases, constraints, assumptions: who uses it, how, how many users, what it does, inputs/outputs, data volume, requests per second, read:write ratio. (2) High-level design: sketch components and connections, justify. (3) Design core components (for a URL shortener: hash + store, MD5/Base62, collisions, SQL vs NoSQL, schema, lookup, API/OOD). (4) Scale: find bottlenecks (load balancer, horizontal scaling, caching, sharding) and discuss trade-offs. The interview is open-ended and *you* lead it. Study depth by timeline: short = breadth + some problems; medium = breadth + some depth + many problems; long = breadth + more depth + most problems.
+ - **Trade-offs:** "Everything is a trade-off." Never jump to the final design; iterate benchmark → profile → fix → repeat (P08).
+-- **GCP lens:** the four steps are the PCA case-study method: requirements → constraints (RTO/RPO, cost, compliance, latency) → service choice → scale/HA/security. Reference diagrams: Google Cloud Architecture Center; the Architecture Framework pillars in gcp.md B3. Lens-1 cost step: Google Cloud Pricing Calculator turns BoE numbers into a monthly bill.
++- **GCP lens:** the four steps are the PCA case-study method: requirements → constraints (RTO/RPO, cost, compliance, latency) → service choice → scale/HA/security. Reference diagrams: Google Cloud Architecture Center; the Architecture Framework pillars in Curriculum B3. Lens-1 cost step: Google Cloud Pricing Calculator turns BoE numbers into a monthly bill.
+ - **Lab:** take P01's numbers (§4.4) and price the design in the calculator; note which line dominates.
+ - **Check:** Given "design a photo-sharing service", list six clarifying questions and commit to a read:write ratio. Why is "start with the final architecture" a red flag?
+ 
+-#### SD-01 · Scalability: start here — stitch: A6, B2, C1, Part V Compute
++#### SD-01 · Scalability: start here — stitch: A6 (primary) · slices: [clones + single-box ceiling slice]@A5 · recall: B2, C1, V-COMP
+ - [ ] done
+ - **Primer:** two entry points — Harvard scalability lecture (vertical scaling, horizontal scaling, caching, load balancing, database replication, database partitioning) and "Scalability for Dummies" (clones → databases → caches → asynchronism). Then the high-level trade-offs: performance vs scalability, latency vs throughput, availability vs consistency.
+ - **Trade-offs:** vertical scaling is simple but expensive with no redundancy; horizontal scaling adds statelessness requirements and downstream connection pressure.
+@@ -162,15 +179,15 @@
+ - **Lab:** always-free `e2-micro` (eligible US regions, `verify` current free-tier terms) running nginx + local Postgres; note CPU/RAM/disk limits — this is the "single box" of P08.
+ - **Check:** What makes a server a "clone"? Name two things that must move off the box before you can add a second one.
+ 
+-#### SD-02 · Performance vs scalability — stitch: A2, B3
++#### SD-02 · Performance vs scalability — stitch: B3 (primary) · slices: [proportional-scaling arithmetic]@A2, [performance-vs-scalability slice]@A5 · recall: A7
+ - [ ] done
+ - **Primer:** a service is *scalable* if performance increases proportionally with resources added (more units of work, or larger units of work as data grows). Performance problem = slow for a single user. Scalability problem = fast for one user, slow under load.
+ - **Trade-offs:** you can fix a performance problem and still have a scalability problem, and vice versa.
+-- **GCP lens:** performance → per-request latency in Cloud Trace (gcp.md C6); scalability → behaviour under load in Cloud Monitoring while autoscaling (MIG autoscaler, Cloud Run instance scaling, GKE HPA).
++- **GCP lens:** performance → per-request latency in Cloud Trace (Curriculum C6); scalability → behaviour under load in Cloud Monitoring while autoscaling (MIG autoscaler, Cloud Run instance scaling, GKE HPA).
+ - **Lab:** deploy a hello-world Cloud Run service (always-free tier), run a load test (`hey` or `k6` locally), watch instance count and p95 latency; then set `--max-instances=1` and watch the scalability wall appear.
+ - **Check:** A page takes 4 s for one user and 4 s for 10,000 users — which problem is that? What if it takes 0.2 s and 30 s respectively?
+ 
+-#### SD-03 · Latency vs throughput — stitch: A2, C6, C7
++#### SD-03 · Latency vs throughput — stitch: B3 (primary) · slices: [throughput/latency arithmetic; Little's law sizing]@A2 · recall: C6, C7
+ - [ ] done
+ - **Primer:** latency = time to perform an action; throughput = actions per unit time. Aim for maximal throughput with acceptable latency.
+ - **Trade-offs:** batching raises throughput and hurts latency; concurrency per instance does the same.
+@@ -178,7 +195,7 @@
+ - **Lab:** Cloud Run with `--concurrency=1` vs `80` under the same load test; record p50/p99 and cost-per-request intuition.
+ - **Check:** Why does Little's law (L = λW) say concurrency needed = arrival rate × latency? Size a service for 400 rps at 250 ms.
+ 
+-#### SD-04 · CAP theorem — stitch: A8, A9
++#### SD-04 · CAP theorem — stitch: A8 (primary) · slices: [formal limits + PACELC]@A9
+ - [ ] done
+ - **Primer:** in a distributed system you can have only two of Consistency (every read gets the latest write or an error), Availability (every request gets a non-error response, maybe stale), Partition tolerance (keeps operating despite network splits). Networks aren't reliable, so partition tolerance is mandatory — you choose CP or AP. **CP:** may time out waiting on a partitioned node; good when you need atomic reads/writes. **AP:** returns the most available version, reconciles later; good for eventual consistency or when the system must keep working.
+ - **Trade-offs:** the choice is per data type, not per company — the same system may be CP for balances and AP for view counters.
+@@ -186,7 +203,7 @@
+ - **Lab:** Bigtable emulator + Spanner emulator (`gcloud emulators`) — read the docs' consistency sections and write down the CAP position of each.
+ - **Check:** Your shopping cart must accept writes during a regional outage; your payment ledger must not. Which store for each and why?
+ 
+-#### SD-05 · Consistency patterns — stitch: A9
++#### SD-05 · Consistency patterns — stitch: A9 (primary) · slices: [strong vs eventual consistency as the C in CAP]@A8
+ - [ ] done
+ - **Primer:** with multiple copies of data, choose how to sync them. **Weak:** after a write, reads may or may not see it (best effort) — memcached, VoIP, video chat, real-time games. **Eventual:** reads eventually see it (typically ms); async replication — DNS, email; good for highly available systems. **Strong:** reads always see it; synchronous replication — file systems, RDBMS; good for transactions.
+ - **Trade-offs:** stronger consistency costs write latency and availability; weaker pushes complexity into the application.
+@@ -194,31 +211,31 @@
+ - **Lab:** Firestore emulator (strong) vs a read replica lag experiment on a short-lived Cloud SQL instance with one replica (`db-f1-micro`/smallest tier; a few dollars of $300 credit).
+ - **Check:** Which consistency does a "like" counter need? A bank balance? A DNS record after a change?
+ 
+-#### SD-06 · Availability patterns: fail-over and replication — stitch: A9, B3, C7
++#### SD-06 · Availability patterns: fail-over and replication — stitch: A9 (primary) · named only: A5 (P08 Users++ networking slice) · recall: B3, C4, C7
+ - [ ] done
+ - **Primer:** two complementary patterns. **Active-passive:** heartbeat between active and standby; on loss the passive takes over the active's IP; hot vs cold standby determines downtime; only the active serves traffic (= master-slave fail-over). **Active-active:** both serve; public-facing needs DNS aware of both IPs, internal-facing needs app logic aware of both (= master-master fail-over). Replication (master-slave, master-master) is detailed in SD-14/SD-15.
+ - **Trade-offs:** more hardware and complexity; possible data loss if the active dies before newly written data replicated.
+-- **GCP lens:** regional MIG spread across zones with health-check **autohealing** replaces heartbeat + IP takeover; global external Application LB shifts traffic away from unhealthy backends/regions automatically; Cloud SQL **HA** = regional primary + synchronous standby in another zone, automatic fail-over keeping the same IP; cross-region replicas for DR; Cloud DNS failover/weighted policies for DNS-level steering. VPC does not support L2 tricks (VRRP/gratuitous ARP) `verify`, so "take over the IP" becomes LB health checks or API-driven IP reassignment. Map gcp.md B3 DR patterns: backup/restore → cold standby; pilot light/warm standby → active-passive; multi-site → active-active.
++- **GCP lens:** regional MIG spread across zones with health-check **autohealing** replaces heartbeat + IP takeover; global external Application LB shifts traffic away from unhealthy backends/regions automatically; Cloud SQL **HA** = regional primary + synchronous standby in another zone, automatic fail-over keeping the same IP; cross-region replicas for DR; Cloud DNS failover/weighted policies for DNS-level steering. VPC does not support L2 tricks (VRRP/gratuitous ARP) `verify`, so "take over the IP" becomes LB health checks or API-driven IP reassignment. Map Curriculum B3 DR patterns: backup/restore → cold standby; pilot light/warm standby → active-passive; multi-site → active-active.
+ - **Lab:** two-VM MIG behind a load balancer (Terraform plan; or apply for an hour) — kill one VM, watch autohealing and zero client errors.
+ - **Check:** How much data can be lost in active-passive with async replication, and what SLI/SLO term names it (RPO)?
+ 
+-#### SD-07 · Availability in numbers — stitch: A2, C7
++#### SD-07 · Availability in numbers — stitch: A9 (primary) · slices: [availability math: series vs parallel, nines]@A2 · recall: B3, C7
+ - [ ] done
+ - **Primer:** availability = uptime %, counted in nines. 99.9% ("three 9s"): 8h45m57s/year, 43m49.7s/month, 10m4.8s/week, 1m26.4s/day. 99.99% ("four 9s"): 52m35.7s/year, 4m23s/month, 1m5s/week, 8.6s/day. **In sequence:** A = A_foo × A_bar (two 99.9% → 99.8%). **In parallel:** A = 1 − (1 − A_foo)(1 − A_bar) (two 99.9% → 99.9999%).
+ - **Trade-offs:** every hard dependency in series lowers the ceiling; redundancy in parallel raises it but only for independent failures.
+-- **GCP lens:** SLO = target; error budget = 1 − SLO (99.9% → about 43.8 min/month, gcp.md C7). Compose real published SLAs (Compute Engine multi-zone, Cloud SQL HA, Spanner regional/multi-region, Cloud Storage location types, Cloud Load Balancing) to bound your architecture — `verify` each figure on the live SLA pages; they change.
++- **GCP lens:** SLO = target; error budget = 1 − SLO (99.9% → about 43.8 min/month, Curriculum C7). Compose real published SLAs (Compute Engine multi-zone, Cloud SQL HA, Spanner regional/multi-region, Cloud Storage location types, Cloud Load Balancing) to bound your architecture — `verify` each figure on the live SLA pages; they change.
+ - **Lab:** compute the composite availability of P01's stack (LB → Cloud Run → Memorystore → Cloud SQL → GCS) in a spreadsheet; then add a second region and recompute.
+ - **Check:** Five 99.9% components in series ≈ what? Why doesn't two-region redundancy give you 99.9999% in practice?
+ 
+-#### SD-08 · Domain name system — stitch: A5, Part V Networking
++#### SD-08 · Domain name system — stitch: A5 (primary) · recall: V-NET
+ - [ ] done
+ - **Primer:** DNS maps names to IPs. Hierarchical with few authoritative servers at the top; lower servers, routers, ISPs, browsers, OSes cache results for a TTL — so changes propagate slowly. Records: **NS** (name servers), **MX** (mail), **A** (name→IP), **CNAME** (name→name). Managed DNS (CloudFlare, Route 53) can route by **weighted round robin** (maintenance drains, unequal clusters, A/B tests), **latency**, or **geolocation**.
+ - **Trade-offs:** extra lookup delay (mitigated by caching); management complexity (run by governments, ISPs, large companies); DNS providers are DDoS targets (Dyn, Oct 2016) — a DNS outage makes healthy sites unreachable.
+-- **GCP lens:** **Cloud DNS** — public and private zones, DNSSEC, routing policies (weighted round robin, geolocation, geofencing, failover — `verify` list), **Cloud Domains** for registration; **Service Directory** for internal service names. Latency-based routing is usually achieved differently on GCP: the global external Application LB exposes a single anycast IP and steers users to the nearest healthy backend, so DNS-level latency routing is rarely needed. In Kubernetes, CoreDNS is the cluster DNS (gcp.md C2).
++- **GCP lens:** **Cloud DNS** — public and private zones, DNSSEC, routing policies (weighted round robin, geolocation, geofencing, failover — `verify` list), **Cloud Domains** for registration; **Service Directory** for internal service names. Latency-based routing is usually achieved differently on GCP: the global external Application LB exposes a single anycast IP and steers users to the nearest healthy backend, so DNS-level latency routing is rarely needed. In Kubernetes, CoreDNS is the cluster DNS (Curriculum C2).
+ - **Lab:** `dig +trace example.com`, watch TTLs decay with `dig` twice; optionally one Cloud DNS zone for a few cents.
+ - **Check:** You lower a record's TTL to 60 s *after* deciding to migrate — why must you have lowered it a full old-TTL earlier?
+ 
+-#### SD-09 · Content delivery network — stitch: A5, B4, Part V Networking
++#### SD-09 · Content delivery network — stitch: A5 (primary) · recall: B4, V-NET
+ - [ ] done
+ - **Primer:** a CDN is a globally distributed network of proxy servers serving content close to users (usually static HTML/CSS/JS, photos, video; some support dynamic content); DNS directs clients to an edge. Wins: users get content from nearby data centers, and your servers skip requests the CDN fulfils. **Push CDN:** you upload changes and rewrite URLs; you control expiry; uploads only when new/changed (minimal traffic, maximal storage); fits low-traffic or rarely-changing sites. **Pull CDN:** edge fetches from your origin on first request (slower first hit), TTL controls freshness; minimal storage but redundant pulls if files expire before changing; fits heavy-traffic sites.
+ - **Trade-offs:** cost at high traffic; staleness until TTL expires; URLs must point at the CDN.
+@@ -226,23 +243,23 @@
+ - **Lab:** Firebase Hosting site (free plan, `verify` quotas) and read the `Cache-Control`/`Age` headers with `curl -I`; the LB + Cloud CDN version has an hourly forwarding-rule charge — build it, test, delete it in the same hour, or keep it to `terraform plan`.
+ - **Check:** Pull or push for a 50-page marketing site updated monthly? For a viral video site? What fixes "users still see the old logo"?
+ 
+-#### SD-10 · Load balancer (+ horizontal scaling) — stitch: A5, C2, C3, B3, Part V Networking
++#### SD-10 · Load balancer (+ horizontal scaling) — stitch: A5 (primary) · recall: B2, B3, C1, C2, C3, V-COMP, V-NET
+ - [ ] done
+ - **Primer:** spreads requests across servers (app servers, DBs) and returns the response to the client: avoids unhealthy servers, avoids overload, removes a single point of failure. Hardware (expensive) or software (HAProxy). Extras: **SSL termination** (no X.509 cert on every server) and **session persistence** (cookie → same instance when the app keeps no session state). Run several LBs active-passive or active-active. Routing metrics: random, least loaded, session/cookies, round robin / weighted round robin, L4, L7. **L4** decides from transport info (IPs, ports; not payload) and forwards packets with NAT. **L7** terminates the connection, reads headers/message/cookies, then opens a connection to the chosen server (e.g. video traffic → video servers, billing → hardened servers). L4 is cheaper than L7 but the gap is small on modern hardware. **Horizontal scaling** (commodity machines) beats vertical for cost, availability, hiring.
+ - **Trade-offs:** LB can bottleneck if under-provisioned/misconfigured; a single LB is a SPOF, several add complexity; scaling out demands stateless servers (sessions in a DB or Redis/Memcached) and puts more concurrent connections on caches/DBs.
+-- **GCP lens:** **Cloud Load Balancing** is fully managed and distributed — you don't fail it over, which dissolves most of the "LB is a SPOF" worry. **Application LBs (L7):** global external, regional external, internal; URL maps do the primer's "video vs billing" split (host/path rules → backend services); health checks; backends = MIGs, NEGs (zonal, serverless, internet). **Network LBs (L4):** proxy (TCP/SSL) and passthrough (TCP/UDP, preserves client IP). Session affinity: client IP, generated cookie, header, HTTP cookie. Managed certificates = SSL termination. Attach Cloud Armor for WAF/DDoS. Autoscaling: MIG autoscaler on CPU / LB utilization / custom metric / schedule (gcp.md Part V). AWS ELB/ALB/NLB ↔ Part VIII.
++- **GCP lens:** **Cloud Load Balancing** is fully managed and distributed — you don't fail it over, which dissolves most of the "LB is a SPOF" worry. **Application LBs (L7):** global external, regional external, internal; URL maps do the primer's "video vs billing" split (host/path rules → backend services); health checks; backends = MIGs, NEGs (zonal, serverless, internet). **Network LBs (L4):** proxy (TCP/SSL) and passthrough (TCP/UDP, preserves client IP). Session affinity: client IP, generated cookie, header, HTTP cookie. Managed certificates = SSL termination. Attach Cloud Armor for WAF/DDoS. Autoscaling: MIG autoscaler on CPU / LB utilization / custom metric / schedule (Curriculum Part V). AWS ELB/ALB/NLB ↔ Part VIII.
+ - **Lab:** Cloud Run service behind a global external ALB via a serverless NEG — apply for an hour or `terraform plan` (forwarding rules are billed hourly).
+ - **Check:** When is L7 mandatory over L4? What breaks when sessions live in server memory and the autoscaler removes an instance?
+ 
+-#### SD-11 · Reverse proxy (web server) — stitch: A5, C3
++#### SD-11 · Reverse proxy (web server) — stitch: A5 (primary) · recall: C2, C3, V-NET
+ - [ ] done
+ - **Primer:** a web server that centralizes internal services behind one public interface. Benefits: **security** (hide backends, blacklist IPs, limit connections per client), **scalability/flexibility** (clients see only the proxy's IP), **SSL termination**, **compression**, **caching**, **static content** (HTML/CSS/JS, photos, video). Decision rule: a load balancer earns its keep with *multiple* servers doing the same job; a reverse proxy helps even with *one* server; NGINX/HAProxy do both at L7.
+ - **Trade-offs:** added complexity; a single reverse proxy is a SPOF, several add complexity.
+-- **GCP lens:** the global external ALB *is* a managed reverse proxy (TLS termination, host/path routing, Cloud CDN caching, Cloud Armor, IAP for identity-aware access). Cloud Run's built-in HTTPS front end is one too. Self-managed: NGINX on GCE/GKE (gcp.md C3), NGINX Ingress. API-facing proxying: API Gateway or Apigee (quotas, keys, transformations). East-west: Cloud Service Mesh (Envoy). Serve static content from Cloud Storage + CDN, not from the app.
++- **GCP lens:** the global external ALB *is* a managed reverse proxy (TLS termination, host/path routing, Cloud CDN caching, Cloud Armor, IAP for identity-aware access). Cloud Run's built-in HTTPS front end is one too. Self-managed: NGINX on GCE/GKE (Curriculum C3), NGINX Ingress. API-facing proxying: API Gateway or Apigee (quotas, keys, transformations). East-west: Cloud Service Mesh (Envoy). Serve static content from Cloud Storage + CDN, not from the app.
+ - **Lab:** docker compose: NGINX in front of a container — TLS off, gzip on, `proxy_cache` on, `limit_conn` on — then find the equivalent ALB/Cloud Armor setting for each.
+ - **Check:** You have exactly one app server: still add a reverse proxy? Give three reasons from the primer.
+ 
+-#### SD-12 · Application layer: microservices & service discovery — stitch: A7, C2, Part V Compute
++#### SD-12 · Application layer: microservices & service discovery — stitch: A7 (primary) · named only: A5 (P08 Users++ networking slice) · recall: B5, C2, C3, V-COMP
+ - [ ] done
+ - **Primer:** separate the web layer from the application (platform) layer so each scales and is configured independently — a new API means more app servers, not more web servers. Single-responsibility principle: small autonomous services (Pinterest example: user profile, follower, feed, search, photo upload). **Microservices** = independently deployable small modular services, each its own process, talking over a well-defined lightweight mechanism. **Service discovery:** Consul, etcd, ZooKeeper keep registered names/addresses/ports; health checks (often an HTTP endpoint) verify integrity; Consul/etcd include a built-in key-value store for config.
+ - **Trade-offs:** needs a different architecture, ops, and process approach than a monolith; more deployment and operational complexity.
+@@ -250,7 +267,7 @@
+ - **Lab:** two always-free Cloud Run services calling each other with IAM-authenticated invocation (`roles/run.invoker`); mirror it with two containers in docker compose.
+ - **Check:** Why doesn't a new "photo upload" API force more web servers in a layered design? What does a readiness probe protect against?
+ 
+-#### SD-13 · Relational databases & ACID — stitch: A8, Part V Storage/DB
++#### SD-13 · Relational databases & ACID — stitch: A8 (primary) · recall: V-STOR
+ - [ ] done
+ - **Primer:** a relational DB stores data in tables; transactions obey **ACID** — Atomicity (all or nothing), Consistency (valid state → valid state), Isolation (concurrent = as if serial), Durability (committed stays committed). Scaling toolbox: master-slave replication, master-master, federation, sharding, denormalization, SQL tuning (SD-14 … SD-19).
+ - **Trade-offs:** strong guarantees vs single-node write ceilings; each scaling technique gives something up.
+@@ -258,7 +275,7 @@
+ - **Lab:** local Postgres/MySQL in Docker (free): open two `psql` sessions, reproduce dirty/non-repeatable reads by lowering isolation, then fix with a stricter level.
+ - **Check:** A crash between "debit A" and "credit B" with no transaction — which ACID letter failed? Which two are hardest to keep when you shard?
+ 
+-#### SD-14 · Master-slave replication — stitch: A9, Part V Storage/DB
++#### SD-14 · Master-slave replication — stitch: A9 (primary) · named only: A8 · recall: C2, V-STOR
+ - [ ] done
+ - **Primer:** the master serves reads and writes and replicates writes to slaves that serve reads only (slaves can chain to other slaves). If the master dies, the system stays read-only until a slave is promoted or a new master provisioned. (Modern terms: primary/replica.)
+ - **Trade-offs:** promotion logic needed; data loss if the master fails before replicating; replicas replaying heavy writes serve fewer reads; more replicas = more lag; a master can write in parallel threads while a replica applies single-threaded; more hardware and complexity.
+@@ -266,7 +283,7 @@
+ - **Lab:** short-lived Cloud SQL primary + one replica; generate write load; graph replica lag; promote it.
+ - **Check:** Why can adding read replicas make lag worse? What is the cost of promoting a lagging replica (RPO)?
+ 
+-#### SD-15 · Master-master replication — stitch: A9
++#### SD-15 · Master-master replication — stitch: A9 (primary) · named only: A8 · recall: V-STOR
+ - [ ] done
+ - **Primer:** both masters serve reads and writes and coordinate on writes; if either fails, reads and writes continue.
+ - **Trade-offs:** need an LB or app logic to choose where to write; most systems are loosely consistent (violating ACID) or pay extra write latency for synchronisation; conflict resolution grows harder with more writers and higher latency; plus all replication disadvantages from SD-14.
+@@ -274,7 +291,7 @@
+ - **Lab:** read Bigtable's replication/app-profile docs and Spanner's multi-region config docs; sketch on paper what happens to two simultaneous writes to one key in each.
+ - **Check:** Two masters take conflicting updates to one row at the same instant — name three ways to cope and what each sacrifices.
+ 
+-#### SD-16 · Federation (functional partitioning) — stitch: A8, A7
++#### SD-16 · Federation (functional partitioning) — stitch: A9 (primary) · slices: [functional partitioning as service decomposition]@A7, [split databases by function: schema view]@A8 · recall: V-STOR
+ - [ ] done
+ - **Primer:** split databases by function (forums, users, products) instead of one monolith → less read/write traffic and replication lag per DB, smaller DBs fit in memory (better cache locality), no central master serializing all writes (parallel writes, higher throughput).
+ - **Trade-offs:** useless if one function/table is huge; app must know which DB to hit; cross-DB joins are hard (server links); more hardware and complexity.
+@@ -282,7 +299,7 @@
+ - **Lab:** docker compose with two Postgres containers (`users`, `orders`); implement an app-side join and note what you lost.
+ - **Check:** What does federation give you that read replicas do not?
+ 
+-#### SD-17 · Sharding — stitch: A9, Part V Storage/DB
++#### SD-17 · Sharding — stitch: A9 (primary) · named only: A8 · recall: V-STOR
+ - [ ] done
+ - **Primer:** spread data across databases, each owning a subset; add shards as users grow. Like federation: less traffic, less replication, more cache hits; smaller indexes speed queries; one shard down ≠ everything down (add replication to avoid loss); parallel writes. Typical keys: last-name initial, geography.
+ - **Trade-offs:** app logic must handle shards → complex SQL; skew (power users) needs rebalancing — **consistent hashing** reduces data movement; cross-shard joins are hard; more hardware/complexity.
+@@ -290,7 +307,7 @@
+ - **Lab:** Spanner emulator: monotonic vs UUID primary keys; then write a hash-shard function and a consistent-hash ring in Python (SD-38).
+ - **Check:** Shard users by last-name initial — what skews? How does consistent hashing shrink a rebalance from "move everything" to "move 1/N"?
+ 
+-#### SD-18 · Denormalization — stitch: A8
++#### SD-18 · Denormalization — stitch: A9 (primary) · slices: [denormalization as the inverse of normalization]@A8 · recall: V-STOR
+ - [ ] done
+ - **Primer:** trade write performance for read performance: keep redundant copies in several tables to avoid joins; materialized views (PostgreSQL, Oracle) automate it. Distributed data (federation/sharding) makes joins costly, so denormalize. Reads often outnumber writes 100:1 or 1000:1.
+ - **Trade-offs:** duplicated data; sync constraints add design complexity; under heavy write load it can be *slower* than normalized.
+@@ -298,7 +315,7 @@
+ - **Lab:** BigQuery free tier (`verify` current limits): model orders+items as nested STRUCT vs two joined tables; compare bytes processed.
+ - **Check:** At what read:write ratio does denormalization stop paying for itself, and what breaks first?
+ 
+-#### SD-19 · SQL tuning — stitch: A4, A6, C6, Part V Ops
++#### SD-19 · SQL tuning — stitch: A8 (primary) · slices: [B-tree index slice]@A4, [profiling tools]@A6 · recall: C6, V-OPS, V-STOR
+ - [ ] done
+ - **Primer:** **benchmark** (e.g. `ab`) and **profile** (slow query log) before optimizing. *Schema:* CHAR for fixed-length (fast random access) vs VARCHAR (must find the string end); TEXT for large text; INT up to 2^32; DECIMAL for currency; keep BLOBs out (store a location); VARCHAR(255) fits an 8-bit length; NOT NULL helps search. *Indices:* on columns used in SELECT/GROUP BY/ORDER BY/JOIN; self-balancing B-trees give log-time lookups; they cost memory and slow writes; for bulk loads drop indices, load, rebuild. *Joins:* denormalize where needed. *Partition tables:* split hot rows into their own table to stay in memory. *Query cache:* can hurt.
+ - **Modern note:** MySQL removed the query cache in 8.0; today's equivalents are the buffer pool and an application cache (SD-26).
+@@ -306,7 +323,7 @@
+ - **Lab:** local Postgres, 1M rows: `EXPLAIN ANALYZE` a filtered query before/after an index; then add five indexes and measure the write slowdown.
+ - **Check:** Why does an index speed reads and slow writes? When is dropping indices before a bulk load worth it?
+ 
+-#### SD-20 · NoSQL & BASE — stitch: A8, A9, Part V Storage/DB
++#### SD-20 · NoSQL & BASE — stitch: A8 (primary) · recall: A9, V-STOR
+ - [ ] done
+ - **Primer:** NoSQL = key-value, document, wide-column, or graph stores. Data is denormalized and joins happen in application code. Most lack true ACID and favour eventual consistency. **BASE** = Basically available, Soft state (state may change without input), Eventual consistency — availability chosen over consistency (the CAP framing of SD-04).
+ - **Trade-offs:** flexibility and scale vs join power and transactional guarantees.
+@@ -315,7 +332,7 @@
+ - **Lab:** none of its own — SD-21…SD-24 each have one.
+ - **Check:** What does "soft state" mean in practice for a cache-fed read replica?
+ 
+-#### SD-21 · Key-value store — stitch: A4, A8
++#### SD-21 · Key-value store — stitch: A8 (primary) · slices: [dict as a hash table]@A3, [hash-table slice]@A4 · recall: C2, V-STOR
+ - [ ] done
+ - **Primer:** abstraction = hash table. O(1) reads/writes, memory- or SSD-backed; may keep keys in lexicographic order for efficient range retrieval; can store metadata with a value. Fast for simple or rapidly changing data (e.g. an in-memory cache layer); extra operations push complexity into the app. It is the foundation of document stores and sometimes graph DBs. (Refs: Redis, Memcached internals.)
+ - **Trade-offs:** limited operations; no rich queries.
+@@ -323,7 +340,7 @@
+ - **Lab:** Redis in Docker (Memorystore has no free tier): strings, hashes, sorted sets, TTL, `SCAN` — the same data structures the primer's Twitter and crawler solutions use.
+ - **Check:** Why does an ordered KV store make "all keys with prefix X" cheap while a hash-only store cannot?
+ 
+-#### SD-22 · Document store — stitch: A8
++#### SD-22 · Document store — stitch: A8 (primary) · recall: V-STOR
+ - [ ] done
+ - **Primer:** abstraction = KV store whose values are documents (JSON/XML/binary) holding everything about one object; queryable by internal structure; organised into collections/tags/metadata/directories; documents in a group can have different fields; MongoDB/CouchDB add SQL-like queries; DynamoDB does KV and documents. Flexible, good for occasionally changing data. (Refs also list Elasticsearch.)
+ - **Trade-offs:** joins and cross-document consistency are the app's problem.
+@@ -331,7 +348,7 @@
+ - **Lab:** Firestore emulator: nested maps, subcollections, a query that demands a composite index.
+ - **Check:** Model a blog post with 10,000 comments in Firestore — embed or subcollection, and why?
+ 
+-#### SD-23 · Wide-column store — stitch: A8, A9
++#### SD-23 · Wide-column store — stitch: A8 (primary) · recall: A9, V-STOR
+ - [ ] done
+ - **Primer:** abstraction = nested map `ColumnFamily<RowKey, Columns<ColKey, Value, Timestamp>>`. Basic unit is a column (name/value); columns group into column families (≈ a table); each value carries a timestamp for versioning and conflict resolution; keys stay in lexicographic order → cheap range scans. Bigtable was first, inspiring HBase and Cassandra. High availability and scale; very large datasets.
+ - **Trade-offs:** no joins, limited secondary indexing; you design around the row key.
+@@ -339,7 +356,7 @@
+ - **Lab:** `cbt` against the emulator: tall-narrow time-series table, prefix range scan, GC policy.
+ - **Check:** Design a row key for "readings per sensor per minute" that avoids hotspots yet supports "last hour for sensor S".
+ 
+-#### SD-24 · Graph database — stitch: A4, A8
++#### SD-24 · Graph database — stitch: A8 (primary) · slices: [graph representation slice]@A4 · recall: V-STOR
+ - [ ] done
+ - **Primer:** abstraction = graph; nodes are records, arcs are relationships; optimised for many-to-many and heavily-linked data such as social networks; relatively new, tooling thinner, many only reachable through REST APIs. (Refs: Neo4j, FlockDB.)
+ - **Trade-offs:** niche tooling; sharding a graph is hard (see P05).
+@@ -347,7 +364,7 @@
+ - **Lab:** model a 3-hop friends-of-friends query in SQL (recursive CTE) in local Postgres; note the join blow-up a graph engine avoids.
+ - **Check:** When is "friends" a graph problem and when is it just a table?
+ 
+-#### SD-25 · SQL or NoSQL — stitch: A8, gcp.md Cloud Database Engineer domain
++#### SD-25 · SQL or NoSQL — stitch: A9 (primary) · slices: [SQL-vs-NoSQL decision lists, family level]@A8 · recall: V-STOR, Part V cert 8
+ - [ ] done
+ - **Primer:** **SQL when:** structured data, strict schema, relational data, complex joins, transactions, clear scaling patterns, mature ecosystem, index lookups are fast. **NoSQL when:** semi-structured data, flexible schema, non-relational, no complex joins, many TB/PB, data-intensive workload, very high IOPS. NoSQL-friendly data: clickstream/log ingest, leaderboards/scores, temporary data (shopping cart), hot tables, metadata/lookup tables.
+ - **Trade-offs:** it's per-dataset, not per-company; most real systems are polyglot.
+@@ -368,7 +385,7 @@
+ - **Lab:** fill the table above for P01–P08 (§4.4) and defend each choice in one sentence.
+ - **Check:** Justify Cloud SQL *and* Bigtable in one design (Mint, P04).
+ 
+-#### SD-26 · Cache: where and what — stitch: A5, B4, C3, Part V Storage/DB
++#### SD-26 · Cache: where and what — stitch: A8 (primary) · slices: [HTTP-layer caching slice: client/browser cache, Cache-Control/ETag, CDN-as-cache, reverse-proxy cache]@A5 · recall: B4, C3, V-STOR
+ - [ ] done
+ - **Primer:** caching cuts page-load time and server/DB load; a dispatcher checks whether a request was seen before and returns the saved result. DBs like uniform load; popular items skew it; a cache absorbs skew and spikes. **Where:** client (OS/browser), server side (reverse proxy), CDN (itself a cache), web server (reverse proxy/Varnish), database (default caches — tune them), application (Memcached/Redis in RAM, LRU eviction; Redis adds persistence, sorted sets, lists). **What:** row, query, fully-formed serializable objects, fully-rendered HTML. *Query-level* caching (hash the query as key) suffers invalidation: one changed cell forces deleting every cached query that might include it. *Object-level* caching assembles data into an object, evicts it when its data changes, and lets workers rebuild objects asynchronously; cache sessions, rendered pages, activity streams, user-graph data. Avoid file-based caching — it blocks cloning and autoscaling.
+ - **Trade-offs:** invalidation is hard; keeping cache and source of truth consistent; app changes required.
+@@ -376,7 +393,7 @@
+ - **Lab:** Redis in Docker + a tiny Python app: object-level cache with TTL, measure hit rate under skewed (Zipf) traffic; set `maxmemory` and watch LRU eviction.
+ - **Check:** Why does a cache "help absorb uneven load" for a database? What goes stale when you cache at the query level?
+ 
+-#### SD-27 · When to update the cache — stitch: A3, A9
++#### SD-27 · When to update the cache — stitch: A9 (primary) · slices: [cache-aside code]@A3 · recall: V-STOR
+ - [ ] done
+ - **Primer:** **Cache-aside** (lazy loading): app looks in cache → miss → loads from DB → puts in cache → returns; only requested data is cached; a miss costs three trips; data can go stale (fix with TTL or write-through); a replaced node starts empty. Memcached is typically used this way. **Write-through:** app writes to the cache, which synchronously writes the DB; writes are slow but reads of just-written data are fast and never stale; new nodes stay cold until an entry is updated (combine with cache-aside); much written data is never read (use TTL). **Write-behind (write-back):** write to cache, DB written asynchronously → fast writes, but data loss if the cache dies first and more complex. **Refresh-ahead:** auto-refresh recently accessed entries before expiry; lowers latency if the predictions are good, worse if not. (The primer includes the cache-aside `get_user` and write-through `set_user` Python.)
+ - **Trade-offs:** each strategy trades freshness, write latency, durability, and complexity differently.
+@@ -384,7 +401,7 @@
+ - **Lab:** implement all four in Python (Redis + SQLite); deliberately kill the cache mid-write-behind and count lost writes.
+ - **Check:** Which strategy for a user profile (read 1000:1)? For a page-view counter? For a rarely-read audit log?
+ 
+-#### SD-28 · Asynchronism: message queues, task queues, back pressure — stitch: A7, C7, Part V Data/Analytics
++#### SD-28 · Asynchronism: message queues, task queues, back pressure — stitch: A7 (primary) · slices: [Little's law]@A2 · recall: C7, V-COMP, V-DATA
+ - [ ] done
+ - **Primer:** async workflows shorten request time for expensive work and let you pre-compute (periodic aggregation). **Message queue:** app publishes a job and tells the user its status; a worker picks it up, processes, signals completion; the user isn't blocked (a tweet appears instantly on your timeline while delivery to followers trails). Redis works as a simple broker but messages can be lost; RabbitMQ is popular but needs AMQP and node management; SQS is hosted but can be slow and may deliver twice. **Task queue:** receives tasks and data, runs them, returns results; supports scheduling; for heavy background jobs (Celery — Python). **Back pressure:** cap the queue so it doesn't outgrow memory; when full, clients get HTTP 503 and retry later with **exponential backoff**. Don't queue cheap or real-time work. (Refs: Little's law.)
+ - **Trade-offs:** delay and complexity; at-least-once delivery forces idempotent consumers.
+@@ -392,7 +409,7 @@
+ - **Lab:** always-free Pub/Sub (or the emulator): publish 1,000 messages, kill a worker mid-message, watch redelivery, add a dead-letter topic; make the consumer idempotent with a dedup key.
+ - **Check:** Why must consumers be idempotent? What do a 503, `Retry-After`, and backoff-with-jitter each contribute?
+ 
+-#### SD-29 · HTTP — stitch: A5, A7, C3
++#### SD-29 · HTTP — stitch: A5 (primary) · recall: A7, C3
+ - [ ] done
+ - **Primer:** a request/response protocol for encoding and moving data between client and server; self-contained, so requests flow through intermediaries that load-balance, cache, encrypt, compress. A request = a verb + a resource. HTTP is application-layer, built on TCP (or UDP).
+ 
+@@ -410,7 +427,7 @@
+ - **Lab:** `curl -v --http2 -I https://cloud.google.com` and `--http3` (if your curl supports it); read `Cache-Control`, `Age`, `Via`.
+ - **Check:** Why is PUT idempotent and POST not? Which verbs may a CDN cache?
+ 
+-#### SD-30 · TCP — stitch: A5, A6, Part V Networking
++#### SD-30 · TCP — stitch: A5 (primary) · slices: [connection and file-descriptor limits]@A6 · recall: V-NET
+ - [ ] done
+ - **Primer:** connection-oriented over IP; set up and torn down by handshake. Guarantees in-order, uncorrupted delivery via sequence numbers, checksums, ACKs, and automatic retransmission; repeated timeouts drop the connection. Adds flow control and congestion control, so it's less efficient than UDP. Web servers holding many connections use lots of memory; **connection pooling** (e.g. between web-server threads and memcached) helps. Use TCP when all data must arrive intact and you want the best-estimate use of throughput: web, DB traffic, SMTP, FTP, SSH.
+ - **Trade-offs:** latency (handshakes, retransmits) and per-connection memory.
+@@ -418,22 +435,22 @@
+ - **Lab:** `ss -s`, `tcpdump -i any port 80` to watch a handshake; write the connection-budget arithmetic for 100 Cloud Run instances × 10 connections vs a Cloud SQL tier's limit.
+ - **Check:** Why do many short-lived DB connections hurt more than many idle ones? What does pooling change?
+ 
+-#### SD-31 · UDP — stitch: A5
++#### SD-31 · UDP — stitch: A5 (primary) · recall: V-NET
+ - [ ] done
+ - **Primer:** connectionless; guarantees only at the datagram level (may arrive out of order or never); no congestion control; more efficient; can broadcast (needed by DHCP — the client has no IP yet, so TCP can't be used). Good for VoIP, video chat, streaming, real-time multiplayer games. Choose UDP for the lowest latency, when late data is worse than lost data, or when you implement your own error correction.
+ - **GCP lens:** passthrough Network LBs balance UDP; QUIC/HTTP-3 rides UDP; Cloud Run does **not** take raw UDP (HTTP/gRPC/WebSocket only, `verify`), so UDP workloads go on GCE or GKE — **Agones** (open-source game-server orchestration on Kubernetes, built with Google) is the reference for Q20. VPC firewall rules and Cloud NAT both have UDP-specific timeouts.
+ - **Lab:** two containers with `nc -u`; in a Linux container with `NET_ADMIN`, add `tc netem loss 10%` and observe that nothing retransmits.
+ - **Check:** Why can DHCP only use UDP? Why do games prefer UDP for player position but TCP for chat?
+ 
+-#### SD-32 · Remote procedure call (RPC) — stitch: A7, A3
++#### SD-32 · Remote procedure call (RPC) — stitch: A7 (primary) · slices: [RPC calls in Python]@A3
+ - [ ] done
+ - **Primer:** a client runs a procedure in another address space (usually a remote server) as if it were local; remote calls are slower and less reliable than local ones, so keep them visible. Frameworks: Protobuf, Thrift, Avro. Flow: client program → client stub marshals procedure id + args → client comm module sends → server comm module → server stub unmarshals, calls the procedure → response retraces. RPC exposes *behaviours* and is favoured for internal, performance-sensitive calls; choose a native library/SDK when you know the platform, want to control access to your logic and error handling, and performance/UX come first.
+ - **Trade-offs:** clients tightly coupled to the implementation; a new API for every operation; harder to debug; existing tooling (e.g. Squid caching) may not work out of the box.
+-- **GCP lens:** **gRPC = Protobuf over HTTP/2**, native on Cloud Run and GKE; Cloud Endpoints/API Gateway support gRPC and **transcoding** (one `.proto` → REST + gRPC); Cloud Service Mesh adds retries/mTLS; Pub/Sub schemas accept Avro and Protobuf. Google's own `google-cloud-*` client libraries are the "native SDK" option (gcp.md A3).
++- **GCP lens:** **gRPC = Protobuf over HTTP/2**, native on Cloud Run and GKE; Cloud Endpoints/API Gateway support gRPC and **transcoding** (one `.proto` → REST + gRPC); Cloud Service Mesh adds retries/mTLS; Pub/Sub schemas accept Avro and Protobuf. Google's own `google-cloud-*` client libraries are the "native SDK" option (Curriculum A3).
+ - **Lab:** write a `.proto`, generate Python stubs, run a gRPC server, deploy it to Cloud Run with HTTP/2 enabled (free tier).
+ - **Check:** What does the client stub do, in three steps? Why is a `POST /modifyItem`-style API awkward for caches?
+ 
+-#### SD-33 · REST (including HATEOAS) — stitch: A7, A3
++#### SD-33 · REST (including HATEOAS) — stitch: A7 (primary) · slices: [REST calls in Python + curl]@A3
+ - [ ] done
+ - **Primer:** architectural style — client/server, client acts on resources the server manages, server returns representations, all communication **stateless and cacheable**. Four qualities: identify resources with URIs (same URI regardless of operation) · change via representations (verbs, headers, body) · self-descriptive errors (use status codes) · **HATEOAS**. *Anki card:* HATEOAS = hypertext as the engine of application state — `GET /account/12345` returns the balance plus `deposit / withdraw / transfer / close` links; when the balance is −$25 only `deposit` is offered, so the response itself tells you what is allowed. REST exposes *data*, minimizes coupling, suits public HTTP APIs, and scales horizontally because it's stateless.
+ - **Trade-offs:** poor fit when data isn't naturally hierarchical ("all records updated in the past hour matching these events"); few verbs (moving expired docs to an archive folder doesn't map cleanly); nested resources cost multiple round trips (bad on mobile); responses bloat as fields accrete.
+@@ -442,7 +459,7 @@
+ - **Lab:** REST API on Cloud Run with `ETag`/`Cache-Control` and idempotent `PUT`; add a HATEOAS `links` block driven by state (the account example).
+ - **Check:** Redesign "move expired documents to the archive" in REST. What does the −$25 account teach about HATEOAS?
+ 
+-#### SD-34 · RPC vs REST — stitch: A7
++#### SD-34 · RPC vs REST — stitch: A7 (primary) · slices: [REST vs RPC calls in Python + curl]@A3
+ - [ ] done
+ - **Primer (comparison table):**
+ 
+@@ -461,21 +478,25 @@
+ - **Lab:** convert the table's REST column into an OpenAPI file and import it into API Gateway (`terraform plan` if you won't deploy).
+ - **Check:** State one reason each for internal RPC and external REST; what breaks caching in the RPC column?
+ 
+-#### SD-35 · Security basics — stitch: A10, B5, Part V Security
++#### SD-35 · Security basics — stitch: A10 (primary) · slices: [transit-encryption slice (TLS in transit)]@A5 · recall: B5, C3, V-SEC
+ - [ ] done
+ - **Primer:** encrypt in transit and at rest · sanitize all user input (XSS, SQL injection) · use parameterized queries · apply least privilege. (Refs: API security checklist, OWASP Top 10.) The primer admits this section "could use updates". P08 adds: open only 80/443, SSH only from whitelisted IPs, block outbound from the web server, public subnet for the web tier and private subnet for everything else, encryption at rest for RDS/S3.
++- **Taught by (index module, C-28):** in transit → `Curriculum` A5 TLS + cyber CR-11/CR-12 (the A5 transit slice; C-14) · at rest → CR-14 @ Phase 4 · XSS → WA-02 @ A10 · SQL injection / parameterized queries → SQL SL-13 (mechanics) + cyber WA-05 (attacker model) · least privilege → B5 + CL-03 · the P08 network hardening → NT-01, NT-05, NT-07 @ A5.
+ - **GCP lens:** in transit → TLS at the LB (Google-managed certs), TLS to backends, mTLS in the mesh, SSL on Cloud SQL; at rest → default AES-256, **CMEK** via Cloud KMS, credentials in **Secret Manager**; XSS/SQLi → **Cloud Armor** preconfigured WAF rules (OWASP-CRS-based, `verify` names) + parameterized queries in code + Web Security Scanner (in Security Command Center, `verify`); least privilege → per-service service accounts and narrow IAM roles, VPC firewall rules, VPC Service Controls, Private Google Access/Private Service Connect. P08's "SSH from whitelisted IPs" becomes **IAP TCP forwarding / OS Login** with no port 22 exposed; "no outbound" = egress-deny firewall rules + Cloud NAT where needed. "Public/private subnet" in GCP = subnets whose instances do or don't have external IPs.
++- **Prop Lock (C-28):** before Phase 4 the controls named above (VPC Service Controls, CMEK, Cloud Armor WAF rules, mTLS, Web Security Scanner) are Lens-1 names only; their mechanisms are taught in cyber NT-06, CR-14, WA-11, CR-17 and WA-02.
+ - **Lab:** Python + SQLite: string-concatenated vs parameterized login query and an injection attempt; `terraform plan` a VPC with 80/443 ingress, IAP-SSH ingress, default-deny egress.
++- **Shared lab (C-28):** run once as cyber WA-05 / SQL SL-13; SD-35 recalls it. The lab text above is kept.
+ - **Check:** Why isn't "hash the bank password" a valid way to store credentials you must *replay* to a third party (see P04)?
+-
+-#### SD-36 · Powers of two — stitch: A1
++- **Check owner (C-28):** the replay mechanism is taught by cyber CR-17 / PV-03; SD-35 keeps the question.
++
++#### SD-36 · Powers of two — stitch: A1 (primary)
+ - [ ] done
+ - **Primer:** 2^7 = 128 · 2^8 = 256 · 2^10 = 1,024 (~1 thousand, 1 KB) · 2^16 = 65,536 (64 KB) · 2^20 = 1,048,576 (~1 million, 1 MB) · 2^30 = 1,073,741,824 (~1 billion, 1 GB) · 2^32 = 4,294,967,296 (4 GB) · 2^40 = 1,099,511,627,776 (~1 trillion, 1 TB). Full table in §6.1.
+-- **GCP lens:** cloud bills are in binary-vs-decimal units (gcp.md A1) — Cloud Storage documents GB as 2^30 bytes in its pricing terms (`verify`); IPv4 has 2^32 addresses; the primer's `INT` "up to 4 billion" is 2^32; Base62^7 ≈ 3.5×10^12 (SX-02).
++- **GCP lens:** cloud bills are in binary-vs-decimal units (Curriculum A1) — Cloud Storage documents GB as 2^30 bytes in its pricing terms (`verify`); IPv4 has 2^32 addresses; the primer's `INT` "up to 4 billion" is 2^32; Base62^7 ≈ 3.5×10^12 (SX-02).
+ - **Lab:** compute, by hand, the storage of 10 M pastes × 1.27 KB and of 360 M shortlinks × 7 B; confirm with Python.
+ - **Check:** Why is 1 KB ≈ 10^3 but 1 KiB = 2^10, and when does the 2.4% gap matter on a bill?
+ 
+-#### SD-37 · Latency numbers every programmer should know — stitch: A1, A6, C6
++#### SD-37 · Latency numbers every programmer should know — stitch: A1 (primary) · recall: A6, C6
+ - [ ] done
+ - **Primer:** L1 0.5 ns · branch mispredict 5 ns · L2 7 ns · mutex 25 ns · main memory 100 ns · compress 1 KB 10 µs · send 1 KB over 1 Gbps 10 µs · random 4 KB SSD read 150 µs · 1 MB sequential from memory 250 µs · in-datacenter round trip 500 µs · 1 MB sequential SSD 1 ms · HDD seek 10 ms · 1 MB from 1 Gbps network 10 ms · 1 MB sequential HDD 30 ms · CA→Netherlands→CA 150 ms. Handy rates: HDD 30 MB/s, 1 Gbps Ethernet 100 MB/s, SSD 1 GB/s, memory 4 GB/s; ~6–7 world-wide round trips/s; ~2,000 in-datacenter round trips/s. Full table in §6.2.
+ - **Note (a discrepancy worth knowing):** every solution README says disk is "80× slower" than memory for 1 MB; the README's own table gives 30 ms vs 250 µs = **120×**. Use the table.
+@@ -483,7 +504,7 @@
+ - **Lab:** two short-lived GCE VMs in different zones (a few cents of credit): `ping` and `iperf3`; compare with the table.
+ - **Check:** How long to read 100 thumbnails (30 KB each) from SSD vs HDD, sequentially vs randomly? If a cache is 100× faster than the database, what does a 90% hit rate do to *average* latency (≈ 9× better), and what does a 50% hit rate give (≈ 2×)? Why does the miss rate, not the hit speed, dominate?
+ 
+-#### SD-38 · The three "under development" topics: consistent hashing, MapReduce, scatter-gather — stitch: A4, A9, Part V Data/Analytics
++#### SD-38 · The three "under development" topics: consistent hashing, MapReduce, scatter-gather — stitch: A9 (primary) · slices: [consistent-hash ring slice (SD-38a)]@A4 · recall: V-DATA
+ - [ ] done
+ - **Primer:** listed as "under development" but *used* throughout the solutions: consistent hashing (sharding rebalancing; the sharded query cache `machine = hash(query)`), MapReduce (hit counts, URL dedup, spending by category, sales rank), scatter-gather (Twitter search over a Lucene cluster).
+ - **(a) Consistent hashing** — hash nodes and keys onto a ring; a key belongs to the next node clockwise; adding/removing a node moves ~1/N of keys (vs almost all with `hash % N`); virtual nodes smooth skew. *GCP:* hidden inside Memorystore Cluster (hash slots) and Bigtable/Spanner (range splits); explicit in Envoy-based Application LB backend services (`RING_HASH`, `MAGLEV` load-balancing policies, `verify`) for cache-friendly affinity. *Lab:* build a ring in Python, add a node, measure keys moved.
+@@ -491,7 +512,7 @@
+ - **(c) Scatter-gather** — fan a query out to every shard, gather partial results, merge/rank/sort. Tail latency = slowest shard, so add timeouts, replicas, hedged requests (*my addition*, from "The Tail at Scale"). *GCP:* what Bigtable, Spanner, BigQuery (Dremel-style execution tree), and Elasticsearch do internally; at app level = parallel Cloud Run calls with a deadline.
+ - **Check:** With `hash(key) % 4` you go to 5 nodes — what fraction of keys move? With a ring?
+ 
+-#### SD-39 · Real-world architecture papers — stitch: A9, Part V (all)
++#### SD-39 · Real-world architecture papers — stitch: A9 (primary) · recall: C6, V-COMP, V-STOR, V-NET, V-DATA, V-AI, V-SEC, V-OPS
+ - [ ] done
+ - **Primer:** 17 systems (MapReduce, Spark, Storm; Bigtable, HBase, Cassandra, DynamoDB, MongoDB, Spanner, Memcached, Redis; GFS, HDFS; Chubby, Dapper, Kafka, ZooKeeper). Its instruction: *don't chase details* — identify shared principles/technologies/patterns, what problem each component solves, where it works and where it doesn't, and the lessons learned.
+ - **GCP lens:** most map to a managed product or its lineage (full table §6.4) — Bigtable, Spanner, Memorystore, Dataflow/Dataproc, Cloud Trace (Dapper), Pub/Sub / Managed Kafka, Colossus (GFS's successor under Cloud Storage). Chubby/ZooKeeper have **no managed equivalent** (see SD-12).
+@@ -502,12 +523,12 @@
+ 
+ These aren't separate primer sections but every solution depends on them; each is taught with the first problem that needs it.
+ 
+-- [ ] **SX-01 · Object store for blobs** *(P01, P02, P07, P08)* — keep paste text, tweet media, raw logs, and static assets in an object store, and store only its *location* in the DB (SD-19 "avoid BLOBs"). *GCP:* Cloud Storage — strong consistency, storage classes (Standard/Nearline/Coldline/Archive) and lifecycle rules (gcp.md B4), signed URLs, resumable uploads, CDN-fronted via a backend bucket. Primer sizing: 12.7 GB/month "comfortably handled".
++- [ ] **SX-01 · Object store for blobs** *(P01, P02, P07, P08)* — keep paste text, tweet media, raw logs, and static assets in an object store, and store only its *location* in the DB (SD-19 "avoid BLOBs"). *GCP:* Cloud Storage — strong consistency, storage classes (Standard/Nearline/Coldline/Archive) and lifecycle rules (Curriculum B4), signed URLs, resumable uploads, CDN-fronted via a backend bucket. Primer sizing: 12.7 GB/month "comfortably handled".
+ - [ ] **SX-02 · Short-link / unique-ID generation** *(P01, Q08, Q17)* — `Base62(MD5(ip + timestamp))[:7]`; Base62 (`[a-zA-Z0-9]`) avoids Base64's `+` and `/`; 62^7 ≈ 3.5×10^12 covers the 360 M links in 3 years; check the DB for duplicates and regenerate on collision. *My math:* 360 M keys in a 3.5×10^12 space → expected colliding pairs ≈ N²/2M ≈ 18,000, so the uniqueness check is not optional. *Alternatives:* counter/range allocator + Base62, random + unique constraint + retry, Snowflake IDs (Q17). *GCP:* Spanner/Cloud SQL unique key, Firestore auto-IDs, Memorystore for hot links.
+ - [ ] **SX-03 · Log analytics → warehouse** *(P01, P04, P07)* — non-realtime stats come from MapReducing web-server logs into hit counts; the "analytics database" is a warehouse (Redshift/BigQuery). *GCP:* LB/app logs → Cloud Logging sink → BigQuery (or Log Analytics) → scheduled queries.
+ - [ ] **SX-04 · Expiry and cleanup** *(P01, Q21)* — scan for entries whose expiry is in the past and delete or flag them (index the expiry column). *GCP:* prefer native TTL — Firestore TTL policies, Spanner row-deletion policies, Bigtable GC policies, Cloud Storage lifecycle, Redis TTL — over a Cloud Scheduler + Cloud Run job sweeper (`verify` each product's TTL support).
+ - [ ] **SX-05 · Fan-out on write vs on read** *(P02, Q10–Q13)* — push each tweet id into every follower's home-timeline list in a memory cache (O(n) per tweet; Redis list of 8+8+1-byte entries); read = O(1) cache fetch + multiget of tweet and user info. Celebrities break fan-out: skip them at write time, pull their tweets at read time, merge and re-order; keep only a few hundred entries per timeline and only *active* users (last 30 days) cached, rebuild others from SQL via the user-graph service; re-order at serve time to fix @reply race conditions. *GCP:* Memorystore lists/sorted sets, Pub/Sub → Cloud Run fan-out workers, Bigtable as the durable timeline store.
+-- [ ] **SX-06 · Search: tokenization, reverse index, ranking** *(P02, P03, Q02, Q14)* — parse the query (strip markup, split into terms, fix typos, normalize case, convert to boolean); look terms up in a reverse index; rank and merge; keep the hot index in memory. *GCP:* Elasticsearch/OpenSearch (Elastic Cloud on GCP) on GKE/GCE; Vertex AI Search; BigQuery `SEARCH()` indexes for logs; embeddings + Vector Search for semantic retrieval (gcp.md D4).
++- [ ] **SX-06 · Search: tokenization, reverse index, ranking** *(P02, P03, Q02, Q14)* — parse the query (strip markup, split into terms, fix typos, normalize case, convert to boolean); look terms up in a reverse index; rank and merge; keep the hot index in memory. *GCP:* Elasticsearch/OpenSearch (Elastic Cloud on GCP) on GKE/GCE; Vertex AI Search; BigQuery `SEARCH()` indexes for logs; embeddings + Vector Search for semantic retrieval (Curriculum D4).
+ - [ ] **SX-07 · Crawler frontier & dedup** *(P03, Q03)* — `links_to_crawl` ranked (Redis sorted set) and `crawled_links` with page signatures; take the top link, if a similar signature exists lower its priority (breaks cycles) else crawl, enqueue index + snippet jobs, move the link between tables. URL dedup at 1 B links via MapReduce (keep count == 1); content dedup via signatures compared with Jaccard/cosine similarity; freshness via last-crawled timestamps (weekly default, sooner for popular pages, mean-time-to-change data, `robots.txt` for rate); own DNS cache, connection pooling, bandwidth planning. *GCP:* frontier in Memorystore sorted sets or Bigtable; queues in Pub/Sub; fetchers on Cloud Run jobs or GKE Spot VMs; pages in Cloud Storage; batch dedup in Dataflow/BigQuery; static egress IPs via Cloud NAT.
+ - [ ] **SX-08 · MapReduce job patterns** *(P01, P03, P04, P07)* — count-by-key `(period,url)→1`, sum; dedup emit `(line,1)` keep total == 1; group-by-sum with filter `(user,period,category)→amount`; two-step sum-then-sort by moving the count into the key so the shuffle sorts it. *BigQuery equivalents:* `GROUP BY`, `HAVING COUNT(*)=1`, `SUM() … ORDER BY`, `ROW_NUMBER() OVER (PARTITION BY category ORDER BY qty DESC)`.
+ - [ ] **SX-09 · Categorization & budgets** *(P04)* — seed a seller→category dictionary (50,000 sellers × <255 B ≈ 12 MB, fits in RAM); crowdsource overrides with a heap (O(1) peek of the top override per seller); budgets from an income-tier template, storing only user overrides (not 100 M budget rows); alert when near/over budget via a notification queue. *GCP:* Pub/Sub + Cloud Run workers, Cloud Scheduler for the daily refresh (only users active in the last 30 days), Cloud Tasks to rate-limit per-bank calls, BigQuery for aggregates.
+@@ -520,7 +541,7 @@
+ 
+ ## 4. Prerequisite map for every system-design problem in the primer
+ 
+-Scope: **38 problems** — 8 solved system-design problems (P01–P08), 7 object-oriented-design problems (O01–O07; the primer gives 6 solutions plus a "circular array" placeholder), and the 23 "additional questions" (Q01–Q23, references only). Each problem below lists what you must already know, which gcp.md modules must be done first, which problems it builds on, and what it unlocks.
++Scope: **38 problems** — 8 solved system-design problems (P01–P08), 7 object-oriented-design problems (O01–O07; the primer gives 6 solutions plus a "circular array" placeholder), and the 23 "additional questions" (Q01–Q23, references only). Each problem below lists what you must already know, which Curriculum modules must be done first, which problems it builds on, and what it unlocks.
+ 
+ ### 4.1 Concept prerequisite map (what must come before what)
+ 
+@@ -528,10 +549,10 @@
+ 
+ ```mermaid
+ graph TD
+-  A1[gcp A1 binary and units] --> SD36[SD-36 powers of two]
++  A1[Curriculum A1 binary and units] --> SD36[SD-36 powers of two]
+   SD36 --> SD37[SD-37 latency numbers]
+   SD37 --> SD00[SD-00 method and BoE]
+-  A5[gcp A5 networking] --> SD08[SD-08 DNS]
++  A5[Curriculum A5 networking] --> SD08[SD-08 DNS]
+   A5 --> SD29[SD-29 HTTP]
+   A5 --> SD30[SD-30 TCP]
+   SD30 --> SD31[SD-31 UDP]
+@@ -544,12 +565,12 @@
+   SD08 --> SD09[SD-09 CDN]
+   SD29 --> SD09
+   SD11 --> SD12[SD-12 app layer]
+-  A9[gcp A9 distributed systems] --> SD04[SD-04 CAP]
++  A9[Curriculum A9 distributed systems] --> SD04[SD-04 CAP]
+   SD04 --> SD05[SD-05 consistency]
+   SD05 --> SD06[SD-06 availability patterns]
+   SD10 --> SD06
+   SD06 --> SD07[SD-07 nines]
+-  A8[gcp A8 databases] --> SD13[SD-13 RDBMS and ACID]
++  A8[Curriculum A8 databases] --> SD13[SD-13 RDBMS and ACID]
+   SD13 --> SD14[SD-14 master-slave]
+   SD06 --> SD14
+   SD14 --> SD15[SD-15 master-master]
+@@ -622,68 +643,70 @@
+ | SD-39 papers | the concept each paper introduces | — |
+ | SX-01…SX-13 | taught with the first problem that needs them (see §4.3) | — |
+ 
++> **Refactor note (2026-09-24, C-25):** SD-04's prerequisite `A9` reads as: `Curriculum` A8 gives the CAP statement and intuition; A9 gives the formal limits and PACELC (A8 lists "CAP theorem"). SD-14, SD-15 and SD-17 are PRIMARY at A9 with an A8 forward pointer. The checked order is in `primer-binding-table.md` §2.
++
+ ### 4.2 Readiness tiers — the gate before each rung of the ladder
+ 
+-| Tier | You are ready for it when… | Concepts complete | gcp.md modules complete |
++| Tier | You are ready for it when… | Concepts complete | Curriculum modules complete |
+ |---|---|---|---|
+-| **T0 Foundations** | — | SD-36, SD-37, SD-00 | A1, A2 |
+-| **T1 Single box + edge** | you can explain what happens between typing a URL and the first byte | SD-01, SD-02, SD-03, SD-08, SD-29, SD-30, SD-31 | A5, A6 (+A3 for code) |
+-| **T2 Scale-out basics** | you can add a second server without breaking sessions | SD-09, SD-10, SD-11, SD-12, SD-33, SD-34, SD-35 | A7, C3, Part V Networking at Lens-1 |
+-| **T3 Data at scale** | you can state a consistency choice per dataset | SD-04 … SD-07, SD-13 … SD-25 | A8, A9, Part V Storage/DB at Lens-2 |
+-| **T4 Speed & decoupling** | you can defend a cache strategy and a queue | SD-26, SD-27, SD-28, SD-32, SD-38, SX-01 … SX-13 (as needed) | C2, C6, Part V Data/Analytics at Lens-1 |
+-| **T5 Open-ended design** | you can run the four-step method unprompted | all SD-nn | Phase 3 done; Phase 4 begun |
++| **SDP-T0 Foundations** | — | SD-36, SD-37, SD-00 | A1, A2 |
++| **SDP-T1 Single box + edge** | you can explain what happens between typing a URL and the first byte | SD-01, SD-02, SD-03, SD-08, SD-29, SD-30, SD-31 | A5, A6 (+A3 for code) |
++| **SDP-T2 Scale-out basics** | you can add a second server without breaking sessions | SD-09, SD-10, SD-11, SD-12, SD-33, SD-34, SD-35 | A7, C3, V-NET at Lens-1 |
++| **SDP-T3 Data at scale** | you can state a consistency choice per dataset | SD-04 … SD-07, SD-13 … SD-25 | A8, A9, V-STOR at Lens-2 |
++| **SDP-T4 Speed & decoupling** | you can defend a cache strategy and a queue | SD-26, SD-27, SD-28, SD-32, SD-38, SX-01 … SX-13 (as needed) | C2, C6, V-DATA at Lens-1 |
++| **SDP-T5 Open-ended design** | you can run the four-step method unprompted | all SD-nn | Phase 3 done; Phase 4 begun |
+ 
+ ### 4.3 Problem prerequisite table (all 38)
+ 
+ "Must know" = concepts that have to be complete *before* the problem. "New here" = the one concept the problem is allowed to introduce (rule 5, §0.2). Each problem's tier is the highest tier it needs.
+ 
+-| ID | Problem | Tier | Must know | New here | gcp.md gate | Builds on | Unlocks |
++| ID | Problem | Tier | Must know | New here | Curriculum gate | Builds on | Unlocks |
+ |---|---|---|---|---|---|---|---|
+-| **P08** | Scale to millions of users (AWS in primer → GCP here) | T1 outline; T5 capstone | first pass: SD-00 … SD-03; second pass: everything through T4 | SX-12 (the loop) — each "Users+" step introduces one concept | A5, A6, B3 (first pass); C2, C6, Part V Compute/Networking (second) | — | every problem below; also the AWS/Azure re-runs (Parts VI/VII) |
+-| **P01** | Pastebin.com / Bit.ly | T2 | SD-00, SD-36/37, SD-11, SD-12, SD-13, SD-19, SD-25, SD-32/33 | SX-01, SX-02, SX-03, SX-04 | A3, A4, A5, A8 | P08 (outline) | P06, P07, P02, Q08, Q17 |
+-| **P06** | Key-value cache for search-engine queries | T4 | SD-21, SD-26, SD-27, SD-05, SD-37 | SX-11, SD-38a (consistent hashing) | A4, A9 | O02, P01; P03 (soft — only its "Reverse Index Service" and "Document Service" boxes, which P06 caches) | Q05, Q06, Q22 |
+-| **P07** | Amazon sales rank by category | T4 | SD-13, SD-19, SD-25, SD-26, SD-17, SX-01, SX-03 | SD-38b, SX-08 (multi-step MapReduce) | A2, Part V Data/Analytics (Dataflow/BigQuery) Lens-1 | P01 | P04, Q16, Q18 |
+-| **P04** | Mint.com | T4 | SD-13, SD-19, SD-26/27, SD-28, SD-35, SD-25, SX-01, SX-03 | SX-09, SX-13 | A7, A8, A10 | P01, P07 | Q07 (pipelines) |
+-| **P03** | Web crawler | T4 | SD-08, SD-21, SD-28, SD-17, SD-30/31, SD-26, SD-05 | SX-06, SX-07 | A4 (graphs, cycles), A5 | P01, P07 (MapReduce) | P06, Q02, Q03 |
+-| **P02** | Twitter timeline & search | T4 | SD-02, SD-03, SD-12, SD-13 … SD-19, SD-20/21/23, SD-26/27, SD-28, SD-05 | SX-05, SX-06, SD-38c | A8, A9, Part V Storage/DB Lens-2 | P01, P06, P08 | Q01, Q09–Q14, Q16 |
+-| **P05** | Social-network data structures (shortest path) | T4 | SD-17, SD-24, SD-26, SD-32, SD-37, A4 (graphs/BFS) | SX-10 | A4, A9 | P06, P02 | Q14 |
+-| **O01** | Hash map | T0 | A3, A4 | — (SD-21 in miniature) | A3, A4 | — | O02, P06, Q05 |
+-| **O02** | LRU cache | T0 | O01, A4 (doubly linked list) | SX-11 | A3, A4 | O01 | P06, Q06 |
+-| **O03** | Call center | T0 | A3 (abstract classes, enums), A4 (queue) | — | A3, A4 | — | (queue/escalation patterns: SD-28) |
+-| **O04** | Deck of cards (+ blackjack) | T0 | A3 (inheritance, properties) | — | A3 | — | Q20 |
+-| **O05** | Parking lot | T0 | A3 (composition, polymorphism) | — | A3 | — | (concurrency extension: SD-13 transactions) |
+-| **O06** | Online chat (users, friends, private/group chat) | T2 | A3, SD-12, SD-13 | — | A3, A7 | O03 (state/roles) | Q09, Q13 |
+-| **O07** | Circular array (primer placeholder, no solution) | T0 | A3, A4 (arrays, modulo) | ring buffer | A3, A4 | O01 | (bounded buffers: SD-28 back pressure) |
+-| **Q01** | File sync like Dropbox | T5 | SX-01, SD-13/25, SD-28, SD-05, SD-09, SD-35 | chunking + content-hash dedup, delta sync | A8, A10 | P01, P02 | — |
+-| **Q02** | Search engine like Google | T5 | SX-06, SX-07, SD-38b/c, SD-17, SD-26 | ranking (PageRank was out of P03's scope) | D4 (embeddings) at Lens-1 | P03, P06 | — |
+-| **Q03** | Scalable web crawler like Google | T5 | P03 + SD-17 | politeness per host, frontier partitioning, freshness scheduler | Part V Data/Analytics | P03 | Q02 |
+-| **Q04** | Google Docs | T5 | SD-04, SD-05, SD-28, SD-29, A9 | operational transform / differential sync (CRDTs: my addition) | A9 | O06, P02 | — |
+-| **Q05** | Key-value store like Redis | T5 | SD-21, SD-17, SD-38a, SD-06, SD-14/15, SD-04, SD-05 | Dynamo techniques (quorum, vector clocks, gossip — from the linked paper) | A9 | O01, O02, P06 | Q19 |
+-| **Q06** | Cache system like Memcached | T4 | SD-26, SD-27, SX-11, SD-38a | slab allocation, sharded client library | A4 | O02, P06 | — |
+-| **Q07** | Recommendation system like Amazon's | T5 | SD-38b, SD-21/23, SD-28, SX-08 | collaborative filtering; offline batch + online serving | D1, D3 | P07 | — |
+-| **Q08** | TinyURL like Bitly | T2 | = P01 | — | as P01 | P01 | — |
+-| **Q09** | Chat app like WhatsApp | T5 | SD-28, SD-21/23, SD-05, SD-12, SD-31 | persistent connections, store-and-forward, delivery receipts, presence | A7 | O06, P02 | Q13 |
+-| **Q10** | Picture sharing like Instagram | T5 | SX-01, SD-09, SX-05, SD-17, SD-14, SD-26 | image pipeline, feed + media at scale | Part V Storage | P02, P01 | — |
+-| **Q11** | Facebook news feed | T5 | SX-05, SD-26, SD-28 | activity streams, ranking | A8 | P02 | Q12 |
+-| **Q12** | Facebook timeline | T5 | SD-18, SD-17, SD-20 | denormalized per-user timelines | A8 | P02, Q11 | — |
+-| **Q13** | Facebook chat | T5 | SD-28, SD-21, SD-12 | presence, ordering, large fan-in of connections | A7 | O06, Q09 | — |
+-| **Q14** | Graph search like Facebook | T5 | SX-10, SX-06, SD-24, SD-17 | indexing + ranking + natural-language front end | D4 | P05, P02 | — |
+-| **Q15** | CDN like Cloudflare | T5 | SD-08, SD-09, SD-10, SD-26/27 | anycast routing, tiered caching, cache invalidation | A5 | P08 | — |
+-| **Q16** | Trending topics like Twitter's | T5 | SD-28, SD-38b, SX-08, SD-03 | streaming windows, approximate counting (my addition) | Part V Data/Analytics (Dataflow) | P07, P02 | Q18 |
+-| **Q17** | Random-ID generation | T3 | SX-02, SD-17, A1 (bit layout) | Snowflake layout: timestamp + machine + sequence | A1 | P01 | — |
+-| **Q18** | Top-k requests in a time interval | T5 | SD-38b, SD-28 | heavy hitters / sketches (from the linked papers) | Part V Data/Analytics | P07, Q16 | — |
+-| **Q19** | Serve data from multiple data centers | T5 | SD-04, SD-05, SD-06, SD-07, SD-15, SD-17 | multi-region consistency and fail-over | A9, B3 | P08, Q05 | — |
+-| **Q20** | Online multiplayer card game | T5 | SD-30/31, SD-28, SD-05, O04 | authoritative server, turn state, latency hiding | A5 | O04, O06 | — |
+-| **Q21** | Garbage-collection system | T0 | A4 (graph reachability), A6 (memory) | mark-and-sweep, reference counting | A4, A6 | O01 | — |
+-| **Q22** | API rate limiter | T4 | SD-26, SD-28, SD-29, SD-10/11, SD-17 | token bucket, leaky bucket, fixed/sliding window | A7 | P06, P08 | — |
+-| **Q23** | Stock exchange (NASDAQ/Binance-style) | T5 | SD-03, SD-06, SD-13, SD-28, SD-05, SD-37, A6 | order book, matching engine, sequencer, event sourcing | A6, A9 | P08 | — |
++| **P08** | Scale to millions of users (AWS in primer → GCP here) | SDP-T1 outline; SDP-T5 capstone | first pass: SD-00 … SD-03; second pass: everything through SDP-T4 | SX-12 (the loop) — each "Users+" step introduces one concept | A5 checkpoint: *Single box* + *Users++* networking slice; A6: step 0, then the full first-pass outline; B3: second-pass framing (first pass); C2, C6, V-COMP/V-NET (second, after Phase 3) | — | every problem below; also the AWS/Azure re-runs (Parts VI/VII) |
++| **P01** | Pastebin.com / Bit.ly | SDP-T2 | SD-00, SD-36/37, SD-11, SD-12, SD-13, SD-19, SD-25, SD-32/33 | SX-01, SX-02, SX-03, SX-04 | A3, A4, A5, A8 | P08 (outline) | P06, P07, P02, Q08, Q17 |
++| **P06** | Key-value cache for search-engine queries | SDP-T4 | SD-21, SD-26, SD-27, SD-05, SD-37 | SX-11, SD-38a (consistent hashing) | A4, A9 | O02, P01; P03 (soft — only its "Reverse Index Service" and "Document Service" boxes, which P06 caches) | Q05, Q06, Q22 |
++| **P07** | Amazon sales rank by category | SDP-T4 | SD-13, SD-19, SD-25, SD-26, SD-17, SX-01, SX-03 | SD-38b, SX-08 (multi-step MapReduce) | A2, V-DATA (Dataflow/BigQuery) Lens-1 | P01 | P04, Q16, Q18 |
++| **P04** | Mint.com | SDP-T4 | SD-13, SD-19, SD-26/27, SD-28, SD-35, SD-25, SX-01, SX-03 | SX-09, SX-13 | A7, A8, A10 | P01, P07 | Q07 (pipelines) |
++| **P03** | Web crawler | SDP-T4 | SD-08, SD-21, SD-28, SD-17, SD-30/31, SD-26, SD-05 | SX-06, SX-07 | A4 (graphs, cycles), A5 | P01, P07 (MapReduce) | P06, Q02, Q03 |
++| **P02** | Twitter timeline & search | SDP-T4 | SD-02, SD-03, SD-12, SD-13 … SD-19, SD-20/21/23, SD-26/27, SD-28, SD-05 | SX-05, SX-06, SD-38c | A8, A9, V-STOR Lens-2 | P01, P06, P08 | Q01, Q09–Q14, Q16 |
++| **P05** | Social-network data structures (shortest path) | SDP-T4 | SD-17, SD-24, SD-26, SD-32, SD-37, A4 (graphs/BFS) | SX-10 | A4, A9 | P06, P02 | Q14 |
++| **O01** | Hash map | SDP-T0 | A3, A4 | — (SD-21 in miniature) | A4 (recall checkpoint) | — | O02, P06, Q05 |
++| **O02** | LRU cache | SDP-T0 | O01, A4 (doubly linked list) | SX-11 | A4 (recall checkpoint) | O01 | P06, Q06 |
++| **O03** | Call center | SDP-T0 | A3 (abstract classes, enums), A4 (queue) | — | A7 (after DP-18 + DP-16 State) | — | (queue/escalation patterns: SD-28) |
++| **O04** | Deck of cards (+ blackjack) | SDP-T0 | A3 (inheritance, properties) | — | A7 (after F-01…F-04 + PR-01…PR-05 SOLID) | — | Q20 |
++| **O05** | Parking lot | SDP-T0 | A3 (composition, polymorphism) | — | A7 (after F-01…F-04 + PR-01…PR-05 SOLID) | — | (concurrency extension: SD-13 transactions) |
++| **O06** | Online chat (users, friends, private/group chat) | SDP-T2 | A3, SD-12, SD-13 | — | A7 | O03 (state/roles) | Q09, Q13 |
++| **O07** | Circular array (primer placeholder, no solution) | SDP-T0 | A3, A4 (arrays, modulo) | ring buffer | A4 (recall checkpoint) | O01 | (bounded buffers: SD-28 back pressure) |
++| **Q01** | File sync like Dropbox | SDP-T5 | SX-01, SD-13/25, SD-28, SD-05, SD-09, SD-35 | chunking + content-hash dedup, delta sync | A8, A10 | P01, P02 | — |
++| **Q02** | Search engine like Google | SDP-T5 | SX-06, SX-07, SD-38b/c, SD-17, SD-26 | ranking (PageRank was out of P03's scope) | D4 (embeddings) at Lens-1 | P03, P06 | — |
++| **Q03** | Scalable web crawler like Google | SDP-T5 | P03 + SD-17 | politeness per host, frontier partitioning, freshness scheduler | V-DATA | P03 | Q02 |
++| **Q04** | Google Docs | SDP-T5 | SD-04, SD-05, SD-28, SD-29, A9 | operational transform / differential sync (CRDTs: my addition) | A9 | O06, P02 | — |
++| **Q05** | Key-value store like Redis | SDP-T5 | SD-21, SD-17, SD-38a, SD-06, SD-14/15, SD-04, SD-05 | Dynamo techniques (quorum, vector clocks, gossip — from the linked paper) | A9 | O01, O02, P06 | Q19 |
++| **Q06** | Cache system like Memcached | SDP-T4 | SD-26, SD-27, SX-11, SD-38a | slab allocation, sharded client library | A4 | O02, P06 | — |
++| **Q07** | Recommendation system like Amazon's | SDP-T5 | SD-38b, SD-21/23, SD-28, SX-08 | collaborative filtering; offline batch + online serving | D1, D3 | P07 | — |
++| **Q08** | TinyURL like Bitly | SDP-T2 | = P01 | — | as P01 | P01 | — |
++| **Q09** | Chat app like WhatsApp | SDP-T5 | SD-28, SD-21/23, SD-05, SD-12, SD-31 | persistent connections, store-and-forward, delivery receipts, presence | A7 | O06, P02 | Q13 |
++| **Q10** | Picture sharing like Instagram | SDP-T5 | SX-01, SD-09, SX-05, SD-17, SD-14, SD-26 | image pipeline, feed + media at scale | V-STOR | P02, P01 | — |
++| **Q11** | Facebook news feed | SDP-T5 | SX-05, SD-26, SD-28 | activity streams, ranking | A8 | P02 | Q12 |
++| **Q12** | Facebook timeline | SDP-T5 | SD-18, SD-17, SD-20 | denormalized per-user timelines | A8 | P02, Q11 | — |
++| **Q13** | Facebook chat | SDP-T5 | SD-28, SD-21, SD-12 | presence, ordering, large fan-in of connections | A7 | O06, Q09 | — |
++| **Q14** | Graph search like Facebook | SDP-T5 | SX-10, SX-06, SD-24, SD-17 | indexing + ranking + natural-language front end | D4 | P05, P02 | — |
++| **Q15** | CDN like Cloudflare | SDP-T5 | SD-08, SD-09, SD-10, SD-26/27 | anycast routing, tiered caching, cache invalidation | A5 | P08 | — |
++| **Q16** | Trending topics like Twitter's | SDP-T5 | SD-28, SD-38b, SX-08, SD-03 | streaming windows, approximate counting (my addition) | V-DATA (Dataflow) | P07, P02 | Q18 |
++| **Q17** | Random-ID generation | SDP-T3 | SX-02, SD-17, A1 (bit layout) | Snowflake layout: timestamp + machine + sequence | A1 | P01 | — |
++| **Q18** | Top-k requests in a time interval | SDP-T5 | SD-38b, SD-28 | heavy hitters / sketches (from the linked papers) | V-DATA | P07, Q16 | — |
++| **Q19** | Serve data from multiple data centers | SDP-T5 | SD-04, SD-05, SD-06, SD-07, SD-15, SD-17 | multi-region consistency and fail-over | A9, B3 | P08, Q05 | — |
++| **Q20** | Online multiplayer card game | SDP-T5 | SD-30/31, SD-28, SD-05, O04 | authoritative server, turn state, latency hiding | A5 | O04, O06 | — |
++| **Q21** | Garbage-collection system | SDP-T0 | A4 (graph reachability), A6 (memory) | mark-and-sweep, reference counting | A4, A6 | O01 | — |
++| **Q22** | API rate limiter | SDP-T4 | SD-26, SD-28, SD-29, SD-10/11, SD-17 | token bucket, leaky bucket, fixed/sliding window | A7 | P06, P08 | — |
++| **Q23** | Stock exchange (NASDAQ/Binance-style) | SDP-T5 | SD-03, SD-06, SD-13, SD-28, SD-05, SD-37, A6 | order book, matching engine, sequencer, event sourcing | A6, A9 | P08 | — |
+ 
+ ### 4.4 Problem cards
+ 
+ Each card: primer scope → primer numbers → primer design → primer scale-up → **GCP bill of materials** → GCP-era note → Lab Reality. Numbers use the primer's conversion guide (§6.3): 2.5 M seconds/month, so 1 rps ≈ 2.5 M requests/month.
+ 
+ #### P08 · Scale to millions of users — "the spine" (primer: on AWS; here: on GCP)
+-- [ ] first pass (outline, during A5/A6/B3) · [ ] second pass (capstone, after Phase 3)
++- [ ] A5 checkpoint (*Single box* + *Users++* networking slice) · [ ] A6 step 0 · [ ] first pass (full outline, after A6) · [ ] second pass (capstone, after Phase 3)
+ - **Primer scope:** a user reads/writes; the service processes, stores, returns. Evolve from a handful of users to millions, discussing general scaling patterns at each step. High availability. Iterate: **benchmark/load-test → profile → fix → repeat.** AWS specifics aren't required — the principles are general.
+ - **Primer numbers:** 10 M users · 1 B writes/month · 100 B reads/month · 100:1 read:write · 1 KB per write → **1 TB new content/month**, 36 TB in 3 years, **400 writes/s**, **40,000 reads/s** on average. Relational data needed.
+ - **The ladder, translated to GCP** (two valid paths — a VM path and a serverless path; PCA tests both):
+@@ -728,7 +751,7 @@
+ - **Primer design:** `links_to_crawl` (ranked — Redis sorted set) and `crawled_links` (page signatures) in a NoSQL store. The **Crawler Service** loops: take the top-ranked link → if `crawled_links` holds a *similar* signature, **lower its priority** (this breaks cycles) → else crawl it, enqueue a job for the **Reverse Index Service** and one for the **Document Service**, compute the signature, delete from `links_to_crawl`, insert into `crawled_links` (classes `PagesDataStore`, `Page`, `Crawler`). URL dedup at 1 B links: MapReduce that keeps keys with count 1. Content dedup: page signatures compared by Jaccard index or cosine similarity. Freshness: per-page timestamp, default one week, adapt using mean time between changes, honour `robots.txt`. Search: Query API parses the query → Reverse Index Service ranks → Document Service returns titles/snippets (`GET /api/v1/search?query=`).
+ - **Primer scale-up:** cache popular queries in Redis/Memcached; shard and federate the Reverse Index and Document services; the crawler keeps its own DNS cache (DNS is a bottleneck), uses connection pooling (maybe UDP), and needs serious bandwidth.
+ - **GCP bill of materials:** frontier → Memorystore sorted sets (or Bigtable with priority-prefixed row keys) · queues → **Pub/Sub** (`index-jobs`, `doc-jobs`) · fetchers → Cloud Run jobs or GKE **Spot VMs**, static egress IPs via Cloud NAT · raw pages → **Cloud Storage** with lifecycle to Nearline/Coldline · `crawled_links` → Bigtable (row = URL hash) · batch dedup → Dataflow/BigQuery · reverse index + doc service → Elasticsearch/OpenSearch or custom on Bigtable · Query API → Cloud Run · hot queries → Memorystore (or Cloud CDN, see P06).
+-- **GCP-era note:** the bill is dominated by storage and egress — 2 PB/month of new pages. Price it in the Pricing Calculator (gcp.md B4); that number is *why* storage classes, compression, and dedup exist. Crawl politely: per-host rate limits and `robots.txt` are legal and ethical, not just a freshness knob.
++- **GCP-era note:** the bill is dominated by storage and egress — 2 PB/month of new pages. Price it in the Pricing Calculator (Curriculum B4); that number is *why* storage classes, compression, and dedup exist. Crawl politely: per-host rate limits and `robots.txt` are legal and ethical, not just a freshness knob.
+ - **Lab Reality:** crawl ~500 pages of a friendly site (obeying `robots.txt`) with Python into SQLite/Firestore; Redis sorted set as the frontier; shingle-based signatures + Jaccard for dedup; everything local and free.
+ 
+ #### P04 · Mint.com
+@@ -771,9 +794,11 @@
+ - **GCP-era note:** the ranks are *public and hourly-fresh* — set a one-hour TTL and let **Cloud CDN** absorb most of the 40 K reads/s; the database never sees them. Also, recomputing a 7-day window from scratch every hour is wasteful; keep hourly buckets and sum the last 168 (my addition).
+ - **Lab Reality:** BigQuery free tier; 1 M synthetic transactions; run the ranking query on an unpartitioned vs partitioned+clustered table and compare bytes processed.
+ 
+-#### O01–O07 · Object-oriented design problems (taught with gcp.md A3/A4; each has a "cloud extension" that connects it to the system-design problems)
++#### O01–O07 · Object-oriented design problems (taught with Curriculum A3/A4; each has a "cloud extension" that connects it to the system-design problems)
+ 
+ The primer's OOD code is **interview-sketch quality**. Finding its defects is part of the exercise — the ones I found reading the repo are listed per problem. Constraints below come from the Anki OO deck. None of these needs GCP to *solve*; the cloud extension shows where the same idea becomes a managed resource.
++
++> **Refactor note (2026-09-24, C-34):** O01, O02 and O07 are A4 recall checkpoints (practice, not re-teaching). O03–O06 are A7 checkpoints: O03 after DP-18 Chain of Responsibility and DP-16 State; O04 and O05 after F-01…F-04 and SOLID (PR-01…PR-05); O06 after SD-12. The "defects to find" lists double as anti-pattern practice: cross-reference design-patterns AP-01…AP-10 (`design-patterns-companion.md` §8). Card text unchanged.
+ 
+ - [ ] **O01 · Hash map.** *Constraints:* integer keys, chaining for collisions, ignore load factor, valid inputs, fits in memory. *Design:* `Item(key, value)`; `HashTable(size)` holds `size` buckets (lists); `_hash_function(key) = key % size`; `set` (update-or-append), `get` (`KeyError` if absent), `remove`. O(1) average, O(chain) worst. *Extend:* string keys, load factor + resizing, open addressing. *Cloud extension:* the same structure inside Redis (hash slots) and every key-value store (SD-21); resizing = resharding (SD-17, consistent hashing SD-38a).
+ - [ ] **O02 · LRU cache.** *Constraints:* caches web-query results, valid inputs, fits in memory. *Design:* `Node`, `LinkedList` (`move_to_front`, `append_to_front`, `remove_from_tail`), `Cache(MAX_SIZE)` with a `lookup` dict + linked list; `get` moves the node to the front; `set` updates in place or evicts the tail when full. *Defects to find:* `Node` stores the builtin `next` instead of a pointer; it has no `prev`, yet O(1) mid-list removal needs a **doubly** linked list; `Cache.set` reads `tail.query`, which `Node` doesn't hold; in P06's README version `set(results, query)` is called as `set(query, results)` and `lookup[query]` raises `KeyError` where `None` is intended. *Cloud extension:* Memorystore eviction (SX-11), P06.
+@@ -802,7 +827,7 @@
+ | Q11 | Facebook news feed | Quora feed threads, Etsy activity-feeds slides | activity streams, ranking | as P02 (SX-05) |
+ | Q12 | Facebook timeline | FB note, "power of denormalization" post | denormalized per-user timelines | Bigtable/Spanner interleaved tables (SD-18) |
+ | Q13 | Facebook chat | "Erlang at Facebook" slides, FB note | presence, ordering, huge connection counts | as Q09 + Memorystore presence |
+-| Q14 | Graph search like Facebook | three FB "Under the hood" notes (infrastructure, indexing/ranking, natural-language interface) | index + rank + NL front end over a social graph | Spanner Graph/Bigtable + Elasticsearch (+ an LLM front end, gcp.md D4) |
++| Q14 | Graph search like Facebook | three FB "Under the hood" notes (infrastructure, indexing/ranking, natural-language interface) | index + rank + NL front end over a social graph | Spanner Graph/Bigtable + Elasticsearch (+ an LLM front end, Curriculum D4) |
+ | Q15 | CDN like Cloudflare | "Globally distributed content delivery" | anycast, tiered caches, invalidation | reference products: Cloud CDN / Media CDN; design on paper |
+ | Q16 | Trending topics like Twitter's | Storm real-time trending post, "early detection of Twitter trends" | streaming windows, approximate counting (my addition) | Pub/Sub → Dataflow sliding windows → Bigtable/Memorystore; BigQuery `APPROX_TOP_COUNT` |
+ | Q17 | Random-ID generation | Twitter Snowflake (blog + repo) | timestamp + machine id + sequence in 64 bits; clock skew | Spanner (`GENERATE_UUID`, bit-reversed sequences), Firestore auto-IDs; Snowflake on Cloud Run needs leased worker IDs |
+@@ -815,17 +840,19 @@
+ 
+ - [ ] Q-series done (tick when you have run the four-step method on each and written five lines: requirements, numbers, design, bottleneck, trade-off)
+ 
+-### 4.5 The ladder — recommended problem order, stitched to gcp.md's phases
+-
+-The order follows the prerequisite table (§4.3); each rung fires only when its gate is green. gcp.md's phase plan sets the calendar.
+-
+-| gcp.md phase | Stitched concepts (taught with the module) | Problems that become available |
++### 4.5 The ladder — recommended problem order, stitched to Curriculum's phases
++
++The order follows the prerequisite table (§4.3); each rung fires only when its gate is green. Curriculum's phase plan sets the calendar.
++
++*Column 2 of the Phase 0–4 rows is generated from `primer-binding-table.md` (2026-09-24, C-24): `ID[slice]` = a named ingredient taught before the concept's full session; `ID~` = recall. The pre-refactor rows are in the D3 archive.*
++
++| Curriculum phase | Stitched concepts (taught with the module) | Problems that become available |
+ |---|---|---|
+-| **Phase 0 — Track A** (A1–A11) | A1: SD-36, SD-37 · A2: SD-00 (BoE), SD-03, SD-07 · A3/A4: SX-02 (Base62), SX-11 (LRU), SD-21 hash table · A5: SD-08, SD-29, SD-30, SD-31, SD-09, SD-10, SD-11 · A6: SD-01 · A7: SD-12, SD-28, SD-32, SD-33, SD-34 · A8: SD-13 … SD-25 · A9: SD-04 … SD-07, SD-38 · A10: SD-35 | **O01, O02, O07** (with A3/A4), **O03, O04, O05** (OOP), **Q21**; **P08 first pass** (outline, once A5/A6 are done); **P01** and **O06** (after A7/A8); **Q17** (after A1 + SX-02); **Q08** (= P01) |
+-| **Phase 1 — Track B** (B1–B5) | B3: SD-02, SD-06, P08 second-pass framing · B4: CDN/cache/autoscaling cost trade-offs · B5: least privilege in SD-35 | P08 cost discussion; P01 priced in the Pricing Calculator |
+-| **Phase 2 — Track C** (C1–C7) | C2/C3: SD-10, SD-11, SD-12 in Kubernetes/NGINX · C5: Terraform plans TF-1…TF-7 (§5.2) · C6: SD-19, P08 monitoring list · C7: SD-07 ↔ SLOs, SD-28 back pressure | **P06** and **Q06** (caches), **Q22** (rate limiter) |
+-| **Phase 3 — Track D** (D1–D4) | D1/D3: recommendation features · D4: embeddings ↔ SX-06 reverse index | **Q07**, **Q02** (semantic angle), **Q14** |
+-| **Phase 4 — GCP deep dive (PCA, PMLE first)** | Part V at Lens-3: Storage/DB, Networking, Data/Analytics | **P07**, **P04**, **P03**, **P02**, **P05**; then **Q05, Q19, Q15, Q16, Q18, Q01, Q09, Q13, Q10, Q11, Q12, Q03, Q04, Q20, Q23** |
++| **Phase 0 — Track A** (A1–A11) | A1: SD-36, SD-37 · A2: SD-02[proportional-scaling arithmetic], SD-03[throughput/latency arithmetic; Little's law sizing], SD-07[availability math: series vs parallel, nines], SD-28[Little's law], SX-02[62^7 key-space math], SD-00 · A3: SD-21[dict as a hash table], SD-27[cache-aside code], SD-32[RPC calls in Python], SD-33[REST calls in Python + curl], SD-34[REST vs RPC calls in Python + curl], SX-02[Base62 code] · A4: SD-19[B-tree index slice], SD-21[hash-table slice], SD-24[graph representation slice], SD-38[consistent-hash ring slice (SD-38a)], SX-07[heaps/sorted sets], SX-09[heaps], SX-10[BFS slice], SX-11 · A5: SD-01[clones + single-box ceiling slice], SD-02[performance-vs-scalability slice], SD-26[HTTP-layer caching slice: client/browser cache, Cache-Control/ETag, CDN-as-cache, reverse-proxy cache], SD-35[transit-encryption slice (TLS in transit)], SD-08, SD-29, SD-09, SD-30, SD-10, SD-11, SD-31 · A6: SD-19[profiling tools], SD-01, SX-12, SD-30[connection and file-descriptor limits] · A7: SD-16[functional partitioning as service decomposition], SD-12, SD-28, SD-32, SD-33, SD-34 · A8: SD-05[strong vs eventual consistency as the C in CAP], SD-16[split databases by function: schema view], SD-18[denormalization as the inverse of normalization], SD-25[SQL-vs-NoSQL decision lists, family level], SD-04, SD-13, SD-19, SD-20, SD-21, SD-22, SD-23, SD-24, SD-26, SX-01, SX-02, SX-03, SX-04 · A9: SD-05, SD-06, SD-07, SD-14, SD-15, SD-16, SD-17, SD-18, SD-25, SD-27, SD-38, SD-39, SD-04[formal limits + PACELC] · A10: SD-35 · recall — A6: SD-37~ · A7: SD-02~, SD-29~ · A9: SD-20~, SD-23~ · A11: SD-00~ | **O01, O02, O07** (A4 recall checkpoints, C-34), **Q21**; **P08** A5 checkpoint (*Single box* + *Users++* networking slice) and A6 step 0, then **P08 first pass** (full outline, after A6; C-33); **O03, O04, O05, O06** (A7, after the design-patterns modules they exercise; C-34); **P01** (after A7/A8); **Q17** (after A1 + SX-02); **Q08** (= P01) |
++| **Phase 1 — Track B** (B1–B5) | B3: SD-02, SD-03 · recall — B2: SD-01~, SD-10~ · B3: SD-00~, SD-06~, SD-07~, SD-10~ · B4: SD-09~, SD-26~, SX-01~ · B5: SD-12~, SD-35~ | P08 cost discussion; P01 priced in the Pricing Calculator; P08 second-pass framing (B3) |
++| **Phase 2 — Track C** (C1–C7) | recall — C1: SD-01~, SD-10~ · C2: SD-10~, SD-11~, SD-12~, SD-14~, SD-21~ · C3: SD-10~, SD-11~, SD-12~, SD-26~, SD-29~, SD-35~ · C4: SD-00~, SD-06~ · C6: SD-03~, SD-19~, SD-37~, SD-39~ · C7: SD-03~, SD-06~, SD-07~, SD-28~ | **P06** and **Q06** (caches), **Q22** (rate limiter) |
++| **Phase 3 — Track D** (D1–D4) | D4: SX-06 | **Q07**, **Q02** (semantic angle), **Q14** |
++| **Phase 4 — GCP deep dive (PCA, PMLE first)** | Phase 4: SX-05, SX-07, SX-08, SX-09, SX-10, SX-13 · V-STOR, V-NET, V-DATA at Lens-3 | **P07**, **P04**, **P03**, **P02**, **P05**; then **Q05, Q19, Q15, Q16, Q18, Q01, Q09, Q13, Q10, Q11, Q12, Q03, Q04, Q20, Q23** |
+ | **Phase 5 — other GCP Pro certs** | Data Eng → P07, P04, Q16, Q18 · Network Eng → Q15, SD-08…SD-11 · Database Eng → P05, Q05, Q17, Q19 · DevOps → P08, SD-07 | as listed |
+ | **Phase 6–7 — AWS, Azure** | none new — re-run **P08** and **P01** with Part VIII names; the primer's own wording *is* the AWS version | P08 (AWS), P08 (Azure) |
+ 
+@@ -839,7 +866,7 @@
+ 
+ ### 5.1 The primer's component names → GCP resources
+ 
+-Every solution uses the same generic boxes. This is the lookup table for reading a primer diagram as a GCP diagram. AWS/Azure columns only where gcp.md Part VIII has the row.
++Every solution uses the same generic boxes. This is the lookup table for reading a primer diagram as a GCP diagram. AWS/Azure columns only where Curriculum Part VIII has the row.
+ 
+ | Primer component | GCP resource (primary → alternatives) | AWS / Azure (Part VIII) |
+ |---|---|---|
+@@ -868,7 +895,7 @@
+ | Static IP | reserved external IP addresses | — |
+ | Private network / subnets / firewall | VPC, subnets, firewall rules, Cloud NAT, Private Google Access, IAP | VPC / VNet |
+ 
+-### 5.2 Terraform exercises (gcp.md C5: "we lean hard on `terraform plan`")
++### 5.2 Terraform exercises (Curriculum C5: "we lean hard on `terraform plan`")
+ 
+ Each is one module; apply only if the cost fits Lab Reality, otherwise `plan` and read the resource graph.
+ 
+@@ -970,7 +997,7 @@
+ | Misc | **Kafka** — LinkedIn's pub/sub queue | Pub/Sub; Managed Service for Apache Kafka (`verify`) | SD-28 |
+ | Misc | **ZooKeeper** — coordination service | *no managed equivalent*; etcd behind GKE's API server | SD-12 |
+ 
+-Suggested pairing per phase: Phase 0 → Dynamo + Bigtable (A8/A9); Phase 2 → Dapper + Chubby (C6/C7); Phase 4 → Spanner + MapReduce + GFS (Part V Storage/Data); read Kafka alongside SD-28.
++Suggested pairing per phase: Phase 0 → Dynamo + Bigtable (A8/A9); Phase 2 → Dapper + Chubby (C6/C7); Phase 4 → Spanner + MapReduce + GFS (V-STOR/V-DATA); read Kafka alongside SD-28.
+ 
+ ### 6.5 Company architectures (primer table: 23 companies)
+ 
+@@ -1013,7 +1040,7 @@
+ - `resources/flash_cards/System Design.apkg` — 42 cards (the concept sections plus MD5, Base62, HATEOAS, powers of two, latency numbers, RPC-vs-REST table).
+ - `resources/flash_cards/System Design Exercises.apkg` — 8 cards (the eight solved problems).
+ - `resources/flash_cards/OO Design.apkg` — 6 cards (constraints + solutions for O01–O06).
+-- Sister repo **Interactive Coding Challenges** (`donnemartin/interactive-coding-challenges`) with its own `Coding.apkg` — the coding-interview complement to gcp.md A4.
++- Sister repo **Interactive Coding Challenges** (`donnemartin/interactive-coding-challenges`) with its own `Coding.apkg` — the coding-interview complement to Curriculum A4.
+ - **Use with this file:** import the three decks into Anki; add one card per **Check** question in Section 3 as you finish each module. Spaced repetition covers recall; the stitched sessions cover understanding.
+ 
+ ---
+@@ -1022,7 +1049,7 @@
+ 
+ ### 7.1 How this file was built, and what to verify
+ - **Primer content** was read directly from a clone of the repository: the full README (1,839 lines), all 8 system-design solution READMEs, all 6 OOD solution files, and the three Anki decks (unpacked). Counts in §1 were verified against it.
+-- **GCP mappings come from my own knowledge (cutoff January 2026), not from live documentation fetched during this session.** Anything marked `verify` — free-tier quotas, SLA percentages, product GA status and names (Spanner Graph, Memorystore for Valkey, Managed Service for Apache Kafka, Firestore's MongoDB compatibility, managed connection pooling, Vertex AI Search for commerce), HTTP/3 support, Cloud Armor rule names, TTL support per store, LB timeouts — must be checked against the live docs before you rely on it for an exam or a real system. Do the same 4–6 weeks before any cert exam, as gcp.md Part IX says.
++- **GCP mappings come from my own knowledge (cutoff January 2026), not from live documentation fetched during this session.** Anything marked `verify` — free-tier quotas, SLA percentages, product GA status and names (Spanner Graph, Memorystore for Valkey, Managed Service for Apache Kafka, Firestore's MongoDB compatibility, managed connection pooling, Vertex AI Search for commerce), HTTP/3 support, Cloud Armor rule names, TTL support per store, LB timeouts — must be checked against the live docs before you rely on it for an exam or a real system. Do the same 4–6 weeks before any cert exam, as Curriculum Part IX says.
+ - Items labelled "my addition"/"my math" are not from the primer (PACELC, cache stampede, tail latency/hedging, CRDTs, sketches for top-k, the collision estimate in SX-02, the BFS work estimates in P05, the incremental-window remark in P07).
+ 
+ ### 7.2 Where the primer disagrees with itself or has aged
+@@ -1038,6 +1065,139 @@
+ 10. The primer is licensed CC BY 4.0 (Copyright 2017 Donne Martin); this companion paraphrases and restructures it and adds GCP material — keep the attribution line at the top.
+ 
+ ### 7.3 Maintenance
+-When gcp.md changes (new modules, reordered phases, revised exam guides), update **§2 stitch table** and **§4.5 ladder** first; the concept modules and problem cards rarely need edits. If a GCP product is renamed or retired, fix the **GCP lens**/**bill of materials** lines and leave the primer content alone.
+-
+-
++When Curriculum changes (new modules, reordered phases, revised exam guides), update **§2 stitch table** and **§4.5 ladder** first; the concept modules and problem cards rarely need edits. If a GCP product is renamed or retired, fix the **GCP lens**/**bill of materials** lines and leave the primer content alone.
++
++
++
++---
++
++## Pre-refactor text archive (D3)
++
++*Refactor-authored section (2026-09-24).* Decision D3 says content may be re-arranged but never removed. Each block below is the exact pre-refactor text (after the §5 ID renames) of a line that R2 corrected or regenerated. It is kept for provenance only and is **not authoritative**; the live text above wins. Tooling excludes this section from ID and anchor checks.
++
++**D3-01** · C-24 · §2 stitch table (pre-refactor)
++
++```text
++| Curriculum module | Companion concepts taught in the same session | Checkpoint |
++|---|---|---|
++| **A1** Digital logic & data representation | SD-36 powers of two (exact vs approximate; KiB vs KB), SD-37 units (ns/µs/ms) | — |
++| **A2** Math for cloud & ML | SD-03 throughput/latency arithmetic · SD-07 availability math (series vs parallel, nines) · SX-02 key-space math (62^7) · Little's law (SD-28) · SD-00 back-of-envelope | BoE drills on P01 |
++| **A3** Programming foundations | SD-33/34 REST vs RPC calls in Python + curl · SD-27 cache-aside code · SX-02 Base62 code · all O-problems' Python | O01, O02 |
++| **A4** Data structures & algorithms | SD-21 hash table · SD-19 B-tree index · SX-11 LRU (hash map + doubly linked list) · SX-10 BFS · SD-38 consistent-hash ring · heaps/sorted sets (SX-07, SX-09) | O01, O02, O07 |
++| **A5** Computer networking | SD-08 DNS · SD-09 CDN · SD-10 load balancer (L4/L7) · SD-11 reverse proxy · SD-29 HTTP · SD-30 TCP · SD-31 UDP · SD-35 (TLS in transit) | P08 steps "single box → DNS → Users++" |
++| **A6** Linux & OS | SD-01 single-box baseline · SD-19 profiling tools · SD-37 memory/disk numbers · connection & file-descriptor limits (feeds SD-30) | P08 step 0 |
++| **A7** Software architecture & APIs | SD-12 app layer/microservices/service discovery · SD-28 queues · SD-32 RPC · SD-33 REST · SD-34 · SD-02 | P01, O03 |
++| **A8** Databases & data modeling | SD-13 … SD-25 (all of SQL, NoSQL, SQL-vs-NoSQL) | P01, P04 |
++| **A9** Distributed systems theory | SD-04 CAP · SD-05 consistency · SD-06 fail-over/replication · SD-07 nines · SD-15 multi-master · SD-17 sharding · SD-38 consistent hashing/scatter-gather · SD-39 papers (Dynamo, Bigtable, Spanner, Chubby, GFS) | P05, P06 |
++| **A10** Security & crypto | SD-35 (encrypt in transit/at rest, XSS, SQL injection, parameterized queries, least privilege) | P04 (credential storage) |
++| **A11** Software delivery | SD-00 iterative loop (benchmark → profile → fix → repeat) · P08 "automate DevOps" step | — |
++| **B1** What is cloud computing | P08 (why managed services beat self-run at each step) | P08 |
++| **B2** Virtualization & containers | SD-01 "clones" · SD-10 horizontal scaling (identical images) | — |
++| **B3** Architecture patterns & Well-Architected | SD-02 · SD-03 · SD-06 (active-passive ≈ warm standby/pilot light; active-active ≈ multi-site) · SD-07 · vertical vs horizontal (SD-10) | P08 |
++| **B4** Cloud economics & FinOps | CDN cost vs origin cost (SD-09) · cache vs DB cost (SD-26) · autoscaling savings (P08 "Users++++") · storage tiering (SX-01) | P07 |
++| **B5** Cloud IAM concepts | SD-35 least privilege · service-to-service auth for SD-12 | — |
++| **C1** Docker | SD-01 clones · stateless servers (SD-10 horizontal-scaling disadvantages) | — |
++| **C2** Kubernetes | SD-12 microservices & service discovery (Services, CoreDNS) · SD-10 (Service/Ingress = L4/L7) · P08 autoscaling (HPA) · StatefulSet ↔ stateful tier (SD-14, SD-21) | P08, P06 |
++| **C3** NGINX | SD-11 reverse proxy · SD-10 · SD-26 web-server caching (Varnish/NGINX cache) · TLS termination (SD-10, SD-35) | P01 |
++| **C4** CI/CD | SD-00 iterative delivery · blue-green/canary ↔ SD-06 active-active/passive | — |
++| **C5** IaC (Terraform) | every P-problem's reference architecture (Section 5) as a `terraform plan` exercise | P01, P08 |
++| **C6** Observability | SD-19 benchmark/profile · P08 monitoring list (host, aggregate, logs, external, alerts, errors) · SD-03 tail latency · Dapper (SD-39) | P08 |
++| **C7** SRE principles | SD-07 nines ↔ SLO/error budget · SD-06 fail-over · SD-28 back pressure/retries · SD-03 percentiles | P08, Q19 |
++| **D1** Classical ML | Q07 recommendation system · Q16 trending topics (score models) | Q07 |
++| **D3** MLOps | Q07 feature store, batch vs online serving | Q07 |
++| **D4** GenAI, embeddings, RAG | SX-06 reverse index ↔ embeddings/vector index · Q02 search engine · Q14 graph search | Q02, Q14 |
++| **Part V — Compute** (GCE, GKE, Cloud Run, App Engine, Functions) | SD-01, SD-10 (MIG + autoscaling), SD-12 microservices, SD-28 workers | P08 |
++| **Part V — Storage/DB** | SD-13 … SD-27, SX-01 | P01, P04, P06 |
++| **Part V — Networking** | SD-08, SD-09, SD-10, SD-11, SD-30/31 | P08 |
++| **Part V — Data/Analytics** | SD-28 (Pub/Sub) · SD-38 MapReduce → Dataflow/Dataproc · SX-03/08 log analytics → BigQuery | P07, P04 |
++| **Part V — AI/ML** | Q07, Q02 | Q07 |
++| **Part V — Security** | SD-35 | — |
++| **Part V — Ops/DevOps** | SD-19, SD-00 loop, P08 | — |
++| **PCA / Data Eng / Network Eng / Database Eng / DevOps / Developer certs** | PCA: all P-problems are constraint→trade-off drills (matches "which trade-off is correct"). Data Eng: SD-28, SD-38, P04, P07, Q16, Q18. Network Eng: SD-08–SD-11, SD-30/31, Q15. Database Eng: SD-13–SD-25, P05, Q05, Q17, Q19. DevOps: SD-07, SD-19, SD-28, P08. Developer: SD-26–SD-28, SD-32–SD-34 | Phase 4 |
++| **Part VI AWS / Part VII Azure** | The primer's own AWS wording is the AWS-track reference: P08 is literally the AWS build. When Phase 6/7 arrives, re-run P08 with Part VIII names — no new concepts needed | P08 (AWS), P08 (Azure) |
++```
++
++**D3-02** · C-33 · §4.3 row P08
++
++```text
++| **P08** | Scale to millions of users (AWS in primer → GCP here) | SDP-T1 outline; SDP-T5 capstone | first pass: SD-00 … SD-03; second pass: everything through SDP-T4 | SX-12 (the loop) — each "Users+" step introduces one concept | A5, A6, B3 (first pass); C2, C6, V-COMP/V-NET (second) | — | every problem below; also the AWS/Azure re-runs (Parts VI/VII) |
++```
++
++**D3-03** · C-34 · §4.3 row O01
++
++```text
++| **O01** | Hash map | SDP-T0 | A3, A4 | — (SD-21 in miniature) | A3, A4 | — | O02, P06, Q05 |
++```
++
++**D3-04** · C-34 · §4.3 row O02
++
++```text
++| **O02** | LRU cache | SDP-T0 | O01, A4 (doubly linked list) | SX-11 | A3, A4 | O01 | P06, Q06 |
++```
++
++**D3-05** · C-34 · §4.3 row O03
++
++```text
++| **O03** | Call center | SDP-T0 | A3 (abstract classes, enums), A4 (queue) | — | A3, A4 | — | (queue/escalation patterns: SD-28) |
++```
++
++**D3-06** · C-34 · §4.3 row O04
++
++```text
++| **O04** | Deck of cards (+ blackjack) | SDP-T0 | A3 (inheritance, properties) | — | A3 | — | Q20 |
++```
++
++**D3-07** · C-34 · §4.3 row O05
++
++```text
++| **O05** | Parking lot | SDP-T0 | A3 (composition, polymorphism) | — | A3 | — | (concurrency extension: SD-13 transactions) |
++```
++
++**D3-08** · C-34 · §4.3 row O06
++
++```text
++| **O06** | Online chat (users, friends, private/group chat) | SDP-T2 | A3, SD-12, SD-13 | — | A3, A7 | O03 (state/roles) | Q09, Q13 |
++```
++
++**D3-09** · C-34 · §4.3 row O07
++
++```text
++| **O07** | Circular array (primer placeholder, no solution) | SDP-T0 | A3, A4 (arrays, modulo) | ring buffer | A3, A4 | O01 | (bounded buffers: SD-28 back pressure) |
++```
++
++**D3-10** · C-33 · P08 checkbox line
++
++```text
++- [ ] first pass (outline, during A5/A6/B3) · [ ] second pass (capstone, after Phase 3)
++```
++
++**D3-11** · C-24 · §4.5 ladder row **Phase 0 — Track A** (A1–A11)
++
++```text
++| **Phase 0 — Track A** (A1–A11) | A1: SD-36, SD-37 · A2: SD-00 (BoE), SD-03, SD-07 · A3/A4: SX-02 (Base62), SX-11 (LRU), SD-21 hash table · A5: SD-08, SD-29, SD-30, SD-31, SD-09, SD-10, SD-11 · A6: SD-01 · A7: SD-12, SD-28, SD-32, SD-33, SD-34 · A8: SD-13 … SD-25 · A9: SD-04 … SD-07, SD-38 · A10: SD-35 | **O01, O02, O07** (with A3/A4), **O03, O04, O05** (OOP), **Q21**; **P08 first pass** (outline, once A5/A6 are done); **P01** and **O06** (after A7/A8); **Q17** (after A1 + SX-02); **Q08** (= P01) |
++```
++
++**D3-12** · C-24 · §4.5 ladder row **Phase 1 — Track B** (B1–B5)
++
++```text
++| **Phase 1 — Track B** (B1–B5) | B3: SD-02, SD-06, P08 second-pass framing · B4: CDN/cache/autoscaling cost trade-offs · B5: least privilege in SD-35 | P08 cost discussion; P01 priced in the Pricing Calculator |
++```
++
++**D3-13** · C-24 · §4.5 ladder row **Phase 2 — Track C** (C1–C7)
++
++```text
++| **Phase 2 — Track C** (C1–C7) | C2/C3: SD-10, SD-11, SD-12 in Kubernetes/NGINX · C5: Terraform plans TF-1…TF-7 (§5.2) · C6: SD-19, P08 monitoring list · C7: SD-07 ↔ SLOs, SD-28 back pressure | **P06** and **Q06** (caches), **Q22** (rate limiter) |
++```
++
++**D3-14** · C-24 · §4.5 ladder row **Phase 3 — Track D** (D1–D4)
++
++```text
++| **Phase 3 — Track D** (D1–D4) | D1/D3: recommendation features · D4: embeddings ↔ SX-06 reverse index | **Q07**, **Q02** (semantic angle), **Q14** |
++```
++
++**D3-15** · C-24 · §4.5 ladder row **Phase 4 — GCP deep dive (PCA, PMLE first)**
++
++```text
++| **Phase 4 — GCP deep dive (PCA, PMLE first)** | Part V at Lens-3: Storage/DB, Networking, Data/Analytics | **P07**, **P04**, **P03**, **P02**, **P05**; then **Q05, Q19, Q15, Q16, Q18, Q01, Q09, Q13, Q10, Q11, Q12, Q03, Q04, Q20, Q23** |
++```
++

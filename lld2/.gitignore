@@ -1,0 +1,53 @@
+### Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+build/
+dist/
+.dist/
+.venv/
+venv/
+env/
+.env
+.env.*
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.db
+*.sqlite
+
+### macOS
+.DS_Store
+
+### Node (tools/docs)
+node_modules/
+npm-debug.log*
+pnpm-lock.yaml
+package-lock.json
+
+### Editors/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+### Docker & Logs
+*.log
+docker-data/
+
+### CI/Artifacts
+.cache/
+.tox/
+
+### Images/Diagrams (generated)
+docs/diagrams/**/*.png
+docs/diagrams/**/*.svg
+
+
+

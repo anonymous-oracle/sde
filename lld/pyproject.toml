@@ -1,0 +1,11 @@
+[project]
+name = "cleanarch-app"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 88
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --disable-warnings"
+

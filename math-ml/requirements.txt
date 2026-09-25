@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+sympy
+networkx
+torch
+tensorflow
+jupyter

@@ -49,3 +49,7 @@ docs/diagrams/**/*.svg
 
 
 
+
+### Local envs / data dirs
+.ml-venv/
+pgdata/
