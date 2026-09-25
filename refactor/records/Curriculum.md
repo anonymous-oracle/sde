@@ -1084,7 +1084,7 @@ Lab Reality (Track D): D1 `[local]` notebooks (scikit-learn) · D2 `[local]` sma
 **J1107** · ML-5 · anchor-rewrite
 
 ````text
-| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch · Stanford CS 276 Information Retrieval and Web Search `(verify)` · Stanford CS 329S Machine Learning Systems Design `(verify)` | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) · Manning, Raghavan and Schütze, *Introduction to Information Retrieval* (2008) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
+| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch · Stanford CS 276 Information Retrieval and Web Search `(verify)` · Stanford CS 329S Machine Learning Systems Design | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) · Manning, Raghavan and Schütze, *Introduction to Information Retrieval* (2008) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
 ````
 
 **J1112** · R7-1 · rules 0.1–0.5 moved to the course guide

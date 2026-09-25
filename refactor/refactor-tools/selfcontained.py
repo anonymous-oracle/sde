@@ -8,7 +8,9 @@ A course file passes when its text (the whole file; after R2b there is no archiv
      the learner to create). The allow-list is printed in the report so it stays visible.
   V2 no links to files — markdown links whose target is not an in-page anchor (outside code spans, which never
      render as links: Go's `Map[T any](s []T)` is code, not a link). The CC BY 4.0 attribution link in
-     the primer is the one exception (license requirement).
+     the primer is one exception (license requirement); the other is Appendix M of the main course, the index of
+     published ML case studies, whose entries link their articles (and an archived copy where the original moved or
+     is blocked) by learner decision D22 — only https links, only inside that appendix.
   V3 no Northstar / Track N / `N…` section IDs (D5).
   V4 no file-style parent name (`Curriculum` in backticks, "Curriculum.md") (D11).
   V5 no refactor bookkeeping in course text: provenance lines, "(was …)" notes, refactor notes, conflict IDs
@@ -77,6 +79,18 @@ BOOK = [("provenance line", re.compile(r"\*\*Provenance\*\*|\*Provenance[ (]|^\s
 CODESPAN = re.compile(r"`[^`]*`")
 MDLINK = re.compile(r"\[[^\]]*\]\((?!#)([^)]+)\)")
 LINK_OK = {"https://github.com/donnemartin/system-design-primer"}
+URL = re.compile(r"https://[^\s)]+")
+
+
+def appendix_m(lines):
+    """line numbers (1-based) of the main course's Appendix M: from its heading to the next level-2 heading (D22)"""
+    out, inside = set(), False
+    for n, l in enumerate(lines, 1):
+        if l.startswith("## "):
+            inside = l.startswith("## Appendix M")
+        if inside:
+            out.add(n)
+    return out
 
 
 def fence_mask(lines):
@@ -109,10 +123,11 @@ def probe(path):
     lines = open(path, encoding="utf-8").read().split("\n")
     mask = fence_mask(lines)
     own = defined_names(lines)
+    appm = appendix_m(lines) if os.path.basename(path) == "Curriculum.md" else set()
     v = []
     for n, l in enumerate(lines, 1):
         fenced = mask[n - 1]
-        for m in FILE_RE.finditer(l):
+        for m in FILE_RE.finditer(URL.sub("", l) if n in appm else l):
             name = m.group(1)
             base = name.split("/")[-1]
             if base in own or name in own or base in ALLOWED_NAMES:
@@ -121,7 +136,7 @@ def probe(path):
                 continue
             v.append(("V1 file name", n, name, l))
         for m in MDLINK.finditer(CODESPAN.sub("``", l)):   # a code span never renders as a link
-            if m.group(1) not in LINK_OK and not fenced:
+            if m.group(1) not in LINK_OK and not fenced and not (n in appm and URL.fullmatch(m.group(1))):
                 v.append(("V2 link", n, m.group(1), l))
         for m in NORTH.finditer(l):          # V3 Northstar, V4, V6 also inside code blocks: embedded kit text is
             v.append(("V3 Northstar", n, m.group(0), l))          # course material too

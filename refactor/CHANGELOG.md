@@ -473,9 +473,9 @@ The learner asked that the 309-case-study material in the old GCP curriculum be 
 | ML-2 | D1's applied-families line points to D6. |
 | ML-3 | Track D's Lab Reality line gains D6. |
 | ML-4 | The PMLE part points to D6 for problem framing and design. |
-| ML-5 | §0.6's machine-learning row gains Stanford CS 329S `(verify)` and D6 (D6.D1–D6.D4). |
+| ML-5 | §0.6's machine-learning row gains Stanford CS 329S Machine Learning Systems Design and D6 (D6.D1–D6.D4). |
 | ML-6 | Problems D6-P1…D6-P8 (compute, proof, derive) and their keys, all computed. |
-| ML-7 | Appendix M, the case-study index, becomes the main course's last appendix. Its twelve headings keep the source grouping, and each maps to its D6 family ("Other" is index only). The source's ten repeated entries are listed once, leaving 299 of 309, and two typos are corrected. |
+| ML-7 | Appendix M, the case-study index, becomes the main course's last appendix. Its twelve headings keep the source grouping, and each maps to its D6 family ("Other" is index only). The source's 309 articles become 299 entries: the ten extra rows are further parts of multi-part articles (part 1, part 2 …), grouped under one entry. Two typos are corrected. |
 | ML-8 | The System Design Primer companion's notation line: `D1…D6`. |
 
 **Left out as not case-study material:** the source's classical-model zoo (D1 owns classical models) and its PMLE product depth for scaling, serving, pipelines and monitoring (D3 and the PMLE part own them).
@@ -484,3 +484,21 @@ The learner asked that the 309-case-study material in the old GCP curriculum be 
 
 **Gates.** `verify.py` plans D6 (`r10_mlcases.MODULES`). `verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass. **Duplicate scan:** no new 20-word repeat beyond the known teaching-block note formula.
 
+## R10a Case-study decomposition, summaries and links (D22) — 2026-09-25
+
+The learner asked that the case studies be decomposed into their concepts, theory, prerequisites and implementations, as the old curriculum did, so nothing is taught twice. They also asked that Appendix M carry the articles' actual content, or their links where the content cannot be had, with the no-outside-links rule lifted for this material only.
+
+| Change | What it does |
+|---|---|
+| D6.K | A decomposition table K1…K28 (in the D6 fragment ML-1 inserts). Each concept the cases depend on appears once, with its kind, the families that need it, its one owner in the course, its gate, where it is implemented and what lies beyond the course. D6 teaches only the rows it owns; the rest are recalled from their owners. A prerequisites table (the modules to finish before each family) and an industry-patterns table sit beside it. |
+| Appendix M entries | Each of the 299 entries is now one line: the catalogue's name for the system, its D6.K IDs, a summary of the article written for the course (not quoted), and links: the article (one per part) and an archived copy where the summary was read from the archive because the original moved, was removed or blocked readers. 294 entries have a summary; 5 had no readable copy anywhere and carry their concepts and links only. Links follow redirects to the article's current home. |
+| Appendix M head | Links the source catalogue by name, drops its `(verify)`, explains 309 articles as 299 entries and the parts of an entry, and states that outside links are allowed in this appendix alone. |
+| CS 329S | Checked against the course's own site (Stanford, Chip Huyen): its `(verify)` is removed in §0.6 and D6.D. |
+| `selfcontained.py` | V2 allows `https://` link targets on the lines of the main course's Appendix M, and V1 ignores file-like tokens inside those URLs; every other part and section keeps the no-links rule. |
+| Guide | Rule 2 names the two exceptions to "link nothing outside": the primer's licence attribution and Appendix M. The where-to-find row describes the appendix's entries. |
+
+**Correction to R10.** R10 called the ten extra catalogue rows repeats. They are further parts of multi-part articles, and each now links every part.
+
+**Shared articles.** Three article pairs are listed under two catalogue entries each (Airbnb Experiences ranking; Gojek's delivery-time estimate on two blogs; Lyft's fraud models). The summary is written once, and the second entry points to the first. Tracking parameters (`?gi=…`) are stripped from links.
+
+**Gates.** `verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass. Duplicate scan: no new 20-word prose repeat. The one new hit is the shared URL prefix of Oda's part 1 and part 2 articles, which are separate catalogue entries.

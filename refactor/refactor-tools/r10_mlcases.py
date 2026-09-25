@@ -11,8 +11,10 @@ the course (D1 names the families as literacy, D3 owns the MLOps lifecycle), so 
     value) and problem set;
   - the fourth build, retrieval-augmented generation, stays with the Forward Deployed Engineer companion's FDE-25 and
     FDE-CAP1, which already build it; D6.F5 only reads its cases;
-  - the index becomes main course Appendix M, deduplicated (309 entries, 299 distinct), each heading mapped to its
-    family;
+  - the index becomes main course Appendix M: 309 articles as 299 entries (an article in parts is one entry), each
+    heading mapped to its family. D22 then gave each entry its D6.K concept IDs, a summary written for the course and
+    its links (the article, and an archived copy where the summary was read from the archive): the one place in the
+    course where outside links are allowed, which selfcontained.py enforces;
   - left out as not case-study material: the source's classical-model zoo (D1 owns classical models) and its PMLE
     product depth (D3 and the PMLE part own it).
 
