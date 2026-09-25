@@ -1593,3 +1593,877 @@ Issued one at a time with the A8 + A9 (+ U5) theory and the §4.0 slices. Keys i
 ````text
 Database acceptance tests for the S11 case-study capstone. Issue after the §6 level-14 gate. **Predict; run; reconcile.**
 ````
+
+**J1051** · R6-1 · new-content
+
+````text
+- **Core:** `INSERT…ON CONFLICT`, `UPDATE…FROM`, writable CTEs, `MERGE` (PG15+), `DELETE…RETURNING`.
+````
+
+**J1052** · R6-1 · new-content
+
+````text
+- **Theory:** Idempotency keys; batching to bound WAL/bloat.
+````
+
+**J1053** · R6-1 · anchor-rewrite
+
+````text
+| **A7** async (Pub/Sub, Tasks, Scheduler) | SL-10 idempotent writes: `INSERT … ON CONFLICT`, unique keys | SQL-E9.3 |
+````
+
+**J1054** · R6-2 · new-content
+
+````text
+- **Core:** `INSERT…ON CONFLICT`, `UPDATE…FROM`, writable CTEs, `MERGE` (PG15+), `DELETE…RETURNING`. `LISTEN channel` / `NOTIFY channel, 'payload'` (or `pg_notify(channel, payload)`) as the wake-up beside a `FOR UPDATE SKIP LOCKED` queue table or an outbox: the notification is sent when the transaction commits, and never if it rolls back.
+````
+
+**J1055** · R6-2 · new-content
+
+````text
+- **Core:** `pg_stat_statements`, auto_explain, wait events; stale analyze symptoms.
+````
+
+**J1056** · R6-2 · new-content
+
+````text
+- **Core:** Runbook literacy: schedule, retain, test restore to a *new* instance, measure RPO/RTO.
+````
+
+**J1057** · R6-2 · new-content
+
+````text
+- **Core:** Physical vs logical replication; failover; why 2PC is not the default answer (outbox owns the product pattern).
+````
+
+**J1058** · R6-2 · new-content
+
+````text
+- **Core:** Height ≈ log_fanout(n); leftmost prefix rule; LSM write amp vs B-tree read amp; GIN for JSONB/arrays; BRIN for append-mostly.
+````
+
+**J1077** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+
+````text
+## 0. Read this first — how this file complements the main course
+
+### 0.1 Standing instruction (for Claude, every session)
+
+**This file is a complement to the main course, not a second curriculum. Read both. Whenever a main-course module is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping concepts are stitched together and taught in parallel — never in separate sessions, never twice.**
+
+Why: the main course owns the order and the module spine. This file owns the engine slices DB-1 … DB-10 (§4.0) and the Cloud SQL procedure (OD-11). The main course deliberately does not own the SQL *language* end to end, the pre-SQL mathematics a learner may lack, the theory tier behind the slices (serializability, ARIES, join-cost formulas, Selinger-style planning), modelling method, analytics dialects, or a large body of query-writing practice. This file supplies exactly those, and hangs each piece on the main-course module that needs it, **at the moment that module needs it**.
+
+### 0.2 Stitching rules
+
+1. **One concept, one teaching.** If both files teach an idea, it is taught once, in the module that owns it (§2.1 overlap register), and the other file only *adds*. Later sessions recall in one line; they do not re-teach. Ideas already unlocked-and-confirmed on the ledger are recalled, never re-taught.
+2. **Ownership split (memorise).** *Other parts own:* the Firestore, Bigtable and store-choice material (primer SD-22, SD-23, SD-25), outbox/inbox (A9 theory; design-patterns ARCH-11 shape), payment-flow abuse (cyber AB-06), billing-export SQL (B4). *This file owns:* SQL-language mastery (SL), relational theory (RT), the CS theory tier under the slices (CS), data-design method (DD) including the ledger rules (DD-03) and point-in-time correctness and leakage (DD-05), operating-a-database craft (OD) including Cloud SQL (OD-11), migrations as jobs (OD-08), the cursor pager (OD-09) and pool math (OD-03), analytics and dialect craft (AN) including BigQuery operations (AN-02), pre-SQL prerequisites (PQ), the exercise ladder (§6), and the engine slices DB-1 … DB-10 and their toys (§4.0). **Where a §4.0 slice toy exists (WAL codec, slotted page, B-tree, iterator executor, visibility simulator) this file never asks for a second toy — it adds the analytic layer (formulas, schedules, cost models) that the toy's tests do not reach.**
+3. **Same ten-rung ramp, same locks.** Companion concepts are taught through the suite's ten-rung sequence (rule 0.4.3, §0.6) (anchor → vocabulary → representation → core move → worked illustration → basic unseen check → routine variation → mixed transfer → top-rung challenge → reflection + ledger). The **dependency gate**, **rung-2 vocabulary audit** and **Prop Lock** apply unchanged: never use a later system as a prop (no Spanner interleaving in the first Postgres transcript; no full PITR runbook before its owner; no Cloud SQL HA as a "known" prop before its OD-11 session). If an exercise needs machinery not yet unlocked, **postpone the exercise** — or teach the machinery first. A smuggled prop is an *instructor process failure*, never "shaky", exactly as in rule 0.4.6 (§0.6).
+4. **Every concept gets a GCP lens the moment it is taught**, at three depths (same definitions as the primer companion): **Lens-1** name the GCP resource and show one `gcloud`/console/Terraform line; **Lens-2** touch it (local Docker Postgres is the default lab; Cloud SQL / AlloyDB / Spanner emulator / BigQuery sandbox only when Lab Reality allows); **Lens-3** cert-depth trade-offs and limits (PCA storage systems; Professional Data Engineer / Database Engineer overlap).
+5. **Bank ≠ dump.** The exercise ladder in §6 is a **bank of specifications**, not a worksheet. At teach time issue **one** item at the rung the ledger says is next (never the whole list), let the learner attempt first, escalate hints one notch at a time (*what structure do you see → smaller case → smallest unlocked hint*), and only then open the instructor key (Appendix K). **Never paste a key before an attempt.** Mixed-transfer items name their two earlier tools on one line before executing.
+6. **Predict before you run; explain the discrepancy after.** Every exercise that has a *result shape*, a *row count*, a *plan shape*, or an *isolation outcome* starts with the learner writing the prediction (one line). Then run. A wrong prediction is the best teaching moment in this file — record the discrepancy on the ledger, do not skip it. (Rule 0.4.4 in §0.6: predict → run → discrepancy.)
+7. **Fingerprints, not eyeballs.** Each read-only exercise has a *golden*: `rows:hash` computed by the lab kit (`lab.chk`). Two queries are the same answer iff their fingerprints match. **Goldens are valid only for seed v1 on PostgreSQL 15.x with `timezone = UTC` and the `C` collation** — if any of those change, regenerate; do not "fix" a learner's query to match a stale golden.
+8. **Tracking is inline.** Tick `- [ ]` boxes in this file or say "done" in chat. Do **not** create a separate tracker; the tutor's progress ledger (§0.6) records unlocked / shaky / postponed for companion modules under their IDs (`SL-08`, `SQL-E6.2`…).
+9. **Honesty flags.** `(verify)` = a GCP or PostgreSQL-version detail that changes often or that I could not confirm here — check live docs before relying on it for an exam or production. **Modern note** marks where industry has moved past a textbook.
+10. **Time, money and secrets.** Labs are free-tier/credits-safe: local Postgres in Docker is the default; Cloud SQL / AlloyDB / Memorystore are credits-optional and *destroyed the same day* (Lab Safety, §0.6). Never put a password, key or real customer data in a query, a prompt or this file; the lab data is synthetic.
+11. **User can override anything:** skip a concept already known (run its skip-test; §5 tiers), jump to an exercise, or go hands-on — same rights as rule 0.4.1 (§0.6). **On a conflict:** the main course wins on order, Lab Reality, exam time-sensitivity and the ledger; this file wins on SQL/DB content and exercise specs.
+12. **Read economically.** Each session read §0 and §2, then only the blocks bound to today's main-course module (search by ID: `SL-06`, `CS-05`, `SQL-E4.5`…). Do not reload the whole file. Appendix K (keys) is opened *only after* an attempt.
+
+### 0.3 How one stitched session runs
+
+1. **Anchor** — announce the main-course module and list the companion modules bound to it (§2). Run the one-line pre-rung-2 self-check: every term to be used is anchored this session or on the ledger; no unanchored sibling; no new product; every noun in the picture unlocked.
+2. **Concept** — teach the shared idea once (main-course depth), then layer this file's SQL / theory / craft on top. Derive before you name.
+3. **GCP lens** — the resource(s): Lens-1 always, Lens-2 when Lab Reality allows.
+4. **Numbers** — one back-of-the-envelope estimate (rows per page, index height, pool arithmetic, bytes scanned).
+5. **Exercise** — issue **one** item from §6/§7 at the current rung (prediction first). For a mixed-transfer item, name the new idea plus exactly two earlier unlocked ideas.
+6. **Check** — the module's check questions; the learner answers before you explain. An unseen check that uses unanchored terms is invalid — fix the check, don't mark the learner shaky.
+7. **Close** — tick boxes in both files' sense; ledger line: what unlocked, what is shaky, what is postponed.
+
+When other companions bind to the same session, the Suite Session Protocol (rule 0.4.2 in §0.6) governs.
+
+````
+
+**J1078** · R7-2 · anchor-rewrite
+
+````text
+### 0.4 Notation
+````
+
+**J1079** · R7-2 · copied preferences, contract and Lab Safety moved out
+
+````text
+### 0.5 Learner teaching preferences (binding)
+
+- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
+- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
+- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
+- If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+
+### 0.6 Suite Teaching Contract and Lab Safety (same text in every part)
+
+The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.10, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
+
+**Suite Teaching Contract (main course §0.4).**
+
+One contract for every part; each companion carries the same contract in its own §0 and adds its session detail. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.5 here) · (3) the main course on order, cert timing and Lab Reality · (4) the owning part on its content (main course §0.3) · (5) the companions' defaults.
+
+**0.4.1 Rhythm.**
+
+- One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
+- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.5 rule out separate calibrating questions). A turn may be as long as one concept needs.
+- Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
+- Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
+
+**0.4.2 Suite Session Protocol.** When several files bind to one module, the session runs:
+
+1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
+2. **Concept** — taught once, by the owner in main course §0.3.
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
+4. **GCP lens.**
+5. **One Numbers step** for the whole session.
+6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
+7. **Checks**, woven in per §0.5.
+8. **Close**, ticking boxes in every file (§0.4.8).
+
+**0.4.3 Exercise progression.** The first five rungs of the ten-rung ramp (anchor, vocabulary, representation, core move, worked illustration) are the teaching turns. Exercises then climb, one item per turn, advancing only when the current rung is passed: basic unseen check → routine variation → mixed transfer (the new idea plus exactly two earlier mastered ideas) → top-rung challenge → reflection (the learner explains back or invents an example).
+
+**0.4.4 Predict → run → discrepancy.** Every exercise with a result shape, row count, plan shape, isolation outcome or attack outcome starts with a one-line prediction. Then run. A wrong prediction is recorded in the ledger and taught from.
+
+**0.4.5 Mastery states.** Every ID is `not-started` → `in-progress` → `taught` (explained, first check answered) → `mastered` (passed a rung-3 or rung-4 item, or the skip-test). It may also be `shaky` (missed a check after teaching), `unverified` (claimed done without evidence) or `sliced` (only a named slice taught). Taught and mastered IDs get one-question recalls woven into later relevant sessions at about +1, +3, +7 and +21 sessions; a missed recall sets `shaky` and re-teaches only the gap. The misconception register lives in the ledger; checks probe each entry until two consecutive correct answers retire it.
+
+**0.4.6 Anchoring and suite-wide Prop Lock.** No term, product or control is used in an explanation, example or check unless it is anchored: taught this session, or at least `taught` on the ledger. A named-but-not-taught mention is allowed only when labelled "we'll cover this in X". A check that relies on unanchored terms is invalid: fix the check; don't mark the learner shaky.
+
+**0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
+
+**0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
+
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
+
+1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
+2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
+3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
+4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor never writes the solution.
+
+**0.4.10 Academic depth (undergraduate prerequisites).** The course teaches every undergraduate prerequisite of cloud and system architecture at the depth of a university course, not only at the engineering depth of a first pass. Each module of Tracks A to D, and each companion, carries an **academic pass**: formal definitions, theorems with their proofs or proof sketches, derivations, named readings, and a numbered problem set whose written keys (an expected answer and at least one expected wrong answer, rule 0.4.7) sit in the owning part's keys. The University and textbook alignment table (main course §0.6) says which university courses and textbooks each pass is aligned with. Four rules:
+
+1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
+2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
+3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof (or derivation) problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks), so every block's problem set carries both kinds. In the main course the block is a module's academic pass (its D lines and its problem set); in a companion it is the companion's academic pass.
+4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
+
+**Lab Safety (main course §0.5).**
+
+One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the main course's Lab Reality paragraph.
+
+1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
+2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
+3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
+4. **The workplace console is read-only:** look, never create or change.
+5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
+````
+
+**J1080** · R7-3 · overlap-register slice moved to rule 0.3
+
+````text
+### 2.1 Overlap register — concepts that appear in both files (teach once, in the owner)
+
+> **Note:** the suite-wide register is the main course §0.3; this table is the SQL slice of it, and on a conflict the main course's register wins. DB-1 … DB-10 are owned by this file (§4.0).
+
+| Concept | Owner (teach here) | This file adds |
+|---|---|---|
+| Relational algebra, 3VL (DB-1) | **§4.0 DB-1** (this file; A8) (toy: bag relations + truth-table tests) | RT-02 set-vs-bag laws and rewrite equivalences; RT-03 calculus/safety; SL-03 NULL semantics across every clause; SQL-Z0.4, TD-5/6 |
+| Catalog, tuples, constraints (DB-2) | **§4.0 DB-2** | SL-01 type system & constraint catalogue; DD-04 key strategies; DD-12; SQL-E10 constraint batteries |
+| CTEs, windows, lateral (DB-3) | **§4.0 DB-3** | SL-06/08/09 full semantics (frames, EXCLUDE, RANGE with intervals, recursion termination); SQL-E4–SQL-E7 ladder |
+| Heap pages & TOAST (DB-4) | **§4.0 DB-4** (toy: slotted page) | CS-01 page/row arithmetic and fill-factor maths (no second toy) |
+| Buffer pool (DB-5) | **§4.0 DB-5** (toy: clock sweep) | CS-04 hit-ratio and working-set reasoning, why sequential flooding needs scan-resistance |
+| Indexes (DB-6) | **§4.0 DB-6** (toy: B-tree + inverted index) | CS-02 height/fan-out/cost formulas; OD-01 index-design workflow; PX-1 … PX-6 |
+| Executor & spill (DB-7) | **§4.0 DB-7** (toy: iterators, forced spill) | CS-03 I/O cost formulas (block-NL, Grace hash, sort-merge), TD-11; PX-7, PX-10 |
+| Planner statistics (DB-8) | **§4.0 DB-8** (toy: histogram + MCV) | CS-08 Selinger DP, estimation error propagation, TD-13; PX-8 |
+| MVCC, locks, vacuum (DB-9) | **§4.0 DB-9** (toy: visibility simulator, deadlock detector) | CS-05 schedule theory (precedence graphs, 2PL, SSI); TD-8/9; TX-1 … TX-8 |
+| WAL, replica, PITR (DB-10) | **§4.0 DB-10** (toy: mini-WAL) | CS-06 ARIES and steal/no-force reasoning; TD-12; OD-04 restore-drill runbook |
+| Cloud SQL provisioning, Auth Proxy, private IP, HA, flags | **OD-11** | OD-03/04/05 SQL-side consequences (session state vs pooler modes, RPO/RTO arithmetic, replica lag); §8.2 Terraform |
+| Migrations as jobs, expand/contract | **OD-08** (jobs) + **DD-11** (expand/contract) | DD-11 *lock levels*, `NOT VALID` + `VALIDATE`, `CREATE INDEX CONCURRENTLY`, backfill batching (SQL-E9.6) |
+| Spanner, Bigtable, Firestore map | **Primer SD-22 / SD-23 / SD-25** | AN-05, AN-06 same-question comparisons; DD-13 key design as SQL |
+| Cursor pagination | **OD-09** (seek predicate, index, from-scratch pager) | PX-9 measured against OFFSET |
+| Hot partition, key histogram | **DD-13** (key histogram) + primer SD-23 (row keys) | DD-13 the skew query on lab data (user 1 = 135 orders; see PX-1) |
+| Connection-pool math | **OD-03** (worksheet) | OD-03 pooler modes (session/transaction/statement) and what breaks in transaction mode |
+| RLS multi-tenancy | **A8** + DD-09 (design) | SL-13 policy syntax, `FORCE`, owner bypass; SQL-E10.2 composite FK as defence in depth; SQL-E10.6 |
+| Outbox / inbox, idempotency | **A9 / A7** (main course §0.3: 2PC/Saga/outbox) | SL-10 the SQL that makes them true (unique index, `ON CONFLICT`, `SKIP LOCKED`); TX-5, SQL-E9.3 |
+| Ledger, minor-unit ints | **DD-03** (ledger rules) | DD-05 modelling; SQL-E4.5/SQL-CAP2 revenue reconciliation; SQL-CAP1 invariants |
+| BigQuery partition/cluster/cost | **AN-02** (cost and operations) | DT drills |
+| As-of / point-in-time join | **DD-05** (leakage; D3) | SQL-E6.4 / SQL-E13.4 / SQL-E13.5 the SQL shapes (lateral, range join, SCD2) |
+| Billing-export SQL patterns | **B4** | AN-03 reused windows; no new concept |
+| SQL scale-out (replication, federation, sharding, denormalisation, SQL tuning) | **primer companion SD-13 … SD-19** | *this file never re-teaches them*; CS-07/DD-13/OD-05/OD-07 add engine-level and SQL-level detail only |
+| ACID, CAP, consistency, big-O, hashing | **A2 / A4 / A8 + A9 / A8** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
+````
+
+**J1094** · R7-4 · anchor-rewrite
+
+````text
+Each main-course module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
+````
+
+**J1095** · R7-4 · anchor-rewrite
+
+````text
+Local PostgreSQL 15.x database `labdb` with schema `lab` (the storefront OLTP data of §0.4) plus `work` (scratch) and fingerprint functions `lab.chk` / `lab.chk_o`. Every kit file is printed in full in §3.8: the schema `lab_schema.sql`, the seed `lab_seed.sql`, the runners `run_ex.py`, `plans.py`, `tx_tests.py`, and the rest.
+````
+
+**J1096** · R7-4 · anchor-rewrite
+
+````text
+Cloud SQL / AlloyDB: same SQL; create an instance only when Lab Reality allows and **destroy the same day** (Lab Safety, §0.6). Auth Proxy for IAM DB auth when OD-11 is unlocked — not required for local goldens.
+````
+
+**J1097** · R7-4 · anchor-rewrite
+
+````text
+**Bank ≠ dump** (§0.2 rule 5): issue **one** item at the ledger rung; learner attempts; escalate hints; only then Appendix K. Every read-only golden below is from `goldens_ex_*.json` executed on PostgreSQL 15.8 / seed v1 / UTC / C collation.
+````
+
+**J1098** · R7-4 · anchor-rewrite
+
+````text
+### 2.2 A8 slice pairing — the engine slices DB-1 … DB-10 and what rides with each
+````
+
+**J1099** · R7-4 · anchor-rewrite
+
+````text
+### 2.3 Parallel calendar — how the companion rides the main course's spine
+````
+
+**J1100** · R7-4 · anchor-rewrite
+
+````text
+| **A8 — SQL design track** (concept, then lab; engine slices §4.0) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates); BH-1 after SQL-E3.5 |
+````
+
+**J1101** · R7-4 · anchor-rewrite
+
+````text
+*The engine slices.* This file **owns** the slices DB-1 … DB-10; main course A8 points here, and each slice is taught as one session with the companion theory paired to it in §2.2. The Cloud SQL procedure they map onto is OD-11.
+````
+
+**J1102** · R7-4 · anchor-rewrite
+
+````text
+| **SQL-SKIP-SQL** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if the A8 sessions confirmed FDs/joins/transactions/pagination/client hygiene, stamp using SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2. **Else** run the SQL-SKIP-SQL order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
+````
+
+**J1103** · R7-4 · anchor-rewrite
+
+````text
+| **SQL-SKIP-ENGINE** PostgreSQL internals (`DB-ENGINE`) | **Skip-test map:** residual `EXPLAIN` drills = PX-1 … PX-11; crash/recovery evidence = TD-12 + OD-04 drill. **Else** run the SQL-SKIP-ENGINE order = CS-01 → CS-04 → CS-02 → CS-03 → CS-08 → CS-05 → CS-06 → CS-07 (§2.3) | see §2.3 |
+````
+
+**J1104** · R7-4 · anchor-rewrite
+
+````text
+Mapped to the A8 skip-tests **SQL-SKIP-SQL** / **SQL-SKIP-ENGINE**. If the A8 sessions already confirmed the skill, **stamp and skip**; else run the order in §2.3.
+````
+
+**J1113** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1114** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1115** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1116** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1117** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1118** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1119** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1120** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** matching PQ unlocked
+````
+
+**J1121** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1122** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1123** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1124** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1125** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1126** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1127** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1128** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+````
+
+**J1129** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1130** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1131** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1132** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1133** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1134** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1135** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1136** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+````
+
+**J1137** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1138** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1139** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1140** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1141** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1142** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1143** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1144** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1145** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1146** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+````
+
+**J1147** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1148** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1149** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1150** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1151** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1152** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1153** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1154** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+````
+
+**J1155** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1156** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1157** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1158** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1159** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1160** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1161** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1162** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+````
+
+**J1163** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1164** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1165** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1166** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1167** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1168** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1169** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+````
+
+**J1170** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+````
+
+**J1171** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+````
+
+**J1172** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+````
+
+**J1173** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+````
+
+**J1174** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+````
+
+**J1175** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1176** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1177** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1178** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1179** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1180** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1181** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1182** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1183** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1184** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+````
+
+**J1185** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1186** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1187** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1188** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1189** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1190** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1191** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+````
+
+**J1192** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+````
+
+**J1193** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+````
+
+**J1194** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+````
+
+**J1195** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+````
+
+**J1196** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+````
+
+**J1197** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+````
+
+**J1198** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+````
+
+**J1199** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+````
+
+**J1200** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+````
+
+**J1201** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+````
+
+**J1202** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+````
+
+**J1203** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1204** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1205** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1206** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1207** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1208** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1209** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1210** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1211** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1212** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1213** · R7-6 · new-content
+
+````text
+**Bank ≠ dump** (rule 0.4.11): issue **one** item at the ledger rung; learner attempts; escalate hints; only then Appendix K. Every read-only golden below is from `goldens_ex_*.json` executed on PostgreSQL 15.8 / seed v1 / UTC / C collation.
+````

@@ -1,7 +1,7 @@
 @@@ section
 ## 8. Academic depth (rule 0.4.10)
 
-The academic pass of this companion: the mathematics and the classic results under the SD cards, taught after the engineering pass of each card it names and before the problem cards of §4.4 that lean on it. Each block names the SD cards it deepens and the main-course blocks it builds on (A2.D5–A2.D8 probability and queueing, A9.D1–A9.D9 distributed-systems theory). Aligned with the queueing and distributed-systems rows of the main course's §0.6. Problems SDA-P1…SDA-P10 follow in §8.11, keys in §8.12 (after the attempt only). Rule 0.4.10: a block is `mastered` only when one proof or derivation problem and one computational problem in it pass.
+The academic pass of this companion: the mathematics and the classic results under the SD cards, taught after the engineering pass of each card it names and before the problem cards of §4.4 that lean on it. Each block names the SD cards it deepens and the main-course blocks it builds on (A2.D5–A2.D8 probability and queueing, A9.D1–A9.D9 distributed-systems theory). Aligned with the queueing and distributed-systems rows of the main course's §0.6. Problems SDA-P1…SDA-P10 follow in §8.11, keys in §8.12 (after the attempt only). A block is `mastered` by rule 0.4.10.3.
 
 ### 8.1 SDA.1 · Operational laws and Little's law (deepens SD-02, SD-03, SD-28)
 

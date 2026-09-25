@@ -1,105 +1,29 @@
 # Design Patterns, SOLID & Clean Architecture — A Companion Curriculum
-Companion to the main course, "The Consolidated Cloud Mastery Curriculum". Sibling to the System Design Primer companion and the SQL & Databases companion.
+Companion to the main course, "The Consolidated Cloud Mastery Curriculum".
 Built September 21, 2026. Sources: Gamma, Helm, Johnson, Vlissides — *Design Patterns: Elements of Reusable Object-Oriented Software* (1994, "GoF"); Robert C. Martin — *Clean Architecture* (2017) and *Agile Software Development, Principles, Patterns, and Practices* (2002, SOLID's origin); Martin Fowler — *Patterns of Enterprise Application Architecture* (2002); Craig Larman — *Applying UML and Patterns* (GRASP); Alistair Cockburn — Hexagonal Architecture; Jeffrey Palermo — Onion Architecture; Eric Evans — *Domain-Driven Design* (2003).
 
 ---
 
-## 0. Read this first
+## 0. Read this first — what this part adds
 
-### 0.1 Standing instruction (for Claude, every session)
-This file is a complement to the Curriculum, not a second curriculum. It supplies one thing Curriculum module **A7 (Software Architecture & APIs)** names but doesn't detail: formal OOP design theory — SOLID, GRASP, the GoF catalog, Clean/Hexagonal/Onion architecture, DDD building blocks, and the enterprise/microservice patterns layered on top. Teach this file's modules when A7 is reached, in the same session shape already used for the other two companions: one concept at a time, checked before moving on. This file supplies content; it does not relax the core teaching rhythm.
+This part follows the rules of the course guide (rules 0.1–0.5). This section holds only what is particular to it.
 
-### 0.2 Stitching / no-overlap rules
-1. **A3 already taught operational OOP** (class, object, `self`, constructor, inheritance mechanics via the `Dog` example) — this file never re-derives that; every module below assumes it and *recalls* it in one clause, never re-teaches it.
-2. **One concept, one teaching**, same convention as the sibling companions. Where a pattern's core idea overlaps a system-design-primer concept (Observer ↔ Pub/Sub's fan-out, Strategy ↔ SD-10's load-balancer algorithms), teach the OOP-level mechanism here and cross-reference the SD companion's system-level version — don't re-teach either.
-3. **Order is enforced.** Foundations (§3) → SOLID (§4) → GRASP (§5) → GoF catalog (§6) → Architecture (§7) → Anti-patterns (§8). A pattern is never taught before the principle it embodies — e.g., Strategy is not taught before Open/Closed, because Strategy *is* Open/Closed made concrete.
-4. **Every pattern gets three things, always:** the problem it solves (pain before solution, never the reverse), the formal structure using canonical GoF participant names, and at least one real industry example — a cloud SDK, a popular library, or a framework this Curriculum touches elsewhere. Academic rigor and industry grounding are both mandatory, every time, not alternatives.
-5. **Distinguish pattern from principle from architecture, explicitly, whenever one could be mistaken for another.** A *principle* (SOLID, GRASP) is a rule for arranging responsibility. A *pattern* (GoF) is a named, reusable solution shape to a recurring problem, usually at class/object level. An *architecture* (Clean, Hexagonal, microservice patterns) is a system-level arrangement, often built from several patterns and principles at once. Conflating these three is the most common shallow-learning failure in this material — call it out on sight.
-6. **Tracking is inline**, same as the sibling files: tick `- [ ]` or say "done" in chat.
-7. **Honesty flags.** `(debated)` marks where the industry itself disagrees (e.g., whether Singleton is a pattern or an anti-pattern in modern practice); `(GoF)` marks a definition quoted/adapted directly from the 1994 book, since its precise wording is often what's actually tested.
+### 0.1 What this part owns
 
-### 0.3 How one stitched session runs
-1. **Anchor** — name the module(s) from §1's ledger being taught this session.
-2. **Motivate** — state the problem *before* the solution; a pattern introduced without its pain is cargo-cult programming (AP-06) in the making.
-3. **Structure** — the formal participants, using GoF's own names.
-4. **Trade-offs** — every pattern costs something; name it, don't just sell the benefit.
-5. **Real-world anchor** — one concrete industry example.
-6. **Check** — the module's check question; the learner answers before being told the answer.
-7. **Close** — tick the box; note anything shaky for a later recall.
+This part supplies one thing that main-course module **A7 (Software Architecture & APIs)** names but does not detail: formal OOP design theory. That is SOLID, GRASP, the GoF catalogue, Clean, Hexagonal and Onion architecture, DDD building blocks, and the enterprise and microservice patterns layered on top. Its modules are taught when A7 is reached, and the items gated behind A9 when A9 is reached (§2).
 
-When other companions bind to the same session, the Suite Session Protocol (rule 0.4.2 in §0.6) governs.
+### 0.2 Rules particular to this part
 
-### 0.4 Notation
+1. **A3 already taught operational OOP** (class, object, `self`, constructor, inheritance mechanics through the `Dog` example). This part never re-derives it; every module below assumes it and recalls it in one clause.
+2. **System-level twins are cross-referenced, not re-taught.** Where a pattern's core idea overlaps a primer concept (Observer and Pub/Sub's fan-out; Strategy and SD-10's load-balancer algorithms), this part teaches the OOP-level mechanism and names the primer's system-level version.
+3. **Order is enforced** (§10): Foundations (§3) → SOLID (§4) → GRASP (§5) → GoF catalogue (§6) → Architecture (§7) → Anti-patterns (§8). A pattern is never taught before the principle it embodies: Strategy is not taught before Open/Closed, because Strategy *is* Open/Closed made concrete.
+4. **Every pattern gets four things, always:** the problem it solves, stated before the solution (a pattern without its pain is cargo-cult programming, AP-06, in the making); its formal structure, with GoF's own participant names; its trade-offs, named rather than sold; and at least one real industry example, from a cloud SDK, a popular library, or a framework the course touches elsewhere.
+5. **Distinguish pattern from principle from architecture**, explicitly, whenever one could be mistaken for another. A *principle* (SOLID, GRASP) is a rule for arranging responsibility. A *pattern* (GoF) is a named, reusable solution shape to a recurring problem, usually at class or object level. An *architecture* (Clean, Hexagonal, the microservice patterns) is a system-level arrangement, often built from several patterns and principles at once. Conflating the three is the most common shallow-learning failure in this material; call it out on sight.
+6. **Flags** (rule 0.4.11): `(debated)` marks where the industry itself disagrees, for example whether Singleton is a pattern or an anti-pattern in modern practice. `(GoF)` marks a definition quoted or adapted directly from the 1994 book, since its precise wording is often what is tested.
+
+### 0.3 Notation
 `F-nn` OOP foundations · `PR-nn` SOLID/GRASP principles · `DP-nn` GoF design patterns · `ARCH-nn` architectural styles/DDD/enterprise patterns · `AP-nn` anti-patterns. `[Cr]` = Creational, `[St]` = Structural, `[Bh]` = Behavioral (GoF's own three categories).
 
-### 0.5 Learner teaching preferences (binding)
-
-- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
-- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
-- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
-- If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
-
-### 0.6 Suite Teaching Contract and Lab Safety (same text in every part)
-
-The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.10, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
-
-**Suite Teaching Contract (main course §0.4).**
-
-One contract for every part; each companion carries the same contract in its own §0 and adds its session detail. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.5 here) · (3) the main course on order, cert timing and Lab Reality · (4) the owning part on its content (main course §0.3) · (5) the companions' defaults.
-
-**0.4.1 Rhythm.**
-
-- One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
-- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.5 rule out separate calibrating questions). A turn may be as long as one concept needs.
-- Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
-- Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
-
-**0.4.2 Suite Session Protocol.** When several files bind to one module, the session runs:
-
-1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
-2. **Concept** — taught once, by the owner in main course §0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
-4. **GCP lens.**
-5. **One Numbers step** for the whole session.
-6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
-7. **Checks**, woven in per §0.5.
-8. **Close**, ticking boxes in every file (§0.4.8).
-
-**0.4.3 Exercise progression.** The first five rungs of the ten-rung ramp (anchor, vocabulary, representation, core move, worked illustration) are the teaching turns. Exercises then climb, one item per turn, advancing only when the current rung is passed: basic unseen check → routine variation → mixed transfer (the new idea plus exactly two earlier mastered ideas) → top-rung challenge → reflection (the learner explains back or invents an example).
-
-**0.4.4 Predict → run → discrepancy.** Every exercise with a result shape, row count, plan shape, isolation outcome or attack outcome starts with a one-line prediction. Then run. A wrong prediction is recorded in the ledger and taught from.
-
-**0.4.5 Mastery states.** Every ID is `not-started` → `in-progress` → `taught` (explained, first check answered) → `mastered` (passed a rung-3 or rung-4 item, or the skip-test). It may also be `shaky` (missed a check after teaching), `unverified` (claimed done without evidence) or `sliced` (only a named slice taught). Taught and mastered IDs get one-question recalls woven into later relevant sessions at about +1, +3, +7 and +21 sessions; a missed recall sets `shaky` and re-teaches only the gap. The misconception register lives in the ledger; checks probe each entry until two consecutive correct answers retire it.
-
-**0.4.6 Anchoring and suite-wide Prop Lock.** No term, product or control is used in an explanation, example or check unless it is anchored: taught this session, or at least `taught` on the ledger. A named-but-not-taught mention is allowed only when labelled "we'll cover this in X". A check that relies on unanchored terms is invalid: fix the check; don't mark the learner shaky.
-
-**0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
-
-**0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
-
-**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
-
-1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
-2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
-3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
-4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor never writes the solution.
-
-**0.4.10 Academic depth (undergraduate prerequisites).** The course teaches every undergraduate prerequisite of cloud and system architecture at the depth of a university course, not only at the engineering depth of a first pass. Each module of Tracks A to D, and each companion, carries an **academic pass**: formal definitions, theorems with their proofs or proof sketches, derivations, named readings, and a numbered problem set whose written keys (an expected answer and at least one expected wrong answer, rule 0.4.7) sit in the owning part's keys. The University and textbook alignment table (main course §0.6) says which university courses and textbooks each pass is aligned with. Four rules:
-
-1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
-2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
-3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof (or derivation) problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks), so every block's problem set carries both kinds. In the main course the block is a module's academic pass (its D lines and its problem set); in a companion it is the companion's academic pass.
-4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
-
-**Lab Safety (main course §0.5).**
-
-One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the main course's Lab Reality paragraph.
-
-1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
-2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
-3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
-4. **The workplace console is read-only:** look, never create or change.
-5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 
 ---
 
@@ -132,16 +56,6 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | System-design-primer companion | DP-14 Observer ↔ SD-28 Pub/Sub; PR-01 (SRP) ↔ SD-12 microservices; DP-09 Facade ↔ SD-11 reverse proxy | Cross-reference only, not a re-teach |
 | Go Language Companion | GO-11 renders the patterns in Go: PR-05 and PR-04 as small consumer-owned interfaces, F-03 as embedding (which delegates and never dispatches back), DP-04 as functional options, DP-12 and DP-18 as `http.Handler` middleware, DP-01 as `sync.Once`, DP-13 as a function type, DP-14 as channels, DP-20 as `iter.Seq` | This file owns the patterns; the Go companion owns only their Go shape. DP-15 Template Method cannot be built by overriding in Go |
 
-### 2.1 Overlap register — what is intentionally *not* re-taught here
-> **Note:** the suite-wide register is the main course §0.3; this table is the patterns slice of it, and on a conflict the main course's register wins.
-
-| Concept | Already owned by | What this file adds instead |
-|---|---|---|
-| Classes, objects, `self`, constructors | A3 | Formal theory built on top (F-01…04) |
-| Inheritance mechanics | A3 (the `Dog` example) | The formal is-a contract and its limits (F-03, PR-03) |
-| Microservices, service discovery | A7 base content, SD-12 | The class-level patterns (Strategy, Observer) that compose into them |
-| Pub/Sub, message queues | A7, SD-28 | Observer (DP-14) as its in-process ancestor |
-| HA/DR patterns (active-active, warm standby) | B3 | Explicitly distinguished as infrastructure, not code architecture |
 
 ---
 
@@ -227,7 +141,7 @@ Craig Larman's academically rigorous complement to SOLID: given a set of respons
   - **Check:** an `Order` aggregates `OrderLine`s. Which class should create an `OrderLine`, by Creator, and which of Creator's conditions applies?
 - **PR-08 Controller:** route system events to a class representing the overall system or use case, not a UI/view class — the formal root of MVC's separation (ARCH-05).
   - **Check:** a web handler validates input, applies the discount rules and saves the order. What should the handler delegate, and to which Controller?
-- **PR-09 Low Coupling:** minimize how many other classes a class depends on.
+- **PR-09 Low Coupling:** minimize how many other classes a class depends on. The **Law of Demeter** (Lieberherr and Holland, 1989) is its method-level rule: talk only to your own fields, your parameters and objects you create, so `order.customer().address().city()` becomes a question `order` answers; **Tell, Don't Ask** is the same idea stated as behaviour: tell an object to act instead of pulling its state out to decide for it.
   - **Check:** class A imports seven other classes to do one job. Name one way to cut its coupling without moving its responsibility.
 - **PR-10 High Cohesion:** keep a class's responsibilities strongly, purposefully related — SRP's older academic sibling, stated as a design-quality metric.
   - **Check:** a `Utils` class holds date parsing, e-mail sending and currency rounding. What does low cohesion cost you here, concretely?
@@ -544,7 +458,7 @@ Where §6 shaped classes, this section shapes *systems* — often built by apply
 - **Repository:** collection-like access to Aggregates, hiding persistence (PR-12 in action).
   - *Owner pointer:* Repository's definition is owned by ARCH-07 (Fowler, PoEAA). Here, recall it in one line and add the DDD constraint: one repository per aggregate root.
 - **Domain Event:** something significant that happened, often triggering decoupled side effects (DP-14 at domain scale).
-- **Bounded Context:** an explicit boundary within which a model is internally consistent — the same word can mean different things in different contexts, deliberately.
+- **Bounded Context:** an explicit boundary within which a model is internally consistent — the same word can mean different things in different contexts, deliberately. An **Anti-Corruption Layer** sits where one context consumes another's (or a legacy system's) model: it translates their terms into ours, so their model never leaks into our domain; it is DP-06 (Adapter) and DP-07 (Facade) applied at a context boundary, and the usual companion of ARCH-12's Strangler Fig.
 - **Check:** an `Order` aggregate holds `OrderLine`s. Another service wants to change one line's quantity directly. What rule does that break, and what must it do instead?
 
 **ARCH-07 · Enterprise patterns (Fowler, PoEAA)** — **Repository:** collection-like interface between domain and data-mapping. **Unit of Work:** tracks changes during a transaction, writes them out atomically. **DTO:** a plain, no-behavior object moving data across a boundary — deliberately not the domain Entity, avoiding structure leakage (connects to Clean Architecture's boundary rule). **Service Layer:** defines an application boundary with use-case-shaped operations.
@@ -567,7 +481,7 @@ Where §6 shaped classes, this section shapes *systems* — often built by apply
 - [ ] ARCH-11
 - **Check:** step 3 of a four-step saga fails after steps 1 and 2 committed in other services. What runs next, and why is that not a rollback in the ACID sense?
 
-**ARCH-12 · Resilience micro-patterns** *(gated behind A9)* — **Circuit Breaker:** wraps a remote call; after enough failures, "opens" and fails fast for a cooldown, protecting the caller. **Strangler Fig:** incrementally migrate a legacy system by routing growing traffic shares to new services via a facade/proxy layer until legacy is retired — the formal pattern behind C4's legacy-migration-via-CI/CD question. **Bulkhead:** isolate resources per downstream dependency so one failing dependency can't exhaust resources needed elsewhere.
+**ARCH-12 · Resilience micro-patterns** *(gated behind A9)* — **Circuit Breaker:** wraps a remote call; after enough failures, "opens" and fails fast for a cooldown, protecting the caller. **Strangler Fig:** incrementally migrate a legacy system by routing growing traffic shares to new services via a facade/proxy layer until legacy is retired — the formal pattern behind C4's legacy-migration-via-CI/CD question. **Bulkhead:** isolate resources per downstream dependency so one failing dependency can't exhaust resources needed elsewhere. **Graceful degradation:** when a dependency is down or the breaker is open, serve a reduced answer (cached, default, or the feature switched off) instead of an error, decided per feature in advance; paired with **retry with exponential backoff and jitter**, only for idempotent calls and bounded by a retry budget so retries do not multiply the overload.
 - [ ] ARCH-12
 - **Check:** a circuit breaker is open. What happens to a call now, and what event moves it to half-open?
 
@@ -589,11 +503,11 @@ Most arise from a *correct* pattern applied poorly, or a principle ignored under
   - **Check:** every module imports every other and there is no layer rule. Which ARCH item gives the first boundary to draw?
 - **AP-06 Cargo Cult Programming:** copying a pattern's structure without understanding the problem it solves.
   - **Check:** a team adds a `Factory` for every class "because patterns are best practice". Which anti-pattern is this, and which test tells you whether a factory is justified?
-- **AP-07 Premature Optimization:** applying a pattern (often Flyweight) for a performance problem that doesn't yet exist.
+- **AP-07 Premature Optimization:** applying a pattern (often Flyweight) for a performance problem that doesn't yet exist. Its design-level siblings are named by two slogans: **YAGNI** ("you aren't gonna need it", from Extreme Programming) against building for requirements nobody has asked for, and **KISS** for the simplest design that passes the tests.
   - **Check:** someone adds a Flyweight to a form with 12 fields. What is the evidence you ask for before accepting it?
 - **AP-08 Magic Numbers/Strings:** unexplained literals (`if (status == 3)`) — a small-scale Encapsulation failure, since the meaning is hidden nowhere.
   - **Check:** `if status == 3` appears in six files. What replaces the literal, and which principle does the replacement serve?
-- **AP-09 Shotgun Surgery:** one logical change requires editing many unrelated classes — the mirror image of SRP done right.
+- **AP-09 Shotgun Surgery:** one logical change requires editing many unrelated classes — the mirror image of SRP done right. **DRY** (Hunt and Thomas, *The Pragmatic Programmer*, 1999) is the cure stated as a rule: every piece of *knowledge* has one authoritative representation; two identical-looking lines that encode different rules are not duplication, and merging them couples what should change apart (the rule of three: abstract on the third repetition, not the second).
   - **Check:** adding one field to "customer" requires edits in eleven files. Which principle, done right, would have kept the change in one place?
 - **AP-10 Interface Bloat:** the ISP (PR-04) violation restated as a smell — an interface with far more methods than any implementer needs.
   - **Check:** a `Storage` interface has 30 methods, and most callers use 2. Which principle applies, and what do you split it into?
@@ -1248,7 +1162,7 @@ Transfer exercises that combine several items. They climb the ramp (rule 0.4.3);
 
 ## 15. Academic depth (rule 0.4.10)
 
-The academic pass of this companion: the theory under object-oriented design, at the depth of a software-engineering and programming-languages course (main course §0.6: the software-engineering row, and main course A7.D1–A7.D2). Each block is taught after the items it names. Problems DPA-P1…DPA-P8 are in §15.7, keys in Appendix K. Rule 0.4.10: a block is `mastered` only when one proof or derivation problem and one computational problem in it pass.
+The academic pass of this companion: the theory under object-oriented design, at the depth of a software-engineering and programming-languages course (main course §0.6: the software-engineering row, and main course A7.D1–A7.D2). Each block is taught after the items it names. Problems DPA-P1…DPA-P8 are in §15.7, keys in Appendix K. A block is `mastered` by rule 0.4.10.3.
 
 ### 15.1 DPA.1 · Abstract data types and information hiding (deepens F-01, F-02, PR-01)
 

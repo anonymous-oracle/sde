@@ -216,6 +216,7 @@ def references(after):
     mask = code_mask(sql)
     sql_ids = after["files"]["sql-databases-companion.md"]["items"]["ids"]
     defined = set(su["defined_in"])
+    guide = rd("work", "COURSE-GUIDE.md")
     ex, bad = {}, []
     for f, u in sorted(su["unresolved_refs"].items()):
         for tok, lines in sorted(u.items()):
@@ -262,6 +263,9 @@ def references(after):
                     ex.setdefault("Go: sample input data inside an inline code span (every occurrence), e.g. `sku=A12;qty=3`",
                                   []).append(tok)
                     continue
+            if re.search(rf"\*\*{re.escape(tok)}\*\*", guide):
+                ex.setdefault("defined once in the course guide, where the shared rules live (D18)", []).append(tok)
+                continue
             bad.append(f"{SHORT[f]}:{tok} (L{','.join(map(str, lines[:4]))})")
     return bad, ex
 
@@ -544,6 +548,7 @@ def c08_substance(cur, sql):
 def conflicts():
     a = load_audit_r2()
     cur, pri, sql, dp, sec = (rd("work", f) for f in ORIG5)
+    gd = rd("work", "COURSE-GUIDE.md")   # D18: the shared rules (0.1–0.5) live here once
     stitch = lambda t, mid: (re.search(rf"^#### {re.escape(mid)} · .*— stitch: (.*)$", t, re.M) or [None, ""])[1]
     # substance probes for conflicts whose R2 probe looked for text that R2b removed on purpose (D5, D6, D11)
     SUB = {
@@ -558,10 +563,11 @@ def conflicts():
                  "CR-11 stitch starts 'A5 TLS · A10'; the A5 row names the public-key intuition bridge"),
         "C-28": (lambda: all(s in pri for s in ("Taught by (index module)", "Shared lab", "Check owner")),
                  "SD-35 index module: Taught-by pointers, shared-lab line, check-owner line (conflict tags dropped, D6)"),
-        "C-29": (lambda: all("**0.4.2 Suite Session Protocol" in t for t in (pri, sql, dp, sec)),
-                 "the pointer became the copied contract: rule 0.4.2 Suite Session Protocol is in every companion §0"),
-        "C-30": (lambda: "progress ledger (main course §0.1) is a running record beside these boxes" in pri,
-                 "primer rule 6 exception reworded without file names (R2b PRI-2)"),
+        "C-29": (lambda: gd.count("**0.4.2 Suite Session Protocol") == 1 and
+                 all("the course guide" in t and "**0.4.2 Suite Session Protocol" not in t for t in (pri, sql, dp, sec)),
+                 "D18: rule 0.4.2 Suite Session Protocol is in the course guide once; every companion's §0 points at it"),
+        "C-30": (lambda: "**Progress** lives in the inline `- [ ]` boxes" in gd and "progress ledger" in gd,
+                 "D18: the ledger-beside-the-boxes rule moved from the primer's rule 6 into rule 0.1 of the course guide"),
         "C-41": (lambda: True, "the 'generated from' markers named a file (D6); the generated content is checked token "
                               "by token in the §8.2 primer rows"),
         "C-49": (lambda: "A7.1 client-server and API styles" in cur and "A7.4 GRASP + creational patterns" in cur,
@@ -569,23 +575,32 @@ def conflicts():
         "C-51": (lambda: not re.search(r"(?<![\w.-])E1[12](\.\d+)?(?![\w.])", "\n".join(
             l for l, m in zip(sql.split("\n"), code_mask(sql.split("\n"))) if not m)),
                  "no E11/E12 labels in SQL course text; the kit code keeps its own data labels"),
-        "C-54": (lambda: "**0.4.3 Exercise progression.**" in cur and "ten-rung ramp" in cur, "rule 0.4.3 ten-rung ramp"),
-        "C-55": (lambda: "**0.4.6 Anchoring and suite-wide Prop Lock.**" in cur, "rule 0.4.6"),
-        "C-57": (lambda: "progress ledger" in sql, "SQL rule 8 names the progress ledger (no file name, D6)"),
+        "C-54": (lambda: "**0.4.3 Exercise progression.**" in gd and "ten-rung ramp" in gd, "rule 0.4.3 ten-rung ramp"),
+        "C-55": (lambda: "**0.4.6 Anchoring and suite-wide Prop Lock.**" in gd, "rule 0.4.6"),
+        "C-57": (lambda: "progress ledger" in gd, "D18: SQL rule 8's progress-ledger rule is rule 0.1 of the course guide"),
         "C-62": (lambda: "Repository's definition is owned by ARCH-07" in dp, "ARCH-06 points to ARCH-07's definition"),
-        "C-70": (lambda: "calibrating question" in cur, "rule 0.4.1 puts the learner preferences over the calibrating "
+        "C-70": (lambda: "calibrating question" in gd, "rule 0.4.1 puts the learner preferences over the calibrating "
                                                        "questions"),
-        "C-71": (lambda: "**0.4.5 Mastery states.**" in cur and "`not-started` → `in-progress` → `taught`" in cur,
+        "C-71": (lambda: "**0.4.5 Mastery states.**" in gd and "`not-started` → `in-progress` → `taught`" in gd,
                  "rule 0.4.5 mastery states"),
-        "C-74": (lambda: "says explicitly when unsure" in cur, "rule 0.4.7 accuracy standard"),
-        "C-75": (lambda: "- Overrides: the learner may skip" in cur, "rule 0.4.1 overrides"),
+        "C-74": (lambda: "says explicitly when unsure" in gd, "rule 0.4.7 accuracy standard"),
+        "C-75": (lambda: "- Overrides: the learner may skip" in gd, "rule 0.4.1 overrides"),
         "C-08": (lambda: c08_substance(cur, sql), "D16 withdrew M/U/S, so the gates re-anchor to modules that exist: "
                  "SQL tier legend present; the SQL-T-UG gate row present; every main-course module ID in the SQL "
                  "§2 anchor column is a main-course heading; the IEEE material (M.NS) is taught in A2 and PQ-03 "
                  "recalls it from A2"),
         "C-NEW-01": (lambda: "Source material:" not in sql and "Source material:" in rd("records", "sql-databases-companion.md"),
                      "D6 moved the `Source material:` lines to records/ (D1 borrowing is recorded there)"),
-        "C-NEW-06": (lambda: all("**0.4.2 Suite Session Protocol" in t for t in (pri, sql, dp, sec)), "as C-29"),
+        "C-NEW-06": (lambda: gd.count("**0.4.2 Suite Session Protocol") == 1, "as C-29"),
+        "C-36": (lambda: all(f"| {r}" in gd for r in ("Cache stampede", "Little's law", "CAP / PACELC", "CRDTs",
+                                                      "Tail latency")),
+                 "D18: the v1.1 overlap rows are in the one ownership register, rule 0.3 of the course guide"),
+        "C-47": (lambda: "### 0.4 Suite Teaching Contract" in gd and "### 0.5 Lab Safety" in gd,
+                 "D18: the contract (rule 0.4) and Lab Safety (rule 0.5) exist once, in the course guide"),
+        "C-72": (lambda: "emitting a ledger delta block" in gd, "D18: rule 0.4.8 in the course guide emits the ledger "
+                                                                "delta block at every close"),
+        "C-NEW-04": (lambda: "| `cloud-cybersecurity-companion.md` |" in gd and "When this part rides along" in sec,
+                     "D18: the main course's cyber block became the guide's §2 row and the cyber part's own rule 1"),
     }
     NOTE = {c: "conflict tag dropped from course text (D6 V5); the note itself is traced below" for c in
             ("C-17", "C-18", "C-19", "C-20", "C-21", "C-48")}
@@ -689,10 +704,12 @@ def conflicts():
               "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md")
 
     def kept_rule(needles, where):
-        # D2 dropped the chat-only evidence; the rule itself must still be in the contract copy of every part
-        miss = [f for f in PARTS6 if not all(n in rd("work", f) for n in needles)]
-        return ("PASS" if not miss else "FAIL"), f"chat-only evidence dropped under D2; the rule is present in " \
-            f"{where} of all six parts; missing in {miss or 'none'}"
+        # D2 dropped the chat-only evidence; D18 keeps the rule once, in the course guide, and no part repeats it
+        gd = rd("work", "COURSE-GUIDE.md")
+        miss = [n for n in needles if gd.count(n) != 1]
+        dup = [f for f in PARTS6 if any(n in rd("work", f) for n in needles)]
+        return ("PASS" if not miss and not dup else "FAIL"), f"chat-only evidence dropped under D2; {where} is in the " \
+            f"course guide once (D18); missing {miss or 'none'}; repeated in {dup or 'no part'}"
 
     def c69():
         return kept_rule(("exactly one question", "split a multi-part check across turns"), "the one-question rule (0.4.7)")
@@ -927,9 +944,13 @@ def r5_checks():
     were run."""
     import r5_acad
     T = {f: rd("work", f) for f in COURSE}
-    miss = [SHORT[f] for f in COURSE if not re.search(r"^\*\*0\.4\.10 Academic depth", T[f], re.M)]
-    row("10 R5", "rule 0.4.10 (the academic pass) is in the contract copy of all six parts", "PASS" if not miss else
-        "FAIL", f"missing {miss}")
+    gd = rd("work", "COURSE-GUIDE.md")
+    once = len(re.findall(r"^\*\*0\.4\.10 Academic depth", gd, re.M)) == 1
+    copy = [SHORT[f] for f in COURSE if re.search(r"^\*\*0\.4\.10 Academic depth", T[f], re.M)]
+    miss = [SHORT[f] for f in COURSE if "rule 0.4.10" not in T[f]]
+    row("10 R5", "rule 0.4.10 (the academic pass) is in the course guide once (D18); every part cites it and none "
+        "copies it", "PASS" if once and not copy and not miss else "FAIL",
+        f"in the guide {'once' if once else 'NOT once'}; copied in {copy or 'none'}; not cited in {miss or 'none'}")
     cur = T["Curriculum.md"].split("\n")
     nod = [m for m in r5_acad.MODULES if not any(l.startswith(f"{m}.D1 ") for l in cur)]
     parts = {"pri": "SDA.1", "sql": "DBT.1", "sec": "CRA.1", "dp": "DPA.1", "go": "GOT.1"}

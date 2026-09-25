@@ -1,7 +1,7 @@
 @@@ section
 ## 10. Academic depth (rule 0.4.10)
 
-The academic pass of this companion: database theory at the depth of a university databases course (CMU 15-445/645, Berkeley CS 186; main course §0.6). It is the proof layer of the cards named in each block, taught after that card's engineering pass and in the same A8 teaching block (main course A8.D1). The engine slices DB-1…DB-10 stay the build layer; this section proves why they work. Problems DBT-P1…DBT-P14 are in §10.11, with keys in Appendix K under "K-DBT" (after the attempt only). Rule 0.4.10: a block is `mastered` only when one proof problem and one computational problem in it pass. Transactions are written T₁, T₂ and operations r₁(A), w₂(B), c₁ (read, write, commit, with the transaction as subscript).
+The academic pass of this companion: database theory at the depth of a university databases course (CMU 15-445/645, Berkeley CS 186; main course §0.6). It is the proof layer of the cards named in each block, taught after that card's engineering pass and in the same A8 teaching block (main course A8.D1). The engine slices DB-1…DB-10 stay the build layer; this section proves why they work. Problems DBT-P1…DBT-P15 are in §10.11, with keys in Appendix K under "K-DBT" (after the attempt only). A block is `mastered` by rule 0.4.10.3. Transactions are written T₁, T₂ and operations r₁(A), w₂(B), c₁ (read, write, commit, with the transaction as subscript).
 
 ### 10.1 DBT.1 · Query languages and their equivalence (proves RT-02, RT-03, RT-08)
 
@@ -71,6 +71,7 @@ The academic pass of this companion: database theory at the depth of a universit
 - Two-phase commit, its correctness (all-or-nothing when participants follow the protocol) and its blocking window, recalled from main course A9.D8 with the database-side detail: prepared transactions hold locks until the decision arrives.
 - Spanner's external consistency: commit timestamps chosen within TrueTime's uncertainty interval, and commit-wait until that interval has passed, so timestamp order matches real-time order (Corbett et al., OSDI 2012).
 - Deterministic databases (Calvin, 2012) as the alternative that orders transactions before executing them, named only.
+- Transactional notification (SL-10). PostgreSQL's `NOTIFY` is queued by the transaction and delivered only if it commits, so a listener never hears about a row it cannot yet see. Delivery is at most once and not durable: a session that is not listening at commit time never receives the message. The notification is therefore a hint and the queue table is the record; this is the lost-wakeup problem of condition variables (main course A6.D4), and the cure is the same: after every wake-up, and after every reconnect, re-check the state (DBT-P15).
 
 ### 10.10 DBT.10 · Recursion and expressiveness (proves CS-11, SL-09)
 
@@ -78,7 +79,7 @@ The academic pass of this companion: database theory at the depth of a universit
 - Datalog: rules, the least fixpoint semantics, naive and semi-naive evaluation (each round joins only the new facts), and stratified negation. SQL's `WITH RECURSIVE` is linear Datalog with a union; a monotone query reaches its fixpoint in at most as many rounds as the longest shortest path.
 - Readings for the whole pass: the CMU 15-445/645 and Berkeley CS 186 lecture notes; Hellerstein, Stonebraker and Hamilton, "Architecture of a Database System", *Foundations and Trends in Databases* 1(2), 2007.
 
-### 10.11 Problem set (DBT-P1…DBT-P14)
+### 10.11 Problem set (DBT-P1…DBT-P15)
 
 - **DBT-P1** · proof · From Armstrong's three axioms, derive the union rule: X → Y and X → Z imply X → YZ.
 - **DBT-P2** · compute · R(A, B, C, D, E) with F = {A → B, BC → D, D → E, E → A}. Compute {A, C}⁺ and list every candidate key.
@@ -94,6 +95,7 @@ The academic pass of this companion: database theory at the depth of a universit
 - **DBT-P12** · compute · A page on disk has pageLSN 30. During redo, ARIES meets log records for that page with LSNs 25 and 40. Which does it apply, and why is redo safe to repeat after a second crash?
 - **DBT-P13** · compute · A B+ tree has fanout 200 and leaves holding 100 entries each; the table has 100,000,000 rows, one entry per row. How many levels does the tree have, and how many page reads does a lookup cost when only the root is cached?
 - **DBT-P14** · compute · A table has 1,000,000 rows. Column a has 50 distinct values and column b has 10, both uniform. Estimate the rows matching `a = 1 AND b = 2` under the independence assumption, and say when the estimate fails.
+- **DBT-P15** · design · Workers run `LISTEN job_ready` and, on each notification, claim one job with `SELECT … FOR UPDATE SKIP LOCKED LIMIT 1`. The producer inserts a job and runs `NOTIFY job_ready` in the same transaction. A worker's connection drops for 30 seconds while three jobs are inserted, then reconnects and runs `LISTEN` again. Which jobs does that worker learn about, and what two changes make the design correct without polling every second?
 @@@ run-ex-pins
 
 def pins():
