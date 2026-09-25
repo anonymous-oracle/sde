@@ -56,7 +56,9 @@ def _plan():
     import r5_acad
     import r8_fde
     import r9_practice
-    return {**r5_acad.MODULES, **r8_fde.MODULES, **r9_practice.MODULES}   # R5's modules, D5 (D19) and B6 (D20)
+    import r10_mlcases
+    return {**r5_acad.MODULES, **r8_fde.MODULES, **r9_practice.MODULES,
+            **r10_mlcases.MODULES}   # R5's modules, D5 (D19), B6 (D20) and D6 (D21)
 
 
 ROWS = []   # (section, check, kind, status, evidence); kind GATE | INFO | HOLD

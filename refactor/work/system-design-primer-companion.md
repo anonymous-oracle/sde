@@ -24,7 +24,7 @@ The primer teaches *what* scalable systems are made of, in vendor-neutral words:
 
 - `SD-nn` — primer concept modules (Section 3A). `SX-nn` — techniques embedded in the primer's solutions (Section 3B).
 - `P01–P08` — primer system-design problems with solutions. `O01–O07` — object-oriented-design problems. `Q01–Q23` — the primer's "additional questions" (references only, no solution in the repo).
-- `A1…A11, B1…B6, C1…C7, D1…D5` — Curriculum module IDs. `Part V` = Curriculum's GCP service map.
+- `A1…A11, B1…B6, C1…C7, D1…D6` — Curriculum module IDs. `Part V` = Curriculum's GCP service map.
 - `V-COMP, V-STOR, V-NET, V-DATA, V-AI, V-SEC, V-OPS` — the main course's Part V service-map categories.
 - Binding notation: `SD-21@A8` primary · `SD-21[hash-table slice]@A4` slice · `SD-21~C2` recall. §2 is the single source; the header stitches and §4.5 agree with it.
 - Primer numbers ("primer:") are quoted from the primer; GCP details are mine and carry `(verify)` where needed.
