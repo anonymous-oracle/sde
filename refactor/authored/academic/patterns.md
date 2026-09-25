@@ -144,7 +144,7 @@ Transfer exercises that combine several items. They climb the ramp (rule 0.4.3);
 @@@ s15
 ## 15. Academic depth (rule 0.4.10)
 
-The academic pass of this companion: the theory under object-oriented design, at the depth of a software-engineering and programming-languages course (main course §0.6: the software-engineering row, and main course A7.D1–A7.D2). Each block is taught after the items it names. Problems DPA-P1…DPA-P8 are in §15.7, keys in Appendix K. Rule 0.4.10: a block is `mastered` only when one proof or derivation problem and one computational problem in it pass.
+The academic pass of this companion: the theory under object-oriented design, at the depth of a software-engineering and programming-languages course (main course §0.6: the software-engineering row, and main course A7.D1–A7.D2). Each block is taught after the items it names. Problems DPA-P1…DPA-P8 are in §15.7, keys in Appendix K. A block is `mastered` by rule 0.4.10.3.
 
 ### 15.1 DPA.1 · Abstract data types and information hiding (deepens F-01, F-02, PR-01)
 

@@ -15,147 +15,7 @@ One item on your list is confirmed accurate as stated: AWS Advanced Networking S
  
 Your hands-on reality (given $300 GCP credit, permanent free tier, a workplace GCP account you can look in but not touch, and AWS/Azure free tier only) is threaded through every module below as an explicit "Lab Reality" note. Short version: we'll do real hands-on work for anything that fits free tier or a small slice of the $300; for expensive/enterprise-only services (Spanner multi-region, BigQuery at scale, multi-region GKE, Anthos, etc.) we'll write real Terraform/gcloud/kubectl that we validate with plan/dry-run but don't apply, and use your workplace console read-only, as a museum, never to create or change anything there. That combination genuinely builds real, defensible skill — architects are hired for judgment about services they've read deeply and reasoned about, not just ones they've clicked.
  
-### 0.1 The course parts and the companion stitch rule
-
-This course is one course in six parts. This roadmap, the **main course**, is the **only parent**: every companion binds its modules to the IDs below, and a module ID from any part may be used as a stitch tag in any other part. The parts:
-
-- **The Consolidated Cloud Mastery Curriculum** (this part, the main course) — order, cert timing, Lab Reality and track structure.
-- **The System Design Primer Companion — GCP-Native Edition** — the system-design layer (SD, SX, P, O, Q, TF). Its §2 stitch table binds its IDs to the modules here.
-- **The SQL & Databases Companion — GCP-Native Edition** — SQL, relational theory and engine internals. It owns the engine slices DB-1…DB-10.
-- **Design Patterns, SOLID & Clean Architecture — A Companion Curriculum** — OOP design theory, patterns and architecture styles (A7, A9).
-- **The Cloud Cybersecurity Companion** — security, attacks and cryptography.
-- **The Go Language Companion — Syntax, Semantics, Runtime and Contrasts** — the implementation language: Go's grammar, semantics, runtime and toolchain, each construct contrasted with Python, Java, C and JavaScript, and authentication and payment integration built from scratch in Go. Its language core is the Go block of A3; its later modules bind where they are first used (rule 0.4.9).
-
-Progress lives in the inline `- [ ]` boxes of the six parts, which are authoritative. The tutor also keeps a **progress ledger**, a running record beside the boxes: each ID's mastery state (§0.4.5), the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point (§0.4.8).
-
-Each companion's §2 lists what it binds to each module. When a module is taught, every bound companion ID is taught in the same session, once, by its owner (§0.3), in the order §0.4 gives. The cybersecurity stitch rule, first added to this roadmap on 2026-09-22 between A10 and A11:
-
----
-
-#### Companion — Cloud Cybersecurity
-
-**Standing stitch rule.** Teach security-relevant sections of this roadmap with **The Cloud Cybersecurity Companion**. Whenever **A5**, **A7 (auth patterns)**, **A10**, **B1 (shared responsibility)**, **B5**, **C1/C2 hardening**, **Phase 4 Networking/Security**, or the **Cloud Security / Network / SecOps** cert tracks are taught, also teach every companion module bound in companion **§2** in the **same session** — one story, never twice.
-
-That companion owns attack mechanics, network/cloud cybersecurity, cryptography (`CR-*`), and the exercise bank; where a concept is shared with another part, the overlap register (§0.3) names the owner. This roadmap still owns order, cert mapping, and service vocabulary.
-
-**Lab safety:** local vulnerable-by-design fixtures only; no live DDoS, third-party scanning, malware, or credential stuffing against real accounts. The full rule set is §0.5.
-
----
-
-### 0.2 Learner teaching preferences (binding)
-
-- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
-- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
-- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
-- If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
-
-### 0.3 Suite overlap and ownership register
-
-When two files touch the same concept, the **owner** teaches it and the others only **add**. Later sessions recall it in one line. Each companion's own overlap table is its slice of this register; on a conflict this register wins.
-
-| Concept | Owner | Adds |
-|---|---|---|
-| DNS mechanics | A5 | Primer SD-08 adds routing policies/TTL discipline; cyber NT-03/04 and DOS-02 add attacks |
-| HTTP | A5 | Primer SD-29 adds idempotency/HTTP/2/3; cyber PQ-S-04 adds the browser security preview |
-| Cookie attributes (`Domain`, `Secure`, `HttpOnly`, `SameSite`, `__Host-`) | A5 HTTP | Cyber AU-01…04 adds attacks at A10 |
-| TLS | A5 (mechanics) / A10 (formal) | Primer SD-35 transit slice; cyber CR-11/12, NT-08 |
-| Load balancing, reverse proxy | A5 / C3 | Primer SD-10/11; cyber NT-07, DOS-01 |
-| Rate limiting | Cyber AB-01 (algorithms + abuse) | Primer Q22 is the design exercise and recalls AB-01; Go companion GO-19 (`golang.org/x/time/rate`) |
-| Caching | Primer SD-26/27 | Cyber DOS-08 (stampede as an attack); SQL OD-09 (read path) |
-| SQL injection / parameterisation | SQL SL-13 (the SQL mechanics) | Cyber WA-05 (attacker model across the whole injection family); Go companion GO-22 (placeholders in `database/sql`) |
-| Field / column encryption | Cyber CR-17 (the cryptography) | SQL SL-13 `pgcrypto` syntax |
-| Backup/restore | SQL OD-04 (runbook) + OD-11 (Cloud SQL backups and PITR) | Cyber IR-07 (ransomware integrity) |
-| 2PC / Saga / outbox | A9 (theory) | SQL CS-07 + SL-10 (SQL); design-patterns ARCH-11 (shape) |
-| Pub/Sub | A7 | Primer SD-28; design-patterns DP-14 (Observer) |
-| Shared responsibility | B1 | Cyber PQ-S-03, CM-01 |
-| Least privilege / IAM | B5 | Primer SD-35; cyber CL-03…05, AU-14 |
-| Floating point | A2 | SQL PQ-03 (decimal semantics); Go companion GO-03 (no implicit conversions) |
-| Discrete-math foundations of relations | SQL PQ-01/02 | SQL RT-01 |
-| Security checklist (encrypt in transit/at rest, XSS, SQLi, least privilege) | Distributed per A5/A10/B5 + cyber modules | Primer SD-35 is an index module that points to each owner; its lab is shared with WA-05/SL-13 |
-| Cache stampede / thundering herd | Primer SD-27 (mechanics: locking, request coalescing, TTL jitter; primer "my addition") | Cyber DOS-08 (adversarially triggered stampede) |
-| Tail latency, percentiles, hedged requests | Primer SD-03/SD-38c (percentiles; design levers: timeouts, hedging, replicas) | C6/C7 (alerting/SLOs) |
-| Little's law | Primer SD-03/SD-28 (L = λW; sizing checks, e.g. 400 rps × 250 ms) | the A2 slice (primer §2 stitch table) |
-| CAP / PACELC | A8 (CAP statement) → A9 (formal limits, PACELC) | Primer SD-04/SD-05 (per-dataset choice, GCP store mapping) |
-| Consistent hashing | Primer SD-38a (the ring: ~1/N of keys move, virtual nodes; sharding/rebalancing) | A4 ring slice |
-| MapReduce / scatter-gather | A9 (distributed computation model) | Primer SD-38b/c, SX-08 (job patterns); V-DATA (Dataflow/Dataproc) |
-| CRDTs, operational transform | A9 deepening | Primer Q04 (Google Docs design problem) |
-| Vector clocks, quorums, gossip | A9 deepening | Primer Q05 (Redis-like KV design problem), SD-39 papers |
-| Heavy hitters / sketches / approximate counting | A4 (probabilistic structures) | Primer Q16/Q18 (design); SQL AN-04 (SQL approximation) |
-| Unique ID generation (Base62, Snowflake) | Primer SX-02/Q17 | A1 recall (bit layout) |
-| Garbage collection | Go companion GO-09 (Go's collector, escape analysis, `GOGC`, `GOMEMLIMIT`) | Primer Q21 (design problem); SX-04 (data GC/TTL) |
-| Event sourcing | Design-patterns ARCH-10 (shape) + A9 (theory) | Primer Q23 (stock exchange design); SQL IR/audit designs |
-| Credential storage & replay | Cyber CR-13 (password KDFs) + CR-17/PV-03 (tokenization/encryption for replayable secrets) | Primer P04 (design context) + SD-35 check question |
-| OOD problems O01–O07 | Primer (problems) | Design-patterns (principles and patterns they exercise); A4 recall |
-| Interview/design method, back-of-the-envelope | Primer SD-00 | every later design exercise recalls it; none restates it |
-| Scaling evolution (single box → millions) | Primer P08 + SX-12 | recalled wherever scale comes up; never restated |
-| Terraform labs | Primer TF-1…TF-7 (P08/P01/P07 infra) | SQL TF-DB1…TF-DB6 |
-| Real-world architecture papers (Dynamo, Bigtable, Spanner, GFS, Chubby, MapReduce, Dapper, Kafka, ZooKeeper…) | Primer SD-39 / §6.4 (index) | A9's academic pass (A9.D) and the university and textbook alignment table (§0.6) cite the same papers; the reading list lives once, in the primer |
-| Go: language, toolchain, runtime | Go companion GO-01…GO-14 (the Go block of A3) | every Go lab in every part recalls it (rule 0.4.9); A3's Python block stays the first language |
-| Concurrency | Go companion GO-15…GO-19 (goroutines, channels, `context`, `sync`, the Go memory model, data races, deadlock, the race detector) | SQL CS-05 (serializability, 2PL, snapshot isolation); A9 (distributed theory) |
-| Data-structure implementations in code | A4 (concepts and costs) | Go companion GO-27 (the Go code); Primer O01, O02, O07 (the checkpoints) |
-| Design patterns in Go | Design-patterns companion (the patterns) | Go companion GO-11 (the Go shape: implicit interfaces, embedding, functional options, middleware, iterators) |
-| HTTP server timeouts against slow clients | Cyber DOS-05 (the attack and the values) | Go companion GO-21 (which `http.Server` field does what) |
-| Password hashing in a service | Cyber CR-13 (the KDFs) | Go companion GO-07 + GO-21 (CR-13's build lab written in Go); GO-28 (a versioned record with rehash on login) |
-| Authentication built in code: sessions, signed tokens, one-time codes, OAuth client | Cyber AU-01…AU-10 and CR-05…CR-07, CR-13, CR-16 (the attacks and the primitives) | Go companion GO-28 (each piece built from scratch in Go against its RFC test vectors, then with a vetted library) |
-| Payment-provider integration: idempotent create, signed webhooks, ledger writes, reconciliation | Go companion GO-29 (the integration code) | SQL DD-03 (the ledger rules it follows); Cyber PV-03 (tokenization, PCI DSS scope) and AB-06/AB-07 (checkout abuse); Primer SD-28 (queues, back-pressure) |
-
-### 0.4 Suite Teaching Contract
-
-One contract for every part; each companion carries the same contract in its own §0 and adds its session detail. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.2) · (3) this main course on order, cert timing and Lab Reality · (4) the owning part on its content (§0.3) · (5) the companions' defaults.
-
-**0.4.1 Rhythm.**
-
-- One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
-- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.2 rule out separate calibrating questions). A turn may be as long as one concept needs.
-- Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
-- Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
-
-**0.4.2 Suite Session Protocol.** When several files bind to one module, the session runs:
-
-1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
-2. **Concept** — taught once, by the owner in §0.3.
-3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
-4. **GCP lens.**
-5. **One Numbers step** for the whole session.
-6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
-7. **Checks**, woven in per §0.2.
-8. **Close**, ticking boxes in every file (§0.4.8).
-
-**0.4.3 Exercise progression.** The first five rungs of the ten-rung ramp (anchor, vocabulary, representation, core move, worked illustration) are the teaching turns. Exercises then climb, one item per turn, advancing only when the current rung is passed: basic unseen check → routine variation → mixed transfer (the new idea plus exactly two earlier mastered ideas) → top-rung challenge → reflection (the learner explains back or invents an example).
-
-**0.4.4 Predict → run → discrepancy.** Every exercise with a result shape, row count, plan shape, isolation outcome or attack outcome starts with a one-line prediction. Then run. A wrong prediction is recorded in the ledger and taught from.
-
-**0.4.5 Mastery states.** Every ID is `not-started` → `in-progress` → `taught` (explained, first check answered) → `mastered` (passed a rung-3 or rung-4 item, or the skip-test). It may also be `shaky` (missed a check after teaching), `unverified` (claimed done without evidence) or `sliced` (only a named slice taught). Taught and mastered IDs get one-question recalls woven into later relevant sessions at about +1, +3, +7 and +21 sessions; a missed recall sets `shaky` and re-teaches only the gap. The misconception register lives in the ledger; checks probe each entry until two consecutive correct answers retire it.
-
-**0.4.6 Anchoring and suite-wide Prop Lock.** No term, product or control is used in an explanation, example or check unless it is anchored: taught this session, or at least `taught` on the ledger. A named-but-not-taught mention is allowed only when labelled "we'll cover this in X". A check that relies on unanchored terms is invalid: fix the check; don't mark the learner shaky.
-
-**0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
-
-**0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
-
-**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
-
-1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
-2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
-3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
-4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor never writes the solution.
-
-**0.4.10 Academic depth (undergraduate prerequisites).** The course teaches every undergraduate prerequisite of cloud and system architecture at the depth of a university course, not only at the engineering depth of a first pass. Each module of Tracks A to D, and each companion, carries an **academic pass**: formal definitions, theorems with their proofs or proof sketches, derivations, named readings, and a numbered problem set whose written keys (an expected answer and at least one expected wrong answer, rule 0.4.7) sit in the owning part's keys. The University and textbook alignment table (main course §0.6) says which university courses and textbooks each pass is aligned with. Four rules:
-
-1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
-2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
-3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof (or derivation) problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks), so every block's problem set carries both kinds. In the main course the block is a module's academic pass (its D lines and its problem set); in a companion it is the companion's academic pass.
-4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
-
-### 0.5 Lab Safety
-
-One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the Lab Reality paragraph above.
-
-1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
-2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
-3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
-4. **The workplace console is read-only:** look, never create or change.
-5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
+> **Note:** the rules every part follows are kept once, in the course guide. They are the parts and the stitch rule (rule 0.1), the learner's teaching preferences (rule 0.2), the ownership register (rule 0.3), the Suite Teaching Contract (rule 0.4) and Lab Safety (rule 0.5). This part keeps the scope, the certification notes, the university and textbook alignment (§0.6) and the plan.
 
 ### 0.6 University and textbook alignment (rule 0.4.10)
 
@@ -175,10 +35,10 @@ This table maps the course onto the undergraduate computer-science core. It uses
 | Databases | Data Management (DM) | CMU 15-445/645 Database Systems · Berkeley CS 186 Introduction to Database Systems | Silberschatz, Korth and Sudarshan, *Database System Concepts*, 7th ed. (2019) | A8 (A8.D1); the SQL companion's academic pass |
 | Distributed systems | PDC | MIT 6.5840 Distributed Systems | van Steen and Tanenbaum, *Distributed Systems*, 4th ed. (2023) · Kleppmann and Riccomini, *Designing Data-Intensive Applications*, 2nd ed. (2026) | A9 (A9.D1–A9.D9); C2 (C2.D1–C2.D3); the System Design Primer companion's academic pass |
 | Security and cryptography | Security (SEC) | MIT 6.1600 Foundations of Computer Security · Stanford CS 255 Introduction to Cryptography · Berkeley CS 161 Computer Security | Boneh and Shoup, *A Graduate Course in Applied Cryptography*, version 0.6 (2023) · Anderson, *Security Engineering*, 3rd ed. (2020) `(verify)` | A10 (A10.D1–A10.D5); B5 (B5.D1–B5.D3); the Cloud Cybersecurity companion's academic pass (CRA.1–CRA.17) |
-| Software engineering and architecture | Software Engineering (SE) | MIT 6.1800 Computer Systems Engineering | Bass, Clements and Kazman, *Software Architecture in Practice*, 4th ed. (2021) · Gamma, Helm, Johnson and Vlissides, *Design Patterns* (1994) | A7 (A7.D1–A7.D6); the Design Patterns companion's academic pass |
+| Software engineering and architecture | Software Engineering (SE) | MIT 6.1800 Computer Systems Engineering · CMU 17-214 Principles of Software Construction · MIT 6.005 Software Construction (now 6.1020) · Waterloo CS 446 Software Design and Architecture `(verify)` | Bass, Clements and Kazman, *Software Architecture in Practice*, 4th ed. (2021) · Gamma, Helm, Johnson and Vlissides, *Design Patterns* (1994) | A7 (A7.D1–A7.D6); the Design Patterns companion's academic pass |
 | Systems engineering, reliability and delivery | Systems Fundamentals (SF); SE | MIT 6.1800 Computer Systems Engineering | Barroso, Hölzle and Ranganathan, *The Datacenter as a Computer*, 3rd ed. (2018) `(verify)` · Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering* (2016) · Forsgren, Humble and Kim, *Accelerate* (2018) | A11 (A11.D1–A11.D3); B3 (B3.D1–B3.D3); B4 (B4.D1–B4.D3); C4 (C4.D1–C4.D4); C5 (C5.D1–C5.D4); C6 (C6.D1–C6.D3); C7 (C7.D1–C7.D3) |
 | Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5) |
-| Cloud computing | Parallel and Distributed Computing (PDC); Systems Fundamentals (SF) | UC Berkeley's cloud-computing and serverless reports (Armbrust et al., 2010; Jonas et al., 2019) serve as the reference texts; CMU 15-319/15-619 Cloud Computing `(verify)` | Mell and Grance, NIST SP 800-145 (2011) · Barroso, Hölzle and Ranganathan, *The Datacenter as a Computer*, 3rd ed. (2018) `(verify)` | B1 (B1.D1–B1.D5) |
+| Cloud computing | Parallel and Distributed Computing (PDC); Systems Fundamentals (SF) | UC Berkeley's cloud-computing and serverless reports (Armbrust et al., 2010; Jonas et al., 2019) serve as the reference texts; CMU 15-319/15-619 Cloud Computing · CMU 15-719 Advanced Cloud Computing · Cornell CS 5412 Cloud Computing `(verify)` | Mell and Grance, NIST SP 800-145 (2011) · Barroso, Hölzle and Ranganathan, *The Datacenter as a Computer*, 3rd ed. (2018) `(verify)` | B1 (B1.D1–B1.D5) |
 | Society, ethics and the profession | Society, Ethics and the Profession (SEP) | taught inside each university's core `(verify)` | ACM Code of Ethics and Professional Conduct (2018) | A11 (A11.D3); the Cloud Cybersecurity companion's privacy and compliance modules |
 
 > **Note:** out of scope on purpose: CS2023's Graphics and Interactive Techniques (GIT) and Human-Computer Interaction (HCI) areas are not prerequisites of cloud and system architecture. Specialized Platform Development (SPD) is covered only where Tracks B and C need it (mobile and web platforms are named, not taught). The table names reference courses so that the depth of each academic pass can be compared with a known standard; it does not claim equivalence to any university credit.
@@ -277,7 +137,7 @@ A4.D2 Recurrences and divide and conquer: merge sort and T(n) = 2T(n/2) + Θ(n);
 A4.D3 Data structures with proofs: dynamic arrays and amortized O(1) append (aggregate, accounting and potential methods); binary heaps and heapsort; hash tables with chaining — expected O(1 + α) per operation under simple uniform hashing, universal hashing, open addressing and the load factor; binary search trees and one balanced tree (red-black or AVL) with its O(log n) height proof; B-trees as the disk-oriented balanced tree (the SQL companion's CS-02 and DB-6 own the engine side); union–find with union by rank and path compression (near-constant amortized cost, stated)
 A4.D4 Graph algorithms: adjacency lists versus matrices and their costs; breadth-first search and its shortest-path proof for unweighted graphs; depth-first search, edge classification, topological sort and cycle detection; strongly connected components; Dijkstra's algorithm with its correctness proof and its failure on negative edges; Bellman–Ford and negative cycles (the distance-vector routing of A5.D4); minimum spanning trees by the cut property (Kruskal and Prim); maximum flow and minimum cut (Ford–Fulkerson; the max-flow min-cut theorem, stated)
 A4.D5 Greedy algorithms and dynamic programming: the greedy-choice property and exchange arguments (interval scheduling; Huffman coding from A2.D11); dynamic programming as optimal substructure plus overlapping subproblems (edit distance, 0/1 knapsack, longest common subsequence, shortest paths in a DAG); the SQL planner's join-order search is dynamic programming (the SQL companion's CS-08)
-A4.D6 Randomized algorithms and probabilistic data structures: quicksort's expected O(n log n) by indicator variables; randomized selection; the Bloom filter's false-positive rate derived from A2.D5, the count-min sketch's ε–δ guarantee, HyperLogLog's standard error of about 1.04/√m (stated); consistent hashing's expected 1/N key movement derived (the primer's SD-38a); reservoir sampling
+A4.D6 Randomized algorithms and probabilistic data structures: quicksort's expected O(n log n) by indicator variables; randomized selection; the Bloom filter's false-positive rate derived from A2.D5, the count-min sketch's ε–δ guarantee, HyperLogLog's standard error of about 1.04/√m (stated); consistent hashing's expected 1/N key movement derived (the primer's SD-38a); reservoir sampling; skip lists (Pugh, 1990): each node is promoted a level with probability ½, which gives expected O(log n) search and insert with no rebalancing and makes concurrent versions simple — the ordered in-memory index behind LevelDB and RocksDB memtables and Redis sorted sets `(verify)` (SQL CS-02); Rabin–Karp string matching (1987) by a rolling polynomial hash, expected O(n + m), where a hash match is only a candidate and must be confirmed byte by byte — the same rolling hash picks chunk boundaries in content-defined chunking (rsync, deduplicating backups)
 A4.D7 Computability and complexity: decision problems, P and NP, polynomial-time reductions and NP-completeness (SAT, 3-SAT, vertex cover, subset sum, bin packing); what "NP-hard" means to an engineer (use approximations or heuristics — first-fit bin packing is the shape of the Kubernetes scheduler, C2.D1); undecidability of the halting problem by diagonalization; finite automata and regular expressions (the regex engines of C3 and GO-08) and context-free grammars (parsers; the Design Patterns companion's DP-23)
 A4.D8 Algorithms at scale: the external-memory model (cost counted in block transfers; the SQL companion's CS-03 owns the engine's sort and join costs); the streaming model; parallel algorithms by work and span (Brent's bound, stated); MapReduce as a parallel model (A9 owns its distributed side)
 > **Readings:** Cormen, Leiserson, Rivest and Stein, 4th ed., parts I–VI and chapter 34; Kleinberg and Tardos, chapters 4–8; Sipser, chapters 1–5 and 7. **Problem set:** A4-P1…A4-P9 (Appendix P; keys in Appendix K).
@@ -306,7 +166,7 @@ A5.D3 Congestion control: additive-increase multiplicative-decrease and why it c
 A5.D4 Routing algorithms: link state (Dijkstra; OSPF) versus distance vector (Bellman–Ford; RIP; count-to-infinity and poisoned reverse); hierarchical routing and autonomous systems; BGP as path-vector policy routing (eBGP and iBGP, route selection, slow convergence, and why a false route announcement can hijack traffic — the Cloud Cybersecurity companion's network modules own the attack); longest-prefix match in forwarding tables, implemented with tries
 A5.D5 The link layer and data-centre networks: Ethernet framing, self-learning switches, ARP and VLANs; Clos and fat-tree data-centre topologies, equal-cost multipath (ECMP) and oversubscription — the fabric every cloud VPC runs on (Google's Jupiter fabric, described in its 2015 paper)
 A5.D6 Modern transport and the socket interface: QUIC over UDP (independent streams without head-of-line blocking, combined transport and TLS 1.3 handshake, 0-RTT resumption and its replay risk, connection migration by connection ID); HTTP/2 multiplexing versus HTTP/3; the socket API (`socket`, `bind`, `listen`, `accept`, `connect`) as the operating system's interface to all of it (the Go companion's GO-21 renders it)
-A5.D7 Naming and measurement: DNS as a distributed, hierarchical, cached database whose consistency is bounded by TTLs (A9's eventual consistency); anycast; measurement as experiment — `ping`, `traceroute` (TTL expiry), `dig +trace`, and packet capture with `tcpdump` on your own host only (§0.5)
+A5.D7 Naming and measurement: DNS as a distributed, hierarchical, cached database whose consistency is bounded by TTLs (A9's eventual consistency); anycast; measurement as experiment — `ping`, `traceroute` (TTL expiry), `dig +trace`, and packet capture with `tcpdump` on your own host only (rule 0.5)
 > **Readings:** Kurose and Ross, 9th ed., chapters 1–6; Saltzer, Reed and Clark, "End-to-End Arguments in System Design" (1984). **Problem set:** A5-P1…A5-P7 (Appendix P; keys in Appendix K).
 ### A6. Linux & Operating Systems
 - [ ] A6 done
@@ -320,7 +180,7 @@ Observing a live system: `/proc`, `ps`, `ss`, the OOM killer and cgroup memory l
 A6.D1 The process abstraction: user and kernel mode, system calls, traps and interrupts; `fork`, `exec` and `wait`; process states and the cost of a context switch; threads versus processes; the address-space layout (code, data, heap, stack)
 A6.D2 CPU scheduling: FIFO, shortest-job-first and shortest-time-to-completion-first (optimal for mean turnaround time, by an exchange argument), round robin and response time, the multi-level feedback queue, proportional share (lottery and stride scheduling), and Linux's fair schedulers (CFS, replaced by EEVDF in Linux 6.6); cgroup CPU shares and quotas — the throttling behind Kubernetes CPU limits (C2)
 A6.D3 Virtual memory: address translation, paging and multi-level page tables (with the page-table size arithmetic), the TLB and its reach, page faults and demand paging, copy-on-write (why `fork` is cheap), replacement policies (optimal, LRU, CLOCK — the same clock sweep as the SQL companion's DB-5), thrashing and working sets, memory-mapped files; the OOM killer (recalled)
-A6.D4 Concurrency: race conditions and critical sections; mutual exclusion built from atomic instructions (test-and-set, compare-and-swap); spinlocks versus blocking locks; condition variables and the producer–consumer problem; semaphores; readers–writers locks; the four Coffman conditions for deadlock and prevention by a global lock order; livelock and priority inversion
+A6.D4 Concurrency: race conditions and critical sections; mutual exclusion built from atomic instructions (test-and-set, compare-and-swap); spinlocks versus blocking locks; condition variables and the producer–consumer problem; semaphores; readers–writers locks; the four Coffman conditions for deadlock and prevention by a global lock order; livelock and priority inversion; progress conditions for concurrent objects (Herlihy and Shavit) — blocking (a stalled lock holder stalls everyone), obstruction-free, lock-free (some thread always completes an operation) and wait-free (every thread completes in a bounded number of its own steps) — and the ABA problem that a compare-and-swap retry loop must guard against when memory is reused (the Go companion's GOT.5 applies this to `sync/atomic`)
 A6.D5 Persistence: the device interface and I/O scheduling; the file-system abstraction (inodes, directories, hard and symbolic links, file descriptors); the on-disk layout of a very simple file system; crash consistency — `fsck` versus journaling (data versus metadata journaling, ordered mode) versus copy-on-write file systems; what `fsync` promises and what a database relies on (the SQL companion's CS-06); flash translation layers and write amplification; RAID 0, 1 and 5 and their failure arithmetic
 A6.D6 Isolation at the OS level: what each Linux namespace isolates and what cgroups limit, seccomp filters and capabilities; why a container shares the kernel and is therefore a weaker boundary than a VM (the Cloud Cybersecurity companion's CK-01 owns the attacks; B2.D1 owns hypervisors)
 A6.D7 I/O models and performance: the cost of system calls and copies; thread-per-connection versus event-driven I/O (`epoll`, `io_uring`) and the C10k problem; zero-copy transfer (`sendfile`) — why NGINX (C3) and Go's network poller (the Go companion's GO-15) are built as they are
@@ -330,7 +190,7 @@ A6.D7 I/O models and performance: the cost of system calls and copies; thread-pe
 ### A7. Software Architecture & APIs
 - [ ] A7 done
 Client-server model, monoliths vs microservices, trade-offs of each
-REST principles, gRPC, GraphQL (awareness-level)
+REST principles, gRPC, GraphQL (awareness-level); the API gateway's offloaded concerns (TLS, authentication, rate limiting, request routing) and the Backend for Frontend, one thin API per client type (web, mobile) over the same services
 Synchronous vs asynchronous communication; message queues and event-driven architecture (sets up Pub/Sub, SQS/SNS, Service Bus)
 API authentication patterns: API keys, OAuth 2.0, JWTs, service accounts
 Architecture documentation: views, C4, ADRs ("I pick X because Y, I accept Z"), the HLD/LLD contract and NFR tables
@@ -341,8 +201,8 @@ Architecture documentation: views, C4, ADRs ("I pick X because Y, I accept Z"), 
 A7.D1 Modularity: information hiding (Parnas, 1972 — decompose by the design decisions likely to change, not by processing steps); coupling and cohesion as measurable properties (afferent and efferent coupling, instability I = Ce/(Ca + Ce), the stable-dependencies principle); interfaces as contracts; Conway's law
 A7.D2 Design by contract and substitutability: preconditions, postconditions and class invariants (Meyer); behavioural subtyping by the Liskov–Wing rule (1994) — a subtype may not strengthen preconditions or weaken postconditions, must preserve invariants, and must respect the history constraint — the formal basis of the Design Patterns companion's PR-03
 A7.D3 Specification and model checking: state machines as specifications; safety versus liveness properties; TLA+ as used at Amazon Web Services to find design bugs before code (Newcombe et al., 2015); model-checking a small protocol (a lock, or two-phase commit) by exhaustive state enumeration
-A7.D4 Quality attributes and architecture evaluation: quality-attribute scenarios (source, stimulus, artifact, environment, response, response measure); tactics for availability, performance, modifiability, security and testability; the Architecture Tradeoff Analysis Method (utility tree, sensitivity and trade-off points, risks) — how the ADRs of A7.10 are evaluated
-A7.D5 API design theory: REST as an architectural style defined by constraints (Fielding, 2000: client–server, stateless, cacheable, uniform interface, layered system, optional code on demand); safety and idempotency of methods as algebraic properties (f(f(x)) = f(x)); compatibility rules for evolving an API and a schema (protobuf field-number rules); Hyrum's law
+A7.D4 Quality attributes and architecture evaluation: quality-attribute scenarios (source, stimulus, artifact, environment, response, response measure); tactics for availability, performance, modifiability, security and testability; the Architecture Tradeoff Analysis Method (utility tree, sensitivity and trade-off points, risks) — how the ADRs of A7.10 are evaluated; architectural styles as named trade-offs (Garlan and Shaw, 1993) `(verify)`: layered, pipes and filters, event-based implicit invocation, repository and blackboard, microkernel (plug-in), client–server, and at service scale the modular monolith versus microservices, space-based and service-based styles (Richards and Ford, *Fundamentals of Software Architecture*, 2020) `(verify)` — each style is judged against the quality-attribute scenarios above, not chosen by fashion
+A7.D5 API design theory: REST as an architectural style defined by constraints (Fielding, 2000: client–server, stateless, cacheable, uniform interface, layered system, optional code on demand); safety and idempotency of methods as algebraic properties (f(f(x)) = f(x)); compatibility rules for evolving an API and a schema (protobuf field-number rules); Hyrum's law; content negotiation as part of the uniform interface (the `Accept`, `Accept-Encoding` and `Accept-Language` request headers, `Vary` on the response so caches key on them; RFC 9110) `(verify)`; an API described by a machine-readable contract (OpenAPI for HTTP, the `.proto` file for gRPC) from which clients, servers and contract tests are generated
 A7.D6 Software quality and measurement: testing theory (test oracles, equivalence partitioning, boundary values, mutation testing), static analysis, the evidence on code review; estimation error; technical debt as a metaphor and its limits
 > **Readings:** Bass, Clements and Kazman, 4th ed., parts I–III; Parnas, "On the Criteria To Be Used in Decomposing Systems into Modules" (1972); Liskov and Wing, "A Behavioral Notion of Subtyping" (1994); Fielding's dissertation, chapter 5 (2000). **Problem set:** A7-P1…A7-P5 (Appendix P; keys in Appendix K). The Design Patterns companion's academic pass continues this block for patterns.
 ### A8. Databases & Data Modeling
@@ -376,8 +236,8 @@ A9.D5 Consensus: the problem (agreement, validity, termination); single-decree P
 A9.D6 Byzantine fault tolerance: why tolerating f Byzantine faults needs n ≥ 3f + 1 replicas (the three-node argument); the three phases of PBFT, named; why cloud control planes use crash-fault consensus instead
 A9.D7 Replication and convergence: primary–backup and chain replication; leaderless, Dynamo-style replication with read repair, hinted handoff and Merkle-tree anti-entropy; CRDTs — a state-based CRDT's merge is commutative, associative and idempotent (a join-semilattice), which is why replicas converge (G-Counter, PN-Counter, OR-Set); operational transformation, named (the primer's Q04)
 A9.D8 Distributed transactions: two-phase commit and its blocking window when the coordinator fails after "prepared" (shown by scenario); why three-phase commit fails under partitions; Sagas with compensations (the Design Patterns companion's ARCH-11 owns the shape); two-phase commit over Paxos groups in Spanner; exactly-once delivery as effectively-once (idempotence plus deduplication)
-A9.D9 Computation, the tail and verification: MapReduce and dataflow, and lineage-based recovery; the tail at scale (Dean and Barroso, 2013) — hedged and tied requests analysed with A2.D6's order statistics; testing distributed systems — fault injection in the Jepsen style and deterministic simulation; the MIT 6.5840 lab sequence (MapReduce, a linearizable key/value server, Raft, a fault-tolerant key/value service on Raft, a sharded key/value service) as the A9 build path in Go, after the Go companion's GO-15…GO-19
-> **Readings:** van Steen and Tanenbaum, 4th ed., chapters 5–8; Kleppmann and Riccomini, 2nd ed., the distributed-data part; Lamport, "Time, Clocks, and the Ordering of Events in a Distributed System" (1978); Fischer, Lynch and Paterson (1985); Gilbert and Lynch (2002); Ongaro and Ousterhout, "In Search of an Understandable Consensus Algorithm" (2014). **Problem set:** A9-P1…A9-P9 (Appendix P; keys in Appendix K). The primer's academic pass adds the design-level derivations.
+A9.D9 Computation, the tail and verification: MapReduce and dataflow, and lineage-based recovery; the tail at scale (Dean and Barroso, 2013) — hedged and tied requests analysed with A2.D6's order statistics; testing distributed systems — fault injection in the Jepsen style and deterministic simulation; the MIT 6.5840 lab sequence (MapReduce, a linearizable key/value server, Raft, a fault-tolerant key/value service on Raft, a sharded key/value service) as the A9 build path in Go, after the Go companion's GO-15…GO-19; checking a recorded history for linearizability — a search for a legal order of the operations that respects real-time precedence, NP-complete in general (Gibbons and Korach, 1997), which is why Jepsen's Knossos and the Porcupine checker used in the MIT 6.5840 labs work on small histories and partition by key (A9-P10)
+> **Readings:** van Steen and Tanenbaum, 4th ed., chapters 5–8; Kleppmann and Riccomini, 2nd ed., the distributed-data part; Lamport, "Time, Clocks, and the Ordering of Events in a Distributed System" (1978); Fischer, Lynch and Paterson (1985); Gilbert and Lynch (2002); Ongaro and Ousterhout, "In Search of an Understandable Consensus Algorithm" (2014). **Problem set:** A9-P1…A9-P10 (Appendix P; keys in Appendix K). The primer's academic pass adds the design-level derivations.
 ### A10. Security & Cryptography Fundamentals
 - [ ] A10 done
 Symmetric vs asymmetric encryption, hashing vs encryption, digital signatures
@@ -495,10 +355,10 @@ Core objects: Pods, ReplicaSets, Deployments, StatefulSets, DaemonSets, Jobs/Cro
 Networking: Services (ClusterIP/NodePort/LoadBalancer), Ingress and Ingress controllers (NGINX Ingress lands here), Network Policies, the CNI model
 Configuration: ConfigMaps, Secrets, environment injection
 Storage: PersistentVolumes, PersistentVolumeClaims, StorageClasses, dynamic provisioning
-Scheduling & scaling: node affinity/taints/tolerations, Horizontal Pod Autoscaler, Vertical Pod Autoscaler, Cluster Autoscaler
+Scheduling & scaling: node affinity/taints/tolerations, pod anti-affinity and topology spread constraints (replicas across zones and nodes), Horizontal Pod Autoscaler, Vertical Pod Autoscaler, Cluster Autoscaler; PodDisruptionBudgets, so a node drain or cluster upgrade never evicts more replicas than the service can lose
 RBAC in Kubernetes, Pod Security Standards, admission controllers
 Helm: charts, templating, releases
-Operators and the Operator pattern (brief — enough for exam recognition)
+Operators and the Operator pattern (brief — enough for exam recognition): a CustomResourceDefinition adds a new resource type to the API server, and the Operator is the controller that reconciles it, the same control loop as a Deployment's
 Managed Kubernetes nuance: GKE (Autopilot vs Standard, node auto-provisioning, Workload Identity) vs EKS (Fargate vs managed node groups, IRSA) vs AKS (virtual nodes, Azure AD pod identity) — same primitives, different managed-service ergonomics
 
 > **Academic depth (rule 0.4.10) — C2.D.**
@@ -543,7 +403,7 @@ C4.D4 Progressive delivery as risk control: a canary at traffic fraction f limit
 ### C5. Infrastructure as Code
 - [ ] C5 done
 Declarative vs imperative provisioning, state management, drift detection
-Terraform as our primary cross-cloud tool: providers, resources, modules, plan/apply/destroy, remote state, workspaces — this is what lets us build real GCP/AWS/Azure architectures without necessarily paying for them (we lean hard on terraform plan)
+Terraform as our primary cross-cloud tool: providers, resources, modules, plan/apply/destroy, remote state, workspaces, `count` and `for_each`, implicit dependencies through references and `depends_on` when there is none, static IaC scanning (Checkov, tfsec/Trivy) in the pipeline before `plan` — this is what lets us build real GCP/AWS/Azure architectures without necessarily paying for them (we lean hard on terraform plan)
 Native IaC per provider (recognize, don't need mastery of all): Deployment Manager / Config Connector / Infrastructure Manager (GCP), CloudFormation / CDK (AWS), ARM templates / Bicep (Azure)
 
 > **Academic depth (rule 0.4.10) — C5.D.**
@@ -857,18 +717,6 @@ Agentic Architect beta closes Sept 30, 2026 — we're intentionally skipping the
 AWS ANS-C01 last exam Dec 31, 2026 — decide later, once we see real progress against the plan; no shame either way.
 AWS Security Specialty is now SCS-C03, not SCS-C02 — already corrected in this plan.
 Check every exam guide's live PDF ~4–6 weeks before you actually schedule — Google, AWS, and Microsoft all revise domain weights and content periodically (several did so earlier this year), and I'll flag anything relevant I notice as we go, but I can't watch it continuously between our sessions.
-## PART X — How We'll Actually Work
-Each session, we take one module from the plan above, I teach it properly (explanations, worked examples, real config/code where it applies, checks for understanding), and we mark it done. Tell me any time you want to:
- 
-Skip ahead on something you already know (say so — no need to sit through material you've got)
-Jump to a specific cert's material directly instead of following the phase order
-Go hands-on on something — I'll tell you honestly whether it fits free tier, needs a slice of your $300, or should stay as a Terraform-plan/console-read exercise
-
-> **Note:** these overrides are the suite-wide rule in §0.4.1; the session shape is §0.4.2.
-We start with A1: Digital Logic & Data Representation below, right now.
-
-> **Note:** Status as of 2026-09-24: the course is a fresh start, so this sentence is still true.
-
 ## Appendix P — Academic problem sets (rule 0.4.10)
 
 Each problem belongs to the academic pass of the module in its label. The type says what is assessed: **proof** (a written argument), **derive** (a formula from first principles), **compute** (a number, with the steps shown) or **design** (a short argued choice). Keys are in Appendix K, shown only after the attempt (rule 0.4.7). Problems are issued one per turn, on the ramp of rule 0.4.3.
@@ -948,6 +796,7 @@ Each problem belongs to the academic pass of the module in its label. The type s
 - **A9-P7** · proof · Prove that the merge of a G-Counter (element-wise max of per-replica counts) is commutative, associative and idempotent.
 - **A9-P8** · compute · How many replicas are needed to tolerate 2 Byzantine faults, and how many for 2 crash faults under majority consensus?
 - **A9-P9** · compute · A service calls 50 backends in parallel; each has p99 = 20 ms. With hedging after the p95 (send a second copy if no reply by then), what problem does hedging solve, and what load does it add?
+- **A9-P10** · compute · A register starts at 0. Client A calls write(1) at t = 0 and it returns at t = 10. Client B calls read() at t = 2 and it returns 1 at t = 4. Client C calls read() at t = 5 and it returns 0 at t = 7. Is this history linearizable? Is it sequentially consistent? What changes if C's read is invoked at t = 3 instead?
 
 **A10 — security**
 - **A10-P1** · design · Name the Saltzer–Schroeder principle violated by each: a default admin password; a cache that skips the permission check on a hit; a secret encryption algorithm.
@@ -1110,6 +959,7 @@ Each key gives the expected answer and at least one expected wrong answer with t
 - **A9-P7** — Expected: merge(a, b)[i] = max(a[i], b[i]); max is commutative, associative and idempotent element-wise, so the merge is too; the value is Σ merged[i]. · Wrong: merging by summing counts — not idempotent, so a re-delivered state double-counts.
 - **A9-P8** — Expected: Byzantine: 3f + 1 = 7. Crash with majority quorums: 2f + 1 = 5. · Wrong: 5 for Byzantine — a majority is not enough when faulty nodes can lie.
 - **A9-P9** — Expected: with 50 parallel calls, P(at least one over p99) = 1 − 0.99⁵⁰ ≈ 39.5%, so the tail of one call sets the typical latency of the whole request. Hedging after the p95 duplicates about 5% of calls (the extra load) and cuts the tail because the slow copy is usually a transient delay. · Wrong: "hedging doubles the load" — only calls still pending at the hedge point are duplicated.
+- **A9-P10** — Expected: not linearizable. B's read returned 1 and finished at t = 4, before C's read began at t = 5, so C's linearization point comes after B's, which comes after the write's; C must return 1. It is sequentially consistent: the order C.read → 0, A.write(1), B.read → 1 keeps each client's own order, and sequential consistency ignores real time across clients. With C invoked at t = 3, C's read overlaps B's, so the order C.read → 0 (at t = 3), write (t = 3.5), B.read → 1 (t = 3.9) is legal and the history is linearizable. · Wrong: "linearizable, because the write had not returned when C read" — an overlapping write may be seen or not seen, but once a read that finished earlier has seen it, every later read must see it too.
 
 **A10**
 - **A10-P1** — Expected: fail-safe defaults (a shipped default grants access); complete mediation (every access must be checked, cached or not); open design (security must not depend on a secret design). · Wrong: least privilege for the cache — the flaw is the missing check, not the size of a privilege.

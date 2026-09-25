@@ -126,13 +126,15 @@ def checks():
 def d12():
     """the sixth part exists, rule 0.4.9 is in every part, and every GO reference and stitch tag resolves"""
     cur, go, bad = text("cur"), text("go"), []
-    rule = [l for l in cur.split("\n") if l.startswith("**0.4.9 Implementation language: Go.**")]
+    # D18 (R7): the rules live once, in COURSE-GUIDE.md; every part points at it and none carries a copy
+    gd = open(os.path.join(W, "COURSE-GUIDE.md"), encoding="utf-8").read()
+    rule = [l for l in gd.split("\n") if l.startswith("**0.4.9 Implementation language: Go.**")]
     if len(rule) != 1:
-        bad.append("main course has no single rule 0.4.9")
-    bad += [f"{k} lacks rule 0.4.9" for k in COURSE if k != "cur" and rule and rule[0] not in text(k).split("\n")]
-    bad += [f"{k} contract intro not 0.4.10" for k in COURSE if k != "cur" and "(0.4.1…0.4.10, and" not in text(k)]
-    if "one course in six parts" not in cur or "- **The Go Language Companion" not in cur:
-        bad.append("main §0.1 does not list six parts")
+        bad.append("the course guide has no single rule 0.4.9")
+    bad += [f"{k} carries a copy of rule 0.4.9" for k in COURSE if rule and rule[0] in text(k).split("\n")]
+    bad += [f"{k} does not point at the course guide" for k in COURSE if "the course guide" not in text(k)]
+    if len(re.findall(r"^\| `[\w-]+\.md` \| ", gd, re.M)) != 6 or "| `go-language-companion.md` |" not in gd:
+        bad.append("the course guide does not list six parts")
     mods = re.findall(r"^#### (GO-\d\d) ", go, re.M)
     total = re.search(r"^\| \*\*Total\*\* \| \| \*\*(\d+)\*\* \|$", go, re.M)
     n = int(total.group(1)) if total else 0
@@ -149,7 +151,7 @@ def d12():
     rubs = re.findall(r"^- \*\*(GO-P\d\d) rubric:\*\*", go, re.M)
     if probs != [f"GO-P{i:02d}" for i in range(1, n + 1)] or rubs != probs:
         bad.append(f"involved problems/rubrics not one per module ({len(probs)} problems, {len(rubs)} rubrics)")
-    if "4. **Involved problem** — every GO module ends with one involved problem" not in cur:
+    if "4. **Involved problem** — every GO module ends with one involved problem" not in gd:
         bad.append("rule 0.4.9 lacks its fourth rule (involved problem)")
     bad += [f"{k} has a GO heading" for k in COURSE if k != "go" and re.search(r"^#{3,4} GO-", text(k), re.M)]
     refs = {r for k in COURSE for r in re.findall(r"\bGO-(?:\d\d|E\d+\.\d+|CAP\d|P\d\d)\b", text(k))}
@@ -166,7 +168,7 @@ def d12():
     bad += [f"{k} tie-in missing" for k, v in ties.items() if v not in text(k)]
     return ok(not bad, f"{len(mods)} modules, {len(probs)} involved problems with rubrics, {len(ex)} exercises with "
                        f"keys, {len(caps)} capstones, {len(refs)} "
-                       f"GO IDs referenced, {len(tags)} stitch tags, rule 0.4.9 in {len(COURSE)} parts"
+                       f"GO IDs referenced, {len(tags)} stitch tags, rule 0.4.9 once, in the course guide"
               + (f"; wrong: {bad[:8]}" if bad else ""))
 
 
