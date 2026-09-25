@@ -34,7 +34,7 @@ Where to find things:
 | Which university course or textbook a pass follows | Main course §0.6 |
 | Lab tags and what may be run | Rule 0.5 |
 | How an architect decides, forecasts, shapes teams and strategy, keeps current, and reaches the role | Main course B6 (its capstone B6.C is the course's last); C7's case library of public postmortems; rule 0.4.12 for how every session exercises it |
-| Production ML system design: recommenders, search and ads, forecasting, fraud, and the other families of published cases | Main course D6 (the method, the families D6.F1…D6.F10, the builds D6.B1…D6.B3) and its Appendix M, the index of 309 published case-study articles (299 entries) by family, each with its D6.K concepts, a summary and its link |
+| Production ML system design: recommenders, search and ads, forecasting, fraud, and the other families of published cases | Main course D6 (the method, the families D6.F1…D6.F10, the builds D6.B1…D6.B3, and D6.K, the concepts, theory and prerequisites the cases depend on, each with its one owner) and its Appendix M, the index of 309 published case-study articles (299 entries) by family, each with its D6.K concepts, a summary and its link |
 | Claude, LLM applications, the Forward Deployed Engineer role and the CCDV-F exam | Main course D5; the Forward Deployed Engineer companion's §1 (where each topic of the learner's FDE brief is taught) and §3 (the exam and its domains CF1…CF8) |
 
 **The progress ledger** is the tutor's running record, kept beside the boxes (rule 0.1). The boxes remain authoritative. The ledger is not a file in the course folder: the learner removed that file on 2026-09-25. It is carried as the delta block emitted at each close (rule 0.4.8). The learner keeps it between sessions and gives it back at the start of the next one.
@@ -225,7 +225,7 @@ One contract for every part; each part's §0 adds only what is particular to tha
 1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
 2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
 3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof (or derivation) problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks), so every block's problem set carries both kinds. In the main course the block is a module's academic pass (its D lines and its problem set); in a companion it is the companion's academic pass.
-4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
+4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. The one exception is Appendix M of the main course, whose entries link the published case-study articles they summarise. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
 
 **0.4.11 Conventions every part shares.**
 

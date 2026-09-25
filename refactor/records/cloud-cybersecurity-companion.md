@@ -2572,7 +2572,7 @@ Why: `Curriculum` owns the *roadmap spine* — what to learn, in what order, tie
 - **Defense pattern:** Detect key create, anomalous IAM, public bindings, metadata token use patterns, impossible travel for admins.
 ````
 
-**J1127** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+**J1128** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
 
 ````text
 ## 0. Read this first — how this file complements the main course
@@ -2612,13 +2612,13 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 ````
 
-**J1128** · R7-2 · anchor-rewrite
+**J1129** · R7-2 · anchor-rewrite
 
 ````text
 ### 0.4 Notation
 ````
 
-**J1129** · R7-2 · copied preferences, contract and Lab Safety moved out
+**J1130** · R7-2 · copied preferences, contract and Lab Safety moved out
 
 ````text
 ### 0.5 University alignment (coverage checklist)
@@ -2705,7 +2705,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 ````
 
-**J1130** · R7-3 · overlap-register slice moved to rule 0.3
+**J1131** · R7-3 · overlap-register slice moved to rule 0.3
 
 ````text
 ### 2.1 Overlap register — teach once
@@ -2723,25 +2723,25 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | OAuth/JWT mentioned | A7 | AU/CR failure modes (alg confusion, mix-up) |
 ````
 
-**J1147** · R7-4 · anchor-rewrite
+**J1148** · R7-4 · anchor-rewrite
 
 ````text
 This file has **self-contained content**; ownership is shared per the suite overlap register (the main course §0.3). It covers **cloud security, cybersecurity, cryptography, and network security** for cloud infrastructure and cloud-hosted distributed systems — taught in parallel with the matching sections of the main course.
 ````
 
-**J1148** · R7-4 · anchor-rewrite
+**J1149** · R7-4 · anchor-rewrite
 
 ````text
 *Equal scale to AU/AB/CL. A7 (API auth patterns) and A10 name the password and JWT products; the build labs are here — CR-13 (passwords), AU-05 (JWT policy), CR-14 (KMS and CMEK) — and CR owns the cryptographic justification and failure modes. Stanford CS255 alignment: see §0.5.*
 ````
 
-**J1149** · R7-4 · anchor-rewrite
+**J1150** · R7-4 · anchor-rewrite
 
 ````text
 - **Map to GCP:** DOS-02, §0.2.10
 ````
 
-**J1150** · R7-4 · anchor-rewrite
+**J1151** · R7-4 · anchor-rewrite
 
 ````text
 The academic pass of this companion: cryptography with definitions and proofs (CRA.1–CRA.10), then the formal core of the other families — web security, authentication protocols, network security and zero trust, denial of service, threat modelling, privacy and the security of machine-learning systems (CRA.11–CRA.17) — at the depth of Stanford CS 255, Stanford CS 253, MIT 6.1600 and Berkeley CS 161 (main course §0.6 and §0.5 here). Each block is taught after the engineering pass of the cards it names. It is the formal layer that the main course's A10.D3 points to. Problems CRA-P1…CRA-P24 are in §10.18, with keys in Appendix K under "K-academic" (after the attempt only). A block is `mastered` by rule 0.4.10.3. Notation: ⊕ is XOR, |x| is the length of x, and "negligible" means smaller than any inverse polynomial in the security parameter.

@@ -14,7 +14,7 @@ R3 hard gate: zero lost items · zero undefined references · zero orphans · ze
 | 1 inputs | inputs-original/ is read-only (invariant 14) | GATE | PASS | mode a-w on every file |
 | 2 rebuild + decisions | D6 self-contained (V1–V6) | GATE | PASS | PASS Curriculum.md: 0 violation(s); PASS system-design-primer-companion.md: 0 violation(s); PASS sql-databases-companion.md: 0 violation(s); PASS desi |
 | 2 rebuild + decisions | D3 no content loss (R2 and R2b) | GATE | PASS | 13 PASS, 0 FAIL |
-| 2 rebuild + decisions | Reproducible from the frozen R2 snapshot | GATE | PASS | rebuild left work/, records/ and the journal byte-identical; r2b_build: 1265 journaled edits · COURSE:anchor-rewrite=9 ·  |
+| 2 rebuild + decisions | Reproducible from the frozen R2 snapshot | GATE | PASS | rebuild left work/, records/ and the journal byte-identical; r2b_build: 1266 journaled edits · COURSE:anchor-rewrite=9 ·  |
 | 2 rebuild + decisions | Invariant 6: goldens immutable | GATE | PASS | 103 distinct fingerprints, same set before and after (the §3.8 goldens JSON repeats them); 92 input SQL blocks all present |
 | 2 rebuild + decisions | Invariant 7: `(verify)` flags kept | GATE | PASS | before→after {'cur': (0, 104), 'pri': (2, 4), 'sql': (16, 21), 'dp': (0, 4), 'sec': (48, 75)} |
 | 2 rebuild + decisions | Invariant 11: CC BY line + change notice | GATE | PASS | 2 CC BY lines unchanged; the change notice is in words |

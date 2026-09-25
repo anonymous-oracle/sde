@@ -495,7 +495,8 @@ The learner asked that the case studies be decomposed into their concepts, theor
 | Appendix M head | Links the source catalogue by name, drops its `(verify)`, explains 309 articles as 299 entries and the parts of an entry, and states that outside links are allowed in this appendix alone. |
 | CS 329S | Checked against the course's own site (Stanford, Chip Huyen): its `(verify)` is removed in §0.6 and D6.D. |
 | `selfcontained.py` | V2 allows `https://` link targets on the lines of the main course's Appendix M, and V1 ignores file-like tokens inside those URLs; every other part and section keeps the no-links rule. |
-| Guide | Rule 2 names the two exceptions to "link nothing outside": the primer's licence attribution and Appendix M. The where-to-find row describes the appendix's entries. |
+| Guide | Rule 2 names the two exceptions to "link nothing outside": the primer's licence attribution and Appendix M. The where-to-find row describes the appendix's entries and names D6.K as the place for the concepts, theory and prerequisites behind the cases. |
+| ML-9 | Rule 0.4.10.4 (readings are named, not linked) names Appendix M as its one exception, so the rule no longer contradicts the appendix. |
 
 **Correction to R10.** R10 called the ten extra catalogue rows repeats. They are further parts of multi-part articles, and each now links every part.
 
