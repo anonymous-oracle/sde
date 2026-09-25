@@ -18,8 +18,8 @@ W = os.path.join(ROOT, "work")
 IN = os.path.join(ROOT, "inputs-original")
 COURSE = {"cur": "Curriculum.md", "pri": "system-design-primer-companion.md", "sql": "sql-databases-companion.md",
           "dp": "design-patterns-companion.md", "sec": "cloud-cybersecurity-companion.md",
-          "go": "go-language-companion.md"}
-ORIG = [k for k in COURSE if k != "go"]   # the Go companion (D12) is new in R2c: it has no input to compare with
+          "go": "go-language-companion.md", "fde": "fde-companion.md"}
+ORIG = [k for k in COURSE if k not in ("go", "fde")]   # the Go companion (D12) is new in R2c: it has no input to compare with
 
 
 def text(k, base=W):
@@ -133,8 +133,8 @@ def d12():
         bad.append("the course guide has no single rule 0.4.9")
     bad += [f"{k} carries a copy of rule 0.4.9" for k in COURSE if rule and rule[0] in text(k).split("\n")]
     bad += [f"{k} does not point at the course guide" for k in COURSE if "the course guide" not in text(k)]
-    if len(re.findall(r"^\| `[\w-]+\.md` \| ", gd, re.M)) != 6 or "| `go-language-companion.md` |" not in gd:
-        bad.append("the course guide does not list six parts")
+    if len(re.findall(r"^\| `[\w-]+\.md` \| ", gd, re.M)) != 7 or "| `fde-companion.md` |" not in gd:
+        bad.append("the course guide does not list seven parts")
     mods = re.findall(r"^#### (GO-\d\d) ", go, re.M)
     total = re.search(r"^\| \*\*Total\*\* \| \| \*\*(\d+)\*\* \|$", go, re.M)
     n = int(total.group(1)) if total else 0

@@ -45,11 +45,19 @@ TOOLS = os.path.join(ROOT, "refactor-tools")
 sys.path.insert(0, TOOLS)
 
 COURSE = ["Curriculum.md", "system-design-primer-companion.md", "sql-databases-companion.md",
-          "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md"]
+          "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md",
+          "fde-companion.md"]
 ORIG5 = COURSE[:5]                                   # the five course files that have an input in inputs-original/
 OTHER = ["session-progress-ledger.md", "learn-SKILL.md"]
-SHORT = dict(zip(COURSE + OTHER, ["cur", "pri", "sql", "dp", "sec", "go", "led", "skl"]))
+SHORT = dict(zip(COURSE + OTHER, ["cur", "pri", "sql", "dp", "sec", "go", "fde", "led", "skl"]))
 GO_R2C = os.path.join("outputs", "r2c", "go-language-companion.r2c.md")
+
+def _plan():
+    import r5_acad
+    import r8_fde
+    import r9_practice
+    return {**r5_acad.MODULES, **r8_fde.MODULES, **r9_practice.MODULES}   # R5's modules, D5 (D19) and B6 (D20)
+
 
 ROWS = []   # (section, check, kind, status, evidence); kind GATE | INFO | HOLD
 
@@ -701,7 +709,8 @@ def conflicts():
         return ("PASS" if good else "FAIL"), f"ledger regenerated blank (R5-16): §3 done = none; states {sorted(states)}; {ev}"
 
     PARTS6 = ("Curriculum.md", "system-design-primer-companion.md", "sql-databases-companion.md",
-              "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md")
+              "design-patterns-companion.md", "cloud-cybersecurity-companion.md", "go-language-companion.md",
+              "fde-companion.md")
 
     def kept_rule(needles, where):
         # D2 dropped the chat-only evidence; D18 keeps the rule once, in the course guide, and no part repeats it
@@ -951,13 +960,14 @@ def r5_checks():
     row("10 R5", "rule 0.4.10 (the academic pass) is in the course guide once (D18); every part cites it and none "
         "copies it", "PASS" if once and not copy and not miss else "FAIL",
         f"in the guide {'once' if once else 'NOT once'}; copied in {copy or 'none'}; not cited in {miss or 'none'}")
+    PLAN = _plan()
     cur = T["Curriculum.md"].split("\n")
-    nod = [m for m in r5_acad.MODULES if not any(l.startswith(f"{m}.D1 ") for l in cur)]
-    parts = {"pri": "SDA.1", "sql": "DBT.1", "sec": "CRA.1", "dp": "DPA.1", "go": "GOT.1"}
+    nod = [m for m in PLAN if not any(l.startswith(f"{m}.D1 ") for l in cur)]
+    parts = {"pri": "SDA.1", "sql": "DBT.1", "sec": "CRA.1", "dp": "DPA.1", "go": "GOT.1", "fde": "main course D5.D"}
     nop = [k for f, k in ((f, SHORT[f]) for f in COURSE[1:]) if parts[k] not in T[f]]
     row("10 R5", "every module named in the academic plan has its D blocks (main course), and each companion has its "
         "academic section", "PASS" if not (nod or nop) else "FAIL",
-        f"{len(r5_acad.MODULES)} modules; without D blocks {nod}; companions without the section {nop}")
+        f"{len(PLAN)} modules; without D blocks {nod}; companions without the section {nop}")
     lbl = r"(?:[A-D]\d{1,2}-P\d+|SDA-P\d+|DBT-P\d+|CRA-P\d+|GOT-P\d+|DPA-P\d+|DPE-\d+|DPS-[\d.]*\d)"
     bad, n = [], 0
     for f in COURSE:
@@ -1035,14 +1045,15 @@ def r5_blocks(T, lbl):
     cur = T["Curriculum.md"].split("\n")
     # A8's pass is owned by the SQL companion (its A8.D1 says so), so A8 has no problem set of its own
     owned = {"A8": "the SQL companion's academic pass (DBT)"}
+    PLAN = _plan()
     mods = [m for m in re.findall(r"^### ([A-D]\d{1,2})\. ", T["Curriculum.md"], re.M)]
-    unplanned = [m for m in mods if m not in r5_acad.MODULES]
+    unplanned = [m for m in mods if m not in PLAN]
     types, bad_t, bad_r, bad_rng, noread = {}, [], [], [], []
     for l in cur:
         m = re.match(r"^- \*\*([A-D]\d{1,2})-P(\d+)\*\* · (\w+) · ", l)
         if m:
             types.setdefault(m.group(1), []).append((int(m.group(2)), m.group(3)))
-    for m in r5_acad.MODULES:
+    for m in PLAN:
         if m in owned:
             continue
         ts = {x for _, x in types.get(m, [])}
@@ -1066,7 +1077,7 @@ def r5_blocks(T, lbl):
     row("10 R5", "rule 0.4.10.3: every academic block (a main-course module's pass; a companion's pass) has a proof or "
         "derivation problem and a computational problem, so it can be mastered; every module of Tracks A–D has a "
         "pass", "PASS" if not (bad_t or unplanned) else "FAIL",
-        f"{len(r5_acad.MODULES)} planned of {len(mods)} modules; not planned {unplanned}; without both kinds "
+        f"{len(PLAN)} planned of {len(mods)} modules; not planned {unplanned}; without both kinds "
         f"{bad_t}; delegated: " + "; ".join(f"{a} → {b}" for a, b in owned.items()))
     row("10 R5", "each module's problem-set line names exactly its problems (P1…Pn, no gaps) and its pass names "
         "readings (rule 0.4.10.4)", "PASS" if not (bad_rng or noread) else "FAIL",

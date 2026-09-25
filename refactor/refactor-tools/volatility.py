@@ -20,7 +20,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from verify import COURSE, SHORT, code_mask   # noqa: E402
 
 NAMES = dict(zip(COURSE, ["main course", "System Design Primer companion", "SQL companion", "Design Patterns companion",
-                          "Cloud Cybersecurity companion", "Go companion"]))
+                          "Cloud Cybersecurity companion", "Go companion",
+                          "Forward Deployed Engineer companion"]))
 VER = re.compile(r"^> \*\*Verified (\d{4}-\d{2}-\d{2})([^:]*):\*\*")
 MARK = re.compile(r"\(verify|\(checked on 1\.27\.1\)|\bas of (?:\d{4}-\d{2}-\d{2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|"
                   r"Oct|Nov|Dec)[a-z]* \d{1,2},? \d{4})", re.I)

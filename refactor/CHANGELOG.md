@@ -423,3 +423,43 @@ The academic passes in the five companions no longer restate rule 0.4.10.3. They
 **Duplicate scan.** No line of 70 characters or more repeats within a file. Across the seven files, no run of 20 words repeats except two kinds: the one-line pointer at the head of each companion's §0 ("This part follows the rules of the course guide"), and one citation shared by the main course and the primer (Mitzenmacher, power of two choices), since a reading is named where it is used.
 
 **Trade-off.** The parts are no longer self-contained (this partly reverses D6's "same text in every part"). A session must read the guide with the parts.
+
+## R8 The Forward Deployed Engineer companion (D19) — 2026-09-25
+
+The learner asked to integrate the Forward Deployed Engineer and CCDV-F brief (`../fde-ccdvf-course-meta-prompt.md`) into the course with no repeated content and one curriculum, and to update the course guide. The brief was a tutor meta prompt: learner profile, teaching rules, the FDE role, the CCDV-F exam, stages A–N and a progress log. `refactor-tools/r8_fde.py` runs inside `r2b_build.py` after R6 and before R7, so the guide receives the edited rules. Every changed line is journaled and kept in `records/` (D3).
+
+| Rule | What it does |
+|---|---|
+| FDE-0 | Adds the seventh part, `fde-companion.md`, from `authored/fde-companion.md`: its §0 (what it owns, eight rules particular to it, notation), §1 coverage ledger (each brief item → its owner), §2 stitch table, §3 the role and the exam (domains CF1…CF8), LB-1…LB-7 and FDE-CK1 (builds under D2 and D4), FDE-01…FDE-28 with FDE-CK2 and FDE-CK3, capstones FDE-CAP1…FDE-CAP5, §15 CCDV-F preparation, §16 dependency gate, Appendix K. |
+| FDE-1…FDE-5 | Merge the brief's teaching rules into the rules the guide holds: rule 0.2 gains five preferences (three passes, language order and no assumed background, tone, stop when understood, no time boxes); rule 0.4.1 makes a topic's first woven check the calibrating one; rule 0.4.2 adds the Claude-application layer; rule 0.4.9 names TypeScript as the third language; rule 0.5 adds hand-written crypto as learning-only, recorded-first model calls under a spend limit, and where API keys live. |
+| FDE-6…FDE-9 | Add the brief's from-scratch builds and checkpoints to the modules that own their concepts: A2 (matrix multiply, a minimizer, softmax and sampling; the softmax-and-gradient checkpoint), A3 (modules, exceptions and tracebacks; a tiny test runner before pytest; the tested-CLI checkpoint), A4 (binary search and merge sort against the library), C4 (a minimal CI script before a hosted pipeline). |
+| FDE-10…FDE-15 | Add main course D5 (teaching blocks D5.F1…D5.F7, academic pass D5.D1…D5.D3, problems D5-P1…D5-P7 with keys), D4's teaching-block note (the LB builds, SQL AN-07 and cyber AI-01…AI-05 placed), CCDV-F in the Track D intro and the phase-plan reasoning, D5 in Track D's Lab Reality line, and D5 plus the IR course and textbook in the §0.6 machine-learning row. |
+| FDE-16 | GO-21: `net` joins the unlock row, and the build lab starts with an echo server and HTTP/1.1 over raw TCP (with Python `socket` twins), then `net/http` with a written comparison. |
+
+**Guide.** Seven parts throughout; a §2 row for `fde-companion.md`; a §1 where-to-find row; rule 0.1's ledger holds the projects built; eleven register rows for the new overlaps (LLM mechanics, prompting, retrieval, injection, agents, evals, retries, TypeScript, wire formats, MCP, OAuth for tool servers). The §5 outline adds §5.7.
+
+**Not carried over.** The brief's module IDs and exam-domain IDs (they collide with A1…D5), its session protocol (rule 0.4.8 and the guide's §1 already hold it), its "don't skip complexity" (rule 0.2's depth preference) and its progress log (the ledger delta; the learner's resume point is given in chat).
+
+**Gates updated for D19.** `manifest.py` (the seventh file; FDE, LB and CF families), `selfcontained.py` (the seventh file; the Claude Code and Node file names a lab has the learner write), `budget.py`, `volatility.py`, `audit_r2b.py` (seven files in the guide) and `verify.py` (the seventh file; D5 in the academic plan; the FDE companion's academic pass is main course D5.D).
+
+`verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass. **Duplicate scan:** across the eight files, no line of 90 characters or more repeats except each companion's one-line §0 pointer, and no 20-word run is shared with the new part except that pointer, the §0 "Numbers and application" rule opening and the §2 table header.
+
+## R9 The architect's practice (D20) — 2026-09-25
+
+The learner asked that the course train them to think like, and become, a frontier Forward Deployed Engineer and software systems architect. An audit against that aim found the knowledge already taught (decision records, C4 and ATAM in A7; reliability and postmortem culture in C7; cost in B4; discovery, delivery and the simulated engagement in the Forward Deployed Engineer companion) but not the practice that turns it into judgment: how decisions are made and scored, what reversibility is worth, build or buy, evolutionary architecture, teams and strategy, learning from other people's failures, keeping current, and the road to the role. Each goes to one owner; no new part is created (guide §4.3).
+
+| Rule | What it does |
+|---|---|
+| PR-1 | Adds main course B6 The Architect's Practice after B5: ten topic lines, the teaching-block note B6.1…B6.7 and B6.C (each placed where its prerequisites are met), the academic pass B6.D1 decisions under uncertainty and EVPI, B6.D2 flexibility as an option, B6.D3 calibration, the Brier score and reference-class forecasting, with readings. |
+| PR-2 | The phase plan gains Phase 9 (the review board, B6.C) and "Why this order" states the course's aim once. |
+| PR-3 | C7 gains the case library: eight public postmortems, each tagged with the modules it needs (details `(verify)`). |
+| PR-4 | §0.6 gains the decision-analysis and forecasting row. |
+| PR-5 | Problems B6-P1…B6-P6 (compute, proof, derive) and their keys, all computed. |
+| PR-6 | The System Design Primer companion's notation line: `B1…B6` and `D1…D5` (D5 had been missed in D19). |
+
+**Guide.** The head points to the aim; a §1 where-to-find row; §2 names B6; rule 0.1's ledger holds the decision journal with a Brier score per phase and the frontier list; new rule 0.4.12 (the judgment turn as each module's reflection rung, the decision journal, failure recall, the frontier turn, design reviews and the customer sentence); seven register rows (decision records, estimation, migration, incidents, Conway and teams, track record, build or buy).
+
+**Forward Deployed Engineer companion.** FDE-CAP5 and §15 each gain one line pointing to B6.C and B6.
+
+**Gates.** `verify.py` plans B6 (`r9_practice.MODULES`). `verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass; the S3 case line names AWS so the D16 track-token gate reads it as the object store. **Duplicate scan:** no new 20-word repeat; the one found (the aim, in the guide head and the main course) was removed from the guide.
+

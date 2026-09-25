@@ -144,7 +144,8 @@ def refs(files, go):
 
 # ---------------------------------------------------------------------------------------------- the outline
 CARD = re.compile(r"^#### (\S+(?:[–-]\S+)?) · (.+?)(?: — stitch:.*)?$")
-CARD_SECTIONS = {PRI: ("3.", "4."), SQL: ("4.",), SEC: ("3.",), "go": ("3.", "4.", "5.", "6.", "7.", "8.")}
+CARD_SECTIONS = {PRI: ("3.", "4."), SQL: ("4.",), SEC: ("3.",), "go": ("3.", "4.", "5.", "6.", "7.", "8."),
+                 "fde": tuple(f"{n}." for n in range(4, 15))}
 NO_CHILDREN = re.compile(r"^(Appendix K|Appendix P)\b")
 CERT_PARTS = ("PART V ", "PART VI ", "PART VII ")
 
@@ -189,7 +190,7 @@ def outline(name, key, lines):
 
 
 # ---------------------------------------------------------------------------------------------- the guide
-def guide(files, go, rules, fr):
+def guide(files, go, fde, rules, fr):
     g = F(GUIDE, [])
     RECORDS.setdefault(GUIDE, [])
     prefs = list(rules["prefs"])
@@ -214,9 +215,10 @@ def guide(files, go, rules, fr):
     g.rx("R7-5", "anchor-rewrite", r"(?<!main course )§0\.([1-5](?:\.\d+)*)\b", r"rule 0.\1", ev, lo=lo, hi=hi, mn=1)
     parts = [(CUR, CUR, "The main course"), (PRI, PRI, "The System Design Primer Companion"),
              (SQL, SQL, "The SQL & Databases Companion"), (DPC, DPC, "The Design Patterns Companion"),
-             (SEC, SEC, "The Cloud Cybersecurity Companion"), (go.n, "go", "The Go Language Companion")]
+             (SEC, SEC, "The Cloud Cybersecurity Companion"), (go.n, "go", "The Go Language Companion"),
+             (fde.n, "fde", "The Forward Deployed Engineer Companion")]
     for k, (fn, key, title) in enumerate(parts, 1):
-        src = go.L if key == "go" else files[fn].L
+        src = {"go": go.L, "fde": fde.L}.get(key) or files[fn].L
         g.L += [f"### 5.{k} {title} — `{fn}`", ""] + outline(fn, key, src) + [""]
     while g.L and not g.L[-1].strip():
         g.L.pop()
@@ -236,7 +238,7 @@ def dedupe(files):
             "name. **Bank ≠ dump** (rule 0.4.11): issue **one** item at the ledger rung;", ev)
 
 
-def build(files, go):
+def build(files, go, fde):
     fr = fragments("course-guide.md")
     fp = fragments("parts.md")
     rules = cur(files[CUR], fp)
@@ -244,4 +246,4 @@ def build(files, go):
         companion(go if fn is None else files[fn], fp[key], note, new)
     refs(files, go)
     dedupe(files)
-    return guide(files, go, rules, fr)
+    return guide(files, go, fde, rules, fr)
