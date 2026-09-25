@@ -88,3 +88,10 @@
 | Conway's law and team design | A7.D1 (Conway's law) | Main course B6 (the inverse Conway manoeuvre, team types and interaction modes, cognitive load) |
 | Track record and portfolio | Forward Deployed Engineer companion §15 (the FDE track record and interviews) | Main course B6 (the architect's portfolio and interview, which extend it) |
 | Build or buy, and total cost of ownership | B4.D1 (total cost of ownership, break-even) | Main course B6 (build, buy, rent or adopt; lock-in priced as a switching cost) |
+| Recommenders, learning to rank and ads ranking | D6 (D6.F1, D6.F2, the ranker D6.B1; position bias in D6.D1) | D1 (named as literacy); D5.D1 (BM25, fusion and the ranking measures); Forward Deployed Engineer companion LB-7 (retrieval rankers built) |
+| Bandits and exploration | D6.D2 (regret, UCB1, Thompson sampling, contextual bandits) | D1 (named as literacy); D3.D4 (the A/B test a bandit is contrasted with) |
+| Uplift, incrementality and holdouts | D6.D4 (potential outcomes, uplift) and D6.F8 (the holdout in a campaign) | D1 (why a lift claim needs a control group); D3.D4 (sample size) |
+| Time-series forecasting and ETAs | D6.F3 and D6.B2; D6.D3 (quantile loss, coverage against width) | D1 (seasonality and backtesting, as literacy) |
+| Fraud scoring on payment tokens | D6.F4 and D6.B3 (the model, the threshold, the review queue) | Go companion GO-29 (the payment path built); cyber PV-03 (tokenization against encryption) |
+| Training–serving skew and drift in production | D3 (D3.D2, the tests) | D6.1 (kept apart from leakage per family) and the monitors of D6.F1…D6.F10 |
+| Model canaries and shadow deployments | D3 (A/B testing and canary rollouts for models) | D6.F10 (a different dial from C4's application canary) |

@@ -1642,7 +1642,7 @@ Database acceptance tests for the S11 case-study capstone. Issue after the §6 l
 - **Core:** Height ≈ log_fanout(n); leftmost prefix rule; LSM write amp vs B-tree read amp; GIN for JSONB/arrays; BRIN for append-mostly.
 ````
 
-**J1109** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+**J1119** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
 
 ````text
 ## 0. Read this first — how this file complements the main course
@@ -1682,13 +1682,13 @@ When other companions bind to the same session, the Suite Session Protocol (rule
 
 ````
 
-**J1110** · R7-2 · anchor-rewrite
+**J1120** · R7-2 · anchor-rewrite
 
 ````text
 ### 0.4 Notation
 ````
 
-**J1111** · R7-2 · copied preferences, contract and Lab Safety moved out
+**J1121** · R7-2 · copied preferences, contract and Lab Safety moved out
 
 ````text
 ### 0.5 Learner teaching preferences (binding)
@@ -1761,7 +1761,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 ````
 
-**J1112** · R7-3 · overlap-register slice moved to rule 0.3
+**J1122** · R7-3 · overlap-register slice moved to rule 0.3
 
 ````text
 ### 2.1 Overlap register — concepts that appear in both files (teach once, in the owner)
@@ -1796,673 +1796,673 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | ACID, CAP, consistency, big-O, hashing | **A2 / A4 / A8 + A9 / A8** | CS-05/CS-07 formal treatment of isolation and consistency models; PQ-07 recall only |
 ````
 
-**J1126** · R7-4 · anchor-rewrite
+**J1136** · R7-4 · anchor-rewrite
 
 ````text
 Each main-course module on the left is taught **with** the companion modules on the right, in the same session (§0.2 rule 1). "Checkpoint" is the exercise (or drill) to run once that module and its stitched concepts are done — issued **one at a time**, per rule 5.
 ````
 
-**J1127** · R7-4 · anchor-rewrite
+**J1137** · R7-4 · anchor-rewrite
 
 ````text
 Local PostgreSQL 15.x database `labdb` with schema `lab` (the storefront OLTP data of §0.4) plus `work` (scratch) and fingerprint functions `lab.chk` / `lab.chk_o`. Every kit file is printed in full in §3.8: the schema `lab_schema.sql`, the seed `lab_seed.sql`, the runners `run_ex.py`, `plans.py`, `tx_tests.py`, and the rest.
 ````
 
-**J1128** · R7-4 · anchor-rewrite
+**J1138** · R7-4 · anchor-rewrite
 
 ````text
 Cloud SQL / AlloyDB: same SQL; create an instance only when Lab Reality allows and **destroy the same day** (Lab Safety, §0.6). Auth Proxy for IAM DB auth when OD-11 is unlocked — not required for local goldens.
 ````
 
-**J1129** · R7-4 · anchor-rewrite
+**J1139** · R7-4 · anchor-rewrite
 
 ````text
 **Bank ≠ dump** (§0.2 rule 5): issue **one** item at the ledger rung; learner attempts; escalate hints; only then Appendix K. Every read-only golden below is from `goldens_ex_*.json` executed on PostgreSQL 15.8 / seed v1 / UTC / C collation.
 ````
 
-**J1130** · R7-4 · anchor-rewrite
+**J1140** · R7-4 · anchor-rewrite
 
 ````text
 ### 2.2 A8 slice pairing — the engine slices DB-1 … DB-10 and what rides with each
 ````
 
-**J1131** · R7-4 · anchor-rewrite
+**J1141** · R7-4 · anchor-rewrite
 
 ````text
 ### 2.3 Parallel calendar — how the companion rides the main course's spine
 ````
 
-**J1132** · R7-4 · anchor-rewrite
+**J1142** · R7-4 · anchor-rewrite
 
 ````text
 | **A8 — SQL design track** (concept, then lab; engine slices §4.0) | **The core binding.** SL-01 … SL-12 · RT-01 … RT-07 · DD-01 … DD-06, DD-12 · OD-01 · CS-01 … CS-08 — paired slice by slice with DB-1 … DB-10 (§2.2 table below) | SQL-E1 → SQL-E10 by level (§6 gates); BH-1 after SQL-E3.5 |
 ````
 
-**J1133** · R7-4 · anchor-rewrite
+**J1143** · R7-4 · anchor-rewrite
 
 ````text
 *The engine slices.* This file **owns** the slices DB-1 … DB-10; main course A8 points here, and each slice is taught as one session with the companion theory paired to it in §2.2. The Cloud SQL procedure they map onto is OD-11.
 ````
 
-**J1134** · R7-4 · anchor-rewrite
+**J1144** · R7-4 · anchor-rewrite
 
 ````text
 | **SQL-SKIP-SQL** SQL & relational correctness (`DB-SQL`) | **Skip-test map:** if the A8 sessions confirmed FDs/joins/transactions/pagination/client hygiene, stamp using SQL-E3.2, SQL-E4.5, SQL-E5.4, SQL-E9.3, TX-2. **Else** run the SQL-SKIP-SQL order = RT-01/04/05 → RT-02 → SL-01/02 → SL-03 → SL-04 → SL-05 → SL-06/09 → SL-08 → TX labs → OD-09 (§2.3 table) | see §2.3 |
 ````
 
-**J1135** · R7-4 · anchor-rewrite
+**J1145** · R7-4 · anchor-rewrite
 
 ````text
 | **SQL-SKIP-ENGINE** PostgreSQL internals (`DB-ENGINE`) | **Skip-test map:** residual `EXPLAIN` drills = PX-1 … PX-11; crash/recovery evidence = TD-12 + OD-04 drill. **Else** run the SQL-SKIP-ENGINE order = CS-01 → CS-04 → CS-02 → CS-03 → CS-08 → CS-05 → CS-06 → CS-07 (§2.3) | see §2.3 |
 ````
 
-**J1136** · R7-4 · anchor-rewrite
+**J1146** · R7-4 · anchor-rewrite
 
 ````text
 Mapped to the A8 skip-tests **SQL-SKIP-SQL** / **SQL-SKIP-ENGINE**. If the A8 sessions already confirmed the skill, **stamp and skip**; else run the order in §2.3.
 ````
 
-**J1145** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1146** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1147** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1148** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1149** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1150** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1151** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1152** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** matching PQ unlocked
-````
-
-**J1153** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
-````
-
-**J1154** · R7-6 · line moved out of the course file
-
-````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
-````
-
 **J1155** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1156** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1157** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1158** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1159** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1160** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1161** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1162** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** matching PQ unlocked
 ````
 
 **J1163** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1164** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1165** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1166** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1167** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1168** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1169** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1170** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 1 gate above; stitch partners from §2 as tagged
 ````
 
 **J1171** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1172** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1173** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1174** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1175** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1176** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1177** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1178** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 2 gate above; stitch partners from §2 as tagged
 ````
 
 **J1179** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1180** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1181** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1182** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1183** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1184** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1185** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1186** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1187** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1188** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 3 gate above; stitch partners from §2 as tagged
 ````
 
 **J1189** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1190** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1191** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1192** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1193** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1194** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1195** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1196** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 4 gate above; stitch partners from §2 as tagged
 ````
 
 **J1197** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1198** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1199** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1200** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1201** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1202** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1203** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1204** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 5 gate above; stitch partners from §2 as tagged
 ````
 
 **J1205** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1206** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1207** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1208** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1209** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1210** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1211** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 6 gate above; stitch partners from §2 as tagged
 ````
 
 **J1212** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 ````
 
 **J1213** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 ````
 
 **J1214** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 ````
 
 **J1215** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 ````
 
 **J1216** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 7 gate above; stitch partners from §2 as tagged
 ````
 
 **J1217** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1218** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1219** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1220** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1221** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1222** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1223** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1224** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1225** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1226** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 8 gate above; stitch partners from §2 as tagged
 ````
 
 **J1227** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1228** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1229** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1230** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1231** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1232** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1233** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 9 gate above; stitch partners from §2 as tagged
 ````
 
 **J1234** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 ````
 
 **J1235** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 ````
 
 **J1236** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 ````
 
 **J1237** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 ````
 
 **J1238** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 ````
 
 **J1239** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 10 gate above; stitch partners from §2 as tagged
 ````
 
 **J1240** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 ````
 
 **J1241** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 ````
 
 **J1242** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 ````
 
 **J1243** · R7-6 · line moved out of the course file
 
 ````text
-- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
 ````
 
 **J1244** · R7-6 · line moved out of the course file
 
 ````text
+- **Prereq gate:** Level 13 gate above; stitch partners from §2 as tagged
+````
+
+**J1245** · R7-6 · line moved out of the course file
+
+````text
 - **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
 ````
 
-**J1245** · R7-6 · new-content
+**J1246** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1247** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1248** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1249** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1250** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1251** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1252** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1253** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1254** · R7-6 · line moved out of the course file
+
+````text
+- **Prereq gate:** Level 14 gate above; stitch partners from §2 as tagged
+````
+
+**J1255** · R7-6 · new-content
 
 ````text
 **Bank ≠ dump** (rule 0.4.11): issue **one** item at the ledger rung; learner attempts; escalate hints; only then Appendix K. Every read-only golden below is from `goldens_ex_*.json` executed on PostgreSQL 15.8 / seed v1 / UTC / C collation.

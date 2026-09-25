@@ -34,6 +34,7 @@ Where to find things:
 | Which university course or textbook a pass follows | Main course §0.6 |
 | Lab tags and what may be run | Rule 0.5 |
 | How an architect decides, forecasts, shapes teams and strategy, keeps current, and reaches the role | Main course B6 (its capstone B6.C is the course's last); C7's case library of public postmortems; rule 0.4.12 for how every session exercises it |
+| Production ML system design: recommenders, search and ads, forecasting, fraud, and the other families of published cases | Main course D6 (the method, the families D6.F1…D6.F10, the builds D6.B1…D6.B3) and its Appendix M, the index of 309 published case studies by family |
 | Claude, LLM applications, the Forward Deployed Engineer role and the CCDV-F exam | Main course D5; the Forward Deployed Engineer companion's §1 (where each topic of the learner's FDE brief is taught) and §3 (the exam and its domains CF1…CF8) |
 
 **The progress ledger** is the tutor's running record, kept beside the boxes (rule 0.1). The boxes remain authoritative. The ledger is not a file in the course folder: the learner removed that file on 2026-09-25. It is carried as the delta block emitted at each close (rule 0.4.8). The learner keeps it between sessions and gives it back at the start of the next one.
@@ -44,7 +45,7 @@ All seven files sit in this folder. The main course is the only parent (rule 0.1
 
 | File | Part | Owns | IDs | Keys, rubrics, skip-tests and order |
 |---|---|---|---|---|
-| `Curriculum.md` | The Consolidated Cloud Mastery Curriculum (the **main course**) | Order and phases, certification timing, Lab Reality, Tracks A–D (fundamentals, cloud core with the architect's practice in B6, the DevOps spine, ML/AI), the GCP, AWS and Azure certification parts, the cross-provider map, the university alignment table (§0.6) | `A1`…`A11`, `B1`…`B6`, `C1`…`C7`, `D1`…`D5`; academic blocks `A4.D6` and the like; problems `A4-P3`; Part V categories `V-COMP`…`V-OPS` | Appendix P (problem sets), Appendix K (keys); the phase plan in §1 |
+| `Curriculum.md` | The Consolidated Cloud Mastery Curriculum (the **main course**) | Order and phases, certification timing, Lab Reality, Tracks A–D (fundamentals, cloud core with the architect's practice in B6, the DevOps spine, ML/AI), the GCP, AWS and Azure certification parts, the cross-provider map, the university alignment table (§0.6) | `A1`…`A11`, `B1`…`B6`, `C1`…`C7`, `D1`…`D6`; academic blocks `A4.D6` and the like; problems `A4-P3`; Part V categories `V-COMP`…`V-OPS` | Appendix P (problem sets), Appendix K (keys), Appendix M (the ML case-study index); the phase plan in §1 |
 | `system-design-primer-companion.md` | The System Design Primer Companion — GCP-Native Edition | The system-design layer: trade-offs, numbers, interview framing, GCP resources; the primer's problems; Terraform labs TF-1…TF-7; the primer's reference tables | `SD-nn`, `SX-nn`, `P01`–`P08`, `O01`–`O07`, `Q01`–`Q23`, `TF-n`, `SDA.n`, `SDA-Pn` | §4.1–§4.3 (prerequisites and readiness tiers), §4.5 (the ladder), §8.12 (academic keys) |
 | `sql-databases-companion.md` | The SQL & Databases Companion — GCP-Native Edition | SQL, relational theory, the engine slices DB-1…DB-10, data design, operating databases (Cloud SQL), analytics engines, the lab kit and query ladder | `PQ-nn`, `RT-nn`, `SL-nn`, `CS-nn`, `DD-nn`, `OD-nn`, `AN-nn`, `DB-n`, `SQL-E…`, `SQL-Z0.n`, `TD-n`, `PX-n`, `TX-n`, `BH-n`, `DT-n`, `SCH-n`, `SQL-CAPn`, `TF-DBn`, `DBT.n`, `DBT-Pn` | §5 (skip tests and tiers), Appendix K (keys, including the academic keys); the lab kit in §3 computes the goldens |
 | `design-patterns-companion.md` | Design Patterns, SOLID & Clean Architecture — A Companion Curriculum | OOP design theory, SOLID and GRASP, the 23 GoF patterns with a Go kata each, architecture styles and DDD, anti-patterns | `F-nn`, `PR-nn`, `DP-nn`, `ARCH-nn`, `AP-nn`, `DPE-nn`, `DPA.n`, `DPA-Pn` | §10 (dependency gate), §12 (skip-tests), Appendix K (keys, kata solutions, exercise and academic keys) |
@@ -170,6 +171,13 @@ When two parts touch the same concept, the **owner** teaches it and the others o
 | Conway's law and team design | A7.D1 (Conway's law) | Main course B6 (the inverse Conway manoeuvre, team types and interaction modes, cognitive load) |
 | Track record and portfolio | Forward Deployed Engineer companion §15 (the FDE track record and interviews) | Main course B6 (the architect's portfolio and interview, which extend it) |
 | Build or buy, and total cost of ownership | B4.D1 (total cost of ownership, break-even) | Main course B6 (build, buy, rent or adopt; lock-in priced as a switching cost) |
+| Recommenders, learning to rank and ads ranking | D6 (D6.F1, D6.F2, the ranker D6.B1; position bias in D6.D1) | D1 (named as literacy); D5.D1 (BM25, fusion and the ranking measures); Forward Deployed Engineer companion LB-7 (retrieval rankers built) |
+| Bandits and exploration | D6.D2 (regret, UCB1, Thompson sampling, contextual bandits) | D1 (named as literacy); D3.D4 (the A/B test a bandit is contrasted with) |
+| Uplift, incrementality and holdouts | D6.D4 (potential outcomes, uplift) and D6.F8 (the holdout in a campaign) | D1 (why a lift claim needs a control group); D3.D4 (sample size) |
+| Time-series forecasting and ETAs | D6.F3 and D6.B2; D6.D3 (quantile loss, coverage against width) | D1 (seasonality and backtesting, as literacy) |
+| Fraud scoring on payment tokens | D6.F4 and D6.B3 (the model, the threshold, the review queue) | Go companion GO-29 (the payment path built); cyber PV-03 (tokenization against encryption) |
+| Training–serving skew and drift in production | D3 (D3.D2, the tests) | D6.1 (kept apart from leakage per family) and the monitors of D6.F1…D6.F10 |
+| Model canaries and shadow deployments | D3 (A/B testing and canary rollouts for models) | D6.F10 (a different dial from C4's application canary) |
 
 ### 0.4 Suite Teaching Contract
 
@@ -299,6 +307,7 @@ Generated from the seven parts' headings and module cards at build time. Each en
   - D3. MLOps
   - D4. Generative AI, LLMs & Agents
   - D5. Building with Claude — LLM applications in production, the Forward Deployed Engineer role, and CCDV-F
+  - D6. Production ML System Design — the industry case-study families
 - **PART V — Google Cloud Platform**
   - Professional Cloud Architect (PCA)
   - Professional Machine Learning Engineer (PMLE)
@@ -324,6 +333,19 @@ Generated from the seven parts' headings and module cards at build time. Each en
 - **PART IX — Time-Sensitive Notes Recap**
 - **Appendix P — Academic problem sets (rule 0.4.10)**
 - **Appendix K — Academic problem keys (AFTER attempt only)**
+- **Appendix M — ML system-design case studies (index)**
+  - M.1 Recommend / personalize / feed — taught in D6.F1 (62)
+  - M.2 Search / rank / ads — taught in D6.F2 (36)
+  - M.3 Forecast / ETA / demand — taught in D6.F3 (24)
+  - M.4 Fraud / trust & safety — taught in D6.F4 (23)
+  - M.5 LLM / genAI apps — taught in D6.F5 (19)
+  - M.6 NLP / text / support — taught in D6.F6 (7)
+  - M.7 CV / video / OCR — taught in D6.F7 (6)
+  - M.8 Speech / audio — taught in D6.F7 (3)
+  - M.9 Marketing / churn / CLV / notify — taught in D6.F8 (14)
+  - M.10 Availability / inventory — taught in D6.F9 (4)
+  - M.11 ML platform / infra — taught in D6.F10 (2)
+  - M.12 Other (pricing, classification, routing, dimensions and more) — index only; attach an entry to the nearest family when it is studied (99)
 
 ### 5.2 The System Design Primer Companion — `system-design-primer-companion.md`
 

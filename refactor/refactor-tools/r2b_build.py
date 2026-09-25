@@ -49,6 +49,7 @@ import r6_gaps  # noqa: E402
 import r7_guide  # noqa: E402
 import r8_fde  # noqa: E402
 import r9_practice  # noqa: E402
+import r10_mlcases  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -198,6 +199,7 @@ def main():
     r6_gaps.build(files)             # R6: gap fills from the learn-anything.xyz cross-check
     fde = r8_fde.build(files, go, root)   # R8 (D19): the Forward Deployed Engineer companion; its rules join the guide's
     r9_practice.build(files)         # R9 (D20): the architect's practice, B6, C7's case library
+    r10_mlcases.build(files)         # R10 (D21): ML system-design case studies, D6 and Appendix M
     gd = r7_guide.build(files, go, fde)   # R7 (D18): the course guide; the rules move there once
     led = r5_acad.led(root)          # C-23, C-66 (D2): the regenerated ledger
     for fn, f in list(files.items()) + [(go.n, go), (fde.n, fde), (gd.n, gd), (led.n, led)]:

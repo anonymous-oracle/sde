@@ -1063,7 +1063,31 @@ Why this order: everything in Phases 0–3 is provider-agnostic and is tested, i
 Why this order: everything in Phases 0–3 is provider-agnostic and is tested, in some form, on every single one of your eighteen certs. Front-loading it means each subsequent cert is 60–70% "same concepts, new console." GCP goes first because you named PCA/PMLE explicitly and have a workplace GCP account to look around in. AWS and Azure then go faster because you already know what a load balancer, an IAM policy, and a Kubernetes pod are — you're just learning new names and new console layouts for concepts you already own. CCDV-F, Anthropic's Claude Certified Developer – Foundations, is the one certification outside the cloud providers: it is sat once D5's capstones pass, and the Forward Deployed Engineer companion's §15 prepares it.
 ````
 
-**J1102** · R7-1 · rules 0.1–0.5 moved to the course guide
+**J1103** · ML-2 · anchor-rewrite
+
+````text
+Applied problem families, as literacy: retrieve-then-rank recommenders (two-tower retrieval, learning to rank), bandits for exploration, time-series forecasting (seasonality, backtesting), fraud and anomaly detection with human review, and uplift measurement (why a lift claim needs a control group)
+````
+
+**J1104** · ML-3 · anchor-rewrite
+
+````text
+Lab Reality (Track D): D1 `[local]` notebooks (scikit-learn) · D2 `[local]` small models on CPU, `[plan-only]` for large training · D3 `[local]` tracking and pipelines, `[free-tier]` Vertex AI pieces where a free tier exists `(verify)` · D4 `[local]` RAG and agent prototypes, `[credit ~$X]` timeboxed model API calls `(verify)` · D5 `[local]` builds and recorded-response fixtures, `[credit ~$X]` Claude API calls inside a workspace spend limit, `[free-tier]` Cloud Run for the capstones `(verify)`.
+````
+
+**J1106** · ML-5 · anchor-rewrite
+
+````text
+| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch · Stanford CS 276 Information Retrieval and Web Search `(verify)` | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) · Manning, Raghavan and Schütze, *Introduction to Information Retrieval* (2008) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
+````
+
+**J1107** · ML-5 · anchor-rewrite
+
+````text
+| Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch · Stanford CS 276 Information Retrieval and Web Search `(verify)` · Stanford CS 329S Machine Learning Systems Design `(verify)` | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) · Manning, Raghavan and Schütze, *Introduction to Information Retrieval* (2008) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
+````
+
+**J1112** · R7-1 · rules 0.1–0.5 moved to the course guide
 
 ````text
 ### 0.1 The course parts and the companion stitch rule
@@ -1215,7 +1239,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 
 ````
 
-**J1103** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
+**J1113** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
 
 ````text
 ## PART X — How We'll Actually Work
@@ -1232,7 +1256,7 @@ We start with A1: Digital Logic & Data Representation below, right now.
 
 ````
 
-**J1104** · R7-1 · anchor-rewrite
+**J1114** · R7-1 · anchor-rewrite
 
 ````text
 A5.D7 Naming and measurement: DNS as a distributed, hierarchical, cached database whose consistency is bounded by TTLs (A9's eventual consistency); anycast; measurement as experiment — `ping`, `traceroute` (TTL expiry), `dig +trace`, and packet capture with `tcpdump` on your own host only (§0.5)

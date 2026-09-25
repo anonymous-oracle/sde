@@ -463,3 +463,24 @@ The learner asked that the course train them to think like, and become, a fronti
 
 **Gates.** `verify.py` plans B6 (`r9_practice.MODULES`). `verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass; the S3 case line names AWS so the D16 track-token gate reads it as the object store. **Duplicate scan:** no new 20-word repeat; the one found (the aim, in the guide head and the main course) was removed from the guide.
 
+## R10 ML system-design case studies (D21) — 2026-09-25
+
+The learner asked that the 309-case-study material in the old GCP curriculum be ingested, and nothing else from that file. That material is the source's case-study atlas (its Part 9c) and its Appendix M index. The atlas has five parts: the case-study method, a gap table of the concepts the cases need, four reference builds, ten family design packs with worked company examples, and the list of what it defers. Production ML system design had no owner in the course: D1 names the families only as literacy, and D3 owns the MLOps lifecycle. Each piece now goes to one owner.
+
+| Rule | What it does |
+|---|---|
+| ML-1 | Adds main course D6 Production ML System Design after D5. It carries the method, the features/labels/skew line, the families D6.F1…D6.F10 with their worked cases, and the builds D6.B1 ranker, D6.B2 ETA and D6.B3 fraud on tokens on `shop.example` (Python, then Go). The fourth source build, retrieval-augmented generation, stays with FDE-25 and FDE-CAP1. D6 also names its edges, sets the checkpoint D6.C (one Appendix M case designed and defended in a review) and adds the teaching-block note D6.1…D6.7. The academic pass: D6.D1 inverse propensity scoring; D6.D2 bandit regret; D6.D3 pinball loss and cost- or capacity-set thresholds; D6.D4 potential outcomes, uplift and lifetime value. |
+| ML-2 | D1's applied-families line points to D6. |
+| ML-3 | Track D's Lab Reality line gains D6. |
+| ML-4 | The PMLE part points to D6 for problem framing and design. |
+| ML-5 | §0.6's machine-learning row gains Stanford CS 329S `(verify)` and D6 (D6.D1–D6.D4). |
+| ML-6 | Problems D6-P1…D6-P8 (compute, proof, derive) and their keys, all computed. |
+| ML-7 | Appendix M, the case-study index, becomes the main course's last appendix. Its twelve headings keep the source grouping, and each maps to its D6 family ("Other" is index only). The source's ten repeated entries are listed once, leaving 299 of 309, and two typos are corrected. |
+| ML-8 | The System Design Primer companion's notation line: `D1…D6`. |
+
+**Left out as not case-study material:** the source's classical-model zoo (D1 owns classical models) and its PMLE product depth for scaling, serving, pipelines and monitoring (D3 and the PMLE part own them).
+
+**Guide.** A §1 where-to-find row; §2 names `D1`…`D6` and Appendix M; seven register rows cover rankers, bandits, uplift, forecasting, fraud on tokens, skew and drift, and model canaries.
+
+**Gates.** `verify.py` plans D6 (`r10_mlcases.MODULES`). `verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass. **Duplicate scan:** no new 20-word repeat beyond the known teaching-block note formula.
+
