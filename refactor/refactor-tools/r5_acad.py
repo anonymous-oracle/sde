@@ -88,7 +88,7 @@ def sql(f):
     fr, fk = fragments("sql.md"), fragments("sql-keys.md")
     f.ins("R5-7", f.heading("Appendix K"), fr["section"] + [""], EV + " The SQL companion's academic pass: the "
           "proof layer of its RT and CS cards (main course A8.D1).")
-    f.ins("R5-7", f.heading("Appendix V"), fk["keys"] + [""], EV + " Keys for DBT-P1…DBT-P14 (rule 0.4.7).")
+    f.ins("R5-7", f.heading("Appendix V"), fk["keys"] + [""], EV + " Keys for DBT-P1…DBT-P15 (rule 0.4.7).")
     ev = ("C-56 and C-NEW-02: the goldens' pins (seed v1, PostgreSQL 15.x, UTC, C collation) were stated only in prose; "
           "run_ex.py now asserts them, and the kit was re-verified in place from the course text (goldens unchanged).")
     f.ins("R5-14", f.idx("    return p.returncode, p.stdout, p.stderr") + 1, fr["run-ex-pins"], ev)

@@ -2559,3 +2559,190 @@ Why: `Curriculum` owns the *roadmap spine* — what to learn, in what order, tie
 ````text
 - **Map to GCP:** DOS-08, architecture studios (security-relevant only)
 ````
+
+**J1068** · R6-2 · new-content
+
+````text
+- **Defense pattern:** DNSSEC for authenticity; delete DNS with services; inventory dangling; RPKI literacy (conceptual).
+````
+
+**J1069** · R6-2 · new-content
+
+````text
+- **Defense pattern:** Detect key create, anomalous IAM, public bindings, metadata token use patterns, impossible travel for admins.
+````
+
+**J1085** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+
+````text
+## 0. Read this first — how this file complements the main course
+
+### 0.1 Standing instruction (every teaching session)
+
+**This file is a complement to the main course, not a second roadmap. Read both. Whenever a security-relevant main-course section is taught, also teach every companion concept bound to it (§2) in the same session, as one story. Similar, related, and overlapping security concepts are stitched and taught in parallel — never in separate sessions, never twice.**
+
+Why: the main course owns the *roadmap spine* — what to learn, in what order, tied to certs (PCA, Cloud Security Engineer, Network Engineer, SecOps, SCS-C03, etc.) and the provider service maps. It lists security topics at outline depth (A5 networking, A10 crypto/security fundamentals, B1 shared responsibility, B5 IAM model, Track C container/K8s hardening, Phase 4 GCP Security services). It does not own attacker playbooks, misuse cases, rate-limit/WAF craft, session/JWT/OAuth failure modes, supply-chain attacker paths, IR tabletop depth, AI threat mechanics, or a full applied-cryptography track. This file supplies those and hangs each piece on the main-course section that needs it **when that section is taught**.
+
+### 0.2 Stitching rules
+
+1. **One concept, one teaching.** If both files mention an idea, teach it once in the owner (§2.1), and the other file only *adds*. Later sessions recall in one line.
+2. **Ownership split.** *The main course owns:* learning order, cert mapping, service vocabulary (IAM, Armor, VPC-SC, KMS, SCC, SecOps), shared-responsibility framing at roadmap level. *This file owns:* attack mechanics, defensive design patterns, cryptography depth (`CR-*`), network-security attacks, exercise/scenario bank, IR tabletops.
+3. **Same teaching discipline.** Issue **one** exercise at a time; learner attempts before keys; predict blast radius / control placement before revealing the answer. Prop Lock: do not use a later control (VPC-SC, Confidential VM, Binary Authorization) as a "known" prop before its main-course section has been covered (suite-wide rule: the main course §0.4.6) — postpone the exercise or teach the prerequisite first.
+4. **GCP lens at three depths** when a concept is taught: **Lens-1** name the GCP (and AWS/Azure twin from the main-course mapping tables) resource; **Lens-2** touch via local vulnerable-by-design fixture or credits-safe lab; **Lens-3** cert-depth trade-offs (Cloud Security Engineer / PCA Security / SCS-C03).
+5. **Bank ≠ dump.** §5 is a bank of scenario specs. Never paste Appendix K before an attempt.
+6. **Predict → attempt → discrepancy → ledger.**
+7. **Qualitative keys only** (no invented lab DB goldens).
+8. **Inline tracking** with `- [ ]` boxes.
+9. **Honesty:** `(verify)` on version-sensitive cloud product details.
+10. **Lab safety hard bans:** no scanning third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost / disposable projects only; crypto via vetted libraries only.
+11. **User can override** skip/jump. On conflict: the main course wins on order and cert timing; this file wins on security/crypto content and exercise specs.
+12. **Read economically:** §0 + §2, then only today's bound modules.
+
+### 0.3 How one stitched session runs
+
+1. **Anchor** — name the main-course section (e.g. A10, B5, Phase 4 Security) and list bound companion IDs from §2.
+2. **Concept** — teach roadmap idea once, then layer attack/crypto depth from this file.
+3. **GCP lens** — Lens-1 always; Lens-2 when Lab Reality allows.
+4. **Numbers** — one estimate (QPS to throttle, key size, blast radius, RTO/RPO for IR).
+5. **Exercise** — one card from §5 (prediction first).
+6. **Check** — module check questions; learner answers first.
+7. **Close** — tick boxes; note unlocked / shaky / postponed.
+
+When other companions bind to the same session, the Suite Session Protocol (rule 0.4.2 in §0.7) governs.
+
+````
+
+**J1086** · R7-2 · anchor-rewrite
+
+````text
+### 0.4 Notation
+````
+
+**J1087** · R7-2 · copied preferences, contract and Lab Safety moved out
+
+````text
+### 0.5 University alignment (coverage checklist)
+
+| Course / framework | Maps into |
+|---|---|
+| Stanford CS155 | TH, AU, WA, NT, DOS, CL, AI |
+| Stanford CS255 | CR-01 … CR-20 |
+| Stanford XACS235 Cloud Security | B1/CL shared responsibility, CK/WL, CR-14, IR, CM, SC/TEEs |
+| MIT 6.858 / 6.566 | TH, CK isolation, WA, NT/TLS, SC, AU |
+| Berkeley CS161 | CR foundations, NT, DOS, WA, AU |
+| MIT 6.1600 Foundations of Computer Security · Boneh and Shoup, *A Graduate Course in Applied Cryptography*, version 0.6 (2023) | §10 academic pass: CRA.1…CRA.10 over CR-01…CR-19; CRA.11…CRA.17 over WA, AU, NT, DOS, AB, TH, PV and AI; SC |
+| CMU Cloud Security | CL multi-tenancy, B5/IAM abuse, IR, CM |
+| CSA CCM v4.x | §8 checklist (not a control dump) |
+| OWASP Top 10:2025 · ATT&CK Cloud | WA, AU, CL, WL, IR |
+
+### 0.6 Learner teaching preferences (binding)
+
+- **Check questions must be woven into the concept explanation itself**, not asked as separate "what do you already know" diagnostics — the learner explicitly opted out of background-probing questions and asked for calibration to happen through how they handle the material.
+- **"Maintain curriculum depth and academic rigour"** has been repeated multiple times as an explicit standing instruction — do not compress, simplify, or skip the "why," even under time pressure or a fast pace of correct answers.
+- When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
+- If a companion file references module IDs that don't exist in the main course (as the SQL companion's did before its IDs were rebound), **say so plainly rather than forcing a silent, possibly-wrong mapping** — this was well received when done for the SQL companion.
+
+### 0.7 Suite Teaching Contract and Lab Safety (same text in every part)
+
+The main course's §0.4 and §0.5, copied whole so that this companion can be taught on its own terms. The rule numbers stay the main course's (0.4.1…0.4.10, and the five Lab Safety rules), so "main course §0.4.3" and rule 0.4.3 here are the same rule. The **progress ledger** named below is the tutor's running record beside the inline boxes (main course §0.1): each ID's mastery state, the misconception register, the errata list, the recorded overrides and wrong predictions, and the exact resume point. The inline `- [ ]` boxes stay authoritative.
+
+**Suite Teaching Contract (main course §0.4).**
+
+One contract for every part; each companion carries the same contract in its own §0 and adds its session detail. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.6 here) · (3) the main course on order, cert timing and Lab Reality · (4) the owning part on its content (main course §0.3) · (5) the companions' defaults.
+
+**0.4.1 Rhythm.**
+
+- One concept per turn, at full depth. New material is taught by direct explanation; procedures by worked, parallel examples.
+- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.6 rule out separate calibrating questions). A turn may be as long as one concept needs.
+- Correction style: confirm the correct part explicitly, then sharpen the imprecise part by naming the exact mechanism. No false praise. Hold the line under "just tell me"; give a foothold when the learner is genuinely stuck.
+- Overrides: the learner may skip (after passing the skip-test), jump, or go hands-on. Every override is recorded in the ledger so the prerequisite check can flag what was skipped.
+
+**0.4.2 Suite Session Protocol.** When several files bind to one module, the session runs:
+
+1. **Anchor** — list the bound IDs from *all* files (each companion's §2).
+2. **Concept** — taught once, by the owner in main course §0.3.
+3. **Layers**, in fixed order: system design (primer) → SQL/engine → patterns → Go implementation (Go companion) → attacker/crypto (cyber).
+4. **GCP lens.**
+5. **One Numbers step** for the whole session.
+6. **One application item**: a primer micro-problem *or* a companion exercise card, never both for the same concept.
+7. **Checks**, woven in per §0.6.
+8. **Close**, ticking boxes in every file (§0.4.8).
+
+**0.4.3 Exercise progression.** The first five rungs of the ten-rung ramp (anchor, vocabulary, representation, core move, worked illustration) are the teaching turns. Exercises then climb, one item per turn, advancing only when the current rung is passed: basic unseen check → routine variation → mixed transfer (the new idea plus exactly two earlier mastered ideas) → top-rung challenge → reflection (the learner explains back or invents an example).
+
+**0.4.4 Predict → run → discrepancy.** Every exercise with a result shape, row count, plan shape, isolation outcome or attack outcome starts with a one-line prediction. Then run. A wrong prediction is recorded in the ledger and taught from.
+
+**0.4.5 Mastery states.** Every ID is `not-started` → `in-progress` → `taught` (explained, first check answered) → `mastered` (passed a rung-3 or rung-4 item, or the skip-test). It may also be `shaky` (missed a check after teaching), `unverified` (claimed done without evidence) or `sliced` (only a named slice taught). Taught and mastered IDs get one-question recalls woven into later relevant sessions at about +1, +3, +7 and +21 sessions; a missed recall sets `shaky` and re-teaches only the gap. The misconception register lives in the ledger; checks probe each entry until two consecutive correct answers retire it.
+
+**0.4.6 Anchoring and suite-wide Prop Lock.** No term, product or control is used in an explanation, example or check unless it is anchored: taught this session, or at least `taught` on the ledger. A named-but-not-taught mention is allowed only when labelled "we'll cover this in X". A check that relies on unanchored terms is invalid: fix the check; don't mark the learner shaky.
+
+**0.4.7 Check questions and exercise pre-flight.** A check tests mechanism or application, asks one thing (split a multi-part check across turns), is answerable from anchored material, has a written expected answer and at least one expected wrong answer in the owning file's keys, is precision-sensitive, and is never answered by the tutor in the same turn. Before issuing any exercise the tutor checks: internal consistency (for example, a CNAME never points at an IP) · every term anchored · exactly one question · the answer derivable from what was taught · any numbers computed. The tutor is precise about mechanisms and says explicitly when unsure. An error found later is corrected openly in the next turn and logged in the errata list of the progress ledger.
+
+**0.4.8 Pacing, checkpoints and session close.** Each module is budgeted at roughly 3–5 concepts per session at full depth; an over-budget module is split into teaching blocks. The budget is a plan, never a reason to compress depth. A problem or checkpoint runs only when all its must-know IDs are at least `taught`, and it introduces at most one new concept. Every session ends by: (1) marking every ID bound to the session taught / sliced / deferred-with-reason / recalled (nothing left unmarked); (2) updating mastery states and the recall schedule; (3) updating the misconception register; (4) adding any errata; (5) emitting a ledger delta block (and a full ledger every 5th session or on request); (6) naming the exact resume point and any open question, verbatim.
+
+**0.4.9 Implementation language: Go.** Go is the suite's language for application code: services, build labs that write a program, and capstones. Python stays the first language of A3, the language of Track D's machine-learning work, and the language of labs already written in Python (the SQL companion's lab kit, the "Python twin" that some labs name). Go is taught by the Go Language Companion: its language core (GO-01…GO-14) is the Go block of A3, and its later modules bind where they are first used. Four rules:
+
+1. **Syntax unlock** — rule 0.4.6 applied to code. A Go construct appears in an explanation, a lab or a check only once the GO module that unlocks it is at least `taught`; before that, the lab runs in Python or waits, and the construct is named only as "we'll cover this in GO-nn". The first use of each construct carries its unlock block: signature → semantics → runtime and memory → contrast with Python, Java, C or JavaScript, naming the bug the other habit causes in Go.
+2. **Lab acceptance** — Go lab code is accepted when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass (under `go test -race` from GO-19 on; the race detector needs cgo), no error is silently dropped, and every goroutine the code starts has a way to be stopped.
+3. **Version honesty** — the baseline release is the one the learner's own module declares. A behaviour is taught as fact only when it has been run on the installed release; anything else carries `(verify)`. The go command downloads modules, and whole toolchains when a module's `go` line is newer than the installed release: name what a step will fetch before running it.
+4. **Involved problem** — every GO module ends with one involved problem: a program the learner designs and writes alone, aimed at the module's hardest idea, with its rubric kept in the Go companion's keys and shown only after submission. It is the module's top-rung challenge (rule 0.4.3), so a GO module is `mastered` only when its problem passes its rubric or its skip-test passes (this tightens rule 0.4.5 for GO modules). It is a project across several turns, not a check: hints come only when asked, one at a time, and the tutor never writes the solution.
+
+**0.4.10 Academic depth (undergraduate prerequisites).** The course teaches every undergraduate prerequisite of cloud and system architecture at the depth of a university course, not only at the engineering depth of a first pass. Each module of Tracks A to D, and each companion, carries an **academic pass**: formal definitions, theorems with their proofs or proof sketches, derivations, named readings, and a numbered problem set whose written keys (an expected answer and at least one expected wrong answer, rule 0.4.7) sit in the owning part's keys. The University and textbook alignment table (main course §0.6) says which university courses and textbooks each pass is aligned with. Four rules:
+
+1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
+2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
+3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof (or derivation) problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks), so every block's problem set carries both kinds. In the main course the block is a module's academic pass (its D lines and its problem set); in a companion it is the companion's academic pass.
+4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
+
+**Lab Safety (main course §0.5).**
+
+One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the main course's Lab Reality paragraph.
+
+1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only.
+2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply.
+3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file. Lab data is synthetic.
+4. **The workplace console is read-only:** look, never create or change.
+5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
+````
+
+**J1088** · R7-3 · overlap-register slice moved to rule 0.3
+
+````text
+### 2.1 Overlap register — teach once
+
+> **Note:** the suite-wide register is the main course §0.3; this table is the security slice of it, and on a conflict the main course's register wins.
+
+| Idea | Owner | This file adds |
+|---|---|---|
+| Shared responsibility one-liner | B1 | PQ-S-03 matrices by service model |
+| TLS handshake vocabulary | A5 (mechanics) / A10 (formal) | CR-12 attacks, 0-RTT, validation bugs |
+| IAM principals/roles | B5 | CL IAM privesc / key sprawl playbooks |
+| "Use KMS/CMEK" | The main course's Phase 4 Security | CR-14 envelope hierarchy + compromise IR |
+| Armor / DDoS product names | V-NET / Phase 4 Networking | DOS taxonomy + rate-limit/bot design |
+| Container non-root / PSS | C1/C2 | CK escape & supply-chain attacker paths |
+| OAuth/JWT mentioned | A7 | AU/CR failure modes (alg confusion, mix-up) |
+````
+
+**J1105** · R7-4 · anchor-rewrite
+
+````text
+This file has **self-contained content**; ownership is shared per the suite overlap register (the main course §0.3). It covers **cloud security, cybersecurity, cryptography, and network security** for cloud infrastructure and cloud-hosted distributed systems — taught in parallel with the matching sections of the main course.
+````
+
+**J1106** · R7-4 · anchor-rewrite
+
+````text
+*Equal scale to AU/AB/CL. A7 (API auth patterns) and A10 name the password and JWT products; the build labs are here — CR-13 (passwords), AU-05 (JWT policy), CR-14 (KMS and CMEK) — and CR owns the cryptographic justification and failure modes. Stanford CS255 alignment: see §0.5.*
+````
+
+**J1107** · R7-4 · anchor-rewrite
+
+````text
+- **Map to GCP:** DOS-02, §0.2.10
+````
+
+**J1108** · R7-4 · anchor-rewrite
+
+````text
+The academic pass of this companion: cryptography with definitions and proofs (CRA.1–CRA.10), then the formal core of the other families — web security, authentication protocols, network security and zero trust, denial of service, threat modelling, privacy and the security of machine-learning systems (CRA.11–CRA.17) — at the depth of Stanford CS 255, Stanford CS 253, MIT 6.1600 and Berkeley CS 161 (main course §0.6 and §0.5 here). Each block is taught after the engineering pass of the cards it names. It is the formal layer that the main course's A10.D3 points to. Problems CRA-P1…CRA-P24 are in §10.18, with keys in Appendix K under "K-academic" (after the attempt only). A block is `mastered` by rule 0.4.10.3. Notation: ⊕ is XOR, |x| is the length of x, and "negligible" means smaller than any inverse polynomial in the security parameter.
+````

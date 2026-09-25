@@ -2,7 +2,7 @@
 
 Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
-**J1051** · R5-16 · regenerate
+**J1223** · R5-16 · regenerate
 
 ````text
 # GCP Cloud Mastery — Session Progress & Resumption Ledger
