@@ -74,6 +74,11 @@ def cur(f, fr):
     f.ins_after("ML-6", "- **D5-P7** — Expected:", fr["keys"], ev)
     f.ins_after("ML-7", "- **D6-P8** — Expected:", [""] + fr["appendix-head"] + [""] + fr["appendix-body"],
                 EV + " The index is the main course's last appendix; its headings map to D6's families.")
+    f.rep("ML-9", "anchor-rewrite", "A text is cited by author, title and edition; a course by institution and course "
+          "name.", "A text is cited by author, title and edition; a course by institution and course name. The one "
+          "exception is Appendix M of the main course, whose entries link the published case-study articles they "
+          "summarise.", "D22 (2026-09-25): the learner exempted the case-study content from the no-links rule; the "
+          "readings rule names the exception so it does not contradict Appendix M.")
 
 
 def pri_ids(pri):

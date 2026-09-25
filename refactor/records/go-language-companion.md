@@ -428,7 +428,7 @@ U5 (reserved) owns concurrency theory in general and A9 owns distributed-systems
 - **Build lab `[local]`:** the `shop.example` orders API skeleton (the reference application defined in the Cloud Cybersecurity companion): `GET /orders/{id}`, `POST /orders`, JSON in and out with a size limit, middleware for recovery, request ID and structured logging, the DOS-05 timeouts, `CrossOriginProtection`, graceful shutdown, and `httptest` tests for 200, 400, 404, 405 and 413.
 ````
 
-**J1131** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
+**J1132** · R7-2 · §0.1–§0.3 replaced by the part's own §0 (generic rules are in the course guide)
 
 ````text
 ## 0. Read this first
@@ -463,13 +463,13 @@ When other parts bind to the same session, the Suite Session Protocol (rule 0.4.
 
 ````
 
-**J1132** · R7-2 · anchor-rewrite
+**J1133** · R7-2 · anchor-rewrite
 
 ````text
 ### 0.4 Notation and the unlock list
 ````
 
-**J1133** · R7-2 · copied preferences, contract and Lab Safety moved out
+**J1134** · R7-2 · copied preferences, contract and Lab Safety moved out
 
 ````text
 ### 0.5 Learner teaching preferences (binding)
@@ -542,7 +542,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 ````
 
-**J1134** · R7-3 · overlap-register slice moved to rule 0.3
+**J1135** · R7-3 · overlap-register slice moved to rule 0.3
 
 ````text
 ### 2.1 Overlap register — what is intentionally *not* re-taught here
@@ -566,13 +566,13 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 | Queues, back-pressure, asynchronous work | the System Design Primer (SD-28) | GO-29: acknowledge a webhook fast and apply its effect from a queue |
 ````
 
-**J1152** · R7-4 · anchor-rewrite
+**J1153** · R7-4 · anchor-rewrite
 
 ````text
 One rubric per module's involved problem (rule 8 of §0.2). Each says what a passing submission shows and names the trap the problem is built around. A submission that misses one point is returned with that point only, not with the fix.
 ````
 
-**J1154** · R7-4 · anchor-rewrite
+**J1155** · R7-4 · anchor-rewrite
 
 ````text
 Companion to the main course, "The Consolidated Cloud Mastery Curriculum". Sibling to the System Design Primer companion, the SQL & Databases companion, the Design Patterns companion and the Cloud Cybersecurity companion.

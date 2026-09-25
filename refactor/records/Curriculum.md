@@ -1087,7 +1087,13 @@ Lab Reality (Track D): D1 `[local]` notebooks (scikit-learn) · D2 `[local]` sma
 | Machine learning and language models | Artificial Intelligence (AI) | Stanford CS 229 Machine Learning `(verify)` · Stanford CS 336 Language Modeling from Scratch · Stanford CS 276 Information Retrieval and Web Search `(verify)` · Stanford CS 329S Machine Learning Systems Design | Hastie, Tibshirani and Friedman, *The Elements of Statistical Learning*, 2nd ed. (2009) `(verify)` · Goodfellow, Bengio and Courville, *Deep Learning* (2016) `(verify)` · Huyen, *Designing Machine Learning Systems* (2022) · Manning, Raghavan and Schütze, *Introduction to Information Retrieval* (2008) | D1 (D1.D1–D1.D4); D2 (D2.D1–D2.D3); D3 (D3.D1–D3.D4); D4 (D4.D1–D4.D5); D5 (D5.D1–D5.D3) |
 ````
 
-**J1112** · R7-1 · rules 0.1–0.5 moved to the course guide
+**J1111** · ML-9 · anchor-rewrite
+
+````text
+4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
+````
+
+**J1113** · R7-1 · rules 0.1–0.5 moved to the course guide
 
 ````text
 ### 0.1 The course parts and the companion stitch rule
@@ -1225,7 +1231,7 @@ One contract for every part; each companion carries the same contract in its own
 1. **Two passes, one module.** The engineering pass comes first. The academic pass follows under the same module ID, as its own teaching blocks (rule 0.4.8), never as a separate course. A "first-pass scope" note limits the first pass only.
 2. **Proof standard.** A claim presented as a theorem is proved in the session, set as a proof problem, or labelled "stated without proof", naming where the proof is found. Derivations show every step, and every number is computed, not asserted.
 3. **Problem sets are exercises.** They climb the ramp (rule 0.4.3). An academic block is `mastered` only when at least one proof (or derivation) problem and one computational problem in it pass against their keys (this tightens rule 0.4.5 for academic blocks), so every block's problem set carries both kinds. In the main course the block is a module's academic pass (its D lines and its problem set); in a companion it is the companion's academic pass.
-4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
+4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. The one exception is Appendix M of the main course, whose entries link the published case-study articles they summarise. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
 
 ### 0.5 Lab Safety
 
@@ -1239,7 +1245,7 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 
 ````
 
-**J1113** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
+**J1114** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
 
 ````text
 ## PART X — How We'll Actually Work
@@ -1256,7 +1262,7 @@ We start with A1: Digital Logic & Data Representation below, right now.
 
 ````
 
-**J1114** · R7-1 · anchor-rewrite
+**J1115** · R7-1 · anchor-rewrite
 
 ````text
 A5.D7 Naming and measurement: DNS as a distributed, hierarchical, cached database whose consistency is bounded by TTLs (A9's eventual consistency); anycast; measurement as experiment — `ping`, `traceroute` (TTL expiry), `dig +trace`, and packet capture with `tcpdump` on your own host only (§0.5)
