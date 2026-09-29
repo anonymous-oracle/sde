@@ -503,3 +503,17 @@ The learner asked that the case studies be decomposed into their concepts, theor
 **Shared articles.** Three article pairs are listed under two catalogue entries each (Airbnb Experiences ranking; Gojek's delivery-time estimate on two blogs; Lyft's fraud models). The summary is written once, and the second entry points to the first. Tracking parameters (`?gi=…`) are stripped from links.
 
 **Gates.** `verify.py . --stage R5`, `audit_r2b.py` and `selfcontained.py` pass. Duplicate scan: no new 20-word prose repeat. The one new hit is the shared URL prefix of Oda's part 1 and part 2 articles, which are separate catalogue entries.
+
+## R11 Every concept on GCP, hands on; the workplace tour (D23) — 2026-09-29
+
+The learner asked that every related concept be mapped to GCP and taught hands on, and said their workplace GCP account, with broad access, is there to browse and understand.
+
+| Rule | What it does |
+|---|---|
+| GL-1 | Rule 0.2 gains the preference "Every concept on GCP, hands on": every concept with an honest GCP counterpart, in any part, is done hands on in the learner's own project; a concept with none says so in one line; each mapping says where to look in the workplace account. |
+| GL-2 | Rule 0.5.4 becomes "The workplace account is browsed, never changed": console pages and read-only commands only, no billed queries beyond a dry run, no workplace credentials in labs or sessions, no workplace data or names in prompts, notes or course files; a sanctioned sandbox project counts as the learner's own only when named in chat. |
+| GL-3 | The main course's Lab Reality paragraph describes the account as having broad access, browsed but never changed, and points to Lens-W. |
+| Guide | Rule 0.4.11.1: the lens covers every concept in every part with a GCP counterpart, each done hands on at Lens-2; a missing lens is supplied while teaching and logged in the errata list; **Lens-W**, the workplace tour (console page, read-only commands, what to look for, one question), goes with every lens. |
+
+**Gates.** `selfcontained.py`, `audit_r2b.py` and `verify.py . --stage R5` pass. R5's gate 1 first failed because the move of the branch into master reset `inputs-original/` to writable; `chmod a-w inputs-original/*` restored the invariant.
+

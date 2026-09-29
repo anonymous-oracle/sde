@@ -1093,7 +1093,25 @@ Lab Reality (Track D): D1 `[local]` notebooks (scikit-learn) · D2 `[local]` sma
 4. **Readings are named, not linked.** A text is cited by author, title and edition; a course by institution and course name. Editions and course numbers change, so the alignment table carries its check date, and anything not checked carries `(verify)`.
 ````
 
-**J1113** · R7-1 · rules 0.1–0.5 moved to the course guide
+**J1114** · GL-2 · anchor-rewrite
+
+````text
+4. **The workplace console is read-only:** look, never create or change.
+````
+
+**J1115** · GL-3 · anchor-rewrite
+
+````text
+Your hands-on reality (given $300 GCP credit, permanent free tier, a workplace GCP account you can look in but not touch, and AWS/Azure free tier only) is threaded through every module below as an explicit "Lab Reality" note. Short version: we'll do real hands-on work for anything that fits free tier or a small slice of the $300; for expensive/enterprise-only services (Spanner multi-region, BigQuery at scale, multi-region GKE, Anthos, etc.) we'll write real Terraform/gcloud/kubectl that we validate with plan/dry-run but don't apply, and use your workplace console read-only, as a museum, never to create or change anything there. That combination genuinely builds real, defensible skill — architects are hired for judgment about services they've read deeply and reasoned about, not just ones they've clicked.
+````
+
+**J1116** · GL-3 · anchor-rewrite
+
+````text
+Your hands-on reality (given $300 GCP credit, permanent free tier, a workplace GCP account with broad access that you browse but never change, and AWS/Azure free tier only) is threaded through every module below as an explicit "Lab Reality" note. Short version: we'll do real hands-on work for anything that fits free tier or a small slice of the $300; for expensive/enterprise-only services (Spanner multi-region, BigQuery at scale, multi-region GKE, Anthos, etc.) we'll write real Terraform/gcloud/kubectl that we validate with plan/dry-run but don't apply, and use your workplace console read-only, as a museum, never to create or change anything there. That combination genuinely builds real, defensible skill — architects are hired for judgment about services they've read deeply and reasoned about, not just ones they've clicked.
+````
+
+**J1117** · R7-1 · rules 0.1–0.5 moved to the course guide
 
 ````text
 ### 0.1 The course parts and the companion stitch rule
@@ -1134,6 +1152,7 @@ That companion owns attack mechanics, network/cloud cybersecurity, cryptography 
 - **Tone: warm and direct; no emoji, no cheerleading.** When something is hard, say "this trips most people up", never "anyone can do this". Praise only specific, earned things; say plainly and kindly when code or reasoning is wrong or weak, and what to do about it.
 - **Stop when it is understood.** When the learner explains a concept back correctly or applies it to a new case, say so plainly, summarize what was covered, and move on; do not keep probing past understanding.
 - **No time boxes.** Modules and phases have no fixed durations; the learner advances by passing checkpoints.
+- **Every concept on GCP, hands on** (the learner's brief of 2026-09-29). Every concept with an honest GCP counterpart, in any part (theory, SQL, patterns, Go, security, the Forward Deployed Engineer work and D6's cases included), is shown on GCP and done hands on in the learner's own project, not only named (rule 0.4.11.1). A concept with no honest counterpart, such as a proof or a data structure, says so in one line rather than forcing a mapping. The learner learns well by browsing their workplace GCP account, which has broad access: each mapping also says where to look in it (Lens-W), read-only (rule 0.5.4).
 
 ### 0.3 Suite overlap and ownership register
 
@@ -1240,12 +1259,12 @@ One rule set for every file; it unifies the cybersecurity companion's rule 10, t
 1. **Hard bans:** no scanning of third parties; no malware; no live DDoS; no credential stuffing against real accounts; fixtures on localhost or disposable projects only; crypto through vetted libraries only; cryptography written by hand (a JWT signer, a hash, a TLS toy) is built only to learn, is never deployed, and the tutor says so each time it is built.
 2. **Money and time:** local first (Docker Postgres, local fixtures). Credit-using services are created for one lab and destroyed the same day, with a budget alert set before the first apply. Model API calls are replayed from recorded responses first; a live call runs only inside a workspace whose spend limit is set before the first call.
 3. **Secrets and data:** never put a password, key or real customer data in a query, a prompt or a course file; an API key lives in an environment variable or a secret manager, never in code, a client or a transcript. Lab data is synthetic.
-4. **The workplace console is read-only:** look, never create or change.
+4. **The workplace account is browsed, never changed.** The learner's workplace GCP account has broad access; it is for looking. Console pages and read-only commands (`list`, `describe`, `get-iam-policy`, `gcloud logging read`, a BigQuery dry run) are allowed. Nothing there is created, changed, started, stopped or deleted; no query runs that bills the employer beyond a dry run; no workplace credential is used by a lab or pasted into a session; and no workplace data, resource names or secrets enter a prompt, a note or a course file (rule 0.5.3). Building happens in the learner's own project under rule 0.5.2. A project the employer sanctions for learning counts as the learner's own only when the learner names it in chat.
 5. **Every lab carries a Lab Reality tag:** `[free-tier]` · `[credit ~$X]` · `[plan-only]` · `[paper]` · `[local]`.
 
 ````
 
-**J1114** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
+**J1118** · R7-1 · Part X moved out (its content is rules 0.4.1, 0.4.2 and the guide's §1)
 
 ````text
 ## PART X — How We'll Actually Work
@@ -1262,7 +1281,7 @@ We start with A1: Digital Logic & Data Representation below, right now.
 
 ````
 
-**J1115** · R7-1 · anchor-rewrite
+**J1119** · R7-1 · anchor-rewrite
 
 ````text
 A5.D7 Naming and measurement: DNS as a distributed, hierarchical, cached database whose consistency is bounded by TTLs (A9's eventual consistency); anycast; measurement as experiment — `ping`, `traceroute` (TTL expiry), `dig +trace`, and packet capture with `tcpdump` on your own host only (§0.5)

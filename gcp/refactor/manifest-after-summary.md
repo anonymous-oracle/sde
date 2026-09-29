@@ -72,7 +72,7 @@ Counts: tokens_defined 911 · collisions_primary 0 · unresolved 124 · cross_fi
 
 | File | Lines | SHA-256 |
 |---|---:|---|
-| Curriculum.md | 1569 | `37d5cebcb9a46d7746411792b58df37a1ce0d04fa18a280e292682eb6a1282fd` |
+| Curriculum.md | 1569 | `b91dfe03942df01a16f1e9215ae8de294997c7d0b706c2ddba844537a66375f2` |
 | system-design-primer-companion.md | 1129 | `cfffa8f7fe0af5d9207dfa67c5c770653ee3c44f3deb2c0f2536a00083aff37b` |
 | sql-databases-companion.md | 6497 | `75de0e41593c80e8d8e030981c3a4154e3d77f0243ab5dcc7df5f363690780b7` |
 | design-patterns-companion.md | 1997 | `150f823da0267a04b29a0de6ffedfa9da9d3e349347b91adedaa529bd090b18b` |
