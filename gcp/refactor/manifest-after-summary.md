@@ -76,7 +76,7 @@ Counts: tokens_defined 911 · collisions_primary 0 · unresolved 124 · cross_fi
 | system-design-primer-companion.md | 1129 | `cfffa8f7fe0af5d9207dfa67c5c770653ee3c44f3deb2c0f2536a00083aff37b` |
 | sql-databases-companion.md | 6497 | `75de0e41593c80e8d8e030981c3a4154e3d77f0243ab5dcc7df5f363690780b7` |
 | design-patterns-companion.md | 1997 | `150f823da0267a04b29a0de6ffedfa9da9d3e349347b91adedaa529bd090b18b` |
-| cloud-cybersecurity-companion.md | 2894 | `cf68c062a7a70dcd1b7f7b6ba2efbf06f99f9d5a34c43c5bef5a00af77138fd8` |
+| cloud-cybersecurity-companion.md | 2894 | `3264df047bb11c92c281fb73dc819744a2133fa9bee5699e03d3483001728304` |
 | session-progress-ledger.md | 108 | `2ae33d1c61a5836b68c037a5685e1ab1b4794692e1985ee8ed685c7abfd063d8` |
 | learn-SKILL.md | 78 | `d794cc09183d2e0a25904a03ee24b4ce14db30ef609fbc9a123d192b8f91c83c` |
 | go-language-companion.md | 790 | `3b3411836ee6708c3c13e3cbd233def7313d8f76158b01d84c037f0d0f856c2e` |

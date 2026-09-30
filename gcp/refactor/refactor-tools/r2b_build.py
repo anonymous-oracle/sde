@@ -51,6 +51,7 @@ import r8_fde  # noqa: E402
 import r9_practice  # noqa: E402
 import r10_mlcases  # noqa: E402
 import r11_gcplab  # noqa: E402
+import r12_tutorfix  # noqa: E402
 
 # Track N section → the main-course anchor that holds the same subject (D5 + D11). Used only for stitch headers;
 # body pointers are rewritten by hand in the per-file rules, because each needs its material present.
@@ -202,6 +203,7 @@ def main():
     r9_practice.build(files)         # R9 (D20): the architect's practice, B6, C7's case library
     r10_mlcases.build(files)         # R10 (D21): ML system-design case studies, D6 and Appendix M
     r11_gcplab.build(files)          # R11 (D23): every concept on GCP, hands on; the workplace tour
+    r12_tutorfix.build(files)        # R12 (D24): tutor corrections of the A5 session
     gd = r7_guide.build(files, go, fde)   # R7 (D18): the course guide; the rules move there once
     led = r5_acad.led(root)          # C-23, C-66 (D2): the regenerated ledger
     for fn, f in list(files.items()) + [(go.n, go), (fde.n, fde), (gd.n, gd), (led.n, led)]:

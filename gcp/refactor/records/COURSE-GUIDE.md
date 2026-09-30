@@ -2,55 +2,55 @@
 
 Refactor bookkeeping only, not course material. Decision D6 keeps provenance, the D3 archive and every line the build changed or removed (R2b; the R2c Go tie-ins; R4, rules R4-*) out of the course files; decision D3 keeps them here, verbatim. Each entry names the build journal number (outputs/r2b/journal.jsonl), the rule and the class.
 
-**J1261** · R7-5 · anchor-rewrite
+**J1271** · R7-5 · anchor-rewrite
 
 ````text
 - When companion-file content (system-design-primer, SQL, design-patterns) overlaps a main-course module, **teach it once, stitched into the same session** — never as a separate pass, per each companion's own §0.2 stitching rules.
 ````
 
-**J1262** · R7-5 · anchor-rewrite
+**J1272** · R7-5 · anchor-rewrite
 
 ````text
 One contract for every part; each companion carries the same contract in its own §0 and adds its session detail. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.2) · (3) this main course on order, cert timing and Lab Reality · (4) the owning part on its content (§0.3) · (5) the companions' defaults.
 ````
 
-**J1263** · R7-5 · anchor-rewrite
+**J1273** · R7-5 · anchor-rewrite
 
 ````text
 One contract for every part; each part's §0 adds only what is particular to that part. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.2) · (3) this main course on order, cert timing and Lab Reality · (4) the owning part on its content (§0.3) · (5) the companions' defaults.
 ````
 
-**J1264** · R7-5 · anchor-rewrite
+**J1274** · R7-5 · anchor-rewrite
 
 ````text
 One rule set for every file; it unifies the cybersecurity companion's rule 10, the SQL companion's rule 10 and the Lab Reality paragraph above.
 ````
 
-**J1265** · R7-5 · anchor-rewrite
+**J1275** · R7-5 · anchor-rewrite
 
 ````text
 One contract for every part; each part's §0 adds only what is particular to that part. When two rules conflict, the higher one wins: (1) the learner's explicit instruction in the current chat · (2) the learner teaching preferences (§0.2) · (3) the main course on order, cert timing and Lab Reality · (4) the owning part on its content (§0.3) · (5) the companions' defaults.
 ````
 
-**J1266** · R7-5 · anchor-rewrite
+**J1276** · R7-5 · anchor-rewrite
 
 ````text
-- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.2 rule out separate calibrating questions). A new topic's first check is the calibrating one, woven into its first teaching turn: predict an output, or give a best guess. A turn may be as long as one concept needs.
+- Every turn carries exactly one focused question, embedded in the teaching. Diagnosis happens through those checks; there is no separate probing (the learner preferences in §0.2 rule out separate calibrating questions). A new topic's first check is the calibrating one, woven into its first teaching turn: predict an output, or give a best guess. A turn stays short: about 120 to 200 words of teaching plus at most one table or worked example. A concept that needs more is split ("part 1 of 2") and nothing is dropped; the why arrives in the next part.
 ````
 
-**J1267** · R7-5 · anchor-rewrite
+**J1277** · R7-5 · anchor-rewrite
 
 ````text
 2. **Concept** — taught once, by the owner in §0.3.
 ````
 
-**J1268** · R7-5 · anchor-rewrite
+**J1278** · R7-5 · anchor-rewrite
 
 ````text
 7. **Checks**, woven in per §0.2.
 ````
 
-**J1269** · R7-5 · anchor-rewrite
+**J1279** · R7-5 · anchor-rewrite
 
 ````text
 8. **Close**, ticking boxes in every file (§0.4.8).

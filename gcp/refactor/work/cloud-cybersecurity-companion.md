@@ -908,8 +908,8 @@ Teach in stitch order (§2), not in ID order. Prop Lock applies.
 - [ ] unlocked
 - **Attack:** DNS queries encode stolen data; HTTPS to attacker; abuse Cloud NAT egress.
 - **Why it works:** DNS often allowed; hard to inspect.
-- **Defense pattern:** Egress allowlists; DNS logging/monitoring; VPC-SC; DLP on egress paths; alert unusual DNS volume.
-- **GCP lens:** Lens-1: Cloud DNS logging; VPC-SC; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties.
+- **Defense pattern:** Egress allowlists (VPC firewall egress rules); DNS logging/monitoring; DLP on egress paths; alert unusual DNS volume. VPC Service Controls (NT-06) is not a control here: it guards Google APIs, not DNS or HTTPS to the internet.
+- **GCP lens:** Lens-1: Cloud DNS logging; VPC firewall egress rules; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties.
 - **Lab:** SEC-E4.20
 - **Check:** Why is DNS a popular exfil channel?
 

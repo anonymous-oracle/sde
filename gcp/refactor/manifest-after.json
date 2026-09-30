@@ -17498,6 +17498,7 @@
       "referenced": [
        67,
        91,
+       911,
        1304,
        1309,
        1780,
@@ -22884,16 +22885,16 @@
       "text": "- **Why it works:** DNS often allowed; hard to inspect."
      },
      {
-      "h": "2d6216ea13272dba",
+      "h": "c269dd61482c5482",
       "label": "Defense pattern",
       "line": 911,
-      "text": "- **Defense pattern:** Egress allowlists; DNS logging/monitoring; VPC-SC; DLP on egress paths; alert unusual DNS volume."
+      "text": "- **Defense pattern:** Egress allowlists (VPC firewall egress rules); DNS logging/monitoring; DLP on egress paths; alert unusual DNS volume. VPC Service Controls (NT-06) is not a control here: it guards Google APIs, not DNS or HTTPS to the internet."
      },
      {
-      "h": "0a9022cec41f09dc",
+      "h": "06d1e4be655689aa",
       "label": "GCP lens",
       "line": 912,
-      "text": "- **GCP lens:** Lens-1: Cloud DNS logging; VPC-SC; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties."
+      "text": "- **GCP lens:** Lens-1: Cloud DNS logging; VPC firewall egress rules; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties."
      },
      {
       "h": "e1c32753b9377044",
@@ -33491,14 +33492,14 @@
       "text": "- **Why it works:** DNS often allowed; hard to inspect."
      },
      {
-      "h": "2d6216ea13272dba",
+      "h": "c269dd61482c5482",
       "line": 911,
-      "text": "- **Defense pattern:** Egress allowlists; DNS logging/monitoring; VPC-SC; DLP on egress paths; alert unusual DNS volume."
+      "text": "- **Defense pattern:** Egress allowlists (VPC firewall egress rules); DNS logging/monitoring; DLP on egress paths; alert unusual DNS volume. VPC Service Controls (NT-06) is not a control here: it guards Google APIs, not DNS or HTTPS to the internet."
      },
      {
-      "h": "0a9022cec41f09dc",
+      "h": "06d1e4be655689aa",
       "line": 912,
-      "text": "- **GCP lens:** Lens-1: Cloud DNS logging; VPC-SC; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties."
+      "text": "- **GCP lens:** Lens-1: Cloud DNS logging; VPC firewall egress rules; Cloud NAT logs. Lens-2: conceptual tunneling card — no real tunnel to third parties."
      },
      {
       "h": "e1c32753b9377044",
@@ -42834,7 +42835,7 @@
     "Why it works": 125
    },
    "line_count": 2894,
-   "sha256": "cf68c062a7a70dcd1b7f7b6ba2efbf06f99f9d5a34c43c5bef5a00af77138fd8"
+   "sha256": "3264df047bb11c92c281fb73dc819744a2133fa9bee5699e03d3483001728304"
   },
   "design-patterns-companion.md": {
    "counts": {

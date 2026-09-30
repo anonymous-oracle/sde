@@ -517,3 +517,23 @@ The learner asked that every related concept be mapped to GCP and taught hands o
 
 **Gates.** `selfcontained.py`, `audit_r2b.py` and `verify.py . --stage R5` pass. R5's gate 1 first failed because the move of the branch into master reset `inputs-original/` to writable; `chmod a-w inputs-original/*` restored the invariant.
 
+## R12 Tutor corrections of the A5 session (D24) — 2026-09-30
+
+The learner asked that the corrections in `tutor-corrections-and-fixes.md` be applied to the course. Each correction had been overridden by a default lower in rule 0.4's priority order; the fixes put the instruction into the rule the default came from.
+
+| Correction | Where it now lives |
+|---|---|
+| C1 short turns, full rigour | Rule 0.2 preference; rule 0.4.1 (a turn stays short, a long concept is split, nothing dropped); rule 0.4.8 coverage strip |
+| C2 no text-drawn diagrams | Rule 0.2 preference |
+| C3 no assumed terms; E1 and E2 | Rule 0.2; rule 0.4.6 (scan the draft for terms); rule 0.4.7 (test a check for "and", "then" or a second question; confirm and sharpen, never add the answer) |
+| C4 and C5 the learner writes commands, a fuller lens | Rule 0.2; rule 0.4.11.1 (Lens-1 is a grammar and a `--help` path, the learner builds the command; lens layout) |
+| C6, E7 hands on everywhere, retro-lens | Rule 0.4.11.1 (retro-lens backlog in recall turns); rule 0.5.4 (ask once which project is the learner's own) |
+| C7 stuck reply, re-asked check | Rule 0.4.1; rule 0.2 |
+| C8 scenario preamble; the victim wording | Rule 0.4.11.6 (actor table) |
+| E3 pasted workplace names | Rule 0.5.4 (no "this time" exemption; `gcloud config list` first) |
+| E5 unflagged figures | Rule 0.4.11.4 |
+| Per-turn checklist | Rule 0.4.13, one line of pointers, no repeated text |
+
+Not course text: the ledger delta (mastery states, misconception register M1…M11, retro-lens backlog, open questions, resume point) and the terms to re-anchor belong to the learner's own ledger, which the learner pastes at the start of a session (rule 0.4.8). E4 (VPC Service Controls is not a DNS-tunnel control) was a real error in NT-03 of the cybersecurity companion; TF-9 and TF-10 correct it.
+
+**Gates.** `selfcontained.py`, `audit_r2b.py` and `verify.py . --stage R5` pass.
