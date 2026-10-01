@@ -26,7 +26,6 @@
   - D16 — Generative AI, LLMs, Agents & Claude Applications (Forward Deployed Engineer)
   - D17 — Cloud Providers & Certifications (GCP, AWS, Azure) and the Cross-Provider Map
   - D18 — Course Design, Teaching Contract & Learning Method
-  - D19 — Go Systems Engineering & the Nasiko Control-Plane Build
 - Part 3 — De-duplication register: concepts taught by more than one part
 - Part 4 — Practice inventory
 - Part 5 — Operating sections of each part (full text)
@@ -38,8 +37,6 @@
 ## How to read this document
 
 The nine source files form one course. They are the main course (`Curriculum.md`), six companions (System Design Primer, SQL & Databases, Design Patterns, Cloud Cybersecurity, Go Language, Forward Deployed Engineer), the course guide that holds the rules, and a tutoring-method file. The same subject is often taught from several angles; TLS, for example, appears in networking, cryptography, the primer and the Go companion. A file-by-file list would therefore repeat itself, so this index lists each topic once, under the domain and part that own it.
-
-A tenth source, the Nasiko Go control-plane curriculum, is merged in as domain D19 and as supplements to D02, D04, D07, D08, D14, D15 and D16; see Part 9.
 
 **Parts 0 and 0B come first because they govern everything after them.** They set the expert-mastery rules and the prerequisite ladder from school mathematics upward. **Part 2** is the catalogue: each main-course module is followed by the companion topics stitched to it. **Part 3** is the ownership register. **Part 4** holds every problem, exercise, lab, kata and capstone. **Part 5** reproduces the operating sections of each part in full: rules, stitch tables, tiers, skip-tests, capstone specifications and verification notes. **Part 7** is the case-study index. **Part 8** proves coverage term by term.
 
@@ -229,7 +226,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
 | D16 | Generative AI, LLMs, Agents & Claude Applications (Forward Deployed Engineer) | How LLMs work, building them from scratch, the Claude API, prompts and context, tools and MCP, agents, Claude Code, security, evaluation, application design, the FDE role and the CCDV-F exam. | Main course D4, D5 · FDE companion LB-1…LB-7, FDE-04…FDE-28, checkpoints, capstones |
 | D17 | Cloud Providers & Certifications (GCP, AWS, Azure) and the Cross-Provider Map | Google Cloud, AWS and Azure service maps, every certification track with its domains, and the cross-provider concept map. | Main course Parts V–IX |
 | D18 | Course Design, Teaching Contract & Learning Method | The rules, ownership register, learner preferences, session protocol, lab safety, tutoring method and the university alignment. | Course guide · Main course §0, §0.6, §1 · Learn skill |
-| D19 | Go Systems Engineering & the Nasiko Control-Plane Build | The Go unlock path G0–G20 with algorithm and database bridges, the contest and theory remainder, tool and client subcourses, the capstone phases P0–P10, normalized service specs, payments, the HLD/LLD ladder, production and release, and scope exclusions. | Nasiko Go control-plane curriculum (merged); supplements to D02, D04, D07, D08, D14, D15, D16 |
 
 ## Part 2 — Consolidated topic catalogue
 
@@ -341,24 +337,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
   - Fermi estimation: decompose, estimate each factor to within a factor of 3, and multiply; errors in log space partly cancel, so the product is usually within an order of magnitude.
   - Sensitivity: the factor with the widest range dominates the uncertainty of the product; estimate it twice by two methods.
   - Readings for the whole pass: Kleppmann and Riccomini, *Designing Data-Intensive Applications*, 2nd ed. (2026), parts I–II; DeCandia et al., "Dynamo: Amazon's Highly Available Key-value Store" (SOSP 2007); Harchol-Balter, cited above.
-
-##### Nasiko additions — MATH-ML ladder with Go exercises (MML-0 … MML-12)
-
-*Taught at the first ML-CORE or ML-SYS use of each concept; every slice ends in a from-scratch Go exercise (see D19 N3).*
-
-- **MML-0 Arithmetic, units and numerical sense** — integers, bases, prime factors, GCD and LCM, fractions, decimals, ratios, percentages, rates, units, scientific notation, approximation, significant figures. *Go:* base converters, unit and rate converters, latency and cost calculators, feature-normalisation checks.
-- **MML-1 Algebra, relations and functions** — expressions, equations, inequalities, absolute value, polynomials, remainder and factor theorem, exponentials, logarithms, inverse functions, relations, domain and range, composition, monotonicity. *Go:* expression evaluators, relation and function validators, log-scale transforms, score-calibration tables.
-- **MML-2 Geometry, coordinates and measurement** — Cartesian coordinates, distance metrics, slope, intersections, similarity, basic trigonometry, conic intuition only when CV, audio or optimisation needs it. *Go:* Euclidean, cosine and Manhattan distance, line intersections, bounding boxes, IoU, simple image and audio coordinate transforms.
-- **MML-3 Linear algebra and spectral methods** — vectors, matrices, determinants, row operations, dot and cross products, norms, projections, orthogonality, rank, eigenvectors and eigenvalues, Gram–Schmidt, SVD and PCA, low-rank approximation. *Go:* vector and matrix package, Gaussian elimination, cosine similarity, Gram–Schmidt, power iteration, PCA projection, ANN brute-force baseline.
-- **MML-4 Calculus, change and gradients** — limits, continuity, derivatives, product, quotient and chain rules, partial derivatives, gradients, Jacobians, Hessian intuition, integrals as accumulated mass, first-order ODE intuition. *Go:* finite-difference gradient checks, gradient descent, logistic-regression training, numerical integration, Euler and Runge–Kutta (RK4) toy solvers, learning-rate experiments.
-- **MML-5 Probability** — events, conditional probability, Bayes, independence, random variables, expectation, variance, Bernoulli, binomial, Poisson, normal and exponential distributions, sampling, convergence intuition. *Go:* PRNG-backed samplers, Monte Carlo estimates, Bayes-classifier toy examples, hash-collision simulations, convergence tables.
-- **MML-6 Statistics, inference and experimental design** — estimators, bias and variance, CLT intuition, MLE, Fisher-information intuition, confidence intervals, hypothesis tests, p-values, bootstrap and jackknife, power, multiple testing, A/B tests, CUPED intuition, Bayesian prior and posterior updates. *Go:* metric aggregators, MLE estimators, bootstrap CIs, sequential-test warnings, Bayesian update toys, an experiment analyser over event logs.
-- **MML-7 Optimisation and constrained decisions** — convexity, constraints, Lagrange and KKT intuition, gradient descent and SGD, momentum and adaptive-optimiser intuition, regularisation, coordinate descent, linear programming, the assignment problem. *Go:* SGD with L1 and L2, coordinate descent for linear models, Hungarian and min-cost assignment for scheduling, constrained ranking, optimiser diagnostics.
-- **MML-8 Information theory** — entropy, cross-entropy, KL divergence, mutual information, perplexity, calibration, log loss, compression and channel-capacity intuition only where model evaluation needs it. *Go:* cross-entropy and log loss, calibration bins, entropy-based splits, a perplexity calculator, model-comparison reports.
-- **MML-9 Causality, graphs and decision maths** — DAGs, confounding, propensity scores, difference-in-differences, uplift modelling, Markov decision processes, contextual bandits, UCB, Thompson sampling. *Go:* DAG adjustment checks, inverse-propensity weighting, uplift metrics, epsilon-greedy, UCB and Thompson bandits.
-- **MML-10 Numerical computing and reproducibility** — floating-point error, overflow and underflow, stable softmax and logsumexp, PRNG seeding, deterministic tests, interpolation, finite differences, curve fitting, numerical differentiation and integration, error propagation, vectorised thinking without hiding loops. *Go:* stable maths helpers, reproducible train and test splits, interpolation and curve-fit kernels, naive-versus-optimised loop benchmarks, comparison with Gonum.
-- **MML-11 Signal, image and sequence maths gates** — convolution, correlation, sampling and aliasing, DFT and FFT intuition, windowing and STFT, spectrogram and MFCC intuition, 2D convolution, morphology, tokeniser and sequence probability, automata prerequisites; conditional, taught only when a case study or router needs it. *Go:* 1D and 2D convolution, a small DFT, a spectral-feature extractor, Sobel and morphology filters, n-gram perplexity, finite-state tokeniser exercises.
-- **MML-12 Graduate rigor ceiling** — proof habits, metric and convergence intuition, compactness and continuity only as needed, generalisation versus optimisation, stability and conditioning, approximation error. *Go:* short correctness and convergence notes beside the labs; tests of numerical conditioning, approximation error and stability failures.
 
 ### D03 — Programming Languages & Language Theory (Python, Go, TypeScript)
 
@@ -823,12 +801,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
 - **O01 — Hash map** *(object-oriented design problem)* *Constraints:* integer keys, chaining for collisions, ignore load factor, valid inputs, fits in memory. *Design:* `Item(key, value)`; `HashTable(size)` holds `size` buckets (lists); `_hash_function(key) = key % size`; `set` (update-or-append), `get` (`KeyError` if absent), `remove`. O(1) average, O(chain) worst. *Extend:* string keys, load factor + resizing, open addressing. *Cloud extension:* the same structure inside Redis (hash slots) and every key-value store (SD-21); resizing = resharding (SD-17, consistent hashing SD-38a).
 - **O02 — LRU cache** *(object-oriented design problem)* *Constraints:* caches web-query results, valid inputs, fits in memory. *Design:* `Node`, `LinkedList` (`move_to_front`, `append_to_front`, `remove_from_tail`), `Cache(MAX_SIZE)` with a `lookup` dict + linked list; `get` moves the node to the front; `set` updates in place or evicts the tail when full. *Defects to find:* `Node` stores the builtin `next` instead of a pointer; it has no `prev`, yet O(1) mid-list removal needs a **doubly** linked list; `Cache.set` reads `tail.query`, which `Node` doesn't hold; in P06's README version `set(results, query)` is called as `set(query, results)` and `lookup[query]` raises `KeyError` where `None` is intended. *Cloud extension:* Memorystore eviction (SX-11), P06.
 - **O07 — Circular array — *primer placeholder: listed with a "Contribute" link, no solution in the repo*** *(object-oriented design problem)* Treat it as the ring buffer exercise: fixed capacity, `head`/`tail` with modulo indexing, a `count` (or a spare slot) to tell full from empty, O(1) push/pop, policy on full (reject vs overwrite-oldest), in-order iteration, single-producer/single-consumer thread safety. *Cloud extension:* bounded buffers and back pressure (SD-28) — Pub/Sub subscriber flow control, streaming-pipeline buffers, log-structured retention.
-
-##### Nasiko additions — Go-implemented data structures, algorithms and contest remainder
-
-- **Implementation bar.** Every structure and algorithm of A4 is implemented in Go with tests, in the order of the G-path in D19 N1: arrays, two pointers and prefix sums (G1); stacks, queues, deques, bags, sliding window, recursion and backtracking (G2); linked lists, binary trees, BST and red-black trees, binary heap, weighted union-find with path compression, hash symbol table by chaining and open addressing (G3); tries, KMP, rolling hash and Rabin–Karp (G4); insertion sort, mergesort, randomised quicksort, heapsort, binary search and binary search on a predicate, external merge sort with a loser tree, Huffman coding, interval scheduling, Kruskal and Prim (G8); knapsack, LCS, LIS, alignment DP (G9); BFS, DFS, topological sort, Dijkstra, Bellman-Ford, 0-1 BFS (G11); LRU and LFU caches and consistent hashing (G12).
-- **Contest remainder (taught after G9 and G11).** NP-completeness and reductions with what to do about hardness; max flow and min cut with Edmonds–Karp; Fenwick tree, segment tree, sparse table; suffix arrays and suffix automata; finite automata and weighted finite-state transducers (symbol tables, composition, determinisation and minimisation intuition, Viterbi-style shortest path); peak finding; Fibonacci heaps and van Emde Boas trees as ideas only.
-- **Hard-problem practice.** Each unlocked family (array, stack and queue, linked list, tree, heap and union-find, string, sort, search and greedy, DP, graph, design) is followed by hard LeetCode, HackerRank and HackerEarth problems that use only unlocked syntax.
 
 ### D05 — Computer Networking & Web Protocols
 
@@ -1419,13 +1391,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
   - Event sourcing as a left fold: state = foldl(apply, s₀, events). Replays are deterministic only if `apply` is a pure function of the state and the event; snapshots cache a prefix of the fold.
   - Sagas (Garcia-Molina and Salem, 1987): a long-lived transaction split into steps T₁…Tₙ with compensations C₁…Cₙ₋₁. The guarantee is that either T₁…Tₙ all run, or T₁…Tₖ run followed by Cₖ…C₁. Compensation is semantic, not an undo of bytes, and the intermediate states are visible to others (no isolation).
   - Readings for the whole pass: Liskov and Guttag, *Program Development in Java* (2000); Meyer, *Object-Oriented Software Construction*, 2nd ed. (1997); Wadler, "The Expression Problem" (1998 mailing-list note); Chidamber and Kemerer, "A Metrics Suite for Object Oriented Design", *IEEE Transactions on Software Engineering* 20(6), 1994; Garcia-Molina and Salem, "Sagas" (SIGMOD 1987).
-
-##### Nasiko additions — architecture ladder and distributed patterns used in the build
-
-- **Repository and unit of work** as the persistence boundary between services and stores (Mongo, Postgres, Redis); adapters at every external system (Kong, Docker, Kubernetes, LLM provider, NANDA).
-- **Idempotent consumer** — a message handler keyed on `(agent_id, version, action)` that acknowledges only after its status write succeeds; paired with the transactional outbox and tested with a Postgres isolation test.
-- **Strangler fig** — migrating a legacy system behind a facade by replacing routes one at a time (used for the Python-to-Go move of the control plane).
-- The implementation ladder (HLD, LLD, microservices, patterns, case-study ADRs) and the pattern graduation rule are in D19 N8.
 
 ### D08 — Databases, SQL, Relational Theory & Data Modelling
 
@@ -2090,20 +2055,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
   - First-order queries (the relational algebra) cannot express transitive closure (a consequence of the locality of first-order logic, stated without proof; Libkin, *Elements of Finite Model Theory*, 2004).
   - Datalog: rules, the least fixpoint semantics, naive and semi-naive evaluation (each round joins only the new facts), and stratified negation. SQL's `WITH RECURSIVE` is linear Datalog with a union; a monotone query reaches its fixpoint in at most as many rounds as the longest shortest path.
   - Readings for the whole pass: the CMU 15-445/645 and Berkeley CS 186 lecture notes; Hellerstein, Stonebraker and Hamilton, "Architecture of a Database System", *Foundations and Trends in Databases* 1(2), 2007.
-
-##### Nasiko additions — PostgreSQL engine terms and labs used by the Go build
-
-*The DB-1…DB-10 engine slices above are the owner. These are the engine terms and Go labs that the build route adds or names.*
-
-- **Storage and page layout (DB-4).** Relation forks, the free space map and the visibility map; 1 GB segments; the 8 KB page header, line pointers and the heap tuple header; TOAST. *Go lab:* a slotted-page package with insert, delete, compact and checksum tests; store oversized values out of line.
-- **Buffer pool and flushing (DB-5).** Shared buffers, buffer descriptors and the buffer table, pins and refcounts, clock-sweep eviction, the background writer (bgwriter) and the checkpointer. *Go lab:* a toy buffer pool with pins and second-chance eviction; benchmark the hit ratio under skewed workloads.
-- **Access methods (DB-6).** B-Tree with Lehman–Yao right links and high keys, hash indexes, GIN, GiST and SP-GiST, BRIN, bitmap scans, index-only scans and the visibility map. *Go lab:* B-Tree search and split tests, an inverted index for AgentCards, a BRIN-like min/max summary for append-only chat rows.
-- **Execution (DB-7).** The Volcano iterator model, `work_mem`, external sort, nested-loop, index, hash and merge joins, aggregation and set operators. *Go lab:* iterator nodes `Scan`, `Filter`, `HashJoin`, `Sort`, `HashAggregate` over in-memory rows; force a spill in a temp-directory lab.
-- **Planner and statistics (DB-8).** Parser, analyser, rewriter and planner pipeline; `pg_statistic`, MCV lists, histograms, correlation; cost variables; path generation and interesting orders; GEQO; parallel query. *Lab:* create skewed data, run `ANALYZE`, predict selectivity, compare predicted and actual rows, tune indexes and `random_page_cost` in a sandbox.
-- **Query transformation (DB-3).** Inlined versus materialised CTEs, the recursive-CTE working table, window frames, lateral joins. *Lab:* API reports using CTEs, windows and lateral joins, with plans compared under `EXPLAIN (ANALYZE, BUFFERS)`.
-- **Transactions and locks (DB-9).** Tuple versioning, snapshots, `pg_xact`, isolation levels and SSI, row and table locks, LWLocks versus heavyweight locks, deadlocks, HOT, autovacuum, XID wraparound and freezing. *Go lab:* simulate visibility rules; concurrent SQL labs for read committed, repeatable read and serializable; a wait-for-graph deadlock detector.
-- **WAL, recovery and replication (DB-10).** WAL records, synchronous commit, full-page writes, checkpoints, redo with no undo, physical streaming replication, WAL archiving, PITR. *Go lab:* a mini WAL and replay log for the slotted page; primary and standby locally; measure replica lag; a backup, restore and PITR drill.
-- **Application drills.** Keyset pagination, covering indexes and N+1 detection (G12); relational-algebra evaluator over Go slices with NULL and duplicate edge cases (DB-1); constraint-violation tests for the teaching schema (DB-2).
 
 ### D09 — Distributed Systems & Large-Scale System Design
 
@@ -3797,16 +3748,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
 **Companion topics whose primary stitch is this module:** IR-03, IR-05, IR-06, IR-07, IR-08
 
 
-##### Nasiko additions — gateway, streams, builders and observability tools
-
-- **Kong API gateway** — services, routes, consumers and plugins; the Kong database (Postgres) and admin API; Lua plugins (a `chat-logger` plugin that posts the JSON-RPC exchange to a service); Nginx as the allowed alternative with the same route table.
-- **Redis Streams** — `XADD`, `XREADGROUP`, consumer groups, acknowledgement after a successful write, pending-entry recovery, at-least-once delivery with idempotent consumers, lag as an SLI.
-- **BuildKit** — daemon-based image builds for a build worker; push to a registry (ECR, DOCR); Docker Engine API and `client-go` as Go clients for deploy, status and rollback.
-- **DigitalOcean Kubernetes (DOKS)** beside EKS as a Terraform target; Helm charts for agent workloads and control-plane services.
-- **Observability stack** — Phoenix as an LLM-trace UI beside OpenTelemetry; Jaeger and Grafana Loki as tracing and log-store specimens; MinIO as an S3-compatible object-store specimen.
-- **Open-source architecture specimens** read for constraints, invariants, failures and trade-offs: Kubernetes, Envoy, Kong, Nginx, etcd, Redis, Kafka and Redpanda, Temporal, CockroachDB, PostgreSQL, Prometheus, Grafana Loki, Jaeger and OpenTelemetry, MinIO.
-- The N4 subcourse list in D19 gives each tool's project use and lab.
-
 ### D15 — Machine Learning, MLOps & Production ML System Design
 
 *Classical ML, deep learning, MLOps, and the ten production-ML case-study families with their concept decomposition.*
@@ -3963,50 +3904,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
 - **a synchronous score beside an asynchronous review queue** — Stripe Radar, Uber RADAR — D6.B3
 - **a registry alias and a model canary, a dial separate from the application canary** — Michelangelo-class platforms — D3; D6.F10
 
-
-##### Nasiko additions — ML-CORE algorithm spine with Go implementations (ML-1 … ML-14)
-
-- **ML-1 Problem framing and data contracts** — prediction, ranking, retrieval, generation and optimisation; labels; leakage; delayed labels; class imbalance; cold start; feedback loops. *Go:* a case-study parser that turns a product description into target, input entities, label, metric and failure mode.
-- **ML-2 Feature engineering** — numeric, categorical, text, time, window, session and graph features; normalisation; the hashing trick; missing values; train and serve parity. *Go:* a feature pipeline package with schema validation, transformations and golden tests against event fixtures.
-- **ML-3 Evaluation** — train, validation and test; cross-validation; confusion matrix; precision, recall, F1; ROC and PR-AUC; calibration; ranking metrics (MAP, NDCG, MRR); forecast errors; business guardrail metrics. *Go:* a metrics library and evaluator CLI for classification, ranking, retrieval, forecasting and LLM outputs.
-- **ML-4 Classical supervised models** — kNN, linear and logistic regression, naive Bayes, LDA and QDA intuition, SVM and margin intuition, the GLM idea, regularisation, class weights. *Go:* train and predict APIs with tests, gradient checks and a benchmarked inference path.
-- **ML-5 Trees and ensembles** — decision trees, impurity, random forests, gradient boosting at concept level, feature importance, monotonic constraints. *Go:* a CART-style tree and simple boosted stumps; compare bias, variance and calibration.
-- **ML-6 Unsupervised, density and anomaly detection** — k-means, DBSCAN intuition, Gaussian and robust statistics, GMM and EM, isolation-forest intuition, reconstruction-error anomaly detection. *Go:* k-means, a robust z-score or MAD detector, a GMM-EM toy trainer, a reconstruction-error scorer, a fraud-threshold review queue.
-- **ML-7 Search, retrieval, ranking and recommendations** — inverted indexes, BM25, embeddings, ANN concepts, collaborative filtering, matrix factorisation, two-stage retrieval and rerank, learning to rank, diversity and fairness in result sets. *Go:* BM25, item–item collaborative filtering, matrix factorisation, exact k-NN, heap top-k, a pairwise ranker, a diversity reranker, a router-shortlist evaluator.
-- **ML-8 NLP, LLMs and RAG** — Unicode and normalisation, tokenisation, edit distance, n-grams, TF-IDF, BM25, embeddings, transformer blocks at architecture level, prompts, context windows, structured outputs, retrieval-augmented generation, prompt injection, safety filters, grammar and automata constraints. *Go:* tokeniser, TF-IDF and BM25, edit distance, a prompt packer, a schema-constrained JSON parser, a cached LLM gateway, a RAG evaluator, injection-resistance tests, a finite-state constrained-decoding toy.
-- **ML-9 CV, audio and multimodal essentials** — pixels, 2D convolution, image filters, image embeddings, OCR and document extraction, audio frames, windowing, spectrogram and MFCC intuition, multimodal retrieval. *Go:* image resize and convolution filters, simple embedding adapters, perceptual hash, audio windows and spectral features, multimodal search fixtures; an external model service only when Go cannot train the model reasonably.
-- **ML-10 Graph ML and entity resolution** — graph features, PageRank, random walks, bipartite graphs, label propagation, node and edge anomaly scores, blocking and candidate generation. *Go:* entity-resolution blocking, PageRank, random-walk embeddings at toy scale, bipartite anomaly scoring.
-- **ML-11 Forecasting and decision optimisation** — moving averages, exponential smoothing, seasonality, AR-style intuition, quantiles, inventory, ETA and demand forecasts, assignment and constrained scheduling. *Go:* forecast baselines, backtests, quantile errors, an LP or assignment scheduler, ETA confidence intervals.
-- **ML-12 Bandits, reinforcement learning and causal inference** — exploration and exploitation, contextual bandits, off-policy evaluation, policy constraints, causal graphs, observational bias, uplift. *Go:* a bandit simulator, an offline replay evaluator, propensity weighting, uplift ranking, guardrail metrics.
-- **ML-13 Responsible, secure and human-centred ML** — privacy, PII minimisation, abuse resistance, prompt injection, bias and fairness, explanation, human-in-the-loop review, non-destructive and undoable AI actions. *Go:* moderation and fraud review queues, audit logs, consent and retention checks, a model-card template, a human-override workflow.
-- **ML-14 Deep-learning primitives when needed** — tensors, computational graphs, perceptron and MLP, activations, backprop, regularisation, dropout intuition, normalisation, optimisers, attention heads, positional encodings, residual connections, decoder masking. *Go:* a tiny tensor type, an MLP forward and backward pass, optimiser variants, a small self-attention forward pass, a masked-softmax test, an inference wrapper.
-
-##### Nasiko additions — ML-SYS production spine with Go labs (MLSYS-1 … MLSYS-9)
-
-- **MLSYS-1 Product and metric framing** — user problem, target action, north-star metric, guardrails, offline proxy versus online metric, launch criteria. *Lab:* turn any case-study row into a one-page product spec and metric tree.
-- **MLSYS-2 Data and feature platform** — event contracts, batch versus streaming features, freshness, backfills, point-in-time correctness, feature store, schema evolution. *Lab:* a Go feature-store facade over Postgres and Redis with offline and online parity tests.
-- **MLSYS-3 Training and evaluation pipelines** — dataset snapshots, reproducibility, experiment tracking, hyper-parameter search, model registry, model cards. *Lab:* a local trainer and evaluator CLI that writes model artefacts, metrics, lineage and approval status.
-- **MLSYS-4 Serving architecture** — online, batch, near-real-time, embedded, sidecar and async inference; cache; fallback; timeout budgets; cost. *Lab:* serve a Go model behind REST and gRPC with cache, fallback, shadow mode and latency SLOs.
-- **MLSYS-5 Experimentation and rollout** — A/B tests, holdouts, canary, shadow, ramp, segment analysis, metric guardrails, rollback. *Lab:* assignment bucketing, exposure logs, a CUPED-style report, a rollback gate.
-- **MLSYS-6 Monitoring and drift** — input and output drift, calibration drift, data-quality checks, freshness, bad-shortlist rate, alerting, incident response. *Lab:* OpenTelemetry metrics and traces, a drift detector, data-quality alerts, a runbook drill.
-- **MLSYS-7 Governance and safety** — privacy, compliance, threat modelling, model abuse, prompt injection, human review, auditability, deletion and retention. *Lab:* policy checks, red-team tests, reversible actions, an audit log, a review-dashboard API.
-- **MLSYS-8 Scale and cost** — hot keys, fan-out, approximate retrieval, batching, concurrency limits, accelerators as remote services, cloud cost attribution. *Lab:* a batcher, rate limiter and cache; compare exact versus ANN retrieval; compute cost per successful decision.
-- **MLSYS-9 Case-study synthesis** — Stripe Radar; DoorDash wait time and demand; Airbnb diverse ranking; Etsy, Netflix and Spotify recommenders; GitHub and Honeycomb LLM applications; Grab graph anomaly detection; LinkedIn causal platform; Uber push optimisation; Instacart availability; CV, audio and document systems. *Rotation:* source summary → dependency graph → a tiny faithful Go and SQL model → evaluation → production-readiness review.
-
-##### Nasiko additions — case-study clusters and their required labs
-
-*Cluster counts overlap, because many production systems combine ranking, forecasting, retrieval and platform concerns. The case-study index (Appendix M) is the source list.*
-
-- **Ranking, search, recommendations, ads, feeds** (about 111 cases: Walmart complete-the-look, Airbnb diverse ranking, Etsy ranker, Lyft recommendations, Twitter and Meta feeds, Netflix and Spotify media, Instacart search). *Prerequisites:* MML-3, MML-5, MML-8, ML-2, ML-3, ML-7, DB-6, cache and search. *Lab:* BM25, exact vector retrieval, a pairwise ranker and a diversity reranker; report recall@k, NDCG, latency, cold-start behaviour and bias and diversity trade-offs.
-- **Forecasting, ETA, availability, scheduling, pricing** (about 42: Uber airport demand and push scheduling, DoorDash wait time and demand, Wayfair delivery dates, Instacart availability, Zalando fashion forecasts). *Lab:* a time-series baseline, feature-freshness checks, a quantile forecast, an assignment or LP scheduler, a capacity and cost simulator.
-- **Fraud, risk, anomaly, spam, trust and safety** (about 28: Stripe Radar, LinkedIn viral spam, Wayfair journey embeddings, Zillow phone spam, BlaBlaCar pipeline, Slack invite spam). *Lab:* streaming feature windows, a logistic or anomaly scorer, a graph-risk prototype, a threshold review queue, an audit trail, an adversarial test set.
-- **LLM, NLP, assistants, generative-product systems** (about 42: GitHub Copilot, Honeycomb Query Assistant, Microsoft incident management, Salesforce search and summarisation, Monzo topic modelling, Airbnb support). *Lab:* tokeniser, TF-IDF and BM25, a prompt packer, a RAG evaluator, a structured-output validator, a context-window budgeter, prompt-injection tests, cache, fallback and a latency SLO.
-- **CV, audio, multimodal, document understanding** (about 28: Apple segmentation, Netflix in-video and audio, Etsy and Dropbox image search, Uber document checks). *Lab:* an image and audio feature extractor, a perceptual hash, a simple convolution and spectrogram lab, an embedding adapter, a multimodal retrieval evaluator.
-- **Feature stores, pipelines, model platforms, MLOps** (about 17 direct: Stitch Fix distributed training, Spotify Dataflow, BlaBlaCar fraud pipeline, PayPal ensemble pipeline, Pinterest ranker training). *Lab:* a feature-store facade, a dataset-snapshot manifest, a model registry, a trainer and evaluator CLI, a batch and stream parity test, a drift monitor, a shadow and canary rollout.
-- **Graph ML, embeddings, entity resolution** (about 18: Grab graph anomaly, Walmart entity resolution, Yelp embeddings, LinkedIn sparse ID embeddings, Dailymotion vector DB). *Lab:* a bipartite graph builder, PageRank and random-walk embeddings, blocking and candidate generation, a graph anomaly score, a reviewer action pipeline.
-- **Bandits, RL, explore and exploit** (about 12: Instacart contextual bandits, Wayfair communication RL, Netflix budget-constrained recommendations, Trivago cascade bandits). *Lab:* an epsilon-greedy, UCB and Thompson simulator, a contextual-bandit replay, policy constraints, a reward and guardrail dashboard.
-- **Causal inference and experimentation** (about 9: LinkedIn Ocelot, Lyft causal forecasting, Meta notification management, Spotify messaging experiments). *Lab:* an A/B assignment service, an exposure log, a bootstrap and CUPED report, propensity weighting, uplift ranking, a decision memo.
-- **Artifact chain for every rotation.** A one-page source summary; a dependency graph; a data, label and feature contract; a baseline model from scratch in Go; an evaluator; a service boundary; monitoring and rollback notes; the consequence for the router or control plane.
 
 ### D16 — Generative AI, LLMs, Agents & Claude Applications (Forward Deployed Engineer)
 
@@ -4330,14 +4227,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
 - **FDE-CK3 — Checkpoint — a scoped design** *(stitch: D5)*
   - *Task:* from one roleplayed discovery conversation, a design document: the problem, success criteria with a baseline, the architecture (FDE-26), the retrieval plan (FDE-25), the security review answers (FDE-20, FDE-21), the eval plan (FDE-22, FDE-23) and a pilot plan.
   - *Passes when:* a reviewer can trace each design choice to a stated requirement, and nothing is built that no requirement asks for.
-
-##### Nasiko additions — LLM routing and agent-protocol topics used in the build
-
-- **LLM routing** — choosing one agent from a retrieved shortlist with schema-constrained output (agent id, confidence, reason); a configurable fallback policy (ranked list by default, no silent pick); an evaluation event per decision (query id, candidate set, feature, model and ranker versions, chosen agent, confidence, fallback reason, latency, cost, later success label).
-- **Vector search for agents** — embed the query, find the nearest AgentCards in pgvector or Qdrant, keep exact brute-force fixtures for recall checks.
-- **Providers and local models** — OpenAI-compatible HTTP, the official Go SDK, Minimax, and Ollama for a local model (a Modelfile built from a GGUF file, `num_ctx 8096`).
-- **A2A and AgentCard** — JSON-RPC 2.0 `message/send`, task tracking (submit, working, artifact, streaming, terminal states), AgentCard validation and versioning, tool calling mapped to task failure rather than a hang; the full specification is in D19 N6.
-- **Router edge cases** — empty registry, embedding timeout, near-zero scores, an agent indexed but not routable, oversized query, prompt-injection attempt, stale model or feature version, cold-start agent.
 
 ### D17 — Cloud Providers & Certifications (GCP, AWS, Azure) and the Cross-Provider Map
 
@@ -4756,271 +4645,6 @@ Main course D6 names several subjects as "outside this course". Rule E1 makes ex
 - **Toolkit of moves:** Guided discovery; Direct explanation; Worked example with narration; Inline visual; Reflective pause
 
 
-### D19 — Go Systems Engineering & the Nasiko Control-Plane Build
-
-*A dependency-ordered route from zero to a working Go control plane: the Go unlock path (G0–G20) with its algorithm, database and Nasiko bridges, the contest and theory remainder, the tool and client subcourses, the reconstruction phases P0–P10, the normalized service specs, and production readiness. Every topic here is owned once; where an earlier domain already teaches the mechanism, the item here adds the Go build, the order, or the project use.*
-
-#### N0. Route, graph and ownership rules
-
-**Core topics (first pass)**
-
-- **Outcome.** From zero programming knowledge to implementing and operating a Go control plane (gateway, backend, auth service, LLM router with vector search, registry, chat history, orchestrator and build worker, CLI, sample A2A agents); to understanding and tuning PostgreSQL-backed data systems from relational algebra down to WAL, MVCC and index internals; to designing industry-grade HLD, LLD and microservice architectures; to implementing production ML-system patterns from real company case studies; and to implementing standard algorithms, data structures, maths primitives and ML algorithms in Go well enough to solve **hard** problems on LeetCode, HackerRank, HackerEarth and similar platforms. The DS/algo, ML, database-systems and system-design labs are coursework, not the capstone.
-- **Setup (not assumed).** A computer that runs Docker; a Unix-like shell or WSL; 16 GB RAM recommended for Compose plus a small cluster; disk for images; VS Code or equivalent; Git; a browser. Cloud accounts (AWS and/or DigitalOcean) only when the Terraform labs start.
-- **Edge types between topics.** `requires` (B cannot be learned honestly before A: teach A first with the full difficulty ramp) · `strengthens` (A makes B easier or more concrete: connect B back briefly, do not reteach A) · `implements` (B is the hands-on lab for A) · `contrasts` (A and B answer similar forces differently: compare with a trade-off table once both are unlocked) · `revises` (B reuses A for spaced repetition: at most five minutes unless the learner fails the check).
-- **Anti-repetition rule.** A topic that appears in several places is taught once, at its first owner node. Every other appearance says "uses" or "revises" and names the owner.
-- **Canonical owner nodes.**
-  - `BASE` computing baseline: hardware, files, processes, terminal, Git, HTTP vocabulary, JSON, editor and debugger, zero-level programming vocabulary.
-  - `GO-CORE` Go syntax and runtime: G0–G20 unlocks, errors, tests, concurrency, HTTP, gRPC, profiling, deployment.
-  - `MATH-DS` discrete maths, data structures and algorithms: proofs, induction, complexity, arrays, stacks, queues, maps, trees, heaps, graphs, sorting, DP, tries, hard contest practice.
-  - `MATH-ML` mathematics for ML systems: arithmetic fluency, units, algebra, functions, logarithms, coordinate geometry, trigonometry only as needed, linear algebra, calculus, probability, statistics, optimisation, information theory, numerical methods, spectral and transform basics, causal and RL maths.
-  - `DB-SQL` relational model and SQL: relational algebra, DDL/DML, joins, bag/set semantics, NULL and three-valued logic, constraints, transactions, query shape.
-  - `DB-ENGINE` PostgreSQL internals: catalogs, storage, slotted pages, TOAST, buffer pool, indexes, scans, execution, planner, statistics, MVCC, locks, vacuum, WAL, recovery, replication.
-  - `ML-CORE` machine-learning theory and algorithms: data, labels and features; supervised, unsupervised and semi-supervised learning; losses; regularisation; metrics; validation; regression and classification; trees and ensembles; clustering; anomaly detection; recommenders; learning to rank; embeddings; neural networks; transformers at architecture level; graph ML; bandits; causal inference.
-  - `API-SVC` API and service design: REST, gRPC, JSON-RPC, protobuf, API gateway, auth, contracts, pagination, idempotency, error model.
-  - `ARCH` HLD/LLD and architecture: C4 and Mermaid HLD, LLD, DDD boundaries, clean architecture, microservices, service discovery, sync and async, patterns.
-  - `DIST-OPS` distributed systems and operations: CAP, consistency, queues, caches, replication, backpressure, retries, circuit breakers, bulkheads, observability, SLOs, incident response, release engineering.
-  - `ML-SYS` production ML-system design: product framing, data contracts, labelling, feature stores, batch and streaming pipelines, train/serve skew, model serving, model registry, offline and online evaluation, A/B tests, shadow and canary release, drift monitoring, responsible AI, human-in-the-loop, cost and latency budgets, case-study synthesis.
-  - `TOOLS` platforms and clients: taught on first use, never as detached tool trivia.
-  - `SDP-OOD` design-problem practice · `CAPSTONE` the Nasiko reconstruction (P0–P10, API/JOB/SCHEMA/PROTO specs) · `PAY` payments addendum (optional).
-- **Dependency graph (strong edges).** BASE → GO-CORE, MATH-DS, MATH-ML · GO-CORE → MATH-DS, MATH-ML, DB-SQL, ML-CORE, API-SVC · MATH-DS → MATH-ML, DB-ENGINE, ML-CORE · DB-SQL → DB-ENGINE, API-SVC · MATH-ML → ML-CORE · API-SVC, DB-ENGINE → ARCH · ARCH, DB-ENGINE → DIST-OPS · ML-CORE, API-SVC, ARCH, DIST-OPS, DB-ENGINE → ML-SYS · TOOLS → API-SVC, DIST-OPS, ML-SYS · ARCH, DIST-OPS, MATH-DS, ML-SYS → SDP-OOD · API-SVC, ARCH, DIST-OPS, DB-ENGINE, ML-SYS → CAPSTONE · PAY → CAPSTONE (optional).
-- **Complementary links to exploit for speed.**
-  - Hash maps → hash indexes → Redis key design → idempotency-key stores.
-  - Trees → B-Trees → index scans → keyset pagination → query latency budgets.
-  - Tries and inverted indexes → GIN → AgentCard search → router shortlist quality.
-  - Sorting, heaps, top-k → external sort → merge and hash joins → ranking and trending systems.
-  - Goroutines, channels, mutexes → buffer pins and refcounts → worker pools → backpressure.
-  - Deadlocks in Go → database wait-for graphs → Redis consumer races → incident drills.
-  - WAL and replay → outbox and event sourcing → rollback and restore → production data-loss budgets.
-  - HTTP, gRPC, JSON-RPC → gateway and routing → service discovery → API contracts.
-  - CAP and consistency → MVCC and isolation → sagas and CQRS → multi-service transaction choices.
-  - Observability → query plans → traces → SLO burn alerts → operational readiness.
-  - Ratios, functions, logs → calibration curves → ranking scores → business-metric trade-offs.
-  - Vectors and matrices → embeddings → ANN and vector stores → router and recommendation retrieval.
-  - Probability and statistics → offline evaluation → A/B tests → SLO and error-budget decisions.
-  - Gradient descent and optimisation → model training → constrained scheduling and ranking → cost-aware serving.
-  - Graph theory → social and entity graphs → graph anomaly detection → fraud and trust pipelines.
-  - Queues and streams → feature freshness → online inference → drift and backfill incident drills.
-- **Graph-ordered teaching stages (build sequence).**
-  - **S0 Setup and mental model** (`BASE`, G0): computer, process, file, terminal, Git, editor; Go toolchain; how graph nodes are used. *Output:* repo and dev loop; first `go test`.
-  - **S1 Programming foundations** (G1–G2, MATH-DS basics): variables, control flow, arrays, slices, maps, functions, errors, strings; induction; arrays, stacks, queues, hash map as client. *Output:* tested Go functions; array, stack, queue and window practice.
-  - **S2 Types, memory and core data structures** (G3, MATH-DS): pointers, structs, methods, interfaces, generics; linked lists, trees, heaps, union-find, hash tables from scratch. *Output:* reusable DS packages; OOD-1 and OOD-2 foundations.
-  - **S3 Files, encodings and storage-shaped thinking** (G4–G5, DB-4 preview): IO, paths, templates, regex, time, config, logging; binary layout; slotted pages; WAL record shape. *Output:* file and CLI tools; slotted-page package; AgentCard parser.
-  - **S4 Concurrency and queues** (G6–G7, G10, queue basics): goroutines, channels, worker pools, mutexes, atomics, conditions, race detector, deadlocks, bounded queues. *Output:* worker-pool lab; Redis-stream mental model; wait-for graph toy.
-  - **S5 Algorithms for performance** (MATH-DS, G8–G9): sorting, binary search, heaps, greedy, MST, complexity, tests and benchmarks, DP, top-k and external merge sort. *Output:* benchmarked sort, top-k, rate-limiter and cache labs.
-  - **S6 Mathematics for ML and data science** (MATH-ML, MATH-DS, G9): the MML-0…MML-12 ladder. *Output:* a Go maths workbook of vectors, matrices, statistics, random variables, gradient descent, linear regression and numerical-methods kernels from scratch.
-  - **S7 ML algorithms from scratch** (ML-CORE, MATH-ML): ML-1…ML-14. *Output:* Go packages for preprocessing, metrics, models, recommender and ranker, ANN toy index, tiny tensor and attention lab, bandit simulator, causal estimator. Python is used for library-based exploration where D15 teaches it; the from-scratch Go version is the required deliverable.
-  - **S8 Networked APIs and SQL correctness** (G11–G12, DB-SQL, API-SVC REST): HTTP and TLS, REST, middleware, auth primitives; relational algebra, SQL, constraints, transactions, pagination, idempotency. *Output:* a REST slice backed by a Postgres teaching schema; SQL correctness transcript.
-  - **S9 Database engine internals** (DB-ENGINE DB-2…DB-10): catalogs and types, query transformation, storage, buffer pool, access methods, scans, execution, planner, MVCC, locks, vacuum, WAL, replication, PITR. *Output:* `EXPLAIN` labs; B-Tree, inverted-index, executor, MVCC and WAL Go labs; backup and restore drill.
-  - **S10 RPC, protocols and service contracts** (API-SVC, G13–G15): protobuf, gRPC, streaming, metadata, JSON-RPC, schema evolution, contract testing, Mongo and NoSQL trade-offs. *Output:* gRPC and JSON-RPC services; contract tests; schema-evolution exercise.
-  - **S11 Architecture, distributed ops and ML-system design** (ARCH, DIST-OPS, ML-SYS, SDP-OOD): HLD, LLD, DDD, clean architecture, microservices, discovery, gateway, caches, queues, CAP, availability, resilience, patterns; ML product framing, feature and data contracts, training/serving split, offline and online evaluation, experimentation, drift, human-in-the-loop, model governance. *Output:* every SDP and OOD lab; case-study rotations; Mermaid HLD; LLD, API, schema and state diagrams; a Go/SQL model service; shadow and canary release and a production failure drill.
-  - **S12 Tools and platform mastery** (TOOLS, DIST-OPS, ML-SYS): the N4 subcourses. *Output:* each tool lab tied to its first project use; feature-store, model-registry and evaluator labs; no tool-only sightseeing.
-  - **S13 Nasiko capstone reconstruction** (CAPSTONE P0–P10): implement the control plane after prerequisites are complete, including ML router evaluation and production guardrails. *Output:* upload → build → deploy → register → route → chat → traces → CLI → staging and prod drill.
-  - **S14 Optional specialisation and interview closure** (PAY, SDP-OOD, DIST-OPS, ML-SYS): payments if the capstone charges money; ML-system interview synthesis; final hard platform problems. *Output:* a payment slice or ML-system design portfolio; ORR packet.
-- **Anti-repetition ledger (concept family → owner).** Go syntax and runtime → N1 / `GO-CORE`. DS, algorithms, discrete maths → N1 bridges + N2 / `MATH-DS`. ML mathematics → `MATH-ML` (D02 supplement). ML algorithms and evaluation → `ML-CORE` (D15 supplement), used in router, case-study and architecture labs only after the from-scratch Go version exists. SQL semantics and PostgreSQL internals → `DB-SQL` and `DB-ENGINE` (D08). HLD, LLD, microservices, patterns → `ARCH` (D07, N8). Production ML systems and case studies → `ML-SYS` (D15). Distributed operations and resilience → `DIST-OPS` (D09, D14, N9). Tool syntax and commands → `TOOLS` (N4), taught at first use then assumed. Nasiko API, schema and job details → `CAPSTONE` (N6), implemented during P0–P10 only.
-- **Mastery check for every database slice.** One academic explanation, one SQL transcript, one Go implementation or operational drill, and one Nasiko mapping.
-- **Case-study rotation rule.** Do not read the case-study articles linearly. Use the Appendix M index, choose one representative per cluster until the learner can generalise. A rotation is complete only when the learner can explain the mathematical objective, data flow, architecture, online and offline metrics, failure modes and Go implementation trade-offs without seeing the source article.
-- **Branched quests.** When a new tool, data-store mechanism, protocol, ML-system component or architectural pattern appears (Redis Streams, a Kong plugin, a vector index, Postgres WAL or MVCC, a feature store, a model registry, an evaluator, an outbox, a circuit breaker), pause the main track, finish that topic's lab, then return.
-
-#### N0b. Reference spines (what each subject is taught from)
-
-**Core topics (first pass)**
-
-- **Algorithms and data structures.** *Algorithms*, 4th ed. (Sedgewick and Wayne; Princeton COS 226): Ch. 1 fundamentals (union-find, bags, stacks, queues, analysis); Ch. 2 sorting; Ch. 3 searching (BST, red-black, hash symbol tables); Ch. 4 graphs (undirected, directed, MST, shortest paths); Ch. 5 strings (sorts, tries, substring search, compression); Ch. 6 context (reductions, max-flow as residual).
-- **Discrete mathematics.** MIT 6.042J / 6.1200J *Mathematics for Computer Science*: proofs, sets, relations, induction, recurrences, graphs, counting, discrete probability, modular arithmetic, state machines, asymptotics.
-- **Algorithm courses.** MIT 6.006 (peak finding, sorting, heaps, BST, hashing, BFS and DFS, Dijkstra, Bellman-Ford, DP with knapsack and alignment, complexity) · MIT 6.046 (amortised analysis, max flow, NP and what to do) · Stanford CS161 and Roughgarden's *Algorithms Illuminated* I–IV (divide and conquer, Master theorem, randomised algorithms; graphs and data structures; greedy, MST, Huffman, DP; APSP and NP) · Harvard CS124 · CLRS as the reference encyclopaedia.
-- **Contest practice.** LeetCode, HackerRank and HackerEarth **hard** problems: implement the structure in Go first, then the platform problem, using only unlocked syntax.
-- **Database systems.** PostgreSQL official documentation and source-code comments · CMU 15-445/645 · Berkeley CS186 · *Database System Concepts* (Silberschatz, Korth, Sudarshan) · *Readings in Database Systems* · DDIA storage, replication and transaction chapters.
-- **Industry architecture.** roadmap.sh backend, system-design and PostgreSQL DBA roadmaps as coverage checks (a concept they name that affects the stack must appear somewhere: transactions, replication, sharding, testing, telemetry, graceful degradation, throttling, backpressure, circuit breakers) · donnemartin system-design-primer and ByteByteGo System Design 101 as index support · Alex Xu *System Design Interview* vols 1–2 · Kleppmann *Designing Data-Intensive Applications* · Grokking the System Design Interview · Microsoft REST API Guidelines · AWS Builders' Library · Google SRE books and workbooks · Stripe idempotency, Discord message storage, Figma and Postgres scaling, Netflix, Uber and LinkedIn engineering posts · mature repositories as architecture specimens: Kubernetes, Envoy, Kong, Nginx, etcd, Redis, Kafka and Redpanda, Temporal, CockroachDB, PostgreSQL, Prometheus, Grafana Loki, Jaeger and OpenTelemetry, MinIO. Extract constraints, invariants, failures, trade-offs and implementation labs.
-- **Entry reading for system design.** The Harvard scalability lecture; lecloud "Scalability for dummies" (clones, databases, caches, asynchronism); the primer's "long timeline" study guide.
-- **Maths and ML spines.** Khan Academy and OpenStax arithmetic through precalculus · MIT 18.06 and 18.065 linear algebra · MIT 18.01 and 18.02 calculus · MIT 6.041 and 18.05 probability and statistics · Stanford CS229 and Berkeley CS189 machine learning · CS224N and CS231n only for the NLP and CV slices that case studies require.
-- **Case-study corpus.** The production ML system-design atlas (the source counted 309 repository index entries, 261 linked pages fetched, the remainder represented by repository metadata; Part 7 lists the 299 published case studies with summaries); it supplies workload families, architecture patterns, model and evaluation choices, and production failure modes.
-- **Selective import rule from the broad maths inventory.** M1–M17 feed arithmetic, algebra, geometry and trigonometry readiness · M19–M22 feed functions, relations, counting and probability · M26–M27 and M39 feed matrix methods, eigenspaces, PCA and low-rank embeddings · M29–M34 feed calculus, gradients and differential-equation intuition · M37–M40 feed numerical methods, reproducibility, inference, MLE, Bayesian reasoning and experiments · M41–M46 are conditional gates: teach only the convolution, FFT, image, audio, tokenizer, attention or production-ML piece that a case study, router, multimodal or agentic-AI lab requires.
-- **Method rule.** Teach from the spines; do not invent extra chapter numbers; do not copy diagrams or prose from sources.
-
-#### N1. The Go unlock path (G0–G20) with algorithm, database and Nasiko bridges
-
-*Named syntax under each module is the unlock list: nothing is used before its module. Each module is taught in the Go companion (GO-01…GO-29) at full depth; this path fixes the order, the data-structure and database bridge at each step, and the project use. Python appears only as a contrast, where it clarifies a Go habit.*
-
-**Core topics (first pass)**
-
-- **G0 Orientation and tooling** *(prerequisite; GO-01)* — Git, GitHub, SSH; editor and extensions; installing Go on Linux, Windows and Mac; the Go Playground; `GOROOT`, `GOPATH`, `GOMOD`; `go env`, `go version`; formatting as a reading aid (vertical openness between distinct ideas, vertical density for related lines, hierarchical indentation).
-- **G1 Foundations I** *(GO-02…GO-04)* — program layout (`main` package, `func main`); data types, variables, naming conventions, constants, arithmetic; control flow (`for`, `break`, `continue`, `if`/`else`, `switch`); arrays; the blank identifier. *DS/algo:* 1D arrays, two pointers, prefix sums; implement in Go, then hard array problems with unlocked syntax only; discrete maths: indexed sequences. *Nasiko use:* byte buffers.
-- **G2 Foundations II** *(GO-05…GO-08)* — slices, maps, `range`; functions (multiple return, variadic, `defer`, `panic`, `recover`, `init`, closures, recursion); errors and custom errors; strings, runes, `fmt`, formatting verbs, string functions. Built-ins that unlock in G1–G2: `len`, `cap`, `make`, `append`, `copy`, `delete`, `new`, `panic`, `recover`; the operators `:=`, `*`, `&` unlock with pointers in G3 if not needed earlier for `make` and `new`. *DS/algo:* stacks, queues, deques and bags on slices; sliding window; recursion and backtracking; hash table as a `map` client first; induction on list length. *Nasiko use:* request buffers. *Contest:* stack, queue, window.
-- **G3 Types, interfaces, generics** *(GO-09…GO-12, GO-27)* — pointers; structs, methods, interfaces, struct embedding, struct tags; generics; type conversions. *DS/algo:* singly and doubly linked lists; binary trees; BST and balanced BST (red-black); binary heap and priority queue; union-find (weighted, with path compression); hash symbol table from scratch (chaining and open addressing), which feeds O01; trees as acyclic connected graphs; amortised analysis of union-find. *Database bridge:* model tuples, tuple IDs, catalogue rows and B-Tree node structs before the storage and index labs. *Nasiko use:* registry lookup, timeout heaps. *Contest:* linked list, tree, heap, union-find.
-- **G4 Files, IO, text, time** *(GO-13)* — `bufio`; reading and writing files; line filters; paths; directories; temp files; `embed`; `io`; text templates; regular expressions; time, epoch, format and parse. *DS/algo:* tries; KMP; rolling hash and Rabin–Karp (algs4 Ch. 5; 6.006 strings); suffix arrays wait for N2. *Database bridge:* binary file layout, slotted-page encoding and decoding, checksums, WAL-record serialisation as Go IO labs. *Nasiko use:* AgentCard and query tokens (P5). *Contest:* strings.
-- **G5 CLI, env, config, logging** *(GO-14)* — command-line flags and subcommands; environment variables; logging; JSON and XML.
-- **G6 Concurrency I** *(GO-15…GO-17)* — goroutines; channels (unbuffered, buffered, synchronisation, directions, `select`, non-blocking operations, closing); `context`. *DS/algo:* channel as a concurrent queue; bounded buffer. *Nasiko use:* worker hand-off.
-- **G7 Concurrency II** *(GO-18)* — worker pools; wait groups; mutexes; atomic counters; `RWMutex`; `sync.NewCond`; `sync.Once`; `sync.Pool`; for-select.
-- **G8 Rate limiting and performance** *(GO-19…GO-20)* — token bucket, fixed window, leaky bucket; sorting. *DS/algo:* insertion sort, mergesort, quicksort (randomised), heapsort; binary search and binary search on a predicate; Master theorem and recurrences with mergesort; external merge sort and loser-tree merge as the database sorting lab; greedy algorithms, Huffman coding, interval scheduling, MST (Kruskal with union-find, Prim with a heap). *Nasiko use:* gateway limiter, job scheduling. *Contest:* sort, search, greedy.
-- **G9 Testing, benchmarking, OS, signals, reflection** *(GO-20, GO-26)* — tests, benchmarks, table tests; OS processes; signals; reflection. *DS/algo:* asymptotics (big-O, Ω, Θ); loop invariants; proving correctness; empirical timing; dynamic programming (1D and 2D, knapsack, LCS, LIS, alignment); discrete probability for hash collisions, randomised quicksort, selectivity estimates and cache-hit reasoning. *Contest:* DP only after this unlock.
-- **G10 Advanced concurrency** *(GO-18…GO-19)* — concurrency versus parallelism; the race detector; deadlocks.
-- **G11 Internet and HTTP/TLS** *(GO-21; D05)* — URL and URI; request/response cycle; client versus backend; HTTP/1, 2 and 3; HTTPS, the TLS handshake, mTLS. *DS/algo:* graphs (adjacency list, BFS, DFS, topological sort, Dijkstra, Bellman-Ford); graph definitions before code; 0-1 BFS and all-pairs shortest paths wait until here or N2. *Nasiko use:* service-discovery graph (P4). *Contest:* graphs.
-- **G12 REST API project** *(GO-21…GO-22, GO-28)* — routing and mux; methods; path and query parameters; middleware (security headers, CORS, response time, compression, rate limiter, HTTP parameter pollution, ordering); Postgres-first SQL CRUD (relational model, DDL/DML, schemas, constraints, NULL and three-valued logic, joins, grouping, subqueries, CTEs, transactions, indexes, `EXPLAIN`, query parameters, injection prevention); environment, modelling, validation, pagination; Argon2 hashing; JWT, cookies, sessions; password update and forgot/reset; CSRF and XSS sanitisation; code obfuscation; API binary; benchmarking. *Maps to:* the backend capstone service (Chi, Gin or Fiber on `net/http`). *DS/algo:* LRU and LFU as caches (O02); consistent hashing; modular arithmetic for hashing. *Database bridge:* keyset pagination, covering indexes, N+1 detection. *Nasiko use:* HTTP cache, session store.
-- **G12b SQL and PostgreSQL internals braid** *(DB-1…DB-10 in D08)* — taught where each topic gives leverage over code, design, performance or operations, never as a detached DBA course. Slice order and anchors: DB-1 relational algebra and SQL semantics (with G12); DB-2 schema architecture and constraints (with P2 and G12); DB-3 query transformation (with G12 and P3); DB-4 storage engine and page layout (with G4 and G3); DB-5 buffer pool and flushing (with G7 and P10); DB-6 access methods (with G3, G8 and P5); DB-7 execution algorithms (with G8, G9 and G12); DB-8 planner, statistics and cost model (with the primer database topic and P10); DB-9 transactions, MVCC, locks and vacuum (with G6, G7, G12 and P7); DB-10 WAL, crash recovery, replication and PITR (with G18 and P10). Example mappings: DB-1 explains query correctness; DB-4 and DB-6 explain why indexes and heap fetches cost what they cost; DB-9 explains idempotent job-status writes; DB-10 explains backup, restore and failover in P10.
-- **G13 Protocol Buffers** *(GO-23)* — proto3: packages, messages, field types and numbers, enums; serialise and deserialise; RPC; versioning and backward compatibility; `protoc`; best practices.
-- **G14 gRPC core** *(GO-23)* — stubs and services; REST versus gRPC; server and client; TLS; streaming (server-side, client-side, bidirectional); metadata, headers, trailers; Postman and grpcurl; protoc-gen-validate.
-- **G15 gRPC API project** *(GO-23)* — MongoDB and NoSQL CRUD and relationships; interceptors (response time, rate limiting, authentication, authorisation); TLS; ghz benchmarking; a combined REST and gRPC API; generics helpers.
-- **G16 Observability and profiling** *(GO-24)* — OpenTelemetry; pprof; tracing. *Maps to:* Phoenix and OTEL exporters in the control plane.
-- **G17 Security and hardening** *(GO-28; D10)* — Argon2, JWT, CSRF, XSS, `govulncheck`; secrets, least privilege, audit logs, rate limits, SLOs, webhook failure budgets.
-- **G18 Deployment and releases** *(GO-25)* — Docker; cross-compilation; GoReleaser.
-- **G19 Interview preparation** — concurrency, API design, distributed systems; the primer problems plus hard platform DS/algo problems (unlocked set only) form the interview set.
-- **G20 Payments addendum** *(GO-29; see N7)* — required if the capstone charges money.
-- **Unlock rules for design problems.** P01 after G11–G12; P02 after G12 and cache fan-out; P03 after G6–G7 and G11; P04 after G12 and queues; P05 after G3 and G12; P06 after G3 and G8; P07 after G12 and cache; P08 after G18 and Kubernetes and Terraform; O01 after G2–G3 (from-scratch symbol table, then hard hash problems); O02 after G3 (feeds cache-aside; LFU variant); O03–O05 after G3 interfaces; O06 after G6 and G11–G12 (feeds P6); O07 after G2; Q09 builds on O06; Q13 relates to O06 and Q09; Q14 relates to P05; Q15 after the CDN topic; Q17 after G7 atomics; Q18 after G8; Q19 after P08; Q20 after O04 and G6; Q21 after G2–G3 (an industry-competence model, not a production collector); Q22 after G8, mapped to gateway and backend middleware; Q23 after G7 and G12. Do not add primer problems that are not on the official index.
-- **Pass bar for a design problem.** Six-step write-up; Go implementation with tests of the core path; can rebuild from notes; can state every primer trade-off for that problem.
-
-#### N2. Contest and theory remainder
-
-**Core topics (first pass)**
-
-*Only what has no honest home in a G-module or a phase. Unlock after G9 and G11. Each item: invariant and complexity, a Go implementation with tests, then one hard platform problem.*
-
-- NP-completeness, polynomial reductions, P versus NP; what to do about hard problems (approximation, heuristics, integer linear programming) — CS161 part 4, 6.046, CLRS NP chapters.
-- Max flow and min cut, Ford–Fulkerson and Edmonds–Karp (algs4 Ch. 6; 6.046; CS124), used when a primer or contest item needs them.
-- Range-query structures for contests: Fenwick tree (BIT), segment tree, sparse table.
-- Suffix arrays and suffix automata, beyond G4 tries and KMP.
-- Finite automata and weighted finite-state transducers, only when a text-routing, tokeniser, speech or grammar-constrained-decoding lab needs them: symbol tables, composition, determinisation and minimisation intuition, Viterbi-style shortest path in Go; not the full Kaldi or OpenFst course.
-- Peak finding (6.006) if it was not already used as a binary-search lab in G8.
-- Heavy 6.046 structures (Fibonacci heaps, van Emde Boas trees): implement the idea only if a hard problem needs it; not a second graduate course.
-
-#### N3. Go-from-scratch rule for mathematics, ML and systems labs
-
-**Core topics (first pass)**
-
-- Every algorithmic item in the maths, ML and ML-system domains (the MML, ML and MLSYS slices in the D02 and D15 supplements) has a from-scratch Go implementation, with tests, synthetic data, metrics and a short proof or derivation. Python stays where the course teaches it (A3, D1–D3) as the exploration and library-comparison language, in line with rule 0.4.9; the Go build is what proves the learner understands the mechanism, and the control-plane router and ML-system labs run in Go.
-- Go packages such as Gonum, Gorgonia, GoMLX, ONNX Runtime Go bindings, Qdrant and pgvector clients, or Kafka and Redpanda clients are introduced only after the learner can explain the hand-built version and why the package is needed.
-- Third-party maths and ML packages are compared against the from-scratch version for accuracy, stability and speed.
-- Contest practice for data structures and algorithms follows the same order: implement the structure in Go first, then the platform problem, using only unlocked syntax.
-
-#### N4. Tool and platform subcourses
-
-*Each is a subcourse: prerequisites from zero, concepts, a lab tied to this project, pitfalls, then a mastery check. Depth is set by how sophisticated the project's use is. Gin, Fiber or Chi on `net/http` serve HTTP; a Pydantic equivalent is structs plus validation.*
-
-**Core topics (first pass)**
-
-- **Git and GitHub** — repository, pull requests, optional GitHub OAuth (`API-GH-*`). *Lab:* commit, branch, PR; OAuth login works.
-- **Docker, Compose and BuildKit** — local stack, agent images, `JOB-ORCH-001`. *Lab:* Compose up; one agent image builds.
-- **Kubernetes, Helm and client-go** — deploy agents, registry discovery, worker. *Lab:* apply a chart; list pods through client-go.
-- **Terraform** — EKS and DOKS (DigitalOcean Kubernetes) bootstrap. *Lab:* plan a cluster; no apply until P10.
-- **Kong, Lua basics and plugins** — gateway routes; the `chat-logger` plugin posts to `/log-chat`. *Lab:* a route plus plugin posts a log.
-- **Nginx** — the allowed alternative to Kong; the same route table if Kong is not used.
-- **MongoDB** — registry, chat, credentials, builds, uploads. *Lab:* indexes exist; CRUD on SCHEMA-REG-001.
-- **Redis** — stream `orchestration:commands` and cache. *Lab:* an `XADD`/`XREADGROUP` round trip.
-- **Postgres, pgvector and `psql`** — Kong config database; the SQL and database-systems lab database; an optional auth and audit relational slice; a possible router vector store. *Lab:* migrations run; constraints reject bad writes; `EXPLAIN (ANALYZE, BUFFERS)` interpreted; Kong admin persists a service; pgvector k-NN works if selected.
-- **PostgreSQL operations tools** — `pg_stat_statements`, `pgbench`, `pg_dump`, a physical backup and PITR lab. *Lab:* slow query isolated; benchmark recorded; backup restored; replica lag explained.
-- **OpenTelemetry and Phoenix** — cross-service traces; optional agent injection. *Lab:* one request shows a trace.
-- **Cobra and Viper** — the operator CLI. *Lab:* one command group with an environment overlay.
-- **Service clients** — mongo-go-driver, go-redis, client-go, the Docker Engine API. *Lab:* learning tests at each boundary.
-- **Vector store** — Qdrant or pgvector (prefer pgvector when Postgres depth is the current goal); FAISS through cgo only if justified. *Lab:* a k-NN shortlist returns seeded cards; explain the index choice and the recall and latency trade-off.
-- **Go numerical stack** — standard-library `math` and `math/rand`, Gonum (`mat`, `stat`, `optimize`). *Rule:* rebuild vector, matrix, statistics and optimisation primitives by hand first, then compare accuracy, stability and speed with Gonum.
-- **Go ML and runtime adapters** — Gorgonia or GoMLX when useful; an ONNX Runtime Go binding or an HTTP model service only when no practical Go-native route exists. *Rule:* keep a Go interface around inference; prove deterministic fallback, timeout, cache and schema validation.
-- **Feature and evaluation platform in Go** — Postgres snapshots, Redis online features, an object-storage artifact store, OpenTelemetry metrics. *Lab:* a feature-store facade, a model-registry table, an evaluator CLI, a drift alert and a rollback gate work locally.
-- **OpenAI-compatible HTTP and the official Go SDK** — router and agents, JSON-schema structured output. *Lab:* a structured pick parses.
-- **JSON-RPC 2.0** — agent protocol and chat logger. *Lab:* `message/send` is accepted.
-- **LLM API usage** — tokens, prompts, tool calling, rate limits, safety; maps to the router algorithm and the agents.
-- **Ollama** — an optional local LLM on port 11434; a Modelfile built from a GGUF file (`arch-function`, `num_ctx 8096`).
-
-#### N5. The Nasiko capstone: services, flow and reconstruction phases P0–P10
-
-**Core topics (first pass)**
-
-- **Target services.** API gateway (Kong or Nginx) with custom plugins · backend API (Go HTTP: handlers, services, repositories) · auth service (JWT issue and validation, users, access rules; called by backend and CLI) · router (embeddings, shortlist and rerank, LLM structured selection) · registry (Docker and Kubernetes discovery plus Kong configuration) · chat history (JSON-RPC ingest and query) · orchestrator and build worker (Redis streams, BuildKit, deploy) · CLI (Cobra and Viper) · sample agents (JSON-RPC 2.0 and A2A, AgentCard, tool calling) · web UI as a compose service only, which talks HTTP to the backend (no frontend course).
-- **Stores and infrastructure.** MongoDB · Redis streams and cache · Postgres (Kong plus SQL and database-systems labs, with an optional auth and audit relational slice) · object storage and container registry (ECR, DOCR) · BuildKit, Docker, Kubernetes, Terraform.
-- **Go module layout.** `go-backend/` · `go-auth/` · `go-router/` · `go-registry/` · `go-chat-history/` · `go-orchestrator/` (orchestrator plus worker) · `go-cli/` · `go-agents/` (sample agents and templates) · `infra/` (compose, `k8s/`, `terraform/`, Kong).
-- **End-to-end flow.** (1) Upload an agent through the CLI or API → registry → a build request on a Redis stream. (2) The orchestrator consumes the stream → image build → Docker or Kubernetes deploy. (3) The registry discovers the agent → Kong services, routes and plugins. (4) The router: query → embeddings → shortlist → LLM picks an agent. (5) The gateway routes to the agent → the chat is logged → traces are emitted.
-- **Primer-topic to phase mapping.** P1 shared libraries ↔ communication and errors · P2 data ↔ database and cache · P3 backend ↔ application layer and REST · P4 registry and gateway ↔ discovery, reverse proxy, load balancer · P5 router ↔ cache and search · P6 chat ↔ append-only store · P7 orchestrator ↔ queues and back pressure · P8 CLI ↔ API clients · P9 agents ↔ RPC · P10 ↔ nines, failover, SLOs.
-- **P0 Foundations.** *Inputs:* workstation, Go toolchain, Docker, kubectl, Terraform. *Steps:* monorepo and Go modules; lint and format; build-task runner; local dev loop. *Output:* repo skeleton. *Acceptance:* `go test ./...` passes on the scaffolding; dev loop documented. *Deep-dive:* what a system is; latency numbers.
-- **P1 Core platform skeleton.** Shared config (environment, file, defaults); logging; tracing; error model and HTTP helpers. *Acceptance:* a service boots with config, logs and traces. *Deep-dive:* communication; SLIs.
-- **P2 Data stores and contracts.** Mongo schemas (registry, chat, credentials, builds, uploads); Redis stream names, payloads and consumer groups; Kong database and service and route specs; Postgres lab schemas for users, agents, access and audit, plus an optional auth and audit relational slice; migrations, constraints, indexes, invariants, isolation requirements, data ownership. *Acceptance:* data-model review. *Deep-dive:* SQL versus document; relational algebra to schema design; catalogues and system columns; constraints; B-Tree, GIN and BRIN index choice; JSONB versus a document store.
-- **P3 Backend API.** HTTP router, middleware, handlers, services, repositories; JWT validation; the `API-*` endpoints; idempotency-key middleware for mutating endpoints; keyset pagination where ordering matters; repository transaction boundaries; query-plan checks for list and search endpoints. *Acceptance:* contract tests; auth works. *Deep-dive:* REST; Microsoft-style API consistency; pagination; idempotency; N+1 detection; isolation-level selection.
-- **P4 Registry and gateway.** Discover Docker and Kubernetes agents; program Kong services, routes and plugins; health checks; stale cleanup. *Acceptance:* agents appear on the gateway and are routable. *Deep-dive:* service discovery; reverse proxy; L7 routing. *DS/algo:* model agents as a graph; BFS and DFS; union-find for connected components if useful.
-- **P5 Router.** Embeddings; vector store; shortlist; rerank; LLM structured pick; apply retrieval, ranking and evaluation from ML-CORE and serving and monitoring from ML-SYS (feature contracts, offline query set, recall@k and NDCG, bad-shortlist rate, prompt and context budget, cache, fallback, drift checks). *Acceptance:* routing tests match the expected agent. *Deep-dive:* cache; ANN versus exact k-NN; reranking; LLM guardrails; fallbacks. *DS/algo and ML:* heap-select and top-k (Q18); tries for token prefixes; embedding maths (MML-3); ranking metrics and calibration (ML-3, ML-7).
-- **P6 Chat history.** JSON-RPC ingest; Mongo persistence; query and pagination; the Kong `chat-logger` plugin posting to `/log-chat`; a comparison of append-only Mongo storage with a Postgres JSONB, GIN and BRIN lab, to reason about retention, partitions, index-only scans and hot channels. *Acceptance:* logs persist and retrieve. *Deep-dive:* append-only storage; TTL and retention; hot partitions; coalesced reads; consistency of derived read models.
-- **P7 Orchestrator and worker.** `XREADGROUP` on `orchestration:commands`; BuildKit and Docker build; push; deploy; registry and status updates; actions deploy, update, rebuild, rollback; transactional-outbox and idempotent-consumer labs; a Postgres isolation test proving duplicate deliveries cannot create duplicate deployments. *Acceptance:* the end-to-end build and deploy completes. *Deep-dive:* queues; at-least-once versus exactly-once; idempotency; back pressure; bounded backlog; DLQ and redrive; retry with jitter; transaction boundaries.
-- **P8 CLI.** Command groups `CLI-*`; local and Kubernetes setup automation. *Acceptance:* operator workflows covered. *Deep-dive:* client retries; config layering.
-- **P9 Sample agents.** A2A JSON-RPC; AgentCard; tool calling; streaming and artifacts; templates. *Acceptance:* agents accept JSON-RPC and complete a routed turn. *Deep-dive:* RPC versus REST; schema evolution.
-- **P10 Production hardening.** SLOs, dashboards, alerts, runbooks; load tests, pprof, scaling; security and supply chain; ML-system production checks (feature freshness, training/serving skew, model-registry state, offline versus online metric divergence, prompt and LLM safety failures, drift, shadow and canary, rollback, cost per successful decision); a Postgres performance and recovery drill (`pg_stat_statements`, slow-query triage, `VACUUM` and bloat check, WAL archive backup, restore, replica lag, failover exercise); ORR, rollback, DR drill. *Acceptance:* ORR signed; rollback proven. *Deep-dive:* nines; failover; cost; recovery objectives; data-loss budgets; retries, timeouts, circuit breakers, bulkheads and idempotency on every public path.
-- **Capstone acceptance.** Upload → build → deploy → register → route a query with confidence → chat and traces visible → CLI status, upload and route-test → staging and prod with promotion → load test → backup and restore drill → security review and incident plan.
-- **Evaluation rubric.** API and auth; orchestrator idempotency; routing accuracy and fallback; observability; infrastructure reproducibility; SLOs, alerts and runbooks; RBAC, audit and secrets; latency and token budgets.
-
-#### N6. Normalized service specifications
-
-*Atomic specs. Where the source was ambiguous it is flagged: implement from handler names and do not invent paths that no CLI or route file names.*
-
-**Core topics (first pass)**
-
-- **HTTP API (`go-backend`).** Health: `API-HLTH-001` GET `/healthcheck` (liveness, no auth). Uploads: `API-UP-001` POST `/agents/upload` (zip file, optional `agent_name`, `user_id`, enqueues a build); `API-UP-002` POST `/agents/upload-directory` (directory path and `user_id`); `API-UP-003` upload status (track the `UploadStatus` lifecycle, preserve the status enum); `API-UP-004` list uploaded. Access: `API-ACC-001` grant user access (`agent_id`, `user_ids`); `API-ACC-002` grant agent access (`target_agent_ids`); `API-ACC-003` list agent access. Operations: `API-OPS-001` POST `/agents/build` (create build record); `API-OPS-002` POST `/agents/deploy` (create deployment record); `API-OPS-003` PUT `/agents/build/{build_id}/status` (worker updates `BuildStatus` and logs); `API-OPS-004` PUT `/agents/deployment/{deployment_id}/status` (worker updates `DeploymentStatus` and `service_url`). Updates: `API-UPD-001` PUT `/agents/{agent_id}/update` (optional upload, `version_strategy`, `update_strategy`, `cleanup_old`, `user_id`); `API-UPD-002` rollback and version. Registry: `API-REG-001` POST `/registry` (AgentCard-shaped document); `API-REG-002` GET `/registry/user/agents`. Chat: `API-CHAT-001` POST `/chat/session` (`agent_id`, `agent_url`); `API-CHAT-002` DELETE `/chat/session/{session_id}`; `API-CHAT-003` GET `/chat/session/list` (`limit`, `cursor`, `direction`); `API-CHAT-004` GET `/chat/session/{session_id}` (message history). GitHub: `API-GH-001` GET `/auth/github/login` (OAuth URL); `API-GH-002` callback (`code`, `state`); `API-GH-003` GET `/auth/github/token` (stored-token status); `API-GH-004` POST `/auth/github/logout`. n8n: `API-N8N-001` POST `/agents/n8n/register` (workflow to agent); `API-N8N-002` POST `/agents/n8n/connect` (test then save credentials); `API-N8N-003` credentials get and update. NANDA: `API-NANDA-001` GET `/nanda/health`; `API-NANDA-002` GET `/nanda/agents` (filtered). Search: `API-SRCH-001` GET `/search/users` (prefix, case-insensitive, fuzzy; `q`, `limit`). Observability: `API-OBS-001` session list (`start_time`, `user_id`). Superuser: `API-SU-001` POST `/user/register` (superuser only; proxies the auth service `/auth/users/register`).
-- **Chat-history service (port 8002 in the analysis).** `API-CH-001` POST `/log-chat` (Kong plugin; extracts user and assistant JSON-RPC parts; inserts into Mongo); `API-CH-002` GET `/chat-history` (by session; ObjectId to string); `API-CH-003` GET `/health` (database ping; 503 if down). Indexes on `session_id` and `timestamp`.
-- **Router algorithm `ALG-ROUTE-001`.** (1) Load live AgentCards from the registry; fail closed if the registry is down. (2) Build retrieval features from the query and the AgentCards: lexical tokens, TF-IDF and BM25 features, embeddings, metadata filters, freshness and availability signals. (3) Embed the query with the configured provider (OpenAI-compatible, Minimax or Ollama) or a local Go model adapter. (4) k-NN or ANN shortlist against the vector store (Qdrant or pgvector; FAISS through cgo only if justified), keeping exact brute-force evaluation fixtures for recall checks. (5) Optional rerank with a Go-owned scoring function, learned ranker, diversity rule or LLM-as-judge, only after ML-CORE evaluation is unlocked. (6) LLM structured output: agent id, confidence, reason (JSON schema). (7) Fallback if confidence is below threshold or the LLM errors: return the ranked shortlist or a configured default agent; the policy is configurable and the default is a ranked list with no silent pick. (8) Emit evaluation events: query id, candidate set, features version, model version, ranker version, chosen agent, confidence, fallback reason, latency, cost, and the later success label. (9) Edge cases: empty registry; embedding timeout; all scores near zero; agent in the index but not on Kong; oversized query; prompt-injection attempt; stale model or feature version; cold-start agent. *Config:* backend URL, API keys, Minimax and Ollama URLs, provider and model, vector settings, feature and model registry locations, request limits, cache TTLs, fallback policy, host and port, CORS, log level.
-- **Auth service.** A first-class service, not only middleware: issue and validate JWT; users and access rules (user to agent, agent to agent); the backend auth package client; CLI login and refresh; an orchestrator superuser manager (create and verify a superuser, persist local superuser credentials outside version control); superuser routes proxy `/auth/users/register`. Auth may stay a small Go service or sit behind the backend; no third OAuth provider beyond optional GitHub.
-- **Agent protocol (A2A).** `PROTO-A2A-001` JSON-RPC 2.0 `message/send`: `jsonrpc`, `id`, `method`, `params` (message parts, session and context ids); errors: parse, invalid request, method not found, invalid params, internal. `PROTO-A2A-002` task tracking: submit, working, artifact parts, streaming responses, terminal states. `PROTO-A2A-003` AgentCard validation against SCHEMA-REG-001: reject unknown required fields; version the card. `PROTO-A2A-004` tool calling: tools to JSON schema; executor loop; map tool errors to task failure, not a hang.
-- **Registry and Kong sync.** Periodic `sync_services`; discover Docker and/or Kubernetes (`K8S_ENABLED`, `AGENTS_NAMESPACE`); upsert a Kong service, route and plugins; static proxy registration; remove stale entries; `REGISTRY_INTERVAL`; `KONG_ADMIN_URL`. The Lua plugin `chat-logger`: on `message/send`, asynchronously POST to `API-CH-001`; config: chat-service URL, timeout.
-- **Jobs on Redis.** Stream `orchestration:commands`. `JOB-ORCH-001` local listener group: build image; run on `agents-net`; optional OTEL injection; register with backend and auth; update upload status. `JOB-K8S-001` group `k8s-orchestrator`: `command=deploy_agent` or `action` in {`update_agent`, `rollback_agent`, `rebuild_agent`}; BuildKit; push; deploy; status APIs. Delivery is at-least-once, so consumers are idempotent on `(agent_id, version, action)` and acknowledge only after the status write succeeds.
-- **Data models.** `SCHEMA-REG-001` registry (`protocolVersion`, `id`, `name`, `description`, `url`, preferred transport, provider with organisation and URL, `iconUrl`, `version`, `documentationUrl`, capabilities, `securitySchemes`, `security`, default input and output modes, `skills[]`, `supportsAuthenticatedExtendedCard`, `signatures`, `additionalInterfaces`, `tags`, owner id, timestamps; the database wrapper adds `_id`) · `SCHEMA-SKILL-001` skill subdocument (id, name, description, tags, examples) · `SCHEMA-UP-001` UploadStatus enum lifecycle (queued, building, ready, failed; exact symbols from the entity) · `SCHEMA-BLD-001` AgentBuild (agent id, `BuildStatus`, job name, logs, timestamps) · `SCHEMA-DEP-001` AgentDeployment (id, `agent_id`, `build_id`, namespace, replicas, `DeploymentStatus`, `service_url`, `created_at`) · `SCHEMA-SES-001` session (`session_id`, `created_at`, title, `agent_id`, `agent_url`) · `SCHEMA-MSG-001` message (role, content, timestamps, metadata) · `SCHEMA-N8N-001` n8n credentials and workflows · `SCHEMA-GH-001` user GitHub credentials · `SCHEMA-SQL-001` Postgres teaching schema (users, agents, access_grants, audit_events, idempotency_keys, with PK, FK, CHECK and UNIQUE constraints, nullable and non-nullable examples, JSONB metadata, timestamps and migrations; do not migrate Mongo-owned capstone data unless a phase chooses that trade-off) · `SCHEMA-SQL-002` query-performance fixture (skewed users, agents and chat-like rows with B-Tree, partial, covering, expression, GIN JSONB, BRIN append-only indexes and pgvector if selected, for `EXPLAIN`, selectivity, bitmap and index-only scans and planner labs) · `SCHEMA-SQL-003` transaction fixture (accounts, jobs, deployments, outbox tables for isolation, deadlock, idempotent-consumer and WAL and backup drills). *Invariants:* registry `id` unique per owner; a session belongs to a user; a build belongs to an agent; a deployment points at an existing build; chat lines are immutable after insert.
-- **Config matrix (non-secret names).** Mongo user, password, host, port, db → `MONGO_URI` · Redis host, port, db · Phoenix · OpenAI and Minimax keys and Minimax base URL · BuildKit address · registry and gateway URLs · DigitalOcean token · `K8S_ENABLED` · `NASIKO_API_URL` · GitHub OAuth client and redirect · encryption key · orchestrator: Docker network, Kong URL, agent registry URL and tag, startup delays, agent directory, health timeout. Secrets never enter version control; environment templates are allowed while local values and superuser credentials stay ignored.
-- **CLI (`go-cli`; Typer groups become Cobra groups).** `CLI-AGT-001…003` `agent upload-zip`, `upload-directory`, `list-uploaded` · `CLI-REG-001` `registry` list and get · `CLI-CHAT-001…004` `chat create-session`, `list-sessions`, `history`, `send` (JSON-RPC `message/send` through the gateway) · `CLI-GH-001…005` `github` login, logout, status, repos, clone · `CLI-N8N-001…004` `n8n` register, connect, credentials, update · `CLI-ACC-001…003` `access` grant-user, grant-agent, list · `CLI-OBS-001` `observability` session and trace helpers · `CLI-IMG-001` `images` build and push service images (router, registry, chat-history, auth) · `CLI-LOC-001` `local` compose up, down, ps (needs a daemon).
-- **Infrastructure.** Local compose stack (Mongo, Redis, Kong plus Postgres, backend, router, web, chat-history, registry, worker, superuser job, healthchecks, `agents-net`); an app-only compose stack; a gateway compose (Kong, registry, router, chat-history); worker image build definitions; a build-task runner (clean, backend, router, orchestrator, redis-listener); CI format and static checks on `main` and pull requests (`gofmt`, `go vet`, `staticcheck`); Apache 2.0 licence; optional Ollama on 11434; Terraform for AWS EKS and DigitalOcean DOKS; Helm or manifests for agent workloads and control-plane services (P4, P7, P10).
-- **Operations and tests.** *SLIs (at least):* gateway latency, error rate, stream lag, build latency, route confidence and fallback rate, route recall@k and NDCG on the offline query set, bad-shortlist rate, model and LLM latency, feature freshness, drift alerts, chat ingest success. SLOs are set in P10 with numbers from capacity work; alerts fire on SLO burn. *Runbooks:* build failure, registry drift, router fallback storm, model rollback, feature-store skew, Redis lag, Mongo disk. *Rollback:* `rollback_agent` plus model and ranker rollback. *DR:* a Mongo and Redis backup and restore drill. *Tests:* unit (handlers and services with fakes); contract tests per `API-*`; SQL migration and constraint tests; `EXPLAIN` regression notes for important queries; stream integration; end-to-end upload → route → chat; load (gateway and router); chaos (kill the worker, dual consume, replica lag and failover drill in a sandbox).
-- **Sample agents.** Compliance checker, GitHub agent, translator: an AgentCard document, an executor, tool schemas, JSON-RPC task, artifact and stream handling. One Go executor per agent. A webhook agent template and an AgentCard generator. The NANDA adapter wraps the external NANDA HTTP service.
-- **Traceability.** Legacy tree to Go home: `app/` (91 units) → `go-backend/` (HTTP API, entities, repositories, services, adapters, OTEL, templates) · `cli/` (102) → `go-cli/` · `agents/` (42) → `go-agents/` · `agent-gateway/` (41) → `go-router/`, `go-registry/`, `go-chat-history/`, `infra/kong` · `orchestrator/` (8) → `go-orchestrator/` · `worker/` (2) → `go-orchestrator/` Kubernetes worker command · `models/` (3) → `infra/ollama` · root metadata and CI (12) → infrastructure and CI · `docs/` (1) → docs. 302 analysed source units in all; do not teach the legacy code line by line.
-
-#### N7. Payments addendum (required if the capstone charges money)
-
-**Core topics (first pass)**
-
-- **PG-1 Domain and compliance** — rails versus wallets and UPI; authorisation, capture and settlement; test versus live mode; PCI DSS; PII; secrets.
-- **PG-2 Idempotent charges** — the `Idempotency-Key` header; retries; conflict; a request-hash store.
-- **PG-3 Webhooks** — signatures (Stripe, Razorpay, PayPal); replay windows; clock skew; nonces; backoff; dead-letter queue.
-- **PG-4 Ledger** — double-entry; conservation; rounding; property tests; idempotent writes.
-- **PG-5 Refunds, disputes, reversals** — full and partial refunds; the chargeback life cycle; evidence; ledger adjustments; the state machine.
-- **PG-6 Reconciliation** — nightly compare; mismatch classes; alerts.
-- **PG-7 Security and operations** — SLOs; webhook failure budgets.
-- **PG-8 Regional notes** — UPI and QR, netbanking, wallets; payout timelines; sandbox seeding; provider swap by interface and contract tests.
-
-#### N8. HLD, LLD, microservices and design-pattern implementation ladder
-
-**Core topics (first pass)**
-
-- **Approach for every design (always).** (1) Functional and non-functional requirements; (2) capacity; (3) HLD with a Mermaid diagram; (4) LLD, bottlenecks and failures; (5) a trade-off table; (6) SLOs, observability, security, rollback.
-- **HLD.** Service boundaries; C4 and Mermaid context, container and component diagrams; capacity maths; data flow; consistency boundaries; blast radius; SLOs; cost. *Bar:* for each design problem and each phase, one Mermaid HLD, a capacity table, a bottleneck list, a failure-mode table and a rollout and rollback path.
-- **LLD.** APIs, schemas, state machines, sequence diagrams, concurrency contracts, transaction scopes, idempotency, pagination, error taxonomy; handler → service → repository. *Bar:* one thin Go service slice with handler, service, repository and adapters, contract tests, state-machine tests and a migration.
-- **Clean architecture and DDD.** Dependencies point inward; domain language before tables; adapters at Kong, Mongo, Postgres, Redis, the LLM, Docker and Kubernetes; repositories hide persistence; application services orchestrate use cases; entities and value objects enforce invariants.
-- **Microservices.** Monolith, modular monolith, SOA and microservices; service discovery; API gateway; service-mesh basics; sync versus async calls; orchestration versus choreography; schema ownership; observability; data consistency. *Bar:* split a local modular monolith into two services behind Kong; add health checks, timeouts, OpenTelemetry traces, a Redis outbox and event flow, and a rollback drill.
-- **Design patterns (taught only when code needs them).** Repository, unit of work, adapter, strategy, factory and builder, decorator and middleware, chain of responsibility, command, state, observer and pub-sub, mediator; distributed patterns: outbox, saga, CQRS and read model, idempotent consumer, circuit breaker, bulkhead, retry with jitter, strangler fig. *Bar:* implement each pattern once in the project domain or a design-problem lab, with a test proving the force that motivated it.
-- **Pattern graduation rule.** A pattern is complete only when the learner can name the forces, implement it idiomatically in Go, identify the simpler alternative, and remove the pattern when the simpler alternative wins.
-- **Resilience (taught with the primer topics and P10, used in every service).** Retries, timeouts, circuit breakers, bulkheads, idempotency.
-- **Production case studies as architecture specimens.** For each: a one-page architecture decision record and a tiny Go, SQL or ML model, for example: Stripe-style idempotency and fraud thresholding; Airbnb-style diverse reranking; Uber-style constrained scheduler; Grab-style bipartite anomaly graph; GitHub and Honeycomb-style LLM evaluation and guardrails; Discord-style coalesced reads by routing key (hot partitions, consistent-hash routing, zero-downtime migration validation); AWS-style bounded queue with load shedding, redrive and DLQ; Temporal-style workflow retry state; etcd-style watch and config model.
-- **Case-study method.** Identify the workload, user action, label, features, constraints, bottleneck, architecture, data model, model choice, evaluation metric, failure mode, trade-off and measurable result; then implement a tiny faithful model in Go or SQL. The learner never copies the company implementation; they rebuild a small faithful model that exposes the same force.
-- **Application rule for SQL.** No syntax-only SQL tutorials. Every SQL use in a design problem or phase must point back to its owner slice (DB-SQL or DB-ENGINE) and end in one of: a correctness proof, a plan analysis, a performance measurement, a failure drill, or a production trade-off.
-- **Database application matrix.** Primer database basics and G12 → relational algebra, joins, bag and set semantics, three-valued logic, constraints, transactions → correct schemas, API filters, pagination and idempotent writes. P2 data contracts → catalogues, system columns, types, JSONB, range and UUID, PK, FK, CHECK and DOMAIN, deferred constraints → model invariants in the database as well as in Go. G3, G4 and G8 algorithms → slotted pages, TOAST, B-Trees, hash indexes, GIN, BRIN, bitmap and index-only scans, external sort → explain why queries are fast or slow instead of memorising index rules. G7, G9 and P7 → MVCC snapshots, isolation levels, tuple version chains, locks, deadlocks, vacuum, HOT, freezing → safe retries, job dedupe, queue consumers, transactional state machines. P10 → shared buffers, bgwriter, checkpointer, WAL, full-page writes, crash recovery, streaming replication, PITR → SLOs, backups, failover, replica-lag budgets, runbooks. P5 → JSONB and GIN versus pgvector and Qdrant; selectivity, top-k, ANN versus exact k-NN → choose the simplest vector or search store that meets recall and latency needs.
-
-#### N9. Production and release
-
-**Core topics (first pass)**
-
-- **Non-functional requirements.** Reliability, scalability, availability, latency, cost.
-- **Environments and change.** Multi-environment (local, dev, staging, prod); config layering; feature flags; versioning, migrations, compatibility and deprecation for APIs, AgentCards, and model and feature versions.
-- **Data lifecycle.** Backups, restore, retention, PII.
-- **Security.** RBAC, least privilege, secret rotation, TLS, audit; prompt-injection and model-abuse checks; threat model of public endpoints.
-- **Supply chain.** Scan, SBOM, image signing, provenance, model-artifact lineage.
-- **Observability.** Logs, metrics, traces, dashboards, alerts, runbooks, model-evaluation dashboards, feature freshness, drift.
-- **Incidents.** On-call, triage, post-mortem.
-- **Performance.** Load, stress, pprof, model latency, batch throughput.
-- **Cost.** LLM token budgets, model serving, cache, attribution, cost per successful decision.
-- **Release.** CI/CD, staging promotion, rollback; ORR (operational readiness review) checklist and go-live criteria.
-
-#### N10. Scope notes and exclusions
-
-**Core topics (first pass)**
-
-- **Topic tags used by the source route.** `CORE` destination topics · `PREREQ` taught first because CORE depends on them · `TOOL` platforms and libraries taught with the matching slice · `ARCHIVE` kept so nothing is lost and not taught unless a real CORE dependency appears.
-- **Excluded from scope (the ARCHIVE items), listed so nothing is dropped silently:**
-  - source artefacts that are not topics: the line-by-line legacy Python and the packed line-by-line analysis chunks; dependency lock files with full pin lists (use module build-metadata intent instead); compressed agent archives that duplicate directories; the local environment-template contents;
-  - Python-only tooling taken as implementation rather than concepts: FastAPI, Typer, Pydantic, LangChain, Poetry, PyOxidizer, black, mypy (the alternate LangChain path in the compliance agent is archived; one Go executor is implemented);
-  - broken or missing references: the legacy orchestrator entry and the missing `BaseAgent` import (do not depend on a missing type);
-  - the web UI, kept as "an existing UI talks HTTP to the backend"; no frontend course is invented;
-  - course-platform filler: Udemy sections 12, 14 and 15 (resources, summary, best wishes);
-  - superseded wording: the clean-code Java exception and null phrasing (intent kept in the teaching brief) and the "5–6 micro-assignments, infinite CS expansion" engine rule.
-
 ## Part 3 — De-duplication register: concepts taught by more than one part
 
 When two parts touch the same concept, one owns it and the others only add a layer. This is the course's own ownership register (course guide, rule 0.3), reproduced in full. Every concept below is catalogued once in Part 2, under its owner.
@@ -5120,15 +4744,6 @@ When two parts touch the same concept, one owns it and the others only add a lay
 - **Fraud scoring on payment tokens** — *owner:* D6.F4 and D6.B3 (the model, the threshold, the review queue) — *others add:* Go companion GO-29 (the payment path built); cyber PV-03 (tokenization against encryption)
 - **Training–serving skew and drift in production** — *owner:* D3 (D3.D2, the tests) — *others add:* D6.1 (kept apart from leakage per family) and the monitors of D6.F1…D6.F10
 - **Model canaries and shadow deployments** — *owner:* D3 (A/B testing and canary rollouts for models) — *others add:* D6.F10 (a different dial from C4's application canary)
-- **Go language path (order, bridges, project use)** — *owner:* Go companion GO-01…GO-29 (the language, at full depth) — *others add:* D19 N1 (the G0–G20 unlock order, the data-structure and database bridge at each step, the Nasiko use)
-- **PostgreSQL internals (storage, buffer pool, access methods, executor, planner, MVCC, WAL)** — *owner:* SQL companion DB-1…DB-10 — *others add:* D08 Nasiko additions (engine terms and Go labs), D19 N1 G12b (slice order against the G-path), D19 N8 (application matrix to design and phases)
-- **ML mathematics and ML algorithms** — *owner:* A2 (maths), D1–D2 (algorithms), D6 (case-study families) — *others add:* D02 Nasiko additions (the MML ladder's Go exercises), D15 Nasiko additions (ML-1…ML-14 Go implementations); D19 N3 (the from-scratch Go rule)
-- **Production ML systems** — *owner:* D3 (MLOps) and D6 (case-study families, Appendix M) — *others add:* D15 Nasiko additions (MLSYS-1…MLSYS-9 labs, cluster labs), D19 N5 P5 and P10 (router and production checks)
-- **Design problems (P01–P08, O01–O07, Q01–Q23)** — *owner:* System Design Primer companion — *others add:* D19 N1 (unlock order against the G-path, the Go implementation bar and pass bar), D19 N8 (HLD, LLD and pattern bars)
-- **Idempotent consumer, outbox, at-least-once delivery** — *owner:* A9 (theory) — *others add:* D07 Nasiko additions (idempotent consumer, repository and unit of work), D14 Nasiko additions (Redis Streams), D19 N5 P7 and N6 (jobs)
-- **Payments (idempotent charges, webhooks, ledger, reconciliation)** — *owner:* Go companion GO-29 — *others add:* D19 N7 (PG-1…PG-8: compliance, webhook signatures and replay windows, disputes, regional rails)
-- **API gateway, queues, image builders** — *owner:* C1–C3 (Docker, Kubernetes, NGINX) — *others add:* D14 Nasiko additions (Kong and Lua plugins, Redis Streams, BuildKit, DOKS), D19 N4 (project use and labs)
-- **LLM routing and agent protocol** — *owner:* D5 and FDE companion (agents, tools, MCP) — *others add:* D16 Nasiko additions (routing policy, A2A, AgentCard), D19 N6 (the agent-protocol spec)
 
 ## Part 4 — Practice inventory
 
@@ -5854,20 +5469,6 @@ Every problem, exercise, lab, kata, checkpoint and capstone. Prompts are complet
 - **FDE-CK1 — Checkpoint — why a model loses track in a long context** *(FDE checkpoint)*
 - **FDE-CK2 — Checkpoint — a tested, attacked and measured assistant** *(FDE checkpoint)*
 - **FDE-CK3 — Checkpoint — a scoped design** *(FDE checkpoint)*
-
-### 4.4 Go build labs, design-problem bars and the Nasiko capstone
-
-Every lab is a Go build with tests; none has a withheld key beyond the usual post-attempt rule.
-
-- **G-path labs (D19 N1).** G0 repo and first `go test` · G1 tested array functions; two-pointer, prefix-sum and window problems · G2 stack, queue, deque and bag packages · G3 linked list, binary tree, red-black tree, heap, weighted union-find, hash symbol table (O01) · G4 file and CLI tools, slotted-page encoder and decoder, AgentCard parser, trie, KMP and Rabin–Karp · G6 and G7 worker-pool lab, bounded queue, wait-for-graph toy · G8 benchmarked sorts, external merge sort, top-k, rate limiters (Q22), Huffman, Kruskal and Prim · G9 benchmarks, DP set (knapsack, LCS, LIS, alignment) · G11 graph set (BFS, DFS, topological sort, Dijkstra, Bellman-Ford) · G12 REST API slice on a Postgres teaching schema; LRU and LFU caches (O02); consistent hashing · G13–G15 protobuf, gRPC (unary, streaming, interceptors) and REST+gRPC services with ghz benchmarks · G16 pprof and OpenTelemetry tracing · G17 `govulncheck`, hardening checklist · G18 cross-compiled and GoReleaser build.
-- **Contest remainder labs (D19 N2).** Max flow, Fenwick tree, segment tree, sparse table, suffix array, finite-state transducer with Viterbi shortest path; each followed by one hard platform problem.
-- **Database labs (D08 Nasiko additions).** Relational-algebra evaluator; slotted-page package; toy buffer pool; B-Tree, inverted index and BRIN-like summary; iterator-model executor with spill; planner statistics and selectivity prediction; MVCC visibility simulator and wait-for-graph deadlock detector; mini WAL and replay; primary and standby with measured replica lag; backup, restore and PITR drill.
-- **Maths and ML labs (D02 and D15 Nasiko additions).** The MML-0…MML-12 Go workbook; the ML-1…ML-14 packages (feature pipeline, metrics library, trees, k-means and GMM-EM, BM25 and rerankers, tokeniser and RAG evaluator, convolution and spectral features, PageRank and entity resolution, forecast baselines, bandits and causal estimators, tiny tensor and attention).
-- **ML-system labs.** Feature-store facade; trainer and evaluator CLI; model registry; serving with cache, fallback and shadow mode; bucketing and CUPED-style report; drift detector and runbook drill; policy checks and red-team tests; batcher, rate limiter and cost per successful decision; one rotation per case-study cluster.
-- **Design-problem bar (D19 N1, N8).** For P01–P08, O01–O07 and Q01–Q23: six-step write-up, Mermaid HLD, capacity table, bottleneck list, failure-mode table, rollout and rollback path, and a tested Go implementation of the core path. Each pattern in N8 implemented once with a test of the force that motivated it; one ADR plus a tiny model per production case study.
-- **Payments labs (D19 N7).** Idempotent charge endpoint, webhook receiver with signature and replay checks, double-entry ledger with property tests, refund and dispute state machine, nightly reconciliation job.
-- **Capstone (D19 N5).** P0–P10, each with its stated acceptance test; the final acceptance run: upload → build → deploy → register → route → chat and traces → CLI → staging and prod promotion → load test → backup and restore drill → security review and incident plan.
-- **Test suite for the capstone (D19 N6).** Unit tests with fakes; contract tests per `API-*`; SQL migration and constraint tests; `EXPLAIN` regression notes; stream integration; end-to-end upload → route → chat; load tests on gateway and router; chaos (kill the worker, dual consume, replica lag and failover).
 
 ## Part 5 — Operating sections of each part (full text)
 
@@ -9043,45 +8644,6 @@ Warm, direct, intellectually engaged, willing to push back. Treat learners as ca
   - What consistently goes wrong
   - Tone
 
-### Nasiko Go control-plane curriculum (merged into D19 and the domain supplements)
-
-**Table of contents of the merged source, with where each part now lives**
-
-- Bibliography → D19 N0b
-- 0. Knowledge graph and graph-ordered curriculum (edge types, owner nodes, dependency graph, stages S0–S14, anti-repetition ledger) → D19 N0
-- 1. Outcome and inventory (target services, stores, module mapping, end-to-end flow) → D19 N0, N5
-- 2. Concept node details: G0–G20 → D19 N1; G12b SQL and PostgreSQL internals braid → D19 N1 and D08 supplement; G20 payments → D19 N7; 2b contest and theory remainder → D19 N2 and D04 supplement; 2c mathematics, ML algorithms and ML-system foundations → D02 and D15 supplements, D19 N3
-- 3. Computing baseline and zero-to-hero domain map → D01, D03 and D06 own the baseline; the domain-to-lab map is carried by D19 N0 and Part 4.4
-- 4. Tool and platform subcourses; HLD, LLD and clean architecture → D19 N4, N8 and the D14 supplement
-- 5. System design track (primer topic index, SQL application matrix, ML case-study atlas, official problems, OOD problems, additional questions, implementation ladder) → D09 and Part 4 own the problems; D19 N1 (unlock rules), N8 and the D15 supplement carry the additions
-- 6. Reconstruction phases P0–P10 → D19 N5
-- 7. Normalized specs (HTTP API, chat history, router, auth, agent protocol, registry and Kong sync, jobs, data models, config, CLI, infrastructure, operations and tests, agents) → D19 N6
-- 8. Traceability → D19 N6
-- 9. Production and release → D19 N9
-- 10. Glossary → below; 10b. Readings → D19 N0b
-- 11. Archive → D19 N10 (exclusion list)
-- 12. Source map → superseded by this Part 6
-
-**Glossary of terms the merged source defines**
-
-- **NADT** — the dependency tree for a lesson (Go module, phase, locked roots).
-- **SUGL** — the set of unlocked Go, syntax and concept assets.
-- **SYNTAX UNLOCK** — a signature, its memory model, and a contrast with Python, Java or C.
-- **AgentCard** — the agent capability document (the SCHEMA-REG-001 shape).
-- **JSON-RPC 2.0** — `message/send` and related A2A methods.
-- **A2A** — the agent-to-agent task, artifact and stream protocol.
-- **Redis Streams** — an append log read with `XREADGROUP`; `orchestration:commands`.
-- **Kong plugin** — Lua or Go middleware on the gateway; `chat-logger` is the project example.
-- **BuildKit** — the image-build backend used by the worker.
-- **Vector search** — embed the query, find the nearest AgentCards, then LLM rerank and select.
-- **LLM routing** — choose an agent from a shortlist with structured output.
-- **Feature store** — an offline and online feature contract with point-in-time correctness and freshness checks.
-- **Model registry** — a versioned artefact with metrics, lineage, approval state and a rollback pointer.
-- **Drift** — input, feature, score, label or calibration distribution change that can invalidate model behaviour.
-- **Shadow and canary** — run a model without user impact or on a small traffic slice before full rollout.
-- **OpenTelemetry** — traces, metrics and logs; **Phoenix** is an LLM-trace UI.
-- **ORR** — operational readiness review.
-
 ## Part 7 — Appendix M: the 299 published ML system-design case studies, with summaries
 
 The published case studies D6 reads, from the open catalogue [A Curated List of ML System Design Case Studies](https://github.com/Engineer1999/A-Curated-List-of-ML-System-Design-Case-Studies), which listed 309 articles from 84 companies when it was taken. An article published in parts (part 1, part 2 …) is one entry here, so there are 299 entries. Each entry gives:
@@ -9543,10 +9105,6 @@ These are values and phrases that occur only inside answer keys, rubrics, refere
 
 Held back in all: 168 terms.
 
-### 8.3 Nasiko merge audit
-
-The Go control-plane curriculum was merged into this index as domain D19 and as supplements to D02, D04, D07, D08, D14, D15 and D16. Its topics were checked against the merged text: 344 distinctive terms from that curriculum (Go syntax and tooling, algorithms and contest structures, PostgreSQL internals, maths and ML slices, tools and clients, case-study systems, specs and reference books) were searched, ignoring case and punctuation. All 344 occur in the merged index; the 20 that did not match on first search were spelling variants (for example "weighted union-find", "cross-compilation", "window frames", "lateral joins", "Markov decision processes", "GMM-EM") and each is present in that form. Items deliberately left out are the ARCHIVE exclusions listed in D19 N10.
-
 ## Part 9 — Scope and method
 
 **Coverage.** This index carries every module, concept ID, academic block, domain, framework, certification track, service map, rule, ownership-register row, exercise prompt, lab, capstone, table of contents and case study in the nine files, in full, without shortening. Part 8 checks this term by term.
@@ -9567,5 +9125,3 @@ The Go control-plane curriculum was merged into this index as domain D19 and as 
 Every term these contain is listed in Part 8 against the item that teaches it.
 
 **Keeping it current.** The index is regenerated from the course files. The course guide (§4.7) says those files are built in the refactor workspace, so a lasting change to any course file, including making rules E1–E10 permanent inside the course guide, is made there and rebuilt. After each rebuild this index is regenerated and re-audited (rule E8).
-
-**Merged Nasiko curriculum.** A tenth source, the Go control-plane curriculum, is merged into this index as a topic list: domain D19 holds its route, Go unlock path, contest remainder, tools, capstone phases, specs, payments addendum, architecture ladder, production notes and exclusions; its additions to existing domains sit in the "Nasiko additions" supplements of D02, D04, D07, D08, D14, D15 and D16. Rules E1–E10 and Part 0B are unchanged. Its own teaching-contract reference is not reproduced, because rules E1–E10 and the course guide govern teaching. Its Go-first order is reconciled with this course's Python-then-Go rule (0.4.9) in D19 N3: Python where the course teaches it, a from-scratch Go build for every algorithmic item. Nothing in the merged curriculum is withheld except the ARCHIVE items named in D19 N10.
