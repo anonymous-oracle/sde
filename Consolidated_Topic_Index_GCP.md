@@ -1,6 +1,6 @@
 # Consolidated Topic Index
 
-Every topic, subtopic and prerequisite, listed once. The learning method comes first and governs how every topic is taught. Each domain then opens with its prerequisites, lists its topics and subtopics, and ends with exercises: from-scratch implementations first, then reasoning drills.
+Every topic, subtopic and prerequisite, listed once. The learning method comes first and governs how every topic is taught. Each domain then opens with its prerequisites, its depth bar and its capstone, lists its topics and subtopics, and ends with exercises: from-scratch implementations first, then reasoning drills. A line here sets what is covered, never how shallowly.
 
 ## Learning method
 
@@ -25,7 +25,7 @@ Every topic, subtopic and prerequisite, listed once. The learning method comes f
   - teach it back, including its limits, what is contested and the current state of practice
   - solve an unseen problem on it at the hardest rung of its ramp, and say which heuristic cracked it
 - **Depth is never traded for speed**: a fast run of correct answers, a request for brevity or time pressure never removes the why. Overviews and summaries come after teaching, as revision, never instead of it.
-- **Named benchmarks**: depth at L3 is judged against leading university courses and textbooks, named by institution and course name or by author, title and edition, never linked; depth at L4 against published industry practice, the SRE literature, public postmortems, professional exam guides and staff-level interview loops (system design, coding, design review). The benchmark being taught to is named.
+- **Named benchmarks**: depth at L3 is judged against leading university courses and textbooks, named by institution and course name or by author, title and edition, never linked; depth at L4 against published industry practice, the SRE literature, public postmortems, professional exam guides and staff-level interview loops (system design, coding, design review). At the start of each domain the tutor names the courses, textbooks and exam guides that set its bar and maps their contents onto the domain's groups; anything a benchmark covers that the domain does not list is recorded as a gap and taught. The index is a floor, never a ceiling.
 - **Honesty**: precise about mechanisms; uncertainty said out loud; any fact that changes often is checked in a primary source before it is taught as current, and a recalled figure is never presented as checked; what is contested or unknown is taught as such.
 
 ### The learner's preferences
@@ -54,7 +54,7 @@ Every topic, subtopic and prerequisite, listed once. The learning method comes f
 - **The ten-rung ramp**: five teaching rungs (anchor, vocabulary, representation, core move, worked illustration), then five exercise rungs climbed one item per turn: a basic unseen check, a routine variation, a mixed transfer (the new idea plus exactly two earlier mastered ideas, named before it starts), a top-rung challenge, and a reflection (explain back or invent an example).
 - **Predict, run, explain the gap**: every exercise with an observable outcome (a result shape, a row count, a plan, a latency, an isolation or attack outcome) starts with a one-line prediction. A wrong prediction is recorded and taught from.
 - **Checks**: one thing at a time, answerable from what has been taught, precise enough that a vague answer fails; the expected answer and at least one expected wrong answer are written down before the check is sent; never answered by the tutor in the same turn; a check holding "and", "then" or a second question mark is split.
-- **Exercise banks are specifications, not worksheets**: one item at a time, at the rung the record says is next, attempted before any help. Hints escalate one notch at a time: what structure do you see, then a smaller case, then the smallest useful hint; only then the key.
+- **Exercises are specifications, not worksheets**: each one-line exercise is written out in full before it starts (the goal, inputs and interfaces, required behaviour and edge cases, acceptance tests, the prediction to make, the measurement to take, the cost tag and the teardown); then one item at a time, at the rung the record says is next, attempted before any help. Hints escalate one notch at a time: what structure do you see, then a smaller case, then the smallest useful hint; only then the key.
 - **Two passes per topic**: the engineering pass first; then the academic pass under the same topic, with formal definitions, proofs or proof sketches, derivations with every step and every number computed, and a problem set. An academic block is mastered only when at least one proof or derivation problem and one computational problem pass.
 - **Go code is accepted** when `gofmt -l` prints nothing, `go vet ./...` is clean, the tests pass under `go test -race`, no error is silently dropped and every goroutine has a way to stop. Each Go topic group ends with one involved problem the learner designs and writes alone; hints only when asked, one at a time, and the tutor never writes the solution.
 - **The cloud lens at three depths**: name the resource, why it is the answer, its console path and its command grammar; touch it in a lab (free tier, a small credit, a local emulator or `terraform plan`); design with it at certification depth.
@@ -63,6 +63,25 @@ Every topic, subtopic and prerequisite, listed once. The learning method comes f
 - **Mastery states and recall**: not started, in progress, taught, mastered; also shaky, unverified or sliced (only a named slice taught). Taught and mastered topics get one-question recalls about 1, 3, 7 and 21 sessions later; a missed recall marks the topic shaky and re-teaches only the gap.
 - **The learner's record**: each topic's mastery state and highest depth level; the misconception register; errata; overrides; wrong predictions; the decision journal with its Brier scores; the error log and heuristics catalogue; the frontier list; built projects; the resume point. The record is audited against this index regularly for topics below L4, unverified prerequisites and untaught drills; gaps are scheduled, never dropped.
 - **Before every reply**: a short turn in the allowed format; every term anchored; one check with its expected answers written first; an unanswered question answered first; the cloud lens; workplace safety; numbers computed with their units; recalled claims flagged.
+
+### Depth, coverage and capstones
+
+- **A short line is a whole topic**: a bullet that is only a name or a pair of terms, such as "signals and their handling" or one pattern, attack, command or service, is taught to the same L4 standard as a long one. Length reflects how much needed writing down here, never how much is taught.
+- **Unpack before teaching**: before a topic starts, the tutor writes its scope into the record: the problem it solves; the subtopics the line implies; the central result to prove or derive; the mechanism down to its data structures or equations; the numbers and limits; the canonical failure and a real incident; the hands-on piece with its cost tag; the Google Cloud counterpart or "none"; the links to other domains. The learner may add to the scope, and anything found missing later is added and taught, never waved off.
+- **Named things are taught in full**
+  - A pattern, anti-pattern, algorithm, protocol or attack: the problem or intent, the structure or mechanism, a worked example, when not to use it, how it fails or is misused, and how it is recognised in real code or traffic
+  - A tool or command: what it reads and changes, its grammar, its key flags, its output read line by line, and the mistake it is most often used to make
+  - A cloud service: its resource model, limits and quotas, consistency and availability guarantees, pricing shape, IAM roles, networking, command grammar and Terraform resource, and its counterparts on the other two providers with what differs
+- **Material the index omits is generated, never skipped**: checks, worked examples, the reason each mechanism works, problem sets and exercise prompts are written by the tutor for every topic. A problem set climbs from routine items to qualifying-examination difficulty, holds at least one proof or derivation and one computational problem, and has its key written before it is sent and shown only after an attempt.
+- **Evidence by doing**: a topic with a practical side stays "unverified" until the learner has run, built, measured or broken it personally; reading about it or watching it done does not count. A topic with no practical side is verified by a proof, derivation or calculation the learner produced unaided.
+- **Shallow-teaching alarms**, each corrected the moment it appears: a definition with no mechanism; a mechanism with no number; a claim with no failure mode; a product named with no command or configuration; "and so on" or "etc." standing in for content; a turn with no check; a topic closed without evidence; a benchmark section left unmapped.
+- **Capstones are required**: every domain ends in the capstone stated under its prerequisites, and the domain is mastered only when the capstone passes. A capstone integrates most of the domain's groups and at least two earlier domains, is built in the learner's own project with the learner's own code and commands, and never replaces topic-by-topic mastery.
+  - Acceptance criteria are written before work starts: required behaviour with automated tests; one number predicted, then measured; one injected failure detected and recovered from; cost estimated, then read from the bill; a threat model; a decision record for each major choice; a clean teardown; an oral defence against adversarial questions.
+  - The tutor reviews and questions but never writes the capstone; a failed criterion is fixed and re-tested, never waived.
+  - For mathematical and reasoning domains, the capstone is a long unseen problem set at qualifying-examination difficulty with a written report and an oral defence, or a small research question answered with evidence.
+  - Cross-domain capstones close the larger stretches: the systems domains as one production service on Google Cloud; machine learning and generative AI as one evaluated AI product; and a final architecture taken from requirements to a running system and defended as in a professional architecture review.
+- **Testing out**: a topic is skipped only at the learner's request and only after passing, cold, its central derivation, an unseen top-rung problem and its hands-on piece; failing any one sends it back to normal teaching.
+- **Domain exit audit**: before a domain is left, every line in it is walked with its state, the depth level reached and the evidence (a check, a proof, a build, a measurement). Anything below L4 or without evidence is scheduled before the capstone, not after.
 
 ### Lab safety
 
@@ -112,6 +131,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Difficulty pitched just beyond reach and climbed to contest and qualifying-examination level in each domain
 
 ## School-level foundations
+
+**Depth bar:** fast, error-free work on unseen multi-step problems in every group of this domain, with each rule justified rather than recalled. These are the roots every prerequisite chain ends in, so a gap here is closed before anything built on it.
+
+**Capstone:** a timed mixed set spanning every group, and a one-page explanation of a quantitative decision written for a non-expert.
 
 - **Arithmetic and number sense**
   - Integers, negatives, fractions, decimals, percentages
@@ -172,6 +195,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Computer Organization & Data Representation
 
 **Prerequisites:** arithmetic and number sense; units; exponents and logarithms; sets and logic; electricity and signals.
+
+**Depth bar:** an undergraduate computer-architecture course with its labs: every representation encoded and decoded by hand, every performance law derived and used with numbers, every hardware effect measured on a real machine.
+
+**Capstone:** a simulated RV32I machine with a cache model, running a small recursive program and reporting cycles per instruction, hit rates and average memory access time against predictions written beforehand.
 
 ### Data representation
 
@@ -267,6 +294,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Mathematics, Probability, Statistics, Queueing & Performance Modelling
 
 **Prerequisites:** the school-level foundations from arithmetic through calculus intuition.
+
+**Depth bar:** the mathematics, probability and statistics expected at graduate entry in computer science: each theorem proved or its proof sketched, each formula derived, each method run by hand and then in code on real data.
+
+**Capstone:** a capacity and experiment report for a service you run: a queueing model predicting latency under load, a load test that confirms or refutes it, and an A/B analysis with power, intervals and a written conclusion, defended orally.
 
 ### Proof and discrete mathematics
 
@@ -464,6 +495,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** school algebra, geometry, functions and graphs, units, probability and sequences; proof techniques (direct proof, contradiction, cases, induction); counting; expected value and conditional probability; convex functions.
 
+**Depth bar:** contest-level problem solving and research-level reading: unseen problems solved under time and then by a second method; papers read critically and their claims tested.
+
+**Capstone:** a full-length timed contest paper scored and post-mortemed by error cause, and a short research report extending one published result to a new setting.
+
 ### Problem-solving strategy
 
 - **Pólya's four phases**: understand the problem (the unknown, the data, the condition); devise a plan; carry it out; look back (check the result, find a second route, reuse the method)
@@ -560,6 +595,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Programming Languages & Language Theory
 
 **Prerequisites:** computer literacy and the terminal; data representation (binary, two's complement, UTF-8, floating point); proof by induction; sets, relations and functions.
+
+**Depth bar:** production fluency in Python and Go (idiomatic, tested, race-free, profiled code) together with a programming-languages course: semantics, type soundness, and a working interpreter and type checker.
+
+**Capstone:** a production-grade Go service with a command-line client, tests, benchmarks, profiling and graceful shutdown; and an interpreter with a type checker for a small language of your own design.
 
 ### Python
 
@@ -960,6 +999,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** a first programming language (Python, then Go); proof by induction and invariants; logarithms and exponents; sums and recurrences; probability with indicator variables and expectation; discrete maths (relations, graphs, counting).
 
+**Depth bar:** a top-university algorithms course: correctness proved by invariant, exchange argument or induction; recurrences solved; lower bounds and reductions shown; every implementation benchmarked against its predicted complexity.
+
+**Capstone:** a library of the core structures and algorithms with property-based tests and benchmarks confirming each asymptotic claim, and a timed set of unseen hard problems, each solved and proved.
+
 ### Analysis
 
 - **Correctness**
@@ -1078,6 +1121,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** binary and powers of two; bit operations; queueing basics (delay grows with utilization); graph shortest paths (Dijkstra, Bellman–Ford); tries; the latency numbers of the memory and network hierarchy.
 
+**Depth bar:** a top-university networking course with its socket and protocol labs: each protocol mechanism traced on the wire with packet capture, each performance formula derived and checked under emulated loss and delay.
+
+**Capstone:** a service on Google Cloud reached through your own DNS records, TLS, reverse proxy and CDN, with its latency budget predicted, measured hop by hop, then broken and repaired under injected loss.
+
 ### Architecture principles
 
 - The OSI and TCP/IP models and what lives at each layer
@@ -1089,7 +1136,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ### Addressing and the link layer
 
 - IPv4 structure, subnetting and CIDR arithmetic; private ranges
-- IPv6 basics
+- IPv6: 128-bit addresses, stateless autoconfiguration, neighbour discovery in place of ARP, dual stack
 - Ethernet framing, self-learning switches, ARP and VLANs
 - DHCP and why it needs UDP broadcast
 - NAT and source-port exhaustion
@@ -1101,7 +1148,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Distance-vector routing (Bellman–Ford; RIP); count-to-infinity and poisoned reverse
 - Hierarchical routing and autonomous systems
 - BGP as path-vector policy routing: eBGP and iBGP, route selection, slow convergence, route hijacks
-- Anycast
+- Anycast: one address announced from many sites and reached at the nearest by BGP
 
 ### Transport
 
@@ -1217,6 +1264,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** computer organization (ISA, the memory hierarchy, TLB, cache coherence and atomic instructions); a programming language with threads; data structures (queues, trees, hash tables); basic probability.
 
+**Depth bar:** a graduate operating-systems course with kernel labs: each mechanism explained down to its data structures and system calls, built at toy size, and observed on a live Linux system with tracing tools.
+
+**Capstone:** a minimal container runtime and a concurrent network server, each tuned from measurements (system-call traces, scheduler and memory counters, flame graphs), with every finding written as hypothesis, evidence and fix.
+
 ### Linux practice
 
 - The filesystem hierarchy; navigation and the shell
@@ -1226,20 +1277,22 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - SSH, keys and remote access
 - Observing a live system: `/proc`, `ps`, `top`, `ss`, `lsof`, `vmstat`, `iostat`
 - The OOM killer and cgroup memory limits (why a container instance is killed)
+- Tracing and profiling: `strace` for system calls, `perf` and flame graphs for CPU time, eBPF tools such as `bpftrace` for kernel events
 
 ### Processes and threads
 
+- Kernel structure: monolithic kernels, microkernels and unikernels; loadable modules; boot from firmware through the bootloader and kernel to init
 - User and kernel mode; system calls, traps and interrupts
 - `fork`, `exec` and `wait`; process states
 - The cost of a context switch
 - Threads versus processes
 - The address-space layout: code, data, heap, stack
-- Signals and their handling
+- Signals: delivery and masking, async-signal-safe handlers, SIGTERM then SIGKILL, graceful shutdown inside containers
 
 ### CPU scheduling
 
 - FIFO, shortest-job-first and shortest-time-to-completion-first (optimal mean turnaround by an exchange argument)
-- Round robin and response time
+- Round robin: the time quantum trades response time against context-switch overhead
 - The multi-level feedback queue
 - Proportional share: lottery and stride scheduling
 - Linux's fair schedulers: CFS, and EEVDF since Linux 6.6
@@ -1260,7 +1313,8 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 - Race conditions and critical sections
 - Mutual exclusion from atomic instructions: test-and-set, compare-and-swap
-- Spinlocks versus blocking locks
+- Spinlocks versus blocking locks; futexes, which keep an uncontended lock out of the kernel
+- Memory barriers and fences; read-copy-update for read-mostly data
 - Condition variables and the producer–consumer problem
 - Semaphores; readers–writers locks
 - Deadlock: the four Coffman conditions; prevention by a global lock order
@@ -1314,6 +1368,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Software Architecture, APIs, Design Patterns & Clean Architecture
 
 **Prerequisites:** a programming language with classes or interfaces (Python, Go); type systems (nominal and structural typing, parametric and subtype polymorphism); HTTP semantics; preconditions, postconditions and invariants; graphs and state machines.
+
+**Depth bar:** a graduate software-architecture and design course plus staff-level design review: every principle and pattern implemented, critiqued in real code and justified against quality-attribute scenarios.
+
+**Capstone:** a modular service designed from quality-attribute scenarios, documented with C4 views and decision records, built with ports and adapters and tests, then changed by a new requirement to measure how modifiable it really is.
 
 ### Architecture fundamentals
 
@@ -1513,6 +1571,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** sets, relations, functions and bags; propositional and predicate logic; binary search, sorting, hashing and trees; the storage hierarchy with page and row arithmetic; integer versus floating-point arithmetic and encodings; files, CSV and JSON; a programming language with a database driver; operating-system virtual memory and `fsync`; concurrency (locks, deadlock).
 
+**Depth bar:** a top-university database-systems course with its internals labs plus production PostgreSQL practice: each theorem proved, each plan predicted before `EXPLAIN`, each operational procedure rehearsed.
+
+**Capstone:** a production schema for a transactional product taken from requirements through normalization, migrations, indexing and an isolation-anomaly test suite to backups with a timed restore, deployed on Cloud SQL with a connection budget.
+
 ### Pre-SQL foundations
 
 - Relations as sets of tuples over a heading; SQL tables as bags; Cartesian product sizes; bag versus set union
@@ -1600,7 +1662,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Parallel query
 - **Query optimization**
   - The parse, analyse, rewrite and plan pipeline
-  - Statistics: histograms, most-common values, correlation; selectivity under uniformity and independence; compounding estimation error
+  - Statistics: histograms, most-common values, correlation; selectivity under uniformity and independence; extended statistics on correlated columns (`CREATE STATISTICS`); compounding estimation error
   - The Selinger optimizer: dynamic programming over subsets, left-deep plans, interesting orders
   - NP-hardness of join ordering; genetic search beyond a threshold
   - Cost variables such as `random_page_cost`
@@ -1659,7 +1721,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Connection pooling: session, transaction and statement modes and what transaction mode breaks; pool math (instances × pool ≤ `max_connections` minus reserved slots, with failover headroom)
 - Backups: logical (`pg_dump`/`pg_restore`) versus physical with WAL archiving; restore drills to a new instance; RPO and RTO; HA and replicas are not backups
 - Retention: dropping partitions versus mass deletes; cold-storage export
-- Migrations as jobs: dirty state, advisory locks, expand/contract in CI, rollback plans
+- Migrations as jobs: dirty state, advisory locks, expand/contract in CI, rollback plans; online index builds with `CREATE INDEX CONCURRENTLY` and lock timeouts on DDL
 - Application data access: N+1 queries, ORM pitfalls, prepared statements, transaction boundaries, keyset pagination with unique tiebreakers and signed cursors, repositories
 - Testing SQL: Postgres service containers, seeded fixtures, fingerprint and golden assertions, migration up and down tests
 - Managed relational databases: provisioning, private connectivity, connectors and proxies, IAM database authentication, backups and PITR, HA standbys and read replicas, flags
@@ -1705,6 +1767,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Distributed Systems & Large-Scale System Design
 
 **Prerequisites:** networking (TCP, DNS, load balancing, latency numbers); databases (transactions, isolation, replication, indexes); concurrency (locks, happens-before, memory models); probability (order statistics, balls into bins, the birthday bound); queueing (Little's law, utilization); partial orders; hashing and consistent hashing basics.
+
+**Depth bar:** a graduate distributed-systems course with replication and consensus labs plus staff-level system-design interviews: impossibility results proved, protocols implemented and tested under injected faults, designs sized with numbers.
+
+**Capstone:** a replicated, partitioned key-value store with consensus and a client library, tested under partitions, crashes and clock skew with a linearizability checker, and its design written up and defended with capacity numbers.
 
 ### Foundations
 
@@ -1849,6 +1915,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Security, Cryptography, Privacy & Compliance
 
 **Prerequisites:** number theory (modular arithmetic, Euler's theorem, discrete logarithms); probability (the birthday bound, negligible advantage); networking (HTTP, cookies, TLS, DNS, BGP); operating-system isolation (namespaces, cgroups, capabilities); databases (SQL, row-level security); distributed systems (consensus, replication); an HTTP service in a programming language.
+
+**Depth bar:** a top-university computer-security and applied-cryptography course with attack labs plus a cloud-security professional exam: every attack reproduced on your own fixtures, every defence explained by the property it restores, every primitive's security notion stated.
+
+**Capstone:** a threat-modelled application on Google Cloud with least-privilege IAM, managed secrets, perimeter controls, audit logging and detections, attacked by your own scripted tests and closed with an incident-response exercise and written report.
 
 ### Principles and economics
 
@@ -2120,6 +2190,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** the shell; hashing and Merkle structures; directed acyclic graphs and lowest common ancestors; queueing intuition (batch size and waiting time).
 
+**Depth bar:** Git understood as data structures, and delivery practised at the level of a team that owns its production releases.
+
+**Capstone:** a repository with branch protection, signed commits and CI, carrying one change through review, release, a failed rollout and a rollback.
+
 ### Git
 
 - **Everyday Git**
@@ -2169,6 +2243,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 
 **Prerequisites:** operating systems (virtual memory, page tables, the TLB, privileged instructions, namespaces and cgroups); probability (means and standard deviations of sums, the exponential distribution); availability arithmetic; access-control models; OAuth and OIDC tokens.
+
+**Depth bar:** cloud architecture at professional-certification depth together with the virtualization mechanisms beneath it: every service model explained down to the isolation it rests on, every cost claim computed.
+
+**Capstone:** a well-architected review of a workload you built: a pillar-by-pillar assessment, an IAM model with no basic roles, a cost model checked against the bill, and a remediation plan carried out.
 
 ### What cloud computing is
 
@@ -2239,6 +2317,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## The Architect's Practice: Decisions, Strategy & Career
 
 **Prerequisites:** architecture documentation (decision records, C4 views, quality-attribute scenarios); cost modelling; expected value and probability; delivery practices (canaries, feature flags, expand/contract migrations); SLOs and postmortems; technical reading and writing.
+
+**Depth bar:** staff and principal engineer practice: decisions written, reviewed and revisited against outcomes; strategy defended to engineers and to executives.
+
+**Capstone:** a technical strategy and migration plan for a realistic system, with decision records, a premortem, a build-or-buy analysis and a review held under adversarial questions.
 
 ### Making decisions
 
@@ -2316,6 +2398,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability
 
 **Prerequisites:** Linux (processes, namespaces, cgroups, capabilities, seccomp, file systems); networking (HTTP, TLS, load balancing, DNS); Git; Raft and replicated key-value stores; bin packing and DAGs; queueing (Little's law); percentiles and histograms; availability arithmetic.
+
+**Depth bar:** SRE practice at the level of owning an on-call service: every component deployed from your own manifests and pipelines, every alert tied to an SLO, every failure mode drilled.
+
+**Capstone:** a service on GKE or Cloud Run deployed by Terraform through a CI/CD pipeline with progressive delivery, SLOs with burn-rate alerts, dashboards and traces, and a game-day failure written up as a blameless postmortem.
 
 ### Docker
 
@@ -2453,6 +2539,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Machine Learning, MLOps & Production ML System Design
 
 **Prerequisites:** sets and propositional logic; coordinate geometry and lines; linear algebra (vectors, matrices, transposes, determinants, cosine similarity, eigen-decomposition, PCA); multivariable calculus and the chain rule; convex optimization and gradient descent; probability (joint, marginal and conditional), Bayes' rule, distributions, maximum likelihood, hypothesis tests and sample size; information theory (entropy, cross-entropy, KL divergence); numerical stability (log-sum-exp, stable softmax); Python with NumPy, pandas and Matplotlib; SQL including window functions and as-of joins; graph search; queues and Little's law; cloud data services (warehouse, object storage, pub/sub).
+
+**Depth bar:** a graduate machine-learning course (losses, gradients and generalization derived) plus production ML system design: every model built from scratch at toy size before the library, every pipeline monitored.
+
+**Capstone:** an end-to-end ML system: the problem framed with its metric, point-in-time-correct features, a model evaluated with ablations, a served endpoint with drift monitoring, and an online experiment measuring its effect.
 
 ### Foundations of AI
 
@@ -2625,6 +2715,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 ## Generative AI, LLMs, Agents & Claude Applications
 
 **Prerequisites:** probability (joint, marginal and conditional) and the chain rule of probability; cross-entropy, maximum likelihood and perplexity; linear algebra (matrix multiplication, transposes, projections) and cosine similarity; backpropagation, gradient descent and neural-network training; classical NLP, word embeddings and recurrent sequence models; ranking measures (recall@k, MRR, nDCG); binomial proportions, confidence intervals and paired tests; Python with NumPy and PyTorch, Go and TypeScript; HTTP, JSON Schema, JSON-RPC 2.0 and Server-Sent Events; OAuth 2.0 with PKCE; containers; queues, idempotency, retries with backoff, sagas and rate limiting; prompt-injection, jailbreak and AI-application threats; observability and SLOs.
+
+**Depth bar:** a graduate course on large language models (the transformer derived, training and inference costs computed) plus production LLM engineering: every application measured by an evaluation suite before and after each change.
+
+**Capstone:** an agentic retrieval application over your own documents with tools, guardrails, an evaluation suite gating regressions, cost and latency budgets and a red-team pass, deployed on Google Cloud.
 
 ### How LLMs work
 
@@ -2952,6 +3046,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 **Prerequisites:** cloud computing concepts (service and deployment models, shared responsibility, well-architected pillars, FinOps, IAM models); virtualization and containers; networking (VPCs, subnets, routing, BGP, DNS, TLS, load balancing, CDNs); databases (relational, key-value, wide-column, document, warehouse) and their consistency models; distributed systems (replication, sharding, queues, consensus); security (cryptography, identity, zero trust); DevOps (CI/CD, IaC, observability, SRE); Bash scripting, JSON and `jq`; machine learning and LLM applications.
 
+**Depth bar:** professional-certification depth on Google Cloud first, then on AWS and Azure by mapping each service and teaching what differs; every command is built by the learner.
+
+**Capstone:** one multi-tier production workload built on Google Cloud end to end from the command line and Terraform, then ported to AWS and Azure, with a written comparison of identity, networking, operations and cost.
+
 ### Google Cloud — compute
 
 - **Compute Engine**: machine families and types; instance templates and machine images; regional managed instance groups with autohealing health checks and autoscaling; Spot VMs; sole-tenant nodes; Shielded and Confidential VMs; Container-Optimized OS; the metadata server; outbound port 25 blocked
@@ -3213,6 +3311,17 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Deployments: `az deployment group create --template-file main.bicep --parameters`; `az deployment group what-if`; `az deployment sub create` for subscription scope; `az bicep build`; `az policy assignment create`
   - Data: `az sql server create` and `az sql db create`; `az cosmosdb create`
   - Monitoring: `az monitor log-analytics query --workspace --analytics-query` with Kusto; `az monitor metrics alert create`; `az monitor activity-log list`
+
+### AWS and Azure — what differs at depth
+
+- **Networks**: AWS VPCs and Azure VNets are regional, where a Google Cloud VPC is global; AWS subnets live in one Availability Zone while Azure subnets span the zones of a region; regions are joined by peering or a hub (Transit Gateway, Virtual WAN)
+- **AWS IAM evaluation**: an explicit deny anywhere wins; an action needs an allow from an identity-based or resource-based policy; service control policies, permission boundaries and session policies only cap what can be allowed; roles are assumed through STS, and cross-account access needs both accounts to agree
+- **Azure identity**: Entra ID roles govern the directory, Azure RBAC governs resources at management-group, subscription, resource-group or resource scope and is inherited downward; deny assignments; system- and user-assigned managed identities
+- **Key-value and document stores**: DynamoDB partition and sort keys, on-demand versus provisioned read and write capacity, eventually consistent global secondary indexes, single-table design; Cosmos DB request units, partition keys and logical-partition limits, and five consistency levels (strong, bounded staleness, session, consistent prefix, eventual)
+- **Object storage**: S3 strong read-after-write consistency, storage classes and lifecycle rules, bucket policies and Block Public Access; Azure storage accounts with LRS, ZRS, GRS and GZRS redundancy and hot, cool, cold and archive tiers
+- **Functions**: Lambda execution-environment reuse and cold starts, reserved and provisioned concurrency, the 15-minute limit, event source mappings; Azure Functions hosting plans and Durable Functions orchestrations
+- **Governance**: AWS Organizations with Control Tower landing zones, service control policies and resource control policies; Azure management groups, Azure Policy effects (deny, audit, modify, deployIfNotExists) and Cloud Adoption Framework landing zones
+- **Commitments and discounts**: AWS Savings Plans, Reserved Instances and Spot; Azure reservations, savings plans, Spot VMs and Hybrid Benefit
 
 ### Cross-provider concept map
 
