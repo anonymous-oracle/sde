@@ -56,7 +56,7 @@
 | Availability vs durability, nines | A9 / C7 | Primer SD-07 (tables, series and parallel formulas) |
 | HA, horizontal vs vertical scaling, DR | B3 | Primer SD-06, SD-10 and the P08 walk-through; design-patterns treats HA/DR as infrastructure, not code architecture |
 | Autoscaling (HPA, MIG) | C2 / V-COMP | Primer P08 "Users++++" |
-| Observability, SRE | C6 / C7 | Primer P08 (monitoring list, back pressure) |
+| Observability, SRE | C6 / C7 | Primer P08 (monitoring list, back pressure); Forward Deployed Engineer companion FDE-32 (LLMOps: release records, online evaluation, service-level objectives for quality and cost) |
 | Container non-root, Pod Security Standards | C1 / C2 | Cyber CK (escape and supply-chain attacker paths) |
 | KMS and CMEK | Phase 4 Security | Cyber CR-14 (envelope hierarchy, compromise response) |
 | Cloud Armor and DDoS product names | V-NET / Phase 4 Networking | Cyber DOS taxonomy, rate-limit and bot design |
@@ -73,8 +73,12 @@
 | LLM mechanics: tokenization, next-token prediction, attention, decoding, alignment | D4 (D4.D1–D4.D5); D2 (backpropagation) | Forward Deployed Engineer companion LB-1…LB-6 (the from-scratch builds; they recall the theory, never re-teach it) |
 | Prompt engineering | D4 (zero-shot, few-shot and system prompts as concepts) | Forward Deployed Engineer companion FDE-08 (the craft, templates, versioning) |
 | Embeddings, retrieval-augmented generation, hybrid search | D4 (the concept; D4.D5); D5.D1 (ranking theory) | Forward Deployed Engineer companion LB-7 (the rankers built) and FDE-25 (the production pipeline); SQL AN-07 (search and vectors in Postgres); cyber AI-03 (leakage through retrieval) |
+| Vector-database internals, ANN indexes and index selection | Forward Deployed Engineer companion FDE-29 | D4 and FDE-25 (the concept and the pipeline); SQL AN-07 (pgvector); the ML cases' K4 (two-tower retrieval; HNSW and ScaNN in the eBay case) |
+| Workflow orchestration and durable execution | Forward Deployed Engineer companion FDE-30 | FDE-16 (choosing and the five patterns); A9 (idempotency, sagas); C4 (pipelines) |
+| LLMOps (release, online evaluation, drift and cost operations for hosted-model applications) | Forward Deployed Engineer companion FDE-32 | D3 (MLOps, drift, A/B tests); FDE-22…FDE-24 (evaluation and tracing); C6, C7 (observability, service-level objectives) |
+| Semantic caching and the LLM gateway | Forward Deployed Engineer companion FDE-33 | FDE-07 (prompt caching); FDE-26 (three cache levels, fallbacks); A7 and A9 (API gateway, rate limiting); the Cloud Cybersecurity companion's AB-01 (the token bucket) |
 | Prompt injection; tool and agent abuse | Cyber AI-01, AI-02 (the attacks; labs SEC-E8.3, SEC-E8.4) | Forward Deployed Engineer companion FDE-20 (the learner's own agent attacked; the Claude-side controls, hooks, the lethal trifecta) |
-| Agentic patterns and agents | D4 (named as concepts) | Forward Deployed Engineer companion FDE-15…FDE-17 (built, with the Agent SDK); the Agentic Architect certification (ADK, A2A) |
+| Agentic patterns and agents | D4 (named as concepts) | Forward Deployed Engineer companion FDE-15…FDE-17 (built, with the Agent SDK) and FDE-31 (multi-agent topologies, when to split, failure modes and cost); the Agentic Architect certification (ADK, A2A) |
 | Evaluating LLM applications | Forward Deployed Engineer companion FDE-22, FDE-23 | D1 (metrics), D3.D4 (online experiments) and D5.D2 (the statistics) are recalled |
 | Retries, backoff and overload handling for model APIs | Design-patterns ARCH-12 (retry, backoff, jitter, degradation) | Forward Deployed Engineer companion FDE-04 (429 and 529), FDE-24 (retry storms); Go companion GO-19 |
 | TypeScript and Node | Forward Deployed Engineer companion FDE-01, FDE-02 | rule 0.4.9 (the third language) |

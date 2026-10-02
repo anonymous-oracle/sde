@@ -16,9 +16,9 @@ The category column is a keyword heuristic, for sorting only.
 | Design Patterns companion | 1 | 0 | 0 | 4 |
 | Cloud Cybersecurity companion | 0 | 0 | 0 | 71 |
 | Go companion | 32 | 11 | 0 | 27 |
-| Forward Deployed Engineer companion | 0 | 0 | 0 | 41 |
+| Forward Deployed Engineer companion | 0 | 0 | 0 | 46 |
 
-Total rows: 291.
+Total rows: 296.
 
 ## Register
 
@@ -311,7 +311,12 @@ Total rows: 291.
 | 285 | - **GCP lens:** through Vertex AI, access is IAM on the Google Cloud project, data residency follows the chosen region, and the customer's existing Google Cloud agreements apply `… | fde:406 | other | not checked | none recorded | to verify |
 | 286 | - **Library and production:** an evaluation framework or the Anthropic Console's evaluation tool `(verify)` once the harness has shown what is needed. | fde:419 | other | not checked | none recorded | to verify |
 | 287 | - **GCP lens:** Vertex AI Vector Search or `pgvector` on AlloyDB; documents from Cloud Storage; permission metadata from the customer's identity system `(verify)`. | fde:458 | other | not checked | none recorded | to verify |
-| 288 | 3. **Registration.** Check whether public registration has opened or whether the learner's employer has joined the Claude Partner Network `(verify)`; book only then. | fde:527 | other | not checked | none recorded | to verify |
-| 289 | - **FDE-06** — Expected: citations are not compatible with structured outputs `(verify)`, so do two steps: a cited answer over the document, then a structured-output call that con… | fde:581 | other | not checked | none recorded | to verify |
-| 290 | - **FDE-18** — Expected: the deny rule wins — in the permission system a deny at any level is not overridden by an allow at another `(verify)` — so a project or organization can f… | fde:593 | other | not checked | none recorded | to verify |
-| 291 | - **FDE-19** — Expected: in the run's permissions or allowed-tools settings (on the command line or in the project's settings); the attempted shell command is refused by the harne… | fde:594 | other | not checked | none recorded | to verify |
+| 288 | - **Core:** what a vector store does that a B-tree cannot: nearest-neighbour search in high dimensions, where exact search costs O(n·d) per query and tree indexes lose their advan… | fde:501 | other | not checked | none recorded | to verify |
+| 289 | - **GCP lens:** pgvector on Cloud SQL or AlloyDB when the documents and permissions are already relational; Vertex AI Vector Search (now documented under Google's Gemini Enterpris… | fde:504 | other | not checked | none recorded | to verify |
+| 290 | - **Core:** FDE-16 owns choosing workflows or agents and the five patterns; this card owns the machinery that runs a long or multi-step workflow reliably. The engine families: a d… | fde:511 | other | not checked | none recorded | to verify |
+| 291 | - **Core:** FDE-17 builds subagents and names how multi-agent systems fail; this card decides whether to build one. A multi-agent system is several model loops that divide a task … | fde:521 | other | not checked | none recorded | to verify |
+| 292 | - **Core:** FDE-26 names three caching levels; this card builds the middle one and the layer around it. Semantic caching: embed the incoming question, look for a previously answer… | fde:541 | release behaviour | not checked | none recorded | to verify |
+| 293 | 3. **Registration.** Check whether public registration has opened or whether the learner's employer has joined the Claude Partner Network `(verify)`; book only then. | fde:581 | other | not checked | none recorded | to verify |
+| 294 | - **FDE-06** — Expected: citations are not compatible with structured outputs `(verify)`, so do two steps: a cited answer over the document, then a structured-output call that con… | fde:640 | other | not checked | none recorded | to verify |
+| 295 | - **FDE-18** — Expected: the deny rule wins — in the permission system a deny at any level is not overridden by an allow at another `(verify)` — so a project or organization can f… | fde:652 | other | not checked | none recorded | to verify |
+| 296 | - **FDE-19** — Expected: in the run's permissions or allowed-tools settings (on the command line or in the project's settings); the attempted shell command is refused by the harne… | fde:653 | other | not checked | none recorded | to verify |

@@ -537,3 +537,10 @@ The learner asked that the corrections in `tutor-corrections-and-fixes.md` be ap
 Not course text: the ledger delta (mastery states, misconception register M1…M11, retro-lens backlog, open questions, resume point) and the terms to re-anchor belong to the learner's own ledger, which the learner pastes at the start of a session (rule 0.4.8). E4 (VPC Service Controls is not a DNS-tunnel control) was a real error in NT-03 of the cybersecurity companion; TF-9 and TF-10 correct it.
 
 **Gates.** `selfcontained.py`, `audit_r2b.py` and `verify.py . --stage R5` pass.
+
+## R13 Depth cards FDE-29…FDE-33 — 2026-10-02 (D25)
+
+Hand-authored, not journaled by a build rule. New: Forward Deployed Engineer companion §13.1 (FDE-29 vector database internals and selection · FDE-30 workflow orchestration engines and durable execution · FDE-31 multi-agent systems design · FDE-32 LLMOps · FDE-33 semantic caching and the LLM gateway), their five keys in Appendix K, and rows in §0.1, §0.2 rule 1, §2 and §16. Amended: one pointer clause on the Library line of FDE-16, FDE-17, FDE-24, FDE-25 and FDE-26 (FDE-25's pointer to FDE-26 for a vector store now names FDE-29); main course D5's teaching-block note and its core-topics line, and the D4 pairing note; the register (Agentic patterns and Observability rows amended; vector-database, orchestration, LLMOps and semantic-cache rows added).
+
+**Gates.** `r2b_build.py` rebuilds `work/`; `verify.py . --stage R5` passes (it needs PyYAML for its ledger gate). One defect was caught by the gates and fixed before the build was kept: a pointer to a section that exists only in the consolidated index (the self-contained and undefined-reference gates).
+
