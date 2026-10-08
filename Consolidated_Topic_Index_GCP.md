@@ -2558,7 +2558,8 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - The bias–variance decomposition of squared error (bias² + variance + irreducible noise); overfitting and underfitting
   - Regularization as a constraint: ridge (L2, a circular constraint region, closed-form solution, shrunken weights) and lasso (L1, a diamond-shaped region whose corners give sparse weights, fitted by coordinate descent); polynomial features with ridge in one pipeline
   - Maximum likelihood; minimizing cross-entropy as maximum likelihood for a classifier
-  - Train, validation and test splits; cross-validation as an estimator with its own variance
+  - Train, validation and test splits; cross-validation as an estimator with its own variance; the test set touched once
+  - Splits that give an honest estimate: transforms fitted on the training split only; stratified splits for skewed classes; time-based splits for temporal data; group-aware splits keeping one user, patient or device on one side; near-duplicates removed across splits
   - Generalization from a test set: Hoeffding's bound P(|test error − true error| > ε) ≤ 2e^(−2mε²) for a fixed classifier; reusing a test set for model selection spends its guarantee
 - **Linear models**
   - Least squares: minimizing ‖Xθ − y‖²; normal equations XᵀXθ = Xᵀy; convexity and convergence of gradient descent
@@ -2577,7 +2578,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Business guardrail metrics beside model metrics
 - **Feature engineering**
   - Scaling and normalization; encoding categoricals; the hashing trick; target encoding with time-aware folds
-  - Missing values; imbalanced datasets (SMOTE, class weighting, negative sampling)
+  - Missing values; imbalanced datasets (SMOTE, class weighting, focal loss, negative sampling) and the accuracy paradox, where always predicting the majority class scores high and detects nothing
   - Text, time, window, session and graph features
   - Schema validation and golden tests for feature pipelines
 
@@ -2590,6 +2591,10 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Backpropagation as reverse-mode automatic differentiation over the computation graph; its cost as a small multiple of the forward pass; gradient checking by finite differences
 - Vanishing and exploding gradients; residual connections; batch and layer normalization
 - Optimizers: batch, mini-batch and stochastic gradient descent, momentum, RMSProp, Adam; learning-rate schedules
+- **Learning-rate schedules**: large steps early and small steps late; four knobs (warmup length, peak rate, decay shape, floor); linear warmup from near zero; constant, linear decay, cosine decay, step decay and reduce-on-plateau, cosine with restarts, and warmup–stable–decay for runs of unknown length; lengthening warmup and lowering the peak before changing the shape
+- **Training instability**: loss spikes, gradient explosion and divergence as one feedback loop (an oversized update raises the loss, which enlarges the next gradient); sharp minima, outlier batches and depth as causes; gradient-norm clipping that rescales to a cap and keeps the direction, with the pre-clip norm logged; float16 overflow near 65,504 turning into Inf and NaN, and bfloat16 as the remedy; alerts on the gradient norm; checkpoints every N steps
+- **Batch size**: effective batch = micro-batch × gradient-accumulation steps × devices; filling device memory, then accumulating; small batches (noisy gradients, more updates, often better generalization) versus large ones (stable gradients, higher throughput, fewer updates); the linear scaling rule tying learning rate to effective batch; too few optimizer steps showing as underfitting
+- **Reading loss curves**: both losses high and flat early (underfitting); training loss falling while validation loss turns up (overfitting); both flat at the starting value (nothing is updating); persistent jitter (batch too small or rate too high); both falling with a small stable gap (healthy), checkpointed at the validation minimum
 - Initialization that preserves activation variance: Glorot (Xavier) initialization Var(w) = 2 ÷ (n_in + n_out); He initialization Var(w) = 2 ÷ n_in for ReLU units
 - Regularization in deep networks: weight decay, dropout, data augmentation, early stopping with patience
 - Architecture as inductive bias: convolutions sharing one kernel across positions, so parameter count is independent of image size; CNNs for images
@@ -2763,10 +2768,32 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 ### Fine-tuning and adaptation
 
-- Full fine-tuning versus parameter-efficient fine-tuning; memory for weights, gradients and optimizer states; catastrophic forgetting
+- Full fine-tuning versus parameter-efficient fine-tuning; memory for weights, gradients and optimizer states; one full copy of the model per task
+- Cheaper full fine-tuning: layer-wise, block-wise and progressive unfreezing; tuning only the top blocks with embeddings and lower blocks frozen
+- Fine-tuning hyperparameters: a peak learning rate near 1e-5 to 2e-5 for full fine-tuning and 1e-4 to 2e-4 for LoRA; one or two epochs; a few percent of warmup with cosine decay; early stopping on held-out task and general evaluations, not on training loss
+- **Catastrophic forgetting**
+  - Why it happens: knowledge superimposed in shared weights, a narrow gradient signal, drift away from the pretrained optimum, and no replay of old data
+  - Measuring it: a fixed general suite (reasoning, code, mathematics, instruction following) run before and after every fine-tune, since task metrics rise while general ability falls silently
+  - Rehearsal: mixing 1–10% general instruction data into every batch
+  - Regularizing toward the pretrained weights: L2-SP with penalty λ‖θ − θ₀‖²; elastic weight consolidation weighting each parameter's penalty by its Fisher information
+  - Weight interpolation after training, θ = (1 − α)·θ_base + α·θ_tuned, with α chosen at the knee of the task-versus-general curve (WiSE-FT)
+  - Choosing mitigations by cause: conservative hyperparameters always; rehearsal when general data exists; penalties when it does not; interpolation for a model already degraded; freezing for small data or tight compute
+- **Fine-tuning data**
+  - Quality: extraction boilerplate, spam and machine-generated text, OCR errors; wrong content learned as fact; duplicates driving memorization; benchmark test sets leaking into training data; inconsistent formatting, encodings and whitespace; stale and contradictory snapshots
+  - Too little data: augmentation by back-translation and paraphrase; synthetic data that is validated before use; a smaller model with stronger regularization
+  - Missing edge cases and narrow coverage: targeted collection, simulation, active learning on uncertain production samples, stratified sourcing, metrics reported per subgroup, datasheets and model cards
+  - Shift between training and deployment: usage shift (documents to dialogue), temporal shift (the world after the cutoff) and domain shift (general to specialist), met by instruction tuning, domain-adaptive pre-training with replay, retrieval and production monitoring
 - **LoRA**: frozen weights plus a trainable low-rank update ΔW = BA of rank r much smaller than the layer width, scaled by α ÷ r; B initialized to zero so training starts from the base model; choosing target modules (attention and MLP projections); merging adapters into the weights or swapping adapters per task
 - **QLoRA**: a frozen base quantized to 4-bit NormalFloat (NF4); double quantization of the quantization constants; paged optimizers absorbing memory spikes; adapters trained in higher precision
-- Adapter layers and prompt or prefix tuning as other parameter-efficient methods
+- **The PEFT families**: additive (adapters), reparameterized (LoRA, QLoRA), soft prompts, and selective tuning of existing weights (BitFit training only biases; diff pruning learning a sparse difference)
+- **Adapters**
+  - A bottleneck block with a residual connection, h′ = h + f(h): down-projection from width d to m, a non-linearity, up-projection back to d; 2dm + m + d added parameters per adapter
+  - Near-identity initialization so the adapted model starts as the base model; the base frozen and only adapters trained
+  - Sequential adapters after each sub-layer versus parallel (residual) adapters beside the feed-forward block; added inference latency that a merged LoRA update avoids
+  - One adapter per task as a defence against forgetting; routing among adapters by task; AdapterFusion combining several task adapters with learned attention
+- **Soft prompts**
+  - Trainable virtual-token embeddings in place of hand-written discrete prompts; prompt tuning at the input layer versus prefix tuning, which prepends trainable key and value vectors at every attention layer
+  - Cost: longer sequences in every layer; refinements that choose shorter prompts through a router (SMoP), vary prefix length by layer with gates (adaptive prefix tuning), generate the prompt from each input (instance-dependent prompts), or insert prompts only at selected layers
 - Training data as instruction–response pairs in the model's chat template; held-out evaluation of the tuned model against the base model for gains and regressions
 - Weight quantization (8-bit, 4-bit) for inference and its accuracy cost
 - Knowledge distillation: a small student trained on a large teacher's outputs or soft labels
@@ -2774,10 +2801,43 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 ### Multimodal models
 
-- Vision Transformer: an image as a sequence of patch embeddings
-- CLIP: contrastive pre-training of image and text encoders into one embedding space; zero-shot classification by text prompts
-- Connecting a vision encoder to a language decoder: a projection layer mapping image features into the token-embedding space versus cross-attention layers from text to image features; frozen encoders with a trained connector
-- Image–text tasks: captioning and visual question answering
+- **Foundations**
+  - Three paradigms by input and output: contrastive (image and text to a similarity score), generative (image and instruction to free text) and promptable dense prediction (image and spatial prompt to a mask)
+  - The shared anatomy: a vision encoder, a connector, and a consumer of the fused representation; where fusion happens (a final dot product between two towers, self-attention over mixed tokens, or a dedicated cross-attention module)
+  - Vision Transformer: an image cut into 16 × 16 patches, each flattened and linearly projected like a word embedding, with position embeddings and a [CLS] token whose output summarizes the image
+- **CLIP**
+  - Two independent encoders (a ResNet with attention pooling or a ViT; a text Transformer read at its end-of-sequence token), each linearly projected and L2-normalized into one space
+  - The symmetric InfoNCE loss: an N × N similarity matrix with matching pairs on the diagonal, cross-entropy over rows and over columns, and a learned temperature controlling the softmax's sharpness
+  - Very large batches as the source of in-batch negatives; training on hundreds of millions of noisy web image–text pairs
+  - Zero-shot classification by embedding one sentence per class name; template ensembling; linear probing versus zero-shot transfer as two ways to judge an encoder
+  - Limits: counting, spatial relations, fine text, prompt sensitivity, web-data bias, and no text generation
+- **LLaVA-style generative models**
+  - A frozen CLIP vision tower whose patch features pass through a projector (one linear layer, later a two-layer MLP) into the language model's embedding space; visual tokens placed in the sequence as a foreign language, fused by ordinary self-attention
+  - Why a projector is needed: two embedding spaces of equal width with unrelated geometry
+  - Instruction data produced by a text-only model from captions and bounding boxes: conversation, detailed description and complex reasoning
+  - Two-stage training: projector-only feature alignment with both towers frozen, then instruction tuning of projector and language model, with the loss on assistant tokens only
+  - Higher resolution by tiling an image, encoding each tile and adding a downsampled global view, at the cost of more visual tokens
+  - Limits: object hallucination, a resolution bottleneck, weak localization and counting, inherited encoder blind spots
+- **Grounded models (Qwen-VL)**
+  - A cross-attention adapter in which a fixed set of learnable queries attends over all patch features, giving a constant visual-token budget at any resolution; 2D position encodings preserving layout
+  - Grounding as generated text: reference phrases and bounding boxes wrapped in special tokens, with coordinates normalized to a fixed range; several images in one sequence
+  - Three-stage training: low-resolution pre-training on weak pairs with the language model frozen, higher-resolution multi-task pre-training (captioning, question answering, grounding, OCR), then instruction tuning
+  - Successors: dynamic resolution with a variable token count, and rotary position embeddings unified across text, space and time
+- **Promptable segmentation (SAM)**
+  - The task: any point, box or rough mask returns a valid mask
+  - A heavy masked-autoencoder-pretrained ViT run once per image and cached; a light prompt encoder (positional encodings for points and boxes, convolutions for masks); a small mask decoder with two-way attention between prompt and image tokens
+  - Ambiguity resolved by three candidate masks (whole, part, sub-part) ranked by a predicted-IoU head
+  - Mask loss as focal loss (pixel imbalance) plus Dice loss, 1 − 2|X∩Y| ÷ (|X| + |Y|) (region overlap)
+  - The data engine: assisted-manual, semi-automatic, then fully automatic labelling from a grid of point prompts, yielding over a billion masks
+  - No class labels or language; composition with a detector that names and boxes objects; extension to video with a memory of earlier frames
+- **Design trade-offs**: frozen versus fine-tuned vision backbones; visual-token count versus spatial fidelity; web-scale noisy data versus small engineered datasets; one task done very well versus breadth; self-supervised (DINO-family) and sigmoid-loss contrastive (SigLIP) encoders as alternatives to CLIP
+- **Applications**
+  - Captioning: a contrastive model for tags, a generative one for sentences; fixed, scoped, length-limited templates at catalogue scale; n-gram metrics (BLEU, ROUGE, METEOR, CIDEr), scene-graph SPICE and CLIPScore, and their weak agreement with human judgment; cleaning noisy web captions with a jointly trained captioner and filter
+  - Visual question answering: yes/no, multiple-choice, counting and open-ended forms; listing objects before counting; presupposition hallucination and an explicit "not present" answer; testing whether answers depend on the image by blurring it; strict-match accuracy penalizing correct verbose answers
+  - Document intelligence: OCR precision, layout understanding and relations between fields together; the exact JSON schema shown in the prompt, with every field named and nulls for missing values; resolution as the largest lever; dedicated OCR pipelines for bulk text versus a vision-language model for layout-aware extraction; document-specific vision encoders and OCR-plus-layout encoders compressed into learned queries; human verification of financial and legal fields
+  - Visual reasoning and chart questions: reasoning strength set mostly by the language model; observations listed before conclusions; values extracted before reasoning; compounding errors and a self-check pass
+  - Preference tuning against hallucination with synthetic negatives: random answers, mismatched questions, and images with the relevant objects masked
+  - Benchmarks by task: COCO Captions and NoCaps; VQAv2, GQA, OK-VQA, TextVQA and VizWiz; DocVQA (scored by normalized edit similarity), FUNSD and ChartQA; POPE for object hallucination; MMMU, MathVista, ScienceQA, NLVR2 and Winoground; contamination as a caveat on reported gains
 
 ### Embeddings and retrieval
 
@@ -2785,7 +2845,8 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Cosine, dot product and Euclidean distance agree on unit vectors (‖a − b‖² = 2 − 2 cos θ); normalizing once; an index metric that must match the metric the model was trained for
 - Lexical retrieval: the vector-space model; BM25 with term-frequency saturation k₁ and length normalization b; IDF
 - Hybrid retrieval: reciprocal rank fusion RRF(d) = Σ 1 ÷ (k + rank_r(d)) with k = 60
-- Why embedding search misses exact codes that BM25 finds
+- Why embedding search misses exact codes that BM25 finds; negation and numbers that embed deceptively alike; topical relevance that does not answer the question
+- Retrieval benchmarks: MS MARCO for passage ranking, BEIR for zero-shot transfer across domains
 - **Training embedding models**
   - Why raw BERT [CLS] or mean-pooled vectors are poor for cosine similarity; Sentence-BERT siamese training
   - Contrastive and margin losses; in-batch negatives; hard negatives mined with BM25
@@ -2834,6 +2895,17 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Silent pipeline failures: empty chunks from scanned PDFs, missing query and passage prefixes, an L2 index over a cosine-trained model, a lost ID-to-text map
 - **Variants**: stateless retrieval; conversational retrieval with history-aware rewriting; agentic retrieval in observe–think–act loops; Chain-of-RAG (retrieval chains learned by rejection sampling and decoded greedily, best-of-N or by tree search)
 - Permissions enforced at retrieval time as role-based metadata filters inside the vector store
+- **Multimodal RAG**
+  - Retrieved content as images, tables, charts or whole pages, because the answer often sits in a figure that text extraction discards
+  - Image search: text-to-image and image-to-image over a shared embedding space, on the same approximate-nearest-neighbour indexes as text; weak on compositional and fine-grained queries
+  - Parse-then-embed (OCR and layout analysis, then text embeddings) versus retrieval in vision space (a page image embedded directly by a vision-language model)
+  - ColPali: one low-dimensional vector per image patch and per query token; the late-interaction score Σ over query tokens of the maximum similarity to any patch; in-batch contrastive training on query–page pairs; page-level indexing; larger indexes than single-vector retrieval
+  - Storage choices: one unified embedding space, original modalities kept with cross-modal search, or separate indexes searched separately
+  - Fusion of retrieved evidence: similarity-score fusion in a shared space, cross-attention against the query, or conversion to one representation such as captions
+  - Generation by a vision-language model over retrieved pages; answers restricted to retrieved content with a page or region citation and a permitted "not found"; a citation that does not prove the answer came from the page
+  - Page-retrieval evaluation with ViDoRe and nDCG@5; multi-page reasoning and faithfulness evaluation as open problems
+  - Choosing the level: text search for plain text, image search for photo and product corpora, vision-space retrieval for documents mixing text, tables and charts
+- **Training retriever and generator together**: the right documents as a latent variable, marginalized over the top-k retrieved (the original RAG and REALM formulations) in an alternation resembling expectation–maximization; contrastive alignment loss with hard negatives; robustness training that injects irrelevant passages so the generator learns to ignore them; in practice, separate pre-training followed by joint fine-tuning
 - Evaluation: context precision and context recall for retrieval; faithfulness (claims supported by the context) and answer relevancy; RAGAS and TruLens
 - Ingestion by an idempotent, event-triggered embedding worker; scheduled re-embedding
 
@@ -2896,19 +2968,32 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 
 - An agent as a model using tools in a loop until a stop condition; loop, tools, context, memory, planning, subagents and a budget of turns, tokens, time and money
 - Workflows (code-fixed paths) versus agents (model-chosen paths); the simplest thing that works first
+- The capability ladder, each rung keeping those beneath it: a model, plus retrieval, plus conversation state, plus tools, plus model-chosen control flow, plus delegation; question answering (one retrieval, one generation, text out) versus task completion (a goal with constraints, steps ordered at run time, a change in the world)
+- Choosing between them: a workflow when the steps are the same for every input, the path must be auditable, cost and latency must be bounded exactly, or a wrong call is irreversible; an agent when the number of steps depends on the data, a later step can invalidate an earlier one, or recovery must be dynamic; the test of whether the flowchart can be drawn before the request arrives; a workflow with an agent embedded at the one uncertain step
+- What the loop costs: a stateless model re-reads the goal, tool schemas and every earlier step on each turn, so cost grows faster than the step count; observations truncated, superseded steps summarized, only the last few kept in full
 - Workflow patterns: prompt chaining with gates, routing, parallelization (sectioning and voting), orchestrator–workers, evaluator–optimizer
 - **Planning and reasoning loops**
   - Plan, act, observe and track; the ReAct trace (task, thoughts, actions, observations) as the growing context
   - Closed-book reasoning drifting into hallucination as chains lengthen
   - Planner–executor separation: a planner emitting a task graph, cheaper executor models, re-planning on failure, for accuracy, cost and fault tolerance
   - Hierarchical ReAct: a triage meta-planner delegating to specialist agents
+  - Reflection: draft, critique, revise, looping on the output rather than the task, at two to three times the tokens
+  - Choosing a shape: ReAct for cheap, debuggable short tasks; plan-then-execute for parallel steps and predictable cost; reflection for written output
+  - Retrieval as one tool among several: the agent decides whether to retrieve, rewrites the query, retrieves again mid-task, and re-retrieves to verify a draft against its source
 - The Claude Agent SDK: the Claude Code harness as a library; `query()` and its message stream; built-in file, shell and search tools; permissions and permission modes; hooks for deterministic enforcement; the difference between an SDK tool runner, the Agent SDK and provider-hosted agents
 - **LangChain and LangGraph**
   - Chains as fixed pipelines versus graphs with cycles
   - Typed state, nodes, conditional edges and compilation (`StateGraph`, `add_node`, `add_edge`, `add_conditional_edges`, `compile`)
-  - Thread checkpointers (SQLite, PostgreSQL); streaming; human-in-the-loop interrupts; recursion limits; summarization nodes against state growth
+  - LangChain's components: one model interface across providers; tools declared with `@tool` from a function's type hints and docstring; messages; structured output validated against a schema, enforced by the provider in strict mode; retrievers, MCP servers and other agents plugged in as tools
+  - Runnables composed with `|` into prompt, model and parser chains, each supporting `invoke`, `batch` and `stream`; chains as one-way data flow with no loops, pauses or saved state
+  - State reducers: each field's merge rule (overwrite, append, add) so that nodes writing the same field never clobber each other; nodes returning only what changed
+  - Execution in super-steps: run the active nodes, merge their updates through the reducers, save a checkpoint, follow the edges; termination at `END` or the recursion limit
+  - Thread checkpointers (SQLite, PostgreSQL) keyed by `thread_id`, so a run outlives its process; time travel by rewinding to an earlier checkpoint and re-running; human-in-the-loop interrupts that pause before a write and resume later; streaming of tokens, per-node state updates or custom events; summarization nodes against state growth
+  - Multi-agent graphs: each specialist a subgraph added as one node, sharing state or returning a summary; handoffs in which a node returns both the next node and a state update (`Command`); fan-out with the number of parallel branches decided at run time (`Send`)
+  - The prebuilt `create_agent` loop and middleware for summarization, approval and call limits; tracing runs as a tree of spans with latency, cost and retries (LangSmith, Langfuse)
   - Explicit state machines versus hidden prompts and hard debugging
 - **Agent memory**
+  - Three lifetimes: conversation state for one thread, task state for one run (what is done, what remains, what must be re-checked), and long-term memory across sessions
   - Short-term thread state versus long-term semantic memory in a vector store, written through save and update tools
   - Timestamps, pruning and conflict resolution against contradictory memories; retrieving only the most relevant memories
   - Memory as persistence across stateless model calls
@@ -2919,6 +3004,12 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Durable-execution engines (Temporal): deterministic replay from event history; side effects in activities
   - Idempotency keys, bounded retries, timeouts at every level, compensating steps, human approval as a paused workflow, timers and callbacks instead of sleeping processes, checkpointed agent state
   - Long-running agents as jobs rather than inside requests
+- **Reliability of a deployed agent**
+  - Six failure modes: a tool that hangs; a tool that fails (transient or permanent); a tool that correctly returns nothing; a call with wrong arguments; a loop that does not converge; a world that changed between steps
+  - Infrastructure failures retried with backoff; semantic failures returned to the model as observations to plan around; a run that never crashes silently, since an uninformed model may invent a result
+  - Retry safety by action type: searches repeated freely; a booking whose reply was lost repeated only under an idempotency key, so the provider answers "already booked" with the same ticket
+  - Three nested clocks: a tool-call timeout inside a node or model-call timeout inside a whole-run deadline, so the innermost names the stalled dependency
+  - Tool fallback order: live data, then cached data labelled stale, then asking the user; a degraded answer that declares itself rather than a confident figure no tool returned; failing loudly with what was and was not done
 - **Multi-agent systems**
   - Topologies: supervisor with workers, a triage agent with specialists, hierarchical teams, handoffs between specialists, pipelines, debate and critic pairs, shared task boards
   - Message passing versus shared state
@@ -2926,6 +3017,19 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Token cost: agents use about 4× the tokens of a chat and multi-agent systems about 15×
   - Failures: lost context, duplicated work, runaway cost, mutual agreement with mistakes, conflicting merges, endless delegation, parallel writes, goals lost across handoffs
   - Controls: per-agent system prompts as guardrails, typed hand-off messages carrying claim sources, per-agent and total budgets, hard stops, one writer per resource, verifiers
+  - Where one agent breaks: several goals traded off invisibly in one prompt; sub-task results that conflict with nothing comparing them; one context crowded by every tool and document
+  - An agent's contract: its role, model, permitted tools, state, input and output schema, and limits; precise, non-overlapping roles that a coordinator can choose between
+  - The hand-off payload: task ID, goal, constraints and return format rather than the whole conversation; who may change a decision and who only recommends
+  - The coordination cycle: decompose into bounded tasks, execute (in parallel when independent, in sequence when one needs another's result), attribute each result to its agent and task, reconcile and re-plan
+  - Bounding the loop: a round limit, a token budget, a deadlock check for the same conflict recurring, and escalation of the partial plan to a person
+  - Results validated against schema, required fields and hard constraints before entering shared state; failures recorded as structured errors, then retried, reassigned or raised to the user
+  - Supervisor (simple governance and tracing, one hub for all messages) versus peer-to-peer (fewer hops, harder-to-control paths)
+  - Permissions: read and analyse agents run automatically within limits; write actions are proposed by the coordinator and confirmed by a person
+  - Messages between agents as untrusted input: tagged as data, checked against constraints, flagged and logged, never obeyed as instructions
+  - Logging at every hand-off: the delegation and its context, tool call and arguments, raw result, validation outcome, latency and retries, approvals of writes
+  - Evaluation: agent and tool selection accuracy, argument correctness, task completion or a clear refusal, groundedness of every figure in a tool result, conflicts caught before acting, rounds and cost to finish
+  - The agent-framework landscape (Claude Agent SDK, OpenAI Agents SDK, Google ADK, Microsoft Agent Framework, Pydantic AI, Strands, Mastra, Agno): chosen by stack; the loop is portable, the state store is not, and the protocol layer outlives any one of them
+  - Interoperability standards: MCP for agents reaching tools and data, A2A for agents reaching agents, and proposals for decentralized agent identity, discovery and messaging (ANP, AGNTCY)
   - Cross-boundary agents with Google's Agent Development Kit and A2A
 - **Agent-to-agent protocol (A2A)**
   - JSON-RPC 2.0 `message/send` with message parts and session and context IDs; standard JSON-RPC errors
@@ -3026,7 +3130,15 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - From scratch: an MCP server in Go over stdio, then over Streamable HTTP with OAuth
 - From scratch: a semantic cache and an LLM gateway with budgets, failover and redaction
 - From scratch: a durable workflow runner with replay, compensation and human approval
-- A vision-encoder-to-language-model prototype for captioning or visual question answering
+- From scratch: a fine-tuning loop with warmup and cosine decay, gradient clipping and gradient accumulation, run with and without each to reproduce a loss spike and a divergence
+- From scratch: a bottleneck adapter and a prompt-tuning layer on a frozen model, compared with LoRA on trainable parameters, accuracy and inference latency
+- A forgetting experiment: a general suite scored before and after a narrow fine-tune, then recovered with rehearsal, an L2-SP penalty and weight interpolation across α
+- From scratch: a toy CLIP with two encoders and the symmetric InfoNCE loss, used for zero-shot classification and text-to-image search with Recall@K
+- A vision-encoder-to-language-model prototype for captioning or visual question answering: a projector trained with both towers frozen, then tested for hallucination against a blurred-image baseline
+- Structured extraction from invoices with a vision-language model: a JSON schema, missing-field handling and a field-level accuracy report against an OCR-only pipeline
+- From scratch: late-interaction scoring over patch embeddings, then page-image retrieval compared with parse-then-embed on documents containing charts and tables
+- A LangGraph travel-planning agent: typed state with reducers, a tool loop, a policy check that forces a re-plan, a PostgreSQL checkpointer, an approval interrupt before the booking tool, an idempotent retry, nested timeouts and a traced run
+- A coordinator with three specialist agents: contracts, schema-validated hand-offs, a round limit, a poisoned tool result rejected as untrusted data, and the six multi-agent evaluation measures reported
 - A long-context position experiment with Wilson intervals
 - A support assistant with tools, guardrails and a 50-case golden set graded by a κ-validated model grader in CI
 - A RAG pipeline with document parsing, contextual retrieval, query rewriting, hybrid search, reranking, verified citations and permission-aware retrieval, scored with RAGAS
@@ -3041,6 +3153,9 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Predict how a prompt or retrieval change moves an evaluation metric, then measure it with intervals
   - Derive attention's cost and the key–value cache memory for a given model size and context length
   - Estimate the quality gain that would justify a larger model's extra cost, then test it on a golden set
+  - Predict an adapter's parameter count from d and m, and a run's optimizer steps from dataset size and effective batch, before training
+  - Estimate how an agent's token bill grows with its step budget, then measure it with and without context trimming
+  - Decide from a task description alone whether it needs a workflow, one agent or several, as a decision record
 
 ## Cloud Providers: Google Cloud, AWS, Azure & Certifications
 
