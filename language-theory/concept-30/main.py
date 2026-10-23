@@ -2,6 +2,7 @@ def test_a(): pass
 def test_b(): assert 2 == 3
 def test_c(): 1 / 0
 def helper_d(): pass
+def test_e(): {}["k"]
 
 counter_pass = 0
 counter_fail = 0
