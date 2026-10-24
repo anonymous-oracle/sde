@@ -22,7 +22,7 @@ Attach or connect `/Users/suhas/sde` so the tutor can read your files. Also atta
 | Map of every file | `index/00_index_map.md` |
 | Which part is current, and each part's status | `index/00_ingest_progress.md` (current part is **05**, Python and shell) |
 | Master copy of the whole index | `Consolidated_Topic_Index_GCP.md` at the repo root and in the Project |
-| Rust track | `Rust_Track_AI_Infrastructure.md` at the repo root and in the Project |
+| Rust track | `gcp-lite/Rust_Track_AI_Infrastructure.md` (copy), the repo root, and the Project |
 | Exercise rule, tutor skill, 8 Oct handoff | `gcp-lite/project-docs/` and the Project |
 | Learner's code | `language-theory/` in `/Users/suhas/sde` |
 | Learning record (overrides, error log, retry queue, resume point, log) | `gcp-lite/pending_tracker.md` and Project `claude/pending_tracker.md` (987 lines; refreshed 24 Oct through concept 36) |
