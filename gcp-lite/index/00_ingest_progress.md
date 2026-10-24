@@ -1,6 +1,6 @@
 # Index ingest progress
 
-Start with `index/00_index_map.md`, which describes every file. How this works: the Consolidated Topic Index is split into 29 parts. Each part has a rules file (`index/partNN_<name>.rules.md`: the full Learning method plus that domain's prerequisites, depth bar and capstone) and a separate topic list (`index/partNN_<name>.topics.md`). Only the current part is ingested. A part moves to `done` only when the learner has been taught and has passed through its groups (exercises included); only then is the next part opened. The original `Consolidated_Topic_Index_GCP.md` stays as the master copy; these parts are cut from it without changes to the wording.
+Start with `index/00_index_map.md`, which describes every file. How this works: the Consolidated Topic Index is split into 29 parts. The teaching method is kept once in `index/00_learning_method.md`. Each part has a rules file (`index/partNN_<name>.rules.md`: that domain's prerequisites, depth bar and capstone, with a pointer to the method) and a separate topic list (`index/partNN_<name>.topics.md`). Only the current part is ingested. A part moves to `done` only when the learner has been taught and has passed through its groups (exercises included); only then is the next part opened. The original `Consolidated_Topic_Index_GCP.md` stays as the master copy; these parts are cut from it without changes to the wording.
 
 Current part: **05** (Python and shell). Parts 01 to 04 are not walked in index order: Mathematics and Problem Solving are taught just in time, School foundations were used as tools, and Computer Organization is paused (see `pending_tracker.md`).
 Status values: not started, ingesting, in progress, done, paused.
@@ -39,5 +39,5 @@ Status values: not started, ingesting, in progress, done, paused.
 
 Notes
 - Part 05 holds only the Python and shell topic groups. The Programming exercises (a tested Python command-line program, the NumPy and FastAPI items, the from-scratch test runner) sit in the Exercises group of part 07, and the Programming capstone is stated in each Programming part's rules file.
-- Where a domain is split, each part's rules file repeats that domain's prerequisites, depth bar and capstone.
+- Where a domain is split, each part's rules file repeats that domain's prerequisites, depth bar and capstone (short). The Learning method is not repeated; it is in `index/00_learning_method.md`.
 - The learning record (mastery states, overrides, resume point) stays in `pending_tracker.md` and the handoff; this file only says which part of the index is currently ingested.

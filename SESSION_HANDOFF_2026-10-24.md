@@ -10,24 +10,24 @@ This replaces the 8 October handoff (`project-docs/learning_handoff_and_tracker.
 
 Paste this into the new chat:
 
-> /learn Resume the course. Read `gcp-lite/SESSION_HANDOFF_2026-10-24.md` first, then `gcp-lite/index/00_index_map.md` and `gcp-lite/index/00_ingest_progress.md`. Open only part 05 (rules file, then topic list). My last exercise file is `language-theory/exercise-36/memory.py` on the `gcp` branch. Pick up at section 3 of the handoff. One check per turn, no ready-made code, do not reveal answers.
+> /learn Resume the course. Read `SESSION_HANDOFF_2026-10-24.md` (repo root) first, then `gcp-lite/index/00_index_map.md`, `gcp-lite/index/00_ingest_progress.md` and `gcp-lite/index/00_learning_method.md`. Open only part 05 (rules file, then topic list). My last exercise file is `language-theory/exercise-36/memory.py` on the `gcp` branch. Pick up at section 3 of the handoff. One check per turn, no ready-made code, do not reveal answers.
 
-Attach or connect `/Users/suhas/sde` so the tutor can read your files. Also attach `gcp-lite/pending_tracker.md` (the refreshed learning record, written 24 October; it is also in the Project as `claude/pending_tracker.md`).
+Attach or connect `/Users/suhas/sde` so the tutor can read your files. Also attach `pending_tracker.md` (repo root; the refreshed learning record, written 24 October).
 
 ## 2. Where everything is
 
 | What | Where |
 |---|---|
-| Split curriculum index (29 parts, each a rules file plus a topic list) | `gcp-lite/index/` in the repo, and `index/` in the Project "GCP Lite" |
+| Split curriculum index (29 parts, each a short rules file plus a topic list; the teaching method is one file, `00_learning_method.md`) | `gcp-lite/index/` in the repo and in the Project "GCP Lite" |
 | Map of every file | `index/00_index_map.md` |
 | Which part is current, and each part's status | `index/00_ingest_progress.md` (current part is **05**, Python and shell) |
 | Master copy of the whole index | `Consolidated_Topic_Index_GCP.md` at the repo root and in the Project |
 | Rust track | `gcp-lite/Rust_Track_AI_Infrastructure.md` (copy), the repo root, and the Project |
 | Exercise rule, tutor skill, 8 Oct handoff | `gcp-lite/project-docs/` and the Project |
 | Learner's code | `language-theory/` in `/Users/suhas/sde` |
-| Learning record (overrides, error log, retry queue, resume point, log) | `gcp-lite/pending_tracker.md` and Project `claude/pending_tracker.md` (987 lines; refreshed 24 Oct through concept 36) |
+| Learning record (overrides, error log, retry queue, resume point, log) | `pending_tracker.md` at the repo root (987 lines; refreshed 24 Oct through concept 36) |
 
-**Reading rule for a session:** map, then progress file, then the current part's rules file and topic list. Do not open the 434 KB master index. Open another part only to look up a prerequisite, and read only that group.
+**Reading rule for a session:** map, then progress file, then `00_learning_method.md` (once; again after any compaction), then the current part's rules file and topic list. Do not open the 434 KB master index. Open another part only to look up a prerequisite, and read only that group.
 
 ## 3. Exactly where the course stands
 
