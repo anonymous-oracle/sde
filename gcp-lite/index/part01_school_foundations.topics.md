@@ -1,0 +1,61 @@
+# Part 01 · School-level foundations · TOPIC LIST
+
+Rules and directives for this part: `index/part01_school_foundations.rules.md`. This file is the topic list only; the Learning method and this domain's prerequisites, depth bar and capstone are in the rules file.
+
+Domain: School-level foundations
+
+- **Arithmetic and number sense**
+  - Integers, negatives, fractions, decimals, percentages
+  - Ratios and rates; order of operations
+  - Rounding, estimation, scientific notation, significant figures
+  - Prime factors, GCD and LCM
+- **Units and dimensional reasoning**
+  - SI prefixes from kilo to peta and milli to nano
+  - Units of time, data and rate; unit conversion
+  - Checking a formula by its units
+- **Algebra**
+  - Variables and expressions; linear equations and inequalities
+  - Rearranging formulas; simultaneous equations by substitution and elimination; absolute value
+  - Polynomials; the remainder and factor theorems
+- **Functions and graphs**
+  - Function notation, domain and range, composition, inverse functions, monotonicity
+  - Linear, quadratic, polynomial, piecewise and step functions
+  - Slope as rate of change; reading and sketching graphs
+- **Exponents, roots and logarithms**
+  - Laws of exponents; powers of 2 and of 10
+  - Logarithm laws and change of base; log scales
+  - Exponential growth and decay
+- **Sequences, series and notation**
+  - Arithmetic and geometric sequences and their sums
+  - Σ and Π notation; factorial
+- **Geometry, trigonometry and vectors**
+  - Cartesian coordinates, Pythagoras and distance; reflections in the axes
+  - Lines as ax + by = c; slope, parallel and perpendicular lines, intersections; similarity
+  - Angles, sine and cosine, the unit circle
+  - Vectors as arrows; the angle between two vectors
+- **Probability and data**
+  - Outcomes and events; simple and complementary probability; counting
+  - Mean, median, mode and spread
+  - Reading charts and tables; sampling and bias
+- **Sets and logic in words**
+  - Membership, union, intersection, complement, Venn diagrams
+  - And, or, not, if…then; the truth of statements
+- **Proof habits**
+  - Step-by-step reasoning and counterexamples
+  - "For all" and "there exists"; proof by cases
+- **Pre-calculus and calculus intuition**
+  - Limits as "approaching"; instantaneous rate of change; area under a curve
+- **Electricity and signals**
+  - Voltage, current and circuits; a switch as on and off; a clock as a regular signal
+- **Computer literacy**
+  - Files, folders and paths; installing software
+  - The terminal as a text interface; typing fluency
+- **Technical reading and writing**
+  - Reading documentation and specifications; precise definitions
+  - A structured written argument; summarising
+- **Technical communication**
+  - The vocabulary of requirements, constraints and trade-offs
+  - Explaining to a non-expert; presenting
+- **Everyday economics**
+  - Cost and price; fixed versus variable cost
+  - Discounts, interest and budgets

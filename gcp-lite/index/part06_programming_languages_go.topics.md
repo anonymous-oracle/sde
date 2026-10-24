@@ -1,0 +1,265 @@
+# Part 06 · Programming Languages & Language Theory (part 2 of 3) · TOPIC LIST
+
+Rules and directives for this part: `index/part06_programming_languages_go.rules.md`. This file is the topic list only; the Learning method and this domain's prerequisites, depth bar and capstone are in the rules file.
+
+Domain: Programming Languages & Language Theory (part 2 of 3)
+
+### Go — toolchain and program structure
+
+- **The `go` command and modules**
+  - `go run`, `build`, `test`, `vet`, `fmt`, `mod tidy`, `get`, `install pkg@version`, `env`, `doc`
+  - `go.mod`: module path, the `go` line, the `toolchain` line, `require`, `replace`, `exclude`
+  - `go.sum`, the checksum database (`GOSUMDB`), the module proxy (`GOPROXY`), `GOPRIVATE` and `GONOSUMDB`
+  - Minimal version selection: the highest of the minimum required versions, reproducible without a lock file
+  - Semantic import versioning (`/v2` paths)
+  - The `go` line as a language-feature switch; `GOTOOLCHAIN=auto` toolchain downloads versus `local`
+  - `gofmt` as the one canonical layout; `go vet` analyses
+  - A file-system module proxy for offline builds
+- **Packages and visibility**
+  - One package per directory; `package main` versus libraries; import paths versus package names
+  - Exported (upper-case) versus package-private names; `internal/` directories
+  - No import cycles, and the design pressure that creates (shared abstractions pushed down)
+  - Initialisation order: package variables in dependency order, then `init` functions; blank imports for side effects
+  - Unused imports and variables as compile errors
+  - Package naming: no `util` packages, no name stutter
+- **Types, constants and conversions**
+  - Basic types: `bool`, `string`, sized integers, `uintptr`, floats, complex, `byte` and `rune` aliases
+  - Zero values; `var` versus `:=`; shadowing
+  - No implicit conversions; `T(x)` everywhere
+  - Untyped constants with arbitrary precision; `iota` enumerations with an "unknown" zero value
+  - Integer division truncating toward zero; defined two's-complement overflow; division by zero
+  - IEEE 754 floats: NaN and ±Inf
+  - Contrasts: Python floor division and big ints; Java widening; C undefined overflow; JavaScript's 2⁵³ integer limit
+- **Control flow**
+  - `for` as the only loop; `range` over integers, slices, strings, maps, channels and functions
+  - `if` and `switch` with init statements; no fall-through by default; tagless `switch`; `fallthrough`
+  - Labels with `break`, `continue` and `goto`; `break` inside `select` or `switch`
+  - Per-iteration loop variables and the pre-1.22 capture bug
+
+### Go — composite data, functions, errors and text
+
+- **Arrays, slices and maps**
+  - Arrays as values whose length is part of the type
+  - The slice header (pointer, length, capacity); `make`, `append`, `copy`, full slice expressions `s[lo:hi:max]`
+  - Aliasing: slicing shares memory; when `append` reallocates; growth behaviour
+  - Nil versus empty slices and their JSON encodings
+  - Maps as hash tables: comma-ok, `delete`, `clear`, randomised iteration order, nil-map write panics, non-addressable elements, comparable keys
+  - Concurrent map writes as a fatal error
+  - The `slices` and `maps` packages; built-in `min` and `max`
+  - Contrast: Python slicing copies, Go slicing aliases
+- **Functions, closures and `defer`**
+  - Function values and types; multiple and named results; variadic parameters
+  - Closures capture variables, not values
+  - `defer`: function-scoped, last-in-first-out, arguments evaluated at the `defer` statement; modifying named results
+  - Growable goroutine stacks and the maximum stack size; no tail-call optimisation
+  - No overloading, default or keyword arguments; options structs and functional options
+- **Errors, `panic` and `recover`**
+  - `error` as an interface; returning errors as values
+  - Wrapping with `%w`; `errors.Is`, `errors.As`, `errors.AsType`, `errors.Join`
+  - Sentinel, typed and opaque errors as API design
+  - `panic` for programmer bugs; `recover` only in a deferred function of the panicking goroutine
+  - An unrecovered panic in any goroutine kills the process
+  - The typed-nil interface trap
+  - Contrasts: exceptions (Java checked and unchecked, Python), C return codes, JavaScript rejections
+- **Strings, bytes and runes**
+  - Strings as immutable bytes; `byte` and `rune`; UTF-8 decoding in `range`
+  - `len` counts bytes; rune counting; grapheme clusters
+  - `strings`, `strings.Builder`, `bytes`, `strconv`, `unicode/utf8`
+  - `fmt` verbs and `go vet` format checks
+  - Unicode normalisation and case folding
+  - Contrasts: Python code points, Java and JavaScript UTF-16 units, C NUL-terminated bytes
+
+### Go — memory, types with behaviour and generics
+
+- **Pointers, values and memory**
+  - `&`, `*`, automatic dereference; `new(T)` and `new(expr)`; `make` for slices, maps and channels
+  - Everything passed by value; reference-like headers
+  - Escape analysis and `-gcflags=-m`
+  - The garbage collector: concurrent, tri-colour, non-moving mark and sweep; the Green Tea collector
+  - `GOGC` and `GOMEMLIMIT`; container-aware `GOMAXPROCS`
+  - No destructors: release resources with `defer` and `Close`
+- **Structs and methods**
+  - Struct literals with field names; anonymous structs; struct tags
+  - Methods on named types in the same package; constructor functions; useful zero values
+  - Value versus pointer receivers and receiver consistency; addressability
+  - Method values and method expressions
+  - Comparable structs as map keys
+  - Copying a struct that holds a `sync.Mutex`
+- **Interfaces and embedding**
+  - Implicit (structural) interface satisfaction; small, consumer-owned interfaces
+  - `any`, type assertions, type switches, compile-time satisfaction checks
+  - Sealed interfaces as closed sum types
+  - Method sets of `T` and `*T`
+  - Interface values as (type, value) pairs; uncomparable dynamic types
+  - Embedding as composition with delegation, not inheritance; no dispatch back to the outer type
+  - Design patterns in Go form: consumer-owned interfaces, function-type strategies, middleware decorators, `sync.Once` singletons, functional options in place of builders, channels or callbacks for observers, iterators
+  - "Accept interfaces, return structs"
+- **Generics and iterators**
+  - Type parameters on functions and types; inference
+  - Constraints as type sets: `~T`, unions, `comparable`, `cmp.Ordered`
+  - Generic methods
+  - GC-shape stenciling with dictionaries, and its performance consequences
+  - `iter.Seq` and `iter.Seq2`; range-over-func; `yield` returning false; `iter.Pull`
+  - Contrasts: Java erasure, C++ templates, Python type hints; push iterators versus pull generators
+
+### Go — the everyday standard library
+
+- **I/O, files, text, time and JSON**
+  - `io.Reader` and `io.Writer` composition: `io.Copy`, `TeeReader`, `MultiWriter`, `LimitReader`
+  - `bufio.Scanner` token limits; `bufio.Writer` flushing; checking `Close` on written files
+  - `os` files, `path/filepath` versus `path`; `os.Root` against path traversal; `embed`
+  - `text/template` versus context-escaping `html/template`
+  - `regexp` as RE2: linear time, no backreferences, no catastrophic backtracking
+  - `time`: wall and monotonic clocks, `Duration`, reference-time layouts
+  - `encoding/json`: exported fields only, numbers into `any` as float64, `UseNumber`, `DisallowUnknownFields`, case-insensitive key matching, duplicate keys
+  - `encoding/json/v2`: case-sensitive matching and nil-slice encoding
+  - Atomic file writes: temporary file in the same directory, sync, close, rename
+- **Command-line programs, configuration and logging**
+  - `os.Args`, the `flag` package and one `FlagSet` per subcommand
+  - `os.Getenv` versus `os.LookupEnv`; precedence of flags, environment, config file and defaults
+  - Exit codes; `os.Exit` skips deferred calls; `log.Fatal`
+  - A tiny, testable `main` that delegates to `run`
+  - `log/slog`: structured attributes, levels, handlers, JSON output, `ReplaceAttr`
+  - `signal.NotifyContext` for SIGINT and SIGTERM
+  - Cobra and Viper for large CLIs
+- **Service clients and numerical libraries**
+  - mongo-go-driver, go-redis, client-go and the Docker Engine API, each tested with learning tests at the boundary
+  - Gonum (`mat`, `stat`, `optimize`) compared against hand-built primitives for accuracy, stability and speed
+  - Gorgonia and GoMLX; ONNX Runtime bindings or an HTTP model service behind a Go inference interface with timeout, fallback, cache and schema validation
+  - On Cloud Run: the `PORT` variable, SIGTERM with a 10-second grace period, and single-line JSON logs whose `severity` field becomes the Cloud Logging severity
+
+### Go — concurrency
+
+- **Goroutines and the scheduler**
+  - `go` statements; `main` returning ends the program
+  - Concurrency versus parallelism
+  - The G–M–P scheduler: per-P run queues, work stealing, the network poller, asynchronous preemption
+  - No goroutine IDs and no external kill; designed stop paths; goroutine leaks
+  - Contrasts: Java platform and virtual threads, Python's GIL and asyncio, JavaScript's event loop, pthreads
+- **Channels and `select`**
+  - Unbuffered channels as rendezvous; buffered channels as bounded queues and back-pressure
+  - Directional channel types; closing by the sender; receive from closed; send on closed panics
+  - Nil channels to disable `select` cases
+  - `select` with random choice among ready cases; `default`; `time.After`; tickers
+  - Global deadlock detection versus silent partial deadlocks
+  - Pipelines that close their outputs on shutdown
+- **`context`**
+  - Cancellation, deadlines and request-scoped values; `ctx` as the first parameter
+  - `WithCancel`, `WithTimeout`, `WithDeadline`, `WithCancelCause`, `WithValue`, `AfterFunc`, `WithoutCancel`
+  - The context tree; always calling `cancel`; `ctx.Err()` and `context.Cause`
+  - Deadline propagation through `net/http`, `database/sql` and gRPC
+  - Deadline budgets across a call tree
+  - Contrasts: Java interrupts, Python task cancellation, JavaScript `AbortController`
+- **`sync`, atomics and the memory model**
+  - `Mutex`, `RWMutex`, `WaitGroup` and `WaitGroup.Go`, `Once`, `OnceFunc`, `OnceValue`, `Cond`, `Pool`, `Map`
+  - Typed atomics: `atomic.Int64`, `atomic.Bool`, `atomic.Pointer[T]`
+  - Happens-before; data races; DRF-SC; torn multi-word values
+  - When `sync.Map` and `sync.Pool` are and are not appropriate
+  - Blocking, lock-free and wait-free progress; compare-and-swap loops; the ABA problem and node recycling
+  - Contrasts: the Java memory model, Python's accidental atomicity, C11 memory orderings
+- **Concurrency patterns and failure modes**
+  - Worker pools, pipelines, fan-out and fan-in
+  - Bounded parallelism with semaphores; `errgroup` with `SetLimit`
+  - Rate limiting with a token bucket (`golang.org/x/time/rate`)
+  - Retries with exponential backoff and jitter under a deadline; retry budgets; `Retry-After`
+  - The race detector: what it can and cannot find, its cgo requirement and overhead
+  - Goroutine-leak tests (`goleak`)
+  - Single-flight loading and sharded caches
+
+### Go — engineering
+
+- **Testing, benchmarks and fuzzing**
+  - `_test.go` files; `t.Run` subtests; table-driven tests; `t.Helper`, `t.Cleanup`, `t.Parallel`, `t.TempDir`; golden files
+  - No assertion library; `t.Fatal` only from the test goroutine
+  - Benchmarks with `b.Loop` and `-benchmem`; comparing distributions with `benchstat`
+  - Native fuzzing with a seed corpus
+  - Example functions checked against their output
+  - Coverage; `httptest`; `testing/synctest` for time-dependent concurrent code
+- **HTTP services with `net/http`**
+  - From scratch first: an echo server and a minimal HTTP/1.1 server and client over raw TCP
+  - `http.Handler`, `HandlerFunc`, `ServeMux` method and wildcard patterns, `PathValue`
+  - Middleware chains and their order (recover, request ID, logging, authentication, rate limit)
+  - Server timeouts (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`) and the zero-value server; client timeouts
+  - Closing and draining response bodies; `MaxBytesReader`; status before body
+  - `CrossOriginProtection`; `crypto/tls` configuration
+  - Graceful shutdown with `Server.Shutdown`
+  - Handler panics recovered by the server versus panics in spawned goroutines
+  - Problem-details error bodies; one status per error class
+  - Frameworks (Chi, Gin, Echo, Fiber) and when they are unnecessary
+  - On Cloud Run: TLS terminated at the front end; h2c for end-to-end HTTP/2
+- **Databases with `database/sql`**
+  - `*sql.DB` as a long-lived connection pool; pool limits sized against instance count
+  - `QueryContext`, `QueryRowContext`, `ExecContext`; `rows.Close` and `rows.Err`
+  - Transactions pinned to one connection; isolation levels; retrying serialization failures (SQLSTATE 40001, 40P01)
+  - Driver-specific placeholders and parameter binding
+  - Nullable columns with `sql.Null[T]`
+  - The `pgx` driver; `sqlc` code generation versus ORMs
+  - The Cloud SQL Go connector with IAM database authentication
+- **Protocol Buffers and gRPC**
+  - proto3 messages, field numbers, `repeated`, `map`, `oneof`, enums, `optional` and field presence
+  - Field numbers as the contract; `reserved`; backward-compatible evolution
+  - Code generation with `protoc` plugins or `buf`
+  - Unary and streaming RPCs; status codes; metadata; interceptors; TLS
+  - Deadline propagation via `grpc-timeout`
+  - `grpcurl`, `ghz`, in-process tests with `bufconn`
+  - Back-pressure on server streams
+- **Profiling, debugging and observability**
+  - CPU, heap, allocation, goroutine, block and mutex profiles; `go tool pprof`; flame graphs
+  - `runtime/trace`; `GODEBUG=gctrace=1`
+  - Profile-guided optimisation with `default.pgo`
+  - Exposing pprof safely on a private listener
+  - Delve: debug, test, attach, core dumps; building without optimisation
+  - `GOTRACEBACK` settings
+  - OpenTelemetry for Go and trace context through `context.Context`; Cloud Trace and Cloud Profiler
+- **Build, release and supply chain**
+  - Cross-compilation with `GOOS` and `GOARCH`; `CGO_ENABLED=0` static binaries
+  - `-trimpath`, `-ldflags` (`-s -w -X`), embedded build information
+  - Reproducible, byte-identical builds
+  - Multi-stage container builds onto distroless or `scratch`; CA certificates and time-zone data
+  - `govulncheck` reachability analysis versus module-level scanners
+  - golangci-lint pinned in CI; GoReleaser
+- **Reflection, `unsafe` and cgo**
+  - `reflect.TypeOf`, `ValueOf`, `Kind`, struct fields and tags; settability rules
+  - `unsafe.Pointer` rules, `Sizeof`, `Slice`, `String`
+  - cgo costs: call overhead, invisible C memory, lost static builds
+  - Reflection versus hand-written code versus generics
+- **Data structures in Go**
+  - Slice-backed stacks, queues and deques; ring buffers; avoiding front-of-slice leaks
+  - Linked lists and `container/list`; hash maps with chaining; LRU caches
+  - `container/heap` and indexed priority queues
+  - Union-find, tries, binary search trees
+  - Sorting and searching: `slices.SortFunc` (unstable) versus `SortStableFunc`, `slices.BinarySearch`, `sort.Search`
+  - Timing wheels versus timer heaps
+- **Implementing authentication in Go**
+  - `crypto/rand` (`rand.Read`, `rand.Text`); never `math/rand` for secrets
+  - Argon2id via `golang.org/x/crypto/argon2` in a versioned PHC-format record; rehash on login; PBKDF2 fallback
+  - Hashed opaque session IDs with idle and absolute expiry and rotation
+  - `__Host-` cookies with `Secure`, `HttpOnly`, `SameSite`; the zero `SameSite` value
+  - Session-bound CSRF tokens; `hmac.Equal` and constant-time comparison
+  - HS256 JWS from scratch with an algorithm allow-list and claim checks; EdDSA with `crypto/ed25519`
+  - HOTP and TOTP from scratch against RFC test vectors; replay protection
+  - OAuth 2.0 authorization code with PKCE S256, `state` and the OIDC `nonce`
+  - Timing-equalised login for unknown users
+- **Implementing payments in Go**
+  - Money as `int64` minor units plus currency; largest-remainder allocation; `big.Rat` for exact rates
+  - Why floats corrupt amounts
+  - Order state machine as a transition table with guarded updates
+  - Idempotency keys: replay, 422 on body mismatch, 409 while running
+  - Webhook signature verification on raw bytes with timestamp tolerance; inbox tables for exactly-once effects
+  - Double-entry ledger; bounded partial refunds; daily reconciliation against settlement reports
+  - Provider signature schemes (Stripe's `Stripe-Signature`, Razorpay's `X-Razorpay-Signature`)
+  - A fake payment provider for failure testing
+  - Payment domain: card rails versus wallets and UPI (QR, netbanking); authorization, capture and settlement; payout timelines; test versus live mode and sandbox seeding
+  - Webhook delivery: replay windows, clock skew, nonces, retries with backoff and a dead-letter queue; webhook failure budgets as SLOs
+  - Refunds, disputes and reversals as a state machine; the chargeback life cycle and evidence; ledger adjustments
+  - Reconciliation mismatch classes and alerts
+  - Swapping providers behind an interface with contract tests
+
+### Go — cross-language contrasts
+
+- Dependency versions, privacy, unused code, integer division and overflow, implicit conversion
+- `switch` defaults, loop-variable capture, slicing, map order, cleanup, failure handling
+- String length, returning a local's address, destructors, methods, interface satisfaction, inheritance
+- Generics, iteration, JSON numbers and key matching, regular expressions, process exit
+- Concurrency unit, queues between workers, cancellation, data-race outcomes
+- Test assertions, HTTP servers, database access, shipping, reflection, secret comparison, money

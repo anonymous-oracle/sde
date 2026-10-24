@@ -1,0 +1,199 @@
+# Part 11 · Software Architecture, APIs, Design Patterns & Clean Architecture · TOPIC LIST
+
+Rules and directives for this part: `index/part11_software_architecture.rules.md`. This file is the topic list only; the Learning method and this domain's prerequisites, depth bar and capstone are in the rules file.
+
+Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
+
+### Architecture fundamentals
+
+- **System decomposition**
+  - The client–server model
+  - Separating the web layer from the application layer so each scales independently
+  - Monoliths, modular monoliths and microservices, and their trade-offs
+  - Service discovery: registries (Consul, etcd, ZooKeeper), health checks, configuration key-value stores
+  - Liveness, readiness and startup probes
+- **Modularity**
+  - Information hiding: decompose by design decisions likely to change (Parnas)
+  - Coupling and cohesion; afferent and efferent coupling; instability I = Ce/(Ca + Ce); the stable-dependencies principle
+  - Interfaces as contracts
+  - Conway's law and the inverse Conway manoeuvre
+- **Architectural styles**
+  - Layered; pipes and filters; event-based implicit invocation; repository and blackboard; microkernel (plug-in); client–server
+  - Service-scale styles: modular monolith, microservices, service-based, space-based
+  - Styles as named trade-offs judged against quality-attribute scenarios
+- **Communication styles**
+  - Synchronous versus asynchronous communication
+  - Message queues and event-driven architecture
+  - The API gateway's offloaded concerns: TLS, authentication, rate limiting, routing
+  - Backend for Frontend: one thin API per client type
+
+### API design
+
+- **RPC**
+  - Client and server stubs, marshalling, the communication module
+  - Exposing behaviours; tight coupling; debugging and caching difficulties
+  - Frameworks: Protocol Buffers and gRPC, Thrift, Avro
+- **REST**
+  - Fielding's constraints: client–server, stateless, cacheable, uniform interface, layered system, optional code on demand
+  - Resources identified by URIs; representations; self-descriptive status codes
+  - HATEOAS: hypermedia links driven by state
+  - Where REST fits poorly: non-hierarchical queries, few verbs, nested round trips, bloated responses
+  - Resource-oriented API design guidelines (Google's AIPs)
+- **RPC versus REST**
+  - Mapping RPC-style operations to resources and verbs
+  - RPC internally for performance, REST for public APIs; transcoding one `.proto` to both
+- **GraphQL** as a query language that addresses over-fetching and round trips
+- **API design theory**
+  - Safety and idempotency as algebraic properties, f(f(x)) = f(x)
+  - Compatibility rules for evolving APIs and schemas; Hyrum's law
+  - Content negotiation: `Accept`, `Accept-Encoding`, `Accept-Language` and `Vary`
+  - Machine-readable contracts (OpenAPI, `.proto`) that generate clients, servers and contract tests
+  - Pagination, filtering and versioning
+
+### Object-oriented foundations
+
+- **Encapsulation**: protecting invariants, not just hiding fields
+- **Abstraction**: hiding complexity of behaviour; encapsulated but poor abstractions
+- **Inheritance**: is-a relationships; reuse versus substitutability; composition over inheritance; the square–rectangle problem
+- **Polymorphism**: subtype versus parametric; interfaces with several implementations as the basis of behavioural patterns
+- **Abstract data types**: specification by operations; representation invariants and abstraction functions
+
+### Design principles
+
+- **SOLID**
+  - Single Responsibility: one actor, one reason to change
+  - Open/Closed: extension through polymorphism instead of type switches
+  - Liskov Substitution: weaker preconditions, stronger postconditions, preserved invariants
+  - Interface Segregation: small client-specific interfaces
+  - Dependency Inversion: depend on abstractions; DIP as the principle, dependency injection as the mechanism
+- **GRASP**
+  - Information Expert, Creator, Controller
+  - Low Coupling (the Law of Demeter, Tell Don't Ask) and High Cohesion
+  - Polymorphism, Pure Fabrication, Indirection, Protected Variations
+- **Everyday rules**
+  - DRY as one authoritative representation of each piece of knowledge; the rule of three
+  - YAGNI and KISS
+
+### Design by contract and behavioural subtyping
+
+- Preconditions, postconditions and class invariants (Meyer)
+- The Liskov–Wing rule: contravariant preconditions, covariant postconditions, invariants, the history constraint
+- What type systems can and cannot check about substitutability
+
+### Gang of Four patterns
+
+- **Creational**
+  - Singleton: one instance with global access; hidden global state; one-per-process clients injected instead
+  - Factory Method: subclasses choose the concrete product
+  - Abstract Factory: families of related products
+  - Builder: step-by-step construction; functional options as an alternative
+  - Prototype: creation by cloning
+- **Structural**
+  - Adapter: converting one interface to another
+  - Bridge: separating an abstraction from its implementation
+  - Composite: tree structures treated uniformly
+  - Facade: one simple interface over a subsystem
+  - Flyweight: sharing intrinsic state
+  - Proxy: a stand-in that controls access (remote, virtual, protection)
+  - Decorator: adding behaviour by wrapping; middleware
+- **Behavioural**
+  - Strategy: interchangeable algorithms
+  - Observer: publish–subscribe notification
+  - Template Method: an algorithm skeleton with varying steps
+  - State: behaviour that changes with internal state; state machines
+  - Command: requests as objects; undo and queues
+  - Chain of Responsibility: passing a request along handlers
+  - Mediator: centralising communication between colleagues
+  - Iterator: sequential access without exposing representation
+  - Memento: capturing and restoring state
+  - Visitor: new operations over a fixed structure
+  - Interpreter: a grammar evaluated by a class hierarchy
+- **Patterns and language features**
+  - Patterns that become functions, closures, generators, folds or composition in functional languages (Norvig's observation)
+  - The expression problem: open versus closed sums; Visitor versus Strategy; object algebras, type classes and tagless final (named)
+  - The design decision about which axis of change to protect as the essence of a pattern
+
+### Application architecture
+
+- Layered (n-tier) architecture and pass-through costs
+- Hexagonal architecture: ports and adapters
+- Onion architecture
+- Clean Architecture: entities, use cases, interface adapters, frameworks and drivers; the dependency rule; framework-free boundary data
+- MVC, MVP and MVVM
+- Dependency injection: constructor, setter and interface injection; IoC containers
+- Enterprise patterns: Repository, Unit of Work, Data Transfer Object, Service Layer
+
+### Domain-driven design
+
+- Entities, value objects and aggregates with a single root
+- One repository per aggregate root
+- Domain events
+- Bounded contexts and anti-corruption layers
+- Aggregates as consistency boundaries: one aggregate per transaction; eventual consistency across aggregates
+
+### Distributed application patterns
+
+- CQRS: separate write and read models; when one model is enough
+- Event sourcing: state as a left fold over events; deterministic replay; snapshots and projections
+- Resilience patterns: circuit breaker (closed, open, half-open), bulkhead, graceful degradation, retry with exponential backoff and jitter within a retry budget
+- Strangler fig migration behind a facade
+
+### Anti-patterns
+
+- God Object; Spaghetti Code; Big Ball of Mud
+- Golden Hammer; Cargo Cult Programming
+- Anemic Domain Model
+- Premature Optimization
+- Magic numbers and strings
+- Shotgun Surgery
+- Interface Bloat
+
+### Quality attributes and evaluation
+
+- Quality-attribute scenarios: source, stimulus, artifact, environment, response, response measure
+- Tactics for availability, performance, modifiability, security and testability
+- The Architecture Tradeoff Analysis Method: utility trees, sensitivity and trade-off points, risks
+- Design-quality metrics: the Chidamber–Kemerer suite (WMC, DIT, NOC, CBO, RFC, LCOM); Martin's package metrics (abstractness, distance from the main sequence D = |A + I − 1|, the Stable Abstractions Principle); cyclomatic complexity V(G) = E − N + 2P
+- Technical debt as a metaphor and its limits; estimation error; the evidence on code review
+
+### Architecture documentation
+
+- Architecture views and the C4 model
+- Architecture decision records
+- High-level and low-level design documents and the contract between them
+- Non-functional requirement tables
+- UML class-diagram notation: inheritance, realization, composition, aggregation, association, dependency
+
+### Formal methods
+
+- State machines as specifications
+- Safety versus liveness properties; temporal logic
+- Model checking by exhaustive state enumeration (a lock, two-phase commit)
+- TLA+ as used in industry to find design bugs before code
+
+### Software testing at depth
+
+- Test oracles, equivalence partitioning and boundary values
+- Example-based versus property-based testing
+- Fuzzing theory: coverage guidance and corpora
+- Mutation testing
+- Static analysis
+
+### Exercises
+
+- Object-oriented designs: a hash map, an LRU cache, a call center with escalation, a deck of cards and blackjack, a parking lot, an online chat with friends and group chats
+- From scratch in Go: one implementation per GoF pattern
+- From scratch: a dependency-injection container; an in-process event bus; a circuit breaker, retry with jittered backoff and a bulkhead
+- Pattern selection: multiple payment providers, pluggable export formats, unlimited undo, a switchable HTTP client chain, refactoring a 40-method manager
+- A payment domain placed into Clean Architecture rings; an order aggregate's invariants; an order lifecycle with the State pattern
+- A booking saga with compensations; an event-sourced cart with CQRS and snapshots
+- Singleton configuration and database objects critiqued and refactored
+- A gRPC service from a `.proto`; a REST API with ETags, idempotent PUT and HATEOAS links; an OpenAPI contract imported into an API gateway
+- Two services calling each other with authenticated invocation
+- A notification platform with preferences, retries, rate limits and provider fallback
+- A small protocol model-checked; property-based and mutation tests on a domain module
+- **Reasoning drills**
+  - Name the binding quality attribute from a requirements list before choosing a style
+  - Predict which modules a changed requirement will touch, then make the change and compare
+  - Re-solve a design in a second architectural style and compare failure modes and cost
+  - Prove that a subtype satisfies the Liskov rule or construct the counterexample
