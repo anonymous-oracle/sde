@@ -24,6 +24,8 @@ Domain: Operating Systems & Linux
 - Threads versus processes
 - The address-space layout: code, data, heap, stack
 - Signals: delivery and masking, async-signal-safe handlers, SIGTERM then SIGKILL, graceful shutdown inside containers
+- **A teaching kernel (xv6)**: PC hardware and the boot path from BIOS or UEFI and the bootloader into protected mode; kernel stacks, trap frames and the system-call path; the process table
+- Interrupts and their handling; software interrupts; the context switch as saving and restoring register state
 
 ### CPU scheduling
 
@@ -33,6 +35,7 @@ Domain: Operating Systems & Linux
 - Proportional share: lottery and stride scheduling
 - Linux's fair schedulers: CFS, and EEVDF since Linux 6.6
 - cgroup CPU shares and quotas; CPU throttling behind container CPU limits
+- Priority scheduling with aging; multiprocessor scheduling: a global run queue versus per-CPU queues, load balancing, processor affinity
 
 ### Virtual memory
 
@@ -57,6 +60,9 @@ Domain: Operating Systems & Linux
 - Livelock and priority inversion
 - Progress conditions: blocking, obstruction-free, lock-free, wait-free
 - The ABA problem in compare-and-swap loops
+- Software solutions to the critical-section problem: Peterson's algorithm and Lamport's bakery algorithm; the requirements of mutual exclusion, progress and bounded waiting; why they need memory barriers on modern hardware
+- Semaphores (binary and counting) and monitors; the classic problems: producer–consumer, readers–writers and dining philosophers
+- Deadlock beyond prevention: avoidance with the banker's algorithm, detection on a resource-allocation graph, recovery
 
 ### Persistence
 
@@ -74,6 +80,7 @@ Domain: Operating Systems & Linux
 - cgroups and what they limit
 - seccomp filters and capabilities
 - Containers versus virtual machines: the shared kernel as a weaker boundary
+- Information-flow policies: Bell–LaPadula (no read up, no write down) for confidentiality and Biba for integrity; noninterference
 
 ### I/O models and performance
 

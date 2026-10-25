@@ -49,6 +49,7 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
   - Content negotiation: `Accept`, `Accept-Encoding`, `Accept-Language` and `Vary`
   - Machine-readable contracts (OpenAPI, `.proto`) that generate clients, servers and contract tests
   - Pagination, filtering and versioning
+- Web services and service-oriented architecture: SOAP and WSDL, XML and XML Schema; the enterprise service bus; how SOA relates to REST and microservices
 
 ### Object-oriented foundations
 

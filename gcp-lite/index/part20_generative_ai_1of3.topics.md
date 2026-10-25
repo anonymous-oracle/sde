@@ -44,6 +44,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
 - **Long context**: the hard limit of the window versus degraded retrieval inside it ("lost in the middle"); quality falling as irrelevant context grows
 - **Choosing an approach**: prompt engineering versus retrieval-augmented generation versus fine-tuning
 - **Responsible AI**: bias, fairness, safety evaluation; explainability through attention visualization and feature attributions (LIME, SHAP)
+- **Interpretability**: the residual stream as a shared channel to which attention heads and MLP blocks add; induction heads and circuits; the logit lens, probing classifiers, activation patching and sparse autoencoders
 
 ### Fine-tuning and adaptation
 
@@ -117,6 +118,19 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
   - Visual reasoning and chart questions: reasoning strength set mostly by the language model; observations listed before conclusions; values extracted before reasoning; compounding errors and a self-check pass
   - Preference tuning against hallucination with synthetic negatives: random answers, mismatched questions, and images with the relevant objects masked
   - Benchmarks by task: COCO Captions and NoCaps; VQAv2, GQA, OK-VQA, TextVQA and VizWiz; DocVQA (scored by normalized edit similarity), FUNSD and ChartQA; POPE for object hallucination; MMMU, MathVista, ScienceQA, NLVR2 and Winoground; contamination as a caveat on reported gains
+
+### Generative models beyond autoregression
+
+- **Generative modelling**: density estimation versus sampling; explicit versus implicit models; a taxonomy of autoregressive, latent-variable, adversarial, flow and diffusion models
+- **Variational autoencoders**: the latent-variable model, the ELBO and the reparameterization trick; β-VAE and disentanglement; VQ-VAE with a discrete codebook and the straight-through estimator; posterior collapse
+- **Generative adversarial networks**
+  - The minimax game; the optimal discriminator and the Jensen–Shannon divergence; the non-saturating loss
+  - DCGAN, conditional GANs, Wasserstein GAN with weight clipping and gradient penalty
+  - Mode collapse and unstable training; GAN inversion; evaluation by Inception score and FID
+- **f-divergences**: KL, reverse KL, Jensen–Shannon and total variation; variational divergence minimization (f-GAN)
+- **Diffusion models**: the forward noising process; DDPM training by predicting noise; noise schedules (linear, cosine); reverse sampling and DDIM; conditional generation and classifier-free guidance; the score-based and stochastic-differential-equation view; latent diffusion
+- **Flow models**: normalizing flows; conditional flow matching and rectified flow; comparison with diffusion
+- **Evaluating generative models**: likelihood, FID, precision and recall of distributions, human evaluation
 
 ### Embeddings and retrieval
 

@@ -143,6 +143,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - Partitioning: range, list and hash; pruning; shard keys as locality keys; hot-key skew and sequential hotspots
 - Schema evolution by expand and contract: add nullable, backfill, constrain, switch reads, drop; lock levels; concurrent index creation
 - Data quality as constraints; deferral for cyclic foreign keys; EXCLUDE for ranges
+- **The entity–relationship model**: entities and attributes (simple, composite, multivalued, derived); relationships with cardinality and participation constraints; weak entities; specialization and generalization; mapping an ER diagram to relations
 
 ### Operating databases
 

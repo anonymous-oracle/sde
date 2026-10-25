@@ -1,6 +1,6 @@
 # Pending Tracker
 
-Learner: suhass149 · Course: the GCP Lite curriculum (index: `Consolidated_Topic_Index_GCP.md`, 3,749 lines, 20 sections, 229 topic groups, 2,805 topic lines) · Tutor skill: `learn`
+Learner: suhass149 · Course: the GCP Lite curriculum (index: `Consolidated_Topic_Index_GCP.md`, 3,749 lines, 20 sections plus the optional supplementary section, 241 topic groups, 2,923 topic lines after the NPTEL additions of 25 Oct 2026; 20 sections, 229 groups and 2,805 lines before) · Tutor skill: `learn`
 
 Renamed from `billing_pending_queue.md` and expanded on 6 October 2026. Created 3 October 2026. Dedicated copy created 8 October 2026 from Part B of `progress.md`. **Refreshed 24 October 2026** for a move to a new chat: concepts 14 to 36 are now recorded (sections 3.6 and 3.7), errors 13 to 22 are logged, the cold-retry queue is extended, and the index is now also split into 29 parts (`gcp-lite/index/00_index_map.md`). Companion file: `gcp-lite/SESSION_HANDOFF_2026-10-24.md`.
 
@@ -18,7 +18,7 @@ This is the learner's full curriculum record: what has been taught, what is in p
 4. Records: error log, misconceptions, errata, predictions, decisions, heuristics
 5. The practical track: what we do next
 6. Just-in-time prerequisite register
-7. Section-by-section tracker (all 20 sections, 229 groups)
+7. Section-by-section tracker (all 20 sections plus the optional section 21, 241 groups)
 8. Billing and credit queue
 9. Open verifications
 10. Resume point
@@ -26,7 +26,7 @@ This is the learner's full curriculum record: what has been taught, what is in p
 
 ## 1. Snapshot
 
-- The index holds 20 sections (19 domains plus the ML case-study appendix), 229 topic groups and 2,805 topic lines. It is also cut into 29 parts (rules file plus topic list each); the current part is **05** (Python and shell).
+- The index holds 20 sections (19 domains plus the ML case-study appendix) and an optional supplementary section 21, 241 topic groups and 2,923 topic lines (229 groups and 2,805 lines before the NPTEL additions of 25 Oct 2026). It is also cut into 30 parts (rules file plus topic list each); the current part is **05** (Python and shell). The 22 NPTEL 2026 courses were merged, deduplicated and distributed across the parts: see `gcp-lite/nptel_consolidated_topics.md` (each topic with its source courses and where it sits).
 - Marked taught at topic level: Number systems, Storage units, Character encoding (Computer Organization), all at L1 and L2, engineering pass only; and in Python: the whole Core language group and the Environment and tooling group through `parametrize` (see 3.6). Nothing has reached the mastery bar: no academic pass, no cold recall result.
 - Paused: Data layout, at alignment and padding (override 8). Do not raise.
 - Partly taught (named slices): Boolean logic, Combinational circuits, The memory hierarchy, Latency numbers (Computer Organization); Page arithmetic (Databases, Pre-SQL foundations); a Go toolchain slice (3.5).
@@ -438,7 +438,7 @@ When the left-hand topic starts, teach the right-hand prerequisite first (at the
 
 One line per topic group, in index order. Tags show which practical focus area a group belongs to (GO, MIDDLEWARE, SQL, CLOUD, DESIGN, MATH) or that it is a PREREQ to teach just in time. Untagged groups wait in index order.
 
-### Group-level counts at a glance (as of 8 Oct 2026)
+### Group-level counts at a glance (as of 8 Oct 2026; rows 7.5, 7.7, 7.12, 7.14, 7.17, 7.18 and 7.21 updated 25 Oct 2026 for the NPTEL additions)
 
 | # | Section | Taught | In progress / partly | Not started | Groups |
 |---|---|---|---|---|---|
@@ -446,25 +446,26 @@ One line per topic group, in index order. Tags show which practical focus area a
 | 7.2 | Computer Organization & Data Representation | 0 | 3 | 1 | 4 |
 | 7.3 | Mathematics, Probability, Statistics, Queueing & Performance Modelling | 0 | 0 | 11 | 11 |
 | 7.4 | Problem Solving, Reasoning & Research Method | 0 | 0 | 9 | 9 |
-| 7.5 | Programming Languages & Language Theory | 0 | 2 | 11 | 13 |
+| 7.5 | Programming Languages & Language Theory | 0 | 2 | 13 | 15 |
 | 7.6 | Data Structures, Algorithms & Computational Complexity | 0 | 0 | 11 | 11 |
-| 7.7 | Computer Networking & Web Protocols | 0 | 0 | 12 | 12 |
+| 7.7 | Computer Networking & Web Protocols | 0 | 0 | 13 | 13 |
 | 7.8 | Operating Systems & Linux | 0 | 0 | 9 | 9 |
 | 7.9 | Software Architecture, APIs, Design Patterns & Clean Architecture | 0 | 0 | 15 | 15 |
 | 7.10 | Databases, SQL, Relational Theory & Data Modelling | 0 | 1 | 11 | 12 |
 | 7.11 | Distributed Systems & Large-Scale System Design | 0 | 0 | 14 | 14 |
-| 7.12 | Security, Cryptography, Privacy & Compliance | 0 | 0 | 19 | 19 |
+| 7.12 | Security, Cryptography, Privacy & Compliance | 0 | 0 | 21 | 21 |
 | 7.13 | Software Delivery & Version Control | 0 | 0 | 4 | 4 |
-| 7.14 | Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM | 0 | 0 | 6 | 6 |
+| 7.14 | Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM | 0 | 0 | 7 | 7 |
 | 7.15 | The Architect's Practice: Decisions, Strategy & Career | 0 | 0 | 10 | 10 |
 | 7.16 | DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability | 0 | 0 | 8 | 8 |
-| 7.17 | Machine Learning, MLOps & Production ML System Design | 0 | 0 | 9 | 9 |
-| 7.18 | Generative AI, LLMs, Agents & Claude Applications | 0 | 0 | 15 | 15 |
+| 7.17 | Machine Learning, MLOps & Production ML System Design | 0 | 0 | 11 | 11 |
+| 7.18 | Generative AI, LLMs, Agents & Claude Applications | 0 | 0 | 16 | 16 |
 | 7.19 | Cloud Providers: Google Cloud, AWS, Azure & Certifications | 0 | 0 | 20 | 20 |
 | 7.20 | Published ML System-Design Case Studies | 0 | 0 | 12 | 12 |
-| | **Total** | **0** | **6** | **223** | **229** |
+| 7.21 | Supplementary Applied Domains (optional, part 30) | 0 | 0 | 3 | 3 |
+| | **Total** | **0** | **6** | **235** | **241** |
 
-Counts are groups, not topic lines. A group marked in progress or partly may contain taught topics. Taught at topic level: Number systems, Storage units, Character encoding (3 topics, 12 topic lines, about 0.4% of 2,805).
+Counts are groups, not topic lines. A group marked in progress or partly may contain taught topics. Taught at topic level: Number systems, Storage units, Character encoding (3 topics, 12 topic lines, about 0.4% of 2,923).
 
 ### 7.1 School-level foundations
 
@@ -505,7 +506,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.3 Mathematics, Probability, Statistics, Queueing & Performance Modelling
 
-11 groups, 159 topic lines.
+11 groups, 161 topic lines. NPTEL additions integrated 25 Oct 2026: 2 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** the school-level foundations from arithmetic through calculus intuition.
 - **Depth bar:** the mathematics, probability and statistics expected at graduate entry in computer science: each theorem proved or its proof sketched, each formula derived, each method run by hand and then in code on real data.
@@ -543,7 +544,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.5 Programming Languages & Language Theory
 
-13 groups, 356 topic lines.
+15 groups, 372 topic lines. NPTEL additions integrated 25 Oct 2026: 16 new topic lines (2 new groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** computer literacy and the terminal; data representation (binary, two's complement, UTF-8, floating point); proof by induction; sets, relations and functions.
 - **Depth bar:** production fluency in Python and Go (idiomatic, tested, race-free, profiled code) together with a programming-languages course: semantics, type soundness, and a working interpreter and type checker.
@@ -562,10 +563,12 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Wire formats (4 lines) · PREREQ (middleware: JSON, protobuf)
 - [ ] Language theory (33 lines)
 - [ ] Exercises (38 lines)
+- [ ] R for data science (3 lines) · added from NPTEL 2026 courses
+- [ ] Java and the JVM (8 lines) · added from NPTEL 2026 courses
 
 ### 7.6 Data Structures, Algorithms & Computational Complexity
 
-11 groups, 81 topic lines.
+11 groups, 84 topic lines. NPTEL additions integrated 25 Oct 2026: 3 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** a first programming language (Python, then Go); proof by induction and invariants; logarithms and exponents; sums and recurrences; probability with indicator variables and expectation; discrete maths (relations, graphs, counting).
 - **Depth bar:** a top-university algorithms course: correctness proved by invariant, exchange argument or induction; recurrences solved; lower bounds and reductions shown; every implementation benchmarked against its predicted complexity.
@@ -585,7 +588,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.7 Computer Networking & Web Protocols
 
-12 groups, 99 topic lines.
+13 groups, 108 topic lines. NPTEL additions integrated 25 Oct 2026: 9 new topic lines (1 new group); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** binary and powers of two; bit operations; queueing basics (delay grows with utilization); graph shortest paths (Dijkstra, Bellman–Ford); tries; the latency numbers of the memory and network hierarchy.
 - **Depth bar:** a top-university networking course with its socket and protocol labs: each protocol mechanism traced on the wire with packet capture, each performance formula derived and checked under emulated loss and delay.
@@ -603,10 +606,11 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Data-centre networks (3 lines)
 - [ ] Measurement (4 lines)
 - [ ] Exercises (13 lines)
+- [ ] IoT and constrained-device networking (9 lines) · added from NPTEL 2026 courses
 
 ### 7.8 Operating Systems & Linux
 
-9 groups, 70 topic lines.
+9 groups, 77 topic lines. NPTEL additions integrated 25 Oct 2026: 7 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** computer organization (ISA, the memory hierarchy, TLB, cache coherence and atomic instructions); a programming language with threads; data structures (queues, trees, hash tables); basic probability.
 - **Depth bar:** a graduate operating-systems course with kernel labs: each mechanism explained down to its data structures and system calls, built at toy size, and observed on a live Linux system with tracing tools.
@@ -624,7 +628,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.9 Software Architecture, APIs, Design Patterns & Clean Architecture
 
-15 groups, 149 topic lines.
+15 groups, 150 topic lines. NPTEL additions integrated 25 Oct 2026: 1 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** a programming language with classes or interfaces (Python, Go); type systems (nominal and structural typing, parametric and subtype polymorphism); HTTP semantics; preconditions, postconditions and invariants; graphs and state machines.
 - **Depth bar:** a graduate software-architecture and design course plus staff-level design review: every principle and pattern implemented, critiqued in real code and justified against quality-attribute scenarios.
@@ -648,7 +652,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.10 Databases, SQL, Relational Theory & Data Modelling
 
-12 groups, 153 topic lines.
+12 groups, 154 topic lines. NPTEL additions integrated 25 Oct 2026: 1 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** sets, relations, functions and bags; propositional and predicate logic; binary search, sorting, hashing and trees; the storage hierarchy with page and row arithmetic; integer versus floating-point arithmetic and encodings; files, CSV and JSON; a programming language with a database driver; operating-system virtual memory and fsync; concurrency (locks, deadlock).
 - **Depth bar:** a top-university database-systems course with its internals labs plus production PostgreSQL practice: each theorem proved, each plan predicted before EXPLAIN, each operational procedure rehearsed.
@@ -692,7 +696,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.12 Security, Cryptography, Privacy & Compliance
 
-19 groups, 209 topic lines.
+21 groups, 223 topic lines. NPTEL additions integrated 25 Oct 2026: 14 new topic lines (2 new groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** number theory (modular arithmetic, Euler's theorem, discrete logarithms); probability (the birthday bound, negligible advantage); networking (HTTP, cookies, TLS, DNS, BGP); operating-system isolation (namespaces, cgroups, capabilities); databases (SQL, row-level security); distributed systems (consensus, replication); an HTTP service in a programming language.
 - **Depth bar:** a top-university computer-security and applied-cryptography course with attack labs plus a cloud-security professional exam: every attack reproduced on your own fixtures, every defence explained by the property it restores, every primitive's security notion stated.
@@ -717,6 +721,8 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Privacy (7 lines)
 - [ ] Compliance (2 lines)
 - [ ] Exercises (20 lines)
+- [ ] Ethical hacking and offensive techniques (8 lines) · added from NPTEL 2026 courses
+- [ ] Security management, risk and governance (3 lines) · added from NPTEL 2026 courses
 
 ### 7.13 Software Delivery & Version Control
 
@@ -733,7 +739,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.14 Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 
-6 groups, 48 topic lines.
+7 groups, 54 topic lines. NPTEL additions integrated 25 Oct 2026: 6 new topic lines (1 new group); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** operating systems (virtual memory, page tables, the TLB, privileged instructions, namespaces and cgroups); probability (means and standard deviations of sums, the exponential distribution); availability arithmetic; access-control models; OAuth and OIDC tokens.
 - **Depth bar:** cloud architecture at professional-certification depth together with the virtualization mechanisms beneath it: every service model explained down to the isolation it rests on, every cost claim computed.
@@ -745,6 +751,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Cloud economics and FinOps (8 lines) · CLOUD
 - [ ] Cloud IAM concepts (9 lines) · CLOUD
 - [ ] Exercises (9 lines) · CLOUD (exercises)
+- [ ] Resource management, edge and cloud paradigms (4 lines) · added from NPTEL 2026 courses
 
 ### 7.15 The Architect's Practice: Decisions, Strategy & Career
 
@@ -784,7 +791,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 
 ### 7.17 Machine Learning, MLOps & Production ML System Design
 
-9 groups, 141 topic lines.
+11 groups, 194 topic lines. NPTEL additions integrated 25 Oct 2026: 53 new topic lines (2 new groups); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** sets and propositional logic; coordinate geometry and lines; linear algebra (vectors, matrices, transposes, determinants, cosine similarity, eigen-decomposition, PCA); multivariable calculus and the chain rule; convex optimization and gradient descent; probability (joint, marginal and conditional), Bayes' rule, distributions, maximum likelihood, hypothesis tests and sample size; information theory (entropy, cross-entropy, KL divergence); numerical stability (log-sum-exp, stable softmax); Python with NumPy, pandas and Matplotlib; SQL including window functions and as-of joins; graph search; queues and Little's law; cloud data services (warehouse, object storage, pub/sub).
 - **Depth bar:** a graduate machine-learning course (losses, gradients and generalization derived) plus production ML system design: every model built from scratch at toy size before the library, every pipeline monitored.
@@ -799,10 +806,12 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Applied problem families (45 lines)
 - [ ] MLOps (16 lines)
 - [ ] Exercises (20 lines)
+- [ ] Classical AI: search, knowledge and reasoning (26 lines) · added from NPTEL 2026 courses
+- [ ] Classical computer vision and geometry (10 lines) · added from NPTEL 2026 courses
 
 ### 7.18 Generative AI, LLMs, Agents & Claude Applications
 
-15 groups, 277 topic lines.
+16 groups, 288 topic lines. NPTEL additions integrated 25 Oct 2026: 11 new topic lines (1 new group); per-group line counts below are as of 8 Oct.
 
 - **Prerequisites (as written):** probability (joint, marginal and conditional) and the chain rule of probability; cross-entropy, maximum likelihood and perplexity; linear algebra (matrix multiplication, transposes, projections) and cosine similarity; backpropagation, gradient descent and neural-network training; classical NLP, word embeddings and recurrent sequence models; ranking measures (recall@k, MRR, nDCG); binomial proportions, confidence intervals and paired tests; Python with NumPy and PyTorch, Go and TypeScript; HTTP, JSON Schema, JSON-RPC 2.0 and Server-Sent Events; OAuth 2.0 with PKCE; containers; queues, idempotency, retries with backoff, sagas and rate limiting; prompt-injection, jailbreak and AI-application threats; observability and SLOs.
 - **Depth bar:** a graduate course on large language models (the transformer derived, training and inference costs computed) plus production LLM engineering: every application measured by an evaluation suite before and after each change.
@@ -823,6 +832,7 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Application architecture and LLMOps (18 lines)
 - [ ] The forward-deployed engineer's craft (3 lines)
 - [ ] Exercises (29 lines)
+- [ ] Generative models beyond autoregression (10 lines) · added from NPTEL 2026 courses
 
 ### 7.19 Cloud Providers: Google Cloud, AWS, Azure & Certifications
 
@@ -871,6 +881,14 @@ Counts are groups, not topic lines. A group marked in progress or partly may con
 - [ ] Availability / inventory (3 lines)
 - [ ] ML platform / infra (2 lines)
 - [ ] Other (pricing, classification, routing, dimensions and more) (93 lines)
+
+### 7.21 Supplementary Applied Domains: Corporate Finance, Marketing & Learning Analytics
+
+3 groups, 19 topic lines. Optional part 30, added 25 Oct 2026 from the NPTEL course list; taught on request after the core path.
+
+- [ ] Corporate finance (8 lines)
+- [ ] Marketing and digital marketing (5 lines)
+- [ ] Learning analytics (6 lines)
 
 ## 8. Billing and credit queue
 
@@ -984,3 +1002,4 @@ Cost tags follow the index: free tier, credit with an estimate, plan only, paper
 - 22 to 23 Oct 2026: concept 30 (the learner built `runner.py`) and concept 31 (`finally` in the runner; message not as specified, error 18); concept 32 (pytest, `.FF.` verified) and concept 33 (`parametrize`; progress line cut short, error 19).
 - 24 Oct 2026: the Exercise Rule written; the shop exercise (concepts 16 to 19) reviewed and passed; concepts 34 to 36 (reference counting, cycles, call by sharing); errors 20 to 22. The Exercise Rule revised (predictions and exercises never mixed). Exercise for 34 to 36 set; `memory.py` submitted, review open.
 - 24 Oct 2026: the learner connected `/Users/suhas/sde` (device "macbookair-lan"); all Project files and the folder re-ingested after a compaction. The topic index was cut into 29 parts with an index map and a progress file (Project `index/`, repo `gcp-lite/index/`); the repo's pending changes were committed on `gcp` (`22a742b`) and `gcp-lite/` added on `master` (uncommitted). Session handoff and this refreshed tracker written.
+- 25 Oct 2026: NPTEL 2026 courses (22) consolidated and distributed. 192 unified topics checked against the 29 topic files: 56 already covered, 74 extended, 62 added. New text (about 118 topic lines in existing parts, 12 new groups including the optional part 30 for corporate finance, marketing and learning analytics) was inserted without changing any original line, in the part files and in `Consolidated_Topic_Index_GCP.md`. New Python Core language sub-bullets (strings, parameters and scope, comprehensions and generators, functional style, I/O) are not yet taught. Map, progress file, handoff and this tracker updated. Detail: `gcp-lite/nptel_consolidated_topics.md`, `gcp-lite/nptel_courses_26.md`.

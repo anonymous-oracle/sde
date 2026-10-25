@@ -28,6 +28,7 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - Stacks, queues, deques and bags
 - Ring buffers (circular arrays): head and tail with modulo indexing, full versus empty, overwrite-or-reject policy, single-producer single-consumer safety
 - Recursion and backtracking
+- **Clever linear-time problems**: the maximum-sum subarray in one pass; a local minimum in a 1-D array by binary search and in a 2-D array by divide and conquer; range-minimum queries; the majority element by the pairing (Boyer–Moore) argument
 
 ### Hashing
 
@@ -58,6 +59,7 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - String matching: KMP; Rabin–Karp with a rolling hash (expected O(n + m), confirm candidates byte by byte)
 - Content-defined chunking with rolling hashes (rsync, deduplicating backups)
 - Suffix arrays and suffix automata
+- **Order statistics**: the i-th smallest element by randomized quickselect in expected linear time; median of medians for worst-case linear time; approximate median
 
 ### Graph algorithms
 
@@ -69,6 +71,7 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - Bellman–Ford and negative cycles (the basis of distance-vector routing)
 - Minimum spanning trees by the cut property: Kruskal and Prim
 - Maximum flow and minimum cut: Ford–Fulkerson, Edmonds–Karp, the max-flow min-cut theorem
+- Depth-first search trees: tree, back, forward and cross edges; articulation points, bridges and biconnected components by low-link values
 
 ### Greedy algorithms and dynamic programming
 

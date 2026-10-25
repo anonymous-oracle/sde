@@ -116,6 +116,18 @@ Domain: Computer Networking & Web Protocols
 - Equal-cost multipath (ECMP) and oversubscription
 - Google's Jupiter fabric
 
+### IoT and constrained-device networking
+
+- **Architecture**: sensing and actuation; devices, gateways, connectivity, platform and application layers; why constrained devices change protocol design (memory, power, duty cycle)
+- **Connectivity technologies**: short-range and low-power links (BLE, ZigBee, Z-Wave, Thread, NFC, RFID); LPWAN (LoRa and LoRaWAN, NB-IoT, Sigfox); the range, data-rate and power trade-off; 6LoWPAN and IPv6 on constrained links; RPL routing
+- **Application protocols**
+  - MQTT: broker, topics and wildcards, QoS 0, 1 and 2, retained messages, last will
+  - CoAP: REST over UDP, confirmable messages, observe; compared with HTTP and AMQP
+- **Sensor, UAV and machine-to-machine networks**: topology and energy-aware routing; data aggregation; flying ad-hoc networks; M2M communication and interoperability standards (oneM2M)
+- **Software-defined networking**: control-plane and data-plane separation; OpenFlow match-action tables and the controller; SDN for IoT (flow rules, slicing, centralized management)
+- **Embedded platforms**: Arduino and Raspberry Pi; GPIO, ADC, PWM, I2C, SPI and UART; interfacing sensors and actuators; sampling and debouncing
+- **IoT data and verticals**: ingestion, time-series storage, edge pre-processing and stream analytics; smart homes and cities, connected vehicles, smart grid, industrial IoT, precision agriculture, healthcare
+
 ### Measurement
 
 - `ping`, `traceroute` (TTL expiry), `dig +trace`, `curl -v`, `ss`

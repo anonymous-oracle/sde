@@ -13,6 +13,11 @@ Domain: Programming Languages & Language Theory (part 1 of 3)
   - Classes and object-oriented basics
   - Modules, packages and imports
   - Exceptions, `try`/`finally`, context managers; reading a traceback
+  - Strings: slicing, immutability and the common string methods; formatted output with f-strings and format specifications; `range()`, `break`, loop `else`, `pass`, `del` and `None`
+  - Parameters: default, keyword-only and variadic (`*args`, `**kwargs`); scope by the LEGB rule with `global` and `nonlocal`; nested functions and closures
+  - Comprehensions (list, dict, set) and generator expressions; `lambda`; higher-order functions (`map`, `filter`, `sorted(key=)`); functions passed as arguments and returned; iterators and generators; `itertools`
+  - Functional style: pure functions, immutability, `functools` (`reduce`, `partial`, `lru_cache`); contrast with C's manual memory management (`malloc`/`free`)
+  - Standard input and output; text and binary files with `open` and `with`; `pathlib`
 - **Environment and tooling**
   - Virtual environments; package management with pip; lock files for reproducibility
   - A hand-built test runner that discovers `test_` functions, then pytest (fixtures, parametrisation, assert rewriting)
@@ -27,6 +32,12 @@ Domain: Programming Languages & Language Theory (part 1 of 3)
   - pandas: DataFrames, selection, grouping, joins, missing values
   - Matplotlib: line, scatter and histogram plots; Jupyter notebooks
   - FastAPI: async endpoints, Pydantic request and response models, dependency injection, streaming responses, served by Uvicorn
+
+### R for data science
+
+- **The language**: variables and vectors; data frames; `apply`-family functions; user-defined functions and control structures
+- **Data handling**: subsetting, merging and joining data frames; matrix operations; the `tidyverse` idiom (`dplyr`, `tidyr`) against base R
+- **Graphics**: base plots, histograms, box plots and scatter plots; `ggplot2` basics
 
 ### Shell and working with APIs from code
 

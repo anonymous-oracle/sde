@@ -18,7 +18,8 @@ Attach or connect `/Users/suhas/sde` so the tutor can read your files. Also atta
 
 | What | Where |
 |---|---|
-| Split curriculum index (29 parts, each a short rules file plus a topic list; the teaching method is one file, `00_learning_method.md`) | `gcp-lite/index/` in the repo and in the Project "GCP Lite" |
+| Split curriculum index (30 parts, each a short rules file plus a topic list; the teaching method is one file, `00_learning_method.md`) | `gcp-lite/index/` in the repo and in the Project "GCP Lite" |
+| NPTEL 2026 additions: the 22 courses' layouts (`gcp-lite/nptel_courses_26.md`) and the consolidated, deduplicated topic list with source courses and the place of each topic in the index (`gcp-lite/nptel_consolidated_topics.md`). Their new topics are already inserted in the part files and the master index; part 30 (finance, marketing, learning analytics) is optional | `gcp-lite/` in the repo |
 | Map of every file | `index/00_index_map.md` |
 | Which part is current, and each part's status | `index/00_ingest_progress.md` (current part is **05**, Python and shell) |
 | Master copy of the whole index | `Consolidated_Topic_Index_GCP.md` at the repo root and in the Project |
@@ -143,7 +144,8 @@ Index order is binding (override 7). Computer Organization is paused, not skippe
 7. Late-binding closures.
 8. The mutable-default trap, formalised.
 9. Python for data and services: NumPy, pandas, Matplotlib, FastAPI.
-10. Then Shell and working with APIs from code (still part 05), then the Go groups (part 06, recall the earlier slice rather than restart), then TypeScript, wire formats, language theory and the Programming exercises (part 07).
+10. New Python Core language items added from the NPTEL courses (25 Oct 2026), not yet taught: strings (slicing, methods, f-strings), `range`, `break`, loop `else`, `pass`, `del`, `None`; parameter kinds (default, keyword-only, `*args`, `**kwargs`), LEGB scope with `global` and `nonlocal`; comprehensions, generator expressions, `lambda`, `map`, `filter`, iterators and `itertools`; functional style with `functools`; standard I/O, files and `pathlib`. Teach them as short just-in-time patches early in Python, since they underpin NumPy and FastAPI. A small R group (part 05) and Java (part 07) were also added.
+11. Then Shell and working with APIs from code (still part 05), then the Go groups (part 06, recall the earlier slice rather than restart), then TypeScript, wire formats, language theory and the Programming exercises (part 07).
 
 Already covered in Python (this stretch and earlier): classes and special methods (`__init__`, `__str__`, `__eq__`, `NotImplemented`, `isinstance`), modules, packages and imports (including `__name__` and import caching), exceptions, `with`, virtual environments, pip and lock files, a hand-built test runner, pytest and `parametrize`, reference counting, the cycle collector, call by sharing.
 

@@ -383,6 +383,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Confounders
   - Causal DAGs and adjustment; propensity scores and inverse-propensity weighting
   - Difference-in-differences; uplift modelling
+- **Association between variables**: the correlation matrix; Pearson correlation for linear association versus Spearman rank correlation for monotone association and outlier resistance; correlation is not causation
 
 ### Queueing and performance modelling
 
@@ -414,6 +415,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Eigenvalues and eigenvectors; power iteration
 - The singular value decomposition, principal component analysis and low-rank approximation
 - Distance and similarity: Euclidean, Manhattan, cosine
+- Column space and null space; the Moore–Penrose pseudo-inverse for over- and under-determined systems; hyperplanes and the distance of a point to a hyperplane
 
 ### Calculus and optimization
 
@@ -609,6 +611,11 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Classes and object-oriented basics
   - Modules, packages and imports
   - Exceptions, `try`/`finally`, context managers; reading a traceback
+  - Strings: slicing, immutability and the common string methods; formatted output with f-strings and format specifications; `range()`, `break`, loop `else`, `pass`, `del` and `None`
+  - Parameters: default, keyword-only and variadic (`*args`, `**kwargs`); scope by the LEGB rule with `global` and `nonlocal`; nested functions and closures
+  - Comprehensions (list, dict, set) and generator expressions; `lambda`; higher-order functions (`map`, `filter`, `sorted(key=)`); functions passed as arguments and returned; iterators and generators; `itertools`
+  - Functional style: pure functions, immutability, `functools` (`reduce`, `partial`, `lru_cache`); contrast with C's manual memory management (`malloc`/`free`)
+  - Standard input and output; text and binary files with `open` and `with`; `pathlib`
 - **Environment and tooling**
   - Virtual environments; package management with pip; lock files for reproducibility
   - A hand-built test runner that discovers `test_` functions, then pytest (fixtures, parametrisation, assert rewriting)
@@ -623,6 +630,12 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - pandas: DataFrames, selection, grouping, joins, missing values
   - Matplotlib: line, scatter and histogram plots; Jupyter notebooks
   - FastAPI: async endpoints, Pydantic request and response models, dependency injection, streaming responses, served by Uvicorn
+
+### R for data science
+
+- **The language**: variables and vectors; data frames; `apply`-family functions; user-defined functions and control structures
+- **Data handling**: subsetting, merging and joining data frames; matrix operations; the `tidyverse` idiom (`dplyr`, `tidyr`) against base R
+- **Graphics**: base plots, histograms, box plots and scatter plots; `ggplot2` basics
 
 ### Shell and working with APIs from code
 
@@ -911,6 +924,17 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - React components as functions of state; `useState` and `useEffect`; rendering a stream as it arrives
   - Keeping API keys server-side behind a server route
 
+### Java and the JVM
+
+- **Language and object model**: classes, interfaces and abstract classes; inheritance and polymorphism; packages and access modifiers; checked and unchecked exceptions; compilation to bytecode and execution on the JVM
+- **Strings and utilities**: `String` immutability and the string pool; `StringBuilder` versus the synchronized `StringBuffer`; `Scanner`, `Random`, `Arrays`, `Objects` and `Optional`
+- **Generics**: generic classes and methods; bounded type parameters and wildcards; type erasure and its consequences
+- **Collections Framework**
+  - `List`, `Set`, `Map` and `Queue`; `ArrayList` versus `LinkedList`; `HashMap`, `LinkedHashMap` and `TreeMap`
+  - Legacy classes (`Vector`, `Hashtable`, `Stack`) and why they are avoided
+  - Cursors: `Iterator` and `ListIterator`; fail-fast iteration; `Comparable` versus `Comparator`
+- **I/O**: byte streams and character streams; buffering; file I/O; `RandomAccessFile`; serialization; `java.nio` channels and paths
+
 ### Wire formats
 
 - **JSON**: the RFC 8259 grammar; no comments or trailing commas; unbounded numbers and 64-bit IDs in JavaScript; duplicate keys; a recursive-descent parser by hand
@@ -1027,6 +1051,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Stacks, queues, deques and bags
 - Ring buffers (circular arrays): head and tail with modulo indexing, full versus empty, overwrite-or-reject policy, single-producer single-consumer safety
 - Recursion and backtracking
+- **Clever linear-time problems**: the maximum-sum subarray in one pass; a local minimum in a 1-D array by binary search and in a 2-D array by divide and conquer; range-minimum queries; the majority element by the pairing (Boyer–Moore) argument
 
 ### Hashing
 
@@ -1057,6 +1082,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - String matching: KMP; Rabin–Karp with a rolling hash (expected O(n + m), confirm candidates byte by byte)
 - Content-defined chunking with rolling hashes (rsync, deduplicating backups)
 - Suffix arrays and suffix automata
+- **Order statistics**: the i-th smallest element by randomized quickselect in expected linear time; median of medians for worst-case linear time; approximate median
 
 ### Graph algorithms
 
@@ -1068,6 +1094,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Bellman–Ford and negative cycles (the basis of distance-vector routing)
 - Minimum spanning trees by the cut property: Kruskal and Prim
 - Maximum flow and minimum cut: Ford–Fulkerson, Edmonds–Karp, the max-flow min-cut theorem
+- Depth-first search trees: tree, back, forward and cross edges; articulation points, bridges and biconnected components by low-link values
 
 ### Greedy algorithms and dynamic programming
 
@@ -1237,6 +1264,18 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Equal-cost multipath (ECMP) and oversubscription
 - Google's Jupiter fabric
 
+### IoT and constrained-device networking
+
+- **Architecture**: sensing and actuation; devices, gateways, connectivity, platform and application layers; why constrained devices change protocol design (memory, power, duty cycle)
+- **Connectivity technologies**: short-range and low-power links (BLE, ZigBee, Z-Wave, Thread, NFC, RFID); LPWAN (LoRa and LoRaWAN, NB-IoT, Sigfox); the range, data-rate and power trade-off; 6LoWPAN and IPv6 on constrained links; RPL routing
+- **Application protocols**
+  - MQTT: broker, topics and wildcards, QoS 0, 1 and 2, retained messages, last will
+  - CoAP: REST over UDP, confirmable messages, observe; compared with HTTP and AMQP
+- **Sensor, UAV and machine-to-machine networks**: topology and energy-aware routing; data aggregation; flying ad-hoc networks; M2M communication and interoperability standards (oneM2M)
+- **Software-defined networking**: control-plane and data-plane separation; OpenFlow match-action tables and the controller; SDN for IoT (flow rules, slicing, centralized management)
+- **Embedded platforms**: Arduino and Raspberry Pi; GPIO, ADC, PWM, I2C, SPI and UART; interfacing sensors and actuators; sampling and debouncing
+- **IoT data and verticals**: ingestion, time-series storage, edge pre-processing and stream analytics; smart homes and cities, connected vehicles, smart grid, industrial IoT, precision agriculture, healthcare
+
 ### Measurement
 
 - `ping`, `traceroute` (TTL expiry), `dig +trace`, `curl -v`, `ss`
@@ -1288,6 +1327,8 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Threads versus processes
 - The address-space layout: code, data, heap, stack
 - Signals: delivery and masking, async-signal-safe handlers, SIGTERM then SIGKILL, graceful shutdown inside containers
+- **A teaching kernel (xv6)**: PC hardware and the boot path from BIOS or UEFI and the bootloader into protected mode; kernel stacks, trap frames and the system-call path; the process table
+- Interrupts and their handling; software interrupts; the context switch as saving and restoring register state
 
 ### CPU scheduling
 
@@ -1297,6 +1338,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Proportional share: lottery and stride scheduling
 - Linux's fair schedulers: CFS, and EEVDF since Linux 6.6
 - cgroup CPU shares and quotas; CPU throttling behind container CPU limits
+- Priority scheduling with aging; multiprocessor scheduling: a global run queue versus per-CPU queues, load balancing, processor affinity
 
 ### Virtual memory
 
@@ -1321,6 +1363,9 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Livelock and priority inversion
 - Progress conditions: blocking, obstruction-free, lock-free, wait-free
 - The ABA problem in compare-and-swap loops
+- Software solutions to the critical-section problem: Peterson's algorithm and Lamport's bakery algorithm; the requirements of mutual exclusion, progress and bounded waiting; why they need memory barriers on modern hardware
+- Semaphores (binary and counting) and monitors; the classic problems: producer–consumer, readers–writers and dining philosophers
+- Deadlock beyond prevention: avoidance with the banker's algorithm, detection on a resource-allocation graph, recovery
 
 ### Persistence
 
@@ -1338,6 +1383,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - cgroups and what they limit
 - seccomp filters and capabilities
 - Containers versus virtual machines: the shared kernel as a weaker boundary
+- Information-flow policies: Bell–LaPadula (no read up, no write down) for confidentiality and Biba for integrity; noninterference
 
 ### I/O models and performance
 
@@ -1418,6 +1464,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Content negotiation: `Accept`, `Accept-Encoding`, `Accept-Language` and `Vary`
   - Machine-readable contracts (OpenAPI, `.proto`) that generate clients, servers and contract tests
   - Pagination, filtering and versioning
+- Web services and service-oriented architecture: SOAP and WSDL, XML and XML Schema; the enterprise service bus; how SOA relates to REST and microservices
 
 ### Object-oriented foundations
 
@@ -1714,6 +1761,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Partitioning: range, list and hash; pruning; shard keys as locality keys; hot-key skew and sequential hotspots
 - Schema evolution by expand and contract: add nullable, backfill, constrain, switch reads, drop; lock levels; concurrent index creation
 - Data quality as constraints; deferral for cyclic foreign keys; EXCLUDE for ranges
+- **The entity–relationship model**: entities and attributes (simple, composite, multivalued, derived); relationships with cardinality and participation constraints; weak entities; specialization and generalization; mapping an ER diagram to relations
 
 ### Operating databases
 
@@ -2082,6 +2130,17 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - VPC peering and shared-VPC trust mistakes; private service connections
 - Serverless event injection; hypervisor-escape residual risk
 
+### Ethical hacking and offensive techniques
+
+- **Methodology and authorization**: reconnaissance, scanning, gaining access, maintaining access and covering tracks; scope, rules of engagement and written authorization; reporting
+- **Reconnaissance and scanning**: passive footprinting (`whois`, DNS enumeration with `dig` and `dnsenum`, Netcraft, certificate transparency, Google dorking); Nmap scan types, service and OS fingerprinting and scripts; vulnerability scanners (Nessus, OpenVAS); CVE and CVSS; false positives
+- **System hacking**: password attacks (dictionary, brute force, rainbow tables, credential stuffing); privilege escalation; persistence; malware families (viruses, worms, trojans, rootkits, botnets) and their defences
+- **Network attacks**: packet sniffing (Wireshark, tcpdump); ARP spoofing and MAC flooding; DNS spoofing; interception proxies (Burp Suite); email spoofing and the SPF, DKIM and DMARC defences
+- **Web attack tooling**: SQL-injection techniques (authentication bypass, error-based, blind, `sqlmap`); cross-site scripting; exploiting file uploads
+- **Social engineering**: phishing, pretexting, vishing, tailgating; awareness training as a control
+- **Steganography and biometrics**: hiding data in carriers and detecting it (steganalysis); biometric enrolment, matching, the FAR, FRR and equal-error-rate trade-off, template protection and liveness detection
+- **Hardware security**: side-channel attacks (timing, power, electromagnetic, cache); fault injection; physical unclonable functions; hardware trojans
+
 ### Network security and zero trust
 
 - Perimeter myths; authenticated east-west traffic; micro-segmentation
@@ -2111,6 +2170,12 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Image signing, attestations and admission enforcement
 - Secret sprawl in repositories, images, logs, traces and prompts; pre-commit scanning
 - Build provenance and SLSA levels; hermetic builds
+
+### Security management, risk and governance
+
+- **Foundations**: the CIA triad; information security versus cyber security; anatomy of a data breach (initial access, dwell time, exfiltration, disclosure) through case studies
+- **Cyber risk management**: asset, threat and vulnerability identification; qualitative risk matrices and quantitative estimates (single-loss expectancy × annual rate of occurrence); treatment by mitigating, transferring, accepting or avoiding; residual risk and the risk register
+- **Governance, risk and compliance (GRC)**: ISO/IEC 27001 and 27002, the NIST Cybersecurity Framework and COBIT; policy tiers (enterprise, issue-specific, system-specific) over standards, guidelines and procedures; the business impact analysis behind contingency planning
 
 ### Detection and incident response
 
@@ -2157,6 +2222,9 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Re-identification through quasi-identifiers and linkage
 - k-anonymity and its homogeneity and background-knowledge failures
 - Differential privacy: ε-DP, the Laplace mechanism, composition, post-processing
+- **Information privacy**: definitions and theories (privacy as control, secrecy and contextual integrity); measuring privacy; anonymity, pseudonymity and unlinkability; Aadhaar and identity-system privacy
+- **Privacy regulation**: GDPR (lawful bases, data-subject rights, controllers and processors, DPIAs, breach notification, cross-border transfers); India's Digital Personal Data Protection Act (data fiduciaries and principals, consent managers, significant data fiduciaries); CCPA
+- **Economics of privacy**: the value of privacy (willingness to accept versus willingness to pay); the privacy paradox; personalization and price discrimination as business strategy; privacy versus safety and security trade-offs
 
 ### Compliance
 
@@ -2266,6 +2334,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - MicroVMs and user-space kernels (Firecracker, gVisor)
 - Containers as namespaces and cgroups; image layering and immutability
 - Isolation classes and attack surface: process, container, sandbox, microVM, VM, dedicated host
+- OpenStack as the open-source IaaS reference: Nova, Neutron, Cinder, Swift, Glance, Keystone and Horizon
 
 ### Architecture patterns and well-architected frameworks
 
@@ -2289,6 +2358,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Cost visibility tooling, budgets and alerts, labels and tags for allocation, billing exports
 - Three budgets per system: money, errors and quota
 - Carbon as a cost-adjacent signal: region choice and footprint reports
+- SLAs: availability percentages as downtime per month; composite availability of serial dependencies (a product) and of redundancy; service credits; SLA versus SLO versus the customer's real loss
 
 ### Cloud IAM concepts
 
@@ -2301,6 +2371,13 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Service accounts, managed identities and attached identities
 - Workload identity federation as a trust statement exchanging external OIDC tokens for short-lived credentials; workforce federation for people
 - Confused deputies and capabilities
+
+### Resource management, edge and cloud paradigms
+
+- **Resource management**: VM allocation and placement as bin packing; consolidation, over-commitment and live migration; cloud brokers and marketplaces; cloud federation and inter-cloud
+- **Mobile cloud computing**: offloading computation from a device when saved energy and time exceed transfer cost; cloudlets
+- **Fog, edge and dew computing**: the cloud–fog–edge continuum; latency, bandwidth, privacy and autonomy as drivers; dew computing as on-premises, offline-first; placement of analytics across tiers
+- **Cloud and cyber-physical systems**: sensor-cloud and IoT-cloud platforms; 5G and multi-access edge computing; geo-spatial and healthcare clouds
 
 ### Exercises
 
@@ -2550,6 +2627,35 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - **Data types**: categorical (nominal), ordinal and continuous features; structured versus unstructured data
 - **The supervised workflow**: problem first, then data, split, fit, predict and evaluate
 
+### Classical AI: search, knowledge and reasoning
+
+- **Philosophy of AI**: weak versus strong AI; the Chinese room; AI and the foundations of mind
+- **Rational agents**: percepts, actions and the agent function versus the agent program; PEAS descriptions; task-environment properties (observable, deterministic, episodic, static, discrete, single- or multi-agent); simple reflex, model-based, goal-based, utility-based and learning agents
+- **Problem solving by search**
+  - State-space formulation: initial state, actions, transition model, goal test, path cost
+  - Uninformed search: breadth-first, depth-first, uniform-cost, depth-limited, iterative deepening and bidirectional search; completeness, optimality, time and space
+  - Informed search: best-first, greedy and A*; admissible and consistent heuristics; the optimality proof for A*; heuristics from relaxed problems and pattern databases; IDA*
+- **Local search and optimization**: hill climbing and its failures (local maxima, plateaus, ridges); random walk and random restart; simulated annealing; local beam search
+- **Evolutionary computation and swarm intelligence**: genetic algorithms (population, fitness, selection, crossover, mutation); genetic programming; ant-colony and particle-swarm optimization
+- **Adversarial search**: minimax; alpha-beta pruning and the effect of move ordering; depth cutoffs, evaluation functions and the horizon effect; opening books and endgame databases; expectiminimax for chance; Monte Carlo tree search
+- **Constraint satisfaction**: variables, domains, constraints and the constraint graph; backtracking with variable ordering (minimum remaining values, degree) and value ordering (least constraining); inference by forward checking and arc consistency (AC-3); min-conflicts local search; tree-structured CSPs
+- **Logical agents**
+  - Propositional logic: syntax, semantics, entailment, model checking; forward and backward chaining on Horn clauses; resolution on CNF; soundness and completeness
+  - Reduction of problems to SAT; DPLL and WalkSAT; the satisfiability phase transition
+  - First-order logic: quantifiers, unification, lifted forward chaining and resolution; Prolog's execution model
+- **Knowledge representation and expert systems**: ontologies, semantic networks, frames and rules; non-monotonic reasoning (default logic, truth maintenance); expert-system architecture (knowledge base, inference engine, explanation) and applications; AI programming languages (Lisp, Prolog, CLIPS)
+- **Planning**: STRIPS and PDDL; forward and backward state-space planning; planning graphs and GraphPlan; partial-order planning; planning with scheduling and resources
+- **Reasoning under uncertainty**
+  - Probability for AI: conditional independence and Bayes' rule
+  - Bayesian networks: structure, factorization, d-separation; exact inference by enumeration and variable elimination; NP-hardness by reduction from 3-SAT
+  - Approximate inference: rejection sampling, likelihood weighting, Markov chain Monte Carlo with Gibbs sampling
+  - Learning Bayesian networks: maximum likelihood, MAP and Bayesian parameter learning; structure learning; expectation–maximization for hidden variables
+  - Dynamic Bayesian networks; filtering; hidden Markov models as a special case
+- **Fuzzy logic**: fuzzy sets and membership functions; fuzzy operators and rules; fuzzy inference with fuzzification and defuzzification (centroid)
+- **Multi-agent systems**: agent communication and negotiation; coordination (contract net); web-based and mobile agents
+- **Ethics of AI**: humans and robots; robustness and transparency; data bias and fairness; accountability; privacy; human oversight
+- **Data-science problem typology**: descriptive, diagnostic, predictive and prescriptive questions; a guided solution framework from framing through data, model and evaluation to deployment
+
 ### Classical machine learning
 
 - **Learning paradigms**: supervised, unsupervised and reinforcement learning; regression, classification and clustering, and when to use which
@@ -2581,6 +2687,9 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Missing values; imbalanced datasets (SMOTE, class weighting, focal loss, negative sampling) and the accuracy paradox, where always predicting the majority class scores high and detects nothing
   - Text, time, window, session and graph features
   - Schema validation and golden tests for feature pipelines
+- **Regression in depth**: model assessment (R², adjusted R², residual plots, heteroscedasticity, leverage and influence); multiple regression and multicollinearity (variance inflation factor); variable and subset selection (best-subset, forward and backward stepwise, AIC and BIC)
+- **Computational learning theory**: hypothesis space and inductive bias; the PAC model; sample complexity for finite hypothesis classes; VC dimension and the growth function
+- **Feature selection and agreement**: filter, wrapper and embedded selection versus feature extraction; Cohen's kappa as agreement beyond chance
 
 ### Deep learning
 
@@ -2599,6 +2708,9 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Regularization in deep networks: weight decay, dropout, data augmentation, early stopping with patience
 - Architecture as inductive bias: convolutions sharing one kernel across positions, so parameter count is independent of image size; CNNs for images
 - Sequence models before attention: RNNs and LSTMs; encoder–decoder (sequence-to-sequence) models and their fixed-length context bottleneck; weak long-range dependencies; no parallelism across time steps; Bahdanau (additive) attention over encoder states
+- The perceptron learning rule and its convergence proof (the mistake bound R²/γ²); McCulloch–Pitts units; sigmoid neurons; universal approximation and the trade-off between thin deep and fat shallow networks
+- Backpropagation through time: unrolling, truncated BPTT, and the gates of LSTM and GRU cells as controlled additive memory
+- Visualizing convolutional networks: maximally activating patches, saliency maps and guided backpropagation; attention over image regions and hierarchical attention
 
 ### Natural language processing foundations
 
@@ -2607,6 +2719,16 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - Representations: one-hot vectors and bag of words and their limits (sparsity, lost word order, no semantics, out-of-vocabulary words, orthogonal vectors for related words); n-gram features; TF-IDF weighting tf × log(N ÷ df)
 - Distributional semantics: meaning from context windows; dense static embeddings (Word2Vec skip-gram and CBOW with negative sampling, GloVe); vector analogies; contextual embeddings (ELMo) and then transformers
 - Limits of classical NLP, and the progression from rules to statistical models, deep learning, LLMs and agents
+- **Why text is hard**: ambiguity and variation; Zipf's and Heaps' laws as empirical regularities of text
+- **Spelling correction**: weighted edit distance (Levenshtein, Damerau); the noisy-channel model P(w | x) ∝ P(x | w) P(w); candidate generation
+- **Morphology**: inflection versus derivation; finite-state transducers; stemming versus lemmatization
+- **Sequence labelling**: part-of-speech tagging with hidden Markov models (transition and emission probabilities, Viterbi decoding, Baum–Welch); maximum-entropy classifiers; conditional random fields and label bias; BIO tagging for named entities
+- **Syntactic parsing**: constituency grammars, the CKY algorithm, probabilistic CFGs and inside–outside probabilities; dependency parsing, transition-based (arc-standard, arc-eager) and graph-based (maximum spanning tree); UAS and LAS
+- **Lexical semantics**: WordNet and synsets; word-sense disambiguation (Lesk, supervised, knowledge-based); detecting novel senses
+- **Topic models**: LSA and pLSA; the LDA generative story, Dirichlet priors and collapsed Gibbs sampling; variants
+- **Information extraction**: entity linking; relation extraction and distant supervision; open information extraction
+- **Knowledge graphs**: triples and schemas; completion by embeddings (translation models such as TransE, rotation models such as RotatE, multiplicative models such as DistMult and ComplEx); evaluation by mean reciprocal rank and Hits@k
+- **Summarization, classification and sentiment**: extractive (LexRank, centroid, optimization-based) versus abstractive summarization and ROUGE; text classification; sentiment with affective lexicons and aspect-based sentiment
 
 ### Machine learning in Python
 
@@ -2626,6 +2748,20 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - **Operations research**: linear and integer programming, assignment, constrained scheduling; forecasts as inputs to capacity, pricing and dispatch constraints
 - **Game theory and auctions**: equilibria; second-price and generalized second-price auctions; incentive compatibility; mechanism design
 - **Click models**: deep click-rate models and click-model research
+- **Reinforcement learning in detail**: policy evaluation as a linear system or by iteration; value iteration and policy iteration; passive model-based versus model-free evaluation; temporal-difference learning, Q-learning and SARSA; exploration versus exploitation
+
+### Classical computer vision and geometry
+
+- **Image processing**: sampling and quantization; histograms and equalization; spatial filtering; image transforms (Fourier, DCT)
+- **Colour**: colour spaces (RGB, HSV, Lab); perception, white balance and colour constancy; colour image processing
+- **2-D projective geometry**: homogeneous coordinates; points and lines at infinity; the hierarchy of similarity, affine and projective transformations; homography estimation by the direct linear transform
+- **Camera geometry**: the pinhole model; intrinsics K and extrinsics [R | t]; the projection matrix P = K[R | t]; lens distortion; calibration (Zhang's method)
+- **Stereo and multi-view geometry**: epipolar constraint; fundamental and essential matrices and the eight-point algorithm; rectification, disparity and triangulation; structure from motion and bundle adjustment
+- **Features**: corners (Harris); scale space and blob detection (LoG, DoG); SIFT-style descriptors; matching with the ratio test
+- **Model fitting**: least squares; RANSAC; the Hough transform
+- **Range images**: depth sensing (structured light, time of flight, LiDAR, stereo); point clouds; normals, ICP registration and range-image processing
+- **Recognition**: clustering and classification for vision (bag of visual words); dimensionality reduction and sparse representation (sparse coding, dictionary learning)
+- **Deep vision**: object detection (R-CNN family, YOLO); semantic and instance segmentation (FCN, U-Net, Mask R-CNN); vision applications
 
 ### Applied problem families
 
@@ -2765,6 +2901,7 @@ Every topic is learned three ways and the three are tied together: intuition (wh
 - **Long context**: the hard limit of the window versus degraded retrieval inside it ("lost in the middle"); quality falling as irrelevant context grows
 - **Choosing an approach**: prompt engineering versus retrieval-augmented generation versus fine-tuning
 - **Responsible AI**: bias, fairness, safety evaluation; explainability through attention visualization and feature attributions (LIME, SHAP)
+- **Interpretability**: the residual stream as a shared channel to which attention heads and MLP blocks add; induction heads and circuits; the logit lens, probing classifiers, activation patching and sparse autoencoders
 
 ### Fine-tuning and adaptation
 
@@ -2838,6 +2975,19 @@ Every topic is learned three ways and the three are tied together: intuition (wh
   - Visual reasoning and chart questions: reasoning strength set mostly by the language model; observations listed before conclusions; values extracted before reasoning; compounding errors and a self-check pass
   - Preference tuning against hallucination with synthetic negatives: random answers, mismatched questions, and images with the relevant objects masked
   - Benchmarks by task: COCO Captions and NoCaps; VQAv2, GQA, OK-VQA, TextVQA and VizWiz; DocVQA (scored by normalized edit similarity), FUNSD and ChartQA; POPE for object hallucination; MMMU, MathVista, ScienceQA, NLVR2 and Winoground; contamination as a caveat on reported gains
+
+### Generative models beyond autoregression
+
+- **Generative modelling**: density estimation versus sampling; explicit versus implicit models; a taxonomy of autoregressive, latent-variable, adversarial, flow and diffusion models
+- **Variational autoencoders**: the latent-variable model, the ELBO and the reparameterization trick; β-VAE and disentanglement; VQ-VAE with a discrete codebook and the straight-through estimator; posterior collapse
+- **Generative adversarial networks**
+  - The minimax game; the optimal discriminator and the Jensen–Shannon divergence; the non-saturating loss
+  - DCGAN, conditional GANs, Wasserstein GAN with weight clipping and gradient penalty
+  - Mode collapse and unstable training; GAN inversion; evaluation by Inception score and FID
+- **f-divergences**: KL, reverse KL, Jensen–Shannon and total variation; variational divergence minimization (f-GAN)
+- **Diffusion models**: the forward noising process; DDPM training by predicting noise; noise schedules (linear, cosine); reverse sampling and DDIM; conditional generation and classifier-free guidance; the score-based and stochastic-differential-equation view; latent diffusion
+- **Flow models**: normalizing flows; conditional flow matching and rectified flow; comparison with diffusion
+- **Evaluating generative models**: likelihood, FID, precision and recall of distributions, human evaluation
 
 ### Embeddings and retrieval
 
@@ -3862,3 +4012,40 @@ Each entry names the company, the problem and the year, then summarizes the data
 - **Booking.com — 150 Successful Machine Learning Models (2019)** — Lessons from about 150 customer-facing models at a travel site: offline accuracy did not predict business gains, so every model is judged by randomised experiment; added latency measurably cost conversion; problem framing mattered most (a paper summary). Source: [article](https://blog.acolyer.org/2019/10/07/150-successful-machine-learning-models/)
 - **Chicisimo — Grow User base using vertical ML approach (2019)** — A fashion outfit-advice app grown to 4 million users: first capturing how people describe their needs, then a data platform that learns fashion needs, then algorithms on top; the app closed in 2020. Source: [article](https://medium.com/hackernoon/how-we-grew-from-0-to-4-million-women-on-our-fashion-app-with-a-vertical-machine-learning-approach-f8b7fc0a89d7)
 
+## Supplementary Applied Domains: Corporate Finance, Marketing & Learning Analytics
+
+**Prerequisites:** arithmetic, algebra and exponential growth (part 01); probability, expectation and variance, correlation, hypothesis tests (part 03); decision theory (part 17); spreadsheets; for learning analytics, the applied ML basics in part 19.
+
+**Depth bar:** an introductory undergraduate or first-year MBA course in each area: every formula derived from its definition, then applied in a spreadsheet to a worked case with realistic numbers.
+
+**Capstone:** a business-case dossier: a project valued with NPV, IRR and a sensitivity analysis against a cost of capital estimated from CAPM and WACC; a go-to-market plan with segments, positioning, a channel mix and the metrics that judge it; and a learning-analytics pipeline over a public education dataset, from data and ethics through descriptive and predictive analysis.
+
+**Placement note:** these domains came from the NPTEL 2026 course list and have no natural home in the engineering parts. They are optional, taught on request and after the core engineering path, and connect back to cloud economics (part 16) and build-buy-rent decisions (part 17).
+
+### Corporate finance
+
+- **Goals and governance**: profit versus shareholder-wealth maximization; the agency problem; corporate governance; sources of finance (equity, debt, hybrids, retained earnings)
+- **Time value of money**: compounding and discounting; annuities and perpetuities; the effective annual rate; valuing bonds (yield to maturity) and stocks (dividend discount, Gordon growth)
+- **Capital budgeting**: incremental cash flows, sunk and opportunity costs, depreciation tax shields, working capital; NPV, IRR (and multiple IRRs), MIRR, payback and discounted payback, profitability index; ranking conflicts and capital rationing; sensitivity and scenario analysis
+- **Return, risk and portfolio theory**: expected return and variance; correlation and diversification; the efficient frontier; CAPM, beta and the security market line
+- **Cost of capital**: costs of debt, preferred and equity; WACC and firm value
+- **Leverage and capital structure**: operating, financial and combined leverage; EBIT–EPS analysis; Modigliani–Miller with and without taxes, trade-off theory, pecking order
+- **Working capital**: liquidity measures; operating and cash-conversion cycles; inventory control (EOQ, reorder point); receivables and credit policy; cash management
+- **Dividend decisions**: Gordon, Walter and Modigliani–Miller irrelevance; Lintner's smoothing; buybacks and signalling
+
+### Marketing and digital marketing
+
+- **Marketing fundamentals**: eras of marketing; branding; segmentation, targeting and positioning; the 4Ps, 3Ps for services and 4Cs
+- **Digital marketing**: the RACE and AIDA frameworks; the channel ecosystem; performance metrics (impressions, click-through rate, conversion, cost per acquisition, return on ad spend)
+- **Content marketing**: content types; the funnel (top, middle and bottom) and matching content to stage; AI in the content workflow
+- **Social media, influencer marketing and SEO**: platform strategy and a social media plan; influencer selection and measurement; search-engine optimization (on-page, off-page, technical)
+- **Email marketing**: list building, segmentation, campaigns and deliverability; AI-powered campaigns
+
+### Learning analytics
+
+- **Foundations**: learning analytics versus academic analytics and educational data mining; the four levels (descriptive, diagnostic, predictive, prescriptive)
+- **Data and ethics**: educational data sources (LMS logs, assessments, forums); technology-enhanced learning; ethics and student privacy
+- **Descriptive analytics**: chart choice and comparison; dashboards; spreadsheet analysis
+- **Sequence and process analysis**: sequential pattern mining; differential sequence mining; process mining
+- **Multimodal learning analytics**: affective computing and eye tracking as signals of engagement
+- **Tools**: Weka, Orange, iSAT, ProM and Excel

@@ -22,6 +22,7 @@ Domain: Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 - MicroVMs and user-space kernels (Firecracker, gVisor)
 - Containers as namespaces and cgroups; image layering and immutability
 - Isolation classes and attack surface: process, container, sandbox, microVM, VM, dedicated host
+- OpenStack as the open-source IaaS reference: Nova, Neutron, Cinder, Swift, Glance, Keystone and Horizon
 
 ### Architecture patterns and well-architected frameworks
 
@@ -45,6 +46,7 @@ Domain: Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 - Cost visibility tooling, budgets and alerts, labels and tags for allocation, billing exports
 - Three budgets per system: money, errors and quota
 - Carbon as a cost-adjacent signal: region choice and footprint reports
+- SLAs: availability percentages as downtime per month; composite availability of serial dependencies (a product) and of redundancy; service credits; SLA versus SLO versus the customer's real loss
 
 ### Cloud IAM concepts
 
@@ -57,6 +59,13 @@ Domain: Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 - Service accounts, managed identities and attached identities
 - Workload identity federation as a trust statement exchanging external OIDC tokens for short-lived credentials; workforce federation for people
 - Confused deputies and capabilities
+
+### Resource management, edge and cloud paradigms
+
+- **Resource management**: VM allocation and placement as bin packing; consolidation, over-commitment and live migration; cloud brokers and marketplaces; cloud federation and inter-cloud
+- **Mobile cloud computing**: offloading computation from a device when saved energy and time exceed transfer cost; cloudlets
+- **Fog, edge and dew computing**: the cloud–fog–edge continuum; latency, bandwidth, privacy and autonomy as drivers; dew computing as on-premises, offline-first; placement of analytics across tiers
+- **Cloud and cyber-physical systems**: sensor-cloud and IoT-cloud platforms; 5G and multi-access edge computing; geo-spatial and healthcare clouds
 
 ### Exercises
 

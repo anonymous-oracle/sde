@@ -18,6 +18,17 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
   - React components as functions of state; `useState` and `useEffect`; rendering a stream as it arrives
   - Keeping API keys server-side behind a server route
 
+### Java and the JVM
+
+- **Language and object model**: classes, interfaces and abstract classes; inheritance and polymorphism; packages and access modifiers; checked and unchecked exceptions; compilation to bytecode and execution on the JVM
+- **Strings and utilities**: `String` immutability and the string pool; `StringBuilder` versus the synchronized `StringBuffer`; `Scanner`, `Random`, `Arrays`, `Objects` and `Optional`
+- **Generics**: generic classes and methods; bounded type parameters and wildcards; type erasure and its consequences
+- **Collections Framework**
+  - `List`, `Set`, `Map` and `Queue`; `ArrayList` versus `LinkedList`; `HashMap`, `LinkedHashMap` and `TreeMap`
+  - Legacy classes (`Vector`, `Hashtable`, `Stack`) and why they are avoided
+  - Cursors: `Iterator` and `ListIterator`; fail-fast iteration; `Comparable` versus `Comparator`
+- **I/O**: byte streams and character streams; buffering; file I/O; `RandomAccessFile`; serialization; `java.nio` channels and paths
+
 ### Wire formats
 
 - **JSON**: the RFC 8259 grammar; no comments or trailing commas; unbounded numbers and 64-bit IDs in JavaScript; duplicate keys; a recursive-descent parser by hand

@@ -10,6 +10,35 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - **Data types**: categorical (nominal), ordinal and continuous features; structured versus unstructured data
 - **The supervised workflow**: problem first, then data, split, fit, predict and evaluate
 
+### Classical AI: search, knowledge and reasoning
+
+- **Philosophy of AI**: weak versus strong AI; the Chinese room; AI and the foundations of mind
+- **Rational agents**: percepts, actions and the agent function versus the agent program; PEAS descriptions; task-environment properties (observable, deterministic, episodic, static, discrete, single- or multi-agent); simple reflex, model-based, goal-based, utility-based and learning agents
+- **Problem solving by search**
+  - State-space formulation: initial state, actions, transition model, goal test, path cost
+  - Uninformed search: breadth-first, depth-first, uniform-cost, depth-limited, iterative deepening and bidirectional search; completeness, optimality, time and space
+  - Informed search: best-first, greedy and A*; admissible and consistent heuristics; the optimality proof for A*; heuristics from relaxed problems and pattern databases; IDA*
+- **Local search and optimization**: hill climbing and its failures (local maxima, plateaus, ridges); random walk and random restart; simulated annealing; local beam search
+- **Evolutionary computation and swarm intelligence**: genetic algorithms (population, fitness, selection, crossover, mutation); genetic programming; ant-colony and particle-swarm optimization
+- **Adversarial search**: minimax; alpha-beta pruning and the effect of move ordering; depth cutoffs, evaluation functions and the horizon effect; opening books and endgame databases; expectiminimax for chance; Monte Carlo tree search
+- **Constraint satisfaction**: variables, domains, constraints and the constraint graph; backtracking with variable ordering (minimum remaining values, degree) and value ordering (least constraining); inference by forward checking and arc consistency (AC-3); min-conflicts local search; tree-structured CSPs
+- **Logical agents**
+  - Propositional logic: syntax, semantics, entailment, model checking; forward and backward chaining on Horn clauses; resolution on CNF; soundness and completeness
+  - Reduction of problems to SAT; DPLL and WalkSAT; the satisfiability phase transition
+  - First-order logic: quantifiers, unification, lifted forward chaining and resolution; Prolog's execution model
+- **Knowledge representation and expert systems**: ontologies, semantic networks, frames and rules; non-monotonic reasoning (default logic, truth maintenance); expert-system architecture (knowledge base, inference engine, explanation) and applications; AI programming languages (Lisp, Prolog, CLIPS)
+- **Planning**: STRIPS and PDDL; forward and backward state-space planning; planning graphs and GraphPlan; partial-order planning; planning with scheduling and resources
+- **Reasoning under uncertainty**
+  - Probability for AI: conditional independence and Bayes' rule
+  - Bayesian networks: structure, factorization, d-separation; exact inference by enumeration and variable elimination; NP-hardness by reduction from 3-SAT
+  - Approximate inference: rejection sampling, likelihood weighting, Markov chain Monte Carlo with Gibbs sampling
+  - Learning Bayesian networks: maximum likelihood, MAP and Bayesian parameter learning; structure learning; expectation–maximization for hidden variables
+  - Dynamic Bayesian networks; filtering; hidden Markov models as a special case
+- **Fuzzy logic**: fuzzy sets and membership functions; fuzzy operators and rules; fuzzy inference with fuzzification and defuzzification (centroid)
+- **Multi-agent systems**: agent communication and negotiation; coordination (contract net); web-based and mobile agents
+- **Ethics of AI**: humans and robots; robustness and transparency; data bias and fairness; accountability; privacy; human oversight
+- **Data-science problem typology**: descriptive, diagnostic, predictive and prescriptive questions; a guided solution framework from framing through data, model and evaluation to deployment
+
 ### Classical machine learning
 
 - **Learning paradigms**: supervised, unsupervised and reinforcement learning; regression, classification and clustering, and when to use which
@@ -41,6 +70,9 @@ Domain: Machine Learning, MLOps & Production ML System Design
   - Missing values; imbalanced datasets (SMOTE, class weighting, focal loss, negative sampling) and the accuracy paradox, where always predicting the majority class scores high and detects nothing
   - Text, time, window, session and graph features
   - Schema validation and golden tests for feature pipelines
+- **Regression in depth**: model assessment (R², adjusted R², residual plots, heteroscedasticity, leverage and influence); multiple regression and multicollinearity (variance inflation factor); variable and subset selection (best-subset, forward and backward stepwise, AIC and BIC)
+- **Computational learning theory**: hypothesis space and inductive bias; the PAC model; sample complexity for finite hypothesis classes; VC dimension and the growth function
+- **Feature selection and agreement**: filter, wrapper and embedded selection versus feature extraction; Cohen's kappa as agreement beyond chance
 
 ### Deep learning
 
@@ -59,6 +91,9 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - Regularization in deep networks: weight decay, dropout, data augmentation, early stopping with patience
 - Architecture as inductive bias: convolutions sharing one kernel across positions, so parameter count is independent of image size; CNNs for images
 - Sequence models before attention: RNNs and LSTMs; encoder–decoder (sequence-to-sequence) models and their fixed-length context bottleneck; weak long-range dependencies; no parallelism across time steps; Bahdanau (additive) attention over encoder states
+- The perceptron learning rule and its convergence proof (the mistake bound R²/γ²); McCulloch–Pitts units; sigmoid neurons; universal approximation and the trade-off between thin deep and fat shallow networks
+- Backpropagation through time: unrolling, truncated BPTT, and the gates of LSTM and GRU cells as controlled additive memory
+- Visualizing convolutional networks: maximally activating patches, saliency maps and guided backpropagation; attention over image regions and hierarchical attention
 
 ### Natural language processing foundations
 
@@ -67,6 +102,16 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - Representations: one-hot vectors and bag of words and their limits (sparsity, lost word order, no semantics, out-of-vocabulary words, orthogonal vectors for related words); n-gram features; TF-IDF weighting tf × log(N ÷ df)
 - Distributional semantics: meaning from context windows; dense static embeddings (Word2Vec skip-gram and CBOW with negative sampling, GloVe); vector analogies; contextual embeddings (ELMo) and then transformers
 - Limits of classical NLP, and the progression from rules to statistical models, deep learning, LLMs and agents
+- **Why text is hard**: ambiguity and variation; Zipf's and Heaps' laws as empirical regularities of text
+- **Spelling correction**: weighted edit distance (Levenshtein, Damerau); the noisy-channel model P(w | x) ∝ P(x | w) P(w); candidate generation
+- **Morphology**: inflection versus derivation; finite-state transducers; stemming versus lemmatization
+- **Sequence labelling**: part-of-speech tagging with hidden Markov models (transition and emission probabilities, Viterbi decoding, Baum–Welch); maximum-entropy classifiers; conditional random fields and label bias; BIO tagging for named entities
+- **Syntactic parsing**: constituency grammars, the CKY algorithm, probabilistic CFGs and inside–outside probabilities; dependency parsing, transition-based (arc-standard, arc-eager) and graph-based (maximum spanning tree); UAS and LAS
+- **Lexical semantics**: WordNet and synsets; word-sense disambiguation (Lesk, supervised, knowledge-based); detecting novel senses
+- **Topic models**: LSA and pLSA; the LDA generative story, Dirichlet priors and collapsed Gibbs sampling; variants
+- **Information extraction**: entity linking; relation extraction and distant supervision; open information extraction
+- **Knowledge graphs**: triples and schemas; completion by embeddings (translation models such as TransE, rotation models such as RotatE, multiplicative models such as DistMult and ComplEx); evaluation by mean reciprocal rank and Hits@k
+- **Summarization, classification and sentiment**: extractive (LexRank, centroid, optimization-based) versus abstractive summarization and ROUGE; text classification; sentiment with affective lexicons and aspect-based sentiment
 
 ### Machine learning in Python
 
@@ -86,6 +131,20 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - **Operations research**: linear and integer programming, assignment, constrained scheduling; forecasts as inputs to capacity, pricing and dispatch constraints
 - **Game theory and auctions**: equilibria; second-price and generalized second-price auctions; incentive compatibility; mechanism design
 - **Click models**: deep click-rate models and click-model research
+- **Reinforcement learning in detail**: policy evaluation as a linear system or by iteration; value iteration and policy iteration; passive model-based versus model-free evaluation; temporal-difference learning, Q-learning and SARSA; exploration versus exploitation
+
+### Classical computer vision and geometry
+
+- **Image processing**: sampling and quantization; histograms and equalization; spatial filtering; image transforms (Fourier, DCT)
+- **Colour**: colour spaces (RGB, HSV, Lab); perception, white balance and colour constancy; colour image processing
+- **2-D projective geometry**: homogeneous coordinates; points and lines at infinity; the hierarchy of similarity, affine and projective transformations; homography estimation by the direct linear transform
+- **Camera geometry**: the pinhole model; intrinsics K and extrinsics [R | t]; the projection matrix P = K[R | t]; lens distortion; calibration (Zhang's method)
+- **Stereo and multi-view geometry**: epipolar constraint; fundamental and essential matrices and the eight-point algorithm; rectification, disparity and triangulation; structure from motion and bundle adjustment
+- **Features**: corners (Harris); scale space and blob detection (LoG, DoG); SIFT-style descriptors; matching with the ratio test
+- **Model fitting**: least squares; RANSAC; the Hough transform
+- **Range images**: depth sensing (structured light, time of flight, LiDAR, stereo); point clouds; normals, ICP registration and range-image processing
+- **Recognition**: clustering and classification for vision (bag of visual words); dimensionality reduction and sparse representation (sparse coding, dictionary learning)
+- **Deep vision**: object detection (R-CNN family, YOLO); semantic and instance segmentation (FCN, U-Net, Mask R-CNN); vision applications
 
 ### Applied problem families
 

@@ -88,6 +88,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Confounders
   - Causal DAGs and adjustment; propensity scores and inverse-propensity weighting
   - Difference-in-differences; uplift modelling
+- **Association between variables**: the correlation matrix; Pearson correlation for linear association versus Spearman rank correlation for monotone association and outlier resistance; correlation is not causation
 
 ### Queueing and performance modelling
 
@@ -119,6 +120,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - Eigenvalues and eigenvectors; power iteration
 - The singular value decomposition, principal component analysis and low-rank approximation
 - Distance and similarity: Euclidean, Manhattan, cosine
+- Column space and null space; the Moore–Penrose pseudo-inverse for over- and under-determined systems; hyperplanes and the distance of a point to a hyperplane
 
 ### Calculus and optimization
 

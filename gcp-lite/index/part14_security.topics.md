@@ -166,6 +166,17 @@ Domain: Security, Cryptography, Privacy & Compliance
 - VPC peering and shared-VPC trust mistakes; private service connections
 - Serverless event injection; hypervisor-escape residual risk
 
+### Ethical hacking and offensive techniques
+
+- **Methodology and authorization**: reconnaissance, scanning, gaining access, maintaining access and covering tracks; scope, rules of engagement and written authorization; reporting
+- **Reconnaissance and scanning**: passive footprinting (`whois`, DNS enumeration with `dig` and `dnsenum`, Netcraft, certificate transparency, Google dorking); Nmap scan types, service and OS fingerprinting and scripts; vulnerability scanners (Nessus, OpenVAS); CVE and CVSS; false positives
+- **System hacking**: password attacks (dictionary, brute force, rainbow tables, credential stuffing); privilege escalation; persistence; malware families (viruses, worms, trojans, rootkits, botnets) and their defences
+- **Network attacks**: packet sniffing (Wireshark, tcpdump); ARP spoofing and MAC flooding; DNS spoofing; interception proxies (Burp Suite); email spoofing and the SPF, DKIM and DMARC defences
+- **Web attack tooling**: SQL-injection techniques (authentication bypass, error-based, blind, `sqlmap`); cross-site scripting; exploiting file uploads
+- **Social engineering**: phishing, pretexting, vishing, tailgating; awareness training as a control
+- **Steganography and biometrics**: hiding data in carriers and detecting it (steganalysis); biometric enrolment, matching, the FAR, FRR and equal-error-rate trade-off, template protection and liveness detection
+- **Hardware security**: side-channel attacks (timing, power, electromagnetic, cache); fault injection; physical unclonable functions; hardware trojans
+
 ### Network security and zero trust
 
 - Perimeter myths; authenticated east-west traffic; micro-segmentation
@@ -195,6 +206,12 @@ Domain: Security, Cryptography, Privacy & Compliance
 - Image signing, attestations and admission enforcement
 - Secret sprawl in repositories, images, logs, traces and prompts; pre-commit scanning
 - Build provenance and SLSA levels; hermetic builds
+
+### Security management, risk and governance
+
+- **Foundations**: the CIA triad; information security versus cyber security; anatomy of a data breach (initial access, dwell time, exfiltration, disclosure) through case studies
+- **Cyber risk management**: asset, threat and vulnerability identification; qualitative risk matrices and quantitative estimates (single-loss expectancy × annual rate of occurrence); treatment by mitigating, transferring, accepting or avoiding; residual risk and the risk register
+- **Governance, risk and compliance (GRC)**: ISO/IEC 27001 and 27002, the NIST Cybersecurity Framework and COBIT; policy tiers (enterprise, issue-specific, system-specific) over standards, guidelines and procedures; the business impact analysis behind contingency planning
 
 ### Detection and incident response
 
@@ -241,6 +258,9 @@ Domain: Security, Cryptography, Privacy & Compliance
 - Re-identification through quasi-identifiers and linkage
 - k-anonymity and its homogeneity and background-knowledge failures
 - Differential privacy: ε-DP, the Laplace mechanism, composition, post-processing
+- **Information privacy**: definitions and theories (privacy as control, secrecy and contextual integrity); measuring privacy; anonymity, pseudonymity and unlinkability; Aadhaar and identity-system privacy
+- **Privacy regulation**: GDPR (lawful bases, data-subject rights, controllers and processors, DPIAs, breach notification, cross-border transfers); India's Digital Personal Data Protection Act (data fiduciaries and principals, consent managers, significant data fiduciaries); CCPA
+- **Economics of privacy**: the value of privacy (willingness to accept versus willingness to pay); the privacy paradox; personalization and price discrimination as business strategy; privacy versus safety and security trade-offs
 
 ### Compliance
 
