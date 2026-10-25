@@ -26,7 +26,7 @@ Attach or connect `/Users/suhas/sde` so the tutor can read your files. Also atta
 | Rust track | `gcp-lite/Rust_Track_AI_Infrastructure.md` (copy), the repo root, and the Project |
 | Exercise rule, tutor skill, 8 Oct handoff | `gcp-lite/project-docs/` and the Project |
 | Learner's code | `language-theory/` in `/Users/suhas/sde` |
-| Learning record (overrides, error log, retry queue, resume point, log) | `pending_tracker.md` at the repo root (987 lines; refreshed 24 Oct through concept 36) |
+| Learning record (overrides, error log, retry queue, resume point, log) | `pending_tracker.md` at the repo root (543 lines; pruned 25 Oct; records through concept 36) |
 
 **Reading rule for a session:** map, then progress file, then `00_learning_method.md` (once; again after any compaction), then the current part's rules file and topic list. Do not open the 434 KB master index. Open another part only to look up a prerequisite, and read only that group.
 

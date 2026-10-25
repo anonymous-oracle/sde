@@ -1,8 +1,8 @@
 # Pending Tracker
 
-Learner: suhass149 · Course: the GCP Lite curriculum (index: `Consolidated_Topic_Index_GCP.md`, 3,749 lines, 20 sections plus the optional supplementary section, 241 topic groups, 2,923 topic lines after the NPTEL additions of 25 Oct 2026; 20 sections, 229 groups and 2,805 lines before) · Tutor skill: `learn`
+Learner: suhass149 · Course: the GCP Lite curriculum (master index: `Consolidated_Topic_Index_GCP.md`; split copy in `gcp-lite/index/`: 30 parts, 241 groups, 2,923 topic lines) · Tutor skill: `learn`
 
-Renamed from `billing_pending_queue.md` and expanded on 6 October 2026. Created 3 October 2026. Dedicated copy created 8 October 2026 from Part B of `progress.md`. **Refreshed 24 October 2026** for a move to a new chat: concepts 14 to 36 are now recorded (sections 3.6 and 3.7), errors 13 to 22 are logged, the cold-retry queue is extended, and the index is now also split into 29 parts (`gcp-lite/index/00_index_map.md`). Companion file: `gcp-lite/SESSION_HANDOFF_2026-10-24.md`.
+Renamed from `billing_pending_queue.md` and expanded on 6 October 2026. Created 3 October 2026. **Pruned 25 October 2026** for the split index: the group-by-group list (old section 7) and the superseded plan were removed, because the index map, progress file and each part's rules and topic files now hold them. Companion file: `SESSION_HANDOFF_2026-10-24.md` (repo root).
 
 **Scope of this file (learner's instruction, 11 Oct 2026):** it logs concepts that are intentionally paused, yet to be taught, or blocked on a prerequisite. Do not update it every turn; update it at the close of a sub-topic or when something is paused, blocked or newly pending. What has been taught is recorded in the handoff and in sections 3.6 and 3.7.
 
@@ -18,7 +18,7 @@ This is the learner's full curriculum record: what has been taught, what is in p
 4. Records: error log, misconceptions, errata, predictions, decisions, heuristics
 5. The practical track: what we do next
 6. Just-in-time prerequisite register
-7. Section-by-section tracker (all 20 sections plus the optional section 21, 241 groups)
+7. Focus tags and partial status by index section
 8. Billing and credit queue
 9. Open verifications
 10. Resume point
@@ -26,14 +26,14 @@ This is the learner's full curriculum record: what has been taught, what is in p
 
 ## 1. Snapshot
 
-- The index holds 20 sections (19 domains plus the ML case-study appendix) and an optional supplementary section 21, 241 topic groups and 2,923 topic lines (229 groups and 2,805 lines before the NPTEL additions of 25 Oct 2026). It is also cut into 30 parts (rules file plus topic list each); the current part is **05** (Python and shell). The topics of 22 NPTEL 2026 courses were merged, deduplicated and distributed across the parts (see the 25 Oct entry in the log).
+- The index is split into 30 parts (map: `gcp-lite/index/00_index_map.md`); the current part is **05** (Python and shell). The topics of 22 NPTEL courses were merged into it on 25 Oct 2026 (see the log); part 30 is optional.
 - Marked taught at topic level: Number systems, Storage units, Character encoding (Computer Organization), all at L1 and L2, engineering pass only; and in Python: the whole Core language group and the Environment and tooling group through `parametrize` (see 3.6). Nothing has reached the mastery bar: no academic pass, no cold recall result.
 - Paused: Data layout, at alignment and padding (override 8). Do not raise.
 - Partly taught (named slices): Boolean logic, Combinational circuits, The memory hierarchy, Latency numbers (Computer Organization); Page arithmetic (Databases, Pre-SQL foundations); a Go toolchain slice (3.5).
 - Python runtime model started: reference counting, reference cycles and the cycle collector, and call by sharing are taught (concepts 34 to 36). The exercise for that sub-topic (`language-theory/exercise-36/memory.py`) is submitted and the review is open.
 - Parked in the billing queue: billing account, a real budget, the Storage units disk lab, the Latency numbers two-VM lab.
 - The tutor numbers concepts consecutively from 11 Oct 2026 (concept-14 onward). Concept-36 (call by sharing) is the last closed. The next new concept is 37.
-- Last refreshed 24 Oct 2026.
+- Last refreshed 25 Oct 2026.
 
 ## 2. Instructions and overrides in force
 
@@ -41,7 +41,7 @@ Precedence: the learner's explicit instruction in the current chat wins, then th
 
 ### Overrides (recorded in the learner's words where possible)
 
-1. **6 Oct 2026: pause Computer Organization and start the practical track.** *(Clarified later the same day, see 7: the list was examples, not the whole scope.)* "Right now, I want to focus on learning cloud, software systems design, required mathematics for it, SQL databases, from the scratch middleware implementations, coding concepts in golang, etc." The index order is suspended for those areas. If a strict dependency arises, teach the prerequisite topic at that point and note it (section 6). The rest of the index resumes afterwards, in index order. The paused topic is Data layout, at alignment and padding.
+1. **6 Oct 2026: pause Computer Organization and start the practical track.** *(Clarified later the same day, see override 7: the list was examples, not the whole scope.)* "Right now, I want to focus on learning cloud, software systems design, required mathematics for it, SQL databases, from the scratch middleware implementations, coding concepts in golang, etc." The index order is suspended for those areas. If a strict dependency arises, teach the prerequisite topic at that point and note it (section 6). The rest of the index resumes afterwards, in index order. The paused topic is Data layout, at alignment and padding.
 2. **WITHDRAWN (6 Oct, later): Python, then Go, then TypeScript stays in force.** The earlier note below was an overreading of the focus list.
    Original note: **Python, then Go, then TypeScript (standing preference) versus Go now.** The learner asked for Go. Recorded as an override: Go is taught first; confirm at the start of Go that Python is deferred, and check programming basics at that point (what a variable, function and loop are) before assuming them.
 3. **Reflection rung dropped for Page arithmetic only** ("I cannot afford to spend so much time on a single topic"). Scope: that one topic. Not extended to others unless the learner says so.
@@ -346,34 +346,16 @@ Pattern across 14 to 36: the learner often reports a result with no prediction o
 
 **Focus areas (learner's list, 6 Oct 2026):** A. cloud; B. software systems design; C. the mathematics those need; D. SQL databases; E. middleware implemented from scratch; F. Go. "Etc." is open: add areas here as they come up.
 
-**CURRENT PLAN (replaces the proposed order below, 6 Oct 2026 later):** teach Programming Languages & Language Theory from its first group, in index order: Python; Shell and working with APIs from code; the seven Go groups; TypeScript; Wire formats; Language theory; Exercises. Then continue through the index in order (Data Structures, Networking, Operating Systems, Software Architecture, Databases, Distributed Systems, Security, Delivery, Cloud Core and so on), with Mathematics and Problem Solving taught just in time and strict dependencies noted in section 6. The Go slice already taught (section 3.5) is recalled in place when its group arrives.
+**CURRENT PLAN (6 Oct 2026, later):** teach Programming Languages & Language Theory from its first group, in index order: Python; Shell and working with APIs from code; the seven Go groups; TypeScript; Wire formats; Language theory; Exercises. Then continue through the index in order (Data Structures, Networking, Operating Systems, Software Architecture, Databases, Distributed Systems, Security, Delivery, Cloud Core and so on), with Mathematics and Problem Solving taught just in time and strict dependencies noted in section 6. The Go slice already taught (section 3.5) is recalled in place when its group arrives.
 
-*(The proposed order below is kept for reference only. It was superseded because it picked Go from the learner's examples.)*
-
-**How it works:** teach a focus topic in the order below. When a strict dependency appears, stop, teach the prerequisite at that point (section 6 lists the known ones), note it in the log, then return. Anything not listed in the six areas stays in index order and waits.
-
-### Superseded proposed order (kept for reference)
-
-1. **Go, first stretch:** toolchain and program structure; then composite data, functions, errors and text. Setup check first: what Cloud Shell offers (Go, editor) or a local install.
-2. **Go, memory and types** (structs, pointers, interfaces, generics). Alignment and padding resume here as Go struct layout.
-3. **Networking for middleware, just in time:** TCP, then HTTP/1.1. Then **Go: a raw-TCP echo server and a minimal HTTP/1.1 server and client, from scratch.** (Middleware, step 1.)
-4. **SQL, first stretch** (local, free): the rest of Pre-SQL foundations, relational theory, the SQL language, using Postgres in Docker (teach the minimum Docker needed at that point).
-5. **Go concurrency**, then **Go HTTP services with `net/http`** and **middleware chains** (recover, request ID, logging, authentication, rate limit), plus the token bucket. (Middleware, step 2.)
-6. **Go `database/sql`** against the local Postgres; transactions and retries.
-7. **From-scratch middleware set:** layer-7 reverse proxy (round-robin, least-connections, health checks); consistent hashing with virtual nodes; circuit breaker, retry with jittered backoff and bulkhead; a distributed rate limiter; an API gateway edge with graceful shutdown. (Middleware, step 3.)
-8. **Cloud:** Cloud Computing Core (service models, virtualization and containers, well-architected, FinOps, IAM concepts), then Google Cloud groups: read-only console and `gcloud list/describe` first; paid and credit labs parked (section 8).
-9. **Systems design:** Software Architecture groups and Distributed Systems groups, with the math pieces taught as they arise (section 6).
-10. **SQL, second stretch:** storage and access methods, query processing, transactions, recovery and replication, data modelling, operating databases; the page-arithmetic slice continues in storage and access methods.
+**How it works:** when a strict dependency appears, stop, teach the prerequisite at that point (section 6 lists the known ones), note it in the log, then return. Anything not in the six areas stays in index order and waits.
 
 ### Area A. Cloud
 - Sections: Cloud Computing Core (6 groups); Cloud Providers, the nine Google Cloud groups. AWS, Azure and certifications are parked.
 - Free or read-only first: concepts, console browsing, `gcloud` list/describe in the personal project, Terraform plan-only, local emulators. Paid labs: section 8.
-- Prerequisites to check at the start (index): OS virtualization, namespaces and cgroups; availability arithmetic; access-control models and OAuth/OIDC; networking (VPC, subnets, CIDR, DNS, TLS, load balancing); databases and distributed-systems vocabulary; Bash, JSON and `jq`.
-- Capstone: see the section tracker (Cloud Computing Core and Cloud Providers).
 
 ### Area B. Software systems design
 - Sections: Software Architecture, APIs, Design Patterns & Clean Architecture; Distributed Systems & Large-Scale System Design (system design method, design techniques, caching, queues, partitioning, replication, consensus, availability).
-- Prerequisites to check: networking (TCP, DNS, load balancing, latency numbers), databases (transactions, isolation, replication, indexes), concurrency, probability, queueing, partial orders, hashing.
 - Cross-domain capstone for the systems domains: one production service on Google Cloud (credit lab).
 
 ### Area C. Required mathematics (just in time, not the whole domain)
@@ -381,18 +363,14 @@ Pattern across 14 to 36: the learner often reports a result with no prediction o
 - Parked until needed: linear algebra, calculus and optimization, information theory, signals and sequences, decision mathematics, most of statistics.
 
 ### Area D. SQL databases
-- Section: Databases, SQL, Relational Theory & Data Modelling: all 12 groups, in the order listed in section 7.
+- Section: Databases, SQL, Relational Theory & Data Modelling: all 12 groups, in index order (part 12).
 - Local first: Postgres in Docker with volumes and health checks (free). Managed Cloud SQL: credit lab.
-- Prerequisites to check: sets, relations and bags; three-valued logic; binary search, sorting, hashing and trees (B-trees); the storage hierarchy with page and row arithmetic (partly taught); integers versus floats and encodings; files, CSV and JSON; a language with a database driver (Go); virtual memory and `fsync`; concurrency (locks, deadlock).
 
 ### Area E. Middleware from scratch
 - Where the index puts it: Go, HTTP services with `net/http` (echo server and a minimal HTTP/1.1 server over raw TCP first; middleware chains and their order); Networking exercises (a layer-7 reverse proxy with round-robin and least-connections balancing and health checks; consistent hashing with virtual nodes); Software Architecture exercises (dependency-injection container; in-process event bus; circuit breaker, retry with jittered backoff and a bulkhead; decorator as middleware); Distributed Systems exercises (a distributed rate limiter; outbox relay with idempotent consumers); DevOps (NGINX and API gateways); Security (rate-limit algorithms: token bucket, leaky bucket, fixed and sliding windows).
-- Strict dependencies: Go basics, interfaces and function values, goroutines and `context`, HTTP semantics, TCP sockets, testing with `httptest`.
 
 ### Area F. Go
 - Groups, in order: toolchain and program structure; composite data, functions, errors and text; memory, types with behaviour and generics; the everyday standard library; concurrency; engineering (testing, benchmarks, HTTP services, `database/sql`); cross-language contrasts.
-- Index acceptance for Go code: `gofmt -l` prints nothing; `go vet ./...` clean; tests pass under `go test -race`; no silently dropped error; every goroutine has a way to stop. Each Go group ends with one involved problem the learner writes alone; the tutor never writes the solution.
-- Strict dependencies: computer literacy and the terminal; data representation including floating point (taught except floating point); induction; sets, relations and functions.
 
 ### Area G. Rust track (file added to the Project on 16 Oct 2026; yet to be taught)
 - File: `Rust_Track_AI_Infrastructure.md` (21 projects, P1 to P21, ending in an AI serving platform capstone).
@@ -434,461 +412,28 @@ When the left-hand topic starts, teach the right-hand prerequisite first (at the
 | Security of any middleware (auth, sessions) | Hashing and password storage in outline; JWT structure | Security. **Not taught.** |
 | The Go testing and benchmark groups | Statistics of repeated measurement (mean, variance, distributions) | Mathematics (Statistics). **Not taught.** |
 
-## 7. Section-by-section tracker
-
-One line per topic group, in index order. Tags show which practical focus area a group belongs to (GO, MIDDLEWARE, SQL, CLOUD, DESIGN, MATH) or that it is a PREREQ to teach just in time. Untagged groups wait in index order.
-
-### Group-level counts at a glance (as of 8 Oct 2026; rows 7.5, 7.7, 7.12, 7.14, 7.17, 7.18 and 7.21 updated 25 Oct 2026 for the NPTEL additions)
-
-| # | Section | Taught | In progress / partly | Not started | Groups |
-|---|---|---|---|---|---|
-| 7.1 | School-level foundations | 0 | 0 | 16 | 16 |
-| 7.2 | Computer Organization & Data Representation | 0 | 3 | 1 | 4 |
-| 7.3 | Mathematics, Probability, Statistics, Queueing & Performance Modelling | 0 | 0 | 11 | 11 |
-| 7.4 | Problem Solving, Reasoning & Research Method | 0 | 0 | 9 | 9 |
-| 7.5 | Programming Languages & Language Theory | 0 | 2 | 13 | 15 |
-| 7.6 | Data Structures, Algorithms & Computational Complexity | 0 | 0 | 11 | 11 |
-| 7.7 | Computer Networking & Web Protocols | 0 | 0 | 13 | 13 |
-| 7.8 | Operating Systems & Linux | 0 | 0 | 9 | 9 |
-| 7.9 | Software Architecture, APIs, Design Patterns & Clean Architecture | 0 | 0 | 15 | 15 |
-| 7.10 | Databases, SQL, Relational Theory & Data Modelling | 0 | 1 | 11 | 12 |
-| 7.11 | Distributed Systems & Large-Scale System Design | 0 | 0 | 14 | 14 |
-| 7.12 | Security, Cryptography, Privacy & Compliance | 0 | 0 | 21 | 21 |
-| 7.13 | Software Delivery & Version Control | 0 | 0 | 4 | 4 |
-| 7.14 | Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM | 0 | 0 | 7 | 7 |
-| 7.15 | The Architect's Practice: Decisions, Strategy & Career | 0 | 0 | 10 | 10 |
-| 7.16 | DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability | 0 | 0 | 8 | 8 |
-| 7.17 | Machine Learning, MLOps & Production ML System Design | 0 | 0 | 11 | 11 |
-| 7.18 | Generative AI, LLMs, Agents & Claude Applications | 0 | 0 | 16 | 16 |
-| 7.19 | Cloud Providers: Google Cloud, AWS, Azure & Certifications | 0 | 0 | 20 | 20 |
-| 7.20 | Published ML System-Design Case Studies | 0 | 0 | 12 | 12 |
-| 7.21 | Supplementary Applied Domains (optional, part 30) | 0 | 0 | 3 | 3 |
-| | **Total** | **0** | **6** | **235** | **241** |
-
-Counts are groups, not topic lines. A group marked in progress or partly may contain taught topics. Taught at topic level: Number systems, Storage units, Character encoding (3 topics, 12 topic lines, about 0.4% of 2,923).
-
-### 7.1 School-level foundations
-
-16 groups, 39 topic lines.
-
-- **Depth bar:** fast, error-free work on unseen multi-step problems in every group of this domain, with each rule justified rather than recalled. These are the roots every prerequisite chain ends in, so a gap here is closed before anything built on it.
-- **Capstone:** a timed mixed set spanning every group, and a one-page explanation of a quantitative decision written for a non-expert.
-
-- [ ] Arithmetic and number sense (4 lines)
-- [ ] Units and dimensional reasoning (3 lines)
-- [ ] Algebra (3 lines)
-- [ ] Functions and graphs (3 lines)
-- [ ] Exponents, roots and logarithms (3 lines)
-- [ ] Sequences, series and notation (2 lines)
-- [ ] Geometry, trigonometry and vectors (4 lines)
-- [ ] Probability and data (3 lines)
-- [ ] Sets and logic in words (2 lines)
-- [ ] Proof habits (2 lines)
-- [ ] Pre-calculus and calculus intuition (1 lines)
-- [ ] Electricity and signals (1 lines)
-- [ ] Computer literacy (2 lines)
-- [ ] Technical reading and writing (2 lines)
-- [ ] Technical communication (2 lines)
-- [ ] Everyday economics (2 lines)
-
-### 7.2 Computer Organization & Data Representation
-
-4 groups, 79 topic lines.
-
-- **Prerequisites (as written):** arithmetic and number sense; units; exponents and logarithms; sets and logic; electricity and signals.
-- **Depth bar:** an undergraduate computer-architecture course with its labs: every representation encoded and decoded by hand, every performance law derived and used with numbers, every hardware effect measured on a real machine.
-- **Capstone:** a simulated RV32I machine with a cache model, running a small recursive program and reporting cycles per instruction, hit rates and average memory access time against predictions written beforehand.
-
-- [~] Data representation (19 lines) · in progress
-- [~] Digital logic (14 lines) · partly taught
-- [~] Machine organization (31 lines) · partly taught
-- [ ] Exercises (15 lines)
-
-### 7.3 Mathematics, Probability, Statistics, Queueing & Performance Modelling
-
-11 groups, 161 topic lines. NPTEL additions integrated 25 Oct 2026: 2 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** the school-level foundations from arithmetic through calculus intuition.
-- **Depth bar:** the mathematics, probability and statistics expected at graduate entry in computer science: each theorem proved or its proof sketched, each formula derived, each method run by hand and then in code on real data.
-- **Capstone:** a capacity and experiment report for a service you run: a queueing model predicting latency under load, a load test that confirms or refutes it, and an A/B analysis with power, intervals and a written conclusion, defended orally.
-
-- [ ] Proof and discrete mathematics (31 lines) · MATH (just in time)
-- [ ] Probability (28 lines) · MATH (just in time)
-- [ ] Statistics and experimental design (17 lines) · MATH (just in time)
-- [ ] Queueing and performance modelling (16 lines) · MATH (just in time)
-- [ ] Linear algebra (9 lines)
-- [ ] Calculus and optimization (18 lines)
-- [ ] Numerical computing (7 lines) · MATH (floating point pulled forward)
-- [ ] Information theory (6 lines)
-- [ ] Signals and sequences (6 lines)
-- [ ] Decision mathematics (2 lines)
-- [ ] Exercises (19 lines)
-
-### 7.4 Problem Solving, Reasoning & Research Method
-
-9 groups, 66 topic lines.
-
-- **Prerequisites (as written):** school algebra, geometry, functions and graphs, units, probability and sequences; proof techniques (direct proof, contradiction, cases, induction); counting; expected value and conditional probability; convex functions.
-- **Depth bar:** contest-level problem solving and research-level reading: unseen problems solved under time and then by a second method; papers read critically and their claims tested.
-- **Capstone:** a full-length timed contest paper scored and post-mortemed by error cause, and a short research report extending one published result to a new setting.
-
-- [ ] Problem-solving strategy (11 lines)
-- [ ] Contest mathematics toolkit (8 lines)
-- [ ] Physical and quantitative intuition (7 lines)
-- [ ] Speed and accuracy under time (5 lines)
-- [ ] Proof craft and mathematical maturity (5 lines)
-- [ ] Research method (7 lines)
-- [ ] Systems thinking (5 lines)
-- [ ] Learning science and deliberate practice (6 lines)
-- [ ] Exercises (12 lines)
-
-### 7.5 Programming Languages & Language Theory
-
-15 groups, 372 topic lines. NPTEL additions integrated 25 Oct 2026: 16 new topic lines (2 new groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** computer literacy and the terminal; data representation (binary, two's complement, UTF-8, floating point); proof by induction; sets, relations and functions.
-- **Depth bar:** production fluency in Python and Go (idiomatic, tested, race-free, profiled code) together with a programming-languages course: semantics, type soundness, and a working interpreter and type checker.
-- **Capstone:** a production-grade Go service with a command-line client, tests, benchmarks, profiling and graceful shutdown; and an interpreter with a type checker for a small language of your own design.
-
-- [~] Python (21 lines) · in progress: core language and environment taught; runtime model started (reference counting, cycles, call by sharing); see 3.6 and 3.7 · index part 05
-- [ ] Shell and working with APIs from code (10 lines) · PREREQ (cloud CLI: Bash, JSON, jq)
-- [~] Go — toolchain and program structure (29 lines) · sliced: see 3.5 · GO
-- [ ] Go — composite data, functions, errors and text (30 lines) · GO
-- [ ] Go — memory, types with behaviour and generics (30 lines) · GO
-- [ ] Go — the everyday standard library (23 lines) · GO
-- [ ] Go — concurrency (35 lines) · GO
-- [ ] Go — engineering (86 lines) · GO + MIDDLEWARE
-- [ ] Go — cross-language contrasts (6 lines) · GO
-- [ ] TypeScript, Node and the web client (11 lines)
-- [ ] Wire formats (4 lines) · PREREQ (middleware: JSON, protobuf)
-- [ ] Language theory (33 lines)
-- [ ] Exercises (38 lines)
-- [ ] R for data science (3 lines) · added from NPTEL 2026 courses
-- [ ] Java and the JVM (8 lines) · added from NPTEL 2026 courses
-
-### 7.6 Data Structures, Algorithms & Computational Complexity
-
-11 groups, 84 topic lines. NPTEL additions integrated 25 Oct 2026: 3 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** a first programming language (Python, then Go); proof by induction and invariants; logarithms and exponents; sums and recurrences; probability with indicator variables and expectation; discrete maths (relations, graphs, counting).
-- **Depth bar:** a top-university algorithms course: correctness proved by invariant, exchange argument or induction; recurrences solved; lower bounds and reductions shown; every implementation benchmarked against its predicted complexity.
-- **Capstone:** a library of the core structures and algorithms with property-based tests and benchmarks confirming each asymptotic claim, and a timed set of unseen hard problems, each solved and proved.
-
-- [ ] Analysis (13 lines) · PREREQ (SQL / design)
-- [ ] Linear structures and techniques (6 lines)
-- [ ] Hashing (5 lines) · PREREQ (SQL / design)
-- [ ] Trees and heaps (8 lines) · PREREQ (SQL / design)
-- [ ] Sorting, searching and strings (8 lines)
-- [ ] Graph algorithms (8 lines)
-- [ ] Greedy algorithms and dynamic programming (4 lines)
-- [ ] Randomized and probabilistic structures (5 lines)
-- [ ] Computability and complexity (6 lines)
-- [ ] Algorithms at scale (4 lines)
-- [ ] Exercises (14 lines)
-
-### 7.7 Computer Networking & Web Protocols
-
-13 groups, 108 topic lines. NPTEL additions integrated 25 Oct 2026: 9 new topic lines (1 new group); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** binary and powers of two; bit operations; queueing basics (delay grows with utilization); graph shortest paths (Dijkstra, Bellman–Ford); tries; the latency numbers of the memory and network hierarchy.
-- **Depth bar:** a top-university networking course with its socket and protocol labs: each protocol mechanism traced on the wire with packet capture, each performance formula derived and checked under emulated loss and delay.
-- **Capstone:** a service on Google Cloud reached through your own DNS records, TLS, reverse proxy and CDN, with its latency budget predicted, measured hop by hop, then broken and repaired under injected loss.
-
-- [ ] Architecture principles (5 lines) · PREREQ (cloud / middleware)
-- [ ] Addressing and the link layer (5 lines) · PREREQ (cloud / middleware)
-- [ ] Routing (6 lines)
-- [ ] Transport (23 lines) · PREREQ (cloud / middleware)
-- [ ] DNS (7 lines) · PREREQ (cloud / middleware)
-- [ ] HTTP and the web (14 lines) · PREREQ (cloud / middleware)
-- [ ] TLS mechanics (2 lines) · PREREQ (cloud / middleware)
-- [ ] Middleboxes, proxies and load balancing (14 lines) · PREREQ (cloud / middleware)
-- [ ] Private connectivity (3 lines) · PREREQ (cloud / middleware)
-- [ ] Data-centre networks (3 lines)
-- [ ] Measurement (4 lines)
-- [ ] Exercises (13 lines)
-- [ ] IoT and constrained-device networking (9 lines) · added from NPTEL 2026 courses
-
-### 7.8 Operating Systems & Linux
-
-9 groups, 77 topic lines. NPTEL additions integrated 25 Oct 2026: 7 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** computer organization (ISA, the memory hierarchy, TLB, cache coherence and atomic instructions); a programming language with threads; data structures (queues, trees, hash tables); basic probability.
-- **Depth bar:** a graduate operating-systems course with kernel labs: each mechanism explained down to its data structures and system calls, built at toy size, and observed on a live Linux system with tracing tools.
-- **Capstone:** a minimal container runtime and a concurrent network server, each tuned from measurements (system-call traces, scheduler and memory counters, flame graphs), with every finding written as hypothesis, evidence and fix.
-
-- [ ] Linux practice (8 lines) · PREREQ (cloud / Go / SQL)
-- [ ] Processes and threads (7 lines) · PREREQ (cloud / Go / SQL)
-- [ ] CPU scheduling (6 lines)
-- [ ] Virtual memory (8 lines) · PREREQ (cloud / Go / SQL)
-- [ ] Concurrency (10 lines) · PREREQ (cloud / Go / SQL)
-- [ ] Persistence (7 lines)
-- [ ] Isolation (4 lines) · PREREQ (cloud / Go / SQL)
-- [ ] I/O models and performance (5 lines)
-- [ ] Exercises (15 lines)
-
-### 7.9 Software Architecture, APIs, Design Patterns & Clean Architecture
-
-15 groups, 150 topic lines. NPTEL additions integrated 25 Oct 2026: 1 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** a programming language with classes or interfaces (Python, Go); type systems (nominal and structural typing, parametric and subtype polymorphism); HTTP semantics; preconditions, postconditions and invariants; graphs and state machines.
-- **Depth bar:** a graduate software-architecture and design course plus staff-level design review: every principle and pattern implemented, critiqued in real code and justified against quality-attribute scenarios.
-- **Capstone:** a modular service designed from quality-attribute scenarios, documented with C4 views and decision records, built with ports and adapters and tests, then changed by a new requirement to measure how modifiable it really is.
-
-- [ ] Architecture fundamentals (20 lines) · DESIGN
-- [ ] API design (20 lines) · DESIGN
-- [ ] Object-oriented foundations (5 lines) · DESIGN
-- [ ] Design principles (13 lines) · DESIGN
-- [ ] Design by contract and behavioural subtyping (3 lines) · DESIGN
-- [ ] Gang of Four patterns (30 lines) · DESIGN
-- [ ] Application architecture (7 lines) · DESIGN
-- [ ] Domain-driven design (5 lines) · DESIGN
-- [ ] Distributed application patterns (4 lines) · DESIGN
-- [ ] Anti-patterns (7 lines) · DESIGN
-- [ ] Quality attributes and evaluation (5 lines) · DESIGN
-- [ ] Architecture documentation (5 lines) · DESIGN
-- [ ] Formal methods (4 lines)
-- [ ] Software testing at depth (5 lines)
-- [ ] Exercises (16 lines)
-
-### 7.10 Databases, SQL, Relational Theory & Data Modelling
-
-12 groups, 154 topic lines. NPTEL additions integrated 25 Oct 2026: 1 new topic lines (added to existing groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** sets, relations, functions and bags; propositional and predicate logic; binary search, sorting, hashing and trees; the storage hierarchy with page and row arithmetic; integer versus floating-point arithmetic and encodings; files, CSV and JSON; a programming language with a database driver; operating-system virtual memory and fsync; concurrency (locks, deadlock).
-- **Depth bar:** a top-university database-systems course with its internals labs plus production PostgreSQL practice: each theorem proved, each plan predicted before EXPLAIN, each operational procedure rehearsed.
-- **Capstone:** a production schema for a transactional product taken from requirements through normalization, migrations, indexing and an isolation-anomaly test suite to backups with a timed restore, deployed on Cloud SQL with a connection budget.
-
-- [~] Pre-SQL foundations (7 lines) · SQL · partly taught
-- [ ] Relational theory (26 lines) · SQL
-- [ ] The SQL language (15 lines) · SQL
-- [ ] Storage and access methods (16 lines) · SQL
-- [ ] Query processing (18 lines) · SQL
-- [ ] Transactions and concurrency control (11 lines) · SQL
-- [ ] Recovery and replication (11 lines) · SQL
-- [ ] Data modelling and design (12 lines) · SQL
-- [ ] Operating databases (8 lines) · SQL
-- [ ] NoSQL and choosing a store (7 lines) · SQL
-- [ ] Analytics and other engines (6 lines) · SQL
-- [ ] Exercises (16 lines) · SQL (exercises)
-
-### 7.11 Distributed Systems & Large-Scale System Design
-
-14 groups, 98 topic lines.
-
-- **Prerequisites (as written):** networking (TCP, DNS, load balancing, latency numbers); databases (transactions, isolation, replication, indexes); concurrency (locks, happens-before, memory models); probability (order statistics, balls into bins, the birthday bound); queueing (Little's law, utilization); partial orders; hashing and consistent hashing basics.
-- **Depth bar:** a graduate distributed-systems course with replication and consensus labs plus staff-level system-design interviews: impossibility results proved, protocols implemented and tested under injected faults, designs sized with numbers.
-- **Capstone:** a replicated, partitioned key-value store with consensus and a client library, tested under partitions, crashes and clock skew with a linearizability checker, and its design written up and defended with capacity numbers.
-
-- [ ] Foundations (20 lines) · DESIGN
-- [ ] Consensus and coordination (6 lines) · DESIGN
-- [ ] Replication (7 lines) · DESIGN
-- [ ] Availability (4 lines) · DESIGN
-- [ ] Partitioning (5 lines) · DESIGN
-- [ ] Distributed transactions (5 lines) · DESIGN
-- [ ] Caching at scale (6 lines) · DESIGN
-- [ ] Asynchronism and flow control (5 lines) · DESIGN
-- [ ] Stream and batch processing (7 lines) · DESIGN
-- [ ] Performance at scale (5 lines) · DESIGN
-- [ ] Testing and verification (3 lines) · DESIGN
-- [ ] System design method (4 lines) · DESIGN
-- [ ] Design techniques (10 lines) · DESIGN
-- [ ] Exercises (11 lines) · DESIGN (exercises)
-
-### 7.12 Security, Cryptography, Privacy & Compliance
-
-21 groups, 223 topic lines. NPTEL additions integrated 25 Oct 2026: 14 new topic lines (2 new groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** number theory (modular arithmetic, Euler's theorem, discrete logarithms); probability (the birthday bound, negligible advantage); networking (HTTP, cookies, TLS, DNS, BGP); operating-system isolation (namespaces, cgroups, capabilities); databases (SQL, row-level security); distributed systems (consensus, replication); an HTTP service in a programming language.
-- **Depth bar:** a top-university computer-security and applied-cryptography course with attack labs plus a cloud-security professional exam: every attack reproduced on your own fixtures, every defence explained by the property it restores, every primitive's security notion stated.
-- **Capstone:** a threat-modelled application on Google Cloud with least-privilege IAM, managed secrets, perimeter controls, audit logging and detections, attacked by your own scripted tests and closed with an incident-response exercise and written report.
-
-- [ ] Principles and economics (6 lines)
-- [ ] Threat modelling (8 lines)
-- [ ] Access-control models (6 lines) · PREREQ (cloud IAM / middleware)
-- [ ] Cryptography (55 lines)
-- [ ] Authentication and sessions (14 lines) · PREREQ (cloud IAM / middleware)
-- [ ] Authorization flaws (5 lines)
-- [ ] API abuse (8 lines) · PREREQ (cloud IAM / middleware)
-- [ ] Denial of service (9 lines)
-- [ ] Web application security (14 lines)
-- [ ] Cloud-specific attacks (7 lines)
-- [ ] Network security and zero trust (9 lines)
-- [ ] Containers and Kubernetes security (6 lines)
-- [ ] Supply chain (6 lines)
-- [ ] Detection and incident response (6 lines)
-- [ ] AI and LLM application threats (19 lines)
-- [ ] Isolation classes (2 lines)
-- [ ] Privacy (7 lines)
-- [ ] Compliance (2 lines)
-- [ ] Exercises (20 lines)
-- [ ] Ethical hacking and offensive techniques (8 lines) · added from NPTEL 2026 courses
-- [ ] Security management, risk and governance (3 lines) · added from NPTEL 2026 courses
-
-### 7.13 Software Delivery & Version Control
-
-4 groups, 34 topic lines.
-
-- **Prerequisites (as written):** the shell; hashing and Merkle structures; directed acyclic graphs and lowest common ancestors; queueing intuition (batch size and waiting time).
-- **Depth bar:** Git understood as data structures, and delivery practised at the level of a team that owns its production releases.
-- **Capstone:** a repository with branch protection, signed commits and CI, carrying one change through review, release, a failed rollout and a rollback.
-
-- [ ] Git (18 lines) · PREREQ (Go modules, labs)
-- [ ] Delivery models (5 lines)
-- [ ] The profession (3 lines)
-- [ ] Exercises (8 lines)
-
-### 7.14 Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
-
-7 groups, 54 topic lines. NPTEL additions integrated 25 Oct 2026: 6 new topic lines (1 new group); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** operating systems (virtual memory, page tables, the TLB, privileged instructions, namespaces and cgroups); probability (means and standard deviations of sums, the exponential distribution); availability arithmetic; access-control models; OAuth and OIDC tokens.
-- **Depth bar:** cloud architecture at professional-certification depth together with the virtualization mechanisms beneath it: every service model explained down to the isolation it rests on, every cost claim computed.
-- **Capstone:** a well-architected review of a workload you built: a pillar-by-pillar assessment, an IAM model with no basic roles, a cost model checked against the bill, and a remediation plan carried out.
-
-- [ ] What cloud computing is (7 lines) · CLOUD
-- [ ] Virtualization and containers (6 lines) · CLOUD
-- [ ] Architecture patterns and well-architected frameworks (9 lines) · CLOUD
-- [ ] Cloud economics and FinOps (8 lines) · CLOUD
-- [ ] Cloud IAM concepts (9 lines) · CLOUD
-- [ ] Exercises (9 lines) · CLOUD (exercises)
-- [ ] Resource management, edge and cloud paradigms (4 lines) · added from NPTEL 2026 courses
-
-### 7.15 The Architect's Practice: Decisions, Strategy & Career
-
-10 groups, 43 topic lines.
-
-- **Prerequisites (as written):** architecture documentation (decision records, C4 views, quality-attribute scenarios); cost modelling; expected value and probability; delivery practices (canaries, feature flags, expand/contract migrations); SLOs and postmortems; technical reading and writing.
-- **Depth bar:** staff and principal engineer practice: decisions written, reviewed and revisited against outcomes; strategy defended to engineers and to executives.
-- **Capstone:** a technical strategy and migration plan for a realistic system, with decision records, a premortem, a build-or-buy analysis and a review held under adversarial questions.
-
-- [ ] Making decisions (5 lines)
-- [ ] Decision theory (6 lines)
-- [ ] Build, buy, rent or adopt (4 lines)
-- [ ] Evolutionary architecture and migration (3 lines)
-- [ ] Sociotechnical architecture (3 lines)
-- [ ] Strategy, writing and review (6 lines)
-- [ ] Learning from failure (1 lines)
-- [ ] Keeping current (2 lines)
-- [ ] The road to the role (4 lines)
-- [ ] Exercises (9 lines)
-
-### 7.16 DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability
-
-8 groups, 109 topic lines.
-
-- **Prerequisites (as written):** Linux (processes, namespaces, cgroups, capabilities, seccomp, file systems); networking (HTTP, TLS, load balancing, DNS); Git; Raft and replicated key-value stores; bin packing and DAGs; queueing (Little's law); percentiles and histograms; availability arithmetic.
-- **Depth bar:** SRE practice at the level of owning an on-call service: every component deployed from your own manifests and pipelines, every alert tied to an SLO, every failure mode drilled.
-- **Capstone:** a service on GKE or Cloud Run deployed by Terraform through a CI/CD pipeline with progressive delivery, SLOs with burn-rate alerts, dashboards and traces, and a game-day failure written up as a blameless postmortem.
-
-- [ ] Docker (17 lines) · PREREQ (local Postgres)
-- [ ] Kubernetes (24 lines)
-- [ ] NGINX and API gateways (8 lines) · MIDDLEWARE
-- [ ] CI/CD (11 lines)
-- [ ] Infrastructure as code (14 lines)
-- [ ] Observability (7 lines) · CLOUD (operations)
-- [ ] Site reliability engineering (10 lines)
-- [ ] Exercises (18 lines)
-
-### 7.17 Machine Learning, MLOps & Production ML System Design
-
-11 groups, 194 topic lines. NPTEL additions integrated 25 Oct 2026: 53 new topic lines (2 new groups); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** sets and propositional logic; coordinate geometry and lines; linear algebra (vectors, matrices, transposes, determinants, cosine similarity, eigen-decomposition, PCA); multivariable calculus and the chain rule; convex optimization and gradient descent; probability (joint, marginal and conditional), Bayes' rule, distributions, maximum likelihood, hypothesis tests and sample size; information theory (entropy, cross-entropy, KL divergence); numerical stability (log-sum-exp, stable softmax); Python with NumPy, pandas and Matplotlib; SQL including window functions and as-of joins; graph search; queues and Little's law; cloud data services (warehouse, object storage, pub/sub).
-- **Depth bar:** a graduate machine-learning course (losses, gradients and generalization derived) plus production ML system design: every model built from scratch at toy size before the library, every pipeline monitored.
-- **Capstone:** an end-to-end ML system: the problem framed with its metric, point-in-time-correct features, a model evaluated with ablations, a served endpoint with drift monitoring, and an online experiment measuring its effect.
-
-- [ ] Foundations of AI (3 lines)
-- [ ] Classical machine learning (28 lines)
-- [ ] Deep learning (11 lines)
-- [ ] Natural language processing foundations (5 lines)
-- [ ] Machine learning in Python (3 lines)
-- [ ] Specialised learning areas (10 lines)
-- [ ] Applied problem families (45 lines)
-- [ ] MLOps (16 lines)
-- [ ] Exercises (20 lines)
-- [ ] Classical AI: search, knowledge and reasoning (26 lines) · added from NPTEL 2026 courses
-- [ ] Classical computer vision and geometry (10 lines) · added from NPTEL 2026 courses
-
-### 7.18 Generative AI, LLMs, Agents & Claude Applications
-
-16 groups, 288 topic lines. NPTEL additions integrated 25 Oct 2026: 11 new topic lines (1 new group); per-group line counts below are as of 8 Oct.
-
-- **Prerequisites (as written):** probability (joint, marginal and conditional) and the chain rule of probability; cross-entropy, maximum likelihood and perplexity; linear algebra (matrix multiplication, transposes, projections) and cosine similarity; backpropagation, gradient descent and neural-network training; classical NLP, word embeddings and recurrent sequence models; ranking measures (recall@k, MRR, nDCG); binomial proportions, confidence intervals and paired tests; Python with NumPy and PyTorch, Go and TypeScript; HTTP, JSON Schema, JSON-RPC 2.0 and Server-Sent Events; OAuth 2.0 with PKCE; containers; queues, idempotency, retries with backoff, sagas and rate limiting; prompt-injection, jailbreak and AI-application threats; observability and SLOs.
-- **Depth bar:** a graduate course on large language models (the transformer derived, training and inference costs computed) plus production LLM engineering: every application measured by an evaluation suite before and after each change.
-- **Capstone:** an agentic retrieval application over your own documents with tools, guardrails, an evaluation suite gating regressions, cost and latency budgets and a red-team pass, deployed on Google Cloud.
-
-- [ ] How LLMs work (38 lines)
-- [ ] Fine-tuning and adaptation (8 lines)
-- [ ] Multimodal models (4 lines)
-- [ ] Embeddings and retrieval (24 lines)
-- [ ] Retrieval-augmented generation (28 lines)
-- [ ] Model APIs (24 lines)
-- [ ] Prompt, context and output engineering (17 lines)
-- [ ] Tools and the Model Context Protocol (5 lines)
-- [ ] Agents and workflows (43 lines)
-- [ ] Claude Code (6 lines)
-- [ ] Security and safety of LLM applications (9 lines)
-- [ ] Evaluation, testing and debugging (21 lines)
-- [ ] Application architecture and LLMOps (18 lines)
-- [ ] The forward-deployed engineer's craft (3 lines)
-- [ ] Exercises (29 lines)
-- [ ] Generative models beyond autoregression (10 lines) · added from NPTEL 2026 courses
-
-### 7.19 Cloud Providers: Google Cloud, AWS, Azure & Certifications
-
-20 groups, 311 topic lines.
-
-- **Prerequisites (as written):** cloud computing concepts (service and deployment models, shared responsibility, well-architected pillars, FinOps, IAM models); virtualization and containers; networking (VPCs, subnets, routing, BGP, DNS, TLS, load balancing, CDNs); databases (relational, key-value, wide-column, document, warehouse) and their consistency models; distributed systems (replication, sharding, queues, consensus); security (cryptography, identity, zero trust); DevOps (CI/CD, IaC, observability, SRE); Bash scripting, JSON and jq; machine learning and LLM applications.
-- **Depth bar:** professional-certification depth on Google Cloud first, then on AWS and Azure by mapping each service and teaching what differs; every command is built by the learner.
-- **Capstone:** one multi-tier production workload built on Google Cloud end to end from the command line and Terraform, then ported to AWS and Azure, with a written comparison of identity, networking, operations and cost.
-
-- [ ] Google Cloud — compute (10 lines) · CLOUD
-- [ ] Google Cloud — storage and databases (17 lines) · CLOUD
-- [ ] Google Cloud — networking (15 lines) · CLOUD
-- [ ] Google Cloud — data and analytics (8 lines) · CLOUD
-- [ ] Google Cloud — AI and ML (8 lines) · CLOUD
-- [ ] Google Cloud — security (13 lines) · CLOUD
-- [ ] Google Cloud — operations, DevOps and cost (5 lines) · CLOUD
-- [ ] Google Cloud — command line (82 lines) · CLOUD
-- [ ] Google Cloud — mapping system-design components (9 lines) · CLOUD
-- [ ] AWS (7 lines)
-- [ ] AWS command line (23 lines)
-- [ ] Azure (7 lines)
-- [ ] Azure command line (19 lines)
-- [ ] AWS and Azure — what differs at depth (8 lines)
-- [ ] Cross-provider concept map (39 lines)
-- [ ] Certifications — Google Cloud (12 lines)
-- [ ] Certifications — AWS (6 lines)
-- [ ] Certifications — Microsoft Azure (5 lines)
-- [ ] Certifications — Anthropic (1 lines)
-- [ ] Exercises (17 lines)
-
-### 7.20 Published ML System-Design Case Studies
-
-12 groups, 284 topic lines.
-
-- **Prerequisites (as written):** the case-study method; leakage and point-in-time correctness; the applied problem families (recommendation, search and ads, forecasting, fraud, language, vision, speech, marketing, availability, ML platforms); evaluation metrics and online experiments; MLOps serving and monitoring.
-
-- [ ] Recommend / personalize / feed (58 lines)
-- [ ] Search / rank / ads (35 lines)
-- [ ] Forecast / ETA / demand (23 lines)
-- [ ] Fraud / trust & safety (21 lines)
-- [ ] LLM / genAI apps (19 lines)
-- [ ] NLP / text / support (7 lines)
-- [ ] CV / video / OCR (6 lines)
-- [ ] Speech / audio (3 lines)
-- [ ] Marketing / churn / CLV / notify (14 lines)
-- [ ] Availability / inventory (3 lines)
-- [ ] ML platform / infra (2 lines)
-- [ ] Other (pricing, classification, routing, dimensions and more) (93 lines)
-
-### 7.21 Supplementary Applied Domains: Corporate Finance, Marketing & Learning Analytics
-
-3 groups, 19 topic lines. Optional part 30, added 25 Oct 2026 from the NPTEL course list; taught on request after the core path.
-
-- [ ] Corporate finance (8 lines)
-- [ ] Marketing and digital marketing (5 lines)
-- [ ] Learning analytics (6 lines)
+## 7. Focus tags and partial status by index section
+
+Group lists, depth bars, prerequisites and capstones live in the index (`gcp-lite/index/00_index_map.md`, the progress file, and each part's rules and topic files), not here. This section keeps only what the index cannot hold: which groups serve the learner's focus areas, and which have been started. Everything not named is `[ ]` and waits in index order; nothing is `[x]` at group level.
+
+| Index section (part) | Started | Focus tag: groups |
+|---|---|---|
+| Computer Organization (02) | `[~]` Data representation, Digital logic, Machine organization; **paused** (override 8) | |
+| Mathematics (03) | | MATH, just in time: Proof and discrete mathematics, Probability, Statistics and experimental design, Queueing and performance modelling; Numerical computing (floating point pulled forward) |
+| Programming languages (05 to 07) | `[~]` Python; Go toolchain and program structure (sliced, see 3.5) | GO: all Go groups (Go engineering is also MIDDLEWARE). PREREQ: Shell and working with APIs from code (cloud CLI), Wire formats |
+| Data structures (08) | | PREREQ (SQL, design): Analysis, Hashing, Trees and heaps |
+| Networking (09) | | PREREQ (cloud, middleware): Architecture principles, Addressing and the link layer, Transport, DNS, HTTP and the web, TLS mechanics, Middleboxes, proxies and load balancing, Private connectivity |
+| Operating systems (10) | | PREREQ (cloud, Go, SQL): Linux practice, Processes and threads, Virtual memory, Concurrency, Isolation |
+| Software architecture (11) | | DESIGN: all groups except Formal methods, Software testing at depth and Exercises |
+| Databases (12) | `[~]` Pre-SQL foundations (page-arithmetic slice) | SQL: all groups |
+| Distributed systems (13) | | DESIGN: all groups |
+| Security (14) | | PREREQ (cloud IAM, middleware): Access-control models, Authentication and sessions, API abuse |
+| Software delivery (15) | | PREREQ: Git (Go modules, labs) |
+| Cloud core (16) | | CLOUD: all groups |
+| DevOps and SRE (18) | | PREREQ: Docker (local Postgres). MIDDLEWARE: NGINX and API gateways. CLOUD: Observability |
+| Cloud providers (23, 24) | | CLOUD: the nine Google Cloud groups; AWS, Azure and certifications are parked |
+| Untagged, in index order | | Parts 01, 04, 17, 19 to 22 and 25 to 29 |
+| Optional | | Part 30 (corporate finance, marketing, learning analytics), on request after the core path |
 
 ## 8. Billing and credit queue
 
@@ -976,13 +521,14 @@ Cost tags follow the index: free tier, credit with an estimate, plan only, paper
 4. Late-binding closures; the mutable-default trap formalised.
 5. pytest fixtures and assert rewriting (not yet taught).
 6. Python for data and services: NumPy, pandas, Matplotlib, FastAPI.
-7. Then Shell and working with APIs from code (part 05); the Go groups (part 06; recall the slice first); TypeScript, wire formats, language theory and the Programming exercises (part 07); then the rest of the index in order.
+7. Python Core items added 25 Oct 2026 from the NPTEL courses (strings and formatting; parameter kinds and scope; comprehensions, generators and higher-order functions; functional style; I/O and `pathlib`), as short just-in-time patches.
+8. Then Shell and working with APIs from code (part 05); the Go groups (part 06; recall the slice first); TypeScript, wire formats, language theory and the Programming exercises (part 07); then the rest of the index in order.
 
 **Small loose ends:** the runner's `finally` message (error 18, `done <name>`); `__exit__` returning `True`; Money `__str__` with negative cents.
 
 **Recalls due:** none scheduled formally. The retry queue in 4.8 holds the unseen variants to use.
 
-**How to resume in a fresh session:** attach `gcp-lite/SESSION_HANDOFF_2026-10-24.md`, this file, and (or connect) `/Users/suhas/sde`; the Project "GCP Lite" holds the split index under `index/`. Start with: "/learn Resume the course. Read the handoff first, then the index map and progress file. Open only part 05. Review my `exercise-36/memory.py` (branch `gcp`). One check per turn. No ready-made code. Do not reveal answers." Replace this file with the updated copy when a sub-topic closes.
+**How to resume in a fresh session:** attach `SESSION_HANDOFF_2026-10-24.md` (repo root), this file, and (or connect) `/Users/suhas/sde`. Start with: "/learn Resume the course. Read the handoff first, then `gcp-lite/index/00_index_map.md`, the progress file and the learning method. Open only part 05. Review my `exercise-36/memory.py` (branch `gcp`). One check per turn. No ready-made code. Do not reveal answers." Replace this file with the updated copy when a sub-topic closes.
 
 ## 11. Log
 
@@ -990,16 +536,8 @@ Cost tags follow the index: free tier, credit with an estimate, plan only, paper
 - 6 Oct 2026: renamed to Pending Tracker and expanded into the full curriculum record: progress report, records, practical track, just-in-time prerequisites, all 20 sections and 229 groups, billing queue with new candidate labs, open verifications, resume point. Override recorded: pause Computer Organization at alignment and padding; practical track first; strict dependencies taught just in time. Teaching feedback recorded: more elaborate explanations; one self-test rule instead of repeated corrections.
 - 6 Oct 2026 (later): practical track started at Go, toolchain and program structure. Learner ran the hello program in Cloud Shell, which shows Go is installed there (version not yet checked). Override 6 recorded: no pasteable code from the tutor.
 - 6 Oct 2026 (later): learner corrected the plan: only Computer Organization was paused; the focus list was examples, not the whole scope; Python must come before Go. Override 2 withdrawn, override 7 added, section 3.5 records the Go slice taught so far, current plan set to Programming Languages from its first group (Python). Go: divisible-by-3 loop passed unaided.
-- 8 Oct 2026: Python core language taught through recursion (section 3.6): variables and operators, control flow, functions, lists, dicts, tuples, sets, mutable defaults, recursion; Python 3.12.3 confirmed in Cloud Shell. A check on mutable defaults was weak evidence because the explanation preceded it; two unseen variants passed.
-- 8 Oct 2026 (later): Python classes taught and recorded in section 3.6 (Rectangle, Counter, Tag, Bag); errors 10 and 11 logged; misconception register updated.
-- 8 Oct 2026 (later): Bag mechanism confirmed; special methods (`__str__`, `__eq__`) taught; Money `__eq__` check passed on code. Handoff document generated.
-- 8 Oct 2026 (resume): dedicated tracker file created in this chat from the handoff (Part B), with error 12 added (Money reason open), the cold-retry queue added as 4.8, and group counts added at the top of section 7. Session resumes with the Money reason check.
-- 8 Oct 2026 (resume, later): Money reason closed (learner: default `==` compares the object's own identifier). Override 8 recorded: alignment and all paused Computer Organization items stay paused until the learner asks or a strict prerequisite requires them. Continuing Python classes with `__str__` practice.
-- 9 Oct 2026: concept-13 finished (learner's numbering): `__str__` practice. Money `__str__` written unaided (f-string, `//` for dollars, `%` for leftover cents), output `12 dollars 34 cents`, correct. Not yet checked: negative cents (floor division gives a negative dollar count and a positive remainder). Learner asked for a sub-topic title for the concepts going forward: "Special methods, part 2: comparing objects across types" (concept-14 onward: `AttributeError` when `==` meets a non-Money, `isinstance`, `NotImplemented`, reflected comparison).
-- 11 Oct 2026: Money default `==` explained (identity); concept-14 to 15 passed (`isinstance`, `NotImplemented`, the fallback, class attribute versus instance attribute with `is`). Overrides 10 (subagents; tracker scope) and 11 (number the concepts) recorded.
-- 14 Oct 2026: concepts 16 to 19 (modules, import caching, the main guard, packages, `sys.path`, shadowing) passed; 14 to 17 Oct: concepts 20 to 24 (exceptions, which `except` matches, `finally`, `with`, tracebacks); `with` order missed first (error 14), traceback frame and line missed first (error 15).
-- 22 Oct 2026: concepts 25 and 26 (virtual environments, pip freeze, pinning); the concept-26 check leaked its answer and was rewritten (override 12, errata). Concepts 27 to 29 (`assert`, clause order, test discovery); `test_c` misclassified (error 17).
-- 22 to 23 Oct 2026: concept 30 (the learner built `runner.py`) and concept 31 (`finally` in the runner; message not as specified, error 18); concept 32 (pytest, `.FF.` verified) and concept 33 (`parametrize`; progress line cut short, error 19).
+- 8 to 11 Oct 2026: Python core language and classes taught (3.6); errors 10 to 13 logged; Money default `==` closed (identity); `__str__` practice passed unaided (negative cents not yet checked). Overrides 8, 10 and 11 recorded. This file was created from the handoff. Sub-topic title for concepts 14 onward: "Special methods, part 2: comparing objects across types".
+- 14 to 23 Oct 2026: concepts 16 to 33 (modules, exceptions, virtual environments, pip, tests, the hand-built runner, pytest, `parametrize`); per-concept results in 3.7, errors 14 to 19. The concept-26 check leaked its answer and was rewritten (override 12, errata).
 - 24 Oct 2026: the Exercise Rule written; the shop exercise (concepts 16 to 19) reviewed and passed; concepts 34 to 36 (reference counting, cycles, call by sharing); errors 20 to 22. The Exercise Rule revised (predictions and exercises never mixed). Exercise for 34 to 36 set; `memory.py` submitted, review open.
 - 24 Oct 2026: the learner connected `/Users/suhas/sde` (device "macbookair-lan"); all Project files and the folder re-ingested after a compaction. The topic index was cut into 29 parts with an index map and a progress file (Project `index/`, repo `gcp-lite/index/`); the repo's pending changes were committed on `gcp` (`22a742b`) and `gcp-lite/` added on `master` (uncommitted). Session handoff and this refreshed tracker written.
 - 25 Oct 2026: NPTEL 2026 courses (22) consolidated and distributed. 192 unified topics checked against the 29 topic files: 56 already covered, 74 extended, 62 added. New text (about 118 topic lines in existing parts, 12 new groups including the optional part 30 for corporate finance, marketing and learning analytics) was inserted without changing any original line, in the part files and in `Consolidated_Topic_Index_GCP.md`. New Python Core language sub-bullets (strings, parameters and scope, comprehensions and generators, functional style, I/O) are not yet taught. Map, progress file, handoff and this tracker updated. New groups: Classical AI and Classical computer vision (part 19), Generative models beyond autoregression (part 20), R for data science (part 05), Java and the JVM (part 07), IoT and constrained-device networking (part 09), Ethical hacking and Security management (part 14), Resource management, edge and cloud paradigms (part 16), and part 30.
