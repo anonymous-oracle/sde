@@ -19,7 +19,7 @@ Attach or connect `/Users/suhas/sde` so the tutor can read your files. Also atta
 | What | Where |
 |---|---|
 | Split curriculum index (30 parts, each a short rules file plus a topic list; the teaching method is one file, `00_learning_method.md`) | `gcp-lite/index/` in the repo and in the Project "GCP Lite" |
-| NPTEL 2026 additions: the 22 courses' layouts (`gcp-lite/nptel_courses_26.md`) and the consolidated, deduplicated topic list with source courses and the place of each topic in the index (`gcp-lite/nptel_consolidated_topics.md`). Their new topics are already inserted in the part files and the master index; part 30 (finance, marketing, learning analytics) is optional | `gcp-lite/` in the repo |
+| NPTEL 2026 additions (25 Oct 2026): the topics of 22 NPTEL courses (AI, ML, deep learning, computer vision, generative AI, LLMs, NLP, DSA, Python, Java, DBMS, OS, cloud, IoT, ethical hacking, cyber security and privacy, data science, corporate finance, digital marketing, learning analytics) were merged, deduplicated and inserted into the part files and the master index; new groups are listed in the index map. Part 30 (finance, marketing, learning analytics) is optional | `gcp-lite/index/` and the master index |
 | Map of every file | `index/00_index_map.md` |
 | Which part is current, and each part's status | `index/00_ingest_progress.md` (current part is **05**, Python and shell) |
 | Master copy of the whole index | `Consolidated_Topic_Index_GCP.md` at the repo root and in the Project |

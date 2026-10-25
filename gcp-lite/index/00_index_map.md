@@ -32,7 +32,6 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 | `learn-SKILL.md` | The tutoring skill: diagnose first, one scaffold and one question per turn, hold the line, no hidden answers | Start of a teaching stretch |
 | `claude/learning_handoff_and_tracker.md` | The handoff (Part A) and the tracker (Part B) | Resuming after a break |
 | `Rust_Track_AI_Infrastructure.md` | The Rust track (21 projects), which starts only after the first two or three Go groups are mastered | When Go is well under way |
-| `nptel_consolidated_topics.md` | The 22 NPTEL 2026 courses merged into one deduplicated topic list: each topic with its source courses, status (covered, extended, added) and where it sits in the index. Course layouts are in `nptel_courses_26.md` | When asking what the NPTEL courses add, or tracing an inserted topic to its source |
 | `pending_tracker.md` | The working record of overrides, retries, the resume point and the log. Refreshed 24 Oct 2026 through concept 36. Lives at the repo root as `pending_tracker.md` | Resuming, and when closing a part |
 
 ## Parts at a glance
@@ -479,7 +478,9 @@ Total: 30 parts, 226 topic groups, 1,869 top-level topic lines. A topic list is 
   - Corporate finance (8 topics)
   - Marketing and digital marketing (5 topics)
   - Learning analytics (6 topics)
-- Optional and supplementary: added from the NPTEL 2026 course list; taught on request, after the core engineering path. See `nptel_consolidated_topics.md`.
+- Optional and supplementary: added from the NPTEL 2026 courses; taught on request, after the core engineering path.
+
+**NPTEL 2026 additions (25 Oct 2026).** The topics of 22 NPTEL courses were merged, deduplicated and inserted into the existing groups or into new ones: Classical AI and Classical computer vision (part 19), Generative models beyond autoregression (part 20), R for data science (part 05), Java and the JVM (part 07), IoT and constrained-device networking (part 09), Ethical hacking and Security management (part 14), Resource management, edge and cloud paradigms (part 16), and part 30. Smaller additions sit in parts 03, 05, 08, 10, 11, 12, 14, 16, 19 and 20.
 
 ## Where to find common subjects
 
