@@ -36,6 +36,7 @@ Domain: Machine Learning, MLOps & Production ML System Design
   - Dynamic Bayesian networks; filtering; hidden Markov models as a special case
 - **Fuzzy logic**: fuzzy sets and membership functions; fuzzy operators and rules; fuzzy inference with fuzzification and defuzzification (centroid)
 - **Multi-agent systems**: agent communication and negotiation; coordination (contract net); web-based and mobile agents
+- **Robotics**: sensors and actuators; configuration space and motion planning; localization and mapping; the sense–plan–act loop; state estimation and control under uncertainty; learned manipulation and locomotion policies and their safety limits
 - **Ethics of AI**: humans and robots; robustness and transparency; data bias and fairness; accountability; privacy; human oversight
 - **Data-science problem typology**: descriptive, diagnostic, predictive and prescriptive questions; a guided solution framework from framing through data, model and evaluation to deployment
 
@@ -73,6 +74,18 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - **Regression in depth**: model assessment (R², adjusted R², residual plots, heteroscedasticity, leverage and influence); multiple regression and multicollinearity (variance inflation factor); variable and subset selection (best-subset, forward and backward stepwise, AIC and BIC)
 - **Computational learning theory**: hypothesis space and inductive bias; the PAC model; sample complexity for finite hypothesis classes; VC dimension and the growth function
 - **Feature selection and agreement**: filter, wrapper and embedded selection versus feature extraction; Cohen's kappa as agreement beyond chance
+- **Splines and basis expansions**: fixed basis functions (piecewise polynomials, B-splines) that turn a nonlinear fit into a linear one; knots and degrees of freedom; smoothing splines minimizing Σ(yᵢ − f(xᵢ))² + λ∫f''(t)² dt, whose solution is a natural cubic spline with knots at the data; the reproducing-kernel view
+- **Kernel smoothing**: local weighted averages with a kernel that decays with distance; the Nadaraya–Watson estimator; bandwidth as the bias–variance knob; local linear regression correcting boundary bias; kernel density estimation
+- **Robust regression and errors-in-variables**: Huber and bisquare losses that downweight outliers; least absolute deviations; the breakdown point; errors-in-variables, where noise in the predictor attenuates the least-squares slope by the reliability ratio σ²ₓ ÷ (σ²ₓ + σ²ᵤ)
+- **Model comparison and Bayes factors**: marginal likelihood as the evidence for a model; the Bayes factor P(D | M₁) ÷ P(D | M₂); Occam's factor penalizing flexible models; BIC as a large-sample approximation to the log evidence
+- **Spectral clustering**: a similarity graph (k-nearest-neighbour or Gaussian affinities); the graph Laplacian L = D − W; the first k eigenvectors as an embedding, followed by k-means; why it separates non-convex clusters; normalized cut
+- **Hierarchical clustering**: agglomerative merging under single, complete, average and Ward linkage; dendrograms and cutting at a height; O(n²) memory and the cost at large n; divisive clustering as the top-down reverse
+- **Gaussian processes**: a distribution over functions fixed by a mean function and a kernel; posterior mean and variance from the training covariance matrix; the marginal likelihood for fitting kernel hyperparameters; O(n³) exact inference and sparse approximations
+- **Undirected graphical models**: Markov random fields and factor graphs; pairwise potentials and the Gibbs form p(x) ∝ exp(−E(x)); conditional independence as graph separation; the Hammersley–Clifford theorem; pseudolikelihood as a tractable training surrogate
+- **Partition function**: Z = Σₓ exp(−E(x)) as the normalizer, and why summing over exponentially many states is intractable; the log-partition gradient identity ∂ log Z ÷ ∂θ = −E[∂E ÷ ∂θ], which turns maximum likelihood into moment matching; annealed importance sampling
+- **Ising model**: spins ±1 on a lattice with energy −Σ Jᵢⱼ sᵢsⱼ − Σ hᵢsᵢ; ferromagnetic versus frustrated couplings; the critical point kT ÷ J ≈ 2.269 of the two-dimensional square lattice; Gibbs sampling and mean-field approximations
+- **Probabilistic programming**: models written as ordinary programs with random choices and conditioned data; inference engines (Markov chain Monte Carlo, Hamiltonian Monte Carlo, variational inference) run on any such program; posterior predictive checks; Stan, PyMC and Pyro as examples
+- **Kalman filters**: the linear-Gaussian state-space model; predict and update steps with gain K = PHᵀ(HPHᵀ + R)⁻¹; the innovation; optimality among linear estimators under Gaussian noise; extended and unscented variants for nonlinear models; tracking as the canonical use
 
 ### Deep learning
 
@@ -94,6 +107,11 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - The perceptron learning rule and its convergence proof (the mistake bound R²/γ²); McCulloch–Pitts units; sigmoid neurons; universal approximation and the trade-off between thin deep and fat shallow networks
 - Backpropagation through time: unrolling, truncated BPTT, and the gates of LSTM and GRU cells as controlled additive memory
 - Visualizing convolutional networks: maximally activating patches, saliency maps and guided backpropagation; attention over image regions and hierarchical attention
+- **Bidirectional and deep RNNs**: a backward pass whose states are concatenated with the forward pass, so each position sees past and future context (offline tagging, not streaming generation); stacked recurrent layers whose outputs feed the next layer; gradient flow across depth and time
+- **GELU and Swish activations**: GELU(x) = x·Φ(x), each input weighted by its Gaussian cumulative probability, with the tanh approximation; Swish x·σ(βx), equal to SiLU at β = 1; smooth non-monotone dips below zero against ReLU's kink at zero; their use in transformer feedforward blocks
+- **Noise injection and parameter tying**: Gaussian noise on inputs, weights or activations as a regularizer, with input noise matching an L2 (Tikhonov) penalty to second order for small variance; tied parameters shared across positions or layers, as in convolutions and tied input and output embeddings; the drop in parameter count and its effect on generalization
+- **Lottery ticket hypothesis**: a randomly initialized dense network contains a sparse subnetwork that, retrained alone from its original initialization, matches the full network's accuracy; iterative magnitude pruning to find winning tickets; rewinding weights to an early iteration; the contested status of the claim at scale
+- **Continual learning**: learning a stream of tasks without forgetting earlier ones; the stability–plasticity trade-off; replay of stored examples; regularization that penalizes moving important weights (elastic weight consolidation's Fisher-weighted penalty); architectural isolation; average accuracy and forgetting as the measures
 
 ### Natural language processing foundations
 
@@ -118,6 +136,11 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - scikit-learn: the estimator API (`fit`, `transform`, `predict`); `Pipeline` and `ColumnTransformer`; `StandardScaler`, `MinMaxScaler`, `OneHotEncoder`, `SimpleImputer`, `PolynomialFeatures`; `train_test_split`, `cross_val_score`, `GridSearchCV`, `RandomizedSearchCV`; metrics and classification reports
 - PyTorch: tensors and autograd; `nn.Module` with `Linear`, `Embedding`, `Dropout`, `LayerNorm`; loss functions and optimizers; the training loop (forward, loss, backward, step, zero gradients); evaluation mode; devices
 - NLTK for tokenizers, stop words, stemmers and lemmatizers
+- **LightGBM**: histogram-binned gradient boosting with leaf-wise tree growth under a leaf cap; gradient-based one-side sampling and exclusive feature bundling for large data; early stopping, categorical features and feature importance; comparison with the boosted stumps built from scratch
+- **TensorFlow and Keras**: eager execution and `tf.function` graph tracing; Keras `Sequential` and functional models with compile, fit and callbacks; the explicit training loop compared with the PyTorch one; SavedModel as the serving format
+- **PySpark distributed processing**: the lazy DataFrame plan executed on an action; narrow versus wide transformations and the shuffle that wide ones trigger; partitioning and key skew; the DataFrame API and SQL over the same plan; MLlib pipelines
+- **Dask parallel arrays and dataframes**: lazy task graphs over chunked NumPy arrays and pandas dataframes; chunk size and partition counts; `compute()` triggering the scheduler; out-of-core work on one machine and scaling to a cluster
+- **Data engineering fundamentals**: row versus columnar file formats (CSV, JSON, Parquet) and their scan costs; ETL versus ELT; batch versus streaming ingestion; partitioning and idempotent loads with backfills; schema and quality checks at pipeline boundaries
 
 ### Specialised learning areas
 
@@ -132,6 +155,10 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - **Game theory and auctions**: equilibria; second-price and generalized second-price auctions; incentive compatibility; mechanism design
 - **Click models**: deep click-rate models and click-model research
 - **Reinforcement learning in detail**: policy evaluation as a linear system or by iteration; value iteration and policy iteration; passive model-based versus model-free evaluation; temporal-difference learning, Q-learning and SARSA; exploration versus exploitation
+- **n-step returns and eligibility traces**: the n-step return Gₜ⁽ⁿ⁾ = rₜ₊₁ + γrₜ₊₂ + … + γⁿ⁻¹rₜ₊ₙ + γⁿV(sₜ₊ₙ), interpolating between one-step TD and Monte Carlo; the λ-return as a weighted average of n-step returns; the backward view with accumulating and replacing traces; TD(λ) and Sarsa(λ)
+- **Monte Carlo methods for control**: action values estimated by averaging complete-episode returns, first-visit or every-visit; exploring starts versus ε-soft policies; generalized policy iteration; off-policy Monte Carlo with importance-sampling ratios, ordinary versus weighted
+- **Planning with learned models (Dyna)**: learning a model from real transitions and replaying simulated transitions to update values (Dyna-Q); the ratio of planning steps to real steps; prioritized sweeping; model error as the failure mode
+- **Function approximation in reinforcement learning**: a parametric value estimate trained by semi-gradient TD; the mean-squared value error objective; linear features and tile coding; the deadly triad of function approximation, bootstrapping and off-policy updates that can diverge; semi-gradient Sarsa for control
 
 ### Classical computer vision and geometry
 
@@ -166,6 +193,8 @@ Domain: Machine Learning, MLOps & Production ML System Design
   - The K-armed bandit; regret R_T = Tμ* − E[Σ rₜ]
   - Greedy lock-in; ε-greedy's linear regret; UCB1 (x̄ᵢ + √(2 ln t ÷ nᵢ)) and Thompson sampling with logarithmic regret; the Lai–Robbins lower bound
   - Contextual and cascade bandits; offline replay evaluation; policy constraints
+  - Adversarial bandits: rewards chosen by an adversary with no fixed distribution; regret against the best fixed arm in hindsight; exponential-weight algorithms (Exp3) with importance-weighted reward estimates; regret of order √(KT log K)
+  - Pure exploration: identifying the best arm at a fixed confidence or within a fixed sampling budget; successive elimination and sample-complexity bounds; how it differs from regret minimization, where every pull counts
   - A/B test versus bandit versus feature flag
 - **Forecasting, ETA, demand and availability**
   - Trend, seasonality and holiday decomposition; moving averages, exponential smoothing, autoregressive intuition; backtesting
@@ -191,7 +220,7 @@ Domain: Machine Learning, MLOps & Production ML System Design
   - Survival analysis and churn hazard; censoring
   - Customer lifetime value: CLV = m r ÷ (1 + d − r) for constant retention r, margin m and discount rate d
   - Lookalike audiences; send time under frequency caps; notification fatigue
-- **Causal inference**: causal graphs, instrumental variables, difference in differences, synthetic control; propensity weighting; observational bias
+- **Causal inference**: causal graphs and structural causal models (structural equations, interventions, counterfactuals); front-door adjustment for unobserved confounders; instrumental variables, difference in differences, regression discontinuity and synthetic control; propensity weighting; overlap (positivity) and its failure; sensitivity analysis for unmeasured confounding; observational bias
 - **Marketplace pricing** as an applied family
 
 ### MLOps
@@ -212,6 +241,15 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - **Governance and responsible ML**: privacy and PII minimization; consent, retention and deletion; bias and fairness; explanations; human-in-the-loop review and human override; audit logs; non-destructive, undoable AI actions; abuse resistance and red-team tests; data-loss prevention on logs
 - **Scale and cost**: hot keys and fan-out; approximate retrieval; request batching; concurrency limits; accelerators as remote services; cost per prediction and per successful decision; cost at ten times the traffic
 - **ML platforms**: shared features, training, registry, serving and monitoring across teams; platform-enforced point-in-time joins; measured by time to train, failed deploys, skew incidents and cost per training hour
+- **TensorFlow Extended (TFX)**: a production pipeline of components (ExampleGen, StatisticsGen, SchemaGen, ExampleValidator, Transform, Trainer, Evaluator, Pusher); the metadata store recording artifact lineage; orchestration by Apache Beam, Apache Airflow or Kubeflow Pipelines
+- **TensorFlow Data Validation (TFDV)**: per-feature statistics; schema inference from training data; validation of new batches against that schema to flag missing values, unseen categories and out-of-range values; training–serving skew checks
+- **Kubeflow Pipelines**: pipelines as directed acyclic graphs of containerized components, each run as a pod on Kubernetes with declared inputs and outputs; parameters, step caching and run history; Vertex AI Pipelines executing Kubeflow pipeline definitions
+- **MLflow**: runs with parameters, metrics and artifacts; a tracking server backed by a database and an artifact store; autologging; the model registry with versions, aliases and lineage back to the run
+- **Weights & Biases experiment monitoring**: runs and live metric dashboards; sweeps for hyperparameter search; versioned artifacts with lineage; reports and team access; hosted versus self-hosted trade-offs against MLflow
+- **Evidently drift monitoring**: reference and current windows compared column by column with drift tests (Kolmogorov–Smirnov for numeric features, chi-square for categorical) and PSI; target and prediction drift reports; threshold alerts wired to a runbook
+- **Custom containers for serving**: a model image carrying its runtime and serving code, exposing a health route and a predict route on the configured port; `gcloud ai models upload` with `--container-image-uri`, `--container-health-route` and `--container-predict-route`; `gcloud ai endpoints deploy-model` to put it behind an endpoint
+- **Multi-model endpoints**: several models deployed to one endpoint with a traffic split across the deployed models; `gcloud ai endpoints deploy-model` with `--traffic-split` and `gcloud ai endpoints undeploy-model`; compute shared against isolation from noisy neighbours; rollback of one model by shifting its share of the split
+- **The human side of ML**: team roles across data scientists, engineers and product owners; ownership of a production model with on-call and runbooks; setting stakeholder expectations for error costs and uncertainty; user-facing design for model mistakes (fallbacks, feedback capture); labelling workforce quality and annotator agreement; responsible-AI review as a team process
 
 ### Exercises
 
@@ -230,8 +268,12 @@ Domain: Machine Learning, MLOps & Production ML System Design
 - A drift detector with OpenTelemetry metrics, data-quality alerts and a runbook drill
 - Governance tooling: policy checks, red-team tests, reversible actions, an audit log and a review-dashboard API
 - A batching, rate-limiting and caching layer comparing exact and approximate retrieval, with cost per successful decision
+- From scratch: a Gaussian process regressor with an RBF kernel and marginal-likelihood fitting, and spectral clustering from a graph Laplacian's eigenvectors, each checked against the library's output on the same data
+- From scratch: TD(λ) with accumulating eligibility traces and Dyna-Q on a gridworld, comparing steps to goal against model-free Q-learning alone
+- From scratch: an MLflow-tracked training pipeline logging parameters, metrics and artifacts for each run, then a drift report comparing a reference window with a live window by PSI and a Kolmogorov–Smirnov test
 - **Reasoning drills**
   - Predict the bias–variance effect of a model change before training it
   - Derive a loss gradient by hand and check it numerically
   - Find the leakage in a feature set before training
   - Reproduce one result of a classic machine-learning paper at toy size and critique its evaluation
+  - For a stated causal graph, name the adjustment set that identifies the effect and say whether back-door or front-door adjustment applies; name the assumption (positivity, or no unblocked confounding) that would break it
