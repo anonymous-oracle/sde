@@ -14,19 +14,27 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
   - Byte-pair encoding as a greedy dictionary compressor: training (count pairs, merge the most frequent, record merges) and encoding in learned merge order; special tokens; the round-trip property
   - WordPiece (likelihood-scored merges, continuation markers, used by BERT); SentencePiece (language-independent tokenization of raw text with whitespace as a symbol, by BPE or a unigram language model)
   - Why token counts vary by language, code and numbers; tokens as the unit of price, limits and latency
+  - Tokenizer pipeline stages: normalizer (Unicode and case rules), pre-tokenizer (splitting text into word-like units before the model), tokenization model (BPE, WordPiece or Unigram), post-processor (special tokens, truncation and padding) and decoder back to text; each stage changes the offsets that later stages depend on
+  - Word-to-subword label alignment: word-level NER or POS labels propagated to subword pieces through word IDs; labelling the first piece of each word and masking the rest in the loss; answer spans mapped from character offsets to token positions
+  - Tokenizer and checkpoint mismatch: a checkpoint is valid only with the exact vocabulary, merge rules, normalizer and special-token IDs it was trained with; a mismatch silently remaps IDs, so the model answers fluently from the wrong tokens; checked by round-trip tests against the tokenizer files shipped with that checkpoint
 - **N-gram and bigram models**: counting, smoothing, sampling; the same model as a trained linear layer
+- **Statistical alignment and machine translation**: the noisy-channel decomposition, choosing the English sentence e that maximizes P(f | e)P(e), with a language model for fluency; IBM word-alignment models estimated by expectation–maximization over sentence pairs; phrase tables and beam-search decoding; the pre-neural baseline that sequence-to-sequence translation replaced
 - **The Transformer**
   - Attention as a soft lookup table: queries, keys and values as learned projections of each token; a worked Q, K, V example
   - Scaled dot-product attention softmax(QKᵀ ÷ √d_k)V and why √d_k keeps logits at unit variance
   - Self-attention versus cross-attention (queries from the decoder, keys and values from the encoder output, a target × source weight matrix)
   - Multi-head attention: h heads of width d_k = d_model ÷ h, concatenated and projected by Wᴼ
+  - Multi-query and grouped-query attention: query heads sharing one key–value head (multi-query) or one per group of query heads (grouped-query); the key–value cache shrinks by the sharing factor, with a small quality cost at moderate sharing
   - Token embeddings; positional information by sinusoidal encodings (deterministic, unique per position, offsets as linear maps, extending beyond trained lengths) or by learned position tables
   - The causal mask: a lower-triangular mask setting future positions to −∞ before the softmax
   - The residual stream with add-and-norm; layer normalization; the position-wise feed-forward block with inner width about 4 × d_model
+  - RMS normalization and GLU variants: RMSNorm rescales by the root mean square without subtracting the mean, saving one pass; gated linear units replace the feed-forward's single activation with an elementwise product of two projections, SwiGLU using a Swish activation; both are standard in LLaMA-family decoders
   - The autoregressive loop: begin- and end-of-sequence tokens, each output fed back as input
+  - Unembedding (projection to vocabulary logits): the final linear map from d_model to the vocabulary size, one logit per token; softmax over the logits gives the next-token distribution; often tied to the input embedding matrix so one table serves both ends
   - Encoder-only (BERT), decoder-only (GPT) and encoder–decoder (T5, BART) architectures; the same blocks over image patches and audio (Vision Transformer, Whisper); pre-training as learning the projections
   - The context window as the fixed length of the position table; O(n²d) attention cost per layer
   - The key–value cache during generation
+  - IO-aware attention kernels (FlashAttention): attention computed in tiles held in on-chip memory with an online softmax, so the n × n score matrix is never written to high-bandwidth memory; exact results with memory linear in n rather than quadratic; the gain comes from cutting memory traffic, not arithmetic
 - **Model lineage and benchmarks**
   - BERT: masked language modelling over 15% of tokens and next-sentence prediction; fine-tuning for downstream tasks; the GLUE tasks (CoLA, SST-2, MRPC, STS-B, QQP, MNLI, QNLI, RTE, WNLI)
   - GPT-1 pre-training then fine-tuning; GPT-2 zero-shot task transfer measured on LAMBADA; T5 text-to-text training by span corruption on C4; BART as a denoising autoencoder
@@ -39,6 +47,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
   - Repetition, frequency and presence penalties; stop sequences and maximum length; seeded reproducibility
   - Why sampling makes answers vary and lets a model state falsehoods fluently
 - **Scaling**: training compute ≈ 6ND FLOPs; power-law loss in parameters, data and compute; compute-optimal training (Chinchilla: 70B parameters on 1.4T tokens, about 20 tokens per parameter)
+- **Distributed training**: memory for weights, gradients and optimizer states set against one device's memory; data parallelism with gradients all-reduced each step; tensor parallelism splitting each matrix multiply across devices and pipeline parallelism splitting layers into stages fed with micro-batches; optimizer-state, gradient and parameter sharding that removes replicated copies; the communication volume and pipeline bubble each strategy pays
 - **Alignment**: instruction tuning by supervised fine-tuning, a reward model from pairwise human preferences and PPO with a KL penalty for drifting from the tuned model (RLHF, the InstructGPT recipe); Constitutional AI and AI feedback against written principles
 - **Frontier model behaviour**: thinking before answering (adaptive thinking controlled by an effort setting); multimodal inputs (images and PDFs); latency ≈ time to first token + output tokens ÷ throughput; larger models are slower per token; streaming changes perceived, not total, latency
 - **Long context**: the hard limit of the window versus degraded retrieval inside it ("lost in the middle"); quality falling as irrelevant context grows
@@ -51,6 +60,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
 - Full fine-tuning versus parameter-efficient fine-tuning; memory for weights, gradients and optimizer states; one full copy of the model per task
 - Cheaper full fine-tuning: layer-wise, block-wise and progressive unfreezing; tuning only the top blocks with embeddings and lower blocks frozen
 - Fine-tuning hyperparameters: a peak learning rate near 1e-5 to 2e-5 for full fine-tuning and 1e-4 to 2e-4 for LoRA; one or two epochs; a few percent of warmup with cosine decay; early stopping on held-out task and general evaluations, not on training loss
+- **Mixed precision training**: half-precision forward and backward passes with float32 master weights and loss scaling; float16's narrow exponent overflowing near 65,504 while bfloat16 keeps float32's range at lower mantissa precision; memory and throughput gains on matrix units against underflow in small gradients
 - **Catastrophic forgetting**
   - Why it happens: knowledge superimposed in shared weights, a narrow gradient signal, drift away from the pretrained optimum, and no replay of old data
   - Measuring it: a fixed general suite (reasoning, code, mathematics, instruction following) run before and after every fine-tune, since task metrics rise while general ability falls silently
@@ -76,8 +86,11 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
   - Cost: longer sequences in every layer; refinements that choose shorter prompts through a router (SMoP), vary prefix length by layer with gates (adaptive prefix tuning), generate the prompt from each input (instance-dependent prompts), or insert prompts only at selected layers
 - Training data as instruction–response pairs in the model's chat template; held-out evaluation of the tuned model against the base model for gains and regressions
 - Weight quantization (8-bit, 4-bit) for inference and its accuracy cost
+- **Pruning**: unstructured magnitude pruning zeroing the smallest weights and structured pruning removing whole heads, neurons or blocks; sparsity traded against accuracy on held-out tasks; unstructured zeros give no speed-up on dense hardware unless the kernels exploit them; fine-tuning after pruning to recover accuracy
 - Knowledge distillation: a small student trained on a large teacher's outputs or soft labels
+- **Direct preference optimization (DPO)**: the RLHF objective of the alignment bullet rewritten as a classification loss on preference pairs, with a frozen reference model as the anchor; loss −log σ(β[(log π(y_w | x) − log π_ref(y_w | x)) − (log π(y_l | x) − log π_ref(y_l | x))]), where y_w is the preferred and y_l the rejected response; no reward model and no PPO loop, at the cost of depending on pair quality; β sets how far the policy may move from the reference
 - Libraries: Hugging Face Transformers, PEFT, bitsandbytes and TRL
+- **Pipelines abstraction**: a pipeline as preprocessing, batching, the model's forward pass, postprocessing and output formatting in one call; what it hides (tokenizer choice, truncation, padding, device placement, generation defaults) and the same steps written out by hand against the model and tokenizer classes before the convenience is trusted
 
 ### Multimodal models
 
@@ -122,6 +135,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
 ### Generative models beyond autoregression
 
 - **Generative modelling**: density estimation versus sampling; explicit versus implicit models; a taxonomy of autoregressive, latent-variable, adversarial, flow and diffusion models
+- **Representation and manifold learning**: the manifold hypothesis, that high-dimensional data lie near a low-dimensional manifold; undercomplete, sparse and denoising autoencoders as learned encoders and decoders; latent codes as coordinates on the manifold; nonlinear embeddings compared with linear PCA
 - **Variational autoencoders**: the latent-variable model, the ELBO and the reparameterization trick; β-VAE and disentanglement; VQ-VAE with a discrete codebook and the straight-through estimator; posterior collapse
 - **Generative adversarial networks**
   - The minimax game; the optimal discriminator and the Jensen–Shannon divergence; the non-saturating loss

@@ -102,6 +102,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - Per-user identity carried through MCP so actions are attributable
 - Enterprise data questions: retention, training on inputs, processing location, compliance reports; minimizing personal data before sending
 - Egress controls and service perimeters removing the exfiltration leg
+- **Structural boundary checking**: untrusted input and tool results wrapped in explicit delimiters that the system prompt names as data, not instructions; the output checked in code against its expected structure and boundary markers, so a reply that breaks out of its schema is rejected; guard prompts and exception paths for the cases the checks refuse
 
 ### Evaluation, testing and debugging
 
@@ -137,6 +138,8 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
   - vLLM: PagedAttention storing the key–value cache in fixed-size blocks to cut fragmentation; continuous batching; prefix caching; an OpenAI-compatible server
   - GPU memory budgeting for weights plus key–value cache; throughput versus latency
   - Asynchronous API front ends (FastAPI) streaming tokens; slim container images with weights mounted rather than baked in
+- **Speculative decoding**: a small draft model proposes k tokens, and the target model checks all k in one forward pass; each proposal is accepted with probability min(1, p_target ÷ p_draft), and a rejected position is resampled from the normalized residual, so the output distribution equals the target's exactly; the speed-up set by the acceptance rate and the draft-to-target cost ratio, largest at small batch sizes and shrinking as batches fill the hardware
+- **Ray distributed AI workloads**: tasks as stateless remote functions and actors as stateful remote objects, both scheduled across a cluster against declared CPU, GPU and memory resources; an object store passing large results between tasks by reference; the Ray libraries for data preprocessing, distributed training, tuning and model serving; failures handled by task retry and actor restart, with the cost of serializing large arguments
 - Fallbacks (smaller model, cached answer, human) and graceful degradation; latency budgets split across retrieval, model and tools; streaming for perceived latency
 - Prototype → pilot → production and what each adds (evals, monitoring, cost controls, on-call)
 - Model deprecation and migration: evals on the new model, a flag to switch back
@@ -188,6 +191,9 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - An LLM routing service choosing agents from a shortlist, with A2A sample agents
 - An authenticated remote MCP server; Claude Code run headless in CI
 - A customer engagement simulated from discovery conversation to scoped design document and hand-off
+- From scratch: a transformer block with grouped-query attention and RMS normalization in NumPy, with the key–value cache size checked by hand against the formula for a given width, head count and context length
+- From scratch: speculative decoding with a draft model and a target model over a toy vocabulary, checking by sampling that the output distribution matches the target's and measuring the acceptance rate
+- From scratch: DPO on a toy preference set, with the loss written out by hand, the reference-model anchor and β swept to show how the preferred margin and the drift from the reference move
 - **Reasoning drills**
   - Estimate tokens, latency and cost for a workload before calling a model
   - Predict how a prompt or retrieval change moves an evaluation metric, then measure it with intervals

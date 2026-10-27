@@ -45,6 +45,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
 - **Training retriever and generator together**: the right documents as a latent variable, marginalized over the top-k retrieved (the original RAG and REALM formulations) in an alternation resembling expectation–maximization; contrastive alignment loss with hard negatives; robustness training that injects irrelevant passages so the generator learns to ignore them; in practice, separate pre-training followed by joint fine-tuning
 - Evaluation: context precision and context recall for retrieval; faithfulness (claims supported by the context) and answer relevancy; RAGAS and TruLens
 - Ingestion by an idempotent, event-triggered embedding worker; scheduled re-embedding
+- **LlamaIndex RAG pipelines**: documents loaded and split into nodes that carry metadata; ingestion pipelines applying transformations and caching their outputs; an index over nodes, with retrievers, node postprocessors and a query engine that pairs retrieval with a response synthesizer; what the framework hides about chunking, prompts and scores, and the hand-built pipeline against which its defaults are measured on the same evaluation set
 
 ### Model APIs
 
@@ -76,6 +77,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
 ### Prompt, context and output engineering
 
 - **Prompt engineering**: prompt elements (instruction, context, input data, output indicator); clear, direct instructions with the context a new colleague would need; role prompting and rules in the system prompt; zero-shot versus few-shot (multishot) examples, varied and tagged; XML tags separating instructions, data and examples; reasoning before answering; prompt chaining; long documents before the question; saying what to do rather than what not to do
+- **System routing tokens**: the system prompt and the user turns separated by role markers in the chat template, so that instructions and data arrive in distinct, model-recognised positions; the instruction hierarchy that resolves conflicts between them; guard prompts placed in the system role, and the limits of role separation against instructions injected through data
 - **Reasoning techniques**
   - Chain of thought: few-shot reasoning exemplars and zero-shot "think step by step"; Auto-CoT (clustering questions, then sampling generated demonstrations)
   - Self-consistency: a majority vote over sampled reasoning paths
