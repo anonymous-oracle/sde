@@ -12,6 +12,8 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - PDF versus DOCX versus HTML; probing for a text layer before OCR (Tesseract over rendered pages) for scans
   - Tables extracted as HTML or Markdown (pdfplumber, Camelot); layout-aware parsers (Unstructured, Docling, GROBID, document-AI services, vision-language models)
   - HTML boilerplate removal (BeautifulSoup versus readability-style extractors); metadata captured with each chunk
+  - Deduplication before indexing: exact duplicates found by hashing normalized text; near-duplicates found by MinHash signatures banded by locality-sensitive hashing, where the fraction of matching signature positions estimates the Jaccard similarity of two documents' shingle sets
+  - Raw corpus forms and the contract each stage expects: raw text, tokenized text, sentence-segmented text and annotated corpora with token-level labels in CoNLL-style columns, each the input of the next stage
 - **Chunking**
   - Fixed-size token windows with 10–20% overlap; sentence and paragraph boundaries
   - Structure-aware splitting by headings, clauses or code syntax trees; recursive splitters
@@ -19,8 +21,8 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - Hierarchical parent–child chunks: retrieve small, return the larger parent
   - Starting near a few hundred tokens and tuning by evaluation
 - Contextual retrieval: prepending a generated description of each chunk's place before embedding and indexing
-- **Query transformation**: rewriting; follow-up questions made standalone from the conversation; multi-query expansion; HyDE (embedding a hypothetical answer); step-back questions; request shaping before retrieval
-- **Query routing**: rules and regular expressions; embedding similarity to route profiles; trained classifiers; LLM routers returning JSON; hybrid waterfalls from cheap to expensive; routing among data sources, models and workflows, prompts and indexes
+- **Query transformation**: rewriting; follow-up questions made standalone from the conversation; multi-query expansion; HyDE (embedding a hypothetical answer); step-back questions; request shaping before retrieval; Rocchio relevance feedback, q′ = αq + β·mean(judged-relevant document vectors) − γ·mean(judged-non-relevant document vectors), moving the query toward relevant passages and away from irrelevant ones
+- **Query routing**: rules and regular expressions; embedding similarity to route profiles; trained classifiers; LLM routers returning JSON; hybrid waterfalls from cheap to expensive; routing among data sources, models and workflows, prompts and indexes; per-source isolation, where the router checks each source's access rules for the requesting user before any query is sent, so that an index the user may not read is never searched and results from different sources are never merged across a permission boundary; enterprise assembly of one index per source system behind one routed entry point
 - Two-stage retrieval: hybrid search for a shortlist, then cross-encoder reranking
 - **Citations and provenance**
   - Inline citation by prompting; structured tool output forcing exact quotes; post-hoc attribution by entailment (NLI); provenance carried in agent state
@@ -31,7 +33,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - Generation: hallucination despite retrieval, conflicts between retrieved and parametric knowledge, wrong attribution
   - Silent pipeline failures: empty chunks from scanned PDFs, missing query and passage prefixes, an L2 index over a cosine-trained model, a lost ID-to-text map
 - **Variants**: stateless retrieval; conversational retrieval with history-aware rewriting; agentic retrieval in observe–think–act loops; Chain-of-RAG (retrieval chains learned by rejection sampling and decoded greedily, best-of-N or by tree search)
-- Permissions enforced at retrieval time as role-based metadata filters inside the vector store
+- Permissions enforced at retrieval time as role-based metadata filters inside the vector store; a corpus access contract recording for each document its source system, version and the groups allowed to read it, copied into every chunk's metadata at indexing time so that the filter is checked before any passage reaches the prompt
 - **Multimodal RAG**
   - Retrieved content as images, tables, charts or whole pages, because the answer often sits in a figure that text extraction discards
   - Image search: text-to-image and image-to-image over a shared embedding space, on the same approximate-nearest-neighbour indexes as text; weak on compositional and fine-grained queries
@@ -46,6 +48,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
 - Evaluation: context precision and context recall for retrieval; faithfulness (claims supported by the context) and answer relevancy; RAGAS and TruLens
 - Ingestion by an idempotent, event-triggered embedding worker; scheduled re-embedding
 - **LlamaIndex RAG pipelines**: documents loaded and split into nodes that carry metadata; ingestion pipelines applying transformations and caching their outputs; an index over nodes, with retrievers, node postprocessors and a query engine that pairs retrieval with a response synthesizer; what the framework hides about chunking, prompts and scores, and the hand-built pipeline against which its defaults are measured on the same evaluation set
+- **Abstention**: a refusal to answer, triggered by a retrieval score threshold or by a verifier that finds no retrieved passage supporting the answer, with the threshold set on labelled unanswerable questions; selective prediction judged by accuracy at each coverage level, the fraction of questions answered, because abstaining on everything is trivially precise
 
 ### Model APIs
 
@@ -56,7 +59,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - Streaming events: `message_start`, `content_block_start`, `content_block_delta` (`text_delta`, `input_json_delta`), `content_block_stop`, `message_delta`, `message_stop`, `ping`, and mid-stream `error` events
   - Error types: 400 `invalid_request_error`, 401 `authentication_error`, 402 `billing_error`, 403 `permission_error`, 404 `not_found_error`, 409 `conflict_error`, 413 `request_too_large`, 429 `rate_limit_error`, 500 `api_error`, 504 `timeout_error`, 529 `overloaded_error`; request IDs
   - Retrying 429, 529 and 5xx with exponential backoff and full jitter honouring `retry-after`; never retrying 400, 401, 403 or 413
-  - Rate limits per organization tier and per model, reported in response headers; spend limits
+  - Rate limits per organization tier and per model, reported in response headers; spend limits; requests, input tokens and output tokens per minute as three separate limits, each enforced as a token bucket that refills continuously, so that a long prompt can exhaust the input-token limit while request capacity remains; a 429 response carrying a retry-after delay
   - A cost calculator from `usage` and a configurable price table
 - **The SDKs**: Python, TypeScript and Go SDKs; typed requests, responses and errors; stream helpers that assemble the final message; built-in retries (two by default) and timeouts
 - **Request anatomy on current models**
@@ -93,7 +96,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
 - **Mode collapse and verbalized sampling**: preference tuning sharpening outputs toward the most typical answer; asking for several responses with stated probabilities to recover diversity
 - **Prompt compression**: extractive selection, summarization and token-level pruning; LLMLingua (a budget controller, iterative token-level compression scored by a small model, distribution alignment); LLMLingua-2 (token classification trained on distilled compression data)
 - **Context engineering**: the context window as a budget; just-in-time retrieval through tools versus loading everything; compaction of old turns; memory written and read across sessions; subagents returning summaries; stable prompt order to keep caches hitting; conversation state in an application-owned store with retention rules
-- **Output handling**: structured outputs constrained by JSON Schema; constrained decoding that masks tokens a grammar forbids; strict tool definitions; validating anyway; detecting truncation and refusal from `stop_reason` before parsing; one repair-and-retry then visible failure; prompt versions recorded in every log line
+- **Output handling**: structured outputs constrained by JSON Schema; constrained decoding that masks tokens a grammar forbids; strict tool definitions; validating anyway; detecting truncation and refusal from `stop_reason` before parsing; one repair-and-retry then visible failure; prompt versions recorded in every log line; exception paths for each check that can refuse (a schema violation, a refusal, truncation, a failed tool call), each a typed failure routed to a named fallback such as a retry, a cached answer or a visible error, never a silent pass-through
 
 ### Tools and the Model Context Protocol
 

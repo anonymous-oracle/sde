@@ -96,18 +96,18 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - The lethal trifecta: private data, untrusted content and an exfiltration channel in one agent; removing one leg
 - Least-privilege tools; sandboxing (no network, one directory); human approval before irreversible actions
 - System prompts as guardrails (scope, refusal rules, output limits); input and output guardrail classifiers and their false-positive cost
-- Hooks as deterministic enforcement; staged rollouts, feature flags and kill switches
+- Hooks as deterministic enforcement; staged rollouts, feature flags and kill switches; a flag read at request time, percentage rollout by hashing the user or tenant ID into buckets so that each user keeps one variant across requests, and a kill switch whose default value is the safe path
 - Handling refusals in code
-- API keys scoped to workspaces with spend limits; rotation; no keys in browsers or mobile apps; keys in a secret manager
+- API keys scoped to workspaces with spend limits; rotation; no keys in browsers or mobile apps; keys in a secret manager; keys shown once and stored only as a SHA-256 hash, which suffices for random high-entropy keys unlike low-entropy passwords; a non-secret key prefix stored in clear to find the record, after which the hash is compared in constant time
 - Per-user identity carried through MCP so actions are attributable
 - Enterprise data questions: retention, training on inputs, processing location, compliance reports; minimizing personal data before sending
 - Egress controls and service perimeters removing the exfiltration leg
-- **Structural boundary checking**: untrusted input and tool results wrapped in explicit delimiters that the system prompt names as data, not instructions; the output checked in code against its expected structure and boundary markers, so a reply that breaks out of its schema is rejected; guard prompts and exception paths for the cases the checks refuse
+- **Structural boundary checking**: untrusted input and tool results wrapped in explicit delimiters that the system prompt names as data, not instructions; the output checked in code against its expected structure and boundary markers, so a reply that breaks out of its schema is rejected; guard prompts and exception paths for the cases the checks refuse; the instruction hierarchy as a fixed priority order (system prompt, then developer and user turns, then tool results and retrieved text, which carry data but no instruction authority), so that a conflict resolves toward the higher level
 
 ### Evaluation, testing and debugging
 
 - Success criteria agreed before building: specific, measurable, tied to business outcomes (accuracy, latency, cost per task, refusal rate)
-- Output quality versus system performance; golden datasets with hard and adversarial cases
+- Output quality versus system performance; golden datasets with hard and adversarial cases; task-specific harnesses: per-class precision, recall and macro-averaged F1 for classification; entity-level span F1 for NER, where a predicted entity counts only when its boundaries and type both match the gold; reference-based metrics for generation
 - Code-graded, model-graded and human grading; agreement among humans and graders by Cohen's κ, Fleiss' κ and Krippendorff's α
 - **Reference-based text metrics**
   - Word-overlap precision and recall; ROUGE-N and ROUGE-L (longest common subsequence, optional stemming)
@@ -122,7 +122,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
   - Validation against humans; position, length and self-preference biases and their controls
 - **Factuality and hallucination detection**: entailment (NLI) scoring against sources; importance-weighted atomic-fact scoring; groundedness checks against retrieved context; agreement across samples; real-time output filters
 - Pass rates as binomial proportions with Wilson score intervals; sample size n ≈ 1.96² p(1 − p) ÷ E² (at most 385 for E = 0.05)
-- Comparing prompts or models on the same items with McNemar's test χ² = (b − c)² ÷ (b + c)
+- Comparing prompts or models on the same items with McNemar's test χ² = (b − c)² ÷ (b + c); Pearson's chi-square test over a contingency table, χ² = Σ (O − E)² ÷ E with expected counts E = row total × column total ÷ N and (r − 1)(c − 1) degrees of freedom, for comparing proportions across independent groups
 - Regression suites in CI on every prompt or model change; offline golden sets before release, A/B tests and feedback after
 - Systematic debugging: reproduce with the recorded request; read `stop_reason`, `usage`, raw blocks, tool calls and results before touching the prompt
 - Common failures: silent truncation, malformed tool calls, misread tool results, refusals, context overflow, caches that never hit, retry storms
@@ -133,10 +133,10 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - Synchronous versus asynchronous calls; queues for work that can wait
 - Caching at three levels: prompt caching, response caching, retrieval caching
 - **Semantic caching**: similarity-threshold lookup as a precision decision set from labelled same/different question pairs, biased high because a false hit costs more than a miss; savings as hit rate × cost per call; keys including tenant, permission scope, prompt version and model; expiry when sources change
-- **The LLM (AI) gateway**: authentication and per-team keys, rate limits and spend budgets in tokens, throttling and fallback models, failover across models and providers, model cascades, logging with redaction, guardrail hooks, enforcement of pinned model IDs
+- **The LLM (AI) gateway**: authentication and per-team keys, rate limits and spend budgets in tokens, throttling and fallback models, failover across models and providers, model cascades, logging with redaction, guardrail hooks, enforcement of pinned model IDs; a token budget as a counter debited per tenant and window by the input and output tokens of each call, checked before the call against the estimated cost from token counting, and refusing or degrading when the remaining budget cannot cover the call
 - **Self-hosted model serving**
   - vLLM: PagedAttention storing the key–value cache in fixed-size blocks to cut fragmentation; continuous batching; prefix caching; an OpenAI-compatible server
-  - GPU memory budgeting for weights plus key–value cache; throughput versus latency
+  - GPU memory budgeting for weights plus key–value cache; throughput versus latency; the batch size that fits set by the memory left after weights, each sequence's key–value cache growing with its length; cost per token = hourly GPU price ÷ (tokens per second × 3600), with tokens per second rising with batch size until the hardware saturates; device maps placing whole layers on different GPUs, which run one after another, so that the added devices add memory but no speed for a single request
   - Asynchronous API front ends (FastAPI) streaming tokens; slim container images with weights mounted rather than baked in
 - **Speculative decoding**: a small draft model proposes k tokens, and the target model checks all k in one forward pass; each proposal is accepted with probability min(1, p_target ÷ p_draft), and a rejected position is resampled from the normalized residual, so the output distribution equals the target's exactly; the speed-up set by the acceptance rate and the draft-to-target cost ratio, largest at small batch sizes and shrinking as batches fill the hardware
 - **Ray distributed AI workloads**: tasks as stateless remote functions and actors as stateful remote objects, both scheduled across a cluster against declared CPU, GPU and memory resources; an object store passing large results between tasks by reference; the Ray libraries for data preprocessing, distributed training, tuning and model serving; failures handled by task retry and actor restart, with the cost of serializing large arguments
@@ -150,6 +150,11 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
   - Drift in hosted-model systems: input-mix shift, provider model changes, stale corpora
   - The feedback flywheel: thumbs, edits and escalations turned into golden-set cases under privacy rules
   - SLOs and error budgets for latency, quality and cost; per-tenant budgets and quotas; kill switches
+- **Roofline performance model**
+  - Arithmetic intensity I = FLOPs ÷ bytes moved to and from memory; a kernel's attainable throughput is min(peak compute, I × memory bandwidth), the two roofs meeting at the ridge point I* = peak FLOP/s ÷ bandwidth
+  - Prefill, processing the whole prompt at once, is a large matrix–matrix product with high arithmetic intensity, so it is compute-bound; decode produces one token per step, reading all the weights and the key–value cache for little arithmetic, so it is memory-bound at small batch sizes
+  - Batching raises the arithmetic intensity of decode because one read of the weights serves every sequence in the batch, so throughput rises with batch size until the compute roof is reached
+  - Placing a measured serving run under the roof it sits beneath: the gap to that roof is the headroom left for kernel or scheduling work
 
 ### The forward-deployed engineer's craft
 
