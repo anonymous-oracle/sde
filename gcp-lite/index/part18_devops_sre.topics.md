@@ -111,8 +111,10 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
 - Composed availability of services
 - Toil: definition, measurement and budgeting
 - Incident management and on-call
+- AIOps: correlating a trace, the alert it fired and the surrounding signals into one incident note; statistical anomaly detection and its false-positive cost; the note states its evidence and confidence, and a person confirms the cause
 - Blameless postmortems; complex-system failure as multiple contributing conditions
 - Proving reliability: load tests against the SLO; chaos experiments with an error-budget cost
+- Operational readiness review (ORR): a checklist and evidence review before go-live covering monitoring, alerts and runbooks, load and capacity evidence, rollback and restore drills, failure-mode review and named owners; go or no-go decided against written criteria
 - Public postmortems as case studies: Knight Capital (2012), GitLab.com database deletion (2017), Amazon S3 us-east-1 (2017), Cloudflare regex CPU exhaustion (2019), Facebook backbone and BGP withdrawal (2021), CrowdStrike content update (2024), Google Cloud Service Control policy replication (2025), Moffatt v. Air Canada chatbot liability (2024)
 - Open-source systems as architecture specimens, with their constraints and trade-offs: Kubernetes, Envoy, Kong, NGINX, etcd, Redis, Kafka and Redpanda, Temporal, CockroachDB, PostgreSQL, Prometheus, Loki, Jaeger, OpenTelemetry, MinIO
 

@@ -66,6 +66,7 @@ Domain: Distributed Systems & Large-Scale System Design
 - Two-phase commit and its blocking window; why three-phase commit fails under partitions
 - Two-phase commit over Paxos groups
 - Sagas: local transactions with compensating transactions; choreography versus orchestration; no isolation between steps
+- Durable workflow retry state (Temporal-style): the orchestrator persists each step's attempt count, last error and next attempt time; retries with backoff up to a limit; replay of recorded history after a crash so completed steps are not repeated; idempotent steps as the precondition
 - Exactly-once delivery as effectively-once: idempotence plus deduplication
 - The transactional outbox and inbox; idempotent consumers
 

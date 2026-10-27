@@ -35,6 +35,7 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 - **JSON Schema**: `type`, `properties`, `required`, `enum`, `additionalProperties`, `$ref`; schemas as contracts for tool inputs and structured outputs
 - **JSON-RPC 2.0**: requests and notifications, `result` versus `error`, batches, reserved error codes −32700 to −32603
 - **Server-Sent Events**: `text/event-stream`, `event:`, `data:`, `id:`, `retry:`, comments; incremental parsing across chunk boundaries; reconnection with `Last-Event-ID`; buffering proxies that break streaming
+- **XML**: elements, attributes, namespaces and well-formedness rules; the declared encoding and character escaping; struct-tag marshalling and unmarshalling with `encoding/xml`
 
 ### Language theory
 
@@ -59,6 +60,12 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
   - Grammars in EBNF; context-free grammars; Go's semicolon-insertion rule; `go/ast` and `go/parser`
   - Intermediate representations and SSA; optimisation; code generation; linking
   - Interpreters and the Interpreter pattern
+- **Regular languages and the pumping lemma**
+  - The pumping lemma as a necessary condition for regularity, proved by the pigeonhole principle on a DFA's states; used to refute regularity
+  - Closure under union, intersection, complement, concatenation and star; decidable membership, emptiness and equivalence
+- **Closure and decision properties of context-free languages**
+  - Closure under union, concatenation, star and reversal, but not under intersection or complement; closure under intersection with a regular language
+  - The pumping lemma for context-free languages; decidable membership (CYK parsing) and emptiness; undecidable equivalence and universality
 - **Concurrency theory in Go**
   - Hoare's CSP; rendezvous and bounded queues; guarded choice
   - Deadlock as a cycle in the wait-for graph

@@ -21,6 +21,8 @@ Domain: Programming Languages & Language Theory (part 1 of 3)
 - **Environment and tooling**
   - Virtual environments; package management with pip; lock files for reproducibility
   - A hand-built test runner that discovers `test_` functions, then pytest (fixtures, parametrisation, assert rewriting)
+  - Editor setup and extensions: VS Code with its language extensions; a debugger run configuration per project; formatter and linter run on save and in CI
+  - Print-debugging: printing the state at a suspected fault point, labelled and removed afterwards; what a print shows that stepping and breakpoints do not, and when it is the faster tool
 - **Python runtime model**
   - Call by sharing; names as references to heap objects; reference counting plus a cycle collector
   - The global interpreter lock and the free-threaded build; `asyncio` as cooperative concurrency
@@ -31,6 +33,9 @@ Domain: Programming Languages & Language Theory (part 1 of 3)
   - NumPy: n-dimensional arrays, dtypes and shapes; indexing, slicing and boolean masks; broadcasting; vectorized operations instead of loops; linear-algebra and random routines
   - pandas: DataFrames, selection, grouping, joins, missing values
   - Matplotlib: line, scatter and histogram plots; Jupyter notebooks
+  - SciPy: `scipy.optimize` for minimization and root finding; `scipy.stats` distributions and hypothesis tests; `scipy.signal` filters and spectra; each result checked against a hand-built version
+  - Seaborn: distribution, categorical and regression plots drawn on Matplotlib axes; figure-level versus axes-level functions; long-form data frames; bootstrapped confidence intervals
+  - Plotly: interactive figures rendered in the browser with hover, zoom and linked selections; a dashboard served from Python callbacks
   - FastAPI: async endpoints, Pydantic request and response models, dependency injection, streaming responses, served by Uvicorn
 
 ### R for data science

@@ -68,6 +68,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - Relation forks, the free-space map and the visibility map; segment files
   - Slotted pages: insert, delete, compact
   - HOT updates and fill factor
+  - PostgreSQL system catalogs and system columns: `pg_class`, `pg_attribute`, `pg_type` and `pg_statistic` as ordinary tables describing relations, columns, types and planner statistics; the system columns `ctid`, `xmin` and `xmax` on every heap tuple
 - **The buffer pool**
   - Hit ratio versus working set; sequential flooding and scan resistance
   - Clock-sweep eviction, pins and reference counts

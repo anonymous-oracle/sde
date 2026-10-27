@@ -67,6 +67,7 @@ Domain: Computer Networking & Web Protocols
 
 ### HTTP and the web
 
+- **URL and URI structure**: scheme, authority, path, query and fragment; URI versus URL; percent-encoding of reserved characters; relative reference resolution; normalisation before comparison
 - **HTTP semantics**
   - The request/response cycle; methods, status codes, headers, cookies
   - Safe, idempotent and cacheable methods (GET, POST, PUT, PATCH, DELETE)
@@ -76,6 +77,7 @@ Domain: Computer Networking & Web Protocols
   - HTTP/1.1 persistent connections and chunked bodies
   - HTTP/2 stream multiplexing over one TCP connection
   - HTTP/3 over QUIC
+- **Request smuggling and desync**: ambiguous message framing when `Content-Length` and `Transfer-Encoding` disagree or are malformed; a front end and a back end reading different request boundaries (CL.TE and TE.CL); obfuscated `Transfer-Encoding` headers; rejecting ambiguous framing at the server boundary
 - **The web platform**
   - HTML, CSS and the DOM
   - Browser rendering

@@ -16,9 +16,10 @@ Domain: Data Structures, Algorithms & Computational Complexity
   - Worst-case, average-case and amortized cost
 - **Recurrences and divide and conquer**
   - Merge sort and T(n) = 2T(n/2) + Θ(n)
-  - Solving recurrences by recursion tree, substitution and the master theorem
+  - Solving recurrences by recursion tree, substitution, the master theorem and the Akra–Bazzi method for unequal subproblem sizes, with the exponent p fixed by Σ aᵢ·bᵢᵖ = 1
   - Karatsuba multiplication
-  - The Ω(n log n) comparison-sorting lower bound by decision trees; counting sort and radix sort
+  - Strassen matrix multiplication: seven half-size products instead of eight; T(n) = 7T(n/2) + Θ(n²) gives O(n^log₂7), about n^2.81; the extra additions and constant factor that set the crossover with the naive method
+  - The Ω(n log n) comparison-sorting lower bound by decision trees; counting sort, radix sort and bucket sort (expected linear time for keys uniform on an interval)
 
 ### Linear structures and techniques
 
@@ -69,6 +70,7 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - Strongly connected components
 - Dijkstra's algorithm, its correctness proof and failure on negative edges
 - Bellman–Ford and negative cycles (the basis of distance-vector routing)
+- All-pairs shortest paths by Floyd–Warshall: dynamic programming over the highest allowed intermediate vertex; O(V³) time and O(V²) space; a negative diagonal entry reveals a negative cycle; compared with V runs of Dijkstra on non-negative weights
 - Minimum spanning trees by the cut property: Kruskal and Prim
 - Maximum flow and minimum cut: Ford–Fulkerson, Edmonds–Karp, the max-flow min-cut theorem
 - Depth-first search trees: tree, back, forward and cross edges; articulation points, bridges and biconnected components by low-link values
@@ -93,9 +95,12 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - Decision problems; P and NP; polynomial-time reductions
 - NP-completeness: SAT, 3-SAT, vertex cover, subset sum, bin packing
 - Engineering responses to hardness: approximations and heuristics (first-fit bin packing in cluster schedulers)
+- Traveling salesman and set cover: metric TSP by the double-tree 2-approximation and Christofides' 3/2-approximation; greedy set cover within the harmonic number H(n), about ln n, and no polynomial algorithm does better unless P = NP
 - Undecidability of the halting problem by diagonalization
 - Finite automata and regular expressions; context-free grammars and parsers
 - Weighted finite-state transducers: composition, determinisation and minimisation, Viterbi-style shortest paths
+- Universal source coding and Lempel–Ziv: prefix codes and the Kraft inequality; entropy as the limit on lossless rate; Lempel–Ziv phrase parsing that approaches the entropy rate of any stationary ergodic source without knowing its distribution
+- Kolmogorov complexity: the length of the shortest program that prints a string; invariance up to an additive constant across universal machines; incompressible strings as the random ones; uncomputability by a diagonal argument like the halting problem's
 
 ### Algorithms at scale
 
@@ -115,8 +120,10 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - From scratch: BFS, DFS, topological sort, Dijkstra, Bellman–Ford, Prim and Kruskal on generated graphs
 - From scratch: dynamic programming for edit distance, knapsack, longest common subsequence and longest increasing subsequence, top-down and bottom-up
 - Timed problems per family: arrays, stacks and queues, linked lists, trees, heaps and union-find, strings, sorting and greedy, dynamic programming, graphs, design
+- From scratch: Strassen and Floyd–Warshall implemented beside their naive versions, checked on random inputs, with operation counts fitted against n^2.81 and n³
 - **Reasoning drills**
   - Infer the target complexity from the input bounds before designing (n ≤ 20, n ≤ 10⁵, n ≤ 10⁹)
   - An exchange-argument or invariant proof for every greedy and dynamic-programming solution written
   - Contest problems solved under time, then re-solved cold a few days later
   - Predict the crossover point between two algorithms, then measure it
+  - Predict the solution of a divide-and-conquer recurrence with unequal splits by Akra–Bazzi, then count the operations of the implementation to check it

@@ -32,12 +32,14 @@ Domain: Security, Cryptography, Privacy & Compliance
 - Clark–Wilson: well-formed transactions, separation of duty
 - RBAC (users, roles, permissions, sessions, hierarchies), ABAC and ReBAC
 - Relationship-based authorization at scale: Zanzibar-style tuples and consistency tokens
+- Policy decision and enforcement separation: a policy decision point evaluates each request and returns allow or deny with an explanation; enforcement points at the gateway or service call it on every request; OPA (Rego) and Cedar as policy languages; decision caching with immediate invalidation or a bounded stale window
 
 ### Cryptography
 
 - **Foundations and hygiene**
   - Goals (confidentiality, integrity, authenticity) and security games: IND-CPA, IND-CCA, EUF-CMA
   - Kerckhoffs's principle; why roll-your-own fails (ECB patterns, XOR stream reuse, Base64 as "encryption", compress-then-encrypt)
+  - Classical ciphers and the knapsack cryptosystem: Caesar and Vigenère broken by frequency and index-of-coincidence analysis; the Merkle–Hellman knapsack public-key scheme, broken by cryptanalysis of its hidden superincreasing structure
   - Provable security: efficient adversaries, advantage, negligible functions, reductions, the hybrid argument
   - Perfect secrecy and the one-time pad; Shannon's |K| ≥ |M|; the two-time pad
 - **Symmetric encryption**
@@ -51,6 +53,7 @@ Domain: Security, Cryptography, Privacy & Compliance
   - HMAC, KMAC and Poly1305; CBC-MAC's fixed-length limit
   - Encrypt-then-MAC versus MAC-then-encrypt (generic composition)
   - HKDF extract-and-expand with explicit `info`
+  - Canonical request signing with HMAC: a versioned canonical string of method, canonical target, selected headers, body digest, timestamp, nonce, key identifier and audience; HMAC compared in constant time; a narrow clock window and nonce cache against replay; ambiguous encodings rejected
 - **Randomness**
   - OS CSPRNGs (`getrandom`, `SecureRandom`); entropy; nonces and IVs
   - VM snapshot cloning of PRNG state; low-entropy boots
@@ -100,10 +103,15 @@ Domain: Security, Cryptography, Privacy & Compliance
 - JWT pitfalls: `alg=none`, RS256-to-HS256 confusion, attacker-controlled `kid`/`jku`; claim validation (iss, aud, exp, nbf, jti)
 - OAuth 2.0 as delegation: authorization code with PKCE, exact redirect allow-lists, bound `state`, mix-up defences, no implicit grant
 - OpenID Connect ID tokens and nonces
+- Counterfeit resource server: a fake API that receives a client's access token and replays it to a genuine API; defences are audience-restricted tokens, resource indicators, and resource servers that reject tokens intended for another service
+- Refresh-token rotation with family revocation: each refresh returns a new refresh token and retires the old one; replay of a retired token marks theft and revokes the whole token family; absolute expiry caps the family's life
+- Sender-constrained tokens (DPoP, mTLS-bound tokens): the token is bound to a key the client holds, so a stolen bearer token is unusable; DPoP proof JWTs per request carrying the HTTP method and URI; certificate-thumbprint binding for mTLS; the resource server verifies the binding
+- Pushed authorization requests, resource indicators and rich authorization details: parameters posted to the authorization server over a back channel and referenced by a request URI; resource indicators naming the target API as the audience; structured `authorization_details` in place of scope strings
 - SAML and XML signature wrapping; XXE in SAML parsers
 - Kerberos: tickets, ticket-granting service, pass-the-ticket and offline cracking of service tickets
 - Credential stuffing and password spraying: breach blocklists, rate limits, bot signals, generic errors
 - MFA: TOTP, push fatigue and number matching, SIM swap, phishing-resistant WebAuthn and passkeys
+- Authenticator assurance levels AAL1, AAL2 and AAL3 (NIST SP 800-63B): the rising strength of authentication a relying party can require; AAL3 requires a hardware-based authenticator with verifier-impersonation resistance; reauthentication and session binding set per level
 - Account recovery as strong as login: hashed single-use tokens, out-of-band notification, step-up
 - Unguessable session tokens: success probability s / 2ᵏ
 - Identity federation and SSO
@@ -147,14 +155,18 @@ Domain: Security, Cryptography, Privacy & Compliance
 - Content Security Policy (nonces, hashes, report-only rollout) and Trusted Types
 - Clickjacking and `frame-ancestors`
 - Injection as data becoming syntax: SQL, command, path traversal; parameterized queries
+- HTTP parameter pollution: a repeated query or form parameter read differently by a proxy and the application (first, last or joined values), used to bypass validation or authorization; one parsing rule across the stack and explicit duplicate handling
+- Code obfuscation: renaming and control-flow flattening raise the cost of reading shipped JavaScript or binaries; a deterrent, not a secret store or an access control, and never the only protection
 - XXE and server-side template injection
 - Unsafe deserialization
 - Open redirects and header (CRLF) injection
+- Unsafe 307 redirects: a 307 keeps the method and body, so a credential-bearing POST answered with a 307 resends the secret to the redirect target; 303 instead after credential-bearing POST flows; redirect targets checked against an allow-list
 - Log injection and forensic pollution
 - Memory-safety bugs (buffer overflows, use-after-free) and mitigations (canaries, ASLR, NX, CFI); memory-safe languages; privilege separation and sandboxing
 - WAF rules, bypasses and preview modes
 - File uploads: type allow-lists, size limits, scanning, re-encoding, storage outside the web root
 - The OWASP Top 10:2025: broken access control (including SSRF), security misconfiguration, software supply chain failures, cryptographic failures, injection, insecure design, authentication failures, software or data integrity failures, security logging and alerting failures, mishandling of exceptional conditions
+- OWASP ASVS 5.0 as the verification catalogue: versioned requirements mapped to each control and proved by positive, negative, fuzz, race, resource-exhaustion, rotation, revocation and recovery tests
 
 ### Cloud-specific attacks
 
@@ -212,10 +224,11 @@ Domain: Security, Cryptography, Privacy & Compliance
 - **Foundations**: the CIA triad; information security versus cyber security; anatomy of a data breach (initial access, dwell time, exfiltration, disclosure) through case studies
 - **Cyber risk management**: asset, threat and vulnerability identification; qualitative risk matrices and quantitative estimates (single-loss expectancy × annual rate of occurrence); treatment by mitigating, transferring, accepting or avoiding; residual risk and the risk register
 - **Governance, risk and compliance (GRC)**: ISO/IEC 27001 and 27002, the NIST Cybersecurity Framework and COBIT; policy tiers (enterprise, issue-specific, system-specific) over standards, guidelines and procedures; the business impact analysis behind contingency planning
+- **NIST AI Risk Management Framework** (Govern, Map, Measure, Manage): Govern as the cross-cutting function; context and stakeholders mapped before harms are measured; validity, safety, security, privacy and bias measured; mitigations, monitoring, incidents, contestability and decommissioning managed under the same governance
 
 ### Detection and incident response
 
-- Log coverage and trail integrity: admin and data-access logs, immutable sinks in a separate project, retention, time sync
+- Log coverage and trail integrity: admin and data-access logs, immutable sinks in a separate project, retention, time sync; append-only audit records with hash chaining, so that any edit or deletion breaks verification
 - Alert design: few high-precision detections, owners and runbooks
 - Detection engineering for cloud techniques: key creation, anomalous IAM changes, honeytokens, public bindings, metadata access
 - Containment on ephemeral compute: disable identities, revoke tokens, pin known-good revisions, preserve logs
@@ -284,8 +297,10 @@ Domain: Security, Cryptography, Privacy & Compliance
 - A leaked service-account key incident worked through a runbook; an incident-response tabletop
 - An AI-gateway threat model; prompt-injection and RAG-leakage defences for an LLM application; a red-team harness of jailbreak and injection suites scored by attack success rate
 - Proofs: one-time-pad secrecy, |K| ≥ |M|, deterministic encryption is not CPA-secure
+- From scratch: an OAuth token service that rotates refresh tokens within a family, revokes the whole family when a retired token is replayed, and rejects an access token whose audience names another resource server; each rule written as a failing test before its code
 - **Reasoning drills**
   - Name the cheapest attack on a design before listing its defences
   - Reduce a protocol's security to a stated assumption, then find the attack when that assumption is dropped
   - Estimate the cost in money and time of brute-forcing a key or password space
   - Decide the residual risk to accept, as a decision record with review triggers
+  - Predict which requests succeed when a retired refresh token is replayed after rotation, and which family is revoked, then check the prediction against the implementation

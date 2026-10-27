@@ -10,6 +10,7 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
   - The client–server model
   - Separating the web layer from the application layer so each scales independently
   - Monoliths, modular monoliths and microservices, and their trade-offs
+  - Schema ownership per service: each service owns its tables and migrations; other services read through its API or its events, never its tables; shared-database coupling as the anti-pattern; the consequences for joins and transactions
   - Service discovery: registries (Consul, etcd, ZooKeeper), health checks, configuration key-value stores
   - Liveness, readiness and startup probes
 - **Modularity**
@@ -160,6 +161,8 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 ### Architecture documentation
 
 - Architecture views and the C4 model
+- Mermaid diagram notation: flowchart, sequence, class and state diagrams written as text in version control and rendered by the host; C4 context and container diagrams in the same notation; diagrams kept beside the decision records they support
+- Sequence diagrams: lifelines, synchronous and asynchronous messages, activation bars, alternative and loop fragments; used to check an LLD contract against its failure and retry paths
 - Architecture decision records
 - High-level and low-level design documents and the contract between them
 - Non-functional requirement tables

@@ -6,6 +6,8 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 
 ### Go — toolchain and program structure
 
+- **Installing Go on Linux, Windows and macOS**: official installers and archives for each platform; `go version` to confirm the toolchain; `go env` for `GOROOT`, `GOPATH` and `GOMOD`
+- **Go Playground**: a sandboxed browser run for sharing a snippet without a local install; its limits compared with a local toolchain
 - **The `go` command and modules**
   - `go run`, `build`, `test`, `vet`, `fmt`, `mod tidy`, `get`, `install pkg@version`, `env`, `doc`
   - `go.mod`: module path, the `go` line, the `toolchain` line, `require`, `replace`, `exclude`
@@ -25,6 +27,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 - **Types, constants and conversions**
   - Basic types: `bool`, `string`, sized integers, `uintptr`, floats, complex, `byte` and `rune` aliases
   - Zero values; `var` versus `:=`; shadowing
+  - The blank identifier: `_` discarding a value or a result position; `var _ I = (*T)(nil)` as a compile-time interface check; blank imports for side effects
   - No implicit conversions; `T(x)` everywhere
   - Untyped constants with arbitrary precision; `iota` enumerations with an "unknown" zero value
   - Integer division truncating toward zero; defined two's-complement overflow; division by zero
@@ -179,6 +182,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - From scratch first: an echo server and a minimal HTTP/1.1 server and client over raw TCP
   - `http.Handler`, `HandlerFunc`, `ServeMux` method and wildcard patterns, `PathValue`
   - Middleware chains and their order (recover, request ID, logging, authentication, rate limit)
+  - Response-writer wrappers that preserve capabilities: a plain wrapper hides `http.Flusher`, `http.Hijacker` and `ResponseController` behaviour; forward each interface and an `Unwrap` method so streaming and connection hijacking still work
   - Server timeouts (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`) and the zero-value server; client timeouts
   - Closing and draining response bodies; `MaxBytesReader`; status before body
   - `CrossOriginProtection`; `crypto/tls` configuration
@@ -198,10 +202,10 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 - **Protocol Buffers and gRPC**
   - proto3 messages, field numbers, `repeated`, `map`, `oneof`, enums, `optional` and field presence
   - Field numbers as the contract; `reserved`; backward-compatible evolution
-  - Code generation with `protoc` plugins or `buf`
+  - Code generation with `protoc` plugins or `buf`; protoc-gen-validate generating field validation from validation rules in the `.proto` file
   - Unary and streaming RPCs; status codes; metadata; interceptors; TLS
   - Deadline propagation via `grpc-timeout`
-  - `grpcurl`, `ghz`, in-process tests with `bufconn`
+  - `grpcurl`, `ghz`, Postman for gRPC requests, in-process tests with `bufconn`
   - Back-pressure on server streams
 - **Profiling, debugging and observability**
   - CPU, heap, allocation, goroutine, block and mutex profiles; `go tool pprof`; flame graphs
