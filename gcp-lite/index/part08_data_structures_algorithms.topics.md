@@ -8,7 +8,7 @@ Domain: Data Structures, Algorithms & Computational Complexity
 
 - **Correctness**
   - Loop invariants: initialization, maintenance, termination
-  - Correctness proofs for insertion sort and binary search
+  - Correctness proofs for insertion sort and binary search; the binary search invariant that a target, if present, lies in the window [lo, hi), with hi − lo shrinking at every step so termination follows, and the mid update that moves lo to mid + 1 or hi to mid
 - **Cost models and asymptotics**
   - The RAM model of computation
   - O, Ω, Θ and o defined with quantifiers and proved from the definitions
@@ -43,9 +43,9 @@ Domain: Data Structures, Algorithms & Computational Complexity
 
 - Binary trees and traversals
 - Binary search trees; balanced trees (red-black or AVL) and the O(log n) height proof
-- B-trees as disk-oriented balanced trees
+- B-trees as disk-oriented balanced trees; search by binary search inside each node and descent between separator keys, insertion that splits a full node at its median key and pushes the median up (height grows only at the root), and deletion that borrows from a sibling or merges with one when a node falls below half full, with the root's removal shrinking the height by one
 - Binary heaps, heapsort and priority queues with decrease-key
-- Union–find with union by rank and path compression
+- Union–find with union by rank and path compression; the amortized bound O(α(n)) per operation, where α is the inverse Ackermann function, proved with a potential function over ranks and the path-compression levels
 - Tries
 - Range structures: Fenwick trees, segment trees, sparse tables
 - Fibonacci heaps and van Emde Boas trees (as ideas)
@@ -67,11 +67,11 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - Adjacency lists versus matrices and their costs
 - Breadth-first search and its unweighted shortest-path proof; 0-1 BFS
 - Depth-first search, edge classification, topological sort and cycle detection
-- Strongly connected components
+- Strongly connected components; Kosaraju's two DFS passes (finishing order on the graph, then DFS on the transpose in decreasing finish time) and Tarjan's single pass with low-link values, both O(V + E), and the condensation graph, which is a DAG
 - Dijkstra's algorithm, its correctness proof and failure on negative edges
 - Bellman–Ford and negative cycles (the basis of distance-vector routing)
 - All-pairs shortest paths by Floyd–Warshall: dynamic programming over the highest allowed intermediate vertex; O(V³) time and O(V²) space; a negative diagonal entry reveals a negative cycle; compared with V runs of Dijkstra on non-negative weights
-- Minimum spanning trees by the cut property: Kruskal and Prim
+- Minimum spanning trees by the cut property: Kruskal and Prim; the cycle property as the exchange argument (with distinct weights, the heaviest edge of any cycle lies in no minimum spanning tree), Kruskal's sort then union-find in O(E log E), and Prim's heap-driven growth from one vertex in O(E log V)
 - Maximum flow and minimum cut: Ford–Fulkerson, Edmonds–Karp, the max-flow min-cut theorem
 - Depth-first search trees: tree, back, forward and cross edges; articulation points, bridges and biconnected components by low-link values
 
@@ -95,12 +95,13 @@ Domain: Data Structures, Algorithms & Computational Complexity
 - Decision problems; P and NP; polynomial-time reductions
 - NP-completeness: SAT, 3-SAT, vertex cover, subset sum, bin packing
 - Engineering responses to hardness: approximations and heuristics (first-fit bin packing in cluster schedulers)
-- Traveling salesman and set cover: metric TSP by the double-tree 2-approximation and Christofides' 3/2-approximation; greedy set cover within the harmonic number H(n), about ln n, and no polynomial algorithm does better unless P = NP
-- Undecidability of the halting problem by diagonalization
-- Finite automata and regular expressions; context-free grammars and parsers
-- Weighted finite-state transducers: composition, determinisation and minimisation, Viterbi-style shortest paths
+- Traveling salesman and set cover: metric TSP by the double-tree 2-approximation and Christofides' 3/2-approximation; greedy set cover within the harmonic number H(n), about ln n, and no polynomial algorithm does better unless P = NP; vertex cover by a maximal matching, taking both endpoints of each matched edge, a 2-approximation because any cover must hit every matched edge; subset sum by trimming a sorted list of reachable sums so that neighbouring values differ by a factor of at most 1 + ε, an FPTAS running in time polynomial in n and 1/ε
+- Undecidability of the halting problem by diagonalization; the Turing machine as a finite control with a read–write tape, the universal machine that simulates any other from its encoding, and the diagonal argument that the halting set is not decidable
+- Finite automata and regular expressions; context-free grammars and parsers; pushdown automata as a finite control with one stack, recognising exactly the context-free languages
+- Weighted finite-state transducers: composition, determinisation and minimisation, Viterbi-style shortest paths; the decoding graph H ∘ C ∘ L ∘ G (HMM states, context dependency, pronunciation lexicon, language model) searched by Viterbi with beam pruning that discards hypotheses whose cost exceeds the best by a fixed beam width
 - Universal source coding and Lempel–Ziv: prefix codes and the Kraft inequality; entropy as the limit on lossless rate; Lempel–Ziv phrase parsing that approaches the entropy rate of any stationary ergodic source without knowing its distribution
 - Kolmogorov complexity: the length of the shortest program that prints a string; invariance up to an additive constant across universal machines; incompressible strings as the random ones; uncomputability by a diagonal argument like the halting problem's
+- Linear block codes: a generator matrix G and a parity-check matrix H over GF(2) with G·Hᵀ = 0; minimum distance d detects d − 1 errors and corrects ⌊(d − 1)/2⌋; syndrome decoding by table lookup, with Hamming(7,4) as the worked case (d = 3, one correction); trellis codes decoded by the Viterbi algorithm over the code's state diagram
 
 ### Algorithms at scale
 

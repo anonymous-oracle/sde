@@ -33,12 +33,12 @@ Domain: Distributed Systems & Large-Scale System Design
 - Single-decree Paxos (prepare/promise, accept/accepted) and Multi-Paxos
 - Raft: terms and leader election, log replication, log matching and leader completeness, the commit rule, membership change
 - State-machine replication
-- Coordination services built on consensus: Chubby, ZooKeeper, etcd; leader election and distributed locks; fencing
+- Coordination services built on consensus: Chubby, ZooKeeper, etcd; leader election and distributed locks; fencing; etcd's watch as a stream of change events ordered by revision, where a client that reconnects with its last revision receives every later change without a gap
 - Byzantine fault tolerance: n ≥ 3f + 1; PBFT's three phases; why cloud control planes use crash-fault consensus
 
 ### Replication
 
-- Primary–replica replication; read replicas; promotion on primary failure
+- Primary–replica replication; read replicas; promotion on primary failure; point-in-time recovery from a base backup plus archived WAL replayed to a chosen target time, and why a replica that copies a bad delete is not a backup
 - Multi-primary replication and write conflicts
 - Chain replication
 - Leaderless, Dynamo-style replication: read repair, hinted handoff, Merkle-tree anti-entropy, sloppy quorums
@@ -74,7 +74,7 @@ Domain: Distributed Systems & Large-Scale System Design
 
 - Where to cache: client, CDN, reverse proxy, web server, database, application
 - What to cache: rows, query results, serialized objects, rendered HTML; query-level versus object-level invalidation
-- Update strategies: cache-aside, write-through, write-behind, refresh-ahead
+- Update strategies: cache-aside, write-through, write-behind, refresh-ahead; cache-aside reads the cache, loads the database on a miss and fills the cache, and deletes the entry on write; write-through writes the cache and the database before acknowledging; write-behind acknowledges after the cache write and flushes batches later, losing unflushed writes on a crash; refresh-ahead reloads an entry shortly before its TTL expires when it is read near expiry
 - Cache internals: TTLs, sampled LRU approximation; sharded caches by consistent hashing
 - Caching theory: effective latency T = h·t_hit + (1 − h)·t_miss; Belady's optimum; LRU's k-competitiveness; Zipf popularity; working sets
 - Consistency: TTLs bound staleness; leases against thundering herds and stale sets
@@ -117,6 +117,8 @@ Domain: Distributed Systems & Large-Scale System Design
 - Scaling a web service from one box to millions of users: single box; static content to object storage and a managed database on private networking; load balancer, multi-zone web tier and database fail-over; read caches, stateless sessions and read replicas; autoscaling, configuration management and monitoring; warehousing, NoSQL, sharding and asynchronous workers
 - Real-world systems and their lessons: MapReduce, Spark, Storm, Bigtable, HBase, Cassandra, Dynamo, MongoDB, Spanner, Memcached, Redis, GFS, HDFS, Chubby, Dapper, Kafka, ZooKeeper
 - Company architectures as case studies: Amazon (service-oriented decomposition), Dropbox (metadata versus block storage), Facebook (memcached at scale, TAO, photo storage, live fan-out), Flickr and Pinterest (sharded MySQL and caching), Instagram (sharded PostgreSQL and Redis), Netflix (CDN and resilient microservices), Twitter (timelines and the firehose), Tumblr (dashboard fan-out), WhatsApp (persistent connections), YouTube (video storage and sharding), Uber (microservice sprawl), Stack Overflow (few large machines plus caching), PlentyOfFish (vertical database scaling), Salesforce (multi-tenant relational scale), TripAdvisor (read-heavy caching), DataSift (stream filtering), ESPN (spiky traffic), Justin.tv (live video ingest), Mailbox (queues under sudden growth), Cinchcast (media pipelines), Playfish (social-gaming load)
+- The six-step design write-up: functional and non-functional requirements, a capacity estimate, the high-level design, the low-level design of the hardest component, a trade-off table with one row per decision (what is gained, what is given up, what is accepted), and the SLOs the design commits to
+- Case-study analysis as an architecture decision record plus a tiny model: one table of users, requests per second and bytes per request that reproduces the case's headline number, then a check of which assumption that number is most sensitive to
 
 ### Design techniques
 
@@ -125,7 +127,7 @@ Domain: Distributed Systems & Large-Scale System Design
 - Log analytics into a warehouse
 - Expiry and cleanup with native TTLs or sweepers
 - Fan-out on write versus on read; the celebrity problem; active-user timelines
-- Search: tokenization, inverted indexes, ranking, in-memory hot indexes
+- Search: tokenization, inverted indexes, ranking, in-memory hot indexes; posting lists as sorted document-ID arrays intersected by merge or by skip pointers, and index sharding either by document ID (each shard answers for all terms) or by term (each query visits the shards that hold its terms)
 - Crawler frontiers, URL and content dedup with signatures, freshness, politeness
 - Categorization dictionaries and budget alerts
 - Graph traversal at scale: sharded adjacency, bidirectional BFS, precomputation

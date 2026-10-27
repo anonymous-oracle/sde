@@ -6,7 +6,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 
 ### Go — toolchain and program structure
 
-- **Installing Go on Linux, Windows and macOS**: official installers and archives for each platform; `go version` to confirm the toolchain; `go env` for `GOROOT`, `GOPATH` and `GOMOD`
+- **Installing Go on Linux, Windows and macOS**: official installers and archives for each platform; `go version` to confirm the toolchain; `go env` for `GOROOT`, `GOPATH` and `GOMOD`; GOROOT as the toolchain's installation tree, GOPATH as the module cache (`$GOPATH/pkg/mod`) and the directory for installed binaries, GOMOD as the path of the current `go.mod` (empty outside a module)
 - **Go Playground**: a sandboxed browser run for sharing a snippet without a local install; its limits compared with a local toolchain
 - **The `go` command and modules**
   - `go run`, `build`, `test`, `vet`, `fmt`, `mod tidy`, `get`, `install pkg@version`, `env`, `doc`
@@ -15,7 +15,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - Minimal version selection: the highest of the minimum required versions, reproducible without a lock file
   - Semantic import versioning (`/v2` paths)
   - The `go` line as a language-feature switch; `GOTOOLCHAIN=auto` toolchain downloads versus `local`
-  - `gofmt` as the one canonical layout; `go vet` analyses
+  - `gofmt` as the one canonical layout; `go vet` analyses; vertical openness, meaning blank lines that separate concepts, variables declared next to first use and callers above callees, and density, meaning one idea per line
   - A file-system module proxy for offline builds
 - **Packages and visibility**
   - One package per directory; `package main` versus libraries; import paths versus package names
@@ -23,7 +23,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - No import cycles, and the design pressure that creates (shared abstractions pushed down)
   - Initialisation order: package variables in dependency order, then `init` functions; blank imports for side effects
   - Unused imports and variables as compile errors
-  - Package naming: no `util` packages, no name stutter
+  - Package naming: no `util` packages, no name stutter; identifier conventions: MixedCaps with no underscores, one- or two-letter receiver names, short names for short scopes and longer names for exported identifiers, initialisms kept in one case (`ID`, `URL`, `HTTPServer`), and getters named without a `Get` prefix
 - **Types, constants and conversions**
   - Basic types: `bool`, `string`, sized integers, `uintptr`, floats, complex, `byte` and `rune` aliases
   - Zero values; `var` versus `:=`; shadowing
@@ -69,7 +69,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - `len` counts bytes; rune counting; grapheme clusters
   - `strings`, `strings.Builder`, `bytes`, `strconv`, `unicode/utf8`
   - `fmt` verbs and `go vet` format checks
-  - Unicode normalisation and case folding
+  - Unicode normalisation and case folding; mojibake from decoding bytes with the wrong encoding (UTF-8 bytes read as Latin-1 turn `é` into `Ã©`), and NFC or NFKC normalisation with `golang.org/x/text/unicode/norm` before comparing or cleaning text
   - Contrasts: Python code points, Java and JavaScript UTF-16 units, C NUL-terminated bytes
 
 ### Go — memory, types with behaviour and generics
@@ -112,23 +112,23 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - `bufio.Scanner` token limits; `bufio.Writer` flushing; checking `Close` on written files
   - `os` files, `path/filepath` versus `path`; `os.Root` against path traversal; `embed`
   - `text/template` versus context-escaping `html/template`
-  - `regexp` as RE2: linear time, no backreferences, no catastrophic backtracking
+  - `regexp` as RE2: linear time, no backreferences, no catastrophic backtracking; anchors `^` and `$` with the `(?m)` flag for line-anchored matching; greedy `.*` versus non-greedy `.*?` closures under the leftmost-first match rule; tokenizing with `FindAllStringSubmatch` and named groups; finite automata behind the engine: the pattern compiles to an NFA that is simulated in one pass over the input, with a DFA built lazily by subset construction; weighted finite automata over a semiring (min-plus for shortest paths, probability for decoding), and composition of transducers in speech pipelines
   - `time`: wall and monotonic clocks, `Duration`, reference-time layouts
   - `encoding/json`: exported fields only, numbers into `any` as float64, `UseNumber`, `DisallowUnknownFields`, case-insensitive key matching, duplicate keys
   - `encoding/json/v2`: case-sensitive matching and nil-slice encoding
   - Atomic file writes: temporary file in the same directory, sync, close, rename
 - **Command-line programs, configuration and logging**
   - `os.Args`, the `flag` package and one `FlagSet` per subcommand
-  - `os.Getenv` versus `os.LookupEnv`; precedence of flags, environment, config file and defaults
+  - `os.Getenv` versus `os.LookupEnv`; precedence of flags, environment, config file and defaults; the process environment as a block of `KEY=value` strings copied to each child at `exec`, and why `os.Getenv` returns an empty string for both an unset variable and one set to empty, while `os.LookupEnv` returns a presence flag; per-environment layers (local, dev, staging, prod) where each later layer overrides only the keys it names, and secrets stay in a secret manager rather than in any layer
   - Exit codes; `os.Exit` skips deferred calls; `log.Fatal`
   - A tiny, testable `main` that delegates to `run`
   - `log/slog`: structured attributes, levels, handlers, JSON output, `ReplaceAttr`
   - `signal.NotifyContext` for SIGINT and SIGTERM
   - Cobra and Viper for large CLIs
 - **Service clients and numerical libraries**
-  - mongo-go-driver, go-redis, client-go and the Docker Engine API, each tested with learning tests at the boundary
+  - mongo-go-driver, go-redis, client-go and the Docker Engine API, each tested with learning tests at the boundary; mongo-go-driver's client with one connection pool and a context on each operation, go-redis pipelines that batch commands into one round trip and `SET ... EX` for TTLs, client-go's shared informers built on list and watch with `resourceVersion`, and the Docker Engine API's version prefix negotiated before the first call
   - Gonum (`mat`, `stat`, `optimize`) compared against hand-built primitives for accuracy, stability and speed
-  - Gorgonia and GoMLX; ONNX Runtime bindings or an HTTP model service behind a Go inference interface with timeout, fallback, cache and schema validation
+  - Gorgonia and GoMLX; ONNX Runtime bindings or an HTTP model service behind a Go inference interface with timeout, fallback, cache and schema validation; Gorgonia's computation graph built and differentiated in Go and GoMLX's tensor graphs with automatic differentiation, compared with an ONNX model loaded once into an ONNX Runtime session and run with named input and output tensors
   - On Cloud Run: the `PORT` variable, SIGTERM with a 10-second grace period, and single-line JSON logs whose `severity` field becomes the Cloud Logging severity
 
 ### Go — concurrency
@@ -184,12 +184,12 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - Middleware chains and their order (recover, request ID, logging, authentication, rate limit)
   - Response-writer wrappers that preserve capabilities: a plain wrapper hides `http.Flusher`, `http.Hijacker` and `ResponseController` behaviour; forward each interface and an `Unwrap` method so streaming and connection hijacking still work
   - Server timeouts (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`) and the zero-value server; client timeouts
-  - Closing and draining response bodies; `MaxBytesReader`; status before body
+  - Closing and draining response bodies; `MaxBytesReader`; status before body; request input validation in three steps: decode with `DisallowUnknownFields` and a size cap, check each field's type, range and length, and answer 400 for malformed JSON or 422 for a well-formed body with invalid values, listing one problem-details entry per invalid field
   - `CrossOriginProtection`; `crypto/tls` configuration
   - Graceful shutdown with `Server.Shutdown`
   - Handler panics recovered by the server versus panics in spawned goroutines
   - Problem-details error bodies; one status per error class
-  - Frameworks (Chi, Gin, Echo, Fiber) and when they are unnecessary
+  - Frameworks (Chi, Gin, Echo, Fiber) and when they are unnecessary; JSON-RPC 2.0 served from `net/http` with one POST endpoint, a method table keyed by name, the `id` echoed in each response, batches answered element by element, and notifications (no `id`) receiving no response
   - On Cloud Run: TLS terminated at the front end; h2c for end-to-end HTTP/2
 - **Databases with `database/sql`**
   - `*sql.DB` as a long-lived connection pool; pool limits sized against instance count
@@ -201,9 +201,9 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - The Cloud SQL Go connector with IAM database authentication
 - **Protocol Buffers and gRPC**
   - proto3 messages, field numbers, `repeated`, `map`, `oneof`, enums, `optional` and field presence
-  - Field numbers as the contract; `reserved`; backward-compatible evolution
+  - Field numbers as the contract; `reserved`; backward-compatible evolution; a compatibility matrix as a table of client versions against server versions, listing the pairs that a contract test has shown to interoperate, so a field change is checked against every version still in use
   - Code generation with `protoc` plugins or `buf`; protoc-gen-validate generating field validation from validation rules in the `.proto` file
-  - Unary and streaming RPCs; status codes; metadata; interceptors; TLS
+  - Unary and streaming RPCs; status codes; metadata; interceptors; TLS; headers and trailers as the two metadata blocks, with headers sent before the first message and trailers after the last, where `grpc-status` and `grpc-message` travel
   - Deadline propagation via `grpc-timeout`
   - `grpcurl`, `ghz`, Postman for gRPC requests, in-process tests with `bufconn`
   - Back-pressure on server streams
@@ -221,7 +221,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - Reproducible, byte-identical builds
   - Multi-stage container builds onto distroless or `scratch`; CA certificates and time-zone data
   - `govulncheck` reachability analysis versus module-level scanners
-  - golangci-lint pinned in CI; GoReleaser
+  - golangci-lint pinned in CI; GoReleaser; staging promotion as one immutable artefact (the same image digest and the same binary) moved from staging to production, with only the per-environment config layer changing, and never a rebuild for production
 - **Reflection, `unsafe` and cgo**
   - `reflect.TypeOf`, `ValueOf`, `Kind`, struct fields and tags; settability rules
   - `unsafe.Pointer` rules, `Sizeof`, `Slice`, `String`
@@ -254,7 +254,7 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - Provider signature schemes (Stripe's `Stripe-Signature`, Razorpay's `X-Razorpay-Signature`)
   - A fake payment provider for failure testing
   - Payment domain: card rails versus wallets and UPI (QR, netbanking); authorization, capture and settlement; payout timelines; test versus live mode and sandbox seeding
-  - Webhook delivery: replay windows, clock skew, nonces, retries with backoff and a dead-letter queue; webhook failure budgets as SLOs
+  - Webhook delivery: replay windows, clock skew, nonces, retries with backoff and a dead-letter queue; webhook failure budgets as SLOs; the dead-letter queue as the holding area for events that exhaust the retry budget, and redrive that replays dead letters through the same idempotent handler after the cause is fixed, each redriven event keeping its original ID; on Pub/Sub, `gcloud pubsub subscriptions create SUBSCRIPTION --topic=TOPIC --dead-letter-topic=DEAD_LETTER_TOPIC --max-delivery-attempts=N`, where messages that fail N times move to the dead-letter topic
   - Refunds, disputes and reversals as a state machine; the chargeback life cycle and evidence; ledger adjustments
   - Reconciliation mismatch classes and alerts
   - Swapping providers behind an interface with contract tests

@@ -9,7 +9,7 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 - **System decomposition**
   - The client–server model
   - Separating the web layer from the application layer so each scales independently
-  - Monoliths, modular monoliths and microservices, and their trade-offs
+  - Monoliths, modular monoliths and microservices, and their trade-offs; split decisions made along bounded contexts or business capabilities rather than technical layers, each split justified by a change-rate and team-ownership test and by which transactions it would force across the boundary
   - Schema ownership per service: each service owns its tables and migrations; other services read through its API or its events, never its tables; shared-database coupling as the anti-pattern; the consequences for joins and transactions
   - Service discovery: registries (Consul, etcd, ZooKeeper), health checks, configuration key-value stores
   - Liveness, readiness and startup probes
@@ -48,8 +48,8 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
   - Safety and idempotency as algebraic properties, f(f(x)) = f(x)
   - Compatibility rules for evolving APIs and schemas; Hyrum's law
   - Content negotiation: `Accept`, `Accept-Encoding`, `Accept-Language` and `Vary`
-  - Machine-readable contracts (OpenAPI, `.proto`) that generate clients, servers and contract tests
-  - Pagination, filtering and versioning
+  - Machine-readable contracts (OpenAPI, `.proto`) that generate clients, servers and contract tests; consumer-driven contract tests, where each consumer records the requests it sends and the response fields it reads, and the provider's build replays those recorded interactions
+  - Pagination, filtering and versioning; deprecation as a timed process: a `Deprecation` header from the date the old version is marked, a `Sunset` header with the removal date, per-client usage metering, and removal only after the sunset date with no recent calls from clients still on it
 - Web services and service-oriented architecture: SOAP and WSDL, XML and XML Schema; the enterprise service bus; how SOA relates to REST and microservices
 
 ### Object-oriented foundations
@@ -123,7 +123,7 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 - Clean Architecture: entities, use cases, interface adapters, frameworks and drivers; the dependency rule; framework-free boundary data
 - MVC, MVP and MVVM
 - Dependency injection: constructor, setter and interface injection; IoC containers
-- Enterprise patterns: Repository, Unit of Work, Data Transfer Object, Service Layer
+- Enterprise patterns: Repository, Unit of Work, Data Transfer Object, Service Layer; Repository as a collection-like interface with add, get and remove operations over one aggregate root, with the query language hidden inside one adapter; Unit of Work as the object that records changed aggregates during a use case and commits them in one transaction at its end
 
 ### Domain-driven design
 
@@ -149,6 +149,7 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 - Magic numbers and strings
 - Shotgun Surgery
 - Interface Bloat
+- Refactoring as behaviour-preserving steps: extract method and extract class, replace a type switch with polymorphism, introduce a parameter object, each step run under a test that pins the current behaviour before the change
 
 ### Quality attributes and evaluation
 
@@ -164,8 +165,8 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 - Mermaid diagram notation: flowchart, sequence, class and state diagrams written as text in version control and rendered by the host; C4 context and container diagrams in the same notation; diagrams kept beside the decision records they support
 - Sequence diagrams: lifelines, synchronous and asynchronous messages, activation bars, alternative and loop fragments; used to check an LLD contract against its failure and retry paths
 - Architecture decision records
-- High-level and low-level design documents and the contract between them
-- Non-functional requirement tables
+- High-level and low-level design documents and the contract between them; the LLD method in order: name the entities and their invariants, list each class's operations with preconditions, draw each stateful class as a state machine, mark the transaction scope of every operation, then draw the sequence diagram of its failure and retry paths
+- Non-functional requirement tables; each NFR written as a quality-attribute scenario with a measure, and elicited by asking stakeholders for numbers (peak requests per second, the latency at the 99th percentile, the availability target, data retention), with words such as fast or secure rewritten as measurable responses; functional requirements written as use cases with an actor, a goal, the main steps and the failure paths
 - UML class-diagram notation: inheritance, realization, composition, aggregation, association, dependency
 
 ### Formal methods

@@ -18,7 +18,7 @@ Domain: Computer Networking & Web Protocols
 - IPv6: 128-bit addresses, stateless autoconfiguration, neighbour discovery in place of ARP, dual stack
 - Ethernet framing, self-learning switches, ARP and VLANs
 - DHCP and why it needs UDP broadcast
-- NAT and source-port exhaustion
+- NAT and source-port exhaustion; port numbers as 16-bit demultiplexing keys, with well-known ports such as 53 for DNS and 443 for HTTPS and ephemeral ports chosen by the client, and the 4-tuple of source address, source port, destination address and destination port that identifies a TCP connection
 
 ### Routing
 
@@ -72,7 +72,7 @@ Domain: Computer Networking & Web Protocols
   - The request/response cycle; methods, status codes, headers, cookies
   - Safe, idempotent and cacheable methods (GET, POST, PUT, PATCH, DELETE)
   - 429 and 503 with `Retry-After` as back-pressure signals; idempotency keys for non-idempotent requests
-  - HTTP caching headers: `Cache-Control`, `Age`, `Via`, validators
+  - HTTP caching headers: `Cache-Control`, `Age`, `Via`, validators; freshness from `max-age` compared with `Age` (a response is fresh while Age is below max-age), revalidation with `ETag` and `Last-Modified` answered by 304 Not Modified; conditional requests with `If-None-Match` for cached reads and `If-Match` on writes, where a stale ETag returns 412 Precondition Failed so a lost update is refused
 - **HTTP versions**
   - HTTP/1.1 persistent connections and chunked bodies
   - HTTP/2 stream multiplexing over one TCP connection
@@ -94,7 +94,7 @@ Domain: Computer Networking & Web Protocols
 - **Firewalls and proxies**
   - Stateful firewalls
   - Forward versus reverse proxies
-  - Reverse-proxy roles: hiding backends, IP blocking, connection limits, TLS termination, compression, caching, static content
+  - Reverse-proxy roles: hiding backends, IP blocking, connection limits, TLS termination, compression, caching, static content; compression negotiated by `Accept-Encoding` with gzip or br as the content coding, and `Vary: Accept-Encoding` so a cache stores one entry per encoding
   - NGINX and HAProxy as reverse proxies and load balancers
 - **Load balancing**
   - L4 (transport information, NAT forwarding) versus L7 (terminates, reads headers and cookies, content routing)

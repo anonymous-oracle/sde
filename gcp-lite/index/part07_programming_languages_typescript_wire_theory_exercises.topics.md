@@ -7,7 +7,7 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 ### TypeScript, Node and the web client
 
 - **TypeScript and Node**
-  - Erased types; structural typing; `strict` mode
+  - Erased types; structural typing; `strict` mode; contrasts: Java's nominal classes with erased generics, C#'s nominal types with generics kept at run time, and Python type hints that a separate checker such as mypy reads while the interpreter ignores them
   - Union and literal types and narrowing; `unknown` versus `any`; generics
   - ES modules versus CommonJS
   - The Node event loop; blocking the loop with CPU work and moving it off
@@ -15,8 +15,8 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
   - npm, `package.json`, lockfiles, `npx`; `tsc`, `node --test` or Vitest, ESLint
 - **Runtime validation and a minimal React client**
   - "Parse, don't trust": a hand-written validator, then Zod (`safeParse`, error paths, inferred types, JSON Schema export)
-  - React components as functions of state; `useState` and `useEffect`; rendering a stream as it arrives
-  - Keeping API keys server-side behind a server route
+  - React components as functions of state; `useState` and `useEffect`; rendering a stream as it arrives; React Router's route table with nested outlets for client-side pages, and Jest tests that render a component and query its output, the same test shape as Vitest
+  - Keeping API keys server-side behind a server route; the split of roles in which the browser client renders state and sends user actions, while the server holds credentials, checks authentication and validates input, and the request and response shapes between them are a schema that both sides parse
 
 ### Java and the JVM
 
@@ -66,6 +66,7 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 - **Closure and decision properties of context-free languages**
   - Closure under union, concatenation, star and reversal, but not under intersection or complement; closure under intersection with a regular language
   - The pumping lemma for context-free languages; decidable membership (CYK parsing) and emptiness; undecidable equivalence and universality
+  - Pushdown automata: a finite control with one stack, where each transition reads an input symbol and pops and pushes stack symbols; acceptance by final state or by empty stack, with the same language class as context-free grammars
 - **Concurrency theory in Go**
   - Hoare's CSP; rendezvous and bounded queues; guarded choice
   - Deadlock as a cycle in the wait-for graph

@@ -6,7 +6,7 @@ Domain: Operating Systems & Linux
 
 ### Linux practice
 
-- The filesystem hierarchy; navigation and the shell
+- The filesystem hierarchy; navigation and the shell; absolute paths from `/` versus relative paths from the working directory, `.` and `..`, `pwd`, `cd`, and `ls -l` whose first column marks a file (`-`) or a directory (`d`)
 - Users, groups and permissions (`chmod`, `chown`); `sudo`
 - Package managers
 - systemd units and services; journald
@@ -19,7 +19,7 @@ Domain: Operating Systems & Linux
 
 - Kernel structure: monolithic kernels, microkernels and unikernels; loadable modules; boot from firmware through the bootloader and kernel to init
 - User and kernel mode; system calls, traps and interrupts
-- `fork`, `exec` and `wait`; process states
+- `fork`, `exec` and `wait`; process states; a program is a file of code and data on disk, while a process is a running instance with its own address space, descriptors and process ID, created by `fork` and given a new program image by `exec`
 - The cost of a context switch
 - Threads versus processes
 - The address-space layout: code, data, heap, stack

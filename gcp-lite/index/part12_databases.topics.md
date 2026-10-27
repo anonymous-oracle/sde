@@ -64,13 +64,13 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 ### Storage and access methods
 
 - **Storage layout**
-  - Heap pages, line pointers and tuple headers; alignment; TOAST for oversized values
+  - Heap pages, line pointers and tuple headers; alignment; TOAST for oversized values; modelled in Go as structs with explicit field widths for the tuple header (`xmin`, `xmax`, `ctid`, the null bitmap), the catalog row and the B-tree node header, with each struct's byte size checked by `unsafe.Sizeof` against the on-disk layout
   - Relation forks, the free-space map and the visibility map; segment files
-  - Slotted pages: insert, delete, compact
+  - Slotted pages: insert, delete, compact; line pointers as 4-byte item identifiers packing a 15-bit offset, two flag bits and a 15-bit length; a page header holding the free-space bounds; a page checksum computed over the page with the checksum field zeroed and verified on each read
   - HOT updates and fill factor
   - PostgreSQL system catalogs and system columns: `pg_class`, `pg_attribute`, `pg_type` and `pg_statistic` as ordinary tables describing relations, columns, types and planner statistics; the system columns `ctid`, `xmin` and `xmax` on every heap tuple
 - **The buffer pool**
-  - Hit ratio versus working set; sequential flooding and scan resistance
+  - Hit ratio versus working set; sequential flooding and scan resistance; cache-hit probability under uniform random access to P pages with a B-page buffer, h ≈ B / P for B < P, so the expected physical reads per lookup are (1 − h) times the page accesses
   - Clock-sweep eviction, pins and reference counts
   - The background writer and the checkpointer
 - **Indexes**
@@ -87,7 +87,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - The Volcano iterator model
   - Nested-loop, block nested-loop, index nested-loop, sort–merge and (Grace) hash joins
   - External merge sort: 2N · (1 + ⌈log_{B−1}⌈N/B⌉⌉) I/Os; two passes when N ≤ B(B − 1)
-  - Aggregation by sorting or hashing; `work_mem` and spills to temporary files
+  - Aggregation by sorting or hashing; `work_mem` and spills to temporary files; top-k by a bounded heap of size k instead of a full sort when `ORDER BY ... LIMIT k` is used, and top-k per group with `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...)` filtered in an outer query to ranks at most k
   - Columnar and vectorized execution: late materialization, SIMD-friendly operators, run-length and dictionary compression
   - Parallel query
 - **Query optimization**
@@ -119,7 +119,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 ### Recovery and replication
 
 - Buffer policies: steal and no-force, and why they require undo and redo
-- The write-ahead-logging rule
+- The write-ahead-logging rule; each WAL record as a header with its total length, transaction ID, the pointer to the previous record and a CRC-32C over the record, followed by the payload, and recovery that stops at the first record whose CRC fails
 - ARIES: LSNs, pageLSN, dirty-page and transaction tables, analysis, redo and undo passes, compensation log records
 - Checkpoints; full-page writes; synchronous commit
 - Physical streaming replication and WAL archiving; point-in-time recovery
@@ -140,7 +140,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - JSONB versus columns, and the hybrid
 - Soft delete, history tables, append-only audit; partial unique indexes
 - Denormalization: trading write cost for reads; cache columns, aggregate tables, counters; refresh rules recorded in decision records
-- Multi-tenancy: shared tables with `tenant_id`, schema or database per tenant; composite foreign keys; RLS as defence in depth; hot tenants
+- Multi-tenancy: shared tables with `tenant_id`, schema or database per tenant; composite foreign keys; RLS as defence in depth; hot tenants; carrying `tenant_id` into cache keys, job payloads, export files and log fields, so a cache hit, a retried job or a log search cannot return another tenant's data
 - Partitioning: range, list and hash; pruning; shard keys as locality keys; hot-key skew and sequential hotspots
 - Schema evolution by expand and contract: add nullable, backfill, constrain, switch reads, drop; lock levels; concurrent index creation
 - Data quality as constraints; deferral for cyclic foreign keys; EXCLUDE for ranges
@@ -148,7 +148,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 
 ### Operating databases
 
-- Slow-query observability: `pg_stat_statements`, `auto_explain`, wait events; live triage with `pg_stat_activity`, `pg_blocking_pids`, cancel and terminate; idle-in-transaction sessions
+- Slow-query observability: `pg_stat_statements`, `auto_explain`, wait events; live triage with `pg_stat_activity`, `pg_blocking_pids`, cancel and terminate; idle-in-transaction sessions; `pgbench` load tests run with `-c` clients, `-j` threads and `-T` seconds, reporting transactions per second and latency, repeated before and after each change
 - Connection pooling: session, transaction and statement modes and what transaction mode breaks; pool math (instances × pool ≤ `max_connections` minus reserved slots, with failover headroom)
 - Backups: logical (`pg_dump`/`pg_restore`) versus physical with WAL archiving; restore drills to a new instance; RPO and RTO; HA and replicas are not backups
 - Retention: dropping partitions versus mass deletes; cold-storage export
@@ -161,7 +161,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 
 - BASE versus ACID; the modern reality of multi-item transactions in NoSQL stores
 - Key-value stores: hash-table abstraction, ordered keys for range scans, caches
-- Document stores: collections, flexible fields, queries over structure; joins in application code
+- Document stores: collections, flexible fields, queries over structure; joins in application code; MongoDB as the worked example: BSON documents in collections, CRUD with `insertOne`, `find` and `updateOne` taking query and update operators such as `$set`, compound indexes with the `_id` index, and write concern and read concern as the durability and staleness settings
 - Wide-column stores: column families, timestamps and versions, row-key design, salting, garbage-collection policies
 - Graph databases: nodes and edges for many-to-many data; sharding difficulty; adjacency lists in other stores
 - NoSQL query models versus SQL: access patterns first; joins as application fan-out; outboxes instead of dual writes
