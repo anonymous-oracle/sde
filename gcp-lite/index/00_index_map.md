@@ -38,31 +38,31 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 
 | Part | Domain | Groups | Topic list | Rules file |
 |---|---|---|---|---|
-| 01 | School-level foundations | 1 | 12 KB | 1.7 KB |
+| 01 | School-level foundations | 1 | 15 KB | 1.7 KB |
 | 02 | Computer Organization & Data Representation | 4 | 6 KB | 1.3 KB |
-| 03 | Mathematics, Probability, Statistics, Queueing & Performance Modelling | 11 | 26 KB | 1.6 KB |
-| 03b | Calculus, Analysis, Coordinate Geometry & Number Theory | 6 | 22 KB | 1.8 KB |
+| 03 | Mathematics, Probability, Statistics, Queueing & Performance Modelling | 11 | 33 KB | 1.6 KB |
+| 03b | Calculus, Analysis, Coordinate Geometry & Number Theory | 6 | 24 KB | 1.8 KB |
 | 03c | Signals, Systems & Communications | 6 | 12 KB | 1.7 KB |
-| 04 | Problem Solving, Reasoning & Research Method | 9 | 8 KB | 1.5 KB |
-| 05 | Programming Languages & Language Theory (part 1 of 3) | 3 | 4 KB | 1.4 KB |
-| 06 | Programming Languages & Language Theory (part 2 of 3) | 7 | 19 KB | 1.6 KB |
-| 07 | Programming Languages & Language Theory (part 3 of 3) | 5 | 9 KB | 1.4 KB |
-| 08 | Data Structures, Algorithms & Computational Complexity | 11 | 9 KB | 1.7 KB |
-| 09 | Computer Networking & Web Protocols | 13 | 9 KB | 1.6 KB |
-| 10 | Operating Systems & Linux | 9 | 6 KB | 1.5 KB |
-| 11 | Software Architecture, APIs, Design Patterns & Clean Architecture | 15 | 12 KB | 1.8 KB |
-| 12 | Databases, SQL, Relational Theory & Data Modelling | 12 | 15 KB | 1.8 KB |
-| 13 | Distributed Systems & Large-Scale System Design | 14 | 10 KB | 1.8 KB |
-| 14 | Security, Cryptography, Privacy & Compliance | 21 | 25 KB | 2.0 KB |
-| 15 | Software Delivery & Version Control | 4 | 3 KB | 1.2 KB |
+| 04 | Problem Solving, Reasoning & Research Method | 9 | 9 KB | 1.5 KB |
+| 05 | Programming Languages & Language Theory (part 1 of 3) | 3 | 5 KB | 1.4 KB |
+| 06 | Programming Languages & Language Theory (part 2 of 3) | 7 | 22 KB | 1.6 KB |
+| 07 | Programming Languages & Language Theory (part 3 of 3) | 5 | 10 KB | 1.4 KB |
+| 08 | Data Structures, Algorithms & Computational Complexity | 11 | 11 KB | 1.7 KB |
+| 09 | Computer Networking & Web Protocols | 13 | 10 KB | 1.6 KB |
+| 10 | Operating Systems & Linux | 9 | 7 KB | 1.5 KB |
+| 11 | Software Architecture, APIs, Design Patterns & Clean Architecture | 15 | 13 KB | 1.8 KB |
+| 12 | Databases, SQL, Relational Theory & Data Modelling | 12 | 17 KB | 1.8 KB |
+| 13 | Distributed Systems & Large-Scale System Design | 14 | 11 KB | 1.8 KB |
+| 14 | Security, Cryptography, Privacy & Compliance | 21 | 30 KB | 2.0 KB |
+| 15 | Software Delivery & Version Control | 4 | 4 KB | 1.2 KB |
 | 16 | Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM | 7 | 6 KB | 1.6 KB |
-| 17 | The Architect's Practice: Decisions, Strategy & Career | 10 | 4 KB | 1.6 KB |
-| 18 | DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability | 8 | 13 KB | 1.6 KB |
-| 19 | Machine Learning, MLOps & Production ML System Design | 11 | 40 KB | 2.1 KB |
-| 19b | Speech & ASR, Computer Vision, Information Retrieval & NLP Toolkits | 7 | 27 KB | 2.1 KB |
-| 20 | Generative AI, LLMs, Agents & Claude Applications (part 1 of 3) | 5 | 26 KB | 2.0 KB |
-| 21 | Generative AI, LLMs, Agents & Claude Applications (part 2 of 3) | 4 | 15 KB | 2.0 KB |
-| 22 | Generative AI, LLMs, Agents & Claude Applications (part 3 of 3) | 7 | 25 KB | 2.1 KB |
+| 17 | The Architect's Practice: Decisions, Strategy & Career | 10 | 5 KB | 1.6 KB |
+| 18 | DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability | 8 | 14 KB | 1.6 KB |
+| 19 | Machine Learning, MLOps & Production ML System Design | 11 | 51 KB | 2.1 KB |
+| 19b | Speech & ASR, Computer Vision, Information Retrieval & NLP Toolkits | 7 | 34 KB | 2.1 KB |
+| 20 | Generative AI, LLMs, Agents & Claude Applications (part 1 of 3) | 5 | 32 KB | 2.0 KB |
+| 21 | Generative AI, LLMs, Agents & Claude Applications (part 2 of 3) | 4 | 17 KB | 2.0 KB |
+| 22 | Generative AI, LLMs, Agents & Claude Applications (part 3 of 3) | 7 | 28 KB | 2.1 KB |
 | 23 | Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2) | 8 | 24 KB | 2.0 KB |
 | 24 | Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 2 of 2) | 12 | 23 KB | 2.0 KB |
 | 25 | Published ML System-Design Case Studies (part 1 of 5) | 1 | 29 KB | 1.3 KB |
@@ -70,16 +70,16 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 | 27 | Published ML System-Design Case Studies (part 3 of 5) | 2 | 21 KB | 1.3 KB |
 | 28 | Published ML System-Design Case Studies (part 4 of 5) | 7 | 24 KB | 1.4 KB |
 | 29 | Published ML System-Design Case Studies (part 5 of 5) | 1 | 41 KB | 1.3 KB |
-| 30 | Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines | 5 | 10 KB | 2.5 KB |
+| 30 | Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines | 5 | 11 KB | 2.5 KB |
 
-Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 3 KB to 41 KB (roughly 750 to 10,000 tokens); a rules file is 1 to 2.5 KB (roughly 400 tokens); the method file is 22 KB (roughly 5,500 tokens).
+Total: 33 parts, 246 topic groups, 2,271 top-level topic lines. A topic list is 4 KB to 51 KB (roughly 900 to 12,600 tokens); a rules file is 1 to 2.5 KB (roughly 400 tokens); the method file is 22 KB (roughly 5,500 tokens).
 
 ## Part by part
 
 ### Part 01 · School-level foundations
 
 - Files: `index/part01_school_foundations.rules.md` and `index/part01_school_foundations.topics.md`
-- Size: topic list 12 KB (about 3,100 tokens); rules file 1 to 2 KB
+- Size: topic list 15 KB (about 3,700 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - (topics directly under the domain heading) (22 topics)
 - Remedial and on demand: opened only when the learner struggles with a basic skill; see the placement note in its rules file.
@@ -87,7 +87,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 02 · Computer Organization & Data Representation
 
 - Files: `index/part02_computer_organization.rules.md` and `index/part02_computer_organization.topics.md`
-- Size: topic list 6 KB (about 1,500 tokens); rules file 1 to 2 KB
+- Size: topic list 6 KB (about 1,600 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - Data representation (5 topics)
   - Digital logic (3 topics)
@@ -97,11 +97,11 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 03 · Mathematics, Probability, Statistics, Queueing & Performance Modelling
 
 - Files: `index/part03_mathematics.rules.md` and `index/part03_mathematics.topics.md`
-- Size: topic list 26 KB (about 6,500 tokens); rules file 1.6 KB
+- Size: topic list 33 KB (about 8,200 tokens); rules file 1.6 KB
 - Groups in the topic list:
   - Proof and discrete mathematics (8 topics)
   - Probability (14 topics)
-  - Statistics and experimental design (20 topics)
+  - Statistics and experimental design (21 topics)
   - Queueing and performance modelling (3 topics)
   - Linear algebra (16 topics)
   - Calculus and optimization (11 topics)
@@ -114,31 +114,31 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 03b · Calculus, Analysis, Coordinate Geometry & Number Theory
 
 - Files: `index/part03b_analysis_calculus_and_number_theory.rules.md` and `index/part03b_analysis_calculus_and_number_theory.topics.md`
-- Size: topic list 22 KB (about 5,500 tokens); rules file 1.8 KB
+- Size: topic list 24 KB (about 6,000 tokens); rules file 1.8 KB
 - Groups in the topic list:
   - Calculus and differential equations (22 topics)
-  - Coordinate geometry and conics (9 topics)
+  - Coordinate geometry and conics (10 topics)
   - Real analysis (16 topics)
   - Complex and functional analysis (6 topics)
-  - Number theory (25 topics)
+  - Number theory (26 topics)
   - Exercises (8 topics)
 
 ### Part 03c · Signals, Systems & Communications
 
 - Files: `index/part03c_signals_systems_and_communications.rules.md` and `index/part03c_signals_systems_and_communications.topics.md`
-- Size: topic list 12 KB (about 3,000 tokens); rules file 1.7 KB
+- Size: topic list 14 KB (about 3,600 tokens); rules file 1.7 KB
 - Groups in the topic list:
-  - Signals and linear time-invariant systems (5 topics)
-  - Transforms and system analysis (6 topics)
+  - Signals and linear time-invariant systems (7 topics)
+  - Transforms and system analysis (7 topics)
   - Digital filters and multirate processing (6 topics)
-  - Practical spectral analysis (6 topics)
+  - Practical spectral analysis (8 topics)
   - Digital communications (8 topics)
-  - Exercises (8 topics)
+  - Exercises (9 topics)
 
 ### Part 04 · Problem Solving, Reasoning & Research Method
 
 - Files: `index/part04_problem_solving.rules.md` and `index/part04_problem_solving.topics.md`
-- Size: topic list 8 KB (about 2,000 tokens); rules file 1 to 2 KB
+- Size: topic list 9 KB (about 2,200 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - Problem-solving strategy (4 topics)
   - Contest mathematics toolkit (8 topics)
@@ -153,7 +153,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 05 · Programming Languages & Language Theory (part 1 of 3)
 
 - Files: `index/part05_programming_languages_python_and_shell.rules.md` and `index/part05_programming_languages_python_and_shell.topics.md`
-- Size: topic list 4 KB (about 1,000 tokens); rules file 1.4 KB
+- Size: topic list 5 KB (about 1,300 tokens); rules file 1.4 KB
 - Groups in the topic list:
   - Python (4 topics)
   - R for data science (3 topics)
@@ -162,7 +162,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 06 · Programming Languages & Language Theory (part 2 of 3)
 
 - Files: `index/part06_programming_languages_go.rules.md` and `index/part06_programming_languages_go.topics.md`
-- Size: topic list 19 KB (about 4,500 tokens); rules file 1.6 KB
+- Size: topic list 22 KB (about 5,600 tokens); rules file 1.6 KB
 - Groups in the topic list:
   - Go — toolchain and program structure (6 topics)
   - Go — composite data, functions, errors and text (4 topics)
@@ -175,7 +175,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 07 · Programming Languages & Language Theory (part 3 of 3)
 
 - Files: `index/part07_programming_languages_typescript_wire_theory_exercises.rules.md` and `index/part07_programming_languages_typescript_wire_theory_exercises.topics.md`
-- Size: topic list 9 KB (about 2,000 tokens); rules file 1.4 KB
+- Size: topic list 10 KB (about 2,500 tokens); rules file 1.4 KB
 - Groups in the topic list:
   - TypeScript, Node and the web client (2 topics)
   - Java and the JVM (5 topics)
@@ -186,7 +186,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 08 · Data Structures, Algorithms & Computational Complexity
 
 - Files: `index/part08_data_structures_algorithms.rules.md` and `index/part08_data_structures_algorithms.topics.md`
-- Size: topic list 9 KB (about 2,000 tokens); rules file 1.7 KB
+- Size: topic list 11 KB (about 2,800 tokens); rules file 1.7 KB
 - Groups in the topic list:
   - Analysis (3 topics)
   - Linear structures and techniques (7 topics)
@@ -196,14 +196,14 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
   - Graph algorithms (10 topics)
   - Greedy algorithms and dynamic programming (4 topics)
   - Randomized and probabilistic structures (5 topics)
-  - Computability and complexity (9 topics)
+  - Computability and complexity (10 topics)
   - Algorithms at scale (4 topics)
   - Exercises (11 topics)
 
 ### Part 09 · Computer Networking & Web Protocols
 
 - Files: `index/part09_networking.rules.md` and `index/part09_networking.topics.md`
-- Size: topic list 9 KB (about 2,000 tokens); rules file 1.6 KB
+- Size: topic list 10 KB (about 2,400 tokens); rules file 1.6 KB
 - Groups in the topic list:
   - Architecture principles (5 topics)
   - Addressing and the link layer (5 topics)
@@ -222,7 +222,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 10 · Operating Systems & Linux
 
 - Files: `index/part10_operating_systems.rules.md` and `index/part10_operating_systems.topics.md`
-- Size: topic list 6 KB (about 1,500 tokens); rules file 1 to 2 KB
+- Size: topic list 7 KB (about 1,600 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - Linux practice (8 topics)
   - Processes and threads (9 topics)
@@ -237,7 +237,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 11 · Software Architecture, APIs, Design Patterns & Clean Architecture
 
 - Files: `index/part11_software_architecture.rules.md` and `index/part11_software_architecture.topics.md`
-- Size: topic list 12 KB (about 3,000 tokens); rules file 1.8 KB
+- Size: topic list 13 KB (about 3,400 tokens); rules file 1.8 KB
 - Groups in the topic list:
   - Architecture fundamentals (4 topics)
   - API design (6 topics)
@@ -248,7 +248,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
   - Application architecture (7 topics)
   - Domain-driven design (5 topics)
   - Distributed application patterns (4 topics)
-  - Anti-patterns (7 topics)
+  - Anti-patterns (8 topics)
   - Quality attributes and evaluation (5 topics)
   - Architecture documentation (7 topics)
   - Formal methods (4 topics)
@@ -258,7 +258,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 12 · Databases, SQL, Relational Theory & Data Modelling
 
 - Files: `index/part12_databases.rules.md` and `index/part12_databases.topics.md`
-- Size: topic list 15 KB (about 4,000 tokens); rules file 1.8 KB
+- Size: topic list 17 KB (about 4,300 tokens); rules file 1.8 KB
 - Groups in the topic list:
   - Pre-SQL foundations (7 topics)
   - Relational theory (7 topics)
@@ -276,7 +276,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 13 · Distributed Systems & Large-Scale System Design
 
 - Files: `index/part13_distributed_systems.rules.md` and `index/part13_distributed_systems.topics.md`
-- Size: topic list 10 KB (about 2,500 tokens); rules file 1.8 KB
+- Size: topic list 11 KB (about 2,900 tokens); rules file 1.8 KB
 - Groups in the topic list:
   - Foundations (4 topics)
   - Consensus and coordination (6 topics)
@@ -289,14 +289,14 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
   - Stream and batch processing (7 topics)
   - Performance at scale (5 topics)
   - Testing and verification (3 topics)
-  - System design method (4 topics)
+  - System design method (6 topics)
   - Design techniques (10 topics)
   - Exercises (7 topics)
 
 ### Part 14 · Security, Cryptography, Privacy & Compliance
 
 - Files: `index/part14_security.rules.md` and `index/part14_security.topics.md`
-- Size: topic list 25 KB (about 6,500 tokens); rules file 2.0 KB
+- Size: topic list 30 KB (about 7,600 tokens); rules file 2.0 KB
 - Groups in the topic list:
   - Principles and economics (6 topics)
   - Threat modelling (8 topics)
@@ -323,7 +323,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 15 · Software Delivery & Version Control
 
 - Files: `index/part15_software_delivery.rules.md` and `index/part15_software_delivery.topics.md`
-- Size: topic list 3 KB (about 1,000 tokens); rules file 1.2 KB
+- Size: topic list 4 KB (about 900 tokens); rules file 1.2 KB
 - Groups in the topic list:
   - Git (3 topics)
   - Delivery models (6 topics)
@@ -333,7 +333,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 16 · Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 
 - Files: `index/part16_cloud_core.rules.md` and `index/part16_cloud_core.topics.md`
-- Size: topic list 6 KB (about 1,500 tokens); rules file 1 to 2 KB
+- Size: topic list 6 KB (about 1,600 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - What cloud computing is (7 topics)
   - Virtualization and containers (7 topics)
@@ -346,7 +346,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 17 · The Architect's Practice: Decisions, Strategy & Career
 
 - Files: `index/part17_architects_practice.rules.md` and `index/part17_architects_practice.topics.md`
-- Size: topic list 4 KB (about 1,000 tokens); rules file 1 to 2 KB
+- Size: topic list 5 KB (about 1,200 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - Making decisions (5 topics)
   - Decision theory (6 topics)
@@ -362,7 +362,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 18 · DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, Observability
 
 - Files: `index/part18_devops_sre.rules.md` and `index/part18_devops_sre.topics.md`
-- Size: topic list 13 KB (about 3,000 tokens); rules file 1.6 KB
+- Size: topic list 14 KB (about 3,500 tokens); rules file 1.6 KB
 - Groups in the topic list:
   - Docker (11 topics)
   - Kubernetes (10 topics)
@@ -376,14 +376,14 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 19 · Machine Learning, MLOps & Production ML System Design
 
 - Files: `index/part19_machine_learning.rules.md` and `index/part19_machine_learning.topics.md`
-- Size: topic list 40 KB (about 10,000 tokens); rules file 2.1 KB
+- Size: topic list 51 KB (about 12,600 tokens); rules file 2.1 KB
 - Groups in the topic list:
   - Foundations of AI (3 topics)
   - Classical AI: search, knowledge and reasoning (16 topics)
   - Classical machine learning (24 topics)
   - Deep learning (23 topics)
   - Natural language processing foundations (15 topics)
-  - Machine learning in Python (8 topics)
+  - Machine learning in Python (9 topics)
   - Specialised learning areas (15 topics)
   - Classical computer vision and geometry (10 topics)
   - Applied problem families (13 topics)
@@ -393,23 +393,23 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 19b · Speech & ASR, Computer Vision, Information Retrieval & NLP Toolkits
 
 - Files: `index/part19b_speech_vision_retrieval_and_nlp_toolkits.rules.md` and `index/part19b_speech_vision_retrieval_and_nlp_toolkits.topics.md`
-- Size: topic list 27 KB (about 6,500 tokens); rules file 2.1 KB
+- Size: topic list 34 KB (about 8,500 tokens); rules file 2.1 KB
 - Groups in the topic list:
   - Speech science and analysis (11 topics)
-  - Speech recognition: from HMMs to Kaldi (13 topics)
+  - Speech recognition: from HMMs to Kaldi (14 topics)
   - Speech synthesis, speakers and spoken-language systems (5 topics)
-  - Computer vision: images, motion and multi-view geometry (18 topics)
-  - Information retrieval engines (5 topics)
-  - Classical NLP and toolkits (21 topics)
-  - Exercises (9 topics)
+  - Computer vision: images, motion and multi-view geometry (24 topics)
+  - Information retrieval engines (9 topics)
+  - Classical NLP and toolkits (22 topics)
+  - Exercises (10 topics)
 
 ### Part 20 · Generative AI, LLMs, Agents & Claude Applications (part 1 of 3)
 
 - Files: `index/part20_generative_ai_1of3.rules.md` and `index/part20_generative_ai_1of3.topics.md`
-- Size: topic list 26 KB (about 6,500 tokens); rules file 2.0 KB
+- Size: topic list 32 KB (about 8,000 tokens); rules file 2.0 KB
 - Groups in the topic list:
-  - How LLMs work (15 topics)
-  - Fine-tuning and adaptation (18 topics)
+  - How LLMs work (16 topics)
+  - Fine-tuning and adaptation (20 topics)
   - Multimodal models (7 topics)
   - Generative models beyond autoregression (8 topics)
   - Embeddings and retrieval (9 topics)
@@ -417,9 +417,9 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 21 · Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
 
 - Files: `index/part21_generative_ai_2of3.rules.md` and `index/part21_generative_ai_2of3.topics.md`
-- Size: topic list 15 KB (about 3,500 tokens); rules file 2.0 KB
+- Size: topic list 17 KB (about 4,200 tokens); rules file 2.0 KB
 - Groups in the topic list:
-  - Retrieval-augmented generation (17 topics)
+  - Retrieval-augmented generation (18 topics)
   - Model APIs (7 topics)
   - Prompt, context and output engineering (8 topics)
   - Tools and the Model Context Protocol (5 topics)
@@ -427,20 +427,20 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 22 · Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 
 - Files: `index/part22_generative_ai_3of3.rules.md` and `index/part22_generative_ai_3of3.topics.md`
-- Size: topic list 25 KB (about 6,500 tokens); rules file 2.1 KB
+- Size: topic list 28 KB (about 7,000 tokens); rules file 2.1 KB
 - Groups in the topic list:
   - Agents and workflows (15 topics)
   - Claude Code (6 topics)
   - Security and safety of LLM applications (10 topics)
   - Evaluation, testing and debugging (12 topics)
-  - Application architecture and LLMOps (11 topics)
+  - Application architecture and LLMOps (12 topics)
   - The forward-deployed engineer's craft (3 topics)
   - Exercises (36 topics)
 
 ### Part 23 · Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 
 - Files: `index/part23_cloud_providers_1of2.rules.md` and `index/part23_cloud_providers_1of2.topics.md`
-- Size: topic list 24 KB (about 6,000 tokens); rules file 1 to 2 KB
+- Size: topic list 24 KB (about 6,100 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
   - Google Cloud — compute (5 topics)
   - Google Cloud — storage and databases (11 topics)
@@ -514,7 +514,7 @@ Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 
 ### Part 30 · Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines
 
 - Files: `index/part30_supplementary_applied_domains.rules.md` and `index/part30_supplementary_applied_domains.topics.md`
-- Size: topic list 10 KB (about 2,500 tokens); rules file 2.5 KB
+- Size: topic list 11 KB (about 2,700 tokens); rules file 2.5 KB
 - Groups in the topic list:
   - Corporate finance (8 topics)
   - Marketing and digital marketing (5 topics)
