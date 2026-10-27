@@ -16,7 +16,7 @@ The full Learning method is kept **once**, in `index/00_learning_method.md`, and
 
 ## Speech & ASR, Computer Vision, Information Retrieval & NLP Toolkits
 
-**Prerequisites:** the DSP of part 03c (z-transform, filters, cepstrum, LPC); probability, statistics and linear algebra (part 03); weighted finite-state transducers (part 08); the machine-learning, NLP and classical computer-vision groups of part 19; Python (part 05); inverted-index construction and compression (the Rust track's search-engine project).
+**Prerequisites:** the DSP of part 03c (z-transform, filters, cepstrum, LPC); probability, statistics and linear algebra (part 03); weighted finite-state transducers (part 08); the machine-learning, NLP and classical computer-vision groups of part 19; Python (part 05).
 
 **Depth bar:** a graduate course in each area: an HMM recognizer and an HCLG graph built and decoded by hand on a toy task before Kaldi or a neural toolkit; multi-view geometry derived and implemented; an inverted index with compression and ranking built from scratch; every toolkit used only after its algorithm has been implemented at toy size.
 

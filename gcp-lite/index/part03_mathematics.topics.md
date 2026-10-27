@@ -75,7 +75,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - **Law of total probability**: P(B) = Σᵢ P(B | Aᵢ)P(Aᵢ) over a partition of the sample space; the continuous form with integration against a density; its role as the denominator of Bayes' theorem when conditioning on competing causes
 - **Transformations of random variables**: the change-of-variable formula f_Y(y) = f_X(g⁻¹(y))·|d g⁻¹(y)/dy| for monotone maps; the CDF method for general maps; summing over branches for non-monotone maps; the Jacobian determinant for vector transformations
 - **Log-normal and multinomial distributions**: a log-normal variable exp(X) with X normal, median e^μ and mean e^(μ + σ²/2), arising from multiplicative effects; the multinomial as n trials over k categories with probability n!/(∏ nᵢ!)·∏ pᵢ^nᵢ; negative covariance between category counts
-- **Maximum-entropy distributions**: maximizing entropy under moment constraints with Lagrange multipliers, giving exponential-family densities; the uniform law with no constraint, the geometric law for a fixed mean on the non-negative integers, the normal for a fixed mean and variance, the exponential for a fixed mean on the positive reals
+- **Maximum-entropy distributions**: maximizing entropy under moment constraints with Lagrange multipliers, giving exponential-family densities; the uniform law with no constraint, the geometric law for a fixed mean on the non-negative integers, the normal for a fixed mean and variance, the exponential for a fixed mean on the positive reals; the maximum-entropy principle as the rule for choosing a prior or model consistent with known constraints and nothing more
 - **Jeffreys and ignorance priors**: non-informative priors for parameters about which nothing is known; the Jeffreys prior proportional to the square root of the Fisher information, invariant under reparametrization; the flat prior for a location parameter and 1/σ for a scale parameter; a flat prior in one parametrization becoming informative in another
 - **Paradoxes of probability (Borel–Kolmogorov)**: conditioning on an event of probability zero depends on the limiting sequence of events chosen, so the same conditioning event on a sphere yields different conditional densities in different coordinates; nonconglomerability and the marginalization paradox as related failures of naive conditioning
 - **Rule of succession and exchangeable sequences**: a sequence is exchangeable when its joint law is invariant under permutation of its terms; de Finetti's representation as a mixture of independent and identically distributed sequences; Laplace's rule (k + 1)/(n + 2) after k successes in n trials under a uniform prior
@@ -161,7 +161,6 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Product, quotient and chain rules
   - The first-order Taylor approximation, and why a small gradient step decreases a smooth function
   - The integral as accumulated area; probability densities
-  - Partial fractions: a proper rational function split into linear and irreducible quadratic terms by matching coefficients; each term integrating to a logarithm or an arctangent
   - First-order differential equations; Euler and Runge–Kutta (RK4) methods
 - **Multivariable and matrix calculus**
   - Partial derivatives and the gradient
@@ -207,7 +206,6 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - **Asymptotic equipartition property**: −(1/n) log p(X₁…Xₙ) → H(X) in probability for i.i.d. sources; the typical set of about 2^(nH) sequences carrying almost all probability; the consequence that about nH bits suffice for lossless coding
 - **Rate distortion theory**: R(D) = min I(X; X̂) over test channels whose expected distortion is at most D; the Gaussian source with R(D) = ½ log(σ²/D) for D ≤ σ²; the rate–fidelity trade-off in lossy compression
 - **Entropy rates of stochastic processes**: H = lim (1/n) H(X₁…Xₙ) for stationary processes, equal to the limit of H(Xₙ | Xₙ₋₁…X₁); the entropy rate of a stationary Markov chain as the stationary-weighted entropy of its transition rows
-- **Maximum-entropy principle**: choosing the distribution of largest entropy consistent with known constraints; the Lagrangian solution in exponential-family form; the uniform and Gaussian distributions as its special cases
 - **Network information theory**: multi-user sources and channels; the multiple-access channel capacity region; the broadcast channel; the Slepian–Wolf region for distributed lossless compression with rates H(X|Y), H(Y|X) and H(X, Y)
 - **Sparse graph codes (LDPC)**: linear codes defined by a sparse parity-check matrix whose Tanner graph is bipartite; belief-propagation decoding by message passing; the threshold near Shannon capacity under density evolution for irregular degree distributions
 

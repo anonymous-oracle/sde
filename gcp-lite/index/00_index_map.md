@@ -27,7 +27,7 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 
 | Document | What it holds | When to read |
 |---|---|---|
-| `Consolidated_Topic_Index_GCP.md` | The master copy of the whole index (about 434 KB). The parts were cut from it; parts 03, 03b, 03c, 05 to 09, 11 to 15, 18 to 22 and 30 have since been extended from gcp/unified-curriculum.md, so they no longer match it line for line | Only to check a part against its source |
+| `Consolidated_Topic_Index_GCP.md` | The master copy of the whole index (about 434 KB). The parts were cut from it; parts 01, 03, 03b, 03c, 05 to 09, 11 to 15, 18 to 22 and 30 have since been extended from gcp/unified-curriculum.md, so they no longer match it line for line | Only to check a part against its source |
 | `Exercise Rules` | The rule that separates predictions (read-only) from exercises (written by the learner) | Before setting any prediction or exercise |
 | `learn-SKILL.md` | The tutoring skill: diagnose first, one scaffold and one question per turn, hold the line, no hidden answers | Start of a teaching stretch |
 | `claude/learning_handoff_and_tracker.md` | The handoff (Part A) and the tracker (Part B) | Resuming after a break |
@@ -38,7 +38,7 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 
 | Part | Domain | Groups | Topic list | Rules file |
 |---|---|---|---|---|
-| 01 | School-level foundations | 1 | 3 KB | 1.1 KB |
+| 01 | School-level foundations | 1 | 12 KB | 1.7 KB |
 | 02 | Computer Organization & Data Representation | 4 | 6 KB | 1.3 KB |
 | 03 | Mathematics, Probability, Statistics, Queueing & Performance Modelling | 11 | 26 KB | 1.6 KB |
 | 03b | Calculus, Analysis, Coordinate Geometry & Number Theory | 6 | 22 KB | 1.8 KB |
@@ -72,16 +72,17 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 | 29 | Published ML System-Design Case Studies (part 5 of 5) | 1 | 41 KB | 1.3 KB |
 | 30 | Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines | 5 | 10 KB | 2.5 KB |
 
-Total: 33 parts, 246 topic groups, 2,233 top-level topic lines. A topic list is 3 KB to 41 KB (roughly 750 to 10,000 tokens); a rules file is 1 to 2 KB (roughly 400 tokens); the method file is 22 KB (roughly 5,500 tokens).
+Total: 33 parts, 246 topic groups, 2,239 top-level topic lines. A topic list is 3 KB to 41 KB (roughly 750 to 10,000 tokens); a rules file is 1 to 2.5 KB (roughly 400 tokens); the method file is 22 KB (roughly 5,500 tokens).
 
 ## Part by part
 
 ### Part 01 · School-level foundations
 
 - Files: `index/part01_school_foundations.rules.md` and `index/part01_school_foundations.topics.md`
-- Size: topic list 3 KB (about 500 tokens); rules file 1 to 2 KB
+- Size: topic list 12 KB (about 3,100 tokens); rules file 1 to 2 KB
 - Groups in the topic list:
-  - (topics directly under the domain heading) (16 topics)
+  - (topics directly under the domain heading) (22 topics)
+- Remedial and on demand: opened only when the learner struggles with a basic skill; see the placement note in its rules file.
 
 ### Part 02 · Computer Organization & Data Representation
 
@@ -105,7 +106,7 @@ Total: 33 parts, 246 topic groups, 2,233 top-level topic lines. A topic list is 
   - Linear algebra (16 topics)
   - Calculus and optimization (11 topics)
   - Numerical computing (8 topics)
-  - Information theory (13 topics)
+  - Information theory (12 topics)
   - Signals and sequences (6 topics)
   - Decision mathematics (3 topics)
   - Exercises (18 topics)
@@ -398,7 +399,7 @@ Total: 33 parts, 246 topic groups, 2,233 top-level topic lines. A topic list is 
   - Speech recognition: from HMMs to Kaldi (13 topics)
   - Speech synthesis, speakers and spoken-language systems (5 topics)
   - Computer vision: images, motion and multi-view geometry (18 topics)
-  - Information retrieval engines (4 topics)
+  - Information retrieval engines (5 topics)
   - Classical NLP and toolkits (21 topics)
   - Exercises (9 topics)
 
@@ -524,7 +525,7 @@ Total: 33 parts, 246 topic groups, 2,233 top-level topic lines. A topic list is 
 
 **NPTEL 2026 additions (25 Oct 2026).** The topics of 22 NPTEL courses were merged, deduplicated and inserted into the existing groups or into new ones: Classical AI and Classical computer vision (part 19), Generative models beyond autoregression (part 20), R for data science (part 05), Java and the JVM (part 07), IoT and constrained-device networking (part 09), Ethical hacking and Security management (part 14), Resource management, edge and cloud paradigms (part 16), and part 30. Smaller additions sit in parts 03, 05, 08, 10, 11, 12, 14, 16, 19 and 20.
 
-**Unified-curriculum additions (27 Oct 2026).** The missing topics found by the topic diff in `project-docs/topic-diff/README.md` were deduplicated and integrated. Three new parts were created: Part 03b (calculus, analysis, coordinate geometry and number theory), Part 03c (signals, systems and communications) and Part 19b (speech and ASR, computer vision, information retrieval and NLP toolkits). The other changed parts received topics in their existing groups, and Part 30 gained a game-engines group and an Exercises group; Part 01 was left unchanged.
+**Unified-curriculum additions (27 Oct 2026).** The missing topics found by the topic diff in `project-docs/topic-diff/README.md` were deduplicated and integrated. Three new parts were created: Part 03b (calculus, analysis, coordinate geometry and number theory), Part 03c (signals, systems and communications) and Part 19b (speech and ASR, computer vision, information retrieval and NLP toolkits). The other changed parts received topics in their existing groups, and Part 30 gained a game-engines group and an Exercises group; Part 01 also received the missing school-level topics and is now remedial: it is taught only when the learner struggles with the basics.
 
 ## Where to find common subjects
 
