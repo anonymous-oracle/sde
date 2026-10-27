@@ -9,6 +9,13 @@ Domain: School-level foundations
   - Ratios and rates; order of operations
   - Rounding, estimation, scientific notation, significant figures
   - Prime factors, GCD and LCM
+  - Speed, distance and time: d = vt, so v = d/t and t = d/v; average speed as total distance over total time, not the mean of the speeds; relative speed v₁ + v₂ for opposite directions and v₁ − v₂ for the same direction
+  - Ratio and proportion: a:b = c:d exactly when ad = bc; a proportion as two equal ratios
+  - Componendo, dividendo, alternendo and invertendo: from a/b = c/d come (a+b)/b = (c+d)/d and (a−b)/b = (c−d)/d; dividing these gives (a+b)/(a−b) = (c+d)/(c−d); alternendo a/c = b/d; invertendo b/a = d/c
+  - Continued proportion and compounding ratios: a:b = b:c gives b² = ac; compounding a:b and c:d gives ac:bd
+  - Direct and inverse variation: y = kx with y/x constant; y = k/x with xy constant; joint variation y = kxz
+  - Unitary method: find the value of one unit, then scale it to the required count or quantity
+  - Repeating decimals to fractions: 0.373737… = 37/99 from 100x − x = 37; a mixed repeat such as 0.1666… = 1/6 from 100x − 10x = 15
 - **Units and dimensional reasoning**
   - SI prefixes from kilo to peta and milli to nano
   - Units of time, data and rate; unit conversion
@@ -17,10 +24,14 @@ Domain: School-level foundations
   - Variables and expressions; linear equations and inequalities
   - Rearranging formulas; simultaneous equations by substitution and elimination; absolute value
   - Polynomials; the remainder and factor theorems
+  - Interval notation: [a, b] closed, (a, b) open, and unions such as (−∞, −2] ∪ [3, ∞); solution sets over N, Z and R: x² < 4 gives (−2, 2) over R, {−1, 0, 1} over Z and {1} over N = {1, 2, 3, …}
+  - Surds: √(a²b) = a√b in simplest form; √(ab) = √a·√b for a, b ≥ 0; rationalising a denominator, 1/(√3 + 1) = (√3 − 1)/2
 - **Functions and graphs**
   - Function notation, domain and range, composition, inverse functions, monotonicity
   - Linear, quadratic, polynomial, piecewise and step functions
   - Slope as rate of change; reading and sketching graphs
+  - Graphical transformations: y = f(x) + a shifts up by a; y = f(x − a) shifts right by a; y = af(x) stretches vertically; y = f(bx) compresses horizontally by a factor b; y = −f(x) and y = f(−x) reflect in the axes
+  - Special functions: floor ⌊x⌋, the largest integer at most x; fractional part {x} = x − ⌊x⌋ in [0, 1); signum sgn(x) equal to −1, 0 or 1; step and sawtooth graphs and their jumps
 - **Exponents, roots and logarithms**
   - Laws of exponents; powers of 2 and of 10
   - Logarithm laws and change of base; log scales
@@ -28,11 +39,59 @@ Domain: School-level foundations
 - **Sequences, series and notation**
   - Arithmetic and geometric sequences and their sums
   - Σ and Π notation; factorial
+  - Geometric mean: √(ab) of positive a and b is the middle term of a geometric sequence; the arithmetic mean (a + b)/2 is never smaller (AM ≥ GM)
 - **Geometry, trigonometry and vectors**
   - Cartesian coordinates, Pythagoras and distance; reflections in the axes
   - Lines as ax + by = c; slope, parallel and perpendicular lines, intersections; similarity
   - Angles, sine and cosine, the unit circle
   - Vectors as arrows; the angle between two vectors
+  - Pythagorean identity: sin²θ + cos²θ = 1, with 1 + tan²θ = sec²θ and 1 + cot²θ = cosec²θ
+  - Addition and subtraction formulas: sin(A ± B) = sin A cos B ± cos A sin B; cos(A ± B) = cos A cos B ∓ sin A sin B; tan(A ± B) = (tan A ± tan B) / (1 ∓ tan A tan B)
+  - Multiple and half-angle formulas: sin 2θ = 2 sin θ cos θ; cos 2θ = cos²θ − sin²θ = 1 − 2 sin²θ = 2 cos²θ − 1; tan 2θ = 2 tan θ / (1 − tan²θ); sin²(θ/2) = (1 − cos θ)/2 and cos²(θ/2) = (1 + cos θ)/2
+  - Periodic graphs: sin and cos have period 2π and tan has period π; y = A sin(bx + c) + d has amplitude |A|, period 2π/b and phase shift −c/b
+  - Inverse trigonometric functions: principal values sin⁻¹x in [−π/2, π/2], cos⁻¹x in [0, π] and tan⁻¹x in (−π/2, π/2); sin⁻¹x + cos⁻¹x = π/2
+  - Trigonometric equations and inequations: general solutions sin θ = sin α gives θ = nπ + (−1)ⁿα; cos θ = cos α gives θ = 2nπ ± α; tan θ = tan α gives θ = nπ + α, with n an integer; inequations solved on a stated interval
+  - Properties of triangles: sine rule a/sin A = b/sin B = c/sin C = 2R; cosine rule a² = b² + c² − 2bc cos A; area ½ab sin C and Heron's formula √(s(s−a)(s−b)(s−c)) with s the semi-perimeter
+  - Heights and distances: angles of elevation and depression; right-triangle solutions with tan θ = height ÷ base; two-triangle problems by the sine and cosine rules
+- **Quadratics and polynomial equations**
+  - Splitting the middle term: x² + bx + c = (x + p)(x + q) with p + q = b and pq = c; for ax² + bx + c, split b so that the two parts multiply to ac
+  - Quadratic formula: x = (−b ± √(b² − 4ac)) / (2a); Shridharacharya's method derives it by multiplying by 4a and adding b², so the left side becomes (2ax + b)²
+  - Discriminant and nature of roots: D = b² − 4ac; D > 0 gives two distinct real roots, D = 0 a repeated root, D < 0 a complex conjugate pair; the roots sum to −b/a and multiply to c/a
+  - Equations reducible to quadratics: substitution such as u = x² in x⁴ − 5x² + 4 = 0, and equations in x + 1/x
+  - Synthetic division by (x − r): the last entry is the remainder f(r) and the others are the quotient's coefficients; a zero remainder is the factor theorem
+  - Factoring cubics: find a root r among the divisors of the constant term, then divide by (x − r) to reach a quadratic; for example x³ − 6x² + 11x − 6 = (x − 1)(x − 2)(x − 3)
+- **Euclidean geometry: triangles and circles**
+  - Thales and the basic proportionality theorem: a line parallel to one side of a triangle divides the other two sides in the same ratio, and conversely; an angle in a semicircle is a right angle
+  - Midpoint theorem: the segment joining the midpoints of two sides is parallel to the third side and half its length
+  - Area ratios of similar triangles: equal angles and proportional sides; areas in the ratio of the squares of corresponding sides
+  - Centroid of a triangle: the medians meet at a point dividing each median 2:1 from the vertex; G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)
+  - Circle theorems: the angle at the centre is twice the angle at the circumference; angles in the same segment are equal; equal chords subtend equal angles; the perpendicular from the centre bisects a chord
+  - Cyclic quadrilaterals and concyclic points: opposite angles sum to 180°, and conversely a quadrilateral with that property is cyclic; A, B, C and D are concyclic when ∠ACB = ∠ADB with C and D on the same side of AB
+  - Tangents, secants and intersecting chords: a tangent is perpendicular to the radius at the point of contact; from an external point P, PT² = PA × PB for a secant through A and B; for chords AB and CD meeting at P, PA × PB = PC × PD
+  - Loci: the perpendicular bisector of a segment; the bisector of an angle; a circle as the points at a fixed distance from a centre; points whose distances to two points are in a fixed ratio
+  - Constructions with ruler and compass: the circumcircle from the perpendicular bisectors of two sides; the incircle from two angle bisectors; tangents from an external point to a circle; a regular hexagon by stepping the radius round the circle
+- **Mensuration**
+  - Plane areas: rectangle lw; triangle ½bh; trapezium ½(a + b)h; circle πr²; sector ½r²θ with θ in radians
+  - Surface area and volume: cylinder 2πrh and πr²h; cone with slant height l = √(r² + h²), curved surface πrl and volume πr²h/3; sphere 4πr² and 4πr³/3; hemisphere 3πr² total surface and 2πr³/3 volume
+- **Coordinate geometry of lines, circles and conics**
+  - Section and midpoint formulas: the point dividing AB internally in ratio m:n is ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n)); the midpoint takes m = n
+  - Equation of a circle: centre–radius (x − h)² + (y − k)² = r²; general form x² + y² + 2gx + 2fy + c = 0 with centre (−g, −f) and radius √(g² + f² − c); parametric form (h + r cos t, k + r sin t)
+  - Tangent and normal to a curve: at a point with slope m, the tangent is y − y₁ = m(x − x₁) and the normal has slope −1/m; for a circle x² + y² = r², the tangent at (x₁, y₁) is xx₁ + yy₁ = r²
+  - Chord of contact, director circle and orthogonal circles: the chord of contact of an external point joins its two points of tangency; the director circle is the locus of perpendicular tangents, x² + y² = a² + b² for an ellipse and x² + y² = 2r² for a circle of radius r; circles are orthogonal when d² = r₁² + r₂²
+  - Conics as loci: a point whose distance to a focus is e times its distance to the directrix traces an ellipse for e < 1, a parabola for e = 1 and a hyperbola for e > 1
+  - Standard parabola, ellipse and hyperbola: y² = 4ax; x²/a² + y²/b² = 1 with b² = a²(1 − e²); x²/a² − y²/b² = 1 with b² = a²(e² − 1)
+  - Auxiliary circles and asymptotes: the ellipse's auxiliary circle x² + y² = a²; the hyperbola's asymptotes y = ±(b/a)x
+- **Complex numbers**
+  - Imaginary unit and algebra: i² = −1; a + bi added and multiplied as polynomials; the conjugate a − bi; division by the conjugate, (a + bi)/(c + di) = ((ac + bd) + (bc − ad)i)/(c² + d²)
+  - Modulus and argument: |z| = √(a² + b²); arg z = θ with tan θ = b/a in the correct quadrant; z = r(cos θ + i sin θ)
+  - The Argand plane: z plotted as the point (a, b); multiplication multiplies moduli and adds arguments; conjugation reflects in the real axis
+- **Vectors and lines in three dimensions**
+  - Direction cosines and direction ratios: cos α, cos β, cos γ with l² + m² + n² = 1; direction ratios proportional to them; the direction ratios of a line through two points are the coordinate differences
+  - Scalar triple product: a·(b × c), the volume of the parallelepiped on a, b and c; zero when the three vectors are coplanar
+  - Vector triple product: a × (b × c) = (a·c)b − (a·b)c
+  - Lines and skew lines: vector form r = a + tb and Cartesian form (x − x₁)/l = (y − y₁)/m = (z − z₁)/n; skew lines are neither parallel nor intersecting, with shortest distance |(a₂ − a₁)·(b₁ × b₂)| ÷ |b₁ × b₂|
+  - Planes and point-to-plane distance: ax + by + cz = d, or r·n = d with normal n; the distance from (x₁, y₁, z₁) to ax + by + cz + d = 0 is |ax₁ + by₁ + cz₁ + d| ÷ √(a² + b² + c²)
+  - Angles between lines and planes: cos θ = |l₁l₂ + m₁m₂ + n₁n₂| between two lines; sin θ = |a·n| ÷ (|a||n|) between a line with direction a and a plane with normal n
 - **Probability and data**
   - Outcomes and events; simple and complementary probability; counting
   - Mean, median, mode and spread
