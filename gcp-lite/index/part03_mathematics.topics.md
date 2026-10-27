@@ -37,6 +37,9 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Bipartite graphs and 2-colouring
   - Directed acyclic graphs and topological order
   - Euler tours
+- **Circular permutations**: (n − 1)! arrangements of n distinct objects around a circle, since rotations are identified; fixing one object to break the rotational symmetry; reflections identify further arrangements only for necklaces and bracelets
+- **Multinomial theorem and expansion**: (x₁ + … + xₖ)ⁿ as a sum over compositions of n with coefficients n!/(n₁! … nₖ!); the coefficient as the number of ways to split n labelled items into k labelled groups; the count of terms C(n + k − 1, k − 1); extracting a single coefficient
+- **Catalan numbers**: Cₙ = C(2n, n)/(n + 1) counting correct bracketings, binary trees with n internal nodes and lattice paths that never cross the diagonal; the recurrence Cₙ₊₁ = Σᵢ CᵢCₙ₋ᵢ; growth as 4ⁿ/(n^{3/2}√π)
 
 ### Probability
 
@@ -68,6 +71,14 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - **Stochastic processes**
   - Markov chains and stationary distributions
   - Poisson processes
+- **Plausible reasoning and Cox's desiderata**: degrees of plausibility ordered qualitatively; Cox's desiderata of consistency and rationality forcing the sum and product rules up to a monotone reparametrization; probability as the unique consistent extension of deductive logic to uncertain propositions
+- **Law of total probability**: P(B) = Σᵢ P(B | Aᵢ)P(Aᵢ) over a partition of the sample space; the continuous form with integration against a density; its role as the denominator of Bayes' theorem when conditioning on competing causes
+- **Transformations of random variables**: the change-of-variable formula f_Y(y) = f_X(g⁻¹(y))·|d g⁻¹(y)/dy| for monotone maps; the CDF method for general maps; summing over branches for non-monotone maps; the Jacobian determinant for vector transformations
+- **Log-normal and multinomial distributions**: a log-normal variable exp(X) with X normal, median e^μ and mean e^(μ + σ²/2), arising from multiplicative effects; the multinomial as n trials over k categories with probability n!/(∏ nᵢ!)·∏ pᵢ^nᵢ; negative covariance between category counts
+- **Maximum-entropy distributions**: maximizing entropy under moment constraints with Lagrange multipliers, giving exponential-family densities; the uniform law with no constraint, the geometric law for a fixed mean on the non-negative integers, the normal for a fixed mean and variance, the exponential for a fixed mean on the positive reals
+- **Jeffreys and ignorance priors**: non-informative priors for parameters about which nothing is known; the Jeffreys prior proportional to the square root of the Fisher information, invariant under reparametrization; the flat prior for a location parameter and 1/σ for a scale parameter; a flat prior in one parametrization becoming informative in another
+- **Paradoxes of probability (Borel–Kolmogorov)**: conditioning on an event of probability zero depends on the limiting sequence of events chosen, so the same conditioning event on a sphere yields different conditional densities in different coordinates; nonconglomerability and the marginalization paradox as related failures of naive conditioning
+- **Rule of succession and exchangeable sequences**: a sequence is exchangeable when its joint law is invariant under permutation of its terms; de Finetti's representation as a mixture of independent and identically distributed sequences; Laplace's rule (k + 1)/(n + 2) after k successes in n trials under a uniform prior
 
 ### Statistics and experimental design
 
@@ -88,7 +99,22 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Confounders
   - Causal DAGs and adjustment; propensity scores and inverse-propensity weighting
   - Difference-in-differences; uplift modelling
-- **Association between variables**: the correlation matrix; Pearson correlation for linear association versus Spearman rank correlation for monotone association and outlier resistance; correlation is not causation
+- **Association between variables**: the correlation matrix; Pearson correlation for linear association versus Spearman rank correlation for monotone association and outlier resistance; Kendall tau from concordant and discordant pairs; correlation is not causation
+- **Sufficiency and the factorization theorem**: a statistic T(X) is sufficient for θ when the conditional law of the data given T does not depend on θ; the factorization criterion f(x; θ) = g(T(x); θ)h(x); the sample mean of a normal sample as sufficient for its mean; a sufficient statistic loses no information about θ
+- **Basu's theorem and complete sufficient statistics**: completeness, meaning E[g(T)] = 0 for all θ forces g(T) = 0 almost surely; a complete sufficient statistic is independent of every ancillary statistic; the sample mean and sample variance of a normal sample are independent
+- **Exponential families and multiparameter models**: densities in the form exp(η(θ)·T(x) − A(θ))h(x); natural parameters, and the log-partition function A whose derivatives give the mean and variance of T; the normal, Bernoulli and Poisson as members; multiparameter maximum likelihood with the Fisher information matrix
+- **Method of moments**: equating sample moments to population moments and solving for the parameters; consistency from the law of large numbers; the gamma distribution as a worked example; efficiency compared with maximum likelihood
+- **Delta method**: the asymptotic normal law of g(θ̂) from a central limit theorem for θ̂ through a first-order Taylor expansion, with variance g′(θ)²σ²/n; variance-stabilizing transformations; the second-order case when g′(θ) = 0
+- **Cramér–Rao bound**: Var(θ̂) ≥ 1/(n I(θ)) for unbiased estimators, from the Cauchy–Schwarz inequality applied to the score; efficient estimators attain it and the maximum-likelihood estimator attains it asymptotically; the Bernoulli mean as a worked case
+- **Student's t and F distributions**: t as a standard normal divided by the square root of a chi-square over its degrees of freedom, with heavier tails at small n; F as a ratio of independent scaled chi-squares, governing variance ratios and F-tests
+- **One-sample and two-sample t-tests**: t = (x̄ − μ₀)/(s/√n) with n − 1 degrees of freedom; Welch's test for unequal variances; paired differences; the assumptions of independence and an approximately normal sample mean
+- **z-test**: z = (x̄ − μ₀)/(σ/√n) when σ is known or n is large; the two-proportion z-test for conversion rates, with a pooled variance under the null
+- **Type I and Type II errors**: rejecting a true null with probability α, the significance level; failing to reject a false one with probability β; power 1 − β; the trade-off at a fixed sample size and the Neyman–Pearson lemma for the most powerful test at a given α
+- **Analysis of variance (ANOVA)**: splitting the total sum of squares into between-group and within-group parts; the F ratio of mean squares under the null of equal means; one-way and two-way designs; post hoc comparisons with multiple-comparison correction
+- **Mann–Whitney U test**: a rank test for two independent samples, where U counts the pairs in which one sample exceeds the other; the normal approximation for large samples with a tie correction; insensitive to outliers because only ranks enter
+- **Wilcoxon signed-rank test**: paired differences ranked by absolute size, with the sum of ranks of positive differences as the statistic; its null distribution under symmetry about zero; corrections for ties and zero differences
+- **Skewness and kurtosis**: standardized third and fourth central moments, skewness E[(X − μ)³]/σ³ and excess kurtosis E[(X − μ)⁴]/σ⁴ − 3; what they say about asymmetry and tail weight; sample estimates of them being unstable at small n
+- **Nonparametric inference**: estimating a distribution without a parametric family; the empirical CDF Fₙ(x) = (1/n)Σ 1{Xᵢ ≤ x} and the Dvoretzky–Kiefer–Wolfowitz bound on its uniform error; kernel density estimation and the bias–variance trade-off in its bandwidth
 
 ### Queueing and performance modelling
 
@@ -115,12 +141,18 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - Matrix multiplication and its O(n³) naive cost; why it parallelizes
 - Vector spaces, span, linear independence, basis and dimension
 - Matrices as linear maps; rank and the rank–nullity theorem
-- Solving Ax = b by Gaussian elimination and LU factorization; row operations; determinants (ad − bc for 2 × 2) and invertibility
+- Solving Ax = b by Gaussian elimination and LU factorization; Cramer's rule as determinant ratios xᵢ = det(Aᵢ)/det(A), where Aᵢ replaces column i with b, factorial in cost by cofactor expansion; row operations; determinants (ad − bc for 2 × 2) and invertibility
 - Orthogonality, projections, Gram–Schmidt and least squares (the normal equations AᵀAx = Aᵀb)
 - Eigenvalues and eigenvectors; power iteration
 - The singular value decomposition, principal component analysis and low-rank approximation
 - Distance and similarity: Euclidean, Manhattan, cosine
 - Column space and null space; the Moore–Penrose pseudo-inverse for over- and under-determined systems; hyperplanes and the distance of a point to a hyperplane
+- **Symmetric and skew-symmetric matrices**: real symmetric matrices have real eigenvalues and orthogonal eigenvectors by the spectral theorem; skew-symmetric matrices have purely imaginary eigenvalues; every square matrix splits uniquely into ½(A + Aᵀ) plus ½(A − Aᵀ)
+- **Positive definite matrices and minima**: xᵀAx > 0 for every nonzero x, equivalently positive eigenvalues, positive pivots or a Cholesky factorization; the quadratic ½xᵀAx − bᵀx minimized where Ax = b; a positive definite Hessian as the second-order test for a strict minimum
+- **Complex matrices and similarity transformations**: the conjugate transpose, Hermitian and unitary matrices; similar matrices B = P⁻¹AP share eigenvalues and the characteristic polynomial; diagonalizability as similarity to a diagonal matrix
+- **Jordan form and Lyapunov stability**: Jordan blocks as the canonical form of defective matrices, built from generalized eigenvectors; the system x′ = Ax is asymptotically stable exactly when every eigenvalue has negative real part, and the Lyapunov equation AᵀP + PA = −Q certifies it
+- **QR factorization and the QR algorithm**: A = QR with orthogonal Q and upper-triangular R, computed by Gram–Schmidt, Householder reflections or Givens rotations; least squares by solving Rx = Qᵀb without forming AᵀA; the QR algorithm iterating QR factorizations, with shifts, to reveal eigenvalues
+- **Sparse and structured matrix problems**: compressed storage of nonzeros; fill-in during elimination and reordering to limit it; banded, triangular, Toeplitz and circulant structure giving fast solves; iterative methods preferred for large sparse systems
 
 ### Calculus and optimization
 
@@ -129,6 +161,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Product, quotient and chain rules
   - The first-order Taylor approximation, and why a small gradient step decreases a smooth function
   - The integral as accumulated area; probability densities
+  - Partial fractions: a proper rational function split into linear and irreducible quadratic terms by matching coefficients; each term integrating to a logarithm or an arctangent
   - First-order differential equations; Euler and Runge–Kutta (RK4) methods
 - **Multivariable and matrix calculus**
   - Partial derivatives and the gradient
@@ -142,6 +175,14 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Constrained optimization: Lagrange multipliers and KKT conditions
   - Linear programming; the assignment problem and the Hungarian method
   - Generalization versus optimization; approximation error
+- **Newton's method**: the step x ← x − H⁻¹∇f(x) from the second-order Taylor model; quadratic convergence near a minimum with a positive definite Hessian; O(n³) per step to solve the Hessian system; quasi-Newton updates (BFGS) that build the Hessian from gradient differences
+- **Conjugate gradient**: solving Ax = b for symmetric positive definite A with A-conjugate search directions in a Krylov subspace; termination in at most n steps in exact arithmetic; convergence governed by the square root of the condition number; preconditioning
+- **Proximal methods**: minimizing f(x) + g(x) with a nonsmooth g through the proximal operator prox_g(v) = argmin over x of g(x) + ½‖x − v‖²; proximal gradient iterations; soft-thresholding as the proximal operator of the L1 norm
+- **Robust and stochastic formulations**: the min–max robust problem min over x of the maximum over an uncertainty set of f(x, u); the stochastic program min over x of E[f(x, ξ)] solved by sample average approximation; chance constraints; the trade-off between conservatism and expected performance
+- **Non-convex diagnostics**: the gradient norm and the Hessian's eigenvalues at a stationary point to separate local minima, saddle points and maxima; restarts and sensitivity to initialization as the test of a local answer; a local minimum is not certified global
+- **Interior-point methods**: inequality constraints handled by the log barrier −(1/t)Σ log(−fᵢ(x)); Newton steps on each centering problem as t grows along the central path; polynomial-time bounds for linear and self-concordant convex programs
+- **Geometric problems (minimum-volume ellipsoids)**: the smallest-volume ellipsoid enclosing a point set as a convex problem in the ellipsoid's matrix and centre, with the negative log-determinant as the objective; the Löwner–John ellipsoid as its theory
+- **Pontryagin maximum principle**: a necessary condition for optimal control; the Hamiltonian H = p·f + L with costate p obeying the adjoint equation, and H maximized pointwise over admissible controls; bang-bang controls in time-optimal problems
 
 ### Numerical computing
 
@@ -152,6 +193,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - Numerical differentiation (finite differences, gradient checking) and integration
 - Interpolation and curve fitting; error propagation
 - Reproducibility: seeding pseudo-random generators, deterministic tests
+- **Projection methods and successive approximation**: fixed-point iteration x_{k+1} = T(x_k) and the contraction mapping theorem, with geometric convergence at the rate of the contraction constant; alternating projections onto convex sets; stopping on residuals rather than on iteration count
 
 ### Information theory
 
@@ -161,6 +203,13 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - Shannon's source-coding bound; Huffman codes within one bit per symbol of it
 - Why compressed or well-encrypted data looks uniformly random
 - Channel capacity
+- **Differential entropy and the Gaussian channel**: h(X) = −∫ f log f for densities, which can be negative and shifts by log|Jacobian| under a change of variables; the Gaussian as the maximum-entropy density for a fixed variance; the capacity C = ½ log(1 + P/N) of the additive Gaussian noise channel
+- **Asymptotic equipartition property**: −(1/n) log p(X₁…Xₙ) → H(X) in probability for i.i.d. sources; the typical set of about 2^(nH) sequences carrying almost all probability; the consequence that about nH bits suffice for lossless coding
+- **Rate distortion theory**: R(D) = min I(X; X̂) over test channels whose expected distortion is at most D; the Gaussian source with R(D) = ½ log(σ²/D) for D ≤ σ²; the rate–fidelity trade-off in lossy compression
+- **Entropy rates of stochastic processes**: H = lim (1/n) H(X₁…Xₙ) for stationary processes, equal to the limit of H(Xₙ | Xₙ₋₁…X₁); the entropy rate of a stationary Markov chain as the stationary-weighted entropy of its transition rows
+- **Maximum-entropy principle**: choosing the distribution of largest entropy consistent with known constraints; the Lagrangian solution in exponential-family form; the uniform and Gaussian distributions as its special cases
+- **Network information theory**: multi-user sources and channels; the multiple-access channel capacity region; the broadcast channel; the Slepian–Wolf region for distributed lossless compression with rates H(X|Y), H(Y|X) and H(X, Y)
+- **Sparse graph codes (LDPC)**: linear codes defined by a sparse parity-check matrix whose Tanner graph is bipartite; belief-propagation decoding by message passing; the threshold near Shannon capacity under density evolution for irregular degree distributions
 
 ### Signals and sequences
 
@@ -175,6 +224,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 
 - Markov decision processes
 - Multi-armed and contextual bandits: epsilon-greedy, UCB, Thompson sampling
+- **Decision theory (expected loss, Bayes decision rule)**: a loss L(θ, a) and risk R(θ, δ) = E[L(θ, δ(X))]; Bayes risk averaged over a prior; the Bayes decision rule choosing the action of least posterior expected loss; the posterior mean for squared-error loss, the posterior median for absolute loss and the MAP estimate for 0–1 loss
 
 ### Exercises
 
@@ -192,8 +242,12 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - From scratch: one- and two-dimensional convolution, a small DFT, a spectral-feature extractor, Sobel and morphology filters
 - From scratch: a truth-table generator and tautology checker for propositional formulas
 - Base, unit, rate, latency and cost calculators
+- From scratch: one-sample and two-sample t-tests, a z-test, a Mann–Whitney U test and a Wilcoxon signed-rank test, each run on simulated null data to measure its Type I error rate against the nominal significance level
+- From scratch: QR least squares, conjugate gradient and Newton solvers compared on ill-conditioned systems such as Hilbert matrices, with residuals and iteration counts reported against the condition number
+- From scratch: a rate-distortion or AEP experiment on i.i.d. Bernoulli sequences, measuring how the typical set's size and probability change with block length and comparing the per-symbol size with H
 - **Reasoning drills**
   - Counting, probability and inequality problems, each solved two ways and checked by simulation
   - Derive the M/M/1 knee, then predict a service's latency at 50%, 90% and 99% utilization before load-testing it
   - Find the factor a Fermi estimate is most sensitive to and estimate it two independent ways
   - Construct a counterexample to each common misreading of a p-value
+  - Derive the Cramér–Rao bound for a Bernoulli mean, then simulate the sample mean's variance and check that it sits at or above the bound
