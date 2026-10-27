@@ -7,7 +7,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 ### Proof and discrete mathematics
 
 - **Proof techniques**
-  - Direct proof, contraposition, contradiction and cases
+  - Direct proof, contraposition, contradiction and cases; biconditional proofs as two implications, proving P ⇒ Q and Q ⇒ P; existence proofs by explicit construction versus a contradiction showing that no counterexample exists
   - Ordinary and strong induction; structural induction over lists and trees
   - The well-ordering principle
   - Invariants as the proof tool for algorithms
@@ -15,13 +15,13 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Propositions and connectives; implication, converse, inverse and contrapositive; logical equivalence and tautologies
   - Predicates and the quantifiers ∀ and ∃; negating quantified statements
   - Rules of inference: modus ponens, modus tollens, syllogism
-  - Set-builder notation, subsets, power sets, Cartesian products
+  - Set-builder notation, subsets, power sets, Cartesian products; roster notation listing the elements of a finite set
 - **Relations, functions and counting**
   - Equivalence relations and partitions; partial orders
-  - Injections, surjections and bijections, and what they say about cardinality
+  - Injections, surjections and bijections, and what they say about cardinality; composition of functions and the inverse f⁻¹, which exists exactly when f is a bijection and satisfies f⁻¹(f(x)) = x; countable sets such as the integers and the rationals, and Cantor's diagonal argument that the reals are uncountable; a sequence as a function from the natural numbers, with partial sums and the telescoping identity
   - The pigeonhole principle; the sum and product rules
-  - Permutations, combinations, the binomial theorem, inclusion–exclusion
-  - Linear recurrences solved by the characteristic equation
+  - Permutations, combinations, the binomial theorem, inclusion–exclusion; permutations with repetition n^k and combinations with repetition C(n + k − 1, k) counted by stars and bars; the general term C(n, r)·aⁿ⁻ʳbʳ of (a + b)ⁿ and the middle term(s), one when n is even and two when n is odd
+  - Linear recurrences solved by the characteristic equation; first-order difference systems x_{k+1} = Ax_k with solution x_k = A^k x_0, the matrix form of a linear recurrence
 - **Number theory for cryptography**
   - Divisibility; gcd and the Euclidean algorithm with its O(log n) step bound
   - Bézout's identity and the extended Euclidean algorithm
@@ -44,7 +44,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 ### Probability
 
 - **Foundations**
-  - Sample spaces, events and the axioms
+  - Sample spaces, events and the axioms; the Kolmogorov axioms: nonnegativity, P(Ω) = 1, and countable additivity for pairwise disjoint events
   - Joint and marginal probability; marginalizing a joint table
   - Conditional probability, independence and Bayes' theorem derived from the definition
   - Random variables, expectation, linearity of expectation (no independence needed), variance and covariance
@@ -53,14 +53,14 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Probability mass, density and cumulative distribution functions
   - Bernoulli, binomial, geometric, Poisson, uniform, exponential and normal, with their means and variances
   - The memoryless property
-  - Sampling from distributions; Monte Carlo estimation
+  - Sampling from distributions; Monte Carlo estimation; survey sampling designs: stratified sampling with proportional allocation, whose variance is no larger than simple random sampling's, and cluster sampling, whose variance grows with the correlation inside each cluster
 - **The birthday bound**
   - P(some collision) ≈ 1 − e^(−n(n−1)/2N); collisions become likely near n ≈ √N
   - Why a random 64-bit ID collides after about 2³² draws
 - **Tail bounds and order statistics**
   - Markov, Chebyshev and Chernoff bounds; the union bound
-  - The law of large numbers and the central limit theorem
-  - The maximum of n samples: P(max ≤ t) = F(t)ⁿ
+  - The law of large numbers and the central limit theorem; convergence in probability (the weak law) versus almost sure convergence (the strong law), which is the stronger mode
+  - The maximum of n samples: P(max ≤ t) = F(t)ⁿ; the k-th order statistic X₍ₖ₎ with P(X₍ₖ₎ ≤ t) = Σ from j = k to n of C(n, j)·F(t)ʲ·(1 − F(t))ⁿ⁻ʲ
   - Fan-out tails: a request waiting on 100 sub-requests, each slow with probability 1%, is slow with probability 1 − 0.99¹⁰⁰ ≈ 63%
   - Hedged requests: a second copy after the p95 delay makes the tail P(X > t)² for about 5% extra load; tied requests cancel the loser
   - Why averages hide tails, and why a p99 cannot be averaged across hosts
@@ -69,7 +69,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - The power of two choices: the less loaded of d ≥ 2 random servers drops the maximum load to ln ln n / ln d + O(1)
   - Why "least connections" over stale load reports herds, and why two random choices tolerate staleness
 - **Stochastic processes**
-  - Markov chains and stationary distributions
+  - Markov chains and stationary distributions; the transition matrix P, the stationary equation πP = π, and the n-step probabilities given by P^n, whose rows converge to the stationary law for an irreducible aperiodic chain
   - Poisson processes
 - **Plausible reasoning and Cox's desiderata**: degrees of plausibility ordered qualitatively; Cox's desiderata of consistency and rationality forcing the sum and product rules up to a monotone reparametrization; probability as the unique consistent extension of deductive logic to uncertain propositions
 - **Law of total probability**: P(B) = Σᵢ P(B | Aᵢ)P(Aᵢ) over a partition of the sample space; the continuous form with integration against a density; its role as the denominator of Bayes' theorem when conditioning on competing causes
@@ -83,10 +83,10 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 ### Statistics and experimental design
 
 - **Estimation**
-  - Estimators, bias and variance; maximum-likelihood estimation; Fisher information
-  - The sample mean, its standard error σ/√n, and confidence intervals
-  - Bayesian inference: prior and posterior updates
-  - The bootstrap and the jackknife
+  - Estimators, bias and variance; maximum-likelihood estimation; Fisher information; consistency (θ̂ₙ → θ in probability as n grows) and asymptotic normality of the maximum-likelihood estimator; the mean squared error as bias² + variance, and the trade of added bias for lower variance
+  - The sample mean, its standard error σ/√n, and confidence intervals; the median and mode as the other measures of central tendency, the median being the 0.5 quantile and the trimmed mean its outlier-resistant compromise
+  - Bayesian inference: prior and posterior updates; the naive Bayes classifier, whose posterior P(y | x) ∝ P(y)·∏ᵢ P(xᵢ | y) assumes the features are independent given the class
+  - The bootstrap and the jackknife; the parametric bootstrap, which resamples from a fitted distribution instead of the data, and the jackknife's leave-one-out estimate of bias
 - **Hypothesis testing**
   - Hypothesis tests, p-values and their common misreadings
   - Power and sample size; the sample size of an A/B test
@@ -97,7 +97,7 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Why per-host p99 values do not average to the fleet p99
 - **Correlation and causation**
   - Confounders
-  - Causal DAGs and adjustment; propensity scores and inverse-propensity weighting
+  - Causal DAGs and adjustment; propensity scores and inverse-propensity weighting; the backdoor criterion, under which a set Z of covariates adjusts for confounding when it blocks every backdoor path from treatment to outcome and contains no descendant of the treatment
   - Difference-in-differences; uplift modelling
 - **Association between variables**: the correlation matrix; Pearson correlation for linear association versus Spearman rank correlation for monotone association and outlier resistance; Kendall tau from concordant and discordant pairs; correlation is not causation
 - **Sufficiency and the factorization theorem**: a statistic T(X) is sufficient for θ when the conditional law of the data given T does not depend on θ; the factorization criterion f(x; θ) = g(T(x); θ)h(x); the sample mean of a normal sample as sufficient for its mean; a sufficient statistic loses no information about θ
@@ -114,7 +114,8 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - **Mann–Whitney U test**: a rank test for two independent samples, where U counts the pairs in which one sample exceeds the other; the normal approximation for large samples with a tie correction; insensitive to outliers because only ranks enter
 - **Wilcoxon signed-rank test**: paired differences ranked by absolute size, with the sum of ranks of positive differences as the statistic; its null distribution under symmetry about zero; corrections for ties and zero differences
 - **Skewness and kurtosis**: standardized third and fourth central moments, skewness E[(X − μ)³]/σ³ and excess kurtosis E[(X − μ)⁴]/σ⁴ − 3; what they say about asymmetry and tail weight; sample estimates of them being unstable at small n
-- **Nonparametric inference**: estimating a distribution without a parametric family; the empirical CDF Fₙ(x) = (1/n)Σ 1{Xᵢ ≤ x} and the Dvoretzky–Kiefer–Wolfowitz bound on its uniform error; kernel density estimation and the bias–variance trade-off in its bandwidth
+- **Nonparametric inference**: estimating a distribution without a parametric family; the empirical CDF Fₙ(x) = (1/n)Σ 1{Xᵢ ≤ x} and the Dvoretzky–Kiefer–Wolfowitz bound on its uniform error; kernel density estimation and the bias–variance trade-off in its bandwidth; permutation tests that shuffle group labels to build the null distribution of a statistic under exchangeability
+- **Exploratory data analysis**: the five-number summary (minimum, Q1, median, Q3, maximum) drawn as a box plot, with the 1.5 × IQR fence (IQR = Q3 − Q1) for flagging outliers; residual plots against fitted values to check linearity and constant variance; quantile–quantile plots against a reference distribution to compare tail shapes
 
 ### Queueing and performance modelling
 
@@ -137,20 +138,20 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 
 ### Linear algebra
 
-- Vectors, matrices, scalar multiplication, the transpose, dot and cross products, norms
+- Vectors, matrices, scalar multiplication, the transpose, dot and cross products, norms; the order m × n of a matrix and its types (square, diagonal, triangular, symmetric, identity); (AB)ᵀ = BᵀAᵀ and the adjoint identity ⟨Ax, y⟩ = ⟨x, Aᵀy⟩ for real matrices; permutation matrices P that reorder the rows of the identity, with PᵀP = I
 - Matrix multiplication and its O(n³) naive cost; why it parallelizes
 - Vector spaces, span, linear independence, basis and dimension
-- Matrices as linear maps; rank and the rank–nullity theorem
-- Solving Ax = b by Gaussian elimination and LU factorization; Cramer's rule as determinant ratios xᵢ = det(Aᵢ)/det(A), where Aᵢ replaces column i with b, factorial in cost by cofactor expansion; row operations; determinants (ad − bc for 2 × 2) and invertibility
+- Matrices as linear maps; rank and the rank–nullity theorem; composition of linear maps as the matrix product AB; a linear map fixed by the images of the basis vectors, which are the columns of its matrix; rotation matrices in three dimensions and unit quaternions q = (w, x, y, z) acting by v ↦ qvq̄
+- Solving Ax = b by Gaussian elimination and LU factorization; Cramer's rule as determinant ratios xᵢ = det(Aᵢ)/det(A), where Aᵢ replaces column i with b, factorial in cost by cofactor expansion; row operations; determinants (ad − bc for 2 × 2) and invertibility; the n × n determinant by cofactor expansion along a row, with the 3 × 3 case a(ei − fh) − b(di − fg) + c(dh − eg) and the sum over permutations; the adjugate with A⁻¹ = adj(A)/det(A)
 - Orthogonality, projections, Gram–Schmidt and least squares (the normal equations AᵀAx = Aᵀb)
-- Eigenvalues and eigenvectors; power iteration
+- Eigenvalues and eigenvectors; power iteration; Hotelling deflation A − λ₁v₁v₁ᵀ, which removes a found eigenpair of a symmetric matrix so that power iteration finds the next
 - The singular value decomposition, principal component analysis and low-rank approximation
 - Distance and similarity: Euclidean, Manhattan, cosine
-- Column space and null space; the Moore–Penrose pseudo-inverse for over- and under-determined systems; hyperplanes and the distance of a point to a hyperplane
+- Column space and null space; the Moore–Penrose pseudo-inverse for over- and under-determined systems; hyperplanes and the distance of a point to a hyperplane; the four fundamental subspaces (column space, null space, row space and left null space) with dimensions r, n − r, r and m − r for a rank-r matrix of size m × n
 - **Symmetric and skew-symmetric matrices**: real symmetric matrices have real eigenvalues and orthogonal eigenvectors by the spectral theorem; skew-symmetric matrices have purely imaginary eigenvalues; every square matrix splits uniquely into ½(A + Aᵀ) plus ½(A − Aᵀ)
 - **Positive definite matrices and minima**: xᵀAx > 0 for every nonzero x, equivalently positive eigenvalues, positive pivots or a Cholesky factorization; the quadratic ½xᵀAx − bᵀx minimized where Ax = b; a positive definite Hessian as the second-order test for a strict minimum
-- **Complex matrices and similarity transformations**: the conjugate transpose, Hermitian and unitary matrices; similar matrices B = P⁻¹AP share eigenvalues and the characteristic polynomial; diagonalizability as similarity to a diagonal matrix
-- **Jordan form and Lyapunov stability**: Jordan blocks as the canonical form of defective matrices, built from generalized eigenvectors; the system x′ = Ax is asymptotically stable exactly when every eigenvalue has negative real part, and the Lyapunov equation AᵀP + PA = −Q certifies it
+- **Complex matrices and similarity transformations**: the conjugate transpose, Hermitian and unitary matrices; similar matrices B = P⁻¹AP share eigenvalues and the characteristic polynomial; diagonalizability as similarity to a diagonal matrix; powers A^k = P D^k P⁻¹ computed from the diagonal form D = P⁻¹AP
+- **Jordan form and Lyapunov stability**: Jordan blocks as the canonical form of defective matrices, built from generalized eigenvectors; the system x′ = Ax is asymptotically stable exactly when every eigenvalue has negative real part, and the Lyapunov equation AᵀP + PA = −Q certifies it; the matrix exponential e^(At) = Σ (At)^k / k! as the solution of x′ = Ax, computed from the Jordan form
 - **QR factorization and the QR algorithm**: A = QR with orthogonal Q and upper-triangular R, computed by Gram–Schmidt, Householder reflections or Givens rotations; least squares by solving Rx = Qᵀb without forming AᵀA; the QR algorithm iterating QR factorizations, with shifts, to reveal eigenvalues
 - **Sparse and structured matrix problems**: compressed storage of nonzeros; fill-in during elimination and reordering to limit it; banded, triangular, Toeplitz and circulant structure giving fast solves; iterative methods preferred for large sparse systems
 
@@ -167,15 +168,15 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
   - Gradients of vector functions, Jacobians, the matrix chain rule
   - The Hessian
 - **Optimization**
-  - Convex sets and functions; every local minimum of a convex function is global
+  - Convex sets and functions; every local minimum of a convex function is global; the separating hyperplane theorem, under which disjoint convex sets are split by a hyperplane aᵀx ≤ b on one side and aᵀx ≥ b on the other; the dual cone K* = {y : yᵀx ≥ 0 for all x in K}; quasiconvex functions, whose sublevel sets are convex; the conjugate f*(y) = sup over x of (yᵀx − f(x))
   - Gradient descent and its convergence rates; stochastic gradient descent
   - Momentum and adaptive optimizers
   - Regularization (L1, L2); coordinate descent
-  - Constrained optimization: Lagrange multipliers and KKT conditions
-  - Linear programming; the assignment problem and the Hungarian method
+  - Constrained optimization: Lagrange multipliers and KKT conditions; the Lagrangian dual function g(λ) = inf over x of L(x, λ) for λ ≥ 0, weak duality g(λ) ≤ f(x*), and strong duality under Slater's condition
+  - Linear programming; the assignment problem and the Hungarian method; quadratic programming, minimizing ½xᵀQx + cᵀx subject to linear constraints with Q positive semidefinite; geometric programming with posynomial objectives, which become convex under the substitution x = e^y
   - Generalization versus optimization; approximation error
-- **Newton's method**: the step x ← x − H⁻¹∇f(x) from the second-order Taylor model; quadratic convergence near a minimum with a positive definite Hessian; O(n³) per step to solve the Hessian system; quasi-Newton updates (BFGS) that build the Hessian from gradient differences
-- **Conjugate gradient**: solving Ax = b for symmetric positive definite A with A-conjugate search directions in a Krylov subspace; termination in at most n steps in exact arithmetic; convergence governed by the square root of the condition number; preconditioning
+- **Newton's method**: the step x ← x − H⁻¹∇f(x) from the second-order Taylor model; quadratic convergence near a minimum with a positive definite Hessian; O(n³) per step to solve the Hessian system; quasi-Newton updates (BFGS) that build the Hessian from gradient differences; with equality constraints Ax = b, the Newton step from the KKT block system whose matrix has H and Aᵀ in the first block row and A and 0 in the second
+- **Conjugate gradient**: solving Ax = b for symmetric positive definite A with A-conjugate search directions in a Krylov subspace; termination in at most n steps in exact arithmetic; convergence governed by the square root of the condition number; preconditioning; the Krylov subspace K_k(A, b) = span{b, Ab, …, A^(k−1)b}, from which the k-th iterate is drawn and in which it minimizes the error in the A-norm
 - **Proximal methods**: minimizing f(x) + g(x) with a nonsmooth g through the proximal operator prox_g(v) = argmin over x of g(x) + ½‖x − v‖²; proximal gradient iterations; soft-thresholding as the proximal operator of the L1 norm
 - **Robust and stochastic formulations**: the min–max robust problem min over x of the maximum over an uncertainty set of f(x, u); the stochastic program min over x of E[f(x, ξ)] solved by sample average approximation; chance constraints; the trade-off between conservatism and expected performance
 - **Non-convex diagnostics**: the gradient norm and the Hessian's eigenvalues at a stationary point to separate local minima, saddle points and maxima; restarts and sensitivity to initialization as the test of a local answer; a local minimum is not certified global
@@ -188,20 +189,20 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 - Floating point: IEEE 754, rounding, decimal versus binary
 - Catastrophic cancellation; compensated (Kahan) summation
 - Overflow and underflow; stable reformulations: `log1p`, log-sum-exp, stable softmax
-- Conditioning and the stability of algorithms; iterative solvers
+- Conditioning and the stability of algorithms; iterative solvers; the condition number κ(A) = ‖A‖·‖A⁻¹‖ built from induced matrix norms, with the spectral norm ‖A‖₂ equal to the largest singular value, bounding how a relative change in b is amplified into a relative change in x
 - Numerical differentiation (finite differences, gradient checking) and integration
-- Interpolation and curve fitting; error propagation
+- Interpolation and curve fitting; error propagation; ℓ1 and Chebyshev (minimax) fitting, where the ℓ1 fit is a linear program and the minimax fit equioscillates between its extreme errors; root finding by bisection on a sign change and by Newton's iteration x_{k+1} = x_k − f(x_k)/f′(x_k), which converges quadratically to a simple root
 - Reproducibility: seeding pseudo-random generators, deterministic tests
 - **Projection methods and successive approximation**: fixed-point iteration x_{k+1} = T(x_k) and the contraction mapping theorem, with geometric convergence at the rate of the contraction constant; alternating projections onto convex sets; stopping on residuals rather than on iteration count
 
 ### Information theory
 
 - Entropy H(X) = −Σ p·log₂ p
-- Cross-entropy, KL divergence and mutual information
+- Cross-entropy, KL divergence and mutual information; Gibbs' inequality D(p‖q) ≥ 0 with equality only when p = q, and the data-processing inequality, under which a Markov chain X → Y → Z satisfies I(X; Z) ≤ I(X; Y)
 - Log loss, perplexity and calibration
-- Shannon's source-coding bound; Huffman codes within one bit per symbol of it
+- Shannon's source-coding bound; Huffman codes within one bit per symbol of it; the Kraft inequality Σ 2^(−ℓᵢ) ≤ 1 as the condition on codeword lengths ℓᵢ for a prefix code to exist
 - Why compressed or well-encrypted data looks uniformly random
-- Channel capacity
+- Channel capacity; the binary symmetric channel with crossover probability p, whose capacity is 1 − H(p) bits per use, and capacity as the maximum of I(X; Y) over input distributions
 - **Differential entropy and the Gaussian channel**: h(X) = −∫ f log f for densities, which can be negative and shifts by log|Jacobian| under a change of variables; the Gaussian as the maximum-entropy density for a fixed variance; the capacity C = ½ log(1 + P/N) of the additive Gaussian noise channel
 - **Asymptotic equipartition property**: −(1/n) log p(X₁…Xₙ) → H(X) in probability for i.i.d. sources; the typical set of about 2^(nH) sequences carrying almost all probability; the consequence that about nH bits suffice for lossless coding
 - **Rate distortion theory**: R(D) = min I(X; X̂) over test channels whose expected distortion is at most D; the Gaussian source with R(D) = ½ log(σ²/D) for D ≤ σ²; the rate–fidelity trade-off in lossy compression
@@ -212,16 +213,16 @@ Domain: Mathematics, Probability, Statistics, Queueing & Performance Modelling
 ### Signals and sequences
 
 - Sampling and aliasing
-- Convolution and correlation in one and two dimensions
+- Convolution and correlation in one and two dimensions; separable kernels applied as two one-dimensional passes, costing 2k multiplications per pixel instead of k²
 - The discrete Fourier transform and the FFT; windowing and the short-time Fourier transform
-- Spectrograms and MFCC features; image representation
-- Image filters: Sobel edges and morphology
+- Spectrograms and MFCC features; image representation; pre-emphasis y[n] = x[n] − αx[n−1] and framing into short overlapping windows before the spectrum; formants as peaks of the spectral envelope, and the mel filterbank followed by a DCT that yields MFCCs
+- Image filters: Sobel edges and morphology; Canny edges from Gaussian smoothing, gradient magnitude and orientation, non-maximum suppression along the gradient and hysteresis thresholds; erosion and dilation as the minimum and maximum over a structuring element, with opening and closing built from them; denoising by Gaussian and median filters, sharpening by unsharp masking, and Fourier filtering by multiplying the 2-D DFT by a transfer function
 - Sequence probability: n-gram models and perplexity; finite-state tokenizers
 
 ### Decision mathematics
 
 - Markov decision processes
-- Multi-armed and contextual bandits: epsilon-greedy, UCB, Thompson sampling
+- Multi-armed and contextual bandits: epsilon-greedy, UCB, Thompson sampling; the linear contextual bandit with expected reward θᵀx and LinUCB's ridge-regression confidence bound
 - **Decision theory (expected loss, Bayes decision rule)**: a loss L(θ, a) and risk R(θ, δ) = E[L(θ, δ(X))]; Bayes risk averaged over a prior; the Bayes decision rule choosing the action of least posterior expected loss; the posterior mean for squared-error loss, the posterior median for absolute loss and the MAP estimate for 0–1 loss
 
 ### Exercises
