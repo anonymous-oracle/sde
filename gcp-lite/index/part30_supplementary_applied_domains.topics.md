@@ -1,8 +1,8 @@
-# Part 30 · Supplementary Applied Domains: Corporate Finance, Marketing & Learning Analytics · TOPIC LIST
+# Part 30 · Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines · TOPIC LIST
 
 Rules and directives for this part: `index/part30_supplementary_applied_domains.rules.md`. This file is the topic list only; the Learning method and this domain's prerequisites, depth bar and capstone are in the rules file.
 
-Domain: Supplementary Applied Domains: Corporate Finance, Marketing & Learning Analytics
+Domain: Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines
 
 ### Corporate finance
 

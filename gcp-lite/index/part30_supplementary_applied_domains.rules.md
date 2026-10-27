@@ -1,4 +1,4 @@
-# Part 30 · Supplementary Applied Domains: Corporate Finance, Marketing & Learning Analytics · RULES AND DIRECTIVES
+# Part 30 · Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines · RULES AND DIRECTIVES
 
 Companion topic list: `index/part30_supplementary_applied_domains.topics.md`. Ingest `index/00_learning_method.md` once per session, then this file, then the topic list. Mark the part done in `index/00_ingest_progress.md` before opening the next part.
 
