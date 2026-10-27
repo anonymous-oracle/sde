@@ -1,0 +1,114 @@
+# Part 03b · Calculus, Analysis, Coordinate Geometry & Number Theory · TOPIC LIST
+
+Rules and directives for this part: `index/part03b_analysis_calculus_and_number_theory.rules.md`. This file is the topic list only; the Learning method and this domain's prerequisites, depth bar and capstone are in the rules file.
+
+Domain: Calculus, Analysis, Coordinate Geometry & Number Theory
+
+### Calculus and differential equations
+
+- **Limiting values and vanishing fractions**: factorising and rationalising 0/0 forms; standard limits sin x / x and (1 + x)^(1/x); limits by series expansion; L'Hôpital's rule for 0/0 and ∞/∞, proved from the Cauchy mean value theorem; the forms 0·∞, ∞ − ∞, 0⁰ and 1^∞ reduced to them
+- **Implicit and parametric differentiation**: the chain rule on F(x, y) = 0 giving dy/dx = −F_x / F_y; parametric curves with dy/dx = y′(t) / x′(t); second derivatives of implicit and parametric curves; tangents and normals to such curves
+- **Higher-order derivatives**: the nth derivative of a product by Leibniz's rule; nth derivatives of exponential, sinusoidal and rational functions; Taylor polynomials as derivative-matching approximations
+- **Tangents, normals and rates of change**: related rates with respect to time; tangent and normal lines at a point; subtangent and subnormal lengths; the slope of a curve as an instantaneous rate
+- **Local and absolute extrema**: critical points; the first- and second-derivative tests; extrema on closed intervals by comparing endpoints and critical points; concavity and inflection points; optimisation problems set up from constraints
+- **Indefinite integrals and integration techniques**: antiderivatives as inverses of differentiation; substitution; integration by parts and the tabular method; reduction formulas; trigonometric and rational substitutions
+- **Partial fractions**: linear, repeated and irreducible quadratic factors; coefficients by equating and by substituting roots; integrating each resulting term; reducing a rational function to a polynomial plus a proper fraction
+- **Undetermined coefficients**: matching coefficients for polynomial, exponential and sinusoidal forcing; the resonance case and the multiply-by-x rule; particular integrals of linear constant-coefficient equations
+- **Integration in elementary terms**: which antiderivatives have closed forms in elementary functions; Liouville's criterion; standard non-elementary examples e^(−x²) and sin x / x; numerical integration when no closed form exists
+- **Definite integrals and their techniques**: linearity, additivity over intervals, comparison and symmetry; substitution and parts for definite integrals with changed limits; Wallis's reduction formula for powers of sine and cosine
+- **Fundamental theorem of calculus**: the two parts; proof of the first from the mean value theorem; the derivative of an integral with variable limits; differentiation under the integral sign (Leibniz's rule)
+- **Improper integrals**: infinite limits and unbounded integrands; comparison and limit-comparison tests; p-integrals; absolute versus conditional convergence; the Gamma integral as a worked example
+- **Area between curves and symmetry**: area as the integral of the difference of two curves; intersection points as limits of integration; exploiting symmetry about an axis or the origin; area in parametric form
+- **Series convergence tests**: partial sums and the Cauchy criterion; comparison, integral, ratio and root tests with the inconclusive case; the alternating series test; absolute and conditional convergence
+- **Multiple integrals**: double and triple integrals over regions; iterated integrals and Fubini's theorem; change of variables with the Jacobian determinant (polar, cylindrical, spherical); area, volume and centroid
+- **Vector calculus: divergence and curl**: the gradient as the direction of steepest ascent; divergence as local flux density; curl as local rotation; div curl = 0 and curl grad = 0; line integrals and conservative fields
+- **Differential forms and Stokes' theorem**: exterior derivative and wedge product; the generalised Stokes theorem, the integral of dω over M equal to the integral of ω over the boundary; recovering the divergence, Green's and classical Stokes theorems; closed and exact forms
+- **Partial differential equations**: classification into elliptic, parabolic and hyperbolic; the heat, wave and Laplace equations; separation of variables; Fourier-series solutions on bounded intervals; boundary and initial conditions
+- **Second-order linear ODEs**: the Wronskian and linear independence; constant-coefficient solutions by the characteristic equation, with repeated and complex roots; reduction of order; variation of parameters
+- **Frobenius series, Bessel and Legendre functions**: ordinary and regular singular points; the indicial equation and the Frobenius series; Bessel's equation and Bessel functions of integer order with their zeros; Legendre's equation, the Legendre polynomials and their orthogonality on [−1, 1]
+- **Gamma and Beta functions**: Γ(s) as the integral of t^(s−1) e^(−t) extending the factorial; Γ(n + 1) = n! and Γ(1/2) = √π; the Beta integral and B(p, q) = Γ(p)Γ(q) / Γ(p + q)
+- **First-order ODE solution methods**: separable equations; homogeneous equations by the substitution y = vx; linear equations by the integrating factor; Bernoulli equations reduced to linear form; first-order equations of higher degree solved for the derivative
+
+### Coordinate geometry and conics
+
+- **Straight lines in polar and oblique forms**: the normal form x cos α + y sin α = p; the polar equation of a line r = p sec(θ − α); the oblique form y = mx + c; the distance from a point to a line; the angle between two lines; the family of lines through the intersection of two lines
+- **Pair of straight lines**: the homogeneous second-degree equation ax² + 2hxy + by² = 0 as two lines through the origin; the angle between them from tan θ = 2√(h² − ab) / (a + b); the perpendicularity condition a + b = 0; the joint equation of the angle bisectors
+- **Transformation of coordinates**: translation and rotation of axes; invariance of distance and of the quadratic invariants; removing the xy term by a rotation through the angle given by tan 2θ = B / (A − C) for Ax² + Bxy + Cy²
+- **Systems of circles**: orthogonal circles with d² = r₁² + r₂²; the radical axis as the locus of equal power; the radical centre of three circles; coaxal systems; the pencil of circles S + λL = 0 through the intersections of two circles
+- **Tangents, normals and diameters of conics**: the tangent at a point as the polar of that point; the chord of contact; the tangency condition c² = a²m² + b² for the line y = mx + c and the ellipse x²/a² + y²/b² = 1; normal equations; diameters as loci of midpoints of parallel chords; pole and polar
+- **Ellipse: auxiliary circle, eccentric angle and conjugate diameters**: the parametric point (a cos θ, b sin θ); the auxiliary circle of radius a; the eccentric angle and the tangent at it; conjugate diameters and the relation between their semi-lengths
+- **Asymptotes of a hyperbola**: asymptotes y = ±(b/a)x; the asymptotic pair x²/a² − y²/b² = 0 as the limit of the hyperbola; the rectangular hyperbola xy = c²; a hyperbola fixed by its asymptotes and one point on it
+- **Polar equation of a conic**: the focus–directrix definition with e = PS / PM; the polar form r = l / (1 + e cos θ); the semi-latus rectum l; eccentricity separating parabola, ellipse and hyperbola; focal chords and their lengths
+- **General second-degree equation and tracing of conics**: classification by the sign of B² − 4AC and the invariant determinant; rotation to remove the cross term, then translation to the centre; tracing parabolas, ellipses and hyperbolas from the reduced form
+
+### Real analysis
+
+- **Construction of the real numbers**: Dedekind cuts and Cauchy-sequence completion of Q; equivalence classes of sequences; the arithmetic and order of the constructed reals; uniqueness of a complete ordered field up to isomorphism
+- **Field axioms and ordered-field properties**: the field axioms for addition and multiplication; the order axioms; consequences such as uniqueness of inverses and non-negativity of squares; the Archimedean property; why Q is an ordered field without the least upper bound property
+- **Supremum and the completeness axiom**: least upper bound and greatest lower bound; the approximation property; the monotone convergence theorem; the nested interval property; the Archimedean property derived from completeness
+- **Epsilon-delta limits and continuity**: the formal definition of a limit of a function; limit laws proved from the definition; the sequential criterion for continuity; uniform continuity and how it differs from continuity on an interval
+- **Intermediate value and extreme value theorems**: proof by bisection from the completeness axiom; continuous functions on closed bounded intervals attain a maximum and a minimum; consequences for roots and fixed points
+- **Monotone functions and discontinuities**: monotone functions have one-sided limits; their discontinuities are countable; removable, jump and essential discontinuities; continuity of the inverse of a strictly monotone continuous function
+- **Metric spaces**: metric axioms; open and closed sets; interior, closure and limit points; Cauchy sequences and completeness; continuous maps between metric spaces; R^n with the Euclidean and maximum metrics; bounded continuous functions with the supremum metric
+- **Compactness and connectedness**: sequential compactness and the finite subcover property; the Heine–Borel theorem in R^n; compact sets are closed and bounded; continuous images of compact sets; connected sets and the intermediate value theorem
+- **Cauchy sequences, subsequences, limsup and liminf**: Bolzano–Weierstrass; Cauchy sequences converge in R; limsup and liminf as extreme subsequential limits; a sequence converges exactly when its limsup equals its liminf
+- **Uniform convergence and power series**: pointwise versus uniform convergence; the Weierstrass M-test; preservation of continuity, integrability and differentiability under uniform limits; radius of convergence by the Cauchy–Hadamard formula; power series as differentiable functions inside their radius
+- **Rolle, mean value and Taylor theorems**: Rolle's theorem; the Lagrange and Cauchy mean value theorems; monotonicity from the sign of the derivative; Taylor's theorem with the Lagrange remainder and its error bound
+- **Stone–Weierstrass theorem**: density of polynomials in C[a, b] (Weierstrass approximation); Bernstein polynomials as a constructive proof sketch; the lattice and point-separating form of the theorem; approximation of a continuous function by polynomials to a stated error
+- **Inverse and implicit function theorems**: the derivative as a linear map and the Jacobian; the inverse function theorem in R^n by the contraction principle; the implicit function theorem giving a local graph of a level set; the rank theorem in outline
+- **Riemann and Riemann–Stieltjes integration**: Darboux upper and lower sums; integrability criteria; Riemann sums converging to the integral; the Stieltjes integral with respect to a monotone integrator; existence for continuous integrands; integration by parts for Stieltjes integrals
+- **Lebesgue measure and integration**: outer measure and measurable sets; construction of Lebesgue measure on R; measurable and simple functions; the Lebesgue integral with the monotone and dominated convergence theorems; comparison with the Riemann integral
+- **Irrationality and transcendence proofs**: irrationality of √2 and of e (Fourier's proof); Niven's proof of the irrationality of π; Liouville's bound on the approximation of algebraic numbers by rationals; the transcendence of e by Hermite's method, stated as a theorem
+
+### Complex and functional analysis
+
+- **Complex number algebra**: the field C and complex conjugation; modulus and principal argument; the Argand plane; polar and Euler form e^(iθ); triangle inequalities; de Moivre's theorem and the n-th roots of unity as the vertices of a regular polygon
+- **Complex functions**: holomorphic functions and the Cauchy–Riemann equations; power series as holomorphic functions; the exponential and logarithm with branch cuts; Möbius maps and conformal geometry
+- **Cauchy's theorem and residues**: Cauchy's theorem for closed contours; Cauchy's integral formula; Taylor and Laurent series; classification of singularities; residues and the residue theorem; real integrals evaluated by contour integration
+- **Hilbert spaces and bounded linear operators**: inner product spaces and the Cauchy–Schwarz inequality; completeness; orthonormal bases and Parseval's identity; the orthogonal projection theorem; bounded operators with their norms and adjoints
+- **Hahn–Banach and dual spaces**: the dual space of a normed space; the Hahn–Banach extension theorem in analytic and geometric forms; separation of convex sets; the Riesz representation theorem for the dual of a Hilbert space
+- **Self-adjoint operators and the spectral theorem**: self-adjoint operators and their real spectrum; orthogonality of eigenvectors for distinct eigenvalues; the spectral theorem for compact self-adjoint operators; the finite-dimensional matrix case as the special instance
+
+### Number theory
+
+- **Primitive roots and the index**: the order of an element modulo n; primitive roots exist exactly for n = 1, 2, 4, pᵏ and 2pᵏ with p an odd prime; the index (discrete logarithm) and its laws; testing for a primitive root through the prime divisors of φ(n)
+- **Continued fractions**: finite and infinite expansions of rationals and irrationals; convergents from the recurrences and the determinant identity; best rational approximation; periodic expansions of quadratic irrationals (Lagrange's theorem)
+- **Diophantine approximation**: Dirichlet's approximation theorem, |x − p/q| < 1/q²; Liouville's bound for algebraic numbers; convergents as best approximations; the irrationality measure
+- **Linear and second-degree Diophantine equations**: solvability of ax + by = c by the gcd; the general solution from Bézout's identity; second-degree equations reduced to forms x² − Dy² = N and to sums of squares
+- **Pell's equation**: x² − Dy² = 1 for non-square D; the fundamental solution from the period of the continued fraction of √D; generating all solutions from the fundamental one; the equation x² − Dy² = N and its bounded solutions
+- **Pythagorean triples and rational points on the unit circle**: the primitive parametrisation (m² − n², 2mn, m² + n²) with coprime m and n of opposite parity; rational points on x² + y² = 1 from lines through (−1, 0)
+- **Sums of higher powers**: Faulhaber's formulas for sums of k-th powers; Bernoulli numbers from their generating function; the polynomial form of the sum, checked by induction
+- **Polygonal numbers**: triangular, square and k-gonal numbers and their closed forms; Fermat's polygonal number theorem that every positive integer is a sum of k k-gonal numbers, with the k = 4 case as Lagrange's four-square theorem
+- **Fibonacci numbers**: Binet's formula; gcd(F_m, F_n) = F_gcd(m,n); the divisibility F_m | F_mn; Zeckendorf's representation; the golden ratio as the limit of ratios
+- **Möbius inversion and arithmetic functions**: multiplicative functions τ, σ and φ; the Möbius function μ; the Möbius inversion formula; Dirichlet convolution of arithmetic functions
+- **Partitions and generating functions**: the partition function p(n) and the product generating function of 1/(1 − xᵏ); Euler's pentagonal number theorem; partitions into distinct parts equal to partitions into odd parts
+- **Perfect, Mersenne and amicable numbers**: the Euclid–Euler theorem linking even perfect numbers to Mersenne primes; the divisor-sum function σ(n); amicable pairs and their search; why odd perfect numbers remain open
+- **Quadratic reciprocity and the Jacobi symbol**: the Legendre symbol and Euler's criterion; Gauss's lemma; the quadratic reciprocity law; the Jacobi symbol and its evaluation by reciprocity without factoring
+- **Wilson's theorem and Gauss's lemma**: (p − 1)! ≡ −1 (mod p) and its converse; Gauss's lemma counting least residues in the upper half; reading the Legendre symbol from that count
+- **Wolstenholme's and von Staudt's theorems**: the von Staudt–Clausen theorem on the denominators of Bernoulli numbers; Wolstenholme's congruence C(2p − 1, p − 1) ≡ 1 (mod p³) for primes p ≥ 5; the p-adic valuation of binomial coefficients
+- **Decimal expansions of rationals**: the period of 1/n and the order of 10 modulo n; purely and mixed periodic expansions; the period of 1/p dividing p − 1; full-reptend primes
+- **Gauss sums and constructible regular polygons**: the quadratic Gauss sum and its evaluation; ruler-and-compass constructibility of the regular n-gon exactly when n is 2ᵏ times a product of distinct Fermat primes (Gauss–Wantzel)
+- **Farey series and Minkowski's theorem**: the Farey sequence of order n and the determinant-1 property of neighbouring fractions; the mediant property; Minkowski's theorem that a symmetric convex body of volume above 2ⁿ contains a non-zero lattice point (statement and proof sketch)
+- **Lifting the exponent lemma and Hensel's lemma**: the p-adic valuation of aⁿ − bⁿ for odd primes p; Hensel's lemma lifting simple roots of a polynomial congruence from mod p to mod pᵏ; prime-power congruences
+- **Quadratic forms and sums of squares**: the sum of two squares theorem; Lagrange's four-square theorem; binary quadratic forms with their discriminant and equivalence; representation numbers of binary forms
+- **Algebraic structures: groups, rings and fields**: the group of units of Z/nZ and Euler's totient; Lagrange's theorem for finite groups; rings and fields of residues; Fermat's little theorem as a consequence of group order
+- **Finite fields**: existence and uniqueness of the field with pⁿ elements; the multiplicative group of a finite field is cyclic; irreducible polynomials over Fₚ; the Frobenius map x ↦ xᵖ
+- **Rational points on curves**: parametrising rational points on a conic from one known rational point; Fermat's method of descent; Mordell's theorem at statement level (the rational points of an elliptic curve form a finitely generated group)
+- **Primality testing**: the Fermat test and Carmichael numbers; the Miller–Rabin strong probable-prime test with error at most 1/4 per base; deterministic witness sets for 64-bit integers; the AKS test as a polynomial-time deterministic test (statement level)
+- **Landmark results (statement level)**: Goldbach's conjecture (every even integer above 2 is a sum of two primes); Fermat's Last Theorem (no positive integers satisfy xⁿ + yⁿ = zⁿ for n ≥ 3, proved by Wiles with Taylor's help); the ABC conjecture (for each ε > 0, only finitely many coprime a + b = c have rad(abc) < c^(1−ε)); elliptic curves (rational points form a finitely generated abelian group, the Mordell–Weil theorem); modular forms (holomorphic functions transforming under the modular group, with theta and Eisenstein series as examples); the prime number theorem (π(x) ~ x / ln x); the Riemann zeta function (ζ(s) = Σ n^(−s) for Re s > 1, its analytic continuation, and the open Riemann hypothesis on its zeros); Dirichlet series (Σ aₙ n^(−s), with ζ as the basic case); Dirichlet's theorem (infinitely many primes in each reduced residue class mod m); the Hasse–Minkowski theorem (a rational quadratic form represents zero exactly when it does so over R and over every Qₚ, using the Hilbert symbol); p-adic numbers (the completion of Q for the p-adic absolute value, containing Z_p)
+
+### Exercises
+
+- From scratch: a Go program that evaluates partial sums of a series and reports ratio, root and integral-test evidence for convergence, checked against a geometric series and a p-series with known answers
+- From scratch: a Go Euler or Runge–Kutta solver for a first-order ODE, with the global error against the closed-form solution recorded as the step size halves, and the same check applied to a second-order equation rewritten as a first-order system
+- From scratch: a Go Miller–Rabin test with a deterministic witness set for 64-bit integers, checked against trial division on every integer below one million and on the Carmichael numbers
+- From scratch: a Go continued-fraction expander for √D that lists convergents and returns the fundamental solution of x² − Dy² = 1 for small D, checked against brute-force search
+- From scratch: a Go routine that classifies a general second-degree equation as an ellipse, parabola, hyperbola or degenerate pair from its invariants, checked against the rotated standard forms
+- From scratch: a Go program that computes the n-th roots of unity, checks their closure under multiplication and that they sum to zero, and approximates the contour integral of 1/z around the unit circle against 2πi
+- From scratch: a Go program that computes upper and lower Darboux sums for a monotone function on a partition, shows them squeezing the integral as the partition is refined, and compares the result with the closed form
+- **Reasoning drills**
+  - Evaluate one improper integral by two routes, an exact antiderivative and a comparison bound, and say which step each route relies on
+  - Find the tangency condition for the line y = mx + c and an ellipse, then predict the tangent slopes from a given external point before checking by substitution
+  - Explain in one paragraph why the rationals fail the completeness axiom, and name the sequence that witnesses the failure
+  - Compute the residue of one rational function at each pole by the Laurent expansion and by the limit formula, and compare the two routes
+  - Decide by Gauss's lemma whether 3 is a quadratic residue modulo 17, then check the answer by Euler's criterion
