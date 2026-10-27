@@ -2,7 +2,7 @@
 
 Source: gcp/unified-curriculum.md lines 4328-4518 and 4806-4837. Compared against: gcp-lite/index/*.topics.md and gcp-lite/Rust_Track_AI_Infrastructure.md.
 
-Counts: 204 topics; 152 covered, 41 partial, 8 missing, 3 out of scope.
+Counts: 204 topics; 153 covered, 41 partial, 7 missing, 3 out of scope.
 
 ## 4. Tool and platform subcourses
 
@@ -224,7 +224,7 @@ Counts: 204 topics; 152 covered, 41 partial, 8 missing, 3 out of scope.
 | Schema migrations and backward compatibility | covered | part12_databases.topics.md › Operating databases | - |
 | Data retention and PII handling | covered | part14_security.topics.md › Principles and economics | - |
 | RBAC and least privilege | covered | part14_security.topics.md › Principles and economics | - |
-| Secret rotation | missing | → suggest part14 | not in gcp-lite |
+| Secret rotation | covered | part23_cloud_providers_1of2.topics.md › Google Cloud — security | Secret Manager versions and rotation; part14 Cryptography has rotation with dual-key overlap |
 | TLS in transit | covered | part09_networking.topics.md › TLS mechanics | - |
 | Audit logging | covered | part12_databases.topics.md › Data modelling and design | append-only audit tables |
 | Software bill of materials (SBOM) | covered | part14_security.topics.md › Supply chain | - |
@@ -261,7 +261,6 @@ Counts: 204 topics; 152 covered, 41 partial, 8 missing, 3 out of scope.
 - Schema ownership per service (→ suggest part11) — from: 5e HLD/LLD/microservices/design-pattern implementation ladder
 - Sequence diagrams (→ suggest part11) — from: 5e HLD/LLD/microservices/design-pattern implementation ladder
 - Temporal-style durable workflow retry state (→ suggest part13) — from: 5e HLD/LLD/microservices/design-pattern implementation ladder
-- Secret rotation (→ suggest part14) — from: 9. Production and release
 - Operational readiness review (ORR) (→ suggest part18) — from: 9. Production and release
 
 ## Partial in this range

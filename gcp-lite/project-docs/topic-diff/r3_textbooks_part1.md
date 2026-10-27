@@ -2,7 +2,7 @@
 
 Source: `gcp/unified-curriculum.md` lines 2116-2489 ("Textbook deconstructions, part 1"), compared with `gcp-lite/index/*.topics.md` and `gcp-lite/Rust_Track_AI_Infrastructure.md`. Each topic appears once, at its first section.
 
-Counts: 331 topics; 117 covered, 72 partial, 141 missing, 1 out of scope.
+Counts: 331 topics; 118 covered, 72 partial, 140 missing, 1 out of scope.
 
 Status: covered = same concept taught; partial = named only in passing or narrower; missing = not taught; out of scope = Nasiko-specific, ARCHIVE-tagged, or clinical, mechanical or aerospace. Location `→ suggest partNN` marks a missing topic and the index part it would fit.
 
@@ -358,7 +358,7 @@ Status: covered = same concept taught; partial = named only in passing or narrow
 
 | Topic | Status | gcp-lite location | Note |
 |---|---|---|---|
-| Intelligent agents | missing | → suggest part19 | Not in the index |
+| Intelligent agents | covered | part19_machine_learning.topics.md › Classical AI: search, knowledge and reasoning | Rational agents, PEAS and agent types |
 | Informed and uninformed search | covered | index/part19_machine_learning.topics.md:20 | |
 | Adversarial search (minimax, alpha-beta) | covered | index/part19_machine_learning.topics.md:23 | |
 | Constraint satisfaction problems | covered | index/part19_machine_learning.topics.md:24 | |
@@ -590,7 +590,6 @@ Status: covered = same concept taught; partial = named only in passing or narrow
 - Undirected graphical models (The Elements of Statistical Learning — Hastie et al.)
 - Sequence modeling: recurrent networks (Deep Learning — Goodfellow et al.)
 - Partition function (Deep Learning — Goodfellow et al.)
-- Intelligent agents (Artificial Intelligence: A Modern Approach — Russell & Norvig)
 - Reasoning over time: Kalman filters (Artificial Intelligence: A Modern Approach — Russell & Norvig)
 - Probabilistic programming (Artificial Intelligence: A Modern Approach — Russell & Norvig)
 - Robotics (Artificial Intelligence: A Modern Approach — Russell & Norvig)

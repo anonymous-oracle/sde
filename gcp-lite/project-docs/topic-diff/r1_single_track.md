@@ -2,7 +2,7 @@
 
 Source: gcp/unified-curriculum.md lines 197-385. Compared against: gcp-lite/index/*.topics.md and gcp-lite/Rust_Track_AI_Infrastructure.md.
 
-Counts: 394 topics; 226 covered, 127 partial, 33 missing, 8 out of scope.
+Counts: 394 topics; 226 covered, 129 partial, 31 missing, 8 out of scope.
 
 ## 5. Single Graph-Ordered Learning Track
 
@@ -16,7 +16,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S0 CPU, memory and storage | covered | part02_computer_organization.topics.md › memory hierarchy (56-78) | |
 | S0 files versus directories, absolute and relative paths | partial | part10_operating_systems.topics.md › Linux (7-16) | File system named at heading level; paths not spelled out |
 | S0 process versus program | partial | part10_operating_systems.topics.md › processes (18-28) | Processes covered; program/process distinction not stated |
-| S0 environment variables | missing | - | Not in part05 or part06 read; → suggest part05 |
+| S0 environment variables | partial | part06_programming_languages_go.topics.md › Go — the everyday standard library | os.Getenv versus os.LookupEnv and config precedence; process-environment concept not taught |
 | S0 ports | partial | part09_networking.topics.md › addressing (15-21) | Port numbers not confirmed |
 | S0 DNS, HTTP and JSON vocabulary | covered | part09_networking.topics.md › DNS (58-66), HTTP semantics (70-78); part07_programming_languages_typescript_wire_theory_exercises.topics.md › JSON (34) | |
 | S0 shell composition, exit status, standard streams | covered | part05_programming_languages_python_and_shell.topics.md › shell (44-47); line 20 standard I/O | |
@@ -96,7 +96,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S9 definite integral and fundamental theorem | partial | part03_mathematics.topics.md › calculus and optimization (125-144) | Integration named at heading level |
 | S9 integration methods | partial | part03_mathematics.topics.md › numerical computing (146-154) | |
 | S9 sequences and series | partial | part01_school_foundations.topics.md › sequences (28-30) | Series not named |
-| S9 multiple integrals and vector-calculus intuition | missing | - | Divergence and curl not found; → suggest part03 |
+| S9 multiple integrals and vector-calculus intuition | missing | → suggest part03 | Divergence and curl not found |
 | S9 ODE models | covered | part03_mathematics.topics.md › RK4 (132) | |
 | S9 floating-point error, conditioning and stability | partial | part03_mathematics.topics.md › numerical computing (146-154); part06_programming_languages_go.topics.md › IEEE 754 (31) | Conditioning not named |
 | S9 roots and interpolation | partial | part03_mathematics.topics.md › numerical computing (146-154) | Root finding not confirmed |
@@ -112,7 +112,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S10 sampling and estimands | covered | part03_mathematics.topics.md › sampling and Monte Carlo (53) | |
 | S10 MLE | covered | part03_mathematics.topics.md › statistics (72-91) | |
 | S10 MAP | partial | part19_machine_learning.topics.md › Bayesian inference (34); part28_ml_case_studies_4of5.topics.md › Wayfair (38) | Case-study mention only |
-| S10 sufficiency | missing | - | Not found; → suggest part03 |
+| S10 sufficiency | missing | → suggest part03 | Not found |
 | S10 confidence intervals and tests | covered | part03_mathematics.topics.md › statistics (72-91) | |
 | S10 bootstrap | covered | part03_mathematics.topics.md › statistics (72-91) | |
 | S10 permutation tests | partial | part03_mathematics.topics.md › statistics (72-91) | Not named |
@@ -169,11 +169,11 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S14 SGD, momentum and adaptive methods | covered | part19_machine_learning.topics.md › optimizers (85); part03_mathematics.topics.md › momentum and adaptive optimizers (140) | |
 | S14 constraints, Lagrangian and KKT | covered | part03_mathematics.topics.md › constrained optimization (142) | |
 | S14 duality | partial | part03_mathematics.topics.md › constrained optimization (142) | Not named |
-| S14 proximal methods | missing | - | Not found; → suggest part03 |
+| S14 proximal methods | missing | → suggest part03 | Not found |
 | S14 coordinate descent | covered | part03_mathematics.topics.md › regularization and coordinate descent (141); part19_machine_learning.topics.md › lasso (48) | |
 | S14 LP and assignment | covered | part03_mathematics.topics.md › linear programming and Hungarian method (143) | |
-| S14 robust and stochastic formulations | missing | - | Not found; → suggest part03 |
-| S14 non-convex diagnostics | missing | - | Not found; → suggest part03 |
+| S14 robust and stochastic formulations | missing | → suggest part03 | Not found |
+| S14 non-convex diagnostics | missing | → suggest part03 | Not found |
 | S14 exploration and multi-armed bandits | covered | part03_mathematics.topics.md › bandits (177); part19_machine_learning.topics.md › explore and exploit (165-169) | |
 | S14 MDP and Bellman equations | covered | part19_machine_learning.topics.md › reinforcement learning (124, 134) | Bellman not named; MDPs and value functions covered |
 | S14 dynamic programming for RL | partial | part19_machine_learning.topics.md › reinforcement learning in detail (134) | Value and policy iteration covered |
@@ -183,16 +183,16 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S14 causal question, estimand and intervention | covered | part19_machine_learning.topics.md › causal inference (189, 194) | |
 | S14 potential outcomes | covered | part19_machine_learning.topics.md › causal inference (189) | |
 | S14 DAGs | covered | part03_mathematics.topics.md › causal DAGs and adjustment (89) | |
-| S14 SCMs | missing | - | Not found; → suggest part19 |
+| S14 SCMs | missing | → suggest part19 | Not found |
 | S14 randomization | covered | part19_machine_learning.topics.md › causal inference (189) | |
 | S14 backdoor adjustment | partial | part03_mathematics.topics.md › causal DAGs and adjustment (89) | Named as DAG adjustment; criterion not stated |
-| S14 frontdoor adjustment | missing | - | Not found; → suggest part19 |
+| S14 frontdoor adjustment | missing | → suggest part19 | Not found |
 | S14 heterogeneous effects and uplift | covered | part19_machine_learning.topics.md › randomization and uplift (189) | |
-| S14 overlap | missing | - | Not found; → suggest part19 |
-| S14 sensitivity analysis | missing | - | Not found; → suggest part19 |
+| S14 overlap | missing | → suggest part19 | Not found |
+| S14 sensitivity analysis | missing | → suggest part19 | Not found |
 | S14 instrumental variables | covered | part19_machine_learning.topics.md › causal inference (194) | |
 | S14 difference-in-differences | covered | part03_mathematics.topics.md › difference-in-differences (90); part19_machine_learning.topics.md › causal inference (194) | |
-| S14 regression discontinuity | missing | - | Not found; → suggest part19 |
+| S14 regression discontinuity | missing | → suggest part19 | Not found |
 | S14 synthetic control | covered | part19_machine_learning.topics.md › causal inference (194) | |
 ## 5.5 S15-S16: Domain Mathematics and Deep Learning
 
@@ -205,18 +205,18 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S15-A LTI properties | partial | part03_mathematics.topics.md › signals and sequences (165-172) | Not named |
 | S15-A frequency response | partial | part03_mathematics.topics.md › signals and sequences (165-172) | Not named |
 | S15-A Fourier series and transform | partial | part03_mathematics.topics.md › signals and sequences (165-172) | DFT and FFT covered; continuous forms not named |
-| S15-A Laplace and z-transform | missing | - | No match; → suggest part03 |
+| S15-A Laplace and z-transform | missing | → suggest part03 | No match |
 | S15-A DFT and FFT | covered | part03_mathematics.topics.md › signals and sequences (165-172) | |
 | S15-A sampling and aliasing | partial | part19_machine_learning.topics.md › classical CV (138) | Sampling named for images; aliasing not named |
 | S15-A windows and leakage | covered | part03_mathematics.topics.md › signals and sequences (165-172) | Windowing |
-| S15-A FIR and IIR filters | missing | - | No match; → suggest part03 |
-| S15-A pole-zero stability | missing | - | No match; → suggest part03 |
+| S15-A FIR and IIR filters | missing | → suggest part03 | No match |
+| S15-A pole-zero stability | missing | → suggest part03 | No match |
 | S15-A STFT | covered | part03_mathematics.topics.md › signals and sequences (165-172) | |
-| S15-A filter banks | missing | - | No match; → suggest part03 |
+| S15-A filter banks | missing | → suggest part03 | No match |
 | S15-A cepstrum and MFCC | partial | part19_machine_learning.topics.md › audio and speech (128) | MFCC covered; cepstrum not named |
-| S15-A multirate processing | missing | - | No match; → suggest part03 |
+| S15-A multirate processing | missing | → suggest part03 | No match |
 | S15-A quantization | partial | part19_machine_learning.topics.md › classical CV (138) | Image sampling and quantization only |
-| S15-A Parseval and reconstruction checks | missing | - | No match; → suggest part03 |
+| S15-A Parseval and reconstruction checks | missing | → suggest part03 | No match |
 | S15-B image formation | partial | part19_machine_learning.topics.md › classical CV (136-147) | Camera geometry covered; image formation not named |
 | S15-B sampling and quantization | covered | part19_machine_learning.topics.md › classical CV (138) | |
 | S15-B color and gamma | partial | part19_machine_learning.topics.md › classical CV (139) | Color named; gamma not named |
@@ -226,12 +226,12 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S15-B gradients and edges | covered | part03_mathematics.topics.md › Sobel (signals and sequences) | |
 | S15-B morphology | covered | part03_mathematics.topics.md › morphology (signals and sequences) | |
 | S15-B Fourier image filtering | partial | part03_mathematics.topics.md › DFT and FFT (signals and sequences) | |
-| S15-B restoration and deconvolution | missing | - | Not found; → suggest part19 |
+| S15-B restoration and deconvolution | missing | → suggest part19 | Not found |
 | S15-B segmentation | partial | part19_machine_learning.topics.md › classical CV (136-147) | Not named |
 | S15-B corners, descriptors and matching | covered | part19_machine_learning.topics.md › classical CV (136-147), features (140-144) | |
 | S15-B homography and RANSAC | covered | part19_machine_learning.topics.md › classical CV (140-144) | |
 | S15-B camera calibration and epipolar geometry | covered | part19_machine_learning.topics.md › camera geometry and stereo (140-144) | |
-| S15-B optical flow | missing | - | No match; → suggest part19 |
+| S15-B optical flow | missing | → suggest part19 | No match |
 | S15-B detection and recognition metrics | covered | part19_machine_learning.topics.md › evaluation (60-67), mean average precision (187) | |
 | S15-B reproducibility of image experiments | partial | part19_machine_learning.topics.md › evaluation (60-67) | |
 | S15-C Unicode, code points and graphemes | covered | part06_programming_languages_go.topics.md › strings, bytes and runes (64-70) | |
@@ -248,20 +248,20 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S15-C WordPiece and unigram tokenization | partial | part20_generative_ai_1of3.topics.md › tokenization (12-16) | Not named |
 | S15-C tagging and parsing | covered | part19_machine_learning.topics.md › sequence labelling (108), CKY (109) | |
 | S15-C finite automata, weighted semirings and composition | partial | part06_programming_languages_go.topics.md › RE2 (112) | Semirings and composition missing |
-| S15-D acoustic phonetics and transcription | missing | - | No match; → suggest part19 |
+| S15-D acoustic phonetics and transcription | missing | → suggest part19 | No match |
 | S15-D waveform, framing and pre-emphasis | partial | part03_mathematics.topics.md › STFT (signals and sequences) | Pre-emphasis not named |
 | S15-D spectrogram, mel and MFCC | covered | part19_machine_learning.topics.md › audio and speech (128) | |
-| S15-D pronunciation lexicon | missing | - | No match; → suggest part19 |
+| S15-D pronunciation lexicon | missing | → suggest part19 | No match |
 | S15-D language-model interface | covered | part20_generative_ai_1of3.topics.md › n-grams (17) | |
 | S15-D HMM, noisy channel and Viterbi | covered | part19_machine_learning.topics.md › sequence labelling (108), noisy channel (106) | |
 | S15-D GMM and HMM-DNN | partial | part19_machine_learning.topics.md › unsupervised and anomaly (58) | HMM-DNN not named |
 | S15-D CTC | partial | part28_ml_case_studies_4of5.topics.md › Dropbox OCR (46) | Case-study mention only |
 | S15-D end-to-end encoder-decoder speech models | covered | part20_generative_ai_1of3.topics.md › architectures (27) | Whisper named |
-| S15-D Conformer and self-supervised speech representations | missing | - | No match beyond Whisper in part20 line 27; → suggest part19 |
-| S15-D WFST and decoding | missing | - | No match; → suggest part19 |
+| S15-D Conformer and self-supervised speech representations | missing | → suggest part19 | No match beyond Whisper in part20 line 27 |
+| S15-D WFST and decoding | partial | part08_data_structures_algorithms.topics.md › Computability and complexity | WFST composition and Viterbi-style shortest paths covered; ASR decoding graphs not taught |
 | S15-D WER and CER | covered | part19_machine_learning.topics.md › audio and speech (128) | |
 | S15-D streaming latency, noise, accents and multilingual evaluation | partial | part19_machine_learning.topics.md › audio and speech (128) | Not named |
-| S15-D TTS and spoken dialog | missing | - | No match; → suggest part19 |
+| S15-D TTS and spoken dialog | missing | → suggest part19 | No match |
 | S16 tensor contracts and autodiff | partial | part19_machine_learning.topics.md › deep learning (77-96), backprop (83); part22_generative_ai_3of3.topics.md › autodiff exercise (161) | |
 | S16 perceptron and linear units | covered | part19_machine_learning.topics.md › perceptron and XOR (79) | |
 | S16 MLP and backprop | covered | part19_machine_learning.topics.md › backprop (83) | |
@@ -277,7 +277,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S16 positional schemes and masking | covered | part20_generative_ai_1of3.topics.md › positional (23), causal mask (24) | |
 | S16 encoder-only, decoder-only and encoder-decoder transformers | covered | part20_generative_ai_1of3.topics.md › architectures (27) | |
 | S16 pretraining objectives | partial | part20_generative_ai_1of3.topics.md › architectures (27) | Objectives not named |
-| S16 distributed-compute and memory intuition | missing | - | No match; → suggest part19 |
+| S16 distributed-compute and memory intuition | missing | → suggest part19 | No match |
 | S16 data parallelism | partial | part02_computer_organization.topics.md › SIMD and GPUs (74) | Hardware level only |
 ## 5.6.3 Detailed S17 Learning Order
 
@@ -314,7 +314,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S17 LLM judges calibrated against human labels | covered | part22_generative_ai_3of3.topics.md › LLM-judge (117-121) | |
 | S17 RLHF | covered | part20_generative_ai_1of3.topics.md › alignment (42) | |
 | S17 reward modeling | partial | part20_generative_ai_1of3.topics.md › alignment (42) | Not named |
-| S17 DPO | missing | - | Not found; → suggest part20 |
+| S17 DPO | missing | → suggest part20 | Not found |
 | S17 SFT, LoRA and QLoRA | covered | part20_generative_ai_1of3.topics.md › fine-tuning (49-80), LoRA (66), QLoRA (67) | |
 | S17 catastrophic forgetting and contamination | covered | part20_generative_ai_1of3.topics.md › catastrophic forgetting (54-60); multimodal benchmarks contamination (120) | |
 | S17 contrastive image-text representations (CLIP) | covered | part20_generative_ai_1of3.topics.md › CLIP and InfoNCE (88-93) | |
@@ -335,7 +335,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S17 system-prompt leakage | partial | part14_security.topics.md › AI/LLM threats (225-245) | Not named |
 | S17 vector and embedding weaknesses | partial | part14_security.topics.md › AI/LLM threats (225-245) | Not named |
 | S17 unbounded consumption | covered | part14_security.topics.md › economic DoS (138) | |
-| S17 NIST Govern-Map-Measure-Manage | missing | - | No match; → suggest part14 |
+| S17 NIST Govern-Map-Measure-Manage | missing | → suggest part14 | No match |
 ## 5.7 S18-S24: Services, Security, Architecture, Operations, and Integration
 
 | Topic | Status | gcp-lite location | Note |
@@ -345,7 +345,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S18 conditional requests and ETag/If-Match lost-update tests | partial | part09_networking.topics.md › HTTP semantics (74); part11_software_architecture.topics.md › ETag exercise (192) | If-Match not named; lost updates only in part12 (112) |
 | S18 Retry-After and back-pressure | covered | part09_networking.topics.md › overload signals (73) | |
 | S18 safe, idempotent and retry behaviour | covered | part09_networking.topics.md › idempotency keys (73); part11_software_architecture.topics.md › API design (30-52) | |
-| S18 malformed and ambiguous framing | missing | - | No HTTP request-smuggling match; → suggest part09 |
+| S18 malformed and ambiguous framing | missing | → suggest part09 | No HTTP request-smuggling match |
 | S18 resource-oriented REST | covered | part11_software_architecture.topics.md › API design (30-52) | |
 | S18 protobuf field presence, numbers, unknown fields and reservations | covered | part06_programming_languages_go.topics.md › protobuf (198-205) | |
 | S18 compatibility matrices | partial | part06_programming_languages_go.topics.md › protobuf (198-205) | Not named |
@@ -353,7 +353,7 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S18 deadlines and cancellation | covered | part06_programming_languages_go.topics.md › context (147-151), grpc-timeout (203) | |
 | S18 gRPC metadata and status | partial | part06_programming_languages_go.topics.md › protobuf and gRPC (198-205) | |
 | S19 passwords, sessions and tokens | covered | part14_security.topics.md › authentication and sessions (94-109) | |
-| S19 AAL1, AAL2 and AAL3 | missing | - | No match; → suggest part14 |
+| S19 AAL1, AAL2 and AAL3 | missing | → suggest part14 | No match |
 | S19 phishing and replay resistance | partial | part14_security.topics.md › MFA (106) | Phishing-resistant WebAuthn named; replay not named |
 | S19 authenticator binding, recovery and invalidation | partial | part14_security.topics.md › account recovery (107) | Binding and invalidation not named |
 | S19 syncable passkey trade-offs | partial | part14_security.topics.md › MFA (106) | Passkeys named; syncable trade-offs not |
@@ -362,11 +362,11 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 | S19 mix-up attacks | covered | part14_security.topics.md › OAuth (101) | |
 | S19 referer and history leakage | partial | part14_security.topics.md › web app (142-157) | Not named |
 | S19 PKCE downgrade | partial | part14_security.topics.md › OAuth (101) | PKCE named; downgrade not |
-| S19 counterfeit resource server | missing | - | No match; → suggest part14 |
-| S19 refresh-token replay and rotation | missing | - | No match; → suggest part14 |
-| S19 unsafe 307 redirects | missing | - | No match; → suggest part14 |
+| S19 counterfeit resource server | missing | → suggest part14 | No match |
+| S19 refresh-token replay and rotation | missing | → suggest part14 | No match |
+| S19 unsafe 307 redirects | missing | → suggest part14 | No match |
 | S19 untrusted proxy headers | partial | part14_security.topics.md › web app (142-157) | Header injection only |
-| S19 OWASP ASVS 5.0 | missing | - | No match; → suggest part14 |
+| S19 OWASP ASVS 5.0 | missing | → suggest part14 | No match |
 | S19 CSRF and CORS | covered | part14_security.topics.md › CSRF (99), CORS (144-145) | |
 | S19 JWT | covered | part14_security.topics.md › JWT pitfalls (100), JWT exercise (274) | |
 | S19 secrets management | partial | part14_security.topics.md › engineering checklist (92) | Not a full topic |
@@ -429,7 +429,6 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 
 ## Missing in this range
 
-- S0 environment variables (→ suggest part05) — from: 5.2 S0-S4: Computing, Language, and Reasoning Foundations
 - S9 multiple integrals and vector-calculus intuition (→ suggest part03) — from: 5.3 S5-S10: Mathematical and Algorithmic Core
 - S10 sufficiency (→ suggest part03) — from: 5.3 S5-S10: Mathematical and Algorithmic Core
 - S14 proximal methods (→ suggest part03) — from: 5.4 S11-S14: Classical ML, Databases, Optimization, RL, and Causality
@@ -451,7 +450,6 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 - S15-D acoustic phonetics and transcription (→ suggest part19) — from: 5.5 S15-S16: Domain Mathematics and Deep Learning
 - S15-D pronunciation lexicon (→ suggest part19) — from: 5.5 S15-S16: Domain Mathematics and Deep Learning
 - S15-D Conformer and self-supervised speech representations (→ suggest part20) — from: 5.5 S15-S16: Domain Mathematics and Deep Learning
-- S15-D WFST and decoding (→ suggest part19) — from: 5.5 S15-S16: Domain Mathematics and Deep Learning
 - S15-D TTS and spoken dialog (→ suggest part19) — from: 5.5 S15-S16: Domain Mathematics and Deep Learning
 - S16 distributed-compute and memory intuition (→ suggest part19) — from: 5.5 S15-S16: Domain Mathematics and Deep Learning
 - S17 DPO (→ suggest part20) — from: 5.6.3 Detailed S17 Learning Order
@@ -592,3 +590,5 @@ Stage table, lines 203-229, and prose, lines 256-360. Rows are theory items, fir
 - S22 retraining policy — see location — part19_machine_learning.topics.md
 - S22 code, data and model as independent change axes — see location — part19_machine_learning.topics.md
 - S22 PMLE-style design, build, operationalize and govern — PMLE not named — part19_machine_learning.topics.md
+- S0 environment variables — os.Getenv versus os.LookupEnv and config precedence; process-environment concept not taught — part06_programming_languages_go.topics.md
+- S15-D WFST and decoding — WFST composition and Viterbi-style shortest paths covered; ASR decoding graphs not taught — part08_data_structures_algorithms.topics.md

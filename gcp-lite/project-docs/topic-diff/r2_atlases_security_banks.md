@@ -2,7 +2,7 @@
 
 Source: gcp/unified-curriculum.md lines 517-759 and 1620-1653. Compared against: gcp-lite/index/*.topics.md and gcp-lite/Rust_Track_AI_Infrastructure.md.
 
-Counts: 314 rows: covered 207, partial 50, missing 51, out of scope 6.
+Counts: 314 topics; 207 covered, 50 partial, 51 missing, 6 out of scope.
 
 ## 9. Textbook and Chapter Atlas
 

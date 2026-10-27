@@ -2,7 +2,7 @@
 
 Source: gcp/unified-curriculum.md lines 4068-4327. Compared against: gcp-lite/index/*.topics.md (parts 01–29).
 
-Counts: 407 rows — covered 353, partial 26, missing 18, out of scope 10.
+Counts: 407 topics; 353 covered, 28 partial, 16 missing, 10 out of scope.
 
 ## G0 Orientation and tooling (Udemy 1–2)
 
@@ -193,7 +193,7 @@ Counts: 407 rows — covered 353, partial 26, missing 18, out of scope 10.
 | Keyset pagination | covered | part12_databases.topics.md › Operating databases | - |
 | Argon2id password hashing | covered | part06_programming_languages_go.topics.md › Go — engineering | - |
 | JWT, cookies and sessions | covered | part06_programming_languages_go.topics.md › Go — engineering | - |
-| Password change and forgot/reset flows | missing | → suggest part14 | - |
+| Password change and forgot/reset flows | partial | part14_security.topics.md › Authentication and sessions | Account recovery and reset tokens covered; the password-change flow is not named |
 | CSRF tokens | covered | part06_programming_languages_go.topics.md › Go — engineering | - |
 | XSS sanitization and output encoding | covered | part14_security.topics.md › Web application security | - |
 | Code obfuscation | missing | → suggest part14 | - |
@@ -378,7 +378,7 @@ Counts: 407 rows — covered 353, partial 26, missing 18, out of scope 10.
 | Cartesian coordinates and distance metrics | covered | part01_school_foundations.topics.md › Geometry, trigonometry and vectors | Manhattan and cosine distances in part03 Linear algebra |
 | Lines, slope, intersections and similarity | covered | part01_school_foundations.topics.md › Geometry, trigonometry and vectors | - |
 | Trigonometry and the unit circle | covered | part01_school_foundations.topics.md › Geometry, trigonometry and vectors | - |
-| Intersection over union and bounding boxes | missing | → suggest part19 | - |
+| Intersection over union and bounding boxes | partial | part20_generative_ai_1of3.topics.md › Multimodal models | Only SAM's predicted-IoU head; IoU as a metric and box geometry not taught |
 | Conic sections | missing | → suggest part01 | - |
 | Vectors, matrices, determinants and row operations | covered | part03_mathematics.topics.md › Linear algebra | - |
 | Rank, projections and orthogonality | covered | part03_mathematics.topics.md › Linear algebra | - |
@@ -561,12 +561,10 @@ Counts: 407 rows — covered 353, partial 26, missing 18, out of scope 10.
 - URL and URI structure (→ suggest part09) — from: G11 Internet and HTTP/TLS
 - All-pairs shortest paths, Floyd–Warshall (→ suggest part08) — from: G11 Internet and HTTP/TLS
 - HTTP parameter pollution (HPP) (→ suggest part14) — from: G12 REST API project
-- Password change and forgot/reset flows (→ suggest part14) — from: G12 REST API project
 - Code obfuscation (→ suggest part14) — from: G12 REST API project
 - PostgreSQL system catalogs: pg_class, pg_attribute, pg_type, pg_statistic (→ suggest part12) — from: G12b SQL and PostgreSQL internals braid
 - Postman for gRPC testing (→ suggest part06) — from: G14 gRPC core
 - protoc-gen-validate (→ suggest part06) — from: G14 gRPC core
-- Intersection over union and bounding boxes (→ suggest part19) — from: §2c MATH-ML ladder
 - Conic sections (→ suggest part01) — from: §2c MATH-ML ladder
 - Metric spaces, compactness and convergence (→ suggest part03) — from: §2c MATH-ML ladder
 - Print-debugging (→ suggest part05) — from: §3 Computing baseline
@@ -600,3 +598,5 @@ Counts: 407 rows — covered 353, partial 26, missing 18, out of scope 10.
 - IP addressing and ports — IPv4 covered; port numbers appear only as NAT source-port exhaustion — part09_networking.topics.md
 - Design patterns: adapter and repository — adapter covered; repository named only as an architecture style — part11_software_architecture.topics.md
 - Software development: pull requests, test pyramid and CI — pull requests and CI covered; test pyramid not named — part15_software_delivery.topics.md
+- Password change and forgot/reset flows — Account recovery and reset tokens covered; the password-change flow is not named — part14_security.topics.md
+- Intersection over union and bounding boxes — Only SAM's predicted-IoU head; IoU as a metric and box geometry not taught — part20_generative_ai_1of3.topics.md

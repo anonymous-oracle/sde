@@ -2,7 +2,7 @@
 
 Source: gcp/unified-curriculum.md lines 2490-2863. Compared against: gcp-lite/index/*.topics.md and gcp-lite/Rust_Track_AI_Infrastructure.md.
 
-Counts: 318 topics; 107 covered, 75 partial, 131 missing, 5 out of scope.
+Counts: 318 topics; 108 covered, 76 partial, 129 missing, 5 out of scope.
 
 ## Understanding ICSE Mathematics — M.L. Aggarwal (Class 10)
 
@@ -390,7 +390,7 @@ Counts: 318 topics; 107 covered, 75 partial, 131 missing, 5 out of scope.
 | Finite automata and regular expressions | covered | part08_data_structures_algorithms.topics.md › Computability and complexity | - |
 | Pumping lemma and properties of regular languages | missing | → suggest part07 | - |
 | Context-free grammars and languages | covered | part07_programming_languages_typescript_wire_theory_exercises.topics.md › Language theory | Grammars and context-free grammars |
-| Pushdown automata | missing | → suggest part07 | - |
+| Pushdown automata | partial | part07_programming_languages_typescript_wire_theory_exercises.topics.md › Language theory | Context-free grammars covered; pushdown automata not named |
 | Closure and decision properties of context-free languages | missing | → suggest part07 | - |
 | Turing machines | partial | part08_data_structures_algorithms.topics.md › Computability and complexity | Halting problem by diagonalization; the machine model is not named |
 | Undecidability of the halting problem | covered | part08_data_structures_algorithms.topics.md › Computability and complexity | - |
@@ -408,7 +408,7 @@ Counts: 318 topics; 107 covered, 75 partial, 131 missing, 5 out of scope.
 | Model deployment and prediction service | partial | part19_machine_learning.topics.md › Applied problem families | Batch or online serving and latency budget named; serving architecture not taught |
 | Data distribution shifts and monitoring | partial | part19_machine_learning.topics.md › Applied problem families | Feature drift and monitoring named; types of shift and detection not taught |
 | Continual learning | missing | → suggest part19 | - |
-| Testing in production (shadow and canary releases) | missing | → suggest part19 | - |
+| Testing in production (shadow and canary releases) | covered | part18_devops_sre.topics.md › CI/CD | Canary releases in part18; shadow mode in part19 Exercises |
 | MLOps infrastructure and tooling | covered | part19_machine_learning.topics.md › MLOps | Training pipelines and model registries |
 | The human side of ML | missing | → suggest part19 | - |
 
@@ -601,11 +601,9 @@ Counts: 318 topics; 107 covered, 75 partial, 131 missing, 5 out of scope.
 - Sparse graph codes (LDPC) (→ suggest part03) — from: Information Theory, Inference, and Learning Algorithms — MacKay
 - Decision theory (expected loss, Bayes decision rule) (→ suggest part03) — from: Probabilistic Machine Learning: An Introduction — Murphy (2022)
 - Pumping lemma and properties of regular languages (→ suggest part07) — from: Introduction to Automata Theory — Hopcroft, Motwani, Ullman
-- Pushdown automata (→ suggest part07) — from: Introduction to Automata Theory — Hopcroft, Motwani, Ullman
 - Closure and decision properties of context-free languages (→ suggest part07) — from: Introduction to Automata Theory — Hopcroft, Motwani, Ullman
 - Data engineering fundamentals (→ suggest part19) — from: Designing Machine Learning Systems — Chip Huyen
 - Continual learning (→ suggest part19) — from: Designing Machine Learning Systems — Chip Huyen
-- Testing in production (shadow and canary releases) (→ suggest part19) — from: Designing Machine Learning Systems — Chip Huyen
 - The human side of ML (→ suggest part19) — from: Designing Machine Learning Systems — Chip Huyen
 - Gaussian processes (→ suggest part19) — from: Dive into Deep Learning — Zhang, Lipton, Li, Smola
 - Lottery ticket hypothesis (→ suggest part19) — from: Understanding Deep Learning — Prince
@@ -701,3 +699,4 @@ Counts: 318 topics; 107 covered, 75 partial, 131 missing, 5 out of scope.
 - Refactoring and code smells — Smells named; refactoring techniques missing — part11_software_architecture.topics.md
 - React and TypeScript (Router, Jest) — React components and hooks covered; Router and Jest missing — part07_programming_languages_typescript_wire_theory_exercises.topics.md
 - TypeScript for Java, C# and Python programmers — TypeScript taught; comparisons with Java, C# and Python not framed — part07_programming_languages_typescript_wire_theory_exercises.topics.md
+- Pushdown automata — Context-free grammars covered; pushdown automata not named — part07_programming_languages_typescript_wire_theory_exercises.topics.md
