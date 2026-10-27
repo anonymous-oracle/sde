@@ -21,7 +21,7 @@ Domain: Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 - Memory virtualization: shadow page tables versus nested paging; (g + 1)(h + 1) − 1 references per nested walk; huge pages
 - MicroVMs and user-space kernels (Firecracker, gVisor)
 - Containers as namespaces and cgroups; image layering and immutability
-- Isolation classes and attack surface: process, container, sandbox, microVM, VM, dedicated host
+- Isolation classes and attack surface: process, container, sandbox, microVM, VM, dedicated host; multi-tenant systems: tenant isolation at the data layer (a tenant key on every query, or a schema or database per tenant), per-tenant limits so one noisy neighbour cannot starve the rest, and the cost of each isolation level
 - OpenStack as the open-source IaaS reference: Nova, Neutron, Cinder, Swift, Glance, Keystone and Horizon
 
 ### Architecture patterns and well-architected frameworks

@@ -8,14 +8,14 @@ Domain: The Architect's Practice: Decisions, Strategy & Career
 
 - Framing: requirement, constraints, the quality-attribute scenario served
 - At least three options, always including doing nothing and buying
-- Judging against scenarios and cost; premortems; review dates and reversal evidence
+- Judging against scenarios and cost; premortems; review dates and reversal evidence; blast radius of each option: the users, tenants and regions a failure reaches, and the cell or partition that bounds it
 - Reversibility: one-way and two-way doors; making a one-way door two-way with flags, ports and adapters, expand/contract changes or rehearsed rollbacks
 - Second-order effects: who operates it, what it makes easy or hard next, what the team must learn
 
 ### Decision theory
 
 - Decision trees: choice nodes, chance nodes, payoffs, folding back
-- Expected utility and risk aversion; paying for redundancy
+- Expected utility and risk aversion; paying for redundancy; Bayes risk as the expected loss of a decision rule under a prior, and asymmetric losses moving the threshold: act when P(event) exceeds c_FP ÷ (c_FP + c_FN), the costs of a false alarm and a miss; a concave utility's certainty equivalent, the sure amount preferred to a gamble, and the risk premium as the gap below its expected value
 - The expected value of perfect information and when a spike, prototype or benchmark is worth running
 - Flexibility as an option: value of the switch, its price, modularity as a portfolio of options
 - Calibration: the Brier score as a proper scoring rule; reliability, resolution and uncertainty

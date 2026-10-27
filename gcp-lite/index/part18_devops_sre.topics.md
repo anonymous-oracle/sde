@@ -15,7 +15,7 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
 - Docker Compose for local multi-container development
 - Registries, tagging strategy and image scanning
 - Container security: non-root users, minimal and distroless bases, secrets anti-patterns; the shared kernel in every container's TCB
-- BuildKit daemon builds; the Docker Engine API from code
+- BuildKit daemon builds; the Docker Engine API from code; BuildKit's solver as a DAG of build steps run in parallel with a content-addressed cache, and `RUN --mount=type=secret` mounts that never enter a layer
 - **The Docker command line**
   - Building: `docker build -t name:tag -f Dockerfile --target stage --build-arg KEY=value .`; `docker buildx build --platform linux/amd64,linux/arm64 --push`; build secrets with `--secret`; cache import and export with `--cache-from` and `--cache-to`
   - Running: `docker run -d --rm --name -p host:container -e KEY=value --env-file -v volume:/path --mount --network --memory --cpus --read-only --user --cap-drop ALL`
@@ -60,12 +60,12 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
 - NGINX as a Kubernetes Ingress controller
 - Server architectures: Flash's AMPED design; SEDA; NGINX's worker event loops
 - A proxy as a queue: Little's law for upstream and client connections
-- The Kong API gateway: services, routes, consumers, plugins, its Postgres store and admin API, Lua plugins
+- The Kong API gateway: services, routes, consumers, plugins, its Postgres store and admin API, Lua plugins; Lua basics for plugins: tables as the only compound type, closures, and a handler whose `access`, `header_filter` and `log` phases run at fixed points of each request
 
 ### CI/CD
 
-- Pipeline stages: build → test → package → deploy; artifact repositories
-- Deployment strategies: rolling (surge and unavailable settings), blue-green, canary; choosing from a scenario
+- Pipeline stages: build → test → package → deploy; artifact repositories; a reproducible repository layout with source, lock files, build scripts and the pipeline definition committed, so a clean checkout produces the same artifact
+- Deployment strategies: rolling (surge and unavailable settings), blue-green, canary; choosing from a scenario; a rollback path designed for each: `kubectl rollout undo` for a rolling Deployment, the router switched back for blue-green, and canary traffic drained to zero, with the rollback time measured in a drill
 - Progressive delivery as risk control: canary fraction and the error count as a test statistic
 - Continuous delivery: every commit a release candidate
 - GitOps: declarative state, Git as source of truth, reconciliation loops; Argo CD and Flux
@@ -100,15 +100,15 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
 - Head-based versus tail-based trace sampling and their biases
 - Label cardinality and its cost; high-cardinality values in logs and trace attributes
 - Structured logging
-- OpenTelemetry; Prometheus and Grafana; Jaeger; Grafana Loki; LLM-trace UIs (Phoenix)
-- Streams as infrastructure: Redis Streams consumer groups, acknowledgement after writes, pending-entry recovery, at-least-once delivery with idempotent consumers, lag as an SLI
+- OpenTelemetry; Prometheus and Grafana; Jaeger; Grafana Loki; LLM-trace UIs (Phoenix); Phoenix showing each request as a trace whose spans carry model and tool calls with token counts, latency and evaluation scores
+- Streams as infrastructure: Redis Streams consumer groups, acknowledgement after writes, pending-entry recovery, at-least-once delivery with idempotent consumers, lag as an SLI; Kafka and Redpanda clients: idempotent producers with `acks=all`, consumer-group partition assignment, offsets committed after processing, and consumer lag measured per partition
 
 ### Site reliability engineering
 
 - SLIs, SLOs and SLAs
 - Error budgets: (1 − SLO) × window; burn rate; multi-window, multi-burn-rate alerts
-- Alerting as classification: precision versus recall; time to exhaustion at a burn rate
-- Composed availability of services
+- Alerting as classification: precision versus recall; time to exhaustion at a burn rate; each alert linked to a runbook with its first checks, mitigation and owner, and to a dashboard showing the SLI, the burn rate and the budget left
+- Composed availability of services; overload and cascading failure: retry storms that amplify load, load shedding and circuit breakers that fail fast, and metastable failure, where retries keep an outage going after its trigger has ended
 - Toil: definition, measurement and budgeting
 - Incident management and on-call
 - AIOps: correlating a trace, the alert it fired and the surrounding signals into one incident note; statistical anomaly detection and its false-positive cost; the note states its evidence and confidence, and a person confirms the cause

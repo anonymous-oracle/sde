@@ -29,7 +29,7 @@ Domain: Software Delivery & Version Control
 
 - SDLC models; Agile and Scrum basics
 - Trunk-based development versus GitFlow
-- Code-review culture and the evidence on review; engineering practices at scale: review norms, and design docs written before a large change and reviewed by the people who depend on it
+- Code-review culture and the evidence on review; engineering practices at scale: review norms, and design docs written before a large change and reviewed by the people who depend on it; the test pyramid: many fast unit tests, fewer integration tests and a few end-to-end tests, with CI running the fast layers on every change
 - Reading and writing code as cognition: working-memory limits when reading unfamiliar code; comprehension by tracing data and control flow rather than line by line; names, structure and comments as the reader's aids
 - Small batches read as queueing: smaller batches wait less
 - The four DORA metrics: deployment frequency, lead time for changes, change failure rate, time to restore service

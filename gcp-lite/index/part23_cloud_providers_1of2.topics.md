@@ -51,7 +51,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 - **Cloud DNS**: public and private zones; DNSSEC; routing policies (weighted round robin, geolocation with geofencing, failover) with health checks; DNS logging; Cloud Domains
 - **Cloud CDN**: pull CDN on the global Application LB; origins as backend buckets, instance groups and external origins; cache modes (`CACHE_ALL_STATIC`, `USE_ORIGIN_HEADERS`, `FORCE_CACHE_ALL`); TTLs and cache keys; signed URLs and cookies; invalidation; serve-while-stale; GET and HEAD only
 - **Media CDN** for large video and downloads; **Firebase Hosting** for static and web front ends with custom headers
-- **Service Directory**; **Cloud Service Mesh** (managed Istio and Envoy) for mTLS, retries and traffic management
+- **Service Directory**; **Cloud Service Mesh** (managed Istio and Envoy) for mTLS, retries and traffic management; mesh concepts: a sidecar Envoy proxy beside each workload carrying its traffic, a control plane pushing routes and certificates to the proxies, and a workload identity per service behind each mTLS connection
 - **API Gateway, Cloud Endpoints and Apigee**: OpenAPI and gRPC with transcoding; keys, quotas, analytics, spike arrest
 - **Network Intelligence Center** and Connectivity Tests
 
@@ -68,7 +68,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 
 ### Google Cloud — AI and ML
 
-- **Gemini Enterprise Agent Platform** (formerly Vertex AI): Workbench, custom training with accelerators, Pipelines, Feature Store, Model Registry, Experiments, endpoints, Model Monitoring, Vizier hyperparameter tuning, AutoML, Evals (formerly the Gen AI evaluation service)
+- **Gemini Enterprise Agent Platform** (formerly Vertex AI): Workbench, custom training with accelerators, Pipelines, Feature Store, Model Registry, Experiments, endpoints, Model Monitoring, Vizier hyperparameter tuning, AutoML, Evals (formerly the Gen AI evaluation service); distributed training as worker pools (a chief, workers and optional parameter servers) with gradient all-reduce across accelerators, submitted as a `workerPoolSpecs` list with `gcloud ai custom-jobs create --region=REGION --display-name=NAME --config=config.yaml`
 - Model Garden (Gemini, Claude and open models); Agent Studio
 - Agent Development Kit (ADK); Agent Runtime (Agent Engine); managed sessions and Memory Bank; Agent Identity and principal access boundary policies; Agent Registry; Google Cloud MCP servers; Agents CLI
 - Vector Search; Agent Retrieval (formerly Vector Search 2.0); Agent Search (formerly Vertex AI Search); RAG Engine; text-embedding models
@@ -160,7 +160,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - Spanner: `gcloud spanner instances create --config --processing-units`; `gcloud spanner databases create --ddl` and `execute-sql`
   - Bigtable: `gcloud bigtable instances create`; the `cbt` tool (`cbt createtable`, `createfamily`, `set`, `read`, `count`) with a `.cbtrc`
   - Firestore: `gcloud firestore databases create --location`; `gcloud firestore indexes composite create`; `gcloud firestore export` and `import`
-  - Memorystore: `gcloud redis instances create --tier --size`
+  - Memorystore: `gcloud redis instances create --tier --size`; `gcloud redis instances describe` and `delete`; then with `redis-cli` against the instance's host, `SET key value EX seconds`, `GET` and `TTL`, with a cache-aside read that refills on a miss
   - Local emulators: `gcloud emulators firestore start` and `gcloud emulators spanner start`; `gcloud beta emulators pubsub start` and `bigtable start`; `env-init` for client environment variables
 - **BigQuery with `bq`**
   - `bq mk --dataset --location`; `bq mk --table` with a schema, `--time_partitioning_field`, `--clustering_fields` and expiration
