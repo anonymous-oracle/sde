@@ -5,7 +5,7 @@ Rules and directives for this part: `index/part01_school_foundations.rules.md`. 
 Domain: School-level foundations
 
 - **Arithmetic and number sense**
-  - Integers, negatives, fractions, decimals, percentages
+  - Integers, negatives, fractions, decimals, percentages; the number sets N ⊂ Z ⊂ Q ⊂ R, and the rationals as a field: closure, associativity, commutativity and distributivity under + and ×, with 0 and 1 as identities and every nonzero fraction having a multiplicative inverse
   - Ratios and rates; order of operations
   - Rounding, estimation, scientific notation, significant figures
   - Prime factors, GCD and LCM
@@ -21,9 +21,9 @@ Domain: School-level foundations
   - Units of time, data and rate; unit conversion
   - Checking a formula by its units
 - **Algebra**
-  - Variables and expressions; linear equations and inequalities
+  - Variables and expressions; linear equations and inequalities; translating a word problem by naming the unknown, writing each stated quantity in terms of it, then forming the equation; the sign flips when an inequality is multiplied or divided by a negative number, so −2x > 6 gives x < −3
   - Rearranging formulas; simultaneous equations by substitution and elimination; absolute value
-  - Polynomials; the remainder and factor theorems
+  - Polynomials; the remainder and factor theorems; polynomial identities such as (a + b)² = a² + 2ab + b² and a³ ± b³ = (a ± b)(a² ∓ ab + b²); Vieta's formulas, with the roots of a degree-n polynomial summing to −aₙ₋₁/aₙ and multiplying to (−1)ⁿa₀/aₙ; the fundamental theorem of algebra, that a degree-n polynomial has n complex roots counted with multiplicity
   - Interval notation: [a, b] closed, (a, b) open, and unions such as (−∞, −2] ∪ [3, ∞); solution sets over N, Z and R: x² < 4 gives (−2, 2) over R, {−1, 0, 1} over Z and {1} over N = {1, 2, 3, …}
   - Surds: √(a²b) = a√b in simplest form; √(ab) = √a·√b for a, b ≥ 0; rationalising a denominator, 1/(√3 + 1) = (√3 − 1)/2
 - **Functions and graphs**
@@ -37,18 +37,18 @@ Domain: School-level foundations
   - Logarithm laws and change of base; log scales
   - Exponential growth and decay
 - **Sequences, series and notation**
-  - Arithmetic and geometric sequences and their sums
+  - Arithmetic and geometric sequences and their sums; the infinite geometric series a + ar + ar² + … has sum a/(1 − r) exactly when |r| < 1; harmonic progressions, whose reciprocals form an arithmetic progression; inserting n arithmetic means between a and b with common difference (b − a)/(n + 1)
   - Σ and Π notation; factorial
   - Geometric mean: √(ab) of positive a and b is the middle term of a geometric sequence; the arithmetic mean (a + b)/2 is never smaller (AM ≥ GM)
 - **Geometry, trigonometry and vectors**
-  - Cartesian coordinates, Pythagoras and distance; reflections in the axes
-  - Lines as ax + by = c; slope, parallel and perpendicular lines, intersections; similarity
-  - Angles, sine and cosine, the unit circle
+  - Cartesian coordinates, Pythagoras and distance; reflections in the axes; reflection in the line y = x swaps the coordinates, so (a, b) becomes (b, a)
+  - Lines as ax + by = c; slope, parallel and perpendicular lines, intersections; similarity; the forms y = mx + c (slope-intercept), y − y₁ = m(x − x₁) (point-slope) and (y − y₁)/(y₂ − y₁) = (x − x₁)/(x₂ − x₁) (two-point), with inclination θ and m = tan θ; similarity by AAA and by SAS or SSS proportionality, and congruence by SSS, SAS, ASA and RHS
+  - Angles, sine and cosine, the unit circle; the six ratios of a right triangle: sin = opposite/hypotenuse, cos = adjacent/hypotenuse, tan = sin/cos, and their reciprocals cosec = 1/sin, sec = 1/cos and cot = 1/tan
   - Vectors as arrows; the angle between two vectors
   - Pythagorean identity: sin²θ + cos²θ = 1, with 1 + tan²θ = sec²θ and 1 + cot²θ = cosec²θ
   - Addition and subtraction formulas: sin(A ± B) = sin A cos B ± cos A sin B; cos(A ± B) = cos A cos B ∓ sin A sin B; tan(A ± B) = (tan A ± tan B) / (1 ∓ tan A tan B)
   - Multiple and half-angle formulas: sin 2θ = 2 sin θ cos θ; cos 2θ = cos²θ − sin²θ = 1 − 2 sin²θ = 2 cos²θ − 1; tan 2θ = 2 tan θ / (1 − tan²θ); sin²(θ/2) = (1 − cos θ)/2 and cos²(θ/2) = (1 + cos θ)/2
-  - Periodic graphs: sin and cos have period 2π and tan has period π; y = A sin(bx + c) + d has amplitude |A|, period 2π/b and phase shift −c/b
+  - Periodic graphs: sin and cos have period 2π and tan has period π; y = A sin(bx + c) + d has amplitude |A|, period 2π/b and phase shift −c/b; the domain of tan θ excludes odd multiples of π/2, and sin and cos take values only in [−1, 1]
   - Inverse trigonometric functions: principal values sin⁻¹x in [−π/2, π/2], cos⁻¹x in [0, π] and tan⁻¹x in (−π/2, π/2); sin⁻¹x + cos⁻¹x = π/2
   - Trigonometric equations and inequations: general solutions sin θ = sin α gives θ = nπ + (−1)ⁿα; cos θ = cos α gives θ = 2nπ ± α; tan θ = tan α gives θ = nπ + α, with n an integer; inequations solved on a stated interval
   - Properties of triangles: sine rule a/sin A = b/sin B = c/sin C = 2R; cosine rule a² = b² + c² − 2bc cos A; area ½ab sin C and Heron's formula √(s(s−a)(s−b)(s−c)) with s the semi-perimeter
@@ -58,13 +58,13 @@ Domain: School-level foundations
   - Quadratic formula: x = (−b ± √(b² − 4ac)) / (2a); Shridharacharya's method derives it by multiplying by 4a and adding b², so the left side becomes (2ax + b)²
   - Discriminant and nature of roots: D = b² − 4ac; D > 0 gives two distinct real roots, D = 0 a repeated root, D < 0 a complex conjugate pair; the roots sum to −b/a and multiply to c/a
   - Equations reducible to quadratics: substitution such as u = x² in x⁴ − 5x² + 4 = 0, and equations in x + 1/x
-  - Synthetic division by (x − r): the last entry is the remainder f(r) and the others are the quotient's coefficients; a zero remainder is the factor theorem
+  - Synthetic division by (x − r): the last entry is the remainder f(r) and the others are the quotient's coefficients; a zero remainder is the factor theorem; the division algorithm f(x) = g(x)q(x) + r(x) with the degree of r less than the degree of g
   - Factoring cubics: find a root r among the divisors of the constant term, then divide by (x − r) to reach a quadratic; for example x³ − 6x² + 11x − 6 = (x − 1)(x − 2)(x − 3)
 - **Euclidean geometry: triangles and circles**
   - Thales and the basic proportionality theorem: a line parallel to one side of a triangle divides the other two sides in the same ratio, and conversely; an angle in a semicircle is a right angle
   - Midpoint theorem: the segment joining the midpoints of two sides is parallel to the third side and half its length
   - Area ratios of similar triangles: equal angles and proportional sides; areas in the ratio of the squares of corresponding sides
-  - Centroid of a triangle: the medians meet at a point dividing each median 2:1 from the vertex; G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)
+  - Centroid of a triangle: the medians meet at a point dividing each median 2:1 from the vertex; G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3); the area of a triangle with vertices (x₁, y₁), (x₂, y₂), (x₃, y₃) is ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|
   - Circle theorems: the angle at the centre is twice the angle at the circumference; angles in the same segment are equal; equal chords subtend equal angles; the perpendicular from the centre bisects a chord
   - Cyclic quadrilaterals and concyclic points: opposite angles sum to 180°, and conversely a quadrilateral with that property is cyclic; A, B, C and D are concyclic when ∠ACB = ∠ADB with C and D on the same side of AB
   - Tangents, secants and intersecting chords: a tangent is perpendicular to the radius at the point of contact; from an external point P, PT² = PA × PB for a secant through A and B; for chords AB and CD meeting at P, PA × PB = PC × PD
@@ -94,10 +94,10 @@ Domain: School-level foundations
   - Angles between lines and planes: cos θ = |l₁l₂ + m₁m₂ + n₁n₂| between two lines; sin θ = |a·n| ÷ (|a||n|) between a line with direction a and a plane with normal n
 - **Probability and data**
   - Outcomes and events; simple and complementary probability; counting
-  - Mean, median, mode and spread
+  - Mean, median, mode and spread; variance σ² = Σ(x − x̄)²/n as the mean squared deviation from the mean, and standard deviation σ = √σ²
   - Reading charts and tables; sampling and bias
 - **Sets and logic in words**
-  - Membership, union, intersection, complement, Venn diagrams
+  - Membership, union, intersection, complement, Venn diagrams; set difference A − B and symmetric difference A Δ B = (A − B) ∪ (B − A)
   - And, or, not, if…then; the truth of statements
 - **Proof habits**
   - Step-by-step reasoning and counterexamples
@@ -117,4 +117,4 @@ Domain: School-level foundations
   - Explaining to a non-expert; presenting
 - **Everyday economics**
   - Cost and price; fixed versus variable cost
-  - Discounts, interest and budgets
+  - Discounts, interest and budgets; simple interest I = Prt/100 with r in percent; compound amount A = P(1 + r/100)ⁿ over n years at r percent a year, and P(1 + r/(100k))^(kt) when interest is compounded k times a year

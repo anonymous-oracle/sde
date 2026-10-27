@@ -30,9 +30,9 @@ Domain: Programming Languages & Language Theory (part 1 of 3)
   - `str` as code points versus `bytes`; `decimal.Decimal` for money
   - Late-binding closures and the mutable-default-argument trap
 - **Python for data and services**
-  - NumPy: n-dimensional arrays, dtypes and shapes; indexing, slicing and boolean masks; broadcasting; vectorized operations instead of loops; linear-algebra and random routines
+  - NumPy: n-dimensional arrays, dtypes and shapes; indexing, slicing and boolean masks; broadcasting; vectorized operations instead of loops; linear-algebra and random routines; strides and views, where a slice shares memory with its base array while .copy() and fancy indexing make a new array; seeded generators with numpy.random.default_rng(seed) for reproducible draws; numpy.linalg.solve for Ax = b, inv, det, eig for eigenvalues and eigenvectors, and norm
   - pandas: DataFrames, selection, grouping, joins, missing values
-  - Matplotlib: line, scatter and histogram plots; Jupyter notebooks
+  - Matplotlib: line, scatter and histogram plots; Jupyter notebooks; subplots and GridSpec layouts, contour and heatmap plots, and savefig to write a figure to a file
   - SciPy: `scipy.optimize` for minimization and root finding; `scipy.stats` distributions and hypothesis tests; `scipy.signal` filters and spectra; each result checked against a hand-built version
   - Seaborn: distribution, categorical and regression plots drawn on Matplotlib axes; figure-level versus axes-level functions; long-form data frames; bootstrapped confidence intervals
   - Plotly: interactive figures rendered in the browser with hover, zoom and linked selections; a dashboard served from Python callbacks
@@ -49,7 +49,7 @@ Domain: Programming Languages & Language Theory (part 1 of 3)
 - **Bash scripting**
   - Variables, quoting, loops and conditionals
   - Pipes, redirection and exit codes; `set -euo pipefail`
-  - Scripts as glue for CI/CD and automation
+  - Scripts as glue for CI/CD and automation; a Python script with an `if __name__ == "__main__"` entry point, arguments read by argparse, and subprocess.run calls whose exit codes are checked
   - `jq` for filtering and reshaping JSON on the command line
 - **Calling APIs from code**
   - HTTP clients and JSON parsing

@@ -71,7 +71,7 @@ Domain: Computer Organization & Data Representation
 - **Parallel hardware**
   - Multicore; cache coherence (MSI and MESI protocols); false sharing
   - Memory consistency models: sequential consistency, x86-TSO, the weaker RISC-V and ARM models; why languages define memory models
-  - SIMD and GPUs as data parallelism
+  - SIMD and GPUs as data parallelism; data parallelism in software: the same operation applied to each element or each batch shard on separate workers, with partial results combined by a reduction such as all-reduce
 - **Performance engineering**
   - Cache-aware data layout
   - Reading hardware counters

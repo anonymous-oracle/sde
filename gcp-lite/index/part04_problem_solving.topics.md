@@ -23,9 +23,9 @@ Domain: Problem Solving, Reasoning & Research Method
 - **Invariants and monovariants**: quantities preserved, or changing in one direction, under the allowed moves; colouring and parity arguments; termination proved by a strictly decreasing measure
 - **The extremal principle**: reasoning from the largest, smallest or first object, or from a minimal counterexample
 - **Symmetry**: reducing cases by symmetry; symmetric expressions; reflection arguments
-- **Counting techniques**: double counting; counting by bijection; complementary counting; stars and bars
-- **Inequalities**: AM–GM, Cauchy–Schwarz, Jensen's inequality for convex functions, the rearrangement inequality; inequalities as tools for bounding and estimating
-- **Sums and recurrences**: telescoping sums; generating functions; guessing a closed form from small cases and proving it by induction
+- **Counting techniques**: double counting; counting by bijection; complementary counting; stars and bars; n identical objects into k boxes in C(n + k − 1, k − 1) ways, and C(n − 1, k − 1) ways when every box must hold at least one
+- **Inequalities**: AM–GM, Cauchy–Schwarz, Jensen's inequality for convex functions, the rearrangement inequality; inequalities as tools for bounding and estimating; information inequalities: Gibbs' inequality D(p ‖ q) ≥ 0 for distributions p and q, the bound H(X) ≤ log n for n outcomes, and the data processing inequality I(X; Z) ≤ I(X; Y) along a Markov chain X → Y → Z
+- **Sums and recurrences**: telescoping sums; generating functions; guessing a closed form from small cases and proving it by induction; the method of differences: write f(k) = g(k + 1) − g(k) so that Σf(k) telescopes to g(n + 1) − g(1), and build a difference table to sum a polynomial sequence
 - **Functions and graphs in puzzles**: iterating a function; fixed points; modelling a puzzle as a graph
 - **Probability reasoning**: conditioning traps (Monty Hall, base-rate neglect, Simpson's paradox); symmetry and linearity shortcuts for expectation; geometric probability
 
@@ -36,7 +36,7 @@ Domain: Problem Solving, Reasoning & Research Method
 - **Conservation and balance**: conserved quantities; flow balance (what enters equals what leaves at steady state) as the first equation to write
 - **Approximation with known error**: (1 + x)ⁿ ≈ 1 + nx, ln(1 + x) ≈ x and √(1 + x) ≈ 1 + x/2 for small x; keeping track of the size of the neglected term
 - **Scaling**: how an output changes when an input doubles; power laws as straight lines on log–log axes; doubling time and the rule of 72
-- **Sketching before computing**: a function's graph from its zeros, asymptotes, monotonicity and convexity
+- **Sketching before computing**: a function's graph from its zeros, asymptotes, monotonicity and convexity; singular points (cusps, corners and self-crossings), and tracing the full curve through its symmetry, asymptotes and the sign changes of f′ and f″
 - **Mental arithmetic**: log₁₀ 2 ≈ 0.301, log₁₀ 3 ≈ 0.477, ln 2 ≈ 0.693, ln 10 ≈ 2.303, √2 ≈ 1.414, e ≈ 2.718; about 86,400 seconds in a day and 3.15 × 10⁷ in a year; multiplying by rounding and then correcting
 
 ### Speed and accuracy under time
