@@ -48,7 +48,7 @@ Domain: Computer Organization & Data Representation
 - **Instruction set architecture**
   - The RISC-V RV32I base: 32 registers, load/store, arithmetic, branches, `jal`/`jalr`
   - How a function becomes instructions: calling convention, stack frame, caller-saved and callee-saved registers
-  - The fetch–decode–execute cycle and a single-cycle datapath
+  - The fetch–decode–execute cycle and a single-cycle datapath; the control unit that reads the opcode and function fields to set the datapath's multiplexer selects, ALU operation and memory and register-write enables, realized either as hardwired logic or as a microprogram; the multicycle datapath, which reuses one ALU and one memory port over several clock cycles per instruction, trading a longer instruction time for less hardware
 - **Performance laws**
   - The iron law: CPU time = instruction count × cycles per instruction × clock period
   - Amdahl's law: speedup = 1 / ((1 − p) + p/s), bounded by 1/(1 − p)
@@ -76,6 +76,8 @@ Domain: Computer Organization & Data Representation
   - Cache-aware data layout
   - Reading hardware counters
   - Choosing machine types by memory hierarchy
+- **I/O devices, interrupts and DMA**: device registers read and written by programmed I/O, where a polling loop spends cycles checking a status bit; interrupts as a hardware request that saves the program counter and jumps to a handler, with the interrupt latency and the handler's cost; direct memory access, in which a DMA controller is given a source, a destination and a byte count, moves the data while the CPU runs, and interrupts once at the end, so a 1 MB transfer costs the CPU one setup and one interrupt rather than about a million loads and stores; memory-mapped I/O as the way device registers appear in the address space
+- **Superscalar and VLIW organization**: superscalar issue, in which hardware fetches and dispatches several instructions per cycle, detects dependencies by scoreboarding or register renaming, and reorders them out of order, so the issue width bounds the peak instructions per cycle; very long instruction word design, in which the compiler packs independent operations into fixed-width bundles and the hardware does no dependency checking, so the schedule's quality depends on the compiler; instructions per cycle (IPC) as the reciprocal of the iron law's cycles per instruction, so IPC above one is possible only when more than one instruction issues in a cycle
 
 ### Exercises
 

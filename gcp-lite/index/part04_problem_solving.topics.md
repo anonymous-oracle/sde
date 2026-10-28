@@ -28,6 +28,7 @@ Domain: Problem Solving, Reasoning & Research Method
 - **Sums and recurrences**: telescoping sums; generating functions; guessing a closed form from small cases and proving it by induction; the method of differences: write f(k) = g(k + 1) − g(k) so that Σf(k) telescopes to g(n + 1) − g(1), and build a difference table to sum a polynomial sequence
 - **Functions and graphs in puzzles**: iterating a function; fixed points; modelling a puzzle as a graph
 - **Probability reasoning**: conditioning traps (Monty Hall, base-rate neglect, Simpson's paradox); symmetry and linearity shortcuts for expectation; geometric probability
+- **Power of a point**: for a point P and a circle with centre O and radius r, the power of P is OP² − r²; every line through P that meets the circle at A and B has PA · PB equal to the power, with signed lengths so that the sign shows whether P lies inside (negative) or outside (positive); from an external point the tangent length satisfies PT² = power; the locus of points with equal power to two circles is their radical axis, a line perpendicular to the line of centres, and the three radical axes of three circles meet at one point or are all parallel
 
 ### Physical and quantitative intuition
 
@@ -64,6 +65,7 @@ Domain: Problem Solving, Reasoning & Research Method
 - Reproducing a claim at toy size or against one's own evaluation suite; reporting negative results
 - Research writing: contribution statements, related work, threats to validity; giving a talk; peer review as reviewer and as author
 - The qualifying-examination oral: defending a result under adversarial questions; saying "I don't know" and then reasoning toward an answer
+- Domain-expert validation of outputs: an output is valid when the people who own the domain judge it correct under a written rubric fixed before judging; a sample drawn to cover the strata that matter, such as rare cases and each user group, not only at random; two or more experts rating blind; agreement between raters measured by Cohen's kappa for two raters or Fleiss' kappa for more, with disagreements settled by a named adjudicator; the error rate reported with its confidence interval and its failure categories shown with examples; the experts' own bias and time cost recorded as limits of the evidence
 
 ### Systems thinking
 
@@ -81,6 +83,13 @@ Domain: Problem Solving, Reasoning & Research Method
 - Chunking and the pattern libraries of experts
 - Self-explanation and the Feynman technique: explaining simply in order to find the gaps
 - Metacognition: monitoring understanding; the illusion of competence; judging readiness by unaided performance
+- Code reading and program comprehension: tracing a function's values line by line on a small input; reading top-down from the purpose to the code or bottom-up from the lines to the purpose; recognizing programming plans and beacons, the familiar idioms whose presence signals a known purpose; the load of a fragment measured by the variables held at once and the nesting depth; predicting the output before running the code as the check that the reading was right
+
+### Social choice and fair division
+
+- **Voting methods**: plurality, which elects the candidate with the most first-place votes; the Borda count, which gives a candidate n − p points for rank p among n candidates; the Condorcet winner, who beats every rival in a pairwise majority, when one exists; approval voting; instant runoff, which eliminates the lowest first-place count in rounds; the rules can name different winners on the same ballots, and each can be manipulated by strategic ballots
+- **Arrow's impossibility theorem**: over an unrestricted domain with three or more alternatives, no rule that turns each profile of ranked ballots into a complete social ranking satisfies unanimity (if every voter ranks a above b, so does society) and independence of irrelevant alternatives, and is also not a dictatorship; the standard proof follows a pivotal voter whose ranking of one pair decides the social ranking of that pair
+- **Fair division**: divide and choose for two agents, in which one cuts and the other picks; the last-diminisher procedure of Steinhaus and Banach–Knaster, giving a proportional division of a divisible good among n agents, each receiving at least 1/n of what they value; envy-freeness as the stronger requirement, with the Selfridge–Conway procedure giving an envy-free division for three agents
 
 ### Exercises
 
@@ -88,6 +97,7 @@ Domain: Problem Solving, Reasoning & Research Method
 - From scratch: a Monte Carlo checker for probability puzzles (Monty Hall, the birthday problem, Simpson's paradox on generated data)
 - From scratch: a units-aware calculator that rejects dimensionally inconsistent formulas
 - From scratch: a spaced-repetition scheduler driving re-attempts from the error log
+- From scratch: a voting tallier for plurality, Borda count, Condorcet comparison and instant runoff, run on generated ballots, reporting each profile on which the rules name different winners
 - **Reasoning drills**
   - Timed mixed sets of contest-style problems across algebra, combinatorics, probability, geometry and physics-style estimation, scored for speed and accuracy and logged by error cause
   - Invariant and extremal puzzles: chessboard tilings, token and coin games, termination of processes
@@ -96,3 +106,4 @@ Domain: Problem Solving, Reasoning & Research Method
   - A paper read in three passes, one claim reproduced at toy size, and a one-page critique
   - A proof or a design defended orally against adversarial questions
   - A stocks-and-flows map of a familiar system, naming its feedback loops and its binding constraint
+  - Given a three-candidate ballot profile, predict the winner under each voting rule, then name the fairness axiom that each rule breaks

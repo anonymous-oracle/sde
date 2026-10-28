@@ -5,7 +5,7 @@ Rules and directives for this part: `index/part01_school_foundations.rules.md`. 
 Domain: School-level foundations
 
 - **Arithmetic and number sense**
-  - Integers, negatives, fractions, decimals, percentages; the number sets N ⊂ Z ⊂ Q ⊂ R, and the rationals as a field: closure, associativity, commutativity and distributivity under + and ×, with 0 and 1 as identities and every nonzero fraction having a multiplicative inverse
+  - Integers, negatives, fractions, decimals, percentages; the number sets N ⊂ Z ⊂ Q ⊂ R, and the rationals as a field: closure, associativity, commutativity and distributivity under + and ×, with 0 and 1 as identities and every nonzero fraction having a multiplicative inverse; the sorts separated: naturals as the counting numbers 1, 2, 3, …, whole numbers adding 0, integers adding the negatives, rationals as p/q with q ≠ 0 whose decimals terminate or repeat, and irrationals such as √2 and π whose decimals neither terminate nor repeat, with the reals as their union; the number line as the picture of R, where a < b means a lies to the left of b, and the absolute value |a| as the distance of a from 0
   - Ratios and rates; order of operations
   - Rounding, estimation, scientific notation, significant figures
   - Prime factors, GCD and LCM
@@ -16,6 +16,9 @@ Domain: School-level foundations
   - Direct and inverse variation: y = kx with y/x constant; y = k/x with xy constant; joint variation y = kxz
   - Unitary method: find the value of one unit, then scale it to the required count or quantity
   - Repeating decimals to fractions: 0.373737… = 37/99 from 100x − x = 37; a mixed repeat such as 0.1666… = 1/6 from 100x − 10x = 15
+  - Divisibility rules: a number is divisible by 2 or 5 when its last digit is even or is 0 or 5, by 4 or 8 when its last two or three digits are, by 3 or 9 when its digit sum is, by 11 when the alternating sum of its digits is 0 or a multiple of 11, and by a composite number when it is divisible by each of its coprime factors; the rules follow from 10 ≡ 1 (mod 9) and 10 ≡ −1 (mod 11)
+  - Place value: each digit's value is the digit times the power of the base fixed by its position, so the 4 in 3,482 stands for 400 and the number is the sum 3·10³ + 4·10² + 8·10 + 2; digits after the decimal point carry negative powers, so 0.07 = 7 × 10⁻²; the face value of a digit is the digit itself, and its place value is the digit times its position's power
+  - Integer division algorithm: for integers a and b > 0 there are unique integers q and r with a = bq + r and 0 ≤ r < b; the Euclidean algorithm repeats this step, replacing (a, b) by (b, r), until the remainder is 0, and the last nonzero remainder is gcd(a, b)
 - **Units and dimensional reasoning**
   - SI prefixes from kilo to peta and milli to nano
   - Units of time, data and rate; unit conversion
@@ -27,7 +30,7 @@ Domain: School-level foundations
   - Interval notation: [a, b] closed, (a, b) open, and unions such as (−∞, −2] ∪ [3, ∞); solution sets over N, Z and R: x² < 4 gives (−2, 2) over R, {−1, 0, 1} over Z and {1} over N = {1, 2, 3, …}
   - Surds: √(a²b) = a√b in simplest form; √(ab) = √a·√b for a, b ≥ 0; rationalising a denominator, 1/(√3 + 1) = (√3 − 1)/2
 - **Functions and graphs**
-  - Function notation, domain and range, composition, inverse functions, monotonicity
+  - Function notation, domain and range, composition, inverse functions, monotonicity; f is increasing when x < y gives f(x) < f(y) and decreasing when it gives f(x) > f(y), read from a graph by the direction of its rise; a linear function is monotone exactly when its slope is nonzero, and a quadratic ax² + bx + c is monotone on each side of its vertex x = −b/(2a)
   - Linear, quadratic, polynomial, piecewise and step functions
   - Slope as rate of change; reading and sketching graphs
   - Graphical transformations: y = f(x) + a shifts up by a; y = f(x − a) shifts right by a; y = af(x) stretches vertically; y = f(bx) compresses horizontally by a factor b; y = −f(x) and y = f(−x) reflect in the axes
@@ -41,9 +44,9 @@ Domain: School-level foundations
   - Σ and Π notation; factorial
   - Geometric mean: √(ab) of positive a and b is the middle term of a geometric sequence; the arithmetic mean (a + b)/2 is never smaller (AM ≥ GM)
 - **Geometry, trigonometry and vectors**
-  - Cartesian coordinates, Pythagoras and distance; reflections in the axes; reflection in the line y = x swaps the coordinates, so (a, b) becomes (b, a)
+  - Cartesian coordinates, Pythagoras and distance; reflections in the axes; reflection in the line y = x swaps the coordinates, so (a, b) becomes (b, a); rotation about the origin by θ, (x, y) ↦ (x cos θ − y sin θ, x sin θ + y cos θ), and translation by (a, b), (x, y) ↦ (x + a, y + b), which together with reflections give the isometries of the plane; a rotation composed with a translation is a rotation about another centre
   - Lines as ax + by = c; slope, parallel and perpendicular lines, intersections; similarity; the forms y = mx + c (slope-intercept), y − y₁ = m(x − x₁) (point-slope) and (y − y₁)/(y₂ − y₁) = (x − x₁)/(x₂ − x₁) (two-point), with inclination θ and m = tan θ; similarity by AAA and by SAS or SSS proportionality, and congruence by SSS, SAS, ASA and RHS
-  - Angles, sine and cosine, the unit circle; the six ratios of a right triangle: sin = opposite/hypotenuse, cos = adjacent/hypotenuse, tan = sin/cos, and their reciprocals cosec = 1/sin, sec = 1/cos and cot = 1/tan
+  - Angles, sine and cosine, the unit circle; the six ratios of a right triangle: sin = opposite/hypotenuse, cos = adjacent/hypotenuse, tan = sin/cos, and their reciprocals cosec = 1/sin, sec = 1/cos and cot = 1/tan; radian measure, θ radians = 180θ/π degrees, so π radians is 180°, and a radian is the arc length on a unit circle, hence arc length s = rθ on a circle of radius r
   - Vectors as arrows; the angle between two vectors
   - Pythagorean identity: sin²θ + cos²θ = 1, with 1 + tan²θ = sec²θ and 1 + cot²θ = cosec²θ
   - Addition and subtraction formulas: sin(A ± B) = sin A cos B ± cos A sin B; cos(A ± B) = cos A cos B ∓ sin A sin B; tan(A ± B) = (tan A ± tan B) / (1 ∓ tan A tan B)
@@ -58,18 +61,20 @@ Domain: School-level foundations
   - Quadratic formula: x = (−b ± √(b² − 4ac)) / (2a); Shridharacharya's method derives it by multiplying by 4a and adding b², so the left side becomes (2ax + b)²
   - Discriminant and nature of roots: D = b² − 4ac; D > 0 gives two distinct real roots, D = 0 a repeated root, D < 0 a complex conjugate pair; the roots sum to −b/a and multiply to c/a
   - Equations reducible to quadratics: substitution such as u = x² in x⁴ − 5x² + 4 = 0, and equations in x + 1/x
-  - Synthetic division by (x − r): the last entry is the remainder f(r) and the others are the quotient's coefficients; a zero remainder is the factor theorem; the division algorithm f(x) = g(x)q(x) + r(x) with the degree of r less than the degree of g
+  - Synthetic division by (x − r): the last entry is the remainder f(r) and the others are the quotient's coefficients; a zero remainder is the factor theorem; the division algorithm f(x) = g(x)q(x) + r(x) with the degree of r less than the degree of g; polynomial long division by a divisor g of degree m: divide the leading term of the current remainder by the leading term of g, subtract that multiple of g, and repeat until the remainder has degree below m; synthetic division is the shortcut for g = x − r
   - Factoring cubics: find a root r among the divisors of the constant term, then divide by (x − r) to reach a quadratic; for example x³ − 6x² + 11x − 6 = (x − 1)(x − 2)(x − 3)
 - **Euclidean geometry: triangles and circles**
   - Thales and the basic proportionality theorem: a line parallel to one side of a triangle divides the other two sides in the same ratio, and conversely; an angle in a semicircle is a right angle
   - Midpoint theorem: the segment joining the midpoints of two sides is parallel to the third side and half its length
-  - Area ratios of similar triangles: equal angles and proportional sides; areas in the ratio of the squares of corresponding sides
+  - Area ratios of similar triangles: equal angles and proportional sides; areas in the ratio of the squares of corresponding sides; the scale factor k of a similarity multiplies lengths by k, areas by k² and volumes by k³, so the ratio of corresponding lengths is the scale factor and the ratio of corresponding areas is its square
   - Centroid of a triangle: the medians meet at a point dividing each median 2:1 from the vertex; G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3); the area of a triangle with vertices (x₁, y₁), (x₂, y₂), (x₃, y₃) is ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|
   - Circle theorems: the angle at the centre is twice the angle at the circumference; angles in the same segment are equal; equal chords subtend equal angles; the perpendicular from the centre bisects a chord
   - Cyclic quadrilaterals and concyclic points: opposite angles sum to 180°, and conversely a quadrilateral with that property is cyclic; A, B, C and D are concyclic when ∠ACB = ∠ADB with C and D on the same side of AB
   - Tangents, secants and intersecting chords: a tangent is perpendicular to the radius at the point of contact; from an external point P, PT² = PA × PB for a secant through A and B; for chords AB and CD meeting at P, PA × PB = PC × PD
   - Loci: the perpendicular bisector of a segment; the bisector of an angle; a circle as the points at a fixed distance from a centre; points whose distances to two points are in a fixed ratio
   - Constructions with ruler and compass: the circumcircle from the perpendicular bisectors of two sides; the incircle from two angle bisectors; tangents from an external point to a circle; a regular hexagon by stepping the radius round the circle
+  - Quadrilaterals: a parallelogram has equal opposite sides and angles and diagonals that bisect each other; a rhombus, a rectangle and a square are parallelograms with equal adjacent sides, a right angle, or both; a trapezium has exactly one pair of parallel sides; the angles of a convex quadrilateral sum to 360°; the area of a parallelogram is base × height and of a rhombus is ½d₁d₂ for diagonals d₁ and d₂
+  - Regular polygons: each interior angle of a regular n-gon is (n − 2)·180°/n and each exterior angle is 360°/n; a polygon has n(n − 3)/2 diagonals; with side s and circumradius R, s = 2R sin(π/n), and the area is (n/2)R² sin(2π/n)
 - **Mensuration**
   - Plane areas: rectangle lw; triangle ½bh; trapezium ½(a + b)h; circle πr²; sector ½r²θ with θ in radians
   - Surface area and volume: cylinder 2πrh and πr²h; cone with slant height l = √(r² + h²), curved surface πrl and volume πr²h/3; sphere 4πr² and 4πr³/3; hemisphere 3πr² total surface and 2πr³/3 volume
@@ -116,5 +121,5 @@ Domain: School-level foundations
   - The vocabulary of requirements, constraints and trade-offs
   - Explaining to a non-expert; presenting
 - **Everyday economics**
-  - Cost and price; fixed versus variable cost
-  - Discounts, interest and budgets; simple interest I = Prt/100 with r in percent; compound amount A = P(1 + r/100)ⁿ over n years at r percent a year, and P(1 + r/(100k))^(kt) when interest is compounded k times a year
+  - Cost and price; fixed versus variable cost; profit = selling price − cost price and loss = cost price − selling price, with profit percent = profit ÷ cost price × 100 and loss percent = loss ÷ cost price × 100
+  - Discounts, interest and budgets; simple interest I = Prt/100 with r in percent; compound amount A = P(1 + r/100)ⁿ over n years at r percent a year, and P(1 + r/(100k))^(kt) when interest is compounded k times a year; markup as a percent of cost price, so selling price = cost price × (1 + m/100), and profit as a percent of selling price, (SP − CP) ÷ SP × 100, which is a different number for the same sale; a discount as a percent of the marked price, so the price after discount d is marked price × (1 − d/100), and two successive discounts d₁ then d₂ leave (1 − d₁/100)(1 − d₂/100) of the marked price, not 1 − (d₁ + d₂)/100
