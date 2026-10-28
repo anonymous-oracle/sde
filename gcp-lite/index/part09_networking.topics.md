@@ -6,72 +6,72 @@ Domain: Computer Networking & Web Protocols
 
 ### Architecture principles
 
-- The OSI and TCP/IP models and what lives at each layer
-- Layering and encapsulation; the end-to-end argument
-- Packet versus circuit switching; statistical multiplexing
-- The four delays: transmission L/R, propagation d/s, queueing, processing
-- The bandwidth–delay product as data in flight
+- The OSI and TCP/IP models and what lives at each layer: the OSI model has seven layers (physical, data link, network, transport, session, presentation, application), and the TCP/IP model collapses them into four (link, internet, transport, application); each layer offers a service to the layer above through an interface and relies on the layer below, so the link layer moves frames between neighbours, IP moves packets end to end, TCP or UDP moves segments between processes, and HTTP or DNS defines the messages inside them
+- Layering and encapsulation; the end-to-end argument; each layer wraps the payload of the layer above in its own header (encapsulation), so an HTTP message rides in a TCP segment, inside an IP packet, inside an Ethernet frame, and the receiver strips the headers in reverse order; the end-to-end argument holds that functions such as reliable delivery and encryption belong at the endpoints, because a network that performs them internally cannot satisfy every application's needs by itself
+- Packet versus circuit switching; statistical multiplexing; a circuit reserves a fixed path and capacity for a call, as the old telephone network did, so capacity sits idle when the call is quiet; a packet carries its own destination and shares links, queuing at routers when they are busy, which pays off for bursty traffic; statistical multiplexing is that gain, where many bursty sources share a link sized for their average rather than their peak demand, and it fails when the sources are correlated
+- The four delays: transmission L/R, propagation d/s, queueing, processing; nodal delay is the sum of transmission delay L/R (the time to push L bits onto a link of rate R), propagation delay d/s (distance d over signal speed s, roughly two thirds of the speed of light in fibre), queueing delay (time spent waiting in a router's buffer, which grows with load) and processing delay (header checks and the forwarding lookup); a 1500-byte packet on a 10 Mbps link has a transmission delay of 1.2 ms
+- The bandwidth–delay product as data in flight: the product of link rate and round-trip time is the number of bits that can be in flight at once, so a 100 Mbps path with a 50 ms RTT holds 5 Mbit (about 625 KB), and a sender whose window is smaller leaves the link idle for part of each round trip; TCP window sizing and socket buffer tuning must cover this figure
 - Network performance theory: Little's law L = λW for packets in flight; the mean queueing delay of an M/M/1 queue at utilization ρ, W_q = ρ / (μ(1 − ρ)), which grows without bound as ρ approaches 1; and the Shannon capacity C = B log₂(1 + S/N), the highest rate at which a channel of bandwidth B and signal-to-noise ratio S/N can carry data with arbitrarily small error
 
 ### Addressing and the link layer
 
-- IPv4 structure, subnetting and CIDR arithmetic; private ranges
+- IPv4 structure, subnetting and CIDR arithmetic; private ranges; a 32-bit address splits into a network prefix and a host part at the prefix length, so 192.168.1.0/24 has 2^8 = 256 addresses, of which 254 are usable hosts once the network and broadcast addresses are reserved; the network address is the address ANDed with the mask; the private ranges 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16 (RFC 1918) are not routed on the public internet
 - IPv6: 128-bit addresses, stateless autoconfiguration, neighbour discovery in place of ARP, dual stack
-- Ethernet framing, self-learning switches, ARP and VLANs
-- DHCP and why it needs UDP broadcast
+- Ethernet framing, self-learning switches, ARP and VLANs: a frame carries destination and source MAC addresses, an EtherType and a CRC trailer; a switch learns which port each source MAC address lives on from the frames it sees, and floods frames whose destination it has not learned; ARP maps an IPv4 address to a MAC address by broadcasting a request and caching the reply; a VLAN tag (IEEE 802.1Q) divides one switch into separate broadcast domains
+- DHCP and why it needs UDP broadcast: a new host has no IP address and no known server, so it broadcasts DHCPDISCOVER to 255.255.255.255 from UDP port 68 to port 67; servers answer with DHCPOFFER, the host asks with DHCPREQUEST, and the chosen server confirms with DHCPACK, which carries the leased address, the subnet mask, the default gateway and the DNS servers; the offer must be broadcast because the client has no address on which to receive a unicast reply; the lease expires unless renewed
 - NAT and source-port exhaustion; port numbers as 16-bit demultiplexing keys, with well-known ports such as 53 for DNS and 443 for HTTPS and ephemeral ports chosen by the client, and the 4-tuple of source address, source port, destination address and destination port that identifies a TCP connection
 - Multiple access and MAC protocols: pure ALOHA with throughput S = G·e^(−2G), maximal at G = 1/2 with S = 1/(2e) ≈ 0.184; slotted ALOHA with S = G·e^(−G), maximal at G = 1 with S = 1/e ≈ 0.368; CSMA, which senses the carrier before sending, with a collision window of one propagation delay; CSMA/CD as Ethernet's collision detection with binary exponential backoff over 512-bit slot times; and CSMA/CA in Wi-Fi, with random backoff and optional RTS/CTS reservation
 
 ### Routing
 
 - Default gateways and routing tables; longest-prefix match implemented with tries
-- Link-state routing (Dijkstra; OSPF)
+- Link-state routing (Dijkstra; OSPF); every router floods its link costs so that each one holds the full topology, then runs Dijkstra's algorithm from itself to build its forwarding table; convergence after a change is fast and loops are avoided, but every router stores the whole map and the flooding cost grows with the network, so OSPF limits flooding with areas inside one autonomous system
 - Distance-vector routing (Bellman–Ford; RIP); count-to-infinity and poisoned reverse
-- Hierarchical routing and autonomous systems
+- Hierarchical routing and autonomous systems; a flat table with one entry per destination on the internet would be too large, so addresses are aggregated into prefixes and routers keep one route per prefix; an autonomous system is a network under one administrative policy with its own internal routing, and BGP connects autonomous systems, each identified by an AS number
 - BGP as path-vector policy routing: eBGP and iBGP, route selection, slow convergence, route hijacks
 - Anycast: one address announced from many sites and reached at the nearest by BGP
 
 ### Transport
 
 - **UDP**
-  - Connectionless datagrams; no ordering, delivery or congestion guarantees
+  - Connectionless datagrams; no ordering, delivery or congestion guarantees; each datagram carries source and destination ports, a length and a checksum in an eight-byte header, and the sender gets no signal that a datagram was lost; nothing slows a sender that floods the network, so any reliability or pacing an application needs must be built on top
   - When to choose it: VoIP, video, real-time games, custom error correction, broadcast
 - **TCP**
-  - The three-way handshake and teardown
-  - Sequence numbers, checksums, acknowledgements and retransmission
-  - Per-connection memory and file-descriptor limits; connection pooling
+  - The three-way handshake and teardown: the client sends SYN with its initial sequence number, the server replies SYN-ACK, and the client answers with ACK, after which data may flow; teardown sends FIN from each side in turn, and the side that closes first keeps the connection in TIME_WAIT for twice the maximum segment lifetime
+  - Sequence numbers, checksums, acknowledgements and retransmission: sequence numbers count bytes so the receiver can reorder segments and drop duplicates; the checksum detects corrupted segments, which are discarded so the sender times out; a cumulative acknowledgement names the next byte expected; the sender retransmits when a timer expires or after three duplicate ACKs
+  - Per-connection memory and file-descriptor limits; connection pooling; each TCP connection holds kernel socket buffers and a file descriptor, so the process's descriptor limit (`ulimit -n` on Linux) caps concurrent connections; a connection pool keeps a bounded set of reusable connections and queues callers when it is empty, which avoids a handshake per request and keeps the database's own limit safe
   - Connection budgets: instance count × pool size against a database's connection limit
-  - Idle timeouts on load balancers and NAT
+  - Idle timeouts on load balancers and NAT: a NAT table entry or a load balancer's flow entry expires after a period with no packets, so a pooled connection that sat idle can be dropped silently and the next request hangs or resets; set the client's idle lifetime below the shortest intermediate timeout and enable TCP keepalive or reconnect on failure
 - **Reliable transfer, formally**
-  - Building reliability from checksums, ACKs, sequence numbers and timeouts
-  - Stop-and-wait utilization U = (L/R) / (RTT + L/R)
+  - Building reliability from checksums, ACKs, sequence numbers and timeouts: the receiver acknowledges each correct segment, the sender runs a timer for each unacknowledged segment and resends when it fires, and sequence numbers let the receiver discard duplicates; a timeout that is too short wastes bandwidth on needless retransmissions, and one that is too long leaves the link idle after a loss, which is why the timeout is estimated from measured round-trip times
+  - Stop-and-wait utilization U = (L/R) / (RTT + L/R): the sender transmits one frame of L bits and idles for a full RTT before the next, so when the RTT is much larger than L/R the link is mostly idle; a frame with L/R of 1 ms on a path with a 100 ms RTT gives U of about 1 percent; a window of N frames in flight multiplies that figure by N until the window fills the pipe
   - Go-Back-N versus selective repeat; the selective-repeat window limit (half the sequence space)
   - Cumulative ACKs; RTT estimation by EWMA; RTO = estimated RTT + 4 × deviation; fast retransmit
-  - Flow control by the receive window
+  - Flow control by the receive window; the receiver advertises the free space in its buffer as the receive window in each ACK, and the sender keeps unacknowledged data within the smaller of that window and its congestion window, so a fast sender cannot overrun a slow receiver; flow control protects the receiver, while congestion control protects the network
 - **Congestion control**
-  - AIMD and its convergence toward fairness (Chiu–Jain)
-  - Slow start; Reno, CUBIC and model-based BBR
-  - The Mathis approximation: throughput ≈ (MSS/RTT) × 1.22/√p
-  - Bufferbloat; explicit congestion notification
+  - AIMD and its convergence toward fairness (Chiu–Jain): the window grows by one segment per RTT and halves on a loss signal; the Chiu–Jain analysis shows that this sawtooth moves competing flows toward equal shares of a link, whereas multiplicative increase keeps an unfair ratio fixed
+  - Slow start; Reno, CUBIC and model-based BBR; slow start doubles the window each RTT until a loss or the slow-start threshold; Reno adds additive increase with halving on loss; CUBIC grows the window as a cubic function of the time since the last loss, so it is not penalised by RTT as Reno is; and BBR estimates the bottleneck bandwidth and the minimum RTT and paces sending to them instead of treating loss as the signal
+  - The Mathis approximation: throughput ≈ (MSS/RTT) × 1.22/√p; it applies to a long-lived Reno-style flow in steady state, where the window averages three quarters of its peak, and 1.22 is √(3/2) rounded; with a 1460-byte MSS, a 100 ms RTT and a loss rate p of 0.01 percent, the formula gives about 14 Mbps; it ignores timeouts and assumes loss is the only limit
+  - Bufferbloat; explicit congestion notification; bufferbloat is the excess latency from oversized router buffers that fill before any loss signals congestion, countered by active queue management such as CoDel or RED, which drops or marks early; explicit congestion notification (ECN) lets a router set a mark in the IP header instead of dropping, and the receiver echoes it back so the sender slows down without a loss
 - **Modern transport**
   - QUIC over UDP: independent streams without head-of-line blocking, combined transport and TLS 1.3 handshake, 0-RTT resumption and its replay risk, connection migration
-  - The socket API: `socket`, `bind`, `listen`, `accept`, `connect`
+  - The socket API: `socket`, `bind`, `listen`, `accept`, `connect`; a server calls `socket` to create an endpoint, `bind` to attach a local address and port, and `listen` to mark it passive with a queue of pending connections; `accept` takes each queued connection and returns a new descriptor for it; a client calls `connect`; `read` and `write` then move bytes on a descriptor, and `close` releases it
 
 ### DNS
 
-- Resolution: recursive resolvers, the hierarchy, authoritative servers
-- Record types: A, AAAA, CNAME, MX, TXT, NS
+- Resolution: recursive resolvers, the hierarchy, authoritative servers; a stub resolver asks a recursive resolver, which walks the hierarchy from the root servers to the top-level domain servers to the zone's authoritative servers, caching each answer for its TTL; only an authoritative server holds the final answer for its zone
+- Record types: A, AAAA, CNAME, MX, TXT, NS; A maps a name to an IPv4 address and AAAA to an IPv6 address; CNAME makes a name an alias for a canonical name and cannot share that name with other records; MX names mail servers with a preference value; TXT carries free text, used for verification and mail policy; NS delegates a zone to its name servers
 - Caching and TTLs; lowering TTLs a full old-TTL before a migration; DNS as an eventually consistent database
-- Routing policies: weighted round robin, latency, geolocation, failover
-- Public and private zones; DNSSEC
-- DNS as a DDoS target and single point of failure (the 2016 Dyn outage)
-- Kubernetes cluster DNS (CoreDNS)
+- Routing policies: weighted round robin, latency, geolocation, failover; weighted round robin returns answers in proportion to their weights, which allows gradual traffic shifts; latency-based answers pick the region with the lowest measured latency from the resolver's location; geolocation answers by the client's estimated location; failover answers with the primary while its health check passes and the secondary otherwise
+- Public and private zones; DNSSEC; a private zone answers only queries from inside one network, such as an internal name for a database; DNSSEC signs record sets with keys and publishes a chain of signatures from the root, so a resolver can detect forged answers, though it authenticates data without encrypting it
+- DNS as a DDoS target and single point of failure (the 2016 Dyn outage): the Dyn outage of October 2016 came from a botnet flooding the provider's authoritative DNS, which made many large websites unreachable for hours; mitigations are authoritative service from several providers on separate networks, TTLs long enough that cached answers survive a short outage, and rate limiting at the authoritative servers
+- Kubernetes cluster DNS (CoreDNS): pods get a resolver configuration with search domains, so a Service named `db` in namespace `prod` resolves as `db.prod.svc.cluster.local`; CoreDNS, the cluster's DNS server, answers these names from the Kubernetes API and forwards other names upstream; a common failure is search-list expansion under the default `ndots` setting, which multiplies lookups for external names
 
 ### HTTP and the web
 
 - **URL and URI structure**: scheme, authority, path, query and fragment; URI versus URL; percent-encoding of reserved characters; relative reference resolution; normalisation before comparison
 - **HTTP semantics**
-  - The request/response cycle; methods, status codes, headers, cookies
+  - The request/response cycle; methods, status codes, headers, cookies; a request line carries the method, target and version, followed by headers and an optional body, and a response has a status line whose three-digit code is 1xx informational, 2xx success, 3xx redirection, 4xx client error or 5xx server error; cookies are set by `Set-Cookie` and returned in `Cookie`, so the server can keep state across HTTP's stateless requests
   - Safe, idempotent and cacheable methods (GET, POST, PUT, PATCH, DELETE)
   - 429 and 503 with `Retry-After` as back-pressure signals; idempotency keys for non-idempotent requests; the error taxonomy: 4xx client errors that a retry will not fix, 503, 429 and 504 as transient errors that retry with backoff, and 500 as a server bug to alert on; an error envelope in RFC 9457 problem details carrying a stable machine-readable code, the request ID and the per-field errors, with the cause logged on the server and never returned to the client as a stack trace
   - HTTP caching headers: `Cache-Control`, `Age`, `Via`, validators; freshness from `max-age` compared with `Age` (a response is fresh while Age is below max-age), revalidation with `ETag` and `Last-Modified` answered by 304 Not Modified; conditional requests with `If-None-Match` for cached reads and `If-Match` on writes, where a stale ETag returns 412 Precondition Failed so a lost update is refused; freshness monitoring: the cache hit ratio and the age distribution of served responses read from the `Age` header, the `stale-while-revalidate` and `stale-if-error` directives that serve a stale response while refreshing or during an origin failure, and an alert when the share of responses served past max-age crosses a set budget
