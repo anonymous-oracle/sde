@@ -7,13 +7,14 @@ Domain: Supplementary Applied Domains: Corporate Finance, Marketing, Learning An
 ### Corporate finance
 
 - **Goals and governance**: profit versus shareholder-wealth maximization; the agency problem; corporate governance; sources of finance (equity, debt, hybrids, retained earnings)
-- **Time value of money**: compounding and discounting; annuities and perpetuities; the effective annual rate; valuing bonds (yield to maturity) and stocks (dividend discount, Gordon growth)
+- **Time value of money**: compounding and discounting; annuities and perpetuities; the effective annual rate; valuing bonds (yield to maturity) and stocks (dividend discount, Gordon growth); recurring deposits: the maturity value of equal monthly instalments with simple interest on the running balance, I = P·n(n + 1)/(2·12)·r/100; loan amortization: the equal instalment A = P·i/(1 − (1 + i)^(−n)), the schedule splitting each payment into interest on the outstanding balance and principal repaid, and the outstanding balance after k payments
 - **Capital budgeting**: incremental cash flows, sunk and opportunity costs, depreciation tax shields, working capital; NPV, IRR (and multiple IRRs), MIRR, payback and discounted payback, profitability index; ranking conflicts and capital rationing; sensitivity and scenario analysis
 - **Return, risk and portfolio theory**: expected return and variance; correlation and diversification; the efficient frontier; CAPM, beta and the security market line; the Kelly criterion for a bet paying b to one at win probability p: stake f* = (bp − q) ÷ b with q = 1 − p, which maximizes the expected log growth of wealth, and over-betting lowers growth even when the edge is positive
 - **Cost of capital**: costs of debt, preferred and equity; WACC and firm value
 - **Leverage and capital structure**: operating, financial and combined leverage; EBIT–EPS analysis; Modigliani–Miller with and without taxes, trade-off theory, pecking order
 - **Working capital**: liquidity measures; operating and cash-conversion cycles; inventory control (EOQ, reorder point); receivables and credit policy; cash management
 - **Dividend decisions**: Gordon, Walter and Modigliani–Miller irrelevance; Lintner's smoothing; buybacks and signalling; share arithmetic: shares bought as investment ÷ market price, dividend as shares × face value × dividend rate, and dividend yield as dividend per share ÷ market price
+- **Indirect taxes: VAT and GST**: a value-added tax charged at each stage on the value added, so the final consumer bears the whole tax; GST as India's destination-based value-added tax: CGST and SGST split equally on an intra-state supply, IGST on an inter-state supply; input tax credit (ITC) offsetting tax paid on inputs against tax due on output, so net tax = output tax − input tax; computing the tax at each stage of a supply chain and the tax a dealer pays to the government
 
 ### Marketing and digital marketing
 

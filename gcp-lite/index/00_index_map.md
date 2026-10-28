@@ -70,9 +70,9 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 | 27 | Published ML System-Design Case Studies (part 3 of 5) | 2 | 21 KB | 1.3 KB |
 | 28 | Published ML System-Design Case Studies (part 4 of 5) | 7 | 24 KB | 1.4 KB |
 | 29 | Published ML System-Design Case Studies (part 5 of 5) | 1 | 41 KB | 1.3 KB |
-| 30 | Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines | 5 | 11 KB | 2.5 KB |
+| 30 | Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines | 5 | 12 KB | 2.5 KB |
 
-Total: 33 parts, 246 topic groups, 2,271 top-level topic lines. A topic list is 4 KB to 51 KB (roughly 900 to 12,600 tokens); a rules file is 1 to 2.5 KB (roughly 400 tokens); the method file is 22 KB (roughly 5,500 tokens).
+Total: 33 parts, 246 topic groups, 2,272 top-level topic lines. A topic list is 4 KB to 51 KB (roughly 900 to 12,600 tokens); a rules file is 1 to 2.5 KB (roughly 400 tokens); the method file is 22 KB (roughly 5,500 tokens).
 
 ## Part by part
 
@@ -514,9 +514,9 @@ Total: 33 parts, 246 topic groups, 2,271 top-level topic lines. A topic list is 
 ### Part 30 · Supplementary Applied Domains: Corporate Finance, Marketing, Learning Analytics & Game Engines
 
 - Files: `index/part30_supplementary_applied_domains.rules.md` and `index/part30_supplementary_applied_domains.topics.md`
-- Size: topic list 11 KB (about 2,700 tokens); rules file 2.5 KB
+- Size: topic list 12 KB (about 2,900 tokens); rules file 2.5 KB
 - Groups in the topic list:
-  - Corporate finance (8 topics)
+  - Corporate finance (9 topics)
   - Marketing and digital marketing (5 topics)
   - Learning analytics (6 topics)
   - Game engines and real-time rendering (18 topics)
