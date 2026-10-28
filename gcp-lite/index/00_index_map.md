@@ -42,7 +42,7 @@ The Learning method lives once, in `index/00_learning_method.md`, cut from the m
 | 02 | Computer Organization & Data Representation | 4 | 6 KB | 1.3 KB |
 | 03 | Mathematics, Probability, Statistics, Queueing & Performance Modelling | 11 | 33 KB | 1.6 KB |
 | 03b | Calculus, Analysis, Coordinate Geometry & Number Theory | 6 | 24 KB | 1.8 KB |
-| 03c | Signals, Systems & Communications | 6 | 12 KB | 1.7 KB |
+| 03c | Signals, Systems & Communications | 6 | 14 KB | 1.7 KB |
 | 04 | Problem Solving, Reasoning & Research Method | 9 | 9 KB | 1.5 KB |
 | 05 | Programming Languages & Language Theory (part 1 of 3) | 3 | 5 KB | 1.4 KB |
 | 06 | Programming Languages & Language Theory (part 2 of 3) | 7 | 22 KB | 1.6 KB |
