@@ -11,15 +11,15 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - The capability ladder, each rung keeping those beneath it: a model, plus retrieval, plus conversation state, plus tools, plus model-chosen control flow, plus delegation; question answering (one retrieval, one generation, text out) versus task completion (a goal with constraints, steps ordered at run time, a change in the world)
 - Choosing between them: a workflow when the steps are the same for every input, the path must be auditable, cost and latency must be bounded exactly, or a wrong call is irreversible; an agent when the number of steps depends on the data, a later step can invalidate an earlier one, or recovery must be dynamic; the test of whether the flowchart can be drawn before the request arrives; a workflow with an agent embedded at the one uncertain step
 - What the loop costs: a stateless model re-reads the goal, tool schemas and every earlier step on each turn, so cost grows faster than the step count; observations truncated, superseded steps summarized, only the last few kept in full
-- Workflow patterns: prompt chaining with gates, routing, parallelization (sectioning and voting), orchestrator–workers, evaluator–optimizer
+- Workflow patterns: prompt chaining with gates, routing, parallelization (sectioning and voting), orchestrator–workers, evaluator–optimizer; parallelization in agent workflows as fan-out over independent subtasks whose results are joined in code, with the join's failure handling fixed before the fan-out and the cost counted per branch
 - **Planning and reasoning loops**
-  - Plan, act, observe and track; the ReAct trace (task, thoughts, actions, observations) as the growing context
+  - Plan, act, observe and track; the ReAct trace (task, thoughts, actions, observations) as the growing context; the observe–reason–act loop in which each step reads the latest observation before choosing the next action, so the plan is revised from evidence rather than fixed at the start
   - Closed-book reasoning drifting into hallucination as chains lengthen
   - Planner–executor separation: a planner emitting a task graph, cheaper executor models, re-planning on failure, for accuracy, cost and fault tolerance
   - Hierarchical ReAct: a triage meta-planner delegating to specialist agents
   - Reflection: draft, critique, revise, looping on the output rather than the task, at two to three times the tokens
   - Choosing a shape: ReAct for cheap, debuggable short tasks; plan-then-execute for parallel steps and predictable cost; reflection for written output
-  - Retrieval as one tool among several: the agent decides whether to retrieve, rewrites the query, retrieves again mid-task, and re-retrieves to verify a draft against its source
+  - Retrieval as one tool among several: the agent decides whether to retrieve, rewrites the query, retrieves again mid-task, and re-retrieves to verify a draft against its source; the plan–act–observe agentic RAG loop: plan the sub-questions, retrieve for each, observe whether the passages answer it, then act again (rewrite, retrieve or answer) until the answer is supported or the retrieval budget runs out, with triage sending each sub-question to the corpus or tool that owns it
 - The Claude Agent SDK: the Claude Code harness as a library; `query()` and its message stream; built-in file, shell and search tools; permissions and permission modes; hooks for deterministic enforcement; the difference between an SDK tool runner, the Agent SDK and provider-hosted agents
 - **LangChain and LangGraph**
   - Chains as fixed pipelines versus graphs with cycles
@@ -33,10 +33,10 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
   - The prebuilt `create_agent` loop and middleware for summarization, approval and call limits; tracing runs as a tree of spans with latency, cost and retries (LangSmith, Langfuse)
   - Explicit state machines versus hidden prompts and hard debugging
 - **Agent memory**
-  - Three lifetimes: conversation state for one thread, task state for one run (what is done, what remains, what must be re-checked), and long-term memory across sessions
+  - Three lifetimes: conversation state for one thread, task state for one run (what is done, what remains, what must be re-checked), and long-term memory across sessions; task state written as a checklist the agent re-reads at each step, recording what is done, what remains, and which earlier results must be re-checked against their source before they are relied on
   - Short-term thread state versus long-term semantic memory in a vector store, written through save and update tools
   - Timestamps, pruning and conflict resolution against contradictory memories; retrieving only the most relevant memories
-  - Memory as persistence across stateless model calls
+  - Memory as persistence across stateless model calls; each request reloading the thread state and the relevant long-term memories from the store, writing the new state back before the response is sent, and a version check so that two concurrent requests on one thread do not overwrite each other's writes
 - **Workflow orchestration and durable execution**
   - Data-pipeline schedulers (Airflow: DAGs, operators, sensors, retries, backfill and catch-up)
   - Serverless step orchestrators (steps in YAML or JSON, retries with backoff, callbacks, parallel branches, long-held state)
@@ -56,7 +56,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
   - When splitting pays (breadth-first, independent sub-questions exceeding one context, too many tools for one agent) and when it does not (tightly coupled edits)
   - Token cost: agents use about 4× the tokens of a chat and multi-agent systems about 15×
   - Failures: lost context, duplicated work, runaway cost, mutual agreement with mistakes, conflicting merges, endless delegation, parallel writes, goals lost across handoffs
-  - Controls: per-agent system prompts as guardrails, typed hand-off messages carrying claim sources, per-agent and total budgets, hard stops, one writer per resource, verifiers
+  - Controls: per-agent system prompts as guardrails, typed hand-off messages carrying claim sources, per-agent and total budgets, hard stops, one writer per resource, verifiers; retrieval-aware prompts that state which passages were retrieved and their sources, with the rule that an answer must cite them or say the information is absent; and failure-handling clauses naming the fallback for an empty result, a timeout or a refusal, so the model is never left to improvise one
   - Where one agent breaks: several goals traded off invisibly in one prompt; sub-task results that conflict with nothing comparing them; one context crowded by every tool and document
   - An agent's contract: its role, model, permitted tools, state, input and output schema, and limits; precise, non-overlapping roles that a coordinator can choose between
   - The hand-off payload: task ID, goal, constraints and return format rather than the whole conversation; who may change a decision and who only recommends
@@ -95,7 +95,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 
 - The lethal trifecta: private data, untrusted content and an exfiltration channel in one agent; removing one leg
 - Least-privilege tools; sandboxing (no network, one directory); human approval before irreversible actions
-- System prompts as guardrails (scope, refusal rules, output limits); input and output guardrail classifiers and their false-positive cost
+- System prompts as guardrails (scope, refusal rules, output limits); input and output guardrail classifiers and their false-positive cost; the threshold set on labelled benign and harmful examples by the trade-off between false positives (blocked legitimate use) and false negatives (missed harm), with the operating point reported per category rather than as one number, and blocked outputs logged and sampled for review
 - Hooks as deterministic enforcement; staged rollouts, feature flags and kill switches; a flag read at request time, percentage rollout by hashing the user or tenant ID into buckets so that each user keeps one variant across requests, and a kill switch whose default value is the safe path
 - Handling refusals in code
 - API keys scoped to workspaces with spend limits; rotation; no keys in browsers or mobile apps; keys in a secret manager; keys shown once and stored only as a SHA-256 hash, which suffices for random high-entropy keys unlike low-entropy passwords; a non-secret key prefix stored in clear to find the record, after which the hash is compared in constant time
@@ -103,12 +103,13 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - Enterprise data questions: retention, training on inputs, processing location, compliance reports; minimizing personal data before sending
 - Egress controls and service perimeters removing the exfiltration leg
 - **Structural boundary checking**: untrusted input and tool results wrapped in explicit delimiters that the system prompt names as data, not instructions; the output checked in code against its expected structure and boundary markers, so a reply that breaks out of its schema is rejected; guard prompts and exception paths for the cases the checks refuse; the instruction hierarchy as a fixed priority order (system prompt, then developer and user turns, then tool results and retrieved text, which carry data but no instruction authority), so that a conflict resolves toward the higher level
+- **Abuse resistance and red-team tests**: scripted adversarial users (paraphrased jailbreaks, multi-turn escalation, encoded payloads, and requests that split a harmful task into harmless parts) run against each release, with the success rate of each attack class recorded; rate limits and per-user quotas as the first brake on automated probing; each successful bypass logged and turned into a regression case with the fix that closed it
 
 ### Evaluation, testing and debugging
 
 - Success criteria agreed before building: specific, measurable, tied to business outcomes (accuracy, latency, cost per task, refusal rate)
 - Output quality versus system performance; golden datasets with hard and adversarial cases; task-specific harnesses: per-class precision, recall and macro-averaged F1 for classification; entity-level span F1 for NER, where a predicted entity counts only when its boundaries and type both match the gold; reference-based metrics for generation
-- Code-graded, model-graded and human grading; agreement among humans and graders by Cohen's κ, Fleiss' κ and Krippendorff's α
+- Code-graded, model-graded and human grading; statistical scorers (exact match, precision and recall, span F1) are deterministic and cheap, so they gate every change, while model-based scorers are noisier and need validation against humans before their scores count; the two are reported separately, never folded into one number without both shown; agreement among humans and graders by Cohen's κ, Fleiss' κ and Krippendorff's α
 - **Reference-based text metrics**
   - Word-overlap precision and recall; ROUGE-N and ROUGE-L (longest common subsequence, optional stemming)
   - BLEU: clipped n-gram precision, brevity penalty exp(1 − r ÷ c), corpus-level aggregation
@@ -119,14 +120,15 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
   - Pointwise scores versus pairwise preferences (MT-Bench, Chatbot Arena)
   - Rubrics with concrete levels, reasoning before verdict, one criterion per call; G-Eval (generated evaluation steps, form filling, probability-weighted scores)
   - Dimensions: helpfulness, factuality, relevance, tone, style, safety; task completion and tool-call correctness for agents
-  - Validation against humans; position, length and self-preference biases and their controls
-- **Factuality and hallucination detection**: entailment (NLI) scoring against sources; importance-weighted atomic-fact scoring; groundedness checks against retrieved context; agreement across samples; real-time output filters
+  - Validation against humans; position, length and self-preference biases and their controls; calibration by agreement with a human-labelled set, reported as Cohen's κ or as a confusion matrix against it, and re-run whenever the judge model or rubric changes; a judge that agrees with humans only on the easy cases is rejected
+- **Factuality and hallucination detection**: entailment (NLI) scoring against sources; importance-weighted atomic-fact scoring; groundedness checks against retrieved context; agreement across samples; real-time output filters; handling a detected hallucination in a fixed order: retrieve and answer again, then cite or abstain with the unsupported claim removed, then flag for review; each detector's false-positive rate measured on labelled answers before it gates a response
 - Pass rates as binomial proportions with Wilson score intervals; sample size n ≈ 1.96² p(1 − p) ÷ E² (at most 385 for E = 0.05)
 - Comparing prompts or models on the same items with McNemar's test χ² = (b − c)² ÷ (b + c); Pearson's chi-square test over a contingency table, χ² = Σ (O − E)² ÷ E with expected counts E = row total × column total ÷ N and (r − 1)(c − 1) degrees of freedom, for comparing proportions across independent groups
 - Regression suites in CI on every prompt or model change; offline golden sets before release, A/B tests and feedback after
-- Systematic debugging: reproduce with the recorded request; read `stop_reason`, `usage`, raw blocks, tool calls and results before touching the prompt
+- Systematic debugging: reproduce with the recorded request; read `stop_reason`, `usage`, raw blocks, tool calls and results before touching the prompt; retrieval debugging in the same order: check the retrieved set against the gold passage for the failing query (recall at k), then the ranking position of the gold passage, then the passage text that reached the prompt, so that a wrong answer is traced to retrieval, ranking or generation
 - Common failures: silent truncation, malformed tool calls, misread tool results, refusals, context overflow, caches that never hit, retry storms
 - Tracing LLM applications: one trace per request, spans per model and tool call with prompt version, model ID, tokens, cost and latency; redacted logs
+- **Safety regression tests**: a fixed set of harmful, injected and boundary-probing prompts run on every model or prompt change beside the quality suite, with the refusal rate and the unsafe-completion rate reported against the previous release; a failure found in production added to the set; a drop in the safety score blocking the release as a regression, never waved through as noise
 
 ### Application architecture and LLMOps
 
@@ -161,6 +163,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 3 of 3)
 - The FDE role: building and running production LLM applications inside a customer's systems
 - Discovery: stakeholder mapping (who asks, pays, uses, can block); shadowing the workflow; five whys; the job to be done versus the proposed solution; scoping by value against feasibility; ROI against a measured baseline; explaining non-determinism to executives
 - Delivering inside an enterprise: demos with real data and failure cases; design documents and decision memos; SSO, private networks, egress rules, security reviews, procurement and legal met early; hand-off with runbooks, dashboards, eval suites and training; feeding field learning back to product
+- **Industry capstone**: a business problem taken from statement to deployed solution with evidence: the problem stated in measurable terms with a stakeholder who can judge the result; domain-expert validation of the labels and of sample answers; privacy and misuse review before data leaves the customer; a baseline to beat, including the option of no model; a reproducible evaluation with versioned data, intervals and reported failure cases; an operations plan with monitoring, on-call and incident response and a named owner; and, when the evidence does not clear the bar, an explicit no-deploy decision recorded with its reasons
 
 ### Exercises
 

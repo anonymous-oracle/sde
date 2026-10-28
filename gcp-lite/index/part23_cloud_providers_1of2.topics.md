@@ -28,7 +28,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 - **Bigtable**: HBase-compatible wide-column store; row keys sorted lexicographically; tablets; throughput scaling with nodes; multi-cluster replication with app profiles and last-write-wins; per-column-family garbage-collection policies; row-key design (no timestamp-leading keys, salting, reversed domains); Key Visualizer; the emulator
 - **Firestore**: Native mode (strong consistency, ACID transactions, real-time listeners, offline SDKs, automatic single-field and on-demand composite indexes), Datastore mode, MongoDB compatibility; Standard and Enterprise editions; TTL policies; multi-region locations; no full-text search
 - **Memorystore**: Valkey, Redis, Redis Cluster and Memcached; eviction policies; zonal HA replicas; cluster mode hash slots; approximate LRU
-- **BigQuery**: serverless warehouse with Dremel-style execution; partitioning and clustering; nested and repeated fields; materialized and authorized views; result cache; `INFORMATION_SCHEMA` job statistics; dry-run byte estimates and cost controls; streaming inserts versus batch loads; federated queries; search indexes; BigQuery ML; the sandbox
+- **BigQuery**: serverless warehouse with Dremel-style execution; partitioning and clustering; nested and repeated fields; materialized and authorized views; result cache; `INFORMATION_SCHEMA` job statistics; dry-run byte estimates and cost controls; streaming inserts versus batch loads; federated queries; search indexes; BigQuery ML (CREATE MODEL to train a model in SQL where the data already lives, ML.PREDICT to score rows and ML.EVALUATE to report metrics on a held-out split, so that training data does not leave the warehouse); the sandbox
 - **Choosing a store**
   - Relational single-region OLTP → Cloud SQL; high-performance PostgreSQL with mixed analytics → AlloyDB; global relational with strong consistency → Spanner
   - High-throughput time series and wide-column → Bigtable; documents and mobile sync → Firestore; caches, sessions and leaderboards → Memorystore
@@ -36,6 +36,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - Anti-choices: a cache as system of record; a warehouse on the checkout path; object or file storage as a database; Bigtable for ad-hoc joins
   - Native TTL (Firestore TTL, Spanner row deletion, Bigtable GC, Cloud Storage lifecycle) over scheduled sweepers
   - Multi-writer options: Spanner multi-region, Bigtable multi-cluster routing, Firestore multi-region; Cloud SQL has no multi-primary mode and does not shard itself
+  - **Multi-region serving design**: a read path served from the region nearest the user with a stated staleness bound, and a write path either with one leader region and failover or with writes accepted in every region under a conflict rule; the cost of a cross-region commit set by the round-trip time between regions, so the latency target fixes how many regions a write can span; the choice recorded as a decision with its failure mode during a regional outage
 
 ### Google Cloud — networking
 

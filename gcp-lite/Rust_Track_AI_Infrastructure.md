@@ -409,7 +409,7 @@ Each project lists what it builds, the Rust topics it forces, the systems ideas 
 
 **Rust:** memory-mapped weights, zero-copy casts, `#[repr(C)]` layouts, SIMD kernels, `rayon`, release tuning with profile-guided optimisation.
 
-**Systems:** the transformer forward pass (embeddings, RMSNorm, attention with RoPE, the MLP), the KV cache, quantization (8-bit and 4-bit with block scales), sampling (temperature, top-k, top-p), tokens per second and memory bandwidth limits.
+**Systems:** the transformer forward pass (embeddings, RMSNorm, attention with RoPE, the MLP), the KV cache, quantization (8-bit and 4-bit with block scales), sampling (temperature, top-k, top-p), tokens per second and memory bandwidth limits. Speculative decoding: a small draft model proposes k tokens, and the target model checks all k in one forward pass; a proposal is accepted with probability min(1, p_target ÷ p_draft), and a rejected position is resampled from the normalized residual max(0, p_target − p_draft), so the output distribution equals the target's exactly; the speed-up is set by the acceptance rate and the cost ratio of draft to target. KV cache sizing: 2 × layers × KV heads × head dimension × context length × bytes per element; for a 32-layer, 32-head, 128-dimension model in fp16 that is 0.5 MiB per token and 2 GiB at 4,096 tokens, which bounds how many sequences fit beside the weights.
 
 **Stages:**
 

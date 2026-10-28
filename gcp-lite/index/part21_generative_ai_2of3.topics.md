@@ -31,7 +31,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - Retrieval: vocabulary mismatch, incomplete recall, multi-hop questions, stale indexes, single-vector dilution of multi-part questions
   - Context: lost in the middle, overload, irrelevant passages
   - Generation: hallucination despite retrieval, conflicts between retrieved and parametric knowledge, wrong attribution
-  - Silent pipeline failures: empty chunks from scanned PDFs, missing query and passage prefixes, an L2 index over a cosine-trained model, a lost ID-to-text map
+  - Silent pipeline failures: empty chunks from scanned PDFs, missing query and passage prefixes, an L2 index over a cosine-trained model, a lost ID-to-text map; drills that break one stage on purpose (a scanned PDF with no text layer, a query sent without its prefix, an L2 index built over a cosine-trained embedding) with a build-time check that fails loudly on each, such as an empty-chunk count, a prefix assertion and a metric-matches-model assertion, because each of these returns plausible answers when it fails silently
 - **Variants**: stateless retrieval; conversational retrieval with history-aware rewriting; agentic retrieval in observe–think–act loops; Chain-of-RAG (retrieval chains learned by rejection sampling and decoded greedily, best-of-N or by tree search)
 - Permissions enforced at retrieval time as role-based metadata filters inside the vector store; a corpus access contract recording for each document its source system, version and the groups allowed to read it, copied into every chunk's metadata at indexing time so that the filter is checked before any passage reaches the prompt
 - **Multimodal RAG**
@@ -45,7 +45,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - Page-retrieval evaluation with ViDoRe and nDCG@5; multi-page reasoning and faithfulness evaluation as open problems
   - Choosing the level: text search for plain text, image search for photo and product corpora, vision-space retrieval for documents mixing text, tables and charts
 - **Training retriever and generator together**: the right documents as a latent variable, marginalized over the top-k retrieved (the original RAG and REALM formulations) in an alternation resembling expectation–maximization; contrastive alignment loss with hard negatives; robustness training that injects irrelevant passages so the generator learns to ignore them; in practice, separate pre-training followed by joint fine-tuning
-- Evaluation: context precision and context recall for retrieval; faithfulness (claims supported by the context) and answer relevancy; RAGAS and TruLens
+- Evaluation: context precision and context recall for retrieval; faithfulness (claims supported by the context) and answer relevancy; RAGAS and TruLens; answer correctness scored against a reference answer by exact match on the facts or by a rubric-following judge, reported beside faithfulness so that a faithful but wrong answer is told apart from a correct one; each judge prompt versioned and calibrated against labelled examples before its scores are trusted
 - Ingestion by an idempotent, event-triggered embedding worker; scheduled re-embedding
 - **LlamaIndex RAG pipelines**: documents loaded and split into nodes that carry metadata; ingestion pipelines applying transformations and caching their outputs; an index over nodes, with retrievers, node postprocessors and a query engine that pairs retrieval with a response synthesizer; what the framework hides about chunking, prompts and scores, and the hand-built pipeline against which its defaults are measured on the same evaluation set
 - **Abstention**: a refusal to answer, triggered by a retrieval score threshold or by a verifier that finds no retrieved passage supporting the answer, with the threshold set on labelled unanswerable questions; selective prediction judged by accuracy at each coverage level, the fraction of questions answered, because abstaining on everything is trivially precise
@@ -69,7 +69,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
   - Which sampling parameters a model accepts
 - **Documents, images and citations**: image and PDF blocks and their token cost; the Files API (`file_id` reuse); citation blocks pointing into documents; what vision is bad at (small text, counting, geometry)
 - **Cost, caching, batches and model choice**
-  - Token counting before sending
+  - Token counting before sending; a per-request budget that adds the counted input, the reserved output allowance (max_tokens) and the tool-schema overhead, checked against a per-conversation ceiling so that a request is shortened or refused before it is sent rather than billed after it; counts from the provider's token-counting facility where offered and from a local tokenizer as an estimate, with the estimate's error measured against the billed usage
   - Prompt caching: `cache_control` breakpoints (up to four), prefix order tools → system → messages, automatic caching, model-dependent minimum lengths, a five-minute default lifetime refreshed on hits and a one-hour option, writes priced above and reads far below base input, invalidation by any earlier change, `cache_read_input_tokens` and `cache_creation_input_tokens`
   - Message Batches: half price, results within 24 hours, matched by `custom_id` because order is not guaranteed
   - Model choice on quality, latency and price; routing easy requests to small models and escalating; pinned model IDs versus moving aliases; deprecations and migrations; listing models through the Models API
@@ -83,7 +83,7 @@ Domain: Generative AI, LLMs, Agents & Claude Applications (part 2 of 3)
 - **System routing tokens**: the system prompt and the user turns separated by role markers in the chat template, so that instructions and data arrive in distinct, model-recognised positions; the instruction hierarchy that resolves conflicts between them; guard prompts placed in the system role, and the limits of role separation against instructions injected through data
 - **Reasoning techniques**
   - Chain of thought: few-shot reasoning exemplars and zero-shot "think step by step"; Auto-CoT (clustering questions, then sampling generated demonstrations)
-  - Self-consistency: a majority vote over sampled reasoning paths
+  - Self-consistency: a majority vote over sampled reasoning paths; sampling at nonzero temperature with N paths, a fixed parser extracting the final answer from each, and the most frequent answer chosen, with the agreement fraction reported as a confidence signal; cost grows linearly with N, and the gain is largest on tasks with one checkable final answer rather than free-form text
   - Tree of Thoughts: breadth- or depth-first search over self-evaluated intermediate thoughts
   - ReAct: interleaved thoughts, actions and observations grounded by tools
   - Meta prompting: structure- and syntax-focused templates rather than content examples
