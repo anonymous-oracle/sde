@@ -27,7 +27,7 @@ Domain: Cloud Computing Core: Virtualization, Well-Architected, Economics & IAM
 ### Architecture patterns and well-architected frameworks
 
 - High availability, fault tolerance, horizontal versus vertical scaling
-- Disaster recovery patterns: backup and restore, pilot light, warm standby, multi-site active-active; RTO and RPO
+- Disaster recovery patterns: backup and restore, pilot light, warm standby, multi-site active-active; RTO and RPO; RTO as the longest tolerable time from the disaster to restored service, RPO as the most data loss the business accepts, measured back in time from the disaster; RPO is set by the replication lag or the backup interval, RTO by the restore and failover time, and each pattern is placed by the RTO and RPO it can meet
 - Reliability mathematics: MTBF, MTTR, A = MTBF / (MTBF + MTTR); exponential failures; durability of r replicas
 - k-out-of-n redundancy; common-mode failures and failure domains
 - Well-architected frameworks compared

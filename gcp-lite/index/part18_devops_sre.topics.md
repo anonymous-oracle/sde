@@ -31,7 +31,7 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
   - etcd replicated by Raft: 2f + 1 members tolerate f failures; revision history, compaction and re-listing
   - Level-triggered reconciliation (observe, diff, act) versus edge-triggered handlers
   - The Borg → Omega → Kubernetes lineage
-- **Workloads**: Pods, ReplicaSets, Deployments, StatefulSets, DaemonSets, Jobs and CronJobs
+- **Workloads**: Pods, ReplicaSets, Deployments, StatefulSets, DaemonSets, Jobs and CronJobs; init containers that run to completion one after another before the app containers start, sharing the pod's volumes and network, and restarted on failure under the pod's restart policy, used to wait for a dependency or to seed a volume
 - **Networking**: Services (ClusterIP, NodePort, LoadBalancer), Ingress and Ingress controllers, the CNI model, NetworkPolicies
 - **Configuration and storage**: ConfigMaps, Secrets, environment injection; PersistentVolumes, PersistentVolumeClaims, StorageClasses, dynamic provisioning
 - **Scheduling and scaling**
@@ -75,6 +75,8 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
 - Supply-chain integrity in the pipeline: reproducible builds; SLSA v1.0 Build levels L1–L3
 - Platform engineering: golden-path service templates; preview environments destroyed on merge
 - Database changes in deploys: expand/contract and migrations as jobs; SQL tests in CI
+- Microservice deployment: each service with its own pipeline and artifact and released independently; version skew between services handled by backward-compatible APIs and events (expand/contract on the wire); rollout ordered by the dependency graph, consumers before producers for additive changes; and a rollback per service that leaves its dependencies on their current versions
+- Continual learning and test in production: a production feedback loop with predictions logged and labels joined later; shadow traffic and A/B experiments with a sample size and a stop rule fixed before the run; a retraining trigger from drift metrics; and a candidate model promoted only when its offline and online evaluations both pass, with the previous model kept for rollback
 
 ### Infrastructure as code
 
@@ -100,21 +102,21 @@ Domain: DevOps & SRE: Docker, Kubernetes, NGINX, CI/CD, Infrastructure as Code, 
 - Head-based versus tail-based trace sampling and their biases
 - Label cardinality and its cost; high-cardinality values in logs and trace attributes
 - Structured logging
-- OpenTelemetry; Prometheus and Grafana; Jaeger; Grafana Loki; LLM-trace UIs (Phoenix); Phoenix showing each request as a trace whose spans carry model and tool calls with token counts, latency and evaluation scores
-- Streams as infrastructure: Redis Streams consumer groups, acknowledgement after writes, pending-entry recovery, at-least-once delivery with idempotent consumers, lag as an SLI; Kafka and Redpanda clients: idempotent producers with `acks=all`, consumer-group partition assignment, offsets committed after processing, and consumer lag measured per partition
+- OpenTelemetry; Prometheus and Grafana; Jaeger; Grafana Loki; LLM-trace UIs (Phoenix); Phoenix showing each request as a trace whose spans carry model and tool calls with token counts, latency and evaluation scores; Phoenix ingesting OpenTelemetry spans over OTLP, so each model call is an instrumented span with attributes for the model, the prompt and completion token counts and the latency, and evaluators attaching scores to the trace
+- Streams as infrastructure: Redis Streams consumer groups, acknowledgement after writes, pending-entry recovery, at-least-once delivery with idempotent consumers, lag as an SLI; Kafka and Redpanda clients: idempotent producers with `acks=all`, consumer-group partition assignment, offsets committed after processing, and consumer lag measured per partition; Redis Streams commands: `XREADGROUP` delivers new entries to a named consumer, `XPENDING` lists delivered but unacknowledged entries with their idle time, and `XAUTOCLAIM` moves entries left by a dead consumer to a live one; an orchestrator's build-job queue as a stream with one consumer group per job type
 
 ### Site reliability engineering
 
 - SLIs, SLOs and SLAs
 - Error budgets: (1 − SLO) × window; burn rate; multi-window, multi-burn-rate alerts
 - Alerting as classification: precision versus recall; time to exhaustion at a burn rate; each alert linked to a runbook with its first checks, mitigation and owner, and to a dashboard showing the SLI, the burn rate and the budget left
-- Composed availability of services; overload and cascading failure: retry storms that amplify load, load shedding and circuit breakers that fail fast, and metastable failure, where retries keep an outage going after its trigger has ended
+- Composed availability of services; overload and cascading failure: retry storms that amplify load, load shedding and circuit breakers that fail fast, and metastable failure, where retries keep an outage going after its trigger has ended; a circuit breaker counts failures over a window, opens when the failure rate crosses a threshold and then fails calls fast, and after an open-state timeout admits a few trial calls in half-open that close it on success or reopen it on failure
 - Toil: definition, measurement and budgeting
 - Incident management and on-call
 - AIOps: correlating a trace, the alert it fired and the surrounding signals into one incident note; statistical anomaly detection and its false-positive cost; the note states its evidence and confidence, and a person confirms the cause
-- Blameless postmortems; complex-system failure as multiple contributing conditions
+- Blameless postmortems; complex-system failure as multiple contributing conditions; blame treated as a signal about the system rather than the person, the timeline written from what each person knew at each moment, and every action item given an owner and a due date
 - Proving reliability: load tests against the SLO; chaos experiments with an error-budget cost
-- Operational readiness review (ORR): a checklist and evidence review before go-live covering monitoring, alerts and runbooks, load and capacity evidence, rollback and restore drills, failure-mode review and named owners; go or no-go decided against written criteria
+- Operational readiness review (ORR): a checklist and evidence review before go-live covering monitoring, alerts and runbooks, load and capacity evidence, rollback and restore drills, failure-mode review and named owners; go or no-go decided against written criteria; a launch plan with staged exposure, a rollback criterion written before launch, a named incident lead for the first days, and a post-launch review scored against the same criteria
 - Public postmortems as case studies: Knight Capital (2012), GitLab.com database deletion (2017), Amazon S3 us-east-1 (2017), Cloudflare regex CPU exhaustion (2019), Facebook backbone and BGP withdrawal (2021), CrowdStrike content update (2024), Google Cloud Service Control policy replication (2025), Moffatt v. Air Canada chatbot liability (2024)
 - Open-source systems as architecture specimens, with their constraints and trade-offs: Kubernetes, Envoy, Kong, NGINX, etcd, Redis, Kafka and Redpanda, Temporal, CockroachDB, PostgreSQL, Prometheus, Loki, Jaeger, OpenTelemetry, MinIO
 

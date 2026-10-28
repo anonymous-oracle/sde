@@ -9,7 +9,7 @@ Domain: Software Delivery & Version Control
 - **Everyday Git**
   - Commits, branches, merges, rebases and tags
   - Conflict resolution
-  - Remotes, pushing and pulling; pull requests
+  - Remotes, pushing and pulling; pull requests; SSH remote URLs (`git@host:owner/repo.git`) authenticated by a key pair whose public half the host trusts, checked with a read-only authentication test before the first push; HTTPS remotes authenticated by a token instead
 - **Git's data model**
   - Content-addressed objects: blobs, trees, commits, tags
   - The commit graph as a DAG and a Merkle structure: one hash authenticates the whole history
@@ -37,7 +37,7 @@ Domain: Software Delivery & Version Control
 ### The profession
 
 - The ACM Code of Ethics and Professional Conduct
-- Permissive versus copyleft licences and why a dependency's licence matters
+- Permissive versus copyleft licences and why a dependency's licence matters; dataset licences reviewed with the same checklist as software: data under an open licence with attribution or share-alike terms, data with no stated licence (no permission to reuse by default), and the terms on model weights and training data
 - Responsibility for privacy in system design
 
 ### Exercises

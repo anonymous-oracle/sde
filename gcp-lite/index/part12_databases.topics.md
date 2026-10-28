@@ -20,7 +20,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - Headings, bodies, candidate, primary and foreign keys; superkeys
   - Entity and referential integrity; NULLs and uniqueness
 - **Relational algebra**
-  - Selection, projection, product, union and difference; join, intersection and division
+  - Selection, projection, product, union and difference; join, intersection and division; each operator as a set comprehension: σ_p(R) = {t ∈ R : p(t)}, π_A(R) = {t[A] : t ∈ R}, R × S = {(r, s) : r ∈ R, s ∈ S}, R ⋈_θ S = σ_θ(R × S), R ∩ S = R − (R − S), and R ÷ S = π_X(R) − π_X((π_X(R) × S) − R), the X-values paired with every tuple of S
   - Set and bag semantics; why bag projection is not idempotent
   - Equivalence and rewrite rules: selection and projection pushdown, join commutativity and associativity; outer-join rewrites that are not legal
 - **Relational calculus**
@@ -48,7 +48,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - **DDL**: tables; types (`int`, `bigint`, `numeric`, `text`, `timestamptz`, `jsonb`, ranges, UUID); identity versus serial; domains; collations
 - **Logical evaluation order**: FROM → WHERE → GROUP BY → HAVING → WINDOW → SELECT → DISTINCT → ORDER BY → LIMIT; alias visibility; LATERAL as left-to-right correlation
 - **NULL handling**: `IS NULL`, `IS DISTINCT FROM`, `COALESCE`, `NULLIF`; aggregates skipping NULLs; CHECK treating UNKNOWN as pass
-- **Joins**: inner, outer, cross, self, semi, anti, lateral, non-equi and range joins; fan-out when joining one-to-many
+- **Joins**: inner, outer, cross, self, semi, anti, lateral, non-equi and range joins; fan-out when joining one-to-many; outer joins keep unmatched rows and NULL-extend the other side, a condition in ON filters before the extension while the same condition in WHERE removes the NULL-extended rows and turns the outer join into an inner join, and FULL keeps unmatched rows from both sides; a semi join returns each left row at most once when a match exists (EXISTS); an anti join returns left rows with no match (NOT EXISTS), which differs from NOT IN, where one NULL in the subquery makes each comparison UNKNOWN and no rows return; a lateral join evaluates a subquery once per left row, as in top-k per group
 - **Aggregation**: `COUNT(*)` versus `COUNT(col)` versus `COUNT(DISTINCT)`; `FILTER`; `GROUPING SETS`, `ROLLUP`, `CUBE`; ordered-set aggregates
 - **Subqueries**: scalar, `IN`, `EXISTS`, `ALL`/`ANY` (and `= ALL` over empty); correlated versus uncorrelated; relational division
 - **Set operations**: `UNION`, `INTERSECT`, `EXCEPT` with and without `ALL`
@@ -65,7 +65,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 
 - **Storage layout**
   - Heap pages, line pointers and tuple headers; alignment; TOAST for oversized values; modelled in Go as structs with explicit field widths for the tuple header (`xmin`, `xmax`, `ctid`, the null bitmap), the catalog row and the B-tree node header, with each struct's byte size checked by `unsafe.Sizeof` against the on-disk layout
-  - Relation forks, the free-space map and the visibility map; segment files
+  - Relation forks, the free-space map and the visibility map; segment files; a heap file as an unordered set of pages, where an insert goes to any page the free-space map shows has room and a sequential scan reads every page in order
   - Slotted pages: insert, delete, compact; line pointers as 4-byte item identifiers packing a 15-bit offset, two flag bits and a 15-bit length; a page header holding the free-space bounds; a page checksum computed over the page with the checksum field zeroed and verified on each read
   - HOT updates and fill factor
   - PostgreSQL system catalogs and system columns: `pg_class`, `pg_attribute`, `pg_type` and `pg_statistic` as ordinary tables describing relations, columns, types and planner statistics; the system columns `ctid`, `xmin` and `xmax` on every heap tuple
@@ -78,7 +78,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - Hash indexes: static, extendible and linear hashing
   - LSM trees: memtables (skip lists), SSTables, leveled versus tiered compaction, Bloom filters per run; read, write and space amplification (the RUM conjecture)
   - Bitmap indexes and bitmap scans; GIN for JSONB, arrays and text; GiST and SP-GiST; BRIN for append-mostly data
-  - Composite indexes and the leftmost-prefix rule; partial indexes; covering indexes with `INCLUDE`; index-only scans
+  - Composite indexes and the leftmost-prefix rule; partial indexes; covering indexes with `INCLUDE`; index-only scans, which return columns from the index alone when the visibility map marks the heap page all-visible, and otherwise fetch the heap tuple to check visibility
   - Index selection as an NP-hard optimization; write amplification from too many indexes
 
 ### Query processing
@@ -89,10 +89,10 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - External merge sort: 2N · (1 + ⌈log_{B−1}⌈N/B⌉⌉) I/Os; two passes when N ≤ B(B − 1)
   - Aggregation by sorting or hashing; `work_mem` and spills to temporary files; top-k by a bounded heap of size k instead of a full sort when `ORDER BY ... LIMIT k` is used, and top-k per group with `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...)` filtered in an outer query to ranks at most k
   - Columnar and vectorized execution: late materialization, SIMD-friendly operators, run-length and dictionary compression
-  - Parallel query
+  - Parallel query: a leader process starts worker processes that scan disjoint page ranges or share a work queue for hash joins and aggregates, a Gather node merges their tuples, and a parallel plan is chosen when the estimated work exceeds a threshold and workers are free
 - **Query optimization**
-  - The parse, analyse, rewrite and plan pipeline
-  - Statistics: histograms, most-common values, correlation; selectivity under uniformity and independence; extended statistics on correlated columns (`CREATE STATISTICS`); compounding estimation error
+  - The parse, analyse, rewrite and plan pipeline; the parser builds a raw parse tree from the SQL grammar, analysis resolves names and types against the system catalogues, the rewriter expands views and applies rule-based transformations, and the planner picks the cheapest plan by cost estimates before the executor runs it
+  - Statistics: histograms, most-common values, correlation; selectivity under uniformity and independence; extended statistics on correlated columns (`CREATE STATISTICS`); compounding estimation error; ANALYZE samples a fixed number of rows (set by the statistics target), refreshes the planner's statistics, and autovacuum re-runs it after a fraction of the rows change; the row estimate as table rows times the product of predicate selectivities, and the factor-of-ten misestimates that correlated predicates produce
   - The Selinger optimizer: dynamic programming over subsets, left-deep plans, interesting orders
   - NP-hardness of join ordering; genetic search beyond a threshold
   - Cost variables such as `random_page_cost`
@@ -115,6 +115,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - Critiques of the ANSI isolation definitions; Adya's graph-based definitions
 - Row and table locks; lightweight versus heavyweight locks
 - Vacuum: dead tuples, autovacuum, bloat, transaction-ID wraparound and freezing; long transactions as vacuum poison
+- Optimistic concurrency control: a row carries a version number (or an ETag hash); a writer reads the version, computes the change without holding locks, and writes with `UPDATE ... WHERE version = expected`, retrying when zero rows change; the validation-based three phases (read, validate, write) over each transaction's read and write sets; optimistic offline locking across user think time, where the version travels to the client and the commit is rejected when it has changed; pessimistic locking (`SELECT ... FOR UPDATE`) when conflicts are frequent, traded against retries versus waiting
 
 ### Recovery and replication
 
@@ -122,7 +123,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - The write-ahead-logging rule; each WAL record as a header with its total length, transaction ID, the pointer to the previous record and a CRC-32C over the record, followed by the payload, and recovery that stops at the first record whose CRC fails
 - ARIES: LSNs, pageLSN, dirty-page and transaction tables, analysis, redo and undo passes, compensation log records
 - Checkpoints; full-page writes; synchronous commit
-- Physical streaming replication and WAL archiving; point-in-time recovery
+- Physical streaming replication and WAL archiving; point-in-time recovery: a base backup plus archived WAL replayed up to a chosen target (a timestamp, an LSN or a named restore point), with the replay stopping before the bad transaction
 - Logical replication: publications, subscriptions, decoding across major versions
 - Change data capture through replication slots, and the disk risk of a dead consumer
 - Replica lag as an SLI; read-your-writes through sticky sessions or primary reads; failover caveats
@@ -133,7 +134,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 ### Data modelling and design
 
 - Conceptual → logical → physical design; ER diagrams; weak entities; ISA hierarchies; foreign-key placement for 1:N and N:M
-- Keys: natural, surrogate, UUID (random versus time-ordered), snowflake IDs; client versus database generation
+- Keys: natural, surrogate, UUID (random versus time-ordered), snowflake IDs; client versus database generation; a Snowflake-style 64-bit integer as a 41-bit millisecond timestamp, a 10-bit worker ID and a 12-bit sequence, with the rule for a clock that moves backwards (wait or refuse)
 - Money, units and time: integer minor units with explicit currency; `timestamptz` for instants; `date` for civil dates
 - Hierarchies and graphs: adjacency lists, closure tables, path enumeration, nested sets
 - Temporal data: valid time versus transaction time; slowly changing dimensions (type 2); as-of joins; preventing label leakage in feature queries
@@ -156,6 +157,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - Application data access: N+1 queries, ORM pitfalls, prepared statements, transaction boundaries, keyset pagination with unique tiebreakers and signed cursors, repositories
 - Testing SQL: Postgres service containers, seeded fixtures, fingerprint and golden assertions, migration up and down tests
 - Managed relational databases: provisioning, private connectivity, connectors and proxies, IAM database authentication, backups and PITR, HA standbys and read replicas, flags
+- Database process model: PostgreSQL's postmaster as the supervisor process that forks one backend process per client connection, each with its own private memory for sorts and plans, so an idle connection still costs a process and its memory; shared memory holding the shared buffers, the WAL buffers, the lock table and the process array; background processes (checkpointer, background writer, WAL writer, autovacuum launcher and workers, WAL senders) and how connection count drives memory and context-switch cost, which is why a pool sits in front
 
 ### NoSQL and choosing a store
 
@@ -174,7 +176,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - Cohorts, funnels, sessionization and retention with windowed SQL; half-open intervals
 - Approximate aggregation: HyperLogLog and quantile sketches with error bars
 - Globally distributed SQL dialects: interleaved tables, limits
-- Full-text search with `tsvector` and `tsquery`; vector similarity with `pgvector`; hybrid lexical and vector ranking; isolating search from OLTP
+- Full-text search with `tsvector` and `tsquery`; vector similarity with `pgvector`; hybrid lexical and vector ranking; isolating search from OLTP; pgvector's distance operators (L2, cosine and inner product) with HNSW and IVFFlat approximate indexes; Qdrant as a dedicated vector store with collections of points, each a vector with a payload, and filters on payload fields applied during the approximate search
 
 ### Exercises
 
