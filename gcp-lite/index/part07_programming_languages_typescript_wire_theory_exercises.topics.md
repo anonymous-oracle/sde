@@ -16,7 +16,7 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 - **Runtime validation and a minimal React client**
   - "Parse, don't trust": a hand-written validator, then Zod (`safeParse`, error paths, inferred types, JSON Schema export)
   - React components as functions of state; `useState` and `useEffect`; rendering a stream as it arrives; React Router's route table with nested outlets for client-side pages, and Jest tests that render a component and query its output, the same test shape as Vitest
-  - Keeping API keys server-side behind a server route; the split of roles in which the browser client renders state and sends user actions, while the server holds credentials, checks authentication and validates input, and the request and response shapes between them are a schema that both sides parse
+  - Keeping API keys server-side behind a server route; the split of roles in which the browser client renders state and sends user actions, while the server holds credentials, checks authentication and validates input, and the request and response shapes between them are a schema that both sides parse; API key lifecycle: a key is generated from `crypto/rand` with at least 256 bits of entropy, shown once, and stored as a SHA-256 hash (a fast hash is fine for a high-entropy key, unlike a password) with a short prefix for lookup, compared in constant time; rotation by issuing a second active key, moving clients over, and then revoking the old one; keys carry scopes and an expiry
 
 ### Java and the JVM
 
@@ -32,7 +32,7 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 ### Wire formats
 
 - **JSON**: the RFC 8259 grammar; no comments or trailing commas; unbounded numbers and 64-bit IDs in JavaScript; duplicate keys; a recursive-descent parser by hand
-- **JSON Schema**: `type`, `properties`, `required`, `enum`, `additionalProperties`, `$ref`; schemas as contracts for tool inputs and structured outputs
+- **JSON Schema**: `type`, `properties`, `required`, `enum`, `additionalProperties`, `$ref`; schemas as contracts for tool inputs and structured outputs; constrained decoding: at each generation step the model's logits are masked so that only tokens that keep the output a prefix of some string in the target language (defined by a JSON Schema or a regular expression) keep nonzero probability; the schema is compiled to an automaton, the allowed-token set is computed per automaton state, and the output is valid by construction, though still in need of semantic checks; the cost is one mask computed over the vocabulary per generated token
 - **JSON-RPC 2.0**: requests and notifications, `result` versus `error`, batches, reserved error codes −32700 to −32603
 - **Server-Sent Events**: `text/event-stream`, `event:`, `data:`, `id:`, `retry:`, comments; incremental parsing across chunk boundaries; reconnection with `Last-Event-ID`; buffering proxies that break streaming
 - **XML**: elements, attributes, namespaces and well-formedness rules; the declared encoding and character escaping; struct-tag marshalling and unmarshalling with `encoding/xml`
@@ -56,9 +56,11 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
   - Why line coverage does not prove correctness
   - Benchmarks as samples with confidence intervals
 - **Compilers and interpreters**
-  - Lexing, parsing, abstract syntax trees, type checking
+  - Lexing, parsing, abstract syntax trees, type checking; lexing as a DFA built from the token regular expressions by Thompson's construction and subset construction, with longest match and rule priority; recursive-descent and LR parsing of the grammar, and precedence climbing for binary operators; type checking by unification for Hindley–Milner inference, where type variables are solved from equations, with the occurs check rejecting a variable that would contain itself
   - Grammars in EBNF; context-free grammars; Go's semicolon-insertion rule; `go/ast` and `go/parser`
-  - Intermediate representations and SSA; optimisation; code generation; linking
+  - Intermediate representations and SSA; optimisation; code generation; linking; SSA form in which each variable has a single definition, with φ-functions placed on the iterated dominance frontier of each definition site and dominator trees computed by an iterative dataflow algorithm; dataflow analysis as a fixed point over a lattice, with live variables computed backwards and reaching definitions forwards
+  - Register allocation by graph colouring: build the interference graph from live ranges (two variables interfere when both are live at one point), colour it with k colours for k machine registers by simplify-and-select (remove a node of degree below k, push it on a stack, and pop to colour it), spilling to memory when no colour is free; graph colouring with k colours is NP-complete, so compilers use this heuristic and optimistic colouring rather than an exact solver
+  - Linear-scan register allocation: sort live intervals by start point, expire the intervals that end before the current point, assign a free register, or spill the interval that ends furthest away; O(n log n) time with the sort dominating, simpler than colouring, at the cost of coarser live ranges
   - Interpreters and the Interpreter pattern
 - **Regular languages and the pumping lemma**
   - The pumping lemma as a necessary condition for regularity, proved by the pigeonhole principle on a DFA's states; used to refute regularity
@@ -79,6 +81,18 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 - **The language design space**
   - Manual memory versus garbage collection versus ownership
   - Exceptions versus error values; threads and locks versus actors versus CSP
+- **Parsing for natural language**
+  - Constituency parsing groups the words of a sentence into nested phrases (noun phrase, verb phrase) under a context-free grammar; the CKY algorithm fills a table of spans in O(n³·|G|) time for a grammar in Chomsky normal form
+  - Dependency parsing links each word to exactly one head word by a labelled arc, forming a tree with one root; a transition-based parser builds it with a stack and a buffer, using 2n − 1 shift and reduce actions for n words in the arc-standard system
+  - Parsers are scored by unlabelled and labelled attachment scores (UAS and LAS): the share of words whose head, and whose head with its label, match the gold tree
+- **The Chomsky hierarchy and language models**
+  - Type 3 (regular) languages are recognized by finite automata, type 2 (context-free) by pushdown automata, type 1 (context-sensitive) by linear-bounded automata, and type 0 (recursively enumerable) by Turing machines; each class is strictly contained in the next, with witnesses such as aⁿbⁿ (context-free, not regular) and aⁿbⁿcⁿ (context-sensitive, not context-free)
+  - A language model is a probability distribution over strings; an n-gram model is a Markov chain over the previous n − 1 tokens
+  - The hierarchy speaks to expressive power, not to the statistics of trained networks, so it asks what a model class can express and does not measure how well a model predicts text; perplexity, the exponential of the mean negative log-likelihood per token, is the measure for comparing models on the same text
+- **Formal semantics**
+  - Operational semantics as a transition relation on configurations: small-step ⟨e, σ⟩ → ⟨e′, σ′⟩ or big-step judgments e ⇓ v, with properties such as determinism proved by induction on the derivation
+  - Denotational semantics assigns each phrase a mathematical object: a while loop denotes the least fixed point of a functional on partial functions, obtained as the supremum of the iterates from the everywhere-undefined function (Kleene's fixed-point theorem for continuous functionals on a domain with a least element); the denotation of recursion is that least fixed point, not an informal unrolling
+  - Adequacy relates the two: the operational and denotational meanings agree for each phrase of the language
 
 ### Exercises
 
@@ -115,8 +129,11 @@ Domain: Programming Languages & Language Theory (part 3 of 3)
 - Payments in Go: an idempotent charge endpoint, a webhook receiver with signature and replay checks, a double-entry ledger with property tests, a refund and dispute state machine, a nightly reconciliation job
 - Services in Go: an orders API; a concurrent event worker; a gRPC inventory service
 - An agent control plane in Go: an API gateway with custom plugins, a backend API, an auth service issuing JWTs, an LLM router over embeddings, an agent registry synced to the gateway, chat history over JSON-RPC, an orchestrator and build worker on Redis Streams, an operator CLI and A2A sample agents, verified end to end from upload through build, deploy, registration, routing, chat and traces, then promoted from staging to production with a load test, a backup and restore drill and a security review
+- From scratch: a register allocator by linear scan over live intervals, compared with a graph-colouring allocator on the same interference graph, with the spill count of each recorded
 - **Reasoning drills**
   - Predict the output of tricky programs (aliasing, closures, integer division, `defer` order, slice sharing) before running them
   - Prove a loop correct with an invariant, then find the smallest input that violates its precondition
   - Estimate allocation and garbage-collection cost from a profile before optimizing, then measure the gain
   - Choose between Python, Go and TypeScript for a new service, as a decision record
+  - Predict which Chomsky class a given language belongs to, then prove the class by a pumping or closure argument
+  - Predict the tokens a constrained decoder allows after a given prefix of a small schema, then check the prediction against the automaton

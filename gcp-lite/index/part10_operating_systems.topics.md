@@ -47,6 +47,7 @@ Domain: Operating Systems & Linux
 - Thrashing and working sets
 - Memory-mapped files
 - Heap allocation: free lists, splitting and coalescing, first fit versus best fit, fragmentation; `malloc` over `brk` and `mmap`
+- Segmentation: a logical address (s, d) is translated through a segment table whose entry holds a base and a limit, so that the physical address is base + d when d < limit and a trap otherwise; segments map to code, data, stack and heap, with a read-only code segment shareable between processes; external fragmentation is the cost, since variable-size segments leave gaps that compaction must close; and segmentation with paging, where each segment is itself paged, as in x86 protected mode
 
 ### Concurrency
 

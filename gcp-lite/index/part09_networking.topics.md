@@ -11,6 +11,7 @@ Domain: Computer Networking & Web Protocols
 - Packet versus circuit switching; statistical multiplexing
 - The four delays: transmission L/R, propagation d/s, queueing, processing
 - The bandwidth–delay product as data in flight
+- Network performance theory: Little's law L = λW for packets in flight; the mean queueing delay of an M/M/1 queue at utilization ρ, W_q = ρ / (μ(1 − ρ)), which grows without bound as ρ approaches 1; and the Shannon capacity C = B log₂(1 + S/N), the highest rate at which a channel of bandwidth B and signal-to-noise ratio S/N can carry data with arbitrarily small error
 
 ### Addressing and the link layer
 
@@ -19,6 +20,7 @@ Domain: Computer Networking & Web Protocols
 - Ethernet framing, self-learning switches, ARP and VLANs
 - DHCP and why it needs UDP broadcast
 - NAT and source-port exhaustion; port numbers as 16-bit demultiplexing keys, with well-known ports such as 53 for DNS and 443 for HTTPS and ephemeral ports chosen by the client, and the 4-tuple of source address, source port, destination address and destination port that identifies a TCP connection
+- Multiple access and MAC protocols: pure ALOHA with throughput S = G·e^(−2G), maximal at G = 1/2 with S = 1/(2e) ≈ 0.184; slotted ALOHA with S = G·e^(−G), maximal at G = 1 with S = 1/e ≈ 0.368; CSMA, which senses the carrier before sending, with a collision window of one propagation delay; CSMA/CD as Ethernet's collision detection with binary exponential backoff over 512-bit slot times; and CSMA/CA in Wi-Fi, with random backoff and optional RTS/CTS reservation
 
 ### Routing
 
@@ -71,8 +73,8 @@ Domain: Computer Networking & Web Protocols
 - **HTTP semantics**
   - The request/response cycle; methods, status codes, headers, cookies
   - Safe, idempotent and cacheable methods (GET, POST, PUT, PATCH, DELETE)
-  - 429 and 503 with `Retry-After` as back-pressure signals; idempotency keys for non-idempotent requests
-  - HTTP caching headers: `Cache-Control`, `Age`, `Via`, validators; freshness from `max-age` compared with `Age` (a response is fresh while Age is below max-age), revalidation with `ETag` and `Last-Modified` answered by 304 Not Modified; conditional requests with `If-None-Match` for cached reads and `If-Match` on writes, where a stale ETag returns 412 Precondition Failed so a lost update is refused
+  - 429 and 503 with `Retry-After` as back-pressure signals; idempotency keys for non-idempotent requests; the error taxonomy: 4xx client errors that a retry will not fix, 503, 429 and 504 as transient errors that retry with backoff, and 500 as a server bug to alert on; an error envelope in RFC 9457 problem details carrying a stable machine-readable code, the request ID and the per-field errors, with the cause logged on the server and never returned to the client as a stack trace
+  - HTTP caching headers: `Cache-Control`, `Age`, `Via`, validators; freshness from `max-age` compared with `Age` (a response is fresh while Age is below max-age), revalidation with `ETag` and `Last-Modified` answered by 304 Not Modified; conditional requests with `If-None-Match` for cached reads and `If-Match` on writes, where a stale ETag returns 412 Precondition Failed so a lost update is refused; freshness monitoring: the cache hit ratio and the age distribution of served responses read from the `Age` header, the `stale-while-revalidate` and `stale-if-error` directives that serve a stale response while refreshing or during an origin failure, and an alert when the share of responses served past max-age crosses a set budget
 - **HTTP versions**
   - HTTP/1.1 persistent connections and chunked bodies
   - HTTP/2 stream multiplexing over one TCP connection
@@ -83,6 +85,9 @@ Domain: Computer Networking & Web Protocols
   - Browser rendering
   - The JavaScript event loop in the browser
   - The same-origin policy and its fundamentals
+- **Redirection status codes**: 301 and 302 as permanent and temporary redirects, which clients have historically rewritten to GET; 303 See Other, sent after a POST to redirect to a result page with GET so that a refresh does not resubmit; 307 and 308, which preserve the method and body, with 308 the permanent form of 307; the `Location` header; and clients that cap a redirect chain at a small number of hops
+- **WebDAV and publishing with PUT**: PUT replaces the entire resource at the target URI and is idempotent, so a retry is safe; WebDAV extends HTTP with PROPFIND to read collection properties, MKCOL to create a collection, COPY and MOVE, and LOCK and UNLOCK with lock tokens for concurrent editors; a conditional PUT with `If-Match` refuses a lost update; OPTIONS advertises the allowed methods and the DAV compliance class
+- **Representations, content negotiation and entities**: the entity headers `Content-Type` (with its charset) and `Content-Length` (counted in bytes after content coding), with `Content-Encoding` applied to the representation and distinct from the transfer coding applied on one hop, so that a body is the entity with the transfer coding removed; server-driven negotiation with `Accept`, `Accept-Language` and `Accept-Encoding`, quality values such as `q=0.8` ranking the options, and 406 Not Acceptable only when no representation is acceptable; `Vary` naming each request header that the chosen representation depends on; and range requests with `Range`, answered by 206 Partial Content and `Content-Range`, for resumable downloads
 
 ### TLS mechanics
 
@@ -147,8 +152,11 @@ Domain: Computer Networking & Web Protocols
 - A TCP handshake watched with `tcpdump`; a connection budget for autoscaled instances against a database limit
 - UDP loss without retransmission observed under `tc netem`
 - Caching headers inspected on a CDN-fronted site; HTTP/2 and HTTP/3 compared against a public site
+- From scratch: a slotted ALOHA simulation that measures throughput against G·e^(−G) across offered loads, and a content-negotiation handler that picks a representation by quality values and returns 406 only when none fits
 - **Reasoning drills**
   - Estimate a page's minimum load time from round trips, bandwidth and handshakes before measuring it
   - Derive a throughput ceiling from the bandwidth-delay product and the Mathis approximation, then observe it under `tc netem`
   - Explain from first principles why HTTP/2 over TCP suffers head-of-line blocking and HTTP/3 does not
   - Place a service's regions and CDN from a latency budget, as a decision record
+  - Predict the offered load that maximizes slotted ALOHA throughput, then measure the peak in a simulation
+  - Predict which redirect code keeps a POST body intact for a given client flow, then check the prediction against the specification of each code
