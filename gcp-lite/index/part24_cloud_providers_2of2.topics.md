@@ -10,7 +10,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 2 of 2)
 - Application servers → Cloud Run, GKE, MIGs, App Engine; workers → Cloud Run jobs, GKE, Cloud Run functions
 - Object store → Cloud Storage; SQL with replicas → Cloud SQL, AlloyDB, Spanner; wide-column → Bigtable; documents → Firestore; cache → Memorystore
 - Message queue → Pub/Sub or Managed Kafka; task queue and scheduler → Cloud Tasks and Cloud Scheduler; warehouse → BigQuery; batch → Dataflow, Dataproc, BigQuery SQL
-- Search → Elasticsearch or OpenSearch on GKE, Elastic Cloud, Agent Search
+- Search → Elasticsearch or OpenSearch on GKE, Elastic Cloud, Agent Search; a search index is an inverted index from terms to documents, with analyzers that split and normalize text and a relevance score such as BM25; Elasticsearch and OpenSearch spread an index over shards with replicas, and on GKE the team sizes and upgrades the cluster itself, while Elastic Cloud is hosted by the vendor; Agent Search is a managed retrieval service for grounded answers over documents, suited to teams that would rather not operate shards
 - Service discovery → Service Directory, GKE DNS, Cloud Service Mesh; autoscaling → MIG autoscaler, Cloud Run, GKE autoscalers
 - Monitoring → Cloud Monitoring, Logging, Trace, Error Reporting; push notifications → Pub/Sub, Cloud Run and Firebase Cloud Messaging; email through a partner relay
 - Secrets → Secret Manager and Cloud KMS; WAF and DDoS → Cloud Armor; private networking → VPC, firewall rules, Cloud NAT, Private Google Access, IAP
@@ -21,8 +21,8 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 2 of 2)
 - Compute: EC2, Lambda, ECS and EKS (managed node groups, IRSA) with Fargate, App Runner, Elastic Beanstalk
 - Storage and databases: S3, EBS, RDS, Aurora and Aurora Global Database, DynamoDB, Keyspaces, ElastiCache
 - Networking: VPC, ELB (ALB, NLB, GWLB), Route 53, CloudFront, Direct Connect, Transit Gateway, Site-to-Site VPN
-- Data: Kinesis, Glue, Redshift, EMR, MWAA, QuickSight
-- AI and ML: SageMaker, Bedrock
+- Data: Kinesis, Glue, Redshift, EMR, MWAA, QuickSight; Kinesis Data Streams is a sharded, ordered stream of records for real-time ingestion; Glue is serverless ETL with a shared data catalog; Redshift is a columnar, massively parallel SQL warehouse; EMR runs Spark, Hadoop and similar open-source clusters; MWAA is managed Apache Airflow for pipeline orchestration; QuickSight is the business-intelligence dashboard service
+- AI and ML: SageMaker, Bedrock; SageMaker is a managed platform to build, train, tune and deploy machine learning models on managed training and hosting infrastructure; Bedrock is a managed API to foundation models from several providers, so the team runs no model servers itself
 - Security: IAM, Organizations and service control policies, KMS, Secrets Manager, GuardDuty, Security Hub, Macie, WAF, Shield, Network Firewall; Zelkova-style automated policy reasoning
 - DevOps: CodeBuild, CodePipeline, CodeDeploy, CloudFormation, CDK, ECR, CloudWatch, X-Ray
 
@@ -57,8 +57,8 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 2 of 2)
 - Compute: Virtual Machines and scale sets, AKS (virtual nodes, workload identity), Container Apps, Container Instances, Functions, App Service with deployment slots
 - Storage and databases: Blob Storage, Azure Files, Managed Disks, Azure SQL Database, Cosmos DB (including its Cassandra API), Azure Cache for Redis
 - Networking: VNet, network and application security groups, Azure Load Balancer, Application Gateway, Front Door, Azure CDN, Azure DNS, ExpressRoute, VPN Gateway, Bastion, private and service endpoints
-- Data: Synapse Analytics, Data Factory, Stream Analytics, HDInsight, Power BI
-- AI and ML: Azure Machine Learning, Azure AI Foundry
+- Data: Synapse Analytics, Data Factory, Stream Analytics, HDInsight, Power BI; Synapse Analytics combines a SQL data warehouse with Spark pools over the same data; Data Factory runs ETL and ELT pipelines built from activities through a visual designer; Stream Analytics runs SQL-like queries with time windows over event streams; HDInsight runs managed open-source clusters such as Hadoop, Spark and Kafka; Power BI builds reports and dashboards over semantic models
+- AI and ML: Azure Machine Learning, Azure AI Foundry; Azure Machine Learning is the workspace for training jobs, pipelines, registered models and managed online endpoints; Azure AI Foundry is the platform for building generative AI applications, with a model catalog, deployments, evaluation and agent tooling
 - Identity and security: Microsoft Entra ID (Conditional Access, PIM, entitlement management, B2B, Agent ID), Azure RBAC, Key Vault, Microsoft Defender for Cloud, Defender XDR, Microsoft Sentinel, Microsoft Purview, Azure Policy, management groups
 - DevOps: Azure Pipelines, Azure Repos, Azure Artifacts, Azure Boards, ARM templates and Bicep, Azure Monitor and Application Insights, Kusto Query Language
 
@@ -81,7 +81,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 2 of 2)
   - Identity and access: `az ad sp create-for-rbac`; `az ad app federated-credential create` for workload identity federation from CI; `az identity create`; `az role assignment create --assignee --role --scope`; `az role definition create`
   - Key Vault: `az keyvault create --enable-rbac-authorization`; `az keyvault secret set` and `show`; `az keyvault key create`
   - Deployments: `az deployment group create --template-file main.bicep --parameters`; `az deployment group what-if`; `az deployment sub create` for subscription scope; `az bicep build`; `az policy assignment create`
-  - Data: `az sql server create` and `az sql db create`; `az cosmosdb create`
+  - Data: `az sql server create` and `az sql db create`; `az cosmosdb create`; a logical SQL server holds databases with a server-level firewall and admin login, and a database is then created on it with a chosen service tier and size; `az cosmosdb create` makes the account, under which databases and containers are created, and a container's partition key is fixed when the container is created, so it must be chosen from the access pattern
   - Monitoring: `az monitor log-analytics query --workspace --analytics-query` with Kusto; `az monitor metrics alert create`; `az monitor activity-log list`
 
 ### AWS and Azure — what differs at depth
@@ -97,42 +97,42 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 2 of 2)
 
 ### Cross-provider concept map
 
-- Virtual machines: Compute Engine · EC2 · Virtual Machines
-- Managed Kubernetes: GKE · EKS · AKS
-- Serverless containers: Cloud Run · App Runner and Fargate · Container Apps
-- Functions: Cloud Run functions · Lambda · Azure Functions
-- PaaS hosting: App Engine · Elastic Beanstalk · App Service
-- Object storage: Cloud Storage · S3 · Blob Storage
-- Block storage: Persistent Disk · EBS · Managed Disks
-- Managed relational: Cloud SQL · RDS · Azure SQL Database
-- Globally distributed database: Spanner · Aurora Global and DynamoDB · Cosmos DB
-- Wide-column: Bigtable · DynamoDB and Keyspaces · Cosmos DB for Cassandra
-- Document: Firestore · DynamoDB · Cosmos DB
-- In-memory cache: Memorystore · ElastiCache · Azure Cache for Redis
-- Warehouse: BigQuery · Redshift · Synapse Analytics
-- Messaging: Pub/Sub · SNS and SQS · Service Bus and Event Grid
-- Stream and batch processing: Dataflow · Kinesis and Glue · Stream Analytics
-- Managed Spark and Hadoop: Dataproc · EMR · HDInsight
-- Pipeline orchestration: Cloud Composer · MWAA · Data Factory
-- BI: Looker · QuickSight · Power BI
-- Virtual network: VPC · VPC · VNet
+- Virtual machines: Compute Engine · EC2 · Virtual Machines; a VM is a guest operating system on a hypervisor, sized by an instance or machine family, with attached disks and an identity the workload uses to call APIs; Compute Engine's VPC is global while EC2 and Azure VNets are regional, so the same network design needs different subnet layouts
+- Managed Kubernetes: GKE · EKS · AKS; the provider runs the Kubernetes API server and control plane, and the team's workloads run on node pools it manages, or on capacity the provider manages in GKE Autopilot; the pod-to-cloud identity mechanisms differ (Workload Identity on GKE, IRSA on EKS, workload identity on AKS), so access set up on one cluster does not transfer as is
+- Serverless containers: Cloud Run · App Runner and Fargate · Container Apps; the team supplies a container image and the platform runs it without managing nodes; Cloud Run and Container Apps can scale to zero, while a Fargate task runs until it is stopped or replaced, so cost and cold-start behaviour differ
+- Functions: Cloud Run functions · Lambda · Azure Functions; code runs per event or request, is billed per invocation and duration, and the platform manages scaling; execution limits, reuse of the runtime environment and cold-start behaviour differ among the three, so a handler built around one provider's limits must be rechecked before a move
+- PaaS hosting: App Engine · Elastic Beanstalk · App Service; the platform builds, runs, patches and scales a web application from code or a container, so the team manages the application rather than the servers; visibility of the underlying VMs differs, since Elastic Beanstalk provisions EC2 instances in the account, and App Service offers deployment slots for staged releases
+- Object storage: Cloud Storage · S3 · Blob Storage; a flat namespace of objects addressed by key inside buckets or containers and reached over HTTP, with durability from replication; the three differ in consistency and redundancy choices, such as strong read-after-write consistency in Amazon Simple Storage Service and the LRS, ZRS, GRS and GZRS redundancy options of Azure storage accounts
+- Block storage: Persistent Disk · EBS · Managed Disks; a network-attached block device usually attached to one VM at a time, with snapshots for backup; an EBS volume is bound to one Availability Zone, Persistent Disk is zonal or regional with synchronous replication across two zones, and Managed Disks have their own redundancy choices, so a disk cannot always follow a VM to another zone
+- Managed relational: Cloud SQL · RDS · Azure SQL Database; the provider runs the database engine with automated backups, patching and failover, while the team chooses the engine version, size and replication; failover mechanics differ (Cloud SQL's regional HA uses a synchronous standby, not a read replica), so the recovery point and recovery time must be checked for each product rather than assumed equal
+- Globally distributed database: Spanner · Aurora Global and DynamoDB · Cosmos DB; replicas across several regions under a stated consistency model; Spanner provides external consistency through TrueTime and Paxos; Aurora Global Database has one primary region for writes and promotes a secondary region on failover; DynamoDB global tables accept writes in every region and resolve conflicts by last writer wins; Cosmos DB offers five consistency levels, so the guarantee has to be chosen explicitly rather than assumed
+- Wide-column: Bigtable · DynamoDB and Keyspaces · Cosmos DB for Cassandra; rows are kept in key order (Bigtable) or spread across partitions by a hash of the partition key (DynamoDB, Keyspaces, Cosmos DB for Cassandra), so key design decides hotspots; range scans over sorted keys are native in Bigtable but are not offered across partitions in DynamoDB, so the access pattern must be fixed before the key is chosen
+- Document: Firestore · DynamoDB · Cosmos DB; a document is a nested record stored under a key and indexed by chosen fields; Firestore indexes every single field automatically and creates composite indexes on demand, while DynamoDB items are fetched by primary key and need indexes designed for each access pattern, so query flexibility differs by provider
+- In-memory cache: Memorystore · ElastiCache · Azure Cache for Redis; an in-memory key-value store used for caching, sessions and counters, with TTLs and an eviction policy that decides what is lost when memory fills; a cache is not a system of record, so its contents must be rebuildable from the source; engine versions, cluster modes and replica options differ by product, so each is checked on its own
+- Warehouse: BigQuery · Redshift · Synapse Analytics; a columnar, massively parallel store that runs SQL over large tables; BigQuery is serverless and bills by bytes scanned or by reserved capacity, Redshift is sized in nodes or serverless capacity, and Synapse dedicated pools are sized in data warehouse units, so cost planning uses different units
+- Messaging: Pub/Sub · SNS and SQS · Service Bus and Event Grid; a durable queue or topic decouples producers from consumers, so a slow consumer does not block a producer; an SQS queue delivers each message to one consumer, SNS fans a message out to subscribers, Pub/Sub topics fan out to subscriptions natively, Service Bus offers queues and topics with sessions, and Event Grid pushes events to handlers, so delivery, ordering and retention guarantees must be compared before a choice
+- Stream and batch processing: Dataflow · Kinesis and Glue · Stream Analytics; Dataflow runs Apache Beam pipelines that use one programming model for streaming and batch; Kinesis is a stream log for ingesting records in real time and Glue is batch ETL, so a team often pairs them; Stream Analytics runs SQL-like queries with time windows over event streams; the choice depends on whether one program must serve both modes and who operates the runtime
+- Managed Spark and Hadoop: Dataproc · EMR · HDInsight; each runs open-source clusters such as Spark and Hadoop, with the team choosing versions and node counts; Dataproc also offers a serverless batch mode with no cluster to size; when a cluster is used, its sizing and patching stay with the team
+- Pipeline orchestration: Cloud Composer · MWAA · Data Factory; a scheduler runs tasks in dependency order with retries, backfills and monitoring; Cloud Composer and MWAA are managed Apache Airflow, where pipelines are Python DAGs, while Data Factory defines pipelines as activities through a visual designer and JSON, so the same workflow is written differently in each
+- BI: Looker · QuickSight · Power BI; each tool connects to a warehouse, defines a semantic layer or data model, and publishes dashboards and reports to users; Looker's LookML is code that defines measures once, while QuickSight and Power BI each have their own dataset and calculation model, so a metric defined in one does not carry over to another
+- Virtual network: VPC · VPC · VNet; a private address space divided into subnets, with routes and firewall rules controlling traffic; a Google Cloud VPC is global with regional subnets, an AWS VPC is regional with subnets each inside one Availability Zone, and an Azure VNet is regional with subnets that span the zones of a region, so cross-region designs need different peering or hub choices on each
 - Load balancing: Cloud Load Balancing · ELB · Load Balancer and Application Gateway
-- CDN: Cloud CDN · CloudFront · Azure CDN and Front Door
-- DNS: Cloud DNS · Route 53 · Azure DNS
+- CDN: Cloud CDN · CloudFront · Azure CDN and Front Door; a CDN caches content at edge locations near users so that repeat requests skip the origin; Cloud CDN is a pull cache attached to a global Application Load Balancer backend, CloudFront pulls from configured origins through distributions, and Azure Front Door combines CDN caching with global HTTP load balancing, so cache keys, TTLs and origins are configured in each product's own terms
+- DNS: Cloud DNS · Route 53 · Azure DNS; authoritative zones hold record sets, and resolvers cache each answer for its TTL; Cloud DNS and Route 53 both offer routing policies that answer by weight, geography or health, while Azure DNS hosts zones and records and health-based routing is a separate Azure service, so the same failover design is built from different parts
 - Hybrid connectivity: Cloud Interconnect and VPN · Direct Connect and VPN · ExpressRoute and VPN Gateway
-- Identity and access: Cloud IAM · AWS IAM · Entra ID and Azure RBAC
-- Keys: Cloud KMS · AWS KMS · Key Vault
-- Secrets: Secret Manager · Secrets Manager · Key Vault
-- WAF and DDoS: Cloud Armor · AWS WAF and Shield · Azure WAF and DDoS Protection
-- Container registry: Artifact Registry · ECR · Azure Container Registry
-- CI build: Cloud Build · CodeBuild · Azure Pipelines
+- Identity and access: Cloud IAM · AWS IAM · Entra ID and Azure RBAC; a principal is granted roles on resources through policies; Cloud IAM and AWS IAM both evaluate policies bound to principals and resources, while Entra ID governs the directory and Azure RBAC governs Azure resources, so a permission can live in a different system from the one that shows the denial; check which system holds the permission before debugging
+- Keys: Cloud KMS · AWS KMS · Key Vault; a key is managed by a service that encrypts and signs on the caller's behalf, with key material kept in tamper-resistant hardware; envelope encryption uses a key to wrap a data key, which encrypts the data; Key Vault also stores secrets and certificates, while Cloud KMS and AWS KMS manage keys only, so a secret needs a separate store
+- Secrets: Secret Manager · Secrets Manager · Key Vault; versioned secret values read by IAM-authorized callers at start-up or run time, with rotation and audit logging; Secret Manager keeps versions per secret, AWS Secrets Manager adds managed rotation for supported databases, and Key Vault holds secrets, keys and certificates in one service, so where a secret lives differs by provider
+- WAF and DDoS: Cloud Armor · AWS WAF and Shield · Azure WAF and DDoS Protection; rules inspect HTTP requests before they reach the origin, with managed rule sets, custom rules and rate limits, and DDoS protection absorbs volumetric attacks; Cloud Armor attaches to load balancer backends and offers OWASP Core Rule Set rules; AWS WAF attaches to CloudFront and load balancers, and Shield provides DDoS protection; Azure WAF runs on Application Gateway or Front Door
+- Container registry: Artifact Registry · ECR · Azure Container Registry; images are stored by digest, access is governed by IAM, and scanning reports vulnerabilities in each image; Artifact Registry also stores language packages alongside images, so it covers more formats than images alone; the login step for pushes and pulls differs by product
+- CI build: Cloud Build · CodeBuild · Azure Pipelines; a build runs its steps in an isolated environment triggered by a repository event and produces an image or artifact for a registry; each product reads its own config file (`cloudbuild.yaml`, `buildspec.yml` for CodeBuild, `azure-pipelines.yml`), so a pipeline moves across only when its commands do
 - CD and release: Cloud Deploy · CodePipeline and CodeDeploy · Azure Pipelines releases
 - Native IaC: Infrastructure Manager and Config Connector · CloudFormation and CDK · ARM and Bicep
-- Metrics: Cloud Monitoring · CloudWatch · Azure Monitor
-- Logs: Cloud Logging · CloudWatch Logs · Azure Monitor Logs
-- Tracing: Cloud Trace · X-Ray · Application Insights
+- Metrics: Cloud Monitoring · CloudWatch · Azure Monitor; time series with labels or dimensions, alerting on thresholds, and dashboards; Cloud Monitoring adds SLO monitoring and alerts on log-based metrics, CloudWatch organizes metrics in namespaces with dimensions, and Azure Monitor metrics are scoped to the resource that emits them, so cardinality and naming choices carry over differently
+- Logs: Cloud Logging · CloudWatch Logs · Azure Monitor Logs; centralized log storage with retention, query and export; Cloud Logging stores entries in log buckets and routes them with sinks, CloudWatch Logs organizes them into log groups and streams, and Azure Monitor Logs keeps them in a Log Analytics workspace queried with Kusto, so retention and export are set up separately in each product
+- Tracing: Cloud Trace · X-Ray · Application Insights; spans carry trace and parent identifiers in request headers, so one request can be followed across services; Cloud Trace accepts OpenTelemetry export, X-Ray traces requests through AWS services and its own SDK, and Application Insights is part of Azure Monitor, so instrumentation written against OpenTelemetry moves between them more easily than vendor SDK calls
 - ML platform: Gemini Enterprise Agent Platform · SageMaker · Azure Machine Learning
-- Foundation models: Model Garden and Gemini · Bedrock · Azure AI Foundry
+- Foundation models: Model Garden and Gemini · Bedrock · Azure AI Foundry; hosted models called through a managed API with quotas, regional endpoints and per-token billing; which models each provider offers, and in which regions, changes often, so the catalog must be checked in the provider's own listing before a design depends on a model
 - Organization hierarchy: organization → folder → project · organization → OU → account · management group → subscription → resource group
 - Organization-wide policy: Organization Policy · service control policies · Azure Policy
 - SIEM and SecOps: Google SecOps · Security Hub and GuardDuty · Microsoft Sentinel and Defender

@@ -13,9 +13,9 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - Per-instance concurrency, minimum and maximum instances, CPU and memory limits, request timeouts
   - The container contract: listen on `PORT`; SIGTERM then a 10-second grace period; TLS terminated at the front end; HTTP/2 end to end (h2c), gRPC, WebSockets and streamed responses; no raw UDP
   - Service identity and invoker IAM; service-to-service ID tokens whose audience is the receiver URL
-  - Source deploys with buildpacks
-- **Cloud Run functions** (Cloud Functions) and **App Engine**
-- **Eventarc**: events from many sources delivered as CloudEvents
+  - Source deploys with buildpacks; `gcloud run deploy --source` uploads the source folder, Cloud Build builds it with Google Cloud's buildpacks, which detect the language and produce a container image without a Dockerfile; a Dockerfile takes over when the team needs control over the base image or system packages
+- **Cloud Run functions** (Cloud Functions) and **App Engine**: Cloud Run functions deploy one handler function in a supported language runtime, which runs as a Cloud Run service with the same invoker and identity controls; App Engine deploys a whole web application in a managed runtime, where each deployed version can be given a share of traffic for gradual rollouts
+- **Eventarc**: events from many sources delivered as CloudEvents; a trigger matches events by type and attributes and routes them to a destination such as a Cloud Run service or a Workflows run; events from Google Cloud audit logs arrive through the same path; delivery is at least once, so the receiving handler must be idempotent
 
 ### Google Cloud — storage and databases
 
@@ -41,20 +41,20 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 ### Google Cloud — networking
 
 - **VPC**: global VPCs with regional subnets; firewall rules and Cloud NGFW; routes and Cloud Router; Shared VPC host and service projects; VPC peering; Private Google Access; Private Service Connect; Network Connectivity Center; reserved static IPs
-- **Cloud NAT** for egress with static IPs; Secure Web Proxy
+- **Cloud NAT** for egress with static IPs; Secure Web Proxy; Cloud NAT is configured on a Cloud Router per region and translates the private addresses of instances with no external IP into a shared set of external addresses for outbound connections only, so it accepts no unsolicited inbound traffic; Secure Web Proxy is a managed forward proxy that applies destination hostname and URL policies to egress traffic, with optional TLS inspection, and clients must be configured to send their requests through it
 - **Hybrid connectivity**: Cloud VPN and HA VPN; Dedicated and Partner Interconnect
 - **Cloud Load Balancing**
   - Application Load Balancers (L7): global external, regional external, internal, cross-region internal; URL maps with host and path rules; backend services; health checks; backends as MIGs and NEGs (zonal, serverless, internet)
   - Network Load Balancers (L4): proxy (TCP termination) and passthrough (preserving clients, UDP)
   - One anycast IP steering users to the nearest healthy region; HTTP/1.1, HTTP/2 and HTTP/3 to clients
-  - Locality policies including ring hash and Maglev for cache affinity
+  - Locality policies including ring hash and Maglev for cache affinity; ring hash places backends on a hash ring so that each key maps to a stable backend, and removing one backend remaps only the keys on its arc; Maglev builds a fixed lookup table that spreads keys almost evenly with little disruption when backends change; affinity trades even load for cache hits, so a hot key still concentrates on one backend
   - Google-managed certificates; Certificate Manager; SSL policies setting minimum TLS versions
 - **Cloud DNS**: public and private zones; DNSSEC; routing policies (weighted round robin, geolocation with geofencing, failover) with health checks; DNS logging; Cloud Domains
 - **Cloud CDN**: pull CDN on the global Application LB; origins as backend buckets, instance groups and external origins; cache modes (`CACHE_ALL_STATIC`, `USE_ORIGIN_HEADERS`, `FORCE_CACHE_ALL`); TTLs and cache keys; signed URLs and cookies; invalidation; serve-while-stale; GET and HEAD only
 - **Media CDN** for large video and downloads; **Firebase Hosting** for static and web front ends with custom headers
 - **Service Directory**; **Cloud Service Mesh** (managed Istio and Envoy) for mTLS, retries and traffic management; mesh concepts: a sidecar Envoy proxy beside each workload carrying its traffic, a control plane pushing routes and certificates to the proxies, and a workload identity per service behind each mTLS connection
 - **API Gateway, Cloud Endpoints and Apigee**: OpenAPI and gRPC with transcoding; keys, quotas, analytics, spike arrest
-- **Network Intelligence Center** and Connectivity Tests
+- **Network Intelligence Center** and Connectivity Tests; Network Intelligence Center bundles network observability, including Network Analyzer insights into misconfigurations and Network Topology views of traffic; Connectivity Tests analyze a configured source and destination, trace the path a packet would take through routes, firewall rules and forwarding rules, and report the first rule that blocks it, so a reachability question can be answered from configuration alone
 
 ### Google Cloud — data and analytics
 
@@ -63,20 +63,20 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 - **Cloud Tasks** (HTTP targets, per-queue rate and concurrency limits, scheduled tasks) and **Cloud Scheduler**
 - **Workflows** for serverless orchestration with callbacks; **Cloud Composer** (Apache Airflow)
 - **Dataflow** (Apache Beam: pipelines, `DoFn` lifecycle, windows and watermarks, streaming and batch); **Dataproc** and Dataproc Serverless (Spark, Hadoop, the Cloud Storage connector)
-- **Datastream**, **Data Fusion**, **Dataplex**, **BigLake**, **Analytics Hub**
-- **Looker** and **Looker Studio**
-- Log sinks into BigQuery and Log Analytics; billing export to BigQuery
+- **Datastream**, **Data Fusion**, **Dataplex**, **BigLake**, **Analytics Hub**: Datastream streams change data capture from operational databases into BigQuery or Cloud Storage; Data Fusion is a visual service for building ETL and data integration pipelines; Dataplex organizes data across Cloud Storage and BigQuery into governed lakes with metadata and data quality checks; BigLake gives BigQuery and open engines one access layer over files in Cloud Storage with fine-grained access control; Analytics Hub publishes and subscribes to shared datasets across organizations
+- **Looker** and **Looker Studio**: Looker is an enterprise BI platform whose LookML semantic model defines each metric once for every report built on it; Looker Studio is a self-service dashboard tool that connects to many data sources for reports that business users can edit
+- Log sinks into BigQuery and Log Analytics; billing export to BigQuery; a log sink filters entries by query and routes the matches to a destination, with exclusion filters that keep chosen entries out; Log Analytics runs SQL over log buckets; billing export writes detailed cost rows to a dataset, the usual basis for cost queries and dashboards
 
 ### Google Cloud — AI and ML
 
 - **Gemini Enterprise Agent Platform** (formerly Vertex AI): Workbench, custom training with accelerators, Pipelines, Feature Store, Model Registry, Experiments, endpoints, Model Monitoring, Vizier hyperparameter tuning, AutoML, Evals (formerly the Gen AI evaluation service); distributed training as worker pools (a chief, workers and optional parameter servers) with gradient all-reduce across accelerators, submitted as a `workerPoolSpecs` list with `gcloud ai custom-jobs create --region=REGION --display-name=NAME --config=config.yaml`
-- Model Garden (Gemini, Claude and open models); Agent Studio
+- Model Garden (Gemini, Claude and open models); Agent Studio; Model Garden is a catalog where each model is listed with its terms, regions and deployment options, so a team can call a managed model API or deploy an open model to its own endpoint; Agent Studio is a visual environment for building agents, where instructions, tools and the model are set in one place
 - Agent Development Kit (ADK); Agent Runtime (Agent Engine); managed sessions and Memory Bank; Agent Identity and principal access boundary policies; Agent Registry; Google Cloud MCP servers; Agents CLI
 - Vector Search; Agent Retrieval (formerly Vector Search 2.0); Agent Search (formerly Vertex AI Search); RAG Engine; text-embedding models
 - Claude on Google Cloud: a regional or global endpoint with the model in the URL; Application Default Credentials instead of API keys; per-region quotas; billing through the Google Cloud account
 - Gemini Enterprise, Agent Designer and Customer Experience Agent Studio for low-code agents
 - Pre-built AI APIs: Vision, Video Intelligence, Speech-to-Text, Natural Language, Translation, Document AI
-- Model Armor for prompt and response screening
+- Model Armor for prompt and response screening; a screening configuration sets which checks run on a prompt and on a response, such as prompt-injection and jailbreak detection, harmful content and sensitive data; the screen runs before the prompt reaches the model and before the response reaches the user, so a flagged request can be blocked or logged; it reduces risk but does not replace least-privilege tool access or output validation in the application
 
 ### Google Cloud — security
 
@@ -86,7 +86,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 - **Secret Manager**: versions, rotation, access at start-up, integration with GKE
 - **Identity-Aware Proxy**: OAuth consent, the accessor role, signed headers the app must validate; IAP is not object-level authorization
 - **Identity Platform**: email/password, OIDC and SAML providers, MFA factors, multi-tenancy, session policies; reCAPTCHA Enterprise
-- **VPC Service Controls** perimeters against data exfiltration
+- **VPC Service Controls** perimeters against data exfiltration; a service perimeter around projects restricts the listed Google APIs, so a request from outside the perimeter is denied even with valid credentials, which limits copying data to a project the attacker controls; ingress and egress rules admit named identities or networks through; dry-run mode logs the requests a perimeter would deny before it is enforced; it complements IAM rather than replacing it, and it blocks legitimate callers that are not on the list
 - **Cloud Armor**: preconfigured WAF rules based on the OWASP Core Rule Set; custom rules in CEL; rate-based rules; Adaptive Protection; edge DDoS defence
 - **Binary Authorization** with attestations; **Artifact Registry** (remote repositories, vulnerability scanning, Artifact Analysis); Cloud Build provenance
 - **Security Command Center** findings; Web Security Scanner; **Google SecOps** (SIEM and SOAR); Cloud IDS
@@ -97,7 +97,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 ### Google Cloud — operations, DevOps and cost
 
 - Cloud Build (multi-stage builds, provenance, private pools); Cloud Deploy; Artifact Registry
-- Infrastructure Manager and Config Connector
+- Infrastructure Manager and Config Connector; Infrastructure Manager runs Terraform configurations as a managed deployment that stores state and applies a plan from a deployment resource; Config Connector declares Google Cloud resources as Kubernetes custom resources that a controller reconciles continuously, so drift is corrected in the cluster; choose Terraform for whole-environment provisioning and Config Connector when the platform already runs GitOps on Kubernetes
 - Cloud Monitoring (distribution metrics, SLO monitoring, alerting on log-based metrics), Cloud Logging (`jsonPayload`, severity), Cloud Trace (OpenTelemetry export), Cloud Profiler, Error Reporting, Managed Service for Prometheus, Service Health
 - Cloud client libraries: one client per process; Application Default Credentials; functional options; REST and gRPC transports; page iterators; pluggable retry policies
 - Cloud Billing reports, budgets and alerts, labels; the Pricing Calculator; Recommender (Active Assist); Cloud Quotas; Carbon Footprint
@@ -118,7 +118,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - Scripting: `value()` output into shell variables; `describe … --format=json` piped into `jq`; idempotent create-or-describe checks; non-zero exit codes on failure
 - **Projects, APIs, billing and hierarchy**
   - `gcloud projects create`, `list` and `describe`; `gcloud resource-manager folders create`; `gcloud organizations list`
-  - `gcloud services enable` and `list --enabled`
+  - `gcloud services enable` and `list --enabled`; an API must be enabled in a project before its calls succeed, and a call to a disabled API fails with a service-disabled error; `gcloud services list --enabled` shows what the project has on, so it is the first check when a call fails that way; enabling can be repeated safely, while disabling can break services that depend on the API
   - `gcloud billing accounts list`; `gcloud billing projects link`; `gcloud billing budgets create` with threshold rules
 - **IAM**
   - `gcloud iam service-accounts create`, `list` and `keys list`; avoiding `keys create`
@@ -127,7 +127,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - `gcloud iam roles create --permissions` and `describe`; `gcloud iam list-testable-permissions`
   - Workload Identity Federation: `gcloud iam workload-identity-pools create`, `providers create-oidc` with an attribute mapping and condition, `create-cred-config`
   - Auditing: `gcloud asset search-all-iam-policies`, `gcloud asset search-all-resources`; `gcloud policy-intelligence troubleshoot-policy iam`
-  - Organization policies: `gcloud org-policies describe`, `set-policy` and `list`
+  - Organization policies: `gcloud org-policies describe`, `set-policy` and `list`; a constraint is set on an organization, folder or project and is inherited by the resources beneath it; `describe` shows the policy for one constraint on a resource, `set-policy` applies a policy file and `list` shows the policies set on a resource; a boolean constraint enforces or does not, while a list constraint allows or denies named values
 - **Compute Engine**
   - `gcloud compute instances create` with `--machine-type`, `--image-family` and `--image-project`, `--subnet`, `--no-address`, `--service-account` and `--scopes=cloud-platform`, `--metadata-from-file=startup-script=`, `--shielded-secure-boot`, `--provisioning-model=SPOT`
   - `gcloud compute instances list`, `describe`, `stop`, `start`, `delete`; `add-metadata`; `get-serial-port-output`
@@ -138,7 +138,7 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - `gcloud compute networks create --subnet-mode=custom`; `gcloud compute networks subnets create --range --enable-private-ip-google-access`
   - `gcloud compute firewall-rules create` with `--direction`, `--allow`, `--source-ranges`, `--target-tags` or `--target-service-accounts`, `--priority`; `list --format=table(…)`
   - `gcloud compute routers create`; `gcloud compute routers nats create --auto-allocate-nat-external-ips --nat-all-subnet-ip-ranges`
-  - `gcloud compute addresses create` (`--global` or `--region`)
+  - `gcloud compute addresses create` (`--global` or `--region`); reserves a static IP address that stays with the project when the resource using it is replaced; `--global` is for global load balancer frontends and `--region` for regional resources; a reserved external address that no resource uses is billed, so release those that are no longer attached
   - Load balancer pieces in order: `health-checks`, `backend-services create` and `add-backend`, `url-maps create`, `ssl-certificates create --domains` (Google-managed), `target-https-proxies create`, `forwarding-rules create`; `backend-services update --enable-cdn`; serverless NEGs with `network-endpoint-groups create --network-endpoint-type=serverless`
   - `gcloud compute security-policies create` and `rules create --expression --action` for Cloud Armor
   - `gcloud dns managed-zones create` (public or `--visibility=private`); `gcloud dns record-sets create --type --ttl --rrdatas`
@@ -148,8 +148,8 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
   - Functions on Cloud Run: `gcloud run deploy --function` with `--base-image`; the older `gcloud functions deploy`
   - Canary releases: `gcloud run deploy --no-traffic --tag`; `gcloud run services update-traffic --to-revisions=REVISION=10` or `--to-latest`; `gcloud run revisions list`
   - `gcloud run services describe` and `list`; `gcloud run services logs read`; `gcloud run services add-iam-policy-binding --role=roles/run.invoker`; `gcloud run services proxy` for local testing of private services
-  - Jobs: `gcloud run jobs create`, `execute --wait`, `executions list`
-  - `gcloud app deploy` for App Engine; `gcloud eventarc triggers create`
+  - Jobs: `gcloud run jobs create`, `execute --wait`, `executions list`; a job runs a container to completion instead of serving requests, with a set number of tasks that can run in parallel; each run is an execution, and `execute --wait` blocks until it ends so a script or pipeline can act on the result; a failed task is retried up to a configured limit, and a scheduler can start the job on a timetable
+  - `gcloud app deploy` for App Engine; `gcloud eventarc triggers create`; `app deploy` reads the app's configuration file and creates a new version that can receive a share of traffic; `eventarc triggers create` names the event filters, the destination and the service account the trigger uses, and that account must be allowed to invoke the destination
 - **Kubernetes Engine**
   - `gcloud container clusters create-auto` (Autopilot) versus `clusters create` (Standard) with `--release-channel`, `--enable-private-nodes`, `--workload-pool=PROJECT_ID.svc.id.goog`, `--enable-ip-alias`
   - `gcloud container clusters get-credentials` to write a kubeconfig context; `clusters upgrade`; `clusters resize`
@@ -184,5 +184,5 @@ Domain: Cloud Providers: Google Cloud, AWS, Azure & Certifications (part 1 of 2)
 - **Operations**
   - `gcloud logging read` with a filter (`resource.type`, `severity>=ERROR`, `jsonPayload.field`), `--freshness`, `--limit` and `--format`; `gcloud logging sinks create` to BigQuery, Cloud Storage or Pub/Sub with exclusions; `gcloud logging metrics create`
   - `gcloud monitoring policies create --policy-from-file`; `gcloud monitoring dashboards create`; `gcloud monitoring uptime create`
-  - `gcloud compute operations list` and `gcloud container operations wait` for long-running operations
+  - `gcloud compute operations list` and `gcloud container operations wait` for long-running operations; a long-running call returns an operation resource with a name, a done field that becomes true when the work ends, an error field if it failed and a response field carrying the result; poll the operation with exponential backoff and a cap rather than in a tight loop, or use `gcloud compute operations wait` or `gcloud container operations wait` to block until it is done in a script
 - **AI services**: `gcloud ai models upload`; `gcloud ai endpoints create`, `deploy-model` and `predict`; `gcloud ai custom-jobs create`; `gcloud ai indexes` and `index-endpoints` for Vector Search; `gcloud ai model-garden`
