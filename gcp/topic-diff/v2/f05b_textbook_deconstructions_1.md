@@ -1,7 +1,7 @@
 # Topic diff: Textbook deconstructions, part 1
 
 Source: `gcp/unified-curriculum.md` lines 2116–2489 (section 2, "Textbook deconstructions", through the ICSE Aggarwal table)
-Counts: covered 326 · partial 120 · missing 37 · out of scope 14 (total 497)
+Counts: covered 326 · partial 121 · missing 36 · out of scope 14 (total 497)
 
 Method: case-insensitive searches over `gcp-lite/index/*.topics.md` and `gcp-lite/Rust_Track_AI_Infrastructure.md`. A hit counts only after its line is read. Locations give the topic file and nearest `###` heading, with line numbers in the Note column. `part01_school_foundations.topics.md` has no `###` headings, so its rows give the line number instead. Topics repeated across the range get one row, at first appearance. Statuses marked "judgment" rest on heading-level reading, not a named hit.
 
@@ -384,7 +384,7 @@ Method: case-insensitive searches over `gcp-lite/index/*.topics.md` and `gcp-lit
 | Acoustic modeling (MAP, MLLR, confidence) | covered | part19b_speech_vision_retrieval_and_nlp_toolkits.topics.md — Speech recognition: from HMMs to Kaldi | Lines 25, 43 |
 | Environmental robustness (CMN, PMC, VTS) | partial | part19b_speech_vision_retrieval_and_nlp_toolkits.topics.md — Speech science and analysis | CMN, PMC, VTS (line 19); acoustic echo cancellation and arrays missing |
 | Acoustic echo cancellation and beamforming | missing | → suggest part19b | No hit |
-| Language modeling: Chomsky hierarchy | missing | → suggest part19b | No hit |
+| Language modeling: Chomsky hierarchy | partial | part07 regular languages (line 63) | Regular languages and pumping lemma only; the full hierarchy and language-model link not checked |
 | n-gram language models and smoothing | covered | part19b_speech_vision_retrieval_and_nlp_toolkits.topics.md — Classical NLP and toolkits | Kneser–Ney (line 94) |
 | Cache, topic and maximum-entropy language models | partial | part19b_speech_vision_retrieval_and_nlp_toolkits.topics.md — Classical NLP and toolkits | Not named in part19b; maximum-entropy distributions in part03 (line 78) |
 | Basic search (Viterbi beam, stack decoding, A*) | covered | part19b_speech_vision_retrieval_and_nlp_toolkits.topics.md — Speech recognition: from HMMs to Kaldi | Stack decoding (line 33); A* (part19 line 20) |
@@ -677,7 +677,6 @@ Method: case-insensitive searches over `gcp-lite/index/*.topics.md` and `gcp-lit
 - DSP tricks (frequency translation, linear interpolation) — → suggest part03c No hit
 - Speech coding (PCM, µ-law, CELP) — → suggest part19b No hit
 - Acoustic echo cancellation and beamforming — → suggest part19b No hit
-- Language modeling: Chomsky hierarchy — → suggest part19b No hit
 - Gambling and data compression — → suggest part03 No hit for Kelly or gambling
 - Information theory and portfolio theory — → suggest part30 No hit
 - Algorithm-independent machine learning — → suggest part19 No hit
@@ -815,3 +814,4 @@ Method: case-insensitive searches over `gcp-lite/index/*.topics.md` and `gcp-lit
 - Quadratics (nature of roots) — part01_school_foundations.topics.md:31 — Not checked by name
 - Factorization (factor theorem, remainder theorem) — part01_school_foundations.topics.md:62 — Factoring named (line 62)
 - AP and GP — part03_mathematics.topics.md — Probability — Not checked by name (judgment)
+- Language modeling: Chomsky hierarchy — part07 regular languages (line 63) Regular languages and pumping lemma only; the full hierarchy and language-model link not checked
