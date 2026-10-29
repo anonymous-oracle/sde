@@ -12,7 +12,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - Files for loading: CSV NULL versus empty string, JSON versus JSONL, `COPY` options, CRLF traps
 - Tooling: `psql` meta-commands and `ON_ERROR_STOP`, Postgres in Docker with volumes and health checks, session time zone and collation
 - Driver hygiene: parameter binding (injection as a binding failure), transactions on the connection, cursor hygiene
-- Page arithmetic: 8 KiB pages, rows per page, fill factor
+- Page arithmetic: 8 KiB pages, rows per page, fill factor; a page is 8192 bytes and its 24-byte header is not available for rows; each row costs a 4-byte line pointer and a tuple header of 23 bytes padded to 24, so rows per page ≈ (8192 − 24) ÷ (row bytes + 28), ignoring null bitmaps and data alignment; a 100-byte row therefore gives about 63 rows per page, and 10 million rows about 159,000 pages or 1.3 GB before indexes; a fill factor of f stops ordinary inserts once a page is about f percent full, so the same arithmetic at f = 70 holds about 44 such rows per page, leaving the rest for updates
 
 ### Relational theory
 
