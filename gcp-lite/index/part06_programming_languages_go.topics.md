@@ -13,62 +13,62 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - `go.mod`: module path, the `go` line, the `toolchain` line, `require`, `replace`, `exclude`
   - `go.sum`, the checksum database (`GOSUMDB`), the module proxy (`GOPROXY`), `GOPRIVATE` and `GONOSUMDB`
   - Minimal version selection: the highest of the minimum required versions, reproducible without a lock file
-  - Semantic import versioning (`/v2` paths)
+  - Semantic import versioning (`/v2` paths): a major version 2 or higher appears as a `/vN` suffix on the import path, for example `example.com/lib/v2`, so two major versions of one library can be imported side by side; v0 and v1 have no suffix, and the suffix is part of the path the compiler resolves, not a label
   - The `go` line as a language-feature switch; `GOTOOLCHAIN=auto` toolchain downloads versus `local`
   - `gofmt` as the one canonical layout; `go vet` analyses; vertical openness, meaning blank lines that separate concepts, variables declared next to first use and callers above callees, and density, meaning one idea per line
-  - A file-system module proxy for offline builds
+  - A file-system module proxy for offline builds: `GOPROXY` set to a `file://` location points the go command at a directory laid out in the proxy protocol, so dependencies come from disk with no network; `go.sum` still checks each downloaded archive's hash, and `GOFLAGS=-mod=vendor` with a vendor directory is the other way to build without the network
 - **Packages and visibility**
   - One package per directory; `package main` versus libraries; import paths versus package names
-  - Exported (upper-case) versus package-private names; `internal/` directories
+  - Exported (upper-case) versus package-private names; `internal/` directories: a name is exported when its first character is an upper-case letter, and the compiler refuses references from other packages to lower-case names, so the exported names form the package's API; a directory named `internal` makes the packages beneath it importable only by code rooted at its parent, which keeps implementation packages out of other projects' reach
   - No import cycles, and the design pressure that creates (shared abstractions pushed down)
   - Initialisation order: package variables in dependency order, then `init` functions; blank imports for side effects
   - Unused imports and variables as compile errors
   - Package naming: no `util` packages, no name stutter; identifier conventions: MixedCaps with no underscores, one- or two-letter receiver names, short names for short scopes and longer names for exported identifiers, initialisms kept in one case (`ID`, `URL`, `HTTPServer`), and getters named without a `Get` prefix
 - **Types, constants and conversions**
   - Basic types: `bool`, `string`, sized integers, `uintptr`, floats, complex, `byte` and `rune` aliases
-  - Zero values; `var` versus `:=`; shadowing
+  - Zero values; `var` versus `:=`; shadowing; every variable starts at the zero value of its type (0, false, the empty string, nil for pointers, slices and maps, a struct with every field zeroed), so no uninitialised memory is read; `var x T` declares a variable with that zero value, `x := expr` declares and infers the type and works only inside functions, and at least one name on its left must be new; shadowing is a new variable in an inner scope with the same name as an outer one, so `err :=` in an inner block creates a second `err` and the outer one is unchanged
   - The blank identifier: `_` discarding a value or a result position; `var _ I = (*T)(nil)` as a compile-time interface check; blank imports for side effects
-  - No implicit conversions; `T(x)` everywhere
+  - No implicit conversions; `T(x)` everywhere: Go never converts a value to another type on its own, so assigning an `int` to an `int64` variable or adding an `int` to a `float64` is a compile error; `T(x)` is the only conversion syntax, and it follows the value's own rules (an integer to a smaller integer keeps the low bits, a float to an integer truncates toward zero); untyped constants are the exception, since they adapt to the type they meet
   - Untyped constants with arbitrary precision; `iota` enumerations with an "unknown" zero value
   - Integer division truncating toward zero; defined two's-complement overflow; division by zero
-  - IEEE 754 floats: NaN and ±Inf
+  - IEEE 754 floats: NaN and ±Inf; `float64` is an IEEE 754 binary64 value, so dividing a non-zero float by zero yields ±Inf rather than a panic, `0.0/0.0` yields NaN, and NaN compares unequal to everything, itself included, so `x != x` is the test for NaN and `math.IsNaN` says it clearly; integer division by zero, by contrast, panics at run time
   - Contrasts: Python floor division and big ints; Java widening; C undefined overflow; JavaScript's 2⁵³ integer limit
 - **Control flow**
   - `for` as the only loop; `range` over integers, slices, strings, maps, channels and functions
   - `if` and `switch` with init statements; no fall-through by default; tagless `switch`; `fallthrough`
   - Labels with `break`, `continue` and `goto`; `break` inside `select` or `switch`
-  - Per-iteration loop variables and the pre-1.22 capture bug
+  - Per-iteration loop variables and the pre-1.22 capture bug: before Go 1.22 every iteration of a `for` loop shared one variable, so closures or goroutines started in the loop all saw the value from the last iteration; from Go 1.22 each iteration gets its own copy, when the `go` line of `go.mod` is 1.22 or later; before that, the fix is a fresh local copy in the loop body (`v := v`)
 
 ### Go — composite data, functions, errors and text
 
 - **Arrays, slices and maps**
-  - Arrays as values whose length is part of the type
+  - Arrays as values whose length is part of the type: `[3]int` and `[4]int` are different types and cannot be assigned to each other, because the length is part of the type; assignment and passing a function argument copy every element; `len` of an array is a compile-time constant; a slice is the type to use when the length varies at run time
   - The slice header (pointer, length, capacity); `make`, `append`, `copy`, full slice expressions `s[lo:hi:max]`
-  - Aliasing: slicing shares memory; when `append` reallocates; growth behaviour
-  - Nil versus empty slices and their JSON encodings
+  - Aliasing: slicing shares memory; when `append` reallocates; growth behaviour; `s[1:3]` produces a slice header that points into the same backing array, so writing through it changes the original and every other alias; `append` writes into spare capacity when there is room, which an alias sharing that array can see, and otherwise allocates a new array, copies the elements and returns a slice pointing there, after which the old slice no longer sees new writes; growth roughly doubles small slices and approaches 1.25 times for large ones, so code must not assume a fixed capacity
+  - Nil versus empty slices and their JSON encodings: a nil slice has no backing array and `s == nil` is true; `[]int{}` and `make([]int, 0)` have length 0 and are not nil; both support `len`, `range` and `append` identically; `encoding/json` encodes a nil slice as `null` and an empty one as `[]`, so an API that promises an array must make the slice non-nil before encoding
   - Maps as hash tables: comma-ok, `delete`, `clear`, randomised iteration order, nil-map write panics, non-addressable elements, comparable keys
-  - Concurrent map writes as a fatal error
-  - The `slices` and `maps` packages; built-in `min` and `max`
-  - Contrast: Python slicing copies, Go slicing aliases
+  - Concurrent map writes as a fatal error: two goroutines writing one map at the same time make the runtime abort the whole process with `fatal error: concurrent map writes`; it is a fatal error rather than a panic, so `recover` cannot catch it; guard the map with a `sync.Mutex` or `sync.RWMutex`, or use `sync.Map` for the cases it suits, and run tests with `-race` to find the race before production does
+  - The `slices` and `maps` packages; built-in `min` and `max`: `slices` offers generic `Sort`, `SortFunc`, `Index`, `Contains`, `Insert` and `Delete` over any slice; `maps` offers `Clone`, `Equal` and iterator-returning `Keys` and `Values`; the built-in `min` and `max` (since Go 1.21) take one or more ordered arguments; these replace hand-written loops that are easy to get wrong
+  - Contrast: Python slicing copies, Go slicing aliases; in Python `a[1:3]` builds a new list, so changing it leaves `a` alone, while in Go the result shares the array with `a` until an `append` reallocates or an explicit copy is made; code ported from Python that edits a sub-slice in Go changes the original, so the port needs `slices.Clone` or `make` with `copy`
 - **Functions, closures and `defer`**
-  - Function values and types; multiple and named results; variadic parameters
-  - Closures capture variables, not values
+  - Function values and types; multiple and named results; variadic parameters: a function is a value of a function type such as `func(int) int`, so it can be stored, passed and returned, and it can be compared only with `nil`; multiple results come back as a list and by convention the last is an `error`; named results act as variables starting at zero and allow a bare `return`; a variadic parameter `...T` receives a slice, and `f(xs...)` passes an existing slice without copying it
+  - Closures capture variables, not values: a function literal refers to the enclosing variable itself, so a later assignment to that variable shows up inside the closure, and each call reads the current value; the variable stays alive as long as the closure does, even after the enclosing function returns; this is why a closure over a loop variable sees one shared variable unless the per-iteration rule above applies
   - `defer`: function-scoped, last-in-first-out, arguments evaluated at the `defer` statement; modifying named results
-  - Growable goroutine stacks and the maximum stack size; no tail-call optimisation
+  - Growable goroutine stacks and the maximum stack size; no tail-call optimisation: each goroutine starts with a stack of a few kilobytes, and the runtime copies it into a larger one when a function's prologue finds too little space, so deep recursion costs memory before it costs anything else; the default maximum on 64-bit systems is 1 GB, and exceeding it is a fatal stack overflow that `recover` cannot catch; the compiler does not turn tail calls into jumps, so a recursion that must run millions of steps is rewritten as a `for` loop
   - No overloading, default or keyword arguments; options structs and functional options
 - **Errors, `panic` and `recover`**
-  - `error` as an interface; returning errors as values
-  - Wrapping with `%w`; `errors.Is`, `errors.As`, `errors.AsType`, `errors.Join`
-  - Sentinel, typed and opaque errors as API design
+  - `error` as an interface; returning errors as values: `error` is a built-in interface with one method, `Error() string`, so any type with that method is an error; a function reports failure through a final `error` result, the caller checks `if err != nil` at once, and `nil` means success; Go has no exceptions that unwind the stack, so every failure path is a visible return value
+  - Wrapping with `%w`; `errors.Is`, `errors.As`, `errors.AsType`, `errors.Join`: `fmt.Errorf` with `%w` stores the wrapped error inside the new one, forming a chain; `errors.Is` walks the chain comparing each link with `==` or an `Is` method; `errors.As` walks it looking for a target type and fills a pointer to that type with the first match; `errors.Join` combines several errors into one whose message holds each on its own line, and which `Is` and `As` search
+  - Sentinel, typed and opaque errors as API design: a sentinel is a package-level value such as `var ErrNotFound = errors.New(...)` that callers compare with `errors.Is`, so it becomes part of the API; a typed error is a struct type that callers extract with `errors.As` to read its fields; an opaque error exposes only its message and behaviour, so the package can change its internals without breaking callers; choose sentinels for conditions callers branch on, typed errors when they need data, and wrap either one with context as it moves up
   - `panic` for programmer bugs; `recover` only in a deferred function of the panicking goroutine
-  - An unrecovered panic in any goroutine kills the process
-  - The typed-nil interface trap
+  - An unrecovered panic in any goroutine kills the process: a `recover` in `main` does not catch a panic in a goroutine that `main` started, because each goroutine has its own stack and its own deferred calls; the runtime prints the panic and a stack trace, then exits with status 2; every goroutine that can panic needs its own deferred `recover` that turns the panic into an error or a log line
+  - The typed-nil interface trap: an interface value holds a (type, value) pair and is `nil` only when both parts are nil; a function that returns a nil `*MyErr` as an `error` therefore returns a non-nil interface whose type is `*MyErr`, so `err != nil` is true even though the pointer is nil; the fix is to return the untyped `nil` literal from the function when there is no error
   - Contrasts: exceptions (Java checked and unchecked, Python), C return codes, JavaScript rejections
 - **Strings, bytes and runes**
-  - Strings as immutable bytes; `byte` and `rune`; UTF-8 decoding in `range`
-  - `len` counts bytes; rune counting; grapheme clusters
-  - `strings`, `strings.Builder`, `bytes`, `strconv`, `unicode/utf8`
-  - `fmt` verbs and `go vet` format checks
+  - Strings as immutable bytes; `byte` and `rune`; UTF-8 decoding in `range`: a string is a read-only sequence of bytes, usually UTF-8; `byte` is an alias for `uint8`, and `rune` is an alias for `int32` holding one Unicode code point; `for i, r := range s` decodes UTF-8 and yields the byte offset of each code point, and an invalid byte decodes to U+FFFD, so the loop never stops on bad input
+  - `len` counts bytes; rune counting; grapheme clusters: `len` of a precomposed `é` is 2, because it takes two bytes in UTF-8; `utf8.RuneCountInString` counts code points, which is not what a reader sees: a grapheme cluster such as a letter with a combining accent, or an emoji with a skin-tone modifier, spans several code points, and the standard library has no grapheme segmentation, so counting visible characters needs a separate library
+  - `strings`, `strings.Builder`, `bytes`, `strconv`, `unicode/utf8`: `strings` searches, splits and replaces text; `strings.Builder` accumulates output without copying the string at each step; `bytes` mirrors `strings` on byte slices; `strconv.Itoa` and `strconv.ParseInt` convert numbers, with an explicit error for bad input; `unicode/utf8` counts runes and validates encodings through `RuneCountInString` and `ValidString`
+  - `fmt` verbs and `go vet` format checks: `%v` prints a default form, `%+v` adds field names, `%#v` prints Go syntax, `%T` prints the type, `%q` quotes a string, `%d` prints integers and `%s` prints strings; `go vet` checks that each verb matches its argument type and that the argument count is right, so `fmt.Printf("%d", "x")` is reported before the program runs
   - Unicode normalisation and case folding; mojibake from decoding bytes with the wrong encoding (UTF-8 bytes read as Latin-1 turn `é` into `Ã©`), and NFC or NFKC normalisation with `golang.org/x/text/unicode/norm` before comparing or cleaning text
   - Contrasts: Python code points, Java and JavaScript UTF-16 units, C NUL-terminated bytes
 
@@ -76,32 +76,32 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 
 - **Pointers, values and memory**
   - `&`, `*`, automatic dereference; `new(T)` and `new(expr)`; `make` for slices, maps and channels
-  - Everything passed by value; reference-like headers
-  - Escape analysis and `-gcflags=-m`
+  - Everything passed by value; reference-like headers: function arguments, assignments and range variables copy the value, so a struct is copied in full; a slice, map, channel or function value copies only a small header that refers to shared data (a slice header holds a pointer, a length and a capacity), so changing an element through a copied slice is visible to the caller, but reassigning the header variable is not
+  - Escape analysis and `-gcflags=-m`: the compiler decides for each value whether it can live in the function's stack frame or must go on the heap; a value escapes when a pointer to it outlives the call, for example when it is returned, stored in a global, or often when it is converted to an interface; `go build -gcflags=-m` prints each decision, such as `moved to heap: x`, so an unexpected allocation can be traced to its cause
   - The garbage collector: concurrent, tri-colour, non-moving mark and sweep; the Green Tea collector; the design problem it solves: a tracing collector must find live objects while the program keeps mutating the heap, so it pays with write barriers and marking CPU, and with memory headroom (`GOGC=100` lets the heap grow to about twice the live heap before the next cycle), against reference counting, which cannot reclaim cycles without extra work, and manual or ownership-based freeing
-  - `GOGC` and `GOMEMLIMIT`; container-aware `GOMAXPROCS`
-  - No destructors: release resources with `defer` and `Close`
+  - `GOGC` and `GOMEMLIMIT`; container-aware `GOMAXPROCS`: `GOGC` sets how far the heap may grow past the live heap before the next collection (100 by default, meaning about twice the live heap); `GOMEMLIMIT` sets a soft limit on the runtime's total memory, which makes the collector work harder as the program nears it; `GOMAXPROCS` sets how many goroutines run in parallel, and since Go 1.25 its default follows the CPU limit of the container, so a container limited to 2 CPUs gets 2 by default rather than the host's core count
+  - No destructors: release resources with `defer` and `Close`; Go has no destructors that run at a known point, and finalizers set with `runtime.SetFinalizer` run late or never, so the caller releases each resource: `defer f.Close()` right after a successful open, or `defer mu.Unlock()` right after a lock; a `Close` on a file that was written can fail with the last flush error, so its result is checked as well
 - **Structs and methods**
-  - Struct literals with field names; anonymous structs; struct tags
+  - Struct literals with field names; anonymous structs; struct tags: `Point{X: 1, Y: 2}` keeps working when a field is added, while the positional `Point{1, 2}` breaks, and `go vet` flags positional literals of struct types from other packages; an anonymous struct such as `struct{ name string; want int }` is a one-off type useful for a table of test cases; a tag such as `json:"name,omitempty"` is metadata that `encoding/json` and other packages read through reflection
   - Methods on named types in the same package; constructor functions; useful zero values
-  - Value versus pointer receivers and receiver consistency; addressability
-  - Method values and method expressions
-  - Comparable structs as map keys
-  - Copying a struct that holds a `sync.Mutex`
+  - Value versus pointer receivers and receiver consistency; addressability: a value receiver works on a copy, so its changes are lost when it returns, while a pointer receiver changes the caller's value; the usual rule is that if any method of a type needs a pointer receiver, all of them use one, so the type's method set stays uniform; Go takes the address `&v` for you when a pointer method is called on an addressable variable, but not on a map element or on a value returned by a function
+  - Method values and method expressions: `t.M` is a method value, a function with the receiver already bound at evaluation time; `T.M` or `(*T).M` is a method expression, a function that takes the receiver as its first argument; a method value of a value receiver copies the receiver at that moment, which surprises code that expects later changes to show
+  - Comparable structs as map keys: a struct is comparable with `==` when every field is comparable, so it can be a map key, while a struct holding a slice, map or function field cannot; the key is copied into the map, so later changes to the original variable do not move the stored entry, and two keys are equal when all their fields are equal
+  - Copying a struct that holds a `sync.Mutex`: a `sync.Mutex` keeps its lock state inside the struct, so a copy carries a copy of that state: a locked copy stays locked, and two copies no longer guard the same data; `go vet` reports such copies through its `copylocks` check, and the fix is to pass a pointer to the struct
 - **Interfaces and embedding**
-  - Implicit (structural) interface satisfaction; small, consumer-owned interfaces
-  - `any`, type assertions, type switches, compile-time satisfaction checks
-  - Sealed interfaces as closed sum types
-  - Method sets of `T` and `*T`
-  - Interface values as (type, value) pairs; uncomparable dynamic types
+  - Implicit (structural) interface satisfaction; small, consumer-owned interfaces: a type satisfies an interface by having its methods, with no `implements` declaration, so a package can declare an interface for the behaviour it needs and every matching type fits; keep these interfaces small, often one method, and declare them in the package that consumes them, so the consumer depends on behaviour and not on a concrete type
+  - `any`, type assertions, type switches, compile-time satisfaction checks: `any` is an alias for `interface{}`, so it accepts every value; `v.(T)` asserts that the dynamic type is `T` and panics otherwise, while `v, ok := x.(T)` reports the result without panicking; `switch v := x.(type)` branches on the dynamic type; `var _ I = (*T)(nil)` fails to compile when `*T` stops implementing `I`, which catches the error at build time
+  - Sealed interfaces as closed sum types: an interface with an unexported method, such as `isShape()`, can be implemented only by types in its own package, so the set of variants is closed; a type switch over the variants covers the cases the compiler knows about, and a linter can check that every variant is handled, which gives the exhaustive matching of a sum type
+  - Method sets of `T` and `*T`: the method set of `T` holds only the methods with value receivers, and the method set of `*T` holds both value and pointer receivers, so a `T` value does not satisfy an interface that needs a pointer method while a `*T` does; the compiler enforces this at each assignment or call that converts a value to the interface
+  - Interface values as (type, value) pairs; uncomparable dynamic types: comparing two interface values compares their dynamic types first and then their values; a comparison panics at run time when both hold the same uncomparable type, such as a slice or a map, so `==` on two `any` values that hold slices fails at run time rather than at compile time; the typed-nil trap above is the same (type, value) model at work
   - Embedding as composition with delegation, not inheritance; no dispatch back to the outer type
   - Design patterns in Go form: consumer-owned interfaces, function-type strategies, middleware decorators, `sync.Once` singletons, functional options in place of builders, channels or callbacks for observers, iterators
-  - "Accept interfaces, return structs"
+  - "Accept interfaces, return structs": a function should take the narrowest interface it needs as a parameter, so callers can pass any fitting type and tests can pass fakes, and should return a concrete struct, so callers see every field and method and the compiler checks their use; returning an interface hides the type's other methods and makes nil checks harder; treat it as a guideline, and return an interface when the concrete type must stay private or when the function's job is to choose among several types
 - **Generics and iterators**
-  - Type parameters on functions and types; inference
-  - Constraints as type sets: `~T`, unions, `comparable`, `cmp.Ordered`
-  - Generic methods
-  - GC-shape stenciling with dictionaries, and its performance consequences
+  - Type parameters on functions and types; inference: `func Map[T, U any](xs []T, f func(T) U) []U` declares type parameters in square brackets, and the compiler infers them from the arguments, so `Map(xs, strconv.Itoa)` needs no explicit types; struct and interface types can take type parameters too, as in `Stack[T any]`; inference fails when the arguments do not determine a parameter, and then the call must name the types in brackets
+  - Constraints as type sets: `~T`, unions, `comparable`, `cmp.Ordered`; a constraint is an interface that lists the types an argument may have: `~int | ~float64` admits every type whose underlying type is int or float64, `comparable` admits types that support `==`, and `cmp.Ordered` admits types that support `<` and `>`; a constraint can also require methods
+  - Generic methods: a method on a generic type uses its receiver's type parameters, as in `func (s *Stack[T]) Push(v T)`, and the receiver names them again; a method cannot declare its own type parameters, so a generic operation that needs extra types must be a function, not a method
+  - GC-shape stenciling with dictionaries, and its performance consequences: the compiler generates one instantiated copy of a generic function for each GC shape, meaning each set of types with the same memory layout and pointer shape, so `int` and `int64` can share code; operations that depend on the exact type read a dictionary of type information passed alongside, which adds an indirect call per operation; a hot generic loop can therefore run slower than a hand-specialised one, and profiling shows whether that is the case
   - `iter.Seq` and `iter.Seq2`; range-over-func; `yield` returning false; `iter.Pull`
   - Contrasts: Java erasure, C++ templates, Python type hints; push iterators versus pull generators
 
@@ -111,20 +111,20 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - `io.Reader` and `io.Writer` composition: `io.Copy`, `TeeReader`, `MultiWriter`, `LimitReader`
   - `bufio.Scanner` token limits; `bufio.Writer` flushing; checking `Close` on written files
   - `os` files, `path/filepath` versus `path`; `os.Root` against path traversal; `embed`
-  - `text/template` versus context-escaping `html/template`
+  - `text/template` versus context-escaping `html/template`: `text/template` writes its output unchanged, which is right for plain text or configuration files; `html/template` escapes each value according to where it lands (an HTML text node, an attribute, a URL, JavaScript or CSS), so user input cannot inject markup or script; using `text/template` to build HTML is a cross-site scripting bug, because the input is never escaped
   - `regexp` as RE2: linear time, no backreferences, no catastrophic backtracking; anchors `^` and `$` with the `(?m)` flag for line-anchored matching; greedy `.*` versus non-greedy `.*?` closures under the leftmost-first match rule; tokenizing with `FindAllStringSubmatch` and named groups; finite automata behind the engine: the pattern compiles to an NFA that is simulated in one pass over the input, with a DFA built lazily by subset construction; weighted finite automata over a semiring (min-plus for shortest paths, probability for decoding), and composition of transducers in speech pipelines; regex tokenizers in NLP: an ordered alternation of token classes such as `\p{L}+|\p{N}+|[^\s\p{L}\p{N}]+`, where the leftmost-first rule takes the first alternative that matches at each position, so the order of the alternatives sets the token boundaries; Unicode classes `\p{L}` and `\p{N}` for letters and digits across scripts; and checking token offsets by rebuilding the input from the matched spans
-  - `time`: wall and monotonic clocks, `Duration`, reference-time layouts
+  - `time`: wall and monotonic clocks, `Duration`, reference-time layouts; a `time.Time` holds a wall-clock reading, and a value from `time.Now` also holds a monotonic reading that `Sub` and `Since` use, so clock changes cannot make an interval negative; `Duration` is an `int64` count of nanoseconds, so `2 * time.Second` is exact; a layout is a template built from the fixed reference time `Mon Jan 2 15:04:05 MST 2006`, so `2006-01-02` formats the date; Unix epoch seconds and nanoseconds through `t.Unix()` and `t.UnixNano()`, counting from 1970-01-01 UTC with no zone, and `time.Unix(sec, nsec)` builds a time from them; time zones through `time.Location`, with `time.UTC` and `time.LoadLocation("Europe/London")` for an IANA name, and `t.In(loc)` shows the same instant in another zone without changing it; parsing with `time.Parse(layout, s)` and formatting with `t.Format(layout)`, both using the reference-time layout, with `time.ParseInLocation` for text that carries no zone
   - `encoding/json`: exported fields only, numbers into `any` as float64, `UseNumber`, `DisallowUnknownFields`, case-insensitive key matching, duplicate keys
-  - `encoding/json/v2`: case-sensitive matching and nil-slice encoding
+  - `encoding/json/v2`: case-sensitive matching and nil-slice encoding; the v2 package matches object keys case-sensitively by default, where v1 matches them case-insensitively, and it encodes a nil slice as `[]` rather than `null`, so each change must be checked against the code that reads the output; v2 is an experiment in the release that ships it, so check the release notes before relying on it in production
   - Atomic file writes: temporary file in the same directory, sync, close, rename
 - **Command-line programs, configuration and logging**
-  - `os.Args`, the `flag` package and one `FlagSet` per subcommand
+  - `os.Args`, the `flag` package and one `FlagSet` per subcommand: `os.Args[0]` is the program name and the rest are the raw arguments as strings; `flag.String`, `flag.Int` and `flag.Bool` define flags with a default and usage text, `flag.Parse` fills them, and `flag.Args` returns what is left over; `flag.NewFlagSet(name, flag.ExitOnError)` gives each subcommand its own flags, so `serve` and `migrate` do not share names, and each set parses `os.Args[2:]`
   - `os.Getenv` versus `os.LookupEnv`; precedence of flags, environment, config file and defaults; the process environment as a block of `KEY=value` strings copied to each child at `exec`, and why `os.Getenv` returns an empty string for both an unset variable and one set to empty, while `os.LookupEnv` returns a presence flag; per-environment layers (local, dev, staging, prod) where each later layer overrides only the keys it names, and secrets stay in a secret manager rather than in any layer
-  - Exit codes; `os.Exit` skips deferred calls; `log.Fatal`
-  - A tiny, testable `main` that delegates to `run`
-  - `log/slog`: structured attributes, levels, handlers, JSON output, `ReplaceAttr`
-  - `signal.NotifyContext` for SIGINT and SIGTERM
-  - Cobra and Viper for large CLIs
+  - Exit codes; `os.Exit` skips deferred calls; `log.Fatal`: `os.Exit(n)` ends the process at once with status `n`, so deferred functions do not run and buffered output can be lost; `log.Fatal` prints the message and then calls `os.Exit(1)`, so it has the same effect; by convention 0 means success, 1 a general failure and 2 bad usage, which is the status the `flag` package uses on a parse error; `main` should return an error from `run` and let one place choose the code
+  - A tiny, testable `main` that delegates to `run`: `main` reads the process arguments, the environment and the standard streams, calls `run` with them as ordinary values, and exits with the code that `run`'s returned error selects; tests call `run` directly with fake arguments and in-memory buffers, so the whole program is covered without starting a child process
+  - `log/slog`: structured attributes, levels, handlers, JSON output, `ReplaceAttr`; `slog.Info(msg, key, value, ...)` attaches key-value pairs as fields instead of formatting them into the message, with `slog.String`, `slog.Int` and `slog.Group` for typed or nested attributes; the levels Debug, Info, Warn and Error are ordered, and a handler drops records below its threshold; `slog.NewJSONHandler` writes one JSON object per record, and `HandlerOptions.ReplaceAttr` is called for each attribute so it can rename, change or drop it, for example to redact a secret
+  - `signal.NotifyContext` for SIGINT and SIGTERM: `ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)` returns a context that is cancelled when either signal arrives, so the program selects on `ctx.Done()` to begin shutdown; `defer stop()` releases the registration, and calling `stop` after the first signal can restore the default behaviour, so a second Ctrl-C can end a shutdown that hangs
+  - Cobra and Viper for large CLIs: Cobra organises a CLI as a tree of commands with generated help and shell completion, and Viper merges configuration from files, environment variables and flags in one precedence order; both add dependencies, so the standard `flag` package is the default for small tools, and these pay off when the command tree is large
 - **Service clients and numerical libraries**
   - mongo-go-driver, go-redis, client-go and the Docker Engine API, each tested with learning tests at the boundary; mongo-go-driver's client with one connection pool and a context on each operation, go-redis pipelines that batch commands into one round trip and `SET ... EX` for TTLs, client-go's shared informers built on list and watch with `resourceVersion`, and the Docker Engine API's version prefix negotiated before the first call; the Redis cache pattern: cache-aside (read the cache, on a miss load from the store and `SET` with a TTL, delete the key on write), TTL jitter so that keys written together do not expire together, and the eviction policy (`maxmemory-policy`, such as `allkeys-lru`) that decides which keys are dropped when memory is full
   - Gonum (`mat`, `stat`, `optimize`) compared against hand-built primitives for accuracy, stability and speed
@@ -134,50 +134,50 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 ### Go — concurrency
 
 - **Goroutines and the scheduler**
-  - `go` statements; `main` returning ends the program
-  - Concurrency versus parallelism
+  - `go` statements; `main` returning ends the program: `go f(x)` starts a goroutine that runs `f` with `x` evaluated at that moment, and the statement returns at once; when `main` returns the program exits even if goroutines are still running, so `main` must wait for them with a `sync.WaitGroup` or a channel; a goroutine costs only a few kilobytes of stack, which is why programs run thousands of them
+  - Concurrency versus parallelism: concurrency is structuring a program as tasks that can make progress in any interleaving, and parallelism is running them at the same instant on several cores; `GOMAXPROCS` limits how many run in parallel; a program can be concurrent on one core, so concurrency is a property of the design and parallelism a property of the hardware it runs on
   - The G–M–P scheduler: per-P run queues, work stealing, the network poller, asynchronous preemption
-  - No goroutine IDs and no external kill; designed stop paths; goroutine leaks
+  - No goroutine IDs and no external kill; designed stop paths; goroutine leaks: there is no API to read a goroutine's ID or to kill one from outside, so each goroutine must stop on its own, because its context is cancelled, its input channel closes, or it receives a quit signal; a goroutine blocked forever on a send or a receive that nothing will complete is a goroutine leak, and it keeps its stack and everything it references in memory for the life of the program
   - Contrasts: Java platform and virtual threads, Python's GIL and asyncio, JavaScript's event loop, pthreads
 - **Channels and `select`**
   - Unbuffered channels as rendezvous; buffered channels as bounded queues and back-pressure
   - Directional channel types; closing by the sender; receive from closed; send on closed panics
-  - Nil channels to disable `select` cases
-  - `select` with random choice among ready cases; `default`; `time.After`; tickers
-  - Global deadlock detection versus silent partial deadlocks
-  - Pipelines that close their outputs on shutdown
+  - Nil channels to disable `select` cases: a send or a receive on a nil channel blocks forever, so a `select` case on a nil channel never fires; a loop that merges several inputs can set a finished input's variable to nil, which removes that case and lets the others keep running, without a separate flag
+  - `select` with random choice among ready cases; `default`; `time.After`; tickers: when several cases are ready, `select` chooses one at random, so no case wins only by its position; a `default` case makes the `select` non-blocking; `time.After(d)` returns a channel that receives after `d`, and a loop that calls it on every pass creates a new timer each time, so a long-lived loop should hold one `time.NewTimer` or `time.Ticker` and stop it when done; a ticker delivers ticks at a fixed interval until stopped
+  - Global deadlock detection versus silent partial deadlocks: the runtime reports `fatal error: all goroutines are asleep - deadlock!` only when every goroutine is blocked, so a program where a few goroutines wait forever while another keeps running hangs with no message; the runtime cannot see that case, so waits with timeouts, context deadlines and leak tests are the defence
+  - Pipelines that close their outputs on shutdown: each stage ranges over its input channel and closes its output when the input ends, so the close moves downstream and the last stage's `range` ends; only the sending stage may close a channel, since a send on a closed channel panics; a stage that can be stopped early also selects on `ctx.Done()`, so it does not block on a send that nobody will read
 - **`context`**
-  - Cancellation, deadlines and request-scoped values; `ctx` as the first parameter
+  - Cancellation, deadlines and request-scoped values; `ctx` as the first parameter: a `context.Context` carries a `Done` channel that closes on cancellation or deadline, an `Err` value that says why, and key-value pairs for request data; by convention `ctx` is the first parameter of any function that can block or call out, and a context is not stored in a struct field; `context.Background()` is the root for `main` and tests, and `context.TODO()` marks a path not yet wired
   - `WithCancel`, `WithTimeout`, `WithDeadline`, `WithCancelCause`, `WithValue`, `AfterFunc`, `WithoutCancel`
-  - The context tree; always calling `cancel`; `ctx.Err()` and `context.Cause`
-  - Deadline propagation through `net/http`, `database/sql` and gRPC
-  - Deadline budgets across a call tree
+  - The context tree; always calling `cancel`; `ctx.Err()` and `context.Cause`: each derived context (`WithCancel`, `WithTimeout`, `WithDeadline`) hangs off its parent, so cancelling a parent cancels every child; the `cancel` function must always be called, usually with `defer`, because until it runs a child stays registered with its parent, and a child with a deadline keeps its timer; `ctx.Err()` returns `context.Canceled` or `context.DeadlineExceeded`, and `context.Cause` returns the reason given to a `WithCancelCause` cancel call
+  - Deadline propagation through `net/http`, `database/sql` and gRPC: `http.NewRequestWithContext` aborts the outgoing request when its context ends, `QueryContext` and `ExecContext` cancel the database work, and a gRPC client sends the time left in a `grpc-timeout` header on each call; a server that ignores its context keeps working for a caller that has already gone, so every handler passes `r.Context()` down to its calls
+  - Deadline budgets across a call tree: a request with one total time budget gives each downstream call a deadline no later than the time left, so a slow dependency cannot use up the whole budget and starve the rest; keep a margin for the caller to write its response, and count retries inside the budget, since a retry that starts after the deadline is wasted work
   - Contrasts: Java interrupts, Python task cancellation, JavaScript `AbortController`
 - **`sync`, atomics and the memory model**
   - `Mutex`, `RWMutex`, `WaitGroup` and `WaitGroup.Go`, `Once`, `OnceFunc`, `OnceValue`, `Cond`, `Pool`, `Map`
-  - Typed atomics: `atomic.Int64`, `atomic.Bool`, `atomic.Pointer[T]`
-  - Happens-before; data races; DRF-SC; torn multi-word values
-  - When `sync.Map` and `sync.Pool` are and are not appropriate
+  - Typed atomics: `atomic.Int64`, `atomic.Bool`, `atomic.Pointer[T]`; each type wraps one value with the methods that suit it (`Load`, `Store`, `Swap`, `CompareAndSwap`, and `Add` for integers), so the value cannot be read or written non-atomically by accident as with a plain `int64` field and the function forms; `atomic.Pointer[T]` publishes a pointer to an immutable snapshot, so readers see either the old snapshot or the new one, never a half-built one
+  - Happens-before; data races; DRF-SC; torn multi-word values: happens-before is the partial order the memory model defines: a send happens before the receive it matches completes, an unlock happens before the next lock of the same mutex, and a write is visible to a read only when a chain of such edges links them; a data race is two accesses to one location, one of them a write, with no happens-before order between them; DRF-SC says that a program with no races behaves as if every operation ran in one sequential order; a racy write of a multi-word value such as a slice header or an interface can be seen half-done, a torn read
+  - When `sync.Map` and `sync.Pool` are and are not appropriate: `sync.Map` suits a map whose keys are written once and read many times, or whose goroutines each touch their own keys, and it is often slower than a plain map under a mutex for ordinary use; `sync.Pool` reuses temporary objects such as scratch buffers to cut allocation, and its contents may be dropped at any garbage collection, so it never holds state that must survive or be counted
   - Blocking, lock-free and wait-free progress; compare-and-swap loops; the ABA problem and node recycling
   - Contrasts: the Java memory model, Python's accidental atomicity, C11 memory orderings
 - **Concurrency patterns and failure modes**
-  - Worker pools, pipelines, fan-out and fan-in
-  - Bounded parallelism with semaphores; `errgroup` with `SetLimit`
-  - Rate limiting with a token bucket (`golang.org/x/time/rate`)
+  - Worker pools, pipelines, fan-out and fan-in: a worker pool starts a fixed number of goroutines that range over one job channel and send results to another, which bounds concurrency; fan-out runs several workers on the same input channel, and fan-in merges their output channels into one, with a `sync.WaitGroup` closing the merged channel after the last worker finishes; the pool size comes from the bottleneck resource (CPU, a connection limit or a rate limit), not from the number of tasks
+  - Bounded parallelism with semaphores; `errgroup` with `SetLimit`: a buffered channel of capacity N works as a counting semaphore, a send before each task and a receive after it, so at most N run at once; `errgroup.Group` from `golang.org/x/sync/errgroup` runs functions, cancels a shared context on the first error, and `SetLimit(n)` caps the number of goroutines running, with `Go` blocking while the limit is full
+  - Rate limiting with a token bucket (`golang.org/x/time/rate`): the bucket holds up to `burst` tokens and refills at `r` tokens per second; each event takes one token, and an empty bucket makes the caller wait or refuse, so short bursts pass while the long-run rate is held at `r`; `limiter.Wait(ctx)` blocks until a token is free and returns early when the context ends, and `limiter.Allow()` refuses at once with no wait
   - Retries with exponential backoff and jitter under a deadline; retry budgets; `Retry-After`
   - The race detector: what it can and cannot find, its cgo requirement and overhead
-  - Goroutine-leak tests (`goleak`)
+  - Goroutine-leak tests (`goleak`): `goleak.VerifyNone(t)` at the end of a test fails when goroutines the test started are still running, and it prints their stacks, so a stop path that was never exercised shows up in the suite; `goleak.VerifyTestMain(m)` in `TestMain` checks a whole package after all its tests have run
   - Single-flight loading and sharded caches; request coalescing by routing key: concurrent requests for the same key share one in-flight backend call and fan its result out to every waiter, the in-flight table sharded by key so that unrelated keys do not contend on one lock, and each waiter bounded by its own context so one stuck call does not hold every caller
 
 ### Go — engineering
 
 - **Testing, benchmarks and fuzzing**
   - `_test.go` files; `t.Run` subtests; table-driven tests; `t.Helper`, `t.Cleanup`, `t.Parallel`, `t.TempDir`; golden files
-  - No assertion library; `t.Fatal` only from the test goroutine
+  - No assertion library; `t.Fatal` only from the test goroutine: the standard `testing` package has no assert function, so checks are written as `if got != want { t.Errorf(...) }`; `t.Fatal` stops the test by calling `runtime.Goexit`, which ends only the goroutine it runs on, so called from a goroutine the test started it ends only that goroutine and the test is not stopped; helpers report with `t.Error` and let the test goroutine decide when to stop
   - Benchmarks with `b.Loop` and `-benchmem`; comparing distributions with `benchstat`
-  - Native fuzzing with a seed corpus
-  - Example functions checked against their output
-  - Coverage; `httptest`; `testing/synctest` for time-dependent concurrent code
+  - Native fuzzing with a seed corpus: a function named `FuzzX(f *testing.F)` registers seed inputs with `f.Add`, and `go test -fuzz=FuzzX` mutates them to search for an input that makes the check fail; a failing input is written under `testdata/fuzz` and replayed by every later `go test` as a regression test, and without `-fuzz` a fuzz function runs only its seeds
+  - Example functions checked against their output: an `ExampleX` function ends with `// Output:` comments holding the text it prints, and `go test` runs it and fails when the actual output differs, so the examples in documentation stay correct; `// Unordered output:` accepts the same lines in any order
+  - Coverage; `httptest`; `testing/synctest` for time-dependent concurrent code: `go test -cover` reports the share of statements run, and `-coverprofile` with `go tool cover -html` shows which lines; coverage shows what ran and not what was checked; `httptest.NewServer` and `httptest.NewRecorder` test handlers without a real network port; `testing/synctest` runs a group of goroutines in a bubble with a fake clock that moves only when every goroutine in the bubble is blocked, so timeouts are tested without sleeping
   - Float tolerance in assertions: an absolute bound `math.Abs(got-want) <= eps` for values near zero and a relative bound `|got-want| <= rel·max(|got|,|want|)` otherwise, never `==` on floats; check `math.IsNaN` explicitly, because NaN makes every ordering comparison false, so a check written as `!(diff > eps)` would pass it silently
 - **HTTP services with `net/http`**
   - From scratch first: an echo server and a minimal HTTP/1.1 server and client over raw TCP
@@ -187,19 +187,19 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - Server timeouts (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`) and the zero-value server; client timeouts; outbound HTTP client hardening: one reusable client and transport, total and per-phase timeouts, response-body closure, a redirect policy through `CheckRedirect` with a hop limit that refuses redirects to hosts off the allow-list, destination allow-listing that parses the URL once, resolves it and dials the checked IP address so that DNS rebinding cannot swap the address after the check, response-size limits with `io.LimitReader`, and bounded concurrency with a semaphore
   - Closing and draining response bodies; `MaxBytesReader`; status before body; request input validation in three steps: decode with `DisallowUnknownFields` and a size cap, check each field's type, range and length, and answer 400 for malformed JSON or 422 for a well-formed body with invalid values, listing one problem-details entry per invalid field
   - `CrossOriginProtection`; `crypto/tls` configuration; the Fetch Metadata request headers (`Sec-Fetch-Site`, `Sec-Fetch-Mode`, `Sec-Fetch-Dest`) that browsers send, the policy that allows same-origin and same-site requests and rejects cross-site unsafe methods, and the fallback to comparing the `Origin` header with the host for clients that send no Fetch Metadata
-  - Graceful shutdown with `Server.Shutdown`
-  - Handler panics recovered by the server versus panics in spawned goroutines
-  - Problem-details error bodies; one status per error class
+  - Graceful shutdown with `Server.Shutdown`: `Shutdown(ctx)` closes the listeners so no new connection is accepted, waits for active requests to finish, and returns when they are done or when `ctx` ends; it does not interrupt requests, so the caller passes a context with a timeout and calls `Close` if that expires; `ListenAndServe` returns `http.ErrServerClosed` once shutdown starts, which is the expected result and not a failure
+  - Handler panics recovered by the server versus panics in spawned goroutines: `net/http` recovers a panic raised in a handler's own goroutine, logs it and closes that connection, so the server keeps serving other requests; a goroutine that a handler starts is outside that recovery, and its panic kills the whole process as the unrecovered-panic line above describes, so each such goroutine needs its own deferred `recover`
+  - Problem-details error bodies; one status per error class: RFC 9457 defines a JSON error body with `type`, `title`, `status`, `detail` and `instance` members, sent with the media type `application/problem+json`; one status per error class means every validation failure returns the same status and every missing resource returns the same status, never different codes for the same cause; clients branch on the status and the stable `type` value, not on the message text
   - Frameworks (Chi, Gin, Echo, Fiber) and when they are unnecessary; JSON-RPC 2.0 served from `net/http` with one POST endpoint, a method table keyed by name, the `id` echoed in each response, batches answered element by element, and notifications (no `id`) receiving no response
-  - On Cloud Run: TLS terminated at the front end; h2c for end-to-end HTTP/2
+  - On Cloud Run: TLS terminated at the front end; h2c for end-to-end HTTP/2; the Cloud Run front end terminates TLS and forwards requests to the container in cleartext, so the container listens on the `PORT` value without a certificate of its own; end-to-end HTTP/2 needs h2c, unencrypted HTTP/2 that the server accepts, and the service must be configured for it, while HTTP/1.1 works with no change
 - **Databases with `database/sql`**
   - `*sql.DB` as a long-lived connection pool; pool limits sized against instance count
-  - `QueryContext`, `QueryRowContext`, `ExecContext`; `rows.Close` and `rows.Err`
+  - `QueryContext`, `QueryRowContext`, `ExecContext`; `rows.Close` and `rows.Err`: the `Context` forms cancel the database work when the context ends; `Query` returns `*Rows`, which holds a connection until it is closed, so `defer rows.Close()` follows every successful query; a `for rows.Next()` loop stops quietly on an error, so `rows.Err()` after the loop is the only place that reports it; `QueryRow` returns a `*Row` whose `Scan` closes it
   - Transactions pinned to one connection; isolation levels; retrying serialization failures (SQLSTATE 40001, 40P01)
-  - Driver-specific placeholders and parameter binding
-  - Nullable columns with `sql.Null[T]`
-  - The `pgx` driver; `sqlc` code generation versus ORMs
-  - The Cloud SQL Go connector with IAM database authentication
+  - Driver-specific placeholders and parameter binding: `database/sql` sends the SQL text and the argument values separately and the driver binds the values, so `?` (MySQL, SQLite) and `$1` (PostgreSQL) placeholders never have text spliced in and injection is blocked; placeholders cannot stand in for table or column names, which must come from an allow-list in the code
+  - Nullable columns with `sql.Null[T]`: a NULL cannot scan into a plain `string` or `int64`, so `sql.Null[T]`, a generic struct with fields `V T` and `Valid bool`, scans the value and reports whether it was present; use it when the column is nullable and the zero value would mean something different from NULL, such as zero for a count
+  - The `pgx` driver; `sqlc` code generation versus ORMs: `pgx` is a PostgreSQL driver with its own typed interface and an adapter for `database/sql`; `sqlc` reads SQL queries written by the team and generates typed Go functions for them, so the SQL stays visible and reviewable, while an ORM hides SQL behind model objects and can issue queries nobody wrote; choose by whether the team wants to read, tune and own the SQL
+  - The Cloud SQL Go connector with IAM database authentication: the Cloud SQL Go connector opens the connection to the instance through an encrypted channel authorised by the caller's IAM identity, so the application needs no database password and no allow-listed IP address; IAM database authentication makes the database user an IAM principal, so access is granted and revoked through IAM roles rather than by password rotation
 - **Protocol Buffers and gRPC**
   - proto3 messages, field numbers, `repeated`, `map`, `oneof`, enums, `optional` and field presence
   - Field numbers as the contract; `reserved`; backward-compatible evolution; a compatibility matrix as a table of client versions against server versions, listing the pairs that a contract test has shown to interoperate, so a field change is checked against every version still in use
@@ -207,58 +207,58 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
   - Unary and streaming RPCs; status codes; metadata; interceptors; TLS; headers and trailers as the two metadata blocks, with headers sent before the first message and trailers after the last, where `grpc-status` and `grpc-message` travel
   - Deadline propagation via `grpc-timeout`; cancellation by the client sends `RST_STREAM` on the HTTP/2 stream, which the server sees as a cancelled context, and the caller receives the status `DEADLINE_EXCEEDED` or `CANCELLED`; the client library encodes the remaining time into `grpc-timeout` (an integer with a unit suffix, such as `m` for milliseconds) on each hop, so each downstream call inherits the shrinking budget
   - `grpcurl`, `ghz`, Postman for gRPC requests, in-process tests with `bufconn`
-  - Back-pressure on server streams
+  - Back-pressure on server streams: the server sends the next message only when the stream's flow-control window has room, and `Send` blocks when the client has not read enough, so a slow client slows the producer instead of filling server memory; the handler checks its context and the error from `Send` so that it stops when the client goes away
 - **Profiling, debugging and observability**
   - CPU, heap, allocation, goroutine, block and mutex profiles; `go tool pprof`; flame graphs
-  - `runtime/trace`; `GODEBUG=gctrace=1`
-  - Profile-guided optimisation with `default.pgo`
-  - Exposing pprof safely on a private listener
-  - Delve: debug, test, attach, core dumps; building without optimisation
-  - `GOTRACEBACK` settings
+  - `runtime/trace`; `GODEBUG=gctrace=1`: `runtime/trace` records goroutine scheduling, blocking, system calls and collector events on a timeline, and `go tool trace` opens the file in a browser to show why a goroutine waited; `GODEBUG=gctrace=1` prints one line per collection with heap sizes before and after and the time spent, which shows whether the collector is a real cost
+  - Profile-guided optimisation with `default.pgo`: a CPU profile saved as `default.pgo` in the main package's directory is picked up by `go build` automatically, and the compiler uses it to inline and devirtualise the calls that are hot, usually a speed-up of a few percent; the profile should come from a representative workload and is regenerated when the code changes a lot
+  - Exposing pprof safely on a private listener: importing `net/http/pprof` registers its handlers on the default mux, so they must not share the public port; serve them on a second listener bound to localhost or a private address, since a profile reveals code paths and heap contents to whoever reads it
+  - Delve: debug, test, attach, core dumps; building without optimisation; `dlv debug` builds and runs a `main` package under the debugger, `dlv test` does the same for a test package, `dlv attach PID` connects to a running process, and `dlv core` opens a core dump; `-gcflags=all=-N -l` turns off optimisation and inlining so variables stay visible and breakpoints land on the lines written
+  - `GOTRACEBACK` settings: the variable sets how much a crash prints: the default `single` shows only the goroutine that panicked, `all` shows every user goroutine, `system` adds runtime frames, `crash` also writes a core dump where the operating system allows it, and `none` suppresses the traceback; setting it to `all` on a service shows every goroutine when a crash is investigated
   - OpenTelemetry for Go and trace context through `context.Context`; Cloud Trace and Cloud Profiler
 - **Build, release and supply chain**
   - Cross-compilation with `GOOS` and `GOARCH`; `CGO_ENABLED=0` static binaries; the API as one binary: a `main` package that wires the handlers, store clients and configuration, its version stamped with `-ldflags -X`, built as a static executable with `-trimpath` so that it runs on distroless without a shell
-  - `-trimpath`, `-ldflags` (`-s -w -X`), embedded build information
-  - Reproducible, byte-identical builds
+  - `-trimpath`, `-ldflags` (`-s -w -X`), embedded build information: `-trimpath` removes local directory paths from the binary, so the build does not record the builder's file layout; `-s` strips the symbol table and `-w` the DWARF debugging data to make the binary smaller, at the cost of symbolic debugging; `-X importpath.name=value` sets a string variable at link time, such as a version; the binary also records dependency versions and version-control data, which `go version -m` prints
+  - Reproducible, byte-identical builds: the same source, toolchain, flags and environment produce the same bytes, which requires `-trimpath`, no embedded build time or host paths, fixed `GOOS` and `GOARCH`, and the same dependency versions pinned in `go.sum`; a checksum of the artefact then proves that a rebuild matches a release, and two independent builders can compare hashes
   - Multi-stage container builds onto distroless or `scratch`; CA certificates and time-zone data
   - `govulncheck` reachability analysis versus module-level scanners; dependency review before a module is added: maintainer activity, release provenance, the transitive modules it brings and the `go.sum` entry it pins; pinning by version and checking each module hash against the checksum database; a software bill of materials and build provenance attestation for every release
   - golangci-lint pinned in CI; GoReleaser; staging promotion as one immutable artefact (the same image digest and the same binary) moved from staging to production, with only the per-environment config layer changing, and never a rebuild for production
 - **Reflection, `unsafe` and cgo**
-  - `reflect.TypeOf`, `ValueOf`, `Kind`, struct fields and tags; settability rules
+  - `reflect.TypeOf`, `ValueOf`, `Kind`, struct fields and tags; settability rules: `TypeOf` returns the static type descriptor and `ValueOf` wraps a value; `Kind` gives its broad category, such as `Struct` or `Ptr`; `NumField` and `Field(i)` walk a struct's fields and `Tag.Get` reads a tag; a `Value` can be set only when it was reached through a pointer and its field is exported, so calling `Set` on an unexported field or on a copy panics
   - `unsafe.Pointer` rules, `Sizeof`, `Slice`, `String`; the six valid `unsafe.Pointer` conversion patterns listed in the `unsafe` package documentation; the rule that `uintptr` arithmetic stays inside one expression, because a `uintptr` does not keep its object alive or follow it through stack growth; `unsafe.Add` for offset arithmetic; and the cgo pointer-passing rules, under which Go memory handed to C may not contain Go pointers and C may not keep a Go pointer after the call returns
-  - cgo costs: call overhead, invisible C memory, lost static builds
-  - Reflection versus hand-written code versus generics
+  - cgo costs: call overhead, invisible C memory, lost static builds; each call from Go into C costs far more than a Go call, since the runtime must switch to a system stack; memory the C side allocates is outside the garbage collector and must be freed by hand; a package that uses cgo usually links dynamically against the C library, so `CGO_ENABLED=0` static builds are no longer possible
+  - Reflection versus hand-written code versus generics: reflection decides types at run time, so it is slow and gives up compile-time checks; hand-written code is fastest and clearest when the set of types is small; generics check types at compile time and generate code per shape, so they are the middle ground when one algorithm must work across several types; choose by how many types exist and whether the check must happen at compile time
 - **Data structures in Go**
   - Slice-backed stacks, queues and deques; ring buffers; avoiding front-of-slice leaks
-  - Linked lists and `container/list`; hash maps with chaining; LRU caches
-  - `container/heap` and indexed priority queues
-  - Union-find, tries, binary search trees
+  - Linked lists and `container/list`; hash maps with chaining; LRU caches: `container/list` is a doubly linked list of nodes that hold `any` values, with pointer-chasing that is slow on modern caches and rarely the right choice in Go; a hash map with chaining puts colliding keys in a per-bucket list, so lookup is O(1) on average and O(n) in the worst case; an LRU cache pairs a map from key to node with a doubly linked list in recency order, so lookup and move-to-front are both O(1)
+  - `container/heap` and indexed priority queues: `container/heap` turns any type with `Len`, `Less`, `Swap`, `Push` and `Pop` into a binary heap with O(log n) push and pop and O(1) peek at the minimum; an indexed priority queue also stores each item's position, so `heap.Fix` restores order after an item's priority changes in O(log n), which Dijkstra's algorithm needs for decrease-key
+  - Union-find, tries, binary search trees: union-find keeps a parent array with path compression and union by rank, so each operation takes near-constant amortised time (inverse Ackermann); a trie stores one character per edge, so a lookup costs time proportional to the key's length; a binary search tree gives O(log n) search when balanced and O(n) when sorted inserts turn it into a chain, which is why balanced variants exist
   - Sorting and searching: `slices.SortFunc` (unstable) versus `SortStableFunc`, `slices.BinarySearch`, `sort.Search`
-  - Timing wheels versus timer heaps
+  - Timing wheels versus timer heaps: a timer heap keeps timers in a min-heap, so starting or stopping one costs O(log n); a timing wheel is a circular array of buckets indexed by expiry tick, so starting and stopping cost O(1) and each tick does work proportional to the timers that expire in it, which suits very many timers with short horizons, as in operating-system and network-stack timers
 - **Implementing authentication in Go**
-  - `crypto/rand` (`rand.Read`, `rand.Text`); never `math/rand` for secrets
+  - `crypto/rand` (`rand.Read`, `rand.Text`); never `math/rand` for secrets: `math/rand` is a deterministic generator whose future outputs can be predicted from its seed and enough earlier outputs, while `crypto/rand` draws from the operating system's entropy source and is safe for keys, tokens and nonces; `rand.Read` fills a byte slice with random bytes, and `rand.Text` returns a random string suitable as a token
   - Argon2id via `golang.org/x/crypto/argon2` in a versioned PHC-format record; rehash on login; PBKDF2 fallback
-  - Hashed opaque session IDs with idle and absolute expiry and rotation
+  - Hashed opaque session IDs with idle and absolute expiry and rotation: the cookie carries a long random ID, 128 bits or more, with no data in it, and the server stores only a SHA-256 hash of that ID, so a leaked database does not yield live sessions; the record expires after an idle timeout that slides forward on each use and after an absolute lifetime that never moves; the ID is rotated at login and at any privilege change, so an attacker cannot fix a known ID on the victim
   - `__Host-` cookies with `Secure`, `HttpOnly`, `SameSite`; the zero `SameSite` value
-  - Session-bound CSRF tokens; `hmac.Equal` and constant-time comparison
+  - Session-bound CSRF tokens; `hmac.Equal` and constant-time comparison: a CSRF token is tied to the session, so a page on another site cannot read or predict it, and the server checks it on every state-changing request; `hmac.Equal` compares two byte slices in time that depends only on their lengths, not on where they first differ, which denies an attacker the timing signal that plain `==` leaks, since `==` returns at the first differing byte
   - HS256 JWS from scratch with an algorithm allow-list and claim checks; EdDSA with `crypto/ed25519`
-  - HOTP and TOTP from scratch against RFC test vectors; replay protection
-  - OAuth 2.0 authorization code with PKCE S256, `state` and the OIDC `nonce`
-  - Timing-equalised login for unknown users
+  - HOTP and TOTP from scratch against RFC test vectors; replay protection: HOTP takes HMAC-SHA1 over an 8-byte big-endian counter, selects 4 bytes at an offset given by the last nibble of the hash, masks off the top bit and reduces the result modulo 10^6 for six digits (RFC 4226); TOTP uses the counter floor((t − T0) / 30) for the Unix time t with T0 = 0 (RFC 6238), so both sides agree on the window; replay protection stores the last accepted counter and refuses any code at or below it, and allows a small window of neighbouring steps for clock drift
+  - OAuth 2.0 authorization code with PKCE S256, `state` and the OIDC `nonce`: the client sends a random `state` and checks that the redirect returns it, which blocks cross-site request forgery on the callback; it creates a random `code_verifier`, sends its SHA-256 hash, base64url-encoded, as the `code_challenge` with method `S256`, and presents the verifier at the token exchange, so an intercepted authorization code is useless without it; the ID token's `nonce` must match the value sent with the request, which binds the token to this login and blocks replay
+  - Timing-equalised login for unknown users: when the username does not exist, the server still runs a password hash with the same cost parameters against a dummy hash, so response time does not reveal which accounts exist; both cases return the same generic error message and the same status code
 - **Implementing payments in Go**
   - Money as `int64` minor units plus currency; largest-remainder allocation; `big.Rat` for exact rates
-  - Why floats corrupt amounts
-  - Order state machine as a transition table with guarded updates
-  - Idempotency keys: replay, 422 on body mismatch, 409 while running
+  - Why floats corrupt amounts: binary floating point cannot represent 0.1 exactly, so `0.1 + 0.2` gives `0.30000000000000004`, and sums of many small amounts drift; a `float64` has 53 significant bits, so a large total loses cents, and the rounding depends on the order of the operations; money is therefore held as integer minor units such as cents, which add and compare exactly
+  - Order state machine as a transition table with guarded updates: the states and the allowed transitions form one table keyed by current state and event, and every update is a conditional write such as `UPDATE ... WHERE state = $old`, so two racing requests cannot both move the same order; an event with no row in the table is rejected, not ignored, which keeps illegal moves visible
+  - Idempotency keys: replay, 422 on body mismatch, 409 while running; the client sends a unique key with each create, and the server stores that key with a hash of the request body and the response it produced; a repeat with the same key and body returns the stored response, a repeat with the same key and a different body gets 422, and a repeat that arrives while the first is still running gets 409, so the work is never done twice
   - Webhook signature verification on raw bytes with timestamp tolerance; inbox tables for exactly-once effects
   - Double-entry ledger; bounded partial refunds; daily reconciliation against settlement reports
   - Provider signature schemes (Stripe's `Stripe-Signature`, Razorpay's `X-Razorpay-Signature`)
-  - A fake payment provider for failure testing
+  - A fake payment provider for failure testing: an in-memory fake implements the provider interface and can be told to time out, decline a charge, drop a webhook or deliver one twice, so the failure paths of the payment code run in a test with no network and no real money
   - Payment domain: card rails versus wallets and UPI (QR, netbanking); authorization, capture and settlement; payout timelines; test versus live mode and sandbox seeding
   - Webhook delivery: replay windows, clock skew, nonces, retries with backoff and a dead-letter queue; webhook failure budgets as SLOs; the dead-letter queue as the holding area for events that exhaust the retry budget, and redrive that replays dead letters through the same idempotent handler after the cause is fixed, each redriven event keeping its original ID; on Pub/Sub, `gcloud pubsub subscriptions create SUBSCRIPTION --topic=TOPIC --dead-letter-topic=DEAD_LETTER_TOPIC --max-delivery-attempts=N`, where messages that fail N times move to the dead-letter topic
   - Refunds, disputes and reversals as a state machine; the chargeback life cycle and evidence; ledger adjustments
-  - Reconciliation mismatch classes and alerts
-  - Swapping providers behind an interface with contract tests
+  - Reconciliation mismatch classes and alerts: each daily comparison of the ledger against the provider's settlement report sorts differences into classes such as missing at the provider, missing in the ledger, amount differs and currency differs; each class has its own alert threshold and owner, high-severity classes page on any occurrence, and unexplained differences move into a review queue with an age limit
+  - Swapping providers behind an interface with contract tests: the application depends on a small interface such as `Charge(ctx, req)`, each provider has an adapter that implements it, and one shared test suite runs against the fake and every real adapter in sandbox mode, so a new provider must pass the same expectations for idempotency, errors and refunds before it goes live
 
 ### Go — cross-language contrasts
 
@@ -266,5 +266,5 @@ Domain: Programming Languages & Language Theory (part 2 of 3)
 - `switch` defaults, loop-variable capture, slicing, map order, cleanup, failure handling
 - String length, returning a local's address, destructors, methods, interface satisfaction, inheritance
 - Generics, iteration, JSON numbers and key matching, regular expressions, process exit
-- Concurrency unit, queues between workers, cancellation, data-race outcomes
+- Concurrency unit, queues between workers, cancellation, data-race outcomes: Go's unit is the goroutine, multiplexed onto OS threads by the runtime, whereas a Java platform thread maps one to one to an operating-system thread; the queue between workers is a channel with its own blocking and closing rules, not a shared list guarded by a lock; cancellation is a context passed down the calls, not an interrupt flag; a data race in Go has no defined result, and a racy write of a multi-word value can be observed half-done
 - Test assertions, HTTP servers, database access, shipping, reflection, secret comparison, money

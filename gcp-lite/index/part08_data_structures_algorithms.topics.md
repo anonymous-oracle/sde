@@ -7,17 +7,17 @@ Domain: Data Structures, Algorithms & Computational Complexity
 ### Analysis
 
 - **Correctness**
-  - Loop invariants: initialization, maintenance, termination
+  - Loop invariants: initialization, maintenance, termination; an invariant is a property that holds before the first iteration, survives every iteration, and holds at exit, so that with the exit condition it gives the postcondition; the proof is an induction on the iteration count, and for insertion sort the invariant is that the processed prefix is sorted
   - Correctness proofs for insertion sort and binary search; the binary search invariant that a target, if present, lies in the window [lo, hi), with hi − lo shrinking at every step so termination follows, and the mid update that moves lo to mid + 1 or hi to mid
 - **Cost models and asymptotics**
-  - The RAM model of computation
-  - O, Ω, Θ and o defined with quantifiers and proved from the definitions
+  - The RAM model of computation; a sequential machine with random-access memory in which each arithmetic operation, comparison and memory access costs one unit regardless of address, words hold Θ(log n) bits for input size n, so a loop of n steps costs Θ(n); the model ignores caches and disks, which is why the external-memory model is taught separately
+  - O, Ω, Θ and o defined with quantifiers and proved from the definitions; f = O(g) when there are constants c > 0 and n₀ with f(n) ≤ c·g(n) for all n ≥ n₀, Ω is the mirror image with ≥, Θ holds when both hold, and f = o(g) requires that for every c > 0 the bound f(n) < c·g(n) holds eventually; a proof exhibits c and n₀, for example 3n² + 10n = O(n²) with c = 4 and n₀ = 10
   - Big-O in practice: why a hash lookup beats a linear scan; why database indexes matter
-  - Worst-case, average-case and amortized cost
+  - Worst-case, average-case and amortized cost; worst case bounds every input, average case weights inputs by a distribution, and amortized cost bounds the total cost of a sequence of operations, so that m operations cost at most the sum of their amortized costs; a dynamic array append is O(n) in the worst case for one resize but O(1) amortized, by the aggregate, accounting or potential method; average-case bounds hold only for the assumed input distribution, which an adversary can violate, as bad pivots defeat quicksort
 - **Recurrences and divide and conquer**
-  - Merge sort and T(n) = 2T(n/2) + Θ(n)
+  - Merge sort and T(n) = 2T(n/2) + Θ(n); split the array in halves, sort each half recursively, and merge the two sorted halves in one linear pass; the recursion tree has log₂ n levels, each costing Θ(n), and the master theorem's case 2 gives T(n) = Θ(n log n); merge sort is stable and needs Θ(n) extra space for the merge buffer
   - Solving recurrences by recursion tree, substitution, the master theorem and the Akra–Bazzi method for unequal subproblem sizes, with the exponent p fixed by Σ aᵢ·bᵢᵖ = 1
-  - Karatsuba multiplication
+  - Karatsuba multiplication; split each n-digit number into high and low halves, compute three half-size products ac, bd and (a + b)(c + d), and recover the middle term ad + bc as the third minus the first two, giving T(n) = 3T(n/2) + Θ(n) and O(n^log₂3), about n^1.585, against n² for schoolbook multiplication; the extra additions and overhead mean it wins only above a crossover size
   - Strassen matrix multiplication: seven half-size products instead of eight; T(n) = 7T(n/2) + Θ(n²) gives O(n^log₂7), about n^2.81; the extra additions and constant factor that set the crossover with the naive method
   - The Ω(n log n) comparison-sorting lower bound by decision trees; counting sort, radix sort and bucket sort (expected linear time for keys uniform on an interval); counting sort's prefix-sum placement, which is stable and runs in O(n + k) for keys in 0 to k − 1; LSD radix sort as d stable counting passes costing O(d(n + b)) for d digits in base b; and why these sorts do not contradict the Ω(n log n) bound, since they use key values, not only comparisons
 - **Design paradigms and their proof techniques**
@@ -26,61 +26,61 @@ Domain: Data Structures, Algorithms & Computational Complexity
   - Greedy, proved by an exchange argument showing that the greedy choice extends to an optimal solution
   - Dynamic programming, proved by optimal substructure and a recurrence over a state space, with cost equal to the number of states times the work per state
   - Backtracking and branch and bound, pruning any subtree whose lower bound from a relaxation cannot beat the best solution found
-  - Randomized algorithms, with expected cost by linearity of expectation
-  - Approximation, with a ratio proved against a lower bound on the optimum
+  - Randomized algorithms, with expected cost by linearity of expectation; a random choice made inside the algorithm, not in the input, makes the cost a random variable whose expectation is bounded for every input, as in randomized quicksort, where the expected comparisons are the sum over pairs of the probability that the pair is compared, which is 2/(j − i + 1) for elements of rank i and j, summing to about 2n ln n; linearity of expectation adds these indicators without requiring independence
+  - Approximation, with a ratio proved against a lower bound on the optimum; an algorithm is a c-approximation when its cost is at most c times the optimum on every input, and since the optimum is unknown to the algorithm, the proof compares its cost with a computable lower bound on OPT; for vertex cover, the edges of a maximal matching are disjoint, so any cover needs one endpoint of each, giving the 2-approximation; the ratio is a worst-case guarantee and says nothing about typical inputs
   - Reduction, proving that one problem is at least as hard as another, the basis of hardness proofs
 - **Differential testing**: run an implementation against a trusted reference (a brute-force version or a library) on random and adversarial inputs from a seeded generator, compare outputs exactly or within a stated tolerance, and shrink the first disagreement to a minimal failing input; the reference must not share the implementation's assumptions, and every failure reports its seed so that it can be replayed
 
 ### Linear structures and techniques
 
 - Arrays and dynamic arrays; amortized O(1) append by the aggregate, accounting and potential methods
-- Two pointers, prefix sums and sliding windows
-- Linked lists (singly and doubly)
-- Stacks, queues, deques and bags
+- Two pointers, prefix sums and sliding windows; two pointers move monotonically through a sorted array or a window, so each pointer moves at most n times and the pass costs O(n); a prefix sum array P[i] = a₁ + … + aᵢ gives any range sum as P[j] − P[i − 1] in O(1) after O(n) setup; a sliding window keeps a running aggregate updated by adding the entering element and removing the leaving one, O(1) per step for sums and counts
+- Linked lists (singly and doubly); each node holds a value and a pointer to the next node, and a doubly linked node also points back, so insertion or deletion at a known node costs O(1) while access by index costs O(n); nodes scatter in memory, so traversal has poor locality; a doubly linked list removes a node given by pointer in O(1) with no search, which is the basis of the LRU cache
+- Stacks, queues, deques and bags; a stack is last-in first-out and a queue first-in first-out, each O(1) per operation on a linked list or ring buffer; a deque inserts and removes at both ends, which the sliding-window maximum algorithm uses; a bag is an unordered multiset supporting insert and iteration
 - Ring buffers (circular arrays): head and tail with modulo indexing, full versus empty, overwrite-or-reject policy, single-producer single-consumer safety
-- Recursion and backtracking
+- Recursion and backtracking; each recursive call is a frame on the call stack, so the stack space is the depth times the frame size and depth beyond the stack limit fails; backtracking chooses one option, recurses, and undoes the choice on return, pruning as soon as a partial solution breaks a constraint, as in N-queens, where each placed queen eliminates a row, a column and two diagonals; the worst case is exponential, so pruning decides whether the method is practical
 - **Clever linear-time problems**: the maximum-sum subarray in one pass; a local minimum in a 1-D array by binary search and in a 2-D array by divide and conquer; range-minimum queries; the majority element by the pairing (Boyer–Moore) argument
 - **Monotonic stacks and deques**: next-greater element in O(n) with a stack of indices whose values decrease, sliding-window maximum in O(n) with a deque of indices whose values decrease, and the aggregate argument that each index is pushed and popped at most once; the two-pointer window with a count map for the longest substring with at most k distinct characters
 
 ### Hashing
 
 - Hash tables with separate chaining: expected O(1 + α) under simple uniform hashing
-- Open addressing and the load factor; resizing
-- Universal hashing
-- Symbol tables
-- Caches: LRU (hash map plus doubly linked list) and LFU
+- Open addressing and the load factor; resizing; each key is stored in the table itself and found by probing a sequence (linear, quadratic or double hashing) until an empty slot; with load factor α = n/m, under uniform hashing an unsuccessful search takes about 1/(1 − α) probes and a successful one about (1/α) ln(1/(1 − α)), so performance degrades sharply as the table fills; deletion needs tombstones, and resizing doubles the table and rehashes every key, costing O(n) once and O(1) amortized
+- Universal hashing; a family of hash functions is universal when two distinct keys collide with probability about 1/m or less for a function chosen at random from it, so the expected chain length stays O(1 + α) for any fixed key set, however adversarial; a standard family is x ↦ ((a·x + b) mod p) mod m, with p a prime above the key range and a, b chosen at random
+- Symbol tables; an abstract data type mapping keys to values with insert, search and delete, and for ordered variants min, max and range queries; a hash table gives average O(1) per operation, a balanced search tree O(log n) worst case with sorted iteration, and the choice turns on whether ordering or a worst-case bound is needed
+- Caches: LRU (hash map plus doubly linked list) and LFU; LRU evicts the least recently used key, which sits at the tail of the list, and the hash map finds an entry in O(1) while the list moves an accessed entry to the head, so get and put are both O(1); LFU evicts the least frequently used key, counting accesses, and needs frequency buckets to stay O(1), and it keeps stale once-popular keys, so it suits stable access patterns; hit rates on a skewed Zipf stream show the difference
 
 ### Trees and heaps
 
-- Binary trees and traversals
+- Binary trees and traversals; preorder visits node, left, right; inorder visits left, node, right, which lists a binary search tree in sorted order; postorder visits left, right, node, the order needed to delete a tree or evaluate an expression tree; level order uses a queue; each traversal takes Θ(n) time and O(h) stack space for height h, whether recursive or with an explicit stack
 - Binary search trees; balanced trees (red-black or AVL) and the O(log n) height proof
 - B-trees as disk-oriented balanced trees; search by binary search inside each node and descent between separator keys, insertion that splits a full node at its median key and pushes the median up (height grows only at the root), and deletion that borrows from a sibling or merges with one when a node falls below half full, with the root's removal shrinking the height by one
-- Binary heaps, heapsort and priority queues with decrease-key
+- Binary heaps, heapsort and priority queues with decrease-key; a complete binary tree stored in an array, with the children of index i at 2i and 2i + 1, where each parent is no larger than its children; insert and decrease-key sift up in O(log n), extract-min moves the last leaf to the root and sifts down in O(log n), and building a heap bottom-up takes O(n); heapsort is O(n log n) and unstable; decrease-key needs the position of each element tracked, which is why Dijkstra uses an indexed heap
 - Union–find with union by rank and path compression; the amortized bound O(α(n)) per operation, where α is the inverse Ackermann function, proved with a potential function over ranks and the path-compression levels
-- Tries
-- Range structures: Fenwick trees, segment trees, sparse tables
-- Fibonacci heaps and van Emde Boas trees (as ideas)
+- Tries; a tree whose edges carry characters, so each root-to-node path spells a prefix and a key of length L costs O(L) to insert, search or prefix-match, whatever the number of stored keys; the cost is memory, since a node may hold one pointer per alphabet symbol, which compressed forms such as radix trees reduce by merging chains of single-child nodes
+- Range structures: Fenwick trees, segment trees, sparse tables; a Fenwick tree (binary indexed tree) stores partial sums so that a point update and a prefix query each take O(log n) in O(n) space; a segment tree answers range queries for any associative operation in O(log n) and supports point updates, with lazy propagation for range updates; a sparse table answers range-minimum queries in O(1) after O(n log n) preprocessing but cannot be updated, so it suits static data
+- Fibonacci heaps and van Emde Boas trees (as ideas); a Fibonacci heap gives amortized O(1) insert and decrease-key with O(log n) extract-min, which lowers Dijkstra's bound to O(E + V log V) in theory, though its constant factors rarely beat a binary heap in practice; a van Emde Boas tree supports insert, delete and successor on integer keys from a universe of size U in O(log log U) time, using recursive splits of about √U, at O(U) space
 - **Augmented trees**: a balanced tree whose nodes store subtree sizes, so that select(i) and rank(x) take O(log n); an interval tree keyed by the low endpoint, with the maximum high endpoint kept in each subtree, so that one overlapping interval is found in O(log n) and all k overlaps are reported in O(k log n); the augmentation theorem that a red-black tree can carry any extra field that a node can recompute from itself and its children in O(1) per rotation
 
 ### Sorting, searching and strings
 
 - Insertion sort, merge sort, randomized quicksort (expected O(n log n) by indicator variables), heapsort; insertion sort's loop invariant that the prefix is sorted, Θ(n²) time on reversed input, Θ(n) time on sorted input, and its adaptivity, which makes it the finisher for short runs in hybrid sorts
-- Stable versus unstable sorts; strict weak orderings for comparators
+- Stable versus unstable sorts; strict weak orderings for comparators; a sort is stable when equal keys keep their input order, which matters when sorting by one key after another; merge sort and counting sort are stable, while heapsort and the usual quicksort are not; a comparator must define a strict weak ordering, irreflexive and transitive with transitive equivalence, so that less(a, a) is false, and a comparator that breaks this, such as one using ≤, can make a sort misorder or fail
 - Binary search and binary search on a predicate; checking hand-written versions against `bisect` and `sorted`
 - Randomized selection; peak finding
-- External merge sort with a loser tree
+- External merge sort with a loser tree; data larger than memory is cut into sorted runs that each fill memory, then k runs are merged at a time, so the number of passes is ⌈log_k(runs)⌉ and each pass reads and writes all the data once; a loser tree keeps the k run heads in a tournament and yields the next smallest element in O(log k) by replaying only the path from the replaced leaf, instead of scanning k heads
 - String matching: KMP; Rabin–Karp with a rolling hash (expected O(n + m), confirm candidates byte by byte)
-- Content-defined chunking with rolling hashes (rsync, deduplicating backups)
-- Suffix arrays and suffix automata
+- Content-defined chunking with rolling hashes (rsync, deduplicating backups); a rolling hash such as a Rabin fingerprint updates in O(1) as the window slides one byte, and a chunk boundary is declared where the hash's low k bits are zero, so boundaries depend on content and not offset; an insertion shifts only nearby boundaries, while fixed-size chunks would change every chunk after it; chunks are stored once by digest, so identical chunks deduplicate; the expected chunk size is 2^k bytes, and implementations add minimum and maximum sizes
+- Suffix arrays and suffix automata; a suffix array is the sorted list of starting positions of all suffixes, built in O(n log n) by prefix doubling or in O(n) by linear-time construction such as SA-IS, and with an LCP array it finds a pattern's occurrences by binary search in O(m log n); a suffix automaton is the minimal automaton accepting all suffixes, with O(n) states and transitions, and tests substrings in O(m) time; both index a text for repeated substring queries
 - **Order statistics**: the i-th smallest element by randomized quickselect in expected linear time; median of medians for worst-case linear time; approximate median
 
 ### Graph algorithms
 
-- Adjacency lists versus matrices and their costs
+- Adjacency lists versus matrices and their costs; an adjacency list stores O(V + E) words and lists a vertex's neighbours in O(deg); an adjacency matrix uses Θ(V²) space and tests an edge in O(1), so lists suit sparse graphs and matrices dense ones; a matrix also supports matrix-product methods, such as counting walks of a given length, while a list is the usual representation in shortest-path algorithms
 - Breadth-first search and its unweighted shortest-path proof; 0-1 BFS; as the weighted case, edge weights in {0, 1} let a deque replace the priority queue, with a weight-0 edge pushed to the front and a weight-1 edge to the back, giving O(V + E) time and a deque that holds at most two distance values at once
-- Depth-first search, edge classification, topological sort and cycle detection
+- Depth-first search, edge classification, topological sort and cycle detection; DFS records discovery and finish times in O(V + E); an edge to a grey (on-stack) vertex is a back edge and marks a cycle, while tree, forward and cross edges do not; a DAG's topological order is the reverse of finish-time order, or Kahn's algorithm repeatedly removes vertices of in-degree zero; if no order covers all vertices, the graph has a cycle
 - Strongly connected components; Kosaraju's two DFS passes (finishing order on the graph, then DFS on the transpose in decreasing finish time) and Tarjan's single pass with low-link values, both O(V + E), and the condensation graph, which is a DAG
-- Dijkstra's algorithm, its correctness proof and failure on negative edges
+- Dijkstra's algorithm, its correctness proof and failure on negative edges; with non-negative weights the vertex with the smallest tentative distance is final, because any other path must leave the settled set through an edge that is no shorter, and relaxing edges keeps that invariant; the run time is O((V + E) log V) with a binary heap; a negative edge breaks the argument, since a later path can be shorter than a settled distance, so the algorithm returns wrong distances without signalling an error
 - Bellman–Ford and negative cycles (the basis of distance-vector routing); the Bellman equation d(v) = min over edges (u, v) of d(u) + w(u, v) as the fixed point that relaxation iterates, with V − 1 rounds of relaxing every edge giving shortest paths when no negative cycle is reachable from the source, and a V-th round that still relaxes an edge revealing one; O(VE) time
 - All-pairs shortest paths by Floyd–Warshall: dynamic programming over the highest allowed intermediate vertex; O(V³) time and O(V²) space; a negative diagonal entry reveals a negative cycle; compared with V runs of Dijkstra on non-negative weights
 - Minimum spanning trees by the cut property: Kruskal and Prim; the cycle property as the exchange argument (with distinct weights, the heaviest edge of any cycle lies in no minimum spanning tree), Kruskal's sort then union-find in O(E log E), and Prim's heap-driven growth from one vertex in O(E log V)
@@ -92,14 +92,14 @@ Domain: Data Structures, Algorithms & Computational Complexity
 ### Greedy algorithms and dynamic programming
 
 - The greedy-choice property and exchange arguments: interval scheduling, Huffman coding
-- Dynamic programming: optimal substructure and overlapping subproblems
+- Dynamic programming: optimal substructure and overlapping subproblems; optimal substructure means an optimal solution is assembled from optimal solutions to subproblems, which a cut-and-paste argument shows; overlapping subproblems mean a naive recursion recomputes the same subproblem exponentially often; memoization (top-down) or a table filled in dependency order (bottom-up) reduces the cost to the number of states times the work per state
 - Edit distance and sequence alignment; 0/1 knapsack; longest common subsequence; longest increasing subsequence; shortest paths in a DAG
 - Query-planner join-order search as dynamic programming; System R's dynamic programming over subsets of relations, whose cost grows exponentially with the number of joins, and the genetic query optimizer (GEQO) that PostgreSQL switches to above `geqo_threshold` joins (default 12), searching join orders as permutations with crossover and mutation under a fixed effort budget
 
 ### Randomized and probabilistic structures
 
-- Bloom filters and the false-positive rate (1 − e^(−kn/m))^k
-- Count-min sketch and its ε–δ guarantee
+- Bloom filters and the false-positive rate (1 − e^(−kn/m))^k; a bit array of m bits with k hash functions: insert sets k bits, and a query answers no only when some bit is clear, so a Bloom filter has no false negatives but has false positives; the rate is smallest at k = (m/n) ln 2, where it is about 0.6185^(m/n); deletion needs a counting variant, and the filter cannot list its contents
+- Count-min sketch and its ε–δ guarantee; a d-by-w table of counters with d hash functions; an update increments one counter in each row, and a point query returns the minimum over the rows; with w = ⌈e/ε⌉ and d = ⌈ln(1/δ)⌉, the estimate never falls below the true count and exceeds it by at most ε times the total of all updates, with probability at least 1 − δ; since counts only overestimate, the sketch suits heavy-hitter detection
 - HyperLogLog and its standard error of about 1.04/√m
 - Reservoir sampling
 - Skip lists: probabilistic promotion, expected O(log n) without rebalancing; their use in LevelDB and RocksDB memtables and Redis sorted sets

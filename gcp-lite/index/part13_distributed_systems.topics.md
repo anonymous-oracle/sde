@@ -7,40 +7,40 @@ Domain: Distributed Systems & Large-Scale System Design
 ### Foundations
 
 - **System models**
-  - Synchronous, partially synchronous and asynchronous timing
-  - Crash-stop, crash-recovery, omission and Byzantine failures
-  - Fair-loss versus reliable links
+  - Synchronous, partially synchronous and asynchronous timing; synchronous means known upper bounds on message delay and on process step time; asynchronous means no bounds, so a slow message cannot be told from a lost one; partially synchronous means bounds exist but hold only after an unknown global stabilization time, which is the model most practical consensus protocols assume
+  - Crash-stop, crash-recovery, omission and Byzantine failures; a crash-stop process halts and never returns; a crash-recovery process loses volatile state and later restarts with its stable storage intact; an omission fault drops messages it should send or receive; a Byzantine process may do anything, including sending conflicting messages; each assumption sets the replica count, since majority consensus against crash faults tolerates f failures with 2f + 1 replicas and Byzantine consensus needs 3f + 1
+  - Fair-loss versus reliable links; a fair-loss link may drop messages, but a message sent infinitely often is eventually delivered; a reliable link delivers each message exactly once while both ends are correct, with no duplication or creation; reliable links are built from fair-loss links by retransmission plus deduplication by sequence number; TCP gives this within one connection, not across a crash of either end
   - Failure detectors: perfect versus eventually perfect; a timeout means only "suspected"
-  - The eight fallacies of distributed computing
+  - The eight fallacies of distributed computing; the network is reliable; latency is zero; bandwidth is infinite; the network is secure; topology does not change; there is one administrator; transport cost is zero; the network is homogeneous; each false assumption names a failure mode a design must handle, such as retries for the first and encryption for the fourth
 - **Time and order**
-  - Happens-before as a partial order
-  - Lamport clocks; vector clocks capture causality exactly
+  - Happens-before as a partial order; a happens before b when a and b are on one process with a first, or a is a send and b its matching receive, closed under transitivity; two events with neither ordering before the other are concurrent; the order is partial because some pairs of events are incomparable
+  - Lamport clocks; vector clocks capture causality exactly; a Lamport clock increments on each local event and sets its value to the larger of its own and the received value, plus one, on receive, so a happens before b implies C(a) < C(b) but not the converse; a vector clock keeps one counter per process, and a happens before b exactly when V(a) is componentwise less than V(b); the cost is a vector of length n carried on every message
   - Physical clock synchronization (NTP); bounded uncertainty with TrueTime and commit-wait
-  - Consistent snapshots (Chandy–Lamport)
+  - Consistent snapshots (Chandy–Lamport); the initiator records its state and sends a marker on each outgoing channel; a process receiving its first marker records its state, forwards markers, and records messages arriving on other channels until their markers arrive; with first-in-first-out channels the recorded states and channel contents form a consistent cut, used for checkpointing and for detecting stable properties such as deadlock
 - **Consistency**
-  - Weak, eventual and strong consistency
-  - Linearizability versus sequential, causal and eventual consistency
-  - Serializability versus strict serializability
-  - Session guarantees: read-your-writes, monotonic reads
+  - Weak, eventual and strong consistency; weak consistency promises nothing about what a read returns; eventual consistency promises that replicas converge once writes stop, with no bound on when; strong consistency promises that a read reflects every acknowledged write, whose precise form is linearizability, taught next; each step up costs coordination on the write or read path
+  - Linearizability versus sequential, causal and eventual consistency; linearizability makes each operation appear to take effect atomically at one point between its invocation and response, consistent with real-time order; sequential consistency keeps one total order that respects each client's program order but not real time; causal consistency orders only causally related operations; eventual consistency orders nothing and promises convergence; the first needs cross-replica coordination on each operation
+  - Serializability versus strict serializability; serializability requires that concurrent transactions behave as if run one at a time in some serial order; strict serializability also requires that order to respect real time, so a transaction that committed before another began is ordered first; a read-only transaction that starts after a commit must see that commit under the strict form, but may miss it under the plain one
+  - Session guarantees: read-your-writes, monotonic reads; read-your-writes means a client's reads include its own earlier writes; monotonic reads means that once a client has seen a value, later reads never return an older one; both are met by pinning a session to one replica, or by tracking the version the client last saw and waiting for a replica that has reached it
   - CAP as proved by Gilbert and Lynch, with what it does not say; PACELC; choosing CP or AP
 - **Impossibility results**
-  - The Two Generals problem
+  - The Two Generals problem; two armies must attack together and can communicate only by messengers who may be captured; each acknowledgement can itself be lost, so the last sender can never know the message arrived, and no finite protocol over a lossy link guarantees that both sides agree; the lesson is that commit protocols must accept timeouts and uncertainty rather than promise certainty
   - FLP: no deterministic asynchronous consensus with one crash; bivalence; escapes via partial synchrony, randomization and failure detectors
 
 ### Consensus and coordination
 
-- The consensus problem: agreement, validity, termination
-- Single-decree Paxos (prepare/promise, accept/accepted) and Multi-Paxos
+- The consensus problem: agreement, validity, termination; agreement means no two correct processes decide different values; validity means a decided value was proposed by some process; termination means every correct process eventually decides; with asynchronous messages and one crash, FLP shows that no deterministic algorithm guarantees all three, which is why protocols add timeouts, randomness or partial synchrony
+- Single-decree Paxos (prepare/promise, accept/accepted) and Multi-Paxos; a proposer picks a ballot number n and sends prepare(n); an acceptor promises to ignore lower ballots and reports the highest proposal it has accepted; after a majority of promises, the proposer sends accept with the value of the highest reported proposal, or its own value if none was reported; a value is chosen once a majority accepts it; Multi-Paxos runs one instance per log slot under a stable leader that skips prepare for most slots
 - Raft: terms and leader election, log replication, log matching and leader completeness, the commit rule, membership change
-- State-machine replication
+- State-machine replication; every replica starts from the same state and applies the same deterministic commands in the same order from a replicated log, so the states match; ordering is the job of a consensus protocol; commands must not read local clocks or random numbers unless the values are agreed first; a snapshot of the state lets the log before it be discarded
 - Coordination services built on consensus: Chubby, ZooKeeper, etcd; leader election and distributed locks; fencing; etcd's watch as a stream of change events ordered by revision, where a client that reconnects with its last revision receives every later change without a gap; config distribution by watching a key prefix: a client loads a snapshot at revision R, then watches from R + 1 and applies events in order, and after a restart with a revision that has been compacted it re-lists the prefix and watches again from the new revision
 - Byzantine fault tolerance: n ≥ 3f + 1; PBFT's three phases; why cloud control planes use crash-fault consensus
 
 ### Replication
 
 - Primary–replica replication; read replicas; promotion on primary failure; point-in-time recovery from a base backup plus archived WAL replayed to a chosen target time, and why a replica that copies a bad delete is not a backup; read/write routing, where writes go to the primary and reads go to replicas chosen by statement type, with reads that must see the user's own write pinned to the primary for a short window, the routing done in the application driver or by a connection proxy, and replica lag bounding how stale a routed read can be
-- Multi-primary replication and write conflicts
-- Chain replication
+- Multi-primary replication and write conflicts; several nodes accept writes and replicate them to each other, so concurrent updates to one item conflict; conflicts are resolved by last-writer-wins on timestamps, which silently discards one write, by application merge rules, or by conflict-free data types; partitioning ownership of each item to one primary avoids most conflicts, at the cost that an item's writes are lost or stalled whenever its owner is unreachable
+- Chain replication; a write enters at the head and passes down the chain of replicas, and the tail acknowledges it, so an acknowledged write is on every replica; reads go to the tail, which holds only fully replicated writes; a failed node is removed by a configuration master and the chain is repaired; throughput is shared across the nodes, while latency grows with chain length
 - Leaderless, Dynamo-style replication: read repair, hinted handoff, Merkle-tree anti-entropy, sloppy quorums
 - Quorums: R + W > N by pigeonhole; W > N/2 against conflicting writes; majority-quorum availability Σ C(N,k)pᵏ(1 − p)^(N−k)
 - CRDTs as join-semilattices: G-Counter, PN-Counter, OR-Set; operational transformation
@@ -48,31 +48,31 @@ Domain: Distributed Systems & Large-Scale System Design
 
 ### Availability
 
-- Active-passive (hot and cold standby) and active-active fail-over
+- Active-passive (hot and cold standby) and active-active fail-over; a hot standby runs and replicates continuously, so failover takes seconds to minutes; a cold standby is restored from backup when needed, which is cheap and slow; active-active serves traffic from every site and fails over by removing the failed one, needing data partitioned or synchronized across sites; the trade-off is cost against recovery time, plus the conflict handling that active-active demands
 - Availability in nines: downtime per year, month, week and day for 99.9% and 99.99%
 - Series availability (multiply availabilities) and parallel availability (multiply unavailabilities)
-- Correlated failures and failure domains (zones, regions, releases)
+- Correlated failures and failure domains (zones, regions, releases); failures are correlated when they share a cause such as power, a network element, a configuration push or a common library; replicas in independent domains help only when the domains really fail independently; a release is a failure domain too, since a bad build hits every instance that received it, so releases roll out in stages with health checks between them
 
 ### Partitioning
 
-- Federation (functional partitioning) by domain
+- Federation (functional partitioning) by domain; data is split by business domain, such as users, orders and catalogue, each into its own database with its own schema and owning team; cross-domain reads move into services or into replicated read models; the benefit is independent scaling and failure, and the cost is that no single transaction spans domains
 - Sharding: shard keys, hot keys, rebalancing, cross-shard queries, replication per shard
-- Denormalization to avoid distributed joins
+- Denormalization to avoid distributed joins; the row that needs a value stores a copy of it, for example an order keeps the customer name as it was at purchase, so the read stays on one partition; the cost is that every change must update the copies, copies drift, and a propagation mechanism with periodic reconciliation is needed
 - Consistent hashing: expected 1/(n + 1) key movement; Θ(log n / n) arcs and virtual nodes; rendezvous hashing; jump consistent hash
-- Scatter-gather queries
+- Scatter-gather queries; the query is sent to every relevant shard in parallel, each returns a partial result, and an aggregator merges them, for top-k with a bounded heap per shard; latency equals the slowest shard, so tail latency grows with shard count; cost grows with fan-out, so queries that touch one shard should be routed to it directly
 
 ### Distributed transactions
 
 - Two-phase commit and its blocking window; why three-phase commit fails under partitions
-- Two-phase commit over Paxos groups
+- Two-phase commit over Paxos groups; each participant and the coordinator is a Paxos group, so the prepare and commit decisions are replicated and a crashed machine cannot lose a decision or leave locks held indefinitely; the cost is extra consensus rounds on every commit, which raises latency compared with plain two-phase commit
 - Sagas: local transactions with compensating transactions; choreography versus orchestration; no isolation between steps
 - Durable workflow retry state (Temporal-style): the orchestrator persists each step's attempt count, last error and next attempt time; retries with backoff up to a limit; replay of recorded history after a crash so completed steps are not repeated; idempotent steps as the precondition
-- Exactly-once delivery as effectively-once: idempotence plus deduplication
-- The transactional outbox and inbox; idempotent consumers
+- Exactly-once delivery as effectively-once: idempotence plus deduplication; exactly-once delivery is impossible over an unreliable channel, because the sender cannot tell whether a lost acknowledgement meant a lost message; the practical form is at-least-once delivery, meaning retry until acknowledged, plus effects applied once, by storing processed message IDs in the same transaction as the effect or by using an idempotent operation; the ID store is bounded by a retention window
+- The transactional outbox and inbox; idempotent consumers; the outbox writes the event row in the same local transaction as the state change, and a relay publishes unsent rows and marks them sent, so no change is lost and no event exists without its change; the inbox records processed message IDs in the same transaction as the consumer's effect, so redelivery is ignored; since a relay can publish twice, consumers must be idempotent
 
 ### Caching at scale
 
-- Where to cache: client, CDN, reverse proxy, web server, database, application
+- Where to cache: client, CDN, reverse proxy, web server, database, application; each layer closer to the user cuts more latency and load but makes invalidation harder: client caches follow response headers, a CDN serves cacheable responses from edge locations, a reverse proxy caches whole responses, web servers and applications cache objects in memory, and databases cache pages and plans; the further a copy sits from the source of truth, the harder it is to invalidate
 - What to cache: rows, query results, serialized objects, rendered HTML; query-level versus object-level invalidation; a query cache keyed by the query text and its parameters and invalidated when any table the query reads changes, against an object cache keyed by entity ID and invalidated only when that entity changes, with the hit rate and the invalidation fan-out of each
 - Update strategies: cache-aside, write-through, write-behind, refresh-ahead; cache-aside reads the cache, loads the database on a miss and fills the cache, and deletes the entry on write; write-through writes the cache and the database before acknowledging; write-behind acknowledges after the cache write and flushes batches later, losing unflushed writes on a crash; refresh-ahead reloads an entry shortly before its TTL expires when it is read near expiry
 - Cache internals: TTLs, sampled LRU approximation; sharded caches by consistent hashing
@@ -81,34 +81,34 @@ Domain: Distributed Systems & Large-Scale System Design
 
 ### Asynchronism and flow control
 
-- Message queues versus task queues; workers; scheduled tasks
+- Message queues versus task queues; workers; scheduled tasks; a message queue delivers events to subscribers, one copy per consumer group, to decouple producers from consumers; a task queue hands each unit of work to one worker from a pool, which acknowledges on completion and retries after a visibility timeout; a scheduled task runs at a time or interval, often by enqueueing with a delay; a visibility timeout that expires too early causes duplicate execution, so handlers must be idempotent
 - Back-pressure with bounded queues and 503s; a full queue signalling upstream by blocking the producer, rejecting with a 503, or granting credits to the sender, and TCP's receive window as the same mechanism at transport level
 - Load shedding versus queueing; Little's law for queue bounds; cascading failure as a positive feedback loop, where a slowed dependency makes callers time out and retry, so the next tier receives several times its normal load; defended by timeouts shorter than the caller's own deadline, retry budgets, load shedding by priority and circuit breakers that stop the calls
 - Token-bucket arrival curves (at most b + r·t over any interval) and network-calculus delay bounds
-- When not to queue: cheap or real-time work
+- When not to queue: cheap or real-time work; a queue adds a network hop, storage, delay and a failure mode, so work cheap enough to finish inside the request, or needing an answer in the same call such as a payment confirmation or a search result, should run synchronously; queue only when the producer can accept later completion and the work is slow or bursty
 
 ### Stream and batch processing
 
-- MapReduce and dataflow; lineage-based recovery
+- MapReduce and dataflow; lineage-based recovery; map emits key–value pairs from each input split, the shuffle groups them by key, and reduce aggregates each key's values; dataflow generalizes this to a graph of operators whose data is pipelined between them; lineage records how each partition was derived, so a lost partition is recomputed from its inputs rather than replicated, which costs recomputation time along long chains, and is why long lineages are checkpointed
 - MapReduce job patterns: count by key, dedup, group-and-filter, sort by moving the count into the key
-- Event time versus processing time
-- Windows: tumbling, sliding, session
-- Watermarks and late data
-- Exactly-once processing
-- Heavy hitters and approximate counting with bounded memory
+- Event time versus processing time; event time is when an event happened, as recorded in the data, and processing time is when the system sees it; the gap comes from network delay, buffering and retries, so results keyed by processing time change with system load, while results keyed by event time are repeatable once the input is complete
+- Windows: tumbling, sliding, session; a tumbling window has fixed length and no overlap, such as every five minutes; a sliding window has fixed length and a shorter hop, so each event falls in several windows; a session window closes after a gap of inactivity, so its length varies per key; the window choice fixes what a result means
+- Watermarks and late data; a watermark is a timestamp W asserting that no more events with event time below W are expected; a window closes when the watermark passes its end; an event arriving after that is late, and is dropped, emitted as a correction, or accepted within an allowed lateness; a larger allowance delays every result, so the lateness bound is a latency trade-off
+- Exactly-once processing; the effect of each record on state and output is applied once, even though the processor may replay input after a failure; it is achieved by checkpointing operator state together with source offsets, then committing output transactionally or writing it idempotently; it concerns internal effects, not network delivery, which remains at-least-once
+- Heavy hitters and approximate counting with bounded memory; heavy hitters are items above a frequency threshold; Misra–Gries keeps k counters and underestimates each count by at most n/(k + 1) over a stream of length n; Count-Min keeps d rows of width w and overestimates by at most εN with probability 1 − δ, using w = ⌈e/ε⌉ and d = ⌈ln(1/δ)⌉; these sketches trade exactness for fixed memory
 
 ### Performance at scale
 
-- Performance versus scalability; latency versus throughput
+- Performance versus scalability; latency versus throughput; performance is how fast one unit of work runs at a given load, and scalability is how throughput holds as load and resources grow; latency is the time one request takes and throughput is requests per unit time; they trade off through queueing, since as utilization nears 1 latency grows without bound, so a system at its maximum throughput usually has poor latency
 - Vertical versus horizontal scaling; stateless clones with external session stores
 - The tail at scale: fan-out amplification; hedged and tied requests
-- The iterative scaling loop: load test → profile → fix the bottleneck → repeat
+- The iterative scaling loop: load test → profile → fix the bottleneck → repeat; the load test uses a realistic request mix and measures throughput and latency percentiles; profiling shows where time goes, in CPU, locks, I/O or the network; Amdahl's law caps the gain from any one fix by the share of time that fix touches; re-measure after each change, because the next limit appears where the last one was
 - Back-of-the-envelope estimation: users, requests per second, read:write ratio, storage per year; requests per second as daily active users times actions per user divided by 86,400 seconds, peak as a multiple of the average, and storage as record size times records times retention, with units checked at each step
 
 ### Testing and verification
 
-- Fault injection in the Jepsen style
-- Deterministic simulation testing
+- Fault injection in the Jepsen style; a real cluster runs a client workload while a fault generator injects partitions, process kills, clock skew and disk faults; every operation's invocation and response are recorded, and the history is checked against the claimed consistency model, which exposes anomalies that unit tests miss; the method needs a checker that can decide the history and a workload that touches the same keys often
+- Deterministic simulation testing; the whole system runs in a single-threaded simulator where a seeded random source controls message order, delays, crashes and clocks, so any failing run replays exactly from its seed; this explores many schedules quickly; its limit is that the model must capture the real system's behaviour, and behaviour outside the model stays untested
 - Linearizability checking of recorded histories (NP-complete in general; per-key partitioning)
 
 ### System design method
@@ -125,14 +125,16 @@ Domain: Distributed Systems & Large-Scale System Design
 
 - Blob storage with only locations in the database; object storage as a flat key-to-blob store of immutable objects written by multipart upload; a container registry as an object store of content-addressed layers and manifests, referenced by digest, with the managed registries as examples
 - Short links and unique IDs: Base62 encodings, collision probability, counters and range allocators, Snowflake-style IDs and clock skew
-- Log analytics into a warehouse
-- Expiry and cleanup with native TTLs or sweepers
-- Fan-out on write versus on read; the celebrity problem; active-user timelines
+- Log analytics into a warehouse; an agent ships application logs to a buffer, which loads them in batches into columnar tables partitioned by date; queries read only the columns they name, so cost follows bytes scanned; raw logs are kept for retention and derived tables serve dashboards; the trade-off is minutes-to-hours freshness against the cost of a search index for near-real-time lookups
+- Expiry and cleanup with native TTLs or sweepers; a TTL marks a record as expired at a timestamp; a native TTL is enforced by the store, which deletes in the background, so expired items may linger for a while; a sweeper is a scheduled job that scans for expired records and deletes them, costing I/O and needing to be idempotent; native TTLs suit simple expiry, and sweepers suit cleanup that depends on other data
+- Fan-out on write versus on read; the celebrity problem; active-user timelines; fan-out on write precomputes each follower's timeline when a post is made, so reads are cheap but one post by an account with millions of followers writes millions of entries; fan-out on read merges followed accounts at read time, so writes are cheap and reads cost more; the celebrity problem is that write burst; a hybrid pushes to active followers and pulls for celebrities, and keeps timelines only for active users to bound storage
 - Search: tokenization, inverted indexes, ranking, in-memory hot indexes; posting lists as sorted document-ID arrays intersected by merge or by skip pointers, and index sharding either by document ID (each shard answers for all terms) or by term (each query visits the shards that hold its terms)
-- Crawler frontiers, URL and content dedup with signatures, freshness, politeness
-- Categorization dictionaries and budget alerts
-- Graph traversal at scale: sharded adjacency, bidirectional BFS, precomputation
-- Notification services through queues
+- Crawler frontiers, URL and content dedup with signatures, freshness, politeness; the frontier is the queue of URLs to fetch, ordered by importance and freshness; URLs are deduplicated after normalization, with a set or a Bloom filter; page contents are deduplicated with signatures such as SimHash, which give near-duplicates close values; politeness respects robots.txt and limits requests per host through per-host queues; freshness revisits a page more often the faster it changes
+- Categorization dictionaries and budget alerts; a dictionary maps merchant descriptors to categories by exact or pattern match, with the user's own overrides applied first; unmatched transactions go to a fallback category or a review queue; a budget alert compares spending in each category against its limit for the period, notifies at set thresholds, and fires when projected spend will cross the limit
+- Graph traversal at scale: sharded adjacency, bidirectional BFS, precomputation; adjacency lists are sharded by vertex, so each hop may cross machines and a traversal becomes batched remote fetches per level; bidirectional BFS expands from both ends and stops when the frontiers meet, exploring roughly 2b^(d/2) vertices rather than b^d for branching factor b and distance d; precomputation stores distances or landmark indexes for frequent queries
+- Notification services through queues; a producer publishes a notification event to a queue; a fan-out worker resolves recipients and creates one job per channel, such as push, email or SMS; each channel worker retries with backoff, respects user preferences and rate limits, and sends jobs that keep failing to a dead-letter queue for inspection
+- Chat system design: delivery guarantees, per-conversation ordering across devices, presence, fan-out, offline sync and read receipts; delivery is at-least-once, with clients dropping repeats by message ID; ordering is kept per conversation by a sequence number assigned within it, since global order is unneeded and costly; presence is a heartbeat that renews a leased entry, so a stalled client's presence expires; a group message is fanned out to each member's inbox, and each device pulls from its last acknowledged sequence number, so an offline device resumes without a gap; read receipts are small events written back into the conversation
+- Stock exchange and order matching design: an order book holds price levels, each a FIFO queue of resting orders, with bids sorted high to low and asks low to high so the best prices sit at the front; the matching loop crosses an incoming order against the best opposite level in price–time priority, better price first and earlier arrival first at the same price; a sequencer gives every input a total order and writes it to a log, so one matcher can run single-threaded and any state is rebuilt by deterministic replay of that log; latency is measured per order from arrival to acknowledgement
 
 ### Exercises
 

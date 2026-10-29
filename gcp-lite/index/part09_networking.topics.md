@@ -72,56 +72,56 @@ Domain: Computer Networking & Web Protocols
 - **URL and URI structure**: scheme, authority, path, query and fragment; URI versus URL; percent-encoding of reserved characters; relative reference resolution; normalisation before comparison
 - **HTTP semantics**
   - The request/response cycle; methods, status codes, headers, cookies; a request line carries the method, target and version, followed by headers and an optional body, and a response has a status line whose three-digit code is 1xx informational, 2xx success, 3xx redirection, 4xx client error or 5xx server error; cookies are set by `Set-Cookie` and returned in `Cookie`, so the server can keep state across HTTP's stateless requests
-  - Safe, idempotent and cacheable methods (GET, POST, PUT, PATCH, DELETE)
+  - Safe, idempotent and cacheable methods (GET, POST, PUT, PATCH, DELETE): GET and HEAD are safe, so they must not change state; GET, PUT and DELETE are idempotent, so repeating them leaves the same state as one call; POST is neither safe nor idempotent, which is why a retried POST needs an idempotency key; GET and HEAD are the usual cacheable methods, while a POST response is cacheable only with explicit freshness information; PATCH is not guaranteed idempotent
   - 429 and 503 with `Retry-After` as back-pressure signals; idempotency keys for non-idempotent requests; the error taxonomy: 4xx client errors that a retry will not fix, 503, 429 and 504 as transient errors that retry with backoff, and 500 as a server bug to alert on; an error envelope in RFC 9457 problem details carrying a stable machine-readable code, the request ID and the per-field errors, with the cause logged on the server and never returned to the client as a stack trace
   - HTTP caching headers: `Cache-Control`, `Age`, `Via`, validators; freshness from `max-age` compared with `Age` (a response is fresh while Age is below max-age), revalidation with `ETag` and `Last-Modified` answered by 304 Not Modified; conditional requests with `If-None-Match` for cached reads and `If-Match` on writes, where a stale ETag returns 412 Precondition Failed so a lost update is refused; freshness monitoring: the cache hit ratio and the age distribution of served responses read from the `Age` header, the `stale-while-revalidate` and `stale-if-error` directives that serve a stale response while refreshing or during an origin failure, and an alert when the share of responses served past max-age crosses a set budget
 - **HTTP versions**
-  - HTTP/1.1 persistent connections and chunked bodies
-  - HTTP/2 stream multiplexing over one TCP connection
-  - HTTP/3 over QUIC
+  - HTTP/1.1 persistent connections and chunked bodies: connections stay open by default, so one TCP connection carries many requests in sequence, but each response must finish before the next starts, which causes head-of-line blocking; chunked transfer encoding sends a body of unknown length as hex-sized chunks ended by a zero-length chunk, so a server can stream output as it is produced
+  - HTTP/2 stream multiplexing over one TCP connection: binary frames carry many streams over one TCP connection, with header compression by HPACK and flow control per stream; a lost TCP segment still stalls every stream sharing the connection, which is the head-of-line blocking that HTTP/3 removes
+  - HTTP/3 over QUIC: QUIC runs over UDP and recovers loss per stream, so a lost packet stalls only its own stream; TLS 1.3 is built into the handshake, so a new connection can complete in one round trip; connection IDs let a client keep the connection when its address changes; HTTP/3 compresses headers with QPACK
 - **Request smuggling and desync**: ambiguous message framing when `Content-Length` and `Transfer-Encoding` disagree or are malformed; a front end and a back end reading different request boundaries (CL.TE and TE.CL); obfuscated `Transfer-Encoding` headers; rejecting ambiguous framing at the server boundary
 - **The web platform**
-  - HTML, CSS and the DOM
-  - Browser rendering
-  - The JavaScript event loop in the browser
-  - The same-origin policy and its fundamentals
-- **Redirection status codes**: 301 and 302 as permanent and temporary redirects, which clients have historically rewritten to GET; 303 See Other, sent after a POST to redirect to a result page with GET so that a refresh does not resubmit; 307 and 308, which preserve the method and body, with 308 the permanent form of 307; the `Location` header; and clients that cap a redirect chain at a small number of hops
+  - HTML, CSS and the DOM: HTML is parsed into a tree of nodes, the DOM, which scripts can read and change; CSS rules match elements by selector and assign properties, and the browser computes each node's style from the cascade and inheritance
+  - Browser rendering: the browser builds the DOM and the CSS object model, combines them into a render tree of visible nodes, runs layout to compute geometry, then paints and composites layers; a change that forces layout costs more than one that only paints or composites
+  - The JavaScript event loop in the browser: JavaScript runs one task at a time on a single thread; the event loop takes a task from the queue, runs it to completion, drains the microtask queue (such as promise callbacks), and then renders if a frame is due; a long synchronous task blocks input and rendering, which is why work is split up or moved to workers
+  - The same-origin policy and its fundamentals: two URLs share an origin only when scheme, host and port all match; scripts from one origin cannot read responses from another, though requests can still be sent, as with forms, which is why CSRF defences exist; CORS relaxes the read restriction through response headers that the server chooses to send
+- **Redirection status codes**: 301 and 302 as permanent and temporary redirects, which clients have historically rewritten to GET; 303 See Other, sent after a POST to redirect to a result page with GET so that a refresh does not resubmit; 307 and 308, which preserve the method and body, with 308 the permanent form of 307; the `Location` header; and clients that cap a redirect chain at a small number of hops; a 301 or 308 is cacheable by default, so browsers can keep following a mistaken permanent redirect after the rule is removed, while a 302 or 307 is not cached unless the response says so, which is why a rule under test should use a temporary code; a redirect loop is a chain of `Location` responses that returns to a URL already visited, which a client detects by remembering visited URLs or by its hop cap, and reports as an error rather than following forever
 - **WebDAV and publishing with PUT**: PUT replaces the entire resource at the target URI and is idempotent, so a retry is safe; WebDAV extends HTTP with PROPFIND to read collection properties, MKCOL to create a collection, COPY and MOVE, and LOCK and UNLOCK with lock tokens for concurrent editors; a conditional PUT with `If-Match` refuses a lost update; OPTIONS advertises the allowed methods and the DAV compliance class
 - **Representations, content negotiation and entities**: the entity headers `Content-Type` (with its charset) and `Content-Length` (counted in bytes after content coding), with `Content-Encoding` applied to the representation and distinct from the transfer coding applied on one hop, so that a body is the entity with the transfer coding removed; server-driven negotiation with `Accept`, `Accept-Language` and `Accept-Encoding`, quality values such as `q=0.8` ranking the options, and 406 Not Acceptable only when no representation is acceptable; `Vary` naming each request header that the chosen representation depends on; and range requests with `Range`, answered by 206 Partial Content and `Content-Range`, for resumable downloads
 
 ### TLS mechanics
 
-- The TLS handshake; certificates and certificate authorities; chains of trust
-- TLS termination at proxies and load balancers; managed certificates
+- The TLS handshake; certificates and certificate authorities; chains of trust; the client sends a ClientHello with supported parameters and a key share, the server replies with its own key share, its certificate and a signature made with the certificate's private key, and both sides derive session keys from the shared secret; the client checks the chain of signatures up to a trusted root, the validity dates, and that the certificate names the host it connected to
+- TLS termination at proxies and load balancers; managed certificates; the proxy holds the private key, decrypts, and forwards to the backend in plaintext or re-encrypts, so the backend skips handshake cost but the hop behind the proxy needs its own protection; managed certificates are issued and renewed automatically by the platform, which removes the expiry outages that come from manual renewal
 
 ### Middleboxes, proxies and load balancing
 
 - **Firewalls and proxies**
-  - Stateful firewalls
-  - Forward versus reverse proxies
+  - Stateful firewalls: a stateful firewall tracks each connection in a state table and admits return traffic that matches an outbound flow, while a stateless filter judges each packet alone; a new inbound connection is blocked unless a rule allows it, and the state table limits how many connections can be tracked at once
+  - Forward versus reverse proxies: a forward proxy sits in front of clients and hides them from servers, as an outbound web filter does, while a reverse proxy sits in front of servers and hides them from clients, handling TLS, routing and caching
   - Reverse-proxy roles: hiding backends, IP blocking, connection limits, TLS termination, compression, caching, static content; compression negotiated by `Accept-Encoding` with gzip or br as the content coding, and `Vary: Accept-Encoding` so a cache stores one entry per encoding
-  - NGINX and HAProxy as reverse proxies and load balancers
+  - NGINX and HAProxy as reverse proxies and load balancers; both are event-driven proxies that can terminate TLS, route on host or path, balance load across upstream pools and health-check them; NGINX also serves static files and caches responses, while HAProxy focuses on load balancing and exposes detailed connection and health statistics
 - **Load balancing**
   - L4 (transport information, NAT forwarding) versus L7 (terminates, reads headers and cookies, content routing)
   - Algorithms: random, round robin, weighted round robin, least connections, least loaded, consistent hashing
-  - Health checks; session persistence and affinity; SSL termination
+  - Health checks; session persistence and affinity; SSL termination; a health check probes each backend on an interval and removes one after a set number of failures, so traffic stops reaching a dead instance; session persistence pins a client to one backend, usually by a cookie or a source-address hash, which keeps in-memory session state working but skews load and breaks when that backend fails; SSL termination is the TLS termination described above
   - Active-passive and active-active load balancers; the load balancer as a single point of failure
 - **Content delivery networks**
-  - Edge proxies close to users; DNS or anycast steering
-  - Push versus pull CDNs; TTLs, cache keys, invalidation; signed URLs and cookies
-  - When each fits; cost and staleness trade-offs
+  - Edge proxies close to users; DNS or anycast steering; a CDN edge server terminates the user's TCP and TLS close to them, so handshake round trips are short; users reach the nearest edge by a DNS answer chosen for the resolver's location, or by anycast, where BGP routes one IP address to the nearest site; on a cache miss the edge fetches from the origin
+  - Push versus pull CDNs; TTLs, cache keys, invalidation; signed URLs and cookies; a pull CDN fetches from the origin on the first request and caches for the TTL, while a push CDN is loaded by the publisher ahead of time; the cache key is the URL plus any headers that vary the response; invalidation either purges a path or relies on versioned URLs, since waiting for TTL expiry is slow; signed URLs and signed cookies carry an expiry and a signature so that the edge serves only authorised requests
+  - When each fits; cost and staleness trade-offs; pull suits large or unpredictable catalogues where only popular objects get cached; push suits a small, known set of large files that must be in place before traffic arrives; a longer TTL cuts origin load and cost but serves stale content for longer, and a shorter TTL does the reverse; a decision record should name the staleness budget
 
 ### Private connectivity
 
-- VPNs (IPsec site-to-site, client VPNs)
-- Dedicated interconnects and private peering
-- Private access to provider services
+- VPNs (IPsec site-to-site, client VPNs): an IPsec tunnel encrypts and authenticates IP packets between two gateways, with IKE negotiating the keys, so a site-to-site tunnel joins two networks; a client VPN gives one laptop an address inside the remote network; tunnel headers add per-packet overhead, so the MTU must be lowered to avoid fragmentation
+- Dedicated interconnects and private peering: a dedicated interconnect is a private circuit from your premises or a colocation facility into a provider's network, bypassing the public internet; private peering exchanges routes with a provider or partner over a direct link rather than through public transit; both give steadier latency than a VPN over the internet, and both are priced by port or circuit capacity
+- Private access to provider services: a private connection lets workloads reach managed services at internal addresses, so traffic to a storage or database API does not cross the public internet; the service endpoint resolves to a private address and access is still checked by IAM; the design question is which services and which DNS names need the private path
 
 ### Data-centre networks
 
-- Clos and fat-tree topologies
-- Equal-cost multipath (ECMP) and oversubscription
-- Google's Jupiter fabric
+- Clos and fat-tree topologies: a Clos network is a multistage fabric in which every leaf switch connects to every spine switch, so any two hosts have many equal-cost paths; a fat-tree is a folded Clos built from k-port switches, supporting k³/4 hosts with full bisection bandwidth
+- Equal-cost multipath (ECMP) and oversubscription; ECMP spreads flows across equal-cost next hops by hashing the packet's 5-tuple, so each flow stays on one path and is not reordered; oversubscription is the ratio of host-facing bandwidth to uplink bandwidth at a switch, so 3:1 means the uplinks carry a third of the offered load when every host sends at once; hash collisions can leave some links hot while others sit idle
+- Google's Jupiter fabric: Jupiter is Google's data-centre fabric, built as a Clos network of commodity switches under centrally computed software control; a published Google paper reports its bisection bandwidth at petabit-per-second scale, and those figures are the paper's claims, not independent measurements
 
 ### IoT and constrained-device networking
 
@@ -129,7 +129,7 @@ Domain: Computer Networking & Web Protocols
 - **Connectivity technologies**: short-range and low-power links (BLE, ZigBee, Z-Wave, Thread, NFC, RFID); LPWAN (LoRa and LoRaWAN, NB-IoT, Sigfox); the range, data-rate and power trade-off; 6LoWPAN and IPv6 on constrained links; RPL routing
 - **Application protocols**
   - MQTT: broker, topics and wildcards, QoS 0, 1 and 2, retained messages, last will
-  - CoAP: REST over UDP, confirmable messages, observe; compared with HTTP and AMQP
+  - CoAP: REST over UDP, confirmable messages, observe; compared with HTTP and AMQP; CoAP is a request and response protocol over UDP with methods and status codes modelled on HTTP; a confirmable message is retransmitted until acknowledged and a non-confirmable one is sent once; observe lets a client subscribe to a resource and receive notifications; its header is four bytes, which suits constrained devices, and unlike AMQP it is request-oriented rather than broker-based
 - **Sensor, UAV and machine-to-machine networks**: topology and energy-aware routing; data aggregation; flying ad-hoc networks; M2M communication and interoperability standards (oneM2M)
 - **Software-defined networking**: control-plane and data-plane separation; OpenFlow match-action tables and the controller; SDN for IoT (flow rules, slicing, centralized management)
 - **Embedded platforms**: Arduino and Raspberry Pi; GPIO, ADC, PWM, I2C, SPI and UART; interfacing sensors and actuators; sampling and debouncing
@@ -137,10 +137,10 @@ Domain: Computer Networking & Web Protocols
 
 ### Measurement
 
-- `ping`, `traceroute` (TTL expiry), `dig +trace`, `curl -v`, `ss`
-- Packet capture with `tcpdump` on your own host
-- Throughput measurement with `iperf3`
-- Simulated loss with `tc netem`
+- `ping`, `traceroute` (TTL expiry), `dig +trace`, `curl -v`, `ss`: `ping` sends ICMP echo requests and reports round-trip times and loss; `traceroute` sends probes with rising TTL values, so each router whose TTL expires answers with an ICMP time-exceeded message and reveals itself; `dig +trace` walks the delegation from the root servers down to the authoritative answer; `curl -v` prints request and response headers and TLS details; `ss` lists sockets with their state and queue sizes
+- Packet capture with `tcpdump` on your own host: `tcpdump -i <interface>` captures on one interface, `-n` skips name lookups, `-w <file>` writes raw packets for later analysis in Wireshark, `-r <file>` reads them back, and a filter such as `host` or `port 443` narrows the capture; it needs root, and it should be run only on traffic you are authorised to observe
+- Throughput measurement with `iperf3`: iperf3 runs a server on one host and a client on another that sends traffic for a set time and reports throughput and retransmissions; `iperf3 -s` starts the server, `iperf3 -c <server>` starts the client, `-u` switches to UDP, which also reports loss and jitter, and `-R` reverses the direction
+- Simulated loss with `tc netem`: netem is a queueing discipline under `tc` that adds delay, jitter, loss and reordering to a network interface, for example `tc qdisc add dev <iface> root netem delay 100ms loss 1%`, removed with `tc qdisc del`; apply it only to a lab interface, because it affects all traffic through that device
 
 ### Exercises
 

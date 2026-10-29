@@ -6,9 +6,9 @@ Domain: School-level foundations
 
 - **Arithmetic and number sense**
   - Integers, negatives, fractions, decimals, percentages; the number sets N ⊂ Z ⊂ Q ⊂ R, and the rationals as a field: closure, associativity, commutativity and distributivity under + and ×, with 0 and 1 as identities and every nonzero fraction having a multiplicative inverse; the sorts separated: naturals as the counting numbers 1, 2, 3, …, whole numbers adding 0, integers adding the negatives, rationals as p/q with q ≠ 0 whose decimals terminate or repeat, and irrationals such as √2 and π whose decimals neither terminate nor repeat, with the reals as their union; the number line as the picture of R, where a < b means a lies to the left of b, and the absolute value |a| as the distance of a from 0
-  - Ratios and rates; order of operations
-  - Rounding, estimation, scientific notation, significant figures
-  - Prime factors, GCD and LCM
+  - Ratios and rates; order of operations; a ratio compares two quantities of the same kind, while a rate compares quantities of different kinds per one unit of the second, such as kilometres per hour; order of operations is brackets, then powers, then multiplication and division from left to right, then addition and subtraction from left to right, so 8 ÷ 2 × 4 is 16, not 1
+  - Rounding, estimation, scientific notation, significant figures: round to a stated place and round only at the end, so rounding does not compound; estimation replaces each number by one significant figure to check the order of magnitude; scientific notation writes a × 10ⁿ with 1 ≤ a < 10, so 0.00042 is 4.2 × 10⁻⁴; significant figures are the digits known to be meaningful, and a result cannot carry more of them than its least precise input
+  - Prime factors, GCD and LCM: every integer above 1 is a unique product of primes, and the GCD takes each shared prime to its smaller power while the LCM takes the larger, so gcd(a, b) × lcm(a, b) = ab; for 48 = 2⁴ · 3 and 18 = 2 · 3², the GCD is 6 and the LCM is 144; the Euclidean algorithm finds the GCD without factoring
   - Speed, distance and time: d = vt, so v = d/t and t = d/v; average speed as total distance over total time, not the mean of the speeds; relative speed v₁ + v₂ for opposite directions and v₁ − v₂ for the same direction
   - Ratio and proportion: a:b = c:d exactly when ad = bc; a proportion as two equal ratios
   - Componendo, dividendo, alternendo and invertendo: from a/b = c/d come (a+b)/b = (c+d)/d and (a−b)/b = (c−d)/d; dividing these gives (a+b)/(a−b) = (c+d)/(c−d); alternendo a/c = b/d; invertendo b/a = d/c
@@ -20,9 +20,9 @@ Domain: School-level foundations
   - Place value: each digit's value is the digit times the power of the base fixed by its position, so the 4 in 3,482 stands for 400 and the number is the sum 3·10³ + 4·10² + 8·10 + 2; digits after the decimal point carry negative powers, so 0.07 = 7 × 10⁻²; the face value of a digit is the digit itself, and its place value is the digit times its position's power
   - Integer division algorithm: for integers a and b > 0 there are unique integers q and r with a = bq + r and 0 ≤ r < b; the Euclidean algorithm repeats this step, replacing (a, b) by (b, r), until the remainder is 0, and the last nonzero remainder is gcd(a, b)
 - **Units and dimensional reasoning**
-  - SI prefixes from kilo to peta and milli to nano
-  - Units of time, data and rate; unit conversion
-  - Checking a formula by its units
+  - SI prefixes from kilo to peta and milli to nano: each prefix is a power of ten: kilo 10³, mega 10⁶, giga 10⁹, tera 10¹², peta 10¹⁵, and milli 10⁻³, micro 10⁻⁶, nano 10⁻⁹; a prefixed unit is one unit, so 1 ms is 10⁻³ s; these prefixes are powers of ten, unlike the binary prefixes such as KiB
+  - Units of time, data and rate; unit conversion; 1 hour is 3600 seconds and 1 byte is 8 bits, and a rate such as Mbps is a quantity per second, so 100 Mbps moves 12.5 MB per second; convert by multiplying by a fraction equal to 1, such as 3600 s / 1 h, so the unwanted unit cancels and the wanted one remains
+  - Checking a formula by its units: both sides of an equation must have the same units, so in d = vt the metres of d equal metres per second times seconds, and a formula that adds metres to seconds is wrong before any number is substituted; the units also suggest the form of a relation, which is the basis of dimensional analysis
 - **Algebra**
   - Variables and expressions; linear equations and inequalities; translating a word problem by naming the unknown, writing each stated quantity in terms of it, then forming the equation; the sign flips when an inequality is multiplied or divided by a negative number, so −2x > 6 gives x < −3
   - Rearranging formulas; simultaneous equations by substitution and elimination; absolute value
@@ -31,23 +31,23 @@ Domain: School-level foundations
   - Surds: √(a²b) = a√b in simplest form; √(ab) = √a·√b for a, b ≥ 0; rationalising a denominator, 1/(√3 + 1) = (√3 − 1)/2
 - **Functions and graphs**
   - Function notation, domain and range, composition, inverse functions, monotonicity; f is increasing when x < y gives f(x) < f(y) and decreasing when it gives f(x) > f(y), read from a graph by the direction of its rise; a linear function is monotone exactly when its slope is nonzero, and a quadratic ax² + bx + c is monotone on each side of its vertex x = −b/(2a)
-  - Linear, quadratic, polynomial, piecewise and step functions
-  - Slope as rate of change; reading and sketching graphs
+  - Linear, quadratic, polynomial, piecewise and step functions: a linear function ax + b graphs as a straight line; a quadratic ax² + bx + c graphs as a parabola with its vertex at x = −b/(2a); a polynomial's degree is its highest power of x; a piecewise function gives one rule for each interval of its domain, so to evaluate f(x) find the interval that holds x and apply its rule, and its graph draws each piece on its own interval, with a filled dot where an endpoint is included and an open circle where it is not; a step function is piecewise and constant on each interval
+  - Slope as rate of change; reading and sketching graphs; slope is (y₂ − y₁) / (x₂ − x₁), the change in output per unit change in input, so the steepness of a graph is a rate; to sketch a graph, plot the intercepts, a few computed points and the sign of the slope or curvature, then check the sketch against a table of values
   - Graphical transformations: y = f(x) + a shifts up by a; y = f(x − a) shifts right by a; y = af(x) stretches vertically; y = f(bx) compresses horizontally by a factor b; y = −f(x) and y = f(−x) reflect in the axes
   - Special functions: floor ⌊x⌋, the largest integer at most x; fractional part {x} = x − ⌊x⌋ in [0, 1); signum sgn(x) equal to −1, 0 or 1; step and sawtooth graphs and their jumps
 - **Exponents, roots and logarithms**
-  - Laws of exponents; powers of 2 and of 10
-  - Logarithm laws and change of base; log scales
-  - Exponential growth and decay
+  - Laws of exponents; powers of 2 and of 10; aᵐ · aⁿ = aᵐ⁺ⁿ, (aᵐ)ⁿ = aᵐⁿ, a⁰ = 1 for a ≠ 0, a⁻ⁿ = 1 / aⁿ and aᵐ / aⁿ = aᵐ⁻ⁿ; 2¹⁰ = 1024 is about 10³, so a kibibyte is about a thousand bytes, and multiplying by 2⁻¹ is halving; a power of ten 10ⁿ has n + 1 digits, which gives a quick check on the size of a number
+  - Logarithm laws and change of base; log scales; log_b(xy) = log_b x + log_b y, log_b(xᵏ) = k log_b x, and log_b x = log_a x / log_a b, so one base such as 10 or e serves every calculation; on a log scale equal ratios are equal distances, so a quantity that grows by a fixed factor each step plots as a straight line, and a power law y = xᵏ is a straight line on log–log axes
+  - Exponential growth and decay: a quantity that grows by a fixed factor r per period is y = y₀rᵗ, growing when r > 1 and decaying when 0 < r < 1, and its doubling time is ln 2 / ln r; continuous growth at rate k is y = y₀eᵏᵗ; a half-life is the same calculation with the factor below 1
 - **Sequences, series and notation**
   - Arithmetic and geometric sequences and their sums; the infinite geometric series a + ar + ar² + … has sum a/(1 − r) exactly when |r| < 1; harmonic progressions, whose reciprocals form an arithmetic progression; inserting n arithmetic means between a and b with common difference (b − a)/(n + 1)
-  - Σ and Π notation; factorial
+  - Σ and Π notation; factorial; Σᵢ₌₁ⁿ aᵢ adds the terms a₁ to aₙ and Πᵢ₌₁ⁿ aᵢ multiplies them, and a factor that does not depend on the index can be taken outside the sum as a constant; n! = n × (n − 1) × … × 1 counts the orderings of n distinct items, with 0! = 1; a sequence is a function from its index to its terms, written aₙ = f(n), and a recurrence defines each term from earlier ones, so a₁ = 1 and aₙ = aₙ₋₁ + 2 give 1, 3, 5, …, while the Fibonacci recurrence aₙ = aₙ₋₁ + aₙ₋₂ with a₁ = a₂ = 1 needs the two terms before each new one
   - Geometric mean: √(ab) of positive a and b is the middle term of a geometric sequence; the arithmetic mean (a + b)/2 is never smaller (AM ≥ GM)
 - **Geometry, trigonometry and vectors**
   - Cartesian coordinates, Pythagoras and distance; reflections in the axes; reflection in the line y = x swaps the coordinates, so (a, b) becomes (b, a); rotation about the origin by θ, (x, y) ↦ (x cos θ − y sin θ, x sin θ + y cos θ), and translation by (a, b), (x, y) ↦ (x + a, y + b), which together with reflections give the isometries of the plane; a rotation composed with a translation is a rotation about another centre
   - Lines as ax + by = c; slope, parallel and perpendicular lines, intersections; similarity; the forms y = mx + c (slope-intercept), y − y₁ = m(x − x₁) (point-slope) and (y − y₁)/(y₂ − y₁) = (x − x₁)/(x₂ − x₁) (two-point), with inclination θ and m = tan θ; similarity by AAA and by SAS or SSS proportionality, and congruence by SSS, SAS, ASA and RHS
   - Angles, sine and cosine, the unit circle; the six ratios of a right triangle: sin = opposite/hypotenuse, cos = adjacent/hypotenuse, tan = sin/cos, and their reciprocals cosec = 1/sin, sec = 1/cos and cot = 1/tan; radian measure, θ radians = 180θ/π degrees, so π radians is 180°, and a radian is the arc length on a unit circle, hence arc length s = rθ on a circle of radius r
-  - Vectors as arrows; the angle between two vectors
+  - Vectors as arrows; the angle between two vectors; a vector has a magnitude and a direction, written as (a, b) in the plane, and vectors add by placing one arrow's tail at the other's head; the dot product a·b = |a||b| cos θ gives the angle as θ = cos⁻¹(a·b / (|a||b|)), so a·b = 0 exactly when the vectors are perpendicular
   - Pythagorean identity: sin²θ + cos²θ = 1, with 1 + tan²θ = sec²θ and 1 + cot²θ = cosec²θ
   - Addition and subtraction formulas: sin(A ± B) = sin A cos B ± cos A sin B; cos(A ± B) = cos A cos B ∓ sin A sin B; tan(A ± B) = (tan A ± tan B) / (1 ∓ tan A tan B)
   - Multiple and half-angle formulas: sin 2θ = 2 sin θ cos θ; cos 2θ = cos²θ − sin²θ = 1 − 2 sin²θ = 2 cos²θ − 1; tan 2θ = 2 tan θ / (1 − tan²θ); sin²(θ/2) = (1 − cos θ)/2 and cos²(θ/2) = (1 + cos θ)/2
@@ -93,33 +93,33 @@ Domain: School-level foundations
 - **Vectors and lines in three dimensions**
   - Direction cosines and direction ratios: cos α, cos β, cos γ with l² + m² + n² = 1; direction ratios proportional to them; the direction ratios of a line through two points are the coordinate differences
   - Scalar triple product: a·(b × c), the volume of the parallelepiped on a, b and c; zero when the three vectors are coplanar
-  - Vector triple product: a × (b × c) = (a·c)b − (a·b)c
+  - Vector triple product: a × (b × c) = (a·c)b − (a·b)c; a × (b × c) is perpendicular to a and lies in the plane of b and c, and this rule, sometimes called BAC–CAB, expands any nested cross product into dot products; for example with a = j, b = i and c = j, the left side is j × (i × j) = j × k = i and the right side is (j·j)i − (j·i)j = i
   - Lines and skew lines: vector form r = a + tb and Cartesian form (x − x₁)/l = (y − y₁)/m = (z − z₁)/n; skew lines are neither parallel nor intersecting, with shortest distance |(a₂ − a₁)·(b₁ × b₂)| ÷ |b₁ × b₂|
   - Planes and point-to-plane distance: ax + by + cz = d, or r·n = d with normal n; the distance from (x₁, y₁, z₁) to ax + by + cz + d = 0 is |ax₁ + by₁ + cz₁ + d| ÷ √(a² + b² + c²)
   - Angles between lines and planes: cos θ = |l₁l₂ + m₁m₂ + n₁n₂| between two lines; sin θ = |a·n| ÷ (|a||n|) between a line with direction a and a plane with normal n
 - **Probability and data**
-  - Outcomes and events; simple and complementary probability; counting
+  - Outcomes and events; simple and complementary probability; counting; the probability of an event is the number of favourable outcomes over the number of equally likely outcomes, always between 0 and 1, and P(not E) = 1 − P(E); the multiplication rule counts sequential choices, and permutations nPr = n!/(n − r)! and combinations nCr = n!/(r!(n − r)!) count arrangements and selections, so 3 letters arranged from 5 distinct letters give 60 orders
   - Mean, median, mode and spread; variance σ² = Σ(x − x̄)²/n as the mean squared deviation from the mean, and standard deviation σ = √σ²
-  - Reading charts and tables; sampling and bias
+  - Reading charts and tables; sampling and bias; read the axes and their units before the bars, check whether a y-axis starts at zero, and note the sample size; a sample is biased when its selection rule is linked to the quantity measured, as with a survey answered only by volunteers, and a larger sample reduces random error but does not remove bias
 - **Sets and logic in words**
   - Membership, union, intersection, complement, Venn diagrams; set difference A − B and symmetric difference A Δ B = (A − B) ∪ (B − A)
-  - And, or, not, if…then; the truth of statements
+  - And, or, not, if…then; the truth of statements; a statement is true or false; `and` is true only when both parts are, `or` when at least one is, and `not` flips the value; `if P then Q` is false only when P is true and Q is false; its contrapositive, `if not Q then not P`, is equivalent to it, while its converse, `if Q then P`, is a different statement that must be checked separately
 - **Proof habits**
-  - Step-by-step reasoning and counterexamples
-  - "For all" and "there exists"; proof by cases
+  - Step-by-step reasoning and counterexamples; each line of an argument follows from earlier lines or a stated rule, and one false step breaks the proof; a universal claim is refuted by one counterexample, while checking many cases only gives evidence, since no finite set of examples proves a claim about all cases
+  - "For all" and "there exists"; proof by cases; to prove a claim for all x in a set, take an arbitrary x and show the claim holds for it; to refute it, find one x where it fails; to prove that some x exists, give a witness; to prove by cases, split the situation into exhaustive cases, such as n even and n odd, and prove each, so that no case is left out
 - **Pre-calculus and calculus intuition**
-  - Limits as "approaching"; instantaneous rate of change; area under a curve
+  - Limits as "approaching"; instantaneous rate of change; area under a curve; the limit of f(x) as x approaches a is L when f(x) can be kept as close to L as wanted by taking x close enough to a, with x not equal to a; the derivative is the limit of (f(x + h) − f(x)) / h as h approaches 0, the slope of the tangent; the area under a curve on [a, b] is the limit of sums of thin rectangles, and the fundamental theorem of calculus says differentiation and integration are inverse operations
 - **Electricity and signals**
   - Voltage, current and circuits; a switch as on and off; a clock as a regular signal
 - **Computer literacy**
-  - Files, folders and paths; installing software
-  - The terminal as a text interface; typing fluency
+  - Files, folders and paths; installing software; a path is absolute from the root, such as `/` on Unix, or relative to the current directory, with `.` meaning here and `..` the parent; installing software places its files where the system searches, usually through a package manager that records what was installed and at which version, so the install can be repeated or removed
+  - The terminal as a text interface; typing fluency; a shell reads a line, splits it into words, runs the named program with its arguments and prints its output and exit status, so a command is a name, then flags, then arguments; typing fluency means entering commands without looking at the keys, which leaves attention for the problem, and it is built with tab completion and history recall
 - **Technical reading and writing**
-  - Reading documentation and specifications; precise definitions
-  - A structured written argument; summarising
+  - Reading documentation and specifications; precise definitions; read the definitions first, then the examples, then the edge cases, since a specification's words carry exact meanings, such as MUST, SHOULD and MAY in standards documents; a precise definition names each condition so that a given object can be tested against it, which is how a bug is shown to be a violation rather than a matter of opinion
+  - A structured written argument; summarising; state the claim, give the reasons in order with the evidence for each, answer the strongest objection, and end with what follows; a summary keeps the claim and the evidence that supports it, drops examples and repetition, and is checked by whether a reader could rebuild the argument from it
 - **Technical communication**
-  - The vocabulary of requirements, constraints and trade-offs
-  - Explaining to a non-expert; presenting
+  - The vocabulary of requirements, constraints and trade-offs: a requirement says what the system must do, a constraint is a limit it must work within, such as a budget, a latency bound or a legal rule, and a trade-off is a choice that improves one property at the cost of another, such as latency against consistency; each one is written as a measurable statement with a number and a unit, which is what makes it testable
+  - Explaining to a non-expert; presenting; lead with the conclusion and what it means for the listener, use one concrete example in place of jargon, define each term in one line when it first appears, and check understanding by asking the listener to restate the point; a presentation's slides carry the structure of the argument, not its full text
 - **Everyday economics**
   - Cost and price; fixed versus variable cost; profit = selling price − cost price and loss = cost price − selling price, with profit percent = profit ÷ cost price × 100 and loss percent = loss ÷ cost price × 100
   - Discounts, interest and budgets; simple interest I = Prt/100 with r in percent; compound amount A = P(1 + r/100)ⁿ over n years at r percent a year, and P(1 + r/(100k))^(kt) when interest is compounded k times a year; markup as a percent of cost price, so selling price = cost price × (1 + m/100), and profit as a percent of selling price, (SP − CP) ÷ SP × 100, which is a different number for the same sale; a discount as a percent of the marked price, so the price after discount d is marked price × (1 − d/100), and two successive discounts d₁ then d₂ leave (1 − d₁/100)(1 − d₂/100) of the marked price, not 1 − (d₁ + d₂)/100

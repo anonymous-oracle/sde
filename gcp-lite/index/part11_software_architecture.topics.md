@@ -7,47 +7,47 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 ### Architecture fundamentals
 
 - **System decomposition**
-  - The client–server model
+  - The client–server model; a client sends a request over a network connection and a server holds the shared state and returns a response; many clients share one server, so state and its rules are kept in one place; the roles are per exchange, so one component can be a client to one service and a server to another; the costs are one network round trip per call and a server that must scale with its clients
   - Separating the web layer from the application layer so each scales independently
   - Monoliths, modular monoliths and microservices, and their trade-offs; split decisions made along bounded contexts or business capabilities rather than technical layers, each split justified by a change-rate and team-ownership test and by which transactions it would force across the boundary
   - Schema ownership per service: each service owns its tables and migrations; other services read through its API or its events, never its tables; shared-database coupling as the anti-pattern; the consequences for joins and transactions
   - Service discovery: registries (Consul, etcd, ZooKeeper), health checks, configuration key-value stores
-  - Liveness, readiness and startup probes
+  - Liveness, readiness and startup probes: a liveness probe answers whether the process is stuck and should be restarted; a readiness probe answers whether it can take traffic now and is removed from the load balancer while it is false; a startup probe holds the other two back until a slow start has finished; a liveness check that calls a database turns one database outage into a restart of every instance at once, so keep liveness local and let readiness carry dependency checks
 - **Modularity**
-  - Information hiding: decompose by design decisions likely to change (Parnas)
+  - Information hiding: decompose by design decisions likely to change (Parnas); each unit hides one design decision (a data representation, an algorithm, a hardware interface) behind its interface, so a change to that decision touches one unit; the alternative, splitting by the order of processing steps, spreads each likely change across many units; the test of a decomposition is which changes it makes cheap
   - Coupling and cohesion; afferent and efferent coupling; instability I = Ce/(Ca + Ce); the stable-dependencies principle
-  - Interfaces as contracts
-  - Conway's law and the inverse Conway manoeuvre
+  - Interfaces as contracts: an interface states what callers may rely on, its operations with their preconditions, postconditions and invariants, and the implementation may change behind it without breaking callers; a breaking change is a change to the contract, so additions are safe while altered meanings or removed operations are not; in Go, interfaces are satisfied implicitly and are best defined by the consumer as small sets of methods, and a contract test runs the same checks against every implementation
+  - Conway's law and the inverse Conway manoeuvre; a system's structure tends to mirror the communication structure of the organisation that builds it, so two teams that never talk produce two components with a poorly designed boundary between them; the inverse manoeuvre sets the team structure first, in the shape the target architecture needs, so the architecture follows the teams; reorganising people is slow and expensive, so it is used when the architecture is blocked by ownership
 - **Architectural styles**
   - Layered; pipes and filters; event-based implicit invocation; repository and blackboard; microkernel (plug-in); client–server
   - Service-scale styles: modular monolith, microservices, service-based, space-based
-  - Styles as named trade-offs judged against quality-attribute scenarios
+  - Styles as named trade-offs judged against quality-attribute scenarios; each style promotes some attributes and costs others: layers give separation and modifiability at the price of pass-through latency, and a microkernel gives extensibility at the price of message-passing overhead and a harder-to-test core; choose the style whose costs fall outside the scenarios that matter most, and write the comparison down against each scenario's response measure
 - **Communication styles**
-  - Synchronous versus asynchronous communication
-  - Message queues and event-driven architecture
+  - Synchronous versus asynchronous communication: a synchronous caller waits for the reply, so availability multiplies along a call chain (two services each 99 percent available give about 98 percent for the chain) and latencies add up; an asynchronous caller hands off a message and continues, so the callee can be slow or down without blocking it, but results arrive later, consumers must handle duplicate and out-of-order messages, and tracing a request across hops is harder
+  - Message queues and event-driven architecture: a queue holds messages until a consumer acknowledges them, and an unacknowledged message is redelivered, so delivery is at least once and handlers must be idempotent; a queue usually gives each message to one consumer for work distribution, while a topic or log gives each subscriber its own position; event-driven architecture has producers publish facts and consumers react, which decouples them but makes a business process hard to see, so a dead-letter queue and correlation IDs are needed
   - The API gateway's offloaded concerns: TLS, authentication, rate limiting, routing
-  - Backend for Frontend: one thin API per client type
+  - Backend for Frontend: one thin API per client type; a backend for frontend is a server owned by one client team (the web app or the mobile app) that calls the backend services and returns the exact shape one screen needs, so the client makes one round trip instead of many; the trade-off is duplicated aggregation logic across the BFFs and one more service to operate; business rules stay in the domain services, and the BFF holds presentation shape only
 
 ### API design
 
 - **RPC**
-  - Client and server stubs, marshalling, the communication module
-  - Exposing behaviours; tight coupling; debugging and caching difficulties
-  - Frameworks: Protocol Buffers and gRPC, Thrift, Avro
+  - Client and server stubs, marshalling, the communication module: the client stub has the same signature as the remote procedure, marshals the arguments into a message, sends it through the communication layer and unmarshals the reply; the server stub unmarshals the request, calls the real procedure and marshals the result; the stubs hide the network, so failures a local call never has (timeouts, lost replies, partial failure) must be handled explicitly
+  - Exposing behaviours; tight coupling; debugging and caching difficulties; a remote procedure exposes the server's operations rather than its data, so clients bind to the operation list and its signatures, and changing one breaks every caller; a call to an arbitrary operation has no standard cache key, unlike an HTTP GET on a URI; a call that looks local can fail after the server has acted, so reproducing and tracing it is harder
+  - Frameworks: Protocol Buffers and gRPC, Thrift, Avro; Thrift defines types and services in an interface definition file that generates code for many languages, with several wire encodings and transports; Avro encodes records against a schema that travels with the data or sits in a registry, and the reader resolves the writer's schema against its own, so fields can be added or removed with defaults, which suits data files and streams
   - gRPC security: TLS on the channel with server certificate verification, mutual TLS when the client also presents a certificate, and per-call credentials attached to each RPC as metadata (a bearer token refreshed per call) that the server validates in an interceptor before the handler runs
 - **REST**
   - Fielding's constraints: client–server, stateless, cacheable, uniform interface, layered system, optional code on demand
-  - Resources identified by URIs; representations; self-descriptive status codes
-  - HATEOAS: hypermedia links driven by state
+  - Resources identified by URIs; representations; self-descriptive status codes; a resource is a named concept, a URI identifies it, and a representation (JSON, HTML) is one view of its state that the client receives; a self-descriptive response carries enough method, status code and headers for an intermediary to act on it, so 201 means created with the new URI in Location, 409 means a conflict with the current state and 422 means the request was well formed but semantically invalid; errors carry a problem-details body (RFC 9457) with type, title, status and detail
+  - HATEOAS: hypermedia links driven by state: a response includes links for the actions the current state allows (a cancel link present only while an order is unpaid), so the client follows links from the response instead of building URIs from a template, and the server can change URIs without breaking clients; few production APIs fully implement it, since clients then need link-relation vocabularies and generic hypermedia handling; a JSON API with a fixed set of documented URIs is not hypermedia-driven
   - Where REST fits poorly: non-hierarchical queries, few verbs, nested round trips, bloated responses
-  - Resource-oriented API design guidelines (Google's AIPs)
+  - Resource-oriented API design guidelines (Google's AIPs): the API Improvement Proposals name resources as nouns in hierarchical paths such as `publishers/{publisher}/books/{book}`, map create, get, update, list and delete onto standard methods, express an operation that does not fit those as a custom method with a colon suffix (`:cancel`), use field masks for partial updates, and make long-running operations resources that the client polls
 - **RPC versus REST**
-  - Mapping RPC-style operations to resources and verbs
+  - Mapping RPC-style operations to resources and verbs: a `CancelOrder` call becomes either a custom method on the order resource or a change to its state, such as a `status` field set through an update; decide by whether the operation creates, replaces or only acts, since that determines the verb, its idempotency and its caching; an operation with side effects that is not a plain update needs an explicit method name rather than being forced into GET or PUT
   - RPC internally for performance, REST for public APIs; transcoding one `.proto` to both
-- **GraphQL** as a query language that addresses over-fetching and round trips
+- **GraphQL** as a query language that addresses over-fetching and round trips; one endpoint accepts a query naming exactly the fields the client needs, and the server resolves each field with a resolver function, so a screen takes one round trip and no field is over-fetched; the costs are that each resolver can trigger its own backend call (the N+1 problem, mitigated by batching loaders), HTTP caching is weaker because requests usually POST to one URI, and a client can send an expensive query, so depth and cost limits are required
 - **API design theory**
   - Safety and idempotency as algebraic properties, f(f(x)) = f(x); safe methods (GET, HEAD, OPTIONS) change no server state; idempotent methods (GET, HEAD, PUT, DELETE, OPTIONS) leave the same server state when repeated, so a client may retry them after a timeout; POST is neither, so a retried POST needs an idempotency key to avoid a second effect
-  - Compatibility rules for evolving APIs and schemas; Hyrum's law
+  - Compatibility rules for evolving APIs and schemas; Hyrum's law; adding an optional field or a new operation is safe, while removing or renaming a field, changing its type, or changing what a default means breaks clients; in Protocol Buffers a removed field number is reserved so it is never reused; Hyrum's law says that once an interface has many users, every observable behaviour, including ordering, timing and error text, will be depended on by someone, so a change to observable behaviour counts as breaking even when the documented contract allows it
   - Content negotiation: `Accept`, `Accept-Encoding`, `Accept-Language` and `Vary`
   - Machine-readable contracts (OpenAPI, `.proto`) that generate clients, servers and contract tests; consumer-driven contract tests, where each consumer records the requests it sends and the response fields it reads, and the provider's build replays those recorded interactions
   - Pagination, filtering and versioning; deprecation as a timed process: a `Deprecation` header from the date the old version is marked, a `Sunset` header with the removal date, per-client usage metering, and removal only after the sunset date with no recent calls from clients still on it; keyset (seek) pagination on a unique sort key with an opaque cursor, whose cost per page stays flat, against offset pagination, whose cost grows with the rows skipped and whose pages shift when rows are inserted
@@ -55,7 +55,7 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 
 ### Object-oriented foundations
 
-- **Encapsulation**: protecting invariants, not just hiding fields
+- **Encapsulation**: protecting invariants, not just hiding fields; an invariant is a condition that must hold between method calls, such as a balance never below zero, and the object enforces it by making its state changeable only through methods that check it; public fields or setters that accept any value break invariants whoever is calling, and getters and setters that merely expose fields hide nothing; the test is whether the rule lives in one place
 - **Abstraction**: hiding complexity of behaviour; encapsulated but poor abstractions
 - **Inheritance**: is-a relationships; reuse versus substitutability; composition over inheritance; the square–rectangle problem
 - **Polymorphism**: subtype versus parametric; interfaces with several implementations as the basis of behavioural patterns
@@ -64,53 +64,53 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 ### Design principles
 
 - **SOLID**
-  - Single Responsibility: one actor, one reason to change
-  - Open/Closed: extension through polymorphism instead of type switches
+  - Single Responsibility: one actor, one reason to change; a class or package should answer to one group of stakeholders (the actor who asks for changes), so code that holds both payroll rules and report formatting changes for two unrelated reasons; to find a violation, list which requirements touch the unit and check whether they come from different actors; the principle concerns reasons for change, not the size of a class
+  - Open/Closed: extension through polymorphism instead of type switches; a new case is added as a new type that implements an existing interface, so code that calls the interface does not change; a switch on a type tag must be edited for every new case, and the edits scatter across the code; the cost is the abstraction itself, which pays off only where the axis of variation is real and predictable, so do not add the interface until a second case appears
   - Liskov Substitution: weaker preconditions, stronger postconditions, preserved invariants
-  - Interface Segregation: small client-specific interfaces
+  - Interface Segregation: small client-specific interfaces; a client should not depend on methods it does not use, so a large interface that several clients implement or call is split into role interfaces, one per client need; a type that implements a big interface must stub out methods it cannot support, which is the symptom; in Go, small interfaces defined where they are consumed, such as one with a single Read method, are the usual form
   - Dependency Inversion: depend on abstractions; DIP as the principle, dependency injection as the mechanism
 - **GRASP**
-  - Information Expert, Creator, Controller
-  - Low Coupling (the Law of Demeter, Tell Don't Ask) and High Cohesion
-  - Polymorphism, Pure Fabrication, Indirection, Protected Variations
+  - Information Expert, Creator, Controller; Information Expert gives a responsibility to the class that already holds the information it needs; Creator assigns creating an object to the class that contains, aggregates or closely uses it; Controller is a class outside the user interface that receives system requests and delegates the work to domain objects; each is a rule for placing a responsibility, judged by the coupling it creates
+  - Low Coupling (the Law of Demeter, Tell Don't Ask) and High Cohesion; the Law of Demeter says a method talks only to its direct collaborators, so a chain such as order.customer().address().zip() couples the caller to three classes; Tell Don't Ask says to tell an object what to do rather than read its state and decide outside it; coupling is the number and strength of dependencies between units, cohesion is how closely the parts of one unit serve one purpose, and good design minimises the first while maximising the second
+  - Polymorphism, Pure Fabrication, Indirection, Protected Variations; polymorphism replaces type-based conditionals with methods that each type implements; Pure Fabrication is an invented class, such as a repository or a service, that is not a domain concept but keeps the design cohesive and reusable; Indirection puts an intermediary between two parts so they do not depend on each other directly, at the cost of one more hop; Protected Variations wraps each point of predicted change in an interface so that a change stays inside one place
 - **Everyday rules**
   - DRY as one authoritative representation of each piece of knowledge; the rule of three
-  - YAGNI and KISS
+  - YAGNI and KISS; YAGNI (you aren't gonna need it) means do not build a feature or a generality until a requirement needs it, since speculative flexibility costs upkeep and usually guesses wrong; KISS (keep it simple) means prefer the simplest design the team can understand that meets the stated requirement; both are rules of thumb, weighed against the cost of changing a design later
 
 ### Design by contract and behavioural subtyping
 
-- Preconditions, postconditions and class invariants (Meyer)
+- Preconditions, postconditions and class invariants (Meyer): a precondition is what a routine requires of its caller, a postcondition is what it guarantees on return when the precondition held, and a class invariant is what holds after every public routine; a broken precondition is the caller's fault, and a broken postcondition or invariant is the implementation's; contracts written as assertions can run in tests and debug builds to locate the first violation
 - The Liskov–Wing rule: contravariant preconditions, covariant postconditions, invariants, the history constraint
-- What type systems can and cannot check about substitutability
+- What type systems can and cannot check about substitutability: a static type checker verifies the signature (names, parameter and return types and, under sound variance rules, that a subtype's parameters are no narrower and its returns no wider); it cannot verify preconditions, postconditions or invariants, so a subtype that compiles can still change behaviour, as when a square's setWidth also sets the height and breaks code that assumed independent sides; those semantic rules are checked by contract tests or by proof
 
 ### Gang of Four patterns
 
 - **Creational**
   - Singleton: one instance with global access; hidden global state; one-per-process clients injected instead
-  - Factory Method: subclasses choose the concrete product
-  - Abstract Factory: families of related products
+  - Factory Method: subclasses choose the concrete product; a creator declares an abstract factory method that subclasses override, so client code depends only on the product interface; in Go, a constructor function or a map from key to constructor plays this role; trades a class per product for decoupling, and is overkill when only one product exists
+  - Abstract Factory: families of related products; one interface creates a family of related products that must be used together (a GUI toolkit's button and checkbox for one theme), so a client never mixes a button from one family with a checkbox from another; each family is one concrete factory; adding a new kind of product touches every factory, so the pattern favours adding families over adding product kinds
   - Builder: step-by-step construction; functional options as an alternative; a director that orders the builder's steps, a fluent builder whose methods return the receiver, and a build step that checks the invariants before returning the product; in Go, functional options (a variadic list of functions that each set one field) as the idiomatic builder for optional arguments
-  - Prototype: creation by cloning
+  - Prototype: creation by cloning; the new object starts as a copy of a configured prototype, so no class-specific constructor is needed; a shallow copy shares referenced objects, so the copy must deep-copy any mutable state it owns; in Go, a struct copy is by value, and a Clone method is written where referenced fields must be copied too
 - **Structural**
-  - Adapter: converting one interface to another
-  - Bridge: separating an abstraction from its implementation
-  - Composite: tree structures treated uniformly
-  - Facade: one simple interface over a subsystem
-  - Flyweight: sharing intrinsic state
-  - Proxy: a stand-in that controls access (remote, virtual, protection)
-  - Decorator: adding behaviour by wrapping; middleware
+  - Adapter: converting one interface to another; a wrapper implements the interface the client expects and forwards each call to an object with a different interface, translating arguments and results; the usual case is a third-party library whose names or types do not match the calling code; an adapter changes the interface, not the behaviour, so a semantic mismatch (different units, different error model) still needs explicit translation
+  - Bridge: separating an abstraction from its implementation; the abstraction holds a reference to an implementation interface, so the two hierarchies vary independently; three shapes and two renderers need six combined classes without the pattern and five with it (three abstractions plus two implementations)
+  - Composite: tree structures treated uniformly; leaves and branches implement one interface, and a branch holds children that implement it too, so a client calls the same operation on one item or on a whole tree and the recursion lives in the structure; a directory and a file, or a UI group and a widget, are the usual examples; the cost is that a leaf must accept operations (such as add) it cannot meaningfully perform, unless the interface is split
+  - Facade: one simple interface over a subsystem; the facade exposes the few operations most clients need and calls the many classes of the subsystem in the right order, so clients do not learn its internals; it does not block direct access, so callers who need more still reach the subsystem; a facade that grows to expose every subsystem operation has become a second copy of the subsystem's interface
+  - Flyweight: sharing intrinsic state; each object splits its state into intrinsic state (shared and immutable, such as a glyph's outline) and extrinsic state (passed in per use, such as a position), and a factory returns one shared instance per intrinsic value, so a document with a million characters stores one copy of each glyph; the saving is worth the lookup and indirection only when shared state dominates memory
+  - Proxy: a stand-in that controls access (remote, virtual, protection); a proxy has the same interface as the real object and sits in front of it: a remote proxy hides a network call, a virtual proxy delays creating an expensive object until first use, and a protection proxy checks permissions before forwarding; a caching proxy and a rate-limiting proxy have the same structure; the caller cannot tell the difference, which is the point and also the source of surprise latency
+  - Decorator: adding behaviour by wrapping; middleware; a decorator implements the interface of the object it wraps and adds behaviour before or after forwarding each call, so decorators stack in any order (logging around retrying around the client); HTTP middleware is this pattern on a handler chain; order matters, since a retry outside a timeout behaves differently from one inside it, and each wrapper adds call overhead
 - **Behavioural**
-  - Strategy: interchangeable algorithms
-  - Observer: publish–subscribe notification
-  - Template Method: an algorithm skeleton with varying steps
-  - State: behaviour that changes with internal state; state machines
-  - Command: requests as objects; undo and queues
-  - Chain of Responsibility: passing a request along handlers
-  - Mediator: centralising communication between colleagues
-  - Iterator: sequential access without exposing representation
-  - Memento: capturing and restoring state
-  - Visitor: new operations over a fixed structure
-  - Interpreter: a grammar evaluated by a class hierarchy
+  - Strategy: interchangeable algorithms; a context holds an interface for one algorithm and the caller picks the implementation (a sort order, a pricing rule, a compression codec) at construction or per call; it removes a switch on the algorithm's name, since a new algorithm is a new type; in Go a function-typed field often does the job with no interface, and the pattern is overkill for two fixed algorithms that never change
+  - Observer: publish–subscribe notification; a subject keeps a list of observers and notifies each one when its state changes, without knowing their concrete types; notification is synchronous unless queued, so a slow observer slows the subject, and an observer that changes the subject can cause reentrant updates; a message broker is the same idea across process boundaries, with delivery guarantees the in-process pattern lacks
+  - Template Method: an algorithm skeleton with varying steps; a base class fixes the order of the algorithm's steps in one method and leaves selected steps abstract, so subclasses override the varying steps without changing the sequence; control is inverted, since the base class calls the subclass, and deep hierarchies make the sequence hard to follow; in Go the same shape is usually written as a function that takes the varying steps as arguments
+  - State: behaviour that changes with internal state; state machines; an object delegates each event to a state object that implements behaviour for its current state, and a transition replaces that object, so a large switch on a state field becomes one class per state; the states, transitions, guards and forbidden moves are written in a table first, and each illegal transition should fail loudly rather than be ignored
+  - Command: requests as objects; undo and queues; a request becomes an object with an execute method and, for undo, an inverse; a history stack of executed commands gives undo by running the inverses in reverse order, and a queue of commands gives deferred or retried work; the pattern costs an object per action, and undo works only when each inverse can restore what its command changed, so commands that delete data need saved copies
+  - Chain of Responsibility: passing a request along handlers; each handler either handles the request or passes it to the next, so the sender does not know which handler will act; HTTP middleware and servlet filters are examples; the risks are a request that no handler takes (define a default at the end) and a long chain that is slow and hard to trace; the pattern fits when handlers are ordered and optional
+  - Mediator: centralising communication between colleagues; colleagues send messages to one mediator instead of to each other, so n colleagues need n connections instead of up to n(n−1)/2 links, and the interaction rules live in one place; the cost is that the mediator grows into a God Object if it accumulates every rule, so keep it to the coordination the colleagues cannot do alone
+  - Iterator: sequential access without exposing representation; an iterator yields the elements one at a time through a fixed protocol (has-next and next, or a range loop), so the caller walks a list, a tree or a database cursor the same way without seeing its layout; the iterator may be invalidated when the collection changes during traversal, so define what a mutation does; Go's range loop over slices, maps and channels, and generators in Python, are the idiomatic forms
+  - Memento: capturing and restoring state; the originator makes an opaque snapshot of its state that only it can read, the caretaker stores snapshots without inspecting them, and restore copies a snapshot back; the pattern preserves encapsulation, since the caretaker never sees internals, but a full copy per step costs memory, so store deltas where state is large
+  - Visitor: new operations over a fixed structure; each operation is a visitor object with one method per element type, and each element accepts a visitor by calling the method for its own type, so adding an operation touches one new class instead of every element, while adding an element type touches every visitor; this is double dispatch, which languages with pattern matching or sum types often replace with a switch
+  - Interpreter: a grammar evaluated by a class hierarchy; each grammar rule is a class with an interpret method, so an expression tree of terminal and non-terminal nodes is evaluated by calling interpret on its root; it suits small, stable grammars such as filter expressions or arithmetic, and it does not scale to large languages, where a parser and an evaluator over a syntax tree are the usual choice
 - **Patterns and language features**
   - Patterns that become functions, closures, generators, folds or composition in functional languages (Norvig's observation)
   - The expression problem: open versus closed sums; Visitor versus Strategy; object algebras, type classes and tagless final (named)
@@ -118,39 +118,39 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 
 ### Application architecture
 
-- Layered (n-tier) architecture and pass-through costs
-- Hexagonal architecture: ports and adapters
-- Onion architecture
+- Layered (n-tier) architecture and pass-through costs; each layer (presentation, business logic, data access) calls only the layer below it, so a change stays within its neighbours; a pass-through method that only forwards a call adds code and a hop of latency with no logic, and many of them are the sign that a layer has no real job; judge the layering by whether each layer hides a decision
+- Hexagonal architecture: ports and adapters; the application core defines ports, interfaces for what it needs from outside (a repository, a payment gateway) and for what it offers outside (a use-case interface); adapters implement or call those ports for HTTP, a database or a queue, and dependencies point inward toward the core; the core can be tested with in-memory adapters, and the cost is one more interface per external dependency
+- Onion architecture: concentric layers with the domain model at the centre, domain services around it, application services next and infrastructure (databases, frameworks, user interfaces) outermost; each ring depends only on rings inside it, the same dependency rule as hexagonal architecture, and the difference is mainly emphasis, with the domain model as the core rather than the ports
 - Clean Architecture: entities, use cases, interface adapters, frameworks and drivers; the dependency rule; framework-free boundary data
-- MVC, MVP and MVVM
+- MVC, MVP and MVVM: in MVC a controller turns input into a change of the model and selects the view, and the view reads the model; in MVP a presenter holds all the presentation logic and updates a passive view through an interface the view implements with no logic of its own, so the presenter is testable without a UI; in MVVM the view-model exposes observable state and commands, and the view binds to them declaratively, so the binding framework does the updating; the trade-off is between ease of testing and binding convenience
 - Dependency injection: constructor, setter and interface injection; IoC containers
 - Enterprise patterns: Repository, Unit of Work, Data Transfer Object, Service Layer; Repository as a collection-like interface with add, get and remove operations over one aggregate root, with the query language hidden inside one adapter; Unit of Work as the object that records changed aggregates during a use case and commits them in one transaction at its end; Data Transfer Object as a plain carrier of one request's data across a process boundary, so the remote call moves one object rather than many fields; Remote Facade as one coarse-grained method per remote use case that fills a DTO, so one network round trip replaces many fine-grained calls
 - Transaction script, active record and data mapper: a transaction script as one procedure per use case over plain data, simple and fast for small domains but repeating the rules in each procedure; active record as one class per table holding both the state and its persistence methods, so the object's schema binds it to the database; a data mapper as a separate layer that moves data between domain objects and tables, keeping the domain model free of persistence concerns at the cost of building and maintaining the mapping
 
 ### Domain-driven design
 
-- Entities, value objects and aggregates with a single root
+- Entities, value objects and aggregates with a single root; an entity is defined by an identity that persists as its attributes change (a customer with an ID); a value object is defined by its attributes, is immutable and is compared by value (an amount of money in one currency); an aggregate is a cluster of objects treated as one unit for change, whose root is the only object outside code may reference and which checks every invariant spanning the cluster before a change is committed
 - One repository per aggregate root
-- Domain events
-- Bounded contexts and anti-corruption layers
-- Aggregates as consistency boundaries: one aggregate per transaction; eventual consistency across aggregates
+- Domain events: a domain event is a past-tense record of something that happened in the domain (an OrderPlaced event), raised by an aggregate as its state changes; it is published only after the transaction commits, so no listener acts on a rolled-back change, and a transactional outbox writes the event in the same transaction as the state while a relay publishes it, so a crash cannot lose the event; consumers in the same or other bounded contexts react to it and must be idempotent
+- Bounded contexts and anti-corruption layers; a bounded context is the boundary within which one model and one ubiquitous language hold, so 'customer' can mean a billing account in one context and a shopping profile in another; an anti-corruption layer translates between a context's model and an external or legacy one so that foreign concepts do not leak in; a context map records how contexts relate, as a partnership, a shared kernel, a customer–supplier pair, a conformist that adopts the upstream model, an anti-corruption layer, an open host service with a published language, or separate ways
+- Aggregates as consistency boundaries: one aggregate per transaction; eventual consistency across aggregates; the root checks every invariant that spans the aggregate's members before the transaction commits, so no committed change breaks a rule inside the aggregate; an invariant that spans two aggregates cannot be enforced in one transaction, so it is kept eventually consistent by domain events and a compensating process that repairs or reverses the effect when the rule is broken
 
 ### Distributed application patterns
 
-- CQRS: separate write and read models; when one model is enough
+- CQRS: separate write and read models; when one model is enough; commands change state through the write model, which enforces the invariants, and queries read a separate projection shaped for each screen or report, so reads and writes scale and evolve apart; the read model is updated from the write side's events and is therefore eventually consistent, a delay the user must be able to tolerate; one model is enough when a single schema serves reads and writes at the required latency and scale, which describes most CRUD systems, so CQRS is added only where the shapes or loads really diverge
 - Event sourcing: state as a left fold over events; deterministic replay; snapshots and projections; projection lag as the time between an event's commit and its appearance in the read model, measured as an SLI; rebuilding a projection by replaying the log from the start into a new table and switching reads when it catches up; projection handlers idempotent, so a redelivered event leaves the read model unchanged
 - Resilience patterns: circuit breaker (closed, open, half-open), bulkhead, graceful degradation, retry with exponential backoff and jitter within a retry budget; resilient serving of machine-learning models: a timeout on each prediction call with a fallback to a cached prediction, a simpler model or a rule, and load shedding of low-priority requests when the model server's queue is full
-- Strangler fig migration behind a facade
+- Strangler fig migration behind a facade; the facade (a router, proxy or gateway) sits in front of the legacy system; each route or capability is rebuilt in the new system and the facade switches its traffic over one slice at a time, with the old code still serving every route not yet moved; each switch is reversible by pointing the route back; the legacy code is deleted only when no traffic reaches it
 
 ### Anti-patterns
 
-- God Object; Spaghetti Code; Big Ball of Mud
-- Golden Hammer; Cargo Cult Programming
-- Anemic Domain Model
-- Premature Optimization
-- Magic numbers and strings
-- Shotgun Surgery
-- Interface Bloat
+- God Object; Spaghetti Code; Big Ball of Mud; a God Object is one class that knows and does too much, with many dependencies in and out, so nearly every change touches it; Spaghetti Code has control flow and shared state tangled through jumps and globals, so tracing one path needs the whole program in mind; a Big Ball of Mud has no discernible structure, having grown by accretion, where every part depends on every other; remedies split by responsibility, make dependencies explicit and draw the boundaries the team already uses
+- Golden Hammer; Cargo Cult Programming; a Golden Hammer is a familiar tool or technique applied to every problem (one relational database for everything, or microservices for a small team); Cargo Cult Programming copies a practice or code from elsewhere without knowing the problem it solves, so the ritual stays after its reason is gone; the test is to name the failure the practice prevents and what would break without it
+- Anemic Domain Model: entities are bags of data with getters and setters, and every business rule lives in service classes that read and write them from outside, so invariants are enforced by convention rather than by the objects; the model looks object-oriented but loses encapsulation, and the rules are repeated wherever the data changes; the remedy is to move each rule into the object that owns the data it protects
+- Premature Optimization: optimising code before a measurement shows the cost adds complexity to code that did not need speed; Knuth's warning that premature optimisation is the root of much evil, since most small efficiencies do not matter, is the source of the rule; the remedy is to measure with a profiler, find the hot path that dominates the time, optimise only that, and keep the simpler version as the reference the optimised one is tested against
+- Magic numbers and strings: a literal such as 86400 or "PENDING" whose meaning is not visible where it is used, so the reader cannot tell what it stands for and a change must be found in every copy; the fix is a named constant or an enumerated type whose name carries the meaning, defined once; a literal that is self-explanatory in context, such as 0 in an index, does not need a name
+- Shotgun Surgery: one conceptual change needs small edits in many classes, so each change is spread across the code and easy to miss in one place; the smell means a responsibility is split across units, and the cure is to gather the related behaviour into one place (Move Method, Inline Class) so the next change touches one class
+- Interface Bloat: an interface keeps gaining methods until most implementers stub out the ones they do not support, so the contract is unclear and each implementer carries work it does not need; the cure is to split the interface by client role, as Interface Segregation does, and keep each consumer's interface small
 - Refactoring as behaviour-preserving steps: extract method and extract class, replace a type switch with polymorphism, introduce a parameter object, each step run under a test that pins the current behaviour before the change; the wider catalogue of named moves: rename, move method, inline method, encapsulate field, replace a magic number with a named constant, each answering the smell it names
 
 ### Quality attributes and evaluation
@@ -161,13 +161,14 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 - Design-quality metrics: the Chidamber–Kemerer suite (WMC, DIT, NOC, CBO, RFC, LCOM); Martin's package metrics (abstractness, distance from the main sequence D = |A + I − 1|, the Stable Abstractions Principle); cyclomatic complexity V(G) = E − N + 2P
 - Technical debt as a metaphor and its limits; estimation error; the evidence on code review
 - Architectural drivers: the few requirements (quality-attribute scenarios, hard constraints and the use cases they serve) that most shape the architecture; elicited, ranked by business value and by difficulty, and used to choose the style and tactics before any structure is drawn
+- Architecture risk: risk storming, in which team members rate each component by the likelihood and impact of its failure, compare the ratings and converge on a shared risk map; risk themes, groups of related risks (for example one shared database under several services) that together threaten one quality attribute; the likelihood × impact matrix, a grid where each factor takes a few levels and the cell sets the priority; and risk-driven architecture, which spends design effort (redundancy, decomposition, testing) on the highest-risk areas first and revisits the map as the system changes
 
 ### Architecture documentation
 
-- Architecture views and the C4 model
+- Architecture views and the C4 model: the C4 model zooms through four levels, system context (the system, its users and external systems), containers (deployable applications and data stores), components (the parts inside one container) and code; each view answers a different question for a different reader, and each diagram labels its arrows with what is sent and over which protocol; a diagram without those labels is decoration
 - Mermaid diagram notation: flowchart, sequence, class and state diagrams written as text in version control and rendered by the host; C4 context and container diagrams in the same notation; diagrams kept beside the decision records they support
 - Sequence diagrams: lifelines, synchronous and asynchronous messages, activation bars, alternative and loop fragments; used to check an LLD contract against its failure and retry paths
-- Architecture decision records
+- Architecture decision records: a short numbered document per significant decision, with a title, a status (proposed, accepted, superseded), the context that forced the decision, the decision itself, its consequences good and bad, and the alternatives considered; a record is never rewritten, and a changed decision gets a new record that supersedes the old one, so the history of why stays readable
 - High-level and low-level design documents and the contract between them; the LLD method in order: name the entities and their invariants, list each class's operations with preconditions, draw each stateful class as a state machine, mark the transaction scope of every operation, then draw the sequence diagram of its failure and retry paths
 - Non-functional requirement tables; each NFR written as a quality-attribute scenario with a measure, and elicited by asking stakeholders for numbers (peak requests per second, the latency at the 99th percentile, the availability target, data retention), with words such as fast or secure rewritten as measurable responses; functional requirements written as use cases with an actor, a goal, the main steps and the failure paths
 - UML class-diagram notation: inheritance, realization, composition, aggregation, association, dependency
@@ -175,18 +176,18 @@ Domain: Software Architecture, APIs, Design Patterns & Clean Architecture
 
 ### Formal methods
 
-- State machines as specifications
-- Safety versus liveness properties; temporal logic
-- Model checking by exhaustive state enumeration (a lock, two-phase commit)
-- TLA+ as used in industry to find design bugs before code
+- State machines as specifications: a specification lists the states, the events, the transitions with their guard conditions and the initial state, and the implementation must reach only the states and transitions listed; an order that goes from shipped back to pending is an illegal transition the specification forbids, and a model checker can enumerate every reachable state to confirm that no forbidden one is reached
+- Safety versus liveness properties; temporal logic; a safety property says something bad never happens and is violated by a finite prefix of a run (a lock is never held by two processes); a liveness property says something good eventually happens and needs an infinite run to judge (every request is eventually answered); every property is the conjunction of a safety and a liveness property (Alpern and Schneider); temporal logic writes these with operators such as always and eventually over sequences of states, and linear temporal logic is the usual choice for specifications
+- Model checking by exhaustive state enumeration (a lock, two-phase commit): the checker explores every reachable state of a finite model of the design, checks each invariant in each state, and on a failure returns a trace of events that reaches the violation; the state space grows exponentially with the number of processes and variables, so models are kept small and abstracted; a lock model checks mutual exclusion, and a two-phase commit model checks that all participants reach the same decision even when one crashes
+- TLA+ as used in industry to find design bugs before code; a TLA+ specification states the initial state and the allowed actions over state variables as temporal formulas, and the TLC checker enumerates the reachable states of a bounded model; published accounts from Amazon Web Services describe its use to find subtle bugs in distributed designs before the code was written; the specification checks the design, not the implementation, and a passing check is evidence, not a proof
 
 ### Software testing at depth
 
-- Test oracles, equivalence partitioning and boundary values
-- Example-based versus property-based testing
-- Fuzzing theory: coverage guidance and corpora
-- Mutation testing
-- Static analysis
+- Test oracles, equivalence partitioning and boundary values: an oracle is the mechanism that decides whether an output is correct, often a hand-computed expected value or an independent implementation; equivalence partitioning splits inputs into classes the code should treat alike and tests one value from each class; boundary value analysis adds the values at each edge of a class (the minimum, the value just below, the maximum and the value just above), since off-by-one errors cluster at edges
+- Example-based versus property-based testing: an example test pins one input and its expected output; a property test states a law that must hold for generated inputs (decoding an encoded value returns the original, and sorting gives an ordered permutation of the input), runs it on hundreds of random inputs, and shrinks a failing input to a minimal counterexample; property tests find cases the author did not think of, and example tests document specific behaviour, so the two are used together
+- Fuzzing theory: coverage guidance and corpora: a fuzzer mutates inputs and keeps those that reach new code or branches, so the search is guided by coverage rather than random; a seed corpus of valid inputs starts the search deep in the program, and a minimised corpus keeps the coverage with fewer files; sanitizers that detect memory errors turn silent corruption into a crash the fuzzer records, and each crash is saved as a reproducer
+- Mutation testing: small faults (mutants) are seeded into a copy of the code, such as changing `<` to `<=` or deleting a call; a test suite that still passes a mutant has a gap, since it did not notice the change; the mutation score is the killed mutants divided by the total, and equivalent mutants that change nothing observable cannot be killed and are excluded; run it on changed code, because a full run is slow
+- Static analysis: tools analyse code without running it, from type checking and linting to dataflow analysis and abstract interpretation; a sound analysis reports every error of its kind but may raise false alarms, an unsound one misses some, and by Rice's theorem no analysis can decide every nontrivial property of programs, so each one trades false alarms against misses; the practical question is its false-positive rate on the team's own code
 
 ### Exercises
 

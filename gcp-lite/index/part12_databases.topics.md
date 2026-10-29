@@ -7,7 +7,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 ### Pre-SQL foundations
 
 - Relations as sets of tuples over a heading; SQL tables as bags; Cartesian product sizes; bag versus set union
-- Three-valued logic: TRUE, FALSE, UNKNOWN; why `= NULL` never matches
+- Three-valued logic: TRUE, FALSE, UNKNOWN; why `= NULL` never matches; UNKNOWN arises whenever a NULL is an operand, and AND, OR and NOT follow Kleene truth tables (TRUE AND UNKNOWN is UNKNOWN, FALSE AND UNKNOWN is FALSE, TRUE OR UNKNOWN is TRUE); WHERE and ON keep a row only when the predicate is TRUE, so `x = NULL` returns no rows, and `x IS NULL` tests for the marker itself
 - Types and encodings: minor-unit money, never floats; UTF-8, byte-order marks, `char(n)` padding; half-up versus banker's rounding
 - Files for loading: CSV NULL versus empty string, JSON versus JSONL, `COPY` options, CRLF traps
 - Tooling: `psql` meta-commands and `ON_ERROR_STOP`, Postgres in Docker with volumes and health checks, session time zone and collation
@@ -17,31 +17,31 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 ### Relational theory
 
 - **The relational model**
-  - Headings, bodies, candidate, primary and foreign keys; superkeys
-  - Entity and referential integrity; NULLs and uniqueness
+  - Headings, bodies, candidate, primary and foreign keys; superkeys; a heading is the set of attribute names with their domains and a body is a set of tuples over it; a superkey is any set of attributes that identifies each tuple uniquely, a candidate key is a minimal superkey, one candidate is chosen as the primary key, and a foreign key is a set of attributes whose non-NULL values must appear as a key of the referenced relation
+  - Entity and referential integrity; NULLs and uniqueness; entity integrity says a primary key may hold no NULL, since a key must identify its tuple; referential integrity says each non-NULL foreign key value must match a referenced key, so a dangling reference is a violation; under the default MATCH SIMPLE rule a foreign key with any NULL column is not checked; a UNIQUE constraint treats NULLs as distinct from each other, so a unique column may hold several NULLs
 - **Relational algebra**
   - Selection, projection, product, union and difference; join, intersection and division; each operator as a set comprehension: σ_p(R) = {t ∈ R : p(t)}, π_A(R) = {t[A] : t ∈ R}, R × S = {(r, s) : r ∈ R, s ∈ S}, R ⋈_θ S = σ_θ(R × S), R ∩ S = R − (R − S), and R ÷ S = π_X(R) − π_X((π_X(R) × S) − R), the X-values paired with every tuple of S
-  - Set and bag semantics; why bag projection is not idempotent
+  - Set and bag semantics; why bag projection is not idempotent; a set operator removes duplicate tuples from its result, while a bag keeps multiplicities, so a bag projection outputs one row per input row and its row count stays at |R|; applying a set projection, which is DISTINCT in SQL, a second time changes nothing, since removing duplicates is idempotent
   - Equivalence and rewrite rules: selection and projection pushdown, join commutativity and associativity; outer-join rewrites that are not legal
 - **Relational calculus**
-  - Tuple and domain calculus; safety and the active domain
+  - Tuple and domain calculus; safety and the active domain; tuple calculus quantifies over whole tuples, domain calculus over single attribute values; a query is safe when its answer is finite on every database, and safety is not decidable in general, so the usual restriction requires every variable to be bound by a relation atom, which confines evaluation to the active domain, the constants occurring in the database or the query; an unsafe query such as the set of tuples not in R has an infinite answer
   - Codd's theorem: algebra and safe calculus are equally expressive; relational completeness
 - **Functional dependencies**
-  - X → Y; Armstrong's axioms with soundness and completeness; derived rules
-  - Attribute closure and its correctness; membership testing; candidate keys
-  - Canonical (minimal) covers
+  - X → Y; Armstrong's axioms with soundness and completeness; derived rules; X → Y holds when any two tuples agreeing on X also agree on Y; the three axioms are reflexivity (if Y is a subset of X, then X → Y), augmentation (X → Y gives XZ → YZ) and transitivity (X → Y and Y → Z give X → Z); soundness means the axioms derive only dependencies that hold in every relation, and completeness means every dependency implied by a set F is derivable from F; the derived rules include union, decomposition and pseudotransitivity, each proved from the three axioms
+  - Attribute closure and its correctness; membership testing; candidate keys; the closure X⁺ is computed by repeatedly adding the right side of any dependency whose left side is already inside the result, until nothing changes; the procedure is correct because it applies only sound steps and reaches every attribute the dependencies imply, so X → Y is implied exactly when Y is a subset of X⁺; X is a superkey when X⁺ holds every attribute, and candidate keys come from searching for minimal such X, a search that grows exponentially with the number of attributes
+  - Canonical (minimal) covers; an equivalent set of dependencies with a single attribute on every right side, no extraneous attribute on any left side, and no dependency implied by the rest; it is built by splitting right sides, removing extraneous left attributes by testing closures under the current set, and dropping each redundant dependency; a set of dependencies can have several minimal covers, so the cover is not unique
 - **Normalization**
-  - 1NF, 2NF, 3NF and BCNF
-  - Lossless-join decomposition (the binary test and the chase) and dependency preservation
-  - BCNF decomposition versus 3NF synthesis; when BCNF loses a dependency
-  - Multivalued dependencies and 4NF; join dependencies and 5NF
+  - 1NF, 2NF, 3NF and BCNF; 1NF requires atomic attribute values; 2NF forbids a non-prime attribute, one outside every candidate key, that depends on part of a candidate key; 3NF forbids a non-prime attribute that depends on a key through another non-prime attribute, so X → A is allowed when A is prime or X is a superkey; BCNF requires that every non-trivial dependency X → Y has a superkey on its left, which is stricter than 3NF
+  - Lossless-join decomposition (the binary test and the chase) and dependency preservation; a binary decomposition of R into R1 and R2 is lossless when R1 ∩ R2 determines R1 or R2, and the chase generalizes this test to any number of parts by filling a tableau with distinguished and variable symbols, applying the dependencies until some row is all distinguished; dependency preservation asks whether the union of the projections of F onto the parts implies every dependency in F, a test that runs without computing a join
+  - BCNF decomposition versus 3NF synthesis; when BCNF loses a dependency; BCNF decomposition repeatedly splits a relation on a violating X → Y into XY and R minus (Y without X), which is always lossless but may leave some dependency unenforceable within one relation; 3NF synthesis builds one relation per dependency in a minimal cover, merges those with the same left side, adds a key relation when none contains a key, and always preserves dependencies while staying lossless; BCNF loses a dependency on the street, city and zip relation, where {street, city} → zip and zip → city, because splitting on zip → city separates street, city and zip
+  - Multivalued dependencies and 4NF; join dependencies and 5NF; X →→ Y holds when the Y-values paired with an X-value do not depend on the other attributes, so two independent multivalued facts about one key, such as a teacher's courses and a teacher's languages, force a cross-product of rows; 4NF requires every non-trivial multivalued dependency to have a superkey on its left; a join dependency says a relation equals the natural join of its projections, and 5NF requires every non-trivial join dependency to be implied by the candidate keys
 - **Integrity as specification**
   - CHECK, UNIQUE, FOREIGN KEY, EXCLUDE and deferrable constraints as the executable spec
-  - `NOT VALID` then `VALIDATE`
+  - `NOT VALID` then `VALIDATE`; ALTER TABLE ... ADD CONSTRAINT ... NOT VALID adds a CHECK or FOREIGN KEY constraint that is enforced for new and updated rows at once without scanning existing rows, and VALIDATE CONSTRAINT then checks the existing rows under a lock that still allows concurrent reads and writes, so a large table can take a constraint without a long exclusive lock; if an existing row violates the constraint, validation fails and the constraint stays unvalidated
 - **Expressiveness**
-  - First-order queries cannot express transitive closure
-  - Datalog: least fixpoints, naive and semi-naive evaluation, stratified negation
-  - `WITH RECURSIVE` as linear Datalog; termination
+  - First-order queries cannot express transitive closure; a first-order query quantifies only over elements of the database, and reachability in a graph of arbitrary length is not definable in first-order logic, which is shown with Ehrenfeucht–Fraïssé games; the recursive query that WITH RECURSIVE expresses needs a least-fixpoint operator added to the logic
+  - Datalog: least fixpoints, naive and semi-naive evaluation, stratified negation; a rule's head holds when its body holds, and the meaning of a program is the least set of facts closed under its rules, computed by applying the rules to the facts found so far until no new fact appears; naive evaluation re-derives every fact on each round, while semi-naive evaluation joins each rule only with facts new in the previous round; stratified negation allows not R(x) only when R is fully computed in an earlier stratum, which keeps the meaning unique and rejects negation through a recursive cycle
+  - `WITH RECURSIVE` as linear Datalog; termination; a recursive CTE runs a fixpoint iteration: the working table holds the rows from the previous step, the recursive term produces new rows from it, and evaluation stops when a step adds no rows; with UNION, duplicate rows are discarded, so over a finite domain evaluation terminates even on cyclic data, while UNION ALL on a cycle never terminates; a linear recursion references the working table exactly once per step
 
 ### The SQL language
 
@@ -51,7 +51,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - **Joins**: inner, outer, cross, self, semi, anti, lateral, non-equi and range joins; fan-out when joining one-to-many; outer joins keep unmatched rows and NULL-extend the other side, a condition in ON filters before the extension while the same condition in WHERE removes the NULL-extended rows and turns the outer join into an inner join, and FULL keeps unmatched rows from both sides; a semi join returns each left row at most once when a match exists (EXISTS); an anti join returns left rows with no match (NOT EXISTS), which differs from NOT IN, where one NULL in the subquery makes each comparison UNKNOWN and no rows return; a lateral join evaluates a subquery once per left row, as in top-k per group
 - **Aggregation**: `COUNT(*)` versus `COUNT(col)` versus `COUNT(DISTINCT)`; `FILTER`; `GROUPING SETS`, `ROLLUP`, `CUBE`; ordered-set aggregates
 - **Subqueries**: scalar, `IN`, `EXISTS`, `ALL`/`ANY` (and `= ALL` over empty); correlated versus uncorrelated; relational division
-- **Set operations**: `UNION`, `INTERSECT`, `EXCEPT` with and without `ALL`
+- **Set operations**: `UNION`, `INTERSECT`, `EXCEPT` with and without `ALL`; without ALL, each operator returns distinct rows, and NULLs compare as equal for this purpose; with ALL, a row appearing m times on the left and n times on the right appears m + n times under UNION ALL, min(m, n) times under INTERSECT ALL and max(m − n, 0) times under EXCEPT ALL; the operands must have the same number of columns with compatible types
 - **Window functions**: `ROW_NUMBER`, `RANK`, `DENSE_RANK`; aggregates over frames; `ROWS` versus `RANGE`; default frames and `last_value`; running balances; gaps and islands
 - **CTEs and recursion**: `WITH`, `WITH RECURSIVE`, working tables, cycle detection, `SEARCH` and `CYCLE` clauses; inlined versus materialized CTEs
 - **DML**: `INSERT … ON CONFLICT`, `UPDATE … FROM`, writable CTEs, `MERGE`, `RETURNING`; savepoints; batching to bound WAL and bloat
@@ -67,15 +67,15 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - Heap pages, line pointers and tuple headers; alignment; TOAST for oversized values; modelled in Go as structs with explicit field widths for the tuple header (`xmin`, `xmax`, `ctid`, the null bitmap), the catalog row and the B-tree node header, with each struct's byte size checked by `unsafe.Sizeof` against the on-disk layout
   - Relation forks, the free-space map and the visibility map; segment files; a heap file as an unordered set of pages, where an insert goes to any page the free-space map shows has room and a sequential scan reads every page in order
   - Slotted pages: insert, delete, compact; line pointers as 4-byte item identifiers packing a 15-bit offset, two flag bits and a 15-bit length; a page header holding the free-space bounds; a page checksum computed over the page with the checksum field zeroed and verified on each read
-  - HOT updates and fill factor
+  - HOT updates and fill factor; a heap-only tuple (HOT) update writes the new version on the same page as the old one when no indexed column changes and the page has room, so it adds no index entries, and the index keeps pointing at the original line pointer, which leads through the chain to the live version; a fill factor below the default leaves that free space at insert time, and an update that cannot go HOT adds a new entry to every index
   - PostgreSQL system catalogs and system columns: `pg_class`, `pg_attribute`, `pg_type` and `pg_statistic` as ordinary tables describing relations, columns, types and planner statistics; the system columns `ctid`, `xmin` and `xmax` on every heap tuple
 - **The buffer pool**
   - Hit ratio versus working set; sequential flooding and scan resistance; cache-hit probability under uniform random access to P pages with a B-page buffer, h ≈ B / P for B < P, so the expected physical reads per lookup are (1 − h) times the page accesses
   - Clock-sweep eviction, pins and reference counts
-  - The background writer and the checkpointer
+  - The background writer and the checkpointer; the background writer writes dirty buffers ahead of need, from the buffers the clock sweep is about to reach, so backends seldom write a dirty page themselves during eviction; the checkpointer writes all dirty buffers up to a redo point at intervals, which bounds how much WAL crash recovery must replay; a checkpoint that writes its whole backlog in one burst causes an I/O spike, which spreading the writes over time avoids
 - **Indexes**
   - B+ trees: height ⌈log_F N⌉, splits and merges, leaf chains; Lehman–Yao right links
-  - Hash indexes: static, extendible and linear hashing
+  - Hash indexes: static, extendible and linear hashing; static hashing fixes the number of buckets, so overflow chains lengthen as data grows; extendible hashing keeps a directory of pointers indexed by the leading bits of the hash, doubling the directory and splitting one full bucket at a time, so it avoids long overflow chains at the cost of one extra lookup in the directory; linear hashing grows the table one bucket at a time in a fixed round-robin order, using two hash functions at successive power-of-two sizes, so it needs no directory
   - LSM trees: memtables (skip lists), SSTables, leveled versus tiered compaction, Bloom filters per run; read, write and space amplification (the RUM conjecture)
   - Bitmap indexes and bitmap scans; GIN for JSONB, arrays and text; GiST and SP-GiST; BRIN for append-mostly data
   - Composite indexes and the leftmost-prefix rule; partial indexes; covering indexes with `INCLUDE`; index-only scans, which return columns from the index alone when the visibility map marks the heap page all-visible, and otherwise fetch the heap tuple to check visibility
@@ -84,7 +84,7 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 ### Query processing
 
 - **Execution**
-  - The Volcano iterator model
+  - The Volcano iterator model; each operator exposes open, next and close; next returns one tuple or an end marker and pulls tuples from its child, so a plan runs as a chain of pulls that pipelines tuples through non-blocking operators without materializing them; each tuple costs one call per operator, which vectorized execution amortizes over batches, and a blocking operator such as a full sort must consume its whole input before it returns its first tuple
   - Nested-loop, block nested-loop, index nested-loop, sort–merge and (Grace) hash joins
   - External merge sort: 2N · (1 + ⌈log_{B−1}⌈N/B⌉⌉) I/Os; two passes when N ≤ B(B − 1)
   - Aggregation by sorting or hashing; `work_mem` and spills to temporary files; top-k by a bounded heap of size k instead of a full sort when `ORDER BY ... LIMIT k` is used, and top-k per group with `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...)` filtered in an outer query to ranks at most k
@@ -94,42 +94,42 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
   - The parse, analyse, rewrite and plan pipeline; the parser builds a raw parse tree from the SQL grammar, analysis resolves names and types against the system catalogues, the rewriter expands views and applies rule-based transformations, and the planner picks the cheapest plan by cost estimates before the executor runs it
   - Statistics: histograms, most-common values, correlation; selectivity under uniformity and independence; extended statistics on correlated columns (`CREATE STATISTICS`); compounding estimation error; ANALYZE samples a fixed number of rows (set by the statistics target), refreshes the planner's statistics, and autovacuum re-runs it after a fraction of the rows change; the row estimate as table rows times the product of predicate selectivities, and the factor-of-ten misestimates that correlated predicates produce
   - The Selinger optimizer: dynamic programming over subsets, left-deep plans, interesting orders
-  - NP-hardness of join ordering; genetic search beyond a threshold
-  - Cost variables such as `random_page_cost`
+  - NP-hardness of join ordering; genetic search beyond a threshold; a query with n relations has n! left-deep join orders, and the general problem is NP-hard for typical cost models, so exact dynamic programming over subsets is affordable only up to a join count, and a heuristic search takes over above it; the planner's choice of search is a threshold on the number of joins
+  - Cost variables such as `random_page_cost`; the planner's costs are unitless numbers in which a sequential page read costs seq_page_cost (1.0 by default), a non-sequential page read costs random_page_cost (4.0 by default), and each row processed adds CPU costs such as cpu_tuple_cost; a lower random_page_cost makes index scans more attractive on storage where random reads are cheap, and a wrong value yields a wrong plan without any error
 - **The tuning workflow**
-  - Benchmark and profile before optimizing
+  - Benchmark and profile before optimizing; measure a baseline on a dataset and load that resemble production, with the cache state stated, profile to find where time or I/O goes, and then change one variable; a benchmark on an unrepresentative dataset or on cold caches can rank two designs in the wrong order
   - Hypothesis → `EXPLAIN (ANALYZE, BUFFERS)` → change one thing → re-measure; sargable predicates
-  - Predicting plan shapes, row estimates and buffer hits before measuring
+  - Predicting plan shapes, row estimates and buffer hits before measuring; write the expected plan node by node, the estimated rows at each node as table rows times the product of predicate selectivities, and the buffer reads implied by the table's pages and the cache state; then compare each prediction with EXPLAIN (ANALYZE, BUFFERS) output, where an estimate off by a factor of ten usually points to a statistics or correlation problem
   - Schema-level tuning: column types, keeping blobs out of rows, dropping and rebuilding indexes for bulk loads
 
 ### Transactions and concurrency control
 
-- ACID: atomicity, consistency, isolation, durability
+- ACID: atomicity, consistency, isolation, durability; atomicity means a transaction either commits entirely or has no effect, enforced by undo on abort; consistency means each committed state satisfies the declared constraints, while the application must supply the invariants the constraints do not express; isolation means concurrent transactions behave as if run in some serial order, with weaker levels trading anomalies for throughput; durability means a committed transaction survives a crash, enforced by flushing its log record to stable storage before COMMIT returns
 - Schedules, conflicts and conflict serializability; the precedence-graph theorem; view serializability (NP-complete to test)
-- Two-phase locking and strict 2PL; recoverable and cascadeless schedules
-- Deadlocks: waits-for graph detection; wait-die and wound-wait prevention
-- Timestamp ordering and the Thomas write rule
-- MVCC: tuple versioning, snapshots, visibility rules, the commit log
+- Two-phase locking and strict 2PL; recoverable and cascadeless schedules; 2PL has a growing phase in which locks are acquired and a shrinking phase in which they are released, and no lock is acquired after the first release, which guarantees conflict serializability; strict 2PL holds exclusive locks until commit or abort, so no transaction reads uncommitted data; a recoverable schedule commits each transaction after every transaction it read from, and a cascadeless one never reads uncommitted writes, so one abort cannot force another
+- Deadlocks: waits-for graph detection; wait-die and wound-wait prevention; a deadlock is a cycle in the waits-for graph, whose edges run from each waiting transaction to the holder it waits for, and detection searches for cycles periodically and aborts a victim; prevention uses timestamps so that a cycle cannot form: under wait-die an older requester waits and a younger requester dies, aborting and retrying, while under wound-wait an older requester wounds, aborting the younger holder, and a younger requester waits
+- Timestamp ordering and the Thomas write rule; each transaction receives a timestamp, and each item records the largest timestamps of its reads and writes; an operation that arrives too late for its item aborts its transaction; the Thomas write rule skips a write whose timestamp is older than the item's write timestamp but not older than its read timestamp, since no later transaction reads the value it would overwrite, so the schedule stays serializable and avoids an abort
+- MVCC: tuple versioning, snapshots, visibility rules, the commit log; each update writes a new tuple version stamped with the writer's transaction ID, and a reader sees a version when its creator committed before the reader's snapshot and no committed deleter hides it; the commit log records each transaction's status (in progress, committed or aborted) and visibility checks consult it, so readers do not block writers and writers do not block readers; vacuum removes versions that no snapshot can still see
 - Isolation levels: read committed, repeatable read, serializable; dirty reads, non-repeatable reads, phantoms, lost updates and write skew
-- Snapshot isolation and serializable snapshot isolation (dangerous structures)
-- Critiques of the ANSI isolation definitions; Adya's graph-based definitions
-- Row and table locks; lightweight versus heavyweight locks
+- Snapshot isolation and serializable snapshot isolation (dangerous structures); snapshot isolation reads from the snapshot taken at transaction start and prevents write-write conflicts by first-committer-wins, but admits write skew, where two transactions read overlapping rows and write disjoint ones; serializable snapshot isolation tracks read-write antidependencies and aborts a transaction on a dangerous structure, two consecutive antidependency edges T1 to T2 and T2 to T3 with T3 committing first, which is conservative and aborts some serializable schedules
+- Critiques of the ANSI isolation definitions; Adya's graph-based definitions; the ANSI SQL levels are defined by forbidden phenomena such as dirty reads and phantoms, and they neither mention snapshot isolation nor forbid every lost update or write skew, so products implement levels the standard does not define; graph-based definitions state each level by which cycles it forbids in a serialization graph built from write-read, write-write and read-write dependencies, which places snapshot isolation and serializability on one scale
+- Row and table locks; lightweight versus heavyweight locks; PostgreSQL stores a row lock in the tuple itself, so locking many rows needs no lock-table entry, while table locks sit in the shared lock table and appear in pg_locks; lock modes conflict in a matrix, so a plain SELECT takes a lock that conflicts only with ACCESS EXCLUSIVE, and SELECT ... FOR UPDATE takes a row lock that blocks other writers of that row; lightweight locks (LWLocks) guard shared-memory structures for short periods, unlike the heavyweight locks that protect transactions and tables
 - Vacuum: dead tuples, autovacuum, bloat, transaction-ID wraparound and freezing; long transactions as vacuum poison
 - Optimistic concurrency control: a row carries a version number (or an ETag hash); a writer reads the version, computes the change without holding locks, and writes with `UPDATE ... WHERE version = expected`, retrying when zero rows change; the validation-based three phases (read, validate, write) over each transaction's read and write sets; optimistic offline locking across user think time, where the version travels to the client and the commit is rejected when it has changed; pessimistic locking (`SELECT ... FOR UPDATE`) when conflicts are frequent, traded against retries versus waiting
 
 ### Recovery and replication
 
-- Buffer policies: steal and no-force, and why they require undo and redo
+- Buffer policies: steal and no-force, and why they require undo and redo; steal lets a dirty page of an uncommitted transaction be written to disk before commit, so recovery must be able to undo it; no-force lets commit skip flushing data pages, so the log is the durable record and recovery must redo committed changes not yet on disk; no-steal and force avoid each need but make the buffer pool hold a large transaction's pages until commit and make commit flush every page it changed
 - The write-ahead-logging rule; each WAL record as a header with its total length, transaction ID, the pointer to the previous record and a CRC-32C over the record, followed by the payload, and recovery that stops at the first record whose CRC fails
 - ARIES: LSNs, pageLSN, dirty-page and transaction tables, analysis, redo and undo passes, compensation log records
-- Checkpoints; full-page writes; synchronous commit
+- Checkpoints; full-page writes; synchronous commit; a checkpoint flushes dirty pages and records a redo start point, so recovery replays from there; after a checkpoint, the first change to a page writes the whole page to WAL, which protects against torn pages from partial sector writes at the cost of more WAL; synchronous commit makes COMMIT wait until its WAL record reaches stable storage, while asynchronous commit can lose the last few commits in a crash but cannot corrupt the database
 - Physical streaming replication and WAL archiving; point-in-time recovery: a base backup plus archived WAL replayed up to a chosen target (a timestamp, an LSN or a named restore point), with the replay stopping before the bad transaction
 - Logical replication: publications, subscriptions, decoding across major versions
 - Change data capture through replication slots, and the disk risk of a dead consumer
 - Replica lag as an SLI; read-your-writes through sticky sessions or primary reads; failover caveats
-- Two-phase commit in databases: prepared transactions holding locks
-- External consistency with TrueTime and commit-wait
-- Deterministic databases (Calvin)
+- Two-phase commit in databases: prepared transactions holding locks; a coordinator asks each participant to prepare, which durably records the transaction and holds its locks until the decision arrives, then commits or aborts all of them; PREPARE TRANSACTION keeps a transaction alive across a restart in the prepared state, and COMMIT PREPARED or ROLLBACK PREPARED resolves it; if the coordinator fails after prepare, the held locks block other work until someone resolves the transaction, which is the blocking window that defines the protocol's main failure mode
+- External consistency with TrueTime and commit-wait; TrueTime reports a time interval that contains the true time, with a width set by clock-synchronization uncertainty; a transaction picks a commit timestamp no earlier than the interval's latest bound and waits until that timestamp is definitely in the past before releasing locks, so timestamp order agrees with real-time order, which is external consistency; the price is the commit wait, of the order of the uncertainty width, paid on each commit
+- Deterministic databases (Calvin); a sequencing layer fixes a global order of transactions before execution, so each replica executes the same input in the same order and replicas agree without a commit protocol between them; each transaction's read and write sets must be known in advance or found by a reconnaissance read, which makes interactive and dependent transactions harder to express; the scheme trades that restriction for deterministic replicated execution
 
 ### Data modelling and design
 
@@ -138,8 +138,8 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - Money, units and time: integer minor units with explicit currency; `timestamptz` for instants; `date` for civil dates
 - Hierarchies and graphs: adjacency lists, closure tables, path enumeration, nested sets
 - Temporal data: valid time versus transaction time; slowly changing dimensions (type 2); as-of joins; preventing label leakage in feature queries
-- JSONB versus columns, and the hybrid
-- Soft delete, history tables, append-only audit; partial unique indexes
+- JSONB versus columns, and the hybrid; typed columns give constraints, statistics and cheap joins for attributes every row has and queries filter on, while a JSONB column holds sparse or evolving attributes without a migration, indexed with GIN; the hybrid keeps the queried attributes as typed columns and stores the rest in one JSONB column, promoting an attribute to a column once queries filter on it at scale
+- Soft delete, history tables, append-only audit; partial unique indexes; soft delete sets a deleted_at timestamp and every query must filter it, which is error-prone unless a view or row-level security hides deleted rows; a history table keeps prior versions of each row; an append-only audit table is written by trigger or application code and never updated or deleted; a partial unique index such as UNIQUE (email) WHERE deleted_at IS NULL enforces uniqueness only among live rows, so a soft-deleted email can be reused
 - Denormalization: trading write cost for reads; cache columns, aggregate tables, counters; refresh rules recorded in decision records
 - Multi-tenancy: shared tables with `tenant_id`, schema or database per tenant; composite foreign keys; RLS as defence in depth; hot tenants; carrying `tenant_id` into cache keys, job payloads, export files and log fields, so a cache hit, a retried job or a log search cannot return another tenant's data
 - Partitioning: range, list and hash; pruning; shard keys as locality keys; hot-key skew and sequential hotspots
@@ -151,8 +151,8 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 
 - Slow-query observability: `pg_stat_statements`, `auto_explain`, wait events; live triage with `pg_stat_activity`, `pg_blocking_pids`, cancel and terminate; idle-in-transaction sessions; `pgbench` load tests run with `-c` clients, `-j` threads and `-T` seconds, reporting transactions per second and latency, repeated before and after each change
 - Connection pooling: session, transaction and statement modes and what transaction mode breaks; pool math (instances × pool ≤ `max_connections` minus reserved slots, with failover headroom)
-- Backups: logical (`pg_dump`/`pg_restore`) versus physical with WAL archiving; restore drills to a new instance; RPO and RTO; HA and replicas are not backups
-- Retention: dropping partitions versus mass deletes; cold-storage export
+- Backups: logical (`pg_dump`/`pg_restore`) versus physical with WAL archiving; restore drills to a new instance; RPO and RTO; HA and replicas are not backups; RPO is the most data loss the business accepts, measured back in time from the failure to the last recoverable transaction, and it is set by the backup interval or, with WAL archiving, by how often archived WAL is shipped; RTO is the longest tolerable time from failure to restored service, set by the restore time, which grows with database size, and by any WAL replay; a restore drill to a new instance measures the actual RTO and shows whether the RPO holds, since a backup never restored is an assumption, not a control; replicas copy a mistaken delete within seconds, so they add availability but not recovery
+- Retention: dropping partitions versus mass deletes; cold-storage export; a DELETE of old rows writes WAL for each row and leaves dead tuples for vacuum to clear, while dropping or detaching an old partition is a catalog change that discards whole files with no per-row work; a retention job exports a partition to cold storage, verifies the export by row count and checksum, and only then drops it
 - Migrations as jobs: dirty state, advisory locks, expand/contract in CI, rollback plans; online index builds with `CREATE INDEX CONCURRENTLY` and lock timeouts on DDL
 - Application data access: N+1 queries, ORM pitfalls, prepared statements, transaction boundaries, keyset pagination with unique tiebreakers and signed cursors, repositories
 - Testing SQL: Postgres service containers, seeded fixtures, fingerprint and golden assertions, migration up and down tests
@@ -161,8 +161,8 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 
 ### NoSQL and choosing a store
 
-- BASE versus ACID; the modern reality of multi-item transactions in NoSQL stores
-- Key-value stores: hash-table abstraction, ordered keys for range scans, caches
+- BASE versus ACID; the modern reality of multi-item transactions in NoSQL stores; BASE stands for basically available, soft state and eventually consistent, a trade of strict consistency for availability and latency under partition; many NoSQL stores now offer multi-item transactions within a partition or over a bounded set of keys, at a cost in latency and contention, so ACID and BASE are points on a spectrum chosen per operation, not labels for store types
+- Key-value stores: hash-table abstraction, ordered keys for range scans, caches; the interface is get, put and delete on a key, and the store may shard by a hash of the key, so point lookups stay cheap while range scans need ordered keys, as in a B-tree or LSM tree; an in-memory cache may evict entries at any time, so a cache is never the system of record
 - Document stores: collections, flexible fields, queries over structure; joins in application code; MongoDB as the worked example: BSON documents in collections, CRUD with `insertOne`, `find` and `updateOne` taking query and update operators such as `$set`, compound indexes with the `_id` index, and write concern and read concern as the durability and staleness settings
 - Wide-column stores: column families, timestamps and versions, row-key design, salting, garbage-collection policies
 - Graph databases: nodes and edges for many-to-many data; sharding difficulty; adjacency lists in other stores
@@ -174,8 +174,8 @@ Domain: Databases, SQL, Relational Theory & Data Modelling
 - OLTP versus OLAP; star and snowflake schemas; facts, dimensions, grain, conformed dimensions
 - Warehouse cost shapes: bytes scanned, partitioning and clustering, column projection, required partition filters, on-demand versus reserved capacity, authorized views
 - Cohorts, funnels, sessionization and retention with windowed SQL; half-open intervals
-- Approximate aggregation: HyperLogLog and quantile sketches with error bars
-- Globally distributed SQL dialects: interleaved tables, limits
+- Approximate aggregation: HyperLogLog and quantile sketches with error bars; quantile sketches such as KLL or t-digest keep a compact summary from which any quantile is read with a stated rank error, and the error bar comes from the sketch's bound rather than from a sample; sketches of the same type merge, so a percentile can be computed per shard and combined without reading the data again
+- Globally distributed SQL dialects: interleaved tables, limits; interleaved tables physically store child rows next to their parent row when the child's key begins with the parent's key, so a join or delete on that key touches one range of data; the limits are that the parent key must prefix the child key, that a transaction spanning many ranges costs more, and that a hot parent key concentrates load; current limits change, so check the Spanner documentation before relying on any figure
 - Full-text search with `tsvector` and `tsquery`; vector similarity with `pgvector`; hybrid lexical and vector ranking; isolating search from OLTP; pgvector's distance operators (L2, cosine and inner product) with HNSW and IVFFlat approximate indexes; Qdrant as a dedicated vector store with collections of points, each a vector with a payload, and filters on payload fields applied during the approximate search
 
 ### Exercises

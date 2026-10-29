@@ -10,11 +10,11 @@ Domain: Problem Solving, Reasoning & Research Method
 - **Heuristics for getting unstuck**
   - Work backwards from the goal; assume an intermediate lemma and prove it afterwards
   - Solve a smaller, simpler or special case; specialize, spot the pattern, then generalize
-  - Introduce an auxiliary element, variable or construction
-  - Draw a figure or build a table of small cases
+  - Introduce an auxiliary element, variable or construction: add a point, name a repeated expression as a variable, or draw a line that creates similar triangles, so that the given facts connect; a construction is kept only when it makes a known theorem applicable, as drawing a diagonal splits a polygon into triangles whose angle sums are known
+  - Draw a figure or build a table of small cases; a figure exposes the symmetry and the configuration the claim is about, and a table of values for n = 1, 2, 3, 4 often shows a pattern whose formula then needs a proof by induction; the first few values also serve as a check on any conjecture
   - Restate the problem in other words; drop or relax one condition and see what changes
   - Split into cases; find a related problem already solved and reuse its method or result
-  - Guess, then verify or refute
+  - Guess, then verify or refute; a guess made before computing is a hypothesis: test it on small cases and look for a counterexample, and if none appears, prove it; a refuted guess is still informative, since the counterexample shows which assumption the claim needed
 - **Choosing the representation**: algebraic, geometric, graphical, combinatorial and probabilistic views of one problem; choosing coordinates or a frame of reference; transforming a problem into an equivalent easier one
 - **Recognizing structure**: naming the governing principle before computing; problem archetypes and their standard moves; noticing what is unusual in the givens, since every given is usually needed
 
@@ -46,20 +46,20 @@ Domain: Problem Solving, Reasoning & Research Method
 - Checking an answer: special values, units and limits, back-substitution, an estimate of the answer's size made in advance
 - Eliminating options in objective questions: extreme cases, dimensional mismatch, symmetry, sign
 - Error analysis: an error log by cause (conceptual, misread, slip, strategic) and the practice that removes each cause
-- Stamina and focus: long timed sets; recovering composure after a bad question
+- Stamina and focus: long timed sets; recovering composure after a bad question; build endurance with timed sets of growing length and rest between them; after a bad question, mark it, move on and set a fixed time to return to it, since one stuck item can cost the time of several solvable ones
 
 ### Proof craft and mathematical maturity
 
 - Writing a proof for a reader: the statement, the strategy, lemmas, the main argument, and what was used where
 - Checking a proof: every step justified, every case covered, every hypothesis used; testing it on examples
-- Counterexamples: built to refute a claim or to show that a hypothesis is needed
+- Counterexamples: built to refute a claim or to show that a hypothesis is needed; to refute a claim, find one case that meets every hypothesis and violates the conclusion; to show a hypothesis is needed, drop it and build a case that satisfies the rest and breaks the conclusion; a counterexample is checked by evaluating every clause of the claim on it, and a claim about all n is refuted by one value of n
 - Generalizing and sharpening: weaker hypotheses, stronger conclusions, the tight constant
-- Reading a definition actively: examples, non-examples and edge cases
+- Reading a definition actively: examples, non-examples and edge cases; test a definition on a clear example, a clear non-example and a borderline case such as the empty set, zero or a degenerate triangle, to see which clauses do the work; a definition that is hard to use often hides a clause that is stronger than it needs to be
 
 ### Research method
 
 - Reading a paper in three passes; annotating its claims, evidence and assumptions
-- Mapping a literature: the lineage of ideas, the key results, the open problems
+- Mapping a literature: the lineage of ideas, the key results, the open problems; start from a recent survey or a highly cited paper, follow its references back to the source of each idea and its citing papers forward to the newest results; record each idea in a table with the problem it answered, what it replaced and what remains open
 - Formulating a research question: novelty, significance and tractability; falsifiable hypotheses
 - Experimental design and benchmark pitfalls: baselines, controls and ablations; confounders; variance across seeds and runs; error bars; leakage between training and test data; overfitting to a benchmark; cherry-picked results; unfair baselines
 - Reproducing a claim at toy size or against one's own evaluation suite; reporting negative results
@@ -71,16 +71,16 @@ Domain: Problem Solving, Reasoning & Research Method
 
 - Stocks and flows; reinforcing and balancing feedback loops; delays and the oscillation they cause
 - Bottlenecks and the theory of constraints: the throughput of the whole is set by its tightest constraint
-- Emergent behaviour and leverage points
+- Emergent behaviour and leverage points: emergent behaviour is a pattern that no single component produces, such as a retry storm in which every client's retries add load that causes more timeouts; a leverage point is a place where a small change alters the whole system's behaviour, and parameters such as a timeout are usually the weakest, while goals, rules and information flows are stronger
 - First-principles decomposition: reducing a problem to its fundamental constraints (physics, information, money, people) and rebuilding from them
-- Inversion: asking what would guarantee failure, then avoiding it
+- Inversion: asking what would guarantee failure, then avoiding it; list the actions that would make the goal certain to fail, such as skipping tests or changing production with no rollback, then check whether the current plan contains any of them; failure modes found this way are often cheaper to remove than successes are to add
 
 ### Learning science and deliberate practice
 
 - Retrieval practice and the testing effect; spaced repetition and the forgetting curve; interleaved versus blocked practice; desirable difficulties
 - Deliberate practice: specific goals, immediate feedback, work at the edge of ability
-- Worked examples, cognitive load and the expertise-reversal effect
-- Chunking and the pattern libraries of experts
+- Worked examples, cognitive load and the expertise-reversal effect: a worked example shows each step of a solution and its reason, which lowers the load on working memory for a novice; the expertise-reversal effect is that the same guidance slows an expert, so the examples should fade as competence grows; cognitive load is the working memory a task uses, and a fragment with many new variables at once overloads it
+- Chunking and the pattern libraries of experts: a chunk is a group of items recalled as one unit, so a strong chess player sees a position as familiar patterns rather than separate pieces; experts' advantage is a large store of such patterns that they recognise and act on quickly, and training builds it by solving many varied examples and naming the pattern each one used
 - Self-explanation and the Feynman technique: explaining simply in order to find the gaps
 - Metacognition: monitoring understanding; the illusion of competence; judging readiness by unaided performance
 - Code reading and program comprehension: tracing a function's values line by line on a small input; reading top-down from the purpose to the code or bottom-up from the lines to the purpose; recognizing programming plans and beacons, the familiar idioms whose presence signals a known purpose; the load of a fragment measured by the variables held at once and the nesting depth; predicting the output before running the code as the check that the reading was right

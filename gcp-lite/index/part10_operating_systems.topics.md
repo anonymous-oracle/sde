@@ -7,22 +7,22 @@ Domain: Operating Systems & Linux
 ### Linux practice
 
 - The filesystem hierarchy; navigation and the shell; absolute paths from `/` versus relative paths from the working directory, `.` and `..`, `pwd`, `cd`, and `ls -l` whose first column marks a file (`-`) or a directory (`d`)
-- Users, groups and permissions (`chmod`, `chown`); `sudo`
-- Package managers
-- systemd units and services; journald
-- SSH, keys and remote access
-- Observing a live system: `/proc`, `ps`, `top`, `ss`, `lsof`, `vmstat`, `iostat`
-- The OOM killer and cgroup memory limits (why a container instance is killed)
+- Users, groups and permissions (`chmod`, `chown`); `sudo`; `chmod` sets read, write and execute bits for owner, group and others, numerically (`chmod 640` gives the owner read and write, the group read, and others nothing) or symbolically, and `ls -l` shows the bits; `chown` changes owner and group; `sudo` runs one command as root after checking the user against the sudoers rules, and records the invocation
+- Package managers: a package manager resolves dependencies from configured repositories, verifies signed package metadata and records which files each package owns, so an install, upgrade or removal is tracked and can be audited; apt and dnf are common examples on Linux distributions, and what matters is knowing where packages come from and which versions are pinned
+- systemd units and services; journald; systemd starts services as units defined by unit files that declare the command, dependencies, restart policy and resource limits, and `systemctl status` and `systemctl restart` show and change a unit's state; journald collects logs from units and the kernel into an indexed journal read with `journalctl -u <unit>`, and `journalctl -f` follows it live
+- SSH, keys and remote access: SSH authenticates by public key, where the server holds the public key in `authorized_keys` and the client proves possession of the private key by signing a challenge, so no password crosses the wire; the private key stays on the client, protected by a passphrase and held in memory by an agent; `ssh -L` forwards a local port through the host, and disabling password login in the SSH daemon's configuration removes a common attack surface
+- Observing a live system: `/proc`, `ps`, `top`, `ss`, `lsof`, `vmstat`, `iostat`; `/proc` exposes kernel state as files, such as `/proc/<pid>/status` for a process's state and memory and `/proc/meminfo` for system totals; `ps` and `top` show processes with their CPU and memory use; `lsof` lists the files and sockets each process holds open; `vmstat` reports run queue, swap activity and CPU time per interval; `iostat` reports per-device utilisation, queue length and wait time; read together, they give a first diagnosis
+- The OOM killer and cgroup memory limits (why a container instance is killed): when a cgroup reaches its `memory.max` limit, the kernel first reclaims page cache and then, if it cannot free enough memory, the OOM killer picks a process in that cgroup and sends it SIGKILL; a container's main process then exits with status 137 (128 plus 9) and the platform restarts it, and the cgroup's `memory.events` file counts the kills
 - Tracing and profiling: `strace` for system calls, `perf` and flame graphs for CPU time, eBPF tools such as `bpftrace` for kernel events
 
 ### Processes and threads
 
 - Kernel structure: monolithic kernels, microkernels and unikernels; loadable modules; boot from firmware through the bootloader and kernel to init
-- User and kernel mode; system calls, traps and interrupts
+- User and kernel mode; system calls, traps and interrupts; the CPU runs user code in user mode with restricted instructions and kernel code in kernel mode with full access, and crosses between them through a trap; a system call is a deliberate trap by which a program asks the kernel for a service, with arguments passed in registers; interrupts are asynchronous traps raised by devices, while exceptions such as page faults are synchronous traps raised by the instruction that caused them
 - `fork`, `exec` and `wait`; process states; a program is a file of code and data on disk, while a process is a running instance with its own address space, descriptors and process ID, created by `fork` and given a new program image by `exec`
-- The cost of a context switch
-- Threads versus processes
-- The address-space layout: code, data, heap, stack
+- The cost of a context switch: a switch saves the registers and program counter of the running thread, loads those of the next one, and, between processes, changes the address space, which invalidates or tags the TLB; the direct cost is on the order of microseconds, while the indirect cost of lost cache and TLB state often dominates and varies widely with the workload
+- Threads versus processes: threads of one process share its address space and descriptors but have their own stacks and registers, so communication is cheap and a crash or bad write can corrupt all of them; processes have separate address spaces, cost more to create and switch, and isolate faults; on Linux both are created by the same clone call and differ in what they share
+- The address-space layout: code, data, heap, stack; the text segment holds read-only code, the data and BSS segments hold initialised and zeroed globals, the heap grows upward for dynamic allocation through `brk` or `mmap` regions, and each thread's stack grows downward through call frames; unmapped gaps and guard pages catch overflows, and address-space layout randomisation (ASLR) moves these bases at each start
 - Signals: delivery and masking, async-signal-safe handlers, SIGTERM then SIGKILL, graceful shutdown inside containers
 - **A teaching kernel (xv6)**: PC hardware and the boot path from BIOS or UEFI and the bootloader into protected mode; kernel stacks, trap frames and the system-call path; the process table
 - Interrupts and their handling; software interrupts; the context switch as saving and restoring register state
@@ -31,65 +31,65 @@ Domain: Operating Systems & Linux
 
 - FIFO, shortest-job-first and shortest-time-to-completion-first (optimal mean turnaround by an exchange argument)
 - Round robin: the time quantum trades response time against context-switch overhead
-- The multi-level feedback queue
-- Proportional share: lottery and stride scheduling
-- Linux's fair schedulers: CFS, and EEVDF since Linux 6.6
-- cgroup CPU shares and quotas; CPU throttling behind container CPU limits
+- The multi-level feedback queue: several queues at decreasing priority, with round robin inside each queue; a new job starts at the top, drops a level each time it uses its full quantum, and is periodically boosted back to the top, so short interactive jobs run fast without their length being known in advance; the rules need tuning, and the levels cost bookkeeping
+- Proportional share: lottery and stride scheduling; each job holds tickets in proportion to its share, and lottery scheduling draws a random ticket each slot, so a job with 3 of 10 tickets gets about 30 percent of slots in expectation; stride scheduling is deterministic: each job has a stride inversely proportional to its tickets, and the scheduler runs the job with the smallest pass value and adds that job's stride to it, giving exact proportions with bounded error
+- Linux's fair schedulers: CFS, and EEVDF since Linux 6.6; CFS keeps each task's virtual runtime in a red-black tree and runs the task with the least, so CPU is shared in proportion to weight; EEVDF, which replaced CFS's pick rule in Linux 6.6, gives each task a virtual deadline and runs the eligible task with the earliest deadline, which helps short requests get CPU sooner
+- cgroup CPU shares and quotas; CPU throttling behind container CPU limits; `cpu.weight` sets relative shares that matter only under contention, while `cpu.max` sets a quota per period (50 ms of run time in every 100 ms is half a CPU); a group that exhausts its quota is throttled until the next period, so a container with a half-CPU limit can show latency spikes while the host is idle
 - Priority scheduling with aging; multiprocessor scheduling: a global run queue versus per-CPU queues, load balancing, processor affinity
 
 ### Virtual memory
 
 - Address translation, paging and multi-level page tables; page-table size arithmetic
-- The TLB and its reach
-- Page faults and demand paging
-- Copy-on-write and why `fork` is cheap
-- Replacement policies: optimal, LRU, CLOCK
-- Thrashing and working sets
-- Memory-mapped files
+- The TLB and its reach: the translation lookaside buffer caches recent virtual-to-physical translations, and its reach is the number of entries times the page size, so 64 entries of 4 KB reach 256 KB; a working set beyond that reach misses on many accesses, and 2 MB huge pages multiply the reach by 512
+- Page faults and demand paging: a page-table entry marked not present traps to the kernel, which allocates or reads in the page, updates the entry and restarts the instruction; demand paging loads a page only when it is first touched, so a program can start before all its code is in memory; a major fault needs disk I/O and costs milliseconds, while a minor fault maps a page already in memory and costs microseconds
+- Copy-on-write and why `fork` is cheap: fork gives the child the parent's page tables with every writable page shared and marked read-only; a write traps, the kernel copies only that page and maps the copy, so most pages of a forked process are never copied; a fork followed by exec copies almost nothing, since exec replaces the address space before most pages are written
+- Replacement policies: optimal, LRU, CLOCK; the optimal policy evicts the page whose next use is farthest in the future (Belady's algorithm), which is a benchmark only because it needs the future; LRU evicts the least recently used page and approximates optimal well, but exact LRU is costly to maintain on every access; CLOCK arranges frames in a circle with a reference bit that a hand clears as it passes, and evicts the first frame whose bit is clear, approximating LRU cheaply
+- Thrashing and working sets: a process's working set is the set of pages it touched in a recent window of references; when the working sets of all processes exceed physical memory, page faults swamp execution, CPU use falls as the paging device saturates, and the system is busy but makes no progress; the fix is less load or more memory, not a faster CPU
+- Memory-mapped files: `mmap` maps a file's pages into the address space, so reads and writes become memory accesses backed by the kernel's page cache; pages load on fault and dirty pages are written back later, with `msync` or `munmap` controlling when; this avoids copying through read and write buffers, but I/O errors surface as signals such as SIGBUS rather than as return codes
 - Heap allocation: free lists, splitting and coalescing, first fit versus best fit, fragmentation; `malloc` over `brk` and `mmap`
 - Segmentation: a logical address (s, d) is translated through a segment table whose entry holds a base and a limit, so that the physical address is base + d when d < limit and a trap otherwise; segments map to code, data, stack and heap, with a read-only code segment shareable between processes; external fragmentation is the cost, since variable-size segments leave gaps that compaction must close; and segmentation with paging, where each segment is itself paged, as in x86 protected mode
 
 ### Concurrency
 
-- Race conditions and critical sections
-- Mutual exclusion from atomic instructions: test-and-set, compare-and-swap
+- Race conditions and critical sections: a race condition is an outcome that depends on how threads interleave while sharing data; a critical section is the code that touches shared state and must run as if alone; the classic case is two threads each doing counter = counter + 1, which can lose an update because the read, the add and the write are not atomic together
+- Mutual exclusion from atomic instructions: test-and-set, compare-and-swap; test-and-set atomically writes 1 and returns the old value, so the thread that reads 0 owns the lock; compare-and-swap writes a new value only if the current value equals an expected one and reports whether it did, which underlies lock-free updates; both rely on the hardware making the instruction atomic, and everything above depends on that guarantee
 - Spinlocks versus blocking locks; futexes, which keep an uncontended lock out of the kernel
-- Memory barriers and fences; read-copy-update for read-mostly data
-- Condition variables and the producer–consumer problem
-- Semaphores; readers–writers locks
-- Deadlock: the four Coffman conditions; prevention by a global lock order
-- Livelock and priority inversion
-- Progress conditions: blocking, obstruction-free, lock-free, wait-free
-- The ABA problem in compare-and-swap loops
+- Memory barriers and fences; read-copy-update for read-mostly data; a memory barrier stops the CPU or compiler from reordering memory operations across it, which is needed because stores can become visible out of program order; read-copy-update lets readers proceed without locks, while a writer publishes a new version by swapping a pointer and frees the old version only after every reader that could see it has finished, so reads cost almost nothing
+- Condition variables and the producer–consumer problem: a condition variable lets a thread sleep until another signals that a predicate may now hold, and it must be used in a loop that rechecks the predicate, since wakeups can be spurious or the condition can be stolen by another thread; the bounded buffer, guarded by one lock and two condition variables (not-full and not-empty), is the standard solution
+- Semaphores; readers–writers locks; a semaphore is a counter with an atomic wait, which decrements it or blocks at zero, and a signal, which increments it and wakes a waiter; binary semaphores act as locks and counting semaphores guard a pool of resources; a readers–writers lock lets any number of readers share the lock while a writer excludes everyone, and a writer-preference policy keeps writers from starving
+- Deadlock: the four Coffman conditions; prevention by a global lock order; deadlock needs mutual exclusion, hold and wait, no preemption and a circular wait; a global lock order breaks the circular wait, since every thread takes locks in one agreed order and so no cycle in the waits-for graph can form; breaking the other three conditions usually costs more
+- Livelock and priority inversion: livelock is threads that keep changing state in response to one another without making progress, like two people stepping aside in the same direction again and again; priority inversion is a high-priority task blocked on a lock held by a low-priority task that a medium-priority task keeps from running, and priority inheritance fixes it, as in the 1997 Mars Pathfinder incident
+- Progress conditions: blocking, obstruction-free, lock-free, wait-free; blocking lets a stalled thread hold up others; obstruction-free guarantees progress only when a thread runs alone; lock-free guarantees that some thread always completes an operation system-wide, even if others stall; wait-free guarantees every thread completes in a bounded number of its own steps, the strongest and hardest to build
+- The ABA problem in compare-and-swap loops: a CAS sees value A unchanged and succeeds, but in between another thread changed A to B and back to A, so the CAS wrongly assumes the structure is untouched; this is common in lock-free stacks when a node is freed and its memory reused; fixes are tagged pointers that add a version counter to the compared value, or safe reclamation schemes such as hazard pointers
 - Software solutions to the critical-section problem: Peterson's algorithm and Lamport's bakery algorithm; the requirements of mutual exclusion, progress and bounded waiting; why they need memory barriers on modern hardware
 - Semaphores (binary and counting) and monitors; the classic problems: producer–consumer, readers–writers and dining philosophers
 - Deadlock beyond prevention: avoidance with the banker's algorithm, detection on a resource-allocation graph, recovery
 
 ### Persistence
 
-- The device interface and I/O scheduling
+- The device interface and I/O scheduling; the kernel queues requests per device and reorders them: elevator policies such as SCAN and C-SCAN sort requests by track position to reduce seek time on disks, and deadline schedulers bound how long a request may wait; on flash the seek penalty disappears, so fairness and latency matter more than ordering
 - The file-system abstraction: inodes, directories, hard and symbolic links, file descriptors
-- The on-disk layout of a simple file system
+- The on-disk layout of a simple file system: a superblock records the layout; inode blocks hold fixed-size inodes, each listing a file's type, size and block addresses, with the first few addresses direct and larger files reached through indirect blocks; bitmaps track free inodes and data blocks, and a directory is a file whose contents map names to inode numbers; reading a file walks the inode, then its pointers, then the data blocks
 - Crash consistency: `fsck` versus journaling (data, metadata, ordered mode) versus copy-on-write file systems
-- What `fsync` promises and what databases rely on
-- Flash translation layers and write amplification
-- RAID 0, 1 and 5 and their failure arithmetic
+- What `fsync` promises and what databases rely on; `fsync` asks the kernel to write a file's dirty data and metadata to stable storage and returns only after the device reports completion, so a database writes its log and calls `fsync` before acknowledging a commit; the device must honour flush commands rather than acknowledge from a volatile cache, and a newly created file also needs its directory synced
+- Flash translation layers and write amplification; flash cannot overwrite a page in place, since it erases whole blocks of many pages, so the flash translation layer maps logical to physical pages and relocates live data during garbage collection; write amplification is the bytes physically written divided by the bytes the host wrote, and it rises as blocks fill, with over-provisioning and TRIM reducing it
+- RAID 0, 1 and 5 and their failure arithmetic: RAID 0 stripes data with no redundancy, so usable capacity is n disks and the array fails when any one disk fails; RAID 1 mirrors, so usable capacity is one disk and each mirror pair survives one loss; RAID 5 stores distributed parity across n disks, leaves n minus 1 disks of usable capacity and survives one failure; a rebuild reads every survivor, so a second failure or an unreadable sector during rebuild is the main risk
 
 ### Isolation
 
-- Linux namespaces and what each isolates
-- cgroups and what they limit
-- seccomp filters and capabilities
-- Containers versus virtual machines: the shared kernel as a weaker boundary
+- Linux namespaces and what each isolates: a namespace gives a process its own view of one kind of global resource: mount (filesystem tree), PID (process IDs), network (interfaces and routes), UTS (hostname), IPC (message queues and shared memory), user (user and group IDs, and capabilities) and cgroup (the visible cgroup root); namespaces are created with clone flags or unshare and joined with setns
+- cgroups and what they limit: control groups organise processes into a tree and limit or account for their use of CPU (`cpu.max` quota and period, `cpu.weight` shares), memory (`memory.max`, which triggers reclaim and then the OOM killer), I/O (`io.max`) and process count (`pids.max`); limits apply to the whole group, not to each process in it
+- seccomp filters and capabilities: seccomp installs a BPF filter that inspects each system call's number and arguments and allows, errors or kills the call, so a container can drop calls it never needs; capabilities split root's powers into units such as CAP_NET_BIND_SERVICE and CAP_SYS_ADMIN that can be dropped one by one, and no-new-privileges stops setuid binaries from gaining them
+- Containers versus virtual machines: the shared kernel as a weaker boundary; a container is a process with namespaces, cgroups and filters on the host kernel, so a kernel vulnerability can cross the boundary, while a virtual machine runs its own kernel under a hypervisor with a much smaller interface to the host; containers start in milliseconds with little memory overhead, so the trade-off is isolation strength against density and speed
 - Information-flow policies: Bell–LaPadula (no read up, no write down) for confidentiality and Biba for integrity; noninterference
 
 ### I/O models and performance
 
-- The cost of system calls and copies
-- Thread-per-connection versus event-driven I/O; `epoll` and `io_uring`
-- The C10k problem
-- Zero-copy transfer with `sendfile`
-- Why NGINX and Go's network poller are built as they are
+- The cost of system calls and copies: a system call crosses into the kernel and back, paying a mode switch plus the checks and any mitigations on entry, on the order of a hundred nanoseconds or more; every copy between user and kernel buffers costs memory bandwidth in proportion to its size, so a read followed by a write moves each byte twice; batching and zero-copy designs reduce both costs
+- Thread-per-connection versus event-driven I/O; `epoll` and `io_uring`; thread-per-connection blocks one thread per socket, which is simple but costly in memory and context switches at high concurrency; event-driven I/O uses few threads with `epoll`, which reports ready descriptors from an interest list so cost follows active connections; `io_uring` submits and completes I/O through shared ring buffers, batching system calls to cut the per-call cost
+- The C10k problem: C10k is the 1999 problem of serving ten thousand concurrent connections on one machine; the answer was event-driven I/O with readiness notification, small per-connection state, and no thread per connection, since a thread per connection exhausts memory and scheduler capacity
+- Zero-copy transfer with `sendfile`: `sendfile` asks the kernel to move bytes from a file's page cache straight to a socket, so the data never enters user memory, saving two copies and a system call per chunk; it suits serving static files and does not apply when the server must transform the bytes
+- Why NGINX and Go's network poller are built as they are: NGINX runs a few worker processes, each an event loop over epoll that serves thousands of connections with small memory per connection; Go's runtime keeps goroutines cheap by parking them on blocked network I/O and waking them through its network poller, so a blocking-looking read costs a goroutine switch rather than an OS thread; both are answers to the C10k trade-off
 
 ### Exercises
 
