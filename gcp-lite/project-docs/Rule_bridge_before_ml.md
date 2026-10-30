@@ -34,11 +34,15 @@ Short turns, one check per turn with expected answers written first, no ready-ma
 
 ## Rules in action so far
 
-- Block 1a. ML concept: a model is a rule with adjustable numbers (weight w, bias b); signed error = actual − predicted; different pairs of points give different lines. Bridge taught right before the next ML step: a line through two points (slope as rise over run, intercept b = y₁ − w·x₁, choosing a technique by the x-gap, simultaneous equations as the always-works fallback).
+- Block 1a. ML concept M1: a model is a rule with adjustable numbers (weight w, bias b); signed error = actual − predicted; different pairs of points give different lines. Bridge taught right before the next ML step: a line through two points (slope as rise over run, intercept b = y₁ − w·x₁, choosing a technique by the x-gap, simultaneous equations as the always-works fallback).
 - 29 Oct: the slope and intercept formulas were derived from a constant rate (rise = w × run), with a check against the first table. This closed the errata item in Rule B.6.
+- 30 Oct: the lines bridge closed. Then ML concept M2 opened: three pairs of rows give three lines (A, B, C), each fitting two rows exactly and missing the third; a single score is needed to choose among lines. First candidate score: the sum of signed errors.
 
-## State (29 Oct 2026)
+## State (30 Oct 2026)
 
-- Passed: M1, w = 3 and b = 10 from an exact table, with b given unasked. Rows-1-and-2 line predicted 21 at area 3 (by simultaneous equations; second route by rate of change shown). Rows-1-and-3 line misses area 2 by one (signed error +1; the learner gave the size, the sign was supplied).
-- Open check (reworded a second time, made smaller, after the derivation): a line passes through (2, 7) and (6, 19); from area 2 to area 6 the area rises by 4 and the price by 12; the price rise per one-unit step of area. Expected: 3. Expected wrong: 12 (the rise, undivided), 4 (the x-gap), 1/3 (inverted).
-- Next ML step after the bridge: the three pairs of rows give three different lines, each missing a different row (signed misses −2, +1, −2); a rule is needed to choose among them. This leads to least squares in Unit 3.
+- Passed, M1: w = 3 and b = 10 from an exact table, with b given unasked. Rows-1-and-2 line predicted 21 at area 3 (simultaneous equations; second route by rate of change shown). Rows-1-and-3 line misses area 2 by one (signed error +1; the learner gave the size, the sign was supplied).
+- Passed, lines bridge: slope with a non-unit gap and a negative sign, direction predicted before computing (line through (1, 9) and (4, 3): −2, it falls). The earlier check on (2, 7) and (6, 19), reworded to give the rise and run, was passed (3). Intercept b = y₁ − w·x₁ shown on that line (b = 1). Lines bridge: taught, L2 engineering pass; the cold retry of an unseen line with non-integer slope is still due.
+- Error log: sign omitted on a signed error (slip, 28 Oct). No misconceptions registered.
+- Table in use (areas 1, 2, 3; prices 13, 17, 19): line A from rows 1 and 2 has w = 4, b = 9, errors 0, 0, −2; line B from rows 1 and 3 has w = 3, b = 10, errors 0, +1, 0; line C from rows 2 and 3 has w = 2, b = 13, errors −2, 0, 0. For later: the least-squares line is w = 3, b = 31/3 (about 10.33), errors −1/3, +2/3, −1/3, sum of squared errors 2/3, against 1 for line B.
+- **Open check (M2):** give three signed errors, not all zero, whose sum is 0. Expected: any such triple, for example +1, −1, 0. Expected wrong: a triple that does not sum to 0, or "impossible". Purpose: the plain sum of signed errors cannot tell a perfect line from a bad one, because errors cancel.
+- Next: absolute errors against squared errors as the score; squared error as the choice (smooth, differentiable, and its minimum is found in closed form); the sum of squared errors for lines A, B, C; then Unit 3 for the exact minimizer.

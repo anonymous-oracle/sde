@@ -2,7 +2,7 @@
 
 Opened 27 Oct 2026 on the learner's instructions in chat. Restored 29 Oct 2026 after a project resync removed the first copy.
 
-**Read first, every session in this strand and after any compaction:** `gcp-lite/ml-math/RULE_bridge_before_ml.md` (the standing rule: the school bridge is taught right before the ML topic that needs it), then `index/00_learning_method.md`, then this file.
+**Read first, every session in this strand and after any compaction:** `gcp-lite/ml-math/Rule_bridge_before_ml.md` (the standing rule: the school bridge is taught right before the ML topic that needs it), then `index/00_learning_method.md`, then this file.
 
 1. (27 Oct) "start teaching the math of ml using the teaching philosophy provided. I require from the scratch implementation exercises in python too wherever appropriate."
 2. (27 Oct) "You would need to consolidate high school, 11th and 12th grade basics required for each of these concepts and teach them together. But all of this with the philosophy of developing JEE advanced level intuition and problem solving capabilities - I do not mean the JEE advanced syllabus, but the problem solving capacity that is required/built for it. Ensure you understand the teaching philosophy present in the by ingesting them."
@@ -21,7 +21,7 @@ Read: the Learning method; Parts 01, 03, 03b, 04 and 19 (rules and topic lists);
 
 ## How a unit runs (the braid)
 
-Each ML unit is one braid, in this order, so the school mathematics arrives exactly when its first use is a step away and is never taught cold (standing rule in `RULE_bridge_before_ml.md`).
+Each ML unit is one braid, in this order, so the school mathematics arrives exactly when its first use is a step away and is never taught cold (standing rule in `Rule_bridge_before_ml.md`).
 
 1. **Bridge**: the Class 9 to 12 topics the next ML concept needs, written as a prerequisite chain down to L0, each link verified through the woven checks. Taught with the JEE habit named for that block, so the topic is learned as a tool.
 2. **ML concept**: the mechanism, the central result derived with every step.
