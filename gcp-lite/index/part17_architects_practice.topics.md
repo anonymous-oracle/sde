@@ -16,6 +16,7 @@ Domain: The Architect's Practice: Decisions, Strategy & Career
 
 - Decision trees: choice nodes, chance nodes, payoffs, folding back; draw the tree left to right, with choice nodes (decisions the team controls; the best branch is taken), chance nodes (outcomes the team does not control, each branch weighted by a probability, the weights summing to one) and leaves holding payoffs; fold back from the leaves, where a chance node takes the probability-weighted average of its branches and a choice node takes the best one; the root value is the expected payoff of the best plan, and the path of best choices is that plan
 - Expected utility and risk aversion; paying for redundancy; Bayes risk as the expected loss of a decision rule under a prior, and asymmetric losses moving the threshold: act when P(event) exceeds c_FP ÷ (c_FP + c_FN), the costs of a false alarm and a miss; a concave utility's certainty equivalent, the sure amount preferred to a gamble, and the risk premium as the gap below its expected value
+- Utility representation of preferences: a preference order over lotteries that is complete, transitive, continuous and independent (the von Neumann–Morgenstern axioms) is represented by a utility function u, so that a lottery is ranked by its expected utility Σ pᵢ u(xᵢ) and the choice is the option with the largest expected utility; u is unique only up to a positive affine map a·u + b with a > 0, so only utility differences and ratios carry meaning, and risk attitude is read from the curvature of u
 - The expected value of perfect information and when a spike, prototype or benchmark is worth running
 - Flexibility as an option: value of the switch, its price, modularity as a portfolio of options
 - Calibration: the Brier score as a proper scoring rule; reliability, resolution and uncertainty
@@ -31,6 +32,7 @@ Domain: The Architect's Practice: Decisions, Strategy & Career
 ### Evolutionary architecture and migration
 
 - Fitness functions in CI and production: dependency-rule tests, latency budgets, cost-per-request alerts, schema-compatibility checks
+- A fitness function is an automated check of one architecture characteristic, such as latency, coupling between modules or schema compatibility; it measures the characteristic and fails when the value crosses a threshold; the threshold comes from the stated requirement (for example, p95 latency under 300 ms) rather than from convenience; the check runs in CI on every change or against production metrics continuously, and its threshold is revised when the requirement changes
 - Migrating a running system by reversible steps: strangler fig, canaries, parallel runs, shadow traffic, dark launches, the named point of no return
 - The six Rs of cloud migration: rehost, replatform, refactor, repurchase, retire, retain
 
