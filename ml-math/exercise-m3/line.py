@@ -1,11 +1,17 @@
 from typing import Tuple, List
+import itertools
 
-def predict(w, b, x: float):
+def has_equal(arr: list):
+    if len(arr) != len(set(arr)):
+        return True
+    return False
+
+def predict(w: float, b: float, x: float):
     if not (isinstance(w, (float, int)) and isinstance(b, (float, int)) and isinstance(x, (float, int))):
         raise ValueError("Ensure correct data types")
     return (w * x) + b
 
-def line_through(p1, p2: Tuple[float, float]):
+def line_through(p1: Tuple[float, float], p2: Tuple[float, float]):
     if not (
         isinstance(p1[0], (float, int))
         and isinstance(p1[1], (float, int))
@@ -13,11 +19,13 @@ def line_through(p1, p2: Tuple[float, float]):
         and isinstance(p2[1], (float, int))
     ):
         raise ValueError("Ensure correct data types")
+    if has_equal([p1[0], p2[0]]):
+        raise ValueError("Equal elements present")
     w = (p2[1] - p1[1]) / (p2[0] - p1[0])
     b = p1[1] - (w * p1[0])
     return w, b
 
-def sse(w, b: float, xs, ys: List[float]):
+def sse(w: float, b: float, xs: List[float], ys: List[float]):
     if (not (isinstance(w, (float, int)) and isinstance(b, (float, int)))) or (not (isinstance(xs, list) and isinstance(ys, list))):
         raise ValueError("Ensure correct data types")
     if len(xs) != len(ys):
@@ -25,22 +33,31 @@ def sse(w, b: float, xs, ys: List[float]):
 
     return sum([(y - predict(w, b, x))**2 for x, y in zip(xs, ys)])
 
-def best_pair_line(xs, ys):
+def best_pair_line(xs: List[float], ys: List[float]):
     if len(xs) < 2 or len(ys) < 2:
         raise ValueError("Insufficient data")
     if len(xs) != len(ys):
         raise ValueError("Data array lengths not matching")
     
     line_candidates = []
-    w, b = line_through(*[(x,y) for x,y in zip(xs[:2], ys[:2])])
-    for x, y in zip(xs, ys):
-        line_candidates.append((w, b, sse(w, b, [x], [y])))
+    weights_bias = [line_through((xs[p1], ys[p1]), (xs[p2], ys[p2])) for p1, p2 in itertools.combinations(range(len(xs)), 2) if xs[p1]!=xs[p2]]
+    for w, b in weights_bias:
+        line_candidates.append((w, b, sse(w, b, xs, ys)))
+    
     return min(line_candidates, key= lambda x: x[-1])
 
+if __name__ == "__main__":
+    w = 3
+    bs = [10, 10.25, 10.5, 10.75, 11]
+    print(predict(3, 10, 5))
+    print(line_through((1, 13), (2, 17)))
+    print(sse(3, 10.5, [1, 2, 3], [13, 17, 19]))
+    print(best_pair_line([1, 2, 3], [13, 17, 19]))
+    print(best_pair_line([1, 1, 3], [3, 4, 5]))
 
-w = 3
-bs = [10, 10.25, 10.5, 10.75, 11]
-print(predict(3, 10, 5))
-print(line_through((1, 13), (2, 17)))
-print(sse(3, 10.5, [1, 2, 3], [13, 17, 19]))
-print(best_pair_line([1, 2, 3], [13, 17, 19]))
+    line_candidates = []
+    for b in bs:
+        line_candidates.append((w, b, sse(w, b, [1, 2, 3], [13, 17, 19])))
+
+    print(min(line_candidates, key=lambda x: x[-1]))
+    print(line_candidates)
