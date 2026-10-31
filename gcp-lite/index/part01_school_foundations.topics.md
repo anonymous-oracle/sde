@@ -94,6 +94,7 @@ Domain: School-level foundations
   - Plane areas: rectangle lw; triangle ½bh; trapezium ½(a + b)h; circle πr²; sector ½r²θ with θ in radians
   - Perimeter and circumference: the perimeter is the sum of the side lengths, so a rectangle's is 2(l + w) and a regular n-gon's with side s is ns; a circle's perimeter, its circumference, is 2πr, and an arc subtending θ radians has length rθ
   - Surface area and volume: cylinder 2πrh and πr²h; cone with slant height l = √(r² + h²), curved surface πrl and volume πr²h/3; sphere 4πr² and 4πr³/3; hemisphere 3πr² total surface and 2πr³/3 volume
+  - Combined solids: a solid built from parts joined along faces has volume equal to the sum of the part volumes, and its surface area is the sum of the exposed surfaces, with each joined face removed from both parts; a cylinder of radius r and height h capped by a hemisphere of the same radius has volume πr²h + 2πr³/3 and surface area 2πrh + 2πr² (the cylinder's top disc and the hemisphere's flat face are hidden), so each combined solid is decomposed into standard solids before adding or subtracting
 - **Coordinate geometry of lines, circles and conics**
   - Section and midpoint formulas: the point dividing AB internally in ratio m:n is ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n)); the midpoint takes m = n
   - Equation of a circle: centre–radius (x − h)² + (y − k)² = r²; general form x² + y² + 2gx + 2fy + c = 0 with centre (−g, −f) and radius √(g² + f² − c); parametric form (h + r cos t, k + r sin t)

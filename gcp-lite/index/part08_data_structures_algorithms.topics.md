@@ -6,6 +6,7 @@ Domain: Data Structures, Algorithms & Computational Complexity
 
 ### Analysis
 
+- **Algorithms and their role**: an algorithm is a finite, unambiguous sequence of steps that maps every valid input to an output and halts; correctness (the output meets the specification on every input) and efficiency (time and space as functions of the input size) are the two properties every algorithm is judged by; a problem usually admits many algorithms, and design means choosing among them by proof and measurement
 - **Correctness**
   - Loop invariants: initialization, maintenance, termination; an invariant is a property that holds before the first iteration, survives every iteration, and holds at exit, so that with the exit condition it gives the postcondition; the proof is an induction on the iteration count, and for insertion sort the invariant is that the processed prefix is sorted
   - Correctness proofs for insertion sort and binary search; the binary search invariant that a target, if present, lies in the window [lo, hi), with hi − lo shrinking at every step so termination follows, and the mid update that moves lo to mid + 1 or hi to mid
