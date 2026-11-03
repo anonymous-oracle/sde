@@ -1687,3 +1687,96 @@ Week 12:
 73. Paired t-Test
 74. Examples
 75. Testing Equality of Proportions
+
+
+Stochastic Approximation: Theory and Applications
+Prof. Gugan Chandrashekhar Mallika Thoppe, IISc Bangalore
+
+Course ID
+106108700
+Duration
+12 weeks
+Credits
+4
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Stochastic approximation refers to a class of iterative algorithms that can locate zeroes or optimal points of functions in scenarios where the function evaluations are compromised by noise. These algorithms are prominently utilized in regression, system identification, adaptive control, and increasingly in reinforcement learning and machine learning. This course will explore the design, theoretical convergence, and convergence rates of these algorithms, with a particular emphasis on applications in reinforcement learning
+Course Details
+Intended Audience
+UG, Masters and Ph.D. students in Computer Science and Engineering/Electronics and Communication Engineerings/Mathematics
+Prerequisites
+Real analysis, Measure-theoretic Probability, Optimization, Design and Analysis of Algorithms, Ordinary Differential Equations
+Industry Support
+Google Research, Microsoft Research, Adobe Research
+Category
+COMP_SCI_ENGG, Domain_7, Domain_23, Domain_15
+Course Layout
+Week	Topics
+Week 1	Introduction to stochastic approximation: Motivating examples from web-crawling and reinforcement learning
+Week 2	Conditional expectation: Examples, Definition, Least-squares-best predictor, Existence, Properties
+Week 3	Martingales: Filtration, Adapted Process, Definition, Examples, Convergence
+Week 4	Ordinary differential equations: Existence and Uniqueness of solutions, Gronwall inequality, Asymptotic Behaviors, Invariant sets, Internally chain transitive sets
+Week 5	Convergence of stochastic approximation algorithms: ODE method
+Week 6	Convergence of stochastic approximation algorithms: ODE method (continue.)
+Week 7	Convergence rates of linear stochastic approximation algorithms
+Week 8	Stability of stochastic approximation algorithms
+Week 9	Two-timescale stochastic approximation: Convergence
+Week 10	Stochastic Recursive Inclusions: Convergence
+Week 11	Applications to reinforcement learning
+Week 12	Applications to reinforcement learning (continue.)
+Books And References
+1. Borkar, Vivek S. Stochastic approximation: a dynamical systems viewpoint. Vol. 48. Springer, 2009.
+2. Grimmett, Geoffrey, and David Stirzaker. Probability and random processes. Oxford university press, 2020.
+3. Williams, David. Probability with martingales. Cambridge university press, 1991.
+4. Borkar, Vivek S. Probability theory: an advanced course. Springer Science & Business Media, 2012.
+5. Hirsch, Morris W., Stephen Smale, and Robert L. Devaney. Differential equations, dynamical systems, and an introduction to chaos. Academic press, 2013.
+
+Approximation Algorithm
+Prof. Palash Dey, IIT Kharagpur
+
+Course ID
+106105471
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+Many real-world problems are NP-complete. Hence, they are unlikely to admit a polynomial-time algorithm. In this course, we will study various techniques to design efficient algorithms to compute an approximately optimal solutions.
+Course Details
+Intended Audience
+Under-graduate and post-graduate students and faculty members.
+Prerequisites
+Knowledge of algorithm design principles.
+Industry Support
+All software companies especially Google, Microsoft, etc.
+Category
+COMP_SCI_ENGG, Domain_23
+Course Layout
+Week	Topics
+Week 1	Review of NP-Completeness
+Week 2	Approximation algorithm for the vertex cover, set cover, and traveling salesman problem
+Week 3	Approximation algorithm for the Knapsack problem and the job scheduling problems
+Week 4	Basics of linear programming
+Week 5	Deterministic rounding: set cover, vertex cover problems
+Week 6	Deterministic rounding: steiner tree, facility location problems
+Week 7	Randomized rounding: max-SAT problem
+Week 8	Randomized rounding: steiner tree, facility location problems
+Week 9	Primal-dual method: set cover
+Week 10	Primal-dual method: steiner tree
+Week 11	Semidefinite programming: max cut
+Week 12	Hardness of approximation: travelling salesman problem, job scheduling
+Books And References
+1. Approximation Algorithms by Vijay V Vazirani.
+2. The Design of Approximation Algorithm by David P. Williamson David B. Shmoys.
