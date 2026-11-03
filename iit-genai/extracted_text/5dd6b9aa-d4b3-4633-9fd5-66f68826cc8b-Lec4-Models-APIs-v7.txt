@@ -1,0 +1,921 @@
+LLMs, Decoding, and
+  Prompting APIs
+ Sourangshu Bhattacharya
+   Associate Professor
+    CSE, IIT Kharagpur
+What We'll Cover
+
+● Large Language Models
+    ○   Model Architectures and training
+    ○   Basic promp5ng
+    ○   Decoding and Genera5on
+
+
+● Promp1ng and APIs
+    ○   OpenAI and Anthropic API
+    ○   Basic Func5on Calling
+Begin with a question
+
+● Which of these transformer components if responsible for the “Generation” in
+  GenAI?
+    ○   Positional Encoding.
+    ○   Tokenizer
+    ○   Encoder
+    ○   Decoder
+Large Language Models
+     Model Architectures
+BERT: Contextual LM Training
+•      Two self-supervised objectives - masked language modeling (MLM) and                                                                    KEY RESULT · GLUE TEST SERVER
+       next-sentence prediction.                                                                                                              GLUE benchmark average (Oct 2018)
+                                                                                                                                              BiLSTM+ELMo+Attn                                             71.0
+•       A small task-specific head plus a few epochs of fine-tuning produced new                                                              OpenAI GPT                                                   75.1
+       state-of-the-art results across GLUE, SQuAD, and NER.                                                                                  BERT-Base                                                    79.6
+                                                                                                                                              BERT-Large                                                   82.1
+                                                                                                                                              Devlin et al. (2019), Table 1. Higher is better (max 100).
+•      Establishing the pretrain-then-finetune paradigm.
+
+
+ Architecture                                                                    Training objectives                                                          Why it mattered
+
+                                                                                                                                                              •    Bidirectional context in one pass
+ •      Transformer encoder only                                                 •      Masked LM — predict 15% of tokens
+                                                                                                                                                              •    Transfer via fine-tuning, not features
+ •      BERT-Base: 110M params · 12 layers                                       •      Next Sentence Prediction
+                                                                                                                                                              •    New SOTA on 11 NLP benchmarks
+ •      BERT-Large: 340M params · 24 layers                                      •      BookCorpus + English Wikipedia
+                                                                                                                                                              •    Template for RoBERTa, ALBERT,
+ •      WordPiece tokenization                                                   •      ~3.3B tokens
+                                                                                                                                                                   DeBERTa
+
+
+Devlin, Chang, Lee, Toutanova (2018/2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. NAACL 2019. arXiv:1810.04805.
+Builds on: Vaswani et al. (2017). Attention Is All You Need. NeurIPS. arXiv:1706.03762.
+GLUE: General Language Understanding Evaluation
+•      Introduced in 2018, GLUE is a collection of 9 diverse NLU tasks designed
+                                                                                                                                           KEY RESULT · GLUE TASK SUITE
+       to test a model’s ability to understand language at multiple levels of
+                                                                                                                                           BERT-Large on GLUE subtasks (2018)
+       abstraction.
+•      Tasks span sentiment analysis, paraphrase detection, and natural                                                                    CoLA (Linguistic)                                                60.5
+                                                                                                                                           SST-2 (Sentiment)                                                94.9
+       language inference, reported as a single average score.
+                                                                                                                                           MRPC (Paraphrase)                                                89.3
+•      BERT’s release immediately pushed the leaderboard above prior                                                                       MNLI (Inference)                                                 86.7
+       approaches, cementing pretrain-then-finetune as the dominant NLP                                                                    Wang et al. (2018). GLUE: A Multi-Task Benchmark. EMNLP. Scores from
+                                                                                                                                           Devlin et al. (2019).
+       paradigm.
+
+
+ Single-Sentence Tasks                                                          Similarity & Paraphrase                                                    Inference Tasks
+
+
+ •      CoLA — Linguistic acceptability
+                                                                                •      MRPC — Microsoft paraphrase pairs                                   •     MNLI — Multi-genre NLI (entailment)
+ •      SST-2 — Binary sentiment (movie reviews)
+                                                                                •      STS-B — Semantic textual similarity                                 •     QNLI, RTE, WNLI — Textual entailment
+ •      Metric: Matthew’s corr. (CoLA), accuracy
+                                                                                •      QQP — Quora duplicate questions                                     •     BERT-Large averaged 82.1 — new SOTA
+        (SST-2)
+
+
+
+Wang et al. (2018). GLUE: A Multi-Task Benchmark and Analysis Platform for Natural Language Understanding. EMNLP 2018. arXiv:1804.07461.
+Results from: Devlin et al. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. NAACL 2019.
+GPT-1 and GPT-2: Decoder-only Generation
+OpenAI trained a causal decoder-only Transformer-based model to                                                                             KEY RESULT · ZERO-SHOT SCALING
+
+predict the next token.                                                                                                                     LAMBADA accuracy — zero-shot
+
+                                                                                                                                            Prior SOTA (2017)                                                        59.2%
+GPT-1 (2018) showed a single generative pre-trained model could                                                                             GPT-2 345 M                                                              55.5%
+match task-specific architectures after fine-tuning.                                                                                        GPT-2 774 M                                                              60.1%
+                                                                                                                                            GPT-2 1.5 B                                                              63.2%
+
+GPT-2 (2019) scaled this to 1.5B parameters on 40 GB of web text.                                                                           Radford et al. (2019), Table 3. Last word prediction on long passages.
+
+
+
+
+                                                                               GPT-1 (June 2018)                                                             GPT-2 (February 2019)
+GPT2 demonstrated usable
+translation, summarization, and                                                •      Decoder-only Transformer · 117M params                                 •      1.5B parameters · WebText (40 GB)
+question answering purely from                                                 •      Pre-train on BookCorpus, then fine-tune                                •      Zero-shot task performance from prompts
+natural-language prompts, without
+                                                                               •      Auxiliary LM loss stabilizes transfer                                  •      Staged release due to misuse concerns
+any task-specific training – zero shot.
+                                                                               •      Outperformed task-specific SOTA on 9/12                                •      First widely-felt hint of emergent capability
+                                                                                      tasks
+
+
+Radford, Narasimhan, Salimans, Sutskever (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report.
+Radford, Wu, Child, Luan, Amodei, Sutskever (2019). Language Models are Unsupervised Multitask Learners (GPT-2). OpenAI Technical Report.
+LAMBADA: Measuring Long-Range Text
+Understanding
+LAMBADA (Language Modeling Broadened to Account for Discourse                                                                               KEY RESULT · ZERO-SHOT BENCHMARKS
+Aspects) tests a model’s ability to predict the last word of a narrative                                                                    GPT-2 1.5B zero-shot accuracy (2019)
+passage where local context alone is insufficient — the entire discourse
+is required.                                                                                                                                LAMBADA (cloze)                                                       63.2%
+                                                                                                                                            CBT-NE (named ent.)                                                   89.0%
+                                                                                                                                            CBT-CN (common nouns)                                                 87.8%
+GPT-2 (1.5B) surpassed the prior state of the art in zero-shot mode —
+                                                                                                                                            Winograd (coref.)                                                     70.7%
+no task-specific training — across multiple long-range cloze
+                                                                                                                                            Radford et al. (2019). GPT-2, Table 4. Zero-shot on each benchmark.
+benchmarks.
+
+ LAMBADA Benchmark                                                               Why It’s Hard                                                                  GPT-2’s Significance
+                                                                                                                                                                •     First model to surpass prior LAMBADA
+ •      Released 2016; 10K cloze-style test                                      •       Requires reading 4+ sentence narrative
+                                                                                                                                                                      SOTA zero-shot
+        passages                                                                         context
+                                                                                                                                                                •     Scale alone (without task supervision)
+ •      Last word unpredictable from final                                       •       N-gram models score near 0% accuracy
+                                                                                                                                                                      drives gains
+        sentence alone                                                           •       Tests genuine discourse comprehension,
+                                                                                                                                                                •     Early evidence that LLMs encode discourse
+ •      Drawn from BookCrossing fiction dataset                                          not co-occurrence
+                                                                                                                                                                      structure
+
+
+Paperno et al. (2016). The LAMBADA dataset: Word prediction requiring a broad discourse context. ACL 2016. arXiv:1606.06031.
+Radford, Wu, Child, Luan, Amodei, Sutskever (2019). Language Models are Unsupervised Multitask Learners (GPT-2). OpenAI Technical Report.
+T5 and BART: Text-to-Text and Denoising Seq2Seq
+
+Google's T5 cast every NLP task — classification, translation,                                                                         KEY RESULT · SUPERGLUE TEST SET
+summarization, question answering — as string-to-string prediction with a                                                              Closing the gap to human performance
+single model and loss. Facebook AI's BART combined a bidirectional                                                                     BERT-Large (2019)                                          69.0
+encoder with an autoregressive decoder, pre-training on varied denoising                                                               RoBERTa prior SOTA                                         84.6
+corruptions. Together they established seq2seq pre-training as a strong                                                                T5-11B                                                     88.9
+alternative to BERT-style encoders.                                                                                                    Human baseline                                             89.8
+                                                                                                                                       Raffel et al. (2020), Table 14. SuperGLUE average score.
+
+
+
+
+    T5 (Raffel et al., 2019)                                                                                               BART (Lewis et al., 2019)
+
+    •      Encoder–decoder, span-corruption objective                                                                      •      BERT-like encoder + GPT-like decoder
+    •      Trained on C4 (750 GB cleaned web text)                                                                         •      Denoising objective with varied corruptions
+    •      Scales from 60M to 11B parameters                                                                               •      Strong on summarization and generation
+    •      Unifies all tasks as text → text                                                                                •      Template for later seq2seq systems (mBART, Pegasus)
+
+
+
+Raffel et al. (2019/2020). Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5). JMLR. arXiv:1910.10683.
+Lewis et al. (2019/2020). BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension. ACL. arXiv:1910.13461.
+ GPT-3: Few-Shot Learning and the Prompting
+ Paradigm
+ GPT-3 scaled the GPT-2 recipe by two orders of magnitude.
+  A sufficiently large language model can perform novel tasks from a handful of demonstrations in the prompt — no gradient updates, no
+ fine-tuning. The era of API-served foundation models and prompt engineering began here.
+
+
+                      175 B                                                           ~300 B                          2,048                           117×
+                   P A R A M E T E R S                                        T R A I N I N G   T O K E N S    C O N T E X T   W I N D O W   L A R G E R   T H A N   G P T - 2
+
+
+
+
+TriviaQA accuracy (closed-book, GPT-3 175B)
+
+Prior fine-tuned
+SOTA                                                                                                   68.0%
+GPT-3 · zero-
+shot                                                                                                   64.3%
+GPT-3 · one-
+                                                                                                       68.0%
+shot
+GPT-3 · few-
+shot (64)
+Brown et al. (2020), Table H.9. No parameter updates — adaptation purely via the prompt.               71.2%
+
+
+ Brown et al. (2020). Language Models are Few-Shot Learners. NeurIPS. arXiv:2005.14165.
+GPT-3: In-Context Learning
+                                                                                                                         KEY RESULT · IN-CONTEXT LEARNING
+GPT-3 (175B parameters) demonstrated that scale alone enables in-                                                        EMERGES
+context learning — solving novel tasks from prompt examples with no                                                      GPT-3 175B TriviaQA accuracy (%)
+gradient updates.                                                                                                        0-shot                                                         64.3%
+                                                                                                                         1-shot                                                         68.0%
+•      Zero-shot: Task description only, no examples given                                                               10-shot                                                        69.7%
+•      Few-shot: 10–100 examples in-context; approaches fine-tuned                                                       64-shot                                                        71.2%
+       models                                                                                                            Brown et al. (2020). GPT-3, Table 3.4. TriviaQA closed-book.
+
+
+
+
+ Zero-Shot Learning                                                              Few-Shot Learning                                           Scale and Emergence
+ •      Only a task description in the prompt; no                                •      10–100 input-output examples precede                 •     Smaller GPT-3 variants show weaker in-
+        examples provided                                                               the query                                                  context learning
+ •      Demonstrates world knowledge captured                                    •      No weight updates — adapts via attention             •     Capability emerges sharply with scale —
+        during pre-training                                                             over context                                               not a smooth trend
+ •      Useful baseline; no prompt engineering                                   •      Approaches fine-tuned smaller models on              •     Hints at qualitative shifts beyond mere
+        required                                                                        many tasks                                                 parameter count
+
+
+Brown, Mann, Ryder et al. (2020). Language Models are Few-Shot Learners. NeurIPS 2020. arXiv:2005.14165.
+InstructGPT and RLHF: Aligning Models with Human
+Intent
+                                                                                                                                  KEY RESULT · HUMAN PREFERENCE
+A raw language model predicts likely continuations — not helpful answers.                                                         Win-rate vs 175B SFT baseline
+InstructGPT aligned GPT-3 with human preferences through three stages:
+                                                                                                                                  GPT-3 175B (default)                                                        37%
+supervised fine-tuning on demonstrations, a reward model trained from
+                                                                                                                                  GPT-3 175B (prompted)                                                       58%
+pairwise comparisons, and policy optimization with PPO. Labelers preferred
+                                                                                                                                  InstructGPT 1.3B (PPO-ptx)                                                  71%
+the 1.3B InstructGPT over the 175B base GPT-3. Released publicly as ChatGPT
+                                                                                                                                  InstructGPT 175B (PPO-ptx)                                                  85%
+in late 2022, the technique defined what "using an LLM" would feel like.
+                                                                                                                                  Ouyang et al. (2022), Figure 1. Labeler preference on held-out prompts.
+
+
+
+
+    01                                                                              02                                                                              03
+    Supervised Fine-Tuning                                                          Reward Model                                                                    RL with PPO
+    •      Human-written prompt/response pairs                                      •      Annotators rank model outputs
+                                                                                                                                                                    •      Policy optimized against reward model
+    •      Fine-tune base model on demonstrations                                   •      Train a reward model on pairwise
+                                                                                                                                                                    •      KL penalty keeps policy near SFT
+    •      Teaches format and style of helpful                                             comparisons
+                                                                                                                                                                    •      Yields helpful, harmless, honest model
+           replies                                                                  •      Proxy for human preference
+
+Ouyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback (InstructGPT). NeurIPS. arXiv:2203.02155.
+Foundational: Christiano et al. (2017). Deep Reinforcement Learning from Human Preferences. NeurIPS. arXiv:1706.03741. · Schulman et al. (2017). Proximal Policy Optimization Algorithms. arXiv:1707.06347.
+The Open-Weights Wave: LLaMA, Mistral, Falcon
+
+Through 2022 the frontier was locked behind commercial APIs. Meta's LLaMA (Feb                                                                     KEY RESULT · OPEN MODELS CATCH UP
+2023) opened the gates with a family of models whose weights were distributed to                                                                   MMLU 5-shot accuracy (late 2023)
+researchers. LLaMA 2 added commercial licensing; Mistral brought compact dense
+                                                                                                                                                   Mistral 7B                                                           60.1
+and MoE variants; TII's Falcon pushed training-data transparency. A rich ecosystem of                                                              LLaMA-2 70B                                                          68.9
+fine-tunes — Alpaca, Vicuna, and thousands more — made LLM customization                                                                           GPT-3.5 (closed)                                                     70.0
+accessible to any lab with a single GPU server.                                                                                                    Mixtral 8×7B                                                         70.6
+                                                                                                                                                   Jiang et al. (2024); Touvron et al. (2023). MMLU: 57-subject knowledge test.
+
+
+
+
+    LLaMA / LLaMA 2 / LLaMA 3                                                         Mistral & Mixtral                                                                 Falcon (TII, UAE)
+    •       Meta, Feb 2023 → 2024                                                     •       Mistral 7B (Sep 2023)                                                     •      Falcon-40B, Falcon-180B
+    •       7B – 70B dense models                                                     •       Mixtral-8x7B — open MoE (Dec 2023)                                        •      Training data (RefinedWeb) released
+    •       LLaMA 2: commercial license                                               •       Strong quality-per-parameter                                              •      Emphasis on transparency
+    •       Template for modern open models                                           •       Apache-2.0 licensing                                                      •      Later joined by Qwen, DeepSeek, Yi
+
+
+Touvron et al. (2023). LLaMA: Open and Efficient Foundation Language Models. arXiv:2302.13971. · Touvron et al. (2023). Llama 2. arXiv:2307.09288.
+Jiang et al. (2023). Mistral 7B. arXiv:2310.06825. · Jiang et al. (2024). Mixtral of Experts. arXiv:2401.04088. · Almazrouei et al. (2023). The Falcon Series of Open Language Models. arXiv:2311.16867.
+Massive Multitask Language Uunderstanding
+
+    Key Aspects of the MMLU Benchmark:
+
+    Scope: Covers 57 diverse subjects, including
+    STEM, humanities, and social sciences,
+    testing both knowledge and problem-solving
+    skills.
+
+    Format: Multiple-choice questions (usually 4
+    options), testing both knowledge base and
+    reasoning ability.
+
+    Purpose: It is used as a standard measure of
+    general knowledge in AI model reports.
+
+
+Touvron et al. (2023). LLaMA: Open and Efficient Foundation Language Models. arXiv:2302.13971. · Touvron et al. (2023). Llama 2. arXiv:2307.09288.
+Jiang et al. (2023). Mistral 7B. arXiv:2310.06825. · Jiang et al. (2024). Mixtral of Experts. arXiv:2401.04088. · Almazrouei et al. (2023). The Falcon Series of Open Language Models. arXiv:2311.16867.
+The Multimodal and Reasoning Era
+The frontier bifurcated along two axes. On the input side, models became natively multimodal: GPT-4 (2023) accepted images; Gemini (2023) was
+trained on text, images, audio, and video end-to-end; Claude 3 and 4 offered long-context vision-language reasoning.
+
+On the reasoning side, a new generation of systems — OpenAI's o1/o3, DeepSeek-R1, and similar — spent significant inference-time compute on
+chain-of-thought search, optimized via reinforcement learning on verifiable outcomes. For the first time, models routinely solved competition-level
+mathematics and programming problems.
+
+
+
+
+    Natively multimodal frontier                                                                                          Inference-time reasoning
+    •      GPT-4 / GPT-4V (OpenAI, Mar 2023)                                                                              •      OpenAI o1 (Sep 2024), o3 (2025)
+    •      Gemini 1.0 / 1.5 / 2 (Google DeepMind)                                                                         •      DeepSeek-R1 — open reasoning via RL (2025)
+    •      Claude 3 & 4 (Anthropic) · long context, vision                                                                •      Chain-of-thought as a first-class output
+    •      Unified tokenizers over text, image, audio                                                                     •      Compute shifts from training to inference
+
+
+
+
+OpenAI (2023). GPT-4 Technical Report. arXiv:2303.08774. · Gemini Team (2023). Gemini: A Family of Highly Capable Multimodal Models. arXiv:2312.11805. · Anthropic (2024). The Claude 3 Model Family: Opus, Sonnet, Haiku. Model Card.
+OpenAI (2024). Learning to Reason with LLMs (o1 system card). · DeepSeek-AI (2025). DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. arXiv:2501.12948.
+A Map of Innovations: Architecture · Training · Data ·
+Alignment · Inference
+Era                                  Architecture                                 Training / Data                                Alignment / Inference
+                                                                                  Co-occurrence statistics; small
+Pre-2018 (word2vec · ELMo)           Shallow embeddings; biLSTM LM                                                               Feature-based transfer
+                                                                                  corpora
+BERT (2018)                          Deep bidirectional encoder                   MLM + NSP on 3.3B tokens                       Fine-tune with small task head
+GPT-1 / GPT-2 (2018–19)              Decoder-only causal Transformer              BookCorpus → WebText (40 GB)                   Zero-shot task transfer via prompts
+T5 / BART (2019–20)                  Encoder–decoder seq2seq                      C4 span-corruption; denoising                  Unified text-to-text interface
+GPT-3 (2020)                         175B dense Transformer                       ~300B tokens, Common Crawl mix                 In-context / few-shot learning
+Scaling · Chinchilla (2020–22)       Same arch, principled sizing                 ~20 tokens / parameter optimal                 Predictable loss curves
+                                                                                                                                 SFT + RLHF produce helpful
+InstructGPT · RLHF (2022)            Base LM + reward model                       Human demos + preference data
+                                                                                                                                 assistants
+Open-weights (2023–24)               LLaMA, Mistral (MoE), Falcon                 Open corpora; permissive licenses              On-device, fine-tunable, auditable
+Multimodal · Reasoning               Vision-language; deliberative                                                               Inference-time chain-of-thought
+                                                                                  Text + image + audio; RL on outcomes
+(2023–25)                            policies                                                                                    search
+
+ Progress compounds along four axes — architecture, training data, alignment, and inference-time compute — not any single breakthrough.
+Question
+
+● Which of these is a major disadvantage of reasoning models?
+
+    ○   They are not very good at reasoning.
+    ○   They hallucinate more than non-reasoning models
+    ○   They are time / token consuming.
+    ○   None
+Large Language Models
+     Basic Prompting
+What are prompts?
+• Prompts involve instructions and context passed to a language model to
+  achieve a desired task
+• Prompt engineering is the practice of developing and optimizing prompts to
+  efficiently use language models (LMs) for a variety of applications
+  • Prompt engineering is a useful skill for AI engineers and researchers to improve and
+     efficiently use language models
+
+
+    What is prompt engineering?
+
+      Prompt engineering is a process of creating a set of
+      or questions, that are used to guide the user toward a
+      prompts,
+      outcome. It is an effective tool for designers to
+      desired
+      create user that are easy to use and intuitive. This
+      experiences
+      method  is in interactive design and software
+      often used
+      development,
+      it           as to easily understand how to interact
+         allows users
+      with a
+      system or
+      product..
+                   First Basic Prompt
+                  Instruction
+
+
+
+
+                 The sky is
+
+                 blue                                                      Model: “text-davinci-003”
+                 The sky is a beautiful blue color during the day. The     temperature: 0.7
+                 blue of the sky is created by the Earth’s atmosphere      top-p: 1
+      Response
+
+
+
+
+                 scattering the sun’s light. The blue is a result of the
+                 air molecules in the atmosphere reflecting the shorter
+                 wavelength of blue light back to our eyes.
+
+
+
+
+                                                          Output ->
+
+I ran ->
+A more advanced
+    Prompt
+                  <- Prompt
+
+
+                     Output
+                        |
+                         V
+ Elements of a Prompt
+• A prompt is composed with the following components:
+  • Instructions
+  • Context
+  • Input data
+  • Output indicator
+
+
+
+      Classify the text into neutral, negative or positive
+      Text: I think the food was okay.
+
+      Sentiment:
+Large Language Models
+ Response Generation and Decoding
+Which words do we generate at each step?
+What is the issue with greedy decoding?
+
+
+
+
+      ● What will greedy decoding choose?
+      ● What is globally optimal?
+   Source: https://web.stanford.edu/~jurafsky/slp3.
+Beam Search
+Beam Search: How does it work?
+
+
+
+                                 https://web.stanford.edu/~jurafsky/slp
+ Beam Search on the prev. example
+
+
+
+
+Take Beam Size = 2. Is the Beam search solution same as the optimal solution?
+                             https://web.stanford.edu/~jurafsky/slp3
+    Greedy and Beam Search are deterministic!
+● Greedy decoding as well as Beam Search decoding will give a “deterministic” output
+● Other common decoding algorithms involve “sampling”, and bring in some degree of
+
+  “randomness”
+Quality vs Diversity trade-off
+Random Sampling with
+Temperature
+🌡 Temperature
+
+ Definition: Temperature scales the logits before softmax. P(token) = softmax(logits / T)
+
+
+
+   T = 0.3                  Very Cold                T = 1.0                  Default              T = 1.8               Very Hot
+
+
+Almost deterministic.                            Natural distribution.                          High randomness.
+Always picks the most likely token.              Balanced creativity + coherence.               Creative but can be incoherent.
+
+
+Example output:                                  Example output:                                Example output:
+
+
+
+"Paris is the capital of France."                 "Paris is a stunning European capital."       "Paris is cheese-dream cobblestone
+                                                                                                forever!"
+
+
+
+
+💡 Tip: Use T≈0.7 for factual tasks, T≈1.2 for creative writing, T>1.5 only for brainstorming.
+ 🎯 Top-k Sampling
+
+                                                                            How Itthem,
+   Keep only the k most probable next tokens; redistribute probability mass among  Worksthen(k = 4)
+                                                                                             sample.
+
+                                                                          1    Compute logits over full vocabulary (e.g.
+Vocabulary Probabilities (top 8 tokens):
+                                                                               50,000 tokens)
+                                                                                                             Very Hot
+    dog                                               28%      ✓ k=4
+                                                                          2
+                                                                               Sort tokens by probability (descending)
+     cat                                       22%             ✓ k=4
+
+    bird                                 15%                   ✓ k=4
+                                                                          3
+                                                                               Keep only top-k tokens. Discard the rest.
+    fish                           10%                         ✓ k=4
+
+   horse                      8%                                          4
+                                                                               Re-normalize probabilities to sum to 1
+   rabbit                6%
+
+   turtle           4%                                                    5
+                                                                               Sample from the reduced distribution
+   zebra       2%
+
+                                                                               Low k = conservative, High k = diverse
+ 🎲 Top-p (Nucleus) Sampling
+
+   Sample from the smallest set of tokens whose cumulative            Top-p vs Top-k
+   probability ≥ p. Dynamic vocabulary cutoff!
+                                                                        Aspect              Top-k            Top-p
+p = 0.85 example (cumulative probability reaches 0.85):
+                                                                                      Fixed count (k   Very Hot
+                                                                                                       Dynamic (by prob
+dog                                             cum: 28%28% ✓         Cutoff type
+                                                                                      tokens)          mass)
+
+cat                                            22%
+                                                 cum: 50%     ✓
+                                                                      Low             Always uses k
+                                                                                                       Restricts to fewer
+bird                                     15%    cum: 65%      ✓       confidence      tokens
+
+
+fish                               10%          cum: 75%      ✓       High            May include
+                                                                                                       Stays focused
+                                                                      confidence      garbage
+horse                         8%                cum: 83%      ✓
+
+rabbit                   6%                     cum: 89%      ✓       Typical value   k = 40–50        p = 0.9–0.95
+                                                 ← p=0.85 threshold
+
+turtle              4%                          cum: 93%
+
+zebra          2%                               cum: 95%
+🔁 Repetition Penalty & Frequency Penalty
+
+Repetition Penalty                                                     Frequency Penalty
+
+ repetition_penalty = 1.3                                               frequency_penalty = 0.5
+
+Divides logit of any token that already appeared in the                Penalizes tokens proportional to how many times they
+context by the penalty value.                                          have appeared so far (OpenAI style).
+
+ logit[t] /= penalty (if token t seen before)                           logit[t] -= freq_penalty × count(t)
+
+❌ Without penalty:                                                     ❌ Without penalty:
+
+ The cat sat. The cat sat. The cat sat. The cat...                      Paris Paris Paris is Paris the capital Paris Paris
+
+
+✅ With penalty:                                                        ✅ With penalty:
+
+ The cat sat on the mat and then yawned slowly.                         Paris is the capital of France and a major hub.
+
+
+
+💡 Values 1.0 = no effect. 1.2–1.5 is typical. Too high → avoids even   💡 Range: 0.0 to 2.0. Higher = more penalty. Presence penalty is a
+necessary repeats.                                                     binary version (0 or 1).
+📏 Max Tokens & Stop Sequences
+
+Max Tokens                                                             Stop Sequences
+
+Controls the maximum number of tokens the model will                   Custom strings that signal the model to stop
+generate in one response.                                              generating immediately. Useful for structured output.
+
+     max_tokens=20
+                                                                         Code generation
+
+    "The transformer architecture was introduced in 2017 by Google       stop: ["```", "def "]
+    researchers in the..."                                               Stop after code block ends
+
+
+                                                                         Q&A system
+     max_tokens=50
+                                                                         stop: ["\nUser:"]
+
+    "...paper Attention Is All You Need. It replaced RNNs with self-     Stop before next turn
+    attention mechanisms, enabling much faster training."
+                                                                         JSON output
+                                                                         stop: ["}\n"]
+  Tokens ≠ Words. On average, 1 word ≈ 1.3 tokens.                       Stop after JSON closes
+"ChatGPT" = 3 tokens.
+⚠
+                                                                       💡 Combine with max_tokens for full output control.
+⚡ Parameter Cheat Sheet
+        Parameter                  Range           Default        Creative        Factual                       Description
+
+
+temperature                       0.0 – 2.0           1.0           1.2             0.3         Scales randomness of output distribution
+
+
+
+top_k                            1 – 1000+            50             80             10          Keeps only k highest-probability tokens
+
+
+
+top_p                             0.0 – 1.0           1.0           0.95            0.7         Nucleus sampling: cumulative prob cutoff
+
+
+
+repetition_penalty                1.0 – 2.0           1.0           1.2             1.1         Reduces logits for already-seen tokens
+
+
+
+frequency_penalty                 0.0 – 2.0           0.0           0.4             0.1         Proportional penalty based on token count
+
+
+
+max_tokens                        1 – 128k+         Model           1024            256         Hard cap on generated token count
+
+
+   Never use top_k and top_p together at extreme values — they compound and may produce degenerate output. Use one or the other, then
+tune temperature.
+⚠
+Question
+
+● Which of the following is most effective in reducing hallucinations?
+     ○   Temperature
+     ○   Top-k sampling
+     ○   Top-p Sampling
+     ○   Max-Tokens
+🛠 Tutorial: Putting It All Together
+
+import anthropic                            Use-Case Presets
+
+client = anthropic.Anthropic()               📖 Factual Q&A
+                                             temp=0.3, top_p=0.7
+response = client.messages.create(           max_tokens=256
+    model="claude-sonnet-4-20250514",
+    max_tokens=512,        # ← output cap    ✍ Creative Writing
+    messages=[{"role":"user",
+                                             temp=1.2, top_p=0.95
+     "content":"Write a poem about AI"}],    rep_penalty=1.2
+)
+                                             💻 Code Generation
+# OpenAI-style params (via API)
+                                             temp=0.2, top_k=20
+# temperature = 1.1 # creative               stop=["\n```"]
+# top_p        = 0.9 # nucleus
+# top_k       = 50 # top-k                   🧠 Brainstorming
+# stop        = ['\n\n']
+                                             temp=1.5, top_k=80
+                                             max_tokens=1024
+print(response.content[0].text)
+Prompting and APIs
+  OpenAI API
+        OpenAI API (Introduction)
+
+Overview:
+                                              Core Capabilities:
+  ●    Proprietary API · pay-per-token          ●       Chat completions (LLM interaction)
+  ●    Industry-standard LLM platform           ●       Function / tool calling
+  ●    Supports text · code · image · audio
+                                                ●       Structured outputs (JSON mode)
+                                                ●       Embeddings · retrieval
+
+
+
+ Modalities Supported:
+
+   ●    Text generation                         Key Advantages:
+   ●    Code generation
+                                                    ●     High reliability · production-ready
+   ●    Image generation & vision
+                                                    ●     Scalable infrastructure
+   ●    Audio (speech-to-text, text-to-
+                                                    ●     Wide model ecosystem
+        speech)
+      Frontier Models
+These are OpenAI’s most advanced general-purpose models, designed for high performance across reasoning,
+coding, and agentic workflows.
+
+
+    GPT-5.4                                                         GPT-5.4 mini
+
+                                                                      ●   Cost-eﬃcient version of GPT-5.4
+      ●   Most advanced model for intelligence at scale
+                                                                      ●   Opqmized for high-volume and low-latency tasks
+      ●   Strong in agentic workflows and complex reasoning
+                                                                      ●   Good balance between performance and cost
+      ●   High accuracy for professional and enterprise use cases
+                                                                      ●   Suitable for scalable applicaqons
+      ●   Handles long, multi-step tasks efficiently
+     Basic Chat Completion (OpenAI API)
+
+
+Basic Chat Completion
+
+                                                     Step 1: User sends messages to API
+
+  from openai import OpenAI                          Step 2: Model processes system +
+  client = OpenAI() # reads OPENAI_API_KEY           user input
+
+  response = client.chat.completions.create(         Step 3: Model generates response
+    model="gpt-4o-mini",
+    messages=[                                       Step 4: API returns structured
+      {"role": "system",
+                                                     output
+       "content": "You are a helpful assistant."},
+      {"role": "user",
+       "content": "Explain RAG in one sentence."}
+    ],
+    temperature=0.7,
+    max_tokens=200
+  )
+  print(response.choices[0].message.content)
+Roles in Prompting (OpenAI API)
+
+
+Core Message Roles for (Chat Completions):
+
+•   system: Sets the overall behavior, tone, and constraints for the assistant (e.g., "You are a helpful
+    assistant").
+
+•   developer (New): Designed for developers to provide specialized instructions, giving more control over
+    API interaction than the traditional system role.
+
+•   user: Represents the input from the human user, including questions or instructions.
+
+•   assistant: Represents the previous responses generated by the AI, helping the model maintain context in a
+    conversation.
+    Roles in Prompting (OpenAI API)
+
+The assistant role is used in the messages array to represent the model's past or simulated responses. It can
+be use for:
+
+•   Maintaining Conversa5on History
+
+
+
+
+•   Few-shot promp5ng:
+Roles in Prompting (OpenAI API)
+
+
+What actually happens under the hood
+
+Before reaching the model, the structured input is converted into a single token sequence, something
+conceptually like:
+ Elements of a Prompt
+• A prompt is composed with the following components:
+  • Instructions
+  • Context
+  • Input data
+  • Output indicator
+
+
+
+      Classify the text into neutral, negative or positive
+      Text: I think the food was okay.
+
+      Sentiment:
+  Tool Calling
+
+Model can call external functions via structured outputs
+
+Converts natural language → function arguments
+
+   Flow:
+
+     ●     User query → Model → Tool selec5on → Func5on call → Response
+
+
+    Key Features:
+
+      ●    JSON schema-based inputs
+      ●    Automatic tool selection
+      ●    Reliable structured outputs
+      ●    Integrates APIs · databases · services
+Tool Calling Example – LCM calculation
+How to compute LCM (lowest common multiple) of two given integers?
+
+Input: “What is the LCM of 84 and 120?”                        total_tokens=425
+Tool Calling Example – LCM calculation
+: “What is the LCM of 84 and 120?”
+
+
+
+
+                                     Setup the function
+Tool Calling Example – LCM calculation
+
+
+                                Create the first set of function calls
+                                Using an LLM call
+
+                                Execute the function
+
+                                Create the input for the second LLM
+                                Call using the output from the
+                                Function call
+Tool Calling Example – LCM calculation
+
+
+
+                                         Use the output from
+                                         Function execution to
+                                         Ask LLM for the final
+                                         answer.
+
+                                         Total tokens: 123
+        OpenAI API
+GPT-4o, GPT-4.1, o3 — the industry-standard         Function / Tool Calling
+REST API                                             tools = [{
+  Key Features                                         "type": "function",
+  •     Proprietary · Pay-per-token                    "function": {
+  •     JSON mode & Structured Outputs                   "name": "get_weather",
+  •     Function / tool calling                          "description": "Get current weather",
+                                                         "parameters": {
+  •     Vision, audio, embeddings
+                                                           "type": "object",
+  •     Fine-tuning support                                "properties": {
+                                                             "location": {"type": "string"}
+                                                           },
+Basic Chat Completion
+                                                           "required": ["location"]
+                                                         }
+ from openai import OpenAI
+                                                       }
+ client = OpenAI() # reads OPENAI_API_KEY
+                                                     }]
+ response = client.chat.completions.create(          resp = client.chat.completions.create(
+   model="gpt-4o",                                     model="gpt-4o", messages=msgs,
+   messages=[                                          tools=tools, tool_choice="auto"
+     {"role": "system",                              )
+      "content": "You are a helpful assistant."},
+     {"role": "user",                                 JSON mode: Set response_format={"type":"json_object"} — model
+      "content": "Explain RAG in one sentence."}      always returns valid JSON. Structured Outputs (strict:true) guarantees
+   ],                                                 schema compliance.
+   temperature=0.7,
+   max_tokens=200
+ )
+ print(response.choices[0].message.content)
+       Coding & Reasoning Models
+These models are specifically optimized for software engineering tasks, including code generation, debugging,
+and long-horizon development workflows.
+
+
+ GPT-5.3-Codex                                              GPT-5.1-Codex
+
+   ●   Highly capable agentic coding model                     ●   Opqmized for structured programming tasks
+
+   ●   Handles large codebases and multi-step                  ●   More eﬃcient for mid-level coding workﬂows
+       development tasks
+                                                               ●   Good balance between speed and capability
+   ●   Strong debugging and refactoring capabilities
+                                                               ●   Useful for automaqon and backend development
+   ●   Suitable for advanced developer tools
+        Image Generation Models
+
+These models are designed for generating and editing images from text prompts, enabling creative and design-
+focused applications.
+
+
+ GPT Image 1.5                                                    GPT Image 1
+
+   ●   State-of-the-art image generation quality                    ●   Earlier generation image model
+
+   ●   Produces highly detailed and realistic visuals               ●   Faster and more cost-efficient
+
+   ●   Supports advanced prompt control                             ●   Good for basic image generation tasks
+
+   ●   Suitable for professional design and media                   ●   Suitable for lightweight applications
+          Example - Chatbot Application
+
+   Model Used: GPT-4-o-mini
+
+   Use Case:
+
+      ●    Conversational assistant · customer support · FAQs
+
+
+                                                                      Output:
+
+response = client.chat.completions.create(                                 ●    "AI is the simulation of human
+ model="gpt-4o-mini",                                                           intelligence by machines."
+ messages=[
+     {"role": "system",} "content": "You are a helpful chatbot."},
+     {"role": "user", "content": "What is AI?"}
+ ]
+
+                                                                     Key Points:
+
+                                                                       ●       Mulq-turn conversaqon
+                                                                       ●       Context-aware responses
+                                                                       ●       Real-qme interacqon
+      Example - Image Generation
+
+   Model Used: GPT Image 1.5
+
+   Use Case:
+                                              Output:
+     ●    Generate images from text prompts
+     ●    Design · creative content
+
+
+
+response = client.chat.completions.create(
+ model="gpt-image-1.5",
+ prompt="A futuristic city at sunset"
+
+
+
+
+   Key Points:
+
+      ●    High-quality image generation
+      ●    Creative control via prompts
+      ●    Useful for design workflows
+Question
+
+● What is the main purpose of roles in OpenAI API?
+    ○   Provide structure to the prompt engineering process.
+    ○   Allow system level instruc5ons
+    ○   Allow structured inputs to be fed into the model
+    ○   Historical legacy
+                              Thank you
+
+    Instructor                   Teaching Assistants (IITKGP)
+
+
+
+
+                                Suman Bera           Saptarshi Mondal
+     Sourangshu
+    Bhattacharya
+sourangshu@cse.iitkgp.ac.in
+

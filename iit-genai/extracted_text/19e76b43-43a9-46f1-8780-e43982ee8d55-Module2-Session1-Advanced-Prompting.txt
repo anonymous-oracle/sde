@@ -1,0 +1,1230 @@
+Advanced Prompt Engineering
+
+           Koustav Rudra
+         Assistant Professor
+          AI, IIT Kharagpur
+
+
+
+
+                               23/05/2026
+What We'll Cover
+● Foundations
+   ○ Intro to Prompting
+   ○ Zero-Shot Prompting
+   ○ Few-Shot Prompting
+● Reasoning Techniques
+   ○ Chain-of-Thought (CoT)
+   ○ Self-Consistency
+   ○ Tree-of-Thought (ToT)
+● Acting & Tool Use
+   ○ ReAct
+● Steering the Model
+   ○ Meta Prompting
+   ○ Directional Stimulus Prompting
+Introduction
+
+                                            Programming with
+                                             natural language
+ Because you are:                    Example:
+
+  ●   giving instructions            Traditional code:
+
+  ●   specifying constraints         sort(numbers, descending=True)
+  ●   defining inputs and outputs
+  ●   controlling behavior           Prompt-based instruction:
+  ●   iterating to improve results
+                                     Sort these numbers from largest to smallest and explain the steps.
+Introduction: Prompting
+
+  Put an input into a format (a “prompt”) that
+    encourages the model to carry out a task.
+
+             x: “I love advanced NLP!”
+                                                       Prompt
+  f(x): Classify this sentence’s sentiment as either
+     Positive or Negative: “I love advanced NLP!”.
+
+         Example y: The sentence is positive.
+Introduction: Autoregressive language model
+                                                                                            The cat sat
+  An autoregressive language model is an AI model that                                      on the ...
+ generates text one token at a time, always predicting the
+   next token based on everything that came before it.
+
+                                       The probability of a whole sentence is built by repeatedly
+A “token” can be:                          predicting the next token from previous tokens.
+
+  ●   a word
+  ●   part of a word                  The model predicts probabilities like:
+  ●   punctuation
+                                        ●   mat → 62%
+  ●   or even spaces/symbols            ●   floor → 15%
+                                        ●   chair → 8%
+                                        ●   roof → 3%
+          So generation looks like:               "The" → "cat" → "sat" → "on" → "the" → "mat"
+What is a Prompt?
+
+●   Prompt is initial text inputs given to a model, which it uses to generate responses or accomplish
+    tasks.
+●   A prompt serves as an interaction point between a user and an LLM, allowing the model to
+    generate specific outputs based on the input provided.
+●   It can take various forms, including questions, commands, text snippets, or even code, and can
+    range from single words to complex paragraphs.
+
+
+
+
+ What is a Language             Write me a story          Classify the following sentence on basis
+       Model?                   about full moon              of Positive or negative sentiment:
+                                                              Sentence: What a beautiful day
+
+    A question                    A command
+                                                                A prompt with text snippet
+What is a Prompt?
+                                                        “””def factorial(n):
+    Write a python function that takes two
+                                                          if n == 0:
+    numbers as input, and returns sum of
+                                                            return 1
+              the two numbers
+                                                          else:
+                                                            return n * factorial(n-1)”””:
+             Code Generation                            Convert this to C++
+
+                                                                 Code Conversion
+
+●     For LLMs, we can generally define two types :
+        ○   system prompts i.e. providing clear guidelines for the model on how to respond to user inputs.
+        ○   user prompts i.e. inputs by end-users to interact with the AI system and obtain desired outputs.
+●     The effectiveness of a prompt directly influences the relevance and accuracy of the model's
+      response.
+●     Well-structured prompts help the model understand the user's intent better.
+What is Prompt Engineering?
+Prompt: Summarize the
+                                     Prompt: Recommend a new                 Prompt: Evaluate the sentiment
+following text: 'The quick
+                                     book for a mystery lover.               of the following review: 'This
+brown fox jumps over the lazy
+                                                                             product exceeded my
+dog.'
+                                     Response: I recommend 'The              expectations!'
+                                     Silent Patient' by Alex
+Response: A fox jumps over a
+                                     Michaelides.                            Response: Positive sentiment
+dog.
+
+      Summarization                         Personalisation                           Evaluation
+
+
+
+  ●    The ‘engineering’ term in Prompt Engineering is used as it involves systematic prompt design
+
+       process, optimised for the tasks at hand that is achieved through iterative refinement.
+
+  ●    Carefully crafted prompts help to understand users’ intent better.
+Common LLM inference terms
+
+
+
+            Tokens         Temperature
+
+
+
+
+            Top k     Top p (nucleus sampling)
+ Common LLM inference terms - tokens
+  ➢    Tokens : They are the basic units of text that LLMs process. They can represent words, subwords, or
+       characters, depending on the tokenizer used
+
+  Pseudohypoparathyroidism and deoxyribonucleic acid methylation        The transformer-based model achieved 94.7%
+  affect mitochondrial dysfunction in immunocompromised patients         accuracy on 1,000 test cases, outperforming
+               undergoing chemotherapeutic treatment.                                 GPT-2 by ~3.2x.
+
+
+
+                                       33 tokens                                                        31 tokens
+                                       20.00 tokens / 100 chars                                         30.39 tokens / 100 chars
+
+Subword Tokenization :
+Goal: Represent text efficiently while handling both common and rare words.
+Principle:
+  ➢   Frequent words remain whole (e.g., ”transformer").
+  ➢   Rare words are split into meaningful subwords (e.g., " methylation" becomes ”methyl" and ”ation").
+
+                                                                                              Tool : GPT Tokenizer Playground
+Common LLM inference terms - temperature
+Temperature
+ ●                 Controls sharpness of the next-token distribution
+ ●                 Any positive value
+ ●                 Lower temperature → sharper distribution → repetitive generations
+     Probability
+
+
+
+
+                                                                         Probability
+                                     Tokens                                                              Tokens
+
+
+
+
+                                                                               https://medium.com/@harshit158/softmax-temperature-5492e4007f71
+Common LLM inference terms - temperature
+Temperature scaling in                                Entropy =
+                                   Token      Prob
+softmax                                               0.979 ln(0.979) +
+                                   “cat”     0.979
+
+
+
+
+                          T=0.5
+                                                      0.018 ln(0.018) +
+                                   “dog”     0.018    0.002 ln(0.002) +
+                                   “fish”    0.002    0.0003 ln(0.0003)
+                                  “banana”   0.0003           = 0.110
+
+                                  Token      Prob     Entropy =
+                                  “cat”      0.831    0.831 ln(0.831) +
+
+
+
+
+                          T=1
+                                                      0.112 ln(0.112) +
+        Example :-                “dog”      0.112    0.041 ln(0.041) +
+                                  “fish”     0.041    0.015 ln(0.015)
+      Token       Logit           “banana”   0.015            = 0.594
+      “cat”         4.0
+      “dog”         2.0                               Entropy =
+                                  Token      Prob
+      “fish”        1.0           “cat”      0.579    0.579 ln(0.579) +
+      “banana”      0.0                               0.213 ln(0.213) +
+                          T=2
+                                  “dog”      0.213    0.129 ln(0.129) +
+                                  “fish”     0.129    0.078 ln(0.078)
+                                  “banana”   0.078            = 1.109
+Common LLM inference terms - temperature
+Temperature scaling in   Temperature (mathematical intuition)
+softmax                   ● Scales the logits of the tokens
+                          ● Temp = 1 ⇾ softmax uses the same as predicted logits
+                          ● Temp >>1 ⇾ predicted logits have less effect on softmax
+                             output
+                          ● Food for thought: What happens if T = 0?
+
+
+
+                                  Temp = 0 is not feasible.
+                                  In such cases:
+                                    ● Temp is thresholded to a low value like
+                                        0.000001
+                                    ● Sampling is done by greedy decoding
+
+
+
+
+                                        https://medium.com/@harshit158/softmax-temperature-5492e4007f71
+Common LLM inference terms - top k
+                                                                                        The sun rises in the ___ … … … …
+➢   Top_k : Top-K sampling involves selecting the top K
+    most likely words from the probability distribution and
+                                                                                Candidate tokens
+    then sampling the next word only from this subset
+                                                                            0.19
+
+                                                                                   0.17
+➢   For example, Imagine a scenario where an LLM is                                                                               sample
+    prompted with “The sun rises in the”.
+                                                                                              k=5
+
+
+
+
+                                                              Likelihood
+                                                                                          0.15
+Ø The model might assign the highest probabilities to                                                0.14
+  words like "east", "morning", "sky", etc                                                                        Clipped tail
+
+
+
+
+                                                                                                                  {
+                                                                                                            0.1
+
+➢   With Top-K sampling where K=5, the model would
+    only consider the top 5 words with the highest
+
+
+
+
+                                                                                                                             et
+    probability for its next output.
+
+
+
+
+                                                                                   st
+
+
+
+
+                                                                                          y
+
+
+
+                                                                                                           ow
+
+
+
+
+                                                                                                             n
+                                                                                 ng
+
+
+
+
+                                                                                                                           an
+                                                                                                            e
+                                                                                        sk
+                                                                           ea
+
+
+
+
+                                                                                                          w
+                                                                                                          ss
+                                                                                                         nc
+
+
+
+
+                                                                                                          e
+                                                                                                        gl
+                                                                              ni
+
+
+
+
+                                                                                                                          pl
+                                                                                                       ac
+
+                                                                                                       do
+                                                                                                       ne
+                                                                                                 a
+                                                                           or
+
+
+
+
+                                                                                              st
+
+
+
+
+                                                                                                   sp
+                                                                                                    st
+                                                                            m
+
+
+
+
+                                                                                          di
+
+
+
+                                                                                                 va
+➢   This method reduces the chances of generating highly improbable words and provides a more controlled and
+    predictable output.
+Common LLM inference terms - top p
+                                                                                          The sun rises in the ___ … … … …
+➢   Top_p / Nucleus Sampling : Instead of selecting a
+    fixed number of top words, the model selects a subset                         Candidate tokens
+    of words that have a cumulative probability exceeding                     0.19
+                                                                                     top-p = 0.65
+    a certain threshold P.                                                           0.17
+                                                                                                                                     sample
+
+➢   For example, Consider the same scenario where an
+    LLM is prompted with “The sun rises in the” and top-p
+
+
+
+
+                                                                Likelihood
+                                                                                            0.15
+                                                                                                                    Clipped tail
+    = 0.65                                                                                             0.14
+
+
+
+
+                                                                                                               {
+➢   If the top 4 words in the probability distribution
+    cumulatively account for 65% of the probability mass                                                      0.1
+
+    and we set P=0.65, then the model would sample the
+    next word from this set of 4 words
+
+
+
+
+                                                                                                                                et
+                                                                                     st
+
+
+
+
+                                                                                            y
+
+
+
+                                                                                                             ow
+
+
+
+
+                                                                                                               n
+                                                                                   ng
+
+
+
+
+                                                                                                                              an
+                                                                                                              e
+                                                                                          sk
+                                                                             ea
+
+
+
+
+                                                                                                            w
+                                                                                                            ss
+                                                                                                           nc
+
+
+
+
+                                                                                                            e
+                                                                                                          gl
+                                                                                ni
+
+
+
+
+                                                                                                                             pl
+                                                                                                         ac
+
+                                                                                                         do
+                                                                                                         ne
+                                                                                                   a
+                                                                             or
+    Top-p is more dynamic than Top-K, adapting the subset
+
+
+
+
+                                                                                                st
+➢
+
+
+
+
+                                                                                                     sp
+                                                                                                      st
+                                                                              m
+
+
+
+
+                                                                                            di
+
+
+
+                                                                                                   va
+    size based on the probability distribution
+
+➢   It can capture more diversity in outputs, reducing repetitiveness
+Types of Prompting: Overview
+
+      Advanced Patterns
+
+      ReAct, ToT, Meta-Prompting
+
+              Chain-of-Thought
+
+              Explicit reasoning
+
+                            Few-Shot Prompting
+
+                            Learning from examples
+
+                                         Zero-Shot Prompting
+
+                                         Simple, direct instructions
+Zero-Shot Prompting
+                       User : Classify the test into neutral, negative or positive. Just
+                       give me the classification.
+                       Text : I think the vacation is okay.
+                       Sentiment :
+
+                       Mistral : Neutral
+
+
+
+➢   Direct instructions: Users tell the AI what to do without providing specific examples.
+
+➢   Relies on pre-trained knowledge: LLMs learn to perform tasks from massive datasets, enabling them to
+    generalize to new, unseen instruction
+
+➢   Versatile and adaptable: Zero-shot prompting makes AI models useful for a wide range of applications
+    without task-specific fine-tuning.
+
+                                                                                             https://arxiv.org/pdf/2109.01652
+                                                                                             https://www.promptingguide.ai/techniques/zeroshot
+Zero-Shot Prompting
+  ➢ Model size matters: Larger LLMs (eg       User: Solve the math problem. What is 3/7 of 84?
+    Mistral 123B) are better at zero-shot
+                                              LLM: To find 3/7 of 84, we can use the multiplication
+    tasks than smaller models (eg Mistral
+                                              property of fractions: (3/7)* 84
+    7B)
+  ➢ Complexity     challenges:    Zero-shot   First, let’s multiply the numerators:
+    prompting can struggle with complex       3 * 84 = 252
+    tasks where implicit knowledge or
+    specific examples are needed.             Next, multiply the denominators:
+                                              7 * 84 = 588
+ Lack of context can lead to:                 Now, multiply the products:
+  ➢ Vague or imprecise responses.             252 / 588
+  ➢ Difficulty in understanding nuanced
+      instructions.                           To divide two numbers, we can use a calculator or
+                                              long division:
+                                              252 / 588 = 0.428571428571
+ Solution: Providing examples (few-shot
+ prompting)    can     significantly boost    So, 3/7 of 84 is approximately 0.4286
+ performance on challenging tasks.
+                                                                      Wrong
+ Few-Shot Prompting
+                          User : This is awesome // Positive
+                          This is bad! // Negative
+                          Wow that movie was rad! // Positive
+                          What a horrible show! //
+
+                          Mistral : Negative
+
+
+ ➢ Few-shot learning involves providing the model with a small number of high-quality examples that
+     include both input and desired output for the target task.
+Benefits : These examples help the model grasp:
+ 1. User intent
+ 2. Desired output format and style
+Takeaway: Few-shot learning generally leads to more accurate and relevant responses compared to zero-
+shot prompting.
+Few-Shot Prompting
+
+                                          User: The odd numbers in this group add up to an even
+➢ When dealing with more complex          number: 4, 8, 9, 15, 12, 2, 1.
+  reasoning tasks e.g. mathematical       A: The answer is False.
+  reasoning, this method may fail to      The odd numbers in this group add up to an even number: 17,
+  deliver the correct output              10, 19, 4, 8, 12, 24.
+                                          A: The answer is True.
+                                          The odd numbers in this group add up to an even number: 16,
+➢ In this example, we can check that it
+                                          11, 14, 4, 8, 13, 24.
+  is not the correct response             A: The answer is True.
+                                          The odd numbers in this group add up to an even number: 17,
+➢ It seems like few-shot prompting is     9, 10, 12, 13, 4, 2.
+  not enough to get reliable responses    A: The answer is False.
+  for this type of reasoning problem      The odd numbers in this group add up to an even number: 15,
+                                          32, 5, 13, 82, 7, 1.
+                                          A:
+
+                                          Model: The answer is True              WRONG
+Chain-of-Thought (CoT) Prompting
+
+                                                          With CoT
+
+ Without CoT                                              Q: Complex math problem. Let’s think step by step
+                                                          A: Let’s break this down:
+ Q: Complex math problem                                    ● Step 1: [reasoning]
+ A: [Direct answer, sometimes wrong]                        ● Step 2: [reasoning]
+                                                            ● Step 3: [reasoning]
+                                                            ● Answer: [correct answer]
+
+
+
+
+   ➢   Technique: Guides the LLM to solve complex tasks by breaking them down into smaller, logical
+       steps.
+   ➢   How it works: The prompt encourages the model to "think out loud" and show its reasoning
+       process, leading to more accurate solutions.
+   ➢   Effectiveness: Especially powerful when combined with few-shot prompting, providing both
+       examples and a structured approach.
+Chain-of-Thought (CoT) Prompting
+  User : The odd numbers in this group add up to an even number: 4, 8, 9, 15, 12, 2, 1.
+  A: Adding all the odd numbers (9, 15, 1) gives 25. The answer is False.
+  The odd numbers in this group add up to an even number: 17, 10, 19, 4, 8, 12, 24.
+  A: Adding all the odd numbers (17, 19) gives 36. The answer is True.
+  The odd numbers in this group add up to an even number: 16, 11, 14, 4, 8, 13, 24.
+  A: Adding all the odd numbers (11, 13) gives 24. The answer is True.
+  The odd numbers in this group add up to an even number: 17, 9, 10, 12, 13, 4, 2.
+  A: Adding all the odd numbers (17, 9, 13) gives 39. The answer is False.
+  The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1.
+  A:
+
+  Mistral :The odd numbers in this group are: 15, 5, 13, 7, 1.
+  Adding these together gives: 15+5+13+7+1=41.
+  Since 41 is an odd number, the answer is False          ✅
+
+    ➢   Model Size & Complexity: Larger LLMs are generally better at Chain-of-Thought reasoning.
+    ➢   CoT prompting can elicit correct answers to complex questions (as shown above), when few-shot
+        prompting fails.
+    ➢   Key Takeaway: Sophisticated prompt engineering techniques like CoT can significantly enhance
+        the reasoning capabilities of existing LLMs.
+  Variants of CoT Prompting - Zero-shot CoT
+         Zero Shot                                                        Zero Shot CoT
+
+         Q: A juggler can juggle 16 balls. Half of the balls are golf     Q: A juggler can juggle 16 balls. Half of the balls are golf
+         balls, and half of the golf balls are blue. How many blue golf   balls, and half of the golf balls are blue. How many blue golf
+         balls are there?                                                 balls are there?
+         A: The answer (arabic numerals) is                               A: Let’s think step by step
+         ______________________________                                   ______________________________
+
+         Output: 8
+                           ❌                                              Output: There are 16 balls in total. Half of the balls are golf
+                                                                          balls. That means that there are 8 golf balls. Half of the golf
+                                                                          balls are blue. That means that there are 4 blue golf balls.
+                                                                                                                                           ✅
+Simplifying CoT: No need to provide explicit reasoning steps in the prompt.
+
+How it works:
+  ➢    Add "Let's think step by step" to the original prompt.
+  ➢    The LLM generates its own reasoning chain and uses it to arrive at the answer.
+
+Benefits:
+  ➢   Task-agnostic: Applicable to a wide range of tasks without needing task-specific prompts.
+  ➢   Encourages deeper reasoning: Promotes more thoughtful and structured problem-solving by the LLM.
+Variants of CoT Prompting - Few-shot CoT
+
+                   Few Shot                                           Few Shot CoT
+        Model Input                                       Model Input
+                                                      Q. Roger has 5 tennis balls. He buys 2 more cans
+    Q. Roger has 5 tennis balls. He buys 2 more       of tennis balls. Each can have 3 tennis balls. How
+    cans of tennis balls. Each can have 3 tennis      many tennis balls does he have now?
+    balls. How many tennis balls does he have now?
+                                                      A : Roger started with 5 balls, 2 cans of 3 tennis
+    A: The answer is 11                               balls each is 6 tennis balls. 5 + 6 = 11. The answer
+                                                      is 11
+    Q. The cafeteria had 23 apples. If they used 20
+    to make lunch and bought 6 more, how many         Q. The cafeteria had 23 apples. If they used 20 to
+    apples do they have?                              make lunch and bought 6 more, how many apples
+                                                      do they have?
+
+
+       Model Output                                     Model Output
+                                                       The cafeteria had 23 apples originally. They used
+
+                              ❌                                                                              ✅
+                                                        20 to make lunch. So they had 23-20 = 3. They
+    A : The answer is 27
+                                                      bought 6 more apples, so they have 3 + 6 = 9. The
+                                                                          answer is 9
+Variants of CoT Prompting - Automatic CoT
+
+
+➢     Goal: Automate the creation of reasoning chains, reducing reliance on manually crafted examples.
+
+
+➢       Two-Stage Process:
+
+1.      Question Clustering: Questions from a dataset are grouped into clusters based on similarity. This helps in
+
+        identifying representative questions for each cluster, ensuring diversity in the examples generated.
+
+
+
+     Q: While shopping for music online, Zoe bought 3 …
+                                                                                  Clustering
+                                                                                     ..
+                                                                            1                    k
+                        .
+                        .
+
+
+
+
+    Q: A chef needs to cook 9 potatoes. He has already…
+
+
+
+                                                                                                     https://github.com/amazon-science/auto-cot
+                                                                                                     https://arxiv.org/abs/2210.03493
+Variants of CoT Prompting - Automatic CoT
+
+
+2. Demonstration Sampling:
+
+2.a A representative question is chosen from each cluster.
+
+
+
+                                                             1    Q: While shopping for music online
+                  Clustering                                                 … A: Let’s …
+
+
+
+
+                                                             ..
+
+
+
+                                                                           ..
+                  ..                                  LLM
+             1                 k                                               Sampling by Selection Criteria
+
+                                                                     Q: A chef needs to cook 9
+                                                             k
+                                                                       potatoes ... A: Let’s …
+
+
+
+
+                                                                                      https://github.com/amazon-science/auto-cot
+                                                                                      https://arxiv.org/abs/2210.03493
+  Variants of CoT Prompting - Automatic CoT
+                                                           Q: While shopping for music online, Zoe bought 3 country albums and 5 pop albums.
+                                                           Each album came with a lyric sheet and had 3 songs.
+                                                           How many songs did Zoe buy total?
+2.b Zero-Shot-CoT (with heuristics) generates a
+                                                           A: Let’s think step by step. Zoe bought 3 country albums. Each album has 3 songs.
+reasoning chain for the chosen question.                   So she bought 3*3=9 songs from the country albums. Zoe bought 5 pop albums.
+                                                           Each album has 3 songs. So she bought 5*3=15 songs from the pop albums.
+                                                           Zoe bought 9+15=24 songs in total. The answer is 24. …
+
+                                                           Q: A chef needs to cook 9 potatoes. He has already cooked 7.
+                                                           If each potato takes 3 minutes to cook, how long will it take him to cook the rest?
+      1      Q: While shopping for music online
+                        … A: Let’s …                       A: Let’s think step by step. The chef has already cooked 7 potatoes.
+                                                           That means it has taken him 7 * 3 minutes to cook those 7 potatoes.
+     ..
+
+
+
+                      ..
+
+
+                          Sampling by Selection Criteria
+                                                           That means it will take him 3 more minutes to cook each of the remaining 2 potatoes
+                Q: A chef needs to cook 9                  …
+     k
+                  potatoes ... A: Let’s …
+                                                           Q: A pet store had 64 puppies. In one day they sold 28 of them and put the rest into
+                                                           cages with 4 in each cage. How many cages did they use?
+                                                           A: Let’s think step by step.
+
+
+ Outcome: Auto-CoT achieves comparable or
+                                                                 Test Question                         LLM                 In-Context Reasoning
+ superior performance to traditional CoT and few-
+ shot prompting, especially for reasoning tasks.                The pet store had 64 puppies. They sold 28 of them. That means they
+                                                                have 36 puppies left. They put the rest into cages with 4 in each cage.
+                                                                That means they have 9 cages. The answer is 9
+                                                                                                                            https://github.com/amazon-science/auto-cot
+                                                                                                                            https://arxiv.org/abs/2210.03493
+        CoT Prompting - Self Consistency
+                                                                              Greedy Decode
+Chain-of-Thought
+                                                                    This means she uses 3 + 4 = 7 eggs every day.
+Prompting                                                           She sells the remainder for $2 per egg, so in
+                        Prompt              Language Model                                                                       The answer is 14
+                                                                    total she sells 7 * $2 = $14 per day.
+                                                                    The answer is $14.
+
+  -----------------------------------------------------------------------------------------------------------------------
+ Self Consistency
+                                                                           She has 16 - 3 - 4 = 9 eggs left. So she makes $2 *
+   Q: If there are 3 cars in the parking                                   9 = $18 per day.
+   lot and 2 more cars arrive, how many
+   cars are in the parking lot?
+
+   A: There are 3 cars in the parking lot                                  This means she she sells the remainder for $2 * (16
+   already. 2 more arrive. Now there are                                   - 4 - 3) = $26 per day
+   3 + 2 = 5 cars. The answer is 5.
+                                                         Language                                                                  The answer is $18
+   Q: Janet’s ducks lay 16 eggs per day.                   Model
+   She eats three for breakfast every                                      She eats 3 for breakfast, so
+   morning and bakes muffins for her                                       she has 16 - 3 = 13 left. Then
+   friends every day with four. She sells                                  she bakes muffins, so she
+   the remainder for $2 per egg. How                                       has 13 - 4 = 9 eggs left. So
+   much does she make every day?                                           she has 9 eggs * $2 = $18.
+
+   A:
+
+
+
+   ➢     Self-consistency leverages the intuition that a complex reasoning problem typically admits multiple
+         different ways of thinking leading to its unique correct answer
+   ➢     It first samples a diverse set of reasoning paths instead of only taking the greedy one, and then
+         selects the most consistent answer by marginalizing out the sampled reasoning paths. 2203.11171 (arxiv.org)
+ReAct Prompting
+                                                                                    The Core Loop
+A framework where LLMs generate reasoning traces                                    Question: Which river flows through the city that hosts
+and task-specific actions in an interleaved manner.                                 the Taj Mahal, and where does it originate?
+
+                                                                                             THOUGHT
+                                                                                             Reason about what to do next
+The model doesn't just think — it acts.                                                      “I need to find which city has the Taj Mahal, then
+                                                                                             find the river flowing through it, then its origin.”
+
+It calls tools, searches the web, and queries APIs, then                                     ACTION
+uses what it observes to refine the next thought.                                            Call a tool or take an action
+                                                                                             Search [Taj Mahal location]
+
+
+ReAct is inspired by the synergies between “acting”                                         OBSERVATION
+and “reasoning” , the same way humans learn new                                             Feed the result back into the next thought
+                                                                                            The Taj Mahal is located in Agra, on the banks of
+tasks and make decisions or reasoning.
+                                                                                            the Yamuna river.
+
+                                                                                                   ↻ repeats until Finish [answer]
+
+Shunyu Yao et al., ReAct: Synergizing Reasoning and Acting in Language Models, ICLR 2023.
+     ReAct Prompting
+ In the example (dynamic question answering), we pass a prompt like the following :
+
+ Aside from the Apple Remote, what other devices can control the program Apple Remote was originally designed to interact with?
+
+ITERATION 1 :
+                                                                  ReAct (Reason + Act)
+        Thought 1: I need to search Apple Remote and find the program it was originally designed to interact with.
+        Act 1: Search [Apple Remote]
+        Obs 1: The Apple Remote is a remote control introduced in October 2005 by Apple _ originally designed to control
+        the Front Row media center program …
+
+
+ Process:
+    ➢     Thought: LLM generates an initial thought based on the prompt (e.g., "Thought 1").
+    ➢     Act: The LLM takes an action, often using external tools to gather information (e.g., "Act 1: Search for Apple remote").
+    ➢     Observe: The LLM processes the results of its action and summarizes its findings ("Obs 1").
+ Iteration: The Thought-Act-Observe cycle repeats until the LLM arrives at a satisfactory answer.
+ Benefits: Enables LLMs to access and leverage external information, leading to more informed and reliable responses
+    Shunyu Yao et al., ReAct: Synergizing Reasoning and Acting in Language Models, ICLR 2023.
+  ReAct Prompting
+ITERATION 2:
+                                                     ReAct (Reason + Act)
+  Thought 2: Apple Remote was originally designed to control the Front Row media center program. I need to search
+  Front Row next and find what other device can control it.
+  Act 2: Search (Front Row]
+  Obs 2: Could not find (Front Row). Similar: ('Front Row Seat to Earth', 'Front Row Motorsports',' Front Row (software)',
+  ...]
+
+
+                                   The free-form thoughts are used to achieve different tasks such as decomposing questions,
+                                   extracting information, guiding search formulation, and synthesizing final answer
+ITERATION 3 & 4:
+                                                      ReAct (Reason + Act)
+ Thought 3: Front Row is not found. I need to search Front Row (software)
+ ➢ We can see that model generates task solving trajectories (Thought, Act)
+ Act 3: Search (Front Row (software) )
+ ➢
+ Obs The  free-form
+     3: Front  Row isthoughts   are used
+                       a discontinued     to achieve
+                                        media  centerdifferent
+                                                      softwaretasks such as decomposing questions, extracting
+ Thought  4: Front guide
+     information,   Row (software)   is controlled
+                          search formulation,   andbysynthesizing
+                                                      an Apple Remote    or the keyboard function keys. So the answer is
+                                                                  final answer
+ keyboard function keys.
+ ➢   AtFinish
+ Act 4:  Act step, the model
+               [keyboard      can utilise
+                           function keys] search capabilities to search publicly about the corresponding thought
+
+
+
+                       After getting the desired solution the process terminates at the subsequent Act (here Act 4) stage
+ Shunyu Yao et al., ReAct: Synergizing Reasoning and Acting in Language Models, ICLR 2023.
+  ReAct Prompting
+Solving a HotpotQA (Yang et al., 2018) question.
+
+Question
+
+Aside from the Apple Remote, what other
+device can control the program Apple Remote                                  ReAct            (Reason + Act)   ✓ CORRECT
+was originally designed to interact with?
+                                                                               1. Thought 1 Search the Apple Remote to find what it was
+                                                                               designed to control.
+Standard                                                                       2. Act → Obs 1 It controls the Front Row media center
+Answer: iPod                                                                   program.
+                                                                               3. Thought → Act Front Row not found → search “Front Row
+CoT (Reason only)                                                              (software)”.
+Answer: iPhone, iPad, iPod Touch                                               4. Thought Front Row is controlled by the Apple Remote or
+                                                                               keyboard function keys.
+Act only                                                                       Finish: keyboard function keys
+Answer: yes
+
+
+
+  Shunyu Yao et al., ReAct: Synergizing Reasoning and Acting in Language Models, ICLR 2023.
+Meta Prompting
+                                                                      Abstract examples: Employs abstracted examples as frameworks,
+                                                                             illustrating the structure of problems and solutions
+      The key characteristics of meta prompting are :
+
+
+
+         Problem Statement: Problem: [question to be answered]
+         Solution Structure:
+         1. Begin the response with "Let’s think step by step."
+         2. Follow with the reasoning steps, ensuring the solution process is broken down clearly and logically.
+         3. End the solution with the final answer encapsulated in a LaTeX-formatted box, ... , for clarity and emphasis.
+         4. Finally, state "The answer is [final answer to the problem].", with the final answer presented in LaTeX notation
+
+
+
+
+           Structure-oriented:                                Syntax-focused: Uses
+                                                                                                          Versatile: Applicable across various
+           Prioritizes the format and                         syntax (e.g. $\boxed{}$.)
+                                                                                                          domains, capable of providing
+           pattern of problems and                            as a guiding template for
+           solutions over specific                                                                        structured responses to a wide
+                                                              the expected response or
+           content.                                                                                       range of problems.
+                                                              solution.
+
+           Goal: Improve the LLM's ability to handle complex reasoning and cognitive tasks in a more systematic way.
+Yifan Zhang, Yang Yuan, and Andrew Chi-Chih Yao, Meta Prompting for AI Systems, arXiv:2311.11482, 2023.
+         Meta Prompting
+                    Problem Statement:
+                    • Problem: [question to be answered]
+                    Solution Structure:
+ Meta Prompt:       1. Begin the response with "Let’s think step by step."
+                    2. Follow with the reasoning steps, ensuring the solution process is broken down clearly and logically.
+                    3. End the solution with the final answer encapsulated in a LaTeX-formatted box, ... , for clarity and emphasis.
+                    4. Finally, state "The answer is [final answer to the problem].", with the final answer presented in LaTeX notation
+
+
+                                                                                        +
+                      Problem: Find the domain of the expression √(x−2 )/ √(5−x) .
+                      Solution: The expressions inside each square root must be non-negative. Therefore, x − 2 ≥ 0, so x ≥ 2, and 5 − x ≥ 0, so x ≤ 5. Also, the
+                      denominator cannot be equal to zero, so 5 − x > 0, which gives x < 5. Therefore, the domain of the expression is [2, 5) . Final Answer:
+Few Shot prompt:      The final answer is [2, 5). I hope it is correct.
+                      ————————————————————————————————————————————————————
+                      Problem: If det A = 2 and det B = 12, then find det(AB).
+
+
+
+                      Let’s think step by step.
+                      1. We know that the determinant of a product of matrices (AB) is equal to the product of their determinants (det A * det B). This is given
+                      by the formula: det(AB) = det A * det B.
+  Response from
+      LLM:            2. We are given that det A = 2 and det B = 12.
+                      3. Substitute these values into the formula: det(AB) = 2 * 12.
+                      4. Calculate the product: det(AB) = 24.
+                      So, the final answer is $\boxed{24}$.
+
+
+         Yifan Zhang, Yang Yuan, and Andrew Chi-Chih Yao, Meta Prompting for AI Systems, arXiv:2311.11482, 2023.
+Meta Prompting
+                                            Prompt the model to think about prompting itself.
+
+
+
+                      Prompting (Zero-shot, few-shot)                                          Meta Prompting
+
+
+
+
+                                                                                “Create the best reasoning strategy and
+                             “Solve this problem.”                              expert workflow to solve this problem.”
+
+
+
+   “Meta prompting and few-shot prompting are different in that meta prompting focuses on a more structure-oriented
+             approach as opposed to a content-driven approach which few-shot prompting emphasizes.”
+
+
+
+
+Yifan Zhang, Yang Yuan, and Andrew Chi-Chih Yao, Meta Prompting for AI Systems, arXiv:2311.11482, 2023.
+Directional Stimulus Prompting (DSP)
+
+
+  ●     The framework introduces a new component called the “directional stimulus” into the prompt to provide nuanced,
+        instance-specific guidance and control over LLMs.
+  ●     The directional stimulus prompt acts as “hints” and “clues” for the input query to guide LLMs toward the desired
+        output.
+  ●     Notably, this differs from the methods that augment LLMs with additional knowledge retrieved from external
+        sources, as the directional stimulus prompt is generated solely based on the input query in our framework.
+  ●     A tuneable policy LM is trained to generate the hints that guide a black-box frozen LLM.
+  ●     The approach incorporates keywords in the prompt as the directional stimulus prompt to hint at key points the
+        desired summary should cover.
+
+
+
+
+Li et al., Guiding Large Language Models via Directional Stimulus Prompting, NeurIPS 2023.
+Directional Stimulus Prompting (DSP)
+
+    Step 1: Training a Policy Model that generates directional stimulus for LLMs
+
+                                                                         Supervised
+                                                                         Fine-tuning
+                            D` = {(x , z*)}                                                               Policy LM
+                                               Labeled Data                                  T5 / GPT-2
+                                         x                                       z*
+
+          Context: Article, Story,                               Pseudo-stimulus: keywords of summary,
+          Document, etc.                                         dialogue acts, etc.
+                        Article: Seoul (CNN) South Korea's Prime Minister Lee Wan-koo offered to resign on
+      Example:          Monday amid a growing political scandal. Lee will stay in his official role until South
+                        Korean President Park Geun-hye accepts his resignation. He has transferred his role of
+                        chairing Cabinet meetings to the deputy prime minister for the time being, according to his
+                        office. ………………………………..CNN's Paula Hancocks contributed to this report.
+
+ Keywords: Lee Wan-koo; resign, South Korean tycoon; Sung Woan-jong; hanging from a tree; investigation; notes; top officials
+
+Li et al., Guiding Large Language Models via Directional Stimulus Prompting, NeurIPS 2023.
+Directional Stimulus Prompting (DSP)
+
+Step 2: Training the Policy Model with RL
+                                                                                          Reward (Rouge Score)
+
+
+                                                          Policy LM
+   Context: Article, Story,                                                            Stimulus: keywords of
+   Document, etc.                                                                      summary, dialogue acts, etc.
+                                                       T5 / GPT-2
+
+
+
+
+                                                   Output: Summary
+
+
+ Li et al., Guiding Large Language Models via Directional Stimulus Prompting, NeurIPS 2023.
+Directional Stimulus Prompting (DSP)
+
+
+
+
+Li et al., Guiding Large Language Models via Directional Stimulus Prompting, NeurIPS 2023.
+Directional Stimulus Prompting (DSP)
+
+
+
+
+Li et al., Guiding Large Language Models via Directional Stimulus Prompting, NeurIPS 2023.
+Prompt Chaining
+                                Decompose one big task into a sequence of smaller, focused LLM calls.
+
+WHAT IT IS
+                                                   Initial           Intermediate        Refined          Final
+ A workflow pattern where the output                task             result              result           result
+ of one LLM call becomes the input to
+              the next.                                           OUTPUT A          OUTPUT B             FINAL
+                                                 PROMPT A
+                                                                  PROMPT B          PROMPT C            OUTPUT
+  Each step does one thing well like
+ improving accuracy, traceability, and
+                                                 Example:
+     control over complex tasks.
+
+WHEN TO USE                                                           Sentiment
+                                                                       Analysis
+  ●   Task has clean, sequential subtasks
+                                                  Customer                               Combine         Summary
+  ●   Each step's output is verifiable
+                                                   reviews                                results        generation
+  ●   You want intermediate checkpoints
+  ●   Latency budget allows multiple calls                            Key phrase
+                                                                      extraction
+ Prompt Chaining
+                                          Single Prompt
+Prompt chaining is useful to accomplish                          1
+complex tasks which an LLM might
+                                           Read the given
+                                                                                           5
+struggle to address if prompted with a                               Translate them into
+                                            Spanish text.
+very detailed prompt.                                                Spanish language.
+
+
+ Complex Prompt
+                                                                 2
+                                          Translate the text                               4
+                                             into English
+                                              language.              Create a bullet point
+Consider the given text in Spanish.                                  list of all these facts.
+Translate it into English. Find all the
+statistics and facts used in this text                           3
+   and list them as bullet points.        Fetch the statistics
+Translate them again into Spanish.        and facts from the
+                                                 text.
+Tree of thoughts (ToT) Prompting
+
+
+                  You should use this for planning tasks, puzzles, creative writing, math
+                  optimization, or any multi-step reasoning where dead ends are common.
+
+
+
+                                      It shines on problems where the
+                                      first idea isn't always best …….
+    Tree of thoughts (ToT) Prompting
+                     Example
+
+                       Puzzle: Bob is in the living room. He walks to the kitchen, carrying
+                                                                                                         Usual output [ZERO SHOT]: Puzzle: The
+                        a cup. He puts a ball in the cup, turns the cup upside down, then
+                                                                                                                    ball is in the bedroom.
+                               carries the cup to the bedroom. Where is the ball?
+
+                                                                          EXPERT 1 (Physics)
+                                                                                         Cup upside down, gravity makes ball fall out in kitchen
+                                                                                                        Conclusion: Kitchen floor
+                         Tree of thoughts:
+Imagine three different experts are answering this question. They         EXPERT 2 (Language)
+                                                                          Story never says ball stayed inside the cup. “Upside down” implies the ball dropped
+   will track the ball step-by-step, evaluate the physics of each
+                                                                                                          before moving rooms.
+action, and branch out to cover different possible interpretations.
+                                                                                                           Conclusion: Kitchen
+
+
+                                                                         EXPERT 3 (Skeptic)
+                                                                         The text does not specify the cup type or the ball size. If the ball is small and lodged
+              FINAL CONSENSUS [Response]                                  in the rim, stuck by suction, or the cup has a hidden lid, it could remain inside while
+
+                The ball is in the kitchen.                                    Bob carries it to the bedroom. The narrative leaves that possibility open.
+                                                                                                 Conclusion: Bedroom (ball still in cup)
+ Tree of thoughts (ToT) Prompting
+                                                                         Input
+
+
+
+
+                                                                      Output
+
+In Tree of Thoughts (ToT) framework, we organize the LLM’s thoughts into nodes in a ToT fashion i.e. combining thought
+                                                   with a symbolic tree search algorithm.
+
+        Principle: Tree of Thought prompting is a more sophisticated approach where multiple lines of reasoning
+                                      are considered in parallel. It’s like creating a decision tree
+
+Zekun Li et al., Tree of Thoughts: Deliberate Problem Solving with Large Language Models, NeurIPS 2023.
+  Tree of thoughts (ToT) Prompting
+
+                           [Problem]                                                  ➔    Let three different experts offer approaches for
+                                                                                           the problem.
+
+
+                                                                                      ➔    All experts will write down their approaches,
+Approach 1                  Approach 1                   Approach 1
+(conf: Med)                 (conf: High)                 (conf: low)                       then share it with the group for evaluation.
+
+
+                                                                                      ➔    Suggested approach is the one with the highest
+ [evaluation]                [evaluation]                 [evaluation]                     confidence after evaluation.
+
+
+                              [Selected]                                              ➔    The problem is [user_input]
+
+
+                                                          This pattern takes more tokens and time, so use it for important decisions where the quality
+                         [Detailed Solution]
+                                                                                           improvement justifies the cost.
+
+  Zekun Li et al., Tree of Thoughts: Deliberate Problem Solving with Large Language Models, NeurIPS 2023.
+      Tree of thoughts (ToT) Prompting
+Key Features:
+
+
+Multiple Reasoning Paths: Explores various lines of
+
+thought, unlike linear approaches.
+
+
+Self-Evaluation: The LLM assesses the quality and
+
+progress of its own generated thoughts.
+
+
+Search Algorithms: Uses techniques like breadth-
+
+first or depth-first search to efficiently explore the
+
+thought tree, enabling lookahead and backtracking.
+
+
+
+
+Use Cases: Ideal for problems with multiple valid approaches,                Performance: Demonstrates significant improvements over other prompting
+
+branching possibilities, or complex decision-making.                         methods, achieving state-of-the-art results in various reasoning tasks.
+
+     Zekun Li et al., Tree of Thoughts: Deliberate Problem Solving with Large Language Models, NeurIPS 2023.
+   Limitations of LLM Prompting
+Hallucination
+  ➢   Hallucination refers to a response from an LLM that includes false or misleading information presented as a fact.
+
+
+
+
+                                                             -----------------------------------------
+                What is the natural habitat of the Elysian                                                Tell me about the 2007 earthquake in San
+                           Phoenix butterfly?                                                                              Diego.
+
+
+
+
+            Answer : The Elysian Phoenix butterfly                                                       Answer : The 2007 San Diego earthquake,
+            (Elymnias hypermnestra) is a species of                                                      also known as the "Borrego Mountain
+            brush-footed butterfly found in the Indo-                                                    earthquake," occurred on April 4, 2007, at
+            Australian region                                                                            10:43 AM local time
+
+
+
+
+            Correct Answer : The "Elysian Phoenix                                                        Correct Answer : "Borrego Mountain
+            butterfly" does not exist; the model                                                         earthquake” happened in 1968. There was
+            fabricated the species and habitat.                                                          no major earthquake in San Diego in 2007
+                                      Mitigating prompt-injection attacks
+
+Mistral 7B Guardrails
+ ➢    System prompts don't just tell LLMs what to do. They also include safeguards that tell the LLM what not to do.
+      For example, a simple translation app's system prompt might read:
+
+          You are a translation chatbot. You do not translate any statements containing profanity. Translate the following text
+                                                         from English to French:
+
+
+These safeguards aim to stop people from using LLMs for unintended actions—in this case, from making the bot say
+something offensive.
+
+
+➢    The model can enforce guardrails for AI generation, ensuring that the generated content is safe and adheres to
+     specified guidelines. For Mistral, The system prompt recommended to enforce guardrails is as follows:
+
+
+              Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical,
+                             prejudiced, or negative content. Ensure replies promote fairness and positivity.
+
+
+
+                                                                                                                        https://www.ibm.com/topics/prompt-injection
+                                                                                                                        Guardrailing | Mistral AI Large Language Models
+                         Thank You
+  Instructor               Teaching Assistants (IITKGP)
+
+
+
+
+Koustav Rudra
+krudra@ai.iitkgp.ac.in     Anurag Sharma     Subhojyoti Khastagir
+
