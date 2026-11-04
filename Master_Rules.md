@@ -2,7 +2,7 @@
 
 One rule file for teaching and learning anything: a university course, a certification, a language, a craft, a self-study plan. It is self-contained and course-neutral. Nothing in it names a particular course, subject list or learner.
 
-**Layout.** Part I holds the universal rules. Part II holds the templates and patterns a course fills in: the course profile, the domain entry, the strand overlay, the build-to-learn track and the real-world lens. Part III says how to start, extend and audit a course under these rules. If a rule must change, change it here only.
+**Layout.** Part I holds the universal rules. Part II holds the templates and patterns a course fills in: the course profile, the domain entry, the strand overlay, the build-to-learn track and the real-world lens. Part III says how to generate a full course structure from whatever is given, and how to extend and audit it. If a rule must change, change it here only.
 
 **Terms.**
 - *Tutor:* whoever teaches (a person or an AI).
@@ -20,7 +20,7 @@ One rule file for teaching and learning anything: a university course, a certifi
 
 ## 0. Using this file
 
-0.1 **Read it** at the start of every session and again after any break in continuity (a restart, a lost context, a handover). Then read the course profile, the current domain's entry and its topic list, then the record's resume point. Before a domain is opened, the previous one's state is marked in the record. A topic that depends on a later domain is taught just in time (3.3) and noted in the record.
+0.1 **Read it** at the start of every session and again after any break in continuity (a restart, a lost context, a handover). Then read the course profile, the current domain's entry and its topic list, then the record's resume point. If no course structure exists yet, build it first (III.1) before any teaching. Before a domain is opened, the previous one's state is marked in the record. A topic that depends on a later domain is taught just in time (3.3) and noted in the record.
 
 0.2 **Precedence**, highest first:
 1. Safety and integrity (section 11), which no one can waive.
@@ -242,6 +242,18 @@ For a larger unit, write it as blocks. Each block has its bridge, its concept, t
 - A concept that needs more is split into numbered parts, and nothing is dropped.
 
 4.6 **Material the sources omit is generated, never skipped.** For every topic the tutor writes the checks, worked examples, the reason each mechanism works, problem sets and exercise prompts.
+
+4.7 **Theorems are taught with their proofs.** Every theorem, lemma, law or named result the course uses is taught in this order:
+1. **Precise statement:** every hypothesis and the exact conclusion, in words and in symbols.
+2. **Why it matters:** the question it answers, and where the course will use it.
+3. **Each hypothesis earns its place:** for each one, a counterexample showing what fails when it is dropped.
+4. **The idea of the proof** in one line, before the details.
+5. **The proof:** every step with its reason (4.1), every earlier result it cites named, and every proof technique it uses (induction, contradiction, contrapositive, construction, bounding, and so on) taught as a prerequisite if it is new.
+6. **Check it:** a special case, a picture in words, or a numerical instance where the conclusion can be seen.
+7. **Use it:** at least one worked application, then one unseen application by the learner.
+8. **Its relatives:** the converse (true or false, with a counterexample if false), a stronger or weaker version, and the results it leads to.
+
+Results that depend on each other are proved in dependency order: no proof cites a result that has not yet been proved or explicitly deferred (4.2). A result whose proof needs machinery beyond the course is stated, its deferral is named aloud, and the record logs it as "stated, proof deferred", never presented as proved. A numerical or approximate method is taught with its derivation, its error bound or convergence condition, a hand computation, and then an implementation checked against a library (6.8).
 
 ## 5. Checking and correcting
 
@@ -699,14 +711,72 @@ Counterparts on the alternatives are mapped, with what differs. A project with a
 
 # PART III. STARTING, EXTENDING AND AUDITING A COURSE
 
-III.1 **Starting a course:**
-1. Read the sources.
-2. Build the topic list: every topic once, nothing trimmed.
-3. Write the course profile (II.1) and the domain entries (II.2).
-4. Write the unpacked scope of the first topics (3.4).
-5. Map benchmarks onto groups (1.6).
-6. Create the record.
-7. Then teach.
+III.1 **Starting a course: generate the full course structure first.** Whatever the learner provides, even a single title, the tutor builds a complete course structure before teaching begins. It follows the steps below, and the result is written into the record.
+
+1. **Extract everything given.** The input may include:
+   - a title or description;
+   - the intended audience, level, duration or credits;
+   - stated prerequisites;
+   - an outline by week, module or lecture;
+   - textbooks and references;
+   - exams or outcomes.
+
+   Treat the input this way:
+   - Every line of an outline is a topic.
+   - A line split into numbered parts ("I", "II", "III") marks a topic large enough to need several parts; infer and write each part's scope.
+   - A line that names a whole area, such as "applications of X", is expanded into each standard application.
+   - Duration, credits and the weekly layout describe the source's pacing only. They never set the learner's pace (2.7).
+2. **Fill the gaps from benchmarks.**
+   - When the input is thin, name two or three comparable university courses and standard textbooks for the subject and level (1.6, "recalled, not checked"). Take the union of their contents.
+   - Every inferred topic is marked "inferred, source: ...", so the learner can see what was added and why.
+   - The given outline is a floor: inference only adds, never removes.
+   - Topics a benchmark treats as standard at this level, but the outline omits, are added as gaps (7.4).
+3. **Treat references as coverage sources.** For each named textbook:
+   - walk its table of contents;
+   - map its chapters onto the structure;
+   - record page spans (7.3);
+   - add anything it covers that the outline lacks.
+
+   Where references differ in style, the most rigorous one sets the L3 bar for proofs, and the most applied one sets the bar for worked examples and applications.
+4. **Expand each topic into its full content**, so that no line stays a bare name (7.1):
+   - definitions;
+   - central results (theorems, laws, formulas);
+   - the proofs or derivations each needs (4.7, 4.2);
+   - techniques and algorithms;
+   - standard examples and counterexamples;
+   - applications;
+   - computational or numerical methods with their error analysis;
+   - common errors;
+   - history and lineage where the outline or a benchmark includes them.
+5. **Build the results inventory.** List every theorem, lemma, formula and identity the course states or uses, in dependency order. Mark each one with exactly one status:
+   - "prove in full";
+   - "derive";
+   - "proof sketch, with the reason a full proof is not given";
+   - "stated, proof deferred to ...";
+   - "definition, not proved".
+
+   Every result that is central to a unit, or used later in the course, is proved or derived. The inventory is part of the record, and the audit (III.5) walks it.
+6. **Infer the prerequisites to the root.**
+   - A stated prerequisite (for example "basic mathematics up to school level") is a claim to verify, not an assumption to trust. Rewrite it as an explicit list of the concrete topics the course actually relies on, including the proof techniques its proofs need.
+   - For each topic, write its prerequisite chain down to L0 (3.2). Collect the result into a prerequisite map with columns: prerequisite, first needed in, depth needed, and how it will be probed.
+   - Prerequisites are probed as the course reaches them and taught just in time, at full depth, when a gap shows (3.3). They are never taught all at once up front, and never skipped because the course claims them.
+   - Dependencies inside the course are checked too. If the outline's order would use a result before it is established, reorder and record why. Otherwise the outline's order is kept.
+7. **Lay out the structure.** Organise it as domains or units, then groups, then topics, then teaching blocks. For each unit, write:
+   - its topics, with source and page spans;
+   - its central results, with their proof status;
+   - its prerequisites;
+   - the build or computation;
+   - its applications;
+   - where the exercises fall (one per 3 to 5 concepts, 6.2);
+   - its academic pass and problem set (6.10, 6.11).
+
+   Each domain gets its entry (II.2) with a depth bar and a capstone (section 9).
+8. **Set the bar above the label.** A course labelled introductory or undergraduate still reaches L4 under the mastery bar (1.3, 1.4). The stated level sets the starting point and the benchmarks, not the ceiling.
+9. **Show the structure, then teach.**
+   - Present the structure to the learner in short, numbered parts (4.5): units, then the prerequisite map, then the results inventory.
+   - The learner may add or reorder. A removal is recorded as an override (1.2).
+   - Then write the course profile (II.1), unpack the first topics (3.4), create the record, and begin with the first block.
+10. **Keep it current.** Anything found missing while teaching is added to the structure and the inventory, with a logged reason, and taught (7.4).
 
 III.2 **Session start:** as in 0.1.
 
@@ -718,6 +788,6 @@ III.3 **Adding a rule:**
 III.4 **Resolving a conflict between rules:** apply precedence (0.2). If the conflict is likely to recur, add the decision to 0.5.
 
 III.5 **Auditing:**
-- Regularly, walk the record against the topic list: topics below L4, unverified prerequisites, untaught drills, open "not evidenced" items, deferred proofs.
+- Regularly, walk the record against the topic list: topics below L4, unverified prerequisites, untaught drills, open "not evidenced" items, deferred proofs, results in the inventory not yet proved, and prerequisites in the map not yet probed.
 - Before leaving a domain, run the exit audit (8.7).
 - Before a capstone, run the audit for the whole track or strand.
