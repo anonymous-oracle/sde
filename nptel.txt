@@ -1,0 +1,1782 @@
+Mathematical Foundations for Machine Learning
+Prof. Ashok Rao, Prof. Arulalan Rajan, IISc Bangalore, NITK Surathkal
+
+Course ID
+106108702
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+
+This course will provide a holistic approach to the mathematical foundations for Machine Learning. The course is focussed on developing mathematical ideas, necessary for machine learning applications, through intuitions and visualizations.The course primarily focuses on three important mathematical domains, namely
+Linear Algebra 
+Probabilty and Statistics and 
+Multivariable Calculus, 
+on which the ML and data science ideas are built.
+Course Details
+Intended Audience
+BE/BTech/ME/MTech//BSc/MSc(Maths)/MCA
+Prerequisites
+Basic Mathematics at school and undergraduate level
+Industry Support
+Amazon, Flipkart, Robert Bosch, Qualcomm, Nvidia and Companies that are into Computer vision, Data Science, Robotics and Control
+Category
+COMP_SCI_ENGG, Domain_23
+Course Layout
+Week	Topics
+Week 1	Vectors, Vector Spaces and Subspaces
+Week 2	Linear Transformations, eigenvalues and eigenvectors
+Week 3	Orthogonality, Projection and Real symmetric matrices
+Week 4	Singular value decomposition, Principal Component Analysis, Support Vector Machines and Applications
+Week 5	Probability Foundations - From Events to Bayes’ Theorem
+Week 6	Random Variables, Moments of Random Variables
+Week 7	Jointly Distributed Random Variables, Conditioning of Random variables
+Week 8	Limit Theorems, Sample Geometry, Covariance Matrices and Properties
+Week 9	Taylor’s series, Partial Derivatives, Chain rule, Gradient, Jacobian, Hessian
+Week 10	Matrix Derivatives, Gradient Descent and Stochastic Gradient Descent, Constrained and Unconstrained optimization, Lagrangian, Least Squares and PCA
+Week 11	Neural Nets, Perceptron, Back Propagation Algorithm
+Week 12	Algorithms for ML - Classification, Clustering and Regression
+Books And References
+Gilbert Strang,”Introduction to Linear Algebra” Wellesley Cambridge Press, 5th Ed 
+Gilbert Strang,” Learning from Data”, Wellesley Cambridge Press 2019 
+Steven M Kay, Intuitive Probability and Random Processes, Springer, 2017
+Deisenroth, Mathematics for Machine Learning, Cambridge University Press,
+Richard Johnson, Applied Multivariate Statistical Analysis, 6th ed, Pearson Ed, 2015
+
+Mathematical Foundations of Generative AI
+Prof. Prathosh A P, IISc Bangalore
+
+Course ID
+106108004
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+This course provides an in-depth exploration of deep generative models, including their probabilistic foundations and learning algorithms. Students will learn about various types of deep generative models such as variational autoencoders, generative adversarial networks, autoregressive models, Diffusion Models and Large Language Models. The course will cover both theoretical foundations and practical implementations of these models using popular frameworks like PyTorch. Students will gain hands-on experience through lectures and assignments, allowing them to explore deep generative models across various AI tasks.
+Course Details
+Intended Audience
+Academics and Industry
+Prerequisites
+Probability, Course in Machine Learning
+Industry Support
+All ML Companies
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to Probabilistic Deep Generative Modelling
+Week 2	Generative Modelling via variational Divergence Minimization
+Week 3	Generative Adversarial Networks: Part 1 (Introduction and Formulation)
+Week 4	Generative Adversarial Networks: Part 2 (WGANs and Applications)
+Week 5	Generative Modelling via Variational Auto Encoding
+Week 6	Variational Auto Encoders: Improvisations and VQVAE
+Week 7	Denoising Diffusion Probabilistic Models (DDPMs) - Formulation
+Week 8	Diffusion Models: Multiple forms and Implementation
+Week 9	Conditional Diffusion Models and Score-based models
+Week 10	Auto-Regressive Models and Large Language Models Introduction
+Week 11	LLMs: Models, Sampling, Inference and Quantization Methods
+Week 12	LLMs – Reinforcement Learning based Alignment Methods (PPO, DPO)
+Books And References
+Foster D. Generative deep learning. " O'Reilly Media, Inc.; 2023
+
+Recent papers/surveys that are relevant to the course.
+
+ingest the project files. Also, along with learning this course, I also want to learn to implement these techniques from the scratch in python, numpy, etc.
+
+https://archive.nptel.ac.in/content/storage2/courses/downloads_new/106108702/noc25_cs136_assignment_Week_1.png - upto week 12, there are weekly assignments too. Get week 1 assignment and then replace Week_1 with Week_2 and so on to get other assignments.
+
+Once you get the assignment details, store it in text and delete the images to save space.
+
+Now a few for courses for you to integrate into the curriculum and unify. If there are no assignments provided for certain topics, then create them.
+
+Essential Mathematics for Machine Learning
+Prof. S. K. Gupta, Prof. Sanjeev Kumar, IIT Roorkee
+
+Course ID
+111107137
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Machine learning (ML) is one of the most popular topics of nowadays research. This particular topic is having applications in all the areas of engineering and sciences. Various tools of machine learning are having a rich mathematical theory. Therefore, in order to develop new algorithms of machine/deep learning, it is necessary to have knowledge of all such mathematical concepts. In this course, we will introduce these basic mathematical concepts related to the machine/deep learning. In particular, we will focus on topics from matrix algebra, calculus, optimization, and probability theory those are having strong linkage with machine learning. Applications of these topics will be introduced in ML with help of some real-life examples.
+INTENDED AUDIENCE       : UNDERGRADUATE AND POSTGRAUATE STUDENTS OF COMPUTER SCIENCE/MATHEMATICS/DATA SCIENCE…
+Course Details
+Industry Support
+Microsoft/Amazon/Intel/…
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Vectors in Machine Learning, Basics of Matrix Algebra,Vector Space, Subspace, Basis and Dimension.
+Week 2	Linear Transformations, Norms and Spaces, Orthogonal Complement and Projection Mapping, Eigenvalues and Eigenvectors, Special Matrices and Properties.
+Week 3	Spectral Decomposition, Singular Value Decomposition,Low Rank Approximations, Python Implementation of SVD and Low-rank Approximation.
+Week 4	Principal Component Analysis,Python Implementation of PCA, Linear Discriminant Analysis, Python Implementation of LDA.
+Week 5	Least Square Approximation and Minimum Normed Solution, Linear and Multiple Regression, Logistic Regression.
+Week 6	Classification Metrics, Gram Schmidt Process, Polar Decomposition, Minimal Polynomial and Jordan Canonical Form, Some more Matrices Applications in Machine Leaning.
+Week 7	Basics concepts of Calculus, gradient, Jacobian, Chain rule,Change of variables.
+Week 8	Calculus in Python, Convex sets and convex functions, properties of convex functions, Introduction to Optimization.
+Week 9	Numerical Optimization in Machine Learning, Gradient Descent and other optimization algorithms in machine learning.
+Week 10	Optimization using Python, Review of Probability, Bayes theorem and random variable, Expectation and variance.
+Week 11	Discrete and continuous distribution functions, joint probability and covariance, Introduction to SVM, Error minimizing LPP.
+Week 12	Lagrangian Multiplier method, concepts of duality, hard and soft margin classifier, SVM in Python.
+Books And References
+W. Cheney, Analysis for Applied Mathematics. New York: Springer Science+Business Medias, 2001.
+S. Axler, Linear Algebra Done Right (Third Edition). Springer International Publishing, 2015.
+J. Nocedal and S. J. Wright, Numerical Optimization. New York: Springer Science+Business Media, 2006.
+J. S. Rosenthal, A First Look at Rigorous Probability Theory (Second Edition). Singapore: World Scientific Publishing, 2006.
+
+https://archive.nptel.ac.in/content/storage2/courses/downloads_new/111107137/noc20_ma35_assignment_Week_1.pdf extract the text from the pdf for all 8 weeks and store it. Once done, delete the pdf files.
+
+
+Engineering Mathematics - I
+Prof. Jitendra Kumar, IIT Kharagpur
+
+Course ID
+111105121
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+This course is about the basic mathematics that is fundamental and essential component in all streams of undergraduate studies in sciences and engineering. The course consists of topics in differential calculus,integral calculus, linear algebra and differential equations with applications to various engineering problems. This course will cover the following main topics: Mean Value Theorems; Indeterminate Forms; Taylor's and Maclaurin's Theorems. Partial Derivatives; Differentiability; Taylor's Expansion of Functions of Several Variables. Maxima and Minima. Improper Integrals. Differentiation under Integral Sign (Leibnitz rule).Multiple Integrals and their Properties. Applications of Multiple Integrals. System of Linear Equations. Vector Spaces; Basis and Dimension of a Vector Space. Rank of a Matrix and its Properties. Linear Transformation. Eigenvalues and Eigen vectors. Diagonalization . First Order Differential Equations. Higher Order Differential Equations with Constant Coefficients. Cauchy-Euler Equations.
+Course Details
+Intended Audience
+All branches of science and engineering  
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Differential Calculus - Functions of One Variable
+Week 2	Partial Derivatives
+Week 3	Total Differential and Differentiability
+Week 4	Taylor's Expansion of Functions. Maxima and Minima
+Week 5	Improper Integrals
+Week 6	Double Integrals
+Week 7	Multiple Integrals & their Applications
+Week 8	System of Linear Equations - Gauss Elimination. Vector Spaces
+Week 9	Linear Transformations
+Week 10	Eigenvalues and Eigenvectors, Diagonalization
+Week 11	First Order Differential Equations
+Week 12	Higher Order Differential Equations with Constant Coefficientss
+Books And References
+Piskunov, N., Differential and Integral Calculus, Vol 1 & 2, 2nd edition.Mir Publishers, 1974.
+Kreyszig, E., Advanced Engineering Mathematics, 10th edition. John Wiley & Sons, 2010.
+Thomas Jr, George B., Weir, Maurice D. and Hass, Joel R., Thomas’ Calculus, 12th edition. Pearson 2014.
+O’Neil, Peter V., Advanced Engineering Mathematics, 7th edition. Cengage learning, 2011. 
+Strang, G., Linear Algebra and its Applications, Fourth Edition, 2009.
+Thomas, G.B. and Finney, R.L., Calculus and Analytic Geometry, 9th Edition, Pearson, Reprint, 2002. 
+
+ENGINEERING MATHEMATICS II PROF. JITENDRA KUMAR Department of Mathematics IIT Kharagpur PRE-REQUISITES : Engineering Mathematics - I INTENDED AUDIENCE : All branches of science and engineering. COURSE OUTLINE : This course is about the basic mathematics that is fundamental and essential component in all streams of undergraduate studies in sciences and engineering. The course consists of topics in complex analysis,numerical analysis, vector calculus and transform techniques with applications to various engineering problems. This course will cover the following main topics.Function of complex variables. Analytic functions. Line integrals in complex plane. Cauchy’s integral theorem, Derivatives of analytic functions. Power series, radius of convergence. Taylor’s and Laurent’s series, zeros and singularities, residue theorem.Iterative method for solution of system of linear equations. Finite differences, interpolation. Numerical integration. Solution of algebraic and transcendental equations.Vector and scalar fields. Limit, continuity, differentiability of vector functions. Directional derivative, gradient, curl, divergence. Line and surface integrals, Green, Gauss and Stokes theorem.Laplace transform and its properties. Laplace Transform of specialfunction. Convolution theorem. Evaluation of integrals by LaplaceTransform. Solution of initial and boundary value problems.Fourier series representation of a function. Fourier sine and cosinetransforms. Fourier Transform. Properties of Fourier Transform.Applications to boundary value problems. ABOUT INSTRUCTOR : Prof. Jitendra Kumar is currently serving as a Professor and Head of the Department of Mathematics at IIT Ropar, Punjab, India. Prior to joining IIT Ropar, he was associated with IIT Kharagpur, where he served as an Assistant Professor from 2009 to 2014, Associate Professor from 2014 to 2019, and Professor from 2020 to 2022. He obtained his M.Sc. in Industrial Mathematics from IIT Roorkee, followed by a second M.Sc. from the Technical University of Kaiserslautern, Germany. He was awarded a doctorate in 2006 by Otto-von-Guericke University Magdeburg, Germany. Following his Ph.D., he held a lectureship at the Institute for Analysis and Numerical Mathematics at the same university from 2006 to 2008. Prof. Kumar is the recipient of several prestigious awards and fellowships, including the Alexander von Humboldt Fellowship, and DAAD and DFG scholarships. He has published more than 100 research articles in reputed international journals and has supervised 15 Ph.D. students. His research interests include numerical solutions of integro-differential equations, numerical analysis, and the modelling and simulation of problems in particulate systems. COURSE PLAN : Week 1: Vector and scalar fields. Limit, continuity, differentiability of vector functions. Directional derivative, gradient, curl, divergence Week 2: Line and surface integrals, Green, Gauss and Stokes theorem. Week 3: Function of complex variables and their properties including continuity and differentiability. Analytic functions and CR equations, Line integrals in complex plane. Week 4: Cauchy’s integral theorem,Power series, radius of convergence. Taylor’s and Laurent’s series, zeros and singularities,residue theorem Week 5: Iterative method for solution of system of linear equations. Finite differences, interpolation. Week 6: Numerical integration. Solution of algebraic and transcendental equations. Week 7: Laplace transform and its properties. Laplace Transform of special function. Week 8: Convolution theorem. Evaluation of integrals by Laplace Transform. Solution of initial and boundary value problems. Week 9: Fourier series and its convergence. Week 10: Fourier integral representation Week 11: Fourier sine and cosine transforms. Fourier Transform. Properties of Fourier Transform. Week 12: Applications of Fourier series to boundary value problems.
+
+
+MATHEMATICAL MODELLING: ANALYSIS AND APPLICATIONS PROF. AMEEYA KUMAR NAYAK Department of Mathematics IIT Roorkee PRE-REQUISITES : Basic Calculus, Numerical methods INTENDED AUDIENCE : UG/PG students of technical universities/colleges COURSE OUTLINE : This course provides introduction of mathematical modeling and analysis in biological sciences. It is designed for students in both applied mathematics, Physics, Chemistry and bio-medical / biological sciences. The major content of this course is chosen from dynamical systems. This course covers the fundamentals of deterministic models in both discrete and continuous time domain. In addition to this, both linear and non-linear models for population dynamics with sufficient amount of theoretical background is widely elaborated. The relevant concepts and solution methods of various difference and differential equations are provided. We have also focused on graphical solution for clear analysis of the nature of the models. ABOUT INSTRUCTOR : Prof. Ameeya Kumar Nayak is Professor in Department of Mathematics at IIT Roorkee and actively involved in teaching and research in the direction of numerical modeling of fluid flow problems for last ten years. His research interests are in the fundamental understanding of species transport in macro and micro-scale confinements with applications in biomedical devices and micro electro mechanical systems. He has authored and co-authored more than 70 peer-reviewed journal papers, which includes publications in AIP, Proceedings of Royal Society, Springer, ASME, American Chemical Society and Elsevier journals. He is also active in writing book chapter with reputed international publication house. COURSE PLAN : Week 1 : Overview of mathematical modeling, types of mathematical models and methods to solve the same; Discrete time linear models – Fibonacci rabbit model, cell-growth model, prey-predator model; Analytical solution methods and stability analysis of system of linear difference equations; Graphical solution – cobweb diagrams; Discrete time age structured model – Leslie Model; Jury’s stability test; Numerical methods to find eigen values – power method and LR method. Week 2 : Discrete time non-linear models- different cell division models, prey-predator model; Stability of non-linear discrete time models; Logistic difference equation; Bifurcation diagrams. Week 3 : Introduction to continuous time models – limitations & advantage of discrete time model, need of continuous time models; Ordinary differential equation (ODE) – order, degree, solution and geometrical significance; Solution of first order first degree ODE – method of separation of variables, homogeneous equation, Bernoulli equation; Continuous time models – model for growth of microorganisms, chemostat; Stability and linearization methods for system of ODE’s. Week 4 : Continuous time single species model – Allee effect; Qualitative solution of differential equations using phase diagrams; Continuous time models – Lotka Volterra competition model, preypredator models.
+
+HIGHER ENGINEERING MATHEMATICS PROF. P. N. AGRAWAL TYPE OF COURSE : New | Core | PG/UG COURSE DURATION : 12 weeks (29 Jul'19 - 18 Oct'19) EXAM DATE : 17 Nov 2019 Department of Mathematics IIT Roorkee INTENDED AUDIENCE : UG and PG students of technical institutions/ universities/colleges. COURSE OUTLINE : This course is a basic course offered to UG/PG students of Engineering/Science background. It consists of four maintopics : 1.Discrete Mathematics 2.Graph theory 3.Linear programming problems 4.Queuing theory. ABOUT INSTRUCTOR : Dr. P. N. Agrawal is a Professor in the Department of Mathematics, IIT Roorkee. His area's of research includes approximation Theory and Complex Analysis. He delivered 13 video lectures on Engineering Mathematics in NPTEL Phase I and recently completed Pedagogy project on Engineering Mathematics jointly with Dr. Uaday Singh in the same Department. Further he has offered online certification course “Mathematical methods and its applications” namely “Integral equations and calculus of variations and its applications” and “Numerical Linear Algebra” ,“Advanced Engineeering Mathematics”. He has taught engineering mathematics to B.Tech and M.Tech students at IIT Roorkee for many years. COURSE PLAN : Week 1: Representation of statements, Duality, Tautologies and Contradictions, Quantifiers, Predicates and validity of arguments Week 2: Propositional Logics, Languages and Grammer, Finite state machines and their transitional                table diagrams, Lattices, Partially ordered sets-I Week 3: Partially ordered sets-II, Duality and Lattices as algebraic system, Sublattice-I & II, Boolean Algebra Week 4: Switching Algebra, Boolean Functions, Different representation of Boolean                functions,table diagrams, Lattices, Partially ordered sets-I Week 5: Circuit minimization and simplification-II, Karnaugh Map-I &II,Various types of Grpah Week 6: Eulerian and Hamiltion Graphs, Travelling salesman problem, Vertex and edge                connectivity, Matrix representation of graph, Incidence and adjacency matrices of graphs Week 7: Planar graphs, Kuratowski’s Theorem, Detection of planarity, Euler’s formula, Dula of a Planar graph Week 8 : Colouring of Graphs, Chromatics numbers, Four color theorem, Graphical method-I & II Week 9 : Simplex method Week 10: Two phase method-II, Dual Simplex method, Application of Dual Simplex method, Sensitivity                 Analysis-I Week 11: Queuing System.Distribution of arrivals and service times, Analysis of M/M/1:FIFO, Application of M/M/1 FIFO , Analysis of M/M/S FIFO Week 12: Application of M/M/S FIFO 288
+
+NOC:An invitation to mathematics - Video course COURSE OUTLINE This course is an introduction to the ideas and methods of mathematics.The only prerequisite is some familiarity with topics in a typical high school mathematics curriculum. We will revisit many of these from a more conceptual viewpoint and through numerous examples. Special emphasis will be laid on the interconnections between seemingly disjoint topics. This course seeks to go beyond the “procedures-to-solve-routineproblems” approach of a typical school curriculum to offer a glimpse of what mathematics is really about. It should be suitable for high school students, lower undergraduates, teachers at various levels, or others with a keen interest in mathematics.
+COURSEABSTRACT ◦ Polynomials: Interpolation, Taylor's formula,Polynomials with integer values,Polynomials in several variables, Counting monomials. ◦ Counting Principles: Basic methods, the Pigeonhole principle, the Binomial theorem,Permutations, Graphs, Recurrence relations,Bijective proofs. ◦ Functions: Continuous functions, the Intermediate value property and its applications, Fixed points, Linear transformations of the plane, the Derivative and dilations, Higher order derivatives and the binomial theorem,Polynomial approximation to functions. ◦ Matrices: Matrices and transformations, Multiplication vs composition, Determinants as dilation factors,Polynomials applied to matrices, Matrices in probability theory. Matrices in Polynomial interpolation, the Vandermonde determinant. ◦ Conservation laws: Invariants of transformations, Discrete transformations, and applications, Transformations in Euclidean Geometry- circle inversions. ◦ Elementary number theory: Modular arithmetic, Divisibility,Prime numbers.
+
+ADVANCED ENGINEERING MATHEMATICS PROF. HARI SHANKAR MAHATO Department of Mathematics IIT Kharagpur PRE-REQUISITES : Differential calculus of one variables, Integral calculus INTENDED AUDIENCE : BTech. 1st year of all branches, BSc. 1st year students in Mathematics COURSE OUTLINE : This course will provide an essential introduction to Engineering mathematics which is required for all UG (BTech and BSc) level courses. I will try to keep the course self-explanatory by providing examples and explain the theories as well wherever necessary. I believe on NPTEL this course hasn’t been offered specially for engineering students yet and, for the students looking to attend online courses on engineering mathematics this course will give them a nice opportunity to do so.
+COURSE PLAN : Week 1: Differentiability, Lagrange’s mean value theorem, Cauchy’s mean value theorem, Taylor’s and Maclaurin’s theorem. Functions of several variables: Limit, continuity, partial derivatives and their geometrical interpretation, total differential and differentiability, Derivatives of composite and implicit functions, implicit function theorem, derivatives of higher order and their commutativity, Euler’s theorem on homogeneous functions, Taylor’s expansion of functions, maxima and minima, constrained maxima/minima problems using Lagrange’s method of multipliers Week 2: Convergence of improper integral, test of convergence, Gamma and Beta functions, their properties, differentiation under the integral sign, Leibnitz rule of differentiation Double and triple integral, change of order of integration, change of variables, Jacobian transformation, Fubini theorem, surface, area and volume integrals, integral dependent on parameters applications, Surface and Volume of revolution. Calculation of center of gravity and center of mass. Week 3: Differential Equations – first order, solution of first order ODEs, Integrating factor, exact forms, second order ODEs, auxiliary solutions Week 4: Numerical analysis: Iterative method for solution of system of linear equations, Jacobi and Gauss-Seidal method, solution of transcendental equations: Bisection, Fixed point iteration, Newton-Raphson method. Week 5: Finite differences, interpolation, error in interpolation polynomials, Newton’s forward and backward interpolation formulae, Lagrange’s interpolation, Numerical integration: Trapezoidal and Simpson’s 1/3rd and 3/8th rule. Week 6: Vector spaces, basis and dimension, Linear transformation, linear dependence and independence of vectors, Gauss elimination method for system of linear equations for homogeneous and nonhomogeneous equations Week 7: Rank of a matrix, its properties, solution of system of equations using rank concepts, Row and Column reduced matrices, Echelon Matrix, properties, Week 8: Hermitian, Skew Hermitian and Unitary matrices, eigenvalues, eigenvectors, its properties, Similarity of matrices, Diagonalization of matrices, Week 9: Scalar and vector fields, level surface, limit, continuity and differentiability of vector functions, Curve and arc length, unit vectors, directional derivatives, Week 10: Divergence, Gradient and Curl, Some application to Mechanics, tangent, normal, binormal, Serret-Frenet Formulae, Application to mechanics Week 11: Line integral, parametric representations, surface integral, volume integral, Gauss divergence theorem, Stokes theorem, Green’s theorem. Week 12: Limit, continuity, differentiability and analyticity of functions, Cauchy-Riemann equations, line integrals in complex plane Cauchy’s integral formula, derivatives of analytic functions, Cauchy’s integral theorem, Taylor’s series, Laurent series, zeros and singularities, residue theorem, evaluation of real integrals.
+
+PRE-REQUISITES : A very good grasp of Class-XII level Mathematics. INTENDED AUDIENCE : Computer Science & Engineering, Mathematics, Electronics, Physics, & similar disciplines. INDUSTRY SUPPORT : Discrete Optimization, Cryptography/ Cyber Security, Coding theory, Computer Algebra, Symbolic Computing Software, , Learning Software COURSE OUTLINE : The aim of this course is to learn discrete mathematics. It is the study of mathematical structures which are discrete (elements take finite values as opposed to continuous structures). It is very difficult to find a branch in computer science & engineering which does not use discrete mathematics. We will be covering five main topics-- proofs, combinatorics, graphs, number theory, and algebra. The emphasis will be to learn different concepts and techniques used to prove theorems in computer science. The course will be full of puzzles and CS examples. ABOUT INSTRUCTOR : Prof. Nitin Saxena did B.Tech in CSE from the Indian Institute of Technology, Kanpur in 2002 and Ph.D. in the same department, under Manindra Agrawal, in 2006. He is broadly interested in Algebraic Complexity, Computational Algebra, Geometry and Number Theory. He was a visiting graduate student in Princeton University (2003-2004) and National University of Singapore (2004-2005); a postdoc at CWI, Amsterdam (2006-2008) and a Bonn Junior Fellow (W2 Professor) at Hausdorff Center for Mathematics, Bonn (2008-2013). Since April 2013, he is a faculty in CSE, IIT Kanpur. He is the coordinator of the Center for Developing Intelligent Systems (CDIS). He has two of the most prestigious honors in the field of theoretical computer science and discrete mathematics, Gödel Prize (2006) and Fulkerson Prize (2006). In fact, he is the youngest Gödel Prize winner ever. He is a recipient of numerous other prestigious awards including the Distinguished Alumnus Award (2003, IIT Kanpur) for his exceptional academic brilliance, the INSA Young Scientist Medal (2015), the SwarnaJayanti Fellowship (2013-14), and the Shanti Swarup Bhatnagar Award in Mathematical Sciences (2018). He is a Fellow of IASc, NASI, and INAE. In 2022, he was profiled by DST (Ministry of S&T, India) in the list of “75 Scientists under 50 shaping today’s India”. In 2009, he was voted one of the top 50 alumni by the IIT Kanpur Alumni Association to celebrate 50 years of the institute. COURSE PLAN : Week 1: Formalizing Proofs and Proof Paradigms. Week 2: Counting. Generating Functions. Week 3: Basic Combinatorics. Week 4: Posets, Chains and Anti-chains. Week 5: Basic Graph theory. Week 6: Tours, Cycles, Cliques, Covers. Week 7: Coloring, Matching, Planarity. Week 8: Basic Number theory. Week 9: Density of Primes. Cryptography. Week 10: Finite Fields. Codes. Week 11: Basic Group theory. Week 12: Orbit Counting. Normal Subgroups.
+
+https://archive.nptel.ac.in/content/storage2/courses/downloads_new/106104573/noc25_cs27_assignment_Week_1.png - cycle through the "Week_1" pattern to fetch "Week_2" assignments questions and store them. Once done, you can delete the fetched files.
+
+Advanced Engineering Mathematics
+Prof. P. N. Agarwal, IIT Roorkee
+
+Course ID
+111107119
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+
+This course is a basic course offered to UG/PG students of Engineering/Science background. It contains Analytic Functions, applications to the problems of potential flow, Harmonic functions, Harmonic conjugates, Milne’s method, Complex integration, sequences and series, uniform convergence, power series, Hadamard’s formula for the radius of convergence, Taylor and Laurent series, zeros and poles of a function, meromorphic function, the residue at a singularity, Residue theorem, the argument principle and Rouche’s theorem, contour integration and its applications to evaluation of a real integral, integration through a branch cut, conformal mapping, application to potential theory, review of unilateral and bilateral Z-transforms and their properties, application of calculus of residues for the inversion formula of Z- transforms and Laplace transforms, review of Fourier integrals and Fourier transforms, Finite Fourier transforms, discrete Fourier transforms and applications, basic concepts of probability, Bayes theorem, probability networks, discrete and continuous probability distribution, joint distribution, correlation coefficient, applications to problems of reliability, queueing theory, service time for a customer in a facility and life testing, testing of hypotheses. This course has tremendous applications in diverse fields of Engineering and Sciences such as Signal processing, Potential theory, Bending of beams etc.
+
+
+INTENDED AUDIENCE  : UG and PG students of technical institutions/ universities/colleges.
+Course Details
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Analytic Functions, Cauchy-Riemann Equations, Harmonic Functions, Harmonic Conjugates and Milne’s Method, Applications to the problems of potential flow-I, Applications to the problems of potential flow-II
+Week 2	Complex integration, Cauchy’s theorem-I, Cauchy’s theorem-II , Cauchy’s Integral Formula for the Derivatives of an Analytic Function , Morera’s theorem, Liouville’s theorem and Fundamental Theorem of Algebra
+Week 3	Winding Number and Maximum Modulus Principle, Sequences and Series, Uniform Convergence of Series, Power Series, Taylor series
+Week 4	Laurent Series, Zeros and Singularities of an Analytic Function, Residue at a Singularity, Residue Theorem, Meromorphic Functions
+Week 5	Evaluation of real integrals using residues-I, Evaluation of real integrals using residues-II , Evaluation of real integrals using residues-III, Evaluation of real integrals using residues-IV, Evaluation of real integrals using residues-V
+Week 6	Bilinear Transformations, Cross ratio, Conformal Mapping-I, Conformal Mapping-II, Conformal mappings from half plane to disk and half plane to half plane-I
+Week 7	Conformal mappings from disk to disk and angular region to disk, Application of Conformal mapping to potential theory, Review of Z-transforms-I, Review of Z-transforms-II, Review of Z-transforms-III
+Week 8	Review of bilateral Z-transforms, Finite Fourier transforms, Fourier integrals and Fourier transforms, Fourier Series, Discrete Fourier transforms-I
+Week 9	Discrete Fourier transforms-II, Basic concepts of probability, Conditional probability, Bayes theorem and Probability networks, Discrete probability distribution
+Week 10	Binomial distribution, Negative binomial distribution and Poisson distribution, Continuous probability distribution, Poisson Process, Exponential distribution
+Week 11	Normal distribution , Joint distribution-I, Joint probability distribution-III, Joint probability distribution-III, Correlation and regression-I
+Week 12	Correlation and regression-II, Testing of hypotheses-I, Testing of hypotheses-II, Testing of hypotheses-III, Application to Queueing Theory and Reliablility Theory
+Books And References
+Kreyszig, E., “Advanced Engineering Mathematics”, Wiley, New York.2. Jain, R.K. and Iyenger, S.R.K., Advanced Engineering Mathematics, 2nd Edition, Narosa Publishing House.3. Churchill, J. W. and Brown, R. V., “Complex Analysis”, McGraw Hill.4. Ahlfors, L. V., "Complex Analysis", McGraw Hill.5. Conway, J. B., "Functions of One Complex Variable", Narosa Publishing House.6. Debnath, L., Bhatta, D., “Integral Transforms and Their Tpplications”, Chapman & Hall/CRC (2nd edition)7. Miller, I. and Miller, M: “John E. Freund’s Mathematical Statistics with Applications”, 7th Edition, Prentice Hall.8. Mayer, P. L., “Introductory Probability and Statistical Applications”, Oxford & IBH Publishing Co. Pvt. Ltd.
+OPTIMISATION FOR MACHINE LEARNING:
+THEORY AND IMPLEMENTATION (HINDI)
+PROF. PRAVESH BIYANI
+Department of Electronics and Communication Engineering
+IIIT Delhi
+PRE-REQUISITES : Linear Algebra, Basic Calculus, Basic Programming courses
+INTENDED AUDIENCE : UG/PG
+INDUSTRY SUPPORT : Google, Microsoft, Facebook, Amazon, Flipkart and all companies connected to Data Science,
+Signal Processing and AI/ML
+COURSE OUTLINE :
+Optimisation is the workhorse of machine learning. Knowing optimisation is a key prerequisite in understanding theory and practise of
+machine learning. In this course, we will discuss the foundations required for solving optimization problems in the context of machine
+learning through various case-studies/running-examples. We will start with covering the basics of linear algebra and calculus required
+for learning optimization theory. We will learn both the theory and implement optimization algorithms like stochastic gradient descent
+and its various variants to solve machine learning problems of classification, clustering etc using standard problem formulations which
+are convex (SVM etc) and non-convex (Neural Networks and Deep Neural Networks) etc.
+COURSE PLAN :
+Week 1 : Basics of Linear Algebra and Calculus: Subspaces, EigenValue Decomposition, Singular Value Decomposition -
+Algorithms and Methods, PSD Matrices and Kernel Functions, Vector Calculus
+Week 2 : Basics of Linear Algebra and Calculus: Subspaces, EigenValue Decomposition, Singular Value Decomposition -
+Algorithms and Methods, PSD Matrices and Kernel Functions, Vector Calculus(Continue...)
+Week 3 : Convex Functions, First and Second Order Conditions for Optimisations, Convex and Non Convex Optimisation
+problems in Machine Learning
+Week 4 : Gradient Descent: math, programming basic optimisation problems and their solutions
+Week 5 : Variants of Gradient Descent: Projected, Stochastic, Proximal, Accelerated, Coordinate Descent, Training a Neural
+Network: Theory
+Week 6 : Variants of Gradient Descent: Projected, Stochastic, Proximal, Accelerated, Coordinate Descent, Training a Neural
+Network: Theory(Continue...)
+Week 7 : Newton’s Method, Optimization for ML in practice: Pytorch/Tensor Flow. Training a Neural Network, Implementation
+Week 8 : Newton’s Method, Optimization for ML in practice: Pytorch/Tensor Flow. Training a Neural Network,
+Implementation(Continue...)
+
+NPTELSyllabus
+Convex Optimization - Video course
+COURSE OUTLINE
+Basic facts of maxima & minima & convex optimization.
+Important classes of convex optimization problems.
+Convex sets & convex functions
+Differentiable convex functions
+Projection on a convex set and normal cone
+Sub differential of a convex.
+Saddle point Conditions.
+Karush-kuhn-Tucker Conditions
+Lagrangian duality and examples.
+Strong duality & consequences.
+Linear programming, basics & examples.
+Basic results and the fundamental theorems of linear programming
+Simplex method
+Introduction to interior point methods
+Short step path following method .
+Semi definite programming
+Approximate solutions.
+COURSE DETAIL
+Lecture/Module Topics
+1 Basics of Convex Optimization
+2 Basic facts of Convex Optimization
+3 Basic properties of convex sets
+4 Introduction to Polyhedral sets
+5 Separation theorems for convex sets
+6 Theorems of the alternative
+7 Continuity and differentiability properties of convex functions
+8 Non differentiable convex functions
+9 Calculus of Sub differentials
+NPTEL
+http://nptel.iitm.ac.in
+Mathematics
+Pre-requisites:
+Knowledge in Linear
+Algebra & RealAnalysis
+Hyperlinks:
+Stephen Byod lectures on
+Convex Optimization
+Coordinators:
+Dr. Joydeep Dutta
+IIT Kanpur
+10 Rockafeller-Pshenichny optimality condition
+11 Properties of normals & projections
+12 Computing the normal cone of inequality constraints.
+13 Tangent cone
+14 Fenchel conjugate continues.
+15
+Minimization of a convex function with convex inequality constraints is
+considered
+16 Lagrangian Duality
+17 Duality in connection with Linear Programming
+18 Strong duality for convex problem
+19 Pleasures of Linear Programming
+20 Direction of descent
+21 Extreme points of Linear Programming
+22 Polyhedral sets & cones
+23 Foundation of simplex methods
+24 Fundamental theorem of Linear programming
+25 Simplex methods
+26 Simplex methods continued
+27 Interior point methods
+28 Interior point methods continued
+29 Log barrier function
+30 Primal-dual framework
+31 Overview of interior point algorithm
+32 Short step algorithm
+33 Predictor-corrector method
+34 Semi-definite programming
+35 Saddle point type conditions for SDP.
+36 Approximate solutions
+37 Descent direction for non-smooth functions
+38 Minimization of difference convex functions
+39 Minimization of difference convex functions continues.
+40 Concluding lecture.
+References:
+1. Stories about Maxima & Minima By V.M. Tikhomirov Pub:American Mathematical
+Society.
+2. Convex Optimization By S.Boyd Pub: Cambridge University Press
+3. Convex Analysis and Minimization Algorithms By J.B.Hiriat-Uruty& Lemarechal Pub:
+Springer
+4. Convex Analysis By R.T.Rockafellar,Pub:Princeton
+A joint venture by IISc and IITs, funded by MHRD, Govt of India http://nptel.iitm.ac.in
+
+APPLIED OPTIMIZATION FOR WIRELESS,
+MACHINE LEARNING, BIG DATA
+PROF. ADITYA K. JAGANNATHAM
+Department of Electrical Engineering
+IIT Kanpur
+PRE-REQUISITES : Basic knowledge of - Calculus, Probability, Matrices
+INTENDED AUDIENCE :
+• -Students in Electrical Engineering, Electronics and Communication Engineering, Mathematics, Economics,
+Computer Science
+• -Practicing engineers
+• -Technical and Non-technical managers of Telecomm companies
+• -Students preparing for Competitive Exams with focus on Wireless Communication, Signal
+Processing
+• - Students pursuing projects or research in Optimization and Wireless Communication
+INDUSTRIES APPLICABLE TO : Most companies in Electronics, Communication and Signal
+Processing. Examples are Qualcomm, Broadcom, Intel, MediaTek, Samsung etc. Companies in
+Machine Learning, AI, Big-Data and Finance will also find the content useful
+COURSE OUTLINE :
+This course is focused on developing the fundamental tools/ techniques in modern optimization as well as
+illustrating their applications in diverse fields such as Wireless Communication, Signal Processing,
+Machine Learning, Big-Data and Finance. Various topics will be covered in different areas such as;
+Wireless: MIMO/ OFDM systems, Beamforming, Cognitive Radio and Cooperative Communication;
+Signal Processing: Signal Estimation, Regularization, Image Reconstruction; Compressive Sensing:
+Sparse estimation, OMP, LASSO techniques; Machine Learning: Principal Component Analysis (PCA),
+Support Vector Machines (SVM); Big-Data: Recommender systems, User-rating prediction, Latent Factor
+Method; Finance: Financial models, Portfolio Optimization.
+The course is suitable for all UG/PG students and practicing engineers/ scientists/ managers from the
+diverse fields mentioned above and interested in learning about the novel cutting edge applications of
+modern optimization technology.
+COURSE PLAN :
+Week 1 : Introduction to properties of Vectors, Norms, Positive Semi-Definite matrices,
+Gaussian Random Vectors
+Week 2 : Introduction to Convex Optimization – Convex sets, Hyperplanes/ Half-spaces etc.
+Application: Power constraints in Wireless Systems
+Week 3 : Convex/ Concave Functions, Examples, Conditions for Convexity. Application:
+Beamforming in Wireless Systems, Multi-User Wireless, Cognitive Radio Systems
+Week 4 : Convex Optimization problems, Linear Program, Application: Power allocation in
+Multi-cell cooperative OFDM
+Week 5 : QCQP, SOCP Problems, Application: Channel shortening for Wireless Equalization,
+Robust Beamforming in Wireless Systems
+Week 6 : Duality Principle and KKT Framework for Optimization. Application: Water-filling
+power allocation,Optimization for MIMO Systems, OFDM Systems and MIMO-OFDM systems
+Week 7 : Optimization for signal estimation, LS, WLS, Regularization. Application: Wireless
+channel estimation, Image Reconstruction-Deblurring
+Week 8 : Application: Convex optimization for Machine Learning, Principal Component
+Analysis (PCA), Support Vector Machines
+Week 9 : Application: Cooperative Communication, Optimal Power Allocation for
+cooperative Communication, Geometric Program
+Week 10 : Application: Compressive Sensing, Sparse Signal Processing, OMP (Orthogonal
+Matching Pursuit), LASSO (Least Absolute Shrinkage and Selection Operator) for signal
+estimation
+Week 11 : Application: Radar for target detection, Array Processing, MUSIC, MIMO-Radar
+Schemes for Enhanced Target Detection
+Week 12 : Application: Convex optimization for Big Data Analytics, Recommender systems,
+User Rating Prediction, Optimization for Finance
+
+OPTIMIZATION ALGORITHMS: THEORY AND
+SOFTWARE IMPLEMENTATION
+PROF. THIRUMULANATHAN D
+Department of Economic Sciences
+IT Kanpur
+PRE-REQUISITES : A basic knowledge on optimization theory is expected
+Foundations of Optimization - https://nptel.ac.in/courses/111104071
+INTENDED AUDIENCE : PG/ PhD students from the department of mathematics/ statistics/economic sciences who wish to
+learn various optimization algorithms along with its software implementation.
+INDUSTRY SUPPORT : Many firms value the knowledge of python coding. Knowledge on implementing optimization algorithms using
+python would be an added advantage
+COURSE OUTLINE :
+The course will introduce various iterative algorithms used to numerically solve the unconstrained and constrained optimization problems.
+Each algorithm will be introduced with examples and a python code that implements the algorithm. The focus will be on introducing the
+theory behind each algorithm, and implementing it using python. Applications of these algorithms in machine learning will also be discussed.
+COURSE PLAN :
+Week 1: Introduction to optimization.
+Week 2: Introduction to python.
+Week 3: Optimization algorithms.
+Week 4: Gradient descent/ conjugate gradient algorithm.
+Week 5: Newton’s method.
+Week 6: Quasi-Newton methods.
+Week 7: Quadratic penalty method.
+Week 8: Augmented Lagrangian Method.
+Week 9: Simplex method.
+Week 10: Affine scaling method.
+Week 11: Karmakar's algorithm.
+Week 12: An application from machine learning.
+
+A Primer to Mathematical Optimization
+Prof. Debdas Ghosh, IIT (BHU), Varanasi
+
+Course ID
+111104165
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+In this era of Machine Learning and Data Science, students often crave for learning the basic tools of optimization theory because machine learning ideas essentially exploit the power of Numerical Linear Algebra, Optimization, and Statistics. The primary aim of this course is to hand over a complete readymade package for beginners in mathematical optimization. 'Complete' in the sense of its mathematical orientation, geometrical explanation, problem-solution sheets, and tutorial sheets. After attending this course, students will get to know the standard methods, and basic and modern results in optimization. The concepts will be explained not only with mathematical rigor but also with geometrical essence so that students feel optimization is fun. The course covers mathematical foundation for optimization and basic techniques of unconstrained and constrained optimization problems.
+Course Details
+Intended Audience
+Third Year Undergraduates of Mathematics / Computer Science / Electrical / Mechanical Engineering
+Prerequisites
+Calculus, Linear Algebra, Coordinate Geometry
+Industry Support
+Control, Machine Learning
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Lecture 1: Introduction and history on the development of optimization theory Section I: Tools from Linear Algebra Lecture 2: Vector space, basis and dimension, subspace, inner products and norms, matrix norms, projection, eigen values and eigen vectors Lecture 3: Definiteness of matrices: eigen value criterion and Sylvester criterion, quadratic forms and quadratic functions Section II: Tools from Calculus of Several Variables Lecture 4: Sets in Rn: balls, neighborhood, interior point, open sets, closed sets, bounded sets, compact sets, level sets, epigraphs Lecture 5: Supremum and infimum of a set, sequence, subsequence, limsup and liminf
+Week 2	Lecture 6: Order of convergence of a sequence Lecture 7: Limit, continuity, uniform continuity and Lipschitz continuity and their geometries Lecture 8: Partial derivative, gradient, Hessian, directional derivative Lecture 9: Differentiablity, hierarchy of ‘PDs, DD and diffentiability’ Lecture 10: Little oh and big Oh notations, Taylor’s theorem
+Week 3	Section III: Convex Sets and Convex Functions Lecture 11: Convex sets, examples of commonly occurring convex sets, convexity preserving operations Lecture 12: Convexity preserving operations continued, separation result (a point and a closed convex set) Lecture 13: Theorems of alternatives: Farkas’ theorem Lecture 14: Theorems of alternatives: Gordan’s theorem and other results Lecture 15: Convex functions, their continuity, Lipschitz continuity and directional derivative
+Week 4	Lecture 16: Zeroth order and first order characterizations of convexity Lecture 17: Second order characterization of convexity, convexity preserving operations Section IV: Unconstrained Optimization Theory Lecture 18: Local optima and its variants, saddle point, coercive functions, existence of optima: Weierstrass theorem Lecture 19: Existence of optima: Theorem for coercive functions. Descent direction and its first order and second order characterizations Lecture 20: First order and second order necessary and sufficient conditions for minima
+Week 5	Section V: Unconstrained Optimization Methods Lecture 21: General structure of an optimization algorithm, global convergence, descent property, quadratic termination property. Introduction to line search: exact and inexact line searches Lecture 22: Inexact line searches: Armijo-Goldstein, Wolfe-Powell, Armijo-backtracking Lecture 23: On global convergence of gradient descent methods using line search methods: for exact line search Lecture 24: On global convergence of gradient descent methods using line search methods: for inexact line searches Lecture 25: Where do general descent methods converge? —almost always to a local minimizer. Capture theorem.
+Week 6	Lecture 26: Scaling of variables Lecture 27: Practical stopping criteria Lecture 28: Steepest descent method, descent property, zigzagging, scaling effect, Barzilai and Borwin gradient method Lecture 29: Global convergence of steepest descent method and order of convergence. Scaling effect and dimension independency. Lecture 30: Newton method and its local convergence.
+Week 7	Lecture 31: Dimension dependency of Newton method. Scaling effect. Lecture 32: Levenberg-Marquardt and other modified Newton methods Lecture 33: Quasi-Newton methods - quasi-Newton equation, general quasi-Newton algorithm, variable metric method, general comparison of Newton and quasi-Newton methods Lecture 34: Global convergence of quasi-Newton methods for uniformly convex functions Lecture 35: Superlinear convergence of quasi-Newton methods
+Week 8	Lecture 36: Basic conjugate direction method Lecture 37: Convergence rate of the basic CG method Lecture 38: Trust region methods: Cauchy point, dog leg and double dog leg methods Section VI: Constraint Optimization Theory Lecture 39: A revisit to Lagrange multipliers method Lecture 40: Cones for constraint optimization: cone, dual cone, cone of feasible directions, linearizing cone, cone of descent directions
+Week 9	Lecture 41: Cones for constraint optimization: tangent cone. Geometric optimality conditions. Lecture 42: First order FJ and KKT necessary optimality conditions Lecture 43: First order KKT sufficient optimality condition Lecture 44: Second order KKT necessary and sufficient optimality conditions Lecture 45: Constraint qualification
+Week 10	Section VII: Lagrangian Duality Theory Lecture 46: Lagrangian duality: how does one discover duality? Geometric interpretation of duality. Lecture 47: Results on dual function: dual problem is a convex optimization problem, differentiability of the dual function Lecture 48: Weak duality theorem. Duality gap. Equal primal and dual objective values imply optimal. Lecture 49: Strong duality theorem. Convex optimization problem and SCQ implies strong duality. Lecture 50: Saddle point optimality and absence of duality gap. Relationship between saddle point criteria and KKT conditions
+Week 11	Section VIII: Linearly Constrained Nonlinear Optimization Algorithms Lecture 51: Quadratic programming methods – Active set method Lecture 52: Quadratic programming method – Interior point method Lecture 53: Projected gradient algorithm Lecture 54: Reduced gradient algorithm Section IX: Nonlinearly Constrained Nonlinear Optimization Algorithms Lecture 55: Penalty method – Exterior penalty method Lecture 56: Penalty method – Interior penalty method
+Week 12	Lecture 57: Penalty method – Augmented Lagrangian method Lecture 58: Sequential quadratic programming – Lagrange-Newton method Lecture 59: Sequential quadratic programming – Reduced Hessian matrix method Lecture 60: Trust region method Lecture 61: Null space method
+Books And References
+1.M. S. Bazaaraa, H. D. Shirali and M. C. Shetty, Nonlinear Programming, Theory and Algorithms, 3rd Edition, John Wiley & Sons, New York (2004).
+2.P. Drimiti Bertsekas, Nonlinear Programming, Athena Scientific, 3nd Edition, 2016
+3.E. K. P. Chong and S. W. Zak, An Introduction to Optimization, 4th Edition, John Wiley & Sons, 2013.
+4.J. E. Dennis Jr and R. B. Schnabel, Numerical Methods for Unconstrained Optimization and Nonlinear Equations, Society for Industrial and Applied Mathematics, 1996.
+5.W. Sun and Y.-X. Yuan, Optimization Theory and Methods, Springer Science & Business Media, 2006.
+
+
+
+OPTIMIZATION FROM FUNDAMENTALS
+PROF. ANKUR A. KULKARNI
+Department of Systems and Control Engineering
+IIT Bombay
+INTENDED AUDIENCE : Mathematics, any engineering and science discipline
+COURSE OUTLINE :
+This course will cover the topic of Optimization from its fundamentals. It will start with an overview of
+real analysis and convexity. With this base it will cover linear programming, convex optimization and
+nonlinear programming, complementarity problems and algorithms for the same. We will end with
+dynamic optimization.
+
+COURSE PLAN :
+Week 1: Introduction to optimization and overview of real analysis
+ Week 2: Optimization over open sets
+ Week 3: Optimization over surface
+ Week 4: Transformation of optimization problems and convex analysis
+ Week 5: Introduction to linear programming
+ Week 6: Linear programming and duality
+ Week 7: Linear programming and duality
+ Week 8: Nonlinear and convex optimization
+ Week 9: Nonlinear and convex optimization
+ Week 10: Algorithms
+ Week 11: Algorithms
+ Week 12: Dynamic optimization
+
+
+Computer System Optimizations for ML
+Prof.Sumit K. Mandal, IISc Bangalore
+
+Course ID
+106108003
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Increasing complexity of machine learning (ML) algorithms have necessitated the emergence of specialized computer systems. Some ML algorithms are executed at edge, some are executed on the cloud. In this course, we will delve into different computing kernels of both training and inference of ML algorithms and see how they can be efficiently computed. Specifically, we will cover different system optimization techniques for convolutional neural network (CNN), large language models (LLMs) and Graph Neural Networks (GNNs).
+Course Details
+Intended Audience
+Final year UG, Final year PG, PhD
+Prerequisites
+Computer Organization
+Industry Support
+NVIDIA, Intel, AMD, Microsoft, Google (whoever works in the junction of computer systems and machine learning)
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Basics of Convolutional Neural Network (CNN) Computations
+Week 2	CNN Accelerators - 1
+Week 3	CNN Accelerators - 2
+Week 4	Parallelism for Training Large ML Models
+Week 5	Basics of Large Language Models (LLMs)
+Week 6	Accelerated Decoding and Memory Management of LLMs
+Week 7	LLM Serving Infrastructure
+Week 8	Fault Tolerance in ML Training
+Week 9	System Optimization for Graph Neural Network (GNN) Inference
+Week 10	ML Accelerators with Emerging Technologies
+Week 11	Workload Characterization of ML Algorithms
+Week 12	Introduction to Neural Processing Units (NPUs)
+Books And References
+Efficient Processing of Deep Neural Networks by Vivienne Sze, Yu-Hsin Chen, Tien-Ju Yang, Joel S. Emer
+Research articles will be shared within the lecture materials
+
+Distributed Optimization and Machine Learning
+Prof. Mayank Baranwal, IIT Bombay
+
+Course ID
+106101466
+Duration
+12 weeks
+Credits
+4
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Centralized access to information and its subsequent processing is often computationally prohibitive over large networks due to communication overhead and the scale of the problem. Consequently, such systems rely on control and optimization algorithms that are fully distributed or even decentralized in nature. This course will provide a comprehensive overview of design and analysis of distributed optimization algorithms and their applications to machine learning. The aim is to revisit classical control and optimization algorithms for centralized optimization and discuss how these can be extended to distributed setting to accommodate the effects of communication constraints, network topology, computational resources, and robustness. Topics include graph theory, iterative methods for convex problems, synchronous and asynchronous setups, consensus algorithms, and distributed machine learning. We will also explore some recent literature in this area that exploits control theory for design of accelerated distributed optimization algorithms.
+Course Details
+Intended Audience
+MTech and PhD students in broad areas of optimization and data science
+Prerequisites
+A background in convex optimization and differential equations is preferred
+Industry Support
+Tata Consultancy Services, Microsoft, Google, Amazon, IBM, etc.
+Category
+COMP_SCI_ENGG, ELEC_ENGG, Mathematics, Domain_7, Domain_14
+Course Layout
+Week	Topics
+Week 1	1. Introduction to Distributed Optimization 2. Mathematical Optimization, Convex Sets and Convex Functions
+Week 2	1. Strong Convexity and Its Implications 2. Constrained Optimization Problems: Primal and Lagrangian Dual
+Week 3	1. KKT Conditions and Primal/Dual Methods 2. Analysis of Gradient Descent
+Week 4	1. Analysis of Accelerated Optimization Algorithms 2. Optimization Algorithms as Dynamical Systems and Introduction to Stability Theory
+Week 5	1. Lyapunov Analysis of Gradient Flows 2. Gradient Flows for Equality Constrained Optimization and Saddle-Point Problems
+Week 6	1. Accelerated Gradient Flows 2. Augmented Lagrangian and Method of Multipliers
+Week 7	1. ADMM (Alternating Direction Method of Multipliers) 2. Dual Ascent and Dual Decomposition
+Week 8	1. Introduction to Graph Theory 2. Distributed Consensus
+Week 9	1. Continuous-Time Analysis of Consensus Algorithms 2. Distributed Optimization Problem (Economic Dispatch Problem)
+Week 10	1. Distributed Optimization Algorithms 2. Introduction to Neural Networks and Ring-Allreduce Algorithm
+Week 11	1. Introduction to Federated Learning 2. Data Heterogeneity in Federated Learning
+Week 12	1. Computational Heterogeneity in Federated Learning 2. Robustness in Federated Learning
+Books And References
+1. Boyd, Stephen P., and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.
+2. Nedić, A. (2018). Distributed Optimization Over Networks. In: Facchinei, F., Pang, JS. (eds) Multi-agent Optimization. Lecture Notes in Mathematics(), vol 2224. Springer, Cham. https://doi.org/10.1007/978-3-319-97142-1_1
+
+
+Bandit Algorithm (Online Machine Learning)
+Prof. Manjesh Kumar Hanawal, IIT Bombay
+
+Course ID
+110101145
+Duration
+12 weeks
+Credits
+4
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+In many scenarios one faces uncertain environments where a-priori the best action to play is unknown. How to obtain best possible reward/utility in such scenarios. One natural way is to first explore the environment and to identify the `best’ actions and exploit them. However, this give raise to an exploration vs exploitation dilemma, where on hand hand we need to do sufficient explorations to identify the best action so that we are confident about its optimality, and on the other hand, best actions need to exploited more number of times to obtain higher reward. In this course we will study many bandit algorithms that balance exploration and exploitation well in various random environment to accumulate good rewards over the duration of play. Bandit algorithms find applications in online advertising, recommendation systems, auctions, routing, e-commerce or in any filed online scenarios where information can be gather in an increment fashion.
+
+INTENDED AUDIENCE          : Computer Sceince, Electrical Engineering, Operations Research, Mathematics and Statistics
+
+PREREQUISITES                 : Basics of Probability Theory and Optimization
+Course Details
+Industry Support
+All companies related to Internet Technologies (ex. Google, Microsoft, Flipkart, Ola, Amazon, etc.)
+Category
+Multidisciplinary
+Course Layout
+Week	Topics
+Week 1	Introduction to Bandit Algorithms. From Batch to Online Setting
+Week 2	Adversarial Setting with Full information (Halving, WM Algorithm )
+Week 3	Adversarial Setting with Bandit Information
+Week 4	Regret lower bounds for adversarial Setting
+Week 5	Introduction to Stochastic Setting and various regret notions
+Week 6	A primer on Concentration inequalities
+Week 7	Stochastic Bandit Algorithms UCB, KL-UCB
+Week 8	Lower bounds for stochastic Bandits
+Week 9	Introductions to contextual bandits
+Week 10	Overview of contextual bandit algorithms
+Week 11	Introduction to pure exploration setups (fixed confidence vs budget)
+Week 12	Algorithms for pure explorations (LUCB, KL-LUCB, lil’UCB)
+Books And References
+1) Bandit Algorithms by Tor Lattimore and Csaba Szepesvari
+2) Regret Analysis of Stochastic and nonstochastic multi-armed bandit problems by Nicolo Cesa-bianchi and Sebastien Bubeck
+
+
+Machine Learning for Core Engineering Disciplines
+Prof. Ananth Govind Rajan, IISc Bangalore
+
+Course ID
+127108778
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+This course will introduce students and practitioners of core engineering disciplines to the fundamentals and applications of machine learning. The course will cover the following material: introduction to data science and machine learning, examples of supervised/unsupervised/reinforcement learning, motivation for machine learning with examples derived from various core engineering disciplines; introduction to Python, scientific computing packages (NumPy, SciPy, Matplotlib), and simple ML packages (Scikit-learn, Pytorch); linear and nonlinear regression, confidence intervals and goodness of fit, loss functions, gradient descent algorithm, overfitting/underfitting, regression/classification learning; clustering algorithms, singular-value decomposition, principal component analysis, and nonlinear dimensionality reduction; decision trees and ensemble methods, boosting and bagging techniques, random forests, gradient-boosted machine learning, support vector machines, Gaussian process regression; hyperparameter tuning and cross validation; introduction to neural networks and deep learning; feed-forward, convolutional, and recurrent neural networks
+Course Details
+Intended Audience
+Core Engineering Disciplines
+Industry Support
+Several companies working in core engineering disciplines
+Category
+Domain_10, Multidisciplinary
+Course Layout
+Week	Topics
+Week 1	Introduction to data science and machine learning; differences between supervised, unsupervised, and reinforcement learning; introduction to probability and statistics; sample and population properties
+Week 2	Covariance and correlation matrix; Linear regression; model parametrization and fitting; coefficient of determination; confidence intervals and hypothesis testing
+Week 3	Overfitting and underfitting; bias-variance tradeoff; dealing with overfitting via regularization (ridge regression and LASSO); logistic regression; softmax regression
+Week 4	Basics of Python; loss functions including mean-squared error, mean absolute error, mean-squared logarithmic error, cross-entropy loss, Tweedie loss, and mean absolute percentage error; statistical basis of some loss functions
+Week 5	Training of ML models; gradient descent algorithm; stochastic gradient descent; variants such as momentum, AdaGrad, Adam, and RMSprop
+Week 6	k-fold cross validation, leave-one-out cross validation, and hyperparameter tuning via grid search, randomized search, and Bayesian approaches; implementation of regression models in Python
+Week 7	Unsupervised learning; singular value decomposition; principal component analysis; clustering algorithms including k-means and density-based clustering
+Week 8	Nonlinear dimensionality reduction via uniform manifold approximation and projection, t-distributed stochastic neighbour embedding, and autoencoders; implementation of unsupervised learning in Python; decision trees and their working; recursive binary splitting
+Week 9	Regression and classification via decision trees; ensembling of decision trees; bagging and boosting; random forests; adaptive boosting; gradient boosting; introduction to support vector machines (SVM)
+Week 10	SVM for classification and regression; Gaussian process regression (GPR); implementation of decision trees, SVM, and GPR in Python
+Week 11	Introduction to neural networks; working of feed-forward and convolutional neural networks
+Week 12	Recurrent neural networks; implementation of neural networks in Python
+Books And References
+Christopher M. Bishop, “Pattern Recognition and Machine Learning,” Springer 
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman, “The Elements of Statistical Learning: Data Mining, Inference, and Prediction,” Springer 
+Raghunathan Rengaswamy and Resmi Suresh, “Data Science for Engineers,” CRC Press
+
+Applied Linear Algebra for Signal Processing, Data Analytics and Machine Learning
+Prof. Aditya K. Jagannatham, IIT Kanpur
+
+Course ID
+108104174
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+This course aims to introduce students to all the basic and advanced concepts in Linear Algebra with a strong focus on applications. Linear Algebra is one of the fundamental tools that has applications in diverse fields such as Machine Learning, Data Analytics, Signal Processing, Wireless Communication, Operations Research, Control and Finance. The various topics and applications that will be covered in different areas are as follows:
+Wireless: MIMO/ OFDM systems, Beamforming, Channel Estimation 
+Machine Learning: Regression, Clustering, EM Algorithm, Perceptron, SVM/ Kernel SVM, Principal Component Analysis (PCA), Face recognition 
+Signal Processing: Signal Estimation, Regularization, Compressive Sensing, Image Compression, Robotics and Dynamical systems 
+Data Analytics: Recommender systems, Data completion, Data prediction, forecasting, Optimal Estimation, Financial models  
+Operations Resarch: Markov chains, inventory management, supply chain management 
+Miscellaneous Applications: Electrical circuits, Graph models and social networks, Traffic flow management 
+The course is suitable for all UG/PG students and practicing engineers/ scientists/ managers from the diverse fields mentioned above and interested in learning about the novel cutting edge applications of linear algebra in various fields such as Machine Learning, Data Analytics, Signal Processing, Wireless Communication.
+Course Details
+Intended Audience
+-Students in Electrical Engineering, Electronics and Communication Engineering, Mathematics, Economics, Computer Science -Practicing engineers -Technical and Non-technical managers of Telecomm companies -Students preparing for Competitive Exams with focus on Wireless Communication, Signal Processing, Machine Learning - Students pursuing projects or research in Machine Learning, Data Analytics and Signal Processing/ Communication
+Industry Support
+Qualcomm, Intel, Samsung, Google and other technology companies
+Category
+ELEC_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to vectors, properties and applications
+Week 2	Introduction to matrices and Applications – Circuits, Graphs, Social Networks, Traffic flow
+Week 3	Eigenvalue decomposition, properties and Applications – Principal component analysis (PCA), Eigenfaces for facial recognition
+Week 4	Singular value decomposition (SVD) and Applications – Beamforming in MIMO, Dimensionality reduction, Rate maximization in wireless, MUSIC algorithm
+Week 5	Linear regression and Least Squares. Applications: System identification, linear regression, Support vector machines (SVM), kernel SVMs
+Week 6	Optimal linear MMSE estimation. Applications – MMSE Receiver, Market prediction and forecasting, ARMA models
+Week 7	Data analytics: Recommender systems, user rating prediction, NETFLIX problem
+Week 8	Structure of FFT/ IFFT matrices, properties, System model for OFDM/ SC-FDMA, Signal processing in OFDM systems. Modeling of Dynamical systems – Examples: Robots, Chemical plants. Solution of autonomous linear dynamical systems (LDS), solution of with inputs and outputs
+Week 9	Modeling of Dynamical systems – Examples: Robots, Chemical plants. Solution of autonomous linear dynamical systems (LDS), solution of with inputs and outputs
+Week 10	Unsupervised learning: Centroid based clustering, probabilistic model based clustering and EM algorithm
+Week 11	Linear perceptron. Training a perceptron – stochastic gradient. Compressive sensing, orthogonal matching pursuit for sparse signal estimation
+Week 12	Discrete time Markov chains – Applications: supply chain management, forecasting, Operations research – resource and inventory management.
+Books And References
+Introduction to Linear Algebra
+Gilbert Strang
+
+
+Machine Learning and Deep learning - Fundamentals and Applications
+Prof. M. K. Bhuyan, IIT Guwahati
+
+Course ID
+108103192
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+In this course we will start with traditional Machine Learning approaches, e.g. Bayesian Classification, Multilayer Perceptron etc. and then move to modern Deep Learning architectures like Convolutional Neural Networks, Autoencoders etc. We will learn about the building blocks used in these Deep Learning based solutions. Specifically, we will learn about feedforward neural networks, convolutional neural networks, recurrent neural networks and attention mechanisms. On completion of the course students will acquire the knowledge of applying Machine and Deep Learning techniques to solve various real-life problems.
+Course Details
+Intended Audience
+UG, PG and PhD students and industry professionals who want to work in Machine and Deep Learning.
+Prerequisites
+Knowledge of Linear Algebra, Probability and Random Process, PDE will be helpful.
+Industry Support
+This is a very important course for industry professionals.
+Category
+COMP_SCI_ENGG, ELEC_ENGG, Domain_7
+Course Layout
+Week	Topics
+Week 1	Introduction Introduction to ML, Performance Measures, Bias-Variance Trade off, Linear Regression.
+Week 2	Bayes Decision Theory Bayes Decision Theory, Normal Density and Discriminant Function, Bayes Decision Theory - Binary Features, Bayesian Belief Network
+Week 3	Parametric and Non- Parametric Density Estimation Parametric and Non- Parametric Density Estimation – ML and Bayesian Estimation, Parzen Window and KNN
+Week 4	Perceptron Criteria and Discriminative Models Perceptron Criteria, Discriminative models, Support Vector Machines (SVM)
+Week 5	Logistic Regression, Decision Trees and Hidden Markov Model Logistic Regression, Decision trees, Hidden Markov Model (HMM)
+Week 6	Ensemble methods Ensemble methods: Ensemble strategies, boosting and bagging, Random Forest
+Week 7	Dimensionality Problem Dimensionality Problem, Principal Component Analysis (PCA), Linear Discriminant Analysis (LDA)
+Week 8	Mixture Model and Clustering Concept of mixture model, Gaussian mixture model, Expectation Maximization Algorithm, K- means clustering.
+Week 9	Clustering Fuzzy K-means clustering, Hierarchical Agglomerative Clustering, Mean-shift clustering.
+Week 10	Neural Network Neural network: Perceptron, multilayer network, backpropagation, RBF Neural Network, Applications
+Week 11	Introduction to Deep Neural Networks Introduction to Deep Learning, Convolutional Neural Networks (CNN), Vanishing and Exploding Gradients in Deep Neural Networks, LeNet - 5, AlexNet, VGGNet, GoogleNet, and ResNet.
+Week 12	Recent Trends in Deep Learning Generative Adversarial Networks (GAN), Auto Encoders and Relation to PCA, Recurrent Neural Networks, U-Net, Applications and Case studies.
+Books And References
+1. E. Alpaydin, Introduction to Machine Learning, 3rd Edition, Prentice Hall (India) 2015.
+2. R. O. Duda, P. E. Hart and D. G. Stork, Pattern Classification, 2nd Edn., Wiley India, 2007.
+3. C. M. Bishop, Pattern Recognition and Machine Learning (Information Science and Statistics),Springer, 2006.
+4. M.K. Bhuyan, Computer Vision and Image Processing: Fundamentals and Applications, published by CRC press, USA, 2019.
+5. S. O. Haykin, Neural Networks and Learning Machines, 3rd Edition, Pearson Education (India), 2016.
+6. Ian Goodfellow, Yoshua Bengio and Aaron Courville, Deep Learning, MIT Press, 2016
+7. Michael A. Nielsen, Neural Networks and Deep Learning , Determination Press, 2015
+8. Yoshua Bengio, Learning Deep Architectures for AI, now Publishers Inc., 2009
+
+
+MACHINE LEARNING, ML
+PROF. CARL GUSTAF JANSSON
+School of Electrical Engineering and Computer Science
+KTH, The Royal Institute Of Technology
+PRE-REQUISITES : Basic knowledge in Computer science and applied Mathematics
+INTENDED AUDIENCE : Interested students
+INDUSTRIES APPLICABLE TO : Broad industrial interest at present, i.e. for autonomous vehicles, robots,
+intelligent assistants and general datamining
+COURSE OUTLINE :
+The scientific discipline of Machine Learning focuses on developing algorithms to find patterns or make
+predictions from empirical data. It is a classical sub-discipline within Artificial Intelligence (AI). The
+discipline is increasingly used by many professions and industries to optimize processes and implement
+adaptive systems. The course places machine learning in its context within AI and gives an introduction
+to the most important core techniques such as decision tree based inductive learning, inductive logic
+programming, reinforcement learning and deep learning through decision trees.
+
+
+COURSE PLAN :
+Week 1: Introduction to the Machine Learning course
+Week 2: Characterization of Learning Problems
+Week 3: Forms of Representation
+Week 4: Inductive Learning based on Symbolic Representations and Weak Theories
+Week 5: Learning enabled by Prior Theories
+Week 6: Machine Learning based Artificial Neural Networks
+Week 7: Tools and Resources + Cognitive Science influences
+Week 8: Examples, demos and exam preparations
+
+PROF. BALAJI SRINIVASAN
+Department of Mechanical Engineering
+IIT Madras
+PROF. GANAPATHY KRISHNAMURTHI
+Department of Engineering Design
+IIT Madras
+INTENDED AUDIENCE: Postgraduate students in all engineering and science disciplines. Mature
+senior undergraduate students may also attempt the course.
+PREREQUISITES: Familiarity with Multivariable Calculus, Linear Algebra, Probability, Statistics.
+Comfortable with basic programming.
+INDUSTRY SUPPORT: Should be of interest to companies trying to employ engineers familiar
+with Machine Learning
+COURSE OUTLINE
+Recent applications of machine learning have exploded due to cheaply available
+computational resources as well as wide availability of data. Machine Learning (ML) techniques
+provides a set of tools that can automatically detect patterns in data which can then be utilized
+for predictions and for developing models. Developments in ML algorithms and computational
+capabilities have now made it possible to scale engineering analysis, decision making and
+design rapidly. This, however, requires an engineer to understand the limits and applicability
+of the appropriate ML algorithms. This course aims to provide a broad overview of modern
+algorithms in ML, so that engineers may apply these judiciously. Towards this end, the course
+will focus on broad heuristics governing basic ML algorithms in the context of specific
+engineering applications. Matlab will be used in this course but students will also be trained to
+implement these methods utilizing open source packages such as TensorFlow.
+COURSE PLAN:
+Week 1: Mathematical Basics 1 – Introduction to Machine Learning, Linear Algebra
+Week 2: Mathematical Basics 2 - Probability
+Week 3: Computational Basics – Numerical computation and optimization, Introduction to
+Machine learning packages
+Week 4: Linear and Logistic Regression – Bias/Variance Tradeoff, Regularization, Variants of
+Gradient Descent, MLE, MAP, Applications
+Week 5: Neural Networks – Multilayer Perceptron, Backpropagation, Applications
+Week 6: Convolutional Neural Networks 1 – CNN Operations, CNN architectures
+Week 7: Convolutional Neural Networks 2 – Training, Transfer Learning, Applications
+Week 8: Recurrent Neural Networks RNN, LSTM, GRU, Applications
+Week 9: Classical Techniques 1 – Bayesian Regression, Binary Trees, Random Forests, SVM,
+Naïve Bayes, Applications
+Week 10: Classical Techniques 2 – k-Means, kNN, GMM, Expectation Maximization, Applications
+Week 11: Advanced Techniques 1 – Structured Probabilistic Models, Monte Carlo Methods
+Week 12: Advanced Techniques 2 – Autoencoders, Generative Adversarial Network
+MACHINE LEARNING FOR
+ENGINEERING AND SCIENCE APPLICATIONS
+
+
+PROF. BALARAMAN RAVINDRAN
+Department of Computer Science and Engineering
+IIT Madras
+INTENDED AUDIENCE: This is an elective course. Intended for senior UG/PG students. BE/ME/MS/PhD
+PRE-REQUISITES: We will assume that the students know programming for some of the assignments.If the students
+have done introductory courses on probability theory and linear algebra it would be helpful. We will review some of
+the basic topics in the first two weeks as well.
+INDUSTRY SUPPORT: Any company in the data analytics/data science/big data domain would value this course.
+COURSE OUTLINE :
+With the increased availability of data from varied sources there has been increasing attention paid to the various
+data driven disciplines such as analytics and machine learning. In this course we intend to introduce some of the
+basic concepts of machine learning from a mathematically well motivated perspective. We will cover the different
+learning paradigms and some of the more popular algorithms and architectures used in each of these paradigms.
+COURSE PLAN :
+Week 0: Probability Theory, Linear Algebra, Convex Optimization - (Recap)
+Week 1: Introduction: Statistical Decision Theory - Regression, Classification, Bias Variance
+Week 2: Linear Regression, Multivariate Regression, Subset Selection, Shrinkage Methods, Principal Component
+Regression, Partial Least squares
+Week 3: Linear Classification, Logistic Regression, Linear Discriminant Analysis
+Week 4: Perceptron, Support Vector Machines
+Week 5: Neural Networks - Introduction, Early Models, Perceptron Learning, Backpropagation, Initialization, Training
+& Validation, Parameter Estimation - MLE, MAP, Bayesian Estimation
+Week 6: Decision Trees, Regression Trees, Stopping Criterion & Pruning loss functions, Categorical Attributes,
+Multiway Splits, Missing Values, Decision Trees - Instability Evaluation Measures
+Week 7: Bootstrapping & Cross Validation, Class Evaluation Measures, ROC curve, MDL, Ensemble Methods -
+Bagging, Committee Machines and Stacking, Boosting
+Week 8: Gradient Boosting, Random Forests, Multi-class Classification, Naive Bayes, Bayesian Networks
+Week 9: Undirected Graphical Models, HMM, Variable Elimination, Belief Propagation
+Week 10: Partitional Clustering, Hierarchical Clustering, Birch Algorithm, CURE Algorithm, Density-based Clustering
+Week 11: Gaussian Mixture Models, Expectation Maximization
+Week 12: Learning Theory, Introduction to Reinforcement Learning, Optional videos (RL framework, TD learning,
+Solution Methods, Applications)
+INTRODUCTION TO MACHINE
+LEARNING
+
+Foundations of Machine Learning
+Prof. J. SakethaNath, IIT Hyderabad
+
+Course ID
+106106001
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+
+This is a course on Machine Learning that introduces the subject in a formal way with a focus on basic and foundational concepts. A holistic view of machine learning is taken, including aspects of optimization (SGD) that are ignored in classical narratives. Topics that are relevant to modern models are highlighted so that the connection to state-of-the-art is not missed in the theoretical exploration. For example, in case of linear regression, apart from classical topics like bias-variance trade-off and regularization, an analysis in the overparametrization regime is also taught that immediately connects you to modern day complex models with billions of parameters. Finally, foundational topics for generative models are also covered, including energy-based models and Langevin sampling.
+Course Details
+Intended Audience
+Students wishing to start research in core machine learning areas
+Prerequisites
+Anyone with a good understanding of basic engineering math is eligible. Especially subjects like linear algebra, probability theory, and optimization.
+Industry Support
+Microsoft, Google, Meta, Amazon, OpenAI
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	– Basics of ML Overview of ML, Stochastic framework for Supervised Learning, Risk Minimization, Bayes optimal, Stochastic Optimization, ERM.
+Week 2	– Linear Regression Linear Regression, Estimation Error, Model error, Linear modelling.
+Week 3	– Logistic Regression Linear Classification and Surrogate losses, Logistic Regression, Bounding estimation error in Binary classification.
+Week 4	– Gradient descent Gradient Descent - Primal & Dual view , Convergence of Gradient descent for linear regression and logistic regression.
+Week 5	- SGD SGD and its analysis for linear regression and logistic regression, SGD vs GD as learning algorithm, Model Selection.
+Week 6	- Regularization Regularization, min-norm regularization for linear regression and classification, Equivalent forms, implicit regularization.
+Week 7	– Kernel m/c Linear models in infinite dimensional spaces, Kernels – Linear, Polynomial, Gaussian, Kernel trick, Representer theorem.
+Week 8	– Bayes Consistency Universal kernels, Bayes consistency and generalization rate with universal kernel m/c.
+Week 9	Modern concepts in ML Overparametrization, minimal vs optimal regularization, Latent variables, Modularity in modelling, Deep learning models.
+Week 10	– Deep learning Estimation error in deep learning, Backpropagation, Optimization error and implicit bias in deep learning.
+Week 11	– Probabilistic Models Likelihood estimation: Energy-based Models (EBMs), MLE, Langevin sampling.
+Week 12	– Special topics Probabilistic models for Supervised learning, k-NNs, Model averaging, Boosting.
+Books And References
+https://www.di.ens.fr/%7Efbach/ltfp_book.pdf (Learning Theory from first principles by Francis Bach)
+
+https://probml.github.io/pml-book/book1.html (Probabilistic Machine Learning by Kevin Murphy)
+
+https://people.iith.ac.in/saketha/teaching/cs5590.html
+
+Introduction to Machine Learning - IITKGP
+Prof. Sudeshna Sarkar, IIT Kharagpur
+
+Course ID
+106105152
+Duration
+8 weeks
+Credits
+3
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+This course provides a concise introduction to the fundamental concepts in machine learning and popular machine learning algorithms. We will cover the standard and most popular supervised learning algorithms including linear regression, logistic regression, decision trees, k-nearest neighbour, an introduction to Bayesian learning and the naïve Bayes algorithm, support vector machines and kernels and neural networks with an introduction to Deep Learning. We will also cover the basic clustering algorithms. Feature reduction methods will also be discussed. We will introduce the basics of computational learning theory. In the course we will discuss various issues related to the application of machine learning algorithms. We will discuss hypothesis space, overfitting, bias and variance, tradeoffs between representational power and learnability, evaluation strategies and cross-validation. The course will be accompanied by hands-on problem solving with programming in Python and some tutorial sessions.
+Course Details
+Intended Audience
+Elective course for UG, PG, BE, ME, MS, M.Sc, PhD
+Prerequisites
+Basic programming skills (in Python), algorithm design, basics of probability &amp; statisticsINDUSTRY SUPPORT : Data science companies and many other industries value machine learning skills.
+Category
+COMP_SCI_ENGG, Domain_3, Domain_15, Domain_36, Domain_49
+Course Layout
+Week	Topics
+Week 1	Introduction: Basic definitions, types of learning, hypothesis space and inductive bias, evaluation, cross-validation
+Week 2	Linear regression, Decision trees, overfitting
+Week 3	Instance based learning, Feature reduction, Collaborative filtering based recommendation
+Week 4	Probability and Bayes learning
+Week 5	Logistic Regression, Support Vector Machine, Kernel function and Kernel SVM
+Week 6	Neural network: Perceptron, multilayer network, backpropagation, introduction to deep neural network
+Week 7	Computational learning theory, PAC learning model, Sample complexity, VC Dimension, Ensemble learning
+Week 8	Clustering: k-means, adaptive hierarchical clustering, Gaussian mixture model
+Books And References
+Machine Learning. Tom Mitchell. First Edition, McGraw- Hill, 1997.
+Introduction to Machine Learning Edition 2, by Ethem Alpaydin
+
+Statistical and Machine Learning Methods: Basics and Applications
+Prof. Rajib Maity, IIT Kharagpur
+
+Course ID
+105105001
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+
+The course addresses the challenges often encountered when determining the characteristics of observational data and events. Statistical methods and Machine learning methods play a vital role in understanding the data characteristics and leading to data-driven solutions for many engineering challenges. Initially, the course begins with the basics of probability and statistics related to observations and events, and subsequently models them through random variables. A brief introduction to joint distribution (modelling) through copula is also included in the course for the modelling of joint distribution. The course also covers the joint and conditional distribution of events, which eventually leads to formulating probabilistic solutions for existing challenges across the domain. Furthermore, an introduction to machine learning models and their working principles will help in understanding the suitability of data-driven models and assessing their performance.
+Course Details
+Intended Audience
+Academician, students, Industrial Personnel
+Prerequisites
+Basic Knowledge of Probability and Statistics
+Industry Support
+Mathworks
+Category
+CIVIL_ENGINEERING
+Course Layout
+Week	Topics
+Week 1	Role of Statistics, Machine Learning and Data science: Introduction and role of Data science in Hydroclimatology and water resources
+Week 2	Probability definitions – PMF, PDF, CDF; Moments and expectations
+Week 3	Probability Distributions: Discrete and Continuous distributions
+Week 4	Marginal and Conditional Probability Distributions
+Week 5	Bivariate and Multivariate Probability Distributions, Introduction to Copulas and Applications.
+Week 6	Simple Linear Regression and Multiple Linear Regression
+Week 7	Multivariate Analysis: Principal Component Analysis, Empirical Orthogonal Functions (EOF), Analysis of Variance (ANOVA)
+Week 8	Statistical Learning: Introduction; Supervised and unsupervised learning problems; Loss functions
+Week 9	Machine Learning Methods: Introduction to Artificial Intelligence and Neural Networks
+Week 10	Random Forest; Gradient Boosting; Regularization
+Week 11	Deep Neural Networks; Support Vector Machine (SVM); Clustering: K-means Clustering
+Week 12	Forecasting using statistical and Machine Learning algorithms: Applications to Hydrology and Water resources engineering
+Books And References
+1. Maity, R. (2022). Statistical methods in hydrology and Hydroclimatology. Second. ed. Springer Nature, Singapore.
+
+2. David Forsyth (2019), Applied Machine Learning, Springer Nature Switzerland.
+
+3. Pradhan, M., & Kumar, U. D. (2019). Machine learning using Python. Wiley India.
+
+50 STATISTICAL TECHNIQUE THAT AN AI ENGINEER NEED TO KNOW
+
+1. Descriptive Statistics (Data Understanding Layer)
+Foundation for EDA, feature understanding
+Mean 
+Median 
+Mode 
+Variance 
+Standard Deviation 
+Range 
+Interquartile Range (IQR) 
+Skewness 
+Kurtosis 
+Percentiles / Quantiles 
+2. Probability Theory (Core Math Backbone)
+Critical for uncertainty modeling + ML intuition
+Conditional Probability 
+Bayes’ Theorem 
+Joint Probability 
+Marginal Probability 
+Law of Total Probability 
+Independence of Events 
+3. Probability Distributions (Modeling Uncertainty)
+Used in generative models, likelihoods, simulations
+Normal (Gaussian) Distribution 
+Bernoulli Distribution 
+Binomial Distribution 
+Poisson Distribution 
+Uniform Distribution 
+Exponential Distribution 
+Log-Normal Distribution 
+Multinomial Distribution 
+4. Statistical Inference (Decision Making)
+Used in A/B testing, experiments, validation
+Sampling Techniques (random, stratified, etc.) 
+Central Limit Theorem 
+Confidence Intervals 
+Hypothesis Testing (general framework) 
+p-values 
+Type I & Type II Errors 
+Power of a Test 
+5. Hypothesis Testing (Core Business Use)
+Used in product decisions, experimentation
+t-test (one-sample, two-sample) 
+z-test 
+Chi-Square Test 
+ANOVA (Analysis of Variance) 
+Mann-Whitney U Test 
+Wilcoxon Signed-Rank Test 
+
+6. Correlation & Relationships
+Used in feature selection, diagnostics
+Covariance 
+Pearson Correlation 
+Spearman Rank Correlation 
+Kendall Tau 
+7. Regression & Predictive Modeling
+Core of ML + explainability
+Linear Regression 
+Multiple Linear Regression 
+Logistic Regression 
+Ridge Regression 
+Lasso Regression 
+Polynomial Regression 
+8. Bayesian Statistics (Modern AI Thinking)
+Used in uncertainty-aware AI + LLMs
+Bayesian Inference 
+Prior / Posterior Distributions 
+9.	MCMC 
+MCMC stands for Markov Chain Monte Carlo.
+
+DATA MINING
+PROF. PABITRA MITRA
+Department of Computer Science and Engineering
+IIT Kharagpur
+INTENDED AUDIENCE : Any engineering discipline and mathematics, physics.
+INDUSTRIES APPLICABLE TO : TCS, Infosys, CTS, Accenture
+COURSE OUTLINE :
+Data mining is study of algorithms for finding patterns in large data sets. It is an integral part of modern
+industry, where data from its operations and customers are mined for gaining business insight. It is also
+important in modern scientific endeavors. Data mining is an interdisciplinary topic involving, databases,
+machine learning and algorithms. The course will cover the fundamentals of data mining. It will explain
+the basic algorithms like data preprocessing, association rules, classification, clustering, sequence
+mining and visualization. It will also explain implementations in open source software. Finally, case
+studies on industrial problems will be demonstrated.
+COURSE PLAN :
+ Week 1: Introduction, Data Preprocessing
+ Week 2: Association Rule Mining, Classification Basics
+ Week 3: Decision Tree, Bayes Classifier, K nearest neighbor
+ Week 4: Support Vector Machine, Kernel Machine
+ Week 5: Clustering, Outlier detection
+ Week 6: Sequence mining
+ Week 7: Evaluation, Visualization
+ Week 8: Case studies
+
+FOUNDATIONS OF DEEP LEARNING:
+CONCEPTS AND APPLICATIONS
+MULTIFACULTY
+PRE-REQUISITES :
+This course is designed to be self-contained and suitable for learners with no prior background in the subject. However, a basic
+familiarity with Python programming is recommended to facilitate better understanding of the concepts and hands-on components of
+the course
+INTENDED AUDIENCE :
+UG and PG students of all the AICTE affiliated institutions
+INDUSTRY SUPPORT :
+Deep Learning is a critical component in the AI and Data Science ecosystem, and this course aligns well with the skill requirements of
+leading technology and research-driven companies. The following industries and companies are likely to recognize and value this course
+due to their active engagement in AI and deep learning applications:
+•Technology Companies: Google, Microsoft, Amazon, Meta, Apple, IBM
+•AI and Data Science Firms: NVIDIA, OpenAI, DeepMind, DataRobot
+•IT Services and Consulting: TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini
+•Startups in AI/ML: Fractal Analytics, SigTuple, Mad Street Den, InData Labs
+•Healthcare and Bioinformatics: Siemens Healthineers, Philips, GE Healthcare, Tata Elxsi
+•Automotive and Robotics: Tesla, Bosch, Continental, Qualcomm
+•Finance and Banking: JPMorgan Chase, Goldman Sachs, PayPal, Razorpay, HDFC Bank (AI-driven risk modeling and fraud detection)
+This course will help learners build strong foundational knowledge and practical skills that are highly sought after in roles such as
+Machine Learning Engineer, AI Researcher, Data Scientist, Computer Vision Engineer, and NLP Specialist.
+COURSE OUTLINE :
+1.Deep Learning is a core pillar of modern Artificial Intelligence, powering applications in computer vision, natural language processing,
+healthcare, and robotics.
+2.With the rapid expansion of AI-related programs in AICTE-affiliated institutions, it's essential for students to build a strong foundation
+in this field.
+3.This course is designed to guide learners step-by-step—from the basics of neural networks to advanced architectures like CNNs,
+RNNs, and Autoencoders.
+4.Emphasis is placed on both conceptual clarity and practical implementation using Python and Google Colab.
+5.By the end of the course, students will be able to apply deep learning algorithms on real-world data to develop intelligent solutions.
+
+COURSE PLAN :
+Week 1 :
+• Overview of machine learning and deep learning, difference between ML and DL with an example, History and Evolution of
+Deep Learning with computational efficiency.
+• Introduction to Artificial Neural networks: Perceptron: Single Layer Perceptron, Perceptron Learning Algorithm, Single Layer
+Perceptron numerical problem, Limitations of Single Layer Perceptron
+• Introduction to Colab environment and Hands-on on building a simple perceptron model using colab.
+• Introduction to Multilayer Perceptron, Difference between Shallow neural networks, deep neural networks, how to design
+the NN with an examples, Activation Functions, Loss Functions.
+• Key takeaways: A conceptual and practical foundation on the basic architecture of Neural Networks.
+Week 2 :
+• Gradient Descent (GD) and Mathematical formulation of Backpropagation algorithm.
+• Momentum-Based GD, Nesterov Accelerated GD, Stochastic GD, AdaDelta, AdaGrad, RMSProp, Adam.
+• Regularization Techniques: L1/L2 regularization, dropout, Early stopping, data augmentation.
+• Hands-on on building the Artificial Neural Network for classification and regression problems with exposure to
+hyperparameter tuning.
+• Key takeaways: Understanding training algorithms with mathematical foundations, along with implementation and
+optimization in real-world applications.
+Week 3 :
+• Convolutional Neural Networks: Fundamentals of Image representation and Image preprocessing and Data augmentation
+• Introduction to Convolutional Neural Networks, Inspiration behind CNN, Key Components of CNN, CNN layers explanation
+in detail with math behind.
+• Hands-on on building a simple CNN model for binary and multiclass classification.
+• Key takeaways: Understand how CNNs learn visual patterns, preprocess and augment image data, and how to build
+effective convolution-based models from the scratch.
+Week 4 :
+• Standard CNN architectures: AlexNet, VGGNet, GoogLeNet, ResNet, Introduction to Transfer Learning.
+• Hands-on on transfer learning and building an ensemble model.
+• Key takeaways: Understand the progression from AlexNet to ResNet, and also be able to apply powerful pretrained
+models using transfer learning and boost performance using ensemble techniques.
+Week 5:
+• Introduction to XAI, Need for XAI, Techniques of XAI, XAI methods with mathematical foundations and numerical example
+(PCI, Occlusion, SHAP, LIME, Grad-CAM, Guidede Backpropagation, CAMs)
+• Hands-on: Interpreting the results of CNN model using XAI techniques
+• Key takeaways: Understand the theory behind explainable AI, apply the techniques to interpret deep learning models results
+Week 6 :
+• CNN based segmentation algorithms: UNet, Attention-based UNet.
+• CNN based Object Detection models: YOLO, RCNN, Faster RCNN models.
+• Hands-on on object detection using YOLO
+• Hands-on on UNet and attention based UNet
+• Key takeaways: Understanding of modern CNN-based segmentation and detection architectures and be able to apply them to
+real-world tasks.
+Week 7:
+• Sequence-to-sequence models: Introduction to Recurrent Neural Networks, limitations of Neural Network, Need for RNN and
+their structure.
+• Variants of RNN
+• Challenges in RNN (Vanishing and Exploding Gradients), Backpropagation through time,
+• Numerical problem on RNN
+• Hands-on on building RNN and its variants on structured data
+• Key takeaways: Conceptual foundation in sequential deep learning models using RNNs and understand their limitations.
+Week 8:
+• Introduction to Long-short term memory (LSTM) architecture and its necessity, Bidirectional LSTM, Stacked LSTMs
+• Understand the GRU architecture, Compare LSTM vs GRU: speed, accuracy, complexity. When to use GRU over LSTM
+• Why attention mechanism in RNNs, working of attention mechanism, benefits of attention mechanism
+• Hands-on on building LSTM models for structured and unstructured data.
+• Key takeaways: A conceptual and practical understanding of LSTMs, GRUs, and attention-enhanced RNNs.
+Week 9:
+• Introduce NLP tasks, Classical NLP vs Deep Learning NLP, Text Preprocessing: Tokenization, Stopwords, Lemmatization
+• Word Representations: One-hot encoding, Word embeddings: Word2Vec, GloVe, FastText
+• Hands on session on RNN for NLP task
+• Key takeaways: Foundation in classical and deep learning–based NLP techniques.
+Week 10:
+• Unsupervised Learning: Introduction to Autoencoder, Architecture of AE with mathematical foundation.
+• Types (Simple, Deep, CNN-based, Types), Training of Autoencoders.
+• Hands-on on building an AE and its variants.
+• Key takeaways: Understanding the working mechanism of Autoencoders and its implementation.
+Week 11:
+• Transformer architectures: Self Attention, Encoder Decoder Attention, In-context-learning, Low-rank adaptation.
+• Self-supervised learning: Objectives and Loss Functions, Masked Language Modeling.
+• Hands-on session
+• Key takeaways: A strong conceptual foundation in Transformers, attention mechanisms, self-supervised learning, and
+parameter-efficient fine-tuning.
+Week 12:
+• Large Language Models: Tokenizers, Pre-training and post-training, multimodal alignment, model compression, Reinforcement
+Learning for fine-tuning, Proximal Policy Optimization, Benchmarking and Evaluation of LLMs.,
+• Diffusion Models: Deep generative models, VAEs and GANs, Forward and reverse diffusion, Denoising Score Matching,
+Variational Lower Bounds, Stable Diffusion.
+• Hands-on session
+• Key takeaways: Understand how LLMs are trained, aligned, compressed, and evaluated, how multimodal and instructionfollowing capabilities emerge. Concepts of generative models like VAEs, GANs, and Diffusion Models work and how Stable
+Diffusion uses latent-space denoising to generate high-quality images
+
+Deep Learning for Natural Language Processing
+Prof. Pawan Goyal, IIT Kharagpur
+
+Course ID
+108105572
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+Natural Language Processing finds its applications nearly everywhere -- be it Machine Translation,Question answering, Text Summarization, Dialogs, etc. In the last decade, Deep Learning basedmethods have given very good performance across a variety of NLP tasks, and have become a default choice for NLP problems. This course aims to give a thorough understanding of various deep learning architectures along with their specific use-cases in NLP.The course will also introduce the fundamental ideas behind training as well as fine-tuning/prompting the Large Language Models, which include in-context-learning, Parameter-efficient-fine-tuning,Reinforcement Learning through Human Feedback (RLHF). The course will also offer hands-on tutorials to help students master this subject.
+Course Details
+Intended Audience
+Advanced UG and PG students
+Prerequisites
+Participants should have done a course on MachineLearning, and should know basics of PythonProgramming
+Industry Support
+Google,Microsoft, Amazon, Flipkart, Adobe
+Category
+COMP_SCI_ENGG, Domain_15, Domain_3
+Course Layout
+Week	Topics
+Week 1	Introduction to NLP: What is Natural Language Processing? A brief primer on word and sentence level tasks and n-gram language Model.
+Week 2	Introduction to Deep Learning Shallow and Deep Neural Networks Representation Learning
+Week 3	Word Representations Word2Vec Glove fastText, Multilingual representations with emphasis on Indian Languages
+Week 4	Recurrent Neural Networks RNN LMs GRUs, LSTMs, Bi-LSTMs LSTMs for Sequence Labeling LSTMs for Sequence to Sequence
+Week 5	Attention Mechanism Sequence to Sequence with Attention Transformers: Attention is all you need
+Week 6	Self-supervised learning (SSL), Pretraining Designing SSL objectives Pretrained Bi-LSTMs: ELMO Pretrained Transformers: BERT, GPT, T5, BART
+Week 7	Applications: Question Answering, Dialog Modeling, TextSummarization Multilingual extension with application to Indian languages
+Week 8	Instruction Fine-tuning, FLAN-T5, Reinforcement Learningthrough Human Feedback (RLHF)
+Week 9	In-context learning, chain-of-thought prompting. ScalingLaws. Various Large Language Models and unique architectural differences
+Week 10	Parameter Efficient Fine-tuning (PEFT) - LoRA, QLoRA
+Week 11	Handling Long Context, Retrieval Augmented Generation(RAG)
+Week 12	Analysis and Interpretability, ethical considerations
+Books And References
+Daniel Jurafsky and James H. Martin. 2024. Speech andLanguage Processing. 3rd Edition.https://web.stanford.edu/~jurafsky/slp3/
+
+NPTEL Online Certification Course
+
+Calculus of One Real Variable
+Prof. Joydeep Dutta, IIT Kanpur
+
+Course ID
+109104124
+Duration
+8 weeks
+Credits
+3
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+This course intend to develop a thorough understanding of the fundamental aspects of calculus of single variable which is fundamental tool in Sciences, Engineering and Economics.
+Course Details
+Intended Audience
+First year engineering, science and economics students with mathematics as main course.Prerequisites : Basic mathematics till 12th standard
+Category
+Mathematics
+Course Layout
+Week    Topics
+Week 1    Lecture 1: Introduction to Numbers Lecture 2: Countability and Uncountability Lecture 3: Examples of Irrational numbers Lecture 4: Functions Lecture 5: Limits of Functions-I
+Week 2    Lecture 6: Limit of Functions-II Lecture 7: Continuous Functions Lecture 8: Intermediate Value Theorem Lecture 9: Maximum Value Theorem Lecture 10: Supremum & Infimum
+Week 3    Lecture 11: Derivative of a Function Lecture 12: Rules of Differentiation Lecture 13: Derivatives maxima & minima Lecture 14: Rolle’s Theorem and Lagrange MVT(Mean-Value Theorem) Lecture 15: Monotonic Functions and Inverse Function
+Week 4    Lecture 16: Newton’s Method for solving Equations Lecture 17: Optimization Problems Lecture 18: Integration-I : In the style of Newton and Leibnitz Lecture 19: Integration-II : In the spirit of Newton and Leibnitz Lecture 20: Integration-III : Newton and Leibnitz Style
+Week 5    Lecture 21: Indefinite Integrals Lecture 22: Integration by Parts Lecture 23: Integration of Rational Functions Lecture 24: Trapezoidal Rule for evaluating definite integral Lecture 25: Simpson’s Rule for evaluating definite integral
+Week 6    Lecture 26: Applications of Definite Integral-I Lecture 27: Applications of Definite Integral-II Lecture 28: Applications of Definite Integral-III Lecture 29: Applications of Definite Integral-IV Lecture 30: Transcendental Functions-I
+Week 7    Lecture 31: Transcendental Functions-II Lecture 32: Taylor’s Expansion-I Lecture 33: Taylor’s Expansion-II Lecture 34: Infinite Sequence-I Lecture 35: Infinite Sequence-II
+Week 8    Lecture 36: Infinite series and their convergence Lecture 37: Tests for Convergence of a series Lecture 38: Absolute and conditional convergence Lecture 39: Power Series Lecture 40: Historical Development of the Calculus
+Books And References
+Calculus by M Spivak
+Calculus by Thomos and Finney.
+
+ADVANCED LINEAR ALGEBRA
+PROF. PREMANANDA BERA
+Department of Mathematics
+IIT Roorkee
+PRE-REQUISITES : Linear Algebra B.Sc /BE I/II year
+INTENDED AUDIENCE : Master students of Mathematics,,Physics, B.Tech III Year Electrical, Computer Science.
+COURSE OUTLINE :
+This course is designed to provide students with an understanding of Mathematical concept on Linear algebra that
+includes basic as well as advanced level. Attempt is taken to cover both Both theoretical as well as computation
+perspectives. There are six componenets:
+(i) Linear System of equations
+(ii) Vector spaces
+(iii) Linear transformations
+(iv) Cannonical forms and Jordan forms
+(v) Inner product spaces and different operators in it
+(vi ) Bilinear and Quadratic forms, Orthogonal projection and Spectral theory, and
+(vii) Singular value decomposition.
+COURSE PLAN :
+1.1 System of linear equation (Review)
+1.2 Elementary matrix operation, elementary matrices,
+1.3 Rank of matrix, Matrix inverse
+1.4 Vector spaces,
+1.5 Subspaces
+1.6 Bases, and dimension
+1.7 Ordered basis, coordinate matrix
+1.8 Computation concerning subspaces
+1.9 Linear transformation,
+1.10 Existence of Linear transformation
+1.11 Rank Nullity theorem(Review)
+1.12 Representation of transformations by matrices
+1.13 Change of ordered basis and matrix representation of transformations
+1.14 Algebra of Linear Transformation
+1.15 Linear operators and Linear Functional
+1.16 Dual Space, Double dual spaces
+1.17 Transpose of Linear transformation
+1.18 Characteristic values, diagonalization, (Review)
+1.19 Annihilating polynomials
+1.20 Invariant subspace
+1.21 Triangulation (2)
+1.22 Simultaneous triangulation and simultaneous diagonalization
+1.23 Direct sum decomposition
+1.24 Invariant direct sums
+1.25 The primary decomposition theorem
+1.26 Jordan forms
+1.27 Rational form
+1.28 Inner product spaces
+1.29 Gramian matrix, Gram Schmidt orthogonalization
+1.30 Orthogonal complements, Best approximation
+1.31 Operators on Inner product spaces
+1.32 The adjoint of a linear operator
+1.33 Normal and self adjoint operator
+1.34 Unitary and orthogonal operators and their matrices
+1.35 Bilinear and Quadratic forms
+1.36 Orthogonal projections and the spectral theorem
+1.37 *Generalized g-inverse of a matrix, The Singular value decomposition
+
+APPLIED LINEAR ALGEBRA IN AI AND ML
+PROF:SWANAND KHARE
+Department of Mathematics
+IIT Kharagpur
+PRE-REQUISITES : Senior undergraduate and post graduate students from CSE, EE, ECE, AI, Maths
+INTENDED AUDIENCE : First course in Engineering Mathematics with some exposure to linear algebra
+COURSE OUTLINE :
+Linear algebra, optimization techniques and statistical methods together form essential tools for most of the algorithms in artificial
+intelligence and machine learning. In this course, we propose to build some background in these mathematical foundations and
+prepare students to take on advanced study or research in the field of AI and ML. The objective of this course is to familiarize
+students with the important concepts and computational techniques in linear algebra useful for AI and ML applications. The
+unique objective of this course and the distinguishing point from the existing courses on the similar topics is the illustration of
+application of these concepts to many problems in AI and ML. Some of the key topics to be covered in this course are listed
+below: least squares solution, parameter estimation problems, concept of cost function and relation to parameter estimation,
+constrained least squares, multi-objective least squares, applications to portfolio optimization, sparse solutions to
+underdetermined systems of linear equations, applications to dictionary learning, eigenvalue eigenvector decomposition of
+square matrices, spectral theorem for symmetric matrices, SVD, multicollinearity problem and applications to principal component
+analysis (PCA) and dimensionality reduction, power method, application to Google page ranking algorithm, inverse eigenvalue
+problem, construction of Markov chains from the given stationary distribution, low rank approximation and structured low rank
+approximation problem (SLRA), Autoregressive model order selection using Hankel SLRA, approximate GCD computation and
+application to image de- blurring, tensors and CP tensor decomposition, tensor decomposition based sparse learning in deep
+networks, matrix completion problems, application to collaborative filtering
+COURSE PLAN:
+Week 1: Vectors, operations on vectors, vector spaces and subspaces,inner product and vector norm, linear dependence and
+independence, Matrices, linear transformations, orthogonal matrices
+Week 2: System of linear equations, existence and uniqueness, left and right inverses, pseudo inverse, triangular systems
+Week 3: LU decomposition and computational complexity, rotators and reflectors, QR decomposition, Gram Schmidt
+Orthogonalization
+Week 4: Condition number of a square matrix, geometric interpretation, norm of matrix, sensitivity analysis results for the system
+of linear equations
+Week 5: Linear least squares, existence and uniqueness, geometrical interpretation, data fitting with least squares, feature
+engineering, application to Vector auto-regressive models, fitting with continuous and discontinuous piecewise linear functions
+Week 6: Application of least squares to classification, two-class and multi-class least squares classifiers, Polynomial classifiers,
+application to MNIST data set
+Week 7: Multi-objective least squares, applications to estimation and regularized inversion, regularized data fitting and
+application to image de-blurring, constrained least squares, application to portfolio optimization
+Week 8: Eigenvalue eigenvector decomposition of square matrices,spectral theorem for symmetric matrices
+Week 9:SVD, relation to condition number, sensitivity analysis of least squares problems, variation in parameter estimates in
+regression
+Week 10: Multicollinearity problem and applications to principal component analysis (PCA) and diinensionality reduction, power
+method, application to Google page ranking algorithm
+Week 11: Underdetermined systems of linear equations, least norm solutions, sparse solutions, applications in dictionary learning
+and sparse code recovery, inverse eigenvalue problem, application in construction of Markov chains from the given stationary
+distribution
+Week 12: Low rank approximation (LRA) and structured low rank approximation problem (SLRA), application to model order
+selection in time series, alternating projections for computing LRA and SLRA
+
+Linear Algebra
+Prof. Dilip P. Patil, IIT Bombay
+
+Course ID
+111108098
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+
+The main purpose of this course in the study of linear operators on finite dimensional vector spaces. The idea is to emphasize the simple geometric notions common to many parts of mathematics and its applications. Except for an occasional reference to undergraduate mathematics, the course will be self-contained. The algebraic co-ordinate free methods will be adopted through out the course. These methods are elegant and as elementary as the classical as coordinatized treatment. The scalar field will be arbitrary (even a finite field), however, in the treatment of vector spaces with inner products, special attention will be given to the real and complex cases. Determinants via the theory of multilinear forms. Variety of examples of the important concepts. The exercises will constitute significant asstion ; ranging from routine applications to ones which will extend the very best students.
+
+INTENDED AUDIENCE	: BSc / BE /ME/ MSc / PhD
+
+PREREQUISITES		: Language of Set Theory; Elementary Algebra and Calculus 
+Course Details
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Introduction to Algebraic Structures - Rings and Fields. Definition of Vector Spaces. Examples of Vector Spaces. Definition of subspaces. Examples of subspaces.
+Week 2	Examples of subspaces (continued). Sum of subspaces. System of linear equations. Gauss elimination. Generating system , linear independence and bases.
+Week 3	Examples of a basis of a vector space. Review of univariate polynomials. Examples of univariate polynomials and rational functions. More examples of a basis of vector spaces. Vector spaces with finite generating system.
+Week 4	Steinitzs exchange theorem and examples. Examples of finite dimensional vector spaces. Dimension formula and its examples. Existence of a basis. Existence of a basis (continued).
+Week 5	Existence of a basis (continued). Introduction to Linear Maps. Examples of Linear Maps. Linear Maps and Bases. Pigeonhole principle in Linear Algebra.
+Week 6	Interpolation and the rank theorem. Examples. Direct sums of vector spaces. Projections. Direct sum decomposition of a vector space.
+Week 7	Dimension equality and examples. Dual spaces. Dual spaces (continued). Quotient spaces. Homomorphism theorem of vector spaces.
+Week 8	Isomorphism theorem of vector spaces. Matrix of a linear map. Matrix of a linear map (continued). Matrix of a linear map (continued). Change of bases.
+Week 9	Computational rules for matrices. Rank of a matrix. Computation of the rank of a matrix. Elementary matrices. Elementary operations on matrices.
+Week 10	LR decomposition. Elementary Divisor Theorem. Permutation groups. Canonical cycle decomposition of permutations. Signature of a permutation.
+Week 11	Introduction to multilinear maps. Multilinear maps (continued). Introduction to determinants. Determinants (continued). Computational rules for determinants.
+Week 12	Properties of determinants and adjoint of a matrix. Adjoint-determinant theorem. The determinant of a linear operator. Determinants and Volumes. Determinants and Volumes (continued).
+Books And References
+Artin, M. : Algebra, Prentice-Hall, 1994.
+Halmos, P. R. : Finite-Dimensional Vector Spaces, Springer-Verlag, 1993.
+Herstein, I. N. : Topics in Algebra, Wiley Eastern, 1987.
+Hoffman, K. and Kunze, R. : Linear Algebra, Prentice-Hall, 1972.
+Jacobson, N. : Basic Algebra, Vols. I & II, Hindustan Pub. Co., 1984.
+Greub, W. : Linear Algebra, Springer-Verlag, GTM 97, (4-th edition) 1981.
+
+BASIC LINEAR ALGEBRA
+PROF. I. K. RANA
+Department of Mathematics
+IIT Bombay
+INTENDED AUDIENCE : B.Tech, B.Sc., M.Sc (maths) , BA/MA Economics/Statistics
+PREREQUISITES : Core
+INDUSTRY SUPPORT : Basic mathematics at school level undergraduate level
+COURSE OUTLINE :
+Linear Algebr is a basic course for students intended to go for Engineering sudies and higher studies in
+Mathematics. We will cover the basic tools needed in these brances.
+COURSE PLAN :
+ Week 1: Matrices and Matrix operations, REF
+ Week 2: Linear systems, Gauss Elimination and Inverse of a matrix
+ Week 3: Rn; subspaces, linear independence, rank of a matrix
+ Week 4: Determinants, rank, inveribility
+ Week 5: Linear transformations,rank-nullity
+ Week 6: Inner product spaces, Gram-Schmidt process
+ Week 7: Eigenvalues and Eigenvectors
+ Week 8: Similarity, diagonalization and applications
+
+Linear programming and its applications to computer science
+Prof. Rajat Mittal, IIT Kanpur
+
+Course ID
+106104356
+Duration
+8 weeks
+Credits
+3
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+Linear programming is a special class of mathematical optimization problems where the constraints as well as the cost function is linear. This class of problems have known efficient algorithms, deep structural properties and wide applications in various fields.
+In this course we not only introduce and learn about linear programming, but also see its uses in different areas of computer science (algorithms, algorithmic game theory, theoretical computer science, machine learning).
+Course Details
+Intended Audience
+Senior undergraduate (3rd or 4th year) and masters/phd students in CSE
+Prerequisites
+Linear algebraBasic Linear Algebra - https://nptel.ac.in/courses/111101115Linear Algebra - https://nptel.ac.in/courses/111104137https://nptel.ac.in/courses/111106135
+Category
+COMP_SCI_ENGG, Domain_15
+Course Layout
+Week	Topics
+Week 1	After talking about the motivation behind studying linear programming, we will move to the basics of liner algebra. In particular, we will cover Gaussian elimination, rank-nullity, column space-row space duality. The definition and basics of linear programming will be covered. The other part of the background will cover the basics of linear and affine combinations, convex sets, cones and polyhedras; essential to understand the structure behind convex optimization and motivate why so many special cases of it can be solved efficiently. This will lead to simplex algorithm.(Contd)
+Week 2	After talking about the motivation behind studying linear programming, we will move to the basics of liner algebra. In particular, we will cover Gaussian elimination, rank-nullity, column space-row space duality. The definition and basics of linear programming will be covered. The other part of the background will cover the basics of linear and affine combinations, convex sets, cones and polyhedras; essential to understand the structure behind convex optimization and motivate why so many special cases of it can be solved efficiently. This will lead to simplex algorithm.(Contd)
+Week 3	After talking about the motivation behind studying linear programming, we will move to the basics of liner algebra. In particular, we will cover Gaussian elimination, rank-nullity, column space-row space duality. The definition and basics of linear programming will be covered. The other part of the background will cover the basics of linear and affine combinations, convex sets, cones and polyhedras; essential to understand the structure behind convex optimization and motivate why so many special cases of it can be solved efficiently. This will lead to simplex algorithm.
+Week 4	This module will start with hyperplane separation theorems. Duality theory, one of the main reasons why linear programming has so many applications, will be covered in detail. As an application of strong duality, we will start with Von Neumann’s minimax theorem. The minimax theorem will be used to show the existence of Nash equilibria (from John Nash of “a beautiful mind”); we will also cover Yao’s technique to give lower bounds in communication complexity setting. (Contd)
+Week 5	This module will start with hyperplane separation theorems. Duality theory, one of the main reasons why linear programming has so many applications, will be covered in detail. As an application of strong duality, we will start with Von Neumann’s minimax theorem. The minimax theorem will be used to show the existence of Nash equilibria (from John Nash of “a beautiful mind”); we will also cover Yao’s technique to give lower bounds in communication complexity setting.
+Week 6	The relation between primal and dual can be used to show the famous max flow-min cut theorem. We will discuss primal-dual methods too, this will allow us to develop an algorithm for the max flow problem.
+Week 7	In many instance, the quantity in focus does not turn out to be a linear program, instead it is modeled as a integer linear program (ILP). We will introduce the concept of relaxation of a linear program. The concept of relaxation and its rounding will be used to give approximation algorithm for set cover problem.
+Week 8	We will discuss some applications of linear programming in machine learning. In particular, tasks like linear regression and classification will be approached with linear programming tools. If time permits, we will see other applications (like in the area of Boolean functions) of linear programming and possible extensions.
+Books And References
+Linear algebra and its applications, Gilbert Strang.
+Convex optimization, Boyd and Vandenberghe.
+Linear programming, Dantzig and Thapa.
+Linear programming, Vasek Chvatal.
+
+PROF. G SRINIVASAN
+Department of Management Studies
+IIT Madras
+INTENDED AUDIENCE : Students, young managers/executives
+INDUSTRIES APPLICABLE TO : Most industries should recognize this course.
+COURSE OUTLINE :
+This course is aimed at being a pre term or a preparatory course for probability and statistics. It is
+very basic and introduces the students to the understanding of data and measuring associations. It
+also introduces the concepts of probability and distibutions
+COURSE PLAN :
+Week 1: Different types of data, Tables, charts, histograms, frequency distributions
+Week 2: Measures of association
+Week 3: Probability concepts, conditional probability, Bayes theorm
+Week 4: Probability distributions – random variable, expected value and variance, Discrete
+distributions – Binomial, Poisson Continuous distributions – Uniform, Normal
+INTRODUCTION TO PROBABILITY AND
+STATISTICS
+
+PROF. SOMESH KUMAR
+Department of Mathematics
+IIT Kharagpur
+PRE-REQUISITES: Must have good knowledge of Differential and Integral Calculus, sequences and series, Basic Linear/
+Matrix Algebra (usually students who have completed Mathematics-I and II at first year undergraduate
+PROBABILITY AND STATISTICS
+1. Sets, Classes, Collections
+2. Sequence of Sets
+3. Ring, Field (Algebra)
+4. Sigma-Ring, Sigma-Field, Monotone Class
+5. Random Experiment, Events
+6. Definitions of Probability
+7. Properties of Probability Function-I
+8. Properties of Probability Function-II
+Week 2:
+9. Conditional Probability
+10. Independence of Events
+11. Problems in Probability-I
+12. Problems in Probability-II
+13. Random Variables
+14. Probability Distribution of a Random Variable-I
+INTENDED AUDIENCE : Any Interested Learners.
+INDUSTRY SUPPORT : Today all industries use statistical methods. So for students desirous to work in any type of
+industry, this course will be indispensable. In particular, companies dealing with Business Analytics, Banking and finance,
+Insurance machine learning, data mining etc. this course will be invaluable.
+COURSE OUTLINE :
+The use of statistical reasoning and methodology is indispensable in modern world. It is applicable to every discipline, be it physical sciences,
+engineering and technology, economics or social sciences. Much of the advanced research in electronics, electrical, computer science, industrial
+engineering, biology, genetics, and information science relies increasingly on use of statistical tools. It is essential for the students to get acquainted
+with the subject of probability and statistics at an early stage. The present course has been designed to introduce the subject to undergraduate/
+postgraduate students in science and engineering. The course contains a good introduction to each topic and an advance treatment of theory at a
+fairly understandable level to the students at this stage. Each concept has been explained through examples and application oriented problems.
+COURSE PLAN :
+Week 1:
+1. Sets, Classes, Collections
+2. Sequence of Sets
+3. Ring, Field (Algebra)
+4. Sigma-Ring, Sigma-Field, Monotone Class
+5. Random Experiment, Events
+6. Definitions of Probability
+7. Properties of Probability Function-I
+8. Properties of Probability Function-II
+Week 2:
+9. Conditional Probability
+10. Independence of Events
+11. Problems in Probability-I
+12. Problems in Probability-II
+13. Random Variables
+14. Probability Distribution of a Random Variable-I
+Week 3:
+15. Probability Distribution of a Random Variable-II
+16. Moments
+17. Characteristics of Distributions-I
+18. Characteristics of Distributions-II
+19. Special Discrete Distributions-I
+20. Special Discrete Distributions-II\
+Week 4:
+21. Special Discrete Distributions-III
+22. Poisson Process-I
+23. Poisson Process-II
+24. Special Continuous Distributions-I
+25. Special Continuous Distributions-II
+26. Special Continuous Distributions-III
+Week 5:
+27. Special Continuous Distributions-IV
+28. Special Continuous Distributions-V
+29. Normal Distribution
+30. Problems on Normal Distribution
+31. Problems on Special Distributions-I
+32. Problems on Special Distributions-II
+Week 6:
+33. Function of a Random Variable-I
+34. Function of a Random Variable-II
+35. Joint Distributions-I
+36. Joint Distributions-II
+37. Independence, Product Moments
+38. Linearity Property of Correlation and Examples
+Week 7:
+39. Bivariate Normal Distribution-I
+40. Bivariate Normal Distribution-II
+41. Additive Properties of Distributions-I
+42. Additive Properties of Distributions-II
+43. Transformation of Random Variables
+44. Distribution of Order Statistics
+Week 8:
+45. Basic Concepts
+46. Chi-Square Distribution
+47. Chi-Square Distribution (Cont…), t-Distribution
+48. F-Distribution
+49. Descriptive Statistics – I 50. Descriptive Statistics – II
+Week 9:
+51. Descriptive Statistics – III
+52. Descriptive Statistics – IV
+53. Introduction to Estimation
+54. Unbiased and Consistent Estimators
+55. LSE, MME 56. Examples on MME, MLE
+Week 10:
+57. Examples on MLE-I
+58. Examples on MLE-II, MSE
+59. UMVUE, Sufficiency, Completeness
+60. Rao-Blackwell Theorem and its Applications
+61. Confidence Intervals-I
+62. Confidence Intervals- II 63. Confidence Intervals- III\
+Week 11:
+64. Confidence Intervals- IV
+65. Basic Definitions
+66. Two Types of Errors
+67. Neyman-Pearson Fundamental Lemma 68. Applications of N-P Lemma-I
+69. Applications of N-P Lemma-II
+Week 12:
+70. Testing for Normal Mean
+71. Testing for Normal Variance
+72. Large Sample Test for Variance and Two Sample Problem
+73. Paired t-Test
+74. Examples
+75. Testing Equality of Proportions
+
+
+Stochastic Approximation: Theory and Applications
+Prof. Gugan Chandrashekhar Mallika Thoppe, IISc Bangalore
+
+Course ID
+106108700
+Duration
+12 weeks
+Credits
+4
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Stochastic approximation refers to a class of iterative algorithms that can locate zeroes or optimal points of functions in scenarios where the function evaluations are compromised by noise. These algorithms are prominently utilized in regression, system identification, adaptive control, and increasingly in reinforcement learning and machine learning. This course will explore the design, theoretical convergence, and convergence rates of these algorithms, with a particular emphasis on applications in reinforcement learning
+Course Details
+Intended Audience
+UG, Masters and Ph.D. students in Computer Science and Engineering/Electronics and Communication Engineerings/Mathematics
+Prerequisites
+Real analysis, Measure-theoretic Probability, Optimization, Design and Analysis of Algorithms, Ordinary Differential Equations
+Industry Support
+Google Research, Microsoft Research, Adobe Research
+Category
+COMP_SCI_ENGG, Domain_7, Domain_23, Domain_15
+Course Layout
+Week	Topics
+Week 1	Introduction to stochastic approximation: Motivating examples from web-crawling and reinforcement learning
+Week 2	Conditional expectation: Examples, Definition, Least-squares-best predictor, Existence, Properties
+Week 3	Martingales: Filtration, Adapted Process, Definition, Examples, Convergence
+Week 4	Ordinary differential equations: Existence and Uniqueness of solutions, Gronwall inequality, Asymptotic Behaviors, Invariant sets, Internally chain transitive sets
+Week 5	Convergence of stochastic approximation algorithms: ODE method
+Week 6	Convergence of stochastic approximation algorithms: ODE method (continue.)
+Week 7	Convergence rates of linear stochastic approximation algorithms
+Week 8	Stability of stochastic approximation algorithms
+Week 9	Two-timescale stochastic approximation: Convergence
+Week 10	Stochastic Recursive Inclusions: Convergence
+Week 11	Applications to reinforcement learning
+Week 12	Applications to reinforcement learning (continue.)
+Books And References
+1. Borkar, Vivek S. Stochastic approximation: a dynamical systems viewpoint. Vol. 48. Springer, 2009.
+2. Grimmett, Geoffrey, and David Stirzaker. Probability and random processes. Oxford university press, 2020.
+3. Williams, David. Probability with martingales. Cambridge university press, 1991.
+4. Borkar, Vivek S. Probability theory: an advanced course. Springer Science & Business Media, 2012.
+5. Hirsch, Morris W., Stephen Smale, and Robert L. Devaney. Differential equations, dynamical systems, and an introduction to chaos. Academic press, 2013.
+
+Approximation Algorithm
+Prof. Palash Dey, IIT Kharagpur
+
+Course ID
+106105471
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+Many real-world problems are NP-complete. Hence, they are unlikely to admit a polynomial-time algorithm. In this course, we will study various techniques to design efficient algorithms to compute an approximately optimal solutions.
+Course Details
+Intended Audience
+Under-graduate and post-graduate students and faculty members.
+Prerequisites
+Knowledge of algorithm design principles.
+Industry Support
+All software companies especially Google, Microsoft, etc.
+Category
+COMP_SCI_ENGG, Domain_23
+Course Layout
+Week	Topics
+Week 1	Review of NP-Completeness
+Week 2	Approximation algorithm for the vertex cover, set cover, and traveling salesman problem
+Week 3	Approximation algorithm for the Knapsack problem and the job scheduling problems
+Week 4	Basics of linear programming
+Week 5	Deterministic rounding: set cover, vertex cover problems
+Week 6	Deterministic rounding: steiner tree, facility location problems
+Week 7	Randomized rounding: max-SAT problem
+Week 8	Randomized rounding: steiner tree, facility location problems
+Week 9	Primal-dual method: set cover
+Week 10	Primal-dual method: steiner tree
+Week 11	Semidefinite programming: max cut
+Week 12	Hardness of approximation: travelling salesman problem, job scheduling
+Books And References
+1. Approximation Algorithms by Vijay V Vazirani.
+2. The Design of Approximation Algorithm by David P. Williamson David B. Shmoys.

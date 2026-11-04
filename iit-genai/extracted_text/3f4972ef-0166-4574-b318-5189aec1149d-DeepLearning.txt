@@ -1,0 +1,118 @@
+Deep Learning Foundations for
+     GenAI & Agentic AI
+
+
+
+
+                                1
+              Session Flow
+• Problem-first approach
+• Neural Networks
+• Loss & Optimization
+• Overfitting
+• Attention
+• Transformers → GenAI
+
+
+
+                             2
+           Business Problem
+• Why is customer churn increasing?
+• What data needed?
+• How to model?
+
+
+
+
+                                      3
+       Neural Network Basics
+• Input → Weights → Activation → Output
+• Layers and neurons
+• Learn via weights
+
+
+
+
+                                          4
+             Hands-on NN
+• Build simple NN
+• Train on dummy dataset
+• Observe outputs
+
+
+
+
+                           5
+              Loss Functions
+• MSE for regression
+• Cross entropy for classification
+• Goal: minimize error
+
+
+
+
+                                     6
+              Optimization
+• Gradient descent
+• Learning rate impact
+• Iterative improvement
+
+
+
+
+                             7
+                 Overfitting
+• Low train loss, high val loss
+• Memorization vs learning
+• Fix: dropout, more data
+
+
+
+
+                                  8
+          Attention Intuition
+• Focus on important inputs
+• Dynamic weighting
+• Context understanding
+
+
+
+
+                                9
+              Self Attention
+• Q, K, V concept
+• Compute similarity
+• Weighted output
+
+
+
+
+                               10
+              Transformers
+• Self-attention + feedforward
+• Parallel processing
+• Context-aware
+
+
+
+
+                                 11
+              GenAI Bridge
+• Transformers → LLMs
+• LLMs → Agents
+• Agents → decision systems
+
+
+
+
+                              12
+                Wrap Up
+• NN → Attention → Transformers
+• Foundation for GenAI
+• Next: Agentic AI
+
+
+
+
+                                  13
+

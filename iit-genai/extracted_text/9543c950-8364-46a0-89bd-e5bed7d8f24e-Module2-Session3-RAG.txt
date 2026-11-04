@@ -1,0 +1,893 @@
+Retrieval Augmented Generation
+             (RAG)
+            Koustav Rudra
+          Assistant Professor
+           AI, IIT Kharagpur
+What We'll Cover
+
+●   Motivating RAG
+●   Introduction to RAG
+●   Elaborate retrieval phase
+●   Common problems of RAG
+●   RAG variants
+●   RAG assessment framework
+Why RAG?
+Limitations with LLMs
+
+  LLMs can do a lot of tasks…   …but they suffer from
+
+         Summarize Text              Hallucinations
+
+
+                                   Verifiability issues
+         Generate Code
+
+                                   Knowledge cut-offs
+
+
+         Rewrite Content
+                                    Learning failures
+Limitations with LLMs: Hallucinations
+   What is the use of PMI of NLP?
+
+   In natural language processing (NLP), Pointwise Mutual Information (PMI) is often used
+   as a measure of the association between words in a corpus. It can be used to identify
+   words that are highly correlated and occur frequently together, which can be useful…
+
+   Can you give me citation for the above examples?
+
+   Here are some references for the examples of using PMI in natural language processing
+   (NLP) that I provided:
+
+   Language modeling: “Pointwise Mutual Information (PMI) for Language Modeling” by R.
+   B. Frazer and J. H. Lafferty (https://www.aclweb.org/anthology/W00-1308.pdf)
+   Information retrieval: “Information Retrieval using PMI-based Word Representations” by
+   T. Mitamura and K. Kise (https://www.aclweb.org/anthology/C04-1100.pdf)
+   Machine translation: “PMI-based Word Alignment for Statistical Machine Translation” by
+   K. Toutanova and C D. Manning (https://www.aclweb.org/anthology/W03-0419.pdf)
+Limitations with LLMs: Hallucinations
+   What is the use of PMI of NLP?
+
+   In natural language processing (NLP), Pointwise Mutual Information (PMI) is often used
+   as a measure of the association between words in a corpus. It can be used to identify
+   words that are highly correlated and occur frequently together, which can be useful…
+
+   Can you give me citation for the above examples?
+
+   Here are some references for the examples of using PMI in natural language processing
+   (NLP) that I provided:
+
+   Language modeling: “Pointwise Mutual Information (PMI) for Language Modeling” by R.
+   B. Frazer and J. H. Lafferty (https://www.aclweb.org/anthology/W00-1308.pdf)
+   Information retrieval: “Information Retrieval using PMI-based Word Representations” by
+   T. Mitamura and K. Kise (https://www.aclweb.org/anthology/C04-1100.pdf)
+   Machine translation: “PMI-based Word Alignment for Statistical Machine Translation” by
+   K. Toutanova and C D. Manning (https://www.aclweb.org/anthology/W03-0419.pdf)
+Limitations with LLMs: Hallucinations
+   What is the use of PMI of NLP?
+
+   In natural language processing (NLP), Pointwise Mutual Information (PMI) is often used
+   as a measure of the association between words in a corpus. It can be used to identify
+   words that are highly correlated and occur frequently together, which can be useful…
+
+   Can you give me citation for the above examples?
+
+   Here are some references for the examples of using PMI in natural language processing
+   (NLP) that I provided:
+
+   Language modeling: “Pointwise Mutual Information (PMI) for Language Modeling” by R.
+   B. Frazer and J. H. Lafferty (https://www.aclweb.org/anthology/W00-1308.pdf)
+   Information retrieval: “Information Retrieval using PMI-based Word Representations” by
+   T. Mitamura and K. Kise (https://www.aclweb.org/anthology/C04-1100.pdf)
+   Machine translation: “PMI-based Word Alignment for Statistical Machine Translation” by
+   K. Toutanova and C D. Manning (https://www.aclweb.org/anthology/W03-0419.pdf)
+Limitations with LLMs: Hallucinations
+
+      Dangers of hallucination:
+       -   Recipe with incompatible ingredients
+       -   Medical misguidance
+       -   Misidentification of military targets
+       -   Fabricated engineering designs with invalid parameters
+       -   Altering or deleting production databases with confidence
+Limitations with LLMs: Verifiability
+What would have Richard Nixon said if the Apollo landing failed?
+
+There’s no historical record of a “backup” speech for a failed Apollo 11 landing, so anything here is necessarily speculative—but we can
+infer what a statement from Richard Nixon would likely have emphasized based on how NASA and the White House prepared for worst-
+case scenarios.
+
+…
+
+A plausible version of his remarks might have been:
+
+      “Today, we have suffered a tragedy in our quest to reach the Moon. The astronauts of Apollo 11 set out in the noblest tradition
+      of exploration, and they did so on behalf of all mankind.
+
+      Their courage and sacrifice will not be forgotten. In them, we see the very best of human determination and spirit.
+
+      Though this mission has ended in sorrow, the United States will continue to pursue space exploration, not in recklessness, but
+      in honor of those who dared greatly.”
+
+…
+
+
+
+                                    Disclaimer by OpenAI
+Limitations with LLMs: Verifiability
+
+       Dangers with verifiability:
+        -   Distorted historical narratives (historians believe that…)
+        -   Fabricated expertise (according to my analysis…)
+        -   Personal manipulation (based on your habits…)
+        -   Religious or spiritual claims
+        -   Political manipulation
+Limitations with LLMs: Knowledge-cutoff
+
+    Who is the winner of IPL 2026?
+
+
+
+    I don't know who won the IPL 2026 title.
+
+    My knowledge doesn't include verified real-world results from events that may have occurred after
+    my training data, and I don't have live access to sports results in this conversation.
+
+    If the IPL 2026 season has already concluded, you can check the official IPL website or a sports
+    news source, and I can help analyze the tournament, teams, or statistics if you share the result.
+Limitations with LLMs: Knowledge-cutoff
+
+      Dangers with knowledge-cutoff:
+       -   Outdated medical information
+       -   Security vulnerabilities
+       -   Stale confidence (The recommended procedure is…)
+Motivation for RAG
+Motivation for RAG
+
+            What LLMs don’t know (the open book)
+
+   Private Databases
+   LLMs can’t access confidential information
+
+   Hard to access information
+   Some information isn’t widely available online, making it inaccessible to LLMs
+
+   Real time data
+   LLMs are trained on past data and don’t update automatically
+
+
+
+         How to make sure the LLM knows this useful information?
+Motivation for RAG
+
+
+  Put it in the prompt
+
+
+
+
+                         News reports
+    User prompt
+                         Forum posts    LLM
+Introduction to RAG
+Overview of RAG
+
+                            User Query
+ The RAG
+ Solution
+                       Retrieve Relevant Docs
+
+
+
+
+                         Augmented Prompt
+                        (Query + Documents)
+
+
+
+
+                  LLM Generates Grounded Response
+                                                    Lewis et. al. (2020). NeurIPS
+RAG architecture
+                  Retrieval           Generation
+
+  User prompt                                  LLM   Response
+
+
+
+
+                  RAG         Augmented
+                 system         prompt
+
+
+
+
+                Knowledge
+                  Base
+RAG Workflow
+
+                           Indexing           Retrieval          Generation
+
+
+
+
+                                      Basic RAG Workflow
+
+Motivation: LLMs can benefit from access to external knowledge sources for factual accuracy and
+reliability.
+
+How (Basic) RAG Works:
+Ø Input: User provides a query.
+Ø Retrieval: Relevant documents are retrieved from a knowledge source (e.g., Wikipedia).
+Ø Generation: The LLM uses the retrieved information to generate a response.
+
+Benefits:
+Factual Consistency: Improves the accuracy of generated content.
+Up-to-Date Information: Allows LLMs to access current information beyond their training data.
+  RAG Workflow
+
+Problem: LLMs can struggle with factual accuracy and limited pretrained information
+                                                                                              Indexing
+Solution: Give LLMs access to external knowledge sources.
+
+RAG Approach:
+                                                                                        Retrieval
+
+  ➢   User asks a question.
+
+  ➢   System finds relevant documents
+
+  ➢   LLM uses these documents to generate an accurate and reliable answer.
+
+Benefits:
+                                                                                         Output
+  ➢   More factual responses.
+
+  ➢   Access to up-to-date information.
+
+                                                                                      Naive RAG
+  RAG Workflow
+
+Advanced RAG: On top of the naive RAG workflow, we
+can add a pre-retrieval and a post retrieval step
+                                                                 Indexing   Pre-Retrieval               Indexing
+                                                                            1. Query Manipulation
+
+
+
+Pre-retrieval: rewrites user query                         Retrieval
+                                                                                            Retrieval
+
+Benefits:
+  ➢   Match domain-specific terminologies                                              Post-Retrieval
+                                                                                       1. Reranking
+                                                                                       2. Filtering
+
+  ➢   Provide additional context
+
+Post-retrieval: improves quality of added documents
+
+Benefits:                                                   Output
+
+  ➢   Reranks retrieved documents to reject irrelevant                                        Output
+      ones
+
+  ➢   Filter out low-value contents
+                                                         Naive RAG                   Advanced RAG
+RAG: Example
+Pre-Retrieval    Retrieval
+
+
+
+
+Post-Retrieval   Augmentation and Generation
+
+
+
+
+                                               https://ai.meta.com/blog/retrieval-augmented-
+                                               generation-streamlining-the-creation-of-intelligent-
+                                               natural-language-processing-models/
+ Sparse Retrieval
+ Sparse Retrieval in RAG: Keyword-Focused Search
+
+ Method: Matches documents based on shared keywords with the user's query.
+
+ Ranking: Uses algorithms like BM25 to score documents based on how often and how uniquely query terms appear.
+                                                           Query
+
+
+
+                                                          Sparse                              Top N most similar
+             Document
+                                                         Retriever                               documents
+          [Sparse Vectors]
+                                   Retrieves most
+                                       similar
+
+
+
+Strengths: Fast and efficient, especially for large datasets.
+
+Weakness: Limited understanding of meaning; might miss relevant documents that use different words.
+
+  ➢    Sparse retrieval methods are often more interpretable, as they provide clear reasoning based on term occurrences,
+
+       making it easier to understand why certain documents were retrieved.
+Dense Retrieval
+➢   Method: Uses deep learning (e.g., BERT, T5) to represent both queries and documents as vectors (embeddings) that
+
+    capture semantic meaning.
+
+➢   Matching: Finds documents with similar meanings to the query, even if they don't share exact keywords.
+
+                                                         Query
+
+                                Embedding
+
+
+                                                       Embedding                            Top N most similar
+       Vector Database                                   Model                                 documents
+                              Retrieves semantically
+                              similar documents
+
+
+
+
+➢   Strengths: More accurate and relevant retrieval, especially for complex or nuanced queries.
+
+➢   Weaknesses: Can be computationally more expensive than sparse methods.
+Augmentation and Generation
+➢   Grounding : Grounding involves providing LLMs with use-case specific data and knowledge sources that are
+    not inherently part of their original training data. RAG framework acts as grounding for LLMs
+
+
+                          Other
+                       instructions                                                       ---------------------
+                                                                                          ---------------------
+                                                                                          ---------------------
+                                         Prompt Template                                  ---------------------
+                                                                                            ----------------
+                                                                         LLM
+    Relevant retrieved context
+
+                                                                                          Generated Response
+
+       Query
+
+
+
+
+➢    The LLM processes the input and generates a coherent and contextually appropriate response.
+➢    This response leverages the external information retrieved in the augmentation step, allowing the model to
+     provide more accurate and nuanced answers.
+Elaborate retrieval phase
+Retrieval pipeline
+
+Raw documents are converted to retrieved chunks
+
+     Document Ingestion          Chunking                     Encoding / Indexing
+     Load PDFs, HTML,            Split docs into              Embed chunks
+ 1   databases. Handle       2   overlapping segments     3   (dense) or build
+     multiple formats.           (e.g. 256-512 tokens).       inverted index
+                                                              (sparse).
+
+
+
+
+     Query Processing            Retrieval & Ranking          Re-ranking (optional)
+     Encode the user query       Score candidate              Cross-encoder re-
+ 4   into same               5   chunks (cosine sim /     6   ranks top-k results.
+     representation as the       BM25). Return top-k          Improves precision.
+     index                       most relevant.
+Chunking and Query Formulation
+                                                     Example: “Cats are mammals. They sleep all day.
+ Chunking Strategies                                 Dogs are mammals too. They love long walks.”
+
+                                                                    Cats are mammals. They sl
+ Fixed-size chunking
+                                                                    eep all day. Dogs are mam
+ Simple sliding window (e.g. 512 tokens, 10%
+                                                                   mals too. They love long walks.
+ overlap). Fast but may split mid-sentence.
+                                                                       Cats are mammals.
+ Sentence / Paragraph
+                                                                        They sleep all day.
+ Split of natural sentence boundaries. Better
+                                                                      Dogs are mammals too.
+ coherence; relies on good sentence detection.
+                                                                       They love long walks.
+ Semantic chunking                                             Cats are mammals. They sleep all day.
+ Group semantically related sentences together              Dogs are mammals too. They love long walks.
+ using embedding similarity shifts.
+                                                       Cats are mammals.               Cats are mammals.
+ Hierarchical / parent-child                           They sleep all day.              They sleep all day.
+ Store small chunks for retrieval, retrieve larger   Dogs are mammals too.            Dogs are mammals too.
+                                                      They love long walks.
+ chunk to send to LLM (better context).                                                They love long walks.
+Chunking and Query Formulation
+                                                       Example: “How do I reduce my electricity bill?”
+ Query Formulation
+
+ Naive: query as-is                                       How do I reduce my electricity bill?
+ Send raw user question directly to retriever. Works
+ for simple, well-formed queries.
+                                                        Lower your electricity bill by switching to LED bulbs,
+ HyDE (Hypothetical Document)
+                                                          unplugging idle devices, using energy-efficient
+ Ask LLM to generate a hypothetical answer first;
+                                                           appliances, and adjusting your thermostat.
+ use that as the retrieval query.
+                                                              Ways to lower home energy costs
+ Multi-query
+ Generate multiple paraphrased queries; union the            Tips to save on power consumption
+ results. Handles ambiguity.                            How to make appliances more energy efficient
+
+ Step-back prompting                                      What factors affect household electricity usage?
+ Abstract the query to a higher-level concept before
+ retrieval. Improves coverage for complex
+ questions.
+                                                                     [2212.10496] Precise Zero-Shot Dense Retrieval without Relevance Labels
+                                                                 [2305.14283] Query Rewriting for Retrieval-Augmented Large Language Models
+  Retriever
+                    Retrieval
+
+
+
+
+        Documents                Document     User Query
+                                   Index
+
+Retriever:
+Google, BM25,       Generation
+Elser
+
+Parametric
+model: GPT-x,
+Claude, Gemini
+etc.                             Parametric    Model
+                                   Model      Response
+Information retrieval methods
+TF-IDF
+tf-idf (term frequency-inverse document frequency)
+
+Measure of importance of words in a document
+
+ ●   term frequency
+       ○ How frequent a term appears in a document
+       ○ More frequent words are aligned with the topic of the document
+
+ ●   inverse document frequency
+       ○ Inversely proportional to the number of documents containing the term
+       ○ Terms present in many documents are not significant
+TF-IDF
+E.g.: Consider the following three documents:
+
+
+
+
+        The cat                    The dog      The cat
+        sat on the                 sat on       chased
+        mat                        the dog      the dog
+
+
+
+            d1                        d2          d3
+TF-IDF
+           N = number of documents
+           d = current document
+           t = current term
+ The cat   df(t) = how many document contain t
+ sat on
+ the mat
+                 tf(t,d) = count(t in d) / total terms in d
+    d1
+                 idf(t) = log(N / df(t))
+                 tf-idf(t,d) = tf(t,d) * idf(t)
+
+                                       Term          TF       df    IDF    TF-IDF
+ The dog
+ sat on
+ the dog                                the        0.333      3    0.000   0.000
+
+    d2
+                                        cat        0.167      2    0.176   0.029
+
+                                        sat        0.167      2    0.176   0.029
+
+ The cat                                on         0.167      2    0.176   0.029
+ chased
+ the dog
+                                        mat        0.167      1    0.477   0.080
+    d3
+BM25: A Nonbinary Model
+The simplest score for document d is just idf weighting of the query terms present in the document:
+
+
+       Retrieval Status Value (RSV):
+
+ Improve this formula by factoring in the term frequency and document length:
+
+
+
+
+   ●    tf td : term frequency in document d
+   ●    Ld (Lave): length of document d (average document length in the whole collection)
+   ●    k1: tuning parameter controlling the document term frequency scaling
+   ●    b: tuning parameter controlling the scaling by document length
+Common problems of RAG
+RAG failure modes
+
+
+               Retrieval failures
+
+
+               Context Failures
+
+
+               Generation Failures
+RAG failure modes: Retrieval failures
+ Example Query: What is the return window for online orders?            Retrieved chunk:
+ Relevant chunk: Online orders can be returned for a refund
+ within 30 days of delivery.
+
+
+ Wrong chunk retrieved                                         “Our in-store exchange policy allows swaps
+                                                               within 14 days”
+ Semantic similarity neq relevance (vocabulary mismatch)       Wrong answer: 14 days.
+
+
+
+ Incomplete retrieval                                          “Online orders can be returned for a refund”
+                                                               Wrong answer: I don’t know.
+ Multi-hop questions need facts from multiple docs
+
+
+ Stale knowledge base                                          “Online return window: 15 days.” (last year’s policy)
+                                                               Wrong answer: 15 days.
+ Docs not updated, retriever returns outdated information
+RAG failure modes: Context Failures
+ Example Query: When was the company founded?                               Retrieved chunk(s):
+
+
+                                                               [chunk 1] Office locations…
+ Lost in the middle                                            [chunk 2] Mission statement…
+                                                               [chunk 5] Founded in 2008    < correct chunk
+                                                               [chunk 9] Product list…
+ LLMs ignore chunks in the middle of long contexts             [chunk 10] Contact info…
+                                                               Answer: I don’t know
+ Context overload
+                                                               [5 chunks about history, HR policies, blog
+                                                               posts, faqs…]
+ Too many retrieved chunks degrade generation quality          Answer: vague / mixed-up
+
+
+ Irrelevant context                                            “Our partner company was founded in 1999.”
+ Noisy chunks mislead the LLM even when good chunks            Wrong answer: 1999.
+ are also present
+
+                                                                 [2307.03172] Lost in the Middle: How Language Models Use Long Contexts
+                                                        [2302.00093] Large Language Models Can Be Easily Distracted by Irrelevant Context
+RAG failure modes: Generation Failures
+ Example Query: What is the refund window for online orders?                                   Retrieved chunk(s):
+
+
+
+
+ Hallucination despite retrieval                                                     “Refundable within 30 days”
+                                                                                     Answer: You get 30 days, and a free shipping
+                                                                                     label plus a 10% voucher.
+ LLM still generates facts not in retrieved docs
+
+
+ Knowledge conflict                                                                  Context: “30 days”
+                                                                                     Parametric memory: “most stores use 15 days”
+ Retrieved doc contradicts model’s parametric memory                                 Answer: 15 days
+
+
+ Attribution errors
+                                                                                     “Refundable within 30 days” [Policy.pdf]
+                                                                                     Answer: 30 days. [Source: Shipping-FAQ.pdf]
+ Model cites wrong source or ignores the provided context
+
+
+                                       [2311.05232] A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions
+Types of RAG
+●   Standard RAG
+●   RAG with memory
+●   Agentic RAG
+●   Chain-of-RAG
+Standard RAG
+It is Stateless: every query is treated independently
+
+
+
+Example:
+
+Q: "What is the boiling point of water at sea level?"
+
+
+ ●   system embeds the query
+ ●   looks up the closest passage in the document store (e.g., a physics reference)
+ ●   LLM answers "100°C" grounded in that retrieved passage.
+
+
+
+
+                                                                                  https://arxiv.org/abs/2005.11401
+Standard RAG
+                                      Questions
+                                          +
+          Questions                   Relevant
+                                        info                      Response
+  Query                 Retrieval                                                               Generated
+                                                                                                 Output
+                                                  LLM
+                                    Relevant
+               Lookup
+                                      info
+
+
+
+
+                        Database
+
+
+
+
+                                                  [2005.11401] Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
+Standard RAG with memory
+User asks:
+                                                     Some use-cases:
+ ● Q1: “I’m a vegetarian.”
+                                                       ●   personal AI agents
+ ● Q2: “Suggest high-protein foods.”                   ●   conversational chatbots
+                                                       ●   customer support systems
+                                                       ●   educational tutoring platforms
+
+
+  ●   It adds a memory of past turns.
+
+  ●   Memory is the system's ability to keep track of past interactions such as past
+      questions, answers, or retrieved documents.
+
+  ●   It doesn't just remember what was said, but understands how previous context can
+      influence new searches.
+Standard RAG with memory
+Example:
+
+Q1: "What is the capital of France?"
+
+A1: "Paris."
+
+Q2: "What about its population?"
+
+ ●   Here, user asks about the capital of France and later refers to 'its population,'
+ ●   system recalls the context to determine the query is still referring to Paris.
+ ●   rewrites the query to "What is the population of Paris?"
+ ●   Final answer: Paris has about 2.05 million
+ Standard RAG with memory
+                              Questions                            Questions
+                                  +                                    +
+                            Past Questions                        Relevant info         Response
+          Query                                  Retrieval                                         Generated Output
+
+
+                                                                                  LLM
+
+                         Relevant                            Relevant
+Lookup                                  Lookup
+                           info                                info
+
+
+
+
+     Past conversation                           Database
+
+
+
+
+                                                                                                     https://arxiv.org/abs/2005.11401
+Agentic RAG
+Example:
+
+Q1: "How many more people live in Paris's metropolitan area than in the city proper?"
+
+ ●   Steps (the agent plans and picks tools):
+      ○ Plan: decompose the two part, needs two figures, then do subtraction.
+      ○ Web Search / collection lookup: city proper ≈ 2.1M; metro ≈ 11.3M. The
+          current metro area population of Paris in 2025 is 11,347,000.
+      ○ Reflect: "Do I have both numbers? Yes." → proceed.
+      ○ Calculator tool: 11.3M − 2.1M = 9.2M.
+
+Final answer:
+“About 9.2 million more people live in the Paris metropolitan area than in the city proper.”
+Agentic RAG
+ ●       Instead of just retrieving the first relevant documents, it plans its approach
+ ●       decides what to investigate
+ ●       takes action using tools.
+ ●       it breaks a task into smaller steps and searches various data sources
+ ●       checks whether what it found answers the question, and if not, it keeps
+         searching.
+
+
+ Some use-cases:
+
+     ●     legal research where lawyers conduct comprehensive case analysis
+     ●     financial analysis that combines market data with regulatory information
+Agentic RAG
+                                   Tools
+
+                                Vector Search
+   Query      Retrieval Agent                   Collection A
+                                  Engine A
+
+
+
+                                Vector Search
+                                                Collection B
+                                  Engine B
+
+
+
+
+                                 Calculator
+  Response
+
+
+                   LLM           Web Search
+Chain-of-RAG (CoRAG)
+What if my question looks like this?
+
+"What's the nationality of the director of the film that won Best Picture the year Titanic was released?"
+
+
+
+The Problem with Traditional RAG:
+
+
+  ●   Imperfect Retrieval: a single-step retrieval often fails to gather all relevant information for
+      complex tasks
+
+
+  ●   Static Reasoning: the lack of iterative refinement leads to suboptimal generation
+
+
+  ●   Contextual Misalignment: queries are not adapted dynamically as new information
+      surfaces
+Chain-of-RAG (CoRAG)
+What CoRAG Does Differently?
+
+ ●    CoRAG extends the RAG framework by enabling dynamic, multi-step retrieval.
+
+ ●    Rather than stopping after one lookup, it iteratively refines queries based on intermediate
+      states, mirroring how humans approach problem-solving.
+
+ ●    This makes it especially strong at multi-hop question answering.
+
+
+
+
+  ●   Sub-query 1: "When was Titanic released?" → 1997.
+  ●   Sub-query 2: "What won Best Picture for 1997 films?" → Titanic itself (at the 1998 ceremony).
+  ●   Sub-query 3: "Who directed Titanic?" → James Cameron.
+  ●   Sub-query 4: "What is James Cameron's nationality?" → Canadian.
+CoRAG: Mechanics
+How it works?
+
+ ●   Dynamic Retrieval Chains: starting from the initial query, CoRAG iteratively refines and
+     retrieves sub-queries and sub-answers until sufficient information is gathered
+
+
+ ●   Rejection Sampling for Training: it generates intermediate retrieval chains to augment
+     training datasets, improving the model's reasoning capabilities
+
+
+ ●   Flexible Decoding Strategies: at inference it uses methods like greedy decoding, best-of-N
+     sampling, and tree search to balance performance and computational cost
+CoRAG: More examples
+             Question: What experiments led to the discovery of gravitational waves?
+Example 2:
+             Step 1: Sub-query: "What are gravitational waves?"
+                           Sub-answer: Ripples in spacetime caused by massive accelerating objects
+
+             Step 2: Sub-query: "Which experiment first detected gravitational waves?"
+                           Sub-answer: The LIGO experiment in 2015
+
+             Final Answer: The LIGO experiment in 2015 detected gravitational waves, confirming Einstein's
+             theory of general relativity
+
+
+
+             Question: What is the nationality of the director of the 1994 film that won Best Picture?
+Example 3:
+             Step 1: Sub-query: "Which film won Best Picture in 1994?"
+                           Sub-answer: Forrest Gump
+
+             Step 2: Sub-query: "Who directed Forrest Gump?"
+                           Sub-answer: Robert Zemeckis
+
+             Step 3: Sub-query: "What is Robert Zemeckis's nationality?"
+                            Sub-answer: American
+             Final answer: American
+RAG: Assessment Framework
+RAG boosts LLMs with external knowledge, but introduces failure points the source article identifies:
+
+  ●    Retrieval issues — wrong documents retrieved or key information missing
+  ●    Hallucination risk — the LLM generates content not in the retrieved documents
+  ●    Context utilization — the LLM fails to use retrieved information effectively
+
+
+Without evaluation, these lead to inaccurate or fabricated responses which is critical in high-stakes
+domains like pharmaceutical research where accuracy is paramount.
+
+
+ Two Leading Frameworks
+
+   ●    RAGAS
+   ●    TruLens
+RAGAS
+Retrieval-Augmented Generation Assessment Suite (RAGAS)
+
+ ●   It is an open-source, RAG evaluation framework
+
+ ●   It measures how well a system retrieves and utilises external context to generate accurate,
+     faithful and relevant responses.
+
+ ●   RAGAS evaluates the entire RAG pipeline i.e from context retrieval to answer generation
+
+
+ Answer Relevancy: Measures how closely the generated response matches the user’s query intent.
+ Faithfulness: Evaluates whether the response stays true to the retrieved evidence.
+ Context Precision: Assesses how relevant the retrieved chunks are to the query.
+ Context Recall: Determines whether all necessary information was retrieved.
+ Evaluation Dataset: Represents the structured input including questions, contexts, responses and
+ reference answers used for metric computation
+RAGAS
+Example:
+                          Field                                    Value
+
+
+                       question                      "Who wrote Romeo and Juliet?"
+
+                  contexts (what the            "Romeo and Juliet is a tragedy written by
+                   retriever pulled)                   William Shakespeare."
+                answer (what the LLM            "Romeo and Juliet was written by William
+                    generated)                         Shakespeare in 1597."
+
+                ground_truth (optional
+                                             "William Shakespeare wrote Romeo and Juliet."
+                     reference)
+
+  Notice: the answer adds "in 1597", which is not in the retrieved context.
+
+  That's a hallucinated detail (even if it happens to be plausible).
+
+  Watch how only one metric catches it.
+RAGAS
+Example:
+
+             Metric    Score                                 Why
+
+            Context
+                       ~1.0       The one retrieved chunk is fully on-topic for the question.
+           Precision
+            Context            The context contains everything the ground truth needs (the
+                       ~1.0
+            Recall             author).
+            Answer
+                       ~0.95           The answer directly addresses "who wrote it."
+           Relevancy
+
+                               Two claims in the answer: "written by Shakespeare" (supported
+                               by context) and "in 1597" (not in context).
+       Faithfulness    ~0.5
+                               Half the claims are grounded, so the score drops.
+                         Thank You
+  Instructor               Teaching Assistants (IITKGP)
+
+
+
+
+Koustav Rudra
+krudra@ai.iitkgp.ac.in     Anurag Sharma     Subhojyoti Khastagir
+

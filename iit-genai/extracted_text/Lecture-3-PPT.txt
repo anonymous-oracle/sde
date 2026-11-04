@@ -1,0 +1,1219 @@
+    The Transformer Architecture
+(Transformer Architecture, Attention,
+     Tokenization, & Decoding)
+             Niloy Ganguly
+                Professor
+             IIT Kharagpur
+Attention Based Model: Transformer
+
+
+
+     Attention Based Model: Transformer
+
+
+
+
+                           https://www.youtube.com/watch?v=LWMzyfvuehA
+                          Limitations of Pre-Attention Models
+Key issues that motivated the development of Attention Mechanisms
+
+
+
+01                        02                       03                         04                       05
+                          Vanishing &
+Fixed-Length                                       Poor Long-Range            No Parallelism in        Uniform Treatment
+                          Exploding
+Context Bottleneck                                 Dependencies               Training                 of Input
+                          Gradients
+
+
+
+Encoder-decoder           RNNs suffered from
+                                                   Information from early     RNNs process tokens      All input tokens were
+models compressed         gradients shrinking to
+                                                   tokens had to pass         sequentially — each      weighted equally when
+entire sequences into     zero or growing
+                                                   through many steps,        step depends on the      generating output,
+one fixed-size vector —   uncontrollably during
+                                                   getting diluted before     previous — making        with no mechanism to
+causing severe            backpropagation,
+                                                   reaching later positions   them slow to train and   selectively focus on
+information loss for      blocking long-range
+                                                   in the sequence.           difficult to scale.      what matters most.
+long inputs.              learning.
+Seq2Seq Model with RNN
+How Encoder–Decoder RNNs process sequences — and where they fall short
+
+
+
+
+① Encoder reads input             ② The final hidden state         ③ The Decoder generates            Key flaw: all input
+tokens step-by-step, updating     becomes the Context Vector —     output tokens one at a time,   information is forced through
+its hidden state at each token.   a single fixed-size summary of   conditioned only on this one   one bottleneck vector, losing
+                                  all input.                       context vector.                detail for long sequences.
+Seq2Seq with Attention Layer
+How the Attention mechanism transforms the Encoder–Decoder architecture
+
+
+
+
+① All hidden states retained            ② Dynamic context per step       ③ Context cₜ recomputed        ✓ Bottleneck eliminated
+Instead of a single final vector, all   Attention computes a weighted    A fresh context vector cₜ is   Long-range dependencies are
+encoder hidden states h₁…hₙ are         sum (αᵢ) of encoder states for   computed at every decoder      captured directly — no
+passed forward.                         each decoder step.               timestep, focusing on what's   information is lost through a
+                                                                         relevant.                      single vector.
+The Attention Idea
+
+
+
+     The Attention Idea
+
+
+
+
+              Attention treats each word’s representation as a query to access and
+              incorporate information from a set of values.
+              Bahdanau et al., 2015. Stanford NLP Course: CS224N
+Why Attention Alone Wasn't Enough
+Remaining limitations that led to Self-Attention and the Transformer architecture
+                              Limitations of RNN + Attention                                                           Transformer Solutions
+
+01 Still Sequential (RNN)                        02 One-Directional Attention                                Full Parallelism              Self-Attention
+The RNN encoder/decoder processed tokens         Attention only ran decoder→encoder.                  RNNs removed entirely           Every token attends to
+one at a time — no parallelisation across a      Tokens within the encoder couldn't attend            — all tokens processed          every other token in the
+sequence.                                        to each other.
+
+                                                                                             ➜
+                                                                                                      simultaneously.                 same sequence,
+                                                                                                                                      bidirectionally.
+
+
+                                                                                             led to
+03 Weak Long-Range in Encoder                    04 O(n) Information Path                             ◎ O(1) Dependency               ✦ Multi-Head
+Encoder states were still shaped by              Information still traveled through n                 Path                            Attention
+sequential RNN steps — early tokens got          recurrent steps to connect two distant               Any two tokens connect          Multiple heads capture
+diluted before being attended to.                tokens.                                              directly in one attention       different relationship
+                                                                                                      step, regardless of             types in parallel.
+                                                                                                      distance.
+
+
+05 No Intra-Sequence Attention                   06 No Positional Structure                           ⊕ Positional                    ✓ Attention is All
+Tokens couldn't ask 'what in this same           No built-in sense of position — any order            Encodings                       You Need
+sequence is relevant to me?' — the key idea      had to be implicitly learned through the             Explicit position signals       Vaswani et al. 2017: one
+of self-attention.                               RNN.                                                 added to embeddings —           unified architecture for
+                                                                                                      order without                   encode, decode, and
+                                                                                                      recurrence.                     cross-attend.
+The Self Attention Idea
+
+
+
+      The Self Attention Idea
+
+
+
+
+                          Self-attention is encoder-encoder (or decoder-decoder) attention where each
+                          word attends to each other word within the input (or output).
+
+
+                                                                                           Stanford NLP Course:
+Attention Based Model: Transformer
+
+
+
+     Attention Based Model: Transformer
+                                                  What is Self-Attention?
+Each element looks at all others and decides how much to focus on each.
+
+
+"The animal didn't cross the street because it was too tired."
+
+      What does "it" refer to?
+
+    1 Compare                                               2      Weight                         3     Understand
+
+                                                                                               Use weights to build
+  Compare it with every other word                        Assign higher weight to animal
+                                                                                               contextual meaning
+
+
+
+
+  Key Property
+
+  Every token can directly interact with every other token — no sequential propagation needed (unlike RNNs).
+
+
+          Long-range dependencies                                     Parallel computation               Dynamic context understanding
+Query, Key, Value — Step by Step
+"The animal didn't cross the street because it was too tired."
+
+                Query                                       Key                                  Value
+      Q                                                 K                               V
+                What I am                                   What I                               What information
+                looking for                                 represent                            I carry
+
+  → it asks: who am I?                            → animal says: I'm a noun         → actual content to share
+
+Attention scores for "it":
+                                                                              Output for "it":
+ Word                   Key meaning               Score           Weight
+                                                                              Output it = 0.70 × Vanimal +
+ animal                 noun, living thing        5.0             0.70        0.20 × Vtired + …
+
+ tired                  adjective                 3.0             0.20
+
+ street                 noun, location            1.0             0.05        "it" becomes:
+                                                                              "something like animal,
+ others                 ...                       small           ~0          with context of being tired"
+                    The (Self) Attention Mechanism
+
+
+
+                         The (Self) Attention Mechanism
+o Attention as a "fuzzy" or approximate hashtable
+    o   To look up a value, we compare a query against keys in a table
+    o   In a hashtable (shown on the bottom left):
+         o   Each query (hash) maps to exactly one key-value pair
+    o   In (self-)attention (shown on the bottom right)
+         o   Each query matches each key to varying degrees.
+         o   We return a sum of values weighted by the query-key match.
+ipe for Self-Attention in the Transformer Encoder
+
+
+
+  Recipe for Self-Attention in the Transformer Encoder
+
+
+
+
+                         x(i +1) = oi
+ecipe for (Vectorized) Self-Attention in the Transformer Encoder
+
+
+
+    Recipe for (Vectorized) Self-Attention in the
+    Transformer Encoder
+                            Tiny Self-Attention — Step by Step
+2 tokens: x₁ = "animal", x₂ = "it" · embedding dim d = 2
+                                          WV (weights)
+Input X
+                                                   [ 1         1 ]            Output = A · V
+             [ 1           0 ]
+                                                   [ 1         0 ]                 "animal"
+             [ 0           1 ]
+                                          V = X × WV
+                                                                              0.73·[1,1] + 0.27·[1,0]
+Q = K = X (WQ=WK=I)
+                                                   [ 1         1 ]            = [1.0, 0.73]
+Scores = QKᵀ
+                                                   [ 1         0 ]
+           [ 1              0 ]                                                       "it"
+                                        →     Attention A = softmax(Scores)
+           [ 0              1 ]                                               0.27·[1,1] + 0.73·[1,0]
+                                                                              = [1.0, 0.27]
+softmax([1,0]) = [0.73, 0.27]               [ 0.73             0.27 ]
+softmax([0,1]) = [0.27, 0.73]
+                                            [ 0.27             0.73 ]
+                                                                              "it" has non-zero 2nd component → influenced
+                                                                              by "animal" (which carries meaning [1,1])
+Feed-forward Layer
+                          Feed-forward Layer
+
+
+
+
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+How to make this work for deep networks?
+
+
+Repeat 6 times
+
+
+                                            Training Trick #1: Residual Connections
+                                            Training Trick #2: LayerNorm
+                                            Training Trick #3: Scaled Dot Product Attention
+
+
+
+
+          https://web.stanford.edu/class/cs224n
+Training Trick #1: Residual Connections
+Training Trick #2: Layer Normalization
+
+
+
+
+      https://web.stanford.edu/class/cs224n
+Training Trick #2: Layer Normalization
+
+
+
+
+                    https://web.stanford.edu/class/cs224n/
+Training Trick #3: Scaled Dot Product Attention
+
+
+
+
+       https://web.stanford.edu/class/cs224n/
+Training Trick #3: Scaled Dot Product Attention
+                    Positional Encoding
+
+
+
+                          Positional Encoding
+
+
+
+
+Sense of position is lost
+                                                     Positional Encoding
+Sense of position is lost
+                                                                                   import math
+Self-attention is permutation-invariant — token order is invisible to the model.
+Positional encodings are added to token embeddings to inject sequence order.       class PositionalEncoding(nn.Module):
+                                                                                     def __init__(self, d=512, max_len=512):
+         attention   2     2      2     2      2     2      2     2                    super().__init__()
+                                                                                       pe = torch.zeros(max_len, d)
+         attention   1     1      1     1      1     1      1     1                    pos = torch.arange(0, max_len).float()
+                                                                                       pos = pos.unsqueeze(1) # (max_len, 1)
+       embedding     0     0      0     0      0     0      0     0                    div = torch.exp(
+                                                                                         torch.arange(0, d, 2).float()
+                                                                                         * -(math.log(10000.0) / d))
+                                                                                       pe[:, 0::2] = torch.sin(pos * div)
+                                                                                       pe[:, 1::2] = torch.cos(pos * div)
+                                                                                       self.register_buffer('pe', pe.unsqueeze(0))
+
+v_i = v~_i + p_i q_i = q~_i + p_i k_i = k~_i + p_i
+                                                                                    def forward(self, x):
+                                                                                      # x: (B, seq_len, d_model)
+                                                                                      x = x + self.pe[:, :x.size(1)].to(x.device)
+                                                                                      return x
+                               Injecting Order into Attention
+import torch, math                                                       Why sinusoidal?
+def positional_encoding(max_len, d_model):
+    pe = torch.zeros(max_len, d_model)                                        Deterministic
+    pos = torch.arange(max_len).unsqueeze(1).float()    # (max_len, 1)
+    div = torch.exp(torch.arange(0, d_model, 2).float()                   No training needed for positions
+                    * -(math.log(10000.0) / d_model))
+
+    pe[:, 0::2] = torch.sin(pos * div)   # even dims: sine
+                                                                              Unique per position
+    pe[:, 1::2] = torch.cos(pos * div)   # odd dims: cosine
+    return pe   # shape: (max_len, d_model)                               Each pos has a unique fingerprint
+# In the full model:
+class TransformerEmbedding(nn.Module):
+    def __init__(self, vocab_size, d_model, max_len=512):                     Relative distances
+        super().__init__()
+        self.token_emb = nn.Embedding(vocab_size, d_model)                PE(pos+k) is a linear fn of PE(pos)
+        self.pos_enc   = positional_encoding(max_len, d_model)
+
+    def forward(self, x):
+        tok = self.token_emb(x)                   # learned token             Generalizes
+meaning
+        pos = self.pos_enc[:x.size(1)].to(x.device) # fixed position      Works beyond training sequence lengths
+signal
+        return tok + pos                           # element-wise sum!
+Multi-Head Attention
+
+
+
+     Multi-Head Attention
+                                            Why Multiple Heads?
+One attention head captures one type of relationship. Language has many.
+
+ Single Attention Head                                        Multi-Head Attention
+
+ One Q,K,V → captures only one type of relationship
+                                                       →      h independent heads → captures h different relationship types
+
+
+
+          Coreference                                                  Verb–Object
+
+   H1                                                         H2
+          Example: "it" → "animal"                                     Example: "cross" → "street"
+
+
+
+
+          Semantic sim.                                                Positional
+
+   H3                                                         H4
+          Example: "tired" → "animal"                                  Example: nearby tokens
+
+
+
+
+                     MultiHead(X) = Concat( head₁ … headₕ ) · Wᴼ     headᵢ = softmax( QᵢKᵢᵀ / √dₖ ) Vᵢ
+                                        2-Head Attention — Concrete Calculation
+x₁="animal" x₂="it" · X = [[1,0],[0,1]] · Each head dim = 1
+
+  HEAD 1                                                             HEAD 2
+  → focuses on "animal" (coreference)                                → focuses on self / context
+
+  WQ=[[1,1]ᵀ] WK=[[1,0]ᵀ] WV=[[2,0]ᵀ]                                WQ=[[0,1]ᵀ] WK=[[0,1]ᵀ] WV=[[0,3]ᵀ]
+  Q=[1,1]ᵀ K=[1,0]ᵀ V=[2,0]ᵀ                                         Q=[0,1]ᵀ K=[0,1]ᵀ V=[0,3]ᵀ
+  QKᵀ = [[1,0],[1,0]]                                                QKᵀ = [[0,0],[0,1]]
+
+
+           A = softmax → [[0.73,0.27],[0.73,0.27]]                               A = softmax → [[0.5,0.5],[0.27,0.73]]
+
+
+      Output: animal=[1.46] it=[1.46]                                                  Output: animal=[1.5] it=[2.19]
+
+
+
+
+                        Concat → "animal":[1.46, 1.5] | "it":[1.46, 2.19] → multiply by Wᴼ for final output
+                                         Head 1: Computing Q, K, V
+Projection matrices WQ, WK, WV → Q, K, V vectors for each token
+
+
+  X = [[1,0],[0,1]] x₁='animal'=[1,0] x₂='it'=[0,1] Head dim = 1
+
+PROJECTION MATRICES (each is 2×1 — projects d=2 embedding to 1-dimensional head space)
+
+ WQ⁽¹⁾ =                   WK⁽¹⁾ =                    WV⁽¹⁾ =                 COMPUTED Q, K, V
+                                                                              Q⁽¹⁾ = X · WQ⁽¹⁾    animal=[1,0]·[1,1]ᵀ = 1
+        [ 1 ]                      [ 1 ]                      [ 2 ]                                it=[0,1]·[1,1]ᵀ = 1
+                                                                                                 Q⁽¹⁾ = [1, 1]ᵀ
+        [ 1 ]                      [ 0 ]                      [ 0 ]           K⁽¹⁾ = X · WK⁽¹⁾ animal=[1,0]·[1,0]ᵀ = 1
+                                                                                                   it=[0,1]·[1,0]ᵀ = 0
+                                                                                                 K⁽¹⁾ = [1, 0]ᵀ
+ Both dimensions equally   Only 1st dimension         Scaled 1st dim (×2)
+                                                                              V⁽¹⁾ = X · WV⁽¹⁾   animal=[1,0]·[2,0]ᵀ = 2
+ projects to combined      picks up 'animal' signal   amplifies animal info
+                                                                                                  it=[0,1]·[2,0]ᵀ = 0
+ space
+                                                                                                 V⁽¹⁾ = [2, 0]ᵀ
+                                  Head 1: Scores, Softmax & Attention Matrix
+Q⁽¹⁾ = [1,1]ᵀ · K⁽¹⁾ = [1,0]ᵀ
+
+  STEP 3 — Score Matrix = QKᵀ                                                   STEP 4 — Softmax → Attention Matrix A⁽¹⁾
+  Q⁽¹⁾ · (K⁽¹⁾)ᵀ
+        Q⁽¹⁾                                                                              softmax([x₁, x₂]) = [eˣ¹/(eˣ¹+eˣ²), eˣ²/(eˣ¹+eˣ²)]
+                                              Scores
+        2×1                                    2×2                              Row 1: softmax([1, 0]) e¹ = 2.718 e⁰ = 1.000 sum = 3.718
+                      (K⁽¹⁾)ᵀ 1×2
+        [1]                                 [1 0]
+        [1]     × [1 0] = [1 0]                                                  [2.718/3.718, 1.000/3.718] = [0.73, 0.27]
+
+                                                                                Row 2: softmax([1, 0]) → same! (both rows of score matrix are [1,0])
+  Row 1 (animal): animal attends to animal: 1·1+0·0 = 1.0 animal
+  attends to it: 1·0+0·1 = 0.0
+                                                                                                       [0.73, 0.27]
+  Row 2 (it): it attends to animal: 1·1+0·0 = 1.0 it attends to it: 1·0+0·1 =
+  0.0                                                                           ∴ Attention Matrix A⁽¹⁾ =
+
+        Key insight: Both rows are [1, 0] → both tokens attend equally to            [ [0.73, 0.27], [0.73, 0.27] ] → both rows identical!
+        animal!
+                                                 Head 1: Output = A⁽¹⁾ · V⁽¹⁾
+A⁽¹⁾ = [[0.73,0.27],[0.73,0.27]] · V⁽¹⁾ = [2, 0]ᵀ
+
+
+  MATRIX MULTIPLICATION                                                            Interpretation
+               A⁽¹⁾                       V⁽¹⁾                  O⁽¹⁾               Why both outputs = 1.46?
+
+         [ 0.73 0.27 ]                [2]                    [ 1.46 ]              Attention matrix rows are identical [0.73, 0.27]
+                             ·                    =                                → Both "animal" and "it" use the same
+                                                                                    mixing recipe over V⁽¹⁾ = [2, 0]ᵀ
+         [ 0.73 0.27 ]                [0]                    [ 1.46 ]
+
+                                                                                   What does 1.46 represent?
+  Row-by-Row Calculation:
+                                                                                   Value from 'animal' (V=2) weighted by 0.73
+                                                                                   Value from 'it' (V=0) weighted by 0.27
+   Row 1 — "animal":                                                               → Mostly 'animal' signal
+
+
+   0.73 × 2 + 0.27 × 0           = 1.46
+                                                                                   Coreference effect:
+   Row 2 — "it":
+                                                                                   After Head 1, both tokens carry the
+   0.73 × 2 + 0.27 × 0           = 1.46                                            same representation heavily influenced
+                                                                                   by 'animal' → coreference resolved
+ Both tokens output 1.46 — Head 1 enforces coreference (both attend to 'animal')   O⁽¹⁾ = [1.46, 1.46]ᵀ — both tokens equally 'animal-aware'
+               Head 2: Full Computation — Self / Context Attention
+WQ = WK = [0,1]ᵀ · WV = [0,3]ᵀ → Head 2 focuses on the second dimension
+
+
+ Steps 1–2: Projections → Q, K, V          Steps 3–4: Scores → Softmax                   Step 5: Output = A⁽²⁾ · V⁽²⁾
+
+                                           QKᵀ = [0,1]ᵀ · [0,1] =                        V⁽²⁾ = [0, 3]ᵀ
+ WQ⁽²⁾ = [0,1]ᵀ
+                                                                                         (animal→0, it→3)
+ WK⁽²⁾ = [0,1]ᵀ                                                  [0 0]
+                                                                                          Row 1 "animal":
+ WV⁽²⁾ = [0,3]ᵀ                                                  [0 1]
+                                                                                          0.50×0 + 0.50×3
+                                           Row 1 (animal):
+  Q⁽²⁾ = X·WQ⁽²⁾                                                                                   = 1.50
+                                                             softmax([0,0])
+  animal=[1,0]·[0,1]ᵀ=0                                      e⁰=1, e⁰=1, sum=2            animal gets equal mix of self (0) and it (3)
+
+    it=[0,1]·[0,1]ᵀ=1                                         → [0.50, 0.50]              Row 2 "it":
+
+  → Q⁽²⁾=[0,1]ᵀ                            Row 2 (it):                                    0.27×0 + 0.73×3
+                                                             softmax([0,1])
+                                                             e⁰=1, e¹=2.718, sum=3.718            = 2.19
+ K⁽²⁾=[0,1]ᵀ (same)
+                                                             → [0.27, 0.73]               it attends mostly to itself → larger value
+ V⁽²⁾=[0,3]ᵀ
+                                                                                               O⁽²⁾ = [1.50, 2.19]ᵀ — 'it' stronger (self-
+                                                      A⁽²⁾ = [[0.5,0.5],[0.27,0.73]]                            aware)
+ animal V=0, it V=3
+            Combining Heads: Concatenation & Final Output
+
+O⁽¹⁾ — Head 1 output                                 O⁽²⁾ — Head 2 output                                        Concat( O⁽¹⁾, O⁽²⁾ ) → 2D output
+Dim = 1 per token                                     Dim = 1 per token                                          Dim = 1+1 = 2 per token
+
+ "animal"              [ 1.46 ]           ⊕            "animal"                [ 1.50 ]               →           "animal"              [ 1.46, 1.50 ]
+
+ "it"                  [ 1.46 ]                        "it"                    [ 2.19 ]                           "it"                     [ 1.46, 2.19 ]
+coreference signal                                   self/context signal                                              → multiply by Wᴼ for final output
+
+
+
+
+  Token        H1 Output               H1 Meaning                 H2 Output                 H2 Meaning                             Final Representation
+
+
+"animal"        [ 1.46 ]      Attends to itself (main noun)         [ 1.50 ]      Equal mix → self-aware                 Knows it is the coreference target
+
+
+                              Attends to animal
+   "it"         [ 1.46 ]                                            [ 2.19 ]      Attends to itself (identity)           "it" = animal + context — resolved!
+                              (coreference!)
+                       Head 1 vs Head 2 — Side-by-Side Comparison
+Same input X, different projection matrices → different attention patterns → complementary information
+
+                   HEAD 1 (Coreference)                                                     HEAD 2 (Self/Context)
+
+WQ                 [1,1]ᵀ — both dims equally                                               [0,1]ᵀ — 2nd dim only
+
+WK                 [1,0]ᵀ — 1st dim only                                                    [0,1]ᵀ — 2nd dim only
+
+WV                 [2,0]ᵀ — amplify 1st dim                                                 [0,3]ᵀ — amplify 2nd dim
+
+Scores             QKᵀ = [[1,0],[1,0]] (both rows same)                                     QKᵀ = [[0,0],[0,1]] (rows differ)
+
+Attn A             [[0.73,0.27],[0.73,0.27]] (rows identical)                               [[0.50,0.50],[0.27,0.73]] (rows differ)
+
+Output             animal=[1.46] it=[1.46] (same!)                                          animal=[1.50] it=[2.19] (differ)
+
+Learns             Coreference: it → animal                                                 Self-awareness: it → itself
+
+
+   Identical Attention (Head 1)                                 Differential Attention (Head 2)                           Why Both Together Are Powerful
+ When projection matrices create equal scores
+ for all tokens, every token attends with the          When projection matrices separate tokens,                Head 1 links 'it' to 'animal' (coreference). Head
+ same pattern → enforces group-level                   each attends differently → preserves individual          2 preserves 'it' as a separate entity. Together:
+ coreference.                                          identity while tracking context.                         'it' = 'animal' + distinct context.
+                               2-Head Attention — Full Walkthrough
+x₁ = "animal" · x₂ = "it" · Embedding dim d = 2 · 2 heads, each dim = 1
+
+                                                 HEAD 1 (coreference: it → animal)                    O⁽¹⁾
+             INPUT X
+           [ 1      0 ]                                                                                                Concat    Final
+                                                                                                                        × Wᴼ    Output
+           [ 0      1 ]
+         x₁="animal" → [1,0]
+            x₂="it" → [0,1]                            HEAD 2 (self/context: it → itself)                    O⁽²⁾
+
+
+
+  H1 What Head 1 learns                                                        H2 What Head 2 learns
+  WQ projects both tokens to same space [1,1]ᵀ                                WQ focuses on second dimension [0,1]ᵀ
+
+  WK focuses only on first dimension [1,0]ᵀ                                   WK same projection [0,1]ᵀ
+
+  → animal gets score 1, it gets score 1                                      → animal gets score 0, it gets score 1
+
+  → Both attend to animal (coreference)                                       → it attends to itself (context-aware)
+                                         Multi-Head Attention
+
+          Head 1                         Head 2                           Head 3                          Head 4
+         (syntax)                     (coreference)                      (position)                     (semantics)
+
+
+
+                                    Concatenate all heads → Linear projection → Final output
+
+         PyTorch
+                                                            def forward(self, Q, K, V):
+                                                                    B = Q.size(0)
+class MultiHeadAttention(nn.Module):
+                                                                    Q = self.split_heads(self.W_q(Q), B) # (B, h, T, d_k)
+    def __init__(self, d_model=512, n_heads=8):
+                                                                    K = self.split_heads(self.W_k(K), B)
+        super().__init__()
+                                                                    V = self.split_heads(self.W_v(V), B)
+        self.h = n_heads
+                                                                    scores = (Q @ K.transpose(-2,-1)) / self.d_k**0.5
+        self.d_k = d_model // n_heads           # 64 per head
+                                                                    out = F.softmax(scores, dim=-1) @ V # 8 parallel attention heads
+        self.W_q = nn.Linear(d_model, d_model)
+                                                                    out = out.transpose(1,2).contiguous().view(B, -1, self.h *
+        self.W_k = nn.Linear(d_model, d_model)
+                                                            self.d_k)
+        self.W_v = nn.Linear(d_model, d_model)
+                                                                    return self.W_o(out) # project back to d_model
+        self.W_o = nn.Linear(d_model, d_model)
+
+    def split_heads(self, x, B):
+        return x.view(B, -1, self.h, self.d_k).transpose(1, 2)
+PyTorch — Full Model
+                              The Complete Transformer Stack
+class Transformer(nn.Module):
+    def __init__(self, vocab_size=50000, d_model=512,
+                 n_heads=8, n_layers=6, d_ff=2048, max_len=512):
+        super().__init__()
+        self.embedding = TransformerEmbedding(vocab_size, d_model, max_len)
+        self.encoder   = nn.ModuleList(
+            [TransformerEncoderLayer(d_model, n_heads, d_ff) for _ in range(n_layers)])
+        self.fc_out    = nn.Linear(d_model, vocab_size)
+
+    def forward(self, src):
+        x = self.embedding(src)          # token + position
+        for layer in self.encoder:
+            x = layer(x)                 # 6× self-attention + FFN
+        return self.fc_out(x)            # project to vocab
+
+# GPT-2 style: 12 layers, 12 heads, d_model=768, d_ff=3072
+model = Transformer(vocab_size=50257, d_model=768,
+                    n_heads=12, n_layers=12, d_ff=3072)
+params = sum(p.numel() for p in model.parameters())
+print(f"Parameters: {params/1e6:.0f}M")   # ~117M (GPT-2 small)
+
+
+
+
+  Input Tokens              + Pos Encoding           Self-Attention ×6             FFN ×6   Output Logits
+The Transformer (Decoder)
+
+
+
+     The Transformer (Decoder)
+                    Decoder Design
+
+
+
+                         Decoder Design
+
+
+
+                                            𝑉,
+                                            𝐾
+
+
+
+                                                        𝑄
+
+
+
+
+Masked Multi-head                    Encoder-Decoder Multi-head
+Attention                            Attention
+                               The Transformer Decoder: Overview
+Three sub-layers per decoder block:
+
+(i) Masked Multi-Head Self-Attention
+
+
+(ii) Cross-Attention (Encoder–Decoder)
+                                             Masked Multi-Head Self-Attention
+                                                                                Python
+(iii) Feed-Forward Network (FFN)
+                                                                                import torch.nn as nn
+                                                     Add & Norm
+Each sub-layer wrapped with:
+                                                                                class DecoderLayer(nn.Module):
+Residual Connection + Layer Norm               Multi-Head Cross-Attention         def __init__(self, d=512, h=8):
+                                                                                     super().__init__()
+Repeated N times (N = 6 in original paper)
+                                                     Add & Norm                      self.self_attn = MaskedMHA(d,h)
+Final Linear + Softmax → token probability                                           self.cross_attn = CrossMHA(d,h)
+                                                                                     self.ffn = FFN(d)
+                                                     Feed Forward
+                                                                                     self.norm1 = nn.LayerNorm(d)
+                                                                                  def forward(self, x, mem):
+                                                       Add & Norm
+
+
+                                             Output Embedding + Pos. Encoding
+   The Complete Transformer Decoder — Summary
+
+
+        Masked Self-Attention                                      Cross-Attention                                        Feed-Forward (FFN)
+
+
+
+Causal mask: attend only to past tokens. Prevents future   Q from decoder, K/V from encoder. Dynamically reads    Two-layer MLP with ReLU, applied per token. d_ff = 4 x
+leakage during training.                                   source context.                                        d_model.
+
+
+
+
+        Add & Norm                                                 Positional Encoding                                    Autoregressive Loop
+
+
+
+Residual + LayerNorm after every sub-layer. Stabilises     Sine/cosine vectors injected into embeddings. Order-   One token per step. Append and repeat until <EOS> or
+training.                                                  aware attention.                                       max length.
+ Masked Self-Attention
+ Every token attends to every past token — but is strictly blocked from seeing the future
+                                                                                      Example: What does "t'aime" attend to?
+                     Attention Mask Matrix
+                                                                                 a₁=0.15                  a₃=0.40
+KEY →
+                                                                                         a₂=0.45
+QUERY ↓      <start>        Je       t'aime   <EOS>
+
+              attend masked masked masked                                     <start>          "Je"           "t'aime"            <EOS>
+  <start>       ✓      ✕      ✕      ✕
+                                                                                                                         ✕ blocked (future)
+              attend     attend masked masked
+        Je      ✓          ✓      ✕      ✕
+                                                                                                    Output: context-aware
+              attend     attend      attend masked                                                  repr. of 't'aime'
+   t'aime       ✓          ✓           ✓      ✕
+
+              attend     attend      attend   attend       ✓ Can attend (past + self)
+                                                                                            ✕ Masked (future position)       Key Insight: The mask enforces left-to-right
+   <EOS>        ✓          ✓           ✓        ✓                                             Score set to −∞ before         generation during training while still allowing
+                                                           Score computed normally
+                                                                                                     softmax                 full parallelism across the sequence.
+
+
+
+  ① Self-attention within                 ② The mask blocks the                         ③ Triangular attention                       ✓ Parallel training, causal
+  decoder                                 future                                        pattern                                      output
+  Each output token computes              Positions to the right are set to             The result is a lower-triangular             Mask lets the whole sequence
+  attention over all tokens in the        −∞ before softmax, so they                    matrix: token 1 sees only itself,            train in parallel while
+  same sequence — not the                 contribute zero weight —                      token 4 sees tokens 1–4.                     preserving left-to-right
+  encoder.                                model cannot cheat.                                                                        generation order.
+ Masked Self-Attention — Step by Step
+ How Q, K, V matrices and the mask combine to produce context-aware representations
+
+                                    Each step: ONE query token — repeated in parallel for ALL tokens simultaneously
+
+
+    Input                       Linear                      Attention                   Apply                          Softmax                   Weighted
+ Embedding                    Projection                     Scores                      Mask                         → Weights                     Sum
+  + Position                    Q, K, V                     Q · Kᵀ / √d               (−∞ future)                     α₁ α₂ α₃ ...              of Values V
+Token vectors               Three learned                Dot product of             Future positions            Converts scores                Context vector
+with position              weight matrices                query & keys                 set to −inf              to probabilities                combining all
+info baked in               project input                 scaled by √d              before softmax                 (sum = 1)                  attended tokens
+
+
+
+                           Q = what I want
+ Same input                                            High score = more            −inf → 0 after              Weights show                    Richer repr.
+                           K = what I have
+serves Q, K, V                                          relevant token            softmax = invisible         what was attended               than input alone
+                           V = what I give
+
+
+Q Query — What am I looking                K Key — What do I offer?                V Value — What do I give?                    ✓ Multi-head = multiple views
+for?                                       Every past token projects into K-       Once relevance is scored, V                  In practice, 8–16 heads run in
+The current token projects itself          space, advertising what                 holds the actual content each                parallel — each learning
+into Q-space asking: which other           information it contains for others      token contributes to the output              different Q/K/V projections to
+tokens are relevant to me right            to use.                                 representation.                              capture different patterns.
+now?
+                                Masked Multi-Head Self-Attention
+                                                                       Python
+ Why masking?
+                                                                       import torch, torch.nn.functional as F
+ o During training, the full target sequence is available.
+                                                                       def causal_mask(seq_len):
+ o Without a mask, decoder could attend to future tokens (cheating).       # Lower-triangular mask: True = allowed
+                                                                           mask = torch.tril(torch.ones(seq_len, seq_len))
+ o Causal mask sets future scores to -inf => softmax weight ~ 0.           return mask == 0 # True = masked out
+
+
+                          e_ij = q_i^T k_j (j < i)                     def masked_attention(Q, K, V, mask):
+                          e_ij = -inf     (j >= i)                         d_k = Q.shape[-1]
+                                                                           scores = torch.matmul(Q, K.transpose(-2,-1))
+        I       love     NLP       <E>
+                                                                           scores = scores / d_k ** 0.5
+
+   I   ✓        −∞        −∞       −∞
+                                                                            # Apply causal mask
+                                                                            if mask is not None:
+love   ✓        ✓         −∞       −∞                                           scores = scores.masked_fill(
+                                                                                    mask, float('-inf'))
+
+
+NLP    ✓        ✓         ✓        −∞
+                                                                            weights = F.softmax(scores, dim=-1)
+                                                                            return torch.matmul(weights, V)
+<E>    ✓        ✓         ✓        ✓                                     # Example usage
+                                                                         mask = causal_mask(5)   # shape: (5,5)
+Cross-Attention
+Let the decoder ask questions of the encoder
+                                    Cross-Attention: Q, K, V
+
+        Q                         K                         V               =        softmax(Q·Kᵀ / √dₖ) · V
+
+       Query                      Key                       Value                       Scaled Dot-Product Attention
+     (Decoder)                 (Encoder)                  (Encoder)
+
+   PyTorch                                                                      # Example: Translating EN → FR
+import torch, torch.nn.functional as F                                          # "The cat sat" → encoder hidden states (K, V)
+                                                                                # "Le chat"      → decoder states so far (Q)
+def cross_attention(Q, K, V):                                                   # English tokens
+    # Q: (batch, tgt_len, d_k) — from decoder                                   src_hidden = torch.randn(1, 3, 512)
+    # K, V: (batch, src_len, d_k) — from encoder                                # English tokens
+    d_k = Q.shape[-1]                                                           tgt_hidden = torch.randn(1, 2, 512)
+                                                                                out, attn_weights = cross_attention(tgt_hidden,
+    scores = torch.bmm(Q, K.transpose(1, 2))# (batch, tgt_len, src_len)         src_hidden, src_hidden)
+    scores = scores / d_k**0.5 # scale to prevent vanishing grad
+                                                                                print(attn_weights.shape)
+    weights = F.softmax(scores, dim=-1) # attention distribution over src
+    output = torch.bmm(weights, V)      # weighted sum of values                # (1, 2, 3) — each FR token attends to
+    return output, weights                                                      3 EN tokens
+                                        What is Cross-Attention?
+The decoder looks at encoder outputs to decide what source information to use.
+
+
+EN: "The cat sat on the mat." → FR: "Le chat s'est assis sur le tapis."
+
+      Which English words should "chat" attend to?
+
+    1 Query                                                 2      Match                           3     Aggregate
+
+                                                                                                 Weighted sum of encoder
+  Decoder token asks: what source info do I need?         Score query against each encoder key
+                                                                                                 values for the decoder
+
+
+
+
+  Key Difference from Self-Attention
+  Q comes from the DECODER, while K and V come from the ENCODER — two different sequences interact, unlike self-attention
+  where all three come from the same sequence.
+
+            Two-sequence bridging                                Encoder-decoder alignment               Used in translation & generation
+             Cross-Attention: Query, Key, Value — Step by
+             Step
+EN: "The cat sat on the mat." → FR: "Le chat s'est assis sur le tapis."
+
+
+               Query                                         Key                                          Value
+       Q                                                K                                          V
+               What I am                                     What I                                       What information
+               looking for                                   represent                                    I carry
+
+  → "Le chat" asks: which EN words                → each EN token says: here is what I
+                                                                                               → encoder hidden state to blend
+  describe me?                                    represent
+
+Attention scores for "chat" (FR decoder):
+                                                                                         Output for "chat":
+ Word                  Key meaning                Score            Weight
+                                                                                         Output chat = 0.70 × Vcat +
+ cat                   subject noun               5.0              0.70                  0.20 × Vsat + …
+
+ sat                   past verb                  3.0              0.20
+
+ on                    preposition                1.0              0.05                  "chat" becomes:
+                                                                                         "blends cat + sat,
+ others                ...                        small            ~0                    most weight on cat (subject)"
+Cross-Attention: Encoder–Decoder Attention
+ Let the decoder ask questions of the encoder
+
+
+
+                                 K
+           Encoder
+           Output
+                                  V                    Cross-
+                                                      Attention                        Output
+                                                softmax(QK^T/sqrt(d)) V       Context-aware hidden state
+
+           Decoder                Q
+         (prev. layer)
+
+
+Python
+def cross_attention(Q, K, V):                   # Q from decoder; K,V from encoder
+     d_k = Q.shape[-1]
+     scores = torch.bmm(Q, K.transpose(1, 2))                     # (B, tgt_len, src_len)
+     scores /= d_k **0.5                                # scale to prevent vanishing grad
+     weights = F.softmax(scores, dim=-1) # attention over src tokens
+     output = torch.bmm(weights, V)                  # weighted sum of values
+     return output, weights
+                                  Cross-Attention — 3 Steps
+Decoder query attends over encoder keys and values.
+
+                STEP 1                                  STEP 2                                 STEP 3
+
+
+            Similarity                                Softmax                          Weighted Sum
+                                          weights = softmax(scores /
+      score = Q_dec · K_enc                                                     output = Σ (weights × V_enc)
+                                                     √d_k)
+
+
+ Dot product of decoder query           Normalises alignment scores to a
+                                                                               Decoder token blends encoder values
+ with each encoder key measures         probability distribution over source
+                                                                               weighted by source-target alignment.
+ alignment.                             tokens.
+
+
+
+
+                         CrossAttention(Q, K, V) = softmax( QKᵀ / √d ) · V
+                   Cross-Attention as Matrix Operations
+Decoder queries attend over all encoder positions in parallel.             Cross-Attention Matrix A (t × s)
+                                                                                        cat         sat        on         the   mat
+        Two Input Matrices                X_enc ∈ ℝˢ×ᵈ, X_dec ∈ ℝᵗ×ᵈ
+    1
+        s = src length, t = tgt length, d = embedding dim                       cat    0.60       0.10        0.10       0.10   0.10
+
+        Project Q (decoder), K, V (encoder) Q=X_dec·WQ, K=X_enc·WK,
+    2
+        Q from decoder; K, V from encoder            V=X_enc·WV
+                                                                                sat    0.10       0.70        0.05       0.05   0.10
+
+
+        Cross-Score Matrix                Scores = QKᵀ shape: t×s                on    0.10       0.10       0.60        0.10   0.10
+    3
+        Entry (i,j): how much decoder token i attends to encoder token j
+
+                                                                                the    0.05       0.70        0.05       0.05   0.15
+        Scale + Softmax                   A = softmax( QKᵀ / √d_k )
+    4
+        Each row: distribution over ALL encoder positions
+                                                                               mat     0.05       0.20        0.05       0.05   0.65
+        Output                            Output = A · V_enc
+    5
+        Each decoder token: weighted blend of encoder values
+                                                                           "chat" row → high attention on "cat" (source noun)
+                             Tiny Cross-Attention — Step by Step
+  Encoder: x₁="cat", x₂="sat" · Decoder: y₁="chat" · d = 2
+                                            WV (encoder weights)
+  Encoder X_enc
+                                                     [ 1           1 ]               Output = A · V_enc
+             [ 1        0 ]
+                                                     [ 1           0 ]                      "cat"
+             [ 0        1 ]
+                                            K, V = X_enc·WK, X_enc·WV
+                                                                                     V_cat=[1,1], V_sat=[1,0]
+  Q = Y·WQ (from decoder)
+                                                     [ 1           1 ]               A = [0.73, 0.27]
+  Scores = Q·K_encᵀ shape: 1×2
+                                                     [ 1           0 ]
+            [ 1          0 ]                                                               "chat"
+                                          →     Attention A = softmax(Scores / √2)
+            [ 0          1 ]                                                         Output = 0.73·[1,1] + 0.27·[1,0]
+                                                                                     = [1.0, 0.73]
+                                              [ 0.73               0.27 ]
+softmax([1,0]) = [0.73, 0.27] ←               [ 0.27               0.73 ]
+"chat" attends more to "cat"
+(1×2 matrix — one decoder token                                                      "chat" output [1.0, 0.73] → 2nd dim high,
+over two encoder tokens)                                                             strongly influenced by "cat" (V=[1,1])
+           Cross-Attention: Decoder Reads the Encoder
+      Cross-Attention                                                      Self-Attention (not used here)
+
+ Q from DECODER                                                        Q, K, V all from SAME sequence
+ K, V from ENCODER                                                     Cannot bridge encoder → decoder
+ Bridges two separate sequences                                        Needs two separate sequences
+
+
+
+PyTorch — Cross-Attention
+                            class TransformerDecoderLayer(nn.Module):
+      Decoder Layer             def __init__(self, d_model=512, n_heads=8, d_ff=2048, dropout=0.1):
+                                    super().__init__()
+                                    self.self_attn   = MultiHeadAttention(d_model, n_heads)
+                                    self.cross_attn = MultiHeadAttention(d_model, n_heads) # cross-attn
+                                    self.ffn         = nn.Sequential(
+                                        nn.Linear(d_model, d_ff), nn.ReLU(), nn.Linear(d_ff, d_model))
+                                    self.norm1 = nn.LayerNorm(d_model)
+                                    self.norm2 = nn.LayerNorm(d_model)
+
+                                   self.norm3 = nn.LayerNorm(d_model)
+                               def forward(self, x, enc_out):
+                                   # 1) Masked self-attention on decoder sequence
+                                   x = self.norm1(x + self.self_attn(x, x, x))
+                                   # 2) Cross-attention: Q from decoder, K+V from encoder!
+                                   x = self.norm2(x + self.cross_attn(x, enc_out, enc_out))
+                                   # 3) Feed-forward
+                                   return self.norm3(x + self.ffn(x))
+                           Cross-Attention: What It Can't Do
+1   Encoder context is fixed                                                            # RNN Encoder: sequential,
+                                                                                        slow
+    Cross-attention only lets the decoder look at encoder states. Within the encoder    for word in sentence:
+    itself, each token is processed independently — no token can attend to other            h = rnn_cell(word,
+    tokens in the same sequence.                                                        h_prev) # O(n) steps
+
+
+
+2   No position awareness                                                               # Attention is permutation-
+                                                                                        equivariant!
+                                                                                        # shuffle tokens → same
+    Attention has no built-in notion of order. "The dog bit the man" and "The man bit   attention weights
+    the dog" look identical to naive attention.
+
+
+
+
+3   Separate Encoder & Decoder required                                                 # GPT/BERT don't use cross-
+                                                                                        attention at all
+    For tasks like classification or language modeling, we don't need a separate
+    encoder-decoder. We need one model that understands the full sequence at once.
+          Self-Attention: Every Token Attends to All Others
+     Cross-Attention                                                       Self-Attention
+
+Q from decoder                                                         Q, K, V all from SAME sequence
+K, V from encoder                                                      Every token looks at every other
+Two separate sequences                                                 One unified model
+
+
+PyTorch — Self-Attention Block
+                                 class TransformerEncoderLayer(nn.Module):
+                                     def __init__(self, d_model=512, n_heads=8, d_ff=2048, dropout=0.1):
+                                         super().__init__()
+                                         self.self_attn = MultiHeadAttention(d_model, n_heads)
+                                         self.ffn       = nn.Sequential(
+                                             nn.Linear(d_model, d_ff), nn.ReLU(), nn.Linear(d_ff, d_model))
+                                         self.norm1 = nn.LayerNorm(d_model)
+                                         self.norm2 = nn.LayerNorm(d_model)
+                                         self.drop   = nn.Dropout(dropout)
+
+                                     def forward(self, x):
+                                         # Self-attention: Q=K=V=x (same sequence!)
+                                         attn_out = self.self_attn(x, x, x)
+                                         x = self.norm1(x + self.drop(attn_out)) # residual + norm
+                                         ffn_out = self.ffn(x)
+                                         x = self.norm2(x + self.drop(ffn_out))   # residual + norm
+                                         return x # every token now has context from all other tokens
+                      Self-Attention vs Cross-Attention
+Same formula — different source of Q vs K, V. This single change transforms the mechanism completely.
+
+                  SELF-ATTENTION                                                         CROSS-ATTENTION
+
+Q source          Q = X·WQ (from same sequence)                                          Q = X_dec·WQ (from decoder)
+
+K source          K = X·WK (from same sequence)                                          K = X_enc·WK (from encoder)
+
+V source          V = X·WV (from same sequence)                                          V = X_enc·WV (from encoder)
+
+Scores            Scores shape: n×n (src len × src len)                                  Scores shape: t×s (tgt len × src len)
+
+Attn A            Each token attends to all OTHER tokens in same sequence                Each decoder token attends to ALL encoder tokens
+
+Output            Output ∈ ℝⁿ×ᵈ — same shape as input                                    Output ∈ ℝᵗ×ᵈ — decoder shape, encoder content
+
+Learns            Token understands itself in context of its own sequence                Decoder token understands itself via encoder context
+
+
+           When to use Self-Attention                       When to use Cross-Attention                              Why the Transformer uses Both
+ Use inside the encoder (each token                                                                         The encoder uses self-attention to build rich
+ contextualises with all others) and inside           Use in the decoder layers that need to read the       source representations. The decoder uses
+                                                      encoder. Q comes from the decoder state; K            masked self-attention then cross-attention to
+ the decoder (masked self-attn). Both Q, K,
+                                                      and V come from the fixed encoder output.             align and translate — each mechanism handles
+ V come from the same sequence.
+                                                                                                            a distinct information flow.
+The Transformer (Decoder)
+
+
+
+     The Transformer (Decoder)
+   The Complete Transformer Decoder — Summary
+
+
+        Masked Self-Attention                                      Cross-Attention                                        Feed-Forward (FFN)
+
+
+
+Causal mask: attend only to past tokens. Prevents future   Q from decoder, K/V from encoder. Dynamically reads    Two-layer MLP with ReLU, applied per token. d_ff = 4 x
+leakage during training.                                   source context.                                        d_model.
+
+
+
+
+        Add & Norm                                                 Positional Encoding                                    Autoregressive Loop
+
+
+
+Residual + LayerNorm after every sub-layer. Stabilises     Sine/cosine vectors injected into embeddings. Order-   One token per step. Append and repeat until <EOS> or
+training.                                                  aware attention.                                       max length.
+ Autoregressive Generation: The Decoder Loop
+     Start Token                                         Forward Pass
+
+     Feed <BOS> as the first decoder input.              Masked Self-Attn -> Cross-Attn -> FFN.
+
+
+
+     Linear + Softmax                                    Sample / Argmax
+
+     Project to vocab; get probability dist.             Greedy, beam search, or temperature sampling.
+
+
+
+     Append & Repeat                                     Stop Condition
+
+     Append token; repeat from Step 2.                   Halt at <EOS> or max sequence length.
+
+
+def generate(model, src, max_len=50, bos=1, eos=2):
+    enc_out = model.encoder(src)               # encode source once
+    tgt = torch.tensor([[bos]])                    # start with <BOS>
+    for _ in range(max_len):
+          mask = causal_mask(tgt.size(1))       # rebuild mask each step
+          logits = model.decoder(tgt, enc_out, mask)[:, -1, :]
+          next_tok = logits.argmax(dim=-1).unsqueeze(0)        # greedy decode
+          tgt = torch.cat([tgt, next_tok], dim=-1)      # append token
+          if next_tok.item() == eos: break      # stop at <EOS>
+    return tgt
+Autoregressive Generation — Step by Step Example
+Translating "I love you" → "Je t'aime" : how the decoder loop runs token by token
+
+
+
+
+① Encoder runs ONCE                 ② Mask grows each step                 ③ Append & repeat                   ✓ <EOS> stops the loop
+Source sentence is encoded into     Step 1: mask is 1×1. Step 2: 2×2.      Each predicted token is             When the model predicts <EOS>,
+enc_out and held fixed. The         Step 3: 3×3. Rebuilt every iteration   concatenated to the input and fed   or max_len is reached, generation
+decoder re-reads it at every step   as the target sequence lengthens.      back in. The decoder sees its own   halts. Output is everything
+via cross-attention.                                                       growing output.                     between <BOS> and <EOS>.
+                                              Quiz 1
+
+In a Transformer model, what is the primary difference between Self-Attention and Cross-Attention in
+terms of where the "Queries" (Q), "Keys" (K), and "Values" (V) come from?
+
+ ●   A) In Self-Attention, Q, K and V all come from the same input sequence, whereas in Cross-Attention,
+     Q comes from the decoder and K and V come from the encoder.
+ ●   B) In Self-Attention, Q and K come from the encoder, while in Cross-Attention, they come from the
+     decoder.
+ ●   C) There is no difference; both mechanisms use the same sources for Q, K and V.
+ ●   D) Self-Attention is only used in the decoder, while Cross-Attention is only used in the encoder.
+                                                 Quiz 1
+
+In a Transformer model, what is the primary difference between Self-Attention and Cross-Attention in
+terms of where the "Queries" (Q), "Keys" (K), and "Values" (V) come from?
+
+ ●    A) In Self-Attention, Q, K and V all come from the same input sequence, whereas in Cross-Attention,
+      Q comes from the decoder and K and V come from the encoder.
+ ●    B) In Self-Attention, Q and K come from the encoder, while in Cross-Attention, they come from the
+      decoder.
+ ●    C) There is no difference; both mechanisms use the same sources for Q, K and V.
+ ●    D) Self-Attention is only used in the decoder, while Cross-Attention is only used in the encoder.
+
+
+Explanation : Self-Attention allows a sequence to look at itself to find correlations between its own
+tokens. Cross-Attention is the "bridge" that allows the decoder to focus on relevant parts of the original
+input sequence (the encoder's output).
+                  The Evolution of
+                  Representations
+   One-Hot        ✓ Gave us structure           Sparse, no semantics
+
+
+Dense Embed.      ✓ Compact vectors             Same vector, all contexts
+
+
+  Word2Vec        ✓ Semantic meaning            Static: bank = bank
+
+
+ELMo/BiLSTM       ✓ Contextual vectors          Sequential, slow, limited depth
+
+
+Cross-Attention   ✓ Alignment across seqs       No within-seq attention
+
+
+Self-Attention    ✓ Every token    all          Position-agnostic
+
++ Pos. Encoding   ✓ Order-aware!            —
+        Transformers — Attention is All You Need
+        (2017)
+Self-Attention Mechanism                                Why Transformers Changed Everything
+
+•   Each token attends to ALL other tokens              •   BERT (2018): Bi-directional encoder for NLP
+                                                            tasks — pre-train, fine-tune paradigm
+•   Query (Q), Key (K), Value (V) matrices
+                                                        •   GPT series: Decoder-only for generative tasks
+•   Attention(Q,K,V) = softmax(QKᵀ/√dₖ)V
+                                                            (GPT-4, ChatGPT)
+•   Captures long-range dependencies instantly
+                                                        •   Vision Transformer (ViT): Apply attention to
+•   Parallelizable (unlike RNNs — no sequential             image patches
+    dependency)
+                                                        •   DALL-E, Stable Diffusion: Image generation
+•   Multi-Head Attention: Run multiple attention
+                                                        •   AlphaFold 2: Protein structure prediction
+    heads in parallel, capture different relationship
+    types                                               •   Scale: GPT-4 ~1.76 trillion parameters;
+                                                            emergent capabilities at scale
+From Attention to Pretrained Models
+Why the Transformer's attention mechanism makes pretraining not just possible — but inevitable
+
+
+
+
+← Attention = general              ★ The key insight                     → Pretraining = learning               ✓ Unified view
+representations                    General representations trained       attention                              Every model from BERT to GPT-4
+Q, K, V weight matrices learn      once on massive data transfer to      BERT/GPT pretraining IS learning       to LLaMA is the same idea:
+universal patterns of language —   any downstream task. Task-            the Q, K, V projections. Fine-tuning   Transformer attention pretrained
+syntax, semantics, coreference —   specific labels steer, not rebuild.   adjusts them. PEFT injects tiny        at scale, steered at fine-tune time.
+not task-specific features.                                              changes (LoRA Δ).
+                              The Modern Transformer Zoo
+
+BERT                                      GPT-4                                     T5 / BART
+Encoder only                              Decoder only                              Encoder-Decoder
+
+→ Classification, NER, QA                 → Generation, chat, code                  → Translation, summarization
+
+
+
+
+ViT                                       Whisper                                   CLIP
+Vision Transformer                        Speech → Text                             Vision-Language
+
+→ Image classification                    → ASR, multilingual                       → Image-text matching
+
+
+
+
+               All of these are just: Embeddings + Positional Encoding + Self-Attention + FFN, stacked.
+                                              Quiz 2
+
+Why are Positional Encodings added to the input embeddings in a Transformer model?
+
+ ●   A) To reduce the total number of parameters in the model.
+ ●   B) To allow the model to process tokens sequentially like an RNN.
+ ●   C) To provide the model with information about the order or position of words, since the attention
+     mechanism itself is permutation-invariant (it doesn't inherently know word order).
+ ●   D) To normalize the input data before it enters the Multi-Head Attention layer.
+                                              Quiz 2
+
+Why are Positional Encodings added to the input embeddings in a Transformer model?
+
+ ●   A) To reduce the total number of parameters in the model.
+ ●   B) To allow the model to process tokens sequentially like an RNN.
+ ●   C) To provide the model with information about the order or position of words, since the attention
+     mechanism itself is permutation-invariant (it doesn't inherently know word order).
+ ●   D) To normalize the input data before it enters the Multi-Head Attention layer.
+
+
+Explanation : Unlike RNNs, which process words one by one, Transformers process all words in a sequence
+simultaneously. Without Positional Encodings, the model would treat the sentence "The cat chased the
+mouse" exactly the same as "The mouse chased the cat."
+                         Thank you
+
+  Instructor               Teaching Assistants (IITKGP)
+
+
+                                                Image 3
+
+
+
+
+Niloy Ganguly              Sombit Bose       Shrimon Mukherjee
+niloy@cse.iitkgp.ac.in
+

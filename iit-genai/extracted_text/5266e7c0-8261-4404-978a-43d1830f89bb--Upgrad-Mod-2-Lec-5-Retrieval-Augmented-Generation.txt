@@ -1,0 +1,1388 @@
+Retrieval Augmented Generation (RAG)
+          Module 2 Lecture 5
+
+                   Pawan Goyal
+  Department of Computer Science and Engineering
+                  IIT Kharagpur
+RAG with Vector DB - Recap From the last lecture
+Pre-Retrieval              Retrieval
+
+
+
+
+Post-Retrieval             Augmentation and Generation
+
+
+
+
+                                                         https://ai.meta.com/blog/retrieval-augmented-genera
+                                                         tion-streamlining-the-creation-of-intelligent-natural-la
+                                                         nguage-processing-models/
+IVF: Inverted ﬁle for vector Database - Recap From the last lecture
+
+  Retrieval (The Search)
+
+   ●   Coarse Search: Compare the
+       query only against the k
+       centroids to find the closest
+       match.
+   ●   Fine Search: Scan only the
+       vectors inside that specific
+       bucket (ignoring the rest)
+   ●   nprobe : #clusters
+       (centroids) the algorithm
+       evaluates during an ANN
+       search (=1 by default)
+   ●   Outcome: Reduces search
+       scope from O(N) to
+       approximately O(N/k)
+PQ: Product Quantisation (Indexing)- Recap From the last lecture
+Indexing (Compression Phase)                                 D = Dimension
+                                                                                                                                         Discarded
+                                                                                                                    Segment 1                     Segment 2                      Segment 3
+                                                     0   0   0    1    0    0     1   1     0
+
+
+
+
+                                                                                                d1          0          0        0             1       0       0          1           1         0
+
+
+
+
+ ●   Split (Sub-vectors): Divide the                 0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d2          0          0        0             1       0       0          1           1         0
+
+
+
+
+                                        N = Span
+     high-dimensional original vector
+                                                     0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d3          0          0        0             1       0       0          1           1         0
+
+
+
+
+                                                     0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d4          0           0       0             1       0       0          1           1         0
+
+
+
+
+     (e.g., 128D) into m smaller                     0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d5          0           0       0             1       0       0          1           1         0
+
+
+
+
+     sub-vectors (e.g., 8 chunks of
+                                                     0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d6          0           0       0             1       0       0          1           1         0
+
+
+
+
+                                                     0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d7          0           0       0             1       0       0          1           1         0
+
+
+
+
+     16D).                                           0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d8          0           0       0             1       0       0          1           1         0
+
+
+
+
+ ●   Train (Codebooks): Run
+                                                     0   0   0    1    0    0     1   1     0
+
+
+
+                                                                                                d9          0           0       0             1       0       0          1           1         0
+
+
+
+
+                                                     1   1   1    1    1    0     0   1     1
+
+
+
+                                                                                                d10         1           1       1             1       1       0          0           1         1
+
+
+
+
+     K-Means independently on each
+     sub-space to find K (eg. 256)                               Saved                                                                   Clustering
+     representative centroids (the
+                                                   d1                 c11       c21       c31
+     "Codebook").
+                                                                                                                0           0       0         1       0       0              1           1         0
+
+
+
+
+                                                                                                                0           0       0         1       0       0              1           1         0
+
+
+
+
+ ●   Encode: Replace each                          d2                 c12       c23       c32                   1           1       1         1       1       0              0           1         1
+
+
+
+
+     sub-vector with the ID (0-255)                                                                                    C1                            C2                             C3
+     of its nearest centroid.
+                                                   d9                 c13       c22       c33
+ ●   Result: High-precision floats                                                                    c11       c12             c13     c21         c22           c23   c31                  c32       c33
+
+                                                   d10                c13       c21       c32
+     are converted into small byte
+                                                                                                                      Cluster IDs Saved as 8 bit Integer
+     codes, reducing memory usage
+     by 95%+ (e.g., 4KB →64 bytes).
+IVF + PQ (Combining the two)
+ IVF and PQ each solve two different problems:
+                                                      0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                      0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                      0       0       0        1       0       0       1       1       0
+
+
+
+
+  1.   IVF solves "Too many vectors to check"         0       0       0        1       0       0       1       1       0
+
+
+
+
+       (by clustering).                                                                                                        Partition
+                                                      0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                      0       0       0        1       0       0       1       1       0
+
+
+
+
+  2.   PQ solves "Vectors are too big to store"       0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                      0       0       0        1       0       0       1       1       0
+
+
+
+
+       (by compression).                              0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                      1       1       1        1       1       0       0       1       1
+
+
+
+
+ IVF+PQ Indexing (Construction)
+
+  ●    1. Coarse (IVF): Run K-Means (e.g., 1024                               Residual
+       clusters) on the dataset to find coarse                                                                                               0
+
+
+
+
+                                                                                                                                             0
+                                                                                                                                                   0
+
+
+
+
+                                                                                                                                                   0
+                                                                                                                                                       0
+
+
+
+
+                                                                                                                                                       0
+                                                                                                                                                                   1
+
+
+
+
+                                                                                                                                                                   1
+                                                                                                                                                                        0
+
+
+
+
+                                                                                                                                                                        0
+                                                                                                                                                                              0
+
+
+
+
+                                                                                                                                                                              0
+                                                                                                                                                                                          1
+
+
+
+
+                                                                                                                                                                                          1
+                                                                                                                                                                                               1
+
+
+
+
+                                                                                                                                                                                               1
+                                                                                                                                                                                                     0
+
+
+
+
+                                                                                                                                                                                                     0
+
+
+
+
+       centroids.                                                                                                                            1     1   1           1    1     0           0    1     1
+
+
+
+
+  ●    2. Assign each vector to its nearest           0           0       0        1       0       0       1   1       0
+
+
+
+
+                                                                                                                                       c11   c12       c13   c21       c22        c23    c31       c32   c33
+       centroid, then calculate the difference
+                                                          0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                          0       0       0        1       0       0       1       1       0
+
+
+
+
+       vector (Residual = Vector - Centroid).             0       0       0        1       0       0       1       1       0
+                                                                                                                                                       d1               c11        c21   c31
+
+
+  ●    3. Fine (PQ): Split the residual vector into       0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                          0       0       0        1       0       0       1       1       0
+                                                                                                                                 PQ                    d2               c12        c23   c32
+
+       sub-vectors and train the PQ codebooks on          0       0       0        1       0       0       1       1       0
+
+
+
+
+       these residuals.                                   0       0       0        1       0       0       1       1       0
+
+
+
+
+                                                                                                                                                       d9               c13        c22   c33
+                                                          0       0       0        1       0       0       1       1       0
+
+
+
+
+  ●    4. Save the PQ codes (byte IDs) into the
+                                                                                                                                                       d10              c13        c21   c32
+                                                          1       1       1        1       1       0       0       1       1
+
+
+
+
+       specific Inverted List for that centroid.
+IVF + PQ
+                                                                                                                                                                                           Query
+                                                                                                                                              0           0           0            1           0           0             1               1           0
+
+
+
+
+ IVF+PQ Search (Retrieval)
+
+  ●   1. Coarse (IVF): Compare the                                                                                                                                        K Cluster
+      query against the coarse centroids
+      to find the nprobe closest buckets
+                                                                                                                                                                              Residual
+      (e.g., top 10).
+  ●   2. For each selected bucket, shift
+      the query vector relative to that                                                                                                 0             0           0           1            0           0           1                 1           0
+
+
+
+
+      bucket's centroid
+                                                                                                                                                  0           0           0            1           0           0                 1           1           0
+                                                 0     0        0         1         0   0               1   1     0
+
+
+
+
+                                                 0     0        0         1         0   0               1   1     0
+                                                                                                                                                          0           0            0           1           0                 0           1           1       0
+
+
+
+
+      (Queryshifted=Query−Centroid).             1     1        1         1         1   0               0   1     1
+
+
+
+
+  ●   3. Build Tables (ADC): Construct
+                                           c11   c12        c13     c21        c22          c23    c31          c32   c33                                                              ADC
+      the PQ distance lookup tables
+      using these shifted queries.                          Index
+                                                           d1                 c11       c21       c31                                                                             d1                                   s11                           s21         s31
+
+  ●   4. Scan: Iterate through the PQ                      d2                                                               s11   s12       s13
+                                                                              c12       c23       c32                                                                             d2                               c12                               c23         c32
+
+      codes in the selected buckets,                                                                                        s21   s22       s23
+
+      summing values from the lookup                       d9                 c13       c22       c33                       s31   s32       s33                                   d9                               c13                               c22         c33
+
+      table to approximate distance.                   d10                    c13       c21       c32
+                                                                                                                                                                                  d10                              c13                               c21         c32
+IVF + PQ: why the approximation works
+IVF prunes how many vectors you score; PQ shrinks how many bytes each one costs.
+
+
+
+  PQ = compression                         ADC = cheap distance                       IVF = prune + recall
+
+  Split a D-dim vector into m              Keep the query in full precision; only     K-means builds nlist cells; scan only
+  sub-vectors; replace each with the       the database is quantised.                 the nprobe nearest. PQ encodes
+  nearest of 256 centroids — one byte      Precompute query-to-centroid               residuals, so quantisation error stays
+  apiece.                                  distances once, then sum lookups.          small.
+  768x4 B -> m B                           d(q,x)^2 = SUM_i                           scanned = (nprobe/nlist).N
+  (m=96 => ~32x smaller)                   LUT_i[code_i]
+
+
+
+
+  In one line: IVF skips ~90% of vectors by clustering; PQ makes the survivors ~32x smaller and each distance a table
+  lookup — recall is bought back with nprobe.
+HNSW: zoom in through layers
+Like a road network: take highways to get near the destination fast, then drop to local streets for the exact
+address.
+
+   Layer 2 · few nodes, long hops                                     How the search runs
+                                                                      Start at the top entry node. Greedily hop to the
+             entry                                zoom in             neighbour closest to the query; when you can’t get
+                                                                      closer, drop a layer and repeat. Each descent zooms
+   Layer 1 · more nodes                                               from coarse to local.
+
+
+                                                                            The ef dial (efSearch)
+   Layer 0 · all nodes, local edges
+                                                                      How many candidates to keep “in play” while exploring.
+                                                                      Low ef = fast, may miss the true neighbour. High ef =
+                                            nearest
+                                                                      wider search, higher recall, slower.
+
+
+   Same dial, new hat: ef is HNSW’s recall–speed knob, exactly like nprobe is IVF’s. Build-time M (edges per node) sets the
+   graph’s baseline quality.
+efSearch: the candidate list that controls recall
+The width of the search at layer 0 — how many close candidates HNSW keeps in play before it answers.
+
+
+
+  Inside the layer-0 search                                                   Recall vs latency, as ef grows
+                                                                                   recall           latency
+  Upper layers just navigate (beam = 1). At layer 0 the search keeps the ef
+  closest candidates, exploring neighbours until none beats the worst one
+  kept.
+
+  Candidate list (size ef = 4)
+                                                                                                                             efSearch →
+   0.11 nearest
+
+   0.14                                   new node d=0.13                     Wider list more nodes visited → higher recall, slower.
+                                                                              ef ≥ k you return the top k from the ef candidates.
+   0.17                                 0.13 < 0.22, so it is inserted
+                                                                              Query-time dial tune it per query — no rebuild.
+                                        and the worst is dropped.
+   0.22 worst kept
+HNSW: why search is ~ log(N), not N
+Build a layered proximity graph so each hop covers more ground — a skip list lifted into high-dimensional space.
+
+
+
+  Skip-list intuition                        Why it is logarithmic                     The two knobs
+
+  A skip list adds express lanes over a      Layers thin geometrically: the top        M = edges per node, fixed at build
+  sorted list. Each higher layer keeps a     holds O(1) nodes and each descent         time (sets baseline recall + memory).
+  fraction of the nodes, so you leap         roughly halves the distance still to      efSearch = candidates kept in play,
+  exponentially far per hop.                 cover.                                    the query-time recall dial.
+  P(node in layer L) = m^(-L)                E[hops] = O(log N)                        memory = O(N . M)
+
+
+
+
+   In one line: greedy descent through thinning layers turns a linear scan into a logarithmic walk — recall traded
+   against ef, baseline fixed by M.
+FAISS
+Faiss is a library for efficient similarity search and clustering of dense vectors. It contains
+algorithms that search in sets of vectors of any size, up to ones that possibly do not fit in
+RAM.
+
+Two main approaches:
+
+1.   IndexFlatL2 : Exact L2 matching but faster than manual implementation
+2.   IndexIVF (Inverted File) : Cluster similar features together, only searches relevant
+     clusters
+ChromaDB: a database wrapped around vector search
+FAISS is a library that finds nearest vectors. ChromaDB is the database that wraps it with everything a RAG
+app actually needs.
+
+  The raw-search problem                                                                Chroma stores all three together
+  A bare similarity search returns numbers:
+                                                                                 Vector                for the similarity math
+   “vector #4471 is closest”
+                                                                                 Text                  the actual chunk the LLM reads
+  … but the LLM needs the text, and you need the source to
+  filter & cite. With FAISS you track that ID→text map yourself
+  — the classic “numbers but no documents” bug.                                  Metadata              source, page, date — to filter & cite
+
+
+
+        The feature raw search can’t do: metadata filtering                                    The trade-off
+  where={"source": "policy.docx"}                                                              Under the hood: HNSW (one index, CPU, single
+  Pre-filter before the search → higher precision AND a smaller, faster candidate              node). Convenience now, a ceiling later —
+  set.                                                                                         graduate to FAISS for billions or fine index control.
+
+
+            In one line: take an ANN library like FAISS, wrap it in a real database — text, metadata, persistence, filtering included.
+Design Decisions of VectorDB
+
+Two questions stack here:
+(1) database or library? then (2) which index?
+
+Question 1 - ChromaDB vs FAISS (vs managed)
+1.   Prototype, course, app under ~a few million vectors, want metadata + persistence
+     with minimal code
+
+Choose: ChromaDB.
+
+
+Because: it stores vectors + original text + metadata together, persists to disk, and filters by
+metadata - a working semantic search service in ~15 lines. It runs FAISS-class indexes
+underneath anyway, so you rarely lose speed at this scale.
+2. Need raw speed / huge scale / fine index control / embedding inside
+another system
+
+
+Choose: FAISS (the library).
+
+
+Because: fastest and most tunable, scales to billions, full control over index type and
+compression. The cost: it's not a database - no persistence, no metadata, no text storage out
+of the box.
+
+
+You must save/load the index file yourself and keep your own id → text/metadata
+map (losing that map is the classic "FAISS gave me numbers but I lost my documents" bug).
+Question 2 - Which FAISS index? (corpus size is the main driver)
+
+Branch 3D - Up to ~1M vectors, or you require 100% recall
+
+Choose: IndexFlatIP (exact, brute force). Because: it compares the query to every vector — always finds the
+true nearest neighbors, no training, no tuning. Don't trade away accuracy to solve a speed problem you don't
+have yet.
+
+Branch 3E - Millions of vectors, can tolerate a small recall loss, fits in RAM
+
+Choose: IVFFlat. Knobs: nlist ≈ √N, nprobe = recall dial. Because: it clusters vectors and only searches
+the few clusters near the query, skipping ~90% of comparisons. Needs training (≥ ~30–40× nlist points or
+clustering is poor — that's the warning on small data). nprobe=1 is fastest/lowest-recall; raising it trades latency
+for recall until, at nprobe=nlist, it degenerates back to exact.
+You are deploying a semantic search service for a dataset of 50 million document chunks. Your
+infrastructure has strict memory (RAM) constraints, but you can tolerate a slight drop in retrieval
+recall. Which indexing strategy is the most appropriate design choice?
+
+A. IndexFlatIP
+
+B. IVF + PQ (Inverted File + Product Quantization)
+
+C. Exact Cross-Encoder Matching
+
+D. HNSW (Hierarchical Navigable Small World)
+
+
+Right answer: B
+IVF reduces the search scope by clustering, and Product Quantization heavily compresses the
+vector memory footprint, directly addressing strict RAM limits for massive datasets.
+The retrieval pipeline: Semantic search
+A minimal end-to-end pipeline
+Dense Retrieval (costlier but more accurate):
+Cross-Encoder
+
+
+
+
+                              Use a single encoder to jointly encode query
+                              and document and finetune to produce a
+                              relevance score with a linear layer over the CLS
+                              token. This is too compute-expensive to use
+                              except in rescoring
+Bi-encoder vs Cross-encoder: the cost of accuracy
+Same goal — score (query, doc) relevance — but where you spend attention decides the speed.
+
+
+
+  Bi-encoder: precompute                    Cross-encoder: joint                       Why two-stage
+
+  Encode query and doc separately,          Feed [q ; SEP ; d] through one             Cross-encoding all N docs is N
+  then score by a dot product. Doc          transformer so every query token           forward passes — infeasible.
+  vectors are built once, offline, and      attends to every doc token. Far more       Retrieve K cheaply, rerank only those
+  indexed.                                  accurate — nothing precomputable.          K.
+  score = E(q) . E(d)                       score = sig(W .                            N passes -> K passes (K <<
+  docs encoded once                         BERT([q;d]))                               N)
+
+
+
+
+   In one line: bi-encoders push work offline (cheap, approximate); cross-encoders pay per pair (precise, costly) — so
+   you retrieve cheap and rerank dear.
+ColBERT
+ColBERT: late interaction (the middle ground)
+Keep one embedding per token, not per document — then match tokens at query time.
+
+
+
+  Token-level embeddings                   MaxSim operator                          The trade-off
+
+  Store a vector per token, not per doc.   For each query token, take its best      Accuracy nears a cross-encoder at a
+  These are precomputed and indexed        match among all doc tokens, then         fraction of the cost — but storing
+  offline, like a bi-encoder — no          sum those maxima. Interaction            every token vector inflates the index.
+  re-encoding at query time.               happens late, after encoding.            storage ~ tokens, not docs
+  doc -> {e_1, e_2, ... e_n}               score = SUM_i max_j (e_i .
+                                           e_j)
+
+
+
+
+  In one line: ColBERT defers interaction to query time via MaxSim — near cross-encoder quality with
+  bi-encoder-style precompute, paid for in index size.
+The two-stage pattern is industry standard
+
+
+ 1 Retrieve                               2 Rerank                              3 Generate
+ Bi-encoder + ANN index pulls top   → Cross-encoder  rescores each         → Top 5–20 reranked chunks go to
+ 100–200 candidates from millions     (query, candidate) pair jointly —
+                                                                                the LLM as context.
+ — fast, scalable, approximate.           slow but precise.
+
+
+
+
+ Seen in: Google / Bing two-stage ranking · FAISS powering similarity search across Meta products
+Three failures that silently wreck a RAG
+system
+         Empty chunks to prod
+  1      A scanned PDF has no text layer — pypdf returns empty strings silently. Always probe for a
+         text layer; route to OCR if absent.
+
+
+         Half the recall, no warning
+  2
+         An asymmetric model used without query: / passage: prefixes. Read the model card.
+
+
+
+         Euclidean on a cosine model
+  3      Using the DB’s default L2 metric on a model trained for cosine — quietly underperforms.
+         Match the metric to training.
+
+
+  Each one fails quietly — no error, no crash, just worse answers. These are the bugs your participants will actually hit.
+An enterprise requires a retrieval pipeline that achieves accuracy close to a
+cross-encoder but strictly cannot afford the query-time latency of computing joint
+attention over all candidate document pairs. They are, however, willing to provision
+significantly more storage. Which architecture best satisfies these constraints?
+
+A. A dual-stage Bi-encoder followed by Cross-encoder reranking
+
+B. A standard Bi-encoder
+
+C. BM25 Sparse Retrieval
+
+D. ColBERT (Late Interaction)
+
+Right answer: D
+This model precomputes token-level embeddings, deferring interaction to a
+lightweight query-time MaxSim operation, which trades high storage costs for near
+cross-encoder accuracy without the heavy runtime compute.
+RAG in Production: Transition to Agentic
+                 RAG
+          The Enterprise DevOps & Support Agent
+The Goal: Build an internal AI agent for software engineering teams.
+Key Requirements: Troubleshoot incidents, query codebase, answer HR queries, and ensure
+security.
+Production Rag Systems (What’s different?)
+Request Shaping
+                  ●   Motivation : Requests made by
+                      users are not always precise
+                      and usable.
+                  ●   Example: Teach me attention.
+                      This prompt doesn’t specify
+                      what attention really means.
+                  ●   Request shaping transforms
+                      a user query before retrieval
+                      to     improve    relevance,
+                      precision,   and    retrieval
+                      quality.
+Example of Request Shaping in Project Context
+     Original User Query         Transformed / Shaped Request
+
+
+                              “Find active incident reports and server
+        “Server down.”
+                                   logs for the past 60 minutes.”
+
+
+
+
+                               “Information about Employee benefit:
+      “Car leasing policy”
+                                       Car-Leasing policy”
+
+
+
+
+     “Latest bugs assigned”   “Fetch top-10 bugs assigned to the user”
+Query Transformations: Rewriting
+
+ What it is: The process of using an LLM to rewrite ambiguous, vague, or shorthand queries into
+ clearer, highly specific search statements.
+ When to use it: Essential for support channels (Slack, Teams) where fragmented sentences, error
+ codes, or jargon hinder vector database matching.
+
+
+ Project Example: DevOps Agent
+                                                                TRANSFORMED QUERY (REWRITTEN)
+   USER QUERY (ORIGINAL)                                        What causes the OOMKilled container exit code
+   "OOMKilled"                                                  in Kubernetes, and what are the remediation
+                                                                steps?
+
+
+    The Impact: Instead of returning random documents containing "OOM", the agent retrieves specific internal
+    runbooks for memory allocation and container scaling.
+Query Transformations: Follow-up Question
+ What it is: Converting contextual follow-up questions into complete, standalone queries by injecting
+ the history of the current conversation.
+ When to use it: During active, multi-turn troubleshooting or policy inquiries where the user naturally
+ relies on pronouns ("it," "they," "that server").
+
+
+                             Project Example: HR / Support Agent
+
+  CONVERSATION HISTORY
+                                                           TRANSFORMED QUERY
+  User: "What is the standard parental leave
+  policy?"                                                 "Does the standard parental leave
+                                                           policy apply to contract
+  Agent: [Returns standard policy details]
+                                                           employees?"
+  User: "Does it apply to contractors?"
+
+
+
+ The Impact: Without this step, the retriever searches for "Does it apply to contractors?" and fails.
+ The standalone query ensures high-accuracy retrieval.
+Query Transformations: Multi-Query Retrieval
+ What it is: Generating multiple, distinct related queries from a single complex question and retrieving
+ documents for all of them in parallel.
+ When to use it: When a prompt spans multiple microservices, compares entities, or requires joining
+ info from separate documents.
+
+
+ Project Example: DevOps Agent
+
+  USER QUERY                                               GENERATED QUERIES
+                                                           Q1: What are the recent latency metrics
+  "Did the latency spike happen in both the                and error logs for the Mumbai Vertex AI
+  Mumbai and US-East Vertex AI                             deployment?
+  deployments?"
+                                                           Q2: What are the recent latency metrics
+                                                           and error logs for the US-East Vertex AI
+                                                           deployment?
+
+
+
+ The Impact: Guarantees the LLM gets necessary context for both deployments before comparison,
+ avoiding regional bias.
+Query Transformations: Step-Back Prompting
+What it is: Creating a broader, high-level question to retrieve foundational context before attempting to
+answer a hyper-specific user query.
+When to use it: When an engineer's query is so deep in the weeds that it misses underlying architectural
+rules, leading to "no results" or hallucinations.
+
+
+                                  Project Example: DevOps Agent
+
+  USER QUERY                                                   STEP-BACK (BROADER) QUERY
+  "Why can't I pull the switch association                     "What is the overall architecture
+  data for the rogue units on Floor 3?"                        of our network troubleshooting
+                                                               system, and what data is
+                                                               collected from reporting access
+                                                               points versus rogue units?"
+
+
+The Impact: The step-back query retrieves the foundational rule: switch association data is only
+available for reporting access points, not rogue units. This allows the agent to explain the
+architectural limitation.
+How will this be achieved?
+A user repeatedly encounters 'no results' or hallucinated answers when asking highly specific,
+deep-in-the-weeds technical questions (e.g., 'Why can't I pull the switch association data for the
+rogue units on Floor 3?'). The vector database contains the underlying architectural rules that
+explain this limitation, but it lacks the highly specific keywords from the user's prompt. Which
+query transformation design pattern is specifically built to mitigate this failure mode?
+
+A. Follow-up Question Transformation
+
+B. Semantic Routing
+
+C. Step-Back Prompting
+
+D. Multi-Query Retrieval
+
+Right answer: C
+Step-Back Prompting uses an LLM to abstract a hyper-specific query into a broader,
+foundational question (e.g., 'What is the overall architecture of our network troubleshooting
+system?'), allowing the system to retrieve the underlying rules before answering the specific
+edge case.
+The Need for Dynamic Decisions for User Queries
+
+ The Immediate Problem
+ We now have four powerful ways to transform a query (Rewriting, Follow-ups, Multi-Query,
+ Step-Back). But how does the system know which technique to apply to a specific user prompt?
+
+
+ The Broader RAG Challenge
+ As our DevOps Agent scales, this decision-making dilemma appears everywhere:
+  ●   Which transformation technique should I use?
+  ●   Should I search the HR vector database or the GitHub code repository?
+  ●   Do I need a fast, cheap LLM for this, or a highly capable, expensive reasoning model?
+
+
+ The Solution: Query Routing
+ Hardcoding if/else statements for every scenario creates a brittle system. We need an intelligent
+ layer that dynamically routes requests to the optimal workflow, tool, or data source.
+Query Routing: The Traffic Cop of Production RAG
+ What it is:
+ Query routing directs a user query to the most relevant knowledge source, workflow, or model before
+ execution.
+
+
+
+ The "So What?" (Production Impact)
+ If a user asks a simple question, searching the entire company's infrastructure (HR, Codebase, Logs,
+ Wiki) is slow, expensive, and increases the chance of the LLM hallucinating by pulling irrelevant data.
+ Routing isolates the search to only the necessary domains.
+
+
+
+ The Goal:
+ Maximize accuracy while minimizing latency and API costs.
+Routing Strategies: From Simple to Smart
+
+Rule-Based (Logical)                 Embedding-Based                    LLM-Based
+Hard Coded logic or Regex.           Semantic Router using              LLM classification for JSON
+Fast and deterministic.              vector similarity against          decisions. Highly accurate
+e.g., If query contains "PTO"        route profiles. Fast, scalable,    for ambiguity, but adds
+or "leave", route to HR.             and offline-capable.               latency/costs.
+
+
+
+
+ Classifier-Based Routing                               Hybrid Routing (The Pro Approach)
+ Train a dedicated intent classifier for core           Workflow: Rule → Embedding → LLM
+ business domains:                                      Logic:
+  ●    HR / Legal                                       Only trigger the expensive LLM router if the
+  ●    Research / Code                                  fast Embedding router has a low confidence
+                                                        score.
+Rule-Based (Logical) Routing
+
+ What it is & How it works
+ The most fundamental routing technique. It relies on hard coded logic, keywords, or Regular
+ Expressions (Regex) to map a raw query string against if/else conditions before AI processing.
+
+
+ Project Example: DevOps Agent                                     The Catch: Fragility
+ Logic:                                                            Highly brittle system. It lacks semantic
+ IF query.contains(["PTO", "leave",                                understanding and fails if exact keywords are
+ "payroll", "manager"]): route_to =                                missing.
+ "HR_Database"
+                                                                   USER TYPES:
+ User Query:                                                       "I need to take time off"
+ "How many days of leave do I have left?"
+                                                                   SYSTEM STATUS:
+ The Result:                                                       ✘ REGEX FAILS
+ Instant route to HR docs. Cost: $0.00 |                           Missing exact keyword "leave" or "PTO".
+ Latency: ~1ms
+
+                           Deterministic • Zero Cost • Extremely Low Latency • Low Generalization
+Embedding based routing
+
+                                                              What it is:
+                                                              Transforms queries into vectors for
+                                                              similarity checks against "route
+                                                              profiles". Deterministic, fast (no LLMs),
+                                                              and works offline.
+                                                              How it is done:
+                                                              Create "profiles" (20-50 sample
+                                                              questions) for each database. Real
+                                                              queries are embedded and matched
+                                                              via cosine similarity.
+
+
+Project Example: DevOps Agent
+User Query: "I'm feeling burnt out and need a break next Tuesday."
+Route Profiles: HR_Profile (benefits, time off) vs. Code_Profile (bugs, PRs).
+Result: Semantic match favors HR_Profile cluster. Routed without a heavy LLM.
+Classifier-Based Routing: Learning Intent
+
+                                               What it is
+                                               Uses a trained, lightweight ML model (e.g.,
+                                               Random Forest, Naive Bayes, small BERT) to
+                                               categorize query intent into predefined buckets
+                                               like HR, Legal, or Ops.
+
+                                               How it is done
+                                               The classifier is trained on historical queries
+                                               mapped to correct labels. At runtime, it ingests
+                                               queries and outputs probability scores for each
+                                               category.
+
+
+Project Example: DevOps Agent
+Query: "My compensation seems wrong this month." | Result: Recognizes semantic pattern
+Intent: HR (95% confidence)
+LLM based routing
+
+                                                                                     Concept & Implementation
+                                                                                     What it is: Simple queries use cheaper models;
+                                                                                     complex ones use stronger models. Ask LLM to reason
+                                                                                     and output structured JSON.
+                                                                                     How it is done: A prompt with query and route
+                                                                                     descriptions asks: "Analyze this query and return a
+                                                                                     JSON object with 'target_database' and 'reasoning'."
+
+
+
+
+                                                                                     Project Example: DevOps Agent
+                                                                                     Query: "The auth token is expiring too fast. Is this a new
+                                                                                     security policy thing or a bug?"
+                                                                                     Result: LLM recognizes technical execution over policy,
+                                                                                     outputting {"route": "Codebase_DB"}.
+
+
+
+
+The Catch: Balances quality vs. cost dynamically, but adds latency and API cost to the pipeline.
+Hybrid routing
+ What it is: Hybrid routing combines multiple strategies to leverage individual strengths while
+ mitigating weaknesses.
+ How it is done: Routers are structured sequentially as a waterfall. Moving to the next stage occurs
+ only upon low confidence.
+
+     1. Rule-Based            2. Embedding-Based             3. LLM-Based                 Sequential Workflow
+
+
+
+ Project Example: DevOps Agent
+ User Query: "Pipeline failed."
+
+  Step 1: Rule-Based                  Step 2: Embedding                         Step 3: LLM-Based
+  Result: FAIL                        Result: 50% Confidence                    Result: SUCCESS
+  No obvious keywords found           Ambiguous (CI/CD vs                       Reviews query + Metadata
+  in query.                           Sales). Execution falls back              (Role: DevOps). Accurately
+                                      to next step.                             routes to Infrastructure_Logs.
+
+
+                                                         Cost efficiency: Only paid for expensive LLM when cheaper methods failed.
+Application 1: Data Source Routing
+
+ General Use: Selecting the correct vector database, SQL database, or API based on the user's intent.
+ Project Example (DevOps Agent): Since RAG outputs depend on the data-corpus it accesses, different questions
+ must refer to different corpora.
+
+
+          HR & POLICY                              TECHNICAL ASSETS                                LIVE MONITORING
+
+User Query:                                   User Query:                                    User Query:
+"What is the maternity leave                  "How does the auth module                      "Why did the payment
+policy?"                                      handle token expiry?"                          container crash 5 min ago?"
+
+Route:                                        Route:                                         Route:
+Retrieve from the HR Docs                     Retrieve from the Company                      Trigger an API call to Live
+Vector DB.                                    Codebase Vector DB.                            Splunk/Datadog Logs.
+                                                                                             (Bypass Vector DB entirely)
+
+
+ Intent-based routing ensures the RAG pipeline targets the most relevant high-fidelity data source for every unique request.
+Application 1: Data Source Routing - Where in Project?
+Application 2: Model & Workflow Routing
+
+ General Use: Routing isn't just for finding documents; it is used to dynamically select which LLM or
+ which pipeline to use, balancing response quality and inference cost dynamically for each query.
+
+
+             SIMPLE EXTRACTION                                             COMPLEX REASONING
+
+ User Query:                                                   User Query:
+ "Format this server log into a JSON block."                   "Review this 500-line Python PR, check it against
+                                                               our security guidelines, and draft a summary."
+ Route to Model:
+                                                               Route to Workflow:
+ Direct to a smaller, faster, cheaper model
+ (e.g., Llama-3-8B or Haiku).                                  Direct to a premium reasoning model (e.g., GPT-4
+                                                               or Opus).
+ Lowers latency and avoids wasting expensive
+                                                               Triggers a multi-step Agentic Orchestration
+ model capacity.
+                                                               workflow.
+
+  Simple queries are sent to cheaper models while complex queries use stronger models to optimize cost and quality.
+Application 3: Prompt & Index Routing
+
+ General Use: Deciding how to search the data or how to prompt the LLM once the data is found.
+
+
+
+         INDEX ROUTING EXAMPLE                                        PROMPT ROUTING EXAMPLE
+
+ User Query:                                                  User Query:
+ "Find the specific error code in the network                 "Summarize the architectural changes made
+ manual."                                                     to the database last quarter."
+
+ Route to Index:                                              Route to Prompt:
+ Route to a Sparse Index (BM25/Keyword                        Route to a Summarization Prompt
+ Search).                                                     Template.
+ Exact matches matter more than semantic                      Instructs the LLM to aggregate rather than
+ meaning here.                                                extract a single fact.
+
+
+                                    Project Example: DevOps Agent Case Study
+You are designing the query routing layer for an internal Support Agent. To balance cost and
+accuracy, you want to avoid invoking an expensive LLM router for every query. However, you find
+that a purely Rule-Based (Regex) router is too brittle and fails on slight phrasing variations. What
+is the most robust architectural solution?
+
+A. Implement a Hybrid Routing waterfall: Rule-Based -> Embedding-Based -> LLM-Based.
+
+B. Expand the Rule-Based router's dictionary to include all possible synonyms generated by an
+LLM offline.
+
+C. Use Step-Back Prompting to generalize all queries before applying Regex rules.
+
+D. Route all queries through an intent classifier trained with a lightweight ML model.
+
+Right answer: A
+A sequential waterfall strategy systematically attempts the cheapest, fastest deterministic
+methods first, escalating to the semantic understanding of embeddings, and only paying the high
+inference cost when ambiguity necessitates it.
+Before We Search: Securing the Perimeter
+The Current State: Our Query Router just successfully mapped a complex user prompt to the exact
+correct database (e.g., finding the HR_Docs_DB or the Live_Server_Logs).
+
+                      The Enterprise Dilemma: Three Massive Production Risks
+
+
+        SECURITY                                EFFICIENCY                                  COST
+
+"What if a Junior Engineer              "What if 50 engineers ask the               "What if a recursive bug
+query is routed to HR, but              same question in 10                         triggers 10,000 expensive
+they ask for the CTO's                  seconds? Do we pay for 50                   LLM evaluations?"
+salary?"                                searches?"
+
+
+
+
+
+     The Solution: The Retrieval Gateway
+     A protective "bouncer" layer between routing logic and private company data.
+Retrieval Gateways: The Enterprise Bouncer
+What it is:
+A centralized security and management layer that
+sits between the Query Router and your actual
+knowledge sources (Vector DBs, APIs, SQL
+databases).
+
+
+  The "So What?" (Production Impact):
+  In a corporate environment, not all data is
+  public, and not all AI queries are cheap. Without
+  a gateway, sensitive executive documents could
+  be exposed or recursive loops could drain cloud     Core Responsibilities:
+  budgets.
+                                                      Access Control (AuthN/AuthZ), Quota
+                                                      Management (FinOps), Semantic Caching,
+                                                      and Observability.
+Access Control: Enforcing Least Privilege
+
+     What it is & How it Works
+    Concept: Ensuring the AI agent only retrieves documents the user has permissions to read.
+     Process: Gateway intercepts identity tokens (SSO/AD) and applies metadata filters in the
+     Vector DB based on RBAC.
+
+     Scenario: Junior Engineer                          Scenario: HR Director
+                                                  
+     "What are the latest salary bands?"                "What are the latest salary bands?"
+
+     Gateway: BLOCKED                                   Gateway: APPROVED
+     Reads user role, applies RBAC filter.              Authorizes query, retrieves sensitive
+     Retrieval returns zero docs. LLM                   PDF chunks, LLM summarizes findings.
+     declines politely.
+Access Control: Enforcing Least Privilege
+You are building an Enterprise Support Agent with access to both public company wikis and highly
+confidential HR salary documents. To enforce Least Privilege and ensure a junior engineer cannot access
+executive salary data, where and how must the access control (AuthZ) be implemented?
+
+A. In the Retrieval Gateway, by intercepting the user's identity token and injecting a dynamic metadata
+filter into the Vector DB query before retrieval.
+
+B. By post-processing the retrieved chunks with a cross-encoder to filter out documents that do not match
+the user's security clearance level.
+
+C. By using an LLM Router to classify the query intent as 'Sensitive,' and subsequently blocking the
+generation phase.
+
+D. By instructing the Generation LLM via the system prompt to refuse answering if the context contains
+sensitive salary data.
+
+Right answer: A
+Injecting metadata filters at the database level guarantees that the retrieval engine physically cannot
+return unauthorized documents to the generation pipeline, creating a secure barrier against data leakage.
+Cost Management: Protecting the Cloud Budget
+ What it is:                                        How it is done:
+ Monitoring token usage, API calls, and compute     The gateway tracks usage (user/team/project),
+ cycles to prevent runaway costs, especially in     enforces rate limits, throttles requests, and falls
+ multi-agent frameworks.                            back to cheaper models.
+
+
+
+ Project Example: DevOps Agent
+
+
+   The Scenario                                     Gateway Action
+  Agent runs intensive "LLM-as-a-Judge" loops       Enforces monthly token caps. At 90% budget,
+  on high-tier Vertex AI endpoints. Risk:           it throttles requests or routes non-critical tasks
+  accidental $30,000 credit burn due to recursive   to cheaper local models.
+  bugs.
+Semantic Caching: Speed & Efficiency
+ What it is:
+                                                        How it is done:
+ Storing answers to previous questions. If a new
+                                                        The gateway generates an embedding for the
+ query means the exact same thing semantically,
+                                                        query and checks it against a fast, in-memory
+ the gateway serves the cached answer
+                                                        cache (like Redis).
+ instantly.
+
+
+ Project Example: DevOps Agent
+
+
+ The Scenario                      Gateway Action                      The Impact
+200 engineers ask variation of     Processes first query                Latency drops from seconds
+"Is US-East down?" within 5        normally. Recognizes                 to ms. Bypasses 199
+minutes.                           identical intent for next 199        expensive Vector DB lookups
+                                   and serves cached report.            and LLM calls.
+Semantic caching: choosing the threshold
+A cache hit is a similarity bet. The threshold trades stale-answer risk against money saved.
+
+
+
+  The decision rule                          The asymmetry                             What you save
+
+  Embed the query, find the nearest          The two errors are not equal. A miss      If a fraction h of queries hit, you skip
+  cached query, and reuse its answer         costs one extra lookup; a false hit       their full retrieval + LLM cost and
+  only if similarity clears the threshold.   returns a wrong answer. Bias tau          drop latency to milliseconds.
+  hit if cos(q, q_cache) >=                  high.                                     savings = h .
+  tau                                        cost(false hit) >>                        (retrieval+LLM)
+                                             cost(miss)
+
+
+
+
+   In one line: set tau high enough that a hit really means the same question — the saved cost is large, but a confident
+   wrong answer is expensive.
+Observability: Tracking the Truth
+ What it is:
+                                                    How it is done:
+ The gateway acts as a single pane of glass for
+                                                    Every query, retrieved chunk, citation, latency
+ all RAG activity. It decouples the Orchestration
+                                                    metric, and cache hit is logged to a central
+ layer from the underlying databases and logs
+                                                    dashboard (e.g., Datadog, Splunk).
+ every action.
+
+
+ Project Example: DevOps Agent
+
+
+   The Scenario                                     Gateway Action
+  An engineer complains that the agent gave         The platform team looks up the exact query ID
+  them outdated steps to restart a Kubernetes       and traces the outdated runbook returned by
+  cluster.                                          the Vector DB, allowing them to delete the
+                                                    document.
+The Problem with "Single-Shot" RAG
+  Standard RAG operates as a strict, linear pipeline:
+  Embed Query → Retrieve Top-K → Generate Answer
+
+
+ Assumption 1: Perfect Retrieval                        Assumption 2: Complete Context
+ All necessary context can be found in a single         The retrieved chunks contain the final answer,
+ database search.                                       not a clue pointing to another system.
+
+
+
+  The Reality of Production
+  Enterprise problems are rarely solved in one search. When a developer investigates an issue, they
+  run a query, read the result, realize they need more context, and run a different query.
+  Linear RAG cannot reflect, pause, or loop back.
+Case Study: The Multi-Hop Query
+  The Complex Task
+  "Find the error in the payment container, check if it's related to yesterday's auth module commit,
+  and if so, draft a Slack update for the QA team."
+
+
+How Linear RAG Fails
+
+  Vector Dilution                                       Missing Sequential Logic
+ It tries to embed this entire prompt at once.          The system needs to know the exact container
+ The vector database gets confused by                   error before it knows what to search for in the
+ keywords from logs, codebases, and HR tools,           auth module commits. It cannot search both
+ returning irrelevant, blended results.                 simultaneously.
+Why We Can't Just "If/Else" Our Way Out
+
+ To solve these multi-hop queries, engineers often try to build massive, rule-based routing trees.
+
+
+
+
+ The Hardcoded Approach                                 The Catch: Fragility
+
+ IF query contains "error"                              A highly brittle system.
+ → Search Logs
+                                                        Lacks semantic understanding and fails if
+ THEN IF Logs contain "auth"                            exact keywords are missing. A developer
+ → Search Codebase                                      typing "payment pod crashed" instead of
+                                                        "error" collapses the workflow.
+ THEN IF Codebase contains "commit"
+ → Draft Message                                        We cannot hardcode a path for every
+                                                        possible debugging scenario.
+The "So What?": From Passive Search to Active Problem
+Solving
+
+ The Enterprise Reality                           The Necessary Shift
+ In real-world software environments,             We cannot hardcode our way out of this
+ resolving an incident is an iterative loop. It   complexity. To make our DevOps agent truly
+ requires:                                        useful, we must shift the responsibility of how
+  ●    Executing an initial search.               to solve the problem away from static code
+                                                  and hand it over to the LLM itself.
+  ●    Evaluating the result.
+                                                  We need a system that doesn't just read
+  ●    Realizing a piece of context is missing.   data, but autonomously decides how to
+  ●    Planning a secondary action to fetch       use our tools.
+       that missing piece.
+You are implementing Semantic Caching in a Retrieval Gateway to intercept duplicate queries and reduce
+LLM inference costs. You must configure the cosine similarity threshold (tau) that triggers a cache hit. Given
+the asymmetry of errors in production—where a false hit (returning an incorrect cached answer) severely
+damages user trust, but a cache miss merely costs standard API latency/fees—what is the optimal design
+choice?
+
+A. Implement an exact-match hash cache instead of semantic caching to completely eliminate the risk of
+false hits.
+
+B. Bias the threshold high, accepting a lower overall cache hit rate and slightly higher baseline costs in
+exchange for guaranteeing accuracy on cached responses.
+
+C. Bias the threshold extremely low to maximize the cache hit rate, saving the most money and compute
+resources possible across slight query variations.
+
+D. Dynamically route all cache hits through a Cross-Encoder to verify accuracy before serving the cached
+response to the user.
+
+
+Right answer: B
+Because the cost of a false hit (wrong answer) is massively higher in terms of enterprise trust than the cost of
+a cache miss (paying for the LLM call), the threshold must be strict enough that a hit genuinely means the
+exact same question was asked.
+              Thank You
+                     Teaching Assistants (IITKGP)
+Instructor
+
+
+
+
+Pawan Goyal     Manoj Balaji                 Kunal Kingkar
+                                Pretam Ray
+                Jagadeeshan
+Quiz
+You are deploying a semantic search service for a dataset of 50 million document chunks. Your
+infrastructure has strict memory (RAM) constraints, but you can tolerate a slight drop in retrieval
+recall. Which indexing strategy is the most appropriate design choice?
+
+A. IndexFlatIP
+
+B. IVF + PQ (Inverted File + Product Quantization)
+
+C. Exact Cross-Encoder Matching
+
+D. HNSW (Hierarchical Navigable Small World)
+
+
+Right answer: B
+IVF reduces the search scope by clustering, and Product Quantization heavily compresses the
+vector memory footprint, directly addressing strict RAM limits for massive datasets.
+An enterprise requires a retrieval pipeline that achieves accuracy close to a
+cross-encoder but strictly cannot afford the query-time latency of computing joint
+attention over all candidate document pairs. They are, however, willing to provision
+significantly more storage. Which architecture best satisfies these constraints?
+
+A. A dual-stage Bi-encoder followed by Cross-encoder reranking
+
+B. A standard Bi-encoder
+
+C. BM25 Sparse Retrieval
+
+D. ColBERT (Late Interaction)
+
+Right answer: D
+This model precomputes token-level embeddings, deferring interaction to a
+lightweight query-time MaxSim operation, which trades high storage costs for near
+cross-encoder accuracy without the heavy runtime compute.
+A user repeatedly encounters 'no results' or hallucinated answers when asking highly specific,
+deep-in-the-weeds technical questions (e.g., 'Why can't I pull the switch association data for the
+rogue units on Floor 3?'). The vector database contains the underlying architectural rules that
+explain this limitation, but it lacks the highly specific keywords from the user's prompt. Which
+query transformation design pattern is specifically built to mitigate this failure mode?
+
+A. Follow-up Question Transformation
+
+B. Semantic Routing
+
+C. Step-Back Prompting
+
+D. Multi-Query Retrieval
+
+Right answer: C
+Step-Back Prompting uses an LLM to abstract a hyper-specific query into a broader,
+foundational question (e.g., 'What is the overall architecture of our network troubleshooting
+system?'), allowing the system to retrieve the underlying rules before answering the specific
+edge case.
+You are designing the query routing layer for an internal Support Agent. To balance cost and
+accuracy, you want to avoid invoking an expensive LLM router for every query. However, you find
+that a purely Rule-Based (Regex) router is too brittle and fails on slight phrasing variations. What
+is the most robust architectural solution?
+
+A. Implement a Hybrid Routing waterfall: Rule-Based -> Embedding-Based -> LLM-Based.
+
+B. Expand the Rule-Based router's dictionary to include all possible synonyms generated by an
+LLM offline.
+
+C. Use Step-Back Prompting to generalize all queries before applying Regex rules.
+
+D. Route all queries through an intent classifier trained with a lightweight ML model.
+
+Right answer: A
+A sequential waterfall strategy systematically attempts the cheapest, fastest deterministic
+methods first, escalating to the semantic understanding of embeddings, and only paying the high
+inference cost when ambiguity necessitates it.
+You are building an Enterprise Support Agent with access to both public company wikis and highly
+confidential HR salary documents. To enforce Least Privilege and ensure a junior engineer cannot access
+executive salary data, where and how must the access control (AuthZ) be implemented?
+
+A. In the Retrieval Gateway, by intercepting the user's identity token and injecting a dynamic metadata
+filter into the Vector DB query before retrieval.
+
+B. By post-processing the retrieved chunks with a cross-encoder to filter out documents that do not match
+the user's security clearance level.
+
+C. By using an LLM Router to classify the query intent as 'Sensitive,' and subsequently blocking the
+generation phase.
+
+D. By instructing the Generation LLM via the system prompt to refuse answering if the context contains
+sensitive salary data.
+
+Right answer: A
+Injecting metadata filters at the database level guarantees that the retrieval engine physically cannot
+return unauthorized documents to the generation pipeline, creating a secure barrier against data leakage.
+You are implementing Semantic Caching in a Retrieval Gateway to intercept duplicate queries and reduce
+LLM inference costs. You must configure the cosine similarity threshold (tau) that triggers a cache hit. Given
+the asymmetry of errors in production—where a false hit (returning an incorrect cached answer) severely
+damages user trust, but a cache miss merely costs standard API latency/fees—what is the optimal design
+choice?
+
+A. Implement an exact-match hash cache instead of semantic caching to completely eliminate the risk of
+false hits.
+
+B. Bias the threshold high, accepting a lower overall cache hit rate and slightly higher baseline costs in
+exchange for guaranteeing accuracy on cached responses.
+
+C. Bias the threshold extremely low to maximize the cache hit rate, saving the most money and compute
+resources possible across slight query variations.
+
+D. Dynamically route all cache hits through a Cross-Encoder to verify accuracy before serving the cached
+response to the user.
+
+
+Right answer: B
+Because the cost of a false hit (wrong answer) is massively higher in terms of enterprise trust than the cost of
+a cache miss (paying for the LLM call), the threshold must be strict enough that a hit genuinely means the
+exact same question was asked.
+

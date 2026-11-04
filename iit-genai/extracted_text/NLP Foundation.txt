@@ -1,0 +1,115 @@
+=== page 01 ===
+NLP Foundations
+=== page 02 ===
+Spread
+
+NLP in GenAl context
+
+Text representation
+Language modelling basics
+Classical NLP pipeline
+Bridge to GenAl/Agents
+
+upGrad
+=== page 03 ===
+NLP in GenAl Context
+
+¢ Interface layer of Al systems
+¢ Chatbots, Search, Automation
+
+¢ Real-world: Support, Finance,
+Healthcare
+
+upGrad
+=== page 04 ===
+Text Representation
+
+¢ Bag of Words > TF-IDF > Word2Vec >
+Embeddings
+
+¢ Goal: Convert text > numbers
+
+upGrad
+=== page 05 ===
+upGrad
+
+Text Representation Intuition
+
+¢ Similar meaning > similar vectors
+
+¢ Example: king — man + woman =
+queen
+=== page 06 ===
+Language Modeling Basics
+
+¢e Predict next word
+¢ Context window
+¢ Probability distribution
+
+upGrad
+=== page 07 ===
+Language Models Evolution
+
+¢ N-grams > RNN > Transformers
+
+¢ Parallel processing + context
+awareness
+
+upGrad
+=== page 08 ===
+Classical NLP Pipeline
+
+¢ Cleaning > Tokenization >
+Stopwords > Lemmatization >
+Features > Model
+
+upGrad
+=== page 09 ===
+Hands-on Pipeline
+
+¢ Tokenize text using NLTK
+¢ Apply TF-IDF
+¢ Build simple classifier
+
+upGrad
+=== page 10 ===
+Limitations of Classical NLP
+
+¢ No deep context
+¢ Manual features
+¢ Poor generalization
+
+upGrad
+=== page 11 ===
+Bridge to GenAl
+
+¢ Classical NLP > Deep Learning >
+LLMs > Agents
+
+¢ Agent Loop: Observe > Reason
+> Act
+
+upGrad
+=== page 12 ===
+Modern NLP Architecture
+
+¢ Input > Embeddings > Retrieval
+> LLM > Output
+
+upGrad
+=== page 13 ===
+Hands-on Task
+
+¢ Build mini NLP pipeline
+¢ Compare TF-IDF vs Embeddings
+
+upGrad
+=== page 14 ===
+Key Takeaways
+
+¢ NLP powers GenAl
+¢ Representation matters
+¢ LLMs are prediction engines
+
+upGrad
+

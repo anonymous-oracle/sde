@@ -1,0 +1,629 @@
+GOOGLE CLOUD COMPUTING
+FOUNDATIONS
+Disclaimer:
+Google may contact you by email to provision benefits and send surveys and other communication related to the
+Google Cloud Computing Foundations Course.
+By joining, you agree to Google Cloud Training tracking your grades and other activity in it's learning program.
+COURSE PLAN :
+ Week 0: Introduction to the course
+ Week 1: So, What's the Cloud anyway? Start with a Solid Platform
+ Week 2: Use GCP to build your Apps
+ Week 3: Where do I store this stuff?
+ Week 4: There's an API for that! You can't secure the Cloud right?
+ Week 5: It helps to network!
+ Week 6: It helps to network (continued)
+ Week 7: Let Google keep an eye on things. You have the data, but what are you doing with it?
+ Week 8: Let machines do the work
+Prof. Soumya Kanti Ghosh
+Department of Computer Science and Engineering
+IIT Guwahati
+COURSE OUTLINE :
+The Google Cloud Computing Foundations course aims to provide a detailed overview of concepts covering
+cloud basics, big data, and machine learning and where and how the Google Cloud Platform fits in. The course
+involves understanding concepts and perform hands-on training (via Qwiklabs platform) to practice the learning.
+There are 26 labs on Qwiklabs that are part of the course.
+Those enrolling for the course should ideally:
+● Have basic IT knowledge and be interested in learning more about Cloud and ML.
+● Have competency in at least one language (such as Python, Java).
+● Be familiar with the basics of shell scripting, SQL.
+
+GOOGLE CLOUD COMPUTING
+FOUNDATIONS
+Disclaimer:
+Google may contact you by email to provision benefits and send surveys and other communication related to the
+Google Cloud Computing Foundations Course.
+By joining, you agree to Google Cloud Training tracking your grades and other activity in it's learning program.
+COURSE PLAN :
+ Week 0: Introduction to the course
+ Week 1: So, What's the Cloud anyway? Start with a Solid Platform
+ Week 2: Use GCP to build your Apps
+ Week 3: Where do I store this stuff?
+ Week 4: There's an API for that! You can't secure the Cloud right?
+ Week 5: It helps to network!
+ Week 6: It helps to network (continued)
+ Week 7: Let Google keep an eye on things. You have the data, but what are you doing with it?
+ Week 8: Let machines do the work
+Prof. Soumya Kanti Ghosh
+Department of Computer Science and Engineering
+IIT Guwahati
+COURSE OUTLINE :
+The Google Cloud Computing Foundations course aims to provide a detailed overview of concepts covering
+cloud basics, big data, and machine learning and where and how the Google Cloud Platform fits in. The course
+involves understanding concepts and perform hands-on training (via Qwiklabs platform) to practice the learning.
+There are 26 labs on Qwiklabs that are part of the course.
+Those enrolling for the course should ideally:
+● Have basic IT knowledge and be interested in learning more about Cloud and ML.
+● Have competency in at least one language (such as Python, Java).
+● Be familiar with the basics of shell scripting, SQL.
+
+PROF. SOUMYA KANTI GHOSH
+Department of Computer Science and Engineering
+IIT Kharagpur
+PROF. SANDIP CHAKRABORTY
+Department of Computer Science and Engineering
+COMPUTER NETWORKS AND
+INTERNET PROTOCOL
+IIT Kharagpur
+INTENDED AUDIENCE : CSE, ECE, EE students
+INDUSTRIES APPLICABLE TO : IT industries
+COURSE OUTLINE :
+The domain of Internet has grown in a rapid pace from traditional circuit switched and packet switched small scale
+networks to modern high-speed mobile and wireless Internet. A large number of methods, architectures and designs
+came up at every protocol level to cop up with the demands for developing a secure and highly dependable
+information technology infrastructure. The broad objective of the course is to understand - (i) the architecture and
+principles of today's computer networks, (ii) the protocols and their functionalities, (iii) the requirements for the future
+Internet and its impact on the computer network architecture. In this course, we'll broadly cover the basic TCP/IP
+protocol stack and touch on the next generation computer networks. We'll take a top-down approach to cover
+different protocols at the TCP/IP protocol stack.
+COURSE PLAN :
+ Week 1 : Introduction to Computer Networks History, Circuit Switching and Packet Switching
+ Week 2 : TCP/IP Protocol Stack – Basic Overview
+ Week 3 : Application Layer Services (HTTP, FTP, Email, DNS)
+ Week 4 : Transport Layer Primitives – Connection Establishment and Closure
+ Week 5 : Flow Control and Congestion Control at the Transport Layer
+ Week 6 : Transmission Control Protocol – Basic Features, TCP Congestion Control
+ Week 7 : Network Layer Primitives – IP Addressing
+ Week 8 : IP Routing – Intra Domain Routing Protocols, Inter Domain Routing Protocols (BGP)
+ Week 9 : IP Services – SNMP, ARP
+ Week 10 : Data Link Layer Service Primitives – Forwarding, Flow Control, Error Control
+ Week 11 : Media Access Control - Channel Access Protocols, Framing
+ Week 12 : End to End Principles of Computer Networks
+
+ADVANCED COMPUTER NETWORKS
+PROF. NEMINATH HUBBALLI
+Department of Computer Science and Engineering
+IIT Indore
+PROF. SAMEER G KULKARNI
+Department of Computer Science and Engineering
+IIT Gandhi Nagar
+PRE-REQUISITES : Computer Networks and Computer Architecture Courses are Prerequisites (undergraduate level course)
+Computer Networks and Internet Protocol - https://nptel.ac.in/courses/106105183
+INTENDED AUDIENCE : Final year undergraduate students and postgraduate (masters + PhD) students of computer science and
+engineering
+INDUSTRY SUPPORT : CISCO, Juniper Networks, Sasken, Hewlett-Packard, Wipro, Broadcom
+COURSE OUTLINE :
+This is an advanced course on Computer Networks covering four main contemporary topics namely how high performance networks
+are designed covering algorithms and implementations, data center networking, information centric networking and network
+softwarization: software defined networking, network virtualization and programmable networks. This course assumes a basic
+knowledge of computer networks and working proficiency with Unix/Linux Operating Systems. It has practical component with
+programming assignments giving hands on to the students.
+COURSE PLAN :
+Week 1: High Performance Switching and Routing: Introduction, performance considerations, IP address lookup
+Week 2: Algorithms for IP address lookup and optimization, hardware implementation of address lookup
+Week 3: Packet Classification: Need for packet classification and methods for packet classification.
+Week 4: Differentiated Service, Quality of Service, Traffic Polishing, Traffic Shaping
+Week 5: Network Softwarization - Introduction
+Week 6: Software Defined Networking (SDN) - Deep Dive (Northbound and Southbound interface) , Working with Mininet + Lab
+Exercises with Mininet
+Week 7: Network Function Virtualization (NFV) - Architecture and Concepts
+Week 8: Programmable Networks - Introduction to P4, SmartNICS and P4 switches. + Lab Exercise with Mininet and BMV2 switches.
+Week 9: Data Center Networking (DCN) - Introduction
+Week 10: DCN - Deep Dive (Network topologies, Container Network Interfaces)
+Week 11: Content Distribution on the Internet, Architectures for Information Centric Networking
+Week 12: Content Naming, Routing and Caching, Security in Named Data Networking
+
+PRACTICAL CYBER SECURITY FOR CYBER
+SECURITY PRACTITIONERS
+PROF. SANDEEP K. SHUKLA
+Department of Computer Science and Engineering
+IIT Kanpur
+PRE-REQUISITES : A previous course on fundamentals of Cyber Security is desirable, if not, courses in Operating System,
+Networking, Software Engineering, and Programming will be desirable
+INTENDED AUDIENCE : 3rd, 4th year students of Computer Science and post graduate students of Computer Science,
+Cyber Security and Working Professionals
+COURSE OUTLINE :
+As we interact with various industry and their needs for cyber security, they often complain that the courses at academic institutions
+provide students with the fundamentals of cyber security, but the students are often not familiar with the practical issues associated
+with running a cyber security operation in a real organization. Also, while a lot of the theses at master’s level or dissertation at the PhD
+level are based on theoretical exploration of techniques, algorithms, or mathematical modeling of cyber security problems, there is a
+dearth of dissertation and thesis on the practical aspects of running cyber security operations. Having worked very closely with industry,
+we appreciate such concerns because there are very interesting problems to be solved for practical cyber security which also requires a
+great deal of fundamental thinking, reasoning, and concerns about human cognition of the inputs the operators and leaders receive
+from cyber security tools, dashboards, policy formulations but then in the crowd of details, fundamentals are lost, reasoning is replaced
+by ad hoc decisions. To change that, we need workforce, as well as academics who can abstract out the fundamentals from such
+practical problems are develop various practically oriented methods, methodologies, policy frameworks, and decision processes which
+would simplify cyber operations. This course is meant to be a first step towards that line of thinking, modeling, and methodology
+development.
+COURSE PLAN :
+Week 1: Introduction:Cyber Security Posture, Maturity, and Continuous Improvement Strategies
+Week 2: Knowing your attacker: MITRE ATT&CK Framework
+Week 3: Knowing your attacker: MITRE ATT&CK Framework
+Week 4: Cyber Kill Chains: Lockheed Martin Cyber Kill Chain and Unified Kill Chain
+Week 5: Defending Yourself: MITRE DEF3ND Framework
+Week 6: Securing your Configurations: STIG Benchmarking
+Week 7: Sharing Threat Intelligence: STIX and TAXII 2.0
+Week 8: Cyber Security Risk Management
+Week 9: Cyber Resilience Assessment
+Week 10: Cyber Security Policy Formulation
+Week 11: Cyber Security Policy Formulation
+Week 12: Cyber Crisis Management Plan and Cyber Incident Management Plan
+
+Cyber Security and Privacy
+Prof. Saji K Mathew, IIT Madras
+
+Course ID
+106106248
+Duration
+12 weeks
+Credits
+4
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+This course introduces to management students the concepts, technologies, practices and challenges associated with cybersecurity as applied in organizations. Protection as well as disclosure of information pose unique challenges and also allude to economic and technological implications. Breach of information privacy has been reported as having serious consequences to all the stakeholders involved from the origin to end use of data. Furthermore, cyber security has often been analysed independent of information privacy, which thus lacks a wholesome picture of investments, benefits and stakeholder concerns. The course takes a broad view of cyber security along with information privacy by analysing relevant organizational, human, legal and policy issues.
+
+Through this course, students will explore cyber security along with information privacy with a managerial focus. Students are expected to develop a wholesome understanding about cyber security and privacy risks to businesses covering governance, compliance and risk mitigation and closely study certain business domains.
+
+COURSE LEARNING OBJECTIVES 
+To recognize cyber security from technological and administrative perspectives
+To articulate cyber security governance, risks and compliance in the current business environment 
+To apply cybersecurity and information privacy in organizational context for risk assessment 
+To develop cyber security and information privacy policy in selected business domains
+Course Details
+Prerequisites
+A core course on Management Information Systems desirable (not mandatory)
+Industry Support
+IT services industry, AI/Block chain start ups, Industry 4.0, autonomous vehicles industry
+Category
+COMP_SCI_ENGG, Domain_54
+Course Layout
+Week	Topics
+Week 1	Introduction - Introduction to cyber security, Confidentiality, integrity, and availability. R1. From information security to cyber security. Computers and Security, 2013, accessible at: https://www.sciencedirect.com/science/article/pii/S0167404813000801
+Week 2	Foundations - Fundamental concepts, CIA, CIA triangle, data breach at target. R2. Chapter 1- Text R3. Why you should care about the Target data breach? Business Horizons, 2016, accessible at: https://www.sciencedirect.com/science/article/abs/pii/S0007681316000033
+Week 3	Security management, Governance, risk, and compliance (GRC)- GRC framework, security standards. R4. Text-Chapter 4 - Planning for security, pp. 171- 176
+Week 4	Contingency planning - Incidence response, Disaster Recovery, BCP. R5. Text-Chapter 4 - Planning for security, pp. 214-251
+Week 5	Cyber security policy - ESSP, ISSP, SYSSP. R6. Text-Chapter 4- Information security policy, pp. 177-213. R7. Internet insecurity: The end of cyber security. HBR, 2018, accessible at: https://hbr.org/2018/05/internet-insecurity
+Week 6	Risk Management - Cyber Risk Identification, Assessment, and Control. R8. Text-Chapter 5- Risk management: Identifying and assessing risk. R9. Case Study- Protecting the Cheddar: The end of cyber security. HBR, 2018, accessible at: https://hbr.org/2018/05/case-study-protecting-the-cheddar
+Week 7	Cyber security: Industry perspective - Defense Technologies, Attack, Exploits R10. Text-Chapter 6-7- Security technology
+Week 8	Cyber security technologies - Access control, Encryption, Standards. R11. Text-Chapter 8- Cryptography R12. Active defense and hacking back: A primer- The end of cyber security. HBR, 2018, accessible at: https://hbr.org/2018/05/active-defense-and-hacking-back-a-primer?ab=seriesnav-bigidea
+Week 9	Foundations of privacy - Information privacy, Measurement, Theories. R13. Privacy, Stanford Encyclopedia of Philosophy, 2013, accessible at: https://plato.stanford.edu/entries/privacy/ R14. We Googled you. HBR Online, 2007, accessible at: https://hbr.org/2007/06/we-googled-you-2
+Week 10	Privacy regulation - Privacy, Anonymity, Regulation, Data Breach. R15. Text-Chapter 3- Law and ethics R16. UNCTAD. Data Protection and Privacy Legislation Worldwide, accessible at: https://unctad.org/page/data-protection-and-privacy-legislation-worldwide
+Week 11	Privacy regulation in Europe, Privacy: The Indian Way - Data Protection, GDPR, DPDP, Aadhar. R17. GDPR: General Data Protection Directive (https://gdpr-info.eu) R18. Privacy and security of Aadhaar: A Computer Science perspective, IIT Delhi, accessible at: https://www.jstor.org/stable/pdf/26697657.pdf R19. The digital personal data protection bill, 2023 https://www.meity.gov.in/writereaddata/files/Digital%20Personal%20Data%20Protection%20Protection%202023.pdf
+Week 12	Information privacy: Economics and strategy, Economic value of privacy, privacy valuation, WTA and WTC, Business strategy and privacy, espionage, Privacy vs safety. R20. The dark side of customer analytics. HBR Case, 2007, accessible at: https://www.pomsmeetings.org/ConfPapers/052/052-0002.pdf R21. Apple privacy vs safety issues: https://hbswk.hbs.edu/item/cold-call-apples-dilemma-balancing-privacy-and-safety-responsibilities
+Books And References
+Text Book:
+Michael E. Whitman,  Herbert J. Mattord, (2018). Principles of Information Security, 6th edition, Cenage Learning, N. Delhi.
+
+References
+Darktrace, “Technology” https://www.darktrace.com/en/technology/#machine-learning, accessed November 2018.
+Van Kessel, P. Is cyber security about more than protection? EY Global Information Security Survey 2018-2019.
+Johnston, A.C. and Warkentin, M. Fear appeals and information security behaviors: An empirical study. MIS Quarterly, 2010.
+Arce I. et al. Avoiding the top 10 software security design flaws. IEEE Computer Society Center for Secure Design (CSD), 2014.
+Smith, H. J., Dinev, T., & Xu, H. Information privacy research: an interdisciplinary review. MIS Quarterly, 2011.
+Subramanian R. Security, privacy and politics in India: a historical review. Journal of Information Systems Security (JISSec), 2010.
+Acquisti, A., John, L. K., & Loewenstein, G. What is privacy worth? The Journal of Legal Studies, 2013
+Xu H., Luo X.R., Carroll J.M., Rosson M.B. The personalization privacy paradox: An exploratory study of decision making process for location-aware marketing. Decision Support Systems, 2011.
+
+Videos
+Andy Bochman, how to reframe your cybersecurity strategy 
+https://hbr.org/webinar/2018/04/how-to-reframe-your-cybersecurity-strategy.html 
+Christof Paar, Introduction to Cryptography
+https://www.youtube.com/watch?v=2aHkqB2-46k 
+Cybersecurity Strategy for the C-Suite
+https://hbr.org/webinar/2017/07/cybersecurity-strategy-for-the-c-suite 
+How to Build Your Cybersecurity Defense
+https://hbr.org/webinar/2017/08/how-to-build-your-cybersecurity-defense 
+The Secret is “There are No Secrets”
+https://digital.hbs.edu/cybersecurity/hbs-future-assembly-flash-talk-james-mickens-no-secrets/ 
+
+Ethical Hacking
+Prof. Indranil Sengupta, IIT Kharagpur
+
+Course ID
+106105217
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Ethical hacking is a subject that has become very important in present-day context, and can help individuals and organizations to adopt safe practices and usage of their IT infrastructure. Starting from the basic topics like networking, network security and cryptography, the course will cover various attacks and vulnerabilities and ways to secure them. There will be hands-on demonstrations that will be helpful to the participants. The participants are encouraged to try and replicate the demonstration experiments that will be discussed as part of the course.
+Course Details
+Intended Audience
+Computer Science and Engineering / Information Technology / Electronics and Communication / Electrical Engineering
+Prerequisites
+Basic concepts in programming and networking
+Industry Support
+TCS, Wipro, CTS, Google, Microsoft, Qualcomm
+Category
+COMP_SCI_ENGG, Domain_40, Domain_54
+Course Layout
+Week	Topics
+Week 1	Introduction to ethical hacking. Fundamentals of computer networking. TCP/IP protocol stack.
+Week 2	IP addressing and routing. TCP and UDP. IP subnets.
+Week 3	Routing protocols. IP version 6.
+Week 4	Installation of attacker and victim system. Information gathering using advanced google search, archive.org, netcraft, whois, host, dig, dnsenum and NMAP tool .
+Week 5	Vulnerability scanning using NMAP and Nessus. Creating a secure hacking environment. System Hacking: password cracking, privilege escalation, application execution. Malware and Virus. ARP spoofing and MAC attack.
+Week 6	Introduction to cryptography, private-key encryption, public-key encryption.
+Week 7	Cryptographic hash functions, digital signature and certificate, applications.
+Week 8	Steganography, biometric authentication, network-based attacks, DNS and Email security.
+Week 9	Packet sniffing using wireshark and burpsuite, password attack using burp suite. Social engineering attacks and Denial of service attacks.
+Week 10	Elements of hardware security: side-channel attacks, physical inclinable functions, hardware trojans.
+Week 11	Different types of attacks using Metasploit framework: password cracking, privilege escalation, remote code execution, etc.Attack on web servers: password attack, SQL injection, cross site scripting.
+Week 12	Case studies: various attacks scenarios and their remedies.
+Books And References
+Data and Computer Communications -- W. Stallings.
+Data Communication and Networking -- B. A. Forouzan
+TCP/IP Protocol Suite -- B. A. Forouzan
+UNIX Network Programming -- W. R. Stallings
+Introduction to Computer Networks and Cybersecurity -- C-H. Wu and J. D. Irwin
+Cryptography and Network Security: Principles and Practice -- W. Stallings
+
+CRYPTOGRAPHY AND NETWORK
+SECURITY
+PROF. SOURAV MUKHOPADHYAY
+Department of Computer Science and Engineering
+IIT Kharagpur
+INDUSTRIES APPLICABLE TO : Stratign FZE, Dubai(UAE), SAG, DRDO, ISRO, WESEE, NTRO.
+COURSE OUTLINE :
+The aim of this course is to introduce the student to the areas of cryptography and cryptanalysis. This
+course develops a basic understanding of the algorithms used to protect users online and to understand
+some of the design choices behind these algorithms. Our aim is to develop a workable knowledge of the
+mathematics used in cryptology in this course. The course emphasizes to give a basic
+understanding of previous attacks on cryptosystems with the aim of preventing future attacks. A wide
+variety of basic cryptographic primitives will be discussed along with recent developments in some
+advanced topics like identity-based encryption, attribute-based encryption, functional encryption,
+two-party/multi-party computation, bitcoin and crypto-currency and postquantum cryptography. The
+cryptanalysis part will help us understanding challenges for cybersecurity that includes network security, data
+security, mobile security, cloud security and endpoint security.
+COURSE PLAN :
+Week 1: Introduction to cryptography, Classical Cryptosystem, Block Cipher.
+Week 2: Data Encryption Standard (DES), Triple DES, Modes of Operation, Stream Cipher.
+Week 3: LFSR based Stream Cipher, Mathematical background, Abstract algebra, Number Theory.
+Week 4: Modular Inverse, Extended Euclid Algorithm, Fermat's Little Theorem, Euler Phi-Function, Euler's
+theorem.
+Week 5: Advanced Encryption Standard (AES), Introduction to Public Key Cryptosystem, Diffie-Hellman Key
+Exchange
+Week 6: Primarily Testing, ElGamal Cryptosystem, Elliptic Curve over the Reals, Elliptic curve Modulo a
+Prime.
+Week 7: Generalized ElGamal Public Key Cryptosystem, Rabin Cryptosystem.
+Week 8: Message Authentication, Digital Signature, Key Management, Key Exchange, Hash Function.
+Week 9: Cryptographic Hash Function, Secure Hash Algorithm (SHA), Digital Signature Standard(DSS).
+Week 10: Cryptanalysis, Time-Memory Trade-off Attack, Differential and Linear Cryptanalysis.
+Week 11: Cryptanalysis on Stream Cipher, Modern Stream Ciphers, Shamir's secret sharing and BE,
+Identity-based Encryption (IBE), Attribute-based Encryption (ABE).
+Week 12: Side-channel attack, The Secure Sockets Layer (SSL), Pretty Good Privacy (PGP), Introduction to
+Quantum Cryptography, Blockchain, Bitcoin and Cryptocurrency.
+
+Theory and Practice of Modern Cryptography
+Prof. Sourav Mukhopadhyay, IIT Kharagpur
+
+Course ID
+106105002
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+
+This course introduces fundamental and advanced concepts in modern cryptography through an intuitive and application-oriented approach. It begins with classical cryptography, covering block ciphers, stream ciphers, and public-key systems and progresses to modern topics like digital signatures, hash functions, elliptic curve cryptography, and post-quantum cryptography. Advanced areas such as zero-knowledge proofs, homomorphic encryption, Functional encryption, and secure multiparty computation are also discussed. Designed for learners from diverse academic backgrounds, the course emphasizes real-world applications in secure communications, blockchain, and digital payments, with minimal mathematical prerequisites. By the end, students will understand key cryptographic primitives, their security goals, and the evolving landscape of cyber threats. The course equips learners to critically analyze and apply cryptographic tools in practical systems, serving as a solid foundation for further study or careers in cybersecurity, software engineering, or digital forensics.
+Course Details
+Intended Audience
+Computer Science
+Prerequisites
+Higher Secondary Mathematics knowledge
+Industry Support
+Stratign FZE, Dubai (UAE), SAG, DRDO, ISRO, WESEE, NTRO
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to Cryptography, Classical Cryptosystem, Monoalphabetic Cipher, Polyalphabetic Cipher
+Week 2	More on Classical Cryptosystem and Various Analysis, Symmetric Key Cryptography
+Week 3	Block Cipher, SPN, DES, 3-DES, AES
+Week 4	Rijndael AES, Block Cipher-Modes of Operation, Stream CipherOne-time Pad, Autokey Cipher, LFSR
+Week 5	Mathematical backgrounds – Number theory, Group Theory, Field Theory, Linear Algebra
+Week 6	Public Key Cryptography, RSA Cryptosystem, Rabinson Cryptosystem, ElGamal Cryptosystem
+Week 7	Generalised Elgamal, Legendre and Jacobi Symbol, Key Management and Exchange Protocol
+Week 8	Elliptic Curve Cryptography, Hash Function, Digital signature, Message Authentication
+Week 9	More on Hash function, Digital signature, group Signature, ring Signature
+Week 10	Advance Cryptanalysis- Time memory attack, Differential Cryptanalysis, Linear Cryptanalysis, Cryptanalysis on Stream cipher
+Week 11	Shamir Secret Sharing, SMPC, BE, IBE, ABE
+Week 12	HE, FE, Discrete log Problem, SSL, more advance topics
+Books And References
+Cryptography: Theory and Practice Book by Doug Stinson
+Introduction to Modern Cryptography by Jonathan Katz and Yehuda Lindell
+Introduction to Cryptography by Alexander Stanoyevitch
+
+FOUNDATIONS OF CRYPTOGRAPHY,
+IIIT BANGALORE
+PROF. ASHISH CHOUDHURY
+Department of Computer Science
+IIIT Bangalore
+PRE-REQUISITES : There are no pre-requisites for this course. However it is expected that the students
+who are interested to take this course have had some exposure to a basic course on discrete mathematics,
+algorithms, or theory of computation. Having said that, I ensure that a significant effort will be made from my side to
+simplify the overall presentation of the course and make it easily accessible.
+INTENDED AUDIENCE : Computer Science and Mathematics students
+INDUSTRIES APPLICABLE TO : The course will be relevant for any IT related company
+COURSE OUTLINE :
+The course provides the basic paradigm and principles of modern cryptography. The focus of this course will
+be on definitions and constructions of various cryptographic objects. We will try to understand what
+security properties are desirable in such objects, how to formally define these properties, and how to
+design objects that satisfy the definitions. The aim is that at the end of this course, the students are able to
+understand a significant portion of current cryptography research papers and standards.
+ABOUT INSTRUCTOR :
+Prof. Ashish Choudhury is currently an Assistant Professor at IIIT Bangalore. He did his MS and PhD in Computer
+science from IIT Madras, followed by postdoc at ISI Kolkata and University of Bristol. His research work is
+focused on the foundation of cryptographic protocols for real-world problems. His current projects aim to
+design efficient protocols in the asynchronous network model which can be realized in practice. In general
+he is interested in secure distributed computing and all areas of theoretical computer science.
+COURSE PLAN :
+Week 1: Course Overview, Symmetric-key Encryption, Historical Ciphers, Perfect Security and Its Limitations
+Week 2: Computational Security, Semantic Security and Pseudorandom Generators (PRGs)
+Week 3: Stream Ciphers, Provably-secure Instantiation of PRG, Practical Instantiation of PRG, CPA-security and
+Pseudo-random Functions (PRFs)
+Week 4: CPA-Secure Ciphers from PRF, Modes of Operations of Block Ciphers, Theoretical Constructions of Block
+Ciphers and Practical Constructions of Block Ciphers
+Week 5: DES, AES and Message Authentication Codes (MAC)
+Week 6: Information-theoretic Secure MAC, Cryptographic Hash Functions, Ideal-Cipher Model, Davies-Meyer
+construction and Merkle-Damgård Paradigm
+Week 7: Birthday Attacks on Cryptographic Hash Functions, Applications of Hash Functions, Random Oracle Model
+and Authenticated Encryption
+Week 8: Generic Constructions of Authenticated Encryption Schemes, Key-exchange Problem, One-way Trapdoor
+Functions and Cyclic Groups
+Week 9: Discrete-Logarithm Problem, Computational Diffie-Hellman Problem, Decisional Diffie-Hellman Problem,
+Elliptic-Curve Based Cryptography and Public-Key Encryption
+Week 10: El Gamal Encryption Scheme, RSA Assumption, RSA Public-key Cryptosystem, KEM-DEM Paradigm and
+CCA-security in the Public-key Domain
+Week 11: CCA-secure Public-key Hybrid Ciphers Based on Diffie-Hellman Problems and RSA-assumption, Digital
+Signatures, RSA Signatures and Schnorr Identification Scheme
+Week 12: Schnorr Signature, Overview of TLS/SSL, Number Theory, Interactive Protocols and Farewell
+
+
+Advanced Distributed Systems
+Prof. Smruti Ranjan Sarangi, IIT Delhi
+
+Course ID
+106102237
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+This course is on Advanced Distributed Systems. It will start with epidemic and gossip based algorithms and then move on to peer-to-peer networks. The core focus in this part will be on distributed hash tables (DHTs). Then, the course will focus on theoretical aspects such as vector clocks, distributed leader election, the FLP result, and the CAP theorem. The last part of the course will focus on practical technologies such as the Paxos and RAFT consensus protocols, commit protocols, Bitcoin and blockchains, distributed file systems, and distributed programming languages.
+Course Details
+Intended Audience
+UG and PG students (Computer Science and Electrical Engineering)
+Prerequisites
+Data structures (2nd year level), Operating SystemsINTENDED AUDIENCE: UG and PG students (Computer Science and Electrical Engineering)
+Industry Support
+IBM, Amazon, Google, Microsoft
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Epidemic and gossip based algorithms
+Week 2	Napster and Gnutella
+Week 3	DHTs: Chord, Pastry and BitTorrent
+Week 4	Logical clocks, Mutual Exclusion Algorithms
+Week 5	Distributed Leader Election
+Week 6	Distributed minimum spanning tree, the FLP result
+Week 7	Consistency models and the CAP theorem
+Week 8	Paxos and Raft
+Week 9	Byzantine General’s Problem, Virtual synchrony
+Week 10	Bitcoin and Blockchains
+Week 11	Amazon Dynamo, Facebook Cassandra, Google Percolator
+Week 12	Voldemort (LinkedIn), Condor, and Microsoft DryadLINQ
+Books And References
+Classic research papers.
+
+CLOUD COMPUTING AND DISTRIBUTED
+SYSTEMS
+PROF. RAJIV MISRA
+Department of Computer Science and Engineering
+IIT Patna
+PREREQUISITES : Minimum: Data Structures and Algorithms
+Ideal: Computer Architecture, Basic OS and Networking concepts
+Programming, Data Structures and Algorithms - https://nptel.ac.in/courses/106106127
+Demystifying networking - https://nptel.ac.in/courses/106101209
+Computer Architecture - https://nptel.ac.in/courses/106102157
+INDUSTRY SUPPORT : Companies like Amazon, Microsoft, Google, IBM, Facebook and start-ups working on this
+field.
+COURSE OUTLINE :
+Cloud computing is the on-demand delivery of computations, storage, applications, and other IT resources
+through a cloud services platform over the internet with pay-as-you-go business model. Today's Cloud
+computing systems are built using fundamental principles and models of distributed systems. This course
+provides an in-depth understanding of distributed computing “concepts”, distributed algorithms, and the
+techniques, that underlie today's cloud computing technologies. The cloud computing and distributed
+systems concepts and models covered in course includes: virtualization, cloud storage: key-value/NoSQL
+stores, cloud networking,fault-tolerance cloud using PAXOS, peer-to-peer systems, classical distributed
+algorithms such as leader election, time, ordering in distributed systems, distributed mutual exclusion, distributed
+algorithms for failures and recovery approaches, emerging areas of big data and many more. And while
+discussing the concepts and techniques, we will also look at aspects of industry systems such as Apache Spark,
+Google’s Chubby, Apache Zookeeper, HBase, MapReduce, Apache Cassandra, Google’s B4, Microsoft’s Swan and
+many others. Upon completing this course, students will have intimate knowledge about the internals of cloud
+computing and how the distributed systems concepts work inside clouds.
+COURSE PLAN :
+Week 1: Introduction to Clouds, Virtualization and Virtual Machine
+1.Introduction to Cloud Computing: Why Clouds, What is a Cloud,Whats new in todays Clouds, Cloud computing
+vs. Distributed computing, Utility computing, Features of today’s Clouds: Massive scale, AAS Classification: HaaS,
+IaaS, PaaS, SaaS, Data-intensive Computing, New Cloud Paradigms, Categories of Clouds: Private clouds, Public
+clouds
+2.Virtualization: What’s virtualization, Benefits of Virtualization, Virtualization Models: Bare metal, Hosted
+hypervisor
+3. Types of Virtualization: Processor virtualization, Memory virtualization, Full virtualization, Para virtualization,
+Device virtualization
+4. Hotspot Mitigation for Virtual Machine Migration: Enterprise Data Centers, Data Center Workloads, Provisioning
+methods, Sandipiper Architecture, Resource provisioning, Black-box approach, Gray-box approach, Live VM
+Migration Stages, Hotspot Mitigation
+Week 2: Network Virtualization and Geo-distributed Clouds
+1. Server Virtualization: Methods of virtualization: Using Docker,Using Linux containers, Approaches for Networking of
+VMs: Hardware approach: Single-root I/O virtualization (SR-IOV), Software approach: Open vSwitch, Mininet and its
+applications
+2. Software Defined Network: Key ideas of SDN, Evolution of SDN,SDN challenges, Multi-tenant Data Centers: The
+challenges, Network virtualization, Case Study: VL2, NVP
+3. Geo-distributed Cloud Data Centers: Inter-Data Center Networking, Data center interconnection techniques: MPLS,
+Google’s B4 and Microsoft’s Swan
+Week 3: Leader Election in Cloud, Distributed Systems and Industry Systems
+1. Leader Election in Rings (Classical Distributed Algorithms): LeLann-Chang-Roberts (LCR) algorithm, The Hirschberg
+and Sinclair (HS) algorithm
+2. Leader Election (Ring LE & Bully LE Algorithm): Leader Election Problem, Ring based leader election, Bully based leader
+election, Leader Election in Industry Systems: Google’s Chubby and Apache Zookeeper
+3. Design of Zookeeper: Race condition, Deadlock, Coordination, Zookeeper design goals, Data model, Zookeeper
+architecture, Sessions, States, Usecases, Operations, Access Control List (ACL), Zookeeper applications: Katta, Yahoo!
+Message Broker
+Week 4: Classical Distributed Algorithms and the Industry Systems
+1. Time and Clock Synchronization in Cloud Data Centers: Synchronization in the cloud, Key challenges, Clock Skew,
+Clock Drift, External and Internal clock synchronization, Christians algorithm, Error bounds, Network time protocol
+(NTP), Berkley’s algorithm, Datacenter time protocol (DTP), Logical (or Lamport) ordering, Lamport timestamps,
+Vector timestamps
+2. Global State and Snapshot Recording Algorithms: Global state, Issues in Recording a Global State, Model of
+Communication, Snapshot algorithm: Chandy-Lamport Algorithm
+ 3. Distributed Mutual Exclusion: Mutual Exclusion in Cloud, Central algorithm, Ring-based Mutual Exclusion, Lamport’s
+algorithm, Ricart-Agrawala’s algorithm, Quorum-based Mutual Exclusion, Maekawa’s algorithm, Problem of Handling Deadlocks, Industry Mutual Exclusion : Chubby
+Week 5: Consensus, Paxos and Recovery in Clouds
+1. Consensus in Cloud Computing and Paxos: Issues in consensus, Consensus in synchronous and asynchronous system,
+Paxos Algorithm
+2. Byzantine Agreement: Agreement, Faults, Tolerance, Measuring Reliability and Performance, SLIs, SLOs, SLAs, TLAs,
+Byzantine failure, Byzantine Generals Problem, Lamport-Shostak-Pease Algorithm, Fischer-Lynch-Paterson (FLP)Impossibility
+3. Failures & Recovery Approaches in Distributed Systems: Local checkpoint, Consistent states, Interaction with outside
+world, Messages, Domino effect, Problem of Livelock, Rollback recovery schemes, Checkpointing and Recovery Algorithms:
+Koo-Toueg Coordinated Checkpointing Algorithm
+Week 6: Cloud Storage: Key-value stores/NoSQL
+1. Design of Key-Value Stores: Key-value Abstraction, Key-value/NoSQL Data Model, Design of Apache Cassandra, Data
+Placement Strategies, Snitches, Writes, Bloom Filter, Compaction, Deletes, Read, Membership, CAP Theorem, Eventual
+Consistency, Consistency levels in Cassandra, Consistency Solutions
+ 2. Design of HBase: What is HBase, HBase Architecture, Components, Data model, Storage Hierarchy, Cross-Datacenter
+Replication, Auto Sharding and Distribution, Bloom Filter, Fold, Store, and Shift
+Week 7: P2P Systems and their use in Industry Systems
+1. Peer to Peer Systems in Cloud Computing: Napster, Gnutella, FastTrack, BitTorrent, DHT, Chord, Pastry and Kelips.
+Week 8: Cloud Applications: MapReduce, Spark and Apache Kafka
+1. MapReduce: Paradigm, Programming Model, Applications, Scheduling, Fault-Tolerance, Implementation Overview,
+Examples
+ 2. Introduction to Spark: Resilient Distributed Datasets (RDDs), RDD Operations, Spark applications: Page Rank Algorithm,
+GraphX, GraphX API, GraphX working
+3.Introduction to Kafka: What is Kafka, Use cases for Kafka, Data model, Architecture, Types of messaging systems,
+Importance of brokers
+
+Distributed Systems
+Prof. Rajiv Misra, IIT Patna
+
+Course ID
+106106168
+Duration
+8 weeks
+Credits
+3
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+A distributed system is a software system in which components located on networked computers communicate and coordinate their actions by passing messages. The components interact with each other in order to achieve a common goal. Distributed applications (distributed apps) are applications or software that runs on multiple computers within a network at the same time and can be stored on servers or with cloud computing. This course provides an in-depth understanding of fundamental principles and models underlying the theory, algorithms, and systems aspects of distributed computing. Few Emerging topics such as Peer-to-Peer computing, Distributed Hash Table, Google File System, HDFS, Spark, Sensor Networks and Security in Distributed Systems will also be covered for significant impact. Upon completing this course, students will have intimate knowledge about how things work in a distributed environment.
+Course Details
+Intended Audience
+Any Interested Learners.
+Prerequisites
+Minimum: Data Structures and AlgorithmsIdeal: Basic networking concepts, Basic OS concepts (e.g., processes, threads, synchronization, file systems, scheduling etc.), Advanced Programming (Good knowledge in C and C++).
+Industry Support
+Microsoft Research has conducted this course.  Various companies like Google, IBM, Cisco, etc, Distributed systems Group and Distributed systems start-ups are working on this field.
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to DS, Message Passing, Leader Election, Distributed Models, Causality and Logical Time
+Week 2	Logical Time, Global State & Snapshot and Distributed Mutual Exclusion-Non-Token and Quorum based approaches
+Week 3	Distributed Mutual Exclusion-Token based approaches, Consensus & Agreement, Checkpointing & Rollback Recovery
+Week 4	Deadlock Detection, DSM and Distributed MST
+Week 5	Termination Detection, Message Ordering & Group Communication, Fault Tolerance and Self-Stabilization
+Week 6	Distributed Randomized Algorithms, DHT and P2P Computing
+Week 7	Case Studies: GFS, HDFS, Map Reduce and Spark
+Week 8	Case Studies: Sensor Networks, Authentication & Security in DS
+
+Big Data Computing
+Prof. Rajiv Misra, IIT Patna
+
+Course ID
+106104189
+Duration
+8 weeks
+Credits
+3
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+In today's fast-paced digital world , the incredible amount of data being generated every minute has grown tremendously from sensors used to gather climate information, posts to social media sites, digital pictures and videos, purchase transaction records, and GPS signals from cell phone to name a few. This amount of large data with different velocities and varieties is termed as big data and its analytics enables professionals to convert extensive data through statistical and quantitative analysis into powerful insights that can drive efficient decisions. This course provides an in-depth understanding of terminologies and the core concepts behind big data problems, applications, systems and the techniques, that underlie today's big data computing technologies. It provides an introduction to some of the most common frameworks such as Apache Spark, Hadoop, MapReduce, Large scale data storage technologies such as in-memory key/value storage systems, NoSQL distributed databases, Apache Cassandra, HBase and Big Data Streaming Platforms such as Apache Spark Streaming, Apache Kafka Streams that has made big data analysis easier and more accessible. And while discussing the concepts and techniques, we will also look at various applications of Big Data Analytics using Machine Learning, Deep Learning, Graph Processing and many others. The course is suitable for all UG/PG students and practicing engineers/ scientists from the diverse fields and interested in learning about the novel cutting edge techniques and applications of Big Data Computing.
+
+
+PREREQUISITES : Data Structure & Algorithms, Computer Architecture, Operating System, Database Management Systems
+
+INDUSTRY SUPPORT : Companies like Amazon, Microsoft, Google, IBM, Facebook
+Course Details
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to Big Data
+Week 2	Introduction to Enabling Technologies for Big Data
+Week 3	Introduction to Big Data Platforms
+Week 4	Introduction to Big Data Storage Platforms for Large Scale Data Storage
+Week 5	Introduction to Big Data Streaming Platforms for Fast Data
+Week 6	Introduction to Big Data Applications (Machine Learning)
+Week 7	Introduction of Big data Machine learning with Spark
+Week 8	Introduction to Big Data Applications (Graph Processing)
+Books And References
+Text Book:
+
+Bart Baesens, Analytics in a Big Data World: The Essential Guide to Data Science and its Applications, Wiley, 2014
+
+Reference Books:
+
+1. Dirk Deroos et al., Hadoop for Dummies, Dreamtech Press, 2014.
+2. Chuck Lam, Hadoop in Action, December, 2010. 
+3. Leskovec, Rajaraman, Ullman, Mining of Massive Datasets, Cambridge University Press. 
+4. I.H. Witten and E. Frank, Data Mining: Practical Machine learning tools and techniques.
+5. Erik Brynjolfsson et al., The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies, W. W. Norton & Company, 2014.
+

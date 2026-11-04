@@ -1,0 +1,247 @@
+Multi-Core Computer Architecture
+Prof. John Jose, IIT Guwahati
+
+Course ID
+106103184
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+The use of mobile gadgets and applications is crucial to maintaining comfort in modern living. These apps are supported by portable electronic devices with powerful microprocessors. We are in the era of multi-core systems where even the simplest of handheld devices like a smart phone houses many processors in a single chip. The core counts are ever increasing from 8 to 10 in smart phones to over 100s in super computers. This course will introduce the students to the world of multi-core computer architectures. With the unprecedented growth of data science, on-chip storage systems and inter-core communication framework are getting equal attention as that of processors. This course will focus on delivering an in-depth exposure in advanced computer architecture starting from the fundamentals of basic computer organization to advanced topics like multicore processors, GPUs, advanced cache memory optimizations, DRAM systems, on chip interconnects and domain specific accelerators. The course concludes with pointers to current research standings and on-going research directions for motivating the students to explore further.
+Course Details
+Intended Audience
+Anyone in CSE and related fields like ECE, EEE, IT etc. with an interest in exploring Computer Architecture.
+Prerequisites
+Second-year undergraduate or above or any level of postgraduates in Computer Science and related fields (like ECE, EEE, IT etc.). A basic understanding of digital logic, microprocessors, computer organization will be added advantage.                               
+Industry Support
+Intel, AMD, IBM, HP, Apple, Samsung etc.
+Category
+COMP_SCI_ENGG, Domain_40
+Course Layout
+Week	Topics
+Week 1	Basic Computer Organization: Review of Basic Computer Organization, Basic operational concepts, fundamental of program execution, memory and I/O addressing, Instruction set architecture- addressing modes, instruction set, instruction encoding and formats. CISC vs RISC ISA.
+Week 2	Instruction Pipeline Principles: Performance Evaluation Methods, Introduction to RISC Instruction Pipeline, Instruction Pipeline and Performance. Pipeline Hazards and Analysis
+Week 3	Pipeline Hazards and Branch Prediction Techniques: Pipeline Hazards Management Techniques, Branch Prediction, MIPS Pipeline for Multi-Cycle Operations .
+Week 4	Pipeline Scheduling and Speculative execution: Compiler Techniques to Explore Instruction Level Parallelism, Dynamic Scheduling with Tomasulo’s Algorithm, Speculative Execution.
+Week 5	Superscalar Processors and GPU architectures: Advanced Pipelining, Multithreading and Hyperthreading, Superscalar Processors, GPU Architectures.
+Week 6	Cache Memory Principles Introduction to Cache Memory, Block Replacement Techniques and Write Strategy, Design Concepts in Cache Memory.
+Week 7	Cache Memory Optimizations Design issues for improving memory access time, Basic and Advanced Optimization Techniques in Cache Memory
+Week 8	Cache Coherence Protocols Cache coherence and memory consistency, Snoop Based and Directory Based Cache coherence Protocols.
+Week 9	Primary Storage Systems Introduction to DRAM System, DRAM organization, DRAM Controllers and Address Mapping.
+Week 10	Tiled Chip Multi-Core Processors & Network-on-Chip Tiled Chip Multicore Processors (TCMP), Network on Chips (NoC), Routing Algorithms, NoC router – architecture, Routing and flow control
+Week 11	Energy Efficient NoCs Introduction to deflection routing, Energy Efficient Buffer-less NoC Routers, Side-buffered Deflection Routers
+Week 12	Quality of Service for TCMPs QoS of NoC and Caches in TCMPs, Emerging Trends in Network On Chips, Domain Specific Accelerators
+Books And References
+1. Computer Architecture - A Quantitative Approach-5e John L. Hennessy, David A. Patterson Morgan Kaufman. 
+2. Memory System - Cache, DRAM and Disk Bruce Jacob, Spencer W. Ng, David T. Wang Morgan Kaufman. 
+3. Principles and Practices of Interconnection Networks William J. Dally, Brian P. Towles Elsevier.
+
+Computer Architecture and Organization
+Prof. Indranil Sengupta, Prof. Kamalika Datta, IIT Kharagpur
+
+Course ID
+106105163
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+
+This course will discuss the basic concepts of computer architecture and organization that can help the participants to have a clear view as to how a computer system works. Examples and illustrations will be mostly based on a popular
+Reduced Instruction Set Computer (RISC) platform. Illustrative examples and illustrations will be provided to convey the concepts and challenges to the participants. Starting from the basics, the participants will be introduced to the state-of-the-art in this field.
+
+INTENDED AUDIENCE        : Computer Science and Engineering ; Information Technology ; Electronics and Communication Engineering ;Electrical Engineering
+
+PREREQUISITES                 : Basic concepts in digital circuit design, Familiarity with a programming language like C or C++
+
+INDUSTRY SUPPORT         : TCS ; Wipro ; CTS ;  Google ; Microsoft ; HP ; Intel
+Course Details
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Evolution of Computer Systems
+Week 2	Instruction Set Architecture
+Week 3	Quantitative Principles of Computer Design
+Week 4	Control Unit Design
+Week 5	Memory System Design
+Week 6	Design of Cache Memory Systems
+Week 7	Design of Arithmetic Unit
+Week 8	Design of Arithmetic Unit (contd.)
+Week 9	Input-Output System Design
+Week 10	Input-Output System Design (contd.)
+Week 11	Instruction Set Pipelining
+Week 12	Parallel Processing Architectures
+Books And References
+1.  D.A. Patterson and J.L. Hennessy, “Computer Architecture: A Quantitative Approach, 5/E”, Morgan Koffman, 2011.
+2.  D.A. Patterson and J.L. Hennessy, “Computer Organization and Design: The Hardware/Software Interface, 5/E”, Elsevier India, 2016.
+3.  W. Stallings, “Computer Organization and Architecture: Designing for Performance”, Pearson, 2015.
+4.  C. Hamacher, Z. Vranesic and S. Zaky, “Computer Organization, 5/E”, McGraw Hill, 2011.
+5. J.P. Hayes, “Computer Architecture and Organization, 3/E”, McGraw Hill, 1998.
+
+Computer Architecture
+Prof. Smruti Ranjan Sarangi, IIT Delhi
+
+Course ID
+106102157
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+
+This is an introductory computer architecture course for beginners. We will start out with a discussion on binary representations, and a discussion on number systems (1's complement and 2's complement). Then, the course will move on to discuss assembly languages, and computer arithmetic. Once, we are done with the fundamentals, we shall look at the design of a simple processor, concepts of pipelining, and the design of a modern memory system.
+
+INTENDED AUDIENCE	: 2nd year UG students 
+
+PREREQUISITES		: C programming
+
+INDUSTRY SUPPORT	: Intel, AMD, IBM, Oracle, NVidia, Fujitsu
+Course Details
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to Computing
+Week 2	Number Systems
+Week 3	Floating Point Numbers
+Week 4	Assembly Language – I
+Week 5	Assembly Language – II
+Week 6	Algorithms for Binary Addition
+Week 7	Algorithms for Multiplication and Division
+Week 8	Processor Design
+Week 9	Pipelining – I
+Week 10	Pipelining – II
+Week 11	Memory Systems – Caches
+Week 12	Virtual Memory
+Books And References
+Computer Organisation and Architecture, Smruti R. Sarangi, McGrawHill (2015)
+
+ADVANCED COMPUTER ARCHITECTURE
+PROF. SMRUTI R. SARANGI
+Department of CSE
+IIT Delhi
+PRE-REQUISITES : Computer Architecture (2nd year level)
+Programming, Data Structures And Algorithms Using Python: https://nptel.ac.in/courses/106106145
+Data Structure And Algorithms Using Java: https://nptel.ac.in/courses/106105225
+Data Structures And Algorithms: https://nptel.ac.in/courses/106102064
+INTENDED AUDIENCE : UG and PG students (Computer Science and Electrical Engineering)
+INDUSTRIES APPLICABLE TO : Intel, AMD, IBM, Qualcomm, Texas Instruments
+COURSE OUTLINE :
+This course is on Advanced Computer Architecture. It will introduce students to advanced aspects of
+processor design and will specifically focus on out-of-order pipelines, GPUs, and compiler techniques
+for enhancing ILP. The course will subsequently move on to cache design and main memory
+technologies such as DDR-4. A substantial portion of the course will be devoted to the theory of
+on-chip networks and memory models. The last part of the course will cover aspects of low-power
+design, hardware security, and reliability.
+COURSE PLAN :
+ Week 1: In-order pipelines overview
+ Week 2: Out-of-order pipelines, Branch prediction
+ Week 3: Advanced branch prediction techniques
+ Week 4: Issue, select, and commit
+ Week 5: Aggressive speculation
+ Week 6: Compiler techniques for enhancing ILP
+ Week 7: Caches: Design, modeling, and optimizations
+ Week 8: On-chip networks
+ Week 9: Theory of memory models
+ Week 10: Coherence Protocols
+ Week 11: Low power design
+ Week 12: Reliability and Hardware Security
+
+PARALLEL COMPUTER ARCHITECTURE
+PROF. HEMANGEE K. KAPOOR
+Department of Computer Science and Engineering
+IIT Guwahati
+PREREQUISITES: Computer architecture and organization - https://nptel.ac.in/courses/106105163
+INTENDED AUDIENCE:Final year UG as well as PG
+INDUSTRY SUPPORT: Intel, Micron, AMD, IBM, NVIDIA, HP, Samsung, etc.
+COURSE OUTLINE:
+With the emergence of application domains requiring large data processing as well as faster compute performance, parallel computing has
+become a critical component. This involves the use of multi-core processors as well as tightly integrated clusters of PCs and workstations.
+The most exciting development is the convergence of traditionally disparate approaches of shared memory, message passing, and data
+driven computing onto the same platform.
+As the parallel applications communicate with each other using shared data; it is important to correctly manage the shared data within the
+memory hierarchy to avoid inconsistency. Here, we need to understand the mechanisms used for data access, communication and
+coordination of work and its correct implementation.
+This course will introduce the field of parallel architectures and discuss in-depth shared memory management for parallel architectures. We
+will also learn about the interconnection topologies and routing methods which are important for connection and communication of the
+multiple cores executing the parallel applications. The course will conclude with an overview of various parallel architectures and on-going
+research directions.
+ABOUT INSTRUCTOR:
+Prof. Hemangee K. Kapoor is a Professor in the Department of Computer Science Engineering at the Indian Institute of
+Technology Guwahati, Assam. She has over 18 years of teaching experience at both undergraduate and postgraduate
+levels. She received her B.Eng. degree in Computer Engineering from the College of Engineering, Pune, the M.Tech.
+degree in CSE from the IIT Bombay, and the Ph.D. degree in CSE from London South Bank University, U.K. Prof. Kapoor has
+been teaching subjects related to computer organisation, digital design, advanced computer architecture, parallel computer
+architecture and hardware lab. She has also given expert lectures in FDPs and TEQIP events. Her research spans in the broad
+area of computer architecture and specically in multicore caches, emerging non-volatile memory technologies, networkon-chip and design of accelerators for neural networks. Till date she has graduated 6 PhD and 39 MTech students. She is a
+Senior Member of the IEEE and ACM. She has published her work in reputed journals and conferences. She is an Associate
+Editor for the Journal of Systems Architecture and IEEE Design and Test. Prof. Kapoor has served in the ACM India council:
+as a member (2014-22) and as Vice President (2020-22). She serves as a member on the ACM international council for
+Diversity, Equity and Inclusion (ACM-DEI) (2021-23). More details can be found on website: URL: https://iitg.ac.in/hemangee/
+COURSE PLAN:
+Week 1 : Introduction to Parallel Architectures
+Week 2 : Parallel Programming models and Architectures
+Week 3 : Memory Hierarchy-Cache and Virtual memory
+Week 4 : Overview of Cache coherence, Coherence Protocols- Snooping, Directory based protocols, VI protocol
+Week 5 : MSI, MESI, Dragon protocol and Correctness of coherence protocols- Types of cache misses, update vs invalidate
+protocol
+Week 6 : Snoop based muliprocessor design, Single and multi-level cache with atomic bus
+Week 7 : Snoop based muliprocessor design, Single and multi-level cache with split transaction bus
+Week 8 : Scalable shared memory systems: Directory coherence protocols- Memory based, cache based, correctness
+Week 9 : Case study: Origin- Architecture, protocol, correctness; Sequent NUMA Q- Architecture, protocol, correctness
+Week 10 : Memory consistency models- Sequential, Relaxed consistency models
+Week 11 : Synchronization- LL-SC, point to point, barrier synchronization
+Week 12 : Interconnects- Introduction, Topologies, routing, flow control
+
+GPU ARCHITECTURES AND PROGRAMMING
+PROF. SOUMYAJIT DEY
+Department of Computer Science and Engineering
+IIT Kharagpur
+PRE-REQUISITES : Programming and Data Structure, Digital Logic, Computer architecture
+INTENDED AUDIENCE : Computer Science, Electronics, Electrical Engg students
+INDUSTRIES APPLICABLE TO : NVIDIA, AMD, Google, Amazon and most big-data companies
+COURSE OUTLINE :
+The course covers basics of conventional CPU architectures, their extensions for single instruction multiple
+data processing (SIMD) and finally the generalization of this concept in the form of single instruction
+multiple thread processing (SIMT) as is done in modern GPUs. We cover GPU architecture basics in terms of
+functional units and then dive into the popular CUDA programming model commonly used for GPU
+programming. In this context, architecture specific details like memory access coalescing, shared memory
+usage, GPU thread scheduling etc which primarily effect program performance are also covered in detail. We
+next switch to a different SIMD programming language called OpenCL which can be used for programming
+both CPUs and GPUs in a generic manner. Throughout the course we provide different architectureaware optimization techniques relevant to both CUDA and OpenCL. Finally, we provide the students with
+detail application development examples in two well-known GPU computing scenarios.
+COURSE PLAN :
+Week 1: Review of Traditional Computer Architecture – Basic five stage RISC Pipeline, Cache Memory,
+Register File, SIMD instructions
+Week 2: GPU architectures - Streaming Multi Processors, Cache Hierarchy, The Graphics Pipeline
+Week 3: Introduction to CUDA programming
+Week 4: Multi-dimensional mapping of dataspace, Synchronization
+Week 5: Warp Scheduling, Divergence
+Week 6: Memory Access Coalescing
+Week 7: Optimization examples : optimizing Reduction Kernels
+Week 8: Optimization examples : Kernel Fusion, Thread and Block
+Week 9: OpenCL basics
+Week 10: OpenCL for Heterogeneous Computing
+Week 11: Application Design : Efficient Neural Network Training/Inferencing
+Week 12: Application Design : Efficient Neural Network Training/Inferencing (Contd.,)
