@@ -181,3 +181,31 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U13.4 Capstone: an end-to-end data platform from your own engines
 - U13.5 Capstone: a small service on Google Cloud with identity, networking, reliability and cost controls
 - U13.6 Capstone: a security programme for a synthetic organisation
+
+## D14 (planned, not yet authored): Computer architecture and parallel hardware
+
+Ingested 2026-11-04 from `cloud-computing2.txt`: 6 computer-architecture outlines (MCA, CAO, CA, ACA, PCA, GPU), 78 cells, all mapped. Details, cell table and open decisions: `claude/cloud_ingest_2_architecture.md`. Each unit below except the capstone will carry an assignment A14.n like the existing ones. Current file totals are unchanged: 138 units, 132 assignments; after authoring, 161 units and 154 assignments.
+
+- U14.1 Bridge: binary representation, number systems and digital logic (bridge)
+- U14.2 Instruction set architecture: addressing modes, encoding, CISC versus RISC, assembly
+- U14.3 Performance evaluation and the quantitative principles of design
+- U14.4 Computer arithmetic: IEEE 754 floating point, adders, multipliers and dividers
+- U14.5 Processor datapath and control unit design: single-cycle, multi-cycle and microprogrammed
+- U14.6 Instruction pipelining: hazards, forwarding, stalls and branch prediction
+- U14.7 Instruction-level parallelism: scoreboarding, Tomasulo, speculation, reorder buffer, compiler techniques
+- U14.8 Superscalar, multithreading, hyperthreading and SIMD
+- U14.9 Memory hierarchy I: cache principles, replacement, write policies, design and optimisation
+- U14.10 Virtual memory: page tables, TLBs, protection and the hardware-software boundary
+- U14.11 Main memory: DRAM organisation, controllers, address mapping and scheduling
+- U14.12 Input-output system design: buses, interrupts, DMA and storage interfaces
+- U14.13 Parallel architectures and programming models: shared memory, message passing and data parallel
+- U14.14 Cache coherence: snooping, directory protocols, MSI, MESI, Dragon, split-transaction buses, Origin and NUMA-Q
+- U14.15 Memory consistency models and synchronisation primitives
+- U14.16 On-chip networks and interconnects: topologies, routing, flow control, router microarchitecture, deflection and bufferless routing
+- U14.17 GPU architecture: streaming multiprocessors, SIMT execution, warp scheduling and divergence, cache hierarchy, graphics pipeline
+- U14.18 GPU programming and optimisation: CUDA, thread mapping, synchronisation, coalescing, reductions, kernel fusion
+- U14.19 OpenCL and heterogeneous computing
+- U14.20 Domain-specific accelerators and efficient neural-network training and inference
+- U14.21 Quality of service for caches and networks on chip, and emerging directions
+- U14.22 Low-power design, reliability and hardware security
+- U14.23 Capstone: a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel (capstone)
