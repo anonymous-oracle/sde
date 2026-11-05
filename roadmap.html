@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning roadmap: from proofs to LLMs</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #14181f; --muted: #5b6573; --line: #d9dee5;
+    --accent: #0b5fff; --done: #1f9d6b;
+    --A: #2a6fdb; --B: #c27a00; --C: #8a4fd6; --D: #cf3d63; --E: #1b8f62;
+    --shadow: 0 1px 2px rgba(20,24,31,.06), 0 4px 14px rgba(20,24,31,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1217; --card: #171b22; --ink: #e8ecf2; --muted: #9aa5b4; --line: #2a313c;
+      --accent: #5b92ff; --done: #3fcf95;
+      --A: #6aa0ff; --B: #f0b24a; --C: #b68aff; --D: #ff7a9a; --E: #4fd6a0;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding-bottom: 96px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 0; }
+  h1 { font-size: 28px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -.01em; }
+  h2 { font-size: 18px; margin: 40px 0 12px; letter-spacing: -.005em; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 22px; line-height: 1.2; }
+  .stat span { color: var(--muted); font-size: 13px; }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } h1 { font-size: 23px; } }
+
+  /* you are here */
+  .here { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
+  .track { display: grid; grid-template-columns: repeat(6, 1fr) auto; align-items: start; gap: 0; margin: 6px 0 4px; }
+  .blk { position: relative; text-align: center; padding: 0 4px; }
+  .blk::before { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 3px; background: var(--line); z-index: 0; }
+  .blk:first-child::before { display: none; }
+  .blk.done::before, .blk.now::before { background: var(--done); }
+  .dot { position: relative; z-index: 1; width: 32px; height: 32px; margin: 0 auto 6px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700; font-size: 13px; background: var(--card); border: 2px solid var(--line); color: var(--muted); }
+  .blk.done .dot { background: var(--done); border-color: var(--done); color: #fff; }
+  .blk.now .dot { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .blk .t { font-size: 12px; line-height: 1.3; color: var(--muted); }
+  .blk.now .t, .blk.done .t { color: var(--ink); }
+  .flag { text-align: center; padding-left: 10px; position: relative; }
+  .flag::before { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 3px; background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 11px); }
+  .flag .dot { border-radius: 8px; transform: rotate(45deg); border-color: var(--accent); color: var(--accent); width: 28px; height: 28px; margin-top: 2px; }
+  .flag .dot i { transform: rotate(-45deg); font-style: normal; font-size: 12px; }
+  .flag .t { font-size: 12px; font-weight: 600; margin-top: 6px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 18px; }
+  .col { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .col h3 { margin: 0 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .col ul { margin: 0; padding-left: 18px; }
+  .col li { margin: 2px 0; }
+  .col.d li::marker { color: var(--done); content: "✓  "; }
+  .col.r li::marker { color: var(--muted); }
+  @media (max-width: 760px) {
+    .cols { grid-template-columns: 1fr; }
+    .track { grid-template-columns: repeat(3, 1fr); row-gap: 16px; }
+    .blk::before, .flag::before { display: none; }
+    .flag { grid-column: 1 / -1; padding: 6px 0 0; }
+  }
+  .note { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-radius: 0 8px 8px 0; }
+
+  /* legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+  /* path */
+  .path { position: relative; padding-left: 58px; margin-top: 18px; }
+  .path::before { content: ""; position: absolute; left: 17px; top: 8px; bottom: 8px; width: 3px; background: var(--line); border-radius: 2px; }
+  .stage { position: relative; margin-bottom: 18px; }
+  .node { position: absolute; left: -58px; top: 10px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--card); border: 3px solid var(--line); font-weight: 700; color: var(--muted); }
+  .stage.cur .node { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 16px; box-shadow: var(--shadow); }
+  .stage.cur .card { border-color: var(--accent); }
+  .shead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 14px; }
+  .shead b { font-size: 16px; }
+  .meta { color: var(--muted); font-size: 13px; white-space: nowrap; }
+  .you { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--accent); color: #fff; border-radius: 999px; padding: 2px 9px; margin-left: 8px; vertical-align: 2px; }
+  .dg { margin-top: 12px; }
+  .dn { font-size: 12.5px; font-weight: 600; color: var(--c); margin-bottom: 5px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding: 6px 8px; border-radius: 7px; cursor: pointer;
+    border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); background: color-mix(in srgb, var(--c) 12%, var(--card)); color: var(--ink); }
+  .chip:hover { background: color-mix(in srgb, var(--c) 24%, var(--card)); }
+  .chip:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+  .chip.cap { border-radius: 999px; }
+  .chip.sug { border-style: dashed; }
+  .chip.cur { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip.sel { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent); }
+
+  .parked { margin-top: 18px; border: 1px dashed var(--line); border-radius: 12px; padding: 12px 16px; color: var(--muted); }
+  .parked b { color: var(--ink); }
+
+  #detail { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); padding: 12px 20px; z-index: 5;
+    box-shadow: 0 -4px 16px rgba(0,0,0,.08); }
+  #detail .in { max-width: 1040px; margin: 0 auto; min-height: 44px; }
+  #detail b { font-size: 15px; }
+  #detail .m { color: var(--muted); font-size: 13px; }
+  .dim { color: var(--muted); }
+  footer { margin: 34px 0 0; color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Learning roadmap: from proofs to LLMs</h1>
+  <p class="sub">NPTEL ML project · unified curriculum · status as of 5 Nov 2026</p>
+
+  <div class="stats" id="stats"></div>
+
+  <h2>You are here: U1.1 Logic, proof paradigms and formal languages</h2>
+  <div class="here">
+    <div class="track" role="list" aria-label="Blocks of unit U1.1">
+      <div class="blk done" role="listitem"><div class="dot">✓</div><div class="t">B1<br>Proof paradigms</div></div>
+      <div class="blk now" role="listitem"><div class="dot">2</div><div class="t">B2<br>Propositional logic and equivalence</div></div>
+      <div class="blk" role="listitem"><div class="dot">3</div><div class="t">B3<br>Quantifiers, valid arguments</div></div>
+      <div class="blk" role="listitem"><div class="dot">4</div><div class="t">B4<br>Induction and well-ordering</div></div>
+      <div class="blk" role="listitem"><div class="dot">5</div><div class="t">B5<br>Grammars and finite state machines</div></div>
+      <div class="blk" role="listitem"><div class="dot">6</div><div class="t">B6<br>Builds, proofs, problem set</div></div>
+      <div class="flag" role="listitem"><div class="dot"><i>A</i></div><div class="t">A1.1<br><span class="dim" style="font-weight:400">first assignment</span></div></div>
+    </div>
+    <div class="cols">
+      <div class="col d">
+        <h3>B1 done</h3>
+        <ul>
+          <li>Proof by cases (n² + n is even)</li>
+          <li>Direct proof (odd × odd is odd)</li>
+          <li>Contrapositive</li>
+          <li>Contradiction (√2 is irrational)</li>
+          <li>Transfer: rational + irrational, on your own</li>
+        </ul>
+      </div>
+      <div class="col d">
+        <h3>B2 done so far</h3>
+        <ul>
+          <li>Truth table of an implication</li>
+          <li>Contrapositive ≡ implication, by table and by algebra</li>
+          <li>The inverse is not equivalent</li>
+          <li>∧, ∨, P → Q ≡ ¬P ∨ Q, double negation</li>
+          <li>De Morgan; ¬(P → Q) ≡ P ∧ ¬Q</li>
+          <li>Tautology and contradiction</li>
+        </ul>
+      </div>
+      <div class="col r">
+        <h3>B2 still to come (planned)</h3>
+        <ul>
+          <li>Commutative, associative, distributive, absorption and idempotent laws</li>
+          <li>The duality principle, with proof</li>
+          <li>Then B3 to B5, then B6: the two builds (truth-table checker, DFA simulator), a problem set, and the assignment</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note"><b>When does an assignment come?</b> Each unit's assignment sits at the end of that unit. A1.1 arrives after B6, the last block of U1.1, so after B3, B4, B5 and the builds. There is no calendar date: you advance by passing checks. A1.1 is five questions worth 10 marks, with a pass at 7/10 and both the proof question and the programming question accepted. After that, one assignment follows each unit that has one (148 in total; the 7 capstones have projects instead).</p>
+  </div>
+
+  <h2>The whole path: 10 stages, 155 units</h2>
+  <div class="legend" id="legend"></div>
+  <div class="path" id="path"></div>
+
+  <div class="parked">
+    <b>Parked, not on this path:</b> the project also holds a separate Unified Cloud Curriculum (networks, cryptography, security, distributed systems, databases, computer architecture; 189 units in 15 domains). Its own index lists merging it with this curriculum as an open decision, so none of it is scheduled here.
+  </div>
+
+  <footer>Stage order is the curriculum's own default order, a plan and not a cage: a prerequisite is taught just in time when a topic needs it. Four units are missing from that table; they appear dashed in the slot I suggest, pending your say. Nothing beyond U1.1 has been started, and no unit counts as finished until it reaches expert depth with evidence.</footer>
+</div>
+
+<div id="detail" aria-live="polite"><div class="in"><span class="dim">Select any unit to see its title, assignment and stage.</span></div></div>
+
+<script>
+const DATA = {"units": [{"id": "U1.1", "d": 1, "n": 1, "title": "Logic, proof paradigms and formal languages", "stage": 0, "a": "A1.1", "suggested": false}, {"id": "U1.2", "d": 1, "n": 2, "title": "Counting, generating functions and combinatorics", "stage": 4, "a": "A1.2", "suggested": false}, {"id": "U1.3", "d": 1, "n": 3, "title": "Posets, lattices, Boolean algebra and switching circuits", "stage": 4, "a": "A1.3", "suggested": false}, {"id": "U1.4", "d": 1, "n": 4, "title": "Graph theory", "stage": 4, "a": "A1.4", "suggested": false}, {"id": "U1.5", "d": 1, "n": 5, "title": "Number theory and cryptography", "stage": 4, "a": "A1.5", "suggested": false}, {"id": "U1.6", "d": 1, "n": 6, "title": "Algebra: finite fields, codes, groups and orbit counting", "stage": 4, "a": "A1.6", "suggested": false}, {"id": "U1.7", "d": 1, "n": 7, "title": "An invitation to mathematics: polynomials, functions, matrices, conservation laws", "stage": 4, "a": "A1.7", "suggested": true, "why": "An invitation to mathematics: joins the discrete-structures group"}, {"id": "U2.1", "d": 2, "n": 1, "title": "Numbers, countability, functions, limits and continuity", "stage": 0, "a": "A2.1", "suggested": false}, {"id": "U2.2", "d": 2, "n": 2, "title": "Differentiation and mean value theorems", "stage": 0, "a": "A2.2", "suggested": false}, {"id": "U2.3", "d": 2, "n": 3, "title": "Integration, applications and transcendental functions", "stage": 0, "a": "A2.3", "suggested": false}, {"id": "U2.4", "d": 2, "n": 4, "title": "Taylor expansion, sequences, series and power series", "stage": 0, "a": "A2.4", "suggested": false}, {"id": "U2.5", "d": 2, "n": 5, "title": "Improper integrals, Gamma and Beta functions, integrals dependent on parameters", "stage": 0, "a": "A2.5", "suggested": false}, {"id": "U3.1", "d": 3, "n": 1, "title": "Functions of several variables, partial derivatives and differentiability", "stage": 1, "a": "A3.1", "suggested": false}, {"id": "U3.2", "d": 3, "n": 2, "title": "Taylor expansion in several variables, maxima, minima and Lagrange multipliers", "stage": 1, "a": "A3.2", "suggested": false}, {"id": "U3.3", "d": 3, "n": 3, "title": "Multiple integrals and their applications", "stage": 2, "a": "A3.3", "suggested": false}, {"id": "U3.4", "d": 3, "n": 4, "title": "Vector calculus: fields, line and surface integrals, Green, Gauss and Stokes", "stage": 2, "a": "A3.4", "suggested": false}, {"id": "U3.5", "d": 3, "n": 5, "title": "Matrix calculus, Jacobians and Hessians for machine learning", "stage": 2, "a": "A3.5", "suggested": false}, {"id": "U4.1", "d": 4, "n": 1, "title": "Systems of linear equations, matrices, elimination, rank and inverses", "stage": 1, "a": "A4.1", "suggested": false}, {"id": "U4.2", "d": 4, "n": 2, "title": "Vectors, vector spaces, subspaces, bases and dimension", "stage": 1, "a": "A4.2", "suggested": false}, {"id": "U4.3", "d": 4, "n": 3, "title": "Linear maps, representation by matrices, duality and quotient spaces", "stage": 1, "a": "A4.3", "suggested": false}, {"id": "U4.4", "d": 4, "n": 4, "title": "Inner products, norms, orthogonality, projections and Gram–Schmidt", "stage": 1, "a": "A4.4", "suggested": false}, {"id": "U4.5", "d": 4, "n": 5, "title": "Determinants, multilinear forms and permutations", "stage": 1, "a": "A4.5", "suggested": false}, {"id": "U4.6", "d": 4, "n": 6, "title": "Eigenvalues, eigenvectors, similarity and diagonalization", "stage": 1, "a": "A4.6", "suggested": false}, {"id": "U4.7", "d": 4, "n": 7, "title": "Canonical forms: minimal polynomial, invariant subspaces, Jordan and rational forms", "stage": 2, "a": "A4.7", "suggested": false}, {"id": "U4.8", "d": 4, "n": 8, "title": "Spectral theory: normal operators, symmetric matrices, quadratic forms, PSD matrices and kernels", "stage": 2, "a": "A4.8", "suggested": false}, {"id": "U4.9", "d": 4, "n": 9, "title": "LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation", "stage": 2, "a": "A4.9", "suggested": false}, {"id": "U4.10", "d": 4, "n": 10, "title": "Least squares, regularized and constrained least squares", "stage": 2, "a": "A4.10", "suggested": false}, {"id": "U4.11", "d": 4, "n": 11, "title": "Applications of linear algebra: PageRank, sparsity, dynamical systems, Markov chains, signal processing and data analytics", "stage": 2, "a": "A4.11", "suggested": true, "why": "Applications of linear algebra: natural sequel to U4.10"}, {"id": "U5.1", "d": 5, "n": 1, "title": "Probability foundations: from events to Bayes' theorem", "stage": 1, "a": "A5.1", "suggested": false}, {"id": "U5.2", "d": 5, "n": 2, "title": "Random variables, distributions and moments", "stage": 1, "a": "A5.2", "suggested": false}, {"id": "U5.3", "d": 5, "n": 3, "title": "Special discrete distributions and the Poisson process", "stage": 1, "a": "A5.3", "suggested": false}, {"id": "U5.4", "d": 5, "n": 4, "title": "Special continuous distributions and the normal distribution", "stage": 1, "a": "A5.4", "suggested": false}, {"id": "U5.5", "d": 5, "n": 5, "title": "Functions of random variables, transformations and order statistics", "stage": 1, "a": "A5.5", "suggested": false}, {"id": "U5.6", "d": 5, "n": 6, "title": "Joint distributions, conditioning, covariance and multivariate normal", "stage": 2, "a": "A5.6", "suggested": false}, {"id": "U5.7", "d": 5, "n": 7, "title": "Limit theorems and concentration inequalities", "stage": 2, "a": "A5.7", "suggested": false}, {"id": "U5.8", "d": 5, "n": 8, "title": "Markov chains, queueing theory and reliability", "stage": 4, "a": "A5.8", "suggested": true, "why": "Markov chains: needed before HMMs (U9.10) and MDPs (U10.4)"}, {"id": "U5.9", "d": 5, "n": 9, "title": "Conditional expectation and martingales", "stage": 5, "a": "A5.9", "suggested": false}, {"id": "U6.1", "d": 6, "n": 1, "title": "Data, descriptive statistics and measures of association", "stage": 2, "a": "A6.1", "suggested": false}, {"id": "U6.2", "d": 6, "n": 2, "title": "Sampling distributions and point estimation", "stage": 2, "a": "A6.2", "suggested": false}, {"id": "U6.3", "d": 6, "n": 3, "title": "Confidence intervals and hypothesis testing", "stage": 2, "a": "A6.3", "suggested": false}, {"id": "U6.4", "d": 6, "n": 4, "title": "Correlation, regression and multivariate analysis", "stage": 2, "a": "A6.4", "suggested": false}, {"id": "U6.5", "d": 6, "n": 5, "title": "Bayesian inference and MCMC", "stage": 2, "a": "A6.5", "suggested": false}, {"id": "U6.6", "d": 6, "n": 6, "title": "Forecasting with statistical and machine-learning models: hydrology and water-resources applications", "stage": 2, "a": "A6.6", "suggested": false}, {"id": "U7.1", "d": 7, "n": 1, "title": "First- and higher-order ordinary differential equations", "stage": 4, "a": "A7.1", "suggested": false}, {"id": "U7.2", "d": 7, "n": 2, "title": "Numerical analysis: iteration, root finding, interpolation and quadrature", "stage": 4, "a": "A7.2", "suggested": false}, {"id": "U7.3", "d": 7, "n": 3, "title": "Complex variables: analytic functions and complex integration", "stage": 4, "a": "A7.3", "suggested": false}, {"id": "U7.4", "d": 7, "n": 4, "title": "Series, singularities, residues, real integrals and conformal mapping", "stage": 4, "a": "A7.4", "suggested": false}, {"id": "U7.5", "d": 7, "n": 5, "title": "Laplace, Z, Fourier and discrete Fourier transforms", "stage": 4, "a": "A7.5", "suggested": false}, {"id": "U7.6", "d": 7, "n": 6, "title": "Mathematical modelling: discrete and continuous dynamical systems", "stage": 4, "a": "A7.6", "suggested": false}, {"id": "U7.7", "d": 7, "n": 7, "title": "ODE theory for dynamical systems: Gronwall, limit sets, invariant sets and chain transitivity", "stage": 5, "a": "A7.7", "suggested": false}, {"id": "U8.1", "d": 8, "n": 1, "title": "Optimization problems: formulation, history, transformations and basic facts", "stage": 3, "a": "A8.1", "suggested": false}, {"id": "U8.2", "d": 8, "n": 2, "title": "Convex sets, cones, polyhedra and separation", "stage": 3, "a": "A8.2", "suggested": false}, {"id": "U8.3", "d": 8, "n": 3, "title": "Convex functions and their calculus", "stage": 3, "a": "A8.3", "suggested": false}, {"id": "U8.4", "d": 8, "n": 4, "title": "Unconstrained optimization theory", "stage": 3, "a": "A8.4", "suggested": false}, {"id": "U8.5", "d": 8, "n": 5, "title": "Constrained optimization theory: Lagrange, cones, Fritz John and KKT", "stage": 3, "a": "A8.5", "suggested": false}, {"id": "U8.6", "d": 8, "n": 6, "title": "Lagrangian duality, saddle points and minimax", "stage": 3, "a": "A8.6", "suggested": false}, {"id": "U8.7", "d": 8, "n": 7, "title": "Linear programming: simplex, duality, sensitivity and interior-point methods", "stage": 3, "a": "A8.7", "suggested": false}, {"id": "U8.8", "d": 8, "n": 8, "title": "Unconstrained descent methods: line search, gradient, Newton, quasi-Newton, conjugate gradient, trust region", "stage": 3, "a": "A8.8", "suggested": false}, {"id": "U8.9", "d": 8, "n": 9, "title": "Constrained optimization algorithms: QP, projected and reduced gradient, penalty, augmented Lagrangian, SQP", "stage": 4, "a": "A8.9", "suggested": false}, {"id": "U8.10", "d": 8, "n": 10, "title": "First-order methods for ML: stochastic, accelerated, proximal, adaptive, and the dynamical-systems view", "stage": 4, "a": "A8.10", "suggested": false}, {"id": "U8.11", "d": 8, "n": 11, "title": "Conic and structured convex programs: QCQP, SOCP, SDP, geometric programs", "stage": 4, "a": "A8.11", "suggested": false}, {"id": "U8.12", "d": 8, "n": 12, "title": "Applications of optimization: signal estimation, compressive sensing, radar, big data and finance", "stage": 4, "a": "A8.12", "suggested": false}, {"id": "U8.13", "d": 8, "n": 13, "title": "Non-smooth and difference-of-convex optimization", "stage": 4, "a": "A8.13", "suggested": false}, {"id": "U8.14", "d": 8, "n": 14, "title": "Distributed optimization: graphs, consensus, ADMM and dual decomposition", "stage": 9, "a": "A8.14", "suggested": false}, {"id": "U8.15", "d": 8, "n": 15, "title": "Dynamic optimization and complementarity problems", "stage": 4, "a": "A8.15", "suggested": true, "why": "Dynamic optimization: sits with the other optimization theory"}, {"id": "U8.16", "d": 8, "n": 16, "title": "Stochastic approximation: algorithms, step sizes and the ODE method", "stage": 5, "a": "A8.16", "suggested": false}, {"id": "U8.17", "d": 8, "n": 17, "title": "Convergence rates, stability, two-timescale algorithms and stochastic recursive inclusions", "stage": 5, "a": "A8.17", "suggested": false}, {"id": "U9.0", "d": 9, "n": 0, "title": "History of AI, symbolic AI and the machine-learning workflow", "stage": 3, "a": "A9.0", "suggested": false}, {"id": "U9.1", "d": 9, "n": 1, "title": "What machine learning is: paradigms, data, hypothesis spaces and the statistical framework", "stage": 3, "a": "A9.1", "suggested": false}, {"id": "U9.2", "d": 9, "n": 2, "title": "Model evaluation and selection: bias–variance, validation, tuning and metrics", "stage": 3, "a": "A9.2", "suggested": false}, {"id": "U9.3", "d": 9, "n": 3, "title": "Linear regression and linear classification: estimation, logistic and softmax regression, surrogate losses", "stage": 3, "a": "A9.3", "suggested": false}, {"id": "U9.4", "d": 9, "n": 4, "title": "Regularization and implicit regularization", "stage": 3, "a": "A9.4", "suggested": false}, {"id": "U9.5", "d": 9, "n": 5, "title": "Perceptron, support vector machines and kernel methods", "stage": 4, "a": "A9.5", "suggested": false}, {"id": "U9.6", "d": 9, "n": 6, "title": "Bayes decision theory, density estimation and probabilistic classifiers", "stage": 4, "a": "A9.6", "suggested": false}, {"id": "U9.7", "d": 9, "n": 7, "title": "Decision trees and ensembles: bagging, boosting, random forests", "stage": 4, "a": "A9.7", "suggested": false}, {"id": "U9.8", "d": 9, "n": 8, "title": "Dimensionality reduction and feature learning", "stage": 4, "a": "A9.8", "suggested": false}, {"id": "U9.9", "d": 9, "n": 9, "title": "Clustering, mixture models and the EM algorithm", "stage": 4, "a": "A9.9", "suggested": false}, {"id": "U9.10", "d": 9, "n": 10, "title": "Probabilistic graphical models, hidden Markov models, inference and Gaussian processes", "stage": 4, "a": "A9.10", "suggested": false}, {"id": "U9.11", "d": 9, "n": 11, "title": "Instance-based learning, collaborative filtering and recommendation", "stage": 4, "a": "A9.11", "suggested": false}, {"id": "U9.12", "d": 9, "n": 12, "title": "Data mining: preprocessing, association rules, sequence mining, outliers and case studies", "stage": 4, "a": "A9.12", "suggested": false}, {"id": "U9.13", "d": 9, "n": 13, "title": "Learning theory: PAC, VC dimension, generalization and modern overparametrization", "stage": 4, "a": "A9.13", "suggested": false}, {"id": "U9.14", "d": 9, "n": 14, "title": "Symbolic and knowledge-based machine learning, tools and cognitive-science influences", "stage": 4, "a": "A9.14", "suggested": false}, {"id": "U10.1", "d": 10, "n": 1, "title": "From batch to online learning: adversarial full-information and bandit settings", "stage": 6, "a": "A10.1", "suggested": false}, {"id": "U10.2", "d": 10, "n": 2, "title": "Stochastic bandits: regret notions, UCB, KL-UCB and lower bounds", "stage": 6, "a": "A10.2", "suggested": false}, {"id": "U10.3", "d": 10, "n": 3, "title": "Contextual bandits and pure exploration", "stage": 6, "a": "A10.3", "suggested": false}, {"id": "U10.4", "d": 10, "n": 4, "title": "Markov decision processes, dynamic programming and temporal-difference learning", "stage": 6, "a": "A10.4", "suggested": false}, {"id": "U10.5", "d": 10, "n": 5, "title": "Policy gradient, actor–critic and proximal policy optimization", "stage": 6, "a": "A10.5", "suggested": false}, {"id": "U10.6", "d": 10, "n": 6, "title": "Stochastic approximation in reinforcement learning", "stage": 6, "a": "A10.6", "suggested": false}, {"id": "U11.1", "d": 11, "n": 1, "title": "Perceptron, multilayer networks, activations and loss functions", "stage": 5, "a": "A11.1", "suggested": false}, {"id": "U11.2", "d": 11, "n": 2, "title": "Backpropagation and training deep networks", "stage": 5, "a": "A11.2", "suggested": false}, {"id": "U11.3", "d": 11, "n": 3, "title": "Overfitting, regularization and generalization in deep networks", "stage": 5, "a": "A11.3", "suggested": false}, {"id": "U11.4", "d": 11, "n": 4, "title": "Convolutional neural networks and image representation", "stage": 5, "a": "A11.4", "suggested": false}, {"id": "U11.5", "d": 11, "n": 5, "title": "Explainable AI for deep models", "stage": 5, "a": "A11.5", "suggested": false}, {"id": "U11.6", "d": 11, "n": 6, "title": "Segmentation and object detection", "stage": 5, "a": "A11.6", "suggested": false}, {"id": "U11.7", "d": 11, "n": 7, "title": "Recurrent networks: RNN, LSTM, GRU, backpropagation through time and attention in RNNs", "stage": 5, "a": "A11.7", "suggested": false}, {"id": "U11.8", "d": 11, "n": 8, "title": "Autoencoders and representation learning", "stage": 5, "a": "A11.8", "suggested": false}, {"id": "U12.1", "d": 12, "n": 1, "title": "NLP foundations and the classical NLP pipeline", "stage": 6, "a": "A12.1", "suggested": false}, {"id": "U12.2", "d": 12, "n": 2, "title": "Word representations and multilingual embeddings", "stage": 6, "a": "A12.2", "suggested": false}, {"id": "U12.3", "d": 12, "n": 3, "title": "Attention and the Transformer architecture", "stage": 6, "a": "A12.3", "suggested": false}, {"id": "U12.4", "d": 12, "n": 4, "title": "Pretraining, self-supervised learning and the LLM landscape", "stage": 6, "a": "A12.4", "suggested": false}, {"id": "U12.5", "d": 12, "n": 5, "title": "Scaling laws, LLM architectures and long context", "stage": 6, "a": "A12.5", "suggested": false}, {"id": "U12.6", "d": 12, "n": 6, "title": "Decoding strategies and sampling", "stage": 6, "a": "A12.6", "suggested": false}, {"id": "U12.7", "d": 12, "n": 7, "title": "Prompting: fundamentals, APIs and advanced techniques", "stage": 6, "a": "A12.7", "suggested": false}, {"id": "U12.8", "d": 12, "n": 8, "title": "Instruction tuning, RLHF and alignment: PPO and DPO", "stage": 6, "a": "A12.8", "suggested": false}, {"id": "U12.9", "d": 12, "n": 9, "title": "Parameter-efficient fine-tuning: LoRA and QLoRA", "stage": 6, "a": "A12.9", "suggested": false}, {"id": "U12.10", "d": 12, "n": 10, "title": "Prompt optimization, compression and prompt security", "stage": 6, "a": "A12.10", "suggested": false}, {"id": "U13.1", "d": 13, "n": 1, "title": "Probabilistic deep generative modelling: foundations and taxonomy", "stage": 7, "a": "A13.1", "suggested": false}, {"id": "U13.2", "d": 13, "n": 2, "title": "Generative modelling via variational divergence minimization", "stage": 7, "a": "A13.2", "suggested": false}, {"id": "U13.3", "d": 13, "n": 3, "title": "Generative adversarial networks: formulation, training, WGAN and applications", "stage": 7, "a": "A13.3", "suggested": false}, {"id": "U13.4", "d": 13, "n": 4, "title": "Variational autoencoders, improvements and VQ-VAE", "stage": 7, "a": "A13.4", "suggested": false}, {"id": "U13.5", "d": 13, "n": 5, "title": "Autoregressive models", "stage": 7, "a": "A13.5", "suggested": false}, {"id": "U13.6", "d": 13, "n": 6, "title": "Energy-based and score-based models; Langevin sampling", "stage": 7, "a": "A13.6", "suggested": false}, {"id": "U13.7", "d": 13, "n": 7, "title": "Denoising diffusion probabilistic models, conditional diffusion and Stable Diffusion", "stage": 7, "a": "A13.7", "suggested": false}, {"id": "U13.8", "d": 13, "n": 8, "title": "Normalizing flows (gap-fill from the references)", "stage": 7, "a": "A13.8", "suggested": false}, {"id": "U14.1", "d": 14, "n": 1, "title": "Why RAG, RAG architecture and classical retrievers", "stage": 8, "a": "A14.1", "suggested": false}, {"id": "U14.2", "d": 14, "n": 2, "title": "RAG failure modes, types of RAG and assessment", "stage": 8, "a": "A14.2", "suggested": false}, {"id": "U14.3", "d": 14, "n": 3, "title": "Sparse retrieval limits and dense representations", "stage": 8, "a": "A14.3", "suggested": false}, {"id": "U14.4", "d": 14, "n": 4, "title": "Learning retrieval-oriented embeddings and choosing an embedding model", "stage": 8, "a": "A14.4", "suggested": false}, {"id": "U14.5", "d": 14, "n": 5, "title": "Document processing and chunking", "stage": 8, "a": "A14.5", "suggested": false}, {"id": "U14.6", "d": 14, "n": 6, "title": "Vector databases and indexes: KNN, IVF, PQ, HNSW, FAISS and ChromaDB", "stage": 8, "a": "A14.6", "suggested": false}, {"id": "U14.7", "d": 14, "n": 7, "title": "The retrieval pipeline: bi-encoder, cross-encoder, ColBERT and two-stage retrieval", "stage": 8, "a": "A14.7", "suggested": false}, {"id": "U14.8", "d": 14, "n": 8, "title": "Production RAG: request shaping, query transformation, routing, security, cost and observability", "stage": 8, "a": "A14.8", "suggested": false}, {"id": "U14.9", "d": 14, "n": 9, "title": "Limits of single-shot RAG and the move to agents", "stage": 8, "a": "A14.9", "suggested": false}, {"id": "U14.10", "d": 14, "n": 10, "title": "Agent basics, tool calling and orchestration", "stage": 8, "a": "A14.10", "suggested": false}, {"id": "U14.11", "d": 14, "n": 11, "title": "Planning with ReAct", "stage": 8, "a": "A14.11", "suggested": false}, {"id": "U14.12", "d": 14, "n": 12, "title": "State machines and LangGraph", "stage": 8, "a": "A14.12", "suggested": false}, {"id": "U14.13", "d": 14, "n": 13, "title": "Agentic memory", "stage": 8, "a": "A14.13", "suggested": false}, {"id": "U14.14", "d": 14, "n": 14, "title": "Provenance and citations", "stage": 8, "a": "A14.14", "suggested": false}, {"id": "U14.15", "d": 14, "n": 15, "title": "Multi-agent architecture summary, error handling and best practices", "stage": 8, "a": "A14.15", "suggested": false}, {"id": "U15.1", "d": 15, "n": 1, "title": "LLM evaluation: metric architecture and reference-based metrics", "stage": 8, "a": "A15.1", "suggested": false}, {"id": "U15.2", "d": 15, "n": 2, "title": "LLM-as-a-judge and factuality", "stage": 8, "a": "A15.2", "suggested": false}, {"id": "U15.3", "d": 15, "n": 3, "title": "AI safety foundations and threat models", "stage": 8, "a": "A15.3", "suggested": false}, {"id": "U15.4", "d": 15, "n": 4, "title": "White-box attacks and prompt injection", "stage": 8, "a": "A15.4", "suggested": false}, {"id": "U15.5", "d": 15, "n": 5, "title": "Black-box attacks and the jailbreak taxonomy", "stage": 8, "a": "A15.5", "suggested": false}, {"id": "U15.6", "d": 15, "n": 6, "title": "Defense, interpretability and ethics", "stage": 8, "a": "A15.6", "suggested": false}, {"id": "U16.1", "d": 16, "n": 1, "title": "CNN computation and accelerators", "stage": 9, "a": "A16.1", "suggested": false}, {"id": "U16.2", "d": 16, "n": 2, "title": "Parallelism for training, communication and fault tolerance", "stage": 9, "a": "A16.2", "suggested": false}, {"id": "U16.3", "d": 16, "n": 3, "title": "LLM decoding, memory management and serving infrastructure", "stage": 9, "a": "A16.3", "suggested": false}, {"id": "U16.4", "d": 16, "n": 4, "title": "Model compression and quantization", "stage": 9, "a": "A16.4", "suggested": false}, {"id": "U16.5", "d": 16, "n": 5, "title": "Graph neural network inference systems", "stage": 9, "a": "A16.5", "suggested": false}, {"id": "U16.6", "d": 16, "n": 6, "title": "Federated learning", "stage": 9, "a": "A16.6", "suggested": false}, {"id": "U17.1", "d": 17, "n": 1, "title": "Review of NP-completeness and the approximation framework", "stage": 4, "a": "A17.1", "suggested": false}, {"id": "U17.2", "d": 17, "n": 2, "title": "Approximation for vertex cover, set cover and the traveling salesman problem", "stage": 4, "a": "A17.2", "suggested": false}, {"id": "U17.3", "d": 17, "n": 3, "title": "Approximation for the knapsack problem and job scheduling", "stage": 4, "a": "A17.3", "suggested": false}, {"id": "U17.4", "d": 17, "n": 4, "title": "Linear programming basics and deterministic rounding", "stage": 4, "a": "A17.4", "suggested": false}, {"id": "U17.5", "d": 17, "n": 5, "title": "Randomized rounding", "stage": 4, "a": "A17.5", "suggested": false}, {"id": "U17.6", "d": 17, "n": 6, "title": "The primal–dual method", "stage": 4, "a": "A17.6", "suggested": false}, {"id": "U17.7", "d": 17, "n": 7, "title": "Semidefinite programming for max cut, and hardness of approximation", "stage": 4, "a": "A17.7", "suggested": false}, {"id": "U18.1", "d": 18, "n": 1, "title": "Capstone A: the mathematics of machine learning, end to end", "stage": 9, "a": null, "suggested": false}, {"id": "U18.2", "d": 18, "n": 2, "title": "Capstone B: a classical-ML library from scratch", "stage": 9, "a": null, "suggested": false}, {"id": "U18.3", "d": 18, "n": 3, "title": "Capstone C: a deep-learning framework from scratch", "stage": 9, "a": null, "suggested": false}, {"id": "U18.4", "d": 18, "n": 4, "title": "Capstone D: an LLM application platform (RAG + agents + safety)", "stage": 9, "a": null, "suggested": false}, {"id": "U18.5", "d": 18, "n": 5, "title": "Capstone E: generative models", "stage": 9, "a": null, "suggested": false}, {"id": "U18.6", "d": 18, "n": 6, "title": "Capstone F: ML systems and efficiency", "stage": 9, "a": null, "suggested": false}, {"id": "U18.7", "d": 18, "n": 7, "title": "Final integrated capstone: train, align, compress, serve, evaluate and secure a small language model", "stage": 9, "a": null, "suggested": false}], "stages": ["Proof habits and one-variable analysis", "Vectors, matrices, eigen-structure, gradients and the language of probability", "Decompositions, least squares, joint distributions, inference, matrix calculus", "Optimization basics and the first ML models, built by hand", "Duality, SVMs, kernels, trees, clustering, graphical models, learning theory; discrete structures and applied analysis", "Deep learning; stochastic approximation (why SGD and RL updates converge)", "Attention, Transformers, LLMs; bandits and reinforcement learning; alignment", "Deep generative models", "RAG, agents, evaluation and safety", "Systems, distributed and federated learning, capstones"], "domains": {"1": {"title": "Discrete Mathematics and Mathematical Reasoning", "part": "A"}, "2": {"title": "Single-Variable Calculus and Real Analysis", "part": "A"}, "3": {"title": "Multivariable and Vector Calculus", "part": "A"}, "4": {"title": "Linear Algebra: Core, Abstract, Numerical and Applied", "part": "A"}, "5": {"title": "Probability and Stochastic Models", "part": "A"}, "6": {"title": "Statistics and Statistical Inference", "part": "A"}, "7": {"title": "Differential Equations, Dynamical Systems, Numerical Methods, Complex Analysis and Transforms", "part": "A"}, "8": {"title": "Optimization: Theory, Algorithms and Applications", "part": "A"}, "9": {"title": "Machine Learning Foundations: Supervised, Unsupervised, Probabilistic, Data Mining and Learning Theory", "part": "B"}, "10": {"title": "Sequential Decision Making: Bandits and Reinforcement Learning", "part": "B"}, "11": {"title": "Deep Learning Foundations", "part": "C"}, "12": {"title": "Natural Language Processing, the Transformer and Large Language Models", "part": "C"}, "13": {"title": "Deep Generative Models", "part": "C"}, "14": {"title": "Retrieval-Augmented Generation and Agentic Systems", "part": "D"}, "15": {"title": "Evaluation, Safety and Responsible AI", "part": "D"}, "16": {"title": "ML Systems, Efficiency and Distributed and Federated Learning", "part": "E"}, "17": {"title": "Approximation Algorithms and Computational Complexity", "part": "E"}, "18": {"title": "Integration and Capstones", "part": "E"}}, "nAssign": 148};
+const PARTS = {A:"Part A · Mathematical foundations", B:"Part B · Machine learning", C:"Part C · Deep learning and generative AI", D:"Part D · LLM applications, evaluation, safety", E:"Part E · Algorithms, systems, capstones"};
+const units = DATA.units;
+const shortDom = d => DATA.domains[d].title.split(":")[0];
+
+// stats
+const nUnits = units.length, nA = units.filter(u => u.a).length;
+document.getElementById("stats").innerHTML = [
+  ["0 of " + nUnits, "units finished"],
+  ["1 of 6 blocks", "done in U1.1; block 2 under way"],
+  [nA + " assignments", "first one: A1.1, after U1.1"],
+  [DATA.stages.length + " stages", "default order, 18 domains"]
+].map(s => `<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
+
+// legend
+document.getElementById("legend").innerHTML =
+  Object.keys(PARTS).map(k => `<span><i class="sw" style="background:var(--${k})"></i>${PARTS[k]}</span>`).join("") +
+  `<span><i class="sw" style="background:var(--accent)"></i>current unit</span>` +
+  `<span><i class="sw" style="border:1px dashed var(--muted)"></i>suggested slot (not in the default table)</span>` +
+  `<span><i class="sw" style="border-radius:999px;border:1px solid var(--muted)"></i>capstone (project, no assignment)</span>`;
+
+// path
+const path = document.getElementById("path");
+DATA.stages.forEach((title, si) => {
+  const us = units.filter(u => u.stage === si);
+  const byDom = {};
+  us.forEach(u => (byDom[u.d] = byDom[u.d] || []).push(u));
+  const cur = us.some(u => u.id === "U1.1");
+  const nAs = us.filter(u => u.a).length;
+  const el = document.createElement("div");
+  el.className = "stage" + (cur ? " cur" : "");
+  el.innerHTML = `<div class="node">${si}</div><div class="card">
+    <div class="shead"><b>Stage ${si}: ${title}${cur ? '<span class="you">you are here</span>' : ""}</b>
+    <span class="meta">${us.length} units · ${nAs} assignments</span></div>` +
+    Object.keys(byDom).map(d => {
+      const part = DATA.domains[d].part;
+      return `<div class="dg" style="--c:var(--${part})"><div class="dn">D${d} ${shortDom(d)}</div><div class="chips">` +
+        byDom[d].map(u => `<button class="chip${u.id === "U1.1" ? " cur" : ""}${u.a ? "" : " cap"}${u.suggested ? " sug" : ""}" data-id="${u.id}" aria-label="${u.id} ${u.title.replace(/"/g,"")}">${u.id}</button>`).join("") +
+        `</div></div>`;
+    }).join("") + `</div>`;
+  path.appendChild(el);
+});
+
+// detail bar
+const detail = document.querySelector("#detail .in");
+const byId = Object.fromEntries(units.map(u => [u.id, u]));
+function show(id) {
+  const u = byId[id];
+  document.querySelectorAll(".chip.sel").forEach(c => c.classList.remove("sel"));
+  document.querySelector(`.chip[data-id="${id}"]`).classList.add("sel");
+  const status = id === "U1.1" ? "in progress (block 2 of 6)" : "not started";
+  const as = u.a ? `Assignment ${u.a}` : "Capstone project, no assignment";
+  const sug = u.suggested ? `<br><span class="m">Not placed by the default-order table. Suggested slot: stage ${u.stage}. ${u.why}.</span>` : "";
+  detail.innerHTML = `<b>${u.id} ${u.title}</b><br><span class="m">Stage ${u.stage} · D${u.d} ${shortDom(u.d)} · ${as} · ${status}</span>${sug}`;
+}
+path.addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) show(c.dataset.id); });
+show("U1.1");
+</script>
+</body>
+</html>
