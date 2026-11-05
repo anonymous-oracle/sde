@@ -1,9 +1,8 @@
 # Unified Cloud Curriculum: index
 
-Index of `unified_cloud_curriculum.md` (built 2026-11-04 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; and `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU). 14 domains, 161 units, 154 assignments (A<d>.<n>, five questions, key collapsed), 17 prerequisite bridges, 7 capstones. All 232 source cells from 19 courses are cited. D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
+Index of `unified_cloud_curriculum.md` (built 2026-11-05 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU; and `dbms.txt`, 3 database courses: FDB, DBD, IDB). 15 domains, 189 units, 181 assignments (A<d>.<n>, five questions, key collapsed), 20 prerequisite bridges, 8 capstones. All 306 source cells from 22 courses are cited. D15 (database systems) is printed between D9 and D10; D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
 
 Bridge units are marked (bridge). Capstones carry no assignment.
-
 
 ## D1. Orientation: the cloud, Google Cloud Platform and the lab protocol
 
@@ -143,6 +142,36 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U9.21 Bitcoin and blockchains
 - U9.22 Security in distributed systems and sensor networks
 
+## D15. Database systems: modelling, the relational model and SQL, normalisation, storage and indexing, query processing, transactions and recovery, security, enhanced and distributed models, and NoSQL
+
+- U15.1 Introduction to databases and information systems: concepts, architecture and users
+- U15.2 Entity-relationship and enhanced ER modelling: semantic database design
+- U15.3 Bridge: sets, relations, functions and first-order logic for the relational model, algebra and calculus (bridge)
+- U15.4 The relational model: relations, keys, integrity constraints, updates and the mapping from ER and EER
+- U15.5 Relational algebra: basic and additional operators, extended operators and updates
+- U15.6 Relational calculus: tuple and domain calculus, safety and Codd's theorem
+- U15.7 SQL I: data definition, basic query structure, basic operations, aggregation and grouping
+- U15.8 SQL II: nested subqueries and set operations, updates and joins
+- U15.9 SQL III: views, triggers, integrity constraints, specifying indexes, embedded SQL and a recap
+- U15.10 A commercial case study: IBM DB2, its architecture, data definition and manipulation
+- U15.11 Functional dependencies: keys, inference, closure, covers and the anomalies they cause
+- U15.12 Normal forms: 1NF, 2NF, 3NF and BCNF, lossless decomposition and dependency preservation
+- U15.13 Multivalued, join and inclusion dependencies: fourth and fifth normal forms and other dependencies
+- U15.14 Bridge: the external-memory model, disks and the cost of sorting (bridge)
+- U15.15 Storage structures and physical design: devices, buffering, file organisation and hashing
+- U15.16 Indexing: primary, clustering, secondary and multilevel indexes, ISAM, B-trees and B+-trees
+- U15.17 Query processing: selection, sorting, projection and the join algorithms
+- U15.18 Query optimisation: equivalent expressions, join ordering, size estimation and semantic optimisation
+- U15.19 Bridge: directed graphs, cycles, topological order and partial orders for schedules, deadlocks and timestamps (bridge)
+- U15.20 Transactions: OLTP, concurrency problems, the ACID properties and transaction states
+- U15.21 Schedules: conflict and view serializability, recoverability, cascading rollbacks and testing
+- U15.22 Concurrency control protocols: locking and two-phase locking, timestamps, multiversioning, multiple granularity and deadlocks
+- U15.23 Recovery systems: log-based schemes, deferred and immediate update, shadow paging and ARIES
+- U15.24 Database security and authorization: discretionary and mandatory control, multilevel security and statistical databases
+- U15.25 Enhanced data models: active, temporal, spatial and multimedia databases
+- U15.26 Distributed databases: fragmentation, replication, distributed query processing, concurrency and recovery
+- U15.27 NoSQL systems, graph databases and big data
+
 ## D10. Cloud storage and databases: relational foundations, distributed file systems, key-value and wide-column stores, in-memory NoSQL and Google Cloud storage
 
 - U10.1 Bridge: the relational model, SQL, indexing and query processing (bridge)
@@ -173,7 +202,7 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U12.2 Data analytics on Google Cloud: the warehouse, dataflow pipelines and managed clusters
 - U12.3 Machine learning on Google Cloud: managed training and prediction, pre-trained APIs and responsible AI
 
-## D14. Computer architecture and parallel hardware
+## D14. Computer architecture and parallel hardware: digital logic, instruction sets, arithmetic, pipelines and speculation, memory hierarchy, I/O, multiprocessors, coherence and consistency, on-chip networks, GPUs and accelerators, power and reliability
 
 - U14.1 Bridge: binary representation, number systems and digital logic (bridge)
 - U14.2 Instruction set architecture: addressing modes, encoding, CISC versus RISC, assembly
@@ -207,3 +236,4 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U13.5 Capstone: a small service on Google Cloud with identity, networking, reliability and cost controls (capstone)
 - U13.6 Capstone: a security programme for a synthetic organisation (capstone)
 - U13.7 Capstone: a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel (capstone)
+- U13.8 Capstone: a small relational database engine checked against sqlite3 (capstone)

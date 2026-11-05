@@ -297,7 +297,7 @@ ORDER = ['D%d' % i for i in range(1, 13)] + ['D14', 'D13']
 domains.sort(key=lambda d: ORDER.index(d['id']))
 # write header (counts from len(units) and len(ASG)), then for each domain "## D.. title" and "- U.. title (bridge)/(capstone)"
 ```
-Update the header counts (14 domains, 161 units, 154 assignments, 16 bridges, 7 capstones, 232 cells, 19 courses) and delete the "planned, not yet authored" wording.
+Update the header counts (14 domains, 161 units, 154 assignments, 17 bridges, 7 capstones, 232 cells, 19 courses) and delete the "planned, not yet authored" wording.
 
 ---
 
@@ -318,7 +318,7 @@ Update the header counts (14 domains, 161 units, 154 assignments, 16 bridges, 7 
 ## 10. Acceptance checklist (every item must hold before you say "done")
 
 1. **Coverage:** every one of the 232 cells is cited by at least one unit (`uncited 0`); the residual flagged atoms are only URLs, years, reading labels, outline filler and typos, each reviewed by hand.
-2. **Structure:** 14 domains; 161 units; 154 assignments; 16 bridges (the 15 existing plus U14.1); 7 capstones.
+2. **Structure:** 14 domains; 161 units; 154 assignments; 17 bridges (the 16 existing plus U14.1; the first count of 15 and 16 was one short, corrected 2026-11-05); 7 capstones.
 3. **References:** every `U<d>.<n>` mentioned anywhere exists as a unit header (script: collect headers and references, diff the sets; the earlier build had none dangling).
 4. **Assignments:** each content unit has MCQ, MSQ, NAT, PRF and COD (the validator enforces it); no stray `|` in any field; each key opens collapsed.
 5. **No duplicated material:** for each row of the overlap table in section 5, `grep` confirms the topic's derivation appears in the owner only, and the other unit has a pointer.
@@ -371,3 +371,19 @@ Do this **only if the learner asks**; it is a larger change and it is not part o
 - Colab free-tier behaviour: a 2026 comparison quoting Google's FAQ ("dynamic usage limits ... not guaranteed"), plus secondary guides (typically a T4, sessions up to 12 hours, no guaranteed availability).
 - Kaggle free GPU: secondary sources (commonly about 30 GPU hours a week, session limits), with the note that Kaggle's own documentation gives no quota number.
 - Everything else above that is a command name, a hardware fact about Apple silicon, or a software capability is **recalled, not checked** and is verified on the Mac by the learner as the first step of the lab that uses it.
+
+## 13. Addendum (2026-11-05): the database courses of `dbms.txt` (domain D15)
+
+**What was added.** Three database courses (FDB: NPTEL Fundamentals of Database Systems, IIT Kanpur, 48 lectures; DBD: Database Design, IIIT Bangalore and IIT Madras, 11 modules; IDB: Introduction to Database Systems, IIT Madras, 12 weeks) become one new domain D15 of 27 units (U15.1 to U15.27), with 27 assignments (A15.1 to A15.27), three bridges (U15.3 sets, relations and logic; U15.14 the external-memory model; U15.19 directed graphs) and one capstone (U13.8, a small relational engine checked against `sqlite3`). Counts after the addition: 15 domains, 189 units, 181 assignments, 20 bridges, 8 capstones, 306 cells, 22 courses.
+
+**Same method as D14.** One unification; overlaps merge into the deepest owner. Ownership: CAP in U9.16, atomic commit in U9.18, the precedence-graph and strict-2PL theorems in U9.17 (D15 cites them), NoSQL families in U10.6, big data in D11, Bell-LaPadula/DAC/MAC in U7.1 and differential privacy in U8.8. U10.1 and U9.17 stay as compact bridges with a pointer to D15.
+
+**Print order.** D15 is printed between D9 and D10 (`ORDER` in `assemble_cloud.py`); the default reading order places it before D10.
+
+**Source file.** The text layer of the DBD outline from module 7 onward was one character per line; it was re-joined by hand into `src3.txt` (the cell table `srclib_dbms.py` points at it, via a third patch in `srclib.py`). Appendix A of the output says the dbms line numbers refer to that cleaned copy.
+
+**Method notes.** Every number a unit states was recomputed by a script in `verify/` before writing it (closure, keys and BCNF/3NF algorithms, B+-tree height bounds, external merge sort passes, join cost formulas and join-order counts, schedule classification, timestamp ordering, multigranularity matrix, a mini-ARIES, authorization-graph revocation, a statistical tracker, an R-tree against brute force, quorum staleness). Web-checked on 2026-11-05: Db2 Community Edition limits and the Db2 isolation levels (Appendix F).
+
+**Files touched when adding D15.** `srclib_dbms.py`, `srclib.py`, `units/19_D15a.md` to `21_D15c.md`, `units/14_D12_D13.md` (U13.8), `assign/16` to `20`, `front_cloud.md`, `assemble_cloud.py`, `gen_index.py` (writes `index_cloud.md`), `PROGRESS.md`.
+
+**Audit of D14 against these standards (2026-11-05).** Compliant on structure, coverage (232 of 232 cells cited), assignments (five questions each, keys computed), bridges placed before need, cost tags and lab safety. Two defects were found and fixed: the tooling list in the front matter numbered "(5) Apple silicon" before "(4) Libraries", and the bridge count was understated by one (17, not 16).

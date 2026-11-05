@@ -1,36 +1,36 @@
 # Unified Cloud Curriculum: Networks → Cloud Compute → Cryptography and Security → Distributed Systems → Storage → Big Data → Cloud Operations → Computer Architecture and Parallel Hardware
 
-**Built:** 2026-11-04 (UTC), from `cloud-computing.txt` (13 NPTEL course outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC) and `cloud-computing2.txt` (6 architecture course outlines: MCA, CAO, CA, ACA, PCA, GPU), 19 source courses in all, under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
-**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a from-scratch Python guideline (default, not a prohibition). It follows the same method as the earlier `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) and is a **separate file**; the two can be merged later (see Appendix D). Coverage was checked by script: all 232 source cells (course weeks and outlines) are cited by at least one unit and the words of each cell occur in the units that cite it; the few atoms the script still flags are listed and reviewed in Appendix E.
+**Built:** 2026-11-05 (UTC), from `cloud-computing.txt` (13 NPTEL course outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC), `cloud-computing2.txt` (6 architecture course outlines: MCA, CAO, CA, ACA, PCA, GPU) and `dbms.txt` (3 database courses: FDB, DBD, IDB), 22 source courses in all, under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
+**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a from-scratch Python guideline (default, not a prohibition). It follows the same method as the earlier `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) and is a **separate file**; the two can be merged later (see Appendix D). Coverage was checked by script: all 306 source cells (course weeks and outlines) are cited by at least one unit and the words of each cell occur in the units that cite it; the few atoms the script still flags are listed and reviewed in Appendix E.
 
 ---
 
 ## How to read this document
 
-1. **Parts and domains.** Six parts, 14 domains (D1–D14). Domain D14 (computer architecture and parallel hardware) is printed before the capstones (D13), which stay together at the end; the identifier is a name, not a position. Each domain has an aim, named benchmarks and units.
+1. **Parts and domains.** Six parts, 15 domains (D1–D15). Domain D14 (computer architecture and parallel hardware) is printed before the capstones (D13), which stay together at the end; domain D15 (database systems) is printed between D9 and D10, because it is the foundation that the storage and big-data domains lean on; the identifier is a name, not a position. Each domain has an aim, named benchmarks and units.
 2. **Units.** A unit (`U<domain>.<n>`) is a group of related topics. Each has: **Sources** (generated: which source course weeks or outline cells it absorbs), **Topics** (every topic and subtopic, merged across sources and kept close to the sources' own words), **Results** (the theorems and formulas it teaches, each with a proof status), **Build** (the from-scratch implementation, with a cost tag) and **Gap-fills** (what a unit adds that no source names, marked *inferred* with the reference). Bridge units start with a **Bridge for:** line naming the units that need them.
-3. **Assignments.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The seven capstones (D13) are projects with their own acceptance criteria and carry no assignment.
+3. **Assignments.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The eight capstones (D13) are projects with their own acceptance criteria and carry no assignment.
 4. **Proof-status tags** on results: **[P]** prove in full; **[D]** derive with every step; **[S]** proof sketch (the reason a full proof is not given is stated); **[X]** stated, proof deferred (the unit that will prove it, or "beyond course scope", is named); **[Def]** definition, not proved; **[check]** verified by a script in the unit's Build.
 5. **Source keys** (for example `GCF`, `CNS`) are listed in Appendix A. `W3` means Week 3 of that course; `o` means the course's outline or about-text.
-6. **Merging rule.** Where several courses cover the same ground (three cryptography courses, four distributed-systems courses, three networking courses, four security and privacy courses), they are merged into one unit at the deepest source level and every source week is cited. The overlap is the point of unifying.
+6. **Merging rule.** Where several courses cover the same ground (three database courses, three cryptography courses, four distributed-systems courses, three networking courses, four security and privacy courses), they are merged into one unit at the deepest source level and every source week is cited. The overlap is the point of unifying.
 7. **Honesty conventions.** *Recalled, not checked* marks a claim from memory (benchmark titles, formulas of standard results). *Inferred* marks a gap-fill with its reference. Facts checked on the web are named as such, with what was checked (Appendix F).
 
 ## Course profile (Master Rules II.1)
 
 | Item | Value |
 |---|---|
-| **Aim** | Expert-level command of how the cloud works from the wire to the data centre and the managed service: networks and Internet protocols, virtualization and cloud compute, cryptography and its provable security, ethical hacking and defence, security governance, risk and privacy, distributed-systems theory and the industrial systems built on it, cloud storage and databases, big-data engines, cloud operations and machine learning on Google Cloud, and the computer architecture and parallel hardware underneath it all (instruction sets, pipelines, caches and memory, multicore coherence and memory models, networks on chip, GPUs and accelerators, power, reliability and hardware security). Every mechanism is also implemented from scratch at toy scale. |
+| **Aim** | Expert-level command of how the cloud works from the wire to the data centre and the managed service: networks and Internet protocols, virtualization and cloud compute, cryptography and its provable security, ethical hacking and defence, security governance, risk and privacy, distributed-systems theory and the industrial systems built on it, cloud storage and databases, big-data engines, cloud operations and machine learning on Google Cloud, database systems from the relational model to transactions, recovery, distribution and NoSQL, and the computer architecture and parallel hardware underneath it all (instruction sets, pipelines, caches and memory, multicore coherence and memory models, networks on chip, GPUs and accelerators, power, reliability and hardware security). Every mechanism is also implemented from scratch at toy scale. |
 | **Starting level** | School mathematics, one programming language (Python), and basic IT. Everything else, including probability, queueing, graph algorithms, coding theory, number theory, operating-system fundamentals, SQL and machine-learning basics, is taught by bridge units placed just before the topic that needs it (Master Rules 3.3). Appendix C maps each prerequisite the sources state to where it is handled. |
 | **Benchmarks** | Named per domain in each domain's intro. Titles marked *recalled, not checked* have not been verified against the book itself. Appendix F lists what was checked. |
-| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) Build a unified curriculum from the source file in the same way as the earlier one, with the prerequisites wired in. (2) A prerequisite bridge is taught just before the concept that demands it begins, in academic depth. (3) Weekly assignments, with from-scratch Python implementations where necessary. (4) Unify all topics and concepts into a single file. (5) Carried over from the earlier work: NPTEL-style assignments (MCQ, multiple select, numerical, prove or derive, programming; 10 marks; pass at 7/10) and from-scratch Python as the default, where NumPy-first is "not strict ... more of a suggestion. Feel free to design as needed." (6) Nothing may be omitted: every source topic and subtopic is covered. (7) 2026-11-04, architecture extension: the same unification as before (overlapping topics merge into the deepest owner, new topics are added). (8) 2026-11-04: real lab practice where a free GPU is available, with a simulator fallback when it is not; graded work never depends on a GPU. (9) 2026-11-04: the learner is on a MacBook with Apple silicon and its GPU, so the hardware labs are based on it (AArch64, NEON, Metal) and the emulator's instruction set is a small AArch64 (A64) subset; understanding the underlying topics is the goal. |
+| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) Build a unified curriculum from the source file in the same way as the earlier one, with the prerequisites wired in. (2) A prerequisite bridge is taught just before the concept that demands it begins, in academic depth. (3) Weekly assignments, with from-scratch Python implementations where necessary. (4) Unify all topics and concepts into a single file. (5) Carried over from the earlier work: NPTEL-style assignments (MCQ, multiple select, numerical, prove or derive, programming; 10 marks; pass at 7/10) and from-scratch Python as the default, where NumPy-first is "not strict ... more of a suggestion. Feel free to design as needed." (6) Nothing may be omitted: every source topic and subtopic is covered. (7) 2026-11-04, architecture extension: the same unification as before (overlapping topics merge into the deepest owner, new topics are added). (8) 2026-11-04: real lab practice where a free GPU is available, with a simulator fallback when it is not; graded work never depends on a GPU. (9) 2026-11-04: the learner is on a MacBook with Apple silicon and its GPU, so the hardware labs are based on it (AArch64, NEON, Metal) and the emulator's instruction set is a small AArch64 (A64) subset; understanding the underlying topics is the goal. (10) 2026-11-05, database extension: add the course of `dbms.txt` into the same curriculum with the same method; the three database courses are unified into one domain (D15), with NPTEL-style weekly assignments, prerequisite bridges just before need, and from-scratch Python builds checked against `sqlite3`. |
 | **Acceptance gates (6.7)** | Formatter clean (`ruff format --check`), linter clean (`ruff check`), `pytest` passes, known-answer tests pass where standards publish them (hash, cipher and checksum vectors), results within stated tolerance of an oracle (a library, a closed form or a brute-force check), and every simulation is deterministic for a given seed and checked by invariants (DSim). No hidden failure. |
 | **Layer order for a topic (3.6)** | Concept and intuition → formal statement and derivation → from-scratch build → professional tool → real-world application and limits → check and close. A tool is used after the thing it automates has been built by hand (6.8). |
 | **Real-world lens (II.6)** | Name it, touch it in a lab, design with it. Every Build line carries a cost tag: **[local]** runs on your machine with no cloud spend; **[local VM]** runs in a local virtual machine or container, and for any security lab on a host-only network that you own; **[credit]** spends cloud credit and is optional, with a budget alert set first and the teardown script written before the create script; **[plan only]** write the plan and the scripts but do not run them (they would spend money or touch systems that are not yours); **[learning only]** hand-built security code that is never deployed. The GPU labs of D14 add three tags, tried in this order: **[local GPU]** the Apple GPU through Metal (PyTorch `mps` or MLX); **[free cloud GPU]** a free Colab or Kaggle NVIDIA GPU on a personal account, with no secrets in the notebook; **[simulator]** a CPU simulator or model, always available and the tier on which every assignment is solvable. |
 | **Safety and cost (Master Rules 11)** | Lab-only. No scanning, probing or attacking anything you do not own or have written permission to test. No malware or exploit authoring: offensive topics appear as Python models, simulations or standard tools inside an isolated host-only lab. Local first. No secrets in code, notes or history. A work account is never used for labs (11.4); use a temporary lab project or a personal account with a budget alert. Hand-built cryptographic and security code is for learning and is never deployed. The legal-and-regulatory units (U8.9) are teaching tools and are not legal advice. |
 | **Pacing (2.7, 8.5)** | The sources' durations (8 or 12 weeks) describe their own pacing only. Here the learner advances by passing checks, never by the calendar. |
-| **Default tooling (from-scratch guideline, flexible)** | (1) Write the mechanism you are learning by hand first. (2) The default toolbox is the Python standard library (sockets, `subprocess`, `struct`, `hashlib` for oracles only, `multiprocessing`) plus NumPy and Matplotlib, because they keep every step visible. (3) This is a **guideline, not a prohibition**: where another tool serves the learning goal, use it, and the unit's Build line names it (for example Wireshark and `tcpdump` for packet work, Mininet or network namespaces for topologies, `nmap` and Metasploit only inside the isolated lab, PySpark and Kafka in the local lab, `gcloud` for the cloud steps). (5) Apple silicon MacBook: AArch64, NEON, Metal through PyTorch MPS or MLX; small C or assembly programs with `clang` after the Python model. (4) Libraries serve as **oracles** in tests of the from-scratch version (`cryptography`, `networkx`, SQLite, `re`, PySpark, scikit-learn). |
-| **Assignments (NPTEL style)** | One per content unit (154, A1.1 to A14.22). Five questions: MCQ (1 mark), multiple select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint.** The tutor never writes graded work (6.13). Every numerical key was computed by running its expression. |
-| **Capstones (9.6)** | U13.1 to U13.7: a user-space TCP/IP stack, a secure channel from your own primitives, a replicated sharded key-value store, an end-to-end data platform, a small service on Google Cloud, a security programme for a synthetic organisation, and a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel. |
+| **Default tooling (from-scratch guideline, flexible)** | (1) Write the mechanism you are learning by hand first. (2) The default toolbox is the Python standard library (sockets, `subprocess`, `struct`, `hashlib` for oracles only, `multiprocessing`) plus NumPy and Matplotlib, because they keep every step visible. (3) This is a **guideline, not a prohibition**: where another tool serves the learning goal, use it, and the unit's Build line names it (for example Wireshark and `tcpdump` for packet work, Mininet or network namespaces for topologies, `nmap` and Metasploit only inside the isolated lab, PySpark and Kafka in the local lab, `gcloud` for the cloud steps). (4) Libraries serve as **oracles** in tests of the from-scratch version (`cryptography`, `networkx`, SQLite, `re`, PySpark, scikit-learn). (5) Apple silicon MacBook: AArch64, NEON, Metal through PyTorch MPS or MLX; small C or assembly programs with `clang` after the Python model. |
+| **Assignments (NPTEL style)** | One per content unit (181, A1.1 to A15.27). Five questions: MCQ (1 mark), multiple select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint.** The tutor never writes graded work (6.13). Every numerical key was computed by running its expression. |
+| **Capstones (9.6)** | U13.1 to U13.8: a user-space TCP/IP stack, a secure channel from your own primitives, a replicated sharded key-value store, an end-to-end data platform, a small service on Google Cloud, a security programme for a synthetic organisation, a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel, and a small relational database engine checked against `sqlite3`. |
 | **Shared simulator** | **DSim**, a deterministic discrete-event distributed-systems simulator (seeded delays, loss, duplication, crashes, partitions, an invariant checker), is built in U9.1 and reused through D9, D10, D11 and the capstones, and in U14.14 and U14.15, where coherence and consistency protocols are modelled as message-passing systems where natural. Network and security units before U9.1 use smaller purpose-built simulators. |
 | **Record** | The list of units in this document is the record template. Initial state: every unit not started, no evidence; resume point U1.1. The live record (mastery states, misconception register, error log, decision journal) belongs in your tracker file (Master Rules 8.3). |
 
@@ -47,11 +47,12 @@
 |  | D7 Security operations frameworks and cloud security | U7.1–U7.7 | PCS, CSP |
 |  | D8 Governance, risk, resilience and privacy | U8.1–U8.10 | CSP, PCS |
 | C. Distributed systems and storage | D9 Distributed systems | U9.1–U9.22 | DS, ADS, CCDS |
+|  | D15 Database systems | U15.1–U15.27 | FDB, IDB, DBD |
 |  | D10 Cloud storage and databases | U10.1–U10.7 | BDC, ADS, CCDS |
 | D. Big data and cloud operations | D11 Big data and cloud analytics | U11.1–U11.11 | BDC, CCDS, DS |
 |  | D12 Cloud operations and machine learning on Google Cloud | U12.1–U12.3 | GCF |
 | E. Computer architecture and parallel hardware | D14 Computer architecture and parallel hardware | U14.1–U14.22 | MCA, ACA, GPU, PCA, CA, CAO |
-| F. Capstones | D13 Capstones | U13.1–U13.7 | none (assembles all) |
+| F. Capstones | D13 Capstones | U13.1–U13.8 | none (assembles all) |
 
 ## Default order (a plan, not a cage: Master Rules 3.3)
 
@@ -65,10 +66,10 @@ Three spines run side by side after the orientation; take them in any interleavi
 | 4 | U5.1 → U5.25 | Cryptography from classical ciphers to provable security and protocols. Bridges: probability and entropy (U5.1), number theory (U5.12), complexity and reductions (U5.8). |
 | 5 | U6.1 → U6.10, U7.1 → U7.7, U8.1 → U8.10 | Ethical hacking in the isolated lab, defence frameworks and cloud IAM, governance, risk, resilience and privacy. U8.2 (quantitative risk) is a bridge. |
 | 6 | U9.1 → U9.22 | Distributed systems: DSim, gossip, peer-to-peer, time, snapshots, mutual exclusion, election, consensus, consistency, transactions, recovery, ordering, blockchains. U9.1, U9.2 and U9.17 are bridges. |
-| 7 | U10.1 → U10.7, U11.1 → U11.11 | Storage and databases (U10.1 is the SQL bridge), then big-data engines, messaging, streaming and graph processing. U11.8 (machine learning) and U11.10 (Markov chains and PageRank) are bridges. |
+| 7 | U15.1 → U15.27, U10.1 → U10.7, U11.1 → U11.11 | Database systems first: modelling, the relational model, algebra and calculus, SQL, normalisation, storage and indexing, query processing and optimisation, transactions, recovery, security, enhanced and distributed models, NoSQL (D15: U15.1 to U15.19 can be taken any time after stage 1, U15.20 to U15.23 after U9.17 whose theorems they cite, and U15.24 to U15.27 after U9.16 and U9.18; U15.3, U15.14 and U15.19 are bridges). Then storage and databases in the cloud (U10.1 stays as the compact SQL bridge for a reader who skips D15), big-data engines, messaging, streaming and graph processing. U11.8 (machine learning) and U11.10 (Markov chains and PageRank) are bridges. |
 | 8 | U12.1 → U12.3 | Cloud operations and machine learning on Google Cloud. |
 | 9 | D14: U14.1 → U14.22 | D14: U14.1 to U14.5 any time after stage 1; U14.6 to U14.12 after U4.1; U14.13 to U14.16 after U9.1 and U3.3; U14.17 to U14.20 after U11.9; U14.21 and U14.22 last. U14.1 (digital logic and number representation) is a bridge. |
-| 10 | U13.1 → U13.7 | The capstones; U13.7 needs U14.2 to U14.16. |
+| 10 | U13.1 → U13.8 | The capstones; U13.7 needs U14.2 to U14.16 and U13.8 needs U15.1 to U15.23. |
 
 Stages 4 to 5 (security) and stage 6 to 7 (systems and data) can be interleaved with stage 3 once stage 2 is done, if you prefer to reach distributed systems sooner. Within a stage, follow the unit order.
 
@@ -4226,7 +4227,7 @@ Aim: four source courses (an advanced course that starts from gossip, a cloud-an
 
 ### U9.17 Bridge: transactions — ACID, serializability, locking, logging and recovery
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
-Bridge for: U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 (managed databases). Builds on U10.1's relational view if read in order, and is self-contained otherwise.
+Bridge for: U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 (managed databases). Builds on U10.1's relational view if read in order, and is self-contained otherwise. The relational and storage background is domain D15 (U15.20 to U15.23 develop the same theory in full, citing the theorems proved here); this unit is the compact version.
 - **Topics:** Transactions and the ACID properties; histories and conflict serializability, the precedence graph; two-phase locking and strictness; deadlock handling in a lock manager; multiversion concurrency control and snapshot isolation with its write-skew anomaly; isolation levels and anomalies (dirty read, non-repeatable read, phantom); write-ahead logging, undo and redo, checkpoints and the ARIES recovery idea; the central assumption that failures are fail-stop.
 - **Results:** A history is conflict-serializable iff its precedence graph is acyclic [P]; strict two-phase locking yields conflict-serializable and recoverable histories [P]; snapshot isolation allows write skew, which is not conflict-serializable [D, by example]; write-ahead logging with redo and undo restores atomicity and durability after a crash [S].
 - **Build:** a precedence-graph checker; a strict-2PL lock manager with deadlock detection; a multiversion store with snapshot isolation and a write-skew reproduction; a write-ahead log with crash and recovery tests. [local]
@@ -4459,13 +4460,1073 @@ Bridge for: U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 
 
 </details>
 
+## D15. Database systems: modelling, the relational model and SQL, normalisation, storage and indexing, query processing, transactions and recovery, security, enhanced and distributed models, and NoSQL
+
+Aim: three database courses merged into one thread. The first is a 48-lecture NPTEL course from IIT Kanpur ("Fundamentals of Database Systems", sponsored by Aricent), the second an eleven-module course from IIIT Bangalore and IIT Madras ("Database Design", built on Elmasri and Navathe) and the third a twelve-week course from IIT Madras ("Introduction to Database Systems"). Their order is the order of a database textbook: model the data, state it relationally, query it, normalise it, store and index it, process and optimise queries, run transactions with concurrency control and recovery, then security, enhanced models, distributed databases and NoSQL. U10.1 and U9.17 stay as the compact bridges they were; this domain is their deep treatment, so the reading order puts D15 before D10, and each of the two bridges carries a pointer to the unit that deepens it. Where a topic already has an owner elsewhere (CAP in U9.16, atomic commit in U9.18, families of NoSQL stores in U10.6, big-data engines in D11), D15 gives a pointer and adds only what the database courses add. Every mechanism is built from scratch in Python and checked against `sqlite3` (standard library, local, free) as the oracle. Benchmarks (recalled, not checked): Elmasri and Navathe, *Fundamentals of Database Systems* (the textbook of the second course); Silberschatz, Korth and Sudarshan, *Database System Concepts*; Garcia-Molina, Ullman and Widom, *Database Systems: The Complete Book*; Ramakrishnan and Gehrke, *Database Management Systems*; Abiteboul, Hull and Vianu, *Foundations of Databases*; Bernstein, Hadzilacos and Goodman, *Concurrency Control and Recovery in Database Systems*; Gray and Reuter, *Transaction Processing*; Hellerstein, Stonebraker and Hamilton, "Architecture of a Database System" (2007).
+
+### U15.1 Introduction to databases and information systems: concepts, architecture and users
+**Sources:** FDB W1, o; DBD W1, o; IDB W1, o
+- **Topics:** Outline map. The three source files are the NPTELSyllabus of the NOC course Fundamentals of Database Systems (a video course), the NPTEL Syllabus of Database Design (a video course) and the Introduction to Database Systems course of Prof. Sreenivasa Kumar, Department of Computer Science and Engineering, IIT Madras. They name these topics: databases at the core of digital systems and e-governance, the basics of database systems, the traditional relational systems and, briefly, the NoSQL paradigm used in big data systems (the Kanpur NOC course, sponsored by Aricent, with 48 lectures; here U15.27), the topics cover all important aspects including normalization, query processing and transactions (U15.11 to U15.13, U15.17, U15.18 and U15.20 to U15.23); the theoretical and practical principles involved in the design and use of databases systems with the help of a database management system (DBMS) and the SQL Standard, on which modern businesses and financial systems depend for their successful operation (the Madras course, with its Week plan from E/R Model to Transaction Processing: U15.2 to U15.23); and the eleven modules of Database Design from Introductory Concepts to Distributed databases (U15.1 to U15.26). Module 1, Introductory Concepts (1 session): Databases and Information Systems; An example usage context (a university: students, courses, instructors and enrolments, which is the running example of the whole domain); Database system concepts and architecture. Why a DBMS instead of files: redundancy and inconsistency, difficulty of access, isolation of data, integrity constraints, atomicity of updates, concurrent access, security. Data model, schema and instance; the three-schema architecture (external, conceptual and internal levels), logical and physical data independence; the data definition, data manipulation and query languages; database users (administrator, designers, application programmers, end users); the DBMS components (query processor with parser, optimiser and executor; storage manager with buffer manager, file manager, transaction manager, lock manager and recovery manager) and client/server and multi-tier deployment; online transaction processing against online analytical processing; a short history from hierarchical and network models through the relational model to object and NoSQL systems. Prerequisites stated by the sources (basic programming, data structures and algorithms; discrete mathematics): programming and data structures are assumed, and discrete mathematics is taught by the bridge U15.3 just before it is needed.
+- **Results:** Schema and instance are different things: the schema changes rarely, the instance continuously [Def]; physical data independence means the conceptual schema survives a change of file organisation or index, logical data independence that external views survive a change of the conceptual schema [Def]; with k redundant copies of a fact and no atomic multi-copy update, one logical update that succeeds on each copy independently with probability p leaves the copies inconsistent with probability 1 − p^k − (1 − p)^k, which is 0.0394 for k = 4 and p = 0.99 [D, check]; the DBMS components are listed in the order a query meets them: parser, optimiser, executor, access methods, buffer manager, disk, with the lock and recovery managers around the executor [Def].
+- **Build:** the university data kept three ways: flat files with redundancy (to reproduce the insertion, deletion and update anomalies), the same data in `sqlite3`, and a catalog browser that lists every table and column from `sqlite_master` and `PRAGMA table_info`; a Monte Carlo of the k-copy update confirming the closed form. [local]
+- **Gap-fills:** *[inferred: Silberschatz, Korth and Sudarshan, Chapter 1; Hellerstein et al. 2007 for the component list; the ANSI/SPARC three-level architecture, recalled, not checked]* the anomaly vocabulary (insertion, deletion, update) is used again in U15.12.
+
+**Assignment A15.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A university reorganises its conceptual schema by splitting one table into two, but the programs and views that use the external schema keep running unchanged. Which property is this?
+
+(A) Physical data independence  
+(B) Logical data independence  
+(C) Referential integrity  
+(D) Entity integrity
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which of the following are problems of keeping the same data in separate flat files that a DBMS is designed to address?
+
+(A) Redundant copies that drift into inconsistency  
+(B) Difficulty of enforcing integrity constraints that span several files  
+(C) No atomic update across several files after a crash  
+(D) Text files cannot be read by more than one programming language
+
+**Q3 (2 marks, numerical answer).** A fact is stored in 4 copies and one logical update writes each copy independently, each write succeeding with probability 0.99 and a failed write leaving the old value. What is the probability that the copies disagree afterwards (four decimals)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the probability that k copies disagree after one logical update when each write succeeds independently with probability p (a failure leaves the old value), and show that it tends to 1 as k grows for any fixed p strictly between 0 and 1.
+
+**Q5 (3 marks, programming).** Write the university data as flat files with redundancy, reproduce an insertion, a deletion and an update anomaly, load the same data into sqlite3 and print a catalog (tables and columns) from sqlite_master and PRAGMA table_info, then simulate the k-copy update by Monte Carlo.
+
+<details><summary>Key for A15.1 (open only after your attempt)</summary>
+
+- **Q1:** B. Logical data independence means the external schema survives a change of the conceptual schema; physical data independence concerns file organisation and indexes below the conceptual level.
+- **Q2:** A, B, C. D is false and is not a database problem: file formats are readable from any language; A, B and C are the classical motivations (redundancy, integrity, atomicity).
+- **Q3:** 0.0394 (tolerance ±0.0005). The copies agree only if all four writes succeed or all four fail: 0.99^4 + 0.01^4 = 0.96059601 + 0.00000001, so the answer is 1 − 0.9605960 = 0.0394.
+- **Q4 (marking outline):** The copies agree exactly when every write succeeded or every write failed, because success writes the new value on all and failure leaves the old value on all; these two events are disjoint, so P(agree) = p^k + (1 − p)^k and P(disagree) = 1 − p^k − (1 − p)^k. Since 0 < p < 1 and 0 < 1 − p < 1, both p^k and (1 − p)^k tend to 0, so the probability tends to 1. Conclusion: more redundancy without atomic updates makes inconsistency more likely, the motivation for transactions.
+- **Q5 (what a passing submission shows):** Each anomaly demonstrated with a failing assertion on the flat files and a passing one on the sqlite3 schema, the catalog lists every table and column, and the simulated disagreement probability for k = 4 and p = 0.99 is within 0.002 of the closed form 0.0394 over 10^6 seeded trials.
+
+</details>
+
+### U15.2 Entity-relationship and enhanced ER modelling: semantic database design
+**Sources:** FDB W6; DBD W2; IDB W1–2
+- **Topics:** Semantic Database Design (Module 2 of Database Design, 3 sessions): high-level conceptual modeling, ER Modeling concepts, ER Diagrams, cardinality constraints, higher-order relationships, the Enhanced ER Model (EER), weak-entity types, subclasses and inheritance, specialization and generalization, modeling of UNION types using categories. Entity-Relationship Diagram (Lecture 6 of the Kanpur course) and the E/R Model Module of the Madras course (Weeks 1 and 2: Introduction and part of E/R Model Module, then ER Model Module). Entities, entity sets, attributes (simple, composite, multivalued, derived), key attributes; relationships, relationship sets, roles, descriptive attributes; degree; cardinality ratios 1:1, 1:N, N:1 and M:N with total and partial participation and the min–max notation; higher-order (ternary and n-ary) relationships and when they cannot be split into binary ones; aggregation; weak entity sets with an identifying owner, a partial key and an identifying relationship; design choices (entity or attribute, entity or relationship, binary or ternary) and pitfalls (redundancy, fan and chasm traps); EER: subclasses and superclasses, inheritance of attributes and relationships, specialization and generalization, disjoint or overlapping and total or partial constraints, categories (union types) with several superclasses, and lattices.
+- **Results:** The key of the relationship relation is both entity keys for M:N, the key of the N side for 1:N and either key for 1:1 [P]; a ternary relationship set cannot in general be replaced by three binary ones: for the triples {(s1,p1,j2), (s1,p2,j1), (s2,p1,j1)} the join of the three pairwise projections has four triples, one spurious [P, by example, check]; a total participation constraint makes the foreign key in the N side NOT NULL when the relationship is folded into it (mapped in U15.4) [D]; in an EER hierarchy an entity of a subclass inherits every attribute and relationship of its superclasses, and in a disjoint specialization it belongs to at most one subclass [Def].
+- **Build:** an ER and EER schema model in Python (entities, attributes, relationships with cardinality and participation, weak entities, specializations, categories) with a validator (every entity has a key or an owner, every weak entity has an identifying relationship, no cycle in the inheritance order) and a Graphviz text writer; the supplier-part-project spurious-tuple demonstration. [local]
+- **Gap-fills:** *[inferred: Chen 1976, "The entity-relationship model"; Elmasri and Navathe, Chapters 7 and 8, recalled, not checked]* UML class-diagram correspondence is named, not developed.
+
+**Assignment A15.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In a binary relationship WORKS_FOR between EMPLOYEE and DEPARTMENT, an employee works for at most one department and a department has many employees. Which attributes form the key of the relationship relation?
+
+(A) The department key alone  
+(B) The employee key alone  
+(C) Both keys  
+(D) Neither; a surrogate key is required
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about weak entity sets are true?
+
+(A) They are identified by the key of an owner entity together with a partial key  
+(B) Their participation in the identifying relationship is total  
+(C) A weak entity can exist without any owner  
+(D) The identifying relationship is always many-to-many
+
+**Q3 (2 marks, numerical answer).** The triples (s1,p1,j2), (s1,p2,j1) and (s2,p1,j1) form a ternary relationship over supplier, part and project. How many triples does the natural join of its three pairwise projections contain?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a ternary relationship set cannot in general be replaced by its three binary projections, give a counterexample and say under what condition the replacement is lossless.
+
+**Q5 (3 marks, programming).** Write an ER and EER model in Python with entities, attributes, relationships with cardinality and participation, weak entities, specializations and categories, a validator and a Graphviz text writer.
+
+<details><summary>Key for A15.2 (open only after your attempt)</summary>
+
+- **Q1:** B. On the N side each employee appears at most once, so the employee key already identifies a relationship instance (and the relationship is usually folded into the employee relation).
+- **Q2:** A, B. C is false (no owner, no identity) and D is false (the identifying relationship is normally one-to-many from owner to weak entity).
+- **Q3:** 4 (tolerance ±0). The join returns the three original triples and one spurious triple (s1,p1,j1), so the answer is 4.
+- **Q4 (marking outline):** Take the three triples (s1,p1,j2), (s1,p2,j1), (s2,p1,j1); the projections are SP = {(s1,p1),(s1,p2),(s2,p1)}, PJ = {(p1,j2),(p2,j1),(p1,j1)} and SJ = {(s1,j2),(s1,j1),(s2,j1)}. The triple (s1,p1,j1) has all three of its pairs present, so the join of the projections contains it, but it is not in the relationship, so information is lost. The replacement is lossless exactly when the relationship satisfies the cyclic join dependency of its three projections, a constraint treated in U15.13; without that constraint the ternary relationship must stay ternary.
+- **Q5 (what a passing submission shows):** The validator rejects a weak entity with no identifying relationship, an entity without a key or owner and a cyclic inheritance order, accepts the full university model, and the writer emits one node per entity and one edge per relationship with its cardinality label for that model.
+
+</details>
+
+### U15.3 Bridge: sets, relations, functions and first-order logic for the relational model, algebra and calculus
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the calculus), U15.11 (functional dependencies as logical statements and the proofs about them) and U15.13 (dependencies as constraints). The sources state discrete mathematics as a prerequisite; this unit supplies it.
+- **Topics:** Sets, subsets, power set, the Cartesian product and tuples; relations as subsets of a product, binary-relation properties (reflexive, symmetric, transitive, equivalence relations, partitions); functions, injective, surjective, bijective; cardinality of finite sets and counting; propositional logic, truth tables and equivalences; predicates, the quantifiers ∀ and ∃, free and bound variables, formulas and their meaning in a finite structure; De Morgan laws for quantifiers; proof by induction on the structure of an expression, by contradiction and by contrapositive; finite structures and the active domain; domain independence (a formula whose answer depends only on the values that occur in the database) and why unrestricted negation is not domain independent.
+- **Results:** |A × B| = |A||B| and a relation over n domains of sizes d₁…d_n is any subset of the product, so there are 2^{d₁⋯d_n} of them [P]; the number of binary relations on an n-element set is 2^{n²} (512 for n = 3) [P, check]; the equivalence classes of an equivalence relation partition the set, and every partition arises this way [P]; ¬∀x P(x) ≡ ∃x ¬P(x) and ¬∃x P(x) ≡ ∀x ¬P(x) [P, check by exhaustive evaluation on every unary predicate over three elements]; the formula ¬R(t) is not domain independent: with R = {0, 1} it has one answer over the domain {0, 1, 2} and three over {0, …, 4} [P, check]; structural induction proves a property of all formulas by proving it for atoms and for each connective and quantifier [P].
+- **Build:** a first-order model checker over finite structures (formulas as nested tuples, quantifiers by enumeration) that confirms De Morgan, tests domain independence of a formula by evaluating it over growing domains, and counts relations by enumeration. [local]
+- **Gap-fills:** *[inferred: Rosen, Discrete Mathematics and Its Applications; Abiteboul, Hull and Vianu, Chapter 5 for domain independence, recalled, not checked]* the connection to U5.8's induction and reductions is named.
+
+**Assignment A15.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** How many binary relations are there on a set with 4 elements?
+
+(A) 16  
+(B) 256  
+(C) 65536  
+(D) 4096
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which of these logical equivalences hold for all predicates P and Q over a non-empty finite domain?
+
+(A) not (exists x P(x)) is equivalent to (forall x) not P(x)  
+(B) not (forall x P(x)) is equivalent to (exists x) not P(x)  
+(C) (forall x)(P(x) or Q(x)) is equivalent to (forall x P(x)) or (forall x Q(x))  
+(D) (exists x)(P(x) and Q(x)) is equivalent to (exists x P(x)) and (exists x Q(x))
+
+**Q3 (2 marks, numerical answer).** How many reflexive binary relations exist on a 5-element set?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the equivalence classes of an equivalence relation on a finite set A form a partition of A.
+
+**Q5 (3 marks, programming).** Write a first-order model checker over finite structures (formulas as nested tuples, quantifiers by enumeration) and use it to confirm both De Morgan laws on every structure with up to three elements and to test domain independence of a formula over growing domains.
+
+<details><summary>Key for A15.3 (open only after your attempt)</summary>
+
+- **Q1:** C. A binary relation is any subset of A × A, which has 16 elements, so there are 2^16 = 65536 relations.
+- **Q2:** A, B. A and B are the De Morgan laws for quantifiers; C fails when P holds for half of the domain and Q for the other half; D fails when P and Q hold at different elements.
+- **Q3:** 1048576 (tolerance ±0). A reflexive relation contains all 5 pairs (x,x) and any subset of the other 25 − 5 = 20 pairs, so there are 2^20 = 1048576.
+- **Q4 (marking outline):** Every element x lies in its own class because the relation is reflexive, so the classes cover A and are non-empty. If two classes [x] and [y] share an element z, then x ~ z and y ~ z; by symmetry and transitivity x ~ y, and then every element related to x is related to y and conversely, so [x] = [y]. Hence distinct classes are disjoint, and the classes are non-empty, disjoint and cover A, which is the definition of a partition.
+- **Q5 (what a passing submission shows):** The laws are confirmed on all unary and binary predicate interpretations over up to three elements, the formula not R(t) is flagged domain dependent while a join-style formula is not, and the counts of relations on 2 and 3 elements are 16 and 512.
+
+</details>
+
+### U15.4 The relational model: relations, keys, integrity constraints, updates and the mapping from ER and EER
+**Sources:** FDB W2; DBD W3; IDB W3–4
+- **Topics:** Relational Data Model (Lecture 2 of the Kanpur course); Relational Model Module (Weeks 3 and 4 of the Madras course); Module 3 of Database Design, Relational Model, Languages and Systems (seven sessions): relational model concepts, relational integrity constraints, update operations on relations, the relational algebra model (U15.5), ER to relational mapping and the EER to Relational mapping (one session). Relation schema, attribute, domain, tuple, relation instance, degree and cardinality; a relation is a set, so there is no tuple order and no duplicate; NULL and the three-valued logic it forces (taken up in U15.7); superkey, candidate key, primary key, alternate key; foreign keys and referential integrity; the constraints: domain, key, entity integrity and referential integrity; update operations insert, delete and update and what a DBMS does with a violation (reject, cascade, set NULL, set default). ER to relational mapping: strong entity, weak entity (owner key plus partial key), 1:1 (fold or merge), 1:N (foreign key on the N side), M:N (a relation of its own), multivalued attributes (a relation), n-ary relationships. EER to relational mapping: four options for a specialization (a relation per class with the key repeated, a relation per subclass only, a single relation with a type attribute, a single relation with type flags) and categories (a surrogate key).
+- **Results:** A relation over attributes with domains of sizes d₁…d_n has at most d₁⋯d_n tuples, so 2^{d₁⋯d_n} possible instances [P]; at most C(n, ⌊n/2⌋) candidate keys exist over n attributes, because candidate keys form an antichain (none contains another), by Sperner's theorem, which is tight [X, check by brute force for n = 4 and 5: 6 and 10]; deleting a referenced tuple under ON DELETE CASCADE preserves referential integrity when the cascade is applied to a fixed point, and under RESTRICT it is rejected [D]; an M:N relationship cannot be stored as a foreign key on either side without repeating tuples and so needs its own relation [P]; the single-relation mapping of a specialization needs NULLs for attributes that do not apply (a cost of the NULL-heavy design) while the per-subclass mapping needs a join to rebuild a superclass entity [D].
+- **Build:** a constraint-checking table engine in Python (primary key, unique, NOT NULL, domain checks, foreign keys with RESTRICT, CASCADE and SET NULL) run against `sqlite3` with `PRAGMA foreign_keys=ON` on random operation sequences until the two agree on every accept and reject and on the final state [check]; an ER-to-relational mapper that reads the model of U15.2 and writes DDL for each rule above. [local]
+- **Gap-fills:** *[inferred: Codd 1970, "A relational model of data for large shared data banks"; Sperner 1928, recalled, not checked]* surrogate keys and the argument for them (stable identity) are named.
+
+**Assignment A15.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A relation R(A,B,C,D) has exactly two candidate keys, {A,B} and {C,D}. How many superkeys does it have?
+
+(A) 6  
+(B) 7  
+(C) 8  
+(D) 9
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about referential integrity are true?
+
+(A) A foreign key value must be NULL or equal to an existing key value of the referenced relation  
+(B) ON DELETE CASCADE can delete tuples in several relations in a chain  
+(C) ON DELETE SET NULL is always legal, even when the foreign key is part of the primary key  
+(D) A foreign key must reference the primary key and can never reference another candidate key
+
+**Q3 (2 marks, numerical answer).** A relation schema R(A,B) has A drawn from 3 values and B from 2 values. How many distinct relation instances (sets of tuples) are possible?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the candidate keys of a relation over n attributes form an antichain, so by Sperner's theorem there are at most C(n, floor(n/2)) of them, and exhibit a schema over 4 attributes that reaches the bound.
+
+**Q5 (3 marks, programming).** Write a constraint-checking table engine (primary key, unique, NOT NULL, domain checks, foreign keys with RESTRICT, CASCADE and SET NULL) and compare it with sqlite3 on random operation sequences.
+
+<details><summary>Key for A15.4 (open only after your attempt)</summary>
+
+- **Q1:** B. Supersets of {A,B}: 4; supersets of {C,D}: 4; the full set {A,B,C,D} is counted twice, so 4 + 4 − 1 = 7.
+- **Q2:** A, B. C is false because entity integrity forbids NULL in a primary key attribute; D is false because a foreign key may reference any candidate key.
+- **Q3:** 64 (tolerance ±0). The full product has 6 possible tuples and an instance is any subset of them, so there are 2^6 = 64.
+- **Q4 (marking outline):** If candidate key K1 were a proper subset of candidate key K2, then K2 would not be minimal, contradicting that it is a candidate key; so no key contains another and the keys form an antichain in the subset lattice. Sperner's theorem bounds an antichain of subsets of an n-set by C(n, floor(n/2)). For n = 4 the bound is 6, reached by R(A,B,C,D) with the dependencies AB → CD, AC → BD, AD → BC, BC → AD, BD → AC and CD → AB, whose candidate keys are all six 2-subsets.
+- **Q5 (what a passing submission shows):** On at least 5000 seeded random insert, update and delete sequences the engine and sqlite3 (PRAGMA foreign_keys=ON) agree on every accept and reject and on the final contents of every table.
+
+</details>
+
+### U15.5 Relational algebra: basic and additional operators, extended operators and updates
+**Sources:** FDB W3–5; DBD W3; IDB W3–4
+- **Topics:** Relational Algebra: Basic Operators (Lecture 3 of the Kanpur course: selection, projection, union, set difference, Cartesian product and rename), Relational Algebra: Additional Operators (Lecture 4: intersection, natural join, theta and equi-join, division, outer joins, assignment) and Relational Algebra: Updates (Lecture 5: insertion, deletion and modification written as algebra); the same ground in Weeks 3 and 4 of the Madras course and the relational algebra sessions of Database Design. Operator semantics and schemas of results; composition and expression trees; the closure property (every result is a relation); set and bag semantics; extended operators (generalised projection, aggregation with grouping, sorting); semijoin and antijoin; derived operators and the completeness of the six basic ones; algebraic equivalences (selection cascade and commutation, push-down over product and join, join commutativity and associativity, projection cascade); update expressions R ← R ∪ E, R ← R − σ_p(R) and modification as delete followed by insert of the modified tuples.
+- **Results:** Intersection R ∩ S = R − (R − S), natural join = projection of a selected product with renaming, and division R ÷ S = π_X(R) − π_X((π_X(R) × S) − R) [P, check on 300 random relations against direct evaluation]; with the instance Enrol and Req of the build, Enrol ÷ Req has 3 tuples [check]; σ_p(R × S) = R ⋈_p S and σ_{p(R)}(R ⋈ S) = σ_{p(R)}(R) ⋈ S when p mentions only attributes of R [P]; natural join is commutative and associative [P]; |R ⋈ S| ≤ |R||S|, and ≤ |R| when the join attributes form a key of S, so a 12-tuple R joined with the 4-tuple S of the build gives 16 only because the join attribute is not a key of S [P, check]; relational algebra (without iteration) cannot express transitive closure [X, beyond course scope: a locality argument, Gaifman's theorem].
+- **Build:** a relational algebra engine in Python (set-semantics relations, every operator above, an expression tree with a pretty printer, and the update forms) checked against `sqlite3` translations on random relations, with division checked against a double NOT EXISTS query; the identity checks above run as property tests. [local]
+- **Gap-fills:** *[inferred: Codd 1972 on relational completeness; Garcia-Molina, Ullman and Widom, Chapter 2 for bag algebra and extended operators; Aho and Ullman 1979 on transitive closure, recalled, not checked]* outer-join null padding is defined here and used in U15.8.
+
+**Assignment A15.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which expression is equivalent to the intersection R ∩ S of two union-compatible relations?
+
+(A) R − (R − S)  
+(B) (R − S) ∪ (S − R)  
+(C) R ∪ (S − R)  
+(D) R − S
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** For union-compatible relations R and S and a selection predicate p, which equivalences hold under set semantics?
+
+(A) selection p of (R union S) equals (selection p of R) union (selection p of S)  
+(B) selection p of (R minus S) equals (selection p of R) minus (selection p of S)  
+(C) projection onto a of (R intersect S) equals (projection of R) intersect (projection of S)  
+(D) projection onto a of (R union S) equals (projection of R) union (projection of S)
+
+**Q3 (2 marks, numerical answer).** Enrol(sid,cid) = {(1,c1),(1,c2),(1,c3),(2,c1),(2,c2),(3,c1),(4,c2),(4,c3),(4,c1)} and Req(cid) = {c1,c2}. How many tuples does Enrol divided by Req contain?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that R ÷ S = π_X(R) − π_X((π_X(R) × S) − R), where X is the set of attributes of R that are not in S.
+
+**Q5 (3 marks, programming).** Write a relational algebra engine in Python with the six basic operators, the derived operators, aggregation with grouping and the update forms, plus an expression tree printer, and test it against sqlite3.
+
+<details><summary>Key for A15.5 (open only after your attempt)</summary>
+
+- **Q1:** A. R − (R − S) keeps exactly the tuples of R that are also in S; the second expression is the symmetric difference and the third and fourth are different sets.
+- **Q2:** A, B, D. C fails: R = {(1,2)} and S = {(1,3)} have an empty intersection but both projections onto the first attribute equal {1}.
+- **Q3:** 3 (tolerance ±0). Students 1, 2 and 4 are enrolled in both c1 and c2; student 3 only in c1, so the quotient has 3 tuples.
+- **Q4 (marking outline):** A tuple x is in the left side exactly when x is in π_X(R) and (x,s) is in R for every s in S. The right side removes from π_X(R) every x for which some pair (x,s) of π_X(R) × S is missing from R, that is every x for which some s in S has (x,s) not in R. So x survives on the right exactly when no s in S fails, which is the same condition as on the left; both sides are subsets of π_X(R), so they are equal.
+- **Q5 (what a passing submission shows):** Every operator agrees with an equivalent sqlite3 query on at least 300 random relations, division agrees with a double NOT EXISTS query, and the identities for intersection and join are checked as property tests.
+
+</details>
+
+### U15.6 Relational calculus: tuple and domain calculus, safety and Codd's theorem
+**Sources:** IDB W5; DBD W3
+- **Topics:** The TRC Module and part of SQL Module (Week 5 of the Madras course, with the relational model of Module 3 of Database Design): tuple relational calculus (TRC), expressions {t | P(t)}, tuple variables, atoms (membership in a relation, comparison of attributes), formulas with the connectives and the quantifiers ∃ and ∀, free and bound variables; domain relational calculus (DRC) with domain variables; safe expressions and domain independence (U15.3); queries written in algebra, in TRC and in DRC; relational completeness; the resemblance of SQL's EXISTS and NOT EXISTS to TRC and the reason SQL is more than either.
+- **Results:** Every algebra expression has an equivalent safe TRC expression, by induction on the structure of the expression: a relation name is {t | R(t)}, union is a disjunction, difference a conjunction with a negation, product a conjunction over fresh tuple variables, projection an existential quantifier and selection a conjunction with the predicate [P]; every safe TRC expression has an equivalent algebra expression, by evaluating over the active domain and induction on the formula [S, the full proof is Codd's theorem in Abiteboul, Hull and Vianu]; hence relational algebra, safe TRC and safe DRC have equal expressive power (Codd's theorem) [X, from the two parts above]; {t | ¬R(t)} is unsafe because its answer depends on the domain [P, from U15.3]; division is the formula ∀s (S(s) → ∃r (R(r) ∧ r.x = x ∧ r.y = s.y)) [D].
+- **Build:** a safe-TRC evaluator over finite databases that evaluates quantifiers over the active domain, a translator from the algebra of U15.5 to TRC strings and back for the positive and difference fragment, and random tests that the two sides give the same answers. [local]
+- **Gap-fills:** *[inferred: Codd 1972; Abiteboul, Hull and Vianu, Chapters 4 and 5; Query-by-Example named as the graphical cousin of DRC, recalled, not checked]*
+
+**Assignment A15.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which tuple relational calculus expression is unsafe?
+
+(A) {t : R(t) and S(t)}  
+(B) {t : R(t) or not S(t)}  
+(C) {t : exists s (S(s) and t.a = s.a)}  
+(D) {t : R(t) and not S(t)}
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about relational calculus and algebra are true?
+
+(A) Every relational algebra expression has an equivalent safe TRC expression  
+(B) Every safe TRC expression has an equivalent relational algebra expression  
+(C) Relational algebra can compute the transitive closure of an edge relation  
+(D) The expression not R(t) is domain independent
+
+**Q3 (2 marks, numerical answer).** Over the domain {0,...,9} the relation R contains the values 0, 1, 2 and 3. How many answers does the expression {t : not R(t)} have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove by induction on the structure of an algebra expression that the difference and projection cases translate into safe tuple calculus.
+
+**Q5 (3 marks, programming).** Write a safe tuple relational calculus evaluator over finite databases that quantifies over the active domain, and a translator from the algebra to TRC strings, and test that both sides give the same answers.
+
+<details><summary>Key for A15.6 (open only after your attempt)</summary>
+
+- **Q1:** B. For every tuple not in S the second expression is true, so its answer is infinite and depends on the domain; the other three are bounded by the relations R and S.
+- **Q2:** A, B. C is false (no iteration in the algebra) and D is false (its answer changes with the domain).
+- **Q3:** 6 (tolerance ±0). Every domain value not in R is an answer: 10 − 4 = 6, and with a bigger domain the count would change, which is why the expression is unsafe.
+- **Q4 (marking outline):** Assume E1 and E2 translate to safe formulas P1(t) and P2(t). For E1 − E2 take P1(t) and not P2(t): it is safe because the positive conjunct P1 bounds t to the finite answer of E1. For a projection onto attributes X of E1 take the formula exists u (P1(u) and t.x = u.x for every x in X): t is bounded because its values come from the finite relation answering P1. Base cases R(t) are safe, and union, product and selection are handled the same way, so every algebra expression has a safe translation.
+- **Q5 (what a passing submission shows):** On at least 200 random queries from the select, project, product, union and difference fragment the evaluator agrees with the algebra engine of U15.5, and the unsafe expression not R(t) is rejected by a safety check.
+
+</details>
+
+### U15.7 SQL I: data definition, basic query structure, basic operations, aggregation and grouping
+**Sources:** FDB W7–9; DBD W3; IDB W5–6
+- **Topics:** SQL: Creation and Basic Query Structure (Lecture 7 of the Kanpur course), SQL: Basic Operations (Lecture 8) and SQL: Aggregate and Grouping (Lecture 9); the SQL parts of Module 3 of Database Design (SQL (2 sessions): data definition in SQL, queries and update statements, then views, integrity constraints, specifying indexes and embedded SQL in U15.9), the part of SQL in Week 5 and the SQL Module of Week 6 of the Madras course. Data definition in SQL: CREATE TABLE, data types, the constraints PRIMARY KEY, UNIQUE, NOT NULL, CHECK and FOREIGN KEY, ALTER and DROP. The basic block SELECT, FROM, WHERE; DISTINCT against ALL; expressions, aliases and renaming; string matching with LIKE; BETWEEN; ORDER BY; multiset (bag) semantics; NULL, the third truth value UNKNOWN and IS NULL; the aggregates COUNT, SUM, AVG, MIN and MAX, GROUP BY and HAVING, and how aggregates treat NULL. The logical evaluation order of a query: FROM, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY. The correspondence with the algebra of U15.5.
+- **Results:** A SELECT-FROM-WHERE block without DISTINCT denotes π(σ(R₁ × … × R_n)) under bag semantics, so duplicates are counted [P]; the three-valued truth tables make NOT UNKNOWN = UNKNOWN, FALSE AND UNKNOWN = FALSE and TRUE OR UNKNOWN = TRUE, and WHERE keeps only rows that evaluate to TRUE [Def]; on the six-row Emp table of the build, AVG(sal) = 55 because AVG ignores the two NULL salaries, while COUNT(*) is 6 and COUNT(sal) is 4 [check on `sqlite3`]; WHERE filters rows before grouping and HAVING filters groups after aggregation, so a condition on an aggregate can only be in HAVING [D]; adding a column to a GROUP BY list can only refine the groups, so the number of groups never decreases [P].
+- **Build:** a SQL subset parser and executor in Python (CREATE TABLE, INSERT, SELECT with WHERE, ORDER BY, GROUP BY, HAVING and the five aggregates) with three-valued logic, checked against `sqlite3` on random tables containing NULLs; the bag and set versions of the same query compared. [local]
+- **Gap-fills:** *[inferred: ISO/IEC 9075 (the SQL Standard), recalled, not checked; Garcia-Molina, Ullman and Widom, Chapters 6 and 7]* `sqlite3` uses dynamic typing with type affinity, so the oracle accepts values that a stricter system would reject; the build tests only values of the declared type.
+
+**Assignment A15.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which sequence is the logical order in which the clauses of a SELECT block with grouping are evaluated?
+
+(A) FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY  
+(B) SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY  
+(C) FROM, GROUP BY, WHERE, HAVING, SELECT, ORDER BY  
+(D) WHERE, FROM, SELECT, GROUP BY, HAVING, ORDER BY
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** For a row in which x is NULL, which conditions evaluate to UNKNOWN rather than TRUE or FALSE?
+
+(A) x = 5  
+(B) x = x  
+(C) x IS NULL  
+(D) NOT (x = 5)
+
+**Q3 (2 marks, numerical answer).** The table Emp has salaries 50, NULL, 70, 40, 60 and NULL. What does SELECT AVG(sal) FROM Emp return?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that adding an attribute to the GROUP BY list can never decrease the number of groups.
+
+**Q5 (3 marks, programming).** Write a SQL subset parser and executor (CREATE TABLE, INSERT, SELECT with WHERE, ORDER BY, GROUP BY, HAVING and the five aggregates) with three-valued logic.
+
+<details><summary>Key for A15.7 (open only after your attempt)</summary>
+
+- **Q1:** A. Rows are produced by FROM, filtered by WHERE, grouped, filtered by HAVING, projected by SELECT and finally sorted; this is why WHERE cannot use an aggregate and HAVING can.
+- **Q2:** A, B, D. C is TRUE because IS NULL is the only test that detects NULL; comparisons with NULL, including x = x, are UNKNOWN, and NOT UNKNOWN is UNKNOWN.
+- **Q3:** 55 (tolerance ±0.01). AVG ignores NULL: the sum of the four non-null values is 220 and the count of non-null values is 4, so the average is 55 (not 220/6 = 36.67).
+- **Q4 (marking outline):** Groups are the equivalence classes of the relation that holds between two rows when they agree on every attribute of the list. Adding an attribute adds a condition, so two rows that agree on the longer list also agree on the shorter one: every new class lies inside one old class. Hence every old class is split into at least one new class, and the number of new classes is at least the number of old ones, with equality exactly when each old class is uniform on the new attribute.
+- **Q5 (what a passing submission shows):** On 1000 seeded random tables with NULLs the executor returns the same bag of rows as sqlite3 for each of 30 queries covering the clauses, and the truth tables of AND, OR and NOT over TRUE, FALSE and UNKNOWN match the standard.
+
+</details>
+
+### U15.8 SQL II: nested subqueries and set operations, updates and joins
+**Sources:** FDB W10–11; DBD W3; IDB W6
+- **Topics:** SQL: Nested Subqueries and Sets (Lecture 10): IN and NOT IN, EXISTS and NOT EXISTS, the comparisons ANY, SOME and ALL, scalar, correlated and uncorrelated subqueries, derived tables in FROM, WITH clauses; the set operations UNION, INTERSECT and EXCEPT with and without ALL; set comparison and division written with a double NOT EXISTS. SQL: Updates and Joins (Lecture 11): INSERT (including INSERT with a SELECT), DELETE and UPDATE with subqueries and CASE; joins: cross, inner, natural, USING, left, right and full outer join; ON against WHERE for outer joins; and, beyond the sources, window functions and recursive WITH, the latter because the algebra cannot compute a transitive closure (U15.5).
+- **Results:** x IN (subquery) is a correlated EXISTS (a semijoin) [D]; NOT IN and NOT EXISTS differ when the subquery contains a NULL: with A = {1,2,3,4} and B = {2,2,3,5} plus a NULL, NOT IN returns no row and NOT EXISTS returns two rows [D, check]; a filter on the right table placed in WHERE instead of ON turns a left outer join into an inner join: A left joined with B has 5 rows, and 3 with B.x IS NOT NULL in WHERE [D, check]; division is the double NOT EXISTS, since ∀ is ¬∃¬ (U15.3), and it returns the same 3 students as the algebra of U15.5 [P, check]; for multiplicities m and n of a row, UNION ALL gives m + n, INTERSECT ALL gives min(m, n) and EXCEPT ALL gives max(m − n, 0), so {1,1,1,2} and {1,1,3} give 5, 2 and 1 copies of the value 1 [D, check]; a recursive query computes reachability as the least fixed point of a monotone operator, and iterating only the newly found rows (semi-naive evaluation) reaches the same fixed point [S, check on a cyclic graph].
+- **Build:** the executor of U15.7 extended with correlated and uncorrelated subqueries, outer joins, the set operations with ALL, UPDATE and DELETE, and a recursive-query evaluator by semi-naive iteration, all checked against `sqlite3` (which lacks INTERSECT ALL and EXCEPT ALL, so those are checked with multisets in Python). [local]
+- **Gap-fills:** *[inferred: Garcia-Molina, Ullman and Widom, Chapters 6 and 10; Libkin on SQL's treatment of NULL, recalled, not checked]* window functions (ROW_NUMBER, RANK, running sums over a partition) are used in the capstone U13.8 and in U12.2.
+
+**Assignment A15.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A and B are tables with a column x, and B contains a NULL in x. Which query returns exactly the rows of A whose x does not appear among the non-null values of B?
+
+(A) SELECT x FROM A WHERE x NOT IN (SELECT x FROM B)  
+(B) SELECT x FROM A WHERE NOT EXISTS (SELECT 1 FROM B WHERE B.x = A.x)  
+(C) SELECT x FROM A WHERE x <> ALL (SELECT x FROM B)  
+(D) SELECT x FROM A WHERE x IN (SELECT x FROM B)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** A row occurs m times in one input and n times in the other. Which multiplicities do the SQL bag operations give?
+
+(A) UNION ALL gives m + n  
+(B) INTERSECT ALL gives min(m, n)  
+(C) EXCEPT ALL gives max(m − n, 0)  
+(D) EXCEPT ALL gives the absolute value of m − n
+
+**Q3 (2 marks, numerical answer).** A has the values 1, 2, 3, 4 and B has 2, 2, 3, 5. How many rows does A LEFT JOIN B ON A.x = B.x return?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the query "students s such that there is no required course r for which there is no enrolment of s in r" computes the relational division Enrol divided by Req.
+
+**Q5 (3 marks, programming).** Extend your executor with correlated and uncorrelated subqueries, outer joins, the set operations with ALL, UPDATE and DELETE, and a recursive-query evaluator using semi-naive iteration.
+
+<details><summary>Key for A15.8 (open only after your attempt)</summary>
+
+- **Q1:** B. NOT IN and the ALL comparison become UNKNOWN for every row when B contains a NULL and so return nothing; NOT EXISTS tests for a matching row and ignores the NULL.
+- **Q2:** A, B, C. D is false: EXCEPT ALL is not symmetric and never goes below zero.
+- **Q3:** 5 (tolerance ±0). Value 1 has no match and gives one row padded with NULL, value 2 matches two rows of B, value 3 matches one and value 4 gives one padded row: 1 + 2 + 1 + 1 = 5.
+- **Q4 (marking outline):** The query keeps s exactly when NOT EXISTS r in Req such that NOT EXISTS an Enrol row (s, r). Using that not exists is the negation of exists, this is the statement for all r in Req there exists an Enrol row (s, r), because the negation of an existential statement of a negation is a universal statement. That is the definition of division: s is in the quotient exactly when (s, r) is in Enrol for every r in Req. Both queries also restrict s to students that occur in Enrol.
+- **Q5 (what a passing submission shows):** Results match sqlite3 on at least 500 random queries, the bag operations match a Counter-based reference for ALL, and the reachability of a cyclic graph by semi-naive iteration equals a plain breadth-first search.
+
+</details>
+
+### U15.9 SQL III: views, triggers, integrity constraints, specifying indexes, embedded SQL and a recap
+**Sources:** FDB W12–13; DBD W3; IDB W6
+- **Topics:** SQL: Views and Triggers (Lecture 12): virtual and materialised views, updatable views and WITH CHECK OPTION, the view update problem; triggers as event-condition-action rules (BEFORE and AFTER, row and statement level, the OLD and NEW rows), and their cascades; integrity constraints (CHECK, assertions, deferrable constraints) and specifying indexes (CREATE INDEX, unique and composite indexes; why an index helps is the subject of U15.16); Embedded SQL: a host language, cursors, prepared statements and parameter binding, dynamic SQL, the call-level interfaces (ODBC, JDBC and the Python DB-API), autocommit and explicit transactions; and the Recap (Lecture 13), which closes the first block: ER, the relational model, algebra, calculus and SQL. Authorization is in U15.24.
+- **Results:** A query on a view is answered by view expansion: substitute the view's definition and optimise the result [D]; a view is unambiguously updatable only if it maps each view row to one base row (one table, no aggregate, no DISTINCT, no GROUP BY, the key kept), a rule recalled from the standard and not re-derived [X]; for a join view V = R ⋈ S and inserted sets ΔR and ΔS, V_new = V ∪ (ΔR ⋈ S) ∪ (R ⋈ ΔS) ∪ (ΔR ⋈ ΔS), so with |R| = 100, |S| = 80, |ΔR| = 10 and |ΔS| = 5 incremental maintenance examines 1350 pairs against 9350 for recomputation [P, check on 300 random deltas]; a trigger that updates the table it watches can fire forever, so a nesting limit or a guard condition is required [D, by example]; a bound parameter is never parsed as SQL, so the string x' OR '1'='1 matches no user when bound but matches every row when concatenated into the text of the query [D, check on your own in-memory database].
+- **Build:** a view-expansion rewriter for select-project-join views; incremental maintenance of a join view checked against full recomputation on random delta sequences; a small trigger engine (event-condition-action with a nesting limit); the DB-API with cursors, `executemany` and parameter binding in `sqlite3`, including the injection demonstration run only against a database you create in memory. [local]
+- **Gap-fills:** *[inferred: Gupta and Mumick on view maintenance; the SQL standard on updatable views; OWASP on injection, recalled, not checked]* the recap lecture adds no new topic, and the units it recaps carry its citation.
+
+**Assignment A15.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which measure is the reliable defence against SQL injection in application code?
+
+(A) Escape single quotes in the input by hand  
+(B) Bind user input as parameters of a prepared statement  
+(C) Hide database error messages from users  
+(D) Limit the length of every input field
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about views are true?
+
+(A) A query on a view is answered by substituting the view definition  
+(B) A materialised view stores its result and must be maintained when base tables change  
+(C) Every view can be updated unambiguously  
+(D) WITH CHECK OPTION rejects an update through the view that would make the row disappear from the view
+
+**Q3 (2 marks, numerical answer (pairs)).** The view V = R join S has base tables with 100 and 80 tuples. A batch inserts 10 tuples into R and 5 into S. How many tuple pairs does incremental maintenance by the three delta terms examine, assuming each term is evaluated as a plain nested loop of its two inputs?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that for a join view V = R join S and inserted sets ΔR and ΔS the new view equals V union (ΔR join S) union (R join ΔS) union (ΔR join ΔS).
+
+**Q5 (3 marks, programming).** Write a view-expansion rewriter, an incremental-maintenance routine for a join view, a trigger engine with a nesting limit, and a DB-API demonstration of parameter binding against an in-memory database that you create yourself.
+
+<details><summary>Key for A15.9 (open only after your attempt)</summary>
+
+- **Q1:** B. A bound parameter is data and is never parsed as SQL, so no input can change the structure of the query; the other measures can be bypassed.
+- **Q2:** A, B, D. C is false: views with aggregates, DISTINCT or joins that lose the key do not map each view row to one base row.
+- **Q3:** 1350 pairs (tolerance ±0). The three terms are the new R tuples against old S (10 × 80 = 800), old R against the new S tuples (100 × 5 = 500) and new against new (10 × 5 = 50): 1350 pairs, against 110 × 85 = 9350 for recomputation.
+- **Q4 (marking outline):** The new view is (R union ΔR) join (S union ΔS). A result tuple is built from one tuple of R or ΔR and one tuple of S or ΔS that agree on the join attributes. Splitting by where each tuple came from gives four disjoint cases: R with S (the old view V), ΔR with S, R with ΔS and ΔR with ΔS. The union of the four cases is exactly the new view, because join distributes over union in each argument.
+- **Q5 (what a passing submission shows):** Incremental maintenance matches full recomputation on at least 300 random delta sequences, a self-updating trigger is stopped by the nesting limit, and the injection string matches no row when bound but all rows when concatenated, on your own database only.
+
+</details>
+
+### U15.10 A commercial case study: IBM DB2, its architecture, data definition and manipulation
+**Sources:** DBD W3
+- **Topics:** IBM DB2 case study (2 sessions) in Module 3 of Database Design (7 sessions in all): Architecture of DB2, and Data definition and manipulation in DB2. The architecture, taught through the concepts this domain builds: a client connects to a database server; the engine runs agents (processes or threads) for each connection; the buffer pools cache pages of the table spaces, which are mapped to containers on disk; the log manager writes the write-ahead log; the lock manager and the cost-based optimiser sit between SQL and the access methods; the catalog holds the metadata. Data definition: CREATE TABLESPACE, BUFFERPOOL, TABLE (identity and generated columns), INDEX, VIEW and materialised query tables; data manipulation: standard SQL plus DB2 forms such as FETCH FIRST n ROWS ONLY and the one-row table SYSIBM.SYSDUMMY1; the four isolation levels uncommitted read (UR), cursor stability (CS, the default), read stability (RS) and repeatable read (RR). The product family (Db2 for Linux, UNIX and Windows, Db2 for z/OS, Db2 for i) is named and the course case study follows the first.
+- **Results:** Every DB2 component maps to a generic one taught here: buffer pool to buffer manager (U15.15), table space to file organisation (U15.15), catalog to the system tables (U15.1), optimiser to U15.18, log manager to U15.23 and lock manager to U15.22 [Def]; under DB2's isolation levels, dirty reads are possible only under UR, non-repeatable reads under UR and CS, phantoms under UR, CS and RS, and lost updates under none, per IBM's documentation [Def, checked on IBM's pages, 2026-11-05]; a buffer pool that is 25% of 16 GB with 8 KB pages holds 524288 pages [D, check], the 16 GB being the memory cap of the free Community Edition [checked].
+- **Build:** a mapping table from the DB2 vocabulary to the generic one and to `sqlite3`, and the university schema written for DB2 and for `sqlite3` side by side, with each DB2-only clause marked. Optional hands-on: IBM's free Db2 Community Edition (checked on IBM's page: a free edition limited to 4 virtual cores and 16 GB, for non-production use, with a Docker image for Linux, Windows and Mac) in a local container; whether an image runs natively on Apple silicon is recalled, not checked, so verify first, and treat the lab as [plan only] if it does not. [local VM]
+- **Gap-fills:** *[inferred: IBM documentation for Db2 11.5; Hellerstein et al. 2007 for the process model; the product's internals beyond the outline are recalled, not checked]* IBM's pages gave two licence descriptions (production use allowed in a 2019 announcement, non-production only on the current page); the current page is followed.
+
+**Assignment A15.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which phenomena are possible at DB2's default isolation level, cursor stability?
+
+(A) Phantom reads only  
+(B) Non-repeatable reads and phantom reads, but not dirty reads  
+(C) Dirty reads, non-repeatable reads and phantom reads  
+(D) None of them
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which pairs of a DB2 component and the generic concept it implements are correct?
+
+(A) Buffer pool and buffer manager  
+(B) Table space and file organisation on disk containers  
+(C) Catalog and the system tables holding metadata  
+(D) Log manager and query optimiser
+
+**Q3 (2 marks, numerical answer (pages)).** A buffer pool is given 25 percent of the 16 GB memory limit of the free Community Edition and uses 8 KB pages. How many pages does it hold?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Explain why read stability can show phantom rows but never non-repeatable reads.
+
+**Q5 (3 marks, programming).** Write the university schema for DB2 and for sqlite3 side by side and produce a table that maps each DB2 clause or component to its generic concept and to the sqlite3 substitute.
+
+<details><summary>Key for A15.10 (open only after your attempt)</summary>
+
+- **Q1:** B. Cursor stability locks only the row under the cursor, so a row can change between two reads and new rows can appear, but uncommitted changes of other applications are not seen.
+- **Q2:** A, B, C. D is false: the log manager implements write-ahead logging and recovery, while the optimiser chooses the query plan.
+- **Q3:** 524288 pages (tolerance ±0). 25 percent of 16 GB is 4 GB = 4194304 KB, and dividing by 8 KB gives 524288 pages.
+- **Q4 (marking outline):** Read stability locks every row that the query retrieves until the unit of work ends, so no other transaction can change or delete a row already read, and a second read returns the same values for those rows: no non-repeatable read. Rows that did not satisfy the condition were not retrieved and so were not locked, so another transaction may insert or update a row to satisfy the condition; the second read then returns an extra row, a phantom. Repeatable read avoids this by locking more than the retrieved rows.
+- **Q5 (what a passing submission shows):** The sqlite3 version creates and populates all tables without error, every DB2-only clause is listed with a substitute, and the mapping table covers buffer pool, table space, catalog, log, lock manager, optimiser and the four isolation levels.
+
+</details>
+
+### U15.11 Functional dependencies: keys, inference, closure, covers and the anomalies they cause
+**Sources:** FDB W14; DBD W4; IDB W9
+- **Topics:** Database Normalization: Functional Dependencies (Lecture 14 of the Kanpur course); Module 4 of Database Design, Database design using the relational model (4 sessions), its first half Functional dependencies (2 sessions): keys in a relational model, the concept of functional dependencies, normal forms based on primary keys (continued in U15.12); the Normal Forms Module of the Madras course (Week 9). A functional dependency X → Y as a constraint on every legal instance (a property of the schema, never of one instance); trivial and non-trivial dependencies; Armstrong's axioms (reflexivity, augmentation, transitivity) and the derived rules (union, decomposition, pseudotransitivity); the closure F⁺ of a set of dependencies and the attribute closure X⁺ with its algorithm; equivalence of dependency sets; the minimal (canonical) cover in three steps (single attribute on the right, remove extraneous attributes on the left, remove redundant dependencies); superkeys, candidate keys, prime and non-prime attributes, and finding all candidate keys; the insertion, deletion and update anomalies of U15.1 as the symptom of a bad dependency structure.
+- **Results:** Armstrong's axioms are sound: each rule preserves truth in every instance [P]; they are complete, because X → Y is in F⁺ exactly when Y ⊆ X⁺, and if Y is not inside X⁺ the two-tuple relation that agrees exactly on X⁺ satisfies every dependency of F yet violates X → Y [P, check on 115 random cases]; the attribute-closure algorithm is correct and runs in time polynomial (linear with the right bookkeeping) in the size of F [D]; a minimal cover exists and the three-step procedure produces one (the result is not unique) [P]; for R(A,B,C,G,H,I) with F = {A→B, A→C, CG→H, CG→I, B→H}, (AG)⁺ = ABCGHI, AG is the only candidate key and the minimal cover is {A→B, A→C, B→H, CG→H, CG→I} [D, check]; a schema with n attribute pairs and the dependencies A_i → B_i and B_i → A_i has 2ⁿ candidate keys (2, 4, 8, 16 and 32 for n = 1 to 5, counted), so key finding is exponential in the worst case [P, check].
+- **Build:** an FD engine in Python (attribute closure, implication test, equivalence test, minimal cover, all candidate keys, prime attributes) verified against brute-force enumeration of all instances over a two-element domain for small schemas; the completeness witness relation built for random non-implied dependencies. [local]
+- **Gap-fills:** *[inferred: Armstrong 1974; Beeri and Bernstein 1979 for the linear closure algorithm; Maier, The Theory of Relational Databases; Lucchesi and Osborn on the number of keys, recalled, not checked]*
+
+**Assignment A15.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For R(A,B,C,G,H,I) with the dependencies A to B, A to C, CG to H, CG to I and B to H, what is the closure of the attribute set {A, G}?
+
+(A) {A, G, B, C}  
+(B) {A, B, C, G, H, I}  
+(C) {A, G, H, I}  
+(D) {A, B, C}
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about functional dependencies are true?
+
+(A) A dependency is a constraint of the schema, so one instance can refute it but cannot prove it  
+(B) Armstrong's axioms are sound and complete for functional dependencies  
+(C) The minimal cover of a set of dependencies is always unique  
+(D) A schema can have exponentially many candidate keys
+
+**Q3 (2 marks, numerical answer).** A schema has 6 pairs of attributes (A_i, B_i) with the dependencies A_i to B_i and B_i to A_i for each i. How many candidate keys does it have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the completeness step of Armstrong's axioms: if Y is not a subset of the closure X+ under F, then X to Y is not implied by F.
+
+**Q5 (3 marks, programming).** Write a functional-dependency engine with attribute closure, implication and equivalence tests, minimal cover, all candidate keys and prime attributes.
+
+<details><summary>Key for A15.11 (open only after your attempt)</summary>
+
+- **Q1:** B. Starting from AG: A gives B and C, then CG gives H and I (B gives H as well), so the closure is ABCGHI, all attributes, and AG is a key.
+- **Q2:** A, B, D. C is false: different orders of removing extraneous attributes and redundant dependencies give different minimal covers.
+- **Q3:** 64 (tolerance ±0). A key must contain exactly one attribute of each pair, since either one determines the other, so there are 2 choices for each of 6 pairs: 2^6 = 64.
+- **Q4 (marking outline):** Build a relation with two tuples that agree exactly on the attributes of X+ and differ on all others. It satisfies every dependency U to V of F: if the tuples agree on U then U is inside X+, so V is inside X+ (closure is closed under F), so they agree on V. It violates X to Y: they agree on X (inside X+) but differ on some attribute of Y outside X+. So X to Y is not implied, hence implication coincides with membership of Y in X+ and the axioms are complete.
+- **Q5 (what a passing submission shows):** The example of this unit gives closure ABCGHI, the single key AG and the stated minimal cover; the 2^n key counts for n = 1 to 5 are reproduced; and results agree with brute-force enumeration of instances on 200 random small schemas.
+
+</details>
+
+### U15.12 Normal forms: 1NF, 2NF, 3NF and BCNF, lossless decomposition and dependency preservation
+**Sources:** FDB W15–17; DBD W4; IDB W9–10
+- **Topics:** Database Normalization: 1NF and 2NF (Lecture 15), Database Normalization: 3NF (Lecture 16) and Database Normalization: BCNF (Lecture 17); the normal forms based on primary keys and the Boyce-Codd Normal Forms of Module 4 of Database Design; Weeks 9 and 10 of the Madras course (the Normal Forms Module, twice). First normal form (atomic values, no repeating groups); second normal form (no non-prime attribute depends on part of a candidate key); third normal form (for every non-trivial X → A, X is a superkey or A is prime); Boyce–Codd normal form (for every non-trivial X → A, X is a superkey); the hierarchy BCNF inside 3NF inside 2NF inside 1NF. Decomposition: lossless join (the binary test), dependency preservation, projection of dependencies; the BCNF decomposition algorithm (which can lose dependencies) and the 3NF synthesis algorithm from a minimal cover (which is lossless and preserves dependencies); denormalisation for performance and for analytic stores (U12.2).
+- **Results:** BCNF implies 3NF implies 2NF [P]; a decomposition of R into R₁ and R₂ is lossless exactly when (R₁ ∩ R₂) → (R₁ − R₂) or (R₁ ∩ R₂) → (R₂ − R₁) holds [P, check with the chase]; the BCNF algorithm terminates and gives a lossless decomposition, because each step is a lossless binary split and the pieces shrink [P, check on 340 random schemas]; for R(A,B,C) with AB → C and C → B (candidate keys AB and AC) the schema is in 3NF but not BCNF, and the BCNF decomposition {AC, BC} is lossless but loses AB → C [D, check]; 3NF synthesis (one relation per left side of the cover, plus a key relation if none contains a key, minus subsumed relations) yields 3NF relations that are lossless and dependency preserving, here {ABC} [P, check]; testing whether a schema is in 3NF is NP-complete in general [X, beyond course scope].
+- **Build:** normal-form testers for 2NF, 3NF and BCNF, the BCNF decomposer, the 3NF synthesiser, a tableau (chase) lossless-join test and a dependency-preservation test, validated on 400 random schemas and by checking on random instances that satisfy F that joining the pieces returns the original. [local]
+- **Gap-fills:** *[inferred: Codd 1971 and 1974 on the normal forms; Bernstein 1976 on synthesis; Aho, Beeri and Ullman 1979 on the chase; Jou and Fischer 1982 on 3NF testing, recalled, not checked]*
+
+**Assignment A15.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** R(A,B,C) has the dependencies AB to C and C to B. What is the highest normal form of R?
+
+(A) 1NF only  
+(B) 2NF but not 3NF  
+(C) 3NF but not BCNF  
+(D) BCNF
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about decomposition and normal forms are true?
+
+(A) A binary decomposition is lossless exactly when the intersection of the parts determines one of the parts  
+(B) Every BCNF decomposition preserves all dependencies  
+(C) 3NF synthesis from a minimal cover is lossless and preserves dependencies  
+(D) Every relation in BCNF is also in 3NF
+
+**Q3 (2 marks, numerical answer (relations)).** R(A,B,C,D,E) has the dependencies A to B, B to C and D to E. How many relations does 3NF synthesis from the minimal cover produce, including a key relation if one is needed?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that if (R1 intersect R2) determines R1 minus R2 then the join of the projections of r onto R1 and R2 equals r.
+
+**Q5 (3 marks, programming).** Write testers for 2NF, 3NF and BCNF, the BCNF decomposer, the 3NF synthesiser, a chase lossless-join test and a dependency-preservation test.
+
+<details><summary>Key for A15.12 (open only after your attempt)</summary>
+
+- **Q1:** C. Candidate keys are AB and AC, so B is prime and AB to C and C to B are allowed in 3NF; C to B violates BCNF because C is not a superkey.
+- **Q2:** A, C, D. B is false: R(A,B,C) with AB to C and C to B has no dependency-preserving BCNF decomposition.
+- **Q3:** 4 relations (tolerance ±0). The cover gives the relations AB, BC and DE; the only key is AD and no relation contains it, so one more relation AD is added: 4.
+- **Q4 (marking outline):** The join of the projections always contains r. Conversely take a tuple t in the join: t restricted to R1 comes from a tuple u of r and t restricted to R2 from a tuple v of r, and u and v agree on R1 intersect R2. By the dependency, u and v then agree on R1 minus R2 as well, so v agrees with u on all of R1; therefore t restricted to R1 equals v restricted to R1 and t restricted to R2 equals v restricted to R2, so t equals v, which is in r. Hence the join is not larger than r.
+- **Q5 (what a passing submission shows):** On 400 seeded random schemas every BCNF output is in BCNF and lossless, every 3NF output is in 3NF, lossless and dependency preserving, and the schema R(A,B,C) with AB to C and C to B shows the loss of a dependency under BCNF.
+
+</details>
+
+### U15.13 Multivalued, join and inclusion dependencies: fourth and fifth normal forms and other dependencies
+**Sources:** FDB W18; DBD W4; IDB W10
+- **Topics:** Database Normalization: Multi-valued Dependencies (Lecture 18); the second half of Module 4, Further Dependencies (2 sessions): multi-values dependencies (the source's spelling) and fourth normal form, join dependencies and fifth normal form, inclusion dependencies, other dependencies and normal forms; Week 10 of the Madras course. A multivalued dependency X ↠ Y by tuple exchange; trivial MVDs; the rules (complementation, augmentation, transitivity, every FD implies an MVD, coalescence); fourth normal form (every non-trivial MVD has a superkey on its left) and the 4NF decomposition; join dependencies ⋈[R₁, …, R_k] and fifth (project-join) normal form; inclusion dependencies R[X] ⊆ S[Y], of which foreign keys are the main case; other dependencies and forms (equality- and tuple-generating dependencies in the chase, domain-key normal form, and sixth normal form for temporal data, named).
+- **Results:** X ↠ Y holds in R exactly when R = π_{XY}(R) ⋈ π_{X(R−Y)}(R), a lossless binary decomposition [P]; every functional dependency X → Y implies X ↠ Y [P]; the complementation rule: X ↠ Y implies X ↠ R − X − Y [P]; in R(course, teacher, text) with course ↠ teacher, two teachers and three texts for one course give 6 rows, and the 4NF decomposition keeps 2 + 3 = 5 and removes the redundancy [D, check]; an MVD is a join dependency with two components [P]; the ternary relationship {(s1,p1,j2), (s1,p2,j1), (s2,p1,j1)} of U15.2 does not satisfy the cyclic join dependency ⋈[SP, PJ, SJ] and its join closure, with four triples, does [D, check]; implication of inclusion dependencies is PSPACE-complete and mixed FD and IND implication is undecidable [X, beyond course scope].
+- **Build:** an MVD checker on instances, the 4NF decomposer driven by the instances, a join-dependency test (project onto the components, join, compare), and the chase extended with MVD rules, tested on random instances built to satisfy or violate a stated dependency. [local]
+- **Gap-fills:** *[inferred: Fagin 1977 on MVDs and 4NF; Fagin 1979 on 5NF; Casanova, Fagin and Papadimitriou 1984 on inclusion dependencies; Mitchell 1983 on the implication problem, recalled, not checked]*
+
+**Assignment A15.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** R(course, teacher, text) satisfies course multi-determines teacher and course multi-determines text, with no functional dependencies. Which decomposition removes the redundancy?
+
+(A) {course, teacher} and {course, text}  
+(B) {teacher, text} and {course, teacher}  
+(C) {course, teacher, text} unchanged  
+(D) {course} and {teacher, text}
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about dependencies are true?
+
+(A) Every functional dependency implies the corresponding multivalued dependency  
+(B) X multi-determines Y implies that X multi-determines the remaining attributes R minus X minus Y  
+(C) Every multivalued dependency is a functional dependency  
+(D) A multivalued dependency is a join dependency with two components
+
+**Q3 (2 marks, numerical answer (rows)).** One course has 4 teachers and 5 texts. How many rows does the 4NF decomposition into (course, teacher) and (course, text) store for that course?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that every functional dependency X to Y implies the multivalued dependency X multi-determines Y.
+
+**Q5 (3 marks, programming).** Write an MVD checker for instances, an instance-driven 4NF decomposer, a join-dependency test and a chase that handles FD and MVD rules.
+
+<details><summary>Key for A15.13 (open only after your attempt)</summary>
+
+- **Q1:** A. Each course is independent of the choice of teacher and text; splitting on the multivalued dependency into the two binary relations is the 4NF decomposition and is lossless.
+- **Q2:** A, B, D. C is false: course multi-determines teacher in the example but does not determine a single teacher.
+- **Q3:** 9 rows (tolerance ±0). The original relation holds all 4 × 5 = 20 combinations; the decomposition stores 4 rows of (course, teacher) and 5 of (course, text): 9 rows.
+- **Q4 (marking outline):** Take two tuples t1 and t2 of r that agree on X. The multivalued dependency requires a tuple t3 in r with X and Y values of t1 and the remaining values of t2. Because X to Y holds, t1 and t2 agree on Y, so t3, which has the Y values of t1, has the Y values of t2, and its X values agree too; hence t3 has all the values of t2 and equals t2, which is in r. So the required tuple always exists.
+- **Q5 (what a passing submission shows):** On random instances built to satisfy or violate a stated dependency the checker agrees with a direct tuple-exchange test, the course-teacher-text example splits 6 rows into 5, and the supplier-part-project relation is shown not to satisfy the cyclic join dependency while its join closure does.
+
+</details>
+
+### U15.14 Bridge: the external-memory model, disks and the cost of sorting
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query processing and optimisation count page transfers, not instructions), and later U10.2 (distributed file systems) and U11.1 (external sorting in MapReduce).
+- **Topics:** Why the unit of cost changes: the memory hierarchy of U14.9 to U14.12 seen from the database, where a disk or flash access costs a million times a cache hit. The magnetic disk: platters, surfaces, tracks, cylinders, sectors, the head; the access time as seek plus rotational latency plus transfer; sequential against random access; the flash drive (pages, erase blocks, write amplification, no seek, asymmetric read and write cost); the block (page) as the unit of transfer. The external-memory (I/O) model of Aggarwal and Vitter with N records, a memory of M records and blocks of B records: scanning costs N/B transfers, sorting costs (N/B)·log_{M/B}(N/B) and a search in a block-indexed structure costs log_B N. External merge sort: run formation by sorting M records at a time or by replacement selection, then (M/B − 1)-way merges; double buffering to overlap transfer and computation.
+- **Results:** The average rotational latency is half a revolution, 60/(2 × 7200) s = 4.17 ms at 7200 rpm, so a random 8 KB read with a 9 ms seek and a 150 MB/s transfer costs about 13.2 ms against 0.052 ms for the same block when it is the next one on the track [D, check]; external merge sort of N pages with M buffers takes 1 + ⌈log_{M−1}⌈N/M⌉⌉ passes, each reading and writing every page, so N = 10 000 and M = 100 give 3 passes and 60 000 page transfers [P, check by simulating the merge passes]; sorting needs Ω((N/B) log_{M/B}(N/B)) transfers, by counting: each transfer can distinguish only C(M, B) arrangements, and N! permutations must be told apart [S, the adversary argument is sketched, not written out]; replacement selection produces runs of average length about 2M on random input, by the snowplow argument [S, check: measured 1.99 M on 200 000 random keys]; a scan is the cheapest access and a random access the dearest, which is why the file organisations of U15.15 try to turn random into sequential access [D].
+- **Build:** a block-device simulator that counts reads and writes and, optionally, applies the seek, rotational and transfer model; external merge sort checked against the pass formula; replacement selection with measured run length; a flash model with erase blocks that counts write amplification for random and sequential writes. [local]
+- **Gap-fills:** *[inferred: Aggarwal and Vitter 1988; Knuth, The Art of Computer Programming vol. 3, section 5.4; Ruemmler and Wilkes 1994 on disk modelling; the flash figures are recalled, not checked]*
+
+**Assignment A15.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A disk spins at 10000 revolutions per minute. What is its average rotational latency?
+
+(A) 2 ms  
+(B) 3 ms  
+(C) 6 ms  
+(D) 4.17 ms
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about the external-memory model are true?
+
+(A) Scanning N records costs about N/B block transfers  
+(B) External merge sort of N pages with M buffers needs 1 + ceiling of log base M−1 of the number of runs passes  
+(C) On a magnetic disk a random block access costs about the same as the next sequential block  
+(D) Replacement selection yields runs of average length about 2M on random input
+
+**Q3 (2 marks, numerical answer (page transfers)).** A file of 1000000 pages is sorted with 1002 buffers of one page each. Run formation sorts 1002 pages at a time and merging uses M−1 = 1001 input buffers. How many page transfers (reads plus writes) does the whole sort perform?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that external merge sort of N pages with M buffers takes 1 + ceiling of log base (M−1) of ceiling(N/M) passes.
+
+**Q5 (3 marks, programming).** Write a block-device simulator that counts reads and writes with an optional seek, rotation and transfer model, an external merge sort and replacement selection, and a flash model with erase blocks.
+
+<details><summary>Key for A15.14 (open only after your attempt)</summary>
+
+- **Q1:** B. One revolution takes 60/10000 s = 6 ms and the average wait is half a revolution, 3 ms.
+- **Q2:** A, B, D. C is false: a random access pays a seek and a rotational delay of several milliseconds, while the next sequential block costs only the transfer.
+- **Q3:** 4000000 page transfers (tolerance ±0). There are ceiling(1000000/1002) = 999 runs, which fit in one 1001-way merge, so there are 2 passes (run formation and one merge), each reading and writing 1000000 pages: 4000000.
+- **Q4 (marking outline):** Pass 0 reads M pages at a time, sorts them in memory and writes ceiling(N/M) sorted runs. Each later pass merges up to M−1 runs into one, using M−1 input buffers and one output buffer, so the number of runs is divided by M−1 and rounded up. After k merge passes at most ceiling(N/M)/(M−1)^k runs remain, which reaches 1 exactly when k is at least log base (M−1) of ceiling(N/M); the smallest such k is the ceiling, and adding pass 0 gives the formula. Each pass reads and writes all N pages, so 2N transfers per pass.
+- **Q5 (what a passing submission shows):** The measured number of passes and transfers equals the formula on at least 20 (N, M) pairs, replacement selection averages between 1.9 M and 2.1 M on 200000 random keys, and random small writes give higher write amplification than sequential writes in the flash model.
+
+</details>
+
+### U15.15 Storage structures and physical design: devices, buffering, file organisation and hashing
+**Sources:** FDB W19–20; DBD W5; IDB W7
+- **Topics:** Physical Design (Lecture 19) and the hashing half of Indexing: Basics and Hashing (Lecture 20); Module 5 of Database Design, Storage and Indexing Structures (6 sessions), its first half Storage structures (3 sessions): secondary storage devices, buffering of blocks, file organization, heaps, sorted files, hashing and overflow handling techniques, dynamic hashing, extensible hashing, other file organizations; the Indexes Module of Week 7 of the Madras course. Records: fixed and variable length, spanned and unspanned, the blocking factor, slotted pages and record identifiers, row against column layout. The buffer pool: pinning, dirty pages, replacement (LRU, clock, and MRU for repeated scans), read-ahead. File organisations: the heap, the sorted file, static hashing with overflow chains or open addressing, and dynamic hashing by extensible hashing and linear hashing; clustered files and RAID as the other organisations; the physical-design task of choosing organisations and indexes for a workload, and denormalisation as part of it.
+- **Results:** With record size R and block size B, the blocking factor is ⌊B/R⌋ and a file of n records occupies ⌈n/⌊B/R⌋⌉ blocks; a heap search reads b/2 blocks on average and b at worst, a sorted file ⌈log₂ b⌉ by binary search [P]; with n keys hashed uniformly into m buckets and load α = n/m the expected chain visited is α for an unsuccessful and 1 + α/2 for a successful search [P, under the uniform-hashing assumption]; an extensible hash file keeps a directory of 2^d pointers (global depth d), every bucket has a local depth at most d, a full bucket splits (doubling the directory only when its local depth equals d), and a lookup costs one directory access and one block access [P for the invariants, check]; the expected number of buckets for n keys with capacity b is about n/(b ln 2), measured 0.998, 1.000 and 1.021 of that for b = 4, 8 and 16 on 40 000 random keys [X, check]; a cyclic scan over 11 blocks with 10 buffers has hit rate 0 under LRU and about 0.86 under MRU [D, check]; the XOR of the surviving disks of a RAID-5 stripe recovers a lost disk [P].
+- **Build:** a slotted-page heap file with record identifiers; a buffer manager with LRU, clock and MRU policies and hit-rate measurements on scans and skewed workloads; extensible hashing and linear hashing with invariant checkers; a RAID-5 parity coder with disk failure and rebuild. [local]
+- **Gap-fills:** *[inferred: Fagin, Nievergelt, Pippenger and Strong 1979 on extensible hashing; Litwin 1980 on linear hashing; Patterson, Gibson and Katz 1988 on RAID; Chou and DeWitt 1985 on buffer replacement for database workloads, recalled, not checked]*
+
+**Assignment A15.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A file has 100000 records of 200 bytes each, stored unspanned in blocks of 4096 bytes. How many blocks does it occupy?
+
+(A) 4883  
+(B) 5000  
+(C) 5120  
+(D) 4000
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about extensible hashing are true?
+
+(A) The directory has 2 to the power of the global depth entries  
+(B) A full bucket splits, and the directory doubles only if the bucket's local depth equals the global depth  
+(C) Every bucket split doubles the directory  
+(D) Several directory entries can point to the same bucket
+
+**Q3 (2 marks, numerical answer (records)).** A static hash file has 3000 keys in 1000 buckets with chaining. What is the expected number of records examined for a successful search, assuming uniform hashing?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that an LRU buffer of b frames misses on every access of a cyclic scan over b+1 blocks, and that MRU replacement does much better.
+
+**Q5 (3 marks, programming).** Write a slotted-page heap file with record identifiers, a buffer manager with LRU, clock and MRU, extensible hashing and linear hashing with invariant checkers, and a RAID-5 parity coder.
+
+<details><summary>Key for A15.15 (open only after your attempt)</summary>
+
+- **Q1:** B. The blocking factor is floor(4096/200) = 20 records per block, so the file needs 100000/20 = 5000 blocks.
+- **Q2:** A, B, D. C is false: when the local depth is smaller than the global depth, the split only redistributes the pointers of the directory entries already present.
+- **Q3:** 2.5 records (tolerance ±0.01). The load factor is alpha = 3; a successful search examines 1 + alpha/2 = 2.5 records on average.
+- **Q4 (marking outline):** Under LRU the block that is evicted is the least recently used one, which in a cyclic scan over b+1 blocks is exactly the block that will be requested next, so the next request always misses, and the pattern repeats: the hit rate is 0. Under MRU the evicted block is the one just used, which will be needed last; after the first pass the same b−1 blocks stay in the buffer and only one block is swapped per pass, so about b out of every b+1 accesses hit (simulated 0.86 for b = 10 over 20 rounds, approaching 10/11 as the number of rounds grows).
+- **Q5 (what a passing submission shows):** Record identifiers stay valid after deletes and compaction, the cyclic-scan hit rates are 0 for LRU and above 0.8 for MRU, both hashing schemes pass their invariants on 40000 random keys with the measured bucket count within 5 percent of n divided by b ln 2 for extensible hashing, and any single lost disk is rebuilt exactly.
+
+</details>
+
+### U15.16 Indexing: primary, clustering, secondary and multilevel indexes, ISAM, B-trees and B+-trees
+**Sources:** FDB W20–22; DBD W5; IDB W7–8
+- **Topics:** Indexing: Basics and Hashing (Lecture 20, the index basics), Indexing: B-tree and B+-tree (Lecture 21) and its Recap (Lecture 22); the second half of Module 5, Indexing methods (3 sessions): basic terminology, primary indexes, clustering index, secondary index, multilevel indexes, ISAM, B-trees, B+ trees, inserting and searching algorithms for B+ trees, other indexing methods; the Indexes Module of Week 7 and the first half of Week 8 (Indexes Module + Query Processing Module). Dense and sparse indexes; a primary index on the ordering key field, a clustering index on a non-key ordering field and a secondary index on a field that does not order the file; multilevel indexes and the static ISAM structure with overflow pages; B-trees and B+-trees: node structure, order, occupancy invariants, search, insertion with splits, deletion with redistribution and merging, leaf links and range scans, bulk loading, composite keys and key prefixes, covering (index-only) scans; other indexing methods named: bitmap indexes, inverted files (U11.1), spatial trees (U15.25), and log-structured merge trees (U10.4 and U10.5).
+- **Results:** Take order m (at most m children, at most m − 1 keys per leaf, internal nodes with at least ⌈m/2⌉ children, leaves with at least ⌈(m − 1)/2⌉ keys, the root exempt); with h levels a tree holds at most (m − 1)m^{h−1} keys and at least 2⌈m/2⌉^{h−2}⌈(m − 1)/2⌉ keys when h ≥ 2, so the height lies between the smallest h with (m − 1)m^{h−1} ≥ n and the largest h with that minimum at most n [P, check against a real B+-tree built from 20 000 random and ascending keys, orders 4, 5 and 8]; for n = 10⁶ keys the height is 3 at order 200 whatever the insertion order, and at order 100 it is exactly 4, because three levels hold at most 99 × 100² = 990 000 < 10⁶ keys [check]; an insertion preserves the occupancy invariants because a split gives two nodes each at least half full [P]; a range query returning k keys costs h + ⌈k/(entries per leaf)⌉ block reads [D]; a multilevel sparse index over 1 000 000 records with 10 records per block (100 000 data blocks) and 100 index entries per block has 3 levels and finds a record in 4 block accesses [D, check]; a secondary index needs one pointer per record (dense) because the file is not ordered on that field [D].
+- **Build:** a B+-tree (insert, delete with redistribution and merging, search, range scan, bulk load, invariant checker) tested against a sorted-list oracle on random and adversarial sequences; ISAM with overflow chains; dense and sparse indexes over a paged file with block-access counters, reproducing the multilevel example. [local]
+- **Gap-fills:** *[inferred: Bayer and McCreight 1972 on B-trees; Comer 1979, "The ubiquitous B-tree"; Graefe 2011 on B-tree techniques; O'Neil et al. 1996 on LSM trees, recalled, not checked]* write-optimised indexes (LSM) are placed in U10.4 and U10.5, not repeated.
+
+**Assignment A15.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which index must contain one entry for every record of the file?
+
+(A) A primary index on the ordering key of the file  
+(B) A clustering index on a non-key ordering field  
+(C) A secondary index on a field that does not order the file  
+(D) The upper levels of a multilevel index
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about B+-trees are true?
+
+(A) All leaves are at the same depth  
+(B) Leaves are linked so that a range scan follows the links after one descent  
+(C) A deletion never needs to merge or redistribute nodes  
+(D) After a split both new nodes are at least half full
+
+**Q3 (2 marks, numerical answer (levels)).** What is the smallest possible height (number of levels) of a B+-tree of order 100 (at most 99 keys per leaf and 100 children per node) holding 1000000 keys?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a B+-tree of order m and height h holds at most (m−1)m^(h−1) keys and, for h at least 2, at least 2 ceiling(m/2)^(h−2) ceiling((m−1)/2) keys, and use this to show that a tree of order 200 with 10^6 keys has height exactly 3.
+
+**Q5 (3 marks, programming).** Write a B+-tree with insert, delete with redistribution and merging, search, range scan, bulk load and an invariant checker, plus ISAM and dense and sparse indexes over a paged file with block-access counters.
+
+<details><summary>Key for A15.16 (open only after your attempt)</summary>
+
+- **Q1:** C. The file is not ordered on that field, so the entries cannot be sparse; primary, clustering and upper-level indexes can be sparse because the data are in order.
+- **Q2:** A, B, D. C is false: a node that falls below the minimum occupancy borrows from a sibling or merges with it.
+- **Q3:** 4 levels (tolerance ±0). With h levels at most 99 × 100^(h−1) keys fit: 99 × 100² = 990000 is below 10^6, 99 × 100³ is above, so h = 4.
+- **Q4 (marking outline):** Maximum: the root and each internal node have at most m children, so level k has at most m^(k−1) nodes and the h-th level, the leaves, at most m^(h−1) nodes with at most m−1 keys each. Minimum: the root has at least 2 children and every other internal node at least ceiling(m/2), so the leaf level has at least 2 ceiling(m/2)^(h−2) nodes with at least ceiling((m−1)/2) keys each. For m = 200 the maximum at h = 2 is 199 × 200 = 39800 < 10^6, so h is at least 3; the minimum at h = 4 is 2 × 100² × 100 = 2000000 > 10^6, so h is at most 3; hence h = 3.
+- **Q5 (what a passing submission shows):** On random and ascending sequences of at least 20000 keys the tree agrees with a sorted-list oracle after every operation, the invariants hold, the heights lie within the bounds of this unit, and the multilevel-index example gives 3 index levels and 4 block accesses.
+
+</details>
+
+### U15.17 Query processing: selection, sorting, projection and the join algorithms
+**Sources:** FDB W23–27; DBD W8; IDB W8
+- **Topics:** Query Processing: Selection (Lecture 23), Query Processing: Sorting (Lecture 24), Query Processing: Basic Nested Loop Join (Lecture 25), Query Processing: Block and Indexed Nested Loop Joins (Lecture 26) and Query Processing: Merge and Hash Joins (Lecture 27); Module 8, Query Processing and Optimization (2 sessions): translating SQL into relational algebra, basic query operations; the Query Processing Module of Week 8 of the Madras course. The pipeline: parse, translate to algebra, optimise (U15.18), execute. Cost in page transfers (U15.14). Selection: linear scan, binary search on a sorted file, primary and secondary index, range selection, conjunctions and disjunctions with several indexes or by intersecting record identifiers. Sorting and the duplicate elimination, projection and aggregation built on it (sort-based and hash-based). Joins: nested loop, block nested loop, indexed nested loop, sort-merge and hash join (partitioning, build and probe, recursive and hybrid partitioning); materialisation against pipelining and the iterator interface (open, next, close).
+- **Results:** The selection costs are b_r for a linear scan, ⌈log₂ b_r⌉ for binary search and the height h plus one for a B+-tree equality search on a key [D]; with b_r = 100, b_s = 400 pages and M = 22 buffers, block nested loop costs b_r + ⌈b_r/(M − 2)⌉ b_s = 2100 with r outer and 2400 with s outer, so the smaller relation belongs outside, and the tuple-at-a-time nested loop with n_r = 10 000 tuples would cost 4 000 100 [D, check]; hash join costs 3(b_r + b_s) = 1500 when the build side's partitions fit in memory, which needs about M > √(f·b_r) buffers (12 here, f a fudge factor of 1.2) [D, check]; sort-merge join, with the last merge pipelined into the join and each input sorting in one merge pass, also costs 3(b_r + b_s) [D]; the iterator model composes operators so that tuples flow without writing intermediate results to disk [Def]; every join algorithm gives the same bag of tuples as the definition R ⋈ S [P, tested].
+- **Build:** a paged storage layer with I/O counters and every algorithm above (including grace and hybrid hash join and an external sort), with the measured page transfers compared to the formulas to within a few percent; a Volcano-style iterator executor with scan, selection, projection, join, sort and aggregate operators, tested against `sqlite3` results. [local]
+- **Gap-fills:** *[inferred: Graefe 1993, "Query evaluation techniques for large databases"; Garcia-Molina, Ullman and Widom, Chapters 15; Shapiro 1986 and DeWitt et al. 1984 on hash joins, recalled, not checked]* the bitmap and index-intersection plans are named, not built.
+
+**Assignment A15.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Relations r and s have 100 and 400 pages and 22 buffers are available. What is the page-transfer cost of a block nested loop join with r as the outer relation?
+
+(A) 1500  
+(B) 2100  
+(C) 2400  
+(D) 40100
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about join algorithms are true?
+
+(A) A hash join costs about 3(b_r + b_s) page transfers when each build partition fits in memory  
+(B) In a block nested loop join the smaller relation should be the outer one  
+(C) A sort-merge join requires both inputs to be sorted already  
+(D) The iterator interface of open, next and close lets operators pass tuples without writing intermediate results
+
+**Q3 (2 marks, numerical answer (page transfers)).** Relation r has 50 pages and s has 1000 pages and 12 buffers are available. What is the cost in page transfers of a block nested loop join with r outer?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that, when M−2 divides both b_r and b_s and b_r is at most b_s, the block nested loop join with r outer costs no more than with s outer.
+
+**Q5 (3 marks, programming).** Write a paged storage layer with I/O counters and implement selection, external sort, the three nested-loop joins, sort-merge join, grace and hybrid hash join and a Volcano-style iterator executor.
+
+<details><summary>Key for A15.17 (open only after your attempt)</summary>
+
+- **Q1:** B. The cost is b_r + ceiling(b_r/(M−2)) × b_s = 100 + 5 × 400 = 2100.
+- **Q2:** A, B, D. C is false: unsorted inputs are sorted first, and the cost of sorting is part of the join cost.
+- **Q3:** 5050 page transfers (tolerance ±0). Each pass over s serves M−2 = 10 pages of r, so ceiling(50/10) = 5 passes read s: 50 + 5 × 1000 = 5050.
+- **Q4 (marking outline):** With r outer the cost is b_r + (b_r/(M−2)) b_s, and with s outer it is b_s + (b_s/(M−2)) b_r. The second terms are both b_r b_s/(M−2), so the difference is (b_s + b_r b_s/(M−2)) − (b_r + b_r b_s/(M−2)) = b_s − b_r, which is at least 0. So r outer is cheaper, or equal if the two sizes are equal; without divisibility the ceilings can change the result by at most one pass.
+- **Q5 (what a passing submission shows):** Every join returns the same bag as the definition on 200 random inputs, measured page transfers are within 5 percent of the formulas of this unit on at least 10 parameter settings, and the executor matches sqlite3 on a set of 20 queries.
+
+</details>
+
+### U15.18 Query optimisation: equivalent expressions, join ordering, size estimation and semantic optimisation
+**Sources:** FDB W28–32; DBD W8; IDB W8
+- **Topics:** Query Optimization: Equivalent Expressions (Lecture 28), Query Optimization: Joins (Lectures 29 and 30, which share one title) and Query Optimization: Estimating Sizes (Lecture 31), and the Recap (Lecture 32) that closes the physical block; the rest of Module 8: heuristics in query optimization, selectivity and cost estimates in query optimization, semantic query optimization; Week 8 of the Madras course. Translating SQL, including nested blocks, into algebra (unnesting as semijoins). Equivalence rules (U15.5) and the heuristics they support (selections as early as possible, projections early, a product followed by a selection turned into a join, the most selective operations first). Cost-based optimisation: the statistics a catalog keeps (n_r, b_r, distinct values V(A, r), minima, maxima, histograms); the selectivity of equality, range, conjunction (independence assumption) and disjunction; join size estimates; the space of plans (left-deep and bushy trees), enumeration by dynamic programming over subsets (the Selinger method) with interesting orders, and heuristic search for many relations; reading a plan (`EXPLAIN`). Semantic query optimization: integrity constraints used to simplify or eliminate a join, or to detect a contradictory predicate.
+- **Results:** n relations have n! left-deep join orders and (2n − 2)!/(n − 1)! binary trees including commuted children, 24 and 120 for n = 4 and 120 and 1680 for n = 5 [P, check by enumeration]; dynamic programming over subsets finds the cheapest left-deep plan when the cost of a plan is the sum of its intermediate-result sizes, in time O(n·2ⁿ), by the principle of optimality, and agreed with brute force on 60 random instances of 3 to 6 relations [P, check]; |σ_{A=v}(r)| is estimated as n_r/V(A, r), and |r ⋈ s| as n_r·n_s/max(V(B, r), V(B, s)) under uniformity and containment of value sets, so 10 000 and 5 000 tuples with V(B, r) = 100 and V(B, s) = 500 give 100 000 [D, check]; the independence assumption fails for correlated attributes: with a = b on 10 000 rows, the conjunction a = 3 and b = 3 has 1000 matches against an estimate of 100, a tenfold error [D, check on `sqlite3`]; pushing a selection below a join never increases the tuple count of the join's inputs, though with an expensive predicate it can raise the cost [D]; a foreign-key join whose joined table contributes no column to the result can be eliminated [D, semantic optimisation].
+- **Build:** a cost-based optimiser for select-project-join queries over statistics you compute (equality and range selectivity, join size estimates, Selinger dynamic programming for left-deep plans) compared with brute-force enumeration and with the plan `sqlite3` reports by `EXPLAIN QUERY PLAN` on indexed tables; a rule-based rewriter for selection and projection push-down, validated by running both plans on random data. [local]
+- **Gap-fills:** *[inferred: Selinger, Astrahan, Chamberlin, Lorie and Price 1979; Graefe and McKenna 1993 (Volcano) and Graefe 1995 (Cascades); Ioannidis 1996 on query optimisation; Leis et al. 2015 on cardinality estimation errors, recalled, not checked]*
+
+**Assignment A15.18** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** How many binary join trees (counting commuted children as different) exist for 5 relations?
+
+(A) 120  
+(B) 1680  
+(C) 3125  
+(D) 40320
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about query optimisation are true?
+
+(A) There are n! left-deep join orders for n relations  
+(B) Dynamic programming over subsets finds the cheapest left-deep plan when the cost is the sum of intermediate result sizes  
+(C) The independence assumption can only overestimate the size of a conjunction  
+(D) The join size n_r n_s / max(V(B,r), V(B,s)) assumes uniform values and containment of value sets
+
+**Q3 (2 marks, numerical answer (tuples)).** r has 20000 tuples and s has 8000 tuples; the join attribute B has 400 distinct values in r and 1000 in s. What is the estimated size of the natural join?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that dynamic programming over subsets yields the cheapest left-deep join order when the cost of an order is the sum of the sizes of its intermediate results.
+
+**Q5 (3 marks, programming).** Write a cost-based optimiser for select-project-join queries with statistics, selectivity and join size estimates and Selinger dynamic programming for left-deep plans, and a rule-based rewriter for selection and projection push-down.
+
+<details><summary>Key for A15.18 (open only after your attempt)</summary>
+
+- **Q1:** B. The count is (2n−2)!/(n−1)! = 8!/4! = 1680 for n = 5; the number of left-deep orders is 5! = 120.
+- **Q2:** A, B, D. C is false: for correlated attributes (a = b) it underestimates tenfold in the example, and for anti-correlated attributes it overestimates.
+- **Q3:** 160000 tuples (tolerance ±0). The estimate is n_r × n_s / max(V(B,r), V(B,s)) = 160000000 / 1000 = 160000.
+- **Q4 (marking outline):** The size of the join of a set S of relations does not depend on the order in which S is joined, so the cost of an order is the sum over its prefixes of a function of the prefix set. Let best(S) be the cheapest cost of joining S. An optimal order for S ends with some relation i and its prefix is an order of S minus i whose cost cannot exceed best(S minus i) without being improvable: replacing the prefix by an optimal one changes only the prefix cost terms, not the last term size(S). Hence best(S) = min over i of best(S minus i) + size(S), which the dynamic programme computes bottom-up over the 2^n subsets.
+- **Q5 (what a passing submission shows):** The dynamic programme equals brute force on 60 random instances of 3 to 6 relations, the join counts 24, 120, 120 and 1680 are reproduced, rewritten and original plans return identical results on random data, and the optimiser's chosen plan is compared with the plan sqlite3 reports for an indexed example.
+
+</details>
+
+### U15.19 Bridge: directed graphs, cycles, topological order and partial orders for schedules, deadlocks and timestamps
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graphs, deadlock detection and the timestamp orders of wait-die, wound-wait and timestamp ordering) and U15.23 (the dependency order of log records). U2.7 taught shortest paths and spanning trees; it did not teach cycles and topological order, which are needed here.
+- **Topics:** Directed graphs, paths, cycles and acyclic graphs (DAGs); depth-first search with the three colours and back edges; topological order and Kahn's algorithm; strongly connected components (Tarjan or Kosaraju); partial orders, total orders and linear extensions (a serial order of transactions is a linear extension of the order the conflicts force); the number of linear extensions of a small poset; the minimum feedback vertex set (the fewest vertices whose removal makes a graph acyclic), which is the victim-selection problem of a deadlock.
+- **Results:** A digraph has a topological order exactly when it has no directed cycle [P]; depth-first search finds a directed cycle exactly when it meets a back edge to a vertex that is still being explored [P]; Kahn's algorithm (repeatedly remove a vertex of in-degree zero) outputs a topological order or stops with a non-empty remainder that contains a cycle [P]; a DAG has at least one topological order and a graph with n pairwise unordered vertices has n! [P]; the graph with edges 1→2, 2→3, 3→1, 2→4, 4→2 needs 1 deleted vertex (vertex 2) to become acyclic, found by brute force [check]; minimum feedback vertex set is NP-hard, which is why deadlock detectors choose victims by cost heuristics [X, Karp 1972].
+- **Build:** cycle detection by depth-first search and by Kahn's algorithm checked against brute-force path closure on random digraphs; Tarjan's strongly connected components; enumeration of linear extensions; brute-force minimum feedback vertex set for graphs of up to 10 vertices. [local]
+- **Gap-fills:** *[inferred: Cormen, Leiserson, Rivest and Stein, Chapters 20 and 22 in the fourth edition; Karp 1972, recalled, not checked]*
+
+**Assignment A15.19** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which algorithm repeatedly removes a vertex of in-degree zero and either outputs a topological order or stops at a remainder that contains a cycle?
+
+(A) Dijkstra's algorithm  
+(B) Kahn's algorithm  
+(C) Prim's algorithm  
+(D) Bellman–Ford
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about directed graphs are true?
+
+(A) A digraph has a topological order exactly when it has no directed cycle  
+(B) Depth-first search finds a directed cycle exactly when it meets a back edge  
+(C) Every DAG has exactly one topological order  
+(D) Finding a minimum feedback vertex set is NP-hard
+
+**Q3 (2 marks, numerical answer (orders)).** A DAG on the vertices 1 to 5 has the edges 1→3, 2→3, 3→4 and 3→5. How many topological orders does it have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that every non-empty finite DAG has a vertex of in-degree zero, and conclude that it has a topological order.
+
+**Q5 (3 marks, programming).** Implement cycle detection by depth-first search and by Kahn's algorithm, Tarjan's strongly connected components, enumeration of linear extensions and a brute-force minimum feedback vertex set.
+
+<details><summary>Key for A15.19 (open only after your attempt)</summary>
+
+- **Q1:** B. Kahn's algorithm is exactly this procedure; the others compute shortest paths and spanning trees.
+- **Q2:** A, B, D. C is false: two vertices with no path between them can come in either order.
+- **Q3:** 4 orders (tolerance ±0). Vertices 1 and 2 may come in either order before 3, and then 4 and 5 in either order after 3: 2 × 2 = 4.
+- **Q4 (marking outline):** Suppose every vertex had in-degree at least 1. Starting at any vertex, step to a predecessor, and repeat. Since every vertex has a predecessor the walk never stops, but the graph is finite, so some vertex repeats, and the part of the walk between the two visits is a directed cycle, a contradiction. So a vertex with in-degree zero exists. Place it first, remove it (what remains is again a DAG) and repeat; the order produced is a topological order because every edge goes from a vertex removed earlier to one removed later.
+- **Q5 (what a passing submission shows):** Both cycle detectors agree with brute-force path closure on 500 random digraphs, the strongly connected components match the closure test, the example DAG gives 4 linear extensions, and the 5-vertex cycle example needs 1 deleted vertex.
+
+</details>
+
+### U15.20 Transactions: OLTP, concurrency problems, the ACID properties and transaction states
+**Sources:** FDB W33–34; DBD W6; IDB W11
+- **Topics:** Database Transactions: Definition of Transactions (Lecture 33) and Database Transactions: Features of Transactions (Lecture 34); the first half of Module 6 of Database Design, Transaction Processing and Concurrency Control (6 sessions), whose Transaction Fundamentals (3 sessions) cover OLTP environments, concurrency issues, the need for transactions, the necessary properties of transactions (ACID properties) and transaction states (the schedule topics continue in U15.21); the Transaction Processing Module of Week 11 of the Madras course. A transaction as a unit of work (BEGIN, COMMIT, ROLLBACK, savepoints); online transaction processing: many short transactions, debit-credit style workloads, response-time targets; the concurrency problems (lost update, dirty read, non-repeatable read, phantom read, and write skew, which U9.17 develops); why a database needs transactions (the bank transfer); atomicity, consistency, isolation and durability and which component enforces each (recovery manager, application and integrity constraints, concurrency-control manager, recovery manager); the transaction states active, partially committed, committed, failed, aborted and terminated, with the transitions; the SQL isolation levels READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ and SERIALIZABLE and the anomalies each permits.
+- **Results:** Two transfers that read a balance of 100, add 10 and 20 and write back without isolation leave 110 or 120 instead of 130, a lost update [D, check]; atomicity means all or none of a transaction's writes take effect, durability that a committed transaction's writes survive a crash, and the two are provided together by logging (U15.23) [Def]; the ANSI levels permit: READ UNCOMMITTED dirty, non-repeatable and phantom reads; READ COMMITTED non-repeatable and phantom reads; REPEATABLE READ phantom reads; SERIALIZABLE none [Def, from the standard as taught; the ambiguities in the standard's phrasing, pointed out by Berenson et al. 1995, are recalled, not checked]; a transaction in the failed state can only move to aborted, and a committed one is never rolled back (compensating transactions are separate transactions) [Def].
+- **Build:** a transaction state machine that rejects illegal transitions; replays of the lost-update, dirty-read, non-repeatable-read and phantom histories on a toy key-value store, then the same histories under the lock-based isolation levels of U15.22 to show which level prevents which anomaly; `sqlite3` rollback and savepoint behaviour as the oracle for atomicity. [local]
+- **Gap-fills:** *[inferred: Gray and Reuter, Chapter 1; Berenson, Bernstein, Gray, Melton, O'Neil and O'Neil 1995, "A critique of ANSI SQL isolation levels", recalled, not checked]* snapshot isolation and write skew are developed in U9.17 and not repeated.
+
+**Assignment A15.20** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which component of a DBMS mainly provides the isolation property of ACID?
+
+(A) The recovery manager  
+(B) The concurrency-control (lock) manager  
+(C) The buffer manager  
+(D) The query optimiser
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which transitions are legal in the transaction state diagram?
+
+(A) Active to partially committed  
+(B) Partially committed to committed  
+(C) Failed to committed  
+(D) Active to failed
+
+**Q3 (2 marks, numerical answer (units)).** A balance of 100 is updated by two transactions that each read it first, T1 adding 10 and T2 adding 20, with no isolation. The correct final balance is 130. What is the largest possible loss, in units, relative to the correct balance over all interleavings?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** List the final balances that the six interleavings of the read-modify-write transactions T1 (add 10) and T2 (add 20) can produce from 100, and say which are serializable.
+
+**Q5 (3 marks, programming).** Write a transaction state machine and replay the lost-update, dirty-read, non-repeatable-read and phantom histories on a toy key-value store, then show which lock-based isolation level prevents which anomaly.
+
+<details><summary>Key for A15.20 (open only after your attempt)</summary>
+
+- **Q1:** B. Isolation is about concurrent transactions not interfering, which is the job of concurrency control; recovery provides atomicity and durability.
+- **Q2:** A, B, D. C is illegal: a failed transaction can only be aborted (rolled back), never committed.
+- **Q3:** 20 units (tolerance ±0). If both read 100 and T2 writes 120 first and T1 then writes 110, the final value is 110, so 20 units are lost; the other bad outcome is 120 (loss 10).
+- **Q4 (marking outline):** Each transaction is read then write. Serial orders T1 T2 and T2 T1 give 130. The interleavings r1 r2 w1 w2 and r2 r1 w1 w2 end with T2's write of 120, the interleavings r1 r2 w2 w1 and r2 r1 w2 w1 end with T1's write of 110. So the finals are 130 (2 interleavings), 120 (2) and 110 (2). Only 130 equals the result of a serial schedule, so only those two interleavings (the serial ones) are serializable here.
+- **Q5 (what a passing submission shows):** Illegal transitions are rejected, each of the four histories reproduces its anomaly without isolation, the READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ and SERIALIZABLE policies remove exactly the anomalies in the table of this unit, and rollback matches sqlite3.
+
+</details>
+
+### U15.21 Schedules: conflict and view serializability, recoverability, cascading rollbacks and testing
+**Sources:** FDB W37–39; DBD W6; IDB W11–12
+- **Topics:** Transaction Schedules: Conflicts and Aborts (Lecture 37), Transaction Schedules: Serializability (Lecture 38) and Transaction Schedules: Recoverability (Lecture 39); the rest of Transaction Fundamentals in Module 6 of Database Design: serializability, serial schedules, conflict serializability, view serializability, recoverable and non-recoverable schedules, cascading rollbacks, cascadeless schedules, and from Concurrency control (3 sessions) the serialized and non-serialized schedules and testing for serializability; the Transaction Processing Module of Weeks 11 and 12. Schedules (histories), serial schedules, conflicting operations (same item, different transactions, at least one write); conflict equivalence and conflict serializability; the precedence graph test; view equivalence (same reads-from relation and same final writes) and view serializability, with blind writes; recoverable schedules (a transaction commits only after every transaction it read from has committed), cascadeless schedules (reads only of committed data) and strict schedules (no read or write of an item written by an uncommitted transaction); cascading rollback.
+- **Results:** A schedule is conflict serializable exactly when its precedence graph is acyclic (proved in U9.17 [P]; here it is used with U15.19's topological order, whose order is the equivalent serial schedule) [D]; the schedule r1(x) w2(x) w1(x) w3(x) is view serializable (equivalent to T1, T2, T3) but not conflict serializable, because of the blind write of T3 [D, check]; every conflict-serializable schedule is view serializable, and testing view serializability is NP-complete [P for the first part, check on 20 000 random schedules; X for the second, Papadimitriou 1979]; strict implies cascadeless implies recoverable, and the inclusions are proper [P, check: of 20 000 random schedules of three transactions, 5573 were strict, 10 315 cascadeless and 14 692 recoverable]; for r1(x) w1(y) against r2(y) w2(x), 2 of the 6 interleavings are conflict serializable, for r1(x) w1(y) against r2(x) w2(y) all 6 are, and for r1(x) r1(y) w1(x) against r2(x) w2(y) 4 of the 10 are [D, check]; a non-recoverable schedule can leave a committed transaction that has read a value that was later rolled back [D].
+- **Build:** a schedule parser; the precedence-graph test with an equivalent serial order; a brute-force view-serializability test; classifiers for recoverable, cascadeless and strict schedules; a random-schedule generator confirming the hierarchy and counting each class. [local]
+- **Gap-fills:** *[inferred: Papadimitriou 1979, "The serializability of concurrent database updates"; Bernstein, Hadzilacos and Goodman, Chapters 2 and 3, recalled, not checked]* serializable snapshot isolation is named in U9.17.
+
+**Assignment A15.21** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** How is the schedule r1(x) w1(x) r2(x) w2(x) c2 c1 classified?
+
+(A) Recoverable but not cascadeless  
+(B) Cascadeless  
+(C) Not recoverable  
+(D) Strict
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about schedule classes are true?
+
+(A) Every conflict-serializable schedule is view serializable  
+(B) Every view-serializable schedule is conflict serializable  
+(C) Every strict schedule is cascadeless  
+(D) Every cascadeless schedule is recoverable
+
+**Q3 (2 marks, numerical answer (schedules)).** Transaction T1 has 3 operations and T2 has 2 operations. How many schedules interleave them while keeping the order of operations inside each transaction?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that every conflict-serializable schedule is view serializable.
+
+**Q5 (3 marks, programming).** Write a schedule parser, the precedence-graph test with an equivalent serial order, a brute-force view-serializability test and classifiers for recoverable, cascadeless and strict schedules, and confirm the inclusions on random schedules.
+
+<details><summary>Key for A15.21 (open only after your attempt)</summary>
+
+- **Q1:** C. T2 reads the value written by T1 and commits before T1 commits, so if T1 aborted, T2 would have read a value that never existed and cannot be undone.
+- **Q2:** A, C, D. B is false: r1(x) w2(x) w1(x) w3(x) is view serializable but has a cycle in its precedence graph.
+- **Q3:** 10 schedules (tolerance ±0). Choose which 2 of the 5 positions belong to T2: C(5,2) = 10.
+- **Q4 (marking outline):** Let S be conflict equivalent to a serial schedule S'. Conflict equivalence means every pair of conflicting operations occurs in the same order in S and S'. A read r_i(x) reads from the last write w_j(x) before it; since the write and the read conflict and the order of w_j and r_i is kept, and no other write on x can slip between them without reversing a conflicting pair, the same write precedes it in S'. So both schedules have the same reads-from relation. Likewise the last write on each item is the same, because writes on one item conflict and keep their order. Hence S and S' are view equivalent.
+- **Q5 (what a passing submission shows):** On 20000 seeded random schedules of three transactions the inclusions strict in cascadeless in recoverable and conflict-serializable in view-serializable hold with no counterexample, and the blind-write schedule of this unit is classified view serializable and not conflict serializable.
+
+</details>
+
+### U15.22 Concurrency control protocols: locking and two-phase locking, timestamps, multiversioning, multiple granularity and deadlocks
+**Sources:** FDB W40–43; DBD W6; IDB W12
+- **Topics:** Concurrency Control Protocols: Two-phase Locking Protocols (Lecture 40), Timestamp Ordering Protocol (Lecture 41, split over two lines in the source with a repeated number), Multiple Granularity Locks (Lecture 42) and Deadlock Prevention (Lecture 43); Concurrency control (3 sessions) of Module 6: locking, the lock compatibility matrix, locking and serializability, deadlocks and starvation, the two-phase locking (2PL) protocol, conservative, strict and rigorous 2PL, 2PL with lock conversions, the timestamp-ordering based protocol, the multiversioning protocol, multi-granularity locking, deadlock prevention protocols, the wait-die and wound-wait schemes, time-out based schemes, deadlock recovery, nested transactions; the Transaction Processing Module of Week 12. Shared and exclusive locks and the compatibility matrix; 2PL (growing and shrinking phases, the lock point), strict (exclusive locks held to the end), rigorous (all locks held to the end) and conservative (all locks acquired first), and lock conversion (upgrade while growing, downgrade while shrinking); timestamp ordering with read and write timestamps, the Thomas write rule, and strict variants; multiversion timestamp ordering and multiversion two-phase locking; the lock hierarchy with intention modes IS, IX, S, SIX and X; deadlocks: the four necessary conditions, prevention (conservative locking, ordering, wait-die, wound-wait, time-outs), detection by the wait-for graph, victim selection and rollback (total or partial), starvation; nested transactions (subtransactions that commit relative to their parent, locks inherited by the parent).
+- **Results:** Two-phase locking produces only conflict-serializable schedules, because the schedule is equivalent to the serial order of the transactions' lock points [P]; strict 2PL also gives recoverable and cascadeless schedules (proved in U9.17) and rigorous 2PL makes the commit order the serial order [D]; not every conflict-serializable schedule is allowed by 2PL, and for any transaction that is not two-phase there is a schedule with two-phase transactions that is not serializable [D for the first part, X for the second, Eswaran et al. 1976]; timestamp ordering is conflict-equivalent to the serial order of the timestamps, because any conflicting pair that ran out of order would have been rejected, and basic timestamp ordering of w3(x), w2(x), w1(x) aborts T2 and T1 while the Thomas write rule ignores both obsolete writes and aborts none [P, check by simulation on 3000 random schedules]; the lock compatibility matrix of the five granularity modes allows 9 ordered compatible pairs: IS with IS, IX, S, SIX; IX with IS, IX; S with IS, S; SIX with IS [Def, check for symmetry]; wait-die and wound-wait never deadlock, because in wait-die only an older transaction waits for a younger one and in wound-wait only a younger waits for an older, so every edge of the wait-for graph goes the same way in timestamp order and no cycle exists [P], and in a toy simulation of 3000 random four-transaction workloads plain waiting deadlocked 1343 times and both schemes 0 [check]; keeping the original timestamp on restart prevents starvation, since a transaction eventually becomes the oldest [D]; the graph 1→2, 2→3, 3→1, 2→4, 4→2 needs 1 victim [check, U15.19].
+- **Build:** a lock manager (shared and exclusive locks, the intention modes, lock conversion and a wait-for graph with deadlock detection) running strict, rigorous and conservative 2PL; timestamp ordering with and without the Thomas write rule and a multiversion variant; wait-die and wound-wait; a multiple-granularity lock manager over a file, page and record hierarchy; each protocol tested by feeding random workloads and verifying with the schedule classifiers of U15.21 that every committed history is conflict serializable. [local]
+- **Gap-fills:** *[inferred: Eswaran, Gray, Lorie and Traiger 1976; Reed 1978 on multiversioning; Gray, Lorie, Putzolu and Traiger 1976 on granularity of locks; Rosenkrantz, Stearns and Lewis 1978 on wait-die and wound-wait; Moss 1985 on nested transactions, recalled, not checked]* timestamp-based optimistic validation and snapshot isolation are in U9.17.
+
+**Assignment A15.22** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In the wound-wait scheme, what happens when an older transaction requests a lock held by a younger transaction?
+
+(A) The older transaction waits  
+(B) The older transaction aborts (wounds) the younger one  
+(C) The older transaction aborts itself  
+(D) Both transactions wait
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about concurrency control are true?
+
+(A) Strict two-phase locking holds exclusive locks until the transaction ends  
+(B) Timestamp ordering needs no locks  
+(C) Two-phase locking can deadlock  
+(D) Conservative two-phase locking can deadlock
+
+**Q3 (2 marks, numerical answer (pairs)).** How many ordered pairs of lock modes are compatible in the multiple-granularity matrix of IS, IX, S, SIX and X?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the wait-die scheme never produces a deadlock.
+
+**Q5 (3 marks, programming).** Write a lock manager (shared, exclusive and intention modes, lock conversion, a wait-for graph with deadlock detection) running strict, rigorous and conservative 2PL, timestamp ordering with and without the Thomas write rule, wait-die and wound-wait.
+
+<details><summary>Key for A15.22 (open only after your attempt)</summary>
+
+- **Q1:** B. Wound-wait is preemptive: the older transaction wounds the younger holder, which rolls back; only a younger transaction ever waits for an older one.
+- **Q2:** A, B, C. D is false: conservative 2PL acquires all locks before starting, so a transaction never waits while holding a lock and no cycle of waits forms.
+- **Q3:** 9 pairs (tolerance ±0). IS is compatible with IS, IX, S and SIX (4), IX with IS and IX (2), S with IS and S (2), SIX with IS (1) and X with none (0): 9.
+- **Q4 (marking outline):** In wait-die a transaction Ti that requests an item held by Tj waits only if Ti is older (smaller timestamp) than Tj, and otherwise it is rolled back. So every edge Ti to Tj of the wait-for graph satisfies TS(Ti) < TS(Tj). Along any path the timestamps strictly increase, so no path can return to its starting vertex: the graph has no directed cycle. Since a deadlock is a cycle of waits, none can occur.
+- **Q5 (what a passing submission shows):** Under random workloads every committed history is conflict serializable by the classifier of U15.21, plain waiting shows deadlocks that the detector breaks while wait-die and wound-wait show none, and the Thomas write rule aborts none on w3(x) w2(x) w1(x) where basic timestamp ordering aborts two.
+
+</details>
+
+### U15.23 Recovery systems: log-based schemes, deferred and immediate update, shadow paging and ARIES
+**Sources:** FDB W35–36; DBD W7; IDB W12
+- **Topics:** Recovery Systems: Types of Recovery Systems (Lecture 35) and Recovery Systems: Log-based Schemes (Lecture 36); Module 7 of Database Design, Database recovery techniques (3 sessions): recovery concepts, the deferred updates technique, the immediate update technique, shadow paging, the ARIES recovery algorithm; the Transaction Processing Module of Week 12 for durability. Failure types (transaction, system crash, media failure); the storage hierarchy and stable storage; the log (undo and redo information, log sequence numbers); write-ahead logging; the deferred update technique (no undo, writes applied after commit) and the immediate update technique (undo and redo); checkpoints; shadow paging (a current page table and a shadow table, atomic switch at commit); ARIES: the pageLSN, the dirty page table and the active transaction table, the analysis, redo and undo passes, compensation log records, and the steal and no-force buffer policies it supports.
+- **Results:** Write-ahead logging means a log record reaches stable storage before the page it describes, and all of a transaction's records before its commit is acknowledged; with it, redo restores durability and undo restores atomicity after a crash [S, as in U9.17, here with the policies spelled out]; deferred update needs only redo and immediate update needs both, and no-steal no-force needs redo only [D]; shadow paging gives atomic commit with no log, but it breaks clustering, needs garbage collection and is awkward with concurrent transactions [D]; ARIES repeats history: redo reapplies every update whose log record is after the oldest recovery LSN and above the page's LSN, then undo rolls back the losers and writes a compensation record for every undone update, so an interrupted undo never repeats work [S]; in the worked log (eight records, a checkpoint holding pages P1 and P2, T2 committed, T1 and T3 uncommitted and P1 flushed at LSN 1) analysis finds the redo start at LSN 1 and losers T1 and T3, redo reapplies 4 updates (LSNs 2, 3, 6 and 8, skipping LSN 1 because the page already holds it), and undo writes 3 compensation records (LSNs 8, 3 and 1) [D, check].
+- **Build:** a write-ahead log with force-at-commit, a deferred-update and an immediate-update store, shadow paging, and a small ARIES (page LSNs, dirty page table, active transaction table, three passes and compensation records) tested by crashing at every log position, including during recovery, and comparing the recovered state with a reference of committed work. [local]
+- **Gap-fills:** *[inferred: Mohan, Haderle, Lindsay, Pirahesh and Schwarz 1992 (ARIES); Haerder and Reuter 1983 on the steal and no-force taxonomy; Gray and Reuter, Chapters 9 and 10, recalled, not checked]* media recovery by archive and log is named, not built.
+
+**Assignment A15.23** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which recovery technique never needs to undo the effects of an uncommitted transaction on the database after a crash?
+
+(A) Immediate update with steal  
+(B) Deferred update  
+(C) ARIES  
+(D) Undo-redo logging with checkpoints
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about ARIES are true?
+
+(A) The analysis pass rebuilds the dirty page table and the active transaction table  
+(B) The redo pass repeats history starting from the smallest recovery LSN  
+(C) Undo writes a compensation log record for every undone update  
+(D) ARIES requires a no-steal buffer policy
+
+**Q3 (2 marks, numerical answer (updates)).** Log: LSN 1 T1 updates P1; 2 T2 updates P2; 3 T1 updates P2; 4 a completed checkpoint with dirty pages P1 (recLSN 1) and P2 (recLSN 2); 6 T2 updates P3; 7 T2 commits; 8 T3 updates P1; then a crash. On disk the pageLSN of P1 is 1, of P2 and P3 is 0. How many updates does the redo pass reapply?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Explain why compensation log records make ARIES undo restartable, so that an update is never undone twice even if the system crashes during undo.
+
+**Q5 (3 marks, programming).** Write a write-ahead log with force-at-commit, a deferred-update and an immediate-update store, shadow paging and a small ARIES with three passes and compensation records, and test recovery by crashing at every log position, including during recovery.
+
+<details><summary>Key for A15.23 (open only after your attempt)</summary>
+
+- **Q1:** B. Deferred update writes nothing to the database before commit, so a crash leaves nothing of an uncommitted transaction to undo; recovery only redoes committed work.
+- **Q2:** A, B, C. D is false: ARIES supports steal and no-force, which is why it needs both undo and redo.
+- **Q3:** 4 updates (tolerance ±0). Redo scans from LSN 1 and reapplies an update when the page's LSN is below the record's LSN: LSN 1 is skipped (P1 already has LSN 1), LSNs 2, 3, 6 and 8 are reapplied: 4.
+- **Q4 (marking outline):** Undoing an update writes a compensation log record that describes the undo and carries the LSN of the next record still to be undone for that transaction. After a crash the redo pass repeats history, including the compensation records already written, so the effect of the partial undo is restored. The undo pass then starts from the last record of the loser transaction; when it meets a compensation record it jumps to its next-undo LSN, skipping the update already undone; compensation records are never themselves undone. Hence each update is undone at most once however often recovery is interrupted.
+- **Q5 (what a passing submission shows):** After a crash at each of at least 200 positions in random workloads the recovered state equals the state of committed transactions only, a second crash during undo still recovers correctly, and the worked log of this unit gives 4 redone updates and 3 compensation records.
+
+</details>
+
+### U15.24 Database security and authorization: discretionary and mandatory control, multilevel security and statistical databases
+**Sources:** DBD W9
+- **Topics:** Module 9 of Database Design, Database Security and Authorization (1 session): Discretionary access control, Mandatory access control and multi-level security, Statistical database security; the outline then moves to Module 10, Enhanced Data Models for specific applications (2 sessions), taught in U15.25. Authorization in SQL (GRANT and REVOKE, privileges, the grant option, roles and views as a security device, as in U15.9); the authorization graph and cascading revocation; Bell–LaPadula labels, the simple security and star properties (owned by U7.1, used here); multilevel relations and polyinstantiation; statistical queries, query-set size restriction, trackers and noise (differential privacy is owned by U8.8).
+- **Results:** Discretionary control grants a privilege to a user and lets the grantee pass it on only with the grant option, and a privilege is valid exactly when a chain of grants from the owner exists whose timestamps never decrease and whose every granter held the grant option at that moment [D]; when a grant is revoked, every grant that depended on it is revoked too unless the grantee also received the privilege by an independent chain of earlier or equal timestamp, so on the graph DBA→U1 at time 1, U1→U2 at 2, DBA→U2 at 3 and U2→U3 at 4, revoking DBA→U1 removes U1 only and leaves U2 and U3 [D, check]; discretionary control cannot stop a trusted user from copying data to a table they own and granting it, which is what mandatory control prevents by labelling subjects and objects with levels and enforcing no read up and no write down [D]; in a multilevel relation the same primary key can hold different tuples at different levels (polyinstantiation) so that a low user is not told that a secret tuple exists, at the price of an apparent key violation [D]; a size-restricted statistical interface that refuses queries about fewer than 2 or more than n−2 records is still broken by a tracker: with eight employees, SUM over department D1 (3 records) minus SUM over department D1 and gender M (2 records) discloses the single record of an F employee of D1, here exactly 60, though the direct query with one record is refused [D, check]; adding Laplace noise of scale 1/ε to a count with ε = 0.5 has standard deviation √2 × 2 ≈ 2.83 and bounds what any number of such queries reveals [S, as in U8.8].
+- **Build:** an authorization-graph engine with grant, revoke and cascading revoke, tested against a brute-force chain checker on random grant histories; a size-restricted statistical query interface over a toy table of invented records and the tracker that defeats it, then the same interface with Laplace noise; a labelled-row filter that never returns a row above the user's level. Only invented data in a local database is used; nothing is run against a database you do not own. [local]
+- **Gap-fills:** *[inferred: Griffiths and Wade 1976 on authorization in System R; Denning 1979 and Schlörer 1975 on trackers; Jajodia and Sandhu 1991 on polyinstantiation, recalled, not checked]* injection and parameterised queries are covered in the hand-built security work of D7 and are not repeated here.
+
+**Assignment A15.24** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which mechanism stops a trusted user with read access to secret data from copying it into a table they own and granting it to everyone?
+
+(A) Discretionary access control with the grant option  
+(B) Mandatory access control with labels  
+(C) Views  
+(D) Encryption of the disk
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about authorization in a database are true?
+
+(A) A privilege is valid when a chain of grants from the owner exists with non-decreasing timestamps and the grant option at each step  
+(B) Revoking a grant may remove other grants that depended on it  
+(C) Polyinstantiation lets one key hold different tuples at different security levels  
+(D) Refusing queries about fewer than two records makes a statistical database safe
+
+**Q3 (2 marks, numerical answer (units)).** A count query is answered with Laplace noise of scale 1/epsilon with epsilon equal to 0.5. What is the standard deviation of the noise, to two decimals?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show how a tracker defeats a statistical interface that refuses queries about fewer than 2 or more than n-2 records, using the department and gender example of this unit.
+
+**Q5 (3 marks, programming).** Build an authorization-graph engine with grant, revoke and cascading revoke checked against a brute-force chain checker, plus a size-restricted statistical interface, the tracker that defeats it, and a noisy version.
+
+<details><summary>Key for A15.24 (open only after your attempt)</summary>
+
+- **Q1:** B. Discretionary control leaves propagation to the owner of each copy; mandatory control labels subjects and objects, so the write-down is refused whatever the user wants.
+- **Q2:** A, B, C. D is false: a tracker combines two permitted queries to isolate one record.
+- **Q3:** 2.828 units (tolerance ±0.01). The Laplace distribution with scale b has standard deviation sqrt(2) times b, and b = 1/0.5 = 2, so about 2.83.
+- **Q4 (marking outline):** Let C be the condition department D1 and gender F, which matches exactly one record and is refused. The set D1 has 3 records and D1 and gender M has 2, and both sizes are allowed. The sum over D1 is the sum over the F record plus the sum over D1 and M, so subtracting the second answer from the first gives the salary of the F record. Each query alone was permitted, so the size restriction fails; limiting overlaps between queries or adding noise is needed.
+- **Q5 (what a passing submission shows):** On 500 random grant histories the engine and the brute-force checker agree on who holds the privilege, the example revocation leaves exactly U2 and U3 with the privilege, the tracker recovers 60, and the noisy interface keeps the same query's error near the theoretical standard deviation.
+
+</details>
+
+### U15.25 Enhanced data models: active, temporal, spatial and multimedia databases
+**Sources:** DBD W10
+- **Topics:** Module 10 of Database Design, Enhanced Data Models for specific applications (2 sessions): Active database concepts, Temporal databases, Spatial databases, multi-media databases; the outline then moves to Module 11, Distributed databases and issues (3 sessions), taught in U15.26. Event–condition–action rules and the triggers of U15.9, rule termination and confluence; valid time, transaction time and bitemporal tables, Allen's thirteen interval relations; spatial data (points, lines, regions), minimum bounding rectangles, the R-tree, space-filling curves (Morton order); multimedia objects, feature vectors, similarity search and the curse of dimensionality.
+- **Results:** An active rule fires on an event when a condition holds and runs an action, and a rule set terminates if its triggering graph has no cycle, a sufficient test that is not necessary [D]; a temporal table records valid time (when a fact is true in the world) and transaction time (when the database held it), and a bitemporal table answers "what did we believe on date x about date y" without losing history [Def]; two intervals can stand in exactly 13 Allen relations (before, meets, overlaps, starts, during, finishes, equals and the inverses of the first six), and enumerating all pairs of intervals with endpoints from 0 to 6 finds all 13 [D, check]; an R-tree stores minimum bounding rectangles in a balanced tree like the B+-tree of U15.16, but boxes at one level may overlap, so a window query may follow several branches; it returns exactly the rectangles that intersect the window, which a brute-force scan confirmed on 200 random windows over 3000 rectangles [D, check]; Morton order interleaves coordinate bits so that nearby points tend to be nearby in one key, and for x = 5 and y = 3 with three bits, taking the bit of x first in each pair, the code is 100111 in binary, 39 [D, check]; the fraction of a unit cube within 0.05 of its surface is 1 − 0.9^d, which is 0.19 for d = 2 and 0.878 for d = 20, so in high dimension nearly all points are near the boundary and the ratio of the farthest to the nearest distance from a query falls toward 1 (in one run 28.6 at d = 2, 1.37 at d = 100 and 1.10 at d = 1000), which is why similarity indexes degrade [D, check].
+- **Build:** a trigger engine with rule priorities and a loop guard; a bitemporal table with as-of queries; the 13 Allen relations; an R-tree with quadratic split tested against brute force; Morton keys; and a nearest-neighbour experiment measuring the distance ratio across dimensions on random vectors. [local]
+- **Gap-fills:** *[inferred: Guttman 1984 (R-tree); Allen 1983; Snodgrass on TSQL2; Beyer, Goldstein, Ramakrishnan and Shaft 1999 on nearest neighbours in high dimension, recalled, not checked]* image features and audio fingerprints are named, not built.
+
+**Assignment A15.25** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which temporal-database idea records when the database itself believed a fact, as opposed to when the fact was true in the world?
+
+(A) Valid time  
+(B) Transaction time  
+(C) Event time  
+(D) Clock time
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about spatial and multimedia data are true?
+
+(A) An R-tree stores minimum bounding rectangles and boxes at one level may overlap  
+(B) A window query on an R-tree always follows exactly one branch  
+(C) Morton order interleaves coordinate bits  
+(D) In high dimension the nearest and farthest neighbours become almost equally distant
+
+**Q3 (2 marks, numerical answer (decimal)).** With three bits per coordinate, x = 5 and y = 3, interleaving the bits of x first in each pair gives the binary code 100111. What is its decimal value?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Explain why an active-database rule set whose triggering graph has no cycle is guaranteed to terminate, and why the converse can fail.
+
+**Q5 (3 marks, programming).** Implement a trigger engine with priorities and a loop guard, a bitemporal table with as-of queries, the 13 Allen relations, an R-tree tested against brute force, Morton keys and a nearest-neighbour distance-ratio experiment.
+
+<details><summary>Key for A15.25 (open only after your attempt)</summary>
+
+- **Q1:** B. Transaction time is the database's own belief interval; valid time is when the fact holds in the modelled world.
+- **Q2:** A, C, D. B is false: boxes at one level may overlap, so several branches may have to be followed.
+- **Q3:** 39 decimal (tolerance ±0). 32 + 4 + 2 + 1 = 39.
+- **Q4 (marking outline):** Each rule firing is caused by an event produced by another rule or by the user. If the triggering graph has no cycle, a chain of rule firings follows edges of an acyclic graph, so its length is at most the number of rules, and no chain can run forever. The test is only sufficient because an edge records that an action may produce an event, not that it does; a cycle in the graph may never be taken because the conditions are false, so a cyclic set can still terminate.
+- **Q5 (what a passing submission shows):** The R-tree answers 200 random windows exactly as a brute-force scan does, the Allen enumeration finds 13 relations, the Morton code of the example is 39, and the distance ratio falls toward 1 as the dimension rises.
+
+</details>
+
+### U15.26 Distributed databases: fragmentation, replication, distributed query processing, concurrency and recovery
+**Sources:** DBD W11
+- **Topics:** Module 11 of Database Design, Distributed databases and issues (3 sessions): Data fragmentation, replication and allocation in distributed databases, Types of distributed database systems, Query processing in distributed databases, Concurrency control and recovery in distributed databases; textbook of that module: Elmasri and Navathe, Fundamentals of Database Systems (Third Edition), Pearson Education, 2004. Horizontal, vertical and mixed fragmentation; the correctness rules (completeness, reconstruction, disjointness); replication and allocation; homogeneous, heterogeneous and federated systems; data transfer cost, the semijoin; distinguished-copy, primary-site and voting methods; global deadlock; two-phase commit (owned by U9.18) and quorum replication (consistency owned by U9.16).
+- **Results:** A fragmentation is correct when every item is in some fragment (completeness), the original relation can be rebuilt from the fragments by union for horizontal ones and by join on the key for vertical ones (reconstruction), and horizontal fragments do not overlap [D]; a test on 100 random rows split by region confirmed that the four fragments are complete, disjoint and reconstruct the relation [D, check]; in a network the dominant cost is the bytes shipped, and the semijoin ships only the join column of S to R's site and then only the matching tuples of R back: with R of 10,000 tuples of 100 bytes and an S column of 1,000 values of 8 bytes of which 40% of R matches, the cost is 8,000 + 400,000 = 408,000 bytes against 1,000,000 for shipping all of R [D, check]; semijoin reduction never changes the join result, which was confirmed on random relations (R cut from 10,000 to 4,075 tuples, the same join) [D, check]; with N copies, read-one write-all makes writes fail when any copy is down, so with N = 3 and each copy up with probability 0.9 writes succeed with probability 0.729 and reads with 0.999, while majority quorums (2 of 3) make writes succeed with probability 0.972 [D, check]; quorums of size r for reads and w for writes give a read the latest write whenever r + w > N, and two writes cannot be concurrent when 2w > N [S]; global deadlock cannot be seen in any single site's wait-for graph, so sites must exchange graphs or use timeouts or wait-die style priorities as in U15.22 [D]; recovery adds the atomic-commit problem solved by two-phase commit in U9.18 and its blocking window.
+- **Build:** a fragmentation advisor with the three correctness checks, a three-site simulator with byte-counting that compares join strategies including the semijoin, and a replicated store with ROWA and quorum modes whose availability is measured by simulated site failures and compared with the formulas. [local]
+- **Gap-fills:** *[inferred: Bernstein, Goodman, Wong, Reeves and Rothnie 1981 on SDD-1 semijoins; Gifford 1979 on weighted voting; Özsu and Valduriez, Principles of Distributed Database Systems, recalled, not checked]* distributed optimisers with real cost models are named, not built.
+
+**Assignment A15.26** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which condition on a horizontal fragmentation means the original relation can be rebuilt by taking the union of the fragments?
+
+(A) Disjointness  
+(B) Reconstruction  
+(C) Completeness only  
+(D) Allocation
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about distributed query processing and replication are true?
+
+(A) The semijoin ships only the join column in one direction and then the matching tuples  
+(B) Semijoin reduction does not change the join result  
+(C) Read-one write-all lets a write succeed while some copy is down  
+(D) Majority quorums need more than half of the copies for each write
+
+**Q3 (2 marks, numerical answer (bytes)).** R has 10000 tuples of 100 bytes and 40 percent of them match S. The join column of S holds 1000 values of 8 bytes. How many bytes does the semijoin plan ship?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that semijoin reduction does not change the join result.
+
+**Q5 (3 marks, programming).** Build a fragmentation advisor with the three correctness checks, a three-site byte-counting simulator comparing join strategies, and a replicated store with read-one write-all and quorum modes whose availability is measured.
+
+<details><summary>Key for A15.26 (open only after your attempt)</summary>
+
+- **Q1:** B. Reconstruction is the property that the fragments recombine into the relation; completeness says no item is lost, disjointness says no item is stored twice.
+- **Q2:** A, B, D. C is false: read-one write-all requires every copy to take the write.
+- **Q3:** 408000 bytes (tolerance ±0). Ship the S column, 8000 bytes, then the 4000 matching tuples of R, 400000 bytes: 408000 in all.
+- **Q4 (marking outline):** Let R' be the tuples of R whose join value appears in S. A pair of tuples r from R and s from S joins only if they agree on the join attribute, so the join value of r appears in S and r belongs to R'. Hence every joining pair is in the join of R' and S. Conversely R' is a subset of R, so every pair joined from R' and S is a pair joined from R and S. The two joins are equal.
+- **Q5 (what a passing submission shows):** The fragments pass completeness, disjointness and reconstruction on random data, the semijoin plan ships 408000 bytes for the example against 1000000 for shipping R, and the simulated availabilities approach 0.729 for ROWA writes and 0.972 for majority writes at a site availability of 0.9.
+
+</details>
+
+### U15.27 NoSQL systems, graph databases and big data
+**Sources:** FDB W44–48
+- **Topics:** NoSQL: CAP Theorem and BASE Properties (Lecture 44); NoSQL: Types of NoSQLSystems (Lecture 45); Graph Databases (Lecture 46); Big Data (Lecture 47); Recap (Lecture 48) of the Kanpur course. The CAP trade-off (owned by U9.16) and BASE (basically available, soft state, eventual consistency); key-value, document, column-family and graph stores (surveyed in U10.6); the property graph model, traversal and pattern queries; the three Vs of big data and the pointer to D11; what the whole course has covered.
+- **Results:** Under a network partition a replicated store must give up consistency or availability, and BASE systems choose availability and let replicas converge later, so reads can return old values [D, as in U9.16]; with N replicas, writes to W and reads from R, a read is guaranteed to see the latest write when R + W > N, and otherwise it can miss it: for N = 3, R = 1, W = 1 the exact stale fraction is C(2,1)/C(3,1) = 2/3 (a simulation gave 0.667) and for N = 5, R = 2, W = 3 it is C(2,2)/C(5,2) = 0.1 (simulated 0.103), while 3,2,2 and 5,3,3 never returned a stale value [D, check]; a key-value store gives O(1) get and put by key but no joins, a document store keeps nested records whose schema can differ, a column-family store groups columns for wide sparse tables, and a graph store keeps adjacency so a hop is a pointer lookup instead of a join [D]; on the property graph with edges 1–2, 1–3, 2–4, 3–4, 4–5, 5–6, 2–7, 7–8, 3–9, the vertices exactly two hops from 1 are 4, 7 and 9 and those within two hops are 2, 3, 4, 7 and 9, found by breadth-first search with a visited set, and a relational version needs one self-join per hop [D, check]; big data is the regime where volume, velocity or variety exceeds one machine's relational engine, and it leads to the distributed processing of D11 [Def]; the course closes by tying the layers together: model, language, design theory, storage, query processing, transactions, distribution [recap].
+- **Build:** a three-replica key-value store with tunable R and W, hinted writes and read repair, measuring stale reads against C(N−W,R)/C(N,R); a tiny property graph store with breadth-first traversal and a pattern query, checked against the same query written as repeated self-joins in sqlite3. [local]
+- **Gap-fills:** *[inferred: Brewer 2000 and Gilbert and Lynch 2002 on CAP; DeCandia et al. 2007 (Dynamo); Robinson, Webber and Eifrem, Graph Databases, recalled, not checked]* the Kanpur course closes with the recap of Lecture 48, whose content is the course map above.
+
+**Assignment A15.27** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In a replicated store with N replicas, which choice of read quorum R and write quorum W guarantees that a read sees the latest write?
+
+(A) N = 3, R = 1, W = 1  
+(B) N = 3, R = 2, W = 2  
+(C) N = 5, R = 2, W = 3  
+(D) N = 5, R = 1, W = 2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about NoSQL stores and graph databases are true?
+
+(A) BASE systems choose availability and let replicas converge later  
+(B) A key-value store gives get and put by key but no joins  
+(C) A graph store keeps adjacency so a hop does not need a join  
+(D) Big data always fits on one relational server
+
+**Q3 (2 marks, numerical answer (probability)).** For N = 5 replicas with W = 3 replicas written and R = 2 replicas read, what is the probability that the read misses the latest write?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that with N replicas a read quorum R and a write quorum W with R + W greater than N always intersect, and say what this gives.
+
+**Q5 (3 marks, programming).** Build a three-replica key-value store with tunable R and W, hinted writes and read repair, measuring stale reads against the formula, and a tiny property graph with breadth-first traversal checked against repeated self-joins in sqlite3.
+
+<details><summary>Key for A15.27 (open only after your attempt)</summary>
+
+- **Q1:** B. A read always meets a replica holding the latest write when R + W exceeds N, which holds only for 2 + 2 over 3.
+- **Q2:** A, B, C. D is false: the term describes workloads that exceed one machine.
+- **Q3:** 0.1 probability (tolerance ±0.001). The read misses only if both replicas read are among the 2 that were not written: C(2,2) of the C(5,2) = 10 equally likely pairs, so 0.1.
+- **Q4 (marking outline):** There are N replicas, W of them hold the latest write and R of them are read. If the two sets had no replica in common, they would together contain R + W distinct replicas, which is more than N, impossible. So the read set contains at least one replica with the latest write and returning the newest version among the replies gives the latest value. When R + W is at most N the sets can be disjoint and a stale read is possible.
+- **Q5 (what a passing submission shows):** Stale fractions match C(N-W,R)/C(N,R) within sampling error, the settings with R + W above N never return stale values, and the two-hop query from vertex 1 returns 4, 7 and 9 in both the graph store and the sqlite3 self-join.
+
+</details>
+
 ## D10. Cloud storage and databases: relational foundations, distributed file systems, key-value and wide-column stores, in-memory NoSQL and Google Cloud storage
 
-Aim: storage as the place where the distributed-systems theory of D9 meets disks, memory and money. A short bridge on the relational model and SQL comes first because the surrounding courses assume it (the cloud-platform course lists SQL as a prerequisite, and the big-data course lists database management systems). Each system is rebuilt in miniature on the DSim harness or as a local engine, then compared with the cloud product that implements the same idea. Benchmarks (recalled, not checked): Kleppmann, *Designing Data-Intensive Applications*; Garcia-Molina, Ullman and Widom, *Database Systems: The Complete Book*; Petrov, *Database Internals*; and the system papers named in each unit (the advanced-course source lists classic research papers as its references).
+Aim: storage as the place where the distributed-systems theory of D9 meets disks, memory and money. A short bridge on the relational model and SQL comes first because the surrounding courses assume it (domain D15, read before this one in the default order, is the full treatment, and this bridge is its compact version) (the cloud-platform course lists SQL as a prerequisite, and the big-data course lists database management systems). Each system is rebuilt in miniature on the DSim harness or as a local engine, then compared with the cloud product that implements the same idea. Benchmarks (recalled, not checked): Kleppmann, *Designing Data-Intensive Applications*; Garcia-Molina, Ullman and Widom, *Database Systems: The Complete Book*; Petrov, *Database Internals*; and the system papers named in each unit (the advanced-course source lists classic research papers as its references).
 
 ### U10.1 Bridge: the relational model, SQL, indexing and query processing
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
-Bridge for: U10.4 onward (every store here is defined by what it gives up relative to a relational database), U12.2 (BigQuery). Addresses the SQL prerequisite stated in the cloud-platform source and the database prerequisite stated in the big-data source.
+Bridge for: U10.4 onward (every store here is defined by what it gives up relative to a relational database), U12.2 (BigQuery). Addresses the SQL prerequisite stated in the cloud-platform source and the database prerequisite stated in the big-data source. Full treatment is in domain D15 (U15.4 to U15.18), read before D10 in the default order; this unit stays as the compact version for a reader who skips D15.
 - **Topics:** Relations, keys and integrity constraints; relational algebra (selection, projection, product, join, union, difference, aggregation) and its correspondence to SQL (SELECT, FROM, WHERE, GROUP BY, HAVING, joins, subqueries, window functions); functional dependencies, normal forms (3NF, BCNF) and lossless decomposition; indexes: B+-trees (height, fan-out, range scans), hash indexes; join algorithms (nested loop, hash join, sort-merge) and their costs; a cost-based optimiser's logic (selectivity, join order); the row store versus column store layout (continued in U12.2).
 - **Results:** A B+-tree with fan-out b over n keys has height ⌈log_b n⌉ [P]; a BCNF decomposition obtained by repeatedly splitting on a violating dependency is lossless [P]; a hash join costs about |R| + |S| page reads when the smaller input fits in memory, and 3(|R| + |S|) with one partitioning pass [D]; the join of R and S on a key of S has at most |R| tuples [P].
 - **Build:** a small relational engine in Python (tables, selection, projection, hash join, sort-merge join, group-by aggregation and a tiny SQL parser for a SELECT subset) checked against `sqlite3` on random data; a B+-tree with insert, delete and range scan; an FD closure and BCNF decomposer. [local]
@@ -6180,7 +7241,7 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 
 ## D13. Capstones
 
-Aim: six integrating projects, each one drawing on units from several domains, each built from your own components first and then checked against standard tools. A capstone has no weekly assignment; it is accepted against the listed criteria, with the Master Rules' tutor stance applied (the tutor does not write graded work). Each is local first, labelled with its cost, and, wherever it touches security, confined to the laboratory rules of U6.1.
+Aim: eight integrating projects, each one drawing on units from several domains, each built from your own components first and then checked against standard tools. A capstone has no weekly assignment; it is accepted against the listed criteria, with the Master Rules' tutor stance applied (the tutor does not write graded work). Each is local first, labelled with its cost, and, wherever it touches security, confined to the laboratory rules of U6.1.
 
 ### U13.1 Capstone: a user-space TCP/IP stack over a lossy virtual link
 **Sources:** none (capstone; assembles earlier units)
@@ -6231,6 +7292,13 @@ Aim: six integrating projects, each one drawing on units from several domains, e
 - **Build:** the simulator as small modules with one test suite per component and an integration suite, configuration files for each experiment, a reproducible script that regenerates every figure, and a short critique of the model's least realistic assumption. Runs on the Mac's CPU in Python, with an optional C port of the inner loop compiled with `clang`. [local]
 - **Gap-fills:** *[inferred: gem5 and Sniper as reference simulators; Hennessy and Patterson, Computer Architecture: A Quantitative Approach; Sorin, Hill and Wood, A Primer on Memory Consistency and Cache Coherence; recalled, not checked]* acceptance: every number in the report is produced by a script, and a reviewer can rerun any experiment from its configuration file.
 
+### U13.8 Capstone: a small relational database engine checked against sqlite3
+**Sources:** none (capstone; assembles earlier units)
+- **Topics:** Scope: build, from your own code, a single-node relational engine and check it against the reference engine in Python's `sqlite3` module: a slotted-page heap file with a buffer pool (U15.14 and U15.15); a B+-tree index on the primary key and one secondary index (U15.16); a parser for a SQL subset (create table, insert, select with where, join, group by and order by; U15.7 and U15.8) that produces a relational-algebra tree (U15.5); a rule-based and then cost-based optimiser with selection and projection push-down and a join-order search by dynamic programming (U15.17 and U15.18); iterator operators including an external merge sort and a hash join; strict two-phase locking with a lock table and wait-for-graph deadlock detection (U15.20 to U15.22); and a write-ahead log with redo and undo recovery (U15.23). A normalisation helper reads functional dependencies and reports keys and the BCNF decomposition (U15.11 and U15.12). Draws on U15.1 to U15.23 and, for the optional replicated mode, U15.26 and U9.17.
+- **Results:** Every query in a generated suite of at least 1,000 random queries over random tables returns the same multiset of rows as sqlite3 [check]; the index scan and the sequential scan return the same answer and the page-access counts follow the formulas of U15.16 and U15.17 (a B+-tree of 10^6 keys with order 200 is 3 levels high) [check]; the chosen join order is the cheapest of the enumerated ones and matches an exhaustive search on queries of up to five relations [check]; histories executed by concurrent client threads are conflict serializable by the test of U15.21, deadlocks are found and one victim is aborted [check]; after a crash injected at each log position the recovered tables hold exactly the committed transactions' effects [check].
+- **Build:** the engine as small modules (storage, index, parser, algebra, optimiser, executor, locks, log) with a test suite per module and a differential tester against sqlite3, a script that prints the plan and page-access counts for any query, and a short critique of what the engine leaves out (the full SQL language, statistics, MVCC, media recovery). Runs in Python on the Mac's CPU; only invented data is used. [local]
+- **Gap-fills:** *[inferred: SQLite's own file format and the CMU 15-445 BusTub project and the Berkeley Minibase course as comparable teaching engines; Garcia-Molina, Ullman and Widom, Database Systems: The Complete Book, recalled, not checked]* acceptance: a reviewer can rerun the differential tester with a different seed and the suite still agrees with sqlite3.
+
 
 ---
 
@@ -6259,6 +7327,11 @@ Aim: six integrating projects, each one drawing on units from several domains, e
 | ACA | Advanced Computer Architecture | Smruti R. Sarangi, IIT Delhi | `cloud-computing2.txt` 151–169 | 13 |
 | PCA | Parallel Computer Architecture | Hemangee K. Kapoor, IIT Guwahati | `cloud-computing2.txt` 179–215 | 13 |
 | GPU | GPU Architectures and Programming | Soumyajit Dey, IIT Kharagpur | `cloud-computing2.txt` 225–247 | 13 |
+| FDB | Fundamentals of Database Systems (NOC) | Arnab Bhattacharya, IIT Kanpur (sponsored by Aricent); lecture n is cell Wn | `dbms.txt (cleaned copy src3.txt)` 1–122 | 49 |
+| DBD | Database Design | S. Srinath, IIIT Bangalore and D. Janaki Ram, IIT Madras; module n is cell Wn | `dbms.txt (cleaned copy src3.txt)` 125–199 | 12 |
+| IDB | Introduction to Database Systems | Sreenivasa Kumar, IIT Madras | `dbms.txt (cleaned copy src3.txt)` 202–227 | 13 |
+
+The line numbers for FDB, DBD and IDB refer to `src3.txt`, a cleaned copy of `dbms.txt` (the letter-spaced text of Database Design modules 7 to 11 was re-joined by hand; see Appendix E.1), kept in the work archive. Nothing else in `dbms.txt` was altered.
 
 ## Appendix B. Coverage matrix: every source cell and the units that teach it
 
@@ -6302,7 +7375,13 @@ Each entry is `cell → units`. A cell may feed several units because one source
 
 **GPU** (GPU Architectures and Programming): o → U14.18; W1 → U14.2, U14.8; W2 → U14.17; W3 → U14.18; W4 → U14.18; W5 → U14.17; W6 → U14.18; W7 → U14.18; W8 → U14.18; W9 → U14.19; W10 → U14.19; W11 → U14.20; W12 → U14.20
 
-Total: 232 cells, every one cited.
+**FDB** (Fundamentals of Database Systems (NOC)): o → U15.1; W1 → U15.1; W2 → U15.4; W3 → U15.5; W4 → U15.5; W5 → U15.5; W6 → U15.2; W7 → U15.7; W8 → U15.7; W9 → U15.7; W10 → U15.8; W11 → U15.8; W12 → U15.9; W13 → U15.9; W14 → U15.11; W15 → U15.12; W16 → U15.12; W17 → U15.12; W18 → U15.13; W19 → U15.15; W20 → U15.15, U15.16; W21 → U15.16; W22 → U15.16; W23 → U15.17; W24 → U15.17; W25 → U15.17; W26 → U15.17; W27 → U15.17; W28 → U15.18; W29 → U15.18; W30 → U15.18; W31 → U15.18; W32 → U15.18; W33 → U15.20; W34 → U15.20; W35 → U15.23; W36 → U15.23; W37 → U15.21; W38 → U15.21; W39 → U15.21; W40 → U15.22; W41 → U15.22; W42 → U15.22; W43 → U15.22; W44 → U15.27; W45 → U15.27; W46 → U15.27; W47 → U15.27; W48 → U15.27
+
+**DBD** (Database Design): o → U15.1; W1 → U15.1; W2 → U15.2; W3 → U15.4, U15.5, U15.6, U15.7, U15.8, U15.9, U15.10; W4 → U15.11, U15.12, U15.13; W5 → U15.15, U15.16; W6 → U15.20, U15.21, U15.22; W7 → U15.23; W8 → U15.17, U15.18; W9 → U15.24; W10 → U15.25; W11 → U15.26
+
+**IDB** (Introduction to Database Systems): o → U15.1; W1 → U15.1, U15.2; W2 → U15.2; W3 → U15.4, U15.5; W4 → U15.4, U15.5; W5 → U15.6, U15.7; W6 → U15.7, U15.8, U15.9; W7 → U15.15, U15.16; W8 → U15.16, U15.17, U15.18; W9 → U15.11, U15.12; W10 → U15.12, U15.13; W11 → U15.20, U15.21; W12 → U15.21, U15.22, U15.23
+
+Total: 306 cells, every one cited.
 
 ## Appendix C. Prerequisite bridges and the prerequisites the sources state
 
@@ -6322,13 +7401,16 @@ Total: 232 cells, every one cited.
 | U5.8 | computational complexity, one-way functions and the reduction method | U5.9 onward (every proof of security is a reduction). Addresses the stated prerequisite of the provable-security course: exposure to discrete mathematics, algorithms and theory of computation |
 | U5.12 | number theory for public-key cryptography — Fermat, Euler, CRT, quadratic residues, Legendre and Jacobi symbols, primality testing and factoring | U5.13 (discrete log and DDH), U5.14 (RSA, Rabin, ElGamal), U5.15 (curve point counting), U5.17 onward. Continues U5.2 (Euclid and inverses) and U5.5 (groups) |
 | U8.2 | quantitative risk — frequency and severity models, Monte Carlo loss exceedance, Bayesian updating and decision under uncertainty | U8.3 (risk management), U8.5 (resilience assessment), U13.6 (security programme capstone). Builds on U5.1 |
-| U9.17 | transactions — ACID, serializability, locking, logging and recovery | U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 (managed databases). Builds on U10.1's relational view if read in order, and is self-contained otherwise |
-| U10.1 | the relational model, SQL, indexing and query processing | U10.4 onward (every store here is defined by what it gives up relative to a relational database), U12.2 (BigQuery). Addresses the SQL prerequisite stated in the cloud-platform source and the database prerequisite stated in the big-data source |
+| U9.17 | transactions — ACID, serializability, locking, logging and recovery | U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 (managed databases). Builds on U10.1's relational view if read in order, and is self-contained otherwise. The relational and storage background is domain D15 (U15.20 to U15.23 develop the same theory in full, citing the theorems proved here); this unit is the compact version |
+| U10.1 | the relational model, SQL, indexing and query processing | U10.4 onward (every store here is defined by what it gives up relative to a relational database), U12.2 (BigQuery). Addresses the SQL prerequisite stated in the cloud-platform source and the database prerequisite stated in the big-data source. Full treatment is in domain D15 (U15.4 to U15.18), read before D10 in the default order; this unit stays as the compact version for a reader who skips D15 |
 | U11.8 | machine-learning foundations for scalable learning | U11.9 (machine learning on the engines), U12.3 (machine learning on the cloud platform). A compact version of the foundations; the full treatment is in the earlier unified machine-learning curriculum |
 | U11.10 | Markov chains, eigenvectors and PageRank | U11.11 (graph processing). Builds on the random-walk material of U9.2 |
 | U14.1 | binary representation, number systems and digital logic | U14.2 (instruction encoding, sign extension), U14.4 (adders, multipliers, IEEE 754), U14.5 (datapath, control state machines), U14.6 (pipeline registers and clocked timing), and every later D14 simulator built from gates and flip-flops. It is the prerequisite the sources state ("a basic understanding of digital logic") |
+| U15.3 | sets, relations, functions and first-order logic for the relational model, algebra and calculus | U15.4 to U15.6 (relations as sets of tuples, the algebra and the calculus), U15.11 (functional dependencies as logical statements and the proofs about them) and U15.13 (dependencies as constraints). The sources state discrete mathematics as a prerequisite; this unit supplies it |
+| U15.14 | the external-memory model, disks and the cost of sorting | U15.15 to U15.18 (file organisation, indexes, and the costs of query processing and optimisation count page transfers, not instructions), and later U10.2 (distributed file systems) and U11.1 (external sorting in MapReduce) |
+| U15.19 | directed graphs, cycles, topological order and partial orders for schedules, deadlocks and timestamps | U15.21 (precedence graphs and serial orders), U15.22 (wait-for graphs, deadlock detection and the timestamp orders of wait-die, wound-wait and timestamp ordering) and U15.23 (the dependency order of log records). U2.7 taught shortest paths and spanning trees; it did not teach cycles and topological order, which are needed here |
 
-17 bridge units in all. Several other units (U5.2 modular arithmetic, U5.5 algebra, U9.1 models and the simulator, U9.2 tail bounds) also begin from first principles and carry source citations as well.
+20 bridge units in all. Several other units (U5.2 modular arithmetic, U5.5 algebra, U9.1 models and the simulator, U9.2 tail bounds) also begin from first principles and carry source citations as well.
 
 ### C.2 What the sources state as prerequisites, and where each is handled
 
@@ -6351,6 +7433,8 @@ Total: 232 cells, every one cited.
 | ACA | PRE-REQUISITES : Computer Architecture (2nd year level) Programming, Data Structures And Algorithms Using Python: https://nptel.ac.in/courses/106106145 Data Structure And Algorithms Using Java: https://nptel.ac.in/courses/106105225 Data Structures And Algorithms: https://nptel.ac.in/courses/10610206 | Second-year computer architecture and data structures in Python or Java: U14.1 to U14.12; the data-structure prerequisites are assumed as above, and Python is the build language. |
 | PCA | PREREQUISITES: Computer architecture and organization - https://nptel.ac.in/courses/106105163 | The Computer Architecture and Organization course: U14.1 to U14.12. |
 | GPU | PRE-REQUISITES : Programming and Data Structure, Digital Logic, Computer architecture | Programming and data structures, digital logic and computer architecture: U14.1 to U14.9. |
+| FDB | Pre-requisites: Basic programming; Data structures and algorithms | Data structures, algorithms and discrete mathematics: U15.3 (sets, relations and logic), U15.14 (external-memory model) and U15.19 (directed graphs) are bridges; programming: Python (U1.2). |
+| IDB | PRE-REQUISITES : Studying B Tech (computer science) 3rd year, Discrete Mathematics or Discrete Structures, Programming and Data Structures INTENDED AUDIENCE : Any Interested Learners | Discrete mathematics, data structures and programming: U15.3, U15.14 and U15.19, with U1.2 for Python. |
 
 ## Appendix D. Gap-fills, candidates not added, and decisions needed
 
@@ -6384,6 +7468,7 @@ These are adjacent subjects that no outline names, or that a unit mentions only 
 7. **Tooling choices.** The from-scratch guideline leaves tools to the unit; each Build line names its choice. Tell me if any should change.
 8. **File name, recorded.** The architecture courses came from `cloud-computing2.txt`, a file whose name says cloud but which holds six computer-architecture courses; they are D14 here. Rename the file if you want the name to match its contents.
 
+9. **Database file, recorded (2026-11-05).** `dbms.txt` holds three database courses, now D15 (printed between D9 and D10). The garbled part of its text layer was re-joined by hand (Appendix E.1); say if you would rather supply a clean copy so the line numbers can point at the original.
 Resolved on 2026-11-04 and no longer open: the placement of the architecture courses (D14, printed before the capstones), the scope of the GPU labs (three tiers with a simulator fallback) and the assembly language (an AArch64 subset with a crosswalk to the MIPS-like and RISC-V-like forms).
 
 ## Appendix E. Source anomalies, typos and residual flagged atoms
@@ -6404,11 +7489,14 @@ Resolved on 2026-11-04 and no longer open: the placement of the architecture cou
 | PCA:W6, W7 and outline | 'muliprocessor', 'networkon-chip' and 'specically' (typos); an instructor biography at lines 190 to 201 of the architecture file is not course content | Meaning taken from context; the source spelling is quoted where the check needs it; the biography is not cited as content. |
 | CAO books | 'Morgan Koffman' for Morgan Kaufmann | Spelled correctly in the units; source spelling noted here. |
 | GPU:W11, W12 and ACA prerequisites | The GPU course repeats one title for Weeks 11 and 12 ('Contd.'); the ACA course lists generic Python, Java and data-structures courses as prerequisites | One unit (U14.20) cites both GPU weeks; the ACA prerequisites are mapped in C.2. |
+| DBD (dbms.txt) | The text layer of the Database Design outline from module 7 onward (raw lines 188 to 768) came out with one character per line | Re-joined by hand into a cleaned copy (`src3.txt`); the cleaned lines are cited. Nothing else in `dbms.txt` was altered. |
+| FDB | Lecture titles are separated by stray numerals ('45.', '46.'), 'NoSQLSystems' is run together, and recap lectures appear at 13, 22, 32 and 48 | Recaps are cells and are cited; the numerals are ignored; 'Types of NoSQL Systems' is the title used. |
+| IDB | Week 8 pairs the Indexes Module with the Query Processing Module | U15.16 to U15.18 cite Week 8 together. |
 | CSP | Weeks carry reading-list entries: labels R3 to R21, URLs, years and 'accessible at' | Case titles and readings are treated as cases (the Target breach in U6.1, active defense in U7.1, the HBR case on Cheddar in U8.3); the labels and URLs are not content. |
 
 ### E.2 Atoms the word-level check still flags, reviewed by hand
 
-- **Outline-prose atoms flagged:** 116. They are audience statements, marketing sentences and connective phrases (for example 'to practice the learning'); every topic named in an outline appears in the units that cite it, with the outline map sentences in U1.1, U2.2, U3.3, U5.3, U6.1, U8.1, U9.1, U11.1, U14.1, U14.2, U14.11, U14.13 and U14.18 where an outline names many topics.
+- **Outline-prose atoms flagged:** 117. They are audience statements, marketing sentences and connective phrases (for example 'to practice the learning'); every topic named in an outline appears in the units that cite it, with the outline map sentences in U1.1, U2.2, U3.3, U5.3, U6.1, U8.1, U9.1, U11.1, U14.1, U14.2, U14.11, U14.13, U14.18 and U15.1 where an outline names many topics.
 - **Non-outline atoms flagged:** 35. All were reviewed one by one: URLs and URL fragments, years, reading labels (R11 to R21), the phrase 'accessible at', one section label ('Examples'), and the titles of cases or articles that are covered under their topic.
 
 <details><summary>Full list of non-outline flagged atoms</summary>
@@ -6462,6 +7550,8 @@ Resolved on 2026-11-04 and no longer open: the placement of the architecture cou
 | Digital Personal Data Protection Rules 2025 notified 13 November 2025 with phased commencement | Law-firm summaries, not the official gazette text | U8.9 |
 | Qwiklabs history: acquired by Google in November 2016, became Google Cloud Skills Boost in October 2021, now part of Google Skills (announced October 2025) | Press and Google pages | U1.3 |
 | Product renames (operations suite, Vertex AI, end of AI Platform access on 31 January 2025) | Google pages | U1.3 |
+| IBM Db2 Community Edition is free, limited to 4 virtual cores and 16 GB of memory, for non-production use, with a Docker image for Linux, Windows and Mac (checked 2026-11-05) | IBM's Db2 Community Edition page | U15.10 |
+| Db2 isolation levels UR, CS, RS and RR and which anomalies each permits (checked 2026-11-05) | IBM's Db2 documentation | U15.10, U15.20 |
 | PyTorch's MPS backend needs a Mac with Apple silicon, macOS 14.0 or later and Python 3.10 or later, and Apple labels it beta (checked 2026-11-04) | Apple's page, `developer.apple.com/metal/pytorch` | Section 7 tiers in U14.17 to U14.20 |
 | `PYTORCH_ENABLE_MPS_FALLBACK=1` runs operations missing on MPS on the CPU (checked 2026-11-04) | Hugging Face guide on training on Apple silicon | U14.18 to U14.20 |
 | Colab's free tier gives a GPU, typically a T4, when available, with sessions up to 12 hours and no guaranteed availability (checked 2026-11-04) | Google's FAQ wording as quoted by a 2026 comparison, and secondary guides | U14.18 to U14.20 |
