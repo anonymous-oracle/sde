@@ -1,0 +1,794 @@
+NPTELSyllabus
+NOC:Fundamentals of Database
+Systems(Course sponsored by
+Aricent) - Video course
+COURSE OUTLINE
+Databases are at the core of all successful digital systems. The
+course will introduce the basics of database systems. In
+addition to the traditional relational database systems, it will
+also introduce briefly the new paradigm of NoSQL databases
+used in big data systems. The topics will cover all important
+aspects including normalization, query processing and
+transactions
+COURSE DETAIL
+Sl.No. Topics
+1.
+Introduction to Databases
+2. Relational Data Model
+3.
+RelationalAlgebra:Basic Operators
+4.
+RelationalAlgebra:Additional Operators
+5.
+RelationalAlgebra: Updates
+6. Entity-Relationship Diagram
+7. SQL: Creation and Basic Query Structure
+8. SQL:Basic Operations
+NPTEL
+http://nptel.ac.in
+Computer
+Science and
+Engineering
+Pre-requisites:
+Basic programming; Data
+structures and algorithms
+Coordinators:
+Dr. Arnab Bhattacharya
+Department of Computer
+Science and EngineeringIIT
+Kanpur
+9. SQL:Aggregate and Grouping
+10. SQL: Nested Subqueries and Sets
+11. SQL: Updates and Joins
+12. SQL:Views and Triggers
+13.
+Recap
+14.
+Database Normalization: Functional
+Dependencies
+15.
+Database Normalization: 1NF and 2NF
+16.
+Database Normalization: 3NF
+17.
+Database Normalization:BCNF
+18.
+Database Normalization: Multi-valued
+Dependencies
+19.
+Physical Design
+20.
+Indexing:Basics and Hashing
+21.
+Indexing:B-tree and B+-tree
+22.
+Recap
+23.
+Query Processing:Selection
+24.
+Query Processing:Sorting
+25.
+Query Processing:Basic Nested Loop Join
+26.
+Query Processing:Block and Indexed Nested
+Loop Joins
+27.
+Query Processing: Merge and Hash Joins
+28.
+Query Optimization:Equivalent Expressions
+29.
+Query Optimization: Joins
+30.
+Query Optimization: Joins
+31.
+Query Optimization:Estimating Sizes
+32.
+Recap
+33.
+Database Transactions: Definition of Transactions
+34.
+Database Transactions: Features of Transactions
+35.
+Recovery Systems: Types of Recovery Systems
+36.
+Recovery Systems: Log-based Schemes
+37.
+Transaction Schedules: Conflicts and Aborts
+38.
+Transaction Schedules:Serializability
+39.
+Transaction Schedules: Recoverability
+40.
+Concurrency Control Protocols: Two-phase
+Locking Protocols
+41.
+Concurrency Control Protocols: Timestamp
+41. Ordering Protocol
+42.
+Concurrency Control Protocols: Multiple
+Granularity Locks
+43.
+Concurrency Control Protocols: Deadlock
+Prevention
+44.
+NoSQL: CAP Theorem and BASE Properties
+45.
+NoSQL: Types of NoSQLSystems
+46.
+Graph Databases
+47.
+Big Data
+48.
+Recap
+A joint venture by IISc and IITs, funded by MHRD, Govt of India http://nptel.ac.in
+
+NPTEL Syllabus
+Database Design - Video
+course
+Module 1: Introductory Concepts (1 session)
+Databases and Information Systems, An example usage context,
+Database system concepts and architecture.
+Module 2: Semantic Database Design (3 sessions)
+High-level conceptual modeling, ER Modeling concepts, ER Diagrams,
+Cardinality constraints, Higher-order relationships, Enhanced ER Model
+(EER), Weak-entity types, Subclasses and inheritance, Specialization
+and Generalization, Modeling of UNION types using categories
+Module 3: Relational Model, Languages and Systems (7 sessions)
+Relational algebra (2 sessions): Relational model concepts, Relational
+integrity constraints, Update operations on relations, Relational algebra
+model, ER to relational mapping
+SQL (2 sessions): Data definition in SQL, Queries and update
+statements, Views, Integrity constraints, Specifying indexes,
+Embedded SQL.
+IBM DB2 case study (2 sessions): Architecture of DB2, Data definition
+and manipulation in DB2.
+EER to Relational mapping (1 session)
+Module 4: Database design using the relational model (4 sessions)
+Functional dependencies (2 sessions): Keys in a relational model,
+Concept of functional dependencies, Normal forms based on primary
+keys, Boyce-Codd Normal Forms
+Further Dependencies (2 sessions): Multi-values dependencies and
+fourth normal form, Join dependencies and fifth normal form, Inclusion
+dependencies, Other dependencies and normal forms
+Module 5: Storage and Indexing Structures (6 sessions)
+Storage structures (3 sessions): Secondary storage devices, Buffering
+of blocks, File Organization, Heaps, Sorted Files, Hashing and overflow
+handling techniques, Dynamic hashing, Extensible hashing, Other file
+organizations
+Indexing methods (3 sessions): Basic terminology, Primary indexes,
+Clustering index, Secondary index, Multilevel indexes, ISAM, B-trees,
+B+ trees, inserting and searching algorithms for B+ trees, Other
+indexing methods
+Module 6: Transaction Processing and Concurrency Control (6
+sessions)
+Transaction Fundamentals (3 sessions): OLTP environments,
+Concurrency issues, need for transactions, Necessary properties of
+transactions (ACID properties), Transaction states, serializability, Serial
+schedules, Conflict serializability, View serializability, Recoverable and
+non-recoverable schedules, Cascading rollbacks, Cascadeless
+schedules
+Concurrency control (3 sessions): Serialized and non-serialized
+schedules, Testing for serializability, Locking, Lock compatibility matrix,
+Locking and serializability, Deadlocks and starvation, Two-phase
+locking (2PL) protocol, Conservative, strict and rigorous 2PL, 2PL with
+lock conversions, Timestamp-ordering based protocol, Multiversioning protocol, Multi-granularity locking, Deadlock prevention
+protocols, Wait-die and wound-wait schemes, Time-out based
+schemes, Deadlock recovery, Nested transactions
+NPTEL
+http://nptel.ac.in
+Computer
+Science and
+Engineering
+Coordinators:
+Dr. S. Srinath
+IIIT Bangalore
+Prof. D. Janaki Ram
+Department of Computer Science
+and EngineeringIIT Madras
+s
+c
+h
+e
+m
+e
+s
+,
+D
+e
+a
+dlo
+c
+k
+r
+e
+c
+o
+v
+e
+r
+y
+,
+N
+e
+s
+te
+d
+t
+r
+a
+n
+s
+a
+c
+tio
+n
+s
+M
+o
+d
+u
+l
+e
+7
+:
+D
+a
+ta
+b
+a
+s
+e
+r
+e
+c
+o
+v
+e
+r
+y
+te
+c
+h
+niq
+u
+e
+s
+(
+3
+s
+e
+s
+sio
+n
+s
+)
+R
+e
+c
+o
+v
+e
+r
+y
+c
+o
+n
+c
+e
+p
+ts
+,
+D
+e
+fe
+r
+r
+e
+d
+u
+p
+d
+a
+te
+s
+te
+c
+h
+niq
+u
+e
+, Im
+m
+e
+dia
+te
+u
+p
+d
+a
+te
+te
+c
+h
+niq
+u
+e
+,
+S
+h
+a
+d
+o
+w
+p
+a
+gin
+g
+,
+A
+RIE
+S
+r
+e
+c
+o
+v
+e
+r
+y
+alg
+o
+rit
+h
+m
+M
+o
+d
+u
+l
+e
+8
+:
+Q
+u
+e
+r
+y
+P
+r
+o
+c
+e
+s
+sin
+g
+a
+n
+d
+O
+p
+timiz
+a
+tio
+n
+(
+2
+s
+e
+s
+sio
+n
+s
+)
+Tr
+a
+n
+sla
+tin
+g
+S
+Q
+L in
+to
+r
+ela
+tio
+n
+al alg
+e
+b
+r
+a
+,
+B
+a
+sic
+q
+u
+e
+r
+y
+o
+p
+e
+r
+a
+tio
+n
+s
+,
+H
+e
+u
+ris
+tic
+s in
+q
+u
+e
+r
+y
+o
+p
+timiz
+a
+tio
+n
+,
+S
+ele
+c
+tivity
+a
+n
+d
+c
+o
+s
+t
+e
+s
+tim
+a
+te
+s in
+q
+u
+e
+r
+y
+o
+p
+timiz
+a
+tio
+n
+,
+S
+e
+m
+a
+n
+tic
+q
+u
+e
+r
+y
+o
+p
+timiz
+a
+tio
+n
+M
+o
+d
+u
+l
+e
+9
+:
+D
+a
+ta
+b
+a
+s
+e
+S
+e
+c
+u
+rity
+a
+n
+d
+A
+u
+t
+h
+o
+riz
+a
+tio
+n
+(
+1
+s
+e
+s
+sio
+n
+)
+Dis
+c
+r
+e
+tio
+n
+a
+r
+y
+a
+c
+c
+e
+s
+s
+c
+o
+n
+t
+r
+ol,
+M
+a
+n
+d
+a
+to
+r
+y
+a
+c
+c
+e
+s
+s
+c
+o
+n
+t
+r
+ol a
+n
+d
+m
+ulti- level security, Statistical database security Module 10: Enhanced Data Models for specific applications (2 sessions) Active database concepts, Temporal databases, Spatial databases, multi-media databases Module 11: Distributed databases and issues (3 sessions) Data fragmentation, replication and allocation in distributed databas
+e
+s
+,
+Ty
+p
+e
+s
+o
+f
+dis
+t
+rib
+u
+te
+d
+d
+a
+ta
+b
+a
+s
+e
+s
+y
+s
+te
+m
+s
+Q
+u
+e
+r
+y
+p
+r
+o
+c
+e
+s
+sin
+g in
+dis
+t
+rib
+u
+te
+d
+d
+a
+ta
+b
+a
+s
+e
+s
+,
+C
+o
+n
+c
+u
+r
+r
+e
+n
+c
+y
+c
+o
+n
+t
+r
+ol a
+n
+d
+r
+e
+c
+o
+v
+e
+r
+y in
+dis
+t
+rib
+u
+te
+d
+d
+a
+ta
+b
+a
+s
+e
+s
+Te
+x
+tb
+o
+o
+k:
+E
+l
+m
+a
+s
+ri
+,
+N
+a
+v
+a
+th
+e. Fu
+n
+d
+a
+m
+e
+n
+t
+a
+l
+s
+o
+f
+D
+a
+t
+a
+b
+a
+s
+e
+Sy
+s
+t
+e
+m
+s
+(
+Th
+i
+rd
+E
+d
+i
+ti
+o
+n)
+,
+P
+e
+a
+rs
+o
+n
+E
+d
+u
+c
+a
+ti
+o
+n
+,
+2
+0
+0
+4. A joint venture by IISc and IITs, fun
+d
+e
+d
+b
+y
+M
+H
+R
+D
+,
+G
+o
+v
+t
+o
+f In
+dia
+h
+t
+t
+p:/
+/
+n
+p
+t
+el.a
+c.in
+
+INTRODUCTION TO DATABASE SYSTEMS
+PROF. SREENIVASA KUMAR
+Department of Computer Science and Engineering
+IIT Madras
+PRE-REQUISITES : Studying B Tech (computer science) 3rd year, Discrete Mathematics or Discrete
+Structures, Programming and Data Structures
+INTENDED AUDIENCE : Any Interested Learners
+COURSE OUTLINE :
+Databases are the backbone of almost all the digital services and e-governance solutions. Modern
+businesses and financial systems heavily depend on databases systems and transaction processing for
+their successful operation. This course introduces the students to the various theoretical and practical
+principles involved in the design and use of databases systems with the help of database
+management systems (DBMS) and the SQL Standard.
+COURSE PLAN :
+ Week 1: Introduction and part of E/R Model Module
+ Week 2: ER Model Module
+ Week 3: Relational Model Module
+ Week 4: Relational Model Module
+ Week 5: TRC Module and part of SQL Module
+ Week 6: SQL Module
+ Week 7: Indexes Module
+ Week 8: Indexes Module + Query Processing Module
+ Week 9: Normal Forms Module
+ Week 10: Normal Forms Module
+ Week 11: Transaction Processing Module
+ Week 12: Transaction Processing Module
