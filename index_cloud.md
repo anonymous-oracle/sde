@@ -1,6 +1,6 @@
 # Unified Cloud Curriculum: index
 
-Index of `unified_cloud_curriculum.md` (built 2026-11-05 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU; `dbms.txt`, 3 database courses: FDB, DBD, IDB; the System Design Primer, the python-patterns collection and the Gang of Four catalogue: SDP, PYP, GOF; and `data-analytics.txt`, 8 new outlines: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD, the ninth, BDC, being a duplicate), all added 2026-11-06. 21 domains, 268 units, 258 assignments (A<d>.<n>, five questions, key collapsed), 46 prerequisite bridges, 10 capstones. All 452 source cells from 33 courses are cited. D15 (database systems) is printed between D9 and D10; D21, D17, D18 and D19 (data science foundations) between D10 and D11; D20 after D11; D16 (software and system design) after D12; D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
+Index of `unified_cloud_curriculum.md` (built 2026-11-05 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU; `dbms.txt`, 3 database courses: FDB, DBD, IDB; the System Design Primer, the python-patterns collection and the Gang of Four catalogue: SDP, PYP, GOF; and `data-analytics.txt`, 8 new outlines: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD, the ninth, BDC, being a duplicate; and `software-engineering.txt`, 2 outlines: ISE, SEM), all added 2026-11-06. 23 domains, 290 units, 280 assignments (A<d>.<n>, five questions, key collapsed), 55 prerequisite bridges, 10 capstones. All 478 source cells from 35 courses are cited. D15 (database systems) is printed between D9 and D10; D21, D17, D18 and D19 (data science foundations) between D10 and D11; D23 (Go, taught on demand) right after D17; D20 after D11; D22 (software engineering) and D16 (software and system design) after D12; D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
 
 Bridge units are marked (bridge). Capstones carry no assignment.
 
@@ -211,6 +211,17 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U17.16 Tries, B-trees, skip lists and string matching: the lookup structures of routers, databases and search engines (bridge)
 - U17.17 Backtracking, branch and bound, exact exponential algorithms, approximation and local search: living with hard problems (bridge)
 
+## D23. Go, taught on demand: the language of the system-design, database-coding and cloud-computing exercises
+
+- U23.1 Bridge: Go for the Python programmer — the toolchain, types, slices, maps, errors and tests (bridge)
+- U23.2 Interfaces, composition and generics: building typed containers and replacing the object-oriented bridge (bridge)
+- U23.3 Concurrency: goroutines, channels, select, context, sync and the race detector (bridge)
+- U23.4 Networked services: `net/http`, handlers and middleware, timeouts, retries, circuit breakers and graceful shutdown (bridge)
+- U23.5 Database coding: a write-ahead-logged key-value store, crash recovery and the `database/sql` interface (bridge)
+- U23.6 System-design building blocks in Go: rate limiters, consistent hashing, Bloom filters and caches (bridge)
+- U23.7 Cloud-native Go: reconciliation loops, leases and fencing, backoff, a twelve-factor service and a container image (bridge)
+- U23.8 Testing, benchmarking and profiling Go programs: table tests, fuzzing, the race detector, coverage, benchmarks and `pprof` (bridge)
+
 ## D18. Applied linear algebra for data and signals: vectors, matrices, eigenvalues, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
 
 - U18.1 Bridge: complex numbers, trigonometry and phasors, and the language of vector spaces (bridge)
@@ -277,6 +288,23 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U12.1 Observability and site reliability engineering: metrics, logs, traces, SLOs and error budgets
 - U12.2 Data analytics on Google Cloud: the warehouse, dataflow pipelines and managed clusters
 - U12.3 Machine learning on Google Cloud: managed training and prediction, pre-trained APIs and responsible AI
+
+## D22. Software engineering: the life cycle, process models, planning and estimation, requirements, formal specification, design (structured and object-oriented), testing, debugging, maintenance, agile methods and reliability
+
+- U22.1 Introduction to software engineering: the need, the challenges, the evolution of the development process, system software engineering and the problems of large-scale development
+- U22.2 Software development life cycle and the process models: waterfall, modified waterfall, prototyping, incremental, spiral and the others, compared
+- U22.3 Project planning: size metrics, function points, cost estimation with COCOMO and Putnam's model, and staffing patterns
+- U22.4 Scheduling, organisation structure, risk management, quality management and configuration management, including the Git object model and the merge algorithm
+- U22.5 Software requirements: gathering, analysis, the SRS and its characteristics, functional and non-functional requirements, and informal specification
+- U22.6 Formal requirement specification: notations, the axiomatic approach (pre- and postconditions, weakest precondition, invariants) and the algebraic approach (abstract data types)
+- U22.7 Software design: basics, characteristics of a good design, modularity, cohesion and coupling, layering and the approaches to design
+- U22.8 Function-oriented design: structured analysis and design, data flow diagrams, structure charts, HIPO, Jackson's technique and Warnier–Orr diagrams
+- U22.9 Object-oriented analysis and design: the concepts, the UML notation (use cases, class, interaction and state diagrams), the OOAD process, and function-oriented against object-oriented development
+- U22.10 Coding and testing I: coding standards, reviews and inspections, the Halstead measures, and unit, integration and system testing
+- U22.11 Testing II: black-box and white-box test-case design, coverage criteria, cyclomatic complexity and basis paths
+- U22.12 Testing III and debugging: mutation testing, regression, property-based testing, debugging strategies, delta debugging and fault localisation
+- U22.13 Software maintenance and its models, and an introduction to agile software development
+- U22.14 Software reliability: failure models, reliability growth, fault tolerance and the reliability of redundant software (bridge)
 
 ## D16. Software and system design: object-oriented design, design patterns and the system design primer
 
