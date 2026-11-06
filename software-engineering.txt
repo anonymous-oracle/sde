@@ -1,0 +1,87 @@
+Introduction to Software Engineering: A Road Map to Reliable Software Development and Maintenance
+Prof. Subhashis Chatterjee, IIT (ISM) Dhanbad
+
+Course ID
+111105002
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+
+
+Welcome to “Introduction to Software Engineering: A Road Map to Reliable Software Development and Maintenance” a comprehensive course designed to equip you with the essential principles and practices for design and development of a quality software systems. Throughout this course, you will delve into various aspects of software development process as well as various aspects of efficient and good quality software product. We will explore both theoretical foundations and practical applications, using case studies and real-world examples. This course is ideal for software developers, engineers, and quality assurance professionals aiming to improve software robustness. Join us to master the techniques required to create good, efficient software product in optimal time with optimum cost.
+Course Details
+Intended Audience
+UG/PG/Ph.D of CSE, IT, EE, ECE, Mathematics, Mathematics &amp; Computing, Data Science.
+Prerequisites
+Basics of Algorithm, and knowledge of programming in any language
+Industry Support
+All companies who are developing software or software driven product, Companies who are doing software maintenance, companies who are performing Software Quality assurance, as well as some startups (related to software solutions), DRDO, ISRO.
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Introduction to software engineering, Need of software engineering. Challenges of software engineering. Evaluation of software development process. System software engineering.
+Week 2	Software Development Process Model. Phases of software development Process. Concept of software development process models like: Water Fall model, Modified Water Fall Model, Prototype model, Incremental Model, Spiral Model, Comparative study of all these models.
+Week 3	Project Planning, Different metrics and their comparative studies, Software Cost Analysis and Modelling. Staffing pattern and staff estimation
+Week 4	Scheduling, Organization structure, Risk management and Quality management, Configuration management.
+Week 5	Software Requirement. Requirement gathering. Problem Analysis. Characteristics of Software Requirement Specification. Functional and Non functional requirements. Informal method of requirement specification
+Week 6	Formal methods for requirement specification. Different notations and methods for requirement specification, Axiomatic and Algebraic approach for requirement specification.
+Week 7	Software design, Basics of software design, characteristics of software design. Different approaches of software design.
+Week 8	Concept of structure design and analysis, Functional Design approaches like: Structural design techniques, HIPO Diagram, Jackson design technique, Warrior ORR diagram,
+Week 9	Concept of Object-oriented Design, Comparative study between Function oriented development approach and Object-oriented approach. UML Design.
+Week 10	Software Coding and Testing. Unit testing, Integration testing, System testing.
+Week 11	Different approaches for test case generation, Cyclomatic complexity. Concept of software debugging.
+Week 12	Software Maintenance models, Introduction to Agile software development.
+Books And References
+1. Software Engineering: A Practitioner’s Approach by R.S. PressMan, McGraw Hill International Edition.
+2. Software Engineering: Reliability, Development and Management by Martin L. Shooman, McGraw-Hill Education
+
+Software Engineering
+Prof. Rajib Mall, IIT Kharagpur
+
+Course ID
+106105182
+Duration
+12 weeks
+Credits
+4
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Large scale software development poses special challenges. This course targets to expose the students to the challenges of large scale software development and would expose the students as to how to overcome those. Starting with basic life cycle model concepts, it would discuss requirements specification, design, and testing issues. The concepts will be illustrated with appropriate examples.
+Course Details
+Intended Audience
+CSE, IT
+Prerequisites
+C Programming, Java or C++ programming
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction
+Week 2	Life Cycle Models I
+Week 3	Life Cycle Models II
+Week 4	Requirements analysis and specification
+Week 5	Basics of software design
+Week 6	Procedural design methodology
+Week 7	Object-oriented concepts
+Week 8	Introduction to UML: Class and Interaction Diagrams
+Week 9	Object-oriented analysis and design
+Week 10	Testing I
+Week 11	Testing II
+Week 12	Testing III
+Books And References
+ Rajib Mall, Software Engineering, PHI, 2013

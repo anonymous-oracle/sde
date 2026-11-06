@@ -1,36 +1,36 @@
-# Unified Cloud Curriculum: Networks → Cloud Compute → Cryptography and Security → Distributed Systems → Storage → Big Data → Cloud Operations → Software and System Design → Computer Architecture and Parallel Hardware
+# Unified Cloud Curriculum: Networks → Cloud Compute → Cryptography and Security → Distributed Systems → Storage → Data Science Foundations (Prerequisites, Algorithms, Linear Algebra, Statistics) → Big Data and Scalable Data Science → Cloud Operations → Software and System Design → Computer Architecture and Parallel Hardware
 
-**Built:** 2026-11-05 (UTC), from `cloud-computing.txt` (13 NPTEL course outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC), `cloud-computing2.txt` (6 architecture course outlines: MCA, CAO, CA, ACA, PCA, GPU) `dbms.txt` (3 database courses: FDB, DBD, IDB) and, added on 2026-11-06, three public design sources outside NPTEL (the System Design Primer by Donne Martin, SDP; the python-patterns collection, PYP; and the Gang of Four catalogue of 23 design patterns, GOF), 25 source courses in all, under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
-**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a from-scratch Python guideline (default, not a prohibition). It follows the same method as the earlier `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) and is a **separate file**; the two can be merged later (see Appendix D). Coverage was checked by script: all 306 source cells (course weeks and outlines) are cited by at least one unit and the words of each cell occur in the units that cite it; the few atoms the script still flags are listed and reviewed in Appendix E.
+**Built:** 2026-11-05 (UTC), from `cloud-computing.txt` (13 NPTEL course outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC), `cloud-computing2.txt` (6 architecture course outlines: MCA, CAO, CA, ACA, PCA, GPU), `dbms.txt` (3 database courses: FDB, DBD, IDB) and, added on 2026-11-06, three public design sources outside NPTEL (the System Design Primer by Donne Martin, SDP; the python-patterns collection, PYP; and the Gang of Four catalogue of 23 design patterns, GOF) and `data-analytics.txt` (nine NPTEL outlines of which eight are new: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD; its ninth, Big Data Computing, is an exact duplicate of BDC and adds no cells), 33 source courses in all, under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
+**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a from-scratch Python guideline (default, not a prohibition). It follows the same method as the earlier `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) and is a **separate file**; the two can be merged later (see Appendix D). Coverage was checked by script: all 452 source cells (course weeks and outlines) are cited by at least one unit and the words of each cell occur in the units that cite it; the few atoms the script still flags are listed and reviewed in Appendix E.
 
 ---
 
 ## How to read this document
 
-1. **Parts and domains.** Six parts, 16 domains (D1–D16). Domain D16 (software and system design) is printed after D12. Domain D14 (computer architecture and parallel hardware) is printed before the capstones (D13), which stay together at the end; domain D15 (database systems) is printed between D9 and D10, because it is the foundation that the storage and big-data domains lean on; the identifier is a name, not a position. Each domain has an aim, named benchmarks and units.
+1. **Parts and domains.** Seven parts, 21 domains (D1–D21). Domain D16 (software and system design) is printed after D12. The data-analytics extension (2026-11-06) adds Part D: D21 (on-demand prerequisites), D17 (algorithms and data structures), D18 (applied linear algebra) and D19 (statistics, data mining and Bayesian analysis), printed between the storage domain D10 and the big-data domain D11, and D20 (scalable data science), printed after D11. Domain D14 (computer architecture and parallel hardware) is printed before the capstones (D13), which stay together at the end; domain D15 (database systems) is printed between D9 and D10, because it is the foundation that the storage and big-data domains lean on; the identifier is a name, not a position. Each domain has an aim, named benchmarks and units.
 2. **Units.** A unit (`U<domain>.<n>`) is a group of related topics. Each has: **Sources** (generated: which source course weeks or outline cells it absorbs), **Topics** (every topic and subtopic, merged across sources and kept close to the sources' own words), **Results** (the theorems and formulas it teaches, each with a proof status), **Build** (the from-scratch implementation, with a cost tag) and **Gap-fills** (what a unit adds that no source names, marked *inferred* with the reference). Bridge units start with a **Bridge for:** line naming the units that need them.
-3. **Assignments.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The nine capstones (D13) are projects with their own acceptance criteria and carry no assignment.
+3. **Assignments.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The ten capstones (D13) are projects with their own acceptance criteria and carry no assignment.
 4. **Proof-status tags** on results: **[P]** prove in full; **[D]** derive with every step; **[S]** proof sketch (the reason a full proof is not given is stated); **[X]** stated, proof deferred (the unit that will prove it, or "beyond course scope", is named); **[Def]** definition, not proved; **[check]** verified by a script in the unit's Build.
 5. **Source keys** (for example `GCF`, `CNS`) are listed in Appendix A. `W3` means Week 3 of that course; `o` means the course's outline or about-text.
-6. **Merging rule.** Where several courses cover the same ground (three database courses, three cryptography courses, four distributed-systems courses, three networking courses, four security and privacy courses), they are merged into one unit at the deepest source level and every source week is cited. The overlap is the point of unifying.
+6. **Merging rule.** Where several courses cover the same ground (four database courses, three cryptography courses, four distributed-systems courses, three networking courses, four security and privacy courses), they are merged into one unit at the deepest source level and every source week is cited. The overlap is the point of unifying.
 7. **Honesty conventions.** *Recalled, not checked* marks a claim from memory (benchmark titles, formulas of standard results). *Inferred* marks a gap-fill with its reference. Facts checked on the web are named as such, with what was checked (Appendix F).
 
 ## Course profile (Master Rules II.1)
 
 | Item | Value |
 |---|---|
-| **Aim** | Expert-level command of how the cloud works from the wire to the data centre and the managed service: networks and Internet protocols, virtualization and cloud compute, cryptography and its provable security, ethical hacking and defence, security governance, risk and privacy, distributed-systems theory and the industrial systems built on it, cloud storage and databases, big-data engines, cloud operations and machine learning on Google Cloud, database systems from the relational model to transactions, recovery, distribution and NoSQL, software and system design (object-oriented design, the design patterns, and designing services that survive load and failure, with back-of-the-envelope estimates), and the computer architecture and parallel hardware underneath it all (instruction sets, pipelines, caches and memory, multicore coherence and memory models, networks on chip, GPUs and accelerators, power, reliability and hardware security). Every mechanism is also implemented from scratch at toy scale. |
-| **Starting level** | School mathematics, one programming language (Python), and basic IT. Everything else, including probability, queueing, graph algorithms, coding theory, number theory, operating-system fundamentals, SQL and machine-learning basics, is taught by bridge units placed just before the topic that needs it (Master Rules 3.3). Appendix C maps each prerequisite the sources state to where it is handled. |
+| **Aim** | Expert-level command of how the cloud works from the wire to the data centre and the managed service: networks and Internet protocols, virtualization and cloud compute, cryptography and its provable security, ethical hacking and defence, security governance, risk and privacy, distributed-systems theory and the industrial systems built on it, cloud storage and databases, big-data engines, cloud operations and machine learning on Google Cloud, database systems from the relational model to transactions, recovery, distribution and NoSQL, software and system design (object-oriented design, the design patterns, and designing services that survive load and failure, with back-of-the-envelope estimates), algorithms and data structures, applied linear algebra, statistics, data mining and Bayesian analysis, scalable data science (sketches, near-neighbour search, MapReduce and distributed optimisation), and the computer architecture and parallel hardware underneath it all (instruction sets, pipelines, caches and memory, multicore coherence and memory models, networks on chip, GPUs and accelerators, power, reliability and hardware security). Every mechanism is also implemented from scratch at toy scale. |
+| **Starting level** | School mathematics, one programming language (Python), and basic IT. Everything else, including probability, queueing, graph algorithms, graph theory, proof techniques, scientific Python (R is replaced by Python), coding theory, number theory, operating-system fundamentals, SQL and machine-learning basics, is taught by bridge units placed just before the topic that needs it (Master Rules 3.3). Appendix C maps each prerequisite the sources state to where it is handled. |
 | **Benchmarks** | Named per domain in each domain's intro. Titles marked *recalled, not checked* have not been verified against the book itself. Appendix F lists what was checked. |
-| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) Build a unified curriculum from the source file in the same way as the earlier one, with the prerequisites wired in. (2) A prerequisite bridge is taught just before the concept that demands it begins, in academic depth. (3) Weekly assignments, with from-scratch Python implementations where necessary. (4) Unify all topics and concepts into a single file. (5) Carried over from the earlier work: NPTEL-style assignments (MCQ, multiple select, numerical, prove or derive, programming; 10 marks; pass at 7/10) and from-scratch Python as the default, where NumPy-first is "not strict ... more of a suggestion. Feel free to design as needed." (6) Nothing may be omitted: every source topic and subtopic is covered. (7) 2026-11-04, architecture extension: the same unification as before (overlapping topics merge into the deepest owner, new topics are added). (8) 2026-11-04: real lab practice where a free GPU is available, with a simulator fallback when it is not; graded work never depends on a GPU. (9) 2026-11-04: the learner is on a MacBook with Apple silicon and its GPU, so the hardware labs are based on it (AArch64, NEON, Metal) and the emulator's instruction set is a small AArch64 (A64) subset; understanding the underlying topics is the goal. (10) 2026-11-05, database extension: add the course of `dbms.txt` into the same curriculum with the same method; the three database courses are unified into one domain (D15), with NPTEL-style weekly assignments, prerequisite bridges just before need, and from-scratch Python builds checked against `sqlite3`. (11) 2026-11-06, design extension: fetch all the concepts of design patterns (the Gang of Four 23 and the python-patterns catalogue with its anti-patterns) and of Donne Martin's System Design Primer (topics, method, the eight worked designs, the object-oriented designs, appendix and reading lists) and add them to this curriculum as one new domain (D16), with the same method: weekly assignments, bridges just before need, a capstone, and every figure recomputed. |
+| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) Build a unified curriculum from the source file in the same way as the earlier one, with the prerequisites wired in. (2) A prerequisite bridge is taught just before the concept that demands it begins, in academic depth. (3) Weekly assignments, with from-scratch Python implementations where necessary. (4) Unify all topics and concepts into a single file. (5) Carried over from the earlier work: NPTEL-style assignments (MCQ, multiple select, numerical, prove or derive, programming; 10 marks; pass at 7/10) and from-scratch Python as the default, where NumPy-first is "not strict ... more of a suggestion. Feel free to design as needed." (6) Nothing may be omitted: every source topic and subtopic is covered. (7) 2026-11-04, architecture extension: the same unification as before (overlapping topics merge into the deepest owner, new topics are added). (8) 2026-11-04: real lab practice where a free GPU is available, with a simulator fallback when it is not; graded work never depends on a GPU. (9) 2026-11-04: the learner is on a MacBook with Apple silicon and its GPU, so the hardware labs are based on it (AArch64, NEON, Metal) and the emulator's instruction set is a small AArch64 (A64) subset; understanding the underlying topics is the goal. (10) 2026-11-05, database extension: add the course of `dbms.txt` into the same curriculum with the same method; the three database courses are unified into one domain (D15), with NPTEL-style weekly assignments, prerequisite bridges just before need, and from-scratch Python builds checked against `sqlite3`. (11) 2026-11-06, design extension: fetch all the concepts of design patterns (the Gang of Four 23 and the python-patterns catalogue with its anti-patterns) and of Donne Martin's System Design Primer (topics, method, the eight worked designs, the object-oriented designs, appendix and reading lists) and add them to this curriculum as one new domain (D16), with the same method: weekly assignments, bridges just before need, a capstone, and every figure recomputed. (12) 2026-11-06, data-analytics extension: assimilate and adapt `data-analytics.txt` (eight new courses) into the same curriculum, fetching textbook material where needed; and, in a follow-up the same day, fetch and consolidate every prerequisite, taught on demand in academic depth, with from-scratch implementation exercises and assignments (D21); and, in a second follow-up that day, convert everything R-related to Python (the Bayesian course's R, brms and Stan become Python with PyMC and Bambi, U21.3 teaches scientific Python in place of the R prerequisite) and teach algorithms and data structures on demand like the prerequisites (the entry map of D17, a "Bridge for" line on every D17 unit, and three added units U17.15 to U17.17). |
 | **Acceptance gates (6.7)** | Formatter clean (`ruff format --check`), linter clean (`ruff check`), `pytest` passes, known-answer tests pass where standards publish them (hash, cipher and checksum vectors), results within stated tolerance of an oracle (a library, a closed form or a brute-force check), and every simulation is deterministic for a given seed and checked by invariants (DSim). No hidden failure. |
 | **Layer order for a topic (3.6)** | Concept and intuition → formal statement and derivation → from-scratch build → professional tool → real-world application and limits → check and close. A tool is used after the thing it automates has been built by hand (6.8). |
 | **Real-world lens (II.6)** | Name it, touch it in a lab, design with it. Every Build line carries a cost tag: **[local]** runs on your machine with no cloud spend; **[local VM]** runs in a local virtual machine or container, and for any security lab on a host-only network that you own; **[credit]** spends cloud credit and is optional, with a budget alert set first and the teardown script written before the create script; **[plan only]** write the plan and the scripts but do not run them (they would spend money or touch systems that are not yours); **[learning only]** hand-built security code that is never deployed. The GPU labs of D14 add three tags, tried in this order: **[local GPU]** the Apple GPU through Metal (PyTorch `mps` or MLX); **[free cloud GPU]** a free Colab or Kaggle NVIDIA GPU on a personal account, with no secrets in the notebook; **[simulator]** a CPU simulator or model, always available and the tier on which every assignment is solvable. |
 | **Safety and cost (Master Rules 11)** | Lab-only. No scanning, probing or attacking anything you do not own or have written permission to test. No malware or exploit authoring: offensive topics appear as Python models, simulations or standard tools inside an isolated host-only lab. Local first. No secrets in code, notes or history. A work account is never used for labs (11.4); use a temporary lab project or a personal account with a budget alert. Hand-built cryptographic and security code is for learning and is never deployed. The legal-and-regulatory units (U8.9) are teaching tools and are not legal advice. |
 | **Pacing (2.7, 8.5)** | The sources' durations (8 or 12 weeks) describe their own pacing only. Here the learner advances by passing checks, never by the calendar. |
 | **Default tooling (from-scratch guideline, flexible)** | (1) Write the mechanism you are learning by hand first. (2) The default toolbox is the Python standard library (sockets, `subprocess`, `struct`, `hashlib` for oracles only, `multiprocessing`) plus NumPy and Matplotlib, because they keep every step visible. (3) This is a **guideline, not a prohibition**: where another tool serves the learning goal, use it, and the unit's Build line names it (for example Wireshark and `tcpdump` for packet work, Mininet or network namespaces for topologies, `nmap` and Metasploit only inside the isolated lab, PySpark and Kafka in the local lab, `gcloud` for the cloud steps). (4) Libraries serve as **oracles** in tests of the from-scratch version (`cryptography`, `networkx`, SQLite, `re`, PySpark, scikit-learn). (5) Apple silicon MacBook: AArch64, NEON, Metal through PyTorch MPS or MLX; small C or assembly programs with `clang` after the Python model. |
-| **Assignments (NPTEL style)** | One per content unit (197, A1.1 to A16.16). Five questions: MCQ (1 mark), multiple select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint.** The tutor never writes graded work (6.13). Every numerical key was computed by running its expression. |
-| **Capstones (9.6)** | U13.1 to U13.9: a user-space TCP/IP stack, a secure channel from your own primitives, a replicated sharded key-value store, an end-to-end data platform, a small service on Google Cloud, a security programme for a synthetic organisation, a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel, a small relational database engine checked against `sqlite3`, and a design dossier with a working miniature of a large-scale service. |
+| **Assignments (NPTEL style)** | One per content unit (258, A1.1 to A21.6). Five questions: MCQ (1 mark), multiple select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint.** The tutor never writes graded work (6.13). Every numerical key was computed by running its expression. |
+| **Capstones (9.6)** | U13.1 to U13.10: a user-space TCP/IP stack, a secure channel from your own primitives, a replicated sharded key-value store, an end-to-end data platform, a small service on Google Cloud, a security programme for a synthetic organisation, a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel, a small relational database engine checked against `sqlite3`, a design dossier with a working miniature of a large-scale service, and an analytics pipeline from raw data to a decision with the statistics, models, sketches and distributed run built from scratch. |
 | **Shared simulator** | **DSim**, a deterministic discrete-event distributed-systems simulator (seeded delays, loss, duplication, crashes, partitions, an invariant checker), is built in U9.1 and reused through D9, D10, D11 and the capstones, and in U14.14 and U14.15, where coherence and consistency protocols are modelled as message-passing systems where natural. Network and security units before U9.1 use smaller purpose-built simulators. |
 | **Record** | The list of units in this document is the record template. Initial state: every unit not started, no evidence; resume point U1.1. The live record (mastery states, misconception register, error log, decision journal) belongs in your tracker file (Master Rules 8.3). |
 
@@ -47,13 +47,18 @@
 |  | D7 Security operations frameworks and cloud security | U7.1–U7.7 | PCS, CSP |
 |  | D8 Governance, risk, resilience and privacy | U8.1–U8.10 | CSP, PCS |
 | C. Distributed systems and storage | D9 Distributed systems | U9.1–U9.22 | DS, ADS, CCDS |
-|  | D15 Database systems | U15.1–U15.27 | FDB, IDB, DBD |
+|  | D15 Database systems | U15.1–U15.27 | FDB, IDB, DBD, DBMS |
 |  | D10 Cloud storage and databases | U10.1–U10.7 | BDC, ADS, CCDS |
-| D. Big data, cloud operations and system design | D11 Big data and cloud analytics | U11.1–U11.11 | BDC, CCDS, DS |
+| D. Data science foundations | D21 On-demand prerequisites for the data-analytics extension | U21.1–U21.6 | none (assembles all) |
+|  | D17 Algorithms and data structures, taught on demand | U17.1–U17.17 | DSAD, AGDS |
+|  | D18 Applied linear algebra for data and signals | U18.1–U18.13 | ALA |
+|  | D19 Statistics, data mining and Bayesian analysis | U19.1–U19.17 | DAP, BDA, DM |
+| E. Big data, scalable data science, cloud operations and system design | D11 Big data and cloud analytics | U11.1–U11.11 | BDC, CCDS, DS |
+|  | D20 Scalable data science | U20.1–U20.8 | SDS |
 |  | D12 Cloud operations and machine learning on Google Cloud | U12.1–U12.3 | GCF |
 |  | D16 Software and system design | U16.1–U16.16 | SDP, PYP, GOF |
-| E. Computer architecture and parallel hardware | D14 Computer architecture and parallel hardware | U14.1–U14.22 | MCA, ACA, GPU, PCA, CA, CAO |
-| F. Capstones | D13 Capstones | U13.1–U13.9 | none (assembles all) |
+| F. Computer architecture and parallel hardware | D14 Computer architecture and parallel hardware | U14.1–U14.22 | MCA, ACA, GPU, PCA, CA, CAO |
+| G. Capstones | D13 Capstones | U13.1–U13.10 | none (assembles all) |
 
 ## Default order (a plan, not a cage: Master Rules 3.3)
 
@@ -68,10 +73,11 @@ Three spines run side by side after the orientation; take them in any interleavi
 | 5 | U6.1 → U6.10, U7.1 → U7.7, U8.1 → U8.10 | Ethical hacking in the isolated lab, defence frameworks and cloud IAM, governance, risk, resilience and privacy. U8.2 (quantitative risk) is a bridge. |
 | 6 | U9.1 → U9.22 | Distributed systems: DSim, gossip, peer-to-peer, time, snapshots, mutual exclusion, election, consensus, consistency, transactions, recovery, ordering, blockchains. U9.1, U9.2 and U9.17 are bridges. |
 | 7 | U15.1 → U15.27, U10.1 → U10.7, U11.1 → U11.11 | Database systems first: modelling, the relational model, algebra and calculus, SQL, normalisation, storage and indexing, query processing and optimisation, transactions, recovery, security, enhanced and distributed models, NoSQL (D15: U15.1 to U15.19 can be taken any time after stage 1, U15.20 to U15.23 after U9.17 whose theorems they cite, and U15.24 to U15.27 after U9.16 and U9.18; U15.3, U15.14 and U15.19 are bridges). Then storage and databases in the cloud (U10.1 stays as the compact SQL bridge for a reader who skips D15), big-data engines, messaging, streaming and graph processing. U11.8 (machine learning) and U11.10 (Markov chains and PageRank) are bridges. |
-| 8 | U12.1 → U12.3 | Cloud operations and machine learning on Google Cloud. |
+| 7b | D21: U21.1 → U21.6, D17: U17.1 → U17.17, D18: U18.1 → U18.13, D19: U19.1 → U19.17 | The data-science foundations, after the storage domains and before the big-data engines. D21 and D17 are entered on demand (D17 through its entry map and the pointer in the Gap-fills of each unit that needs an algorithm or a data structure: take only the unit named, do its Build and assignment, and return); a straight run is U17.15, U17.1 to U17.14, U17.16, U17.17. D21 is entered on demand: U21.1 (Python) before any Build of D17 to D20 that you cannot yet write; U21.2 (school mathematics) before U18.1 and U19.1; U21.3 (scientific Python, in place of the R of the Bayesian course) before U19.2, and again before any Build that uses pandas, SciPy or PyMC; U21.4 (proofs) before U17.1; U21.5 (graph theory) before U17.10; U21.6 (probability) before U19.3. Then D17 (algorithms and data structures, with U17.15 first if recursion or linked lists are new), D18 (applied linear algebra: needs U21.2 and U17.1) and D19 (statistics, data mining, Bayesian analysis: U19.1 and U19.2 first, U19.14 to U19.17 after U19.3 and U19.4). |
+| 8 | U12.1 → U12.3, D20: U20.1 → U20.8 | Cloud operations and machine learning on Google Cloud; scalable data science (needs U11.3, U11.4, U11.7, U11.8, U17.5 and U18.5; U20.6 and U20.7 after U11.3 and U11.4). |
 | 9 | D16: U16.1 → U16.16 | Software and system design: U16.1 (object-oriented design, a bridge) and U16.2 to U16.7 (the design patterns and the object-oriented exercises) can be taken any time after stage 1; U16.8 to U16.13 (estimation, scalability, availability, the data tier, caching, asynchronism) after U9.16, U10.6, U11.6 and U15.20, whose theory they put to work; U16.14 to U16.16 (the worked designs) last. |
 | 10 | D14: U14.1 → U14.22 | D14: U14.1 to U14.5 any time after stage 1; U14.6 to U14.12 after U4.1; U14.13 to U14.16 after U9.1 and U3.3; U14.17 to U14.20 after U11.9; U14.21 and U14.22 last. U14.1 (digital logic and number representation) is a bridge. |
-| 11 | U13.1 → U13.9 | The capstones; U13.7 needs U14.2 to U14.16, U13.8 needs U15.1 to U15.23 and U13.9 needs U16.1 to U16.16. |
+| 11 | U13.1 → U13.10 | The capstones; U13.7 needs U14.2 to U14.16, U13.8 needs U15.1 to U15.23, U13.9 needs U16.1 to U16.16 and U13.10 needs D19, D20 and U17.5. |
 
 Stages 4 to 5 (security) and stage 6 to 7 (systems and data) can be interleaved with stage 3 once stage 2 is done, if you prefer to reach distributed systems sooner. Within a stage, follow the unit order.
 
@@ -210,7 +216,7 @@ Bridge for: U2.2 (statistical multiplexing, delay), U2.13 (ALOHA), U3.3 (head-of
 - **Topics:** Sample spaces, events, conditional probability, Bayes' rule, independence; random variables, expectation, variance, linearity of expectation; binomial, geometric, Poisson and exponential distributions; the memoryless property; the Poisson process (three equivalent definitions, superposition, thinning); continuous-time Markov chains and birth–death chains; the M/M/1 queue: stationary distribution, mean number in system, mean delay, utilisation; Little's law; M/M/c and Erlang C; M/M/1/K and blocking; M/G/1 and the Pollaczek–Khinchine formula; bandwidth–delay product as the "pipe" volume.
 - **Results:** Exponential is the only memoryless continuous distribution [P]; superposition of independent Poisson processes is Poisson [P]; M/M/1 stationary law π_n = (1−ρ)ρⁿ [D]; mean number ρ/(1−ρ) and delay 1/(μ−λ) [D]; Little's law L = λW for any stable system [P]; Erlang C waiting probability [D]; Pollaczek–Khinchine mean wait [S, proof needs residual-life argument].
 - **Build:** a discrete-event simulator (event heap) for M/M/1 and M/M/c, with confidence intervals checked against the formulas; a Little's-law auditor that recomputes L, λ, W from event logs. [local]
-- **Gap-fills:** *[inferred: Kleinrock; Bertsekas–Gallager; recalled, not checked]* PASTA (statement), Jackson networks (statement), heavy-tail traffic and self-similarity as a caveat to Poisson models.
+- **Gap-fills:** *[inferred: Kleinrock; Bertsekas–Gallager; recalled, not checked]* PASTA (statement), Jackson networks (statement), heavy-tail traffic and self-similarity as a caveat to Poisson models. The probability itself is taught from first principles in U21.6 and as statistics in U19.3.
 
 **Assignment A2.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -445,7 +451,7 @@ Bridge for: U2.9 (routing protocols), U2.12 (spanning tree protocol), U3.7 (cont
 - **Topics:** Graphs, weighted paths, optimal substructure and the triangle inequality; Dijkstra's algorithm and its correctness; Bellman–Ford and negative cycles; Floyd–Warshall; breadth-first search; spanning trees; minimum spanning trees: cut property, cycle property, Kruskal and Prim; running times with heaps; distributed asynchronous Bellman–Ford and its convergence.
 - **Results:** Dijkstra's algorithm is correct for non-negative weights [P]; Bellman–Ford after k rounds gives shortest paths of at most k hops [P]; cut property and cycle property of MSTs [P]; Kruskal and Prim are correct [P]; synchronous distance-vector reaches the fixed point in at most n−1 rounds, but count-to-infinity can occur after a cost increase [D].
 - **Build:** all of the above with a binary heap and union–find; a property-test suite using `networkx` only as an oracle. [local]
-- **Gap-fills:** *[inferred: CLRS Ch.22–24]* incremental shortest-path updates; ECMP path enumeration.
+- **Gap-fills:** *[inferred: CLRS Ch.22–24]* incremental shortest-path updates; ECMP path enumeration. The algorithms themselves (breadth-first and depth-first search, Dijkstra, Bellman–Ford, minimum spanning trees) are developed with proofs in U17.10 to U17.12, and the graph-theory vocabulary in U21.5. On demand: U17.12 for shortest paths, U17.10 for spanning trees and U17.11 for graph search.
 
 **Assignment A2.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -523,7 +529,7 @@ Bridge for: U2.9 (routing protocols), U2.12 (spanning tree protocol), U3.7 (cont
 - **Topics:** IP routing; intra-domain routing protocols: distance-vector (RIP) and link-state (OSPF, IS-IS), areas and hierarchy; autonomous systems; inter-domain routing protocols (BGP): eBGP and iBGP, path-vector routing, AS_PATH, LOCAL_PREF, MED and NEXT_HOP, the decision process, business relationships (customer, provider, peer) and export policy, route reflectors, hijacks and leaks, RPKI route-origin validation. Routing protocols (EH Week 3); IP addressing and routing (EH Week 2).
 - **Results:** Distance-vector count-to-infinity and the partial cure of split horizon with poison reverse [D]; link-state flooding gives every router the same graph so Dijkstra yields loop-free routes [P]; the Gao–Rexford conditions guarantee BGP convergence [S]; the stable paths problem can have no stable solution or several (BAD GADGET and DISAGREE) [D].
 - **Build:** distance-vector and link-state routers on an event simulator; a path-vector simulator with customer/provider/peer policies; detect oscillation on BAD GADGET. Then FRRouting or BIRD in Linux network namespaces as the professional tools. [local VM]
-- **Gap-fills:** *[inferred: Peterson–Davie Ch.4; Griffin–Shepherd–Wilfong on stable paths, recalled, not checked]* documented BGP hijack and leak incidents should be read from primary operator reports (RIPE, Cloudflare, the networks involved).
+- **Gap-fills:** *[inferred: Peterson–Davie Ch.4; Griffin–Shepherd–Wilfong on stable paths, recalled, not checked]* documented BGP hijack and leak incidents should be read from primary operator reports (RIPE, Cloudflare, the networks involved). On demand: U17.12 for the shortest-path computation inside OSPF and the path-vector idea of BGP.
 
 **Assignment A2.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -641,7 +647,7 @@ Bridge for: U2.12 (error control); reused in U5.5 (GF(2⁸)) and U5.6 (LFSR as p
 - **Topics:** Data link layer service primitives: framing, addressing, reliable delivery, flow control and error control; error detection and correction (parity, checksums, CRC, Hamming); link-layer flow control (stop-and-wait, sliding window, HDLC); forwarding: Ethernet frames and MAC addresses, self-learning switches, flooding, table ageing; the spanning tree protocol (root election, root and designated ports, BPDUs, RSTP); VLANs and 802.1Q; switch versus router; PPP.
 - **Results:** STP elects the bridge with the lowest ID as root and every other bridge keeps its lowest-cost root port, producing a loop-free tree [D]; a learning switch on a tree topology delivers each frame to its destination and never loops [P]; on a topology with a cycle, flooding creates a broadcast storm [D].
 - **Build:** a learning switch and an STP implementation on a simulated LAN with loops (storm first, tree after); CRC reuse from U2.11. Then Linux bridges in network namespaces as the professional tool. [local VM]
-- **Gap-fills:** *[inferred: Kurose–Ross Ch.6; Perlman, Interconnections, recalled, not checked]* Perlman's STP as a distributed spanning-tree algorithm (compare U9.11), TRILL and shortest-path bridging.
+- **Gap-fills:** *[inferred: Kurose–Ross Ch.6; Perlman, Interconnections, recalled, not checked]* Perlman's STP as a distributed spanning-tree algorithm (compare U9.11), TRILL and shortest-path bridging. On demand: U17.10 and U17.11 for spanning trees and the traversals that build them.
 
 **Assignment A2.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -763,7 +769,7 @@ Bridge for: U3.4 (IP lookup), U3.5 (classification), U3.11–U3.12 (NDN tables);
 - **Topics:** The cost model of lookups (memory accesses, not instructions); binary tries, path-compressed (Patricia) tries and level-compressed tries; hashing, universal hash families, collision handling; perfect hashing (idea); Bloom filters: bit array, k hash functions, false-positive rate, optimal k, counting Bloom filters; content-addressable memory and TCAM as parallel match; Zipf-distributed access and caching.
 - **Results:** A binary trie lookup costs at most W memory accesses for W-bit keys [P]; Patricia trie has at most n−1 branching nodes [P]; Bloom filter false-positive rate (1 − e^{−kn/m})^k and optimal k = (m/n)ln 2 giving ≈ 2^{−k} [D]; a universal family gives collision probability ≤ 1/m [P].
 - **Build:** binary and Patricia tries; a Bloom filter and counting Bloom filter, with the measured false-positive rate against the formula; a universal hash family. [local]
-- **Gap-fills:** *[inferred: Varghese Ch.11; Broder–Mitzenmacher survey on Bloom filters, recalled, not checked]* cuckoo hashing, cuckoo filters.
+- **Gap-fills:** *[inferred: Varghese Ch.11; Broder–Mitzenmacher survey on Bloom filters, recalled, not checked]* cuckoo hashing, cuckoo filters. The analysis of hashing (universal families, chaining, open addressing, perfect hashing) is in U17.5, and the guarantees of Bloom filters and sketches are in U20.2 and U20.3. On demand: U17.5 for hashing and U17.16 for tries.
 
 **Assignment A3.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -803,7 +809,7 @@ Bridge for: U3.3 (switch scheduling) and U3.10 (Clos networks).
 - **Topics:** Bipartite graphs, matchings, maximal versus maximum matching; augmenting paths and Berge's theorem; Hall's marriage theorem; König's theorem; regular bipartite multigraphs and edge colouring; doubly stochastic matrices and permutation matrices; the Birkhoff–von Neumann theorem; Hopcroft–Karp (statement) and simple parallel heuristics (PIM, iSLIP).
 - **Results:** Hall's condition is necessary and sufficient for a perfect matching [P]; a maximal matching has at least half the size of a maximum matching [P]; every k-regular bipartite multigraph decomposes into k perfect matchings [P]; every doubly stochastic matrix is a convex combination of permutation matrices [P].
 - **Build:** augmenting-path maximum matching; Birkhoff decomposition of a random doubly stochastic matrix; checked against `scipy.optimize.linear_sum_assignment` as the oracle. [local]
-- **Gap-fills:** *[inferred: Lovász–Plummer; Diestel Ch.2, recalled, not checked]* the max-flow view of matching (formalised in U4.5).
+- **Gap-fills:** *[inferred: Lovász–Plummer; Diestel Ch.2, recalled, not checked]* the max-flow view of matching (formalised in U4.5). On demand: U17.14 for flows, matching and the augmenting-path method.
 
 **Assignment A3.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -881,7 +887,7 @@ Bridge for: U3.3 (switch scheduling) and U3.10 (Clos networks).
 - **Topics:** IP address lookup; algorithms for IP address lookup and optimisation: binary trie, path compression, multibit tries with controlled prefix expansion, Lulea compression, DIR-24-8 style direct tables, binary search on prefix lengths, hash-based lookup with Bloom filters; hardware implementation of address lookup: TCAM, pipelined SRAM, memory-access budget at line rate; update cost and route-flap handling; IPv6 lookup challenges.
 - **Results:** Multibit trie with stride k: lookup W/k accesses, memory trade-off [D]; controlled prefix expansion cost bound [D]; binary search on lengths needs O(log W) hash probes with markers [P]; TCAM entry ordering by prefix length implements longest-prefix match [P].
 - **Build:** binary trie, multibit trie, DIR-24-8-like table and binary search on lengths on a synthetic routing table; memory and access counts compared; checked against a naive scan. [local]
-- **Gap-fills:** *[inferred: Varghese Ch.11; Degermark et al. 1997, recalled, not checked]* the size of today's global routing table must be checked from a current source (for example RIPE or CIDR Report).
+- **Gap-fills:** *[inferred: Varghese Ch.11; Degermark et al. 1997, recalled, not checked]* the size of today's global routing table must be checked from a current source (for example RIPE or CIDR Report). On demand: U17.16 for the trie and longest-prefix match, and U17.7 for search trees.
 
 **Assignment A3.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -920,7 +926,7 @@ Bridge for: U3.3 (switch scheduling) and U3.10 (Clos networks).
 - **Topics:** Packet classification: need for packet classification (firewalls, QoS, routing policy) and methods for packet classification; the d-dimensional matching problem; lower bounds; linear search; hierarchical tries and set-pruning tries; grid of tries; cross-producting; recursive flow classification; decision-tree methods (HiCuts, HyperCuts); TCAM-based classification and range expansion; tuple-space search.
 - **Results:** For N rules in d dimensions, either O(log^{d−1} N) time with O(N) space or O(log N) time with O(N^d) space [S, lower-bound statement, recalled, not checked]; set-pruning tries trade memory O(N^d·W) for single-path lookup [D]; range-to-prefix expansion needs up to 2W−2 prefixes per range [P].
 - **Build:** hierarchical tries, cross-producting and a HiCuts-style decision tree on a synthetic ruleset; memory and lookup depth measured. [local]
-- **Gap-fills:** *[inferred: Gupta–McKeown 2001, recalled, not checked]* ruleset structure (overlap, specificity), P4 match-action tables as classification (U3.9).
+- **Gap-fills:** *[inferred: Gupta–McKeown 2001, recalled, not checked]* ruleset structure (overlap, specificity), P4 match-action tables as classification (U3.9). On demand: U17.16 for tries and U17.8 for range queries and the geometric view of rules.
 
 **Assignment A3.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1115,7 +1121,7 @@ Bridge for: U3.3 (switch scheduling) and U3.10 (Clos networks).
 - **Topics:** Data Center Networking (DCN) introduction; deep dive: network topologies (three-tier, fat-tree, Clos and leaf–spine, BCube, DCell, Jellyfish), oversubscription and bisection bandwidth, ECMP and load balancing, incast and DCTCP, RDMA over converged Ethernet (overview); container network interfaces: the CNI model, Kubernetes pod networking, overlay networks (VXLAN), network policy.
 - **Results:** A fat-tree built of k-port switches supports k³/4 hosts with full bisection bandwidth [D]; a Clos network with m ≥ 2n−1 middle switches is strictly non-blocking and m ≥ n is rearrangeably non-blocking [P, via Hall in U3.2]; ECMP hash collisions leave flows on shared links [D].
 - **Build:** a fat-tree generator with ECMP path counting and bisection computation; a flow-level simulator showing hash collision loss; a toy CNI plug-in that wires two network namespaces. [local VM]
-- **Gap-fills:** *[inferred: Al-Fares et al. 2008; Alizadeh et al. 2010 (DCTCP), recalled, not checked]* container networking continues in U4.4.
+- **Gap-fills:** *[inferred: Al-Fares et al. 2008; Alizadeh et al. 2010 (DCTCP), recalled, not checked]* container networking continues in U4.4. On demand: U17.12 for the shortest-path and multipath computations.
 
 **Assignment A3.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1394,7 +1400,7 @@ Bridge for: U4.6 (B4 and SWAN allocation), U3.6 (max–min fairness), U11.9 (opt
 - **Topics:** Flow networks, capacities, max-flow and min-cut; Ford–Fulkerson and augmenting paths; max-flow min-cut theorem; multicommodity flow; linear programs in standard form; feasible region, vertices; the simplex method; duality and complementary slackness; max–min fair allocation by water-filling and its LP characterisation; integrality for flow problems.
 - **Results:** Max-flow equals min-cut [P]; integral capacities give integral max-flow [P]; weak duality [P] and strong duality [S]; water-filling gives the unique max–min fair allocation [P].
 - **Build:** Edmonds–Karp; a simplex solver on small LPs; water-filling allocation; checked against `scipy.optimize.linprog` and `networkx`. [local]
-- **Gap-fills:** *[inferred: CLRS Ch.26; Bertsimas–Tsitsiklis, recalled, not checked]* interior-point methods (statement).
+- **Gap-fills:** *[inferred: CLRS Ch.26; Bertsimas–Tsitsiklis, recalled, not checked]* interior-point methods (statement). The max-flow algorithms and the max-flow min-cut theorem are proved in U17.14. On demand: U17.14 teaches the flow algorithms in full.
 
 **Assignment A4.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1433,7 +1439,7 @@ Bridge for: U4.6 (B4 and SWAN allocation), U3.6 (max–min fairness), U11.9 (opt
 - **Topics:** Software defined network: key ideas of SDN, evolution of SDN, SDN challenges; multi-tenant data centers: the challenges; network virtualization; case study: VL2 (Clos topology, valiant load balancing, flat application addresses versus location addresses, directory system) and NVP (logical switches, tunnels, Open vSwitch, controller cluster); geo-distributed cloud data centers: inter-data-center networking, data center interconnection techniques: MPLS (labels, LSPs), Google's B4 and Microsoft's SWAN (centralized traffic engineering, bandwidth allocation, congestion-free updates).
 - **Results:** Valiant load balancing makes any hose-model traffic matrix routable with each link loaded below capacity [S]; with scratch capacity s a SWAN update can be made congestion-free in at most ⌈1/s⌉−1 steps [S, recalled, not checked]; max–min allocation over paths is solved by repeated water-filling [D].
 - **Build:** a TE allocator: max–min fair path allocation on a B4-like WAN graph and an LP-based allocation as in SWAN, compared; a logical-switch mapping table for multi-tenant isolation. [local]
-- **Gap-fills:** *[inferred: Misra–Patel Ch.2, Ch.10 (checked)]* network slicing and ongoing SDN/NFV research directions.
+- **Gap-fills:** *[inferred: Misra–Patel Ch.2, Ch.10 (checked)]* network slicing and ongoing SDN/NFV research directions. On demand: U17.14 for the max-flow and multi-commodity ideas behind traffic engineering.
 
 **Assignment A4.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1832,7 +1838,7 @@ Bridge for: U5.9 onward (every proof of security is a reduction). Addresses the 
 - **Topics:** Turing machines and polynomial time; P, NP, co-NP, BPP, RP; reductions between problems; probabilistic polynomial-time adversaries; negligible functions; one-way functions, one-way permutations and trapdoor functions; hard-core predicates; computational indistinguishability and the hybrid argument; security games, advantage and the reduction template ("if A breaks the scheme then B breaks the assumption"); concrete versus asymptotic security.
 - **Results:** If one-way functions exist then P ≠ NP [P]; computational indistinguishability is transitive over polynomially many hybrids [P]; advantage loss accumulates additively along a chain of reductions [D]; Goldreich–Levin hard-core bit [X, beyond course scope].
 - **Build:** a generic security-game harness (challenger, adversary interface, trial runner with confidence intervals) reused in U5.9–U5.16. [local]
-- **Gap-fills:** *[inferred: Sipser; Goldreich Ch.2; Katz–Lindell Ch.3, recalled, not checked]* the P versus NP status of the assumptions used later (factoring, discrete log are not known to be NP-complete).
+- **Gap-fills:** *[inferred: Sipser; Goldreich Ch.2; Katz–Lindell Ch.3, recalled, not checked]* the P versus NP status of the assumptions used later (factoring, discrete log are not known to be NP-complete). On demand: U17.14 for reductions and NP-completeness, and U17.17 for what to do when a problem is hard.
 
 **Assignment A5.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2933,7 +2939,7 @@ Aim: the defender's working vocabulary. Each framework is treated as a data mode
 - **Topics:** Cyber security: industry perspective, defense technologies, attack, exploits (Text-Chapter 6–7, security technology): packet-filter, stateful and application-proxy firewalls and their rule semantics, network intrusion detection and prevention (signature versus anomaly detection, rule languages), virtual private networks, segmentation and the demilitarised zone, honeypots, log aggregation and security information and event management, endpoint detection; cyber security technologies: access control, encryption, standards: authentication factors and multi-factor authentication, access-control models (the access matrix with ACLs and capabilities; discretionary and mandatory control; the Bell–LaPadula and Biba lattice models; role-based and attribute-based control), the reference monitor, Kerberos-style single sign-on (continued from U5.18); the encryption chapter (Text-Chapter 8, cryptography) is taught in D5 and applied in U5.18; standards (ISO/IEC 27001 family, NIST publications, PCI DSS) are listed here and compared in U8.1; active defense and hacking back: a primer (an HBR piece in the series The end of cyber security): what is lawful, what is not, and why unauthorised counter-attack is excluded from this curriculum.
 - **Results:** Bell–LaPadula basic security theorem: a system whose every transition preserves the simple-security and *-properties stays secure [P]; the base-rate fallacy: with detector true-positive rate r, false-positive rate f and attack prevalence p, P(attack | alert) = rp / (rp + f(1 − p)), which is tiny when p is small [D]; safety of a general access matrix (the HRU result) is undecidable [X]; a stateful firewall's connection table makes return traffic implicitly allowed and bounds state by the number of live flows [D].
 - **Build:** a stateful firewall engine (rule list, connection tracking, timeouts) tested on synthetic packet traces; a signature IDS using Aho–Corasick multi-pattern matching (a trie with failure links, extending the tries of U3.1) with a measured alert precision against prevalence; a Bell–LaPadula reference monitor over a lattice of labels with a proof-by-test of the theorem on random transition sequences; RBAC and ABAC engines that return an allow or deny with the decision trace. [local]
-- **Gap-fills:** *[inferred: Biba 1977; Sandhu et al., Role-Based Access Control Models, recalled, not checked]* zero-trust architecture (NIST SP 800-207, recalled, not checked), mandatory access control as implemented by SELinux.
+- **Gap-fills:** *[inferred: Biba 1977; Sandhu et al., Role-Based Access Control Models, recalled, not checked]* zero-trust architecture (NIST SP 800-207, recalled, not checked), mandatory access control as implemented by SELinux. On demand: U17.16 for the trie and Aho–Corasick matching used by signature-based detection.
 
 **Assignment A7.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3647,7 +3653,7 @@ Aim: four source courses (an advanced course that starts from gossip, a cloud-an
 - **Topics:** Distributed randomized algorithms (the randomisation half of the source's Week 6): Chernoff bounds for sums of independent indicators (multiplicative and additive forms); the balls-into-bins model, maximum load with n balls in n bins (Θ(log n / log log n)) and the two-choices improvement (Θ(log log n)); coupon collector; expectation by linearity; Markov chains for random walks on graphs and their mixing (introduced here, used in U9.3 and U11.10); randomised symmetry breaking and its use in leader election and in load balancing; with-high-probability statements.
 - **Results:** Chernoff: for X a sum of independent Bernoulli variables with mean μ, P[X ≥ (1 + δ)μ] ≤ exp(−δ²μ/(2 + δ)) [P]; the coupon collector needs about n ln n draws in expectation [P]; with n balls in n bins the maximum load is at most 3 ln n / ln ln n with high probability [P]; with two random choices per ball the maximum load is ln ln n / ln 2 + O(1) [X, stated with simulation].
 - **Build:** Monte Carlo for balls-into-bins with one and two choices against the predicted loads; coupon-collector estimates; a random-walk mixing-time estimator on a ring, a grid and an expander-like random regular graph. [local]
-- **Gap-fills:** *[inferred: Mitzenmacher–Upfal Ch.3–5, recalled, not checked]* power of two choices as the basis of load-balancing in cloud schedulers.
+- **Gap-fills:** *[inferred: Mitzenmacher–Upfal Ch.3–5, recalled, not checked]* power of two choices as the basis of load-balancing in cloud schedulers. The underlying probability (Markov, Chebyshev, the weak law) is proved in U21.6.
 
 **Assignment A9.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3764,7 +3770,7 @@ Aim: four source courses (an advanced course that starts from gossip, a cloud-an
 - **Topics:** DHTs: Chord, Pastry and BitTorrent (the DHT part of the third week of the advanced course); DHT, Chord, Pastry and Kelips (the cloud-course week on P2P systems in industry); consistent hashing and its virtual nodes; the Chord ring, finger tables, lookup, join, stabilisation and failure handling by successor lists; Pastry's prefix routing tables and leaf sets; Kelips' affinity groups with constant-hop lookup and gossip-maintained tables (the gossip of U9.3 reused); the trade between routing state, hop count and maintenance traffic; DHT and P2P computing as the source's Week 6 title. The effect of consistent hashing on data movement when a node is added is measured in U16.11.
 - **Results:** In Chord, a lookup takes O(log n) hops with high probability, and with log n virtual nodes per server the load imbalance is O(1) [P]; the ring stays correct if every node's successor pointer is right, and stabilisation repairs concurrent joins [S]; a node's departure moves only the keys it owned, about 1/n of the total [P]; Kelips uses O(√n) state per node for one-hop lookups [D].
 - **Build:** consistent hashing with virtual nodes and the measured imbalance; Chord with finger tables, joins, leaves and crashes in DSim, with the O(log n) hop count measured; a Pastry-style prefix router; a Kelips table with gossip. [local]
-- **Gap-fills:** *[inferred: Stoica et al., Chord 2001; Rowstron–Druschel 2001; Gupta et al., Kelips 2003, recalled, not checked]* Kademlia and its use in BitTorrent's DHT.
+- **Gap-fills:** *[inferred: Stoica et al., Chord 2001; Rowstron–Druschel 2001; Gupta et al., Kelips 2003, recalled, not checked]* Kademlia and its use in BitTorrent's DHT. On demand: U17.5 for hashing and consistent hashing.
 
 **Assignment A9.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3998,7 +4004,7 @@ Aim: four source courses (an advanced course that starts from gossip, a cloud-an
 - **Topics:** Distributed MST (Week 4 of the classical-algorithms course) and Distributed minimum spanning tree (the advanced course's Week 6, with the FLP result, which follows in U9.12): the MST problem, the cut and cycle properties, Borůvka-style fragment merging, the Gallager–Humblet–Spira (GHS) algorithm: fragments, levels, cores, the Connect, Initiate, Test, Accept, Reject, Report and Change-root messages; why unique edge weights are assumed.
 - **Results:** The cut property: the lightest edge crossing any cut belongs to the MST when weights are distinct [P]; GHS builds the MST using at most 5n log₂ n + 2m messages [D]; every GHS level-L fragment has at least 2^L nodes [P].
 - **Build:** GHS in DSim on random weighted graphs, with the MST compared against Kruskal and the message count against the bound. [local]
-- **Gap-fills:** *[inferred: Gallager–Humblet–Spira 1983, recalled, not checked]* MST in the CONGEST model (named).
+- **Gap-fills:** *[inferred: Gallager–Humblet–Spira 1983, recalled, not checked]* MST in the CONGEST model (named). On demand: U17.9, U17.10 and U17.11 for union–find, minimum spanning trees and graph search.
 
 **Assignment A9.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -4467,11 +4473,11 @@ Bridge for: U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 
 Aim: three database courses merged into one thread. The first is a 48-lecture NPTEL course from IIT Kanpur ("Fundamentals of Database Systems", sponsored by Aricent), the second an eleven-module course from IIIT Bangalore and IIT Madras ("Database Design", built on Elmasri and Navathe) and the third a twelve-week course from IIT Madras ("Introduction to Database Systems"). Their order is the order of a database textbook: model the data, state it relationally, query it, normalise it, store and index it, process and optimise queries, run transactions with concurrency control and recovery, then security, enhanced models, distributed databases and NoSQL. U10.1 and U9.17 stay as the compact bridges they were; this domain is their deep treatment, so the reading order puts D15 before D10, and each of the two bridges carries a pointer to the unit that deepens it. Where a topic already has an owner elsewhere (CAP in U9.16, atomic commit in U9.18, families of NoSQL stores in U10.6, big-data engines in D11), D15 gives a pointer and adds only what the database courses add. Every mechanism is built from scratch in Python and checked against `sqlite3` (standard library, local, free) as the oracle. Benchmarks (recalled, not checked): Elmasri and Navathe, *Fundamentals of Database Systems* (the textbook of the second course); Silberschatz, Korth and Sudarshan, *Database System Concepts*; Garcia-Molina, Ullman and Widom, *Database Systems: The Complete Book*; Ramakrishnan and Gehrke, *Database Management Systems*; Abiteboul, Hull and Vianu, *Foundations of Databases*; Bernstein, Hadzilacos and Goodman, *Concurrency Control and Recovery in Database Systems*; Gray and Reuter, *Transaction Processing*; Hellerstein, Stonebraker and Hamilton, "Architecture of a Database System" (2007).
 
 ### U15.1 Introduction to databases and information systems: concepts, architecture and users
-**Sources:** FDB W1, o; DBD W1, o; IDB W1, o
+**Sources:** FDB W1, o; DBD W1, o; IDB W1, o; DBMS W1, o
 - **Topics:** Outline map. The three source files are the NPTELSyllabus of the NOC course Fundamentals of Database Systems (a video course), the NPTEL Syllabus of Database Design (a video course) and the Introduction to Database Systems course of Prof. Sreenivasa Kumar, Department of Computer Science and Engineering, IIT Madras. They name these topics: databases at the core of digital systems and e-governance, the basics of database systems, the traditional relational systems and, briefly, the NoSQL paradigm used in big data systems (the Kanpur NOC course, sponsored by Aricent, with 48 lectures; here U15.27), the topics cover all important aspects including normalization, query processing and transactions (U15.11 to U15.13, U15.17, U15.18 and U15.20 to U15.23); the theoretical and practical principles involved in the design and use of databases systems with the help of a database management system (DBMS) and the SQL Standard, on which modern businesses and financial systems depend for their successful operation (the Madras course, with its Week plan from E/R Model to Transaction Processing: U15.2 to U15.23); and the eleven modules of Database Design from Introductory Concepts to Distributed databases (U15.1 to U15.26). Module 1, Introductory Concepts (1 session): Databases and Information Systems; An example usage context (a university: students, courses, instructors and enrolments, which is the running example of the whole domain); Database system concepts and architecture. Why a DBMS instead of files: redundancy and inconsistency, difficulty of access, isolation of data, integrity constraints, atomicity of updates, concurrent access, security. Data model, schema and instance; the three-schema architecture (external, conceptual and internal levels), logical and physical data independence; the data definition, data manipulation and query languages; database users (administrator, designers, application programmers, end users); the DBMS components (query processor with parser, optimiser and executor; storage manager with buffer manager, file manager, transaction manager, lock manager and recovery manager) and client/server and multi-tier deployment; online transaction processing against online analytical processing; a short history from hierarchical and network models through the relational model to object and NoSQL systems. Prerequisites stated by the sources (basic programming, data structures and algorithms; discrete mathematics): programming and data structures are assumed, and discrete mathematics is taught by the bridge U15.3 just before it is needed.
 - **Results:** Schema and instance are different things: the schema changes rarely, the instance continuously [Def]; physical data independence means the conceptual schema survives a change of file organisation or index, logical data independence that external views survive a change of the conceptual schema [Def]; with k redundant copies of a fact and no atomic multi-copy update, one logical update that succeeds on each copy independently with probability p leaves the copies inconsistent with probability 1 − p^k − (1 − p)^k, which is 0.0394 for k = 4 and p = 0.99 [D, check]; the DBMS components are listed in the order a query meets them: parser, optimiser, executor, access methods, buffer manager, disk, with the lock and recovery managers around the executor [Def].
 - **Build:** the university data kept three ways: flat files with redundancy (to reproduce the insertion, deletion and update anomalies), the same data in `sqlite3`, and a catalog browser that lists every table and column from `sqlite_master` and `PRAGMA table_info`; a Monte Carlo of the k-copy update confirming the closed form. [local]
-- **Gap-fills:** *[inferred: Silberschatz, Korth and Sudarshan, Chapter 1; Hellerstein et al. 2007 for the component list; the ANSI/SPARC three-level architecture, recalled, not checked]* the anomaly vocabulary (insertion, deletion, update) is used again in U15.12.
+- **Gap-fills:** *[inferred: Silberschatz, Korth and Sudarshan, Chapter 1; Hellerstein et al. 2007 for the component list; the ANSI/SPARC three-level architecture, recalled, not checked]* the anomaly vocabulary (insertion, deletion, update) is used again in U15.12. A fourth course (Data Base Management System, IIT Kharagpur, in data-analytics.txt) is mapped onto this domain with no new units: its Course Overview and Introduction to RDBMS (week 1) are this unit, its description (databases as the backbone of applications, commercial systems Oracle, SQL Server and Sybase and open-source MySQL and PostgreSQL, MySQL coding assignments, multi-tier client/server and Web-based database applications, prerequisites in programming, data structures and algorithms, the last two now D17) is the framing of the whole domain.
 
 **Assignment A15.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -4506,7 +4512,7 @@ Aim: three database courses merged into one thread. The first is a 48-lecture NP
 </details>
 
 ### U15.2 Entity-relationship and enhanced ER modelling: semantic database design
-**Sources:** FDB W6; DBD W2; IDB W1–2
+**Sources:** FDB W6; DBD W2; IDB W1–2; DBMS W3
 - **Topics:** Semantic Database Design (Module 2 of Database Design, 3 sessions): high-level conceptual modeling, ER Modeling concepts, ER Diagrams, cardinality constraints, higher-order relationships, the Enhanced ER Model (EER), weak-entity types, subclasses and inheritance, specialization and generalization, modeling of UNION types using categories. Entity-Relationship Diagram (Lecture 6 of the Kanpur course) and the E/R Model Module of the Madras course (Weeks 1 and 2: Introduction and part of E/R Model Module, then ER Model Module). Entities, entity sets, attributes (simple, composite, multivalued, derived), key attributes; relationships, relationship sets, roles, descriptive attributes; degree; cardinality ratios 1:1, 1:N, N:1 and M:N with total and partial participation and the min–max notation; higher-order (ternary and n-ary) relationships and when they cannot be split into binary ones; aggregation; weak entity sets with an identifying owner, a partial key and an identifying relationship; design choices (entity or attribute, entity or relationship, binary or ternary) and pitfalls (redundancy, fan and chasm traps); EER: subclasses and superclasses, inheritance of attributes and relationships, specialization and generalization, disjoint or overlapping and total or partial constraints, categories (union types) with several superclasses, and lattices.
 - **Results:** The key of the relationship relation is both entity keys for M:N, the key of the N side for 1:N and either key for 1:1 [P]; a ternary relationship set cannot in general be replaced by three binary ones: for the triples {(s1,p1,j2), (s1,p2,j1), (s2,p1,j1)} the join of the three pairwise projections has four triples, one spurious [P, by example, check]; a total participation constraint makes the foreign key in the N side NOT NULL when the relationship is folded into it (mapped in U15.4) [D]; in an EER hierarchy an entity of a subclass inherits every attribute and relationship of its superclasses, and in a disjoint specialization it belongs to at most one subclass [Def].
 - **Build:** an ER and EER schema model in Python (entities, attributes, relationships with cardinality and participation, weak entities, specializations, categories) with a validator (every entity has a key or an owner, every weak entity has an identifying relationship, no cycle in the inheritance order) and a Graphviz text writer; the supplier-part-project spurious-tuple demonstration. [local]
@@ -4550,7 +4556,7 @@ Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the cal
 - **Topics:** Sets, subsets, power set, the Cartesian product and tuples; relations as subsets of a product, binary-relation properties (reflexive, symmetric, transitive, equivalence relations, partitions); functions, injective, surjective, bijective; cardinality of finite sets and counting; propositional logic, truth tables and equivalences; predicates, the quantifiers ∀ and ∃, free and bound variables, formulas and their meaning in a finite structure; De Morgan laws for quantifiers; proof by induction on the structure of an expression, by contradiction and by contrapositive; finite structures and the active domain; domain independence (a formula whose answer depends only on the values that occur in the database) and why unrestricted negation is not domain independent.
 - **Results:** |A × B| = |A||B| and a relation over n domains of sizes d₁…d_n is any subset of the product, so there are 2^{d₁⋯d_n} of them [P]; the number of binary relations on an n-element set is 2^{n²} (512 for n = 3) [P, check]; the equivalence classes of an equivalence relation partition the set, and every partition arises this way [P]; ¬∀x P(x) ≡ ∃x ¬P(x) and ¬∃x P(x) ≡ ∀x ¬P(x) [P, check by exhaustive evaluation on every unary predicate over three elements]; the formula ¬R(t) is not domain independent: with R = {0, 1} it has one answer over the domain {0, 1, 2} and three over {0, …, 4} [P, check]; structural induction proves a property of all formulas by proving it for atoms and for each connective and quantifier [P].
 - **Build:** a first-order model checker over finite structures (formulas as nested tuples, quantifiers by enumeration) that confirms De Morgan, tests domain independence of a formula by evaluating it over growing domains, and counts relations by enumeration. [local]
-- **Gap-fills:** *[inferred: Rosen, Discrete Mathematics and Its Applications; Abiteboul, Hull and Vianu, Chapter 5 for domain independence, recalled, not checked]* the connection to U5.8's induction and reductions is named.
+- **Gap-fills:** *[inferred: Rosen, Discrete Mathematics and Its Applications; Abiteboul, Hull and Vianu, Chapter 5 for domain independence, recalled, not checked]* the connection to U5.8's induction and reductions is named. The proof techniques that this bridge uses (induction, contradiction, counting) are taught in U21.4 and the graph theory in U21.5.
 
 **Assignment A15.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -4624,7 +4630,7 @@ Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the cal
 </details>
 
 ### U15.5 Relational algebra: basic and additional operators, extended operators and updates
-**Sources:** FDB W3–5; DBD W3; IDB W3–4
+**Sources:** FDB W3–5; DBD W3; IDB W3–4; DBMS W3
 - **Topics:** Relational Algebra: Basic Operators (Lecture 3 of the Kanpur course: selection, projection, union, set difference, Cartesian product and rename), Relational Algebra: Additional Operators (Lecture 4: intersection, natural join, theta and equi-join, division, outer joins, assignment) and Relational Algebra: Updates (Lecture 5: insertion, deletion and modification written as algebra); the same ground in Weeks 3 and 4 of the Madras course and the relational algebra sessions of Database Design. Operator semantics and schemas of results; composition and expression trees; the closure property (every result is a relation); set and bag semantics; extended operators (generalised projection, aggregation with grouping, sorting); semijoin and antijoin; derived operators and the completeness of the six basic ones; algebraic equivalences (selection cascade and commutation, push-down over product and join, join commutativity and associativity, projection cascade); update expressions R ← R ∪ E, R ← R − σ_p(R) and modification as delete followed by insert of the modified tuples.
 - **Results:** Intersection R ∩ S = R − (R − S), natural join = projection of a selected product with renaming, and division R ÷ S = π_X(R) − π_X((π_X(R) × S) − R) [P, check on 300 random relations against direct evaluation]; with the instance Enrol and Req of the build, Enrol ÷ Req has 3 tuples [check]; σ_p(R × S) = R ⋈_p S and σ_{p(R)}(R ⋈ S) = σ_{p(R)}(R) ⋈ S when p mentions only attributes of R [P]; natural join is commutative and associative [P]; |R ⋈ S| ≤ |R||S|, and ≤ |R| when the join attributes form a key of S, so a 12-tuple R joined with the 4-tuple S of the build gives 16 only because the join attribute is not a key of S [P, check]; relational algebra (without iteration) cannot express transitive closure [X, beyond course scope: a locality argument, Gaifman's theorem].
 - **Build:** a relational algebra engine in Python (set-semantics relations, every operator above, an expression tree with a pretty printer, and the update forms) checked against `sqlite3` translations on random relations, with division checked against a double NOT EXISTS query; the identity checks above run as property tests. [local]
@@ -4702,11 +4708,11 @@ Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the cal
 </details>
 
 ### U15.7 SQL I: data definition, basic query structure, basic operations, aggregation and grouping
-**Sources:** FDB W7–9; DBD W3; IDB W5–6
+**Sources:** FDB W7–9; DBD W3; IDB W5–6; DBMS W2
 - **Topics:** SQL: Creation and Basic Query Structure (Lecture 7 of the Kanpur course), SQL: Basic Operations (Lecture 8) and SQL: Aggregate and Grouping (Lecture 9); the SQL parts of Module 3 of Database Design (SQL (2 sessions): data definition in SQL, queries and update statements, then views, integrity constraints, specifying indexes and embedded SQL in U15.9), the part of SQL in Week 5 and the SQL Module of Week 6 of the Madras course. Data definition in SQL: CREATE TABLE, data types, the constraints PRIMARY KEY, UNIQUE, NOT NULL, CHECK and FOREIGN KEY, ALTER and DROP. The basic block SELECT, FROM, WHERE; DISTINCT against ALL; expressions, aliases and renaming; string matching with LIKE; BETWEEN; ORDER BY; multiset (bag) semantics; NULL, the third truth value UNKNOWN and IS NULL; the aggregates COUNT, SUM, AVG, MIN and MAX, GROUP BY and HAVING, and how aggregates treat NULL. The logical evaluation order of a query: FROM, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY. The correspondence with the algebra of U15.5.
 - **Results:** A SELECT-FROM-WHERE block without DISTINCT denotes π(σ(R₁ × … × R_n)) under bag semantics, so duplicates are counted [P]; the three-valued truth tables make NOT UNKNOWN = UNKNOWN, FALSE AND UNKNOWN = FALSE and TRUE OR UNKNOWN = TRUE, and WHERE keeps only rows that evaluate to TRUE [Def]; on the six-row Emp table of the build, AVG(sal) = 55 because AVG ignores the two NULL salaries, while COUNT(*) is 6 and COUNT(sal) is 4 [check on `sqlite3`]; WHERE filters rows before grouping and HAVING filters groups after aggregation, so a condition on an aggregate can only be in HAVING [D]; adding a column to a GROUP BY list can only refine the groups, so the number of groups never decreases [P].
 - **Build:** a SQL subset parser and executor in Python (CREATE TABLE, INSERT, SELECT with WHERE, ORDER BY, GROUP BY, HAVING and the five aggregates) with three-valued logic, checked against `sqlite3` on random tables containing NULLs; the bag and set versions of the same query compared. [local]
-- **Gap-fills:** *[inferred: ISO/IEC 9075 (the SQL Standard), recalled, not checked; Garcia-Molina, Ullman and Widom, Chapters 6 and 7]* `sqlite3` uses dynamic typing with type affinity, so the oracle accepts values that a stricter system would reject; the build tests only values of the declared type.
+- **Gap-fills:** *[inferred: ISO/IEC 9075 (the SQL Standard), recalled, not checked; Garcia-Molina, Ullman and Widom, Chapters 6 and 7]* `sqlite3` uses dynamic typing with type affinity, so the oracle accepts values that a stricter system would reject; the build tests only values of the declared type. The Structured Query Language (SQL) lecture of the Kharagpur DBMS course (week 2) is this unit and U15.8.
 
 **Assignment A15.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -4780,11 +4786,11 @@ Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the cal
 </details>
 
 ### U15.9 SQL III: views, triggers, integrity constraints, specifying indexes, embedded SQL and a recap
-**Sources:** FDB W12–13; DBD W3; IDB W6
+**Sources:** FDB W12–13; DBD W3; IDB W6; DBMS W5
 - **Topics:** SQL: Views and Triggers (Lecture 12): virtual and materialised views, updatable views and WITH CHECK OPTION, the view update problem; triggers as event-condition-action rules (BEFORE and AFTER, row and statement level, the OLD and NEW rows), and their cascades; integrity constraints (CHECK, assertions, deferrable constraints) and specifying indexes (CREATE INDEX, unique and composite indexes; why an index helps is the subject of U15.16); Embedded SQL: a host language, cursors, prepared statements and parameter binding, dynamic SQL, the call-level interfaces (ODBC, JDBC and the Python DB-API), autocommit and explicit transactions; and the Recap (Lecture 13), which closes the first block: ER, the relational model, algebra, calculus and SQL. Authorization is in U15.24.
 - **Results:** A query on a view is answered by view expansion: substitute the view's definition and optimise the result [D]; a view is unambiguously updatable only if it maps each view row to one base row (one table, no aggregate, no DISTINCT, no GROUP BY, the key kept), a rule recalled from the standard and not re-derived [X]; for a join view V = R ⋈ S and inserted sets ΔR and ΔS, V_new = V ∪ (ΔR ⋈ S) ∪ (R ⋈ ΔS) ∪ (ΔR ⋈ ΔS), so with |R| = 100, |S| = 80, |ΔR| = 10 and |ΔS| = 5 incremental maintenance examines 1350 pairs against 9350 for recomputation [P, check on 300 random deltas]; a trigger that updates the table it watches can fire forever, so a nesting limit or a guard condition is required [D, by example]; a bound parameter is never parsed as SQL, so the string x' OR '1'='1 matches no user when bound but matches every row when concatenated into the text of the query [D, check on your own in-memory database].
 - **Build:** a view-expansion rewriter for select-project-join views; incremental maintenance of a join view checked against full recomputation on random delta sequences; a small trigger engine (event-condition-action with a nesting limit); the DB-API with cursors, `executemany` and parameter binding in `sqlite3`, including the injection demonstration run only against a database you create in memory. [local]
-- **Gap-fills:** *[inferred: Gupta and Mumick on view maintenance; the SQL standard on updatable views; OWASP on injection, recalled, not checked]* the recap lecture adds no new topic, and the units it recaps carry its citation.
+- **Gap-fills:** *[inferred: Gupta and Mumick on view maintenance; the SQL standard on updatable views; OWASP on injection, recalled, not checked]* the recap lecture adds no new topic, and the units it recaps carry its citation. The Application Development lecture of the Kharagpur DBMS course (week 5) is the embedded-SQL part of this unit plus the multi-tier client/server and web database applications built in D6 and D12.
 
 **Assignment A15.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -4819,7 +4825,7 @@ Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the cal
 </details>
 
 ### U15.10 A commercial case study: IBM DB2, its architecture, data definition and manipulation
-**Sources:** DBD W3
+**Sources:** DBD W3; DBMS W5
 - **Topics:** IBM DB2 case study (2 sessions) in Module 3 of Database Design (7 sessions in all): Architecture of DB2, and Data definition and manipulation in DB2. The architecture, taught through the concepts this domain builds: a client connects to a database server; the engine runs agents (processes or threads) for each connection; the buffer pools cache pages of the table spaces, which are mapped to containers on disk; the log manager writes the write-ahead log; the lock manager and the cost-based optimiser sit between SQL and the access methods; the catalog holds the metadata. Data definition: CREATE TABLESPACE, BUFFERPOOL, TABLE (identity and generated columns), INDEX, VIEW and materialised query tables; data manipulation: standard SQL plus DB2 forms such as FETCH FIRST n ROWS ONLY and the one-row table SYSIBM.SYSDUMMY1; the four isolation levels uncommitted read (UR), cursor stability (CS, the default), read stability (RS) and repeatable read (RR). The product family (Db2 for Linux, UNIX and Windows, Db2 for z/OS, Db2 for i) is named and the course case study follows the first.
 - **Results:** Every DB2 component maps to a generic one taught here: buffer pool to buffer manager (U15.15), table space to file organisation (U15.15), catalog to the system tables (U15.1), optimiser to U15.18, log manager to U15.23 and lock manager to U15.22 [Def]; under DB2's isolation levels, dirty reads are possible only under UR, non-repeatable reads under UR and CS, phantoms under UR, CS and RS, and lost updates under none, per IBM's documentation [Def, checked on IBM's pages, 2026-11-05]; a buffer pool that is 25% of 16 GB with 8 KB pages holds 524288 pages [D, check], the 16 GB being the memory cap of the free Community Edition [checked].
 - **Build:** a mapping table from the DB2 vocabulary to the generic one and to `sqlite3`, and the university schema written for DB2 and for `sqlite3` side by side, with each DB2-only clause marked. Optional hands-on: IBM's free Db2 Community Edition (checked on IBM's page: a free edition limited to 4 virtual cores and 16 GB, for non-production use, with a Docker image for Linux, Windows and Mac) in a local container; whether an image runs natively on Apple silicon is recalled, not checked, so verify first, and treat the lab as [plan only] if it does not. [local VM]
@@ -4897,7 +4903,7 @@ Bridge for: U15.4 to U15.6 (relations as sets of tuples, the algebra and the cal
 </details>
 
 ### U15.12 Normal forms: 1NF, 2NF, 3NF and BCNF, lossless decomposition and dependency preservation
-**Sources:** FDB W15–17; DBD W4; IDB W9–10
+**Sources:** FDB W15–17; DBD W4; IDB W9–10; DBMS W4
 - **Topics:** Database Normalization: 1NF and 2NF (Lecture 15), Database Normalization: 3NF (Lecture 16) and Database Normalization: BCNF (Lecture 17); the normal forms based on primary keys and the Boyce-Codd Normal Forms of Module 4 of Database Design; Weeks 9 and 10 of the Madras course (the Normal Forms Module, twice). First normal form (atomic values, no repeating groups); second normal form (no non-prime attribute depends on part of a candidate key); third normal form (for every non-trivial X → A, X is a superkey or A is prime); Boyce–Codd normal form (for every non-trivial X → A, X is a superkey); the hierarchy BCNF inside 3NF inside 2NF inside 1NF. Decomposition: lossless join (the binary test), dependency preservation, projection of dependencies; the BCNF decomposition algorithm (which can lose dependencies) and the 3NF synthesis algorithm from a minimal cover (which is lossless and preserves dependencies); denormalisation for performance and for analytic stores (U12.2).
 - **Results:** BCNF implies 3NF implies 2NF [P]; a decomposition of R into R₁ and R₂ is lossless exactly when (R₁ ∩ R₂) → (R₁ − R₂) or (R₁ ∩ R₂) → (R₂ − R₁) holds [P, check with the chase]; the BCNF algorithm terminates and gives a lossless decomposition, because each step is a lossless binary split and the pieces shrink [P, check on 340 random schemas]; for R(A,B,C) with AB → C and C → B (candidate keys AB and AC) the schema is in 3NF but not BCNF, and the BCNF decomposition {AC, BC} is lossless but loses AB → C [D, check]; 3NF synthesis (one relation per left side of the cover, plus a key relation if none contains a key, minus subsumed relations) yields 3NF relations that are lossless and dependency preserving, here {ABC} [P, check]; testing whether a schema is in 3NF is NP-complete in general [X, beyond course scope].
 - **Build:** normal-form testers for 2NF, 3NF and BCNF, the BCNF decomposer, the 3NF synthesiser, a tableau (chase) lossless-join test and a dependency-preservation test, validated on 400 random schemas and by checking on random instances that satisfy F that joining the pieces returns the original. [local]
@@ -4980,7 +4986,7 @@ Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query
 - **Topics:** Why the unit of cost changes: the memory hierarchy of U14.9 to U14.12 seen from the database, where a disk or flash access costs a million times a cache hit. The magnetic disk: platters, surfaces, tracks, cylinders, sectors, the head; the access time as seek plus rotational latency plus transfer; sequential against random access; the flash drive (pages, erase blocks, write amplification, no seek, asymmetric read and write cost); the block (page) as the unit of transfer. The external-memory (I/O) model of Aggarwal and Vitter with N records, a memory of M records and blocks of B records: scanning costs N/B transfers, sorting costs (N/B)·log_{M/B}(N/B) and a search in a block-indexed structure costs log_B N. External merge sort: run formation by sorting M records at a time or by replacement selection, then (M/B − 1)-way merges; double buffering to overlap transfer and computation.
 - **Results:** The average rotational latency is half a revolution, 60/(2 × 7200) s = 4.17 ms at 7200 rpm, so a random 8 KB read with a 9 ms seek and a 150 MB/s transfer costs about 13.2 ms against 0.052 ms for the same block when it is the next one on the track [D, check]; external merge sort of N pages with M buffers takes 1 + ⌈log_{M−1}⌈N/M⌉⌉ passes, each reading and writing every page, so N = 10 000 and M = 100 give 3 passes and 60 000 page transfers [P, check by simulating the merge passes]; sorting needs Ω((N/B) log_{M/B}(N/B)) transfers, by counting: each transfer can distinguish only C(M, B) arrangements, and N! permutations must be told apart [S, the adversary argument is sketched, not written out]; replacement selection produces runs of average length about 2M on random input, by the snowplow argument [S, check: measured 1.99 M on 200 000 random keys]; a scan is the cheapest access and a random access the dearest, which is why the file organisations of U15.15 try to turn random into sequential access [D].
 - **Build:** a block-device simulator that counts reads and writes and, optionally, applies the seek, rotational and transfer model; external merge sort checked against the pass formula; replacement selection with measured run length; a flash model with erase blocks that counts write amplification for random and sequential writes. [local]
-- **Gap-fills:** *[inferred: Aggarwal and Vitter 1988; Knuth, The Art of Computer Programming vol. 3, section 5.4; Ruemmler and Wilkes 1994 on disk modelling; the flash figures are recalled, not checked]*
+- **Gap-fills:** *[inferred: Aggarwal and Vitter 1988; Knuth, The Art of Computer Programming vol. 3, section 5.4; Ruemmler and Wilkes 1994 on disk modelling; the flash figures are recalled, not checked]* The comparison-sorting lower bound and the linear-time sorts that the external sort builds on are in U17.4.
 
 **Assignment A15.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5015,11 +5021,11 @@ Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query
 </details>
 
 ### U15.15 Storage structures and physical design: devices, buffering, file organisation and hashing
-**Sources:** FDB W19–20; DBD W5; IDB W7
+**Sources:** FDB W19–20; DBD W5; IDB W7; DBMS W5
 - **Topics:** Physical Design (Lecture 19) and the hashing half of Indexing: Basics and Hashing (Lecture 20); Module 5 of Database Design, Storage and Indexing Structures (6 sessions), its first half Storage structures (3 sessions): secondary storage devices, buffering of blocks, file organization, heaps, sorted files, hashing and overflow handling techniques, dynamic hashing, extensible hashing, other file organizations; the Indexes Module of Week 7 of the Madras course. Records: fixed and variable length, spanned and unspanned, the blocking factor, slotted pages and record identifiers, row against column layout. The buffer pool: pinning, dirty pages, replacement (LRU, clock, and MRU for repeated scans), read-ahead. File organisations: the heap, the sorted file, static hashing with overflow chains or open addressing, and dynamic hashing by extensible hashing and linear hashing; clustered files and RAID as the other organisations; the physical-design task of choosing organisations and indexes for a workload, and denormalisation as part of it.
 - **Results:** With record size R and block size B, the blocking factor is ⌊B/R⌋ and a file of n records occupies ⌈n/⌊B/R⌋⌉ blocks; a heap search reads b/2 blocks on average and b at worst, a sorted file ⌈log₂ b⌉ by binary search [P]; with n keys hashed uniformly into m buckets and load α = n/m the expected chain visited is α for an unsuccessful and 1 + α/2 for a successful search [P, under the uniform-hashing assumption]; an extensible hash file keeps a directory of 2^d pointers (global depth d), every bucket has a local depth at most d, a full bucket splits (doubling the directory only when its local depth equals d), and a lookup costs one directory access and one block access [P for the invariants, check]; the expected number of buckets for n keys with capacity b is about n/(b ln 2), measured 0.998, 1.000 and 1.021 of that for b = 4, 8 and 16 on 40 000 random keys [X, check]; a cyclic scan over 11 blocks with 10 buffers has hit rate 0 under LRU and about 0.86 under MRU [D, check]; the XOR of the surviving disks of a RAID-5 stripe recovers a lost disk [P].
 - **Build:** a slotted-page heap file with record identifiers; a buffer manager with LRU, clock and MRU policies and hit-rate measurements on scans and skewed workloads; extensible hashing and linear hashing with invariant checkers; a RAID-5 parity coder with disk failure and rebuild. [local]
-- **Gap-fills:** *[inferred: Fagin, Nievergelt, Pippenger and Strong 1979 on extensible hashing; Litwin 1980 on linear hashing; Patterson, Gibson and Katz 1988 on RAID; Chou and DeWitt 1985 on buffer replacement for database workloads, recalled, not checked]*
+- **Gap-fills:** *[inferred: Fagin, Nievergelt, Pippenger and Strong 1979 on extensible hashing; Litwin 1980 on linear hashing; Patterson, Gibson and Katz 1988 on RAID; Chou and DeWitt 1985 on buffer replacement for database workloads, recalled, not checked]* On demand: U17.5 for hashing, open addressing and perfect hashing.
 
 **Assignment A15.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5054,11 +5060,11 @@ Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query
 </details>
 
 ### U15.16 Indexing: primary, clustering, secondary and multilevel indexes, ISAM, B-trees and B+-trees
-**Sources:** FDB W20–22; DBD W5; IDB W7–8
+**Sources:** FDB W20–22; DBD W5; IDB W7–8; DBMS W6
 - **Topics:** Indexing: Basics and Hashing (Lecture 20, the index basics), Indexing: B-tree and B+-tree (Lecture 21) and its Recap (Lecture 22); the second half of Module 5, Indexing methods (3 sessions): basic terminology, primary indexes, clustering index, secondary index, multilevel indexes, ISAM, B-trees, B+ trees, inserting and searching algorithms for B+ trees, other indexing methods; the Indexes Module of Week 7 and the first half of Week 8 (Indexes Module + Query Processing Module). Dense and sparse indexes; a primary index on the ordering key field, a clustering index on a non-key ordering field and a secondary index on a field that does not order the file; multilevel indexes and the static ISAM structure with overflow pages; B-trees and B+-trees: node structure, order, occupancy invariants, search, insertion with splits, deletion with redistribution and merging, leaf links and range scans, bulk loading, composite keys and key prefixes, covering (index-only) scans; other indexing methods named: bitmap indexes, inverted files (U11.1), spatial trees (U15.25), and log-structured merge trees (U10.4 and U10.5).
 - **Results:** Take order m (at most m children, at most m − 1 keys per leaf, internal nodes with at least ⌈m/2⌉ children, leaves with at least ⌈(m − 1)/2⌉ keys, the root exempt); with h levels a tree holds at most (m − 1)m^{h−1} keys and at least 2⌈m/2⌉^{h−2}⌈(m − 1)/2⌉ keys when h ≥ 2, so the height lies between the smallest h with (m − 1)m^{h−1} ≥ n and the largest h with that minimum at most n [P, check against a real B+-tree built from 20 000 random and ascending keys, orders 4, 5 and 8]; for n = 10⁶ keys the height is 3 at order 200 whatever the insertion order, and at order 100 it is exactly 4, because three levels hold at most 99 × 100² = 990 000 < 10⁶ keys [check]; an insertion preserves the occupancy invariants because a split gives two nodes each at least half full [P]; a range query returning k keys costs h + ⌈k/(entries per leaf)⌉ block reads [D]; a multilevel sparse index over 1 000 000 records with 10 records per block (100 000 data blocks) and 100 index entries per block has 3 levels and finds a record in 4 block accesses [D, check]; a secondary index needs one pointer per record (dense) because the file is not ordered on that field [D].
 - **Build:** a B+-tree (insert, delete with redistribution and merging, search, range scan, bulk load, invariant checker) tested against a sorted-list oracle on random and adversarial sequences; ISAM with overflow chains; dense and sparse indexes over a paged file with block-access counters, reproducing the multilevel example. [local]
-- **Gap-fills:** *[inferred: Bayer and McCreight 1972 on B-trees; Comer 1979, "The ubiquitous B-tree"; Graefe 2011 on B-tree techniques; O'Neil et al. 1996 on LSM trees, recalled, not checked]* write-optimised indexes (LSM) are placed in U10.4 and U10.5, not repeated.
+- **Gap-fills:** *[inferred: Bayer and McCreight 1972 on B-trees; Comer 1979, "The ubiquitous B-tree"; Graefe 2011 on B-tree techniques; O'Neil et al. 1996 on LSM trees, recalled, not checked]* write-optimised indexes (LSM) are placed in U10.4 and U10.5, not repeated. On demand: U17.16 for B-trees with the height bound and the insertion algorithm, and U17.7 for search trees.
 
 **Assignment A15.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5093,11 +5099,11 @@ Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query
 </details>
 
 ### U15.17 Query processing: selection, sorting, projection and the join algorithms
-**Sources:** FDB W23–27; DBD W8; IDB W8
+**Sources:** FDB W23–27; DBD W8; IDB W8; DBMS W6
 - **Topics:** Query Processing: Selection (Lecture 23), Query Processing: Sorting (Lecture 24), Query Processing: Basic Nested Loop Join (Lecture 25), Query Processing: Block and Indexed Nested Loop Joins (Lecture 26) and Query Processing: Merge and Hash Joins (Lecture 27); Module 8, Query Processing and Optimization (2 sessions): translating SQL into relational algebra, basic query operations; the Query Processing Module of Week 8 of the Madras course. The pipeline: parse, translate to algebra, optimise (U15.18), execute. Cost in page transfers (U15.14). Selection: linear scan, binary search on a sorted file, primary and secondary index, range selection, conjunctions and disjunctions with several indexes or by intersecting record identifiers. Sorting and the duplicate elimination, projection and aggregation built on it (sort-based and hash-based). Joins: nested loop, block nested loop, indexed nested loop, sort-merge and hash join (partitioning, build and probe, recursive and hybrid partitioning); materialisation against pipelining and the iterator interface (open, next, close).
 - **Results:** The selection costs are b_r for a linear scan, ⌈log₂ b_r⌉ for binary search and the height h plus one for a B+-tree equality search on a key [D]; with b_r = 100, b_s = 400 pages and M = 22 buffers, block nested loop costs b_r + ⌈b_r/(M − 2)⌉ b_s = 2100 with r outer and 2400 with s outer, so the smaller relation belongs outside, and the tuple-at-a-time nested loop with n_r = 10 000 tuples would cost 4 000 100 [D, check]; hash join costs 3(b_r + b_s) = 1500 when the build side's partitions fit in memory, which needs about M > √(f·b_r) buffers (12 here, f a fudge factor of 1.2) [D, check]; sort-merge join, with the last merge pipelined into the join and each input sorting in one merge pass, also costs 3(b_r + b_s) [D]; the iterator model composes operators so that tuples flow without writing intermediate results to disk [Def]; every join algorithm gives the same bag of tuples as the definition R ⋈ S [P, tested].
 - **Build:** a paged storage layer with I/O counters and every algorithm above (including grace and hybrid hash join and an external sort), with the measured page transfers compared to the formulas to within a few percent; a Volcano-style iterator executor with scan, selection, projection, join, sort and aggregate operators, tested against `sqlite3` results. [local]
-- **Gap-fills:** *[inferred: Graefe 1993, "Query evaluation techniques for large databases"; Garcia-Molina, Ullman and Widom, Chapters 15; Shapiro 1986 and DeWitt et al. 1984 on hash joins, recalled, not checked]* the bitmap and index-intersection plans are named, not built.
+- **Gap-fills:** *[inferred: Graefe 1993, "Query evaluation techniques for large databases"; Garcia-Molina, Ullman and Widom, Chapters 15; Shapiro 1986 and DeWitt et al. 1984 on hash joins, recalled, not checked]* the bitmap and index-intersection plans are named, not built. On demand: U17.4 for sorting and merging and U17.5 for hash joins.
 
 **Assignment A15.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5132,11 +5138,11 @@ Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query
 </details>
 
 ### U15.18 Query optimisation: equivalent expressions, join ordering, size estimation and semantic optimisation
-**Sources:** FDB W28–32; DBD W8; IDB W8
+**Sources:** FDB W28–32; DBD W8; IDB W8; DBMS W7
 - **Topics:** Query Optimization: Equivalent Expressions (Lecture 28), Query Optimization: Joins (Lectures 29 and 30, which share one title) and Query Optimization: Estimating Sizes (Lecture 31), and the Recap (Lecture 32) that closes the physical block; the rest of Module 8: heuristics in query optimization, selectivity and cost estimates in query optimization, semantic query optimization; Week 8 of the Madras course. Translating SQL, including nested blocks, into algebra (unnesting as semijoins). Equivalence rules (U15.5) and the heuristics they support (selections as early as possible, projections early, a product followed by a selection turned into a join, the most selective operations first). Cost-based optimisation: the statistics a catalog keeps (n_r, b_r, distinct values V(A, r), minima, maxima, histograms); the selectivity of equality, range, conjunction (independence assumption) and disjunction; join size estimates; the space of plans (left-deep and bushy trees), enumeration by dynamic programming over subsets (the Selinger method) with interesting orders, and heuristic search for many relations; reading a plan (`EXPLAIN`). Semantic query optimization: integrity constraints used to simplify or eliminate a join, or to detect a contradictory predicate.
 - **Results:** n relations have n! left-deep join orders and (2n − 2)!/(n − 1)! binary trees including commuted children, 24 and 120 for n = 4 and 120 and 1680 for n = 5 [P, check by enumeration]; dynamic programming over subsets finds the cheapest left-deep plan when the cost of a plan is the sum of its intermediate-result sizes, in time O(n·2ⁿ), by the principle of optimality, and agreed with brute force on 60 random instances of 3 to 6 relations [P, check]; |σ_{A=v}(r)| is estimated as n_r/V(A, r), and |r ⋈ s| as n_r·n_s/max(V(B, r), V(B, s)) under uniformity and containment of value sets, so 10 000 and 5 000 tuples with V(B, r) = 100 and V(B, s) = 500 give 100 000 [D, check]; the independence assumption fails for correlated attributes: with a = b on 10 000 rows, the conjunction a = 3 and b = 3 has 1000 matches against an estimate of 100, a tenfold error [D, check on `sqlite3`]; pushing a selection below a join never increases the tuple count of the join's inputs, though with an expensive predicate it can raise the cost [D]; a foreign-key join whose joined table contributes no column to the result can be eliminated [D, semantic optimisation].
 - **Build:** a cost-based optimiser for select-project-join queries over statistics you compute (equality and range selectivity, join size estimates, Selinger dynamic programming for left-deep plans) compared with brute-force enumeration and with the plan `sqlite3` reports by `EXPLAIN QUERY PLAN` on indexed tables; a rule-based rewriter for selection and projection push-down, validated by running both plans on random data. [local]
-- **Gap-fills:** *[inferred: Selinger, Astrahan, Chamberlin, Lorie and Price 1979; Graefe and McKenna 1993 (Volcano) and Graefe 1995 (Cascades); Ioannidis 1996 on query optimisation; Leis et al. 2015 on cardinality estimation errors, recalled, not checked]*
+- **Gap-fills:** *[inferred: Selinger, Astrahan, Chamberlin, Lorie and Price 1979; Graefe and McKenna 1993 (Volcano) and Graefe 1995 (Cascades); Ioannidis 1996 on query optimisation; Leis et al. 2015 on cardinality estimation errors, recalled, not checked]* On demand: U17.10 for dynamic programming over subsets and U17.17 for why join ordering is hard.
 
 **Assignment A15.18** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5176,7 +5182,7 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 - **Topics:** Directed graphs, paths, cycles and acyclic graphs (DAGs); depth-first search with the three colours and back edges; topological order and Kahn's algorithm; strongly connected components (Tarjan or Kosaraju); partial orders, total orders and linear extensions (a serial order of transactions is a linear extension of the order the conflicts force); the number of linear extensions of a small poset; the minimum feedback vertex set (the fewest vertices whose removal makes a graph acyclic), which is the victim-selection problem of a deadlock.
 - **Results:** A digraph has a topological order exactly when it has no directed cycle [P]; depth-first search finds a directed cycle exactly when it meets a back edge to a vertex that is still being explored [P]; Kahn's algorithm (repeatedly remove a vertex of in-degree zero) outputs a topological order or stops with a non-empty remainder that contains a cycle [P]; a DAG has at least one topological order and a graph with n pairwise unordered vertices has n! [P]; the graph with edges 1→2, 2→3, 3→1, 2→4, 4→2 needs 1 deleted vertex (vertex 2) to become acyclic, found by brute force [check]; minimum feedback vertex set is NP-hard, which is why deadlock detectors choose victims by cost heuristics [X, Karp 1972].
 - **Build:** cycle detection by depth-first search and by Kahn's algorithm checked against brute-force path closure on random digraphs; Tarjan's strongly connected components; enumeration of linear extensions; brute-force minimum feedback vertex set for graphs of up to 10 vertices. [local]
-- **Gap-fills:** *[inferred: Cormen, Leiserson, Rivest and Stein, Chapters 20 and 22 in the fourth edition; Karp 1972, recalled, not checked]*
+- **Gap-fills:** *[inferred: Cormen, Leiserson, Rivest and Stein, Chapters 20 and 22 in the fourth edition; Karp 1972, recalled, not checked]* On demand: U17.11 for graph search, cycles and topological order.
 
 **Assignment A15.19** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5250,11 +5256,11 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 </details>
 
 ### U15.21 Schedules: conflict and view serializability, recoverability, cascading rollbacks and testing
-**Sources:** FDB W37–39; DBD W6; IDB W11–12
+**Sources:** FDB W37–39; DBD W6; IDB W11–12; DBMS W7
 - **Topics:** Transaction Schedules: Conflicts and Aborts (Lecture 37), Transaction Schedules: Serializability (Lecture 38) and Transaction Schedules: Recoverability (Lecture 39); the rest of Transaction Fundamentals in Module 6 of Database Design: serializability, serial schedules, conflict serializability, view serializability, recoverable and non-recoverable schedules, cascading rollbacks, cascadeless schedules, and from Concurrency control (3 sessions) the serialized and non-serialized schedules and testing for serializability; the Transaction Processing Module of Weeks 11 and 12. Schedules (histories), serial schedules, conflicting operations (same item, different transactions, at least one write); conflict equivalence and conflict serializability; the precedence graph test; view equivalence (same reads-from relation and same final writes) and view serializability, with blind writes; recoverable schedules (a transaction commits only after every transaction it read from has committed), cascadeless schedules (reads only of committed data) and strict schedules (no read or write of an item written by an uncommitted transaction); cascading rollback.
 - **Results:** A schedule is conflict serializable exactly when its precedence graph is acyclic (proved in U9.17 [P]; here it is used with U15.19's topological order, whose order is the equivalent serial schedule) [D]; the schedule r1(x) w2(x) w1(x) w3(x) is view serializable (equivalent to T1, T2, T3) but not conflict serializable, because of the blind write of T3 [D, check]; every conflict-serializable schedule is view serializable, and testing view serializability is NP-complete [P for the first part, check on 20 000 random schedules; X for the second, Papadimitriou 1979]; strict implies cascadeless implies recoverable, and the inclusions are proper [P, check: of 20 000 random schedules of three transactions, 5573 were strict, 10 315 cascadeless and 14 692 recoverable]; for r1(x) w1(y) against r2(y) w2(x), 2 of the 6 interleavings are conflict serializable, for r1(x) w1(y) against r2(x) w2(y) all 6 are, and for r1(x) r1(y) w1(x) against r2(x) w2(y) 4 of the 10 are [D, check]; a non-recoverable schedule can leave a committed transaction that has read a value that was later rolled back [D].
 - **Build:** a schedule parser; the precedence-graph test with an equivalent serial order; a brute-force view-serializability test; classifiers for recoverable, cascadeless and strict schedules; a random-schedule generator confirming the hierarchy and counting each class. [local]
-- **Gap-fills:** *[inferred: Papadimitriou 1979, "The serializability of concurrent database updates"; Bernstein, Hadzilacos and Goodman, Chapters 2 and 3, recalled, not checked]* serializable snapshot isolation is named in U9.17.
+- **Gap-fills:** *[inferred: Papadimitriou 1979, "The serializability of concurrent database updates"; Bernstein, Hadzilacos and Goodman, Chapters 2 and 3, recalled, not checked]* serializable snapshot isolation is named in U9.17. On demand: U17.11 for cycle detection in precedence graphs.
 
 **Assignment A15.21** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5289,7 +5295,7 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 </details>
 
 ### U15.22 Concurrency control protocols: locking and two-phase locking, timestamps, multiversioning, multiple granularity and deadlocks
-**Sources:** FDB W40–43; DBD W6; IDB W12
+**Sources:** FDB W40–43; DBD W6; IDB W12; DBMS W8
 - **Topics:** Concurrency Control Protocols: Two-phase Locking Protocols (Lecture 40), Timestamp Ordering Protocol (Lecture 41, split over two lines in the source with a repeated number), Multiple Granularity Locks (Lecture 42) and Deadlock Prevention (Lecture 43); Concurrency control (3 sessions) of Module 6: locking, the lock compatibility matrix, locking and serializability, deadlocks and starvation, the two-phase locking (2PL) protocol, conservative, strict and rigorous 2PL, 2PL with lock conversions, the timestamp-ordering based protocol, the multiversioning protocol, multi-granularity locking, deadlock prevention protocols, the wait-die and wound-wait schemes, time-out based schemes, deadlock recovery, nested transactions; the Transaction Processing Module of Week 12. Shared and exclusive locks and the compatibility matrix; 2PL (growing and shrinking phases, the lock point), strict (exclusive locks held to the end), rigorous (all locks held to the end) and conservative (all locks acquired first), and lock conversion (upgrade while growing, downgrade while shrinking); timestamp ordering with read and write timestamps, the Thomas write rule, and strict variants; multiversion timestamp ordering and multiversion two-phase locking; the lock hierarchy with intention modes IS, IX, S, SIX and X; deadlocks: the four necessary conditions, prevention (conservative locking, ordering, wait-die, wound-wait, time-outs), detection by the wait-for graph, victim selection and rollback (total or partial), starvation; nested transactions (subtransactions that commit relative to their parent, locks inherited by the parent).
 - **Results:** Two-phase locking produces only conflict-serializable schedules, because the schedule is equivalent to the serial order of the transactions' lock points [P]; strict 2PL also gives recoverable and cascadeless schedules (proved in U9.17) and rigorous 2PL makes the commit order the serial order [D]; not every conflict-serializable schedule is allowed by 2PL, and for any transaction that is not two-phase there is a schedule with two-phase transactions that is not serializable [D for the first part, X for the second, Eswaran et al. 1976]; timestamp ordering is conflict-equivalent to the serial order of the timestamps, because any conflicting pair that ran out of order would have been rejected, and basic timestamp ordering of w3(x), w2(x), w1(x) aborts T2 and T1 while the Thomas write rule ignores both obsolete writes and aborts none [P, check by simulation on 3000 random schedules]; the lock compatibility matrix of the five granularity modes allows 9 ordered compatible pairs: IS with IS, IX, S, SIX; IX with IS, IX; S with IS, S; SIX with IS [Def, check for symmetry]; wait-die and wound-wait never deadlock, because in wait-die only an older transaction waits for a younger one and in wound-wait only a younger waits for an older, so every edge of the wait-for graph goes the same way in timestamp order and no cycle exists [P], and in a toy simulation of 3000 random four-transaction workloads plain waiting deadlocked 1343 times and both schemes 0 [check]; keeping the original timestamp on restart prevents starvation, since a transaction eventually becomes the oldest [D]; the graph 1→2, 2→3, 3→1, 2→4, 4→2 needs 1 victim [check, U15.19].
 - **Build:** a lock manager (shared and exclusive locks, the intention modes, lock conversion and a wait-for graph with deadlock detection) running strict, rigorous and conservative 2PL; timestamp ordering with and without the Thomas write rule and a multiversion variant; wait-die and wound-wait; a multiple-granularity lock manager over a file, page and record hierarchy; each protocol tested by feeding random workloads and verifying with the schedule classifiers of U15.21 that every committed history is conflict serializable. [local]
@@ -5328,7 +5334,7 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 </details>
 
 ### U15.23 Recovery systems: log-based schemes, deferred and immediate update, shadow paging and ARIES
-**Sources:** FDB W35–36; DBD W7; IDB W12
+**Sources:** FDB W35–36; DBD W7; IDB W12; DBMS W8
 - **Topics:** Recovery Systems: Types of Recovery Systems (Lecture 35) and Recovery Systems: Log-based Schemes (Lecture 36); Module 7 of Database Design, Database recovery techniques (3 sessions): recovery concepts, the deferred updates technique, the immediate update technique, shadow paging, the ARIES recovery algorithm; the Transaction Processing Module of Week 12 for durability. Failure types (transaction, system crash, media failure); the storage hierarchy and stable storage; the log (undo and redo information, log sequence numbers); write-ahead logging; the deferred update technique (no undo, writes applied after commit) and the immediate update technique (undo and redo); checkpoints; shadow paging (a current page table and a shadow table, atomic switch at commit); ARIES: the pageLSN, the dirty page table and the active transaction table, the analysis, redo and undo passes, compensation log records, and the steal and no-force buffer policies it supports.
 - **Results:** Write-ahead logging means a log record reaches stable storage before the page it describes, and all of a transaction's records before its commit is acknowledged; with it, redo restores durability and undo restores atomicity after a crash [S, as in U9.17, here with the policies spelled out]; deferred update needs only redo and immediate update needs both, and no-steal no-force needs redo only [D]; shadow paging gives atomic commit with no log, but it breaks clustering, needs garbage collection and is awkward with concurrent transactions [D]; ARIES repeats history: redo reapplies every update whose log record is after the oldest recovery LSN and above the page's LSN, then undo rolls back the losers and writes a compensation record for every undone update, so an interrupted undo never repeats work [S]; in the worked log (eight records, a checkpoint holding pages P1 and P2, T2 committed, T1 and T3 uncommitted and P1 flushed at LSN 1) analysis finds the redo start at LSN 1 and losers T1 and T3, redo reapplies 4 updates (LSNs 2, 3, 6 and 8, skipping LSN 1 because the page already holds it), and undo writes 3 compensation records (LSNs 8, 3 and 1) [D, check].
 - **Build:** a write-ahead log with force-at-commit, a deferred-update and an immediate-update store, shadow paging, and a small ARIES (page LSNs, dirty page table, active transaction table, three passes and compensation records) tested by crashing at every log position, including during recovery, and comparing the recovered state with a reference of committed work. [local]
@@ -5484,11 +5490,11 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 </details>
 
 ### U15.27 NoSQL systems, graph databases and big data
-**Sources:** FDB W44–48
+**Sources:** FDB W44–48; DBMS W8
 - **Topics:** NoSQL: CAP Theorem and BASE Properties (Lecture 44); NoSQL: Types of NoSQLSystems (Lecture 45); Graph Databases (Lecture 46); Big Data (Lecture 47); Recap (Lecture 48) of the Kanpur course. The CAP trade-off (owned by U9.16) and BASE (basically available, soft state, eventual consistency); key-value, document, column-family and graph stores (surveyed in U10.6); the property graph model, traversal and pattern queries; the three Vs of big data and the pointer to D11; what the whole course has covered.
 - **Results:** Under a network partition a replicated store must give up consistency or availability, and BASE systems choose availability and let replicas converge later, so reads can return old values [D, as in U9.16]; with N replicas, writes to W and reads from R, a read is guaranteed to see the latest write when R + W > N, and otherwise it can miss it: for N = 3, R = 1, W = 1 the exact stale fraction is C(2,1)/C(3,1) = 2/3 (a simulation gave 0.667) and for N = 5, R = 2, W = 3 it is C(2,2)/C(5,2) = 0.1 (simulated 0.103), while 3,2,2 and 5,3,3 never returned a stale value [D, check]; a key-value store gives O(1) get and put by key but no joins, a document store keeps nested records whose schema can differ, a column-family store groups columns for wide sparse tables, and a graph store keeps adjacency so a hop is a pointer lookup instead of a join [D]; on the property graph with edges 1–2, 1–3, 2–4, 3–4, 4–5, 5–6, 2–7, 7–8, 3–9, the vertices exactly two hops from 1 are 4, 7 and 9 and those within two hops are 2, 3, 4, 7 and 9, found by breadth-first search with a visited set, and a relational version needs one self-join per hop [D, check]; big data is the regime where volume, velocity or variety exceeds one machine's relational engine, and it leads to the distributed processing of D11 [Def]; the course closes by tying the layers together: model, language, design theory, storage, query processing, transactions, distribution [recap].
 - **Build:** a three-replica key-value store with tunable R and W, hinted writes and read repair, measuring stale reads against C(N−W,R)/C(N,R); a tiny property graph store with breadth-first traversal and a pattern query, checked against the same query written as repeated self-joins in sqlite3. [local]
-- **Gap-fills:** *[inferred: Brewer 2000 and Gilbert and Lynch 2002 on CAP; DeCandia et al. 2007 (Dynamo); Robinson, Webber and Eifrem, Graph Databases, recalled, not checked]* the Kanpur course closes with the recap of Lecture 48, whose content is the course map above.
+- **Gap-fills:** *[inferred: Brewer 2000 and Gilbert and Lynch 2002 on CAP; DeCandia et al. 2007 (Dynamo); Robinson, Webber and Eifrem, Graph Databases, recalled, not checked]* the Kanpur course closes with the recap of Lecture 48, whose content is the course map above. The Course Summarization of the Kharagpur DBMS course (week 8) is the recap above.
 
 **Assignment A15.27** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5610,7 +5616,7 @@ Bridge for: U10.4 onward (every store here is defined by what it gives up relati
 - **Topics:** Amazon Dynamo (Week 11 of the advanced course); Voldemort (LinkedIn) (Week 12): the always-writable design goal and its trade of consistency for availability; partitioning by consistent hashing with virtual nodes (U9.5); replication to N successors, quorum parameters N, R, W and sloppy quorums with hinted handoff; versioning by vector clocks and application-assisted reconciliation (U9.6); failure detection by gossip and anti-entropy by Merkle trees; Voldemort's layered architecture (pluggable storage engines, client-side or server-side routing, read repair, version resolution) as the open-source realisation and its read-only stores built offline in Hadoop.
 - **Results:** With R + W > N a read quorum intersects the last write quorum, but with sloppy quorums and hinted handoff the intersection is not guaranteed [D]; two Merkle trees over the same key range locate differing keys in O(d log n) hash comparisons for d differences [D]; the vector clock of a reconciled value dominates all its parents [P].
 - **Build:** a Dynamo-style store in DSim (ring, N-R-W quorums, hinted handoff, vector clocks, Merkle anti-entropy, read repair) with fault injection and a measurement of the stale-read rate against R and W; a Voldemort-style pluggable-engine interface with a client-side router. [local]
-- **Gap-fills:** *[inferred: DeCandia et al., SOSP 2007; Sumbaly et al., Serving large-scale batch computed data with Project Voldemort, FAST 2012, recalled, not checked]* DynamoDB as the managed descendant (named only).
+- **Gap-fills:** *[inferred: DeCandia et al., SOSP 2007; Sumbaly et al., Serving large-scale batch computed data with Project Voldemort, FAST 2012, recalled, not checked]* DynamoDB as the managed descendant (named only). On demand: U17.5 for hashing and consistent hashing.
 
 **Assignment A10.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5649,7 +5655,7 @@ Bridge for: U10.4 onward (every store here is defined by what it gives up relati
 - **Topics:** Facebook Cassandra (Week 11 of the advanced course); Design of Key-Value Stores and Design of Apache Cassandra (Week 6 of the cloud course): the key-value abstraction and the NoSQL data model (rows, columns, column families, keyspaces), data placement strategies and snitches, the write path (commit log, memtable, flush to immutable SSTables), the read path with Bloom filters, compaction, deletes by tombstones, membership by gossip (U9.3), consistency levels and read repair, and how Cassandra combines Dynamo's distribution with Bigtable's storage engine.
 - **Results:** A Bloom filter with m bits, n keys and k hash functions has false-positive rate (1 − e^{−kn/m})^k, minimised at k = (m/n) ln 2 giving about 0.6185^{m/n} [P]; a tombstone must outlive the gossip-repair window or deleted data can resurrect [D]; size-tiered compaction trades write amplification against read amplification and space amplification [D].
 - **Build:** an LSM-tree store with commit log, memtable, SSTables, Bloom filters, tombstones and size-tiered and leveled compaction with measured amplification; a Cassandra-like ring in DSim with tunable consistency levels, read repair and a deleted-key resurrection test. [local]
-- **Gap-fills:** *[inferred: Lakshman–Malik, Cassandra, LADIS 2009; O'Neil et al., the LSM-tree, 1996, recalled, not checked]* lightweight transactions by Paxos (links to U9.14).
+- **Gap-fills:** *[inferred: Lakshman–Malik, Cassandra, LADIS 2009; O'Neil et al., the LSM-tree, 1996, recalled, not checked]* lightweight transactions by Paxos (links to U9.14). On demand: U17.16 for skip lists and B-trees and U17.5 for hashing and Bloom filters.
 
 **Assignment A10.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5688,7 +5694,7 @@ Bridge for: U10.4 onward (every store here is defined by what it gives up relati
 - **Topics:** Design of HBase (Week 6 of the cloud course): what HBase is, its architecture and components (HMaster, region servers, regions, ZooKeeper, HDFS underneath), the data model of Bigtable (rows sorted by key, column families, timestamped versions), the storage hierarchy (write-ahead log, MemStore, HFiles), auto sharding and distribution by region splits, Bloom filters in reads, cross-datacenter replication; the slide topic the source lists as "Fold, Store, and Shift" is not a term this curriculum could identify, and it is flagged in Appendix E for resolution from the lecture; Bigtable's tablet location by a three-level hierarchy; atomicity at row level and the link to the multi-row transactions of U9.18; hot-spotting and row-key design.
 - **Results:** Write amplification of leveled compaction with size ratio T over L levels is about T·L in the worst case, against about L for size-tiered [D]; a row-key design that begins with a monotonically increasing timestamp sends all writes to one region [D]; an HBase read touches the MemStore plus at most the HFiles whose Bloom filters answer positive [D].
 - **Build:** a tablet store with a sorted memtable, write-ahead log, immutable files, region split at a size threshold and a master that assigns regions to servers via your ZooKeeper-like service of U9.15; a hot-spot experiment with sequential versus salted keys. [local]
-- **Gap-fills:** *[inferred: Chang et al., Bigtable, OSDI 2006; George, HBase: The Definitive Guide, recalled, not checked]* Cloud Bigtable as the managed product (U10.7).
+- **Gap-fills:** *[inferred: Chang et al., Bigtable, OSDI 2006; George, HBase: The Definitive Guide, recalled, not checked]* Cloud Bigtable as the managed product (U10.7). On demand: U17.16 for B-trees and skip lists and U17.7 for search trees.
 
 **Assignment A10.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5801,7 +5807,2141 @@ Bridge for: U10.4 onward (every store here is defined by what it gives up relati
 </details>
 
 
-# PART D. BIG DATA, CLOUD OPERATIONS, MACHINE LEARNING AND SYSTEM DESIGN
+# PART D. DATA SCIENCE FOUNDATIONS: PREREQUISITES, ALGORITHMS, LINEAR ALGEBRA AND STATISTICS
+
+## D21. On-demand prerequisites for the data-analytics extension: school mathematics, Python, scientific Python (in place of R), proofs and discrete reasoning, graph theory and probability from first principles
+
+Aim: every prerequisite that the eight data-analytics courses state or assume, gathered in one place, taught in academic depth and only when a unit asks for it. Each unit is a bridge in the usual sense (it begins with "Bridge for:" and is entered on demand, from the unit that needs it) but, unlike the short bridges at the head of D17, D18 and D19, it is a full unit with proofs, a from-scratch build and an assignment. Hands-on work is the rule: nothing in D21 is learned by reading alone, and every build implements the idea without calling a library routine for it first, then compares with the library. The stated prerequisites and where each is taught: Data Analytics with Python, "basic knowledge of Python but not necessary" (U21.1 for the language, U21.2 for school mathematics); Algorithmic Graph Theory and Data Structures, "Data Structure, Graph Theory and Probability" (D17 for data structures, U21.5 for graph theory, U21.6 for probability); Scalable Data Science, "Algorithms, Machine Learning" (D17 and the machine-learning bridge U11.8, with the full machine-learning curriculum as the long form); Data Base Management System, "procedural and/or object-oriented programming (C, C++, Java, Python), data structures, algorithms" (U21.1, U16.1, D17); Bayesian Data Analysis, "R programming; mathematics up to class 12" (U21.3, which teaches the same skills in Python, and U21.2); Data Structures and Algorithms Design, "very good analytical skills" (U21.4); Applied Linear Algebra, Data Mining and Big Data Computing state none (U18.1 supplies the complex numbers that D18 needs). Benchmarks (the Python tutorial's chapter list and the Class 11 and 12 NCERT mathematics chapter lists and Hammack's *Book of Proof* contents were read from public pages on 2026-11-06; the others are recalled, not checked): the Python Tutorial (sixteen chapters from "An Informal Introduction" through "Floating-Point Arithmetic: Issues and Limitations"); NCERT Mathematics for Classes 11 and 12; Hammack, *Book of Proof*; West, *Introduction to Graph Theory*; Diestel, *Graph Theory*; Ross, *A First Course in Probability*; Grinstead and Snell, *Introduction to Probability*; McKinney, *Python for Data Analysis* and the NumPy, pandas, SciPy, patsy and statsmodels documentation (recalled, not checked), which replace Venables, Smith and the R Core Team, *An Introduction to R*. Environment note (decision of 2026-11-06): R is replaced by Python throughout the curriculum. The Bayesian course's stated prerequisite, R programming, is taught as scientific Python in U21.3, and the course's brms and Stan are replaced by Bambi and PyMC (U19.15 to U19.17), both installed in the workspace and run.
+
+### U21.1 Bridge: Python from scratch — types, control flow, functions, recursion, objects, exceptions, generators, testing, NumPy and the floating-point model
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U19.2, U17.2 to U17.14, U18.2, U20.1 to U20.8, U15.7 to U15.9, and every unit whose Build is a script.
+- **Topics:** the interpreter and the read–evaluate–print loop; numbers (arbitrary-precision integers, floats, complex), strings, booleans, `None`; lists, tuples, dictionaries and sets and the cost of their operations (a list append is amortised constant time, a membership test on a list is linear and on a set expected constant); names, objects and references, mutability, shallow and deep copies, the mutable-default-argument trap; control flow (`if`, `for`, `while`, `break`, `continue`, comprehensions); functions (arguments, defaults, keyword arguments, `*args`, `**kwargs`), scope (local, enclosing, global), closures and decorators; recursion and its cost (the call stack, the recursion limit of 1000, memoisation); classes and objects (attributes, methods, `__init__`, `__repr__`, operator overloading, inheritance and composition), reading the object-oriented designs of U16.1 as code; exceptions (`try`, `except`, `finally`, raising, custom exceptions); iterators and generators (`yield`, lazy evaluation); modules, packages and virtual environments; file input and output (text, CSV, JSON); unit testing (`assert`, `unittest` or `pytest`) and the habit of testing a function against a slow, obviously correct version; NumPy (arrays, shapes, broadcasting, vectorisation, boolean indexing, `axis`) and pandas (series, data frames, indexing, group-by, merge); the floating-point model (binary fractions, rounding, machine epsilon, cancellation, why `0.1 + 0.2 != 0.3`, `math.fsum`, comparison with a tolerance) read against the tutorial's floating-point chapter; profiling a script (`time.perf_counter`, `timeit`).
+- **Results:** the naive recursive Fibonacci makes 2F(n + 1) − 1 calls (177 for n = 10, 21,891 for n = 20 and 242,785 for n = 25) and memoisation reduces this to n + 1 distinct calls [P by induction, check]; with floats `0.1 + 0.2` is 0.30000000000000004, ten additions of 0.1 give 0.9999999999999999 and `math.fsum` gives exactly 1.0, because 0.1 has no finite binary expansion [Def, check]; machine epsilon for doubles is 2.22·10⁻¹⁶ [Def, check]; Python integers do not overflow (2¹⁰⁰ = 1267650600228229401496703205376) while NumPy `int64` does [check]; a default argument `l=[]` is created once, so two calls append to the same list and print [1] then [1, 2] [check]; a NumPy sum of 10⁶ squares is about ten times faster than the equivalent Python loop on the reference machine and returns the same integer 333,332,833,333,500,000 [check, the ratio depends on the machine]; broadcasting aligns shapes from the right and stretches length-1 axes [Def].
+- **Build:** from scratch before any library call: a `Vector` and a `Matrix` class with `+`, `*`, `@`, `==` and `__repr__`, tested against NumPy; a singly linked list, a stack and a queue with tests; a decorator `timed` and a decorator `memoize` (applied to Fibonacci with a call counter); a generator that yields the Collatz sequence and one that streams a large file by lines; a tiny CSV reader and a group-by that reproduce `pandas.read_csv` and `groupby().mean()` on a small file; a fixed-point and a floating-point comparison harness that shows cancellation. [local]
+- **Gap-fills:** *[inferred: Python Tutorial chapters 3 to 9 and 15; Python for Data Analysis; Downey, Think Python, recalled, not checked]* concurrency (threads, processes, `asyncio`) is in D9 and D1; type hints and packaging are named only; the standard library tour is used as needed.
+
+**Assignment A21.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What does Python print for 0.1 + 0.2 == 0.3?
+
+(A) True  
+(B) False  
+(C) An error  
+(D) None
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Python integers have arbitrary precision  
+(B) A default argument that is a list is created once at function definition  
+(C) A set membership test is expected constant time  
+(D) Assigning one list name to another copies the list
+
+**Q3 (2 marks, numerical answer (calls)).** The naive recursive Fibonacci with F(0) = 0 and F(1) = 1 makes 2F(n+1) - 1 calls. How many calls does n = 20 make? F(21) = 10946.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove by induction that the naive recursive Fibonacci makes C(n) = 2F(n+1) - 1 calls.
+
+**Q5 (3 marks, programming).** Without using any library for the data structures, write a Vector class with operator overloading, a linked list, a stack and a queue, a timed decorator and a memoize decorator applied to Fibonacci with a call counter, and test each against a trusted version. Predict the call counts for n = 10 and 20 first.
+
+<details><summary>Key for A21.1 (open only after your attempt)</summary>
+
+- **Q1:** B. 0.1 and 0.2 have no finite binary expansion, so the sum differs from 0.3 in the last bit.
+- **Q2:** ABC. D is false: the assignment copies the reference, so both names refer to the same list.
+- **Q3:** 21891 calls (tolerance ±0.01). 2 x 10946 - 1 = 21891.
+- **Q4 (marking outline):** For n = 0 and n = 1 there is one call and 2F(1) - 1 = 1, 2F(2) - 1 = 1. Assume the formula for n-1 and n-2. Then C(n) = 1 + C(n-1) + C(n-2) = 1 + 2F(n) - 1 + 2F(n-1) - 1 = 2(F(n) + F(n-1)) - 1 = 2F(n+1) - 1.
+- **Q5 (what a passing submission shows):** The counts are 177 and 21891 for the naive version and n + 1 distinct calls for the memoised version, and every class passes its tests against NumPy or the built-in types.
+
+</details>
+
+### U21.2 Bridge: school mathematics through class 12, consolidated — algebra, functions, trigonometry, coordinate and vector geometry, matrices and determinants, calculus, differential equations, linear programming and probability, with numerical methods built from scratch
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U19.1, U18.1 to U18.13, U17.1, U19.2 to U19.17, U20.1 and every unit that uses a derivative, a matrix or a logarithm.
+- **Topics:** (Class 11) sets, relations and functions; trigonometric functions (radian measure, graphs, the addition and double-angle formulas, solutions of equations); complex numbers and quadratic equations (the discriminant, roots and coefficients); linear inequalities; permutations and combinations; the binomial theorem; sequences and series (arithmetic and geometric progressions, sums, the geometric series); straight lines, conic sections (circle, parabola, ellipse, hyperbola); three-dimensional geometry; limits and derivatives; statistics and probability; (Class 12) relations and functions (equivalence relations, one-to-one and onto, composition and inverse); inverse trigonometric functions and their principal values; matrices (operations, transpose, symmetric and skew-symmetric, elementary operations, inverse); determinants (expansion, properties, area, the adjoint, Cramer's rule, consistency of linear systems); continuity and differentiability (chain rule, implicit and logarithmic differentiation, parametric form, second derivatives, mean value theorem); applications of derivatives (rates, increasing and decreasing, tangents, maxima and minima); integrals (anti-derivatives, substitution, by parts, partial fractions, definite integrals and the fundamental theorem); applications of integrals (area); differential equations (order and degree, separable and linear first-order equations); vector algebra (dot and cross product, projections); three-dimensional geometry (lines and planes, the shortest distance between skew lines); linear programming (the graphical method, corner points); probability (conditional probability, the multiplication theorem, independence, Bayes' theorem, random variables, the binomial distribution); then the same ideas with the viewpoint of the courses that follow: a function as an input–output rule and as an array, the exponential and logarithm as inverse functions with the base-change rule and the limit that defines e, the numerical side of calculus (finite differences, trapezoid and Simpson integration, bisection, Newton's method, Euler and Runge–Kutta steps for ODEs).
+- **Results:** the quadratic formula, the sum of a geometric series (1 − rⁿ)/(1 − r) and the binomial theorem (Σ C(10, k) 2ᵏ = 3¹⁰ = 59,049) [P, check]; (1 + 1/n)ⁿ → e, with 2.7182804691 at n = 10⁶ against 2.7182818285 [D, check]; sin(a + b) = sin a cos b + cos a sin b to 9·10⁻¹⁶ on 1000 random pairs and sin x ≈ x with error −1.67·10⁻⁷ at x = 0.01 [P, check]; bisection on x³ − x − 2 on [1, 2] gives 1.5213797068 in 40 steps (error 4·10⁻¹³) and Newton's method on x² − 2 has errors 0.0858, 2.5·10⁻³, 2.1·10⁻⁶ and 1.6·10⁻¹², so the number of correct digits doubles each step [D, check]; Gauss–Jordan inversion of a 3×3 matrix with determinant −1 agrees with NumPy to 4·10⁻¹⁶ and Cramer's rule returns (1, 0, 2) [P, check]; a forward difference for the derivative of sin at 1 has error 4.2·10⁻⁶ at h = 10⁻⁵ against 1.1·10⁻¹¹ for the central difference, and the central-difference error is 9.0·10⁻⁶, 1.1·10⁻¹¹, 2.6·10⁻⁹ and 1.2·10⁻⁶ at h = 10⁻², 10⁻⁵, 10⁻⁸ and 10⁻¹¹, so truncation and rounding errors cross near h = 10⁻⁵ [D, check]; for ∫₀¹ eˣ dx the trapezoid rule has error 1.4·10⁻³ with 10 intervals and 1.4·10⁻⁵ with 100, and Simpson's rule 9.5·10⁻⁷ with 10 [D, check]; Euler's method for y′ = y on [0, 1] gives 2.5937 with h = 0.1 and 2.7048 with h = 0.01, while the fourth-order Runge–Kutta step gives 2.718280 with h = 0.1 against e = 2.718282 [D, check]; for the linear programme maximise 3x + 2y subject to x + y ≤ 4, x + 3y ≤ 6, x, y ≥ 0 the corner points (0, 0), (4, 0), (3, 1) and (0, 2) give 0, 12, 11 and 4, so the maximum is 12 at (4, 0) [P, check]; the lines (1, 2, 3) + t(2, 3, 4) and (2, −1, 0) + s(1, 2, 3) are skew at distance 1.633 [P, check].
+- **Build:** from scratch: bisection and Newton root finders with error tables; Gauss–Jordan elimination with partial pivoting giving the inverse, the determinant and the solution of a system, and Cramer's rule, compared with `numpy.linalg`; numerical differentiation with a step-size sweep that reproduces the V-shaped error curve; trapezoid, Simpson and a Monte-Carlo integrator with convergence plots; Euler and fourth-order Runge–Kutta for ODEs with a step-halving experiment; a corner-point enumerator for a two-variable linear programme; a symbolic-free derivative checker (finite difference against a hand derivative) for ten functions; a plot of sine and cosine as the projections of a rotating point. [local]
+- **Gap-fills:** *[inferred: NCERT Mathematics Classes 11 and 12 (chapter lists read from public pages); Stewart, Calculus; Strang, Calculus, recalled, not checked]* conic sections and the three-dimensional geometry of planes are taught only as far as vectors need them; the proofs of the mean value theorem and of the fundamental theorem of calculus are sketched, not given; complex numbers are taken to depth in U18.1.
+
+**Assignment A21.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Newton's method for sqrt(2) on x^2 - 2 shows that the number of correct digits per step roughly
+
+(A) Adds one  
+(B) Doubles  
+(C) Halves  
+(D) Stays constant
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The central-difference derivative has error of order h squared  
+(B) Rounding error grows as the step h shrinks in a finite difference  
+(C) Simpson's rule is more accurate than the trapezoid rule for smooth functions at equal n  
+(D) Euler's method with step 0.1 on y' = y gives e to six digits
+
+**Q3 (2 marks, numerical answer).** Maximise 3x + 2y subject to x + y <= 4, x + 3y <= 6, x >= 0, y >= 0 by checking the corner points (0,0), (4,0), (3,1) and (0,2).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show by induction that the sum of the first n odd numbers is n squared.
+
+**Q5 (3 marks, programming).** From scratch, write bisection and Newton root finders with error tables, Gauss-Jordan elimination with partial pivoting (inverse, determinant, solve), numerical differentiation with a step-size sweep, trapezoid and Simpson integration, and Euler and fourth-order Runge-Kutta solvers. Predict the step size at which the central-difference error is smallest first.
+
+<details><summary>Key for A21.2 (open only after your attempt)</summary>
+
+- **Q1:** B. The errors 0.0858, 0.00245, 2.1e-6, 1.6e-12 show quadratic convergence.
+- **Q2:** ABC. D is false: it gives 2.5937 against e = 2.71828.
+- **Q3:** 12 (tolerance ±0.01). The values are 0, 12, 11 and 4, so the maximum is 12.
+- **Q4 (marking outline):** For n = 1 the sum is 1 = 1^2. Assume the sum of the first n odd numbers is n^2. Adding the next odd number 2n+1 gives n^2 + 2n + 1 = (n+1)^2.
+- **Q5 (what a passing submission shows):** The central-difference error is smallest near h = 1e-5 (about 1e-11) and grows on both sides, Gauss-Jordan agrees with NumPy to 1e-15, and RK4 with h = 0.1 gives 2.71828 for y' = y at x = 1.
+
+</details>
+
+### U21.3 Bridge: scientific Python for data analysis — arrays and broadcasting, data frames, distributions, formulas, random numbers and plotting, each built from scratch before the library is used (this replaces the R programming prerequisite of the Bayesian course)
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U19.2 to U19.17, U20.1 to U20.8, U13.10 and every unit whose Build uses NumPy, pandas, SciPy, statsmodels, PyMC or Matplotlib.
+- **Topics:** the Bayesian course's stated prerequisite is R programming (it suggests the NPTEL course Foundations of R Software); this curriculum replaces R by Python throughout (decision of 2026-11-06), and this unit teaches what that prerequisite was for, in Python. The array: a flat buffer with a shape, strides and an offset, so that slicing, transposing and reshaping make views that share memory while fancy (index-list) selection copies; zero-based indexing, negative indices, half-open slices, boolean masks; the dtype (fixed-width integers wrap around on overflow, `float64` has machine epsilon 2.2·10⁻¹⁶, `float32` 1.2·10⁻⁷); universal functions and reductions along an axis; broadcasting (align the shapes from the right, a length-1 axis is stretched by giving it stride 0, any other mismatch is an error) and how it differs from the silent recycling of R; the cost model of vectorisation (one Python-level call over a million elements against a million interpreted steps). Missing data: `NaN` in floating arrays (it propagates, `nan == nan` is false, `nanmean` skips it), the pandas missing value and nullable dtypes, the `skipna` rule. The data frame: `Series` and `DataFrame`, the index and automatic alignment, `loc` and `iloc`, boolean selection, `groupby` as split–apply–combine, `merge` as a join (inner, left, outer; duplicate keys multiply rows), reading a CSV file, `describe`. Distributions in SciPy: the methods `pmf` or `pdf`, `cdf`, `sf`, `ppf` and `rvs` of a distribution object, frozen distributions, the parameter conventions (`scale` is a standard deviation for the normal and the reciprocal of the rate for the exponential). Random numbers: `numpy.random.default_rng(seed)`, the PCG64 generator, why a seed gives the same stream within one library version but not across languages, spawning independent streams, the Box–Muller transform. The formula interface: `y ~ x1 + x2 + x1:x2 + C(g)` as a small language, how patsy turns it into a design matrix (the intercept column, treatment coding of a categorical variable with one level dropped, the interaction as a product, the order in which columns are placed), `statsmodels.formula.api.ols` and `glm`, reading a regression summary. Plotting: Matplotlib figure and axes, histogram, scatter, line, error bars, saving to a file, and why a histogram is a count per bin. Environment: `pip`, virtual environments, imports, running a script and a notebook. The R-to-Python crosswalk used wherever the course speaks of R: vector (ndarray), `1:n` (`np.arange(1, n + 1)`, since indices start at 0), recycling (broadcasting, stricter), `NA` (`np.nan` or the pandas missing value), `data.frame` (`DataFrame`), the `apply` family (comprehensions, vectorised calls, `groupby`), `dnorm`, `pnorm`, `qnorm` and `rnorm` (`pdf`, `cdf`, `ppf`, `rvs`), `set.seed` (`default_rng(seed)`), `lm` and `glm` (`ols` and `glm` of statsmodels), `ggplot2` and base graphics (Matplotlib, seaborn), `install.packages` and `library` (`pip install` and `import`), `brms` (Bambi) and Stan (PyMC, with CmdStanPy as the route to Stan itself).
+- **Results:** adding `np.arange(1, 7)` to `np.array([10, 20])` raises a `ValueError` (shapes (6,) and (2,)) where R would recycle silently, tiling the short array three times gives 11, 22, 13, 24, 15, 26, and a column of 3 plus a row of 4 broadcasts to a 3×4 table [Def, check]; a slice shares memory with its parent and an index-list selection does not [Def, check]; the mean of an array containing `NaN` is `NaN` while `nanmean` of 1, 2, NaN, 4 is 2.333 and the pandas mean skips it by default and returns `NaN` with `skipna=False` [Def, check]; `int8` 127 + 1 wraps to −128 with an overflow warning and `uint8` 250 + 10 gives 4 [Def, check]; `norm.cdf(1.96)` = 0.9750021 and `norm.ppf(0.975)` = 1.959964 agree with a from-scratch `erf` formula and a bisection on it to 10⁻¹⁵, and `binom.pmf(3, 10, 0.5)` = 0.1171875 and `poisson.pmf(2, 3)` = 0.2240418 equal the closed forms [D, check]; the Box–Muller transform turns two uniform samples into a standard normal, and 200,000 draws have mean 0.001, variance 0.999 and a Kolmogorov–Smirnov p-value of 0.56 [P, check]; for `y ~ x1 + x2 + x1:x2 + g` with a three-level string variable g, a design matrix written by hand equals patsy's to 0 after the columns are put in the same order, and patsy places the categorical columns first (Intercept, g[T.b], g[T.c], x1, x2, x1:x2) rather than in the written order, so coefficients must be matched by name and never by position [D, check]; the normal-equation solution of that matrix equals the statsmodels coefficients by name to 1.1·10⁻¹⁵ [D, check]; a dictionary loop for count and mean by key equals pandas `groupby` to 3.5·10⁻¹⁷, and a merge of a 4-row and a 4-row table with the key 3 repeated in the second gives 3 rows inner, 5 left and 6 outer, because duplicate keys multiply rows [D, check]; a Python loop over 10⁶ squares takes at least 190 times as long as the vectorised dot product that gives the same sum [check; the ratio depends on the machine]; a hand-built broadcasting routine written with shapes and strides agrees with NumPy on 202 random shape pairs and fails on exactly the 198 pairs where NumPy fails, a hand-built transpose has strides (1, 4, 12) for a (2, 3, 4) array as NumPy has, and a write through one view is seen through the others [P, check]; a hand-written hash-join and group-by agree with pandas in the row counts and the means on 200 random tables [check]; the same seed gives the same draws in one library version (`default_rng(42).random(3)` = 0.774, 0.4389, 0.8586) [Def, check].
+- **Build:** from scratch: a strided array class (buffer, shape, strides, offset) with slicing, transposing and reshaping as views and broadcasting by stride 0, tested against NumPy on random shapes including the shapes that must fail; a minimal data frame (columns as lists) with selection, `groupby` with count and mean, and inner, left and outer `merge` by a hash join, tested against pandas on random tables; `dnorm`, `pnorm`, `qnorm` by bisection, `rnorm` by Box–Muller and a binomial and a Poisson mass function, tested against SciPy; a histogram by hand against `np.histogram`; a formula parser that turns `y ~ x1 + x2 + x1:x2 + C(g)` into a design matrix and an `ols` function with a summary table, tested against patsy and statsmodels, with the column-order trap shown; a vectorisation benchmark; then the same analysis in pandas, SciPy, statsmodels and Matplotlib, and a translation exercise that rewrites each R expression named in the crosswalk (for example `1:6 + c(10, 20)`, whose recycled value 11, 22, 13, 24, 15, 26 the unit states) as Python and checks it against the stated value. [local]
+- **Gap-fills:** *[inferred: the NumPy documentation on broadcasting and strides, the pandas user guide, the patsy and statsmodels manuals, McKinney, Python for Data Analysis, 3rd ed., recalled, not checked; Venables, Smith and the R Core Team, An Introduction to R, whose contents page could not be fetched, was the model for the topic list of the replaced prerequisite]* R itself is not used anywhere in this curriculum, no figure depends on an R random stream (the generators differ), and the language-level ideas of R that have no Python counterpart (lazy evaluation of arguments, environments, S3 classes) are named only. The Python language itself is U21.1.
+
+**Assignment A21.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In NumPy, what happens when an array of shape (6,) is added to an array of shape (2,)?
+
+(A) The shorter array is recycled three times  
+(B) A ValueError is raised because the shapes cannot be broadcast  
+(C) The result has shape (2,) and the extra elements are dropped  
+(D) The result is padded with NaN
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements about NumPy arrays are true?
+
+(A) A basic slice shares memory with its parent array  
+(B) Selecting with a list of indices returns a copy  
+(C) Broadcasting a length-1 axis can be done by giving it stride 0  
+(D) Adding the uint8 values 250 and 10 gives 260
+
+**Q3 (2 marks, numerical answer (rows)).** A tidy table has keys 1, 2, 3, 4 on the left and keys 2, 3, 3, 5 on the right. How many rows does the outer merge on the key have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the Box-Muller transform of two independent uniforms U1, U2 gives independent standard normals Z1 = sqrt(-2 ln U1) cos(2 pi U2) and Z2 = sqrt(-2 ln U1) sin(2 pi U2).
+
+**Q5 (3 marks, programming).** In Python, build from scratch a strided array class with slicing, transposing and reshaping as views and broadcasting by stride 0, tested against NumPy on random shapes including the failing ones; a minimal data frame with groupby and a hash-join merge tested against pandas; dnorm, pnorm, qnorm and rnorm by Box-Muller tested against SciPy; and a formula parser that turns y ~ x1 + x2 + x1:x2 + C(g) into a design matrix with an ols function tested against patsy and statsmodels. Show that matching coefficients by position instead of by name is wrong.
+
+<details><summary>Key for A21.3 (open only after your attempt)</summary>
+
+- **Q1:** B. Broadcasting aligns shapes from the right and stretches only axes of length 1; 6 and 2 differ and neither is 1, so NumPy raises an error where R would recycle silently.
+- **Q2:** ABC. D is false: fixed-width integers wrap around, so uint8 250 + 10 is 4.
+- **Q3:** 6 rows (tolerance ±0). Key 1 and key 4 appear once from the left only, key 2 matches once, key 3 matches twice and key 5 appears from the right only, so 2 + 1 + 2 + 1 = 6 rows.
+- **Q4 (marking outline):** Let R^2 = -2 ln U1 and Theta = 2 pi U2. Then R^2 is exponential with mean 2 (a chi-square with 2 degrees of freedom) and Theta is uniform on the circle and independent of R. A pair of independent standard normals has squared radius exponential with mean 2 and uniform angle, so (R cos Theta, R sin Theta) has the same joint density as two independent standard normals.
+- **Q5 (what a passing submission shows):** Broadcasting agrees with NumPy on every random pair, including the pairs that must raise an error; the group-by and merge row counts agree with pandas on 200 random tables; the normal functions agree with SciPy to 1e-12; the ols coefficients equal statsmodels by name to 1e-12, and patsy orders the categorical columns before the numeric ones, so a positional comparison of the two fails.
+
+</details>
+
+### U21.4 Bridge: proofs and discrete reasoning — logic, sets, counting, direct proof, contrapositive and contradiction, induction, the pigeonhole and double counting, and invariants
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U17.1 to U17.14, U19.3, U21.5, U21.6 and every [P] result of D17 to D20.
+- **Topics:** (the fundamentals) sets (operations, the power set, products, partitions, indexed families), logic (statements, connectives, truth tables, conditionals and biconditionals, quantifiers and their negation, logical equivalence and De Morgan's laws, translating English to symbols, valid inference); counting (counting lists, factorials, subsets, Pascal's triangle and the binomial theorem, inclusion–exclusion, multisets and stars and bars, the division and pigeonhole principles, combinatorial proof, double counting); (how to prove conditional statements) the anatomy of a theorem, definitions as the source of proofs, direct proof, proof by cases, contrapositive proof, proof by contradiction, existence and uniqueness, disproof and counter-examples, proofs involving sets; mathematical induction (ordinary, strong and by smallest counterexample, with the base case and the inductive hypothesis spelled out, and the standard fallacies); relations (equivalence relations, partitions, order relations) and functions (injective, surjective, bijective, composition, inverse) and cardinality (finite sets, countable and uncountable infinity, Cantor's diagonal argument); invariants and monovariants as the proof tool for algorithms (loop invariants, potential functions); mathematical writing and how to read a proof; the habit of testing a conjecture by brute force before proving it.
+- **Results:** De Morgan's laws, ¬(p ∧ q) ≡ ¬p ∨ ¬q, hold on all four rows of the truth table [P, check]; there are 2^(2^n) Boolean functions of n variables, 256 for n = 3 [P, check]; any 13 integers contain two with the same residue modulo 12 (pigeonhole) [P, check on 1000 random sets]; the number of solutions of x₁ + x₂ + x₃ + x₄ = 10 in non-negative integers is C(13, 3) = 286 [P, check by enumeration]; by inclusion–exclusion 74 of the integers 1 to 100 are divisible by 2, 3 or 5 [P, check]; the numbers of derangements of 3, 4, 5 and 6 objects are 2, 9, 44 and 265, with D_n = n! Σ (−1)ᵏ/k! [P, check]; the sum of the first n odd numbers is n², and 2ⁿ > n² for every n ≥ 5 although it fails for n = 2, 3 and 4, which is why the base case matters [P, check]; every integer n ≥ 2 has a prime factor, by strong induction [P, check up to 2000]; √2 is irrational, by contradiction on a fraction in lowest terms [P]; the Catalan numbers 1, 2, 5, 14, 42, 132 and 429 count the standard bracket sequences [check]; the handshake lemma (Σ degrees = 2E) is proved by double counting [P].
+- **Build:** from scratch: a truth-table generator and a tautology and equivalence checker for formulas given as strings; a brute-force verifier that tests a claimed identity or inequality for n up to a bound and reports the first counter-example (reproducing the 2ⁿ > n² failure at 2, 3 and 4); an induction harness that checks a base case and then the inductive step as a program on a finite range; a counting toolkit (permutations, combinations, stars and bars, inclusion–exclusion, derangements) each checked by enumeration; a pigeonhole counter-example searcher; a loop-invariant tracer that asserts an invariant at every iteration of binary search, insertion sort and Euclid's algorithm. [local]
+- **Gap-fills:** *[inferred: Hammack, Book of Proof, Parts I to IV (the contents were read from public pages); Velleman, How to Prove It; Grimaldi, Discrete and Combinatorial Mathematics, recalled, not checked]* the formal logic of first-order theories is in U15.3; number theory is in U5.2 and U5.12; graph proofs are in U21.5; recurrences are solved in U17.1.
+
+**Assignment A21.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which statement is logically equivalent to the negation of (p and q)?
+
+(A) not p and not q  
+(B) not p or not q  
+(C) p or q  
+(D) not p implies q is false
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Among any 13 integers two have the same residue modulo 12  
+(B) The number of Boolean functions of 3 variables is 256  
+(C) 2^n is greater than n squared for every n at least 5  
+(D) A proof by induction needs no base case
+
+**Q3 (2 marks, numerical answer).** How many derangements (permutations with no fixed point) of 5 objects exist? Use D_n = n! times the sum of (-1)^k/k!.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove by contradiction that sqrt(2) is irrational.
+
+**Q5 (3 marks, programming).** Write a truth-table generator and tautology checker, a brute-force verifier that reports the first counter-example of a claimed inequality, an induction harness, a counting toolkit checked by enumeration (stars and bars, inclusion-exclusion, derangements), and a loop-invariant tracer for binary search and Euclid's algorithm. Predict the first counter-example list for 2^n > n^2 first.
+
+<details><summary>Key for A21.4 (open only after your attempt)</summary>
+
+- **Q1:** B. De Morgan's law: not (p and q) is equivalent to (not p) or (not q).
+- **Q2:** ABC. D is false: without a base case the induction does not start.
+- **Q3:** 44 (tolerance ±0.01). 120 x (1/2 - 1/6 + 1/24 - 1/120) = 44.
+- **Q4 (marking outline):** Suppose sqrt(2) = a/b in lowest terms. Then a^2 = 2b^2, so a^2 is even and hence a is even, a = 2c. Then 4c^2 = 2b^2, so b^2 = 2c^2 and b is even too. Both a and b are even, contradicting lowest terms.
+- **Q5 (what a passing submission shows):** The verifier reports failures at n = 2, 3 and 4 and none from n = 5 to 200, stars and bars gives 286 for four variables summing to 10, and derangements for n = 3 to 6 are 2, 9, 44, 265.
+
+</details>
+
+### U21.5 Bridge: graph theory from scratch — definitions, degrees, paths and connectivity, trees, Eulerian and Hamiltonian graphs, bipartite graphs, planarity, colouring, matchings and representations
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U17.10, U17.11, U17.12, U17.13, U17.14, U2.7, U3.2, U15.19, U18.3, and the unit "Algorithmic Graph Theory and Data Structures" as a whole.
+- **Topics:** graphs, digraphs and multigraphs, vertices, edges, degree, the handshake lemma, subgraphs, complete, bipartite and regular graphs, isomorphism and the counting of labelled and unlabelled graphs; walks, trails, paths and cycles, connectivity, components, cut vertices and bridges, distance and diameter; trees (the equivalent definitions: connected and acyclic, connected with n − 1 edges, a unique path between every pair), spanning trees, the Prüfer code and Cayley's formula nⁿ⁻², the matrix-tree theorem (U18.3); Eulerian trails and circuits (Euler's theorem and the Königsberg problem), Hamiltonian cycles (Dirac's and Ore's sufficient conditions stated, hypercubes and Gray codes); bipartite graphs (no odd cycle; König's theorem and Hall's theorem, stated, with U3.2); planar graphs (Euler's formula V − E + F = 2, the bounds E ≤ 3V − 6 and, for bipartite graphs, E ≤ 2V − 4, the non-planarity of K₅ and K₃,₃, Kuratowski's theorem stated); colouring (vertex colouring, the greedy bound Δ + 1, Brooks' theorem stated, the four-colour theorem named, edge colouring and Vizing's theorem named); matchings (maximum and perfect, augmenting paths); directed graphs (in- and out-degree, strong connectivity, acyclic graphs and topological order, with U15.19); representations (adjacency matrix, adjacency list, incidence matrix) and their costs.
+- **Results:** the sum of the degrees is twice the number of edges, so the number of odd-degree vertices is even [P, double counting]; a tree on n vertices has n − 1 edges, and the equivalent characterisations of a tree are proved to coincide [P]; the Prüfer map is a bijection from sequences in {1, …, n}ⁿ⁻² to labelled trees, so there are nⁿ⁻² of them: 125 for n = 5, with the round trip of encoding and decoding checked on all 125 sequences, and 1296 for n = 6, which equals the cofactor of the Laplacian of K₆ [P, check]; K₃,₃ has 81 spanning trees, by the matrix-tree theorem [P, check]; a connected graph has an Eulerian circuit iff every degree is even, so Königsberg (degrees 3, 3, 3 and 5) has none [P, check]; for a connected planar graph V − E + F = 2, so E ≤ 3V − 6; K₅ has 10 edges against the bound 9 and K₃,₃ has 9 against 2V − 4 = 8, so neither is planar [P, check]; there are 64 labelled graphs on four vertices and 11 up to isomorphism [P, check by brute force]; the greedy colouring of the Petersen graph uses 3 colours in 1741 and 4 in 259 of 2000 random vertex orders, never more than Δ + 1 = 4 [P, check]; the reflected binary Gray code 0, 1, 3, 2, 6, 7, 5, 4 is a Hamiltonian path in the 3-cube [check].
+- **Build:** from scratch: a `Graph` class (adjacency list and matrix, directed and undirected, with degree, neighbours and component counting); Prüfer encoding and decoding with a bijection test; an Euler-circuit finder (Hierholzer) and a Hamiltonian-cycle backtracker; a bipartiteness checker by two-colouring; a planarity-bound checker; a greedy colourer with random orders; a canonical-form isomorphism tester by brute force for small graphs; each tested against `networkx` where installed. [local]
+- **Gap-fills:** *[inferred: West, Introduction to Graph Theory; Diestel, Graph Theory; Bondy and Murty, recalled, not checked]* the proofs of Kuratowski's, Brooks', Vizing's and the four-colour theorem are not given; extremal and random graph theory are named only; the algorithms on graphs (search, shortest paths, flows) are in U17.11 to U17.14.
+
+**Assignment A21.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Handshake Lemma says that in any graph the sum of the degrees equals
+
+(A) The number of vertices  
+(B) Twice the number of edges  
+(C) The number of edges  
+(D) The number of components
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) A tree on n vertices has n - 1 edges  
+(B) A connected graph has an Eulerian circuit iff all degrees are even  
+(C) K5 is not planar  
+(D) The four-colour theorem says every graph is 4-colourable
+
+**Q3 (2 marks, numerical answer (trees)).** By Cayley's formula how many labelled trees exist on 7 vertices?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a tree on n vertices has n - 1 edges.
+
+**Q5 (3 marks, programming).** From scratch write a Graph class, Prufer encoding and decoding with a bijection test over all sequences for n = 5, Hierholzer's Euler circuit finder, a bipartiteness check, Euler-bound planarity checks and a greedy colourer. Predict the number of labelled trees on 5 vertices and test the Prufer round trip first.
+
+<details><summary>Key for A21.5 (open only after your attempt)</summary>
+
+- **Q1:** B. Each edge contributes 1 to the degree of each of its two ends.
+- **Q2:** ABC. D is false: it applies to planar graphs only.
+- **Q3:** 16807 trees (tolerance ±0.01). n^(n-2) = 7^5 = 16807.
+- **Q4 (marking outline):** By induction on n. For n = 1 there are 0 edges. A tree with n >= 2 vertices has a leaf, since a longest path ends in vertices of degree 1 (an extra neighbour would give a longer path or a cycle). Removing the leaf leaves a tree on n - 1 vertices with n - 2 edges, so the original has n - 1.
+- **Q5 (what a passing submission shows):** The round trip succeeds on all 125 sequences giving 125 distinct trees, K5 and K3,3 fail the edge bounds, and greedy colouring of the Petersen graph never uses more than 4 colours.
+
+</details>
+
+### U21.6 Bridge: probability from first principles — sample spaces, random variables, expectation, the standard distributions, limit theorems and simulation by inversion, rejection and Monte Carlo
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U19.3 to U19.17, U20.1 to U20.8, U17.5, U18.7, U18.13 and the probability prerequisite of Algorithmic Graph Theory and Data Structures.
+- **Topics:** sample spaces, events, the axioms and their consequences, counting-based probability, conditional probability, independence, the law of total probability, Bayes' rule; discrete random variables (the mass function, expectation, variance, linearity of expectation and indicator variables), continuous random variables (density, cumulative distribution, quantiles, change of variable), joint, marginal and conditional distributions, covariance, correlation, the tower rule E[X] = E[E[X given Y]]; the Bernoulli, binomial, geometric, Poisson, uniform, exponential (memorylessness), normal and beta distributions derived from their stories and from each other (the Poisson limit of the binomial, the exponential as the waiting time of a Poisson process); moment generating functions; the inequalities of Markov and Chebyshev with proofs; the weak law of large numbers with a proof from Chebyshev; the central limit theorem (statement, a moment-generating-function sketch and a simulation); simulation: pseudo-random numbers, inverse-transform sampling, the Box–Muller transform, rejection sampling, Monte-Carlo integration and its 1/√n error; the coupon-collector problem and other standard computations in the analysis of randomised algorithms.
+- **Results:** Markov: P(X ≥ a) ≤ E[X]/a and Chebyshev: P(|X − μ| ≥ kσ) ≤ 1/k² [P]; the weak law: P(|X̄ₙ − μ| ≥ ε) ≤ σ²/(nε²) [P; check: for fair coins and ε = 0.1 the bound is 0.25 at n = 100 and 0.025 at n = 1000, while the observed frequencies are 0.035 and 0.0]; for the exponential distribution P(X > s + t given X > s) = P(X > t) [P; check: 0.1118 and 0.1108 against e^(−λt) = 0.1108 for λ = 2, s = 0.7, t = 1.1]; inverse-transform sampling X = −ln(1 − U)/λ gives mean 0.5004 and variance 0.2505 for λ = 2, against 0.5 and 0.25 [P, check]; rejection sampling of Beta(2, 5) under a rectangle accepts 40.7 % of proposals, equal to 1/f_max = 0.4069, and the accepted mean is 0.2849 against 2/7 [P, check]; Monte-Carlo estimation of π from 10⁶ points has error 4.5·10⁻⁴ against a theoretical standard deviation of 1.6·10⁻³, so the 1/√n rate holds [D, check]; the expected number of draws to collect all n coupons is n H_n, 224.96 for n = 50, and 3000 simulations average 226.0 [D, check]; the sum of 12 uniform variables minus 6 has variance 0.9995 and passes a Kolmogorov–Smirnov test against the standard normal (p = 0.32) [check, the central limit theorem at n = 12]; a geometric variable with p = 0.2 has mean 5 = 1/p [P, check].
+- **Build:** from scratch: a linear congruential generator with a uniformity test (chi-square on ten bins); samplers for the exponential (by inversion), the normal (by Box–Muller), the Poisson (by multiplying uniforms) and the beta (by rejection), each tested with moments and a Kolmogorov–Smirnov statistic; a Monte-Carlo integrator and a π estimator with an error-versus-n plot; a coupon-collector and a birthday simulator checked against their formulas; an empirical check of Markov, Chebyshev and the weak law on several distributions; a central-limit-theorem demonstrator for a skewed distribution. [local]
+- **Gap-fills:** *[inferred: Ross, A First Course in Probability; Grinstead and Snell; Wasserman, All of Statistics Chapters 1 to 5, recalled, not checked]* measure-theoretic probability is not needed and is not taught; the proof of the central limit theorem is sketched only; Markov chains are in U11.10 and U18.13; the probability of random processes for networks is in U2.1 and tail bounds for algorithms in U9.2.
+
+**Assignment A21.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Markov's inequality states that for a non-negative variable X and a > 0
+
+(A) P(X >= a) <= E[X]/a  
+(B) P(X >= a) >= E[X]/a  
+(C) P(X <= a) <= E[X]/a  
+(D) P(X >= a) = E[X]/a
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The exponential distribution is memoryless  
+(B) Inverse-transform sampling uses the inverse of the cumulative distribution  
+(C) Monte-Carlo error falls like one over the square root of n  
+(D) The coupon-collector expectation for n coupons is n squared
+
+**Q3 (2 marks, numerical answer (draws)).** What is the expected number of draws to collect all n = 50 coupons, n H_n? Give two decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Chebyshev's inequality from Markov's inequality.
+
+**Q5 (3 marks, programming).** From scratch write a linear congruential generator with a chi-square uniformity test, samplers for the exponential, normal (Box-Muller), Poisson and beta (rejection), a Monte-Carlo pi estimator with an error plot, and a coupon-collector simulator. Predict the Monte-Carlo error for 10^6 points first.
+
+<details><summary>Key for A21.6 (open only after your attempt)</summary>
+
+- **Q1:** A. The expected value is at least a times the probability of reaching a.
+- **Q2:** ABC. D is false: it is n times the n-th harmonic number.
+- **Q3:** 225 draws (tolerance ±0.01). 50 x 4.4992 = 224.96.
+- **Q4 (marking outline):** Apply Markov to the non-negative variable (X - mu)^2 and the level k^2 sigma^2. Then P((X - mu)^2 >= k^2 sigma^2) <= E[(X - mu)^2]/(k^2 sigma^2) = sigma^2/(k^2 sigma^2) = 1/k^2. The event is the same as abs(X - mu) >= k sigma.
+- **Q5 (what a passing submission shows):** The pi estimate has an error of about 1e-3 for 10^6 points, matching the theoretical 1.6e-3 standard deviation, the exponential sampler has mean 0.5 for rate 2, and the coupon simulation averages about 225 for n = 50.
+
+</details>
+
+## D17. Algorithms and data structures, taught on demand: analysis, divide and conquer, sorting, hashing, trees, amortisation, greedy and dynamic programming, graph search, shortest paths, network flow, tries, B-trees, string matching and hard problems
+
+Aim: the algorithmic toolkit that every other domain quietly uses (routing in D2, lookup structures in D3, indexes and joins in D15, schedulers and consensus in D9, search and streaming in D11 and D20), taught from the analysis of a loop up to flow networks and the idea of NP-completeness. Two courses supply the outline (Algorithmic Graph Theory and Data Structures, IIT Kharagpur; Data Structures and Algorithms Design, IIT Kanpur) and one textbook sets the bar. Three habits run through it: *state the loop invariant before writing the loop*, *count operations by running the code and compare with the formula*, and *ask what the worst input looks like*. Benchmarks (recalled, not checked in full; the part and chapter structure of CLRS was read from public contents lists on 2026-11-06): Cormen, Leiserson, Rivest and Stein, *Introduction to Algorithms*, 3rd ed. (Parts I to VI and Chapters 27 to 35); Kleinberg and Tardos, *Algorithm Design*; Dasgupta, Papadimitriou and Vazirani, *Algorithms*; Sedgewick and Wayne, *Algorithms*. D17 owns the algorithms and the data structures; the short routing and lookup bridges U2.7 and U3.1, the flow bridge U4.5 and the storage bridge U15.14 stay where they are and point here.
+
+**On demand (decision of 2026-11-06).** Nothing in the rest of the curriculum requires you to finish D17 first. Every unit of D17 is entered from the unit that needs it: that unit's Gap-fills name the U17 unit and what to take from it, and the U17 unit begins with a "Bridge for:" line naming the units that call on it. An entry is a bounded study with the usual four parts, the Topics, the Results to re-derive, the from-scratch Build and the assignment, after which you return to the unit that sent you. The three units added at the end (U17.15 to U17.17) fill what a working programmer meets before and after the sourced units: U17.15 is the floor (arrays, linked lists, recursion, binary search, the elementary sorts, bit tricks) and is entered first by anyone who has not yet written a linked list or a recursive function; U17.16 adds tries, B-trees, skip lists and string matching; U17.17 adds backtracking, branch and bound, exact exponential algorithms, approximation and local search for problems that U17.14 shows to be hard. A reader who prefers a straight run takes U17.15, U17.1 to U17.14, U17.16 and U17.17 in that order. The entry map:
+
+| You are in | You meet | Enter |
+|---|---|---|
+| Any unit | a running time, a loop invariant, an operation count | U17.15 if recursion or linked lists are new, then U17.1 and U17.2 |
+| U2.7, U2.9, U3.10 | shortest paths, spanning trees, link-state computation | U17.12, U17.10 and U17.11 |
+| U2.12, U9.11 | spanning trees and distributed spanning-tree construction | U17.10, U17.9, U17.11 |
+| U3.1, U3.4, U3.5, U7.1 | tries, longest-prefix match, range rules, signature matching | U17.16 (tries, Aho–Corasick named), U17.5, U17.8 |
+| U3.2, U4.5, U4.6 | matching, flows, traffic engineering | U17.14 |
+| U5.8, U17.14 | NP-hardness and what to do about it | U17.14, then U17.17 |
+| U9.5, U10.3 | consistent hashing | U17.5 |
+| U10.4, U10.5 | memtables, sorted tables, Bloom filters | U17.16 (skip lists, B-trees), U17.7, U17.5 |
+| U11.3, U11.7 | sort and shuffle, partitioners, top-k with a heap | U17.4, U17.5 |
+| U11.10, U11.11, U15.19, U15.21 | graph traversal, PageRank, cycle detection in schedules | U17.11, U17.12 |
+| U14.9 | LRU, FIFO and Belady's MIN | U17.6, U17.10 |
+| U15.15 to U15.17 | hashed files, B+-trees, external sorting, hash joins | U17.5, U17.16 (B-trees), U17.4 |
+| U15.18 | join ordering by dynamic programming | U17.10, U17.17 |
+| U16.7 | hash map and LRU cache exercises | U17.15 (linked lists), U17.5, U17.6 |
+| U16.14, U16.15 | url shortener, inverted index, crawler | U17.5, U17.16 (tries), U17.11, U17.12 |
+| U18.9 | the FFT as divide and conquer | U17.3 |
+| U19.x, U20.x | hashing, sketches, top-k, kd-trees | U17.4, U17.5, U17.8 |
+| U13.x | any capstone data structure | the unit named in its Build |
+
+### U17.1 Bridge: discrete mathematics for algorithm analysis: induction, sums, logarithms, recurrences and probability
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U17.2 to U17.17.
+- **Topics:** proof by induction and by contradiction, loop invariants as induction on iterations; sums (arithmetic, geometric, harmonic) and their closed forms; floors, ceilings, logarithms and exponents, base changes; counting (permutations, combinations, the binomial coefficient); the language of recurrences and how to guess and check a solution by substitution; events, conditional probability, expectation and linearity of expectation, indicator variables; graph vocabulary (vertices, edges, degree, path, cycle, tree, directed and undirected, connected components, weighted graph)
+- **Results:** the sum of the first n integers is n(n+1)/2 [P, induction]; the geometric sum (r^(n+1) − 1)/(r − 1) [P]; the harmonic number H_n = ln n + γ + o(1), with γ ≈ 0.5772 [S, by comparing with the integral, checked numerically]; the expected number of fixed points of a random permutation is 1, by linearity of expectation over indicator variables whatever the dependence [P, check]; a tree on n vertices has n − 1 edges [P]
+- **Build:** a harness that times a function and fits the growth exponent on a log–log plot; simulations of the harmonic sum and the fixed-point count against the formulas; an induction checker that tests a claimed closed form for the first 1,000 values. [local]
+- **Gap-fills:** *[inferred: CLRS Appendices A to C]* summation tricks and combinatorial identities beyond the above are taught inside the unit that first needs them. The full treatment, with proofs and from-scratch builds, is U21.4 (proofs and counting) and U21.6 (probability), with U21.2 for the school mathematics.
+
+**Assignment A17.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** By linearity of expectation, what is the expected number of fixed points of a uniformly random permutation of n elements, for n at least 1?
+
+(A) 1/n  
+(B) 1  
+(C) n/2  
+(D) ln n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The sum of the first n integers is n(n+1)/2  
+(B) A tree on n vertices has n - 1 edges  
+(C) The harmonic number H_n grows like ln n  
+(D) Induction can only prove statements about finitely many cases
+
+**Q3 (2 marks, numerical answer).** Compute the harmonic number H_10 = 1 + 1/2 + ... + 1/10 to three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove by induction that 1 + 2 + ... + n = n(n+1)/2 for every n >= 1.
+
+**Q5 (3 marks, programming).** Write a timing harness that fits the growth exponent of a function on a log-log scale, and simulations of the harmonic sum and of the fixed-point count of random permutations. Predict the fixed-point average for n = 50 first.
+
+<details><summary>Key for A17.1 (open only after your attempt)</summary>
+
+- **Q1:** B. Each position i is fixed with probability 1/n, there are n indicators, and linearity needs no independence, so the sum is 1.
+- **Q2:** ABC. D is false: induction proves a statement for every natural number from a base case and a step.
+- **Q3:** 2.929 (tolerance ±0.001). H_10 = 7381/2520 = 2.929.
+- **Q4 (marking outline):** For n = 1 both sides are 1. Suppose the formula holds for n. Then 1 + ... + n + (n+1) = n(n+1)/2 + (n+1) = (n+1)(n/2 + 1) = (n+1)(n+2)/2, which is the formula for n+1. By induction it holds for all n >= 1.
+- **Q5 (what a passing submission shows):** The fitted exponent of a linear scan is near 1 and of a double loop near 2, H_n matches ln n plus 0.5772 to 1e-5 at n = 10^6, and the average number of fixed points over 20,000 permutations is within 0.03 of 1.
+
+</details>
+
+### U17.2 Introduction to algorithms and their analysis: time complexity, asymptotics, merge sort, recurrences and clever linear-time algorithms
+**Sources:** AGDS W1, o; DSAD W1–3, o
+Bridge for: U17.3 to U17.17 and every unit whose Results state a running time or an operation count (U2.7, U3.4, U15.17, U15.18, U20.1).
+- **Topics:** what an algorithm is and how a clever one looks (an idea that removes a factor, not a speed-up of constants); the model of computation (a random-access machine, unit-cost operations, input size); analysis of algorithms; time and space complexity and asymptotics (big O, Ω and Θ, little o, the limit test, growth rates from log n to n!); worst, best and average cases; insertion sort and merge sort; solving the recurrence for merge sort by the recursion tree and by substitution; the max-sum subarray in linear time (Kadane's scan, with its loop invariant); how to write proofs (induction, contradiction, invariants, and the habit of stating what is to be shown); the local-minima problem in 1D and 2D arrays (an element no larger than its neighbours: binary search in O(log n) for an array, and the halving argument for an n by n grid)
+- **Results:** insertion sort makes n(n − 1)/2 comparisons in the worst case [D, check]; merge sort satisfies T(n) = 2T(n/2) + n, so T(n) = n lg n for n a power of two and at most n⌈lg n⌉ − 2^⌈lg n⌉ + 1 comparisons otherwise [D, check]; f = Θ(g) iff f = O(g) and g = O(f) [Def]; Kadane's scan returns the maximum-sum contiguous subarray in one pass, by the invariant "best ending here" [P, check against the O(n²) method]; a 1D array always has a local minimum and halving finds one in O(log n) probes [P]; an n by n grid has one and O(n) probes suffice by the cleverer halving of rows and columns, while the simpler version costs O(n log n) [S, check]
+- **Build:** insertion and merge sort with comparison counters against the formulas; Kadane against brute force on 10,000 random arrays; a local-minimum finder for 1D and 2D with probe counting. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 1 to 3; Kleinberg–Tardos Chapter 2]* the substitution method and the definitions of asymptotic notation are proved here; the master method waits for U17.3.
+
+**Assignment A17.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is the worst-case number of comparisons of insertion sort on n elements?
+
+(A) n log n  
+(B) n(n-1)/2  
+(C) n squared times log n  
+(D) n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Merge sort satisfies T(n) = 2T(n/2) + n  
+(B) Kadane's scan finds the maximum-sum contiguous subarray in one pass  
+(C) Every one-dimensional array has a local minimum  
+(D) If f(n) = O(g(n)) then g(n) = O(f(n))
+
+**Q3 (2 marks, numerical answer (comparisons)).** Merge sort never makes more than n*ceil(lg n) - 2^ceil(lg n) + 1 comparisons. Evaluate this bound for n = 100.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a one-dimensional array of distinct numbers always has a local minimum, and that probing the middle element and moving toward a smaller neighbour finds one in O(log n) probes.
+
+**Q5 (3 marks, programming).** Implement insertion sort and merge sort with comparison counters, Kadane's scan checked against brute force on 10,000 random arrays, and a local-minimum finder for 1D and 2D arrays that counts probes. Predict the merge-sort count for n = 1000 first.
+
+<details><summary>Key for A17.2 (open only after your attempt)</summary>
+
+- **Q1:** B. On a reverse-sorted input the j-th element is compared with all j - 1 before it, which sums to n(n-1)/2.
+- **Q2:** ABC. D is false: n is O(n squared) but n squared is not O(n).
+- **Q3:** 573 comparisons (tolerance ±0.01). ceil(lg 100) = 7, so the bound is 700 - 128 + 1 = 573.
+- **Q4 (marking outline):** Treat the ends as having neighbours of infinite value. Keep an interval [lo, hi] whose outside neighbours are both larger than the nearest endpoints inside, which is true at the start. Look at the middle m. If it is no larger than both neighbours it is a local minimum. Otherwise a neighbour is smaller, and the half on that side keeps the invariant, because the element just outside it (m itself) is larger than the neighbour. Each step halves the interval, so after at most lg n steps one element remains, and it is a local minimum.
+- **Q5 (what a passing submission shows):** The counters match n(n-1)/2 for the worst case and stay under the merge-sort bound (8,977 for n = 1000, typical value about 8,700), Kadane agrees with brute force on every array, and the 1D finder uses at most 11 probes for n = 1000.
+
+</details>
+
+### U17.3 Divide and conquer: the master method, quicksort, randomised quicksort, half-majority, multiplication and inversions
+**Sources:** AGDS W2; DSAD W8
+Bridge for: U11.3 and U15.17 (the sort inside the shuffle and inside external sorting), U18.9 (the FFT is divide and conquer), U17.4 and every recursive algorithm.
+- **Topics:** the divide and conquer method (divide, conquer, combine); the master method for T(n) = aT(n/b) + f(n) and its three cases; quicksort and its partition step; worst case and the effect of the pivot; randomised quicksort and its expected comparisons; half-majority (an element that appears more than n/2 times), by pairing and by divide and conquer; multiplication of n-digit integers and Karatsuba's three-product trick; counting inversions with merge sort; the algo. paradigm of divide and conquer (Algo.Paradigm in the outline) compared with induction and recursion
+- **Results:** the master theorem for the cases f = O(n^(log_b a − ε)), Θ(n^(log_b a)) and Ω(n^(log_b a + ε)) with the regularity condition [S; the first two cases proved by the recursion tree]; quicksort makes n(n − 1)/2 comparisons on sorted input and 2(n + 1)H_n − 4n ≈ 1.386 n lg n in expectation with a random pivot [D, check]; Karatsuba gives T(n) = 3T(n/2) + O(n) = Θ(n^(lg 3)) ≈ n^1.585 against n² [D, check]; the half-majority element, if one exists, survives pairwise elimination of distinct pairs and is found in O(n) time and O(1) space [P, check]; the number of inversions equals the number of swaps of adjacent sorted elements and is found in O(n log n) by merge sort [P, check]
+- **Build:** quicksort with a comparison counter on sorted, random and adversarial input; Karatsuba with digit-operation counts compared with schoolbook; half-majority and inversion counters tested against O(n²) versions. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 4, 5 and 7; Strassen's matrix multiplication in Chapter 28]* the Akra–Bazzi generalisation of the master theorem is stated only.
+
+**Assignment A17.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Karatsuba multiplies two n-digit numbers with T(n) = 3T(n/2) + O(n). What is the running time?
+
+(A) Theta(n squared)  
+(B) Theta(n^(lg 3)), about n^1.585  
+(C) Theta(n log n)  
+(D) Theta(n^3)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Quicksort with a random pivot makes about 1.386 n lg n comparisons in expectation  
+(B) Quicksort makes n(n-1)/2 comparisons on already sorted input with the first element as pivot  
+(C) The number of inversions can be counted in O(n log n) with merge sort  
+(D) The master theorem can solve T(n) = T(n-1) + n
+
+**Q3 (2 marks, numerical answer (comparisons)).** The expected number of comparisons of randomised quicksort is 2(n+1)H_n - 4n. Evaluate it for n = 10 to three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that if a majority element (more than n/2 copies) exists, the pairing scheme that cancels a candidate against a different element ends with that element as the candidate.
+
+**Q5 (3 marks, programming).** Implement quicksort with a comparison counter, Karatsuba with digit-multiplication counts, half-majority and an inversion counter. Predict the quicksort count for n = 2000 first.
+
+<details><summary>Key for A17.3 (open only after your attempt)</summary>
+
+- **Q1:** B. Case 1 of the master theorem with a = 3 and b = 2 gives n^(log base 2 of 3).
+- **Q2:** ABC. D is false: the master theorem needs the form aT(n/b) + f(n).
+- **Q3:** 24.44 comparisons (tolerance ±0.001). 2 x 11 x 2.92897 - 40 = 24.437.
+- **Q4 (marking outline):** Each cancellation removes one copy of the candidate and one copy of a different element, so it removes at most one copy of the majority element for each element that is not the majority. If the majority element appears more than n/2 times, the other elements number fewer than n/2, so cancellations cannot remove all its copies, and some copy remains uncancelled. The candidate at the end is the value of the surviving copies, so it is the majority element.
+- **Q5 (what a passing submission shows):** Measured quicksort comparisons average about 24,600 against the formula 24,730 for n = 2000, Karatsuba uses fewer digit products than schoolbook above 64 digits, and half-majority and inversion counts agree with brute force on 2,000 random cases.
+
+</details>
+
+### U17.4 Heaps, sorting in linear time and order statistics
+**Sources:** AGDS W3–4; DSAD W10,12
+Bridge for: U11.3 (sort and shuffle), U11.7 (top-k with a heap), U15.17 (external merge sort), U17.12 (the priority queue of Dijkstra).
+- **Topics:** the heap data structure (binary heap as an array, heapify, build-heap, insert and extract-min) and the priority queue; heap sort; the comparison-sort lower bound; sorting in linear time (counting sort, radix sort, bucket sort) and why stability matters; order statistics (selection): randomised select, the median of medians, the i-th minimum and the median; dynamic data structures (a structure that supports insertion and deletion between queries)
+- **Results:** build-heap runs in O(n), because the sum of the heights is Σ n/2^(h+1) · h = O(n) [P, check]; heap sort is O(n log n) in place [P]; any comparison sort needs at least ⌈lg n!⌉ ≥ n lg n − 1.443n comparisons, by the decision-tree argument [P, check]; counting sort takes O(n + k) and radix sort O(d(n + k)) with a stable inner sort [P]; randomised select has expected O(n) time [P]; the median of medians (groups of five) selects in worst-case O(n) time [S]
+- **Build:** a binary heap with a comparison counter, heap sort, counting and radix sort on 10⁶ integers against `sorted`, and quickselect against `numpy.partition`. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 6, 8 and 9]* Fibonacci heaps (Chapter 19) are stated in U17.9's amortised context only.
+
+**Assignment A17.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which lower bound holds for every comparison sort of n distinct elements?
+
+(A) n comparisons  
+(B) ceil(lg n!) comparisons  
+(C) n squared comparisons  
+(D) lg n comparisons
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Build-heap runs in O(n)  
+(B) Counting sort takes O(n + k) time for keys in 0 to k  
+(C) Radix sort needs a stable inner sort  
+(D) Heap sort is stable
+
+**Q3 (2 marks, numerical answer (comparisons)).** What is the smallest worst-case number of comparisons any comparison sort needs for 10 distinct elements, according to the information-theoretic bound ceil(lg 10!)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that build-heap takes O(n) time.
+
+**Q5 (3 marks, programming).** Implement a binary heap, heap sort, counting sort and radix sort, and a quickselect, and compare with sorted and numpy.partition on 10^6 integers. Predict the build-heap swaps per element first.
+
+<details><summary>Key for A17.4 (open only after your attempt)</summary>
+
+- **Q1:** B. There are n! outcomes and each comparison at most halves the candidates, so at least lg n! comparisons are needed in the worst case.
+- **Q2:** ABC. D is false: heap sort can reorder equal keys.
+- **Q3:** 22 comparisons (tolerance ±0.01). 10! = 3,628,800 and lg of it is 21.79, so at least 22.
+- **Q4 (marking outline):** A node at height h costs O(h) to sift down. A heap of n nodes has at most ceil(n / 2^(h+1)) nodes of height h. The total cost is the sum over h of ceil(n/2^(h+1)) times O(h), at most n times O(sum of h/2^(h+1)), and the series sum of h/2^h converges to 2, so the total is O(n).
+- **Q5 (what a passing submission shows):** Heap sort and radix sort agree with sorted, quickselect agrees with numpy.partition, and build-heap performs about 0.74 swaps per element, below the bound of 1.
+
+</details>
+
+### U17.5 Hashing: hash functions, open addressing and perfect hashing
+**Sources:** AGDS W4
+Bridge for: U3.1 (hashing and Bloom filters), U9.5 and U10.3 (consistent hashing), U15.15 (hashed files), U15.17 (hash joins), U11.3 (the partitioner), U16.7 (the hash map exercise), U20.2 and U20.3 (universal hashing and sketches).
+- **Topics:** hash function, hash table with chaining and its load factor; universal hashing; open addressing hashing (linear probing, quadratic probing, double hashing) and deletion with tombstones; perfect hashing for a static set (the two-level Fredman–Komlós–Szemerédi scheme); the heap as the other use of a priority structure in the same week; what a good hash is and what an adversary can do to a fixed one
+- **Results:** for a universal family, two distinct keys collide with probability at most 1/m, so a chain has expected length 1 + α [P]; the family h(k) = ((ak + b) mod p) mod m with prime p larger than every key is universal [P]; with uniform hashing an unsuccessful open-addressing search makes at most 1/(1 − α) probes in expectation [P], and 1/(1 − α) = 10 at α = 0.9 [D, check]; a table of size n² with a random universal hash has no collision with probability at least 1/2, and the two-level scheme uses expected O(n) space [P, check]
+- **Build:** chaining and open-addressing tables with probe counters against the formulas at α = 0.5, 0.8 and 0.9; a universal family and an FKS static table verified collision-free on 10,000 random key sets. [local]
+- **Gap-fills:** *[inferred: CLRS Chapter 11]* cuckoo hashing, consistent hashing (U9.5) and Bloom filters (U3.1, U20.2) are the same ideas in other settings.
+
+**Assignment A17.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** With uniform hashing and load factor 0.9, about how many probes does an unsuccessful open-addressing search take?
+
+(A) 2  
+(B) 5  
+(C) 10  
+(D) 90
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) For a universal family two distinct keys collide with probability at most 1/m  
+(B) With chaining the expected chain length at load alpha is alpha for a search that misses  
+(C) A table of size n squared with a random universal hash function is collision-free with probability at least 1/2  
+(D) Linear probing never suffers from clustering
+
+**Q3 (2 marks, numerical answer (probes)).** What is the expected number of probes for an unsuccessful search under uniform open addressing at load factor 0.75?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that if n keys are hashed into m = n squared slots by a universal function, the expected number of colliding pairs is below 1/2, so the table is collision-free with probability at least 1/2.
+
+**Q5 (3 marks, programming).** Build a chaining table and an open-addressing table, measure probe counts at load 0.5, 0.8 and 0.9, and build an FKS two-level perfect hash for a static set. Predict the probes at 0.9 first.
+
+<details><summary>Key for A17.5 (open only after your attempt)</summary>
+
+- **Q1:** C. The expected number is at most 1/(1 - alpha) = 10.
+- **Q2:** ABC. D is false: linear probing suffers from primary clustering.
+- **Q3:** 4 probes (tolerance ±0.001). 1/(1 - 0.75) = 4.
+- **Q4 (marking outline):** There are n(n-1)/2 pairs and each collides with probability at most 1/m = 1/n squared. By linearity of expectation the expected number of colliding pairs is at most n(n-1)/(2 n squared) < 1/2. By Markov's inequality the probability that at least one pair collides is at most this expectation, which is less than 1/2.
+- **Q5 (what a passing submission shows):** The probe counts are about 2.0, 5.1 and 9.9 against the formula values 2, 5 and 10, and the static table has no collision on any of 10,000 random key sets.
+
+</details>
+
+### U17.6 Abstract data types, stacks and queues, range queries and the grid-distance problem
+**Sources:** DSAD W4,6,11
+Bridge for: U16.7 (the LRU cache), U14.9 (replacement policies), U11.7 (windows), U17.11 (the queue of breadth-first search).
+- **Topics:** an abstract data structure as an interface (stack, queue, deque, list, set) separate from its representation; LIFO and FIFO, arrays and linked lists, amortised cost of a growing array; the stack data structure and expression evaluation (infix to postfix, evaluation by a stack); the grid-distance problem (the distance from every cell to the nearest marked cell, by multi-source breadth-first search in O(mn)); range-minima in a 1D array (sparse table with O(n log n) build and O(1) query, and the segment tree with O(log n) both); the multi-increment problem (many range additions, then reads, by a difference array or a Fenwick tree); the set data structure with disjoint-union and find, met here as an interface and built in U17.9; the greedy paradigm met as a method in U17.10
+- **Results:** a range-minimum query is answered by two overlapping power-of-two blocks, correct because min is idempotent [P, check]; a difference array performs q range additions in O(q + n) total [P, check]; multi-source BFS gives each cell its nearest-source distance in one pass because BFS layers are distance layers [P, check]; evaluating a postfix expression with one stack takes one pass and the operand stack never exceeds the expression's height [P]
+- **Build:** a stack-based calculator, a sparse table and a segment tree tested on 10⁵ random queries against brute force, and the grid-distance solver against an O(n²m²) check. [local]
+- **Gap-fills:** *[inferred: CLRS Chapter 10]* Fenwick trees are an applied extra; the amortised bound for the growing array is proved in U17.9.
+
+**Assignment A17.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A sparse table answers range-minimum queries in O(1) because
+
+(A) The minimum of two overlapping blocks covering the range equals the range minimum  
+(B) The array is sorted  
+(C) Queries are cached  
+(D) Each query touches one element
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Multi-source breadth-first search computes the distance to the nearest source for every cell  
+(B) A difference array performs q range additions in O(q + n)  
+(C) A stack evaluates a postfix expression in one pass  
+(D) A queue is a LIFO structure
+
+**Q3 (2 marks, numerical answer (entries)).** A sparse table over n = 16 elements stores level k with 16 - 2^k + 1 entries for k = 0 to 4. How many entries are stored in all?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the range minimum over [l, r] with length L is min(T[k][l], T[k][r - 2^k + 1]) where k = floor(lg L).
+
+**Q5 (3 marks, programming).** Implement a stack calculator, a sparse table and a segment tree, a difference-array multi-increment and a grid-distance solver, each tested against brute force. Predict the sparse table size for n = 1000 first.
+
+<details><summary>Key for A17.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Min is idempotent, so two power-of-two blocks that overlap and together cover the range give the correct minimum.
+- **Q2:** ABC. D is false: a queue is first-in first-out.
+- **Q3:** 54 entries (tolerance ±0.01). 16 + 15 + 13 + 9 + 1 = 54.
+- **Q4 (marking outline):** The two blocks of length 2^k start at l and at r - 2^k + 1. Since 2^k <= L < 2^(k+1), the first block ends at l + 2^k - 1 <= r and the second starts at r - 2^k + 1 >= l, so both lie inside [l, r]. Because 2^k > L/2 the blocks together cover every index of [l, r]: the first covers up to l + 2^k - 1 and the second from r - 2^k + 1, and l + 2^k - 1 >= r - 2^k. The minimum of the union is the minimum of the two minima.
+- **Q5 (what a passing submission shows):** All structures agree with brute force on 10^5 random queries, the table has 10 levels for n = 1000, and the grid solver matches an O(n squared m squared) check on 200 random grids.
+
+</details>
+
+### U17.7 Search trees: binary search trees, balancing and red-black trees
+**Sources:** AGDS W5; DSAD W5,7
+Bridge for: U15.16 (B-trees and B+-trees are search trees with wide nodes), U10.5 (sorted tables), U3.4 (lookup trees), U17.16.
+- **Topics:** the binary search tree data structure (search, minimum, successor, insert, delete) and its height; balancing and why it matters; rotations; red-black trees (five properties, black-height) with their insertion and deletion cases; the BST example of the red-black tree: height, insert and delete; the AVL tree as the competing rule
+- **Results:** every BST operation is O(h) [P]; a binary tree with n nodes has height at least ⌈lg(n + 1)⌉ − 1 [P]; the average depth of a BST built by n random insertions is about 2 ln n ≈ 1.386 lg n [S, check]; a red-black tree with n internal nodes has height at most 2 lg(n + 1), because a subtree of black-height b has at least 2^b − 1 internal nodes and black nodes are at least half of any path [P, check]; insertion needs at most two rotations and deletion at most three [S]
+- **Build:** a BST and a red-black tree whose invariant checker runs after every operation on 10⁵ random operations; height of sorted insertion into the BST against the red-black tree. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 12 and 13]* B-trees (Chapter 18) are taught in U15.16 for disks.
+
+**Assignment A17.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is the maximum height of a red-black tree with n internal nodes?
+
+(A) lg n  
+(B) 2 lg(n+1)  
+(C) n/2  
+(D) sqrt n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Every BST operation costs O(h)  
+(B) A BST built from sorted input has height n - 1  
+(C) The root of a red-black tree is black  
+(D) Rotations change the in-order sequence of keys
+
+**Q3 (2 marks, numerical answer (levels)).** Using the bound height <= 2 lg(n + 1), what is the largest possible height of a red-black tree with 1023 internal nodes?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a red-black tree with n internal nodes has height at most 2 lg(n + 1).
+
+**Q5 (3 marks, programming).** Implement a BST and a red-black tree with an invariant checker run after every operation, and compare the height after inserting 10^5 sorted keys into each. Predict both heights first.
+
+<details><summary>Key for A17.7 (open only after your attempt)</summary>
+
+- **Q1:** B. A subtree of black-height b has at least 2^b - 1 internal nodes, and black nodes are at least half of any root-to-leaf path.
+- **Q2:** ABC. D is false: rotations preserve the in-order order.
+- **Q3:** 20 levels (tolerance ±0.01). lg 1024 = 10, so 20.
+- **Q4 (marking outline):** Let h be the height and b the black-height of the root. No red node has a red child, so at least half the nodes on any root-to-leaf path are black and b >= h/2. A subtree with black-height b has at least 2^b - 1 internal nodes, by induction on height: a leaf has b = 0 and 0 nodes, and a node of black-height b has two children of black-height at least b - 1, each with at least 2^(b-1) - 1 nodes. So n >= 2^b - 1 >= 2^(h/2) - 1, which gives h <= 2 lg(n + 1).
+- **Q5 (what a passing submission shows):** The BST reaches height 99,999 on sorted input while the red-black tree stays below 2 lg(10^5 + 1) = 33.2, and the checker reports no violated property in 10^5 random operations.
+
+</details>
+
+### U17.8 Augmenting data structures, fixed-universe successor and the van Emde Boas tree, with the geometric primitives
+**Sources:** AGDS W6
+Bridge for: U3.5 (range queries over rules), U17.9 and U17.16.
+- **Topics:** data-structure augmentation (choose a structure, add a field, check it can be maintained, then use it); order-statistic trees (rank and select by subtree size); interval trees; fixed universe successor (a bit vector with a summary, then the recursive √u split); the van Emde Boas tree and its O(lg lg u) operations; computational geometry primitives (the cross product and the orientation test, point on a segment)
+- **Results:** if a field depends only on a node and its children, it can be maintained through red-black insertion and deletion in O(lg n) [P]; rank and select in an order-statistic tree cost O(lg n) [P]; the van Emde Boas recurrence T(u) = T(√u) + O(1) solves to O(lg lg u) [D, check], with space O(u) in the basic version [Def]; the sign of the cross product (b − a) × (c − a) tells whether a, b, c turn left, right or are collinear [P, check]
+- **Build:** an order-statistic tree with rank and select tested against sorting, a van Emde Boas tree over 2^16 keys against a sorted list, and an orientation test on random points. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 14 and 20; de Berg et al., Computational Geometry]* the proof of the van Emde Boas space bound O(u) and the O(n) reduction are stated only.
+
+**Assignment A17.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which field makes a red-black tree an order-statistic tree?
+
+(A) The colour  
+(B) The subtree size  
+(C) The parent pointer  
+(D) The height
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) A field that depends only on a node and its children can be maintained through red-black insertion in O(lg n)  
+(B) The van Emde Boas tree supports successor in O(lg lg u)  
+(C) The cross product sign tells whether three points turn left, right or are collinear  
+(D) An interval tree needs the colour field of each node
+
+**Q3 (2 marks, numerical answer (levels)).** A van Emde Boas tree over a universe of u = 2^64 keys recurses on the square root of the universe. How many levels deep is the recursion before the universe has size 2?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Solve T(u) = T(sqrt u) + 1 to show that vEB operations take O(lg lg u).
+
+**Q5 (3 marks, programming).** Implement an order-statistic tree with rank and select, a van Emde Boas tree over 2^16 keys, and an orientation test, each tested against brute force. Predict the vEB recursion depth first.
+
+<details><summary>Key for A17.8 (open only after your attempt)</summary>
+
+- **Q1:** B. Rank and select walk down using the size of the left subtree, and the size can be maintained in O(1) per rotation.
+- **Q2:** ABC. D is false: the colour is used for balancing, not for interval queries.
+- **Q3:** 6 levels (tolerance ±0.01). The universe exponent halves each level: 64, 32, 16, 8, 4, 2, 1 gives lg 64 = 6 levels.
+- **Q4 (marking outline):** Put m = lg u, so u = 2^m and sqrt u = 2^(m/2). Define S(m) = T(2^m). Then S(m) = S(m/2) + 1. Halving m takes lg m steps to reach 1, so S(m) = lg m + O(1), that is T(u) = O(lg lg u).
+- **Q5 (what a passing submission shows):** Rank and select agree with a sorted list on 10^5 queries, the vEB successor agrees with bisect, and its recursion depth is 4 for 2^16 keys.
+
+</details>
+
+### U17.9 Disjoint sets, amortised analysis and more computational geometry
+**Sources:** AGDS W7; DSAD W11
+Bridge for: U17.10 (Kruskal's algorithm uses union–find), U2.7 and U9.11 (spanning trees), and every amortised bound in the curriculum.
+- **Topics:** the disjoint-set data structure (make-set, find, union), the linked-list version with weighted union, and the forest version with union by rank and path compression; amortised analysis by the aggregate, accounting and potential methods (stack with multipop, binary counter, growing array); computational geometry: segment intersection by orientation tests, the convex hull by Graham's scan, and the sweep line idea; the set, disjoint union and find operations used by Kruskal's algorithm (U17.10)
+- **Results:** with weighted union a sequence of m operations on n elements costs O(m + n lg n) [P]; with union by rank and path compression it costs O(m α(n)) where α grows slower than any practical function (α(n) ≤ 4 below 10^80) [X; the O(m lg* n) bound is proved in CLRS 21.4]; the binary counter's increment costs at most 2 per call amortised, and a doubling array's append costs at most 3 per call amortised [P, check]; Graham's scan builds the convex hull in O(n log n) [P, check]
+- **Build:** union–find with and without the two heuristics timed on 10⁶ operations; amortised-cost counters for the counter and the dynamic array; a convex hull and a segment-intersection test against brute force. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 16, 21 and 33]* the Shamos–Hoey sweep and Tarjan's analysis of union–find are stated only.
+
+**Assignment A17.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** With union by rank and path compression, m disjoint-set operations on n elements cost
+
+(A) O(m n)  
+(B) O(m alpha(n)), almost linear  
+(C) O(n squared)  
+(D) O(m log m) at best
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The amortised cost of incrementing a binary counter is at most 2  
+(B) A doubling dynamic array has amortised append cost at most 3  
+(C) Graham's scan builds a convex hull in O(n log n)  
+(D) The potential method needs real cost to equal amortised cost at each step
+
+**Q3 (2 marks, numerical answer (flips)).** How many bit flips do 1024 increments of a binary counter starting at 0 cause in total? Use the identity total flips = 2n - (number of 1 bits in n).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove by the aggregate method that n increments of a binary counter cost fewer than 2n bit flips.
+
+**Q5 (3 marks, programming).** Implement union-find with and without union by rank and path compression, a binary counter and a doubling array with cost accounting, and Graham's scan with a segment intersection test. Predict the counter's flips per increment first.
+
+<details><summary>Key for A17.9 (open only after your attempt)</summary>
+
+- **Q1:** B. The inverse Ackermann function grows so slowly that it is at most 4 for any practical n.
+- **Q2:** ABC. D is false: amortised cost can differ from actual cost at a step, but the total amortised cost bounds the total actual cost.
+- **Q3:** 2047 flips (tolerance ±0.01). The binary representation of 1024 has one 1 bit, so 2048 - 1 = 2047.
+- **Q4 (marking outline):** Bit 0 flips on every increment, bit 1 every second, bit i every 2^i-th increment. In n increments bit i flips floor(n / 2^i) times. The total is the sum over i of floor(n/2^i), which is less than n times the sum of 1/2^i, that is less than 2n. So the amortised cost per increment is under 2.
+- **Q5 (what a passing submission shows):** The counter averages 1.99997 flips per increment over 2^15 increments, the doubling array about 2.3 operations per append, the hull contains every point, and union-find with both heuristics is far faster on 10^6 operations.
+
+</details>
+
+### U17.10 Greedy algorithms, dynamic programming, graphs and minimum spanning trees
+**Sources:** AGDS W8; DSAD W11
+Bridge for: U2.7 (spanning trees), U14.9 (Belady's MIN is a greedy rule), U15.18 (dynamic programming over join orders), U16.15 (the ranking designs), U17.17.
+- **Topics:** the dynamic programming method (optimal substructure, overlapping subproblems, memoisation against tabulation) on rod cutting, longest common subsequence and the 0/1 knapsack; an introduction to graphs (adjacency lists and matrices, their costs, sparse against dense); the greedy algorithm paradigm and the exchange argument, activity selection and Huffman coding; the minimum spanning tree (the cut property), Prim's algorithm with a heap and Kruskal's algorithm with the disjoint-set structure
+- **Results:** the 0/1 knapsack costs O(nW) time, pseudo-polynomial in the bit length of W [D, check]; the LCS table costs O(mn) [P, check]; the greedy activity-selection choice (earliest finish) is part of some optimal solution [P, check]; the cut property: the lightest edge across any cut belongs to some MST, so Prim and Kruskal are correct [P]; Prim costs O(E lg V) with a binary heap and Kruskal O(E lg E) [D, check]; Prim and Kruskal return the same total weight on random graphs [check]
+- **Build:** knapsack, LCS and rod cutting by memoisation and by table with a recursion-call count; Prim and Kruskal checked against each other and against `scipy.sparse.csgraph.minimum_spanning_tree`. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 15, 16 and 23]* matroid theory for greedy algorithms is named only.
+
+**Assignment A17.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which problem is solved by the Prim and Kruskal algorithms and is justified by the cut property?
+
+(A) Shortest paths  
+(B) Minimum spanning tree  
+(C) Maximum flow  
+(D) Topological sorting
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The 0/1 knapsack DP runs in O(nW)  
+(B) Kruskal's algorithm uses a disjoint-set structure  
+(C) Greedy activity selection by earliest finish time is optimal  
+(D) The knapsack running time O(nW) is polynomial in the number of bits of W
+
+**Q3 (2 marks, numerical answer (value)).** A 0/1 knapsack has weights 1, 3, 4, 5, values 1, 4, 5, 7 and capacity 7. What is the maximum value?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the cut property: if a cut respects the tree A that is part of some MST, the lightest edge e across the cut can be added to give another subset of some MST.
+
+**Q5 (3 marks, programming).** Implement knapsack and LCS by memoisation and by table, and Prim and Kruskal, checked against each other and scipy minimum_spanning_tree. Predict whether the two spanning-tree weights agree first.
+
+<details><summary>Key for A17.10 (open only after your attempt)</summary>
+
+- **Q1:** B. The lightest edge across any cut belongs to some minimum spanning tree.
+- **Q2:** ABC. D is false: it is pseudo-polynomial, exponential in the number of bits of W.
+- **Q3:** 9 value (tolerance ±0.01). Items of weight 3 and 4 give value 9 at weight 7; no other subset within 7 does better.
+- **Q4 (marking outline):** Let T be an MST containing A. If e is in T we are done. Otherwise adding e to T creates a cycle, which must cross the cut at another edge f. Removing f from T + e gives a spanning tree T'. Its weight is w(T) - w(f) + w(e) <= w(T) because e is lightest across the cut, so T' is also minimum, and it contains A and e.
+- **Q5 (what a passing submission shows):** Memoised and tabulated DP agree and the recursion-call count matches the number of distinct subproblems, and Prim, Kruskal and scipy return the same total weight on 200 random connected graphs.
+
+</details>
+
+### U17.11 Graph search: breadth-first and depth-first search, bipartiteness, DFS trees and articulation points
+**Sources:** AGDS W9; DSAD W9–10
+Bridge for: U2.7, U2.12 (the spanning tree protocol), U11.10 and U11.11 (graph traversal and PageRank), U15.19 and U15.21 (cycle detection in schedules), U16.15 (the web crawler), U21.5.
+- **Topics:** graph search algorithms: BFS and DFS, their trees and costs; graph theory and algorithms for connectivity and bipartiteness (two-colouring by BFS); the DFS tree and edge classification (tree, back, forward, cross); articulation points and biconnectedness by the low-link values; topological order of a directed acyclic graph
+- **Results:** BFS computes shortest hop distances in O(V + E) [P, check]; a graph is bipartite iff it has no odd cycle [P, check]; in a DFS of an undirected graph every edge is a tree or back edge [P]; a non-root vertex v is an articulation point iff some child c has low[c] ≥ disc[v], and the root is one iff it has two children [P, check against removal of each vertex]; topological sort by reverse DFS finishing time is valid iff the graph is acyclic [P, check]
+- **Build:** BFS, DFS, a two-colourer, an articulation-point finder tested against delete-and-count components on 1,000 random graphs, and a topological sorter. [local]
+- **Gap-fills:** *[inferred: CLRS Chapter 22]* strongly connected components (Kosaraju, Tarjan) are an applied extra.
+
+**Assignment A17.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A graph is bipartite if and only if
+
+(A) It is a tree  
+(B) It contains no odd cycle  
+(C) It has an even number of vertices  
+(D) Every vertex has even degree
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) BFS gives shortest hop distances from the source  
+(B) In a DFS of an undirected graph every non-tree edge is a back edge  
+(C) The root of a DFS tree is an articulation point iff it has at least two children  
+(D) A topological order exists for every directed graph
+
+**Q3 (2 marks, numerical answer (vertices)).** How many articulation points does a path graph on 10 vertices have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a non-root vertex v of a DFS tree is an articulation point iff it has a child c with low[c] >= disc[v].
+
+**Q5 (3 marks, programming).** Implement BFS, DFS, a two-colourer, an articulation-point finder and a topological sorter, and test the finder against delete-and-count on 1000 random graphs. Predict agreement first.
+
+<details><summary>Key for A17.11 (open only after your attempt)</summary>
+
+- **Q1:** B. BFS two-colouring fails exactly when an edge joins two vertices of the same level parity, which closes an odd cycle.
+- **Q2:** ABC. D is false: it exists only for acyclic directed graphs.
+- **Q3:** 8 vertices (tolerance ±0.01). Every internal vertex disconnects the path, the two endpoints do not: 8.
+- **Q4 (marking outline):** If low[c] >= disc[v], no vertex in the subtree of c has a back edge to a proper ancestor of v, and DFS edges leave subtrees only by back edges, so removing v separates the subtree of c from the root. Conversely, if every child c has low[c] < disc[v], each child's subtree reaches a proper ancestor of v by a back edge, so after v is removed all subtrees stay joined to the root side, and v is not an articulation point.
+- **Q5 (what a passing submission shows):** The finder agrees with delete-and-count on all 1000 graphs, the two-colourer reports an odd cycle exactly when brute force does, and the topological sorter rejects cyclic graphs.
+
+</details>
+
+### U17.12 Single-source shortest paths: Dijkstra, Bellman–Ford and their applications
+**Sources:** AGDS W9–10; DSAD W12
+Bridge for: U2.7 and U2.9 (path computation in OSPF and BGP), U3.10 (data-centre routing), U11.11 (graph processing), U16.15.
+- **Topics:** single-source shortest path; Dijkstra's algorithm (Dijkstra's algo) and the priority queue; why negative edges break it; Bellman–Ford, relaxation and negative-cycle detection; applications of Bellman–Ford (systems of difference constraints, arbitrage detection in exchange rates, the distance-vector routing of U2.9); shortest paths in a DAG
+- **Results:** Dijkstra is correct for non-negative weights (each extracted vertex has its final distance) [P] and costs O((V + E) lg V) with a binary heap [D]; a three-vertex graph with a negative edge makes Dijkstra return a wrong distance [D, check]; Bellman–Ford is correct after V − 1 rounds when no negative cycle is reachable, and a further improving round proves one exists [P, check]; the constraints x_j − x_i ≤ w_ij are feasible iff the constraint graph has no negative cycle [P, check]; an arbitrage cycle is a cycle whose product of rates exceeds 1, a negative cycle under weights −log rate [P, check]
+- **Build:** Dijkstra with a heap, Bellman–Ford with negative-cycle detection, a difference-constraint solver and an arbitrage detector, tested against `scipy.sparse.csgraph.shortest_path`. [local]
+- **Gap-fills:** *[inferred: CLRS Chapter 24]* A* search and the bidirectional Dijkstra of the routing literature are applied extras.
+
+**Assignment A17.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Why can Dijkstra's algorithm fail when an edge has negative weight?
+
+(A) It uses too much memory  
+(B) A vertex taken from the queue may later be reached by a cheaper path  
+(C) It cannot read negative numbers  
+(D) The queue becomes empty
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Bellman-Ford detects a negative cycle reachable from the source  
+(B) A system of difference constraints is feasible iff its graph has no negative cycle  
+(C) An arbitrage cycle is a negative cycle for weights minus the log of the exchange rate  
+(D) Dijkstra runs in O(VE) with a binary heap
+
+**Q3 (2 marks, numerical answer (percent)).** Exchange rates A to B 2.0, B to C 0.8, C to A 0.7 form a cycle. What is the percentage profit of going around it once?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that if G has no negative cycle reachable from s then Bellman-Ford's distances are correct after V - 1 rounds.
+
+**Q5 (3 marks, programming).** Implement Dijkstra with a heap, Bellman-Ford with negative-cycle detection, a difference-constraint solver and an arbitrage detector, checked against scipy shortest_path. Predict Dijkstra's answer on the three-vertex negative-edge example first.
+
+<details><summary>Key for A17.12 (open only after your attempt)</summary>
+
+- **Q1:** B. Dijkstra finalises a vertex when it is extracted, which is only safe if later paths cannot be cheaper.
+- **Q2:** ABC. D is false: it is O((V+E) lg V).
+- **Q3:** 12 percent (tolerance ±0.01). The product is 1.12, a gain of 12 percent.
+- **Q4 (marking outline):** A shortest path with no repeated vertex has at most V - 1 edges, because a repeated vertex would give a cycle of non-negative weight that can be dropped. By induction on k, after round k every vertex whose shortest path uses at most k edges has its correct distance: relaxing the last edge of that path in round k uses the correct distance of its predecessor from round k - 1. After V - 1 rounds all shortest paths are covered.
+- **Q5 (what a passing submission shows):** The algorithms agree with scipy on random non-negative graphs, Dijkstra returns -3 where Bellman-Ford returns -4 on the example, and the detector reports the arbitrage cycle with product 1.12.
+
+</details>
+
+### U17.13 All-pairs shortest paths: Floyd–Warshall and Johnson
+**Sources:** AGDS W10–11
+Bridge for: U2.7, U11.11 and U18.3 (graphs and matrices).
+- **Topics:** the all-pairs shortest path problem; repeated single-source against matrix methods; dynamic programming for all pairs; Floyd–Warshall and its recurrence over intermediate vertices; transitive closure; Johnson's algorithm: add a source, run Bellman–Ford for potentials h, reweight w′(u, v) = w(u, v) + h(u) − h(v) ≥ 0, then run Dijkstra from every vertex
+- **Results:** Floyd–Warshall computes all pairs in Θ(V³) by the invariant on intermediate vertices [P, check]; reweighting keeps shortest paths and makes every weight non-negative, because every path's weight changes by the same h(source) − h(target) [P, check]; Johnson costs O(VE + V² lg V), better than V³ on sparse graphs [D]; the transitive closure is Floyd–Warshall with Boolean operations [P]
+- **Build:** Floyd–Warshall and Johnson tested against each other and against `scipy` on 500 random graphs with negative edges and no negative cycle; a timing crossover on sparse and dense graphs. [local]
+- **Gap-fills:** *[inferred: CLRS Chapter 25]* the min-plus matrix product view and Seidel's algorithm are named only.
+
+**Assignment A17.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is the running time of Floyd-Warshall on a graph with V vertices?
+
+(A) Theta(V)  
+(B) Theta(V squared)  
+(C) Theta(V cubed)  
+(D) Theta(V log V)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Johnson's algorithm reweights edges using potentials from Bellman-Ford  
+(B) Reweighting by w'(u,v) = w(u,v) + h(u) - h(v) keeps shortest paths unchanged  
+(C) Floyd-Warshall can compute transitive closure  
+(D) Johnson's algorithm is faster than Floyd-Warshall on every dense graph
+
+**Q3 (2 marks, numerical answer (weight)).** In Johnson's algorithm an edge has weight 4, its tail has potential h(u) = -2 and its head has h(v) = -5. What is its reweighted weight?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that reweighting w'(u,v) = w(u,v) + h(u) - h(v) preserves shortest paths.
+
+**Q5 (3 marks, programming).** Implement Floyd-Warshall and Johnson, test them against each other and scipy on 500 random graphs with negative edges and no negative cycle, and time them on sparse and dense graphs. Predict the winner for a sparse graph first.
+
+<details><summary>Key for A17.13 (open only after your attempt)</summary>
+
+- **Q1:** C. Three nested loops over V vertices.
+- **Q2:** ABC. D is false: Johnson's cost O(VE + V squared lg V) wins on sparse graphs but not on dense ones.
+- **Q3:** 7 weight (tolerance ±0.01). 4 - 2 + 5 = 7, which is non-negative as the triangle inequality for h guarantees.
+- **Q4 (marking outline):** For any path p from a to b, the reweighted weight is the sum of w plus the sum of h(u) - h(v) over its edges. The h terms telescope to h(a) - h(b), which depends only on the endpoints, so every path from a to b changes by the same constant. Hence a path is shortest under w iff it is shortest under w'.
+- **Q5 (what a passing submission shows):** Both algorithms return identical matrices on all graphs, every reweighted edge is non-negative, and Johnson is faster than Floyd-Warshall on sparse graphs and slower on dense ones.
+
+</details>
+
+### U17.14 Flow networks, the Ford–Fulkerson method, and an introduction to computational complexity
+**Sources:** AGDS W12
+Bridge for: U3.2, U4.5 and U4.6 (matching, flows and traffic engineering), U5.8 (complexity and reductions), U17.17.
+- **Topics:** flow networks, capacities, flows, the residual graph and augmenting paths; the Ford–Fulkerson max flow method and the Edmonds–Karp rule; cuts and the max-flow min-cut theorem; bipartite matching as a flow (the link to Hall's theorem and U3.2); computational complexity: P and NP, polynomial-time reductions, NP-completeness (the Cook–Levin theorem stated; reductions from SAT through 3-SAT to clique and vertex cover), and what to do with an NP-hard problem; the algorithmic view of U5.8 and the LP view of U4.5
+- **Results:** the value of any flow equals the capacity crossing any cut, so max flow ≤ min cut [P]; Ford–Fulkerson terminates with a maximum flow for integer capacities in at most |f*| augmentations, giving O(E |f*|) [P]; max-flow min-cut: the three statements (f is maximum, the residual graph has no augmenting path, some cut has capacity |f|) are equivalent [P, check]; Edmonds–Karp (shortest augmenting paths) runs in O(VE²) [S]; the integer flow found in a unit-capacity bipartite network is a maximum matching [P, check]; Cook–Levin: SAT is NP-complete [X]
+- **Build:** Ford–Fulkerson with BFS (Edmonds–Karp) tested against `scipy.sparse.csgraph.maximum_flow` and against the minimum cut found by brute force on small graphs; a bipartite matcher checked against Hall's condition; a reduction of 3-SAT to vertex cover verified on small formulas. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 26, 34 and 35; Kleinberg–Tardos Chapters 7 and 8]* push–relabel and approximation algorithms are named only; the Cook–Levin proof is not given.
+
+**Assignment A17.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The max-flow min-cut theorem states that
+
+(A) Every flow has value at most the number of edges  
+(B) The value of a maximum flow equals the capacity of a minimum cut  
+(C) The residual graph always has an augmenting path  
+(D) Flows are always integers
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Ford-Fulkerson on integer capacities needs at most the max-flow value many augmentations  
+(B) A maximum flow in a unit-capacity bipartite network gives a maximum matching  
+(C) Edmonds-Karp augments along shortest paths  
+(D) Cook-Levin shows that every problem in P is NP-complete
+
+**Q3 (2 marks, numerical answer (units)).** A network has edges s-a 10, s-b 10, a-t 4, b-t 7 and a-b 5. The cuts {s}, {s,a}, {s,b} and {s,a,b} have capacities 20, 19, 17 and 11. What is the maximum flow?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the value of any flow equals the net flow across any s-t cut and hence is at most the cut's capacity.
+
+**Q5 (3 marks, programming).** Implement Edmonds-Karp, check it against scipy maximum_flow and a brute-force minimum cut on 100 random networks, build a bipartite matcher on top, and reduce 3-SAT to vertex cover on small formulas. Predict max flow equals min cut first.
+
+<details><summary>Key for A17.14 (open only after your attempt)</summary>
+
+- **Q1:** B. Maximum flow, absence of augmenting paths and equality with some cut's capacity are equivalent.
+- **Q2:** ABC. D is false: it shows that SAT is NP-complete, not that P is NP-complete.
+- **Q3:** 11 units (tolerance ±0.01). By max-flow min-cut the maximum flow is the smallest cut capacity, 11.
+- **Q4 (marking outline):** By flow conservation every vertex other than s and t has zero net flow. Summing the net outflow over the vertices of S, which contains s but not t, the contributions of edges inside S cancel in pairs, leaving the flow out of S minus the flow into S, which equals the value of the flow. The flow out of S is at most the capacity of the cut and the flow into S is non-negative, so the value is at most the capacity.
+- **Q5 (what a passing submission shows):** Flow value equals the brute-force minimum cut on all 100 networks and matches scipy, the matching size equals the maximum matching found by brute force, and the reduction maps satisfiable formulas to graphs with small covers.
+
+</details>
+
+### U17.15 Bridge: arrays, linked lists, recursion, binary search, the elementary sorts and bit tricks — the floor under D17, built from scratch
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U17.2 to U17.14, U16.7, U14.2 and every Build that uses a list, a linked structure or a recursive function.
+- **Topics:** the array as contiguous memory (the address of element i is the base plus i times the element size, so indexing costs one step whatever i is); the dynamic array and its growth policy (double the capacity, add a constant, or multiply by 1.5) and the count of elements copied by n appends, with the rigorous amortised argument deferred to U17.9; singly and doubly linked lists (constant-time insertion after a known node, linear search, no random access, pointer reversal in place, and why Python's own list is an array and not a linked list); Floyd's tortoise-and-hare cycle detection and why the two pointers must meet (inside a cycle the gap between them shrinks by one each step); recursion (the call stack, the base case, the recursion tree, depth against total calls, Python's recursion limit and the rewrite of a recursive routine with an explicit stack, no tail-call elimination), with the Tower of Hanoi as the recurrence T(n) = 2T(n − 1) + 1; binary search (the invariant "if the key is present it lies in a[lo..hi]", the off-by-one traps in the loop bounds and in the midpoint, the worst case ⌊lg n⌋ + 1 probes); the elementary sorts, insertion, selection and bubble, analysed through inversions (an exchange of two adjacent elements that are out of order removes exactly one inversion); bit manipulation (two's complement, shifts and masks, `x & (x − 1)` clears the lowest set bit, the population count, the power-of-two test); two pointers and the sliding window as loop invariants.
+- **Results:** n appends to a dynamic array that starts at capacity 1 and doubles copy 2^⌈lg n⌉ − 1 < 2n elements in all [P]: 131,071 copies for n = 10⁵ and 1,048,575 for n = 10⁶, that is 1.31 and 1.05 copies per append [check]; growing by a constant c = 1,000 copies about n²/(2c): 4,950,100 for n = 10⁵, 49.5 per append [P, check]; growing by 1.5 settles near 1/(1.5 − 1) = 2 copies per append (2.77 at 10⁵ and 2.10 at 10⁶) [check]; the Tower of Hanoi needs 2^n − 1 moves, 1,023 for n = 10 and 1,048,575 for n = 20 [P, check]; binary search over 10⁶ sorted keys takes at most 20 = ⌊lg 10⁶⌋ + 1 probes for each of 20,002 keys tried and for a missing key [P, check]; the number of moves of insertion sort and the number of swaps of bubble sort both equal the number of inversions, on each of 50 random permutations of 500 [P, check]; a random permutation has n(n − 1)/4 inversions on average, by linearity of expectation over the n(n − 1)/2 pairs, each inverted with probability 1/2 [P], and the mean over 3,000 random permutations of 200 is 9,947.6 against 9,950 [check]; selection sort always makes n(n − 1)/2 comparisons (124,750 for n = 500) and at most n − 1 swaps [P, check]; insertion sort makes n − 1 comparisons on sorted input and n(n − 1)/2 on reversed input [P, check]; a recursion to depth 900 runs and depth 5,000 raises a `RecursionError` at Python's default limit of 1,000 [Def, check]; the loop `while x: x &= x − 1` runs exactly popcount(x) times, on 100,000 random 32-bit integers [P, check]; 10⁵ insertions at the front of a Python list shift n(n − 1)/2 = 4,999,950,000 elements and took at least 171 times as long as `deque.appendleft` [check; the ratio depends on the machine]; Floyd's method finds the cycle in a 10-node list with one and reports none in the same list without [check].
+- **Build:** a dynamic array with three growth policies and a copy counter, checked against the formulas; a singly linked list with insertion, deletion, in-place reversal and Floyd's cycle test; the Tower of Hanoi with a move counter and an explicit-stack version; binary search with invariant assertions and three deliberately wrong variants (a bad midpoint, a bad bound, a missing `+ 1`) that a randomised test must catch; insertion, selection and bubble sort with comparison and move counters set against the inversion count; a bit-tricks library (popcount, lowest set bit, power-of-two test, bit reversal) checked exhaustively on 8-bit values; a depth-first walk written first recursively and then with an explicit stack. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 2 and 10; Sedgewick and Wayne, Chapter 1; Knuth, The Art of Computer Programming vol. 3, section 5.2; Warren, Hacker's Delight, recalled, not checked]* XOR-linked lists and memory allocators are named only; the aggregate argument above is made rigorous by the accounting and potential methods of U17.9.
+
+**Assignment A17.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A dynamic array starts at capacity 1 and doubles whenever it is full. How many elements are copied in total during n appends?
+
+(A) About n/2  
+(B) Fewer than 2n  
+(C) About n log n  
+(D) About n squared over 2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The number of moves made by insertion sort equals the number of inversions of the input  
+(B) The number of adjacent swaps made by bubble sort equals the number of inversions  
+(C) Selection sort makes fewer comparisons on an already sorted input  
+(D) Binary search over 1,000,000 sorted keys needs at most 20 probes
+
+**Q3 (2 marks, numerical answer (elements)).** A dynamic array that starts at capacity 1 and doubles is filled by one million appends. How many elements are copied in total?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a uniformly random permutation of n distinct numbers has n(n-1)/4 inversions on average, and deduce the average number of moves of insertion sort.
+
+**Q5 (3 marks, programming).** Implement a dynamic array with doubling, constant and 1.5 growth and a copy counter; a linked list with in-place reversal and Floyd cycle detection; binary search with invariant assertions plus three wrong variants that your tests must catch; the three elementary sorts with comparison and move counters set against the inversion count. Predict the copy counts first.
+
+<details><summary>Key for A17.15 (open only after your attempt)</summary>
+
+- **Q1:** B. The copies happen at sizes 1, 2, 4 and so on up to the last power of two below n, a geometric sum equal to 2 to the power of ceil(lg n) minus 1, which is less than 2n.
+- **Q2:** ABD. C is false: selection sort always makes n(n-1)/2 comparisons whatever the input; binary search needs at most floor(lg n) + 1 = 20 probes.
+- **Q3:** 1048575 elements (tolerance ±0). The last resize happens when the 524,289th element arrives, and the copies sum to 1 + 2 + ... + 524,288 = 2 to the power of 20 minus 1 = 1,048,575.
+- **Q4 (marking outline):** For each of the n(n-1)/2 pairs of positions i below j let X_ij be 1 when the pair is inverted. The values at the two positions are equally likely to be in either order, so the probability is 1/2. By linearity of expectation the mean number of inversions is n(n-1)/2 times 1/2 = n(n-1)/4. Each move of insertion sort removes exactly one inversion, so the mean number of moves is the same.
+- **Q5 (what a passing submission shows):** Doubling gives 2 to the ceil(lg n) minus 1 copies, constant growth by c gives about n squared over 2c, the moves of insertion sort and swaps of bubble sort equal the inversion count on every random input, and each wrong binary search is caught by a randomised test against the built-in search.
+
+</details>
+
+### U17.16 Tries, B-trees, skip lists and string matching: the lookup structures of routers, databases and search engines
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U3.1, U3.4 and U3.5 (tries), U7.1 (signature matching), U15.16 (B-trees), U10.4 and U10.5 (skip lists and sorted tables), U16.14 and U16.15 (the inverted index and the crawler).
+- **Topics:** the trie (one edge per symbol, so insertion and lookup cost the key length whatever the number of keys; space against a hash table; the compressed or radix trie named); longest-prefix match on a binary trie as the forwarding lookup of an IP router and as autocomplete; the B-tree of minimum degree t (every node but the root holds between t − 1 and 2t − 1 keys, all leaves lie at one depth, insertion splits a full node on the way down, the height bound h ≤ log_t((n + 1)/2), why wide nodes suit disk pages, the B+-tree variant and deletion named, with the database treatment in U15.16); the skip list (probabilistic balance: each node gets a height by repeated coin flips with probability p, search drops a level when it cannot move right, the expected search cost of about (1/p) log_{1/p} n steps, its use in memtables); string matching: the naive method in O(nm), the failure function and the Knuth–Morris–Pratt algorithm in O(n + m), the Rabin–Karp rolling hash and its false positives, and Aho–Corasick (a trie with failure links) named for matching many patterns at once.
+- **Results:** a trie over keys of total length L has at most L + 1 nodes [P]; 3,816 distinct random words over {a, b, c, d} with 27,964 characters in all use 9,485 nodes, because common prefixes are shared [check]; for the prefixes 0, 01, 011, 1 and 110 the longest-prefix match of the address 0110 is 011, of 1101 is 110 and of 1000 is 1 [Def, check]; a B-tree keeps its key order, its occupancy between t − 1 and 2t − 1 and all leaves at one depth after 10⁵ random insertions, for t = 2, 5 and 50, and the heights are 12, 5 and 2 against the bound ⌊log_t((n + 1)/2)⌋ = 15, 6 and 2 [P, check]; the bound for t = 100 and n = 10⁹ is a height of at most 4, and for t = 1,000 at most 2 [D]; a skip list of 10⁵ keys with p = 1/2 and with p = 1/4 finds every key, is sorted, and has a mean search cost of 32.1 and 33.1 steps with heights 17 and 9, against the predicted 33.2 for both [D, check]; the failure functions of ababaca and aabaaab are 0, 0, 1, 2, 3, 0, 1 and 0, 1, 0, 1, 2, 2, 3 [check]; on a text of 20,000 letters a followed by b and a pattern of 100 letters a followed by b the naive method makes 2,010,001 comparisons and KMP 39,901 against the bound of 2n = 40,002 [P, check]; KMP and the naive method agree with `str.startswith` on 2,000 random cases [check]; Rabin–Karp with the modulus 1,000,003 has no false positive on a text of 200,000 letters (about 0.2 expected) and with the modulus 101 has 1,995 against about 1,980 expected [check].
+- **Build:** a trie with insert, search, prefix listing, autocomplete and longest-prefix match, tested against a Python set; a B-tree with insertion, search and an invariant checker, with deletion as the exercise, and the height plotted against the bound for several t; a skip list with a step counter and a sweep of p; the naive method, KMP and Rabin–Karp with comparison counters on an adversarial text; Aho–Corasick as the extension, tested against a naive search for each pattern. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 18 and 32; Bayer and McCreight 1972; Pugh 1990; Knuth, Morris and Pratt 1977; Karp and Rabin 1987; Aho and Corasick 1975, recalled, not checked]* suffix trees and suffix arrays, the Boyer–Moore method and concurrent skip lists are named only.
+
+**Assignment A17.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A B-tree has minimum degree t = 100 and holds a billion keys. What is the largest possible height?
+
+(A) 2  
+(B) 4  
+(C) 9  
+(D) 30
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Looking a key up in a trie costs time proportional to the key length, whatever the number of keys  
+(B) A skip list is deterministically balanced  
+(C) KMP never moves its text pointer backwards  
+(D) A Rabin-Karp hash match is always a true match
+
+**Q3 (2 marks, numerical answer (comparisons)).** The naive string-matching method searches the text of 1,000 letters a followed by one letter b for the pattern of 10 letters a followed by b. How many character comparisons does it make in all?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a B-tree with n keys and minimum degree t has height at most log base t of (n+1)/2.
+
+**Q5 (3 marks, programming).** Implement a trie with longest-prefix match, a B-tree with an invariant checker, a skip list with a step counter, and the naive method, KMP and Rabin-Karp with comparison counters on an adversarial text. Predict the KMP bound first.
+
+<details><summary>Key for A17.16 (open only after your attempt)</summary>
+
+- **Q1:** B. The height is at most floor(log base t of (n+1)/2) = floor(log base 100 of 500,000,000.5), which is 4.
+- **Q2:** AC. B is false because skip-list heights are random; D is false because different strings can share a hash, so a match must be verified.
+- **Q3:** 10901 comparisons (tolerance ±0). Each of the 991 starting positions compares the 10 letters a and then the final letter, so it makes 11 comparisons: 991 times 11 = 10,901.
+- **Q4 (marking outline):** The root has at least 1 key and every other node at least t-1 keys, so depth 1 has at least 2 nodes and depth i at least 2 t to the power of i-1 nodes. Summing, n is at least 1 + (t-1) times the sum over i from 1 to h of 2 t to the power of i-1, which equals 2 t to the power h minus 1. So t to the power h is at most (n+1)/2.
+- **Q5 (what a passing submission shows):** The trie agrees with a set, the B-tree keeps order, occupancy and equal leaf depth and its height stays below the bound, skip-list search cost is about (1/p) log base 1/p of n, KMP makes at most 2n comparisons where the naive method makes about n times m, and Rabin-Karp false positives are about n over the modulus.
+
+</details>
+
+### U17.17 Backtracking, branch and bound, exact exponential algorithms, approximation and local search: living with hard problems
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U5.8 (reductions), U15.18 (join ordering is hard), U4.5 (integer programs), U17.14 (NP-hardness).
+- **Topics:** backtracking as depth-first search of a decision tree with pruning (the N-queens problem with column and diagonal sets); branch and bound (a bound from a relaxation, the fractional knapsack bound for the 0/1 knapsack, and why the bound must be valid and not merely good); exact algorithms faster than brute force but still exponential (Held–Karp dynamic programming over subsets for the travelling salesman problem in O(n²2ⁿ), meet in the middle for subset sum in O(2^{n/2})); approximation algorithms and the ratio (a maximal matching gives a vertex cover at most twice the optimum, the minimum-spanning-tree preorder tour is at most twice the optimum for metric TSP, greedy set cover is within the harmonic number H_n); local search (2-opt for the tour problem) with no worst-case guarantee in general; how to read a hardness result (it rules out a worst-case polynomial algorithm and an exact answer, not a good answer on the instances you have) and how to choose among the options; SAT and DPLL named.
+- **Results:** backtracking with column and diagonal sets counts 4, 92 and 724 solutions of the N-queens problem for n = 6, 8 and 10 in 153, 2,057 and 35,539 search nodes against nⁿ = 46,656, 16,777,216 and 10¹⁰ [check]; Held–Karp on 10 random points returns the optimum of the brute-force search, 2.852322, in (n − 1)(n − 2)2^{n−3} = 9,216 inner steps against 181,440 distinct tours [P, check]; the minimum-spanning-tree preorder tour is at most 1.381 times the optimum on 60 random metric instances of 9 points (mean 1.19), within the proved bound of 2 [P, check]; the vertex cover from a maximal matching is at most twice the optimum, because the matching edges are disjoint and any cover needs one endpoint of each [P]: the worst ratio over 100 random graphs on 9 vertices is exactly 2.0, and the cover is optimal in only 2 of them [check]; greedy set cover on a layered instance of 62 elements takes 5 sets against an optimum of 2, a ratio of 2.5 within H₆₂ = 4.71 [check]; branch and bound for the 0/1 knapsack agrees with the dynamic program on 50 of 50 random instances of 22 items and visits a mean of 117 nodes against 2²³ = 8,388,608 [check]; meet in the middle on 40 numbers builds two lists of 2²⁰ sums, finds a target made from 7 of the numbers and rejects the target 1 [check]; 2-opt from random tours of 9 points lowers the mean ratio to the optimum from 1.72 to 1.005, with a worst ratio of 1.067, which is a measurement and not a guarantee [check].
+- **Build:** an N-queens counter with a node counter; a 0/1 knapsack by branch and bound with the fractional bound, checked against the dynamic program, with the node count plotted against n; Held–Karp against brute force; subset sum by meet in the middle; the maximal-matching vertex cover checked against an exact search, the MST tour against Held–Karp, greedy set cover on the layered instance, and 2-opt with random restarts; a table of the measured ratios beside the proved bounds. [local]
+- **Gap-fills:** *[inferred: CLRS Chapters 34 and 35; Vazirani, Approximation Algorithms; Kleinberg and Tardos, Chapters 10 and 11; Held and Karp 1962; Horowitz and Sahni 1974 for meet in the middle; Christofides 1976, recalled, not checked]* the 1.5-approximation of Christofides, polynomial-time approximation schemes, the inapproximability results and fixed-parameter algorithms are named only.
+
+**Assignment A17.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Dynamic programming over subsets (Held-Karp) solves the travelling salesman problem in time of the order of
+
+(A) n factorial  
+(B) n squared times 2 to the n  
+(C) 2 to the n over 2  
+(D) n cubed
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The endpoints of a maximal matching form a vertex cover at most twice the minimum size  
+(B) The preorder walk of a minimum spanning tree gives a tour at most twice the optimum for metric TSP  
+(C) Greedy set cover is within a factor H_n of the optimum  
+(D) 2-opt local search guarantees a constant-factor approximation for metric TSP
+
+**Q3 (2 marks, numerical answer (steps)).** How many inner steps does Held-Karp make for n = 10 cities, using the count (n-1)(n-2)2^(n-3)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the endpoints of a maximal matching form a vertex cover of size at most twice the minimum.
+
+**Q5 (3 marks, programming).** Implement N-queens by backtracking with a node counter, 0/1 knapsack by branch and bound checked against dynamic programming, Held-Karp against brute force, maximal-matching vertex cover against an exact search, the MST tour against Held-Karp and 2-opt. Tabulate measured ratios beside proved bounds.
+
+<details><summary>Key for A17.17 (open only after your attempt)</summary>
+
+- **Q1:** B. There are about n times 2 to the n states and each is computed from up to n predecessors, giving O(n squared 2 to the n).
+- **Q2:** ABC. D is false: 2-opt has no such guarantee, and its good results on random instances are a measurement and not a theorem.
+- **Q3:** 9216 steps (tolerance ±0). The count is 9 times 8 times 128 = 9,216, against 9!/2 = 181,440 distinct tours.
+- **Q4 (marking outline):** Every edge has an endpoint in the matching, otherwise it could be added, so the 2m endpoints of a matching with m edges form a cover. The matching edges share no vertex and any cover must contain an endpoint of each, so the optimum is at least m. Hence the cover is at most twice the optimum.
+- **Q5 (what a passing submission shows):** N-queens gives 92 solutions for n = 8 in far fewer nodes than 8 to the 8, branch and bound equals the dynamic program on all instances, Held-Karp equals brute force, and every measured approximation ratio is below its proved bound of 2.
+
+</details>
+
+## D18. Applied linear algebra for data and signals: vectors, matrices, eigenvalues, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
+
+Aim: linear algebra learned through the problems that use it, in the order that one course (Applied Linear Algebra for Signal Processing, Data Analytics and Machine Learning, IIT Kanpur) teaches them: wireless communication, machine learning, signal processing, data analytics, operations research and everyday applications such as circuits, graphs and traffic. Every unit has the same shape: the algebra, a derivation of the one result that matters, and a script that checks the result on random data and then solves the applied problem. The book that sets the bar is Strang, *Introduction to Linear Algebra*, 5th ed. (twelve chapters: vectors, equations, subspaces, orthogonality, determinants, eigenvalues, the SVD, linear transformations, complex vectors and matrices, applications, numerical linear algebra, probability and statistics; the chapter list was read from public contents pages on 2026-11-06). Other benchmarks, recalled and not checked in full: Boyd and Vandenberghe, *Introduction to Applied Linear Algebra*; Golub and Van Loan, *Matrix Computations*; Tse and Viswanath, *Fundamentals of Wireless Communication*; Kay, *Fundamentals of Statistical Signal Processing*. Ownership: D18 owns the applied treatment of eigenvalues, the SVD, least squares, estimation and Markov chains for operations research. The machine-learning foundations bridge U11.8 (regression, k-means, matrix factorisation), the Markov-chain and PageRank bridge U11.10, the finite-field linear algebra of U5.5, the network-flow bridge U4.5 and the coding bridge U2.11 stay where they are and point here. Data in the scripts is synthetic so that every claim can be recomputed offline; where a named public dataset is the real thing (faces, Netflix ratings, MovieLens) the unit says so and the script accepts it when it is present.
+
+### U18.1 Bridge: complex numbers, trigonometry and phasors, and the language of vector spaces
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U18.2 to U18.13.
+- **Topics:** the complex plane, modulus and argument, the conjugate, Euler's formula e^(iθ) = cos θ + i sin θ, polar form and why multiplication is a rotation and a scaling; sines and cosines as the real part of a rotating phasor, the addition formulas, the amplitude and phase of a sum of sinusoids of equal frequency; roots of unity and their sum; complex vectors and the conjugate transpose (the Hermitian transpose), the complex inner product; the language used by the units that follow (span, linear independence, basis, dimension, subspace, linear map, rank, null space) with one worked example of each; solving a small linear system by elimination; the reading habit that a matrix is a function and not a table.
+- **Results:** e^(iπ) + 1 = 0 and |e^(iθ)| = 1 [P, from the series or from the addition formulas]; the N-th roots of unity sum to zero for N ≥ 2, because the sum is a geometric series with ratio ≠ 1 [P, check]; A cos(ωt) + B sin(ωt) = R cos(ωt − φ) with R = √(A² + B²) [P]; the inner product of two complex vectors is xᴴy, and ‖x‖² = xᴴx is real and non-negative [Def].
+- **Build:** a phasor plotter that adds sinusoids as complex numbers and compares with the time-domain sum; a numerical check of the roots-of-unity sum and of Euler's formula; a small elimination routine checked against `numpy.linalg.solve`. [local]
+- **Gap-fills:** *[inferred: Strang Chapter 9; the learner has no prior complex-number background, and the ML curriculum's bridge D0 teaches the same material in a different order]* determinants are used only in the form "zero determinant means singular" and in the matrix-tree theorem of U18.3. The school-level prerequisites (trigonometry, matrices, determinants, vectors) are taught in depth in U21.2.
+
+**Assignment A18.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is the modulus of e^(i*theta) for real theta?
+
+(A) theta  
+(B) 1  
+(C) cos theta  
+(D) 0
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The N-th roots of unity sum to zero for N at least 2  
+(B) Multiplying by e^(i theta) rotates a complex number by theta  
+(C) The conjugate transpose of a real matrix is its transpose  
+(D) A cos(wt) + B sin(wt) can have amplitude A + B
+
+**Q3 (2 marks, numerical answer).** A cos(wt) + B sin(wt) with A = 3 and B = 4 equals R cos(wt - phi). What is R?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the sum of the N-th roots of unity is zero for N >= 2.
+
+**Q5 (3 marks, programming).** Write a phasor adder that sums three sinusoids of the same frequency as complex numbers and compares with the time-domain sum, and numerically check the roots-of-unity sum. Predict the size of the roots-of-unity sum first.
+
+<details><summary>Key for A18.1 (open only after your attempt)</summary>
+
+- **Q1:** B. The point e^(i theta) lies on the unit circle, so its modulus is 1.
+- **Q2:** ABC. D is false: the amplitude is the square root of A squared plus B squared.
+- **Q3:** 5 (tolerance ±0.001). R is the square root of 9 + 16 = 5.
+- **Q4 (marking outline):** Let w = e^(2 pi i/N) which is not equal to 1 for N >= 2. The roots are w^k for k = 0 to N-1, a geometric series with ratio w. Its sum is (w^N - 1)/(w - 1) = 0 because w^N = 1 and w - 1 is not zero.
+- **Q5 (what a passing submission shows):** The phasor and time-domain sums agree to 1e-12 and the sum of the 8th roots of unity is about 1e-15.
+
+</details>
+
+### U18.2 Introduction to vectors, properties and applications: norms, inner products, angles, orthogonality, projection and Gram–Schmidt
+**Sources:** ALA W1, o
+- **Topics:** vectors as lists of numbers and as arrows; addition, scaling and linear combinations; the inner (dot) product, length (the norm), distance and angle; the Cauchy–Schwarz and triangle inequalities; orthogonal and orthonormal sets; the projection of a vector onto a vector and onto a subspace; the Gram–Schmidt process and the QR factorisation; vectors that represent data: a document as a word-count vector and cosine similarity, a stock return series as a vector and correlation as the cosine of centred vectors; vectors that represent signals: the matched filter that correlates a received signal with a known pulse; the application list of the course (Wireless: MIMO/ OFDM systems, Beamforming, Channel Estimation; Machine Learning: Regression, Clustering, EM Algorithm, Perceptron, SVM/ Kernel SVM, Principal Component Analysis (PCA), Face recognition) is introduced here as a map of where each idea returns.
+- **Results:** |xᵀy| ≤ ‖x‖ ‖y‖ with equality iff the vectors are parallel [P]; the projection of b onto a is (aᵀb / aᵀa) a and the residual is orthogonal to a [D]; classical Gram–Schmidt applied to independent columns gives A = QR with orthonormal Q and upper-triangular R [P, check on random 8×4 matrices: reconstruction error 4·10⁻¹⁶ and orthogonality error 7·10⁻¹⁶]; the sample correlation of two series equals the cosine of the angle between their centred vectors [P, check]; the matched filter maximises the output signal-to-noise ratio for white noise, by Cauchy–Schwarz [D].
+- **Build:** Gram–Schmidt (classical and modified) against `numpy.linalg.qr`; 10,000 random vector pairs checked against Cauchy–Schwarz (no violation); correlation against `numpy.corrcoef`; a cosine-similarity search over a small corpus; a matched filter that finds a known pulse in noise. [local]
+- **Gap-fills:** *[inferred: Strang Chapters 1 and 4; Boyd and Vandenberghe Part I]* the loss of orthogonality of classical Gram–Schmidt on nearly dependent columns is shown by the script, with Householder QR named as the stable alternative.
+
+**Assignment A18.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What does the cosine of the angle between two centred data vectors equal?
+
+(A) Their covariance  
+(B) Their sample correlation  
+(C) Their difference  
+(D) Their norm ratio
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The absolute value of x.y is at most norm(x) times norm(y) for all vectors  
+(B) Gram-Schmidt on independent columns yields orthonormal columns Q and a triangular R  
+(C) The projection residual of b on a is orthogonal to a  
+(D) Classical Gram-Schmidt is always numerically stable
+
+**Q3 (2 marks, numerical answer).** Project b = (3, 4) onto a = (1, 0). What is the length of the residual?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the Cauchy-Schwarz inequality abs(x.y) <= norm(x) norm(y).
+
+**Q5 (3 marks, programming).** Implement classical and modified Gram-Schmidt, compare with numpy QR on random 8x4 matrices and on nearly dependent columns, and verify Cauchy-Schwarz on 10,000 random pairs. Predict the reconstruction error first.
+
+<details><summary>Key for A18.2 (open only after your attempt)</summary>
+
+- **Q1:** B. Correlation is the inner product of centred vectors divided by the product of their norms.
+- **Q2:** ABC. D is false: it loses orthogonality on nearly dependent columns.
+- **Q3:** 4 (tolerance ±0.001). The projection is (3, 0) and the residual is (0, 4), length 4.
+- **Q4 (marking outline):** If y = 0 both sides are 0. Otherwise for every real t, 0 <= norm(x - t y)^2 = norm(x)^2 - 2 t x.y + t^2 norm(y)^2. Choose t = x.y/norm(y)^2 to obtain 0 <= norm(x)^2 - (x.y)^2/norm(y)^2, so (x.y)^2 <= norm(x)^2 norm(y)^2. Equality needs x = t y.
+- **Q5 (what a passing submission shows):** The reconstruction error is about 4e-16 for random matrices, classical Gram-Schmidt loses orthogonality on nearly dependent columns, and there is no Cauchy-Schwarz violation.
+
+</details>
+
+### U18.3 Introduction to matrices and applications: subspaces, rank, circuits, graphs, social networks and traffic flow
+**Sources:** ALA W2, o
+- **Topics:** a matrix as a linear map; matrix–vector and matrix–matrix products by columns and by rows; the column space, the null space, the row space and the left null space (the four fundamental subspaces); rank and the rank–nullity theorem; solving Ax = b: existence, uniqueness, particular plus homogeneous solutions; the inverse and when it exists; applications: electrical circuits (Kirchhoff's current law as Bᵀi = 0, Ohm's law as i = Gv, the nodal equations (BᵀGB)v = source), graphs (incidence, adjacency and Laplacian matrices; powers of the adjacency matrix count walks), social networks (degree, triangles and the spread of a message in k steps; eigenvector centrality, pointing to U11.10), traffic flow (conservation of vehicles at every junction as a linear system whose null space is the set of free circulations).
+- **Results:** rank A + dim null A = number of columns [P]; the incidence matrix of a graph with n vertices and c connected components has rank n − c, and the Laplacian L = BᵀB has a null space of dimension c [P, check: a 6-vertex graph with 2 components gives rank 4 and nullity 2]; (Aᵏ)ᵢⱼ is the number of walks of length k from i to j, and trace(A³)/6 counts the triangles of a simple graph [P, check against enumeration]; the nodal equations of a resistor network have a unique solution once one node is grounded [S, check: a ladder with 1 Ω, 2 Ω and 3 Ω gives node voltages 5/6 V and 1/2 V for 1 A injected]; the number of spanning trees of a connected graph is any cofactor of the Laplacian (Kirchhoff's matrix-tree theorem) [X, check: K₄ has 16]; for a four-road loop with conservation at each junction the system has rank 3 and a one-dimensional space of free circulations [check].
+- **Build:** a circuit solver built from an incidence matrix and conductances and checked against a hand solution; walk counting by matrix power against brute-force enumeration; a Laplacian component counter on random graphs; a traffic-flow solver that returns a particular solution and the null-space basis. [local]
+- **Gap-fills:** *[inferred: Strang Chapters 2, 3 and 10.1 (graphs and networks)]* the four-subspace picture is drawn for the incidence matrix, where each subspace has a physical name (potentials, currents, cuts, loops).
+
+**Assignment A18.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A connected graph has 7 vertices. What is the rank of its incidence matrix?
+
+(A) 7  
+(B) 6  
+(C) 1  
+(D) 0
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The (i,j) entry of A^k counts walks of length k  
+(B) trace(A^3)/6 counts triangles in a simple graph  
+(C) The Laplacian null space has dimension equal to the number of components  
+(D) The incidence matrix of a connected graph has full column rank
+
+**Q3 (2 marks, numerical answer (trees)).** How many spanning trees does the complete graph K4 have? Use the matrix-tree theorem by computing a cofactor of its Laplacian.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that (A^k)_ij counts the walks of length k from i to j.
+
+**Q5 (3 marks, programming).** Build a circuit solver from an incidence matrix and conductances, a walk counter checked against brute force, and a Laplacian component counter. Predict the nodal voltages for a ladder of 1, 2 and 3 ohms with 1 A injected first.
+
+<details><summary>Key for A18.3 (open only after your attempt)</summary>
+
+- **Q1:** B. The rank is n minus the number of components, here 7 - 1 = 6.
+- **Q2:** ABC. D is false: its rank is n - 1, one less than the number of columns n (the constant vector is in the null space).
+- **Q3:** 16 trees (tolerance ±0.01). The Laplacian of K4 is 4I - J and any 3x3 cofactor equals 16.
+- **Q4 (marking outline):** For k = 1 the entry A_ij is 1 exactly when there is an edge, which is one walk of length 1. Assume it holds for k. Then (A^(k+1))_ij = sum over m of (A^k)_im A_mj, and each term counts the walks of length k from i to m followed by the edge m to j. Every walk of length k+1 from i to j is counted once, by its last vertex m before j.
+- **Q5 (what a passing submission shows):** The node voltages are 5/6 V and 1/2 V, A^3 matches enumeration, and the Laplacian nullity equals the number of components on random graphs.
+
+</details>
+
+### U18.4 Eigenvalue decomposition: properties, diagonalisation, the spectral theorem, PCA and eigenfaces
+**Sources:** ALA W3, o
+- **Topics:** eigenvalue decomposition, properties and applications (the course's list: principal component analysis and eigenfaces); eigenvalues and eigenvectors, the characteristic polynomial, trace and determinant as the sum and product of the eigenvalues; diagonalisation A = VΛV⁻¹ and powers of a matrix; the spectral theorem for symmetric and Hermitian matrices (real eigenvalues, orthonormal eigenvectors); positive semi-definite matrices; the Rayleigh quotient; covariance matrices; principal component analysis: centring the data, the covariance matrix, the directions of maximal variance, the fraction of variance explained, choosing the number of components; eigenfaces for facial recognition: images as vectors, the mean face, the face space spanned by the leading eigenvectors, recognition by the nearest neighbour in face space; the limits of the method (lighting, pose).
+- **Results:** trace A = Σλᵢ and det A = Πλᵢ [P, check: a 5×5 covariance matrix gives 22.456 and 28.312 both ways]; a real symmetric matrix has real eigenvalues and orthonormal eigenvectors [S]; the Rayleigh quotient wᵀSw/wᵀw is at most λ_max and is attained at its eigenvector [P]; the first principal component, the unit vector that maximises the variance wᵀSw, is the top eigenvector of the covariance matrix [D]; the mean squared reconstruction error of a rank-k projection equals the sum of the discarded eigenvalues [P, check: 5.343 both ways for k = 2]; on 200 synthetic 16×16 "faces" built from five hidden patterns plus noise the first five eigenfaces capture 99.8 % of the variance and the sixth eigenvalue is 1.3·10⁻⁴ of the first [check].
+- **Build:** PCA from the covariance matrix and from the SVD of the centred data, compared with `sklearn.decomposition.PCA`; an eigenface pipeline on synthetic faces, with the Olivetti faces used instead when scikit-learn can fetch them; a nearest-neighbour recogniser in face space with a confusion matrix. [local]
+- **Gap-fills:** *[inferred: Strang Chapter 6; Jolliffe, Principal Component Analysis, recalled, not checked]* the Jordan form is named and not used; the numerical eigenvalue algorithms (QR iteration) are named only.
+
+**Assignment A18.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The first principal component of centred data is
+
+(A) The mean vector  
+(B) The top eigenvector of the covariance matrix  
+(C) The smallest singular vector  
+(D) The first data point
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The trace of a matrix equals the sum of its eigenvalues  
+(B) The determinant equals the product of the eigenvalues  
+(C) The Rayleigh quotient never exceeds the largest eigenvalue of a symmetric matrix  
+(D) The eigenvectors of a symmetric matrix need not be orthogonal
+
+**Q3 (2 marks, numerical answer).** A covariance matrix has eigenvalues 5, 3, 1, 0.5 and 0.5. What fraction of the variance do the first two principal components explain?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the mean squared reconstruction error of projecting onto the top k eigenvectors equals the sum of the discarded eigenvalues.
+
+**Q5 (3 marks, programming).** Implement PCA by the covariance matrix and by the SVD, compare with sklearn, and build an eigenface recogniser on synthetic faces. Predict the share of variance in the first five eigenfaces first.
+
+<details><summary>Key for A18.4 (open only after your attempt)</summary>
+
+- **Q1:** B. It maximises the variance w^T S w over unit vectors, which is the top eigenvector of S.
+- **Q2:** ABC. D is false: they can be chosen orthonormal.
+- **Q3:** 0.8 (tolerance ±0.001). The total is 10 and the first two sum to 8, so 0.8.
+- **Q4 (marking outline):** Write each centred point in the eigenbasis. The projection keeps the first k coordinates and the residual is made of the other coordinates. Their mean square is the sum over j > k of the variance along eigenvector j, which is lambda_j. So the error is the sum of the discarded eigenvalues.
+- **Q5 (what a passing submission shows):** PCA by both routes agrees to 1e-10 and the first five eigenfaces capture about 99.8 percent of the variance of faces built from five hidden patterns.
+
+</details>
+
+### U18.5 Singular value decomposition and applications: beamforming in MIMO, dimensionality reduction, rate maximisation and the MUSIC algorithm
+**Sources:** ALA W4, o
+- **Topics:** the SVD A = UΣVᴴ, singular values and singular vectors, the relation to the eigenvalues of AᴴA and AAᴴ, rank from the SVD, the pseudo-inverse, the best low-rank approximation (Eckart–Young); applications: image compression by a rank-k truncation, dimensionality reduction (truncated SVD, latent semantic analysis); wireless MIMO channels y = Hx + n, how precoding with V and combining with Uᴴ turns the channel into parallel scalar channels with gains σᵢ, beamforming along the top singular vector, rate maximisation: capacity Σ log₂(1 + pᵢσᵢ²/N₀) and water-filling of the power; array processing and the MUSIC algorithm (the signal and noise subspaces of the array covariance, the pseudo-spectrum, peaks at the arrival angles).
+- **Results:** every matrix has an SVD, with σᵢ² the eigenvalues of AᴴA [P, from the spectral theorem]; Eckart–Young: the best rank-k approximation in the spectral norm has error σ_(k+1) and in the Frobenius norm √(Σ_{i>k} σᵢ²) [S, check on a 6×4 matrix: 2.078, 1.747 and 0.821 for k = 1, 2, 3]; A⁺ = VΣ⁺Uᴴ [P, check to 10⁻¹⁶]; a rank-k image of 512×512 needs k(512 + 512 + 1) numbers: 10,250 for k = 10 (3.9 % of 262,144) and 51,250 for k = 50 (19.6 %) [check]; with the channel's right singular vectors as transmit directions the received vector is diagonalised and the gain of the best direction is σ₁² [P, check to 6·10⁻¹⁵]; water-filling, pᵢ = (μ − N₀/σᵢ²)⁺ with Σpᵢ = P, is optimal for the capacity [D, check]: a 4×4 Rayleigh channel with σ² = 13.78, 5.15, 1.79, 0.071 and P = 10, N₀ = 1 allocates 3.54, 3.41, 3.05 and 0 and reaches 12.54 bit/s/Hz against 11.63 for equal power, and a numerical optimiser agrees to 10⁻⁹; MUSIC resolves two sources at 20° and 50° on an 8-element half-wavelength array with 2000 snapshots at about 20 dB, returning peaks at 20.0° and 50.0° [check].
+- **Build:** the SVD by the eigendecomposition of AᵀA and against `numpy.linalg.svd`; image compression of a synthetic picture at ranks 10 and 50 with the storage count; a MIMO link with SVD precoding, water-filling and a capacity comparison; a MUSIC pseudo-spectrum plotter. [local]
+- **Gap-fills:** *[inferred: Strang Chapter 7; Tse and Viswanath Chapters 7 and 8, recalled, not checked]* channel state is assumed known at the transmitter; the limited-feedback and fading-capacity cases are named only. Complex arithmetic is needed throughout; see U18.1.
+
+**Assignment A18.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Eckart-Young says the best rank-k approximation in the spectral norm has error
+
+(A) sigma_1  
+(B) sigma_(k+1)  
+(C) the sum of all sigma  
+(D) zero
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The singular values of A are the square roots of the eigenvalues of A^H A  
+(B) The pseudo-inverse is V Sigma-plus U^H  
+(C) Water-filling allocates more power to stronger channel modes  
+(D) Equal power across modes is always capacity-optimal
+
+**Q3 (2 marks, numerical answer).** A 512 by 512 image is stored as a rank-50 SVD with k(m+n+1) numbers. What fraction of the original 262144 numbers is that?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the singular values of A are the square roots of the eigenvalues of A^H A.
+
+**Q5 (3 marks, programming).** Implement the SVD via eigendecomposition, image compression at ranks 10 and 50, a MIMO link with SVD precoding and water-filling, and a MUSIC pseudo-spectrum. Predict the MUSIC peaks for sources at 20 and 50 degrees first.
+
+<details><summary>Key for A18.5 (open only after your attempt)</summary>
+
+- **Q1:** B. The truncated SVD is optimal and its spectral error is the next singular value.
+- **Q2:** ABC. D is false: water-filling beats equal power, as the 12.54 against 11.63 example shows.
+- **Q3:** 0.1955 (tolerance ±0.001). 51,250/262,144 = 0.1955.
+- **Q4 (marking outline):** A^H A is Hermitian positive semi-definite, so A^H A = V Lambda V^H with non-negative eigenvalues. Set sigma_i = sqrt(lambda_i) and u_i = A v_i/sigma_i for sigma_i > 0. These u_i are orthonormal because u_i^H u_j = v_i^H A^H A v_j/(sigma_i sigma_j) = delta_ij, and A = U Sigma V^H.
+- **Q5 (what a passing submission shows):** The MUSIC peaks are at 20.0 and 50.0 degrees for an 8-element array at about 20 dB, water-filling beats equal power by about 0.9 bit/s/Hz on the example channel, and the diagonalisation error is below 1e-13.
+
+</details>
+
+### U18.6 Linear regression and least squares: system identification, ridge regression, support vector machines and kernel SVMs
+**Sources:** ALA W5, o
+- **Topics:** applications of least squares in the course: system identification, linear regression, support vector machines and kernel SVMs; least squares as the projection of b onto the column space; the normal equations and the QR and SVD solutions; the pseudo-inverse solution of an under-determined system; ridge (Tikhonov) regularisation and what it does to the singular values; linear regression as least squares; system identification: estimating an FIR channel from a training sequence, the Toeplitz data matrix; support vector machines: the maximum-margin separator, the margin 2/‖w‖, the soft margin and the hinge loss, the dual problem in which the data enter only through inner products, support vectors; kernel SVMs: the kernel trick, polynomial and Gaussian (RBF) kernels, why a non-linearly separable problem such as XOR becomes separable in a feature space.
+- **Results:** x minimises ‖Ax − b‖ iff AᵀAx = Aᵀb, and then the residual is orthogonal to the columns of A [P, check: normal equations agree with `lstsq` to 4·10⁻¹⁵, A ᵀr = 10⁻¹³]; the ridge solution (AᵀA + λI)⁻¹Aᵀb equals Σ (σᵢ/(σᵢ² + λ))(uᵢᵀb)vᵢ, so each component is shrunk by σᵢ²/(σᵢ² + λ) [D, check: agreement 3·10⁻¹⁵, and the solution norm drops from 3.755 to 3.639 for λ = 1]; an FIR channel h = (0.8, 0.5, −0.3) estimated from 64 BPSK training symbols with noise standard deviation 0.05 comes back as (0.802, 0.497, −0.316) [check]; the hard-margin SVM minimises ½‖w‖² under yᵢ(wᵀxᵢ + b) ≥ 1 and the margin is 2/‖w‖ [D, check: two Gaussian clusters give margin 1.65 and 3 support vectors]; the dual depends on the data only through the Gram matrix, so any positive semi-definite kernel can replace the inner product [D]; (1 + aᵀb)² is the inner product of the six-dimensional feature map with weights (1, √2a₁, √2a₂, a₁², √2a₁a₂, a₂²) [P, check]; on XOR data a linear SVM scores 54 %, an RBF kernel 97.5 % and a quadratic kernel 98.5 % on the training set [check].
+- **Build:** least squares by the normal equations, QR and SVD, and ridge with a λ sweep; FIR system identification with a noise sweep; an SVM from scratch (a projected-gradient solver on the dual) compared with `sklearn.svm.SVC`; the XOR experiment with linear, polynomial and RBF kernels. [local]
+- **Gap-fills:** *[inferred: Strang Chapter 4; Hastie–Tibshirani–Friedman Chapters 3 and 12, recalled, not checked]* the SMO solver is named only; the regression and SVM basics of U11.8 are the short version.
+
+**Assignment A18.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The normal equations for minimising norm(Ax - b) are
+
+(A) A x = b  
+(B) A^T A x = A^T b  
+(C) x = A^T b  
+(D) A A^T x = b
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Ridge shrinks each SVD component by sigma^2/(sigma^2 + lambda)  
+(B) The hard-margin SVM margin is 2/norm(w)  
+(C) The SVM dual depends on the data only through inner products  
+(D) A linear SVM separates XOR data
+
+**Q3 (2 marks, numerical answer).** An SVM has norm(w) = 1.2 with the margin constraints active. What is the margin width 2/norm(w)? Give three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the least-squares solution satisfies A^T A x = A^T b.
+
+**Q5 (3 marks, programming).** Implement least squares by normal equations, QR and SVD, ridge with a lambda sweep, FIR system identification and an SVM compared with sklearn, and run XOR with linear, polynomial and RBF kernels. Predict the XOR accuracies first.
+
+<details><summary>Key for A18.6 (open only after your attempt)</summary>
+
+- **Q1:** B. The residual must be orthogonal to the columns of A, which gives A^T (b - A x) = 0.
+- **Q2:** ABC. D is false: XOR is not linearly separable.
+- **Q3:** 1.667 (tolerance ±0.001). 2/1.2 = 1.667.
+- **Q4 (marking outline):** The objective f(x) = norm(Ax - b)^2 is convex and differentiable with gradient 2 A^T (A x - b). Setting the gradient to zero gives A^T A x = A^T b. Because f is convex any stationary point is a global minimiser.
+- **Q5 (what a passing submission shows):** The three least-squares routes agree to 1e-12, the FIR estimate is within 0.02 of (0.8, 0.5, -0.3), and the XOR accuracy is about 54 percent for linear against 97 to 99 percent for polynomial and RBF.
+
+</details>
+
+### U18.7 Optimal linear MMSE estimation: the MMSE receiver, market prediction and forecasting, and ARMA models
+**Sources:** ALA W6, o
+- **Topics:** applications of optimal estimation in the course: the MMSE receiver, market prediction and forecasting, ARMA models; estimating a random vector x from an observation y; the linear minimum mean squared error (LMMSE) estimator x̂ = Σ_xy Σ_yy⁻¹ y and the orthogonality principle; the error covariance; the MMSE receiver for y = Hx + n, x̂ = Hᴴ(HHᴴ + σ²I)⁻¹y, compared with zero-forcing and the noise enhancement of the latter; the Gauss–Markov (best linear unbiased) estimator; market prediction and forecasting: predicting the next value of a series from its past as an LMMSE problem, the Yule–Walker equations for an autoregressive model, ARMA(p, q) models, stationarity and the roots of the polynomial, the autocorrelation function; financial models: the minimum-variance portfolio as a constrained least-squares problem; the Kalman filter is named as the recursive form.
+- **Results:** the LMMSE estimator is the one whose error is orthogonal to the observation, E[(x − x̂)yᵀ] = 0 [P, D]; the error covariance is Σ_xx − Σ_xy Σ_yy⁻¹ Σ_yx [D, check: theory 0.664 and simulation 0.665 for a 4-input, 6-output channel with σ² = 0.5]; the two forms Σ_xy Σ_yy⁻¹ and (HᴴH + σ²I)⁻¹Hᴴ are equal [P, check to 2·10⁻¹⁶]; zero-forcing has MSE σ² trace((HᴴH)⁻¹) = 0.866 on the same channel, against 0.664 for MMSE [check]; for an AR(p) process the best linear one-step predictor solves the Yule–Walker equations Ra = r [D, check: coefficients (0.6, −0.3) are recovered as (0.604, −0.305) from 10⁵ samples]; an AR process is stationary iff the roots of its characteristic polynomial lie inside the unit circle of the z-plane in the form used by the script (modulus 0.548 here) [S]; the minimum-variance portfolio is w = Σ⁻¹1/(1ᵀΣ⁻¹1) [D, check: weights (0.620, 0.237, 0.143) and variance 0.0265 against 0.0362 for equal weights].
+- **Build:** the LMMSE estimator from covariances and its Monte-Carlo check; MMSE and zero-forcing receivers across a range of noise levels; an AR(2) simulator with Yule–Walker estimation and a rolling one-step forecast with its error; an ARMA fit using `statsmodels` when it is installed, and a minimum-variance portfolio. [local]
+- **Gap-fills:** *[inferred: Kay Chapters 10 and 12; Box–Jenkins, recalled, not checked]* the non-Gaussian and non-linear cases are named only; real market data is an input the script accepts, and no result above depends on market data.
+
+**Assignment A18.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The linear MMSE estimator of x from y (zero mean) is
+
+(A) Sigma_xy Sigma_yy^-1 y  
+(B) Sigma_xx y  
+(C) y  
+(D) Sigma_yy Sigma_xy x
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The LMMSE error covariance is Sigma_xx - Sigma_xy Sigma_yy^-1 Sigma_yx  
+(B) Zero forcing suffers noise enhancement  
+(C) The Yule-Walker equations give the best linear one-step predictor of an AR process  
+(D) An AR process is stationary whenever its coefficients are positive
+
+**Q3 (2 marks, numerical answer).** Three assets have covariance 0.04, 0.09 and 0.16 with zero correlation. The minimum-variance weight on the first asset is proportional to 1/0.04. What is its weight?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the LMMSE error is orthogonal to the observation.
+
+**Q5 (3 marks, programming).** Implement the LMMSE estimator, compare MMSE and zero-forcing receivers, simulate an AR(2) process with Yule-Walker estimation, and compute a minimum-variance portfolio. Predict the MMSE error for the 4 by 6 channel with noise variance 0.5 first.
+
+<details><summary>Key for A18.7 (open only after your attempt)</summary>
+
+- **Q1:** A. It is the estimator whose error is orthogonal to y.
+- **Q2:** ABC. D is false: stationarity depends on the roots of the characteristic polynomial.
+- **Q3:** 0.5902 (tolerance ±0.001). The weights are 25 : 11.11 : 6.25 giving 0.5902 for the first.
+- **Q4 (marking outline):** Let x_hat = W y minimise Enorm(x - W y)^2. Setting the derivative with respect to W to zero gives E[(x - W y) y^T] = 0. So the error is uncorrelated with the observation, which is the orthogonality principle, and it yields W = Sigma_xy Sigma_yy^-1.
+- **Q5 (what a passing submission shows):** The Monte-Carlo MSE is about 0.665 against the theory 0.664, zero forcing gives 0.866, and Yule-Walker recovers (0.6, -0.3) to 0.01.
+
+</details>
+
+### U18.8 Data analytics with matrices: recommender systems, user rating prediction, data completion and the Netflix problem
+**Sources:** ALA W7, o
+- **Topics:** the user-by-item rating matrix and its sparsity; neighbourhood methods (user–user and item–item similarity, the cosine of the previous units); the low-rank model R ≈ UVᵀ and why it is plausible (a few hidden tastes); alternating least squares (each half-step is a ridge regression, so U18.6 applies); matrix completion by iterated truncated SVD; bias terms (global mean, user and item effects); regularisation; the evaluation protocol (hold out ratings, root mean squared error, the cold-start problem); the Netflix problem: the data, the prize, the metric, what won; privacy (the rating data was perturbed on release).
+- **Results:** each ALS half-step minimises the objective over one factor exactly, so the objective never increases [P, check]; if the true matrix has rank r and enough entries are seen, ALS recovers it [X, check: a 100×80 rank-3 matrix with 30 % of the entries seen gives an RMSE of 2.7·10⁻⁷ on all entries after 60 sweeps]; the Netflix training set had 100,480,507 ratings by 480,189 users of 17,770 movies, so about 98.8 % of the matrix is empty and a dense copy would need about 34 GB at four bytes per entry [check, with the figures read from the contest descriptions on 2026-11-06]; predicting each movie's mean scored RMSE 1.0540, Netflix's Cinematch 0.9525 on the test set, and the 2009 winner BellKor's Pragmatic Chaos 0.8567, a 10.06 % improvement [source: public contest write-ups]; the winning solution was an ensemble of many models, of which matrix factorisation was the strongest single family [S].
+- **Build:** a synthetic rating generator with a hidden low rank and noise; ALS with a bias term and a held-out RMSE curve; soft-impute by iterated SVD; a comparison with an item-based neighbourhood predictor; the MovieLens ratings are used instead when they can be fetched. [local]
+- **Gap-fills:** *[inferred: Koren, Bell and Volinsky 2009, recalled, not checked; the Netflix figures were read from public pages]* implicit-feedback models and the scalable Spark implementation (U11.9) are named only.
+
+**Assignment A18.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Why is alternating least squares for matrix factorisation monotone?
+
+(A) Each half step minimises the objective exactly over one factor  
+(B) It uses a decaying step size  
+(C) The matrix is symmetric  
+(D) It never visits the data
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The Netflix rating matrix was about 99 percent empty  
+(B) Item-based neighbourhood methods use similarity such as cosine  
+(C) A rank-r model assumes a few hidden tastes  
+(D) Root mean squared error was irrelevant to the Netflix prize
+
+**Q3 (2 marks, numerical answer).** The Netflix training set had 100480507 ratings, 480189 users and 17770 movies. What fraction of the matrix is empty? Give three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that each ALS half-step is a ridge regression and therefore never increases the objective.
+
+**Q5 (3 marks, programming).** Implement ALS with bias terms and held-out RMSE on a synthetic rank-3 rating matrix and soft-impute by iterated SVD. Predict the RMSE on a noise-free rank-3 matrix with 30 percent observed first.
+
+<details><summary>Key for A18.8 (open only after your attempt)</summary>
+
+- **Q1:** A. Fixing one factor makes the objective a least-squares problem in the other, which is solved exactly.
+- **Q2:** ABC. D is false: RMSE was the prize metric.
+- **Q3:** 0.9882 (tolerance ±0.001). The density is 0.01178 so about 0.988 is empty.
+- **Q4 (marking outline):** With V fixed, the loss over user i's row u_i is the sum over observed j of (r_ij - u_i.v_j)^2 + lambda norm(u_i)^2, which is a ridge regression with design matrix the rows v_j of items rated by i. It is minimised exactly by the ridge solution, so the objective cannot increase. The same holds for V with U fixed.
+- **Q5 (what a passing submission shows):** The held-out RMSE falls below 1e-6 on noise-free rank-3 data and the objective is non-increasing at every sweep.
+
+</details>
+
+### U18.9 The DFT and the FFT matrix, OFDM and SC-FDMA: structure, properties and signal processing in OFDM systems
+**Sources:** ALA W7–8, o
+- **Topics:** the DFT matrix F with entries e^(−2πi jk/N); it is a unitary matrix after scaling by 1/√N; the FFT/IFFT matrices and their structure (the recursion of the radix-2 FFT and the operation count N/2 · lg N butterflies); circulant matrices and why the DFT diagonalises them (circular convolution becomes pointwise multiplication); the system model for OFDM (inverse FFT at the transmitter, the cyclic prefix, the FFT at the receiver, one complex gain per subcarrier, one-tap equalisation); channel estimation from pilot subcarriers; SC-FDMA (DFT-precoded OFDM) and why the uplink uses it (a lower peak-to-average power ratio); signal processing in OFDM systems: synchronisation errors and inter-carrier interference are named.
+- **Results:** F Fᴴ = N·I, so the scaled DFT is unitary and the inverse is the conjugate transpose [P, check to 8·10⁻¹⁷]; every circulant matrix is C = F⁻¹ diag(F c) F, with the DFT of the first column as the eigenvalues [P, check to 2·10⁻¹⁵]; the radix-2 FFT satisfies T(N) = 2T(N/2) + N/2 butterflies, so (N/2) lg N of them: 5,120 for N = 1024 against 1,048,576 products for the direct matrix, a factor of 205 [D, check]; with a cyclic prefix at least as long as the channel memory the received subcarriers satisfy Y_k = H_k X_k exactly [D, check: 64 subcarriers, prefix 16, a 4-tap channel, error 7·10⁻¹⁶; without the prefix the error is 0.098]; for 64 QPSK symbols on 256 points the 99th percentile of the peak-to-average power ratio is 9.77 dB for OFDM and 6.91 dB for localised SC-FDMA, and the medians are 7.28 dB and 5.29 dB [check].
+- **Build:** the DFT matrix, a recursive FFT checked against `numpy.fft`, and the operation counts; a complete OFDM link (modulation, prefix, multipath channel, one-tap equaliser) with a bit-error-rate curve; the effect of a short prefix; a PAPR experiment for OFDM and SC-FDMA. [local]
+- **Gap-fills:** *[inferred: Tse and Viswanath Chapter 3; 3GPP LTE uplink descriptions, recalled, not checked]* the mapping of subcarriers to users in LTE and 5G, and the radio-frequency chain that sits under the model, are named only; the Fourier analysis of continuous signals is not needed here. On demand: U17.3 for the divide-and-conquer recursion of the FFT.
+
+**Assignment A18.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A circulant matrix is diagonalised by
+
+(A) The identity  
+(B) The DFT matrix  
+(C) A permutation  
+(D) The Hadamard matrix only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The scaled DFT matrix is unitary  
+(B) A cyclic prefix at least as long as the channel memory turns linear convolution into circular convolution  
+(C) SC-FDMA reduces the peak-to-average power ratio relative to OFDM  
+(D) The radix-2 FFT needs N^2 butterflies
+
+**Q3 (2 marks, numerical answer (butterflies)).** How many radix-2 butterflies does an FFT of size 1024 need?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that with a cyclic prefix at least as long as the channel memory, each OFDM subcarrier sees Y_k = H_k X_k.
+
+**Q5 (3 marks, programming).** Implement an OFDM link with 64 subcarriers, prefix 16 and a 4-tap channel, with one-tap equalisation, and a PAPR comparison with SC-FDMA. Predict the error with and without the prefix first.
+
+<details><summary>Key for A18.9 (open only after your attempt)</summary>
+
+- **Q1:** B. The eigenvectors of every circulant matrix are the columns of the DFT matrix.
+- **Q2:** ABC. D is false: it needs (N/2) log2 N butterflies.
+- **Q3:** 5120 butterflies (tolerance ±0.01). (N/2) lg N = 512 x 10 = 5120.
+- **Q4 (marking outline):** The prefix makes the received block equal to the circular convolution of the time-domain block with the channel. The DFT of a circular convolution is the product of the DFTs, so after the receiver FFT each subcarrier output equals the channel's frequency response H_k times the transmitted symbol X_k.
+- **Q5 (what a passing submission shows):** The per-subcarrier relation holds to 1e-15 with the prefix and fails (error about 0.1) without it, and the 99th percentile PAPR is about 9.8 dB for OFDM against 6.9 dB for SC-FDMA.
+
+</details>
+
+### U18.10 Dynamical systems: modelling robots and chemical plants, autonomous linear systems and systems with inputs and outputs
+**Sources:** ALA W8–9, o
+- **Topics:** a state-space model; modelling of dynamical systems, with examples: a robot joint or a point mass (the double integrator) and a chemical plant (two tanks in series linearised around an operating point); discrete-time systems x(t+1) = Ax(t) and their solution A^t x(0); continuous-time systems ẋ = Ax and the matrix exponential; stability and the eigenvalues (spectral radius below one, real parts below zero); the solution of an autonomous linear dynamical system (LDS) by eigen-decomposition; the solution of a system with inputs and outputs, x(t) = Aᵗx(0) + Σ A^(t−1−s) B u(s) and y = Cx + Du; discretisation by a zero-order hold; controllability and observability as rank conditions; reaching a target state in few steps.
+- **Results:** x(t) = A^t x(0) and, with A = VΛV⁻¹, the state is a sum of modes λᵢᵗ [P]; a discrete system is asymptotically stable iff the spectral radius is below one, and a continuous one iff every eigenvalue has negative real part [P for diagonalisable A; check: ρ = 0.9 for a 2×2 example, eigenvalues −1 and −2 for the continuous example]; e^(At) is the sum of Aᵏtᵏ/k! and the zero-order-hold discretisation is A_d = e^(AΔ) [D, check: series and `expm` agree to 10⁻¹⁶ and 50 steps of Δ = 0.1 reproduce x(5) exactly]; the pair (A, B) is controllable iff [B, AB, …, A^(n−1)B] has rank n [S, check]; the double integrator is controllable and, with unit step and zero initial state, input (4, −4) takes it to position 4 and velocity 0 in two steps [check]; the two-tank plant with eigenvalues −0.3 and −0.5 is controllable from the inflow to tank 1 (rank 2) and has steady-state levels (2, 3.33) per unit inflow, and is not controllable from an input into tank 2 alone (rank 1) because tank 1 is unaffected [check].
+- **Build:** a simulator for the discrete and continuous cases with the exact solution for comparison; the two-tank and double-integrator models with their controllability matrices; a deadbeat controller for the double integrator; an observability check and a Luenberger observer. [local]
+- **Gap-fills:** *[inferred: Strang Chapter 6.3 (differential equations); Boyd and Vandenberghe Chapters 9 and 10 for state-space models, recalled, not checked]* non-linear plants are linearised and not analysed further; pole placement and the linear-quadratic regulator are named only.
+
+**Assignment A18.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A discrete-time system x(t+1) = A x(t) is asymptotically stable iff
+
+(A) The spectral radius of A is below 1  
+(B) The trace of A is zero  
+(C) A is symmetric  
+(D) The determinant is positive
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The pair (A,B) is controllable iff [B AB ... A^(n-1) B] has rank n  
+(B) A continuous system is stable iff every eigenvalue has negative real part  
+(C) The zero-order-hold discretisation is A_d = expm(A Delta)  
+(D) Controllability needs an input into every state directly
+
+**Q3 (2 marks, numerical answer).** A discrete system has A = [[0.9, 0.2],[0, 0.8]]. What is its spectral radius?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a diagonalisable A = V Lambda V^-1 gives x(t) = V Lambda^t V^-1 x(0) and that the system is stable iff every abs(lambda_i) < 1.
+
+**Q5 (3 marks, programming).** Simulate a discrete and a continuous linear system against the exact solution, build the two-tank and double-integrator models with controllability matrices, and design a deadbeat input. Predict the two-step input reaching position 4 and velocity 0 from rest first.
+
+<details><summary>Key for A18.10 (open only after your attempt)</summary>
+
+- **Q1:** A. The state is a sum of modes lambda^t which all decay iff every abs(lambda) < 1.
+- **Q2:** ABC. D is false: it only needs the input to reach every state through the dynamics.
+- **Q3:** 0.9 (tolerance ±0.001). The eigenvalues are 0.9 and 0.8 so the spectral radius is 0.9.
+- **Q4 (marking outline):** By induction x(t) = A^t x(0), and A^t = V Lambda^t V^-1 since the inner V^-1 V pairs cancel. Each component of Lambda^t is lambda_i^t, which goes to zero iff abs(lambda_i) < 1, so x(t) tends to zero for all x(0) iff all eigenvalues lie inside the unit circle.
+- **Q5 (what a passing submission shows):** The input is (4, -4), the two-tank plant is controllable from tank 1 (rank 2) but not from tank 2 alone (rank 1), and expm agrees with the series to 1e-15.
+
+</details>
+
+### U18.11 Unsupervised learning: centroid-based clustering, probabilistic model-based clustering and the EM algorithm
+**Sources:** ALA W10, o
+- **Topics:** the clustering problem; centroid-based clustering: k-means as an alternating minimisation (assign, update) and its dependence on the start (the full treatment of Lloyd's algorithm is in U11.8; here it is the hard-assignment limit of the next model); initialisation and k-means++; probabilistic model-based clustering: the Gaussian mixture model, soft assignments (responsibilities); the EM algorithm for a mixture: the E-step and the M-step as weighted averages, the log-likelihood that never decreases; why EM is a special case of a bound-and-maximise argument; model selection (the number of components); the connection to the linear algebra of the course (the M-step is a weighted least-squares problem and covariances are positive semi-definite matrices).
+- **Results:** the E-step computes r_ik = π_k N(x_i | μ_k, σ_k²) / Σ_j π_j N(x_i | μ_j, σ_j²) and the M-step sets μ_k = Σ r_ik x_i / Σ r_ik, σ_k² as the weighted variance and π_k = Σ r_ik/n [D]; the log-likelihood is non-decreasing across iterations, because the E-step makes the Jensen lower bound tight and the M-step maximises it [P, check]; k-means is the limit of EM with equal spherical covariances as the variance goes to zero [S]; on 500 points drawn from 0.6 N(0, 1) and 0.4 N(4, 1.5²) the fit gives means (0.123, 4.213), standard deviations (1.025, 1.608) and weights (0.630, 0.370), with the log-likelihood rising from −1981 to −1064 [check].
+- **Build:** k-means with k-means++ against `sklearn.cluster.KMeans`; EM for a one-dimensional and a two-dimensional mixture with the log-likelihood plot and a monotonicity assertion; a comparison of hard and soft clustering on overlapping groups; the number of components chosen by BIC. [local]
+- **Gap-fills:** *[inferred: Bishop Chapter 9; Hastie–Tibshirani–Friedman Chapter 14, recalled, not checked]* variational inference and the mixture of experts are named only; spectral clustering (U18.3's Laplacian) is named.
+
+**Assignment A18.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The EM algorithm for a Gaussian mixture never decreases
+
+(A) The number of clusters  
+(B) The log-likelihood  
+(C) The distance to the truth  
+(D) The responsibilities
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Responsibilities are posterior cluster probabilities  
+(B) k-means is the hard-assignment limit of EM with equal spherical covariances  
+(C) k-means result depends on its initialisation  
+(D) EM always finds the global maximum likelihood
+
+**Q3 (2 marks, numerical answer).** A point has density 0.2 under component 1 with weight 0.6 and density 0.05 under component 2 with weight 0.4. What is its responsibility for component 1?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the EM log-likelihood is non-decreasing.
+
+**Q5 (3 marks, programming).** Implement k-means with k-means++ and EM for a one-dimensional mixture with a monotonicity assertion, and compare hard and soft clustering on overlapping groups. Predict the fitted weights for 500 points from 0.6 N(0,1) plus 0.4 N(4,1.5^2) first.
+
+<details><summary>Key for A18.11 (open only after your attempt)</summary>
+
+- **Q1:** B. The E-step tightens a Jensen lower bound and the M-step maximises it.
+- **Q2:** ABC. D is false: EM converges only to a local maximum.
+- **Q3:** 0.8571 (tolerance ±0.001). 0.12/(0.12 + 0.02) = 0.857.
+- **Q4 (marking outline):** For any distribution q over assignments, log p(x given theta) >= sum_z q(z) log(p(x, z given theta)/q(z)) by Jensen, with equality when q is the posterior. The E-step sets q to the posterior under the current theta, so the bound equals the log-likelihood there. The M-step increases the bound over theta. Hence the new log-likelihood is at least the new bound, which is at least the old log-likelihood.
+- **Q5 (what a passing submission shows):** The log-likelihood never decreases, the weights come out near (0.63, 0.37), and the means near 0.1 and 4.2.
+
+</details>
+
+### U18.12 The linear perceptron, compressive sensing and orthogonal matching pursuit: sparse signal estimation
+**Sources:** ALA W11, o
+- **Topics:** the linear perceptron: the decision rule sign(wᵀx), the perceptron update on a mistake, training with stochastic gradient (the perceptron as SGD on a hinge-like loss), convergence for separable data; compressive sensing: a sparse signal x in N dimensions seen through M ≪ N linear measurements y = Φx, why the system is under-determined and why sparsity makes it solvable; the ℓ0 problem and its ℓ1 relaxation (basis pursuit) stated; orthogonal matching pursuit (OMP) for sparse signal estimation: pick the column most correlated with the residual, re-fit by least squares on the chosen columns, update the residual; coherence and the restricted isometry property stated; the number of measurements needed; image compression and sparse signals in a transform basis.
+- **Results:** the perceptron makes at most (R/γ)² mistakes on data of radius R separable with margin γ [P, Novikoff; check: on 300 two-dimensional points with γ = 0.505 and R = 3.78 the bound is 56 and the run made 2 mistakes]; after each OMP step the residual is orthogonal to every chosen column [P, check]; if the mutual coherence μ of Φ satisfies (2s − 1)μ < 1, OMP recovers every s-sparse signal exactly in s steps [X]; the minimum-norm solution of the under-determined system is not sparse [check: all 128 entries non-zero, error 1.97 for a 5-sparse signal and M = 40]; with N = 128, s = 5 and Gaussian Φ, OMP recovers the signal in 29.5 % of trials at M = 20, 85 % at M = 30, 97.2 % at M = 40 (500 trials), 98.5 % at M = 50 and 100 % at M = 60 [check], although the coherence of that Φ is 0.557, far above 1/9, so the coherence guarantee is sufficient and very conservative.
+- **Build:** a perceptron with a mistake counter checked against the margin bound; an OMP implementation with the orthogonality assertion; a phase-transition experiment over M and s; basis pursuit by linear programming (`scipy.optimize.linprog`) compared with OMP; a sparse-in-DCT signal recovered from random samples. [local]
+- **Gap-fills:** *[inferred: Candès and Wakin 2008; Foucart and Rauhut, recalled, not checked]* the restricted isometry proof and noise-robust recovery guarantees are stated only; the multi-layer perceptron and back-propagation are in the machine-learning curriculum, not here.
+
+**Assignment A18.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Novikoff's theorem bounds the perceptron's mistakes by
+
+(A) n  
+(B) (R/gamma)^2  
+(C) 1/gamma  
+(D) R squared times n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) After each OMP step the residual is orthogonal to chosen columns  
+(B) The minimum-norm solution of an under-determined system is generally not sparse  
+(C) Compressive sensing recovers sparse signals from fewer measurements than the dimension  
+(D) OMP needs no least-squares step
+
+**Q3 (2 marks, numerical answer (mistakes)).** A perceptron is run on data with R = 3.78 and margin gamma = 0.505. What is the mistake bound (R/gamma)^2 rounded to an integer?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that after each OMP step the residual is orthogonal to every chosen column.
+
+**Q5 (3 marks, programming).** Implement a perceptron with a mistake counter, OMP, and a phase-transition experiment over the number of measurements for N = 128 and s = 5. Predict the recovery rate at M = 40 first.
+
+<details><summary>Key for A18.12 (open only after your attempt)</summary>
+
+- **Q1:** B. The number of mistakes is at most (R/gamma)^2 for data of radius R with margin gamma.
+- **Q2:** ABC. D is false: OMP re-fits by least squares on the chosen columns.
+- **Q3:** 56 mistakes (tolerance ±1). (7.485)^2 = 56.0.
+- **Q4 (marking outline):** After choosing the index set S, OMP computes x_S as the least-squares solution of min norm(y - Phi_S x). The normal equations give Phi_S^T (y - Phi_S x_S) = 0, which says that the residual is orthogonal to every column in S.
+- **Q5 (what a passing submission shows):** The perceptron makes far fewer mistakes than the bound, OMP residual orthogonality holds to 1e-12, and recovery is about 97 percent at M = 40, 30 percent at M = 20 and 100 percent at M = 60.
+
+</details>
+
+### U18.13 Discrete-time Markov chains and operations research: supply chains, forecasting, and resource and inventory management
+**Sources:** ALA W12, o
+- **Topics:** a discrete-time Markov chain as a stochastic matrix P; n-step probabilities as powers of P; stationary distributions as left eigenvectors with eigenvalue 1; convergence and the second eigenvalue (the proof and the PageRank application are in U11.10; here the chain is used as a model); absorbing chains, the fundamental matrix (I − Q)⁻¹, absorption probabilities and expected time to absorption; applications: supply chain management and forecasting (market share and customer brand switching), resource management (machines that fail and are repaired), inventory management with an (s, S) policy (reorder when the stock falls to s or below, order up to S), the expected cost per period from the stationary distribution; a reward on states and the long-run average reward.
+- **Results:** the n-step distribution of the chain is π₀Pⁿ and a stationary distribution solves πP = π [P, check: a 3-state chain has π = (0.4634, 0.3171, 0.2195), equal to a row of P⁵⁰, with |λ₂| = 0.4618 and total-variation distance 2·10⁻⁴ after ten steps]; for an absorbing chain with transient block Q the matrix N = (I − Q)⁻¹ gives expected visits, and its row sums the expected time to absorption [P, check: a four-state gambler's-ruin chain gives 2 steps and absorption probabilities 2/3 and 1/3]; for an inventory with demand probabilities 0.1, 0.2, 0.4, 0.2, 0.1 on 0 to 4 units and policy (s, S) = (2, 5) the stationary distribution over the opening stock is (0.099, 0.199, 0.226, 0.288, 0.130, 0.058), an order is placed in 52.4 % of periods and 0.0288 units of demand are lost per period, and a 400,000-period simulation gives 52.5 % and 0.0288 [check].
+- **Build:** a Markov-chain toolkit (n-step, stationary distribution by eigenvector and by power iteration, absorbing analysis); an (s, S) inventory simulator checked against the stationary-distribution cost; a brand-switching model for forecasting market share; a sweep over (s, S) that picks the policy with the lowest cost per period for given ordering and holding costs. [local]
+- **Gap-fills:** *[inferred: Strang Chapter 10.3 (Markov matrices); Ross, Introduction to Probability Models; Hillier and Lieberman, recalled, not checked]* Markov decision processes and the optimisation of the policy by dynamic programming are named only; continuous-time chains and queueing models are in U2.1 and U9.2.
+
+**Assignment A18.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A stationary distribution pi of a transition matrix P satisfies
+
+(A) P pi = 0  
+(B) pi P = pi  
+(C) pi = P  
+(D) pi P = 0
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The n-step distribution is pi_0 P^n  
+(B) For an absorbing chain N = (I - Q)^-1 gives expected visits to transient states  
+(C) An (s,S) policy orders up to S when stock falls to s or below  
+(D) A Markov chain always has a unique stationary distribution
+
+**Q3 (2 marks, numerical answer (steps)).** A symmetric random walk on 4 states with absorbing ends 0 and 3 starts in state 1 (gambler's ruin). What is the expected number of steps to absorption?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for an absorbing chain with transient block Q the expected number of visits is N = (I - Q)^-1.
+
+**Q5 (3 marks, programming).** Implement a Markov-chain toolkit with stationary distribution by eigenvector and by power iteration, an absorbing analysis, and an (s,S) inventory simulator checked against the stationary cost. Predict the order probability for (s,S) = (2,5) with demand pmf 0.1, 0.2, 0.4, 0.2, 0.1 first.
+
+<details><summary>Key for A18.13 (open only after your attempt)</summary>
+
+- **Q1:** B. It is a left eigenvector with eigenvalue 1.
+- **Q2:** ABC. D is false: a reducible chain can have several.
+- **Q3:** 2 steps (tolerance ±0.001). N = [[4/3, 2/3],[2/3, 4/3]] and the first row sums to 2.
+- **Q4 (marking outline):** The expected visits M satisfy M = I + Q M, because a start in state i counts one visit and then continues with Q. So (I - Q) M = I and M = (I - Q)^-1, which exists because Q^k tends to 0 for an absorbing chain.
+- **Q5 (what a passing submission shows):** The order probability is about 0.524 and lost sales about 0.0288 per period, and a 400,000-period simulation agrees to three decimals.
+
+</details>
+
+## D19. Statistics, data mining and Bayesian analysis: from probability and sampling to testing, regression, clustering, trees, association rules, classification, Bayesian inference, MCMC and model comparison
+
+Aim: the statistical and data-mining toolkit of an analyst, taught so that every method is run, checked against a simulation whose answer is known, and then applied to a small realistic problem. Three courses supply the outline: Data Analytics with Python (IIT Roorkee), Data Mining (IIT Kharagpur; the title is inferred, because the outline file gives only the instructor's name) and Bayesian Data Analysis for the Behavioral Sciences. The course tools were Python for the first, open-source software for the second and R with the brms package and Stan for the third; D19 teaches every method from scratch in Python with NumPy and SciPy and, for the Bayesian course, replaces R, brms and Stan by their Python counterparts (Bambi and PyMC, installed in the workspace and run, with ArviZ for diagnostics), so R is not used anywhere in this curriculum. Benchmarks (recalled, not checked in full): Montgomery and Runger, *Applied Statistics and Probability for Engineers*; Wasserman, *All of Statistics*; James, Witten, Hastie and Tibshirani, *An Introduction to Statistical Learning*; Han, Kamber and Pei, *Data Mining: Concepts and Techniques*; Tan, Steinbach and Kumar, *Introduction to Data Mining*; Gelman et al., *Bayesian Data Analysis*, 3rd ed.; McElreath, *Statistical Rethinking*; Kruschke, *Doing Bayesian Data Analysis*. Ownership: D19 owns statistical inference, regression as statistics, data-mining algorithms and Bayesian analysis. The machine-learning bridge U11.8 and the applied algebra of D18 (least squares in U18.6, EM in U18.11, the SVM in U18.6) stay where they are and are referenced; the probability bridge U2.1 and the tail-bound bridge U9.2 are referenced for random processes and concentration; the scalable versions of the algorithms belong to D20 and D11.
+
+### U19.1 Bridge: calculus, counting and matrices for statistics
+**Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
+Bridge for: U19.2 to U19.17.
+- **Topics:** limits, derivatives and the rules for products, quotients and chains; the logarithm and exponential and their derivatives; maxima and minima by setting the derivative to zero, and the second-derivative test; partial derivatives and the gradient; the definite integral as an area and as a limit of sums, integration by substitution and by parts, improper integrals; sums and products (Σ and Π) and the logarithm of a product; counting: permutations, combinations and the binomial coefficient; the Gaussian integral; vectors and matrices as used by regression (transpose, product, inverse), pointing to U18.2 and U18.3 for the full treatment.
+- **Results:** the derivative of ln x is 1/x and of e^x is e^x [P]; ∫e^(−x²/2) dx over the real line is √(2π) [P, by the polar-coordinates trick; check: 2.5066283 numerically]; the binomial coefficients of row n sum to 2ⁿ [P, check: 1024 for n = 10]; at an interior maximum the first derivative is zero and the second is non-positive [P].
+- **Build:** numerical differentiation and integration compared with exact results for ten functions; a plot of a log-likelihood and its maximum found by derivative and by a grid. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapter 1; Wasserman Chapter 1]* multiple integrals are used only for joint densities and are explained where they first appear. The full treatment of the school mathematics is U21.2, of probability U21.6, and of Python and R U21.1 and U21.3.
+
+**Assignment A19.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** At an interior maximum of a differentiable function the first derivative is
+
+(A) Positive  
+(B) Zero  
+(C) Negative  
+(D) Undefined
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The derivative of ln x is 1/x  
+(B) The binomial coefficients of row n sum to 2 to the power n  
+(C) The Gaussian integral of exp(-x squared over 2) over the real line is the square root of 2 pi  
+(D) The second derivative at a maximum is non-negative
+
+**Q3 (2 marks, numerical answer).** Find the value of p that maximises the Bernoulli likelihood p^7 (1-p)^3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the derivative of ln x is 1/x.
+
+**Q5 (3 marks, programming).** Compare numerical differentiation and integration with exact results for ten functions, and find the maximum of a log-likelihood by derivative and by grid. Predict the grid maximiser for 7 successes in 10 trials first.
+
+<details><summary>Key for A19.1 (open only after your attempt)</summary>
+
+- **Q1:** B. A maximum in the interior requires a stationary point, so the derivative is zero.
+- **Q2:** ABC. D is false: at a maximum the second derivative is non-positive.
+- **Q3:** 0.7 (tolerance ±0.001). Setting the derivative of 7 ln p + 3 ln(1-p) to zero gives p = 7/10.
+- **Q4 (marking outline):** Let y = ln x so that x = e^y. Differentiate both sides with respect to x: 1 = e^y dy/dx = x dy/dx. Hence dy/dx = 1/x.
+- **Q5 (what a passing submission shows):** The numerical and exact derivatives agree to 1e-6, the Gaussian integral is 2.5066283, and the grid maximiser is 0.70.
+
+</details>
+
+### U19.2 Introduction to data analytics and Python fundamentals: the analytics workflow, data types, descriptive statistics and visualisation
+**Sources:** DAP W1, o
+- **Topics:** what data analytics is and the three questions it answers (descriptive, predictive, prescriptive); the workflow from a business question through data collection, cleaning, exploration, modelling and communication (the CRISP-DM cycle named); examples of analytics in a wide variety of industries and the hands-on, model-building approach of the course; Python fundamentals for analysts: types, lists, dictionaries, functions, NumPy arrays, pandas data frames, matplotlib and `scipy.stats`; data types (nominal, ordinal, interval, ratio); descriptive statistics (mean, median, mode, variance, standard deviation, quantiles, skewness); histograms, box plots and scatter plots; outliers and the IQR rule; the numerical care that streaming and large-valued data need (Welford's update); the course's intended audience of management, industrial-engineering and computer-science students and its link to any analytics company.
+- **Results:** the mean minimises the sum of squared deviations and the median the sum of absolute deviations [P]; Chebyshev: at most 1/k² of any data set lies more than k standard deviations from the mean [P; check: an exponential sample has 4.75 % beyond two standard deviations, under the 25 % bound]; Welford's one-pass update gives the sample variance to 10⁻¹⁵ [P, check], whereas the sum-of-squares formula returns 0.0 for 1000 values near 10⁹ whose true variance is 1.008 [check, catastrophic cancellation]; for a lognormal sample the mean (1.646) and the median (1.000) differ widely, which is why the choice of summary matters [check]; the IQR rule flags 4.2 % of an exponential sample as outliers [check].
+- **Build:** a pandas notebook that loads a CSV, summarises it, plots it and flags outliers; Welford against the naive formula; a one-page "analytics brief" script that prints the summary table of any data frame. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapter 6; Wes McKinney, Python for Data Analysis, recalled, not checked]* the audience, industry and outline lines of the course are treated as the framing of this unit and not as content.
+
+**Assignment A19.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which summary is the most robust to a single extreme outlier?
+
+(A) Mean  
+(B) Variance  
+(C) Median  
+(D) Range
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Chebyshev's inequality bounds the fraction beyond k standard deviations by 1 over k squared  
+(B) Welford's update computes variance in one pass without cancellation  
+(C) The mean minimises the sum of squared deviations  
+(D) The sum-of-squares variance formula is always accurate for values near 1e9
+
+**Q3 (2 marks, numerical answer).** A data set has quartiles Q1 = 10 and Q3 = 20. What is the upper fence of the IQR outlier rule (Q3 + 1.5 IQR)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the mean minimises the sum of squared deviations.
+
+**Q5 (3 marks, programming).** Write a pandas summary-and-outlier report, and compare Welford's variance with the naive sum-of-squares formula on 1000 values near 1e9. Predict the naive result first.
+
+<details><summary>Key for A19.2 (open only after your attempt)</summary>
+
+- **Q1:** C. The median ignores the size of extreme values while the others move with them.
+- **Q2:** ABC. D is false: it suffers catastrophic cancellation.
+- **Q3:** 35 (tolerance ±0.001). The IQR is 10 so the fence is 20 + 15 = 35.
+- **Q4 (marking outline):** Let f(c) = sum (x_i - c)^2. Then f'(c) = -2 sum (x_i - c), which is zero iff c is the mean. Also f''(c) = 2n > 0, so the mean is the minimiser.
+- **Q5 (what a passing submission shows):** Welford returns about 1.008 and the naive formula returns 0.0 or garbage because of cancellation, and the IQR rule flags about 4 percent of an exponential sample.
+
+</details>
+
+### U19.3 Probability and random variables: events, conditional probability, Bayes' rule, distributions, expectation and the limit theorems
+**Sources:** DAP W2; BDA W1–2
+- **Topics:** introduction to probability: sample space, events, the axioms, counting; conditional probability, independence, the law of total probability and Bayes' rule; probability and random variables I: discrete random variables, the probability mass function, the cumulative distribution function, expectation, variance; probability and random variables II: continuous random variables, density functions, joint, marginal and conditional distributions, covariance and correlation; the common distributions (Bernoulli, binomial, Poisson, uniform, exponential, normal) and where each arises; the Poisson approximation to the binomial; the law of large numbers and the central limit theorem stated; simulation as a way to check an answer.
+- **Results:** P(A | B) = P(B | A) P(A) / P(B) [P]; a test with 1 % prevalence, 90 % sensitivity and 5 % false positives gives P(disease | positive) = 15.4 %, not 90 % [P, check]; E[aX + bY] = aE[X] + bE[Y] without independence, and Var(X + Y) = Var X + Var Y + 2 Cov(X, Y) [P]; the binomial (n, p) has mean np and variance np(1 − p) [P, check: 6.0 and 4.2 for n = 20, p = 0.3]; for n = 1000, p = 0.003 the binomial and Poisson probabilities of five events are 0.10087 and 0.10082 [check]; with 23 people the probability that two share a birthday is 0.5073 [P, check]; the law of large numbers: the error of a binomial proportion with p = 0.3 was 0.07, 0.0068 and 0.0006 at 10², 10⁴ and 10⁶ trials [check]; the standardised mean of 30 exponential variables has P(Z < 1.96) = 0.966 against 0.975 for the normal, so the central limit theorem is asymptotic and skew shows at moderate n [check].
+- **Build:** a simulator for conditional probability problems checked against Bayes' rule; the birthday problem by simulation and formula; histograms of sample means for four distributions and growing n; the Poisson-binomial comparison. [local]
+- **Gap-fills:** *[inferred: Wasserman Chapters 1 to 5; the probability and random-process material of U2.1 and the tail bounds of U9.2]* the proof of the central limit theorem is stated and not given.
+
+**Assignment A19.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A test has 1 percent prevalence, 90 percent sensitivity and 5 percent false positives. About what is P(disease given positive)?
+
+(A) 90 percent  
+(B) 50 percent  
+(C) 15 percent  
+(D) 1 percent
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Expectation of a sum is the sum of expectations even for dependent variables  
+(B) The binomial (n,p) has variance np(1-p)  
+(C) The Poisson approximates the binomial for large n and small p  
+(D) Var(X+Y) = Var X + Var Y always
+
+**Q3 (2 marks, numerical answer).** A diagnostic test has prevalence 0.01, sensitivity 0.9 and false-positive rate 0.05. Compute P(disease given positive) to four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive Bayes' rule from the definition of conditional probability.
+
+**Q5 (3 marks, programming).** Simulate conditional probability problems, the birthday problem and sample means of four distributions for growing n. Predict the birthday probability for 23 people first.
+
+<details><summary>Key for A19.3 (open only after your attempt)</summary>
+
+- **Q1:** C. Bayes gives 0.009/(0.009 + 0.0495) = 15.4 percent.
+- **Q2:** ABC. D is false: a covariance term appears unless they are uncorrelated.
+- **Q3:** 0.1538 (tolerance ±0.0001). The numerator is 0.009 and the denominator 0.0585, giving 0.1538.
+- **Q4 (marking outline):** By definition P(A and B) = P(A given B) P(B) and also P(A and B) = P(B given A) P(A). Equating them and dividing by P(B) > 0 gives P(A given B) = P(B given A) P(A)/P(B).
+- **Q5 (what a passing submission shows):** The simulation gives about 0.507 for 23 people, matches Bayes' rule on the test problem, and the standardised mean of 30 exponentials has P(Z below 1.96) near 0.966.
+
+</details>
+
+### U19.4 Sampling and sampling distributions: the standard error, the t, chi-square and F distributions, confidence intervals and the bootstrap
+**Sources:** DAP W3
+- **Topics:** population and sample, parameter and statistic; random, stratified, cluster and systematic sampling and the biases of convenience samples; the sampling distribution of the mean and of a proportion; the standard error; the central limit theorem at work; the t, chi-square and F distributions and where each comes from; confidence intervals for a mean and a proportion and what "95 %" means; sample-size planning; the bootstrap as a way to get a standard error and an interval without a formula.
+- **Results:** the standard error of the sample mean is σ/√n, so quadrupling the sample halves it [P, check: 0.40 for n = 25 and 0.20 for n = 100 with σ = 2]; for normal data the t interval x̄ ± t(0.975, n − 1) s/√n has exact coverage 95 % [P, check: 94.8 % for n = 10, critical value 2.262], while replacing t by 1.96 gives 91.6 % [check]; for exponential data with n = 10 the t interval covers only 90.1 % and with n = 100 about 94.2 % [check]; the bootstrap standard error of a mean of 50 values (0.172) matches the formula (0.175) [check].
+- **Build:** a coverage simulator that reports the true coverage of intervals under different distributions and sample sizes; a bootstrap for the median and a trimmed mean; a sample-size calculator. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapters 7 and 8; Efron and Tibshirani, An Introduction to the Bootstrap, recalled, not checked]* the finite-population correction is stated; the Bayesian reading of an interval is in U19.14.
+
+**Assignment A19.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Quadrupling the sample size changes the standard error of the mean by a factor of
+
+(A) 4  
+(B) 2  
+(C) 1/2  
+(D) 1/4
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) A 95 percent t interval for normal data has exact 95 percent coverage  
+(B) The bootstrap can estimate a standard error without a formula  
+(C) Replacing t by 1.96 in a small sample lowers coverage  
+(D) The population mean is a random variable in a confidence interval
+
+**Q3 (2 marks, numerical answer).** A sample of 25 values has standard deviation 10. What is the half-width of the 95 percent z interval for the mean (1.96 times the standard error)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the variance of the sample mean of n independent observations with variance sigma^2 is sigma^2/n.
+
+**Q5 (3 marks, programming).** Write a coverage simulator for t intervals under normal and exponential data at n = 10 and n = 100, and a bootstrap standard error for a mean. Predict the coverage for exponential n = 10 first.
+
+<details><summary>Key for A19.4 (open only after your attempt)</summary>
+
+- **Q1:** C. The standard error is sigma over the square root of n, so it halves.
+- **Q2:** ABC. D is false: the interval is random and the parameter is fixed.
+- **Q3:** 3.92 (tolerance ±0.001). The standard error is 2, so the half-width is 3.92.
+- **Q4 (marking outline):** Var(mean) = Var((1/n) sum X_i) = (1/n^2) sum Var(X_i) because the covariances are zero. That equals (1/n^2) n sigma^2 = sigma^2/n.
+- **Q5 (what a passing submission shows):** The normal-data coverage is about 94.8 percent, exponential n = 10 is about 90 percent and n = 100 about 94 percent, and the bootstrap SE matches the formula within 3 percent.
+
+</details>
+
+### U19.5 Hypothesis testing: null and alternative, p-values, errors and power, one- and two-sided tests, and multiple comparisons
+**Sources:** DAP W4
+- **Topics:** the logic of a test: null and alternative hypotheses, the test statistic, the rejection region, the p-value and what it is not; type I and type II errors and the significance level; power and its dependence on effect size, sample size, variance and α; the z test and the one-sample t test; one-sided and two-sided tests; confidence intervals and tests as two views of the same thing; practical significance against statistical significance; multiple testing: the family-wise error rate, Bonferroni and the Benjamini–Hochberg procedure for the false discovery rate.
+- **Results:** if the null is true and the test is exact, the p-value is uniform on (0, 1), so the type I error equals α [P, check: 5.04 % rejections of a true null with n = 25]; the power of the two-sided z test for an effect of 0.5σ with n = 32 is Φ(0.5√32 − 1.96) + Φ(−0.5√32 − 1.96) = 0.807 [D, check: simulation of the t test gives 0.780]; with 20 independent true nulls the chance of at least one rejection at α = 0.05 is 1 − 0.95²⁰ = 64.2 %, and Bonferroni at 0.05/20 brings it to 4.9 % [P, check]; among 1000 tests (900 null, 100 with effect 3σ) uncorrected testing makes 137 rejections of which 36 % are false, Bonferroni makes 19, and Benjamini–Hochberg at q = 0.05 makes 61 with 3.3 % false [check].
+- **Build:** a simulator for type I error and power over a grid of effect sizes and sample sizes; a multiple-testing experiment with the three corrections; a power-curve plot. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapter 9; Benjamini and Hochberg 1995, recalled, not checked]* the Neyman–Pearson lemma is stated; permutation tests are named and used in U19.6.
+
+**Assignment A19.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** If the null hypothesis is true and the test is exact, the p-value is distributed
+
+(A) Uniformly on (0,1)  
+(B) Near 0  
+(C) Normally  
+(D) Near 1
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Power rises with sample size  
+(B) The type I error rate equals the significance level for an exact test  
+(C) Bonferroni controls the family-wise error rate  
+(D) A small p-value measures the size of an effect
+
+**Q3 (2 marks, numerical answer).** With 20 independent true null hypotheses each tested at 0.05, what is the probability of at least one false rejection?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that Bonferroni correction at alpha/m controls the family-wise error rate at alpha.
+
+**Q5 (3 marks, programming).** Simulate type I error and power for the t test over effect sizes and n, and compare no correction, Bonferroni and Benjamini-Hochberg on 1000 tests with 100 true effects. Predict the uncorrected false share first.
+
+<details><summary>Key for A19.5 (open only after your attempt)</summary>
+
+- **Q1:** A. An exact test has a uniform p-value under the null so the rejection rate equals alpha.
+- **Q2:** ABC. D is false: it does not measure effect size.
+- **Q3:** 0.6415 (tolerance ±0.001). 1 - 0.95^20 = 0.6415.
+- **Q4 (marking outline):** By the union bound the probability that any true null is rejected is at most the sum over the true nulls of their rejection probabilities, which is at most m times alpha/m = alpha.
+- **Q5 (what a passing submission shows):** The type I error is about 5 percent, uncorrected testing rejects about 137 with about 36 percent false, Bonferroni about 19 and Benjamini-Hochberg about 61 with about 3 percent false.
+
+</details>
+
+### U19.6 Two-sample testing and the analysis of variance: pooled and Welch t tests, paired tests, one-way and two-way ANOVA
+**Sources:** DAP W5–6
+- **Topics:** two sample testing: the pooled and Welch t tests, the paired t test, tests for proportions and the F test for two variances; an introduction to ANOVA: comparing several means with one F test, the between-group and within-group sums of squares, the assumptions (independence, equal variance, normality) and how to check them, post-hoc comparisons (Tukey, Bonferroni); two-way ANOVA: two factors, main effects and an interaction, the balanced design and the sums-of-squares decomposition, interaction plots; the relation of ANOVA to regression with dummy variables.
+- **Results:** the pooled test assumes equal variances and fails when they differ and the sizes are unequal: with groups of 10 and 40 whose standard deviations are 1 and 4 its false-positive rate is 0.1 %, and with the large variance in the small group (standard deviations 4 and 1) it is 29.3 %, while Welch's test stays at 4.9 % and 5.1 % [check]; for two groups t² = F, 0.6227 both ways [P, check]; in one-way ANOVA SST = SSB + SSW and F = (SSB/(k − 1))/(SSW/(N − k)), with F = 12.78 for three groups of 12 whose means are 0, 0.5 and 1 [P, check]; in a balanced two-way design SST = SSA + SSB + SSAB + SSE, with degrees of freedom adding to abr − 1 = 35 [P, check]; a significant F says that some mean differs, not which [P].
+- **Build:** pooled, Welch and paired tests against `scipy.stats`; one-way ANOVA from sums of squares against `f_oneway`; a balanced two-way ANOVA with an interaction plot; a permutation test of two groups. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapters 10 and 13; Montgomery, Design and Analysis of Experiments, recalled, not checked]* unbalanced designs, random-effects and repeated-measures ANOVA are named only.
+
+**Assignment A19.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For two groups the one-way ANOVA F statistic equals
+
+(A) t  
+(B) t squared  
+(C) t over 2  
+(D) the p-value
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Welch's test does not assume equal variances  
+(B) One-way ANOVA total sum of squares equals between plus within  
+(C) A significant F shows which means differ  
+(D) A paired test uses within-pair differences
+
+**Q3 (2 marks, numerical answer).** A one-way ANOVA has 4 groups of 10 observations each. How many degrees of freedom does the within-group sum of squares have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that SST = SSB + SSW in one-way ANOVA.
+
+**Q5 (3 marks, programming).** Simulate pooled and Welch tests with unequal variances and sizes, one-way ANOVA from sums of squares against scipy, and a balanced two-way ANOVA. Predict the pooled false-positive rate when the small group has the large variance first.
+
+<details><summary>Key for A19.6 (open only after your attempt)</summary>
+
+- **Q1:** B. With two groups F = t^2.
+- **Q2:** ABD. C is false: F only says that some mean differs.
+- **Q3:** 36 (tolerance ±0.01). N - k = 40 - 4 = 36.
+- **Q4 (marking outline):** Write x_ij - grand mean = (x_ij - group mean) + (group mean - grand mean). Squaring and summing, the cross term is sum over groups of (group mean - grand mean) times the sum of deviations from the group mean, which is zero. So SST = SSW + SSB.
+- **Q5 (what a passing submission shows):** The pooled test has about 29 percent false positives when the group of 10 has standard deviation 4 and the group of 40 has 1, while Welch stays near 5 percent, and t squared equals F.
+
+</details>
+
+### U19.7 Linear regression and multiple regression: least squares, inference, diagnostics and model building
+**Sources:** DAP W6–7,9
+- **Topics:** linear regression: the simple model, the least-squares line, the interpretation of the slope and intercept, R², the standard errors of the coefficients, the t test for a slope, confidence and prediction intervals; multiple regression: the model in matrix form, the normal equations (U18.6), the F test of the whole model, adjusted R², dummy variables, interaction terms; the residual diagnostics (residual plots, normal probability plots, leverage, influential points and Cook's distance); multicollinearity and the variance inflation factor; regression analysis model building: variable selection (forward, backward, stepwise, best subsets), the Akaike and Bayesian information criteria, overfitting and cross-validation; extrapolation and causation warnings.
+- **Results:** in simple regression the slope is Cov(x, y)/Var(x) and R² = r² [P, check: 1.5654 both ways, R² = 0.7438 = r²]; the hat matrix H = X(XᵀX)⁻¹Xᵀ has trace equal to the number of parameters [P, check: 2.0]; the variance inflation factor of a predictor is 1/(1 − R_j²), and two predictors correlated at 0.947 give VIF = 9.66 and standard errors three times those of a model with one predictor (0.199 and 0.194 against 0.066) [P, check]; AIC = n ln(RSS/n) + 2k and BIC = n ln(RSS/n) + k ln n, and on 60 points from a quadratic the lowest AIC (−76.9) and BIC (−68.5) are both at degree 2 while RSS keeps falling at higher degrees [check]; the least-squares estimator is the best linear unbiased estimator under the Gauss–Markov assumptions [S].
+- **Build:** simple and multiple regression from the normal equations compared with `numpy.linalg.lstsq` and with `sklearn.linear_model.LinearRegression`; a residual-diagnostic panel; a VIF calculator; polynomial degree selection by AIC, BIC and cross-validation. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapters 11 and 12; James et al. Chapters 3 and 6]* the lasso and ridge are in U11.8 and U18.6; the full matrix algebra is in D18.
+
+**Assignment A19.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In simple regression R squared equals
+
+(A) The slope  
+(B) The squared correlation between x and y  
+(C) The residual variance  
+(D) The p-value
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The trace of the hat matrix equals the number of parameters  
+(B) AIC and BIC penalise extra parameters  
+(C) A high variance inflation factor signals multicollinearity  
+(D) Adding a predictor can never lower the training R squared
+
+**Q3 (2 marks, numerical answer).** Two predictors are correlated at 0.9. What is the variance inflation factor 1/(1 - r^2)? Give three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the slope of simple least squares is Cov(x,y)/Var(x).
+
+**Q5 (3 marks, programming).** Fit simple and multiple regression by the normal equations, add a VIF calculator and select a polynomial degree by AIC, BIC and cross-validation. Predict the degree chosen for data from a quadratic first.
+
+<details><summary>Key for A19.7 (open only after your attempt)</summary>
+
+- **Q1:** B. R^2 = r^2 for one predictor.
+- **Q2:** ABCD. All four are true: an added predictor cannot lower training R squared, and the first three are standard results.
+- **Q3:** 5.263 (tolerance ±0.001). 1/(1 - 0.81) = 5.263.
+- **Q4 (marking outline):** Minimise sum (y_i - a - b x_i)^2. The derivative in a gives a = ybar - b xbar. The derivative in b gives sum x_i (y_i - a - b x_i) = 0, and substituting a gives b sum (x_i - xbar)^2 = sum (x_i - xbar)(y_i - ybar), so b = Cov(x,y)/Var(x).
+- **Q5 (what a passing submission shows):** The slope and R squared match numpy and sklearn, VIF is about 9.7 for predictors correlated at 0.95, and AIC and BIC choose degree 2.
+
+</details>
+
+### U19.8 Maximum likelihood, logistic regression and the ROC curve
+**Sources:** DAP W8–9
+- **Topics:** concepts of MLE: the likelihood function, the log-likelihood, maximisation, the invariance and large-sample properties of maximum likelihood estimators, the bias of the MLE of a variance; the logistic regression model for a binary response: odds, log-odds, the logit link and odds ratios; fitting by iteratively reweighted least squares (Newton's method) and its convergence; inference on coefficients; classification thresholds; ROC and the evaluation of a classifier: the confusion matrix, sensitivity and specificity, the ROC curve, the area under it and its probabilistic meaning; choosing a threshold by cost; calibration.
+- **Results:** the MLE of a Bernoulli probability is k/n, and of a normal variance is (1/n)Σ(xᵢ − x̄)², whose expectation is (n − 1)/n times the true variance [P, check: 3.197 against 3.2 for σ² = 4, n = 5]; for logistic regression the score is Xᵀ(y − p) and the Newton step is (XᵀWX)⁻¹Xᵀ(y − p) with W = diag(p(1 − p)) [D]; IRLS reaches the optimum in five iterations on 500 observations ((−0.480, 0.918, −2.246) against the true (−0.5, 1.0, −2.0)) and agrees with `sklearn` to 2·10⁻⁴ [check]; a coefficient of ln 2 multiplies the odds by 2 [P]; the area under the ROC curve equals the probability that a random positive scores above a random negative, the Mann–Whitney statistic, 0.8967 by pairs, `roc_auc_score` and `mannwhitneyu` [P, check].
+- **Build:** a maximum-likelihood fit of a Bernoulli, a normal and a Poisson model by derivative and by `scipy.optimize`; IRLS for logistic regression; an ROC and precision–recall plotter; a threshold chooser by expected cost. [local]
+- **Gap-fills:** *[inferred: Montgomery and Runger Chapter 12; Hosmer and Lemeshow, Applied Logistic Regression, recalled, not checked]* multinomial and ordinal logistic regression and the Fisher information are named.
+
+**Assignment A19.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The maximum likelihood estimate of a Bernoulli probability from 7 successes in 10 trials is
+
+(A) 0.5  
+(B) 0.7  
+(C) 0.07  
+(D) 7
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The area under the ROC curve is the probability that a random positive scores above a random negative  
+(B) The MLE of a normal variance divides by n and is biased  
+(C) IRLS is Newton's method for logistic regression  
+(D) A logistic coefficient of 0 means the odds multiply by 2
+
+**Q3 (2 marks, numerical answer).** A logistic regression coefficient is 1.5. By what factor do the odds multiply for a one-unit increase? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the MLE of a Bernoulli probability is k/n.
+
+**Q5 (3 marks, programming).** Implement IRLS for logistic regression, compare with sklearn, and compute AUC by pairs, by Mann-Whitney and with sklearn. Predict the number of IRLS iterations to converge first.
+
+<details><summary>Key for A19.8 (open only after your attempt)</summary>
+
+- **Q1:** B. The likelihood p^7(1-p)^3 is maximised at 7/10.
+- **Q2:** ABC. D is false: a coefficient of 0 multiplies the odds by 1.
+- **Q3:** 4.482 (tolerance ±0.0001). The odds ratio is e^1.5 = 4.4817.
+- **Q4 (marking outline):** The log-likelihood is k ln p + (n - k) ln(1 - p). Its derivative k/p - (n - k)/(1 - p) is zero at p = k/n, and the second derivative is negative, so this is the maximum.
+- **Q5 (what a passing submission shows):** IRLS converges in about 5 iterations to within 2e-4 of sklearn, and the three AUC computations agree exactly.
+
+</details>
+
+### U19.9 The chi-square test and cluster analysis: goodness of fit, independence, hierarchical and k-means clustering, density-based clustering and outlier detection
+**Sources:** DAP W10–11; DM W5
+- **Topics:** the C 2 test (the chi-square test): goodness of fit and independence in a contingency table, expected counts, degrees of freedom, the assumptions; introduction to cluster analysis and clustering analysis: the idea of a cluster, distance and similarity measures, scaling before clustering; hierarchical (agglomerative) clustering with single, complete, average and Ward linkage and the dendrogram; centroid-based clustering with k-means (the algorithm is in U11.8 and U18.11) and the choice of k by the elbow and the silhouette; density-based clustering (DBSCAN: core, border and noise points); clustering as data mining (Clustering, Outlier detection): outliers by z-scores, the robust MAD score, by distance and by density (local outlier factor), and the masking problem.
+- **Results:** for a 2×2 table the chi-square statistic equals the square of the two-proportion z statistic [P, check: the table (30, 20; 20, 30) gives χ² = 4.0, p = 0.0455, z = 2.0]; a fair-die goodness-of-fit test on the counts 8, 12, 9, 11, 14, 6 gives χ² = 4.2 on 5 degrees of freedom, p = 0.52 [check]; on three well-separated blobs the silhouette is 0.81 at k = 2, 0.83 at k = 3 and falls to 0.68 and 0.54 at k = 4 and 5 [check]; on two interleaved moons the adjusted Rand index is 0.23 for k-means and 0.20 for complete linkage but 1.0 for single linkage and for DBSCAN [check]; with 50 standard-normal points and 10 outliers uniform on 8 to 10 the outliers inflate the standard deviation to 3.47, so the z-score rule at 3 flags none of them while the robust MAD score flags all 10, which is the masking effect [check].
+- **Build:** a chi-square test from the table against `scipy.stats.chi2_contingency`; hierarchical clustering with all four linkages and a dendrogram; k-means with silhouette selection; DBSCAN on moons; an outlier detector with z, MAD and LOF scores. [local]
+- **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 10 and 12; Tan, Steinbach and Kumar Chapters 7 and 9]* Fisher's exact test, model-based clustering (U18.11) and the curse of dimensionality for clustering (U19.12) are cross-references.
+
+**Assignment A19.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a 2x2 table the chi-square statistic equals
+
+(A) The two-proportion z statistic  
+(B) The square of the two-proportion z statistic  
+(C) Twice z  
+(D) The p-value
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Single linkage can follow chains such as interleaved moons  
+(B) DBSCAN labels low-density points as noise  
+(C) The z-score rule can miss outliers by masking  
+(D) k-means finds non-convex clusters well
+
+**Q3 (2 marks, numerical answer).** The observed table is 30, 20 / 20, 30 with expected count 25 in each cell. What is the chi-square statistic?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for a 2x2 table the chi-square statistic equals the square of the two-proportion z statistic.
+
+**Q5 (3 marks, programming).** Run chi-square tests against scipy, cluster blobs and moons with k-means, hierarchical and DBSCAN using silhouette and adjusted Rand index, and detect outliers by z, MAD and LOF. Predict which methods separate the moons first.
+
+<details><summary>Key for A19.9 (open only after your attempt)</summary>
+
+- **Q1:** B. chi-square = z squared for a 2x2 table.
+- **Q2:** ABC. D is false: k-means prefers convex, roughly spherical clusters.
+- **Q3:** 4 (tolerance ±0.001). Each cell contributes 25/25 = 1, total 4.
+- **Q4 (marking outline):** Write the table with row totals n1, n2 and success counts a, b so p1 = a/n1, p2 = b/n2 and pooled p. The chi-square statistic sums (O - E)^2/E over four cells. Each cell has the same absolute deviation n1 n2 (p1 - p2)/N, and the four terms collapse to (p1 - p2)^2 divided by p(1-p)(1/n1 + 1/n2), which is z squared.
+- **Q5 (what a passing submission shows):** Single linkage and DBSCAN reach an adjusted Rand index of 1.0 on the moons while k-means gets about 0.23, and the MAD rule flags all 10 masked outliers where the z rule flags none.
+
+</details>
+
+### U19.10 Classification and regression trees (CART): impurity, splitting, overfitting and pruning
+**Sources:** DAP W12
+- **Topics:** classification and regression trees (CART): the recursive partition of the feature space; impurity measures (Gini index and entropy, the variance for regression); choosing a split and the information gain; stopping rules; why a fully grown tree overfits; cost-complexity pruning and choosing the penalty by cross-validation; reading a tree as rules; strengths (interpretability, mixed variable types, no scaling) and weaknesses (instability, axis-aligned splits); the step to ensembles (bagging, random forests, boosting; named, with the construction in U11.8 and U11.9).
+- **Results:** the Gini index of a 50/50 node is 0.5 and its entropy 1 bit, and both are zero for a pure node [Def, check]; a split of a 10/10 node into 8/2 and 2/8 children reduces the Gini impurity by 0.18 and the entropy by 0.278 bits [D, check]; on 300 training and 300 test points of a noisy rule a fully grown tree has 49 leaves, 100 % training accuracy and 70.7 % test accuracy, while the cost-complexity penalty chosen by five-fold cross-validation prunes it to a stump with 78.7 % training and 80.7 % test accuracy [check]; the greedy split is not globally optimal, since choosing the best tree is NP-hard [X].
+- **Build:** a CART implementation (Gini and entropy, categorical and numeric splits, depth and leaf limits) compared with `sklearn.tree.DecisionTreeClassifier`; the pruning path and the cross-validated penalty; a regression tree on a curve. [local]
+- **Gap-fills:** *[inferred: Breiman, Friedman, Olshen and Stone, Classification and Regression Trees, 1984; James et al. Chapter 8, recalled, not checked]* missing-value handling by surrogate splits and the C4.5 and ID3 variants are named.
+
+**Assignment A19.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Gini index of a node with 80 percent of one class and 20 percent of the other is
+
+(A) 0.5  
+(B) 0.32  
+(C) 0.2  
+(D) 0.64
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Fully grown trees overfit  
+(B) Cost-complexity pruning trades fit for size  
+(C) Gini and entropy both are zero for a pure node  
+(D) CART splits are chosen globally optimally
+
+**Q3 (2 marks, numerical answer).** What is the Gini index of a node with class proportions 0.8 and 0.2?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the Gini index is maximised by the uniform class distribution for two classes.
+
+**Q5 (3 marks, programming).** Implement a CART classifier with Gini and entropy and compare with sklearn, then show the pruning path and choose the penalty by cross-validation. Predict the training and test accuracy of the unpruned tree first.
+
+<details><summary>Key for A19.10 (open only after your attempt)</summary>
+
+- **Q1:** B. 1 - 0.64 - 0.04 = 0.32.
+- **Q2:** ABC. D is false: they are chosen greedily.
+- **Q3:** 0.32 (tolerance ±0.001). 1 - 0.64 - 0.04 = 0.32.
+- **Q4 (marking outline):** With proportions p and 1 - p the Gini index is 1 - p^2 - (1-p)^2 = 2p(1-p). Its derivative 2 - 4p vanishes at p = 1/2 and the second derivative -4 is negative, so the maximum is 0.5 at the uniform distribution.
+- **Q5 (what a passing submission shows):** The unpruned tree has about 100 percent training and about 70 percent test accuracy while a cross-validated pruned tree is smaller and scores about 80 percent on test.
+
+</details>
+
+### U19.11 Data mining: introduction, data preprocessing, association rule mining and classification basics
+**Sources:** DM W1–2, o
+- **Topics:** data mining as the study of algorithms for finding patterns in large data sets, at the meeting of databases, machine learning and algorithms; its role in industry and science (business insight from operations and customer data); the algorithms of the course (data preprocessing, association rules, classification, clustering, sequence mining and visualisation), implementations in open-source software and case studies on industrial problems; introduction and data preprocessing: data cleaning, missing values (deletion, imputation), noise, normalisation (min–max, z-score), discretisation, sampling, feature selection and dimensionality reduction (PCA in U18.4); association rule mining: market baskets, support, confidence and lift, frequent itemsets, the Apriori algorithm and the downward-closure property, FP-growth named, the explosion of rules; classification basics: training and test sets, overfitting, the classification pipeline.
+- **Results:** a set of d items has 2^d − 1 non-empty itemsets and 3^d − 2^(d+1) + 1 association rules [P, check: 63 and 602 for d = 6 by enumeration]; downward closure: every subset of a frequent itemset is frequent [P], so Apriori may prune any candidate with an infrequent subset [P]; on the five-basket example with minimum support 3 Apriori counts 13 candidates instead of 63 and finds eight frequent itemsets (four items and the pairs bread–diaper, diaper–milk, bread–milk and beer–diaper) [check]; the rule diaper → beer has support 0.6, confidence 0.75 and lift 1.25, while (bread, milk) → diaper has lift 0.83, below 1, so confidence alone can mislead [check]; min–max scaling maps a column to [0, 1] and z-scoring to mean 0 and standard deviation 1 [Def].
+- **Build:** an Apriori implementation with candidate counting checked against brute force, a rule generator with support, confidence and lift, and a preprocessing pipeline (imputation, scaling, discretisation) on a messy data frame. [local]
+- **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 2, 3 and 6; Agrawal and Srikant 1994, recalled, not checked]* the audience and industry lines of the outline are treated as framing; FP-growth and Eclat are named.
+
+**Assignment A19.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The downward-closure property says
+
+(A) Every subset of a frequent itemset is frequent  
+(B) Every superset of a frequent itemset is frequent  
+(C) Rules have confidence 1  
+(D) Support is monotone increasing
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) A set of d items has 2^d - 1 non-empty itemsets  
+(B) Lift below 1 means a negative association  
+(C) Apriori prunes candidates with an infrequent subset  
+(D) Confidence alone is a complete measure of rule interest
+
+**Q3 (2 marks, numerical answer (rules)).** How many association rules A to B exist over d = 5 items, with A and B non-empty and disjoint?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that every subset of a frequent itemset is frequent.
+
+**Q5 (3 marks, programming).** Implement Apriori with candidate counting and rule generation with support, confidence and lift on the five-basket example and check it against brute force. Predict the number of frequent itemsets at minimum support 3 first.
+
+<details><summary>Key for A19.11 (open only after your attempt)</summary>
+
+- **Q1:** A. If an itemset occurs in a transaction so do all its subsets.
+- **Q2:** ABC. D is false: a high-confidence rule can have lift below 1.
+- **Q3:** 180 rules (tolerance ±0.01). 3^d - 2^(d+1) + 1 = 243 - 64 + 1 = 180.
+- **Q4 (marking outline):** Let X be frequent and Y a subset of X. Every transaction that contains X also contains Y, so support(Y) is at least support(X), which is at least the minimum support.
+- **Q5 (what a passing submission shows):** Apriori finds eight frequent itemsets with 13 candidates counted instead of 63 and the rule diaper to beer has support 0.6, confidence 0.75 and lift 1.25.
+
+</details>
+
+### U19.12 Classification: decision trees, the Bayes classifier, nearest neighbours, support vector machines and kernel machines
+**Sources:** DM W3–4
+- **Topics:** decision tree induction as a data-mining algorithm (ID3 and C4.5 with the gain ratio; the CART view is U19.10); the Bayes classifier and the naive Bayes classifier with Laplace smoothing, text classification; K nearest neighbor: distance, the choice of k, weighting, the cost of prediction and the curse of dimensionality; the support vector machine and kernel machine (the maximum margin, the soft margin, the kernel trick; derived in U18.6) as a data-mining classifier; choosing among classifiers.
+- **Results:** the Bayes classifier that picks the class with the largest posterior has the smallest possible error [P]; for two unit-variance Gaussians 1.5 apart in each of two coordinates the Bayes error is 14.4 %, and k-nearest neighbours on 2000 training points reaches 21.1 % at k = 1, 16.9 % at k = 5, 15.1 % at k = 25 and 14.6 % at k = 101 [check]; as n → ∞ the one-nearest-neighbour error is at most twice the Bayes error [S, Cover–Hart]; with Laplace smoothing the message "cheap now" scores log P(spam) = −4.20 against −5.89 for ham on the five-message toy corpus, a posterior of 0.844 for spam [check]; the ratio of the largest to the smallest distance from a point to 500 uniform points falls from 55 in 2 dimensions to 3.9 in 10, 1.43 in 100 and 1.10 in 1000 [check, distance concentration].
+- **Build:** naive Bayes with smoothing for a small text corpus, k-NN with a k sweep and a dimension sweep, an ID3 tree with information gain, and an SVM comparison with `sklearn.svm.SVC`. [local]
+- **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 8 and 9; Tan, Steinbach and Kumar Chapters 3 to 5]* rule-based classifiers, neural networks and ensembles are named only.
+
+**Assignment A19.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** With Laplace smoothing a word seen 3 times among 20 class words with a 10-word vocabulary has probability
+
+(A) 3/20  
+(B) 4/30  
+(C) 4/20  
+(D) 3/30
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The Bayes classifier has the smallest possible error  
+(B) One-nearest-neighbour error tends to at most twice the Bayes error  
+(C) Distances concentrate in high dimensions  
+(D) k-NN prediction is cheap for large training sets
+
+**Q3 (2 marks, numerical answer).** With Laplace smoothing, a word appears 3 times among 20 words of a class and the vocabulary has 10 words. What is its smoothed probability? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that choosing the class with the largest posterior minimises the error probability.
+
+**Q5 (3 marks, programming).** Implement naive Bayes with smoothing, k-NN with k and dimension sweeps and an ID3 tree, and compare with sklearn. Predict the k-NN error against the Bayes error of 14.4 percent first.
+
+<details><summary>Key for A19.12 (open only after your attempt)</summary>
+
+- **Q1:** B. (3 + 1)/(20 + 10) = 4/30.
+- **Q2:** ABC. D is false: k-NN prediction must compare against the stored data.
+- **Q3:** 0.1333 (tolerance ±0.0001). 4/30 = 0.1333.
+- **Q4 (marking outline):** For a given x the probability of an error when predicting class c is 1 - P(c given x). Choosing the class with the largest posterior makes this smallest at every x, so the average error is smallest.
+- **Q5 (what a passing submission shows):** k-NN reaches 21 percent at k = 1 and about 14.6 percent at k = 101 against the Bayes error 14.4 percent, and the max over min distance ratio shrinks from 55 in 2 dimensions to about 1.1 in 1000.
+
+</details>
+
+### U19.13 Evaluation, visualisation, sequence mining and case studies
+**Sources:** DM W6–8
+- **Topics:** sequence mining: sequences of itemsets, subsequences and support, the GSP and PrefixSpan algorithms, applications (click streams, purchases over time); evaluation: the confusion matrix, accuracy, precision, recall and F1, ROC and precision–recall curves, hold-out and k-fold cross-validation, the accuracy paradox on skewed classes, lift charts and cost-sensitive evaluation; visualisation: scatter-plot matrices, parallel coordinates, heat maps, dimensionality reduction for display (PCA and t-SNE named), principles of an honest chart; case studies on industrial problems: retail basket analysis, customer churn, fraud, with the whole pipeline from preprocessing to a decision.
+- **Results:** PrefixSpan finds exactly the frequent subsequences that brute-force enumeration finds [P, check: nine frequent sequences a, ab, abc, ac, b, bb, bc, c and cb at minimum support 3 on four sequences]; accuracy misleads on skew: with a 2.06 % positive rate a model that never fires has 97.9 % accuracy and zero recall, and on a simulated fraud-like problem (AUC 0.824) logistic regression at threshold 0.5 has accuracy 0.979, precision 0 and recall 0, at threshold 0.1 precision 0.127, recall 0.204, and at 0.05 precision 0.091, recall 0.417 with accuracy 0.902 [check]; five-fold cross-validation of a depth-3 tree gives accuracies 0.683 to 0.792 with mean 0.723 and standard deviation 0.045, so a single split can mislead by several points [check]; the expected precision of random guessing equals the base rate, so a precision of 0.127 is about six times better than chance [check].
+- **Build:** PrefixSpan against brute force; an evaluation harness (stratified k-fold, ROC and precision–recall curves, a cost-aware threshold chooser); a visualisation panel; a complete churn or fraud case study on synthetic data with a written one-page recommendation. [local]
+- **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 3, 8 and 13; Pei et al. 2001 for PrefixSpan, recalled, not checked]* the case studies use synthetic data so that every figure is reproducible; real industrial data sets are named where a public one exists.
+
+**Assignment A19.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** On data with 2 percent positives a model that never predicts positive has accuracy about
+
+(A) 2 percent  
+(B) 50 percent  
+(C) 98 percent  
+(D) 100 percent
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) F1 is the harmonic mean of precision and recall  
+(B) PrefixSpan finds frequent subsequences  
+(C) A single train-test split can mislead by several points  
+(D) Precision is unaffected by the base rate
+
+**Q3 (2 marks, numerical answer).** A classifier has precision 0.5 and recall 0.25. What is its F1 score? Give three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a classifier that never predicts the positive class has accuracy 1 minus the positive rate and recall 0.
+
+**Q5 (3 marks, programming).** Implement PrefixSpan checked against brute force, an evaluation harness with stratified k-fold, ROC and precision-recall curves and a cost-aware threshold chooser, and a churn case study. Predict the accuracy of the never-fires model on a 2 percent positive set first.
+
+<details><summary>Key for A19.13 (open only after your attempt)</summary>
+
+- **Q1:** C. It is right on all negatives, which is 98 percent.
+- **Q2:** ABC. D is false: precision depends on the base rate.
+- **Q3:** 0.3333 (tolerance ±0.001). The harmonic mean is 0.25/0.75 = 0.333.
+- **Q4 (marking outline):** It predicts negative for every instance so it is correct exactly on the negatives, a fraction 1 minus the positive rate. It finds no positives so true positives are 0 and recall = 0 divided by the number of positives = 0.
+- **Q5 (what a passing submission shows):** PrefixSpan matches brute force on nine frequent sequences, the never-fires accuracy is about 0.98, and the logistic model at threshold 0.1 has precision about 0.13 and recall about 0.20.
+
+</details>
+
+### U19.14 Bayesian inference: Bayes' theorem, the likelihood, prior and posterior, analytical methods and grid approximation
+**Sources:** BDA W3–4, o
+- **Topics:** the course outline: a conceptual understanding of Bayesian inference and its applications in behavioral data analysis and modelling, and the three skills (analyse data in the Bayesian framework, develop and implement Bayesian models, evaluate computational (cognitive) models given the data); Bayes’ theorem, likelihood function, prior distribution, and posterior distribution: the posterior is proportional to the likelihood times the prior; choosing priors (flat, weakly informative, informative) and prior sensitivity; parameter estimation I: analytical methods (conjugate pairs: beta–binomial, gamma–Poisson, normal–normal) and grid approximation; summaries of a posterior (mean, mode, credible interval, highest-density interval); the posterior predictive distribution; the Laplace approximation; frequentist and Bayesian intervals compared.
+- **Results:** a Beta(a, b) prior and k successes in n trials give a Beta(a + k, b + n − k) posterior [P]; with a flat prior and 7 heads in 10 tosses the posterior is Beta(8, 4), mean 2/3, mode 0.7 and 95 % credible interval (0.390, 0.891), which a 1001-point grid reproduces to three decimals [P, check]; with a Beta(10, 10) prior the posterior mean moves to 0.567, which is the prior sensitivity [P, check]; the posterior predictive probability of three more heads in three tosses is 0.330 under Beta(8, 4) [P, check]; for a normal mean with known variance 1, prior N(0, 2²) and five observations the posterior is normal with mean 1.143 and standard deviation 0.436, pulled slightly from the sample mean 1.2 [P, check]; a gamma(2, 1) prior and counts totalling 14 in 5 periods give a gamma(16, 6) posterior with mean 2.667 [P, check]; the Laplace approximation to Beta(8, 4) has standard deviation 0.145 against the exact 0.131 [check].
+- **Build:** a conjugate-update library for the three pairs; a grid-posterior plotter for any one-parameter model; prior-sensitivity plots; the posterior predictive check for a coin model. [local]
+- **Gap-fills:** *[inferred: Gelman et al. Chapters 1 to 3; Kruschke Chapters 5 to 7; McElreath Chapters 2 and 3, recalled, not checked]* the course is the introduction to the Bayesian way; decision theory with a loss function is named only.
+
+**Assignment A19.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A uniform Beta(1,1) prior and 7 heads in 10 tosses give the posterior
+
+(A) Beta(7,3)  
+(B) Beta(8,4)  
+(C) Beta(10,10)  
+(D) Beta(1,1)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The posterior is proportional to likelihood times prior  
+(B) A conjugate prior keeps the posterior in the same family  
+(C) The posterior predictive averages over the posterior  
+(D) The posterior mean is always the MLE
+
+**Q3 (2 marks, numerical answer).** What is the posterior mean of the coin probability under a uniform prior after 7 heads in 10 tosses? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a Beta(a,b) prior and k successes in n Bernoulli trials give a Beta(a+k, b+n-k) posterior.
+
+**Q5 (3 marks, programming).** Implement conjugate updates for the three pairs, a grid posterior for the coin model, a prior-sensitivity plot and a posterior predictive check. Predict the 95 percent credible interval for 7 of 10 first.
+
+<details><summary>Key for A19.14 (open only after your attempt)</summary>
+
+- **Q1:** B. The posterior is Beta(1 + 7, 1 + 3) = Beta(8, 4).
+- **Q2:** ABC. D is false: it is pulled toward the prior.
+- **Q3:** 0.6667 (tolerance ±0.0001). Beta(8,4) has mean 8/12 = 0.6667.
+- **Q4 (marking outline):** The prior density is proportional to p^(a-1)(1-p)^(b-1) and the likelihood to p^k (1-p)^(n-k). Their product is proportional to p^(a+k-1)(1-p)^(b+n-k-1), which is the Beta(a+k, b+n-k) density.
+- **Q5 (what a passing submission shows):** The posterior is Beta(8,4) with mean 0.667 and 95 percent interval (0.390, 0.891), the grid agrees to three decimals, and a Beta(10,10) prior moves the mean to 0.567.
+
+</details>
+
+### U19.15 Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan, taught in Python with PyMC and Bambi
+**Sources:** BDA W5–6,11
+- **Topics:** parameter estimation II: Markov Chain Monte Carlo: why grids fail in many dimensions, the Metropolis and Metropolis–Hastings algorithms, the Gibbs sampler, proposal scale and the acceptance rate, burn-in, trace plots, convergence diagnostics (R-hat and the effective sample size); parameter estimation III: Hamiltonian Monte Carlo and the brms package: the leapfrog integrator, the step size and trajectory length, the No-U-Turn sampler named, divergences; the brms package, the course's formula interface to Stan, is replaced here by Bambi, a formula interface on PyMC with the same style of formula (`y ~ x1 + x2`, `(1|group)`) and the same No-U-Turn sampler; Bayesian modeling with Stan: the data, parameters and model blocks of a Stan program map one to one onto a PyMC model (the data are the `observed` arguments, the parameters are the random variables, the model block is the priors and the likelihood inside `with pm.Model()`), PyMC builds a computation graph and compiles it where Stan compiles C++, and the output is read with ArviZ (the summary table, R-hat, effective sample size, trace plots, divergences); NumPyro is the other Python option and is named only.
+- **Results:** Metropolis with a symmetric proposal satisfies detailed balance with respect to the target, so the target is its stationary distribution [P]; for a 20-dimensional standard normal, a random-walk proposal of scale 2.38/√d accepts 24.6 % of moves and gives about 311 effective samples from 20,000 draws, a scale of 0.1 accepts 82 % and gives 48, and a scale of 3.0 accepts none and never moves [check]; leapfrog integration is reversible and volume-preserving, so the Hamiltonian Monte Carlo accept step needs only the energy error [P]; in the same 20 dimensions HMC with step 0.3 and 10 steps accepts 99.5 % of proposals with a largest energy error of 0.058, and its draws are nearly independent, about 5,000 effective samples from 5,000 draws for 55,000 gradient evaluations [check]; on a correlated Gaussian (ρ = 0.95) random-walk Metropolis has about 316 effective samples from 20,000 draws while HMC is again near independence [check]; four chains for the Beta(8, 4) posterior started at 0.1, 0.3, 0.7 and 0.9 give R-hat = 1.0007 and mean 0.672, sd 0.130 against the exact 0.667 and 0.131, whereas four short, badly scaled chains give R-hat = 3.7 [check]; PyMC's No-U-Turn sampler on the same Beta(8, 4) posterior (7 successes in 10 trials, uniform prior; four chains of 1,000 draws) gives mean 0.667, sd 0.130 and R-hat = 1.002 with no divergences [check]; on the 20-dimensional standard normal it has no divergences, R-hat at most 1.003 and a bulk effective sample size of at least 7,266 from 4,000 draws, above the number of draws because the draws are anti-correlated, at 27,136 gradient evaluations [check; PyMC 6.4.0, seed 7, and the figures move a little between versions].
+- **Build:** a Metropolis sampler, a Gibbs sampler for a bivariate normal and an HMC sampler with a leapfrog integrator, each tested on known targets with R-hat and effective-sample-size functions; the same models in PyMC (installed, and run) and a regression through Bambi, and a translation table from the course's brms and Stan idioms (`brm`, `prior`, `posterior_summary`, the data, parameters and model blocks, `sampling`) to their Bambi, PyMC and ArviZ equivalents. [local]
+- **Gap-fills:** *[inferred: Gelman et al. Chapters 10 to 12; McElreath Chapters 9 and 10; the Stan reference manual, recalled, not checked]* Decision of 2026-11-06: R, brms and Stan are replaced by Python throughout; PyMC 6.4 and Bambi 0.21 run the same models with the same sampler family, Stan itself (through CmdStanPy) is an alternative that is not needed, and no curriculum figure depends on an R random stream.
+
+**Assignment A19.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a symmetric proposal the Metropolis acceptance probability is
+
+(A) min(1, target ratio)  
+(B) always 1  
+(C) the proposal ratio  
+(D) 0.5
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) R-hat well above 1 signals that chains have not mixed  
+(B) The leapfrog integrator is reversible and volume-preserving  
+(C) HMC uses gradients of the log density  
+(D) A random-walk proposal scale that accepts 99 percent of moves is optimal
+
+**Q3 (2 marks, numerical answer).** A Metropolis step moves from log density -3 to -3.5. What is the acceptance probability? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that Metropolis with a symmetric proposal satisfies detailed balance with respect to the target.
+
+**Q5 (3 marks, programming).** Implement Metropolis, Gibbs and HMC samplers with R-hat and effective-sample-size functions and test them on a 20-dimensional normal and the Beta(8,4) target. Predict the acceptance rate of a random walk with scale 2.38 over root d first.
+
+<details><summary>Key for A19.15 (open only after your attempt)</summary>
+
+- **Q1:** A. It accepts with probability min(1, p(new)/p(old)).
+- **Q2:** ABC. D is false: a very high acceptance rate means tiny steps and slow mixing.
+- **Q3:** 0.6065 (tolerance ±0.0001). exp(-3.5 - (-3)) = exp(-0.5) = 0.6065.
+- **Q4 (marking outline):** For states x and y the transition probability is q of y given x min(1, p(y)/p(x)) with q symmetric. Then p(x) q(x to y) min(1, p(y)/p(x)) = q min(p(x), p(y)), which is symmetric in x and y. This equals p(y) q(y to x) min(1, p(x)/p(y)), so detailed balance holds and the target is stationary.
+- **Q5 (what a passing submission shows):** The random walk accepts about 25 percent in 20 dimensions with about 300 effective samples from 20,000 draws, HMC accepts above 95 percent with near-independent draws, and R-hat is about 1.001 for four well-mixed chains.
+
+</details>
+
+### U19.16 Bayesian regression and hierarchical models
+**Sources:** BDA W7,10
+- **Topics:** Bayesian regression modeling: the linear model with priors on the intercept, slopes and noise, the posterior of the coefficients, credible bands for the regression line and posterior predictive intervals, priors as regularisation, logistic and Poisson regression in a Bayesian setting; Bayesian hierarchical modeling: groups with their own parameters drawn from a common population distribution, complete pooling, no pooling and partial pooling, shrinkage, the hierarchical normal model and the eight-schools data, the funnel geometry and the non-centred parameterisation; what a hierarchical model buys in behavioural data (many participants, few trials each).
+- **Results:** with a normal prior of variance τ² on the coefficients and noise variance σ² the posterior mean is the ridge estimator with λ = σ²/τ² [P, check: identical to 10⁻¹⁶ with λ = 2]; the posterior of the coefficients is normal with covariance (XᵀX/σ² + I/τ²)⁻¹ [D]; in the eight-schools data (effects 28, 8, −3, 7, −1, 1, 18, 12 with standard errors 15, 10, 16, 11, 9, 11, 10, 18) complete pooling gives 7.69 with standard error 4.07 and no pooling returns the raw values, and the hierarchical posterior for the between-school standard deviation τ under a uniform prior has median 5.2, mean 6.5 and 95th percentile 17.0, with partial-pooled school means (11.4, 7.9, 6.1, 7.6, 5.1, 6.1, 10.7, 8.5) so that the extreme 28 is shrunk to 11.4 [D, check by numerical integration over τ]; shrinkage for school j is the factor B_j = σ_j²/(σ_j² + τ²) toward the pooled mean [P]; PyMC on the same data with a flat prior on μ and a uniform prior on τ over (0, 100), in the non-centred form and with target_accept 0.95, has no divergences and gives a τ median of 5.39, mean 6.63 and 95th percentile 17.36, with school means 11.4, 7.8, 6.0, 7.7, 5.1, 6.1, 10.8 and 8.4, matching the grid [check]; the centred form with a half-Cauchy(5) prior on τ gives 535 divergences in 8,000 draws and an effective sample size of 86 for τ, the non-centred form of the same model gives 4 divergences and 4,254, and the same data then give a τ median of 2.7 against 5.4 under the uniform prior, so the prior on τ matters when there are eight groups [check]; Bambi's `y ~ x1 + x2` on 60 simulated points gives posterior means 1.155, 1.901 and −1.062 against least squares 1.156, 1.903 and −1.063 under its weak default priors [check].
+- **Build:** conjugate Bayesian linear regression with posterior bands; the eight-schools posterior by a grid over τ and by an MCMC sampler in centred and non-centred form, with the divergence or mixing difference shown and the same two forms in PyMC and a Bambi regression compared with least squares; a many-participants simulation that compares complete, no and partial pooling by held-out error. [local]
+- **Gap-fills:** *[inferred: Gelman et al. Chapters 5 and 14 and the eight-schools example of Chapter 5; Gelman and Hill, Data Analysis Using Regression and Multilevel/Hierarchical Models, recalled, not checked]* group-level predictors and crossed random effects are named only.
+
+**Assignment A19.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A normal prior on regression coefficients gives a posterior mean equal to
+
+(A) The lasso  
+(B) The ridge estimator  
+(C) The MLE  
+(D) Zero
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Partial pooling shrinks group estimates toward the overall mean  
+(B) Complete pooling ignores group differences  
+(C) The funnel geometry can make hierarchical sampling hard  
+(D) No pooling shrinks estimates toward the overall mean
+
+**Q3 (2 marks, numerical answer).** The noise variance is 2 and the prior variance on each coefficient is 0.5. What is the equivalent ridge parameter lambda = sigma^2/tau^2?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a N(0, tau^2 I) prior and noise variance sigma^2 give a posterior mean equal to the ridge estimator.
+
+**Q5 (3 marks, programming).** Compute the conjugate Bayesian regression posterior, and the eight-schools posterior by a grid over tau, and compare centred and non-centred MCMC. Predict the partial-pooled estimate for the school with effect 28 first.
+
+<details><summary>Key for A19.16 (open only after your attempt)</summary>
+
+- **Q1:** B. It is ridge with lambda equal to sigma squared over tau squared.
+- **Q2:** ABC. D is false: no pooling uses each group alone.
+- **Q3:** 4 (tolerance ±0.001). 2/0.5 = 4.
+- **Q4 (marking outline):** The log posterior is -(1/2 sigma^2) times the sum of squared residuals minus (1/2 tau^2) times the squared norm of beta. Maximising it is the same as minimising the sum of squared residuals plus (sigma^2/tau^2) times the squared norm, which is ridge with lambda = sigma^2/tau^2. The posterior is Gaussian so its mean equals its mode.
+- **Q5 (what a passing submission shows):** The partial-pooled estimate for the 28 school is about 11.4 against complete pooling 7.69, tau has median about 5.2, and the posterior mean equals ridge to 1e-12.
+
+</details>
+
+### U19.17 Model comparison, mixture models and multinomial processing trees
+**Sources:** BDA W8–9,12
+- **Topics:** model comparison I: cross-validation: the predictive-accuracy view, the expected log predictive density, leave-one-out and K-fold cross-validation, importance-sampling approximations (PSIS-LOO named), WAIC and the information criteria AIC and BIC; model comparison II: Bayes factors: the marginal likelihood, the Bayes factor as the ratio of marginal likelihoods, the Savage–Dickey density ratio for nested models, sensitivity to the prior, the Jeffreys scale of evidence, and the contrast with cross-validation; mixture models and multinomial processing trees: finite mixtures of distributions, label switching, the link to the EM algorithm of U18.11, multinomial processing trees (MPTs) as cognitive models of categorical data (the two-high-threshold and one-high-threshold recognition models), parameter identifiability.
+- **Results:** for a conjugate normal model with 30 observations the exact leave-one-out log predictive density is −47.608, the importance-sampling estimate is −47.629 and WAIC gives −47.626 with an effective number of parameters of 1.30 [P, check]; for 7 heads in 10 tosses with a uniform prior on p against p = 0.5 the marginal likelihoods are 1/11 and C(10, 7)/2¹⁰, so BF₁₀ = 0.776 (BF₀₁ = 1.289), the posterior density at 0.5 divided by the prior density is also 1.289 (Savage–Dickey) [P, check]; the same data give BF₁₀ = 0.559 under a Beta(0.5, 0.5) prior and 1.07 under Beta(10, 10) and 1.01 under Beta(100, 100), so the Bayes factor depends on the prior in a way the posterior does not [P, check]; in the one-high-threshold model with hit rate H = D + (1 − D)g and false-alarm rate F = (1 − D)g the parameters are D = H − F and g = F/(1 − D), and rates 0.8 and 0.3 give D = 0.5 and g = 0.6; from 100 simulated old and 100 new items (75 hits, 27 false alarms) the estimates are 0.48 and 0.52 [P, check]; a two-high-threshold model with separate detection parameters for old and new items has three parameters for two free probabilities and is not identifiable [P]; ArviZ's PSIS-LOO for 30 normal draws with known σ = 1 and a N(0, 10²) prior on the mean gives elpd_loo −39.74 (standard error 2.66, p_loo 0.76, every Pareto k below 0.7) against the exact leave-one-out −39.752 [check]; a two-component normal mixture in PyMC with an ordering constraint on the means recovers weights 0.558 and 0.442 and means −1.11 and 2.02 from 300 points whose true weight on the upper component is 0.43 and whose true means are −1 and 2, with R-hat at most 1.002 [check]; started from separated values, four unconstrained chains did not swap labels in this run (R-hat 1.001), so the ordering constraint is a safeguard and not a cure for a problem that appeared here [check].
+- **Build:** exact and importance-sampling leave-one-out against each other; Bayes factors for coin and normal models by integration and by the Savage–Dickey ratio, with a prior-sensitivity plot; an MPT fitted by maximum likelihood and by MCMC; a two-component Gaussian mixture fitted by MCMC, showing label switching and its fix by ordering, and the same mixture, an ArviZ `loo` and a model comparison in PyMC. [local]
+- **Gap-fills:** *[inferred: Vehtari, Gelman and Gabry 2017; Kass and Raftery 1995; Batchelder and Riefer 1999 for MPTs, recalled, not checked]* hierarchical MPTs and bridge sampling for Bayes factors are named only.
+
+**Assignment A19.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Savage-Dickey density ratio equals
+
+(A) The Bayes factor for a nested point hypothesis  
+(B) The posterior mean  
+(C) The likelihood ratio  
+(D) The WAIC
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Bayes factors depend on the prior  
+(B) Leave-one-out cross-validation measures predictive accuracy  
+(C) The one-high-threshold model identifies D as H minus F  
+(D) A two-high-threshold model with three parameters is identified from two free probabilities
+
+**Q3 (2 marks, numerical answer).** For 7 heads in 10 tosses, test p = 0.5 against a uniform prior on p. Compute BF01 = 11*C(10,7)/2^10. Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for the one-high-threshold model with H = D + (1-D)g and F = (1-D)g the parameters are D = H - F and g = F/(1-D).
+
+**Q5 (3 marks, programming).** Compute exact leave-one-out, importance-sampling LOO and WAIC for a normal model, Bayes factors by integration and Savage-Dickey, and fit an MPT by maximum likelihood. Predict BF01 for 7 of 10 first.
+
+<details><summary>Key for A19.17 (open only after your attempt)</summary>
+
+- **Q1:** A. It is the posterior density divided by the prior density at the null value, which equals BF01.
+- **Q2:** ABC. D is false: three parameters for two free probabilities is not identified.
+- **Q3:** 1.289 (tolerance ±0.0001). The marginal likelihoods are 1/11 and 120/1024 so BF01 = 1.2891.
+- **Q4 (marking outline):** Subtracting the false-alarm equation from the hit equation gives H - F = D. Substituting D into F = (1-D)g gives g = F/(1-D). For H = 0.8 and F = 0.3 this gives D = 0.5 and g = 0.6.
+- **Q5 (what a passing submission shows):** Exact LOO is about -47.61 with IS-LOO within 0.03, BF01 is 1.289 by both methods, and the MPT estimates from 75 hits and 27 false alarms are D about 0.48 and g about 0.52.
+
+</details>
+
+
+# PART E. BIG DATA, SCALABLE DATA SCIENCE, CLOUD OPERATIONS, MACHINE LEARNING AND SYSTEM DESIGN
 
 ## D11. Big data and cloud analytics: batch, dataflow, messaging, streaming, machine learning at scale and graph processing
 
@@ -5890,7 +8030,7 @@ Aim: the data-processing half of the big-data course and the cloud-course weeks 
 - **Topics:** Introduction to Big Data Platforms (Week 3) and the MapReduce lecture of the cloud course's Week 8; Case Studies: Map Reduce (Week 7 of the classical course): the paradigm and the programming model (map, shuffle and sort, reduce, with combiners and partitioners), applications (word count, inverted index, join, grep, sort, PageRank iteration), scheduling and locality, fault tolerance by re-execution and speculative execution of stragglers, an implementation overview (master, workers, intermediate files), the Hadoop ecosystem around it (HDFS from U10.2, the resource manager, Hive and Pig as higher-level languages); design of joins (reduce-side, map-side, broadcast) and of skew handling.
 - **Results:** The map-reduce tradeoff for the all-pairs similarity job is that reducer size q and replication rate r satisfy r ≥ n/q for n inputs [S]; the total communication of word count is bounded by the number of distinct (word, mapper) pairs when a combiner is used [D]; with p workers, per-task failure probability f and re-execution, the expected number of task executions is 1/(1 − f) per task [D]; speculative execution cuts expected completion when the straggler tail is heavy [D].
 - **Build:** a mini-MapReduce engine on Python's `multiprocessing` with a partitioner, combiner, sorted shuffle, worker-failure injection and speculative re-execution; word count, inverted index, reduce-side join, matrix multiplication in two passes and one PageRank iteration on it, each checked against a single-process version and timed. [local]
-- **Gap-fills:** *[inferred: Dean–Ghemawat, MapReduce, OSDI 2004; Afrati–Ullman on the cost model of MapReduce algorithms, recalled, not checked]* YARN's separation of resource management from the programming model.
+- **Gap-fills:** *[inferred: Dean–Ghemawat, MapReduce, OSDI 2004; Afrati–Ullman on the cost model of MapReduce algorithms, recalled, not checked]* YARN's separation of resource management from the programming model. MapReduce programming examples (PageRank, k-means, matrix multiplication) and the communication-cost accounting are in U20.6. On demand: U17.4 for sorting and U17.5 for hashing and partitioning.
 
 **Assignment A11.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5929,7 +8069,7 @@ Aim: the data-processing half of the big-data course and the cloud-course weeks 
 - **Topics:** Introduction to Spark: Resilient Distributed Datasets (RDDs), RDD Operations (Week 8 of the cloud course); Case Studies: Spark (Week 7 of the classical course); platform comparison with MapReduce: in-memory reuse, lazy evaluation, the lineage graph, transformations and actions, narrow versus wide dependencies, the DAG scheduler, stage boundaries at shuffles, caching and persistence levels, fault tolerance by recomputing lost partitions from lineage, shared variables (broadcast and accumulators), the DataFrame and SQL layers and their optimiser; Spark applications as the source lists them (PageRank, with GraphX in U11.11).
 - **Results:** A stage boundary exists exactly at each wide dependency [Def]; recovering a lost partition recomputes only its ancestors through narrow dependencies, at cost proportional to the lineage depth [D]; for an iterative algorithm of T passes over a dataset that fits in memory, caching reduces I/O from T full reads to one [D]; a wide dependency on a hash-partitioned key shuffles each record to exactly one destination partition [Def].
 - **Build:** a mini-Spark in Python: an RDD class with lazy transformations (map, filter, flatMap, reduceByKey, join, groupByKey), a lineage graph, a DAG scheduler that cuts stages at shuffles, caching, and partition-loss recovery by recomputation, with a test that kills partitions and compares the result; the same jobs run on PySpark in local mode as an oracle where it can be installed. [local]
-- **Gap-fills:** *[inferred: Zaharia et al., NSDI 2012; the Spark documentation, recalled, not checked]* Catalyst and Tungsten (named), structured streaming (U11.7).
+- **Gap-fills:** *[inferred: Zaharia et al., NSDI 2012; the Spark documentation, recalled, not checked]* Catalyst and Tungsten (named), structured streaming (U11.7). Scala and Spark programming and the proof of stochastic gradient descent are in U20.7.
 
 **Assignment A11.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6046,7 +8186,7 @@ Aim: the data-processing half of the big-data course and the cloud-course weeks 
 - **Topics:** Introduction to Big Data Streaming Platforms for Fast Data (Week 5; the sub-topics are *inferred* from the field's standard content): the data-stream model with one pass and sublinear memory; windows (tumbling, sliding, session), event time versus processing time, watermarks and late data, micro-batch versus record-at-a-time engines (Spark Streaming and its successors, Storm, Flink), state, checkpointing and exactly-once; synopsis structures for streams: reservoir sampling, the Bloom filter (U10.4), the Count-Min sketch, the Misra–Gries heavy hitters, Flajolet–Martin and HyperLogLog cardinality estimators, and the lambda and kappa architectures.
 - **Results:** Reservoir sampling keeps each of n items with probability k/n [P]; the Count-Min sketch with width ⌈e/ε⌉ and depth ⌈ln(1/δ)⌉ overestimates any count by at most εN with probability at least 1 − δ and never underestimates [P]; Misra–Gries with k counters finds every item of frequency above N/(k + 1) [P]; HyperLogLog with m registers has relative standard error about 1.04/√m [recalled, not checked; the unit's script measures it].
 - **Build:** a windowed aggregation engine with event-time windows, watermarks and late-data handling on a synthetic disordered stream; reservoir sampling, Count-Min, Misra–Gries, Flajolet–Martin and HyperLogLog against exact answers with the error bounds measured; a checkpointed stateful operator with a crash test. [local]
-- **Gap-fills:** *[inferred: Cormode–Muthukrishnan 2005; Flajolet et al. 2007; Akidau et al., the Dataflow model, VLDB 2015, recalled, not checked]* Beam and the cloud dataflow service (U12.2).
+- **Gap-fills:** *[inferred: Cormode–Muthukrishnan 2005; Flajolet et al. 2007; Akidau et al., the Dataflow model, VLDB 2015, recalled, not checked]* Beam and the cloud dataflow service (U12.2). The guarantees and experiments for Misra–Gries, Count-Min, Count sketch, MinHash and SimHash are in U20.2 to U20.4. On demand: U17.4 for heaps and top-k, U17.5 for hashing and U17.6 for windows as queues.
 
 **Assignment A11.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6086,7 +8226,7 @@ Bridge for: U11.9 (machine learning on the engines), U12.3 (machine learning on 
 - **Topics:** Supervised and unsupervised learning; empirical risk and loss functions; linear and logistic regression and the normal equations; gradient descent, mini-batches and learning-rate behaviour; regularisation and the bias–variance trade-off; evaluation (train, validation and test splits, cross-validation, precision, recall, ROC and AUC); k-means and Lloyd's algorithm; nearest-neighbour methods; decision trees and ensembles; matrix factorisation for recommendation.
 - **Results:** The least-squares solution satisfies XᵀXw = Xᵀy [D]; the logistic-loss gradient is Xᵀ(σ(Xw) − y) [D]; Lloyd's algorithm never increases the k-means objective and terminates [P]; expected squared error decomposes into bias squared, variance and noise [P].
 - **Build:** NumPy implementations of linear and logistic regression (closed form and gradient descent), k-means, k-nearest neighbours and a decision stump ensemble on synthetic data, with a train/validation/test harness and cross-validation, each checked against a reference library. [local]
-- **Gap-fills:** *[inferred: Hastie–Tibshirani–Friedman; Witten–Frank (named in the source), recalled, not checked]* stochastic gradient descent theory is in the earlier curriculum. The roofline model, arithmetic intensity, systolic arrays and quantisation error of the hardware that runs these models are owned by U14.20.
+- **Gap-fills:** *[inferred: Hastie–Tibshirani–Friedman; Witten–Frank (named in the source), recalled, not checked]* stochastic gradient descent theory is in the earlier curriculum. The roofline model, arithmetic intensity, systolic arrays and quantisation error of the hardware that runs these models are owned by U14.20. The statistics (U19.4 to U19.9), the applied linear algebra (D18), the Bayesian view (U19.14 to U19.17) and the scalable techniques (D20) that extend this bridge are in the domains named; the full machine-learning curriculum is the long form.
 
 **Assignment A11.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6125,7 +8265,7 @@ Bridge for: U11.9 (machine learning on the engines), U12.3 (machine learning on 
 - **Topics:** Introduction to Big Data Applications (Machine Learning) (Week 6) and Introduction of Big Data Machine Learning with Spark (Week 7): the algorithms of U11.8 expressed as passes over distributed data: data-parallel gradient descent with gradient aggregation (tree aggregation), distributed k-means where each iteration is a map (assign) and a reduce (recompute centres), the alternating-least-squares algorithm for collaborative filtering, distributed decision trees and random forests, the Spark MLlib pipeline abstraction (transformers, estimators, pipelines, parameter grids), feature engineering at scale, the parameter-server architecture as an alternative, and the communication cost model.
 - **Results:** The gradient of a sum of per-example losses is the sum of per-example gradients, so it decomposes over partitions and aggregates with an associative, commutative reduce [P]; each distributed gradient step communicates O(d) values per worker against O(nd/p) local computation, so speed-up holds while computation dominates communication [D]; in ALS each user's factor solves a d-by-d regularised normal equation given the item factors, so users can be updated in parallel [D].
 - **Build:** data-parallel logistic regression, k-means and ALS on your mini-Spark of U11.4 with weak and strong scaling measured, each compared to PySpark MLlib in local mode as an oracle where installable; a communication-cost model compared with the measured times. [local]
-- **Gap-fills:** *[inferred: Meng et al., MLlib, JMLR 2016; Li et al., the parameter server, OSDI 2014, recalled, not checked]* large-scale deep-learning training (links to U12.3). Accelerator-side limits (the roofline model, systolic arrays, quantisation error) are owned by U14.20.
+- **Gap-fills:** *[inferred: Meng et al., MLlib, JMLR 2016; Li et al., the parameter server, OSDI 2014, recalled, not checked]* large-scale deep-learning training (links to U12.3). Accelerator-side limits (the roofline model, systolic arrays, quantisation error) are owned by U14.20. Classical statistical and data-mining models are in D19 and the distributed optimisation behind the trainers is in U20.7 and U20.8.
 
 **Assignment A11.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6165,7 +8305,7 @@ Bridge for: U11.11 (graph processing). Builds on the random-walk material of U9.
 - **Topics:** Finite Markov chains, transition matrices, stationary distributions, irreducibility and aperiodicity, the Perron–Frobenius theorem (stated), mixing and the second eigenvalue, the random-surfer model of the web, PageRank with damping and the teleport vector, dangling nodes, power iteration, personalised PageRank, and the convergence rate.
 - **Results:** An irreducible aperiodic finite chain has a unique stationary distribution and converges to it [X, Perron–Frobenius]; the PageRank matrix with damping α has second eigenvalue of modulus at most α, so power iteration reaches error ε in about ln ε / ln α iterations [P]; the stationary distribution of a random walk on an undirected graph is proportional to degree [P].
 - **Build:** power iteration for PageRank on a synthetic web graph with dangling-node handling, the convergence rate against α, personalised PageRank, and a comparison with the dense eigenvector computed by NumPy. [local]
-- **Gap-fills:** *[inferred: Page et al. 1999; Langville–Meyer; Levin–Peres–Wilmer, recalled, not checked]* HITS (named).
+- **Gap-fills:** *[inferred: Page et al. 1999; Langville–Meyer; Levin–Peres–Wilmer, recalled, not checked]* HITS (named). Markov chains as models for supply chains, inventory and forecasting are in U18.13. On demand: U17.11 for graph traversal and U17.12 for the shortest-path comparison.
 
 **Assignment A11.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6204,7 +8344,7 @@ Bridge for: U11.11 (graph processing). Builds on the random-walk material of U9.
 - **Topics:** Introduction to Big Data Applications (Graph Processing) (Week 8) and the Spark applications of Week 8 of the cloud course: the Page Rank Algorithm on Spark with GraphX, the GraphX API and GraphX working (how GraphX executes graph operations as joins); the bulk-synchronous vertex-centric model of Pregel (supersteps, messages, vote to halt), programs for PageRank, connected components and single-source shortest paths, the property-graph representation as two tables and the join-based execution in GraphX, graph partitioning (edge-cut versus vertex-cut) and the effect of power-law degree distributions, triangle counting and community structure, and the limits of the vertex-centric model.
 - **Results:** Single-source shortest paths in the vertex-centric model terminates in at most D + 1 supersteps for a graph of weighted diameter D in hops [D]; vertex-cut partitioning of a power-law graph replicates each high-degree vertex across machines, so the expected replication factor is far below the edge-cut communication on the same graph [D, by simulation]; PageRank reaches accuracy ε in about ln ε / ln α supersteps (from U11.10) [P].
 - **Build:** a mini-Pregel BSP engine with PageRank, connected components and SSSP, checked against single-machine implementations; edge-cut versus vertex-cut partitioning experiments on a synthetic power-law graph with the replication factor and communication volume measured; the same algorithms written as join-based operations on your mini-Spark to mirror GraphX. [local]
-- **Gap-fills:** *[inferred: Malewicz et al., Pregel, SIGMOD 2010; Gonzalez et al., PowerGraph, OSDI 2012 and GraphX, OSDI 2014, recalled, not checked]* graph neural networks as the successor family (named).
+- **Gap-fills:** *[inferred: Malewicz et al., Pregel, SIGMOD 2010; Gonzalez et al., PowerGraph, OSDI 2012 and GraphX, OSDI 2014, recalled, not checked]* graph neural networks as the successor family (named). On demand: U17.11 and U17.12 for graph traversal and shortest paths.
 
 **Assignment A11.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6235,6 +8375,322 @@ Bridge for: U11.11 (graph processing). Builds on the random-walk material of U9.
 - **Q3:** 0.875 fraction (tolerance ±0.001). Both endpoints land together with probability 1/8, so the cut fraction is 7/8 = 0.875.
 - **Q4 (marking outline):** The two endpoints of an edge are placed independently and uniformly; the probability that the second lands on the machine of the first is 1/p; so the edge is cut with probability 1 minus 1/p, and by linearity of expectation the expected cut fraction equals that value.
 - **Q5 (what a passing submission shows):** Outputs equal to NetworkX, supersteps near the diameter for shortest paths, and a measured communication advantage for vertex cuts on skewed graphs.
+
+</details>
+
+## D20. Scalable data science: concentration and optimisation background, memory-efficient data structures, sketches, approximate near neighbours, randomised linear algebra, MapReduce and Spark, and distributed machine learning
+
+Aim: what to do when the data, the model or the output does not fit in one machine's memory, or the data lives on many machines and communication is the bottleneck. One course supplies the outline (Scalable Data Science, IIT Gandhinagar and IIT Kharagpur) and one textbook the depth: Leskovec, Rajaraman and Ullman, *Mining of Massive Datasets* (the contents list was read from the public book page: MapReduce, similar items, data streams, link analysis, frequent itemsets, clustering, advertising, recommendation systems, social-network graphs, dimensionality reduction and large-scale machine learning). Two habits run through it: *every sketch has a one-line guarantee, and the script measures how far inside the guarantee real data sits*, and *the cost that matters is bytes moved, not arithmetic operations*. Other benchmarks, recalled and not checked: Cormode and Yi, *Small Summaries for Big Data*; Woodruff, *Sketching as a Tool for Numerical Linear Algebra*; Boyd et al., *Distributed Optimization and Statistical Learning via ADMM*. Ownership: D20 owns the analysis of sketches, near-neighbour search, random projection, randomised linear algebra and distributed optimisation. The pieces that already have an owner stay there and are used: hashing and Bloom filters as lookup structures in U3.1 and U17.5, the MapReduce model and the Hadoop ecosystem in U11.3, Spark in U11.4, stream sketches in U11.7, the machine-learning and Markov-chain bridges in U11.8 and U11.10, tail bounds in U9.2, and the SVD in U18.5; D20 adds the guarantees, the proofs and the experiments that those units point to.
+
+### U20.1 Scalable data science: the problem, and the background of concentration inequalities, PCA and SVD, convex optimisation and gradient descent, and supervised learning
+**Sources:** SDS W1, o
+- **Topics:** the course's motivating problems: word-count distributions over the whole Wikipedia collection (5 million documents) that run out of main memory, a text-categorisation SVM with about 10 million unigram features for hundreds of classes whose uncompressed model does not fit, and learning from data spread over many machines when communication is the bottleneck; in each, a simple data-mining or machine-learning task made harder by the scale of the input, the output or both, and the two remedies (algorithmic techniques and software paradigms); background: introduction; probability: concentration inequalities (Markov, Chebyshev, Chernoff and Hoeffding, with U9.2); linear algebra: PCA and SVD (U18.4, U18.5) and randomised ways to compute them; optimisation: basics, convex functions, gradient descent, step sizes and convergence rates; machine learning: supervised learning, generalisation, feature learning, clustering (U11.8); the intended audience and the industry support named in the outline (Google, Microsoft, Facebook, Amazon, Flipkart and LinkedIn) are treated as framing.
+- **Results:** Hoeffding: for independent variables in [0, 1], P(|X̄ − μ| ≥ t) ≤ 2e^(−2nt²) [P]; for n = 100 and t = 0.1 the bound is 0.271 and the exact binomial probability 0.0569, so the bound is safe and loose [check]; Chernoff for a sum with mean 20 gives P(X ≥ 40) ≤ e^(−20/3) = 1.3·10⁻³ against an exact 4.8·10⁻⁵ [P, check]; gradient descent with step 2/(L + μ) on a quadratic with condition number κ = L/μ shrinks the error by (κ − 1)/(κ + 1) per step, so it needs about (κ/2) ln(1/ε) steps: 71 steps at κ = 10 and 709 at κ = 100 to reach 10⁻⁶ [P, check]; a 10-million-feature model for 300 classes at four bytes per weight needs 12 GB, which is why model size is a scaling problem as well as data size [check]; the randomised range finder with 60 Gaussian probes recovers the top five singular values of a 2000×1000 rank-50-plus-noise matrix to relative error 4·10⁻⁶ [check].
+- **Build:** a concentration-bound plotter (Markov, Chebyshev, Chernoff and Hoeffding against the exact tail); gradient descent with step-size sweeps on quadratics of several condition numbers; a randomised SVD checked against `numpy.linalg.svd`; a memory estimator for a bag-of-words model. [local]
+- **Gap-fills:** *[inferred: Boyd and Vandenberghe, Convex Optimization, Chapter 9; Halko, Martinsson and Tropp 2011 for the range finder, recalled, not checked]* the proof of Chernoff's bound is sketched; accelerated methods and second-order methods are named.
+
+**Assignment A20.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Hoeffding's inequality for n independent variables in [0,1] bounds P(abs(mean - mu) >= t) by
+
+(A) 2 exp(-2 n t squared)  
+(B) 1/(n t)  
+(C) exp(-t)  
+(D) 1/n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Gradient descent on a quadratic needs about (kappa/2) ln(1/eps) steps  
+(B) A 10-million-feature model for 300 classes at 4 bytes per weight needs about 12 GB  
+(C) Randomised range finding can recover top singular values of a low-rank matrix  
+(D) Chernoff bounds are weaker than Markov bounds
+
+**Q3 (2 marks, numerical answer (GB)).** How many gigabytes does a model with 10^7 features and 300 classes need at 4 bytes per weight?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Hoeffding's inequality for bounded variables in the simple case of independent fair coin flips, giving P(mean - 1/2 >= t) <= exp(-2 n t squared).
+
+**Q5 (3 marks, programming).** Plot Markov, Chebyshev, Chernoff and Hoeffding bounds against the exact binomial tail, run gradient descent on quadratics of condition number 10 and 100, and implement a randomised SVD checked against numpy. Predict the GD iterations to reach 1e-6 at condition number 100 first.
+
+<details><summary>Key for A20.1 (open only after your attempt)</summary>
+
+- **Q1:** A. It decays exponentially in n t squared.
+- **Q2:** ABC. D is false: Chernoff bounds are exponentially tighter.
+- **Q3:** 12 GB (tolerance ±0.01). 1.2e10 bytes = 12 GB.
+- **Q4 (marking outline):** For lambda > 0 Markov gives P(sum >= n(1/2 + t)) <= e^(-lambda n (1/2 + t)) E[e^(lambda sum)]. For one fair flip E[e^(lambda X)] = (1 + e^lambda)/2 <= e^(lambda/2 + lambda^2/8). Independence multiplies n factors, so the bound is exp(-lambda n t + n lambda^2/8). Choosing lambda = 4t gives exp(-2 n t^2).
+- **Q5 (what a passing submission shows):** GD needs about 709 steps at condition number 100 and 71 at 10, the Hoeffding bound at n = 100 and t = 0.1 is 0.271 against the exact 0.057, and the randomised SVD matches the top singular values to 1e-5.
+
+</details>
+
+### U20.2 Memory-efficient data structures I: hash functions, universal and perfect hash families, Bloom filters, sketches for distinct count and the Misra–Gries sketch
+**Sources:** SDS W2
+- **Topics:** hash functions, universal and perfect hash families (the definitions and the FKS construction are in U17.5; here the use is as a source of randomness for sketches); Bloom filters: bit array, k hash functions, no false negatives, the false-positive rate, the optimal k, counting and deletion variants; sketches for distinct count: the idea that the minimum of n random hash values estimates n (the k-minimum-values estimator) and the Flajolet–Martin and HyperLogLog family named; the Misra–Gries sketch for heavy hitters in a stream with k counters; the trade-off between memory, error and failure probability.
+- **Results:** for a universal family two distinct keys collide with probability at most 1/m [P, check: 0.000993 against 1/1024 for ((ax + b) mod p) mod m over random a, b]; a Bloom filter with m bits, n items and k hash functions has false-positive rate (1 − e^(−kn/m))^k, minimised at k = (m/n) ln 2 where it is 0.6185^(m/n) [D, check: with 10 bits per item the values are 0.82 % for k = 7 and 1.74 % for k = 3, simulation 0.845 % and 1.736 %; with 8 bits and k = 6, 2.16 % against 2.15 %; with 16 bits and k = 11, 0.046 % against 0.042 %]; the k-minimum-values estimator (k − 1)/h₍ₖ₎ of the number of distinct items has relative standard error about 1/√(k − 2) [S, check: 0.133, 0.064 and 0.032 against 0.127, 0.063 and 0.031 for k = 64, 256 and 1024 on 10⁵ items]; the Misra–Gries sketch with k counters undercounts any item by at most N/(k + 1), so every item with frequency above N/(k + 1) survives [P, check: on a Zipf stream of 197,314 items with k = 99 the largest undercount is 818 against the bound 1973, and all twelve items above the threshold are present].
+- **Build:** a Bloom filter with a false-positive experiment over (bits per item, k); a k-minimum-values counter against an exact set; Misra–Gries against a `Counter` on a Zipf stream; a universal-hash collision tester. [local]
+- **Gap-fills:** *[inferred: Mitzenmacher and Upfal, Probability and Computing, Chapter 5; Flajolet et al. 2007, recalled, not checked]* the HyperLogLog bias correction and the cuckoo filter are named; the operational use of Bloom filters in LSM-tree storage engines is in U15.27 and U11.7. On demand: U17.5 for hash families and U17.4 for heaps.
+
+**Assignment A20.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A Bloom filter with m bits, n items and k hash functions has false-positive rate approximately
+
+(A) (1 - exp(-kn/m))^k  
+(B) k/m  
+(C) n/m  
+(D) exp(-k)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) A Bloom filter has no false negatives  
+(B) The Misra-Gries sketch with k counters undercounts any item by at most N/(k+1)  
+(C) The k-minimum-values estimator has relative error about 1/sqrt(k-2)  
+(D) A Bloom filter supports deletion without change
+
+**Q3 (2 marks, numerical answer).** A Bloom filter has 10 bits per item and k = 7. What is its false-positive rate (1 - exp(-7/10))^7? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the Misra-Gries sketch with k counters undercounts any item by at most N/(k+1).
+
+**Q5 (3 marks, programming).** Implement a Bloom filter with a false-positive experiment, a k-minimum-values distinct counter, and Misra-Gries on a Zipf stream, and a universal-hash collision tester. Predict the Bloom false-positive rate at 10 bits per item with k = 7 first.
+
+<details><summary>Key for A20.2 (open only after your attempt)</summary>
+
+- **Q1:** A. A bit is set with probability 1 - exp(-kn/m) and all k probed bits must be set.
+- **Q2:** ABC. D is false: a standard Bloom filter cannot delete because bits are shared.
+- **Q3:** 0.008194 (tolerance ±0.0001). The rate is 0.0082.
+- **Q4 (marking outline):** Each decrement step removes one count from k + 1 distinct items (the k stored ones and the arriving one). With N arrivals in total there are at most N/(k+1) such steps. An item is undercounted only by decrements, at most one per step, so by at most N/(k+1).
+- **Q5 (what a passing submission shows):** The Bloom rate is about 0.8 percent in simulation, the KMV error is about 6 percent at k = 256, and the largest Misra-Gries undercount stays far below N/(k+1).
+
+</details>
+
+### U20.3 Count-Min and Count sketches, and approximate near-neighbour search: kd-trees, locality-sensitive hashing, MinHash for Jaccard and SimHash
+**Sources:** SDS W3
+- **Topics:** memory-efficient data structures (contd.): the Count sketch and the Count-Min sketch for frequency estimation in a stream: the d×w table, the update, the point query (the minimum over rows for Count-Min, the median of signed counts for Count sketch), the accuracy parameters ε and δ, the one-sided error of Count-Min, merging sketches from many machines; approximate near-neighbour search: the problem and the introduction, kd-trees and why they stop working in high dimensions; locality-sensitive hash (LSH) families: the definition (close points collide more often than far points), amplification by AND and OR constructions (b bands of r rows) and the S-curve, MinHash for Jaccard similarity and SimHash for angular (cosine) similarity with random hyperplanes; the L2 family by random projections named.
+- **Results:** Count-Min with width ⌈e/ε⌉ and depth ⌈ln(1/δ)⌉ never underestimates and overestimates by more than εN with probability at most δ [P, Markov and independence across rows; check: with ε = 0.001 and δ = 0.01 the table has 2719×5 = 13,595 cells for 13,638 distinct items, the largest overcount is 30 against εN = 197, and no estimate is below the truth]; the Count sketch estimate is unbiased with error about ‖f‖₂/√w [P; check: 5 rows of 2000 counters on the same stream give a maximum error of 224 against ‖f‖₂/√w = 1305]; for a random permutation P[min h(A) = min h(B)] = J(A, B) [P], so with 128 hashes the estimate has standard deviation √(J(1 − J)/128) = 0.044, observed 0.045 [check]; a linear hash family (ax + b) mod p is not min-wise independent: on two ranges of consecutive integers with J = 0.5 it estimates 0.435, while random permutations give 0.499, and on random sets the linear family is unbiased (0.504) [check]; with b = 20 bands of r = 5 rows the candidate probability 1 − (1 − s⁵)²⁰ is 0.047 at s = 0.3, 0.47 at 0.5, 0.64 at 0.55 and 0.9996 at 0.8, with the threshold near (1/b)^(1/r) = 0.549 [D, check]; for random hyperplanes P[sign(r·u) = sign(r·v)] = 1 − θ/π [P, check: 0.7745 against 0.7759]; an exact kd-tree nearest-neighbour search on 5000 uniform points computes about 5 distances in 2 dimensions, 424 in 8, 4797 in 16 and all 5000 in 32, which is the curse of dimensionality [check].
+- **Build:** Count-Min and Count sketches on a Zipf stream with the guarantee tested; a MinHash signature builder with banded LSH for near-duplicate document search; SimHash against exact cosine; a kd-tree with a distance-computation counter. [local]
+- **Gap-fills:** *[inferred: Indyk and Motwani 1998; Cormode and Muthukrishnan 2005; MMDS Chapter 3, recalled, not checked]* the min-wise independent families and the approximate version are named; the sketch update cost for very high rates is in U11.7.
+
+**Assignment A20.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Count-Min sketch with width ceil(e/eps) and depth ceil(ln(1/delta)) overestimates a count by more than eps N with probability at most
+
+(A) delta  
+(B) eps  
+(C) 1/2  
+(D) 0
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Count-Min never underestimates a count  
+(B) For a random permutation P[min h(A) = min h(B)] equals the Jaccard similarity  
+(C) SimHash collision probability is 1 - theta/pi  
+(D) kd-trees remain efficient in 32 dimensions
+
+**Q3 (2 marks, numerical answer).** With b = 20 bands of r = 5 rows, what is the candidate probability 1 - (1 - s^5)^20 at similarity s = 0.8? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for a random permutation the probability that two sets have the same minimum hash equals their Jaccard similarity.
+
+**Q5 (3 marks, programming).** Implement Count-Min and Count sketches on a Zipf stream, MinHash with banded LSH, SimHash and a kd-tree with a distance counter. Predict the number of distance computations of exact kd-tree search in 2 and 32 dimensions first.
+
+<details><summary>Key for A20.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Each row exceeds by epsN with probability at most 1/e by Markov, and independent rows reduce it to delta.
+- **Q2:** ABC. D is false: they examine nearly all points in high dimensions.
+- **Q3:** 0.9996 (tolerance ±0.0001). The probability is 0.9996.
+- **Q4 (marking outline):** Consider the union of A and B under the random permutation. The element with the smallest hash in the union is equally likely to be any element of the union. The minima agree exactly when that element lies in the intersection, which has probability the size of the intersection over the size of the union, which is J.
+- **Q5 (what a passing submission shows):** The overcount is far below epsN, MinHash standard deviation is about 0.044 with 128 hashes, and the kd-tree computes about 5 distances in 2 dimensions and all 5000 in 32.
+
+</details>
+
+### U20.4 Approximate near neighbours: extensions (multi-probe, b-bit hashing, data-dependent variants) and random projection
+**Sources:** SDS W4
+- **Topics:** approximate near-neighbour search: extensions, e.g. multi-probe LSH (probe neighbouring buckets of one table instead of building many tables), b-bit minwise hashing (keep only b bits of each MinHash value), data-dependent variants (hash functions adapted to the data, as against the worst-case data-independent families); randomised numerical linear algebra begins here with random projection: the Johnson–Lindenstrauss lemma, Gaussian projection matrices, the dimension k = O(log n/ε²), what the guarantee does and does not preserve (distances between n points, not angles to a hidden direction).
+- **Results:** for b-bit minwise hashing the match probability of two signatures is C + (1 − C)J with C ≈ 2^(−b), so Ĵ = (P̂ − C)/(1 − C) is unbiased [D]; at a fixed budget of 1024 bits the estimator has root-mean-square error 0.028 with 1-bit hashes (1024 of them), 0.030 with 2-bit (512), 0.043 with 8-bit (128) and 0.130 with 64-bit values (16), so small b wins at equal memory [check]; the Johnson–Lindenstrauss lemma: k ≥ 4 ln n/(ε²/2 − ε³/3) dimensions preserve all pairwise distances within 1 ± ε with positive probability [S], which for n = 10⁴ and ε = 0.1 is 7895 [check]; for 200 points in 5000 dimensions the fraction of pairwise distances kept within 10 % is 0.85 at k = 100, 0.994 at k = 400 and 1.0 at k = 1600, while the distortion standard deviation tracks 1/√(2k) [check].
+- **Build:** a multi-probe LSH index compared with a many-table index at equal memory; a b-bit minwise estimator with an error-versus-bits plot; a Johnson–Lindenstrauss experiment on a text matrix. [local]
+- **Gap-fills:** *[inferred: Lv et al. 2007 for multi-probe LSH; Li and König 2010 for b-bit hashing; Andoni and Razenshteyn 2015 for data-dependent LSH; Dasgupta and Gupta 2003, recalled, not checked]* the optimal data-dependent exponents are stated and not proved.
+
+**Assignment A20.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For b-bit minwise hashing with C about 2 to the minus b, the unbiased estimate of J is
+
+(A) (P_hat - C)/(1 - C)  
+(B) P_hat  
+(C) P_hat - C  
+(D) P_hat/(1 - C)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Multi-probe LSH checks neighbouring buckets of the same table  
+(B) At a fixed bit budget small b gives lower error than 64-bit hashes  
+(C) The Johnson-Lindenstrauss dimension grows like log n over epsilon squared  
+(D) JL preserves all angles to a hidden direction
+
+**Q3 (2 marks, numerical answer (dimensions)).** The JL bound k = 4 ln n/(eps^2/2 - eps^3/3) with n = 10^4 and eps = 0.1 gives how many dimensions (round)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the unbiased estimator of Jaccard similarity from b-bit minwise hashing.
+
+**Q5 (3 marks, programming).** Build a multi-probe LSH index and compare with many tables at equal memory, a b-bit minwise estimator with an error-versus-bits plot, and a JL projection experiment on points in 5000 dimensions. Predict the best b at 1024 bits first.
+
+<details><summary>Key for A20.4 (open only after your attempt)</summary>
+
+- **Q1:** A. Since P = C + (1 - C) J, solving for J gives (P - C)/(1 - C).
+- **Q2:** ABC. D is false: it preserves distances between the n given points only.
+- **Q3:** 7895 dimensions (tolerance ±1). About 7895.
+- **Q4 (marking outline):** Two sets have identical minima with probability J. If the minima differ the b stored bits agree by chance with probability about C = 2^(-b). So P(b bits match) = J + (1 - J) C = C + (1 - C) J. Solving gives J = (P - C)/(1 - C), and substituting the observed match rate gives an unbiased estimator.
+- **Q5 (what a passing submission shows):** At a 1024-bit budget the RMSE is 0.028 for b = 1 and 0.130 for 64-bit values, and the fraction of distances kept within 10 percent is about 0.85, 0.99 and 1.0 for k = 100, 400, 1600.
+
+</details>
+
+### U20.5 Randomised numerical linear algebra: CUR decomposition, sparse and subspace random projection and the kitchen-sink features
+**Sources:** SDS W5
+- **Topics:** randomised numerical linear algebra: the CUR decomposition (a low-rank approximation built from actual columns and rows of the matrix, which keeps sparsity and interpretability, with sampling by leverage scores); sparse random projection (Achlioptas: entries ±√3 with probability 1/6 each and 0 with probability 2/3) and why it is cheaper; subspace random projection (oblivious subspace embeddings, sketch-and-solve for least squares); the kitchen-sink method of random Fourier features that approximates a shift-invariant kernel by an explicit low-dimensional map so that linear learners can be used.
+- **Results:** with columns and rows sampled by leverage scores, CUR from c = 40 columns and rows of a 400×300 rank-20-plus-noise matrix has Frobenius error 1.62 times the best rank-20 SVD error, and 1.13 times with c = 80 (at c = 160 the approximation has rank above 20, so the ratio 0.77 is not a contradiction) [S, check]; the sparse projection has the same distortion as the dense Gaussian one (standard deviation 0.052 against 0.051 for k = 200) with only 33 % non-zero entries [P, check]; sketch-and-solve for least squares with a Gaussian sketch of k rows returns a residual within 1 + ε of optimal, observed ratios 1.109, 1.025 and 1.009 for k = 100, 400 and 1600 on a 20,000×20 problem [S, check]; random Fourier features z(x) = √(2/D) cos(Wx + b) with W drawn from the kernel's spectral density satisfy E[z(x)·z(y)] = k(x − y) for the Gaussian kernel, with maximum error 0.67, 0.18 and 0.059 and mean error 0.117, 0.035 and 0.011 at D = 50, 500 and 5000, falling like 1/√D [P, check].
+- **Build:** a CUR decomposition with leverage-score sampling against the truncated SVD; a sparse projection compared with a dense one in time and distortion; a sketch-and-solve least-squares solver; random Fourier features with a linear SVM against an exact kernel SVM (U18.6). [local]
+- **Gap-fills:** *[inferred: Drineas, Mahoney and Muthukrishnan 2008 for CUR; Achlioptas 2003; Rahimi and Recht 2007; Woodruff 2014, recalled, not checked]* the fast transforms (the subsampled randomised Hadamard transform and CountSketch embeddings) are named only.
+
+**Assignment A20.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The kitchen-sink method approximates a Gaussian kernel with
+
+(A) Random Fourier features  
+(B) The Gram matrix exactly  
+(C) Decision trees  
+(D) k-means centroids
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) CUR uses actual columns and rows of the matrix  
+(B) Sparse random projection can match dense projection in distortion  
+(C) Sketch-and-solve gives a residual within 1 + eps of optimal  
+(D) A random Fourier feature map has error that falls like 1/D, not 1/sqrt(D)
+
+**Q3 (2 marks, numerical answer).** A rank-50 CUR sketch stores c = 50 columns of a 400 by 300 matrix. A random Fourier map uses D = 5000 features. What is 1/sqrt(D)? Give four decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for the Gaussian kernel the random Fourier feature z(x) = sqrt(2) cos(w x + b) with w from the kernel's spectral density and b uniform satisfies E[z(x) z(y)] = k(x - y).
+
+**Q5 (3 marks, programming).** Implement CUR with leverage-score sampling, sparse and dense random projection, a sketch-and-solve least-squares solver and random Fourier features against an exact kernel. Predict the RFF kernel error at D = 500 first.
+
+<details><summary>Key for A20.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Features cos(Wx + b) with random W and b have inner products that approximate the kernel.
+- **Q2:** ABC. D is false: the error falls like one over the square root of D.
+- **Q3:** 0.01414 (tolerance ±0.0001). 1/70.71 = 0.0141.
+- **Q4 (marking outline):** Using 2 cos(a) cos(c) = cos(a - c) + cos(a + c) we get E[2 cos(wx + b) cos(wy + b)] = E[cos(w(x - y))] + E[cos(w(x + y) + 2b)]. The second term has expectation 0 because b is uniform. The first is the characteristic function of the spectral density at x - y, which is the kernel k(x - y) by Bochner's theorem.
+- **Q5 (what a passing submission shows):** CUR error is about 1.6 times optimal at c = 40 and 1.1 at c = 80, the sketched residual ratio is about 1.025 at k = 400, and the RFF mean error is about 0.035 at D = 500.
+
+</details>
+
+### U20.6 MapReduce and related paradigms: programming examples (PageRank, k-means, matrix multiplication), moving computation to the data and the Hadoop ecosystem
+**Sources:** SDS W6
+- **Topics:** map-reduce and related paradigms: the model (map, shuffle, reduce) and its cost measures (the number of key–value pairs communicated, the reducer size and the replication rate); programming examples: PageRank (page rank; one iteration as a map–reduce job over the adjacency lists, with the dangling-node correction), k-means (the map assigns points to the nearest centroid, the reduce averages), matrix multiplication in one phase and in two phases; big data, where the computation goes to the data (data locality, the distributed file system, the cost of moving bytes against the cost of moving code); the Hadoop ecosystem (HDFS, YARN, MapReduce, Hive, Pig and HBase, named, with the platform in U11.3).
+- **Results:** one-phase MapReduce multiplication of two n×n matrices communicates 2n³ key–value pairs and two-phase communicates 2n² + n³ [D, check by instrumenting a miniature framework: 16,000 and 8,800 for n = 20, both exact to 4·10⁻¹⁵]; the MapReduce PageRank equals the power-iteration result of U11.10 to 10⁻¹⁷ after 100 iterations on a 50-node graph [check]; MapReduce k-means finds the three centres of three planted clusters, (4.01, −0.02), (−0.03, −0.02) and (−0.02, 4.02), in 10 rounds [check]; the shuffle, not the arithmetic, dominates: the work of both multiplication plans is n³ products, but the communication differs by a factor of two for every n [P].
+- **Build:** a miniature in-memory MapReduce framework that counts emitted pairs, with word count, PageRank, k-means and both matrix-multiplication plans written on it; the same jobs on Hadoop Streaming or Spark when available; a communication-cost calculator. [local]
+- **Gap-fills:** *[inferred: MMDS Chapter 2; Dean and Ghemawat 2004, recalled, not checked]* the combiner and the straggler problem are covered in U11.3; the reducer-size trade-off for one-phase multiplication is stated and not derived.
+
+**Assignment A20.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For n by n matrices the one-phase MapReduce multiplication emits how many key-value pairs?
+
+(A) 2 n cubed  
+(B) n squared  
+(C) n cubed plus 2 n squared  
+(D) 2 n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) Two-phase multiplication communicates 2n^2 + n^3 pairs  
+(B) A MapReduce PageRank iteration needs a dangling-node correction  
+(C) k-means fits MapReduce by assigning in map and averaging in reduce  
+(D) The shuffle is cheap compared with arithmetic
+
+**Q3 (2 marks, numerical answer (pairs)).** How many key-value pairs does two-phase MapReduce multiplication communicate for n = 20 (2n^2 + n^3)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Count the key-value pairs communicated by one-phase and two-phase MapReduce matrix multiplication of n by n matrices.
+
+**Q5 (3 marks, programming).** Write a miniature MapReduce framework that counts emitted pairs, then word count, PageRank, k-means and both matrix-multiplication plans on it. Predict the pair counts for n = 20 first.
+
+<details><summary>Key for A20.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Each of the 2n^2 input entries is replicated n times.
+- **Q2:** ABC. D is false: communication dominates.
+- **Q3:** 8800 pairs (tolerance ±0.01). 800 + 8000 = 8800.
+- **Q4 (marking outline):** One phase: each of the n^2 entries of A is sent to n reducers (one per column of the result) and likewise each entry of B to n reducers, giving 2n^3 pairs. Two phases: the first sends each of the 2n^2 entries once (keyed by the inner index) and emits n^3 products, which the second phase sums, giving 2n^2 + n^3.
+- **Q5 (what a passing submission shows):** The counts are 16000 and 8800 for the two plans, PageRank matches power iteration to 1e-15, and k-means finds the three planted centres in 10 rounds.
+
+</details>
+
+### U20.7 Scala and Spark, and distributed machine learning and optimisation: stochastic gradient descent with its proof
+**Sources:** SDS W7
+- **Topics:** map-reduce and related paradigms (contd.): Scala and Spark (resilient distributed datasets, transformations and actions, caching, the Scala syntax needed to read Spark code, with the platform in U11.4 and the Python API as the working language here); distributed machine learning and optimisation: introduction (data parallelism, the cost of a gradient step, the communication round as the unit of cost); stochastic gradient descent (SGD) and its proof: the update w ← w − η∇f_i(w) on a random example, unbiased gradients, the averaged iterate, the step size R/(G√T), mini-batches and variance, asynchronous and synchronous variants named.
+- **Results:** SGD on a convex function with gradient norms at most G and a solution at distance at most R from the start, with step η = R/(G√T), satisfies E[f(w̄_T)] − f* ≤ RG/√T for the averaged iterate [P]; the proof uses ‖w_(t+1) − w*‖² = ‖w_t − w*‖² − 2η g_t·(w_t − w*) + η²‖g_t‖², takes expectations, uses convexity and telescopes [P]; on logistic regression with 5000 points in 10 dimensions the suboptimality of the averaged iterate was 0.112, 0.052 and 0.020 for T = 10³, 10⁴ and 10⁵ against bounds 2.05, 0.65 and 0.20, so the 1/√T rate holds and the constant is loose [check]; one SGD step costs 1/5000 of a full gradient on that data [check]; in a data-parallel setting a full-gradient step needs one communication round per iteration, which is why the number of rounds, not the number of operations, is minimised [S].
+- **Build:** SGD with the averaged iterate and the bound plotted; mini-batch sizes and the variance of the gradient estimate; a data-parallel gradient descent on the miniature framework of U20.6 counting rounds; the Spark word count and logistic regression when PySpark is installed. [local]
+- **Gap-fills:** *[inferred: Bottou, Curtis and Nocedal 2018; Zinkevich et al. 2010 for parallel SGD; Spark documentation, recalled, not checked]* strongly convex rates (1/T), momentum and adaptive methods are named; Scala is not required to be learned beyond reading.
+
+**Assignment A20.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** SGD on a convex function with step R/(G sqrt(T)) has averaged-iterate suboptimality at most
+
+(A) R G/sqrt(T)  
+(B) R G/T  
+(C) G/R  
+(D) R squared/T
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) SGD uses an unbiased estimate of the gradient  
+(B) The averaged iterate is used for the bound  
+(C) One SGD step on n examples costs about 1/n of a full gradient  
+(D) SGD needs the full data in every step
+
+**Q3 (2 marks, numerical answer).** SGD is run with R = 1, G = 1 and T = 10000. What is the bound RG/sqrt(T)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that SGD with step eta and unbiased gradients g_t with norm at most G satisfies the averaged bound E[f(w_bar) - f*] <= R^2/(2 eta T) + eta G^2/2.
+
+**Q5 (3 marks, programming).** Implement SGD with the averaged iterate on logistic regression and plot suboptimality against the bound, compare mini-batch sizes, and write a data-parallel gradient descent on the miniature framework that counts communication rounds. Predict the suboptimality at T = 10^4 first.
+
+<details><summary>Key for A20.7 (open only after your attempt)</summary>
+
+- **Q1:** A. This is the standard 1/sqrt(T) bound.
+- **Q2:** ABC. D is false: it uses one random example or a mini-batch.
+- **Q3:** 0.01 (tolerance ±0.0001). 1/100 = 0.01.
+- **Q4 (marking outline):** Expand the squared distance to the optimum: norm(w_(t+1) - w*)^2 = norm(w_t - w*)^2 - 2 eta g_t.(w_t - w*) + eta^2 norm(g_t)^2. Take expectations, use convexity f(w_t) - f* <= grad f(w_t).(w_t - w*), and rearrange. Summing over t telescopes to the claimed sum, divide by T and apply Jensen to the average.
+- **Q5 (what a passing submission shows):** The averaged-iterate suboptimality is about 0.05 at T = 10^4, below the bound 0.65, and decreases like 1/sqrt(T).
+
+</details>
+
+### U20.8 Distributed optimisation with ADMM and its applications, distributed clustering and conclusion
+**Sources:** SDS W8
+- **Topics:** distributed machine learning and optimisation (continued): the alternating direction method of multipliers (ADMM): the augmented Lagrangian, the x-, z- and dual updates, consensus form (each worker solves a local problem and the average is the only communication), the penalty parameter ρ and its effect on convergence, stopping by primal and dual residuals; applications: distributed least squares and logistic regression, the lasso by ADMM (the z-step is soft thresholding); clustering at scale: k-means over many machines, communication of centroids instead of data, k-means‖ initialisation named, the choice between sketching the data and distributing the algorithm; conclusion: a map from problem (memory, model size, data spread) to remedy (sketches, projection, MapReduce, distributed optimisation).
+- **Results:** consensus ADMM for least squares with four workers converges to the centralised solution [S]; its speed depends sharply on ρ: after 300 iterations the error is 3.7·10⁻³, 1.9·10⁻³, 5.0·10⁻⁶ and 2.4·10⁻¹⁵ for ρ = 0.1, 1, 10 and 100, and ρ = 100 reaches 10⁻⁶ in 43 iterations (each worker's local matrix has eigenvalues of order 400) [check]; the lasso by ADMM with the soft-threshold z-step selects exactly the planted support {0, 1, 2, 3, 4} and agrees with `sklearn.linear_model.Lasso` to 2·10⁻¹¹ for ρ = 40 after 2000 iterations [P, check]; distributed k-means on 10⁸ points in 100 dimensions over 100 workers with 10 centres communicates 10⁵ numbers per round, against 10¹⁰ numbers for shipping the data once, a ratio of 10⁵ [check].
+- **Build:** consensus ADMM for least squares and the lasso with residual plots and a ρ sweep; distributed k-means on the miniature MapReduce framework with a bytes-moved counter; a decision flowchart from the problem types of U20.1 to the techniques of D20. [local]
+- **Gap-fills:** *[inferred: Boyd et al. 2011; Bahmani et al. 2012 for k-means‖, recalled, not checked]* the convergence proof of ADMM is stated and not given; federated learning and parameter-server systems are named and left to D12.
+
+**Assignment A20.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In consensus ADMM the only communication in each round is
+
+(A) The average of local solutions plus duals  
+(B) The full data  
+(C) The gradient of every example  
+(D) The Hessian
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) The lasso z-step is soft thresholding  
+(B) The penalty parameter rho strongly affects convergence speed  
+(C) Distributed k-means communicates centroids instead of data  
+(D) ADMM needs no choice of rho
+
+**Q3 (2 marks, numerical answer).** Distributed k-means on 10^8 points in 100 dimensions over 100 workers with 10 centres communicates k d w numbers per round. What is the ratio of shipping the data once (n d numbers) to one round?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the soft-threshold z-update in ADMM for the lasso.
+
+**Q5 (3 marks, programming).** Implement consensus ADMM for least squares and the lasso with a rho sweep and residual plots, and distributed k-means on the miniature framework with a bytes-moved counter. Predict the best rho among 0.1, 1, 10, 100 for the least-squares problem with local data of eigenvalue about 400 first.
+
+<details><summary>Key for A20.8 (open only after your attempt)</summary>
+
+- **Q1:** A. Each worker sends its local x plus u and receives the consensus z.
+- **Q2:** ABC. D is false: rho must be chosen and tuned.
+- **Q3:** 100000 (tolerance ±1). 10^10 / 10^5 = 10^5.
+- **Q4 (marking outline):** The z-step minimises lambda times the l1 norm of z + (rho/2) times the squared norm of z - (x + u) coordinatewise. The minimiser of lambda times the absolute value of z_i + (rho/2)(z_i - v_i)^2 is z_i = sign(v_i) max(abs(v_i) - lambda/rho, 0), which is soft thresholding of v = x + u at lambda/rho.
+- **Q5 (what a passing submission shows):** rho = 100 reaches 1e-6 error in 43 iterations while rho = 0.1 and 1 are still at about 1e-3 after 300, and the lasso support matches the planted one with a difference of 1e-11 from sklearn.
 
 </details>
 
@@ -6603,7 +9059,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Topics:** the Primer's object-oriented design interview questions with solutions: design a hash map (keys as integers, chaining for collisions, classes Item and HashTable), a least recently used cache (classes Node, LinkedList and Cache), a call center (Rank as an enumeration (Enum), Employee with Operator, Supervisor and Director, CallState, Call and CallCenter: calls go to an operator first and escalate), a deck of cards (Suit (Enum), Card with BlackJackCard, Hand with BlackJackHand, and Deck), a parking lot (VehicleSize as an Enum, Vehicle with Motorcycle, Car and Bus, ParkingLot, Level and ParkingSpot), a chat server, that is an online chat (UserService, User, Chat with PrivateChat and GroupChat, Message, AddRequest and RequestStatus as an Enum), and the open item, a circular array (listed in the source as to contribute). The method: clarify constraints and assumptions, list the use cases, identify the nouns as classes and the verbs as methods, choose relationships (is-a, has-a), then check the design against each use case.
 - **Results:** a hash map with chaining answers get, set and remove in expected O(1) with a good hash and a bounded load factor, and a randomised test against Python's `dict` over 20,000 operations agrees on every read [D, check]; an LRU cache built from a hash map plus a doubly linked list does get and put in O(1) (the proof is in U10.6), and a test against `OrderedDict` over 20,000 random operations agrees on every read [D, check]; in blackjack an ace counts 11 unless that would bust, so A, A, 9 is 21, A, K is 21 and A, 5, K is 16, and a 52-card deck is the product of 13 ranks and 4 suits [D, check]; the call center routes to the lowest free rank, so with two operators, one supervisor and one director the first four calls go to operator, operator, supervisor, director and the fifth waits [D, check]; a bus needing five consecutive large spots has 6 − 5 + 1 = 2 possible start positions in a row of six large spots [D, check]; a circular array of n elements rotated by k is read with index (i − k) mod n, so for n = 5 and k = 7 the order is 3, 4, 0, 1, 2 [D, check]; each design is judged by which patterns it uses (the deck uses a factory-like constructor, the call center a chain of responsibility, the chat a mediator or observer, the parking lot a strategy for spot choice) [S].
 - **Build:** the six designs, each in Python with unit tests that encode the stated use cases, and the circular array as the seventh; each submission includes a UML class diagram and a note naming the patterns it uses and the one it deliberately did not. [local]
-- **Gap-fills:** *[inferred: the exercises are interview-style; there is no single right answer]* the Primer marks this section as under development, so the problem statements are used as given and the pattern notes are this curriculum's own.
+- **Gap-fills:** *[inferred: the exercises are interview-style; there is no single right answer]* the Primer marks this section as under development, so the problem statements are used as given and the pattern notes are this curriculum's own. On demand: U17.15 for linked lists, U17.5 for the hash map and U17.6 for the structures behind an LRU cache.
 
 **Assignment A16.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6876,7 +9332,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Topics:** the Primer's system design interview questions with solutions (Pastebin.com or Bit.ly, the Twitter timeline and search or Facebook feed and search, a web crawler, Mint.com, the data structures for a social network, a key-value store for a search engine, Amazon's sales ranking by category, scaling to millions of users on AWS), each worked in the same four steps: Step 1 outline use cases and constraints (use cases, out of scope, constraints and assumptions, state assumptions, calculate usage), Step 2 create a high level design, Step 3 design core components (one use case at a time), Step 4 scale the design, and then additional talking points (SQL scaling patterns, NoSQL, caching, asynchronism and microservices, communications, security, latency numbers). Design Pastebin.com (or Bit.ly): use cases: the user enters a block of text and gets a randomly generated link (with an optional expiration), the user enters a paste's url and views the contents, the service tracks analytics of pages (monthly visit statistics), the service deletes expired pastes, high availability; out of scope: accounts, email verification, editing, visibility, custom shortlinks; assumptions: traffic is not evenly distributed, following a short link should be fast, pastes are text only, analytics need not be realtime, 10 million users, 10 million paste writes and 100 million reads a month (10:1); usage: about 1.27 KB per paste (1 KB content, a 7-byte shortlink, a 4-byte expiration length, a 5-byte created-at, a 255-byte path), 12.7 GB a month, about 450 GB and 360 million shortlinks in 3 years, 4 writes and 40 reads per second. Core: a relational database as a large hash table from the url to a path on a file server, or an object store such as S3 or a NoSQL document or key-value store; the web server as a reverse proxy to a Write API and a Read API; the `pastes` table keyed on `shortlink`; the url from the MD5 hash of the user's IP address plus a timestamp, Base62-encoded (digits and letters, unlike Base64's `+` and `/`) and cut to the first 7 characters; a public REST API and RPC inside; analytics by MapReduce over the web server logs, and expiry by scanning for pastes older than the current timestamp; scaling: an analytics database (a data warehouse such as Redshift or BigQuery), an object store, a memory cache for the 40 reads a second, SQL write master-slave and the other SQL scaling patterns. Design the Twitter timeline and search (or Facebook feed and search): use cases: a user posts a tweet, views the home timeline (people followed), views the user timeline, searches keywords, with notifications and fan-out in scope; assumptions: 100 million active users, 500 million tweets a day (15 billion a month) with an average fan-out of 10 (5 billion deliveries a day), 250 billion reads and 10 billion searches a month, reads far outnumber writes; usage: about 10 KB per tweet (8-byte id, 32-byte user id, 140 bytes of text, about 10 KB of media), 150 TB a month and 5.4 PB in 3 years, 100 thousand reads, 6,000 tweets, 60 thousand fan-out deliveries and 4,000 searches a second. Core: the Write API stores the tweet in the user timeline (SQL) and calls the Fan Out Service, which asks the User Graph Service for followers (kept in the memory cache), pushes the tweet into each follower's home timeline in a Memory Cache (a Redis list of tweet id, user id and metadata, 17 bytes per entry), indexes it in the Search Index Service, stores media in the Object Store and sends push notifications through the Notification Service; the Read API asks the Timeline Service for the cached ids (O(1)) and does multiget calls to the Tweet Info and User Info Services (O(n)); search tokenises the query and asks a Search Cluster such as Lucene; scaling: the fan-out service is the bottleneck for users with millions of followers (so skip fan-out for them and merge their tweets in at read time), keep only a few hundred tweets per cached timeline and only active users' timelines (rebuild from SQL if inactive for 30 days), keep a month of tweets, keep the search index in memory, and add SQL scaling patterns.
 - **Results:** the primer's arithmetic recomputes: 1.27 KB × 10 million = 12.7 GB a month, 457 GB in 36 months, 10 million ÷ 2.5 million seconds = 4 writes a second, 100 million ÷ 2.5 million = 40 reads a second; 15 billion tweets a month is 6,000 a second and 150 billion deliveries 60,000 a second, 250 billion reads 100,000 a second, 10 billion searches 4,000 a second, 10 KB × 500 million × 30 = 150 TB a month and 5.4 PB in 3 years [D, check]; Base62 over 7 characters gives 62^7 = 3.52 × 10^12 values, 9,782 times the 360 million shortlinks, yet the expected number of colliding pairs among 360 million random 7-character links is about n²/(2N) = 18,400, and a new link collides with probability 1.0 × 10^−4 when the table is full, so insertion must check for and retry on a collision (the primer lists "hash collisions" as a topic) [D, check]; a 128-bit MD5 digest needs 22 Base62 digits, so cutting to 7 keeps 7/22 of the bits and is a lossy, not a reversible, code [D, check]; a Base62 encode followed by a decode returned the original number for 2,000 random integers up to 10^15 [D, check]; the home-timeline cache for 100 million active users at 300 entries of 17 bytes is 5.1 KB each and 510 GB in all, which fits a cache cluster but not one machine [D]; fan-out on write costs one cache insert per follower: for 1,000 synthetic users with Pareto-distributed follower counts one tweet each caused 4,390 inserts, and skipping fan-out for accounts above 100 followers cut it to 3,658 inserts at the price of pulling 4 celebrity accounts on every read, and above 20 followers to 2,411 inserts with 36 pulled accounts, which is the push–pull hybrid in numbers [D, check]; a push model optimises reads (the dominant load) and a pull model optimises writes, and the right mix is set by the read-to-write ratio and the follower distribution [S].
 - **Build:** both designs in miniature in Python: a url shortener with Base62 ids, a collision-checking insert, a `sqlite3` table, an LRU read cache and expiry; a timeline service with a follower graph, push, pull and hybrid fan-out, per-user Redis-like lists (a deque), a keyword search index (an inverted index of U11.3), and a load generator that reports reads, writes and cache memory per second against the primer's numbers scaled down 10,000 times. The same two on a cloud: Cloud Run, Cloud SQL, Memorystore and Cloud Storage (U4.7, U10.7). [local]
-- **Gap-fills:** *[inferred: Krikorian, "Timelines at scale" (the talk the primer links); Raffi's and Instagram's engineering blogs; the Snowflake id scheme, recalled, not checked]* the primer's solutions are one reasonable answer, not the only one; counter-based or random-and-check ids are alternatives to hashing, and are the better choice when collisions must be impossible.
+- **Gap-fills:** *[inferred: Krikorian, "Timelines at scale" (the talk the primer links); Raffi's and Instagram's engineering blogs; the Snowflake id scheme, recalled, not checked]* the primer's solutions are one reasonable answer, not the only one; counter-based or random-and-check ids are alternatives to hashing, and are the better choice when collisions must be impossible. On demand: U17.5 for hashing and id generation.
 
 **Assignment A16.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6915,7 +9371,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Topics:** Design a web crawler: use cases (the service crawls a list of urls, a user inputs a search term and sees pages with titles and snippets), assumptions (anonymous users, no infinite loop on a cyclic graph, 1 billion links to crawl and refreshed about weekly so 4 billion crawled a month, 500 KB per page, 100 billion searches a month, and no existing system such as Solr or Nutch), usage (2 PB a month, 72 PB in 3 years, 1,600 writes and 40,000 searches a second); core: ranked `links_to_crawl` (Redis sorted sets) and `crawled_links` with page signatures in a NoSQL store, a Crawler Service loop taking the top ranked link, classes PagesDataStore, Page and Crawler; handling duplicates (sort and unique for small lists, MapReduce keeping entries with frequency 1 for a billion links, and a content signature compared with the Jaccard index or cosine similarity); determining when to update the crawl results (a timestamp and a default one-week refresh, mean time between page changes, robots.txt); the search path (Query API, Reverse Index Service, Document Service); scaling (cache popular queries, shard and federate the index and document stores, the crawler's own DNS cache, connection pooling). Design Mint.com: use cases (the user connects to a financial account, the service extracts transactions from the account, the service recommends a budget, then the user accesses summaries and transactions), assumptions (10 million users with 10 budget categories each, 50,000 sellers, 30 million financial accounts, 5 billion transactions and 500 million reads a month, write-heavy 10:1, daily refresh for users active in the last 30 days), usage (about 50 bytes per transaction, 250 GB a month, 9 TB in 3 years, 2,000 writes and 200 reads a second); core: an Accounts API writing the `accounts` table, extraction through a queue (SQS or RabbitMQ) with a Transaction Extraction Service that stores raw logs in the object store, categorises through the Category Service (a seller-to-category dictionary, 50,000 sellers at under 255 bytes each, about 12 MB, with a heap of the top manual override per seller), and updates the `transactions` and `monthly_spending` tables; the Budget Service with a generic template by income tier (housing 40%, food 20%, gas 10%, shopping 20%) so only overrides are stored, aggregation in SQL or by MapReduce on the raw files; scaling (memory cache for sessions, aggregates and recent transactions, an analytics database such as Redshift or BigQuery, a month of transactions in the database and the rest in the object store). Design the data structures for a social network: use cases (a user searches for someone and sees the shortest path to the searched person), assumptions (graph data does not fit one machine, unweighted edges, 100 million users, 50 friends each so 5 billion friend relationships, 1 billion searches a month so 400 a second, no graph database or GraphQL), core: breadth-first search, with users sharded across Person Servers behind a Lookup Service and a User Graph Service running the search (classes Person, PersonServer, LookupService); further optimisations (cache complete or partial BFS traversals, batch offline into NoSQL, batch friend lookups on the same Person Server and shard by location, run two BFS searches from source and destination and merge, start from high-degree people, set a limit on time or hops before asking the user, or use a graph database such as Neo4j if allowed). Design a key-value store for a search engine: use case (a request that hits the cache), assumptions (popular queries nearly always cached, limited memory, millions of queries, 10 million users, 10 billion queries a month), usage (270 bytes per entry: 50-byte query, 20-byte title, 200-byte snippet; 2.7 TB a month if all unique; 4,000 requests a second); core: a memory cache with LRU expiry from a doubly linked list plus a hash table (classes Node, LinkedList, Cache), updated by TTL (cache-aside); scaling by expanding the memory cache to many machines in three ways (each machine its own cache, each with a copy, or the cache sharded by hashing the query). Design Amazon's sales ranking by category: use cases (the service calculates the past week's most popular products by category, a user views them), assumptions (10 million products, 1,000 categories, 1 billion transactions and 100 billion reads a month, 100:1, results updated hourly, items in several categories but never changing category), usage (about 40 bytes per transaction, 40 GB a month, 1.44 TB in 3 years, 400 writes and 40,000 reads a second), core: sales logs in the object store, a multi-step MapReduce (step 1 transform to `(category, product_id), sum(quantity)`, step 2 a distributed sort) writing a `sales_rank` table, read through the cache. Each of the five follows the template of U16.14: Outline use cases and constraints (use cases, out of scope, constraints and assumptions, state assumptions), Create a high level design, Design core components, Scale the design, and Additional talking points (SQL scaling patterns, NoSQL, caching, asynchronism, communications, security); the key-value cache design adds a Cache implementation section (the linked list, hash table and TTL update above).
 - **Results:** the primer's figures recompute: 500 KB × 4 billion = 2 PB a month and 72 PB in 3 years, 4 billion ÷ 2.5 million = 1,600 writes a second, 100 billion ÷ 2.5 million = 40,000 searches a second; 50 B × 5 billion = 250 GB and 9 TB in 3 years, 2,000 writes and 200 reads a second; 100 million users × 50 friends = 5 billion relationships, 400 searches a second; 270 B × 10 billion = 2.7 TB, 4,000 requests a second; 40 B × 1 billion = 40 GB and 1.44 TB, 400 writes and 40,000 reads a second [D, check]; at 1,600 pages a second of 500 KB the crawler ingests 800 MB/s, about 6.4 Gbps, so the network, not the parser, is the first bottleneck [D, check]; the seller dictionary is 50,000 × 255 B = 12.75 MB, small enough to hold in every Categorizer process [D, check]; two 3-shingle sets of nearly identical sentences have Jaccard similarity 0.837 and a 200-hash min-hash estimates it as 0.795, a standard error near 1/√200 = 0.07, so signatures of 200 numbers replace comparing whole pages [D, check]; breadth-first search from both ends explores about 2·b^(d/2) nodes instead of b^d: for 50 friends and 4 degrees that is 5,000 against 6.25 million, and on a random graph of 20,000 users with about 20 friends each the mean number of nodes visited fell from 13,587 to 618 over 60 queries, with the bidirectional path within one hop of the true shortest in all 60 [D, check]; for an LRU of 1,000 entries over Zipf(1.0) keys, one cache gives a hit ratio of 0.506, four independent caches 0.506 each, and four caches sharded by key 0.640, equal to a single cache of 4,000 [D, check]; the two-step ranking is correct: the sum of step-1 totals equals the sum of quantities in the 5,000 simulated transactions and the per-category order equals a direct sort [D, check]; a time-bounded breadth-first search with a caller-visible limit turns an unbounded worst case into a bounded one [S].
 - **Build:** a miniature of each: a crawler over a synthetic web graph with a priority queue, URL dedupe, shingle and min-hash content signatures and a one-week recrawl clock; a transaction categoriser and budget aggregator with a queue and workers; a sharded social graph with a lookup service, single and bidirectional breadth-first search and the message count per query; a sharded LRU cache with consistent hashing and hit-ratio measurement under Zipf load; a two-step MapReduce ranker (U11.3's engine, or `collections.Counter`) checked against a direct sort. [local]
-- **Gap-fills:** *[inferred: Manning, Raghavan and Schütze on crawling and indexing; Broder on shingling and min-hash; Newman on shortest paths in networks, recalled, not checked]* the primer's code for these designs is not reproduced here and its class names are used only as labels; the source says its sections for these are examples, not the only correct designs.
+- **Gap-fills:** *[inferred: Manning, Raghavan and Schütze on crawling and indexing; Broder on shingling and min-hash; Newman on shortest paths in networks, recalled, not checked]* the primer's code for these designs is not reproduced here and its class names are used only as labels; the source says its sections for these are examples, not the only correct designs. On demand: U17.16 for tries and the inverted index, U17.11 and U17.12 for the crawler and the social graph.
 
 **Assignment A16.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6989,7 +9445,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 </details>
 
 
-# PART E. COMPUTER ARCHITECTURE AND PARALLEL HARDWARE
+# PART F. COMPUTER ARCHITECTURE AND PARALLEL HARDWARE
 
 ## D14. Computer architecture and parallel hardware: digital logic, instruction sets, arithmetic, pipelines and speculation, memory hierarchy, I/O, multiprocessors, coherence and consistency, on-chip networks, GPUs and accelerators, power and reliability
 
@@ -7326,7 +9782,7 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 - **Topics:** Cache Memory Principles (the multicore course's Week 6): Introduction to Cache Memory (the principle of locality, temporal and spatial; the hierarchy of registers, caches, main memory and storage; hit, miss, hit time and miss penalty), Block Replacement Techniques and Write Strategy (random, FIFO, LRU and pseudo-LRU, Belady's optimal policy; write-through with write buffers versus write-back with dirty bits; write-allocate versus no-write-allocate), Design Concepts in Cache Memory (block placement by direct mapping, set associativity and full associativity; block identification by tag, index and offset; the valid bit; split versus unified caches; inclusion and exclusion between levels). Cache Memory Optimizations (Week 7): Design issues for improving memory access time, Basic and Advanced Optimization Techniques in Cache Memory: larger blocks, larger caches and higher associativity, multilevel caches, giving reads priority over writes, avoiding address translation during indexing; small and simple first-level caches, way prediction, pipelined and non-blocking caches (miss status holding registers), multibanked caches, critical word first and early restart, merging write buffers, compiler optimisations (loop interchange, blocking), hardware and software prefetching, victim caches (recalled list, not checked). Memory System Design (the organisation course's Week 5): memory chips and their organisation, building a larger memory from smaller chips by width and depth expansion with an address decoder, memory interleaving; Design of Cache Memory Systems (Week 6). Memory Systems: Caches (the introductory course's Week 11). Caches: Design, modeling, and optimizations (the advanced course's Week 7): analytic miss models, the 3C model (compulsory, capacity, conflict), reuse distance and stack algorithms. Memory Hierarchy: Cache and Virtual memory (the parallel architecture course's Week 3): the cache half here, the virtual-memory half in U14.10. The same replacement and write policies appear in software caches in U16.12.
 - **Results:** For a cache of size S, associativity A and line size B with a-bit addresses, offset = log₂ B, index = log₂(S/(A·B)), tag = a − index − offset: 32 KiB, 8-way, 64 B lines and 48-bit addresses give 36/6/6, and 128 KiB, 8-way, 128 B lines give 34/7/7 [D, check]; AMAT = hit time + miss rate × miss penalty, and for two levels AMAT = t₁ + m₁(t₂ + m₂·t_mem) with m₂ the local miss rate, so 1 + 0.05(10 + 0.2·100) = 2.5 cycles [D, check]; tag, valid and dirty storage for the first example is 38 bits per 512 data bits, 7.4% [check]; LRU is a stack algorithm: the contents of an LRU cache of capacity c are always a subset of those of capacity c + 1, so misses never increase with capacity [P, check]; FIFO is not a stack algorithm and shows Belady's anomaly (the trace 1,2,3,4,1,2,5,1,2,3,4,5 has 9 faults with 3 frames and 10 with 4) [check]; Belady's MIN (evict the block used furthest in the future) is optimal [P, by an exchange argument] and never worse than LRU or FIFO [check]; the 3C classification: compulsory misses are first references, capacity misses are the further misses of a fully associative LRU cache of the same size, and conflict misses are the rest [Def, check on a direct-mapped example: 5, 0 and 3]; a 64K × 8 memory built from 16K × 4 chips needs 8 chips in four banks of two selected by a 2-to-4 decoder [D, check]; LRU hit ratio under a Zipf workload follows Che's approximation (the analytic models are owned by U3.11, which derives Che's approximation, and U10.6, which gives the Zipf harmonic-sum ratio), which this unit uses as an oracle: for N = 1000 objects, capacity 100 and exponent 0.8 the approximation and a simulation agree within 0.01 [check].
 - **Build:** a configurable cache simulator (size, associativity, line size; LRU, pseudo-LRU, FIFO, random and MIN; write-back and write-through, write-allocate or not; a next-line and a stride prefetcher; a victim cache) with a 3C classifier, validated on hand-computed traces and on a Zipf workload against the U3.11 and U10.6 analytic models [check]; a blocking (tiling) experiment on matrix multiplication traces. Real lab on the Mac: cache-line size and capacity by pointer-chasing and stride experiments in C; read `sysctl hw.cachelinesize`, `hw.l1dcachesize` and `hw.l2cachesize` and compare with what the experiment finds (keys recalled, not checked; Apple-silicon line size recalled as 128 bytes, verify first). [local]
-- **Gap-fills:** *[inferred: Hennessy and Patterson, Chapter 2 and Appendix B; Jacob, Ng and Wang, Memory Systems; Mattson, Gecsei, Slutz and Traiger (1970) on stack algorithms; Belady (1966); Jouppi (1990) on victim caches and stream buffers; Hill and Smith (1989) on the 3C model; recalled, not checked]* links to U10.6 (owner of the Zipf hit-ratio model) and U3.11 (owner of Che's approximation).
+- **Gap-fills:** *[inferred: Hennessy and Patterson, Chapter 2 and Appendix B; Jacob, Ng and Wang, Memory Systems; Mattson, Gecsei, Slutz and Traiger (1970) on stack algorithms; Belady (1966); Jouppi (1990) on victim caches and stream buffers; Hill and Smith (1989) on the 3C model; recalled, not checked]* links to U10.6 (owner of the Zipf hit-ratio model) and U3.11 (owner of Che's approximation). On demand: U17.6 for the queues and lists behind LRU and FIFO, and U17.10 for the exchange argument that proves Belady's MIN optimal.
 
 **Assignment A14.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7868,11 +10324,11 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 </details>
 
 
-# PART F. CAPSTONES
+# PART G. CAPSTONES
 
 ## D13. Capstones
 
-Aim: nine integrating projects, each one drawing on units from several domains, each built from your own components first and then checked against standard tools. A capstone has no weekly assignment; it is accepted against the listed criteria, with the Master Rules' tutor stance applied (the tutor does not write graded work). Each is local first, labelled with its cost, and, wherever it touches security, confined to the laboratory rules of U6.1.
+Aim: ten integrating projects, each one drawing on units from several domains, each built from your own components first and then checked against standard tools. A capstone has no weekly assignment; it is accepted against the listed criteria, with the Master Rules' tutor stance applied (the tutor does not write graded work). Each is local first, labelled with its cost, and, wherever it touches security, confined to the laboratory rules of U6.1.
 
 ### U13.1 Capstone: a user-space TCP/IP stack over a lossy virtual link
 **Sources:** none (capstone; assembles earlier units)
@@ -7937,6 +10393,13 @@ Aim: nine integrating projects, each one drawing on units from several domains, 
 - **Build:** the dossier as one document with numbered assumptions and a table of estimates, the miniature as small modules with a test per module and a single script that runs the load, injects the failures and prints the report, and a one-page critique of what the miniature leaves out (real networks, concurrency races, multi-datacentre operation, security). Runs in Python on the Mac's CPU with invented data only; an optional deployment on Google Cloud is labelled with its cost and torn down after the test. [local]
 - **Gap-fills:** *[inferred: Kleppmann, Designing Data-Intensive Applications, and Beyer et al., Site Reliability Engineering, as comparable reading; recalled, not checked]* acceptance: a reviewer can change one assumption, such as the read-to-write ratio, rerun the estimator and the miniature, and find both move in the predicted direction.
 
+### U13.10 Capstone: an analytics pipeline from raw data to a decision, with the statistics, the model, the sketches and the distributed run built from scratch
+**Sources:** none (capstone; assembles earlier units)
+- **Topics:** Scope: choose a decision problem with a synthetic data generator you write yourself (customer churn for a subscription service, fraud in card transactions, or demand and inventory for a small retailer), then deliver an end-to-end pipeline and a written decision memo. The pipeline has seven stages. (1) Data and preprocessing: a generator with a known ground truth, deliberately messy output (missing values, duplicates, outliers, a skewed class), a cleaning step and a documented preprocessing plan (U19.2, U19.11, U21.1). (2) Exploration and inference: descriptive statistics, confidence intervals by formula and by bootstrap, a two-sample test and an ANOVA on the segments, with a multiple-testing correction (U19.3 to U19.6). (3) Models: a regression and a classifier built from scratch (normal equations, IRLS logistic regression, a CART tree, a naive Bayes or k-NN baseline) and one association-rule or sequence-mining result (U19.7 to U19.13, U18.6), compared by cross-validation, the ROC curve and a cost-aware threshold (U19.8, U19.13). (4) A Bayesian version of the main model with a hand-written sampler, priors justified, convergence reported, and a Bayes factor or leave-one-out comparison with the frequentist one (U19.14 to U19.17). (5) Linear-algebra and graph components: a low-rank or PCA step, a recommendation or completion step on the user–item matrix, and a graph measure on a customer or transaction graph (U18.3 to U18.8, U17.11 to U17.13). (6) Scale: the same pipeline on 10³ times more data using a Count-Min sketch for frequencies, a Bloom filter for deduplication, MinHash for near-duplicate customers, and a two-phase map-reduce aggregation on the miniature framework, with bytes moved reported (U20.2 to U20.8, U17.5, U15.17); the storage side uses the database of D15 with an index chosen by measurement (U15.16). (7) Decision: the memo states the expected cost and benefit of the recommended policy with an interval, the assumptions that would reverse it, and the checks that guard against the usual failures (leakage, survivorship, multiple comparisons, class imbalance).
+- **Results:** the recovered effects match the generator's ground truth within the reported intervals on at least 90 percent of repeated runs with fresh seeds [check]; the from-scratch regression, logistic regression and tree agree with the library versions (scikit-learn or SciPy) to the stated tolerances [check]; the sampler's R-hat is below 1.01 and its posterior means agree with the closed-form or grid answer where one exists [check]; the sketch-based frequencies stay inside their stated error bounds and the sketched pipeline's decision agrees with the exact pipeline's on the full data [check]; the pipeline is reproducible from one command and one seed [check]; the memo's cost figure recomputes from the stated assumptions to within 5 percent [check].
+- **Build:** a package with one module per stage and a test per module, a single `run_pipeline` script with a seed argument, a notebook that regenerates every figure, and the two-page memo. Runs locally in Python on the Mac's CPU with invented data only; an optional run of the scaled stage on a managed cluster service (U12.3) is labelled with its cost and torn down after the test. [local]
+- **Gap-fills:** *[inferred: the capstone pattern of U13.1 to U13.9; Provost and Fawcett, Data Science for Business, and Gelman et al., Regression and Other Stories, as comparable reading, recalled, not checked]* acceptance: a reviewer can change one assumption (the churn rate, the cost of a false negative, the data size) and find that the memo, the models and the sketches move in the predicted direction, and the work is accepted against the Master Rules' tutor stance with no graded work written by the tutor. On demand: U17.4, U17.5 and U17.16 for the data structures of the pipeline.
+
 
 ---
 
@@ -7971,10 +10434,20 @@ Aim: nine integrating projects, each one drawing on units from several domains, 
 | SDP | The System Design Primer | Donne Martin (github.com/donnemartin/system-design-primer, CC BY 4.0) | `src4.txt (generated from the cloned READMEs; see Appendix A)` 1–40 | 40 |
 | PYP | python-patterns: design patterns and idioms in Python | faif and contributors (github.com/faif/python-patterns README) | `src4.txt (generated from the cloned READMEs; see Appendix A)` 41–49 | 9 |
 | GOF | Design Patterns: Elements of Reusable Object-Oriented Software | Gamma, Helm, Johnson, Vlissides (the Gang of Four, 1994; names checked on Wikipedia) | `src4.txt (generated from the cloned READMEs; see Appendix A)` 50–54 | 5 |
+| DAP | Data Analytics with Python | A. Ramesh, Department of Management Studies, IIT Roorkee | `data-analytics.txt (copied as src5.txt)` 6–27 | 13 |
+| AGDS | Algorithmic Graph Theory and Data Structures | Sourav Mukhopadhyay, Department of Mathematics, IIT Kharagpur | `data-analytics.txt (copied as src5.txt)` 36–61 | 13 |
+| SDS | Scalable Data Science | Anirban Dasgupta, IIT Gandhinagar, and Sourangshu Bhattacharya, IIT Kharagpur (NPTEL 106105186) | `data-analytics.txt (copied as src5.txt)` 80–99 | 9 |
+| DBMS | Data Base Management System | Partha Pratim Das and Samiran Chattopadhyay, IIT Kharagpur (NPTEL 106105175) | `data-analytics.txt (copied as src5.txt)` 123–140 | 9 |
+| BDA | Bayesian Data Analysis for the Behavioral Sciences | Himanshu Yadav, Department of Cognitive Science, IIT Kanpur | `data-analytics.txt (copied as src5.txt)` 207–234 | 13 |
+| ALA | Applied Linear Algebra for Signal Processing, Data Analytics and Machine Learning | Aditya K. Jagannatham, IIT Kanpur (NPTEL 108104174) | `data-analytics.txt (copied as src5.txt)` 252–280 | 13 |
+| DM | Data Mining (title inferred; the source gives only the instructor) | Pabitra Mitra, IIT Kharagpur | `data-analytics.txt (copied as src5.txt)` 289–307 | 9 |
+| DSAD | Data Structures and Algorithms Design | Nitin Saxena, IIT Kanpur (NPTEL 106104697) | `data-analytics.txt (copied as src5.txt)` 326–351 | 13 |
 
 The line numbers for FDB, DBD and IDB refer to `src3.txt`, a cleaned copy of `dbms.txt` (the letter-spaced text of Database Design modules 7 to 11 was re-joined by hand; see Appendix E.1), kept in the work archive. Nothing else in `dbms.txt` was altered.
 
 The line numbers for SDP, PYP and GOF refer to `src4.txt`, an outline of 54 lines generated by a script (`design_src/mk_src4.py`) from the headings, bold terms, tables and solution outlines of two public repositories cloned on 2026-11-06: the System Design Primer by Donne Martin (commit ae9bbd7, 20 March 2026) and the python-patterns collection (commit a8e4090, 1 November 2026); the GOF cells list the 23 Gang of Four patterns. The primer is licensed CC BY 4.0 (Copyright 2017 Donne Martin, `LICENSE.txt` in the repository); this document paraphrases and re-derives its content, reproduces none of its code, and credits it here. The python-patterns clone has no LICENSE file, so only its catalogue (names and one-line descriptions) is used, in the curriculum's own words.
+
+The line numbers for DAP, AGDS, SDS, DBMS, BDA, ALA, DM and DSAD refer to `src5.txt`, a verbatim copy of `data-analytics.txt` (356 lines). The file holds nine outlines; the ninth, Big Data Computing, is an exact duplicate of BDC (checked line by line against `cloud-computing.txt`) and has no cells of its own. The DBMS course is a fourth database course and its cells are cited by the existing D15 units. For DM the file gives only the instructor's name and the outline text, so its title is inferred.
 
 ## Appendix B. Coverage matrix: every source cell and the units that teach it
 
@@ -8030,7 +10503,23 @@ Each entry is `cell → units`. A cell may feed several units because one source
 
 **GOF** (Design Patterns: Elements of Reusable Object-Oriented Software): o → U16.2; BEH → U16.4, U16.5; CRE → U16.2; PRI → U16.2; STR → U16.3
 
-Total: 360 cells, every one cited.
+**DAP** (Data Analytics with Python): o → U19.2; W1 → U19.2; W2 → U19.3; W3 → U19.4; W4 → U19.5; W5 → U19.6; W6 → U19.6, U19.7; W7 → U19.7; W8 → U19.8; W9 → U19.7, U19.8; W10 → U19.9; W11 → U19.9; W12 → U19.10
+
+**AGDS** (Algorithmic Graph Theory and Data Structures): o → U17.2; W1 → U17.2; W2 → U17.3; W3 → U17.4; W4 → U17.4, U17.5; W5 → U17.7; W6 → U17.8; W7 → U17.9; W8 → U17.10; W9 → U17.11, U17.12; W10 → U17.12, U17.13; W11 → U17.13; W12 → U17.14
+
+**SDS** (Scalable Data Science): o → U20.1; W1 → U20.1; W2 → U20.2; W3 → U20.3; W4 → U20.4; W5 → U20.5; W6 → U20.6; W7 → U20.7; W8 → U20.8
+
+**DBMS** (Data Base Management System): o → U15.1; W1 → U15.1; W2 → U15.7; W3 → U15.2, U15.5; W4 → U15.12; W5 → U15.9, U15.10, U15.15; W6 → U15.16, U15.17; W7 → U15.18, U15.21; W8 → U15.22, U15.23, U15.27
+
+**BDA** (Bayesian Data Analysis for the Behavioral Sciences): o → U19.14; W1 → U19.3; W2 → U19.3; W3 → U19.14; W4 → U19.14; W5 → U19.15; W6 → U19.15; W7 → U19.16; W8 → U19.17; W9 → U19.17; W10 → U19.16; W11 → U19.15; W12 → U19.17
+
+**ALA** (Applied Linear Algebra for Signal Processing, Data Analytics and Machine Learning): o → U18.2, U18.3, U18.4, U18.5, U18.6, U18.7, U18.8, U18.9, U18.10, U18.11, U18.12, U18.13; W1 → U18.2; W2 → U18.3; W3 → U18.4; W4 → U18.5; W5 → U18.6; W6 → U18.7; W7 → U18.8, U18.9; W8 → U18.9, U18.10; W9 → U18.10; W10 → U18.11; W11 → U18.12; W12 → U18.13
+
+**DM** (Data Mining (title inferred; the source gives only the instructor)): o → U19.11; W1 → U19.11; W2 → U19.11; W3 → U19.12; W4 → U19.12; W5 → U19.9; W6 → U19.13; W7 → U19.13; W8 → U19.13
+
+**DSAD** (Data Structures and Algorithms Design): o → U17.2; W1 → U17.2; W2 → U17.2; W3 → U17.2; W4 → U17.6; W5 → U17.7; W6 → U17.6; W7 → U17.7; W8 → U17.3; W9 → U17.11; W10 → U17.4, U17.11; W11 → U17.6, U17.9, U17.10; W12 → U17.4, U17.12
+
+Total: 452 cells, every one cited.
 
 ## Appendix C. Prerequisite bridges and the prerequisites the sources state
 
@@ -8059,8 +10548,33 @@ Total: 360 cells, every one cited.
 | U15.14 | the external-memory model, disks and the cost of sorting | U15.15 to U15.18 (file organisation, indexes, and the costs of query processing and optimisation count page transfers, not instructions), and later U10.2 (distributed file systems) and U11.1 (external sorting in MapReduce) |
 | U15.19 | directed graphs, cycles, topological order and partial orders for schedules, deadlocks and timestamps | U15.21 (precedence graphs and serial orders), U15.22 (wait-for graphs, deadlock detection and the timestamp orders of wait-die, wound-wait and timestamp ordering) and U15.23 (the dependency order of log records). U2.7 taught shortest paths and spanning trees; it did not teach cycles and topological order, which are needed here |
 | U16.1 | object-oriented programming, UML and design principles for the pattern units | U16.2 to U16.7, and every capstone that builds a program of more than one file |
+| U17.1 | discrete mathematics for algorithm analysis: induction, sums, logarithms, recurrences and probability | U17.2 to U17.17 |
+| U17.2 | Introduction to algorithms and their analysis: time complexity, asymptotics, merge sort, recurrences and clever linear-time algorithms | U17.3 to U17.17 and every unit whose Results state a running time or an operation count (U2.7, U3.4, U15.17, U15.18, U20.1) |
+| U17.3 | Divide and conquer: the master method, quicksort, randomised quicksort, half-majority, multiplication and inversions | U11.3 and U15.17 (the sort inside the shuffle and inside external sorting), U18.9 (the FFT is divide and conquer), U17.4 and every recursive algorithm |
+| U17.4 | Heaps, sorting in linear time and order statistics | U11.3 (sort and shuffle), U11.7 (top-k with a heap), U15.17 (external merge sort), U17.12 (the priority queue of Dijkstra) |
+| U17.5 | Hashing: hash functions, open addressing and perfect hashing | U3.1 (hashing and Bloom filters), U9.5 and U10.3 (consistent hashing), U15.15 (hashed files), U15.17 (hash joins), U11.3 (the partitioner), U16.7 (the hash map exercise), U20.2 and U20.3 (universal hashing and sketches) |
+| U17.6 | Abstract data types, stacks and queues, range queries and the grid-distance problem | U16.7 (the LRU cache), U14.9 (replacement policies), U11.7 (windows), U17.11 (the queue of breadth-first search) |
+| U17.7 | Search trees: binary search trees, balancing and red-black trees | U15.16 (B-trees and B+-trees are search trees with wide nodes), U10.5 (sorted tables), U3.4 (lookup trees), U17.16 |
+| U17.8 | Augmenting data structures, fixed-universe successor and the van Emde Boas tree, with the geometric primitives | U3.5 (range queries over rules), U17.9 and U17.16 |
+| U17.9 | Disjoint sets, amortised analysis and more computational geometry | U17.10 (Kruskal's algorithm uses union–find), U2.7 and U9.11 (spanning trees), and every amortised bound in the curriculum |
+| U17.10 | Greedy algorithms, dynamic programming, graphs and minimum spanning trees | U2.7 (spanning trees), U14.9 (Belady's MIN is a greedy rule), U15.18 (dynamic programming over join orders), U16.15 (the ranking designs), U17.17 |
+| U17.11 | Graph search: breadth-first and depth-first search, bipartiteness, DFS trees and articulation points | U2.7, U2.12 (the spanning tree protocol), U11.10 and U11.11 (graph traversal and PageRank), U15.19 and U15.21 (cycle detection in schedules), U16.15 (the web crawler), U21.5 |
+| U17.12 | Single-source shortest paths: Dijkstra, Bellman–Ford and their applications | U2.7 and U2.9 (path computation in OSPF and BGP), U3.10 (data-centre routing), U11.11 (graph processing), U16.15 |
+| U17.13 | All-pairs shortest paths: Floyd–Warshall and Johnson | U2.7, U11.11 and U18.3 (graphs and matrices) |
+| U17.14 | Flow networks, the Ford–Fulkerson method, and an introduction to computational complexity | U3.2, U4.5 and U4.6 (matching, flows and traffic engineering), U5.8 (complexity and reductions), U17.17 |
+| U17.15 | arrays, linked lists, recursion, binary search, the elementary sorts and bit tricks — the floor under D17, built from scratch | U17.2 to U17.14, U16.7, U14.2 and every Build that uses a list, a linked structure or a recursive function |
+| U17.16 | Tries, B-trees, skip lists and string matching: the lookup structures of routers, databases and search engines | U3.1, U3.4 and U3.5 (tries), U7.1 (signature matching), U15.16 (B-trees), U10.4 and U10.5 (skip lists and sorted tables), U16.14 and U16.15 (the inverted index and the crawler) |
+| U17.17 | Backtracking, branch and bound, exact exponential algorithms, approximation and local search: living with hard problems | U5.8 (reductions), U15.18 (join ordering is hard), U4.5 (integer programs), U17.14 (NP-hardness) |
+| U18.1 | complex numbers, trigonometry and phasors, and the language of vector spaces | U18.2 to U18.13 |
+| U19.1 | calculus, counting and matrices for statistics | U19.2 to U19.17 |
+| U21.1 | Python from scratch — types, control flow, functions, recursion, objects, exceptions, generators, testing, NumPy and the floating-point model | U19.2, U17.2 to U17.14, U18.2, U20.1 to U20.8, U15.7 to U15.9, and every unit whose Build is a script |
+| U21.2 | school mathematics through class 12, consolidated — algebra, functions, trigonometry, coordinate and vector geometry, matrices and determinants, calculus, differential equations, linear programming and probability, with numerical methods built from scratch | U19.1, U18.1 to U18.13, U17.1, U19.2 to U19.17, U20.1 and every unit that uses a derivative, a matrix or a logarithm |
+| U21.3 | scientific Python for data analysis — arrays and broadcasting, data frames, distributions, formulas, random numbers and plotting, each built from scratch before the library is used (this replaces the R programming prerequisite of the Bayesian course) | U19.2 to U19.17, U20.1 to U20.8, U13.10 and every unit whose Build uses NumPy, pandas, SciPy, statsmodels, PyMC or Matplotlib |
+| U21.4 | proofs and discrete reasoning — logic, sets, counting, direct proof, contrapositive and contradiction, induction, the pigeonhole and double counting, and invariants | U17.1 to U17.14, U19.3, U21.5, U21.6 and every [P] result of D17 to D20 |
+| U21.5 | graph theory from scratch — definitions, degrees, paths and connectivity, trees, Eulerian and Hamiltonian graphs, bipartite graphs, planarity, colouring, matchings and representations | U17.10, U17.11, U17.12, U17.13, U17.14, U2.7, U3.2, U15.19, U18.3, and the unit "Algorithmic Graph Theory and Data Structures" as a whole |
+| U21.6 | probability from first principles — sample spaces, random variables, expectation, the standard distributions, limit theorems and simulation by inversion, rejection and Monte Carlo | U19.3 to U19.17, U20.1 to U20.8, U17.5, U18.7, U18.13 and the probability prerequisite of Algorithmic Graph Theory and Data Structures |
 
-21 bridge units in all. Several other units (U5.2 modular arithmetic, U5.5 algebra, U9.1 models and the simulator, U9.2 tail bounds) also begin from first principles and carry source citations as well.
+46 bridge units in all. In D17 every unit is an on-demand bridge (the entry map in its introduction lists the units that call on it), which is why D17 appears here in full. Several other units (U5.2 modular arithmetic, U5.5 algebra, U9.1 models and the simulator, U9.2 tail bounds) also begin from first principles and carry source citations as well.
 
 ### C.2 What the sources state as prerequisites, and where each is handled
 
@@ -8085,6 +10599,12 @@ Total: 360 cells, every one cited.
 | GPU | PRE-REQUISITES : Programming and Data Structure, Digital Logic, Computer architecture | Programming and data structures, digital logic and computer architecture: U14.1 to U14.9. |
 | FDB | Pre-requisites: Basic programming; Data structures and algorithms | Data structures, algorithms and discrete mathematics: U15.3 (sets, relations and logic), U15.14 (external-memory model) and U15.19 (directed graphs) are bridges; programming: Python (U1.2). |
 | IDB | PRE-REQUISITES : Studying B Tech (computer science) 3rd year, Discrete Mathematics or Discrete Structures, Programming and Data Structures INTENDED AUDIENCE : Any Interested Learners | Discrete mathematics, data structures and programming: U15.3, U15.14 and U15.19, with U1.2 for Python. |
+| DAP | PRE-REQUISITES : Basic knowledge of Python but not necessary | Basic Python, not necessary: U21.1 teaches the language from scratch; the school mathematics and probability the course uses are U21.2 and U21.6. |
+| AGDS | PREREQUISITES: Data Structure, Graph Theory and Probability | Data structures: D17 (U17.5 to U17.9). Graph theory: U21.5. Probability: U21.6 and U19.3. |
+| SDS | PREREQUISITES : Algorithms, Machine Learning | Algorithms: D17 (with U17.1 and U21.4 for the mathematics under them). Machine learning: U11.8 here and the full machine-learning curriculum; U20.1 reviews the optimisation, linear algebra and concentration inequalities it needs. |
+| DBMS | Students from all disciplines can enroll for this course.PRE-REQUISTES :1. Procedural and / or Object-Oriented Programming (C / C++ / Java / Python) 2. Data Structures 3. AlgorithmsINDUSTRY SUPPORT : DBMS is so fundamental that all companies dealing with systems as well as application development (i | Procedural or object-oriented programming (C, C++, Java, Python): U21.1 and U16.1 (Python replaces the other languages, inferred). Data structures and algorithms: D17. |
+| BDA | PRE-REQUISITES : The only prerequisite is R programming. Mathematics background up to class 12 is desired. To prepare for this course, participants can do courses like: ‘Foundations of R Software’ available on NPTEL taught by Prof. Shalabh, IIT Kanpur | R programming: replaced by Python throughout (decision of 2026-11-06); U21.3 teaches scientific Python in its place. Mathematics up to class 12: U21.2 and U19.1. The suggested NPTEL course Foundations of R Software is replaced by U21.3. |
+| DSAD | Very good analytical skills. | Very good analytical skills: U21.4 (proofs and discrete reasoning) and U17.1. |
 
 ## Appendix D. Gap-fills, candidates not added, and decisions needed
 
@@ -8094,6 +10614,7 @@ Total: 360 cells, every one cited.
 - **U4.8** (cloud networking on Google Cloud): the thin GCF weeks 5 and 6 name networking products; the concepts underneath are derived from scratch so the product names are replaceable.
 - **GCF weeks with title-only outlines** are treated as *inferred*: the concepts under each product name are taught from first principles and the product lens sits next to the concept it implements (compute D4, networking U4.8, identity U7.7, storage U10.7, operations and analytics D12).
 - **D16** (software and system design, 2026-11-06): added on request from three public sources (the System Design Primer, the python-patterns collection and the Gang of Four catalogue). Bridge U16.1 (object-oriented design, UML, SOLID) was added before the pattern units. Where an existing unit already owns the theory (DNS U2.4, CDN U3.11, CAP U9.16, nines U9.13, consistent hashing U9.5, NoSQL and caches U10.6, Kafka U11.6, hardware caches U14.9, relational theory D15), D16 keeps the engineering view and points back; the pointers were added to those units.
+- **D17 to D21** (the data-analytics extension, 2026-11-06): eight new courses from `data-analytics.txt` gave four new domains, D17 (algorithms and data structures, taught on demand with an entry map and three added units, U17.15 to U17.17), D18 (applied linear algebra), D19 (statistics, data mining and Bayesian analysis) and D20 (scalable data science); the DBMS course was mapped onto the existing D15 units with no new unit. D21 (on-demand prerequisites: Python, school mathematics, scientific Python in place of R, proofs, graph theory, probability) consolidates every prerequisite the sources state or assume, taught in depth with from-scratch builds and assignments, and U13.10 (an analytics pipeline) was added as a capstone. Ownership rules: D15 owns database theory, U11.3 and U11.4 own MapReduce and Spark, U11.7 owns the stream-sketch idea, U11.8 and U11.10 own the compact machine-learning and Markov-chain bridges; D17 to D20 add the analysis, the proofs and the experiments, and the existing units point to them.
 - **Capstones** (D13) assemble the earlier units and are not sourced.
 
 ### D.2 Gap candidates (not added; need your agreement per Master Rules 7.4)
@@ -8121,6 +10642,9 @@ These are adjacent subjects that no outline names, or that a unit mentions only 
 
 9. **Database file, recorded (2026-11-05).** `dbms.txt` holds three database courses, now D15 (printed between D9 and D10). The garbled part of its text layer was re-joined by hand (Appendix E.1); say if you would rather supply a clean copy so the line numbers can point at the original.
 10. **Design sources, recorded (2026-11-06).** The company architectures and engineering blogs listed in the primer, and the Anki decks, were not opened or summarised (U16.16 says so); say if you want selected ones added as units. The primer's solutions are one reasonable answer each, taught here with every figure recomputed.
+11. **R replaced by Python, recorded (2026-11-06).** The Bayesian course teaches with R, brms and Stan. On the user's instruction every R-related part was converted to Python: U21.3 teaches scientific Python (NumPy, pandas, SciPy, patsy and statsmodels, Matplotlib) in place of the R programming prerequisite, and U19.15 to U19.17 use PyMC, Bambi and ArviZ, which are installed in the workspace and were run (versions in `verify/v_f7.py`). The source names (R programming, brms, Stan) are kept only where the unit says what replaces them.
+12. **Textbook checks, recorded (2026-11-06).** The contents lists of MMDS, CLRS, Strang, Hammack, the Python tutorial and the NCERT mathematics chapters were read from public pages (Appendix F); the other benchmarks of D17 to D21 are recalled, not checked. The Netflix Prize figures in U18.8 were read from public write-ups.
+13. **Algorithms and data structures on demand, recorded (2026-11-06).** On the user's instruction D17 is entered the way the prerequisite bridges are: from the unit that needs it. Each of U17.2 to U17.14 begins with a "Bridge for:" line, the introduction of D17 holds the entry map, the Gap-fills of 37 using units name the U17 unit to enter, and three units were added, U17.15 (arrays, linked lists, recursion, binary search, elementary sorts, bit tricks), U17.16 (tries, B-trees, skip lists, string matching) and U17.17 (backtracking, branch and bound, approximation, local search). The three added units have no source cells (they are gap-fills from CLRS and other recalled benchmarks, marked as such) and every figure in them was measured by `verify/v_f8.py`.
 Resolved on 2026-11-04 and no longer open: the placement of the architecture courses (D14, printed before the capstones), the scope of the GPU labs (three tiers with a simulator fallback) and the assembly language (an AArch64 subset with a crosswalk to the MIPS-like and RISC-V-like forms).
 
 ## Appendix E. Source anomalies, typos and residual flagged atoms
@@ -8148,11 +10672,16 @@ Resolved on 2026-11-04 and no longer open: the placement of the architecture cou
 | SDP (primer) | The latency table note says main memory is 20 times slower than L2 cache; the table gives 7 ns and 100 ns, a ratio of 14.3 (the other notes, 14x, 200x, 120x and 30x, recompute) | U16.8 uses 14.3 and records the slip. |
 | PYP (python-patterns) | The README lists an interpreter pattern with no matching file in the repository, and the clone has no LICENSE file | U16.4 teaches the interpreter from the Gang of Four description; only the catalogue is used (Appendix A). |
 | GOF | The Gang of Four catalogue is not a course outline: the cells are the 23 pattern names in three groups | Taken from the book's table of contents as the python-patterns README and Wikipedia list it (Appendix F). |
+| data-analytics.txt (BDC) | The ninth outline, Big Data Computing, is an exact duplicate of the existing BDC outline in `cloud-computing.txt` | No cells added; the existing BDC cells keep their units (D11). |
+| DM | The outline gives only the instructor's name; the course title is not stated | The title 'Data Mining' is inferred from the outline text and marked as such in Appendix A. |
+| ALA | The Week 9 line repeats the second half of the Week 8 line (the dynamical-systems topics); 'Operations Resarch' is a typo | Both weeks are cited by U18.10; the source spelling is quoted where the check needs it. |
+| DAP | Week 10 is titled 'C 2 Test', a lost chi-square symbol | Taught as the chi-square test in U19.9; the source wording is quoted in the unit. |
+| BDA | The course uses R, the brms package and Stan | Converted to Python on 2026-11-06: U21.3 teaches scientific Python in place of R programming, and U19.14 to U19.17 build every method from scratch and run it in PyMC, Bambi and ArviZ (installed in the workspace); R, brms and Stan are not used. |
 | CSP | Weeks carry reading-list entries: labels R3 to R21, URLs, years and 'accessible at' | Case titles and readings are treated as cases (the Target breach in U6.1, active defense in U7.1, the HBR case on Cheddar in U8.3); the labels and URLs are not content. |
 
 ### E.2 Atoms the word-level check still flags, reviewed by hand
 
-- **Outline-prose atoms flagged:** 121. They are audience statements, marketing sentences and connective phrases (for example 'to practice the learning'); every topic named in an outline appears in the units that cite it, with the outline map sentences in U1.1, U2.2, U3.3, U5.3, U6.1, U8.1, U9.1, U11.1, U14.1, U14.2, U14.11, U14.13, U14.18 and U15.1 where an outline names many topics.
+- **Outline-prose atoms flagged:** 281. They are audience statements, marketing sentences and connective phrases (for example 'to practice the learning'); every topic named in an outline appears in the units that cite it, with the outline map sentences in U1.1, U2.2, U3.3, U5.3, U6.1, U8.1, U9.1, U11.1, U14.1, U14.2, U14.11, U14.13, U14.18 and U15.1 where an outline names many topics.
 - **Non-outline atoms flagged:** 35. All were reviewed one by one: URLs and URL fragments, years, reading labels (R11 to R21), the phrase 'accessible at', one section label ('Examples'), and the titles of cases or articles that are covered under their topic.
 
 <details><summary>Full list of non-outline flagged atoms</summary>
@@ -8209,6 +10738,10 @@ Resolved on 2026-11-04 and no longer open: the placement of the architecture cou
 | IBM Db2 Community Edition is free, limited to 4 virtual cores and 16 GB of memory, for non-production use, with a Docker image for Linux, Windows and Mac (checked 2026-11-05) | IBM's Db2 Community Edition page | U15.10 |
 | The Gang of Four book (Gamma, Helm, Johnson, Vlissides, 1994) describes 23 patterns: 5 creational, 7 structural, 11 behavioral, with the names used in U16.2 to U16.4 (checked 2026-11-06) | Wikipedia page on the book | U16.2 to U16.4 |
 | The System Design Primer is licensed CC BY 4.0, Copyright 2017 Donne Martin; the python-patterns clone has no licence file (checked 2026-11-06) | The cloned repositories | Appendix A |
+| The Netflix Prize data: 100,480,507 ratings by 480,189 users of 17,770 movies; Cinematch RMSE 0.9525 on the test set; the winner BellKor's Pragmatic Chaos 0.8567, a 10.06 % improvement; movie-average predictor 1.0540 (checked 2026-11-06) | Wikipedia, the contest descriptions and two papers | U18.8 |
+| Strang, Introduction to Linear Algebra, 5th ed.: twelve chapters (vectors through probability and statistics) (checked 2026-11-06) | Publisher and author pages, contents lists | D18 |
+| Mining of Massive Datasets, CLRS and the Data Structures and Algorithms benchmarks: part and chapter structure from public contents lists (checked 2026-11-06) | Public contents pages | D17, D20 |
+| The Python Tutorial has sixteen chapters; the NCERT Class 11 and 12 mathematics chapter lists; Hammack, Book of Proof, four parts and fourteen chapters (checked 2026-11-06) | docs.python.org and public contents pages | D21 |
 | Db2 isolation levels UR, CS, RS and RR and which anomalies each permits (checked 2026-11-05) | IBM's Db2 documentation | U15.10, U15.20 |
 | PyTorch's MPS backend needs a Mac with Apple silicon, macOS 14.0 or later and Python 3.10 or later, and Apple labels it beta (checked 2026-11-04) | Apple's page, `developer.apple.com/metal/pytorch` | Section 7 tiers in U14.17 to U14.20 |
 | `PYTORCH_ENABLE_MPS_FALLBACK=1` runs operations missing on MPS on the CPU (checked 2026-11-04) | Hugging Face guide on training on Apple silicon | U14.18 to U14.20 |

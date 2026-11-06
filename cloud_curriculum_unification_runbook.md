@@ -401,3 +401,25 @@ Do this **only if the learner asks**; it is a larger change and it is not part o
 **Files touched.** `srclib_design.py`, `srclib.py`, `src4.txt`, `design_src/`, `units/22_D16a.md` to `24_D16c.md`, `units/14_D12_D13.md` (U13.9 and Aim), pointer sentences in twelve units, `assign/21` to `23`, `front_cloud.md`, `assemble_cloud.py`, `gen_index.py`, `verify/v_e1.py` to `v_e5.py`, `PROGRESS.md`.
 
 **Acceptance (all met).** `build.py check`: 360 of 360 cells cited, uncited 0; `chk_assign.py`: 197 units, bad 0; NAT dump read; no dangling unit references; counts in the front matter match the build (16 domains, 206 units, 197 assignments, 21 bridges, 9 capstones, 25 courses).
+
+## 15. Addendum (2026-11-06): the data-analytics courses (domains D17 to D21, capstone U13.10)
+
+**Scope.** `data-analytics.txt` holds nine NPTEL outlines: Data Analytics with Python (DAP), Algorithmic Graph Theory and Data Structures (AGDS), Scalable Data Science (SDS), Data Base Management System (DBMS), Bayesian Data Analysis for the Behavioral Sciences (BDA), Applied Linear Algebra (ALA), Data Mining (DM, title inferred because the file gives only the instructor's name), Data Structures and Algorithms Design (DSAD) and Big Data Computing, which is an exact duplicate of BDC and adds no cells.
+
+**Source file.** `src5.txt` is a verbatim copy of the file (356 lines); `srclib_data.py` adds 92 cells (cell Wn is Week n, `o` is the outline prose); `srclib.py` carries the offset patch `_OFF5`. Total 452 cells, all cited.
+
+**Domains.** D17 algorithms and data structures (AGDS, DSAD), D18 applied linear algebra (ALA), D19 statistics, data mining and Bayesian analysis (DAP, DM, BDA), D20 scalable data science (SDS), D21 on-demand prerequisites (six bridges: Python, school mathematics through class 12, scientific Python, proofs and discrete reasoning, graph theory, probability from first principles). The DBMS cells were mapped onto the existing D15 units (`; DBMS:` in their `src:` lines) and no unit was added. U13.10 is a new capstone (an analytics pipeline).
+
+**Print order.** `ORDER` in `assemble_cloud.py` and `gen_index.py`: D1 to D9, D15, D10, D21, D17, D18, D19, D11, D20, D12, D16, D14, D13. Parts: A foundations, B cryptography and security, C distributed systems and storage, D data science foundations, E big data to system design, F architecture, G capstones.
+
+**Prerequisite rule (the user's follow-up).** Every prerequisite that the sources state or assume is taught in D21 in academic depth, on demand, with a from-scratch build and an assignment; the header of D21 maps each source course to the units that serve it.
+
+**Verification.** `verify/v_f1.py` to `v_f5.py` hold the numbers of D17 to D21; every figure written into a unit was recomputed first.
+
+## 16. Addendum (2026-11-06, second follow-up): R converted to Python; algorithms and data structures on demand
+
+**R to Python.** R is not used anywhere. U21.3 was rewritten as "scientific Python for data analysis" (arrays and broadcasting, data frames, SciPy distributions, patsy and statsmodels formulas, random numbers, plotting, an R-to-Python crosswalk), with the strided array, mini data frame, hash join, distribution functions and formula parser built from scratch (`verify/v_f6.py`, `v_f6b.py`). U19.15 to U19.17 now run PyMC 6.4, Bambi 0.21 and ArviZ 1.3 (installed with pip `--break-system-packages --root-user-action=ignore`): NUTS on a Beta posterior and a 20-dimensional normal, a Bambi regression against least squares, the eight-schools model in centred and non-centred form under two priors on tau, a two-component mixture, and PSIS-LOO against exact leave-one-out (`verify/v_f7.py`; the figures move a little between library versions). The source words (R programming, brms, Stan, Foundations of R Software) are kept only where the text says what replaces them, because the coverage check needs them. Appendix D item 11 and the HANDLED and E.1 rows record this.
+
+**Algorithms and data structures on demand.** D17 now has an entry map in its introduction, a "Bridge for:" line on U17.2 to U17.14 (Appendix C.1 therefore lists them, 46 bridges in all), a pointer sentence in the Gap-fills of 37 using units (`On demand: U17.x ...`), and three added units without source cells: U17.15 (arrays, linked lists, recursion, binary search, elementary sorts, bit tricks), U17.16 (tries, B-trees, skip lists, KMP and Rabin-Karp) and U17.17 (backtracking, branch and bound, Held-Karp, meet in the middle, approximation and local search). Figures: `verify/v_f8.py`. Appendix D item 13 records the decision.
+
+**Final counts.** 21 domains, 268 units, 258 assignments, 46 bridges, 10 capstones, 452 cells, 33 source courses. Checks: `build.py check` uncited 0 and only the 27 known CSP URL-noise misses; `chk_assign.py` units 258 bad 0; no dangling U-references; no stale counts.

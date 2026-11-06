@@ -1,6 +1,6 @@
 # Unified Cloud Curriculum: index
 
-Index of `unified_cloud_curriculum.md` (built 2026-11-05 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU; `dbms.txt`, 3 database courses: FDB, DBD, IDB; and, added 2026-11-06, the System Design Primer, the python-patterns collection and the Gang of Four catalogue: SDP, PYP, GOF). 16 domains, 206 units, 197 assignments (A<d>.<n>, five questions, key collapsed), 21 prerequisite bridges, 9 capstones. All 360 source cells from 25 courses are cited. D15 (database systems) is printed between D9 and D10; D16 (software and system design) after D12; D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
+Index of `unified_cloud_curriculum.md` (built 2026-11-05 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU; `dbms.txt`, 3 database courses: FDB, DBD, IDB; the System Design Primer, the python-patterns collection and the Gang of Four catalogue: SDP, PYP, GOF; and `data-analytics.txt`, 8 new outlines: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD, the ninth, BDC, being a duplicate), all added 2026-11-06. 21 domains, 268 units, 258 assignments (A<d>.<n>, five questions, key collapsed), 46 prerequisite bridges, 10 capstones. All 452 source cells from 33 courses are cited. D15 (database systems) is printed between D9 and D10; D21, D17, D18 and D19 (data science foundations) between D10 and D11; D20 after D11; D16 (software and system design) after D12; D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
 
 Bridge units are marked (bridge). Capstones carry no assignment.
 
@@ -182,6 +182,71 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U10.6 In-memory key-value stores and the families of NoSQL databases
 - U10.7 Google Cloud storage and database options
 
+## D21. On-demand prerequisites for the data-analytics extension: school mathematics, Python, scientific Python (in place of R), proofs and discrete reasoning, graph theory and probability from first principles
+
+- U21.1 Bridge: Python from scratch — types, control flow, functions, recursion, objects, exceptions, generators, testing, NumPy and the floating-point model (bridge)
+- U21.2 Bridge: school mathematics through class 12, consolidated — algebra, functions, trigonometry, coordinate and vector geometry, matrices and determinants, calculus, differential equations, linear programming and probability, with numerical methods built from scratch (bridge)
+- U21.3 Bridge: scientific Python for data analysis — arrays and broadcasting, data frames, distributions, formulas, random numbers and plotting, each built from scratch before the library is used (this replaces the R programming prerequisite of the Bayesian course) (bridge)
+- U21.4 Bridge: proofs and discrete reasoning — logic, sets, counting, direct proof, contrapositive and contradiction, induction, the pigeonhole and double counting, and invariants (bridge)
+- U21.5 Bridge: graph theory from scratch — definitions, degrees, paths and connectivity, trees, Eulerian and Hamiltonian graphs, bipartite graphs, planarity, colouring, matchings and representations (bridge)
+- U21.6 Bridge: probability from first principles — sample spaces, random variables, expectation, the standard distributions, limit theorems and simulation by inversion, rejection and Monte Carlo (bridge)
+
+## D17. Algorithms and data structures, taught on demand: analysis, divide and conquer, sorting, hashing, trees, amortisation, greedy and dynamic programming, graph search, shortest paths, network flow, tries, B-trees, string matching and hard problems
+
+- U17.1 Bridge: discrete mathematics for algorithm analysis: induction, sums, logarithms, recurrences and probability (bridge)
+- U17.2 Introduction to algorithms and their analysis: time complexity, asymptotics, merge sort, recurrences and clever linear-time algorithms (bridge)
+- U17.3 Divide and conquer: the master method, quicksort, randomised quicksort, half-majority, multiplication and inversions (bridge)
+- U17.4 Heaps, sorting in linear time and order statistics (bridge)
+- U17.5 Hashing: hash functions, open addressing and perfect hashing (bridge)
+- U17.6 Abstract data types, stacks and queues, range queries and the grid-distance problem (bridge)
+- U17.7 Search trees: binary search trees, balancing and red-black trees (bridge)
+- U17.8 Augmenting data structures, fixed-universe successor and the van Emde Boas tree, with the geometric primitives (bridge)
+- U17.9 Disjoint sets, amortised analysis and more computational geometry (bridge)
+- U17.10 Greedy algorithms, dynamic programming, graphs and minimum spanning trees (bridge)
+- U17.11 Graph search: breadth-first and depth-first search, bipartiteness, DFS trees and articulation points (bridge)
+- U17.12 Single-source shortest paths: Dijkstra, Bellman–Ford and their applications (bridge)
+- U17.13 All-pairs shortest paths: Floyd–Warshall and Johnson (bridge)
+- U17.14 Flow networks, the Ford–Fulkerson method, and an introduction to computational complexity (bridge)
+- U17.15 Bridge: arrays, linked lists, recursion, binary search, the elementary sorts and bit tricks — the floor under D17, built from scratch (bridge)
+- U17.16 Tries, B-trees, skip lists and string matching: the lookup structures of routers, databases and search engines (bridge)
+- U17.17 Backtracking, branch and bound, exact exponential algorithms, approximation and local search: living with hard problems (bridge)
+
+## D18. Applied linear algebra for data and signals: vectors, matrices, eigenvalues, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
+
+- U18.1 Bridge: complex numbers, trigonometry and phasors, and the language of vector spaces (bridge)
+- U18.2 Introduction to vectors, properties and applications: norms, inner products, angles, orthogonality, projection and Gram–Schmidt
+- U18.3 Introduction to matrices and applications: subspaces, rank, circuits, graphs, social networks and traffic flow
+- U18.4 Eigenvalue decomposition: properties, diagonalisation, the spectral theorem, PCA and eigenfaces
+- U18.5 Singular value decomposition and applications: beamforming in MIMO, dimensionality reduction, rate maximisation and the MUSIC algorithm
+- U18.6 Linear regression and least squares: system identification, ridge regression, support vector machines and kernel SVMs
+- U18.7 Optimal linear MMSE estimation: the MMSE receiver, market prediction and forecasting, and ARMA models
+- U18.8 Data analytics with matrices: recommender systems, user rating prediction, data completion and the Netflix problem
+- U18.9 The DFT and the FFT matrix, OFDM and SC-FDMA: structure, properties and signal processing in OFDM systems
+- U18.10 Dynamical systems: modelling robots and chemical plants, autonomous linear systems and systems with inputs and outputs
+- U18.11 Unsupervised learning: centroid-based clustering, probabilistic model-based clustering and the EM algorithm
+- U18.12 The linear perceptron, compressive sensing and orthogonal matching pursuit: sparse signal estimation
+- U18.13 Discrete-time Markov chains and operations research: supply chains, forecasting, and resource and inventory management
+
+## D19. Statistics, data mining and Bayesian analysis: from probability and sampling to testing, regression, clustering, trees, association rules, classification, Bayesian inference, MCMC and model comparison
+
+- U19.1 Bridge: calculus, counting and matrices for statistics (bridge)
+- U19.2 Introduction to data analytics and Python fundamentals: the analytics workflow, data types, descriptive statistics and visualisation
+- U19.3 Probability and random variables: events, conditional probability, Bayes' rule, distributions, expectation and the limit theorems
+- U19.4 Sampling and sampling distributions: the standard error, the t, chi-square and F distributions, confidence intervals and the bootstrap
+- U19.5 Hypothesis testing: null and alternative, p-values, errors and power, one- and two-sided tests, and multiple comparisons
+- U19.6 Two-sample testing and the analysis of variance: pooled and Welch t tests, paired tests, one-way and two-way ANOVA
+- U19.7 Linear regression and multiple regression: least squares, inference, diagnostics and model building
+- U19.8 Maximum likelihood, logistic regression and the ROC curve
+- U19.9 The chi-square test and cluster analysis: goodness of fit, independence, hierarchical and k-means clustering, density-based clustering and outlier detection
+- U19.10 Classification and regression trees (CART): impurity, splitting, overfitting and pruning
+- U19.11 Data mining: introduction, data preprocessing, association rule mining and classification basics
+- U19.12 Classification: decision trees, the Bayes classifier, nearest neighbours, support vector machines and kernel machines
+- U19.13 Evaluation, visualisation, sequence mining and case studies
+- U19.14 Bayesian inference: Bayes' theorem, the likelihood, prior and posterior, analytical methods and grid approximation
+- U19.15 Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan, taught in Python with PyMC and Bambi
+- U19.16 Bayesian regression and hierarchical models
+- U19.17 Model comparison, mixture models and multinomial processing trees
+
 ## D11. Big data and cloud analytics: batch, dataflow, messaging, streaming, machine learning at scale and graph processing
 
 - U11.1 Introduction to big data
@@ -195,6 +260,17 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U11.9 Big data applications: machine learning with Spark
 - U11.10 Bridge: Markov chains, eigenvectors and PageRank (bridge)
 - U11.11 Big data applications: graph processing
+
+## D20. Scalable data science: concentration and optimisation background, memory-efficient data structures, sketches, approximate near neighbours, randomised linear algebra, MapReduce and Spark, and distributed machine learning
+
+- U20.1 Scalable data science: the problem, and the background of concentration inequalities, PCA and SVD, convex optimisation and gradient descent, and supervised learning
+- U20.2 Memory-efficient data structures I: hash functions, universal and perfect hash families, Bloom filters, sketches for distinct count and the Misra–Gries sketch
+- U20.3 Count-Min and Count sketches, and approximate near-neighbour search: kd-trees, locality-sensitive hashing, MinHash for Jaccard and SimHash
+- U20.4 Approximate near neighbours: extensions (multi-probe, b-bit hashing, data-dependent variants) and random projection
+- U20.5 Randomised numerical linear algebra: CUR decomposition, sparse and subspace random projection and the kitchen-sink features
+- U20.6 MapReduce and related paradigms: programming examples (PageRank, k-means, matrix multiplication), moving computation to the data and the Hadoop ecosystem
+- U20.7 Scala and Spark, and distributed machine learning and optimisation: stochastic gradient descent with its proof
+- U20.8 Distributed optimisation with ADMM and its applications, distributed clustering and conclusion
 
 ## D12. Cloud operations and machine learning on Google Cloud: observability and reliability engineering, analytics services, managed machine learning and responsible AI
 
@@ -257,3 +333,4 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U13.7 Capstone: a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel (capstone)
 - U13.8 Capstone: a small relational database engine checked against sqlite3 (capstone)
 - U13.9 Capstone: a design dossier and a working miniature of a large-scale service (capstone)
+- U13.10 Capstone: an analytics pipeline from raw data to a decision, with the statistics, the model, the sketches and the distributed run built from scratch (capstone)

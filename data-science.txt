@@ -1,0 +1,100 @@
+Data Science for Engineers
+Prof. Ragunathan Rengasamy, Prof. Shankar Narasimhan, IIT Madras
+
+Course ID
+106106179
+Duration
+8 weeks
+Credits
+3
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+Learning Objectives :
+Introduce R as a programming language 
+Introduce the mathematical foundations required for data science 
+Introduce the first level data science algorithms 
+Introduce a data analytics problem solving framework
+Introduce a practical capstone case study
+Learning Outcomes:
+Describe a flow process for data science problems (Remembering) 
+Classify data science problems into standard typology (Comprehension)
+Develop R codes for data science solutions (Application) 
+Correlate results to the solution approach followed (Analysis)
+Assess the solution approach (Evaluation) 
+Construct use cases to validate approach and identify modifications required (Creating)
+Course Details
+Intended Audience
+Any interested learner
+Prerequisites
+10 hrs of pre-course material will be provided, learners need to practise this to be ready to take the course. 
+Industry Support
+HONEYWELL, ABB, FORD, GYAN DATA PVT. LTD.
+Category
+COMP_SCI_ENGG, Domain_15, Domain_36
+Course Layout
+Week	Topics
+Week 1	Course philosophy and introduction to R
+Week 2	Linear algebra for data science 1. Algebraic view - vectors, matrices, product of matrix & vector, rank, null space, solution of over-determined set of equations and pseudo-inverse) 2. Geometric view - vectors, distance, projections, eigenvalue decomposition
+Week 3	Statistics (descriptive statistics, notion of probability, distributions, mean, variance, covariance, covariance matrix, understanding univariate and multivariate normal distributions, introduction to hypothesis testing, confidence interval for estimates)
+Week 4	Optimization
+Week 5	1. Optimization 2. Typology of data science problems and a solution framework
+Week 6	1. Simple linear regression and verifying assumptions used in linear regression 2. Multivariate linear regression, model assessment, assessing importance of different variables, subset selection
+Week 7	Classification using logistic regression
+Week 8	Classification using kNN and k-means clustering
+Books And References
+INTRODUCTION TO LINEAR ALGEBRA - BY GILBERT STRANG
+APPLIED STATISTICS AND PROBABILITY FOR ENGINEERS – BY DOUGLAS MONTGOMERY
+
+
+Probability Theory for Data Science
+Prof. Ishapathik Das, IIT Tirupati
+
+Course ID
+111106525
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate
+Type
+Core
+Language
+English
+About The Course
+
+"Probability Theory for Data Science" is a specialized course designed to equip students with the essential knowledge and skills needed to analyze uncertain phenomena and make data-driven decisions in various domains. It provides a comprehensive understanding of the principles of probability and their applications in the context of data science. This course is essential for anyone aspiring to work in data-driven fields such as machine learning, artificial intelligence, statistics, and predictive analytics.
+The course typically begins with an introduction to basic concepts in probability theory, including sample spaces, events, and different approaches to defining probability. Emphasis is placed on developing a solid grasp of fundamental probability rules, such as the addition and multiplication rules, as well as understanding conditional probability, independence, and Bayes theorem. As the course progresses, students delve deeper into more advanced topics, such as random variables, probability distributions, and expectation. They explore common probability distributions, including binomial, Poisson, uniform, exponential, and normal distributions, and they learn how to calculate probabilities and expected values associated with these distributions. Additionally, students gain insight into concepts like moments, variance, and covariance, which are crucial for understanding data variability in real-world scenarios. Following this, students delve into the study of multiple random variables, exploring concepts such as the transformation of random variables, moment-generating functions, and key theorems pertaining to the convergence of random variables.
+"Probability Theory for Data Science" equips students with a strong theoretical foundation in probability and the analytical skills necessary to tackle complex data-driven problems. By mastering the principles of probability theory and its applications in data science, students are better prepared to excel in diverse roles within the rapidly growing field of data analytics and machine learning.
+Course Details
+Intended Audience
+Graduate students and researchers from Academics and Industry who are interested in Data Science.
+Prerequisites
+10+2 Mathematics
+Category
+Mathematics
+Course Layout
+Week	Topics
+Week 1	Phenomena Definitions: sample space, events Set operations Definitions of probability: classical approach, frequency approach, axiomatic approach Important theorems Examples Conditional probability Examples
+Week 2	Independence Mutually exclusive vs. independence Bayes’ theorem Examples Random variable Events defined by random variables Examples Cumulative distribution function
+Week 3	Properties of the cumulative distribution function Examples Discrete random variable Probability mass function Continuous random variable Probability density function Mean Examples
+Week 4	Moments Variance Examples Bernoulli distribution Binomial distribution Poisson distribution
+Week 5	Poisson distribution examples Uniform distribution Exponential distribution Memoryless property Gamma distribution
+Week 6	Gamma distribution examples Normal distribution Examples Conditional distribution Conditional probability mass function Conditional probability density function Examples Bivariate random variables Examples Joint distribution function
+Week 7	Properties of the joint distribution function Independence Marginal distribution function Examples Joint probability mass function Examples Joint probability density function Examples
+Week 8	Conditional probability mass functions Examples Conditional probability density function Examples Moments Covariance and correlation coefficient Examples
+Week 9	Conditional mean Examples Conditional variance Examples Multivariate random variable Multivariate cumulative distribution function Multivariate probability mass function Marginals
+Week 10	Multivariate probability density function Marginals Independence Moments Examples Multinomial distribution Applications Multivariate normal distribution Applications
+Week 11	Transformation of random variables: theorems, examples Transformation of multivariate random variables Examples
+Week 12	Moment generating function: theorems, examples Characteristic function Chebychev’s inequality Examples Notion of convergence The weak law of large numbers The strong law of large numbers The central limit theorem Examples
+Books And References
+Chung K L, Elementary Probability Theory with Stochastic Process, Springer Verlag (1974)
+Drake A, Fundamentals of Applied Probability Theory, McGraw-Hill (1967)
+Kreyszig E, Advanced Engineering Mathematics, John Wiley & Sons (2010)
+Ross S, A First course in Probability, Prentice Hall of India (2009)
+
