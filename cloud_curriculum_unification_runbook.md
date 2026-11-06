@@ -387,3 +387,17 @@ Do this **only if the learner asks**; it is a larger change and it is not part o
 **Files touched when adding D15.** `srclib_dbms.py`, `srclib.py`, `units/19_D15a.md` to `21_D15c.md`, `units/14_D12_D13.md` (U13.8), `assign/16` to `20`, `front_cloud.md`, `assemble_cloud.py`, `gen_index.py` (writes `index_cloud.md`), `PROGRESS.md`.
 
 **Audit of D14 against these standards (2026-11-05).** Compliant on structure, coverage (232 of 232 cells cited), assignments (five questions each, keys computed), bridges placed before need, cost tags and lab safety. Two defects were found and fixed: the tooling list in the front matter numbered "(5) Apple silicon" before "(4) Libraries", and the bridge count was understated by one (17, not 16).
+
+## 14. Addendum (2026-11-06): design patterns and the System Design Primer (domain D16)
+
+**Scope.** On request, the concepts of design patterns (the Gang of Four 23 and the python-patterns catalogue with its anti-patterns) and of Donne Martin's System Design Primer (study guide, method, topics, eight system designs, six object-oriented designs, appendix and reading lists) were added as one domain, D16, printed after D12 (in Part D, renamed to include system design). The Gang of Four catalogue is not an outline, so its cells are the 23 pattern names; the other two sources are READMEs, not course outlines.
+
+**Source file.** `design_src/mk_src4.py` flattens the cloned READMEs into `src4.txt`, one line per cell (headings, bold terms, tables, solution outlines, class lists), and writes `design_src/table.json` (key, cell id, line range). `srclib_design.py` turns them into `COURSES` entries (SDP, PYP, GOF) and `srclib.py` appends them with an offset patch (`_OFF4`). Non-numeric cell ids (`SOL1`, `CAP`) are allowed by `build.py parse_src`. Re-run the generator if the clones are refreshed.
+
+**Ownership.** Existing units keep the theory (DNS U2.4, CDN U3.11, CAP U9.16, nines U9.13, consistent hashing U9.5, NoSQL and caches U10.6, Kafka U11.6, hardware caches U14.9, relational theory D15); D16 owns the engineering playbook: estimation, scalability, the nines in practice, scaling the data tier, caching update strategies, asynchronism and back pressure, RPC against REST, the patterns, and the worked designs. Pointers were added to the owners.
+
+**Method notes.** Every figure in D16 was recomputed (`verify/v_e1.py` to `v_e5.py`) before it was written. Errors found in the primer and recorded in Appendix E.1: four-nines downtime a week is 60.5 s, not 1 min 5 s; memory is 14.3 times, not 20 times, slower than L2. The primer is CC BY 4.0 (credited in Appendix A); the python-patterns clone has no licence file, so only its catalogue is used, in the curriculum's own words. The company architectures, engineering blogs and Anki decks were not opened (U16.16 says so).
+
+**Files touched.** `srclib_design.py`, `srclib.py`, `src4.txt`, `design_src/`, `units/22_D16a.md` to `24_D16c.md`, `units/14_D12_D13.md` (U13.9 and Aim), pointer sentences in twelve units, `assign/21` to `23`, `front_cloud.md`, `assemble_cloud.py`, `gen_index.py`, `verify/v_e1.py` to `v_e5.py`, `PROGRESS.md`.
+
+**Acceptance (all met).** `build.py check`: 360 of 360 cells cited, uncited 0; `chk_assign.py`: 197 units, bad 0; NAT dump read; no dangling unit references; counts in the front matter match the build (16 domains, 206 units, 197 assignments, 21 bridges, 9 capstones, 25 courses).

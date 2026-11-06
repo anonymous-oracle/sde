@@ -1,0 +1,355 @@
+DATA ANALYTICS WITH PYTHON
+PROF. A RAMESH
+Department of Management Studies
+IIT Roorkee
+PRE-REQUISITES : Basic knowledge of Python but not necessary
+INTENDED AUDIENCE : Management, Industrial Engineering and Computer Science Engineering
+Students
+INDUSTRIES APPLICABLE TO : Any analytics company
+COURSE OUTLINE:
+We are looking forward to sharing many exciting stories and examples of analytics with all of you using python
+programming language. This course includes examples of analytics in a wide variety of industries, and we hope that
+students will learn how you can use analytics in their career and life. One of the most important aspects of this
+course is that you, the student, are getting hands-on experience creating analytics models; we, the course team,
+urge you to participate in the discussion forums and to use all the tools available to you while you are in the course!
+COURSE PLAN :
+Week 1: Introduction to data analytics and Python fundamentals
+Week 2: Introduction to probability
+Week 3: Sampling and sampling distributions
+Week 4: Hypothesis testing
+Week 5: Two sample testing and introduction to ANOVA
+Week 6: Two way ANOVA and linear regression
+Week 7: Linear regression and multiple regression
+Week 8: Concepts of MLE and Logistic regression
+Week 9: ROC and Regression Analysis Model Building
+Week 10: C 2 Test and introduction to cluster analysis
+Week 11: Clustering analysis
+Week 12: Classification and Regression Trees (CART)
+
+ALGORITHMIC GRAPH THEORY AND DATA
+STRUCTURES
+PROF. SOURAV MUKHOPADHYAY
+Department of Mathematics
+IIT Kharagpur
+PREREQUISITES:
+Data Structure, Graph Theory and Probability
+INTENDED AUDIENCE:
+Computer Science
+INDUSTRY SUPPORT:
+Stratign FZE, Dubai(UAE), SAG, DRDO, ISRO, WESEE, NTRO.
+COURSE OUTLINE:
+This course offers a comprehensive introduction to the mathematical modeling and algorithmic analysis of graph-based
+problems. Students will gain a solid foundation in core graph algorithms and the efficient data structures that power them.
+Through a theoretical concept, the course emphasizes key algorithmic paradigms such as greedy methods, dynamic
+programming, and augmented data structures in the context of solving real-world problems. A strong focus will be placed on
+analyzing algorithm performance using time and space complexity, enabling students to assess efficiency and scalability. This
+course is designed to strengthen problem solving skills and bridge the gap between theory and implementation, the course also
+serves as a stepping stone for advanced studies and research in algorithmic graph theory, network science, and computational
+complexity
+COURSE PLAN:
+Week 1: Introduction to algorithms, Analysis of algorithms, Time complexity, Merge sort, Solving the recurrence.
+Week 2: Master method, Divide and Conquer method, Quick Sort, Randomised Quick Sort.
+Week 3: Heap sort, Linear time sort, Order Statistics.
+Week 4: Hash function, Open addressing hashing, Perfect hashing, Heap .
+Week 5: Binary Search Tree, Red-Black Tree.
+Week 6: Data-structure augmentation, Fixed Universe Successor, Computational Geometry, Van Emde Boas Tree.
+Week 7: Disjoint set data structure, Computational geometry, Amortised Analysis.
+Week 8: Dynamic Programming, Introduction to Graphs, Greedy Algorithm, Minimum Spanning Tree, Prim’s Algorithm.
+Week 9: Graph Search Algorithm: BFS, DFS, Single Source Shortest Path: Dijkstra.
+Week 10: Single source shortest path: Bellman-Ford, Application of Bellman-Ford, All pair shortest path.
+Week 11: All pair shortest path (Continued), Dynamic Programming, Floyd Warshall, Johnson.
+Week 12: Flow Network, Ford-Fulkerson max flow, computational Complexity.
+
+Scalable Data Science
+Prof. Anirban Dasgupta, Prof. Sourangshu Bhattacharya, IIT Gadhinagar, IIT Kharagpur
+
+Course ID
+106105186
+Duration
+8 weeks
+Credits
+3
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+Consider the following example problems: One is interested in computing summary statistics (word count distributions) for a set of words which occur in the same document in entire Wikipedia collection (5 million documents). Naive techniques, will run out of main memory on most computers. One needs to train an SVM classifier for text categorization, with unigram features (typically ~10 million) for hundreds of classes. One would run out of main memory, if they store uncompressed model parameters in main memory. One is interested in learning either a supervised model or find unsupervised patterns, but the data is distributed over multiple machines. Communication being the bottleneck, naïve methods to adapt existing algorithms to such a distributed setting might perform extremely poorly. In all the above situations, a simple data mining / machine learning task has been made more complicated due to large scale of input data, output results or both. In this course, we discuss algorithmic techniques as well as software paradigms which allow one to develop scalable algorithms and systems for the common data science tasks.
+
+INTENDED AUDIENCE : Computer Science and Engineering
+
+PREREQUISITES : Algorithms, Machine Learning
+
+INDUSTRY SUPPORT : Google, Microsoft, Facebook, Amazon, Flipkart, LinkedIn etc.
+Course Details
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Background: Introduction Probability: Concentration inequalities, Linear algebra: PCA, SVD Optimization: Basics, Convex, GD. Machine Learning: Supervised, generalization, feature learning, clustering.
+Week 2	Memory-efficient data structures: Hash functions, universal / perfect hash families Bloom filters Sketches for distinct count Misra-Gries sketch.
+Week 3	Memory-efficient data structures (contd.): Count Sketch, Count-Min Sketch Approximate near neighbors search: Introduction, kd-trees etc LSH families, MinHash for Jaccard, SimHash for L2
+Week 4	Approximate near neighbors search: Extensions e.g. multi-probe, b-bit hashing, Data dependent variants Randomized Numerical Linear Algebra Random projection
+Week 5	Randomized Numerical Linear Algebra CUR Decomposition Sparse RP, Subspace RP, Kitchen Sink
+Week 6	Map-reduce and related paradigms Map reduce - Programming examples - (page rank, k-means, matrix multiplication) Big data: computation goes to data. + Hadoop ecosystem
+Week 7	Map-reduce and related paradigms (Contd.) Scala + Spark Distributed Machine Learning and Optimization: Introduction SGD + Proof
+Week 8	Distributed Machine Learning and Optimization: ADMM + applications Clustering Conclusion
+Books And References
+J. Leskovec, A. Rajaraman and JD Ullman. Mining of Massive Datasets. Cambridge University Press, 2nd Ed. 
+Muthukrishnan, S. (2005). Data streams: Algorithms and applications. Foundations and Trends® in Theoretical Computer Science, 1(2), 117-236. 
+Woodruff, David P. ""Sketching as a tool for numerical linear algebra."" Foundations and Trends® in Theoretical Computer Science 10.1–2 (2014): 1-157.  
+Mahoney, Michael W. ""Randomized algorithms for matrices and data."" Foundations and Trends® in Machine Learning 3.2 (2011): 123-224.
+
+Data Base Management System
+Prof. Partha Pratim Das, Prof. Samiran Chattopadhyay, IIT Kharagpur
+
+Course ID
+106105175
+Duration
+8 weeks
+Credits
+3
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+
+Databases form the backbone of all major applications today – tightly or loosely coupled, intranet or internet based, financial, social, administrative, and so on. Structured Database Management Systems (DBMS) based on relational and other models have long formed the basis for such databases. Consequently, Oracle, Microsoft SQL Server, Sybase etc. have emerged as leading commercial systems while MySQL, PostgreSQL etc. lead in open source and free domain.
+
+While DBMS’s differ in the details, they share a common set of models, design paradigms and a Structured Query Language (SQL). In this background the course examines data structures, file organizations, concepts and principles of DBMS’s, data analysis, database design, data modeling, database management, data & query optimization, and database implementation. More specifically, the course introduces relational data models; entity-relationship modeling, SQL, data normalization, and database design. Further it introduces query coding practices using MySQL (or any other open system) through various assignments. Design of simple multi-tier client / server architectures based and Web-based database applications is also introduced.
+Course Details
+Intended Audience
+Students from all disciplines can enroll for this course.PRE-REQUISTES :1. Procedural and / or Object-Oriented Programming (C / C++ / Java / Python) 2. Data Structures  3. AlgorithmsINDUSTRY SUPPORT : DBMS is so fundamental that all companies dealing with systems as well as application development (including web, IoT, embedded systems, data mining, machine learning) have a need for the same. These include – Microsoft, Samsung, Xerox, Yahoo, Google, IBM, TCS, Infosys, Amazon, Flipkart, etc.
+Category
+COMP_SCI_ENGG, Domain_36
+Course Layout
+Week	Topics
+Week 1	Course Overview. Introduction to RDBMS
+Week 2	Structured Query Language (SQL)
+Week 3	Relational Algebra. Entity-Relationship Model
+Week 4	Relational Database Design
+Week 5	Application Development. Case Studies. Storage and File Structure
+Week 6	Indexing and Hashing. Query Processing
+Week 7	Query Optimization. Transactions (Serializability and Recoverability)
+Week 8	Concurrency Control. Recovery Systems. Course Summarization.
+Books And References
+Text Books / Basic Material
+Database System Concepts by Abraham Silberschatz, Henry F. Korth, and S. Sudarshan, 6th Edition, McGraw-Hill Education, 2010.
+Presentations used in the Course 
+Reference (Advanced) Material
+    This is a first level course. So the textbook would be the primary resource also for the advanced chapters. In addition, some references will be specified for every topic during the course.
+
+
+Big Data Computing
+Prof. Rajiv Misra, IIT Patna
+
+Course ID
+106104189
+Duration
+8 weeks
+Credits
+3
+Level
+Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+
+In today's fast-paced digital world , the incredible amount of data being generated every minute has grown tremendously from sensors used to gather climate information, posts to social media sites, digital pictures and videos, purchase transaction records, and GPS signals from cell phone to name a few. This amount of large data with different velocities and varieties is termed as big data and its analytics enables professionals to convert extensive data through statistical and quantitative analysis into powerful insights that can drive efficient decisions. This course provides an in-depth understanding of terminologies and the core concepts behind big data problems, applications, systems and the techniques, that underlie today's big data computing technologies. It provides an introduction to some of the most common frameworks such as Apache Spark, Hadoop, MapReduce, Large scale data storage technologies such as in-memory key/value storage systems, NoSQL distributed databases, Apache Cassandra, HBase and Big Data Streaming Platforms such as Apache Spark Streaming, Apache Kafka Streams that has made big data analysis easier and more accessible. And while discussing the concepts and techniques, we will also look at various applications of Big Data Analytics using Machine Learning, Deep Learning, Graph Processing and many others. The course is suitable for all UG/PG students and practicing engineers/ scientists from the diverse fields and interested in learning about the novel cutting edge techniques and applications of Big Data Computing.
+
+
+PREREQUISITES : Data Structure & Algorithms, Computer Architecture, Operating System, Database Management Systems
+
+INDUSTRY SUPPORT : Companies like Amazon, Microsoft, Google, IBM, Facebook
+Course Details
+Category
+COMP_SCI_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to Big Data
+Week 2	Introduction to Enabling Technologies for Big Data
+Week 3	Introduction to Big Data Platforms
+Week 4	Introduction to Big Data Storage Platforms for Large Scale Data Storage
+Week 5	Introduction to Big Data Streaming Platforms for Fast Data
+Week 6	Introduction to Big Data Applications (Machine Learning)
+Week 7	Introduction of Big data Machine learning with Spark
+Week 8	Introduction to Big Data Applications (Graph Processing)
+Books And References
+Text Book:
+
+Bart Baesens, Analytics in a Big Data World: The Essential Guide to Data Science and its Applications, Wiley, 2014
+
+Reference Books:
+
+1. Dirk Deroos et al., Hadoop for Dummies, Dreamtech Press, 2014.
+2. Chuck Lam, Hadoop in Action, December, 2010. 
+3. Leskovec, Rajaraman, Ullman, Mining of Massive Datasets, Cambridge University Press. 
+4. I.H. Witten and E. Frank, Data Mining: Practical Machine learning tools and techniques.
+5. Erik Brynjolfsson et al., The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies, W. W. Norton & Company, 2014.
+
+BAYESIAN DATA ANALYSIS FOR THE
+BEHAVIORAL SCIENCES
+PROF. HIMANSHU YADAV
+Department of Cognitive Science
+IIT Kanpur
+PRE-REQUISITES :
+The only prerequisite is R programming. Mathematics background up to class 12 is desired.
+To prepare for this course, participants can do courses like: ‘Foundations of R Software’ available on NPTEL taught by Prof. Shalabh, IIT
+Kanpur
+INTENDED AUDIENCE :
+Data science students, Cognitive Science students, Behavioral analytics students
+INDUSTRY SUPPORT :
+Data Science, Behavioral Analytics, Statistical Analytics Consultancy, Pharmaceutical
+COURSE OUTLINE :
+This introductory course is designed to equip students with a conceptual understanding of Bayesian inference and its applications in
+behavioral data analysis and modeling. By the end of this course, students will be able to: (i) analyze data in the Bayesian framework,(ii)
+develop and implement Bayesian models, and (iii) evaluate computational (cognitive) models given the data.
+ABOUT INSTRUCTOR :
+Dr. Himanshu Yadav is an Assistant Professor in the Department of Cognitive Science at IIT Kanpur. He leads the Language Processing
+Lab, Kanpur. Dr. Yadav studies cognitive processes that underlie language comprehension and production in humans. He is interested in
+two broad questions: (1) How is language processed, represented, and acquired in the mind, and how does it involve/interact with other
+cognitive processes such as working memory, attention, and decision-making? (2) How does language as a complex system evolve in
+terms of its quantitative distribution of structural preferences? He uses Bayesian modeling, psycholinguistic experimentation, and
+crosslinguistic corpora analysis for his research work.
+COURSE PLAN :
+Week 1: Probability and Random Variables I
+Week 2: Probability and Random Variables II
+Week 3: Bayes’ theorem, likelihood function, prior distribution, and posterior distribution
+Week 4: Parameter estimation I: Analytical methods and grid approximation
+Week 5: Parameter estimation II: Markov Chain Monte Carlo
+Week 6: Parameter estimation III: Hamiltonian Monte Carlo and the brms package
+Week 7: Bayesian regression modeling
+Week 8: Model comparison I: Cross validation
+Week 9: Model comparison II: Bayes factors
+Week 10: Bayesian hierarchical modeling
+Week 11: Bayesian modeling with Stan
+Week 12: Mixture models and multinomial processing trees
+
+Applied Linear Algebra for Signal Processing, Data Analytics and Machine Learning
+Prof. Aditya K. Jagannatham, IIT Kanpur
+
+Course ID
+108104174
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Elective
+Language
+English
+About The Course
+This course aims to introduce students to all the basic and advanced concepts in Linear Algebra with a strong focus on applications. Linear Algebra is one of the fundamental tools that has applications in diverse fields such as Machine Learning, Data Analytics, Signal Processing, Wireless Communication, Operations Research, Control and Finance. The various topics and applications that will be covered in different areas are as follows:
+Wireless: MIMO/ OFDM systems, Beamforming, Channel Estimation 
+Machine Learning: Regression, Clustering, EM Algorithm, Perceptron, SVM/ Kernel SVM, Principal Component Analysis (PCA), Face recognition 
+Signal Processing: Signal Estimation, Regularization, Compressive Sensing, Image Compression, Robotics and Dynamical systems 
+Data Analytics: Recommender systems, Data completion, Data prediction, forecasting, Optimal Estimation, Financial models  
+Operations Resarch: Markov chains, inventory management, supply chain management 
+Miscellaneous Applications: Electrical circuits, Graph models and social networks, Traffic flow management 
+The course is suitable for all UG/PG students and practicing engineers/ scientists/ managers from the diverse fields mentioned above and interested in learning about the novel cutting edge applications of linear algebra in various fields such as Machine Learning, Data Analytics, Signal Processing, Wireless Communication.
+Course Details
+Intended Audience
+-Students in Electrical Engineering, Electronics and Communication Engineering, Mathematics, Economics, Computer Science -Practicing engineers -Technical and Non-technical managers of Telecomm companies -Students preparing for Competitive Exams with focus on Wireless Communication, Signal Processing, Machine Learning - Students pursuing projects or research in Machine Learning, Data Analytics and Signal Processing/ Communication
+Industry Support
+Qualcomm, Intel, Samsung, Google and other technology companies
+Category
+ELEC_ENGG
+Course Layout
+Week	Topics
+Week 1	Introduction to vectors, properties and applications
+Week 2	Introduction to matrices and Applications – Circuits, Graphs, Social Networks, Traffic flow
+Week 3	Eigenvalue decomposition, properties and Applications – Principal component analysis (PCA), Eigenfaces for facial recognition
+Week 4	Singular value decomposition (SVD) and Applications – Beamforming in MIMO, Dimensionality reduction, Rate maximization in wireless, MUSIC algorithm
+Week 5	Linear regression and Least Squares. Applications: System identification, linear regression, Support vector machines (SVM), kernel SVMs
+Week 6	Optimal linear MMSE estimation. Applications – MMSE Receiver, Market prediction and forecasting, ARMA models
+Week 7	Data analytics: Recommender systems, user rating prediction, NETFLIX problem
+Week 8	Structure of FFT/ IFFT matrices, properties, System model for OFDM/ SC-FDMA, Signal processing in OFDM systems. Modeling of Dynamical systems – Examples: Robots, Chemical plants. Solution of autonomous linear dynamical systems (LDS), solution of with inputs and outputs
+Week 9	Modeling of Dynamical systems – Examples: Robots, Chemical plants. Solution of autonomous linear dynamical systems (LDS), solution of with inputs and outputs
+Week 10	Unsupervised learning: Centroid based clustering, probabilistic model based clustering and EM algorithm
+Week 11	Linear perceptron. Training a perceptron – stochastic gradient. Compressive sensing, orthogonal matching pursuit for sparse signal estimation
+Week 12	Discrete time Markov chains – Applications: supply chain management, forecasting, Operations research – resource and inventory management.
+Books And References
+Introduction to Linear Algebra
+Gilbert Strang
+
+
+PROF. PABITRA MITRA
+Department of Computer Science and Engineering
+IIT Kharagpur
+INTENDED AUDIENCE : Any engineering discipline and mathematics, physics.
+INDUSTRIES APPLICABLE TO : TCS, Infosys, CTS, Accenture
+COURSE OUTLINE :
+Data mining is study of algorithms for finding patterns in large data sets. It is an integral part of modern
+industry, where data from its operations and customers are mined for gaining business insight. It is also
+important in modern scientific endeavors. Data mining is an interdisciplinary topic involving, databases,
+machine learning and algorithms. The course will cover the fundamentals of data mining. It will explain
+the basic algorithms like data preprocessing, association rules, classification, clustering, sequence
+mining and visualization. It will also explain implementations in open source software. Finally, case
+studies on industrial problems will be demonstrated.
+COURSE PLAN :
+ Week 1: Introduction, Data Preprocessing
+ Week 2: Association Rule Mining, Classification Basics
+ Week 3: Decision Tree, Bayes Classifier, K nearest neighbor
+ Week 4: Support Vector Machine, Kernel Machine
+ Week 5: Clustering, Outlier detection
+ Week 6: Sequence mining
+ Week 7: Evaluation, Visualization
+ Week 8: Case studies
+
+Data Structures and Algorithms Design
+Prof. Nitin Saxena, IIT Kanpur
+
+Course ID
+106104697
+Duration
+12 weeks
+Credits
+4
+Level
+Undergraduate/Postgraduate
+Type
+Core
+Language
+English
+About The Course
+
+The modern economy is run by algorithms. This a first-level course to introduce the students to the world of algorithm design, data structures, analysis, and programming. We'll start with the asymptotics notation which captures time and space of algorithms in the worst-case.
+The basic data structures covered are -- array, list, queue, stack, matrix, tree, heap, set, and graph. The algorithmic paradigms covered are -- induction/recursion, divide-conquer, hashing, greedy-method, and dynamic-programming.
+In the lectures, the theory will be backed up by numerous practical CS examples. The content is suitable for anyone who is mathematically inclined or computationally curious.
+Course Details
+Intended Audience
+Computer Science &amp; Engineering, Mathematics, Electronics, Physics, &amp; similar disciplines.
+Prerequisites
+Very good analytical skills.
+Industry Support
+Discrete Optimization, Cryptography/ Cyber Security, Coding theory, Computer Algebra, Symbolic Computing Software, Artificial Intelligence, Learning Software
+Category
+COMP_SCI_ENGG, Domain_36
+Course Layout
+Week	Topics
+Week 1	How do clever algorithms look? Introduction
+Week 2	Max-sum-subarray in linear-time; Time/Space Complexity and Asymptotics
+Week 3	How to write proofs? Super-clever Local-minima in 1D and 2D arrays
+Week 4	Abstract Data Structure; Range-minima in 1D array
+Week 5	Binary Search Tree (BST) data structure, Height, Balancing
+Week 6	LIFO/FIFO, Grid-distance problem; Stack ds, Expression-evaluation
+Week 7	BST example: RB tree, Height, Insert, Delete
+Week 8	Half-majority, Multiplication, Inversion; Algo.Paradigm: Divide and Conquer
+Week 9	BFS, Bipartiteness, DFS; Graph theory and algorithms; DFS tree
+Week 10	Articulation points, Biconnectedness; Heap data structure; Dynamic ds
+Week 11	Multi-Increment, Range-Min; Set, Disjoint-union, Find; Greedy paradigm
+Week 12	I-th-Minima, Median; Dijkstra's algo; Counting sort, Radix sort
+Books And References
+https://cse.iitk.ac.in/pages/ESO207.html
+Text Book:
+TH Cormen, CF Leiserson, RL Rivest, C Stein, Introduction to Algorithms, 3rd Ed., MIT Press, 2009.

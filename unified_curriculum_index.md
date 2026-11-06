@@ -1,13 +1,18 @@
 # Unified Curriculum: index and resume point
 
-Compact map of `unified_curriculum.md` (the single unified document, about 440 KB, in the learner's `sde` folder next to `nptel.txt` and `iit-genai.md`; it holds the curriculum, an NPTEL-style assignment with a collapsed key inside every content unit, and the appendices). Built 2026-11-03 under Master_Rules.md Part III.1 from 43 NPTEL and learner-supplied outlines plus the 12-chapter GenAI course. 564 source cells (486 NPTEL, 78 GenAI), all cited by at least one unit; 155 units in 18 domains. Stochastic Approximation and Approximation Algorithms were added on 2026-11-03. 148 assignments, A1.1 to A17.7 (MCQ, multiple-select, numerical, derivation, programming; 10 marks each), embedded in their units.
+Compact map of `unified_curriculum.md` (the single unified document, about 470 KB, in the learner's `sde` folder next to `nptel.txt` and `iit-genai.md`; it holds the curriculum, an NPTEL-style assignment with a collapsed key inside every content unit, and the appendices). Built 2026-11-03 under Master_Rules.md Part III.1 from 43 NPTEL and learner-supplied outlines plus the 12-chapter GenAI course. 564 source cells (486 NPTEL, 78 GenAI), all cited by at least one unit; 160 units in 19 domains. Stochastic Approximation and Approximation Algorithms were added on 2026-11-03. 153 assignments, A0.1 to A17.7 (MCQ, multiple-select, numerical, derivation, programming; 10 marks each), embedded in their units.
 
-**Resume point:** U1.1, first block; nothing taught yet. **Open decisions:** see Appendix F of the full file (official-assignment downloads, gap candidates, truncated sources, inferred titles).
+Added 2026-11-06: domain D0, a remedial pre-calculus bridge (functions, trigonometry, complex numbers) taught on demand: a trigger table in D0 says which later unit calls which block, the probe, and where to return; it is not part of the default order.
 
-**Standing instructions recorded (nptel.txt and chat, 2026-11-03):** (1) learn every technique from scratch in Python, with NumPy as the default toolbox. This is a guideline, not a prohibition: the learner said NumPy-only is "more of a suggestion" and to "design as needed", so units that depart from the NumPy default name their tooling. (2) NPTEL-style assignments for every unit; create them where NPTEL provides none.
+**Resume point:** U1.1, first block; nothing taught yet (D0 opens only when a probe shows a gap). **Open decisions:** see Appendix F of the full file (official-assignment downloads, gap candidates, truncated sources, inferred titles).
+
+**Standing instructions recorded (nptel.txt and chat, 2026-11-03):** (1) learn every technique from scratch in Python, with NumPy as the default toolbox. This is a guideline, not a prohibition: the learner said NumPy-only is "more of a suggestion" and to "design as needed", so units that depart from the NumPy default name their tooling. (2) NPTEL-style assignments for every unit; create them where NPTEL provides none. (3) 2026-11-06: "add a pre calculus bridge to be taught on demand. I am a trigonometry and complex numbers noob" (recorded as D0).
 
 
 ## Part A. Mathematical foundations
+
+**D0. Pre-calculus Bridge (remedial, taught on demand): functions, trigonometry and complex numbers**
+U0.1 Functions, exponentials and logarithms; U0.2 Angles and the trigonometric functions; U0.3 Identities, inverse trigonometric functions, equations, polar coordinates and rotations; U0.4 Complex numbers I: algebra, the plane, polar form, powers and roots; U0.5 Complex numbers II: the complex exponential, Euler's formula, roots of unity and phasors
 
 **D1. Discrete Mathematics and Mathematical Reasoning**
 U1.1 Logic, proof paradigms and formal languages; U1.2 Counting, generating functions and combinatorics; U1.3 Posets, lattices, Boolean algebra and switching circuits; U1.4 Graph theory; U1.5 Number theory and cryptography; U1.6 Algebra: finite fields, codes, groups and orbit counting; U1.7 An invitation to mathematics: polynomials, functions, matrices, conservation laws

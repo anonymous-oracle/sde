@@ -1,13 +1,13 @@
 # Unified Curriculum: Mathematical Foundations → Machine Learning → Deep Learning → LLMs, RAG, Agents and Safety
 
 **Built:** 2026-11-03, from `nptel.txt` (43 NPTEL and learner-supplied course outlines) and `iit-genai.md` (a 12-chapter, 78-section Generative AI course), under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
-**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a NumPy-first tooling guideline for from-scratch work (a default, not a prohibition; added 2026-11-03 at the learner's request). It replaces the earlier separate curriculum, assignments, answer-key and index files. Two courses were added the same day: Stochastic Approximation (units U5.9, U7.7, U8.16, U8.17, U10.6) and Approximation Algorithms (domain D17). Per Master Rules III.1.9, the learner may add, reorder or (as a recorded override) remove anything before teaching starts. Nothing here has been taught yet; every topic is "not started".
+**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a NumPy-first tooling guideline for from-scratch work (a default, not a prohibition; added 2026-11-03 at the learner's request). It replaces the earlier separate curriculum, assignments, answer-key and index files. Two courses were added the same day: Stochastic Approximation (units U5.9, U7.7, U8.16, U8.17, U10.6) and Approximation Algorithms (domain D17). Per Master Rules III.1.9, the learner may add, reorder or (as a recorded override) remove anything before teaching starts. On 2026-11-06 a remedial pre-calculus bridge (domain D0, five units on functions, trigonometry and complex numbers) was added at the learner's request. Nothing here has been taught yet; every topic is "not started".
 
 ---
 
 ## How to read this document
 
-1. **Parts and domains.** Five parts, 18 domains (D1–D18). Each domain has an aim, named benchmarks, and units.
+1. **Parts and domains.** Five parts, 19 domains (D0–D18). Domain D0 (pre-calculus bridge: functions, trigonometry, complex numbers) is **remedial and taught on demand**: it is printed first so that any later unit can call it, and it is opened only when a probe shows a gap (Master Rules II.3). Each domain has an aim, named benchmarks, and units.
 2. **Units.** A unit (`U<domain>.<n>`) is a group of related topics. Each has: **Sources** (generated: which source course weeks or outline cells it absorbs), **Topics** (every topic and subtopic, merged across sources and kept close to the sources' own words), **Results** (the theorems and formulas it teaches, each with a proof status), **Build** (the from-scratch implementation, with the professional tool as oracle afterwards), and **Gap-fills** (anything the references cover that the outlines miss, labelled *inferred* with its source).
 3. **Assignment and tooling.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The default tooling is stated once, in the course profile; a unit mentions tooling only where it departs from the default.
 4. **Proof-status tags** on results: **[P]** prove in full; **[D]** derive with every step; **[S]** proof sketch (the reason a full proof is not given is stated); **[X]** stated, proof deferred (the unit that will prove it, or "beyond course scope", is named); **[Def]** definition, not proved (Master Rules 4.2, 4.7, III.1.5).
@@ -19,15 +19,15 @@
 | Item | Value |
 |---|---|
 | **Aim** | Expert-level command of the mathematics of ML, classical and deep ML, generative models, LLMs, RAG and agents, evaluation and safety, with the three habits of the contest solver, the researcher and the architect (Master Rules section 10). Every algorithm is also implemented from scratch. |
-| **Starting level** | No prior knowledge assumed beyond school mathematics (Class XII) and basic Python. Everything else, including proof technique, is taught (Master Rules III.1.6). |
+| **Starting level** | No prior knowledge assumed beyond school mathematics (Class XII) and basic Python. School trigonometry and complex numbers are not assumed fluent: D0 teaches them on demand. Everything else, including proof technique, is taught (Master Rules III.1.6). |
 | **Benchmarks** | Named per domain in each domain's intro. Titles marked *recalled, not checked* have not been verified against the book itself. Appendix D lists what was checked. |
-| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) From `nptel.txt`: "learn to implement these techniques from the scratch in python, numpy, etc." and "If there are no assignments provided for certain topics, then create them." (2) In chat, 2026-11-03: "Add assignments just like an academic/nptel course. I also need to learn from the scratch python implementations (numpy at maximum). Add this requirement too." (3) In chat, 2026-11-03, replacing the strict reading of (2): "The numpy only rule is not strict. It is more of a suggestion. Feel free to design as needed." (4) In chat, 2026-11-03: add the courses Stochastic Approximation and Approximation Algorithms to the curriculum and the files. Scope of all: the whole course, until revoked. Effects: every content unit has a **Build** written from scratch first, and an **Assignment** (NPTEL style); the tooling for each Build is a design choice, stated in the unit. |
+| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) From `nptel.txt`: "learn to implement these techniques from the scratch in python, numpy, etc." and "If there are no assignments provided for certain topics, then create them." (2) In chat, 2026-11-03: "Add assignments just like an academic/nptel course. I also need to learn from the scratch python implementations (numpy at maximum). Add this requirement too." (3) In chat, 2026-11-03, replacing the strict reading of (2): "The numpy only rule is not strict. It is more of a suggestion. Feel free to design as needed." (4) In chat, 2026-11-03: add the courses Stochastic Approximation and Approximation Algorithms to the curriculum and the files. Scope of all: the whole course, until revoked. Effects: every content unit has a **Build** written from scratch first, and an **Assignment** (NPTEL style); the tooling for each Build is a design choice, stated in the unit. (12) 2026-11-06: "add a pre calculus bridge to be taught on demand. I am a trigonometry and complex numbers noob." Scope of this one: the whole course, until revoked. Effects: domain D0 (U0.1 to U0.5) is added as a remedial, on-demand domain (Master Rules II.3), with a probe and a return point for every trigger. |
 | **Acceptance gates (6.7)** | Formatter clean (`ruff format --check`), linter clean (`ruff check`), `pytest` passes, gradient checks within 1e-5 against finite differences, and results within stated tolerance of an oracle. The optional import report (Assignment A0) lists imports beyond the default set so each is a conscious choice; it informs and never blocks. No hidden failure. |
 | **Layer order for a topic (3.6)** | Concept and intuition → formal statement and derivation → from-scratch build → professional tool → real-world application and limits → check and close. |
 | **Real-world lens (II.6)** | Name it, touch it in a lab, design with it. Cost tags: *local* for all from-scratch work; *replay-first, spend-capped* for any paid LLM API (Master Rules 11.2). |
 | **Pacing (2.7, 8.5)** | The sources' durations (8 or 12 weeks, credits) describe their own pacing only. Here the learner advances by passing checks, never by the calendar. |
 | **Order of languages and tools; from-scratch guideline (NumPy-first, flexible)** | (1) Write the algorithm you are learning by hand first. (2) Default toolbox: Python standard library + NumPy (+ Matplotlib for plots), because it keeps every step visible. (3) This is a **guideline, not a prohibition** (the learner's words: "not strict ... more of a suggestion"): where another library serves the learning goal better, the unit says so, and only units that depart from the default mention tooling (for example U11.4 uses PyTorch for transfer learning, U14.12 uses LangGraph, U16.2 uses PyTorch DDP, U17.7 may use `cvxpy`). (4) Libraries that implement the same algorithm (scikit-learn, SciPy solvers, PyTorch autograd) normally serve as oracles in a separate test file after your version passes, or as the practical tool afterwards (Master Rules 6.8). (5) Derive gradients by hand and check them by finite differences. (6) Keep models toy-sized so they train in minutes on a CPU. Optional environment task **A0** (not scored): create `scratch/` and `tests/oracle/`, write `grad_check(f, x)` returning the maximum relative error (target below 1e-6 on f(x) = sum(x**3)), and, if you want, an import report listing imports beyond the default set. The report informs and never blocks. |
-| **Assignments (NPTEL style)** | One per content unit (148, A1.1–A17.7); capstones are projects with their own criteria. Five questions: MCQ (1 mark), multiple-select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint**; hints escalate one notch at a time and only when asked: what structure do you see, then a smaller case, then the smallest useful hint, then the key (5.7). A missed question gets one smaller, reworded retry (6.5). **Predict first**: write a one-line prediction of Q5's outcome before running it, then report prediction, code and result (6.1, 6.4). **Keys** sit in a collapsed block under each assignment; numerical answers were computed by script, and the 148 programming questions are specs that were not run (you write the solutions; the tutor never does, 2.10, 6.13). **Source alignment:** each unit's Sources line says which official course weeks it absorbs, so an assignment can be set beside the matching official NPTEL weekly assignment if you fetch those (none were downloaded). **Domain exit:** a qualifying-style set drawn from the domain's assignments runs before its capstone (8.7, 9.5). **Recall:** missed questions are re-attempted cold at about 1, 3 and 7 days (8.2). |
+| **Assignments (NPTEL style)** | One per content unit (153, A0.1–A17.7); capstones are projects with their own criteria. Five questions: MCQ (1 mark), multiple-select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint**; hints escalate one notch at a time and only when asked: what structure do you see, then a smaller case, then the smallest useful hint, then the key (5.7). A missed question gets one smaller, reworded retry (6.5). **Predict first**: write a one-line prediction of Q5's outcome before running it, then report prediction, code and result (6.1, 6.4). **Keys** sit in a collapsed block under each assignment; numerical answers were computed by script, and the 148 programming questions are specs that were not run (you write the solutions; the tutor never does, 2.10, 6.13). **Source alignment:** each unit's Sources line says which official course weeks it absorbs, so an assignment can be set beside the matching official NPTEL weekly assignment if you fetch those (none were downloaded). **Domain exit:** a qualifying-style set drawn from the domain's assignments runs before its capstone (8.7, 9.5). **Recall:** missed questions are re-attempted cold at about 1, 3 and 7 days (8.2). |
 | **Cross-domain capstones (9.6)** | U18.1–U18.7, one per stretch, then one integrated final capstone. |
 | **Record** | The list of units in this document is the record template. Initial state: every unit not started, depth L0, no evidence; resume point U1.1, first block (proof paradigms). The live record (mastery states, misconception register, error log, heuristics catalogue, decision journal) belongs in your tracker file (Master Rules 8.3). The results inventory of Master Rules III.1.5 is the **Results** line of each unit. |
 
@@ -35,7 +35,8 @@
 
 | Part | Domain | Units | Absorbs mainly |
 |---|---|---|---|
-| A. Mathematical foundations | D1 Discrete mathematics and reasoning | U1.1–U1.7 | DM, HEM, IM |
+| A. Mathematical foundations | D0 Pre-calculus bridge (remedial, on demand) | U0.1–U0.5 | none (remedial bridge) |
+| | D1 Discrete mathematics and reasoning | U1.1–U1.7 | DM, HEM, IM |
 | | D2 Single-variable calculus and real analysis | U2.1–U2.5 | CAL1, EM1, AEMK, PMO |
 | | D3 Multivariable and vector calculus | U3.1–U3.5 | EM1, EM2, AEMK, MFML, EMML |
 | | D4 Linear algebra | U4.1–U4.11 | LAR, LAP, ALAB, ALAK, ALAJ, MFML, EMML |
@@ -59,6 +60,7 @@
 | Stage | Units | Why here |
 |---|---|---|
 | 0 | U1.1; D2 | Proof habits and one-variable analysis before anything that uses limits. |
+| on demand | D0: U0.1–U0.5 | Opened only when a probe shows a gap while working elsewhere, at the unit named in the D0 trigger table, then return to the exact point left: U0.1 (functions, exponentials, logarithms) from U2.1; U0.2 (angles and trigonometry) from U2.2 and U4.4; U0.3 (identities, inverse trigonometric functions, polar form, rotations) from U2.3, U3.3 and U5.5; U0.4 (complex numbers) from U4.6, U7.1 and U7.3; U0.5 (Euler's formula, roots of unity, phasors) from U2.4, U7.5 and U12.3. |
 | 1 | U4.1–U4.6; U3.1–U3.2; U5.1–U5.5 | Vectors, matrices, eigen-structure, gradients and the language of probability: the minimum that ML notation needs. |
 | 2 | U4.7–U4.10; U5.6–U5.7; D6; U3.3–U3.5 | Decompositions, least squares, joint distributions, inference, matrix calculus. |
 | 3 | U8.1–U8.8; U9.0–U9.4 | Optimization basics and the first ML models, built by hand: regression, logistic regression, regularization, evaluation. |
@@ -83,6 +85,227 @@ Just-in-time rule: a prerequisite from another domain is taught immediately befo
 
 
 # PART A. MATHEMATICAL FOUNDATIONS
+
+## D0. Pre-calculus Bridge (remedial, taught on demand): functions, trigonometry and complex numbers
+
+Aim: the school-level toolkit that the calculus, linear algebra, complex analysis, signal and Transformer units quietly assume, taught from zero for a learner who reports being new to trigonometry and complex numbers. It is **remedial and on demand** (Master Rules II.3), not a block to be done up front: a unit of D0 is opened only when the learner struggles with a basic skill while working elsewhere, a short probe locates the gap, the matching unit is taught to the depth bar below, and the learner returns to exactly the point they left. An area the learner handles fluently is never taught. Added 2026-11-06 at the learner's request: "add a pre calculus bridge to be taught on demand. I am a trigonometry and complex numbers noob."
+
+Benchmarks (recalled, not checked): Stewart, Redlin and Watson, *Precalculus: Mathematics for Calculus*; Gelfand and Saul, *Trigonometry*; Spivak, *Calculus* (the chapters on the trigonometric, exponential and logarithmic functions); Needham, *Visual Complex Analysis* (Chapters 1 and 2); Ahlfors, *Complex Analysis* (Chapter 1); Nahin, *An Imaginary Tale*.
+
+**Depth bar.** Fast, error-free hand work on unseen items: exact trigonometric values without a calculator, any angle-sum or double-angle identity derived rather than recalled, a triangle solved from any three data, a complex number moved between rectangular and polar form and raised to a power or rooted, and Euler's formula used to turn a trigonometric identity into an exponent law. Central results are proved or derived with every step (the angle-sum formulas, the law of cosines, De Moivre's theorem, the sum of the roots of unity); the two results whose proofs need calculus (Euler's formula from the series, the fundamental theorem of algebra) are stated, with the unit that proves them named (Master Rules 4.2).
+
+**Placement note.** D0 has no place in the default order. It is printed first because every later domain may call it. It is never taught all at once: the trigger table says which later unit calls which block, what the probe is, and where to return. A block taught is logged in the record with its cause (conceptual, misread, slip, strategic; Master Rules 3.3.5). The probe is one unseen item, not a quiz; if it is handled fluently the block is skipped and logged as "probed, fluent".
+
+| Trigger (where the gap shows) | Probe (one unseen item) | Teach | Return to |
+|---|---|---|---|
+| U2.1 reading a graph, inverse functions, a function's domain; U8.3 convexity of exp and log | Sketch y = |x − 2| + 1 and state its range; find the inverse of y = x² on x ≥ 0 | U0.1 | U2.1, U8.3 |
+| U2.3 and U2.4 exponentials and logarithms; U5.3 to U5.4 growth and decay, log-likelihood; U9.3 logistic regression | Solve 3^x = 50 and simplify log(a²b) − log(ab²) | U0.1 | the unit that called |
+| U2.2 derivatives of sin and cos; U4.2 and U4.4 the angle between vectors; U3.4 line and surface integrals | Give the exact value of cos 150° and convert 7π/6 to degrees; find the angle between (1, 0) and (1, 1) | U0.2 | U2.2, U4.4 |
+| U2.3 trigonometric substitution and integrals of sin² x; U3.3 polar coordinates in double integrals; U5.5 Box–Muller; U4.6 rotation matrices | Write sin² x without a square; convert (r, θ) = (2, 2π/3) to (x, y) | U0.3 | U2.3, U3.3, U5.5 |
+| U7.1 oscillating solutions; U4.6 and U4.8 complex eigenvalues and unitary matrices; U7.3 to U7.5 complex analysis; U1.5 and U1.6 cyclic groups, roots of unity | Compute (3 + 4i)/(1 − 2i) and write 1 + i in polar form | U0.4 | the unit that called |
+| U2.4 Taylor series of exp, sin and cos; U7.5 Laplace, Fourier and discrete Fourier transforms; U12.3 sinusoidal and rotary positional encodings; U11.4 convolution as a frequency view | Evaluate e^{iπ/2} and write cos x in terms of e^{ix} | U0.5 | U2.4, U7.5, U12.3 |
+
+**Capstone (II.3, remedial).** Set only on the units that were taught: a timed mixed set of at most 12 unseen items drawn from them (a speed exercise only, Master Rules 6.14) with the key written first, plus a one-page explanation, for a non-expert, of one quantitative decision that uses them (for example why rotating each pair of coordinates of an embedding by an angle proportional to its position makes dot products depend only on the offset between positions, or why a 50 Hz signal needs more than 100 samples a second). The domain is closed when both pass.
+
+### U0.1 Functions, exponentials and logarithms
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+- **Blocks (each with its own probe, habit and build):** (a) functions, graphs and inverses; (b) transformations of graphs; (c) polynomials and quadratics; (d) exponents, exponentials and logarithms. Habit trained throughout: *test a formula at three easy values before trusting it* (0, 1 and a negative or large one).
+- **Topics:** a function as a rule from a domain to a codomain with a range; graphs and how to read them; composition; one-to-one functions and the horizontal-line test; inverse functions, restricting a domain so that an inverse exists, the graph of the inverse as a reflection in the line y = x; transformations y = a f(b(x − h)) + k (shift, stretch, reflect) and what each constant does; even and odd functions; absolute value and piecewise functions; polynomials, degree, roots, factor and remainder theorems, completing the square, the quadratic formula and the discriminant; rational functions and asymptotes; inequalities; integer, zero, negative and rational exponents and their laws; the exponential function a^x, growth and decay, and the number e as the limit of (1 + 1/n)^n; logarithms as inverses of exponentials, the laws of logarithms, change of base, the natural logarithm, logarithmic scales; arithmetic and geometric sequences, sigma notation and the geometric sum; lines, slope, distance between points and the equation of a circle.
+- **Results:** factor theorem [P]; the quadratic formula by completing the square [D] and the sign of the discriminant deciding the number of real roots [D]; the graph of f⁻¹ is the reflection of the graph of f in y = x [D]; the laws of logarithms from the laws of exponents [P]; change of base [P]; geometric sum a(1 − rⁿ)/(1 − r) [P]; (1 + 1/n)ⁿ increases toward 2.71828... [check; the limit is proved in U2.1 and U2.4].
+- **Build:** a small function plotter with the transformation constants as sliders (or printed tables), an inverse built by bisection and checked against the closed form, the compound-interest table for n = 1, 12, 365 and 10⁶, a random test of the three log laws and change of base to 12 digits, and quadratic roots by formula against `numpy.roots`.
+- **Gap-fills:** *[inferred: Stewart–Redlin–Watson; Spivak]* the number e is defined here by its numerical behaviour only; its definition as the base whose exponential has slope equal to its value waits for U2.3.
+
+**Assignment A0.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The function f(x) = x squared is restricted to x greater than or equal to 0. Which statement about its inverse is correct?
+
+(A) The inverse is the square root function and its graph is the reflection of f in the line y = x  
+(B) The inverse does not exist because f is not one-to-one on any domain  
+(C) The inverse is f itself  
+(D) The inverse is the reciprocal 1/f(x)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) log(xy) = log x + log y for x, y > 0  
+(B) log_b(x) = ln(x)/ln(b)  
+(C) (1 + 1/n)^n increases toward about 2.718 as n grows  
+(D) log(x + y) = log x + log y
+
+**Q3 (2 marks, numerical answer).** Solve 3^x = 50. Give x to three decimal places.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the product law log_b(xy) = log_b(x) + log_b(y) from the law of exponents b^m b^n = b^(m+n).
+
+**Q5 (3 marks, programming).** Write transform(f, a, b, h, k) returning the function x -> a f(b(x - h)) + k, and an inverse finder by bisection for an increasing function on an interval. Test them on f = square on [0, 10] and print the compound-interest values of (1 + 1/n)^n for n = 1, 12, 365 and 10**6. Predict the last value to three decimals first.
+
+<details><summary>Key for A0.1 (open only after your attempt)</summary>
+
+- **Q1:** A. On x >= 0 the function is one-to-one, its inverse is the square root, and graphs of inverse functions are mirror images in y = x.
+- **Q2:** ABC. D is false: the log of a sum has no such rule; the product rule is the one that holds.
+- **Q3:** 3.561 (tolerance ±0.001). Take logarithms: x = ln 50 / ln 3 = 3.912 / 1.0986 = 3.561.
+- **Q4 (marking outline):** Let m = log_b x and n = log_b y, so b^m = x and b^n = y by the definition of the logarithm as the inverse of b^t. Then xy = b^m b^n = b^(m+n) by the exponent law. Taking log_b of both sides, which undoes b^t, gives log_b(xy) = m + n = log_b x + log_b y.
+- **Q5 (what a passing submission shows):** The bisection inverse of the square agrees with the square root to 1e-9, the shifted-stretched graph passes through the predicted points, and the interest table gives 2.0, 2.613, 2.715 and 2.718.
+
+</details>
+
+### U0.2 Angles and the trigonometric functions
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+- **Blocks:** (a) angles, radians and the unit circle; (b) right triangles and exact values; (c) graphs, period, amplitude and phase; (d) solving triangles: the laws of sines and cosines; (e) angles between vectors. Habit: *draw the unit circle and mark the quadrant before computing any sign*.
+- **Topics:** angle as an amount of turning; degrees and radians (an angle in radians is arc length divided by radius, so a full turn is 2π, 180° is π, and one radian is about 57.3°); sin, cos, tan and their reciprocals csc, sec, cot on a right triangle (SOH CAH TOA) and then on the unit circle for every angle (the point reached after turning θ from (1, 0) is (cos θ, sin θ)); signs by quadrant and reference angles; exact values at 0, 30°, 45°, 60° and 90° from the 30-60-90 and 45-45-90 triangles; periodicity (sin and cos repeat every 2π, tan every π) and symmetry (cos is even, sin is odd, sin(π − θ) = sin θ, sin(θ + π) = −sin θ, cos(π/2 − θ) = sin θ); graphs of sin, cos and tan; the sinusoid A sin(B(x − C)) + D with amplitude |A|, period 2π/|B|, phase shift C, and the frequency in cycles per unit as |B|/2π and the angular frequency ω = B; arc length s = rθ and sector area ½r²θ; the Pythagorean identity sin²θ + cos²θ = 1; the law of sines and the law of cosines, area ½ab sin C, solving a triangle from side-angle-side, side-side-side and angle-side-angle and the ambiguous side-side-angle case; the small-angle behaviour sin θ ≈ θ and tan θ ≈ θ for θ in radians; components of a plane vector (|v| cos θ, |v| sin θ), the dot product, and the angle between two vectors cos θ = u·v/(|u||v|).
+- **Results:** sin²θ + cos²θ = 1 from the unit circle [P]; exact values at 30°, 45° and 60° [D]; the law of cosines c² = a² + b² − 2ab cos C by coordinates [P]; the law of sines [P]; area ½ab sin C [P]; sin θ < θ < tan θ for 0 < θ < π/2 by comparing areas [S; it is the engine of lim sin x/x = 1 in U2.2]; the formula cos θ = u·v/(|u||v|) from the law of cosines [D]; the period of A sin(Bx + C) is 2π/|B| [P].
+- **Build:** a unit-circle explorer printing (cos θ, sin θ) with the quadrant and the reference angle, a triangle solver for all four cases checked against `numpy` on 10,000 random triangles (angles sum to π, the law of sines holds to about 10⁻⁸, the loss coming from near-degenerate triangles where arccos is ill-conditioned), the small-angle error table for θ = 1, 0.1, 0.01 and 0.001 radians, and the wavelengths of the sinusoidal positional encoding for a given dimension (a preview of U12.3). Only the standard library and NumPy are used; `math.sin` is the oracle.
+- **Gap-fills:** *[inferred: Gelfand–Saul; Stewart–Redlin–Watson]* the geometric definition of sine for an obtuse angle is by the unit circle only; the calculus definition and the series are in U2.3 and U2.4.
+
+**Assignment A0.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is the exact value of cos(2 pi / 3)?
+
+(A) 1/2  
+(B) -1/2  
+(C) sqrt(3)/2  
+(D) -sqrt(3)/2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) One radian is the angle for which the arc length equals the radius  
+(B) sin(pi - x) = sin x  
+(C) The sinusoid sin(3x) has period 2 pi / 3  
+(D) For small angles in radians, sin x is approximately x
+
+**Q3 (2 marks, numerical answer).** A triangle has sides 7 and 9 with the angle between them equal to 60 degrees. Find the third side to three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the law of cosines c squared = a squared + b squared - 2ab cos C by placing the triangle in coordinates.
+
+**Q5 (3 marks, programming).** Write solve_triangle for the four given-data cases (SSS, SAS, ASA, SSA with both solutions) and test it on 10,000 random triangles by checking that the angles sum to pi and the law of sines holds. Also print sin x and x - sin x for x = 1, 0.1, 0.01, 0.001. Predict the ratio of the last two errors first.
+
+<details><summary>Key for A0.2 (open only after your attempt)</summary>
+
+- **Q1:** B. 2 pi / 3 is 120 degrees, in the second quadrant where cosine is negative, with reference angle 60 degrees whose cosine is 1/2.
+- **Q2:** ABCD. All four hold: the period of sin(Bx) is 2 pi / B, and the small-angle error of sin x is about x cubed over 6.
+- **Q3:** 8.185 (tolerance ±0.001). The law of cosines gives c squared = 49 + 81 - 126 (0.5) = 67, so c = 8.185.
+- **Q4 (marking outline):** Put the vertex C at the origin with side CB of length a along the positive x-axis, so B = (a, 0), and put A at (b cos C, b sin C), since CA has length b and makes angle C with CB. The side c is the distance AB, so c squared = (b cos C - a)^2 + (b sin C)^2 = b squared cos squared C - 2ab cos C + a squared + b squared sin squared C. Using sin squared plus cos squared = 1 this is a squared + b squared - 2ab cos C.
+- **Q5 (what a passing submission shows):** On random triangles the angle sum is pi to 1e-9 and the law of sines holds to about 1e-8, the SSA case returns two triangles when the data allow, and x - sin x falls by 1000 for every tenfold drop in x, as the cube law x^3/6 predicts.
+
+</details>
+
+### U0.3 Identities, inverse trigonometric functions, equations, polar coordinates and rotations
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+- **Blocks:** (a) angle-sum and the identities that follow from it; (b) a cos x + b sin x as one cosine; (c) inverse functions and equations; (d) polar coordinates and rotation. Habit: *derive an identity from the angle-sum formula once, then recognise it; test it at x = 0 and x = π/2*.
+- **Topics:** the angle-sum and angle-difference formulas for sine, cosine and tangent; double-angle formulas (cos 2x = cos²x − sin²x = 2cos²x − 1 = 1 − 2sin²x, sin 2x = 2 sin x cos x); half-angle and power-reducing formulas (sin²x = (1 − cos 2x)/2, cos²x = (1 + cos 2x)/2); product-to-sum and sum-to-product; the form a cos x + b sin x = R cos(x − φ) with R = √(a² + b²) and φ = atan2(b, a); the inverse functions arcsin, arccos and arctan with their domains and principal ranges ([−π/2, π/2], [0, π] and (−π/2, π/2)), the two-argument arctangent atan2 and why a calculator's arctan(b/a) loses the quadrant; sin(arcsin x) = x but arcsin(sin x) = x only on the principal range; solving trigonometric equations and writing all solutions (x = α + 2πk or x = π − α + 2πk); polar coordinates (x, y) = (r cos θ, r sin θ), conversion both ways, simple curves (circle, line through the origin, cardioid, spiral); rotation of the plane by θ as the matrix with rows (cos θ, −sin θ) and (sin θ, cos θ), and its composition R(α)R(β) = R(α + β).
+- **Results:** cos(α + β) = cos α cos β − sin α sin β by composing two rotations [D]; the remaining sum and difference formulas from it [D]; the double-angle and power-reducing formulas [D]; a cos x + b sin x = R cos(x − φ), so its maximum is √(a² + b²) [D]; arcsin(sin x) is the principal-range representative of x only for x in [−π/2, π/2] [D]; the rotation matrices form a commutative group whose product law is the angle-sum formula [D]; the general solution of sin x = s [D].
+- **Build:** a random-point checker for twelve identities (maximum error below 10⁻¹⁵), a solver for a cos x + b sin x = c with all solutions in a window, atan2 against a hand-written quadrant rule, and rotation matrices composed and compared with `numpy`.
+- **Gap-fills:** *[inferred: Stewart–Redlin–Watson; Gelfand–Saul]* polar areas and arc lengths wait for U3.3 and U2.3; hyperbolic functions are in U0.5.
+
+**Assignment A0.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is arcsin(sin(5 pi / 6))?
+
+(A) 5 pi / 6  
+(B) pi / 6  
+(C) -pi / 6  
+(D) pi / 3
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which identities are correct for all x?
+
+(A) sin(2x) = 2 sin x cos x  
+(B) cos(2x) = 1 - 2 sin squared x  
+(C) sin squared x = (1 - cos 2x)/2  
+(D) cos(x + y) = cos x cos y + sin x sin y
+
+**Q3 (2 marks, numerical answer (degrees)).** Write 3 cos x + 4 sin x as R cos(x - phi) with R > 0. Give phi in degrees to two decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive cos(a + b) = cos a cos b - sin a sin b by composing rotations of the plane.
+
+**Q5 (3 marks, programming).** Write a checker that tests twelve trigonometric identities at 100,000 random points and reports the maximum error, a solver for a cos x + b sin x = c returning all solutions in [-2 pi, 2 pi], and a quadrant-correct atan2 of your own compared with math.atan2. Predict whether 3 cos x + 4 sin x = 6 has solutions before running it.
+
+<details><summary>Key for A0.3 (open only after your attempt)</summary>
+
+- **Q1:** B. sin(5 pi / 6) = 1/2, and arcsin returns the angle in [-pi/2, pi/2] with that sine, which is pi / 6; the identity arcsin(sin x) = x holds only on that range.
+- **Q2:** ABC. D is false: the sign is minus, cos(x + y) = cos x cos y - sin x sin y.
+- **Q3:** 53.13 degrees (tolerance ±0.01). R = 5 and (cos phi, sin phi) = (3/5, 4/5), so phi = atan2(4, 3) = 53.13 degrees.
+- **Q4 (marking outline):** The matrix R(t) with rows (cos t, -sin t) and (sin t, cos t) turns the plane by t about the origin. Turning by b and then by a is turning by a + b, so R(a)R(b) = R(a + b). Multiply the matrices: the top-left entry of R(a)R(b) is cos a cos b - sin a sin b, and the top-left entry of R(a + b) is cos(a + b). Equating the entries gives the formula, and the bottom-left entries give sin(a + b) = sin a cos b + cos a sin b.
+- **Q5 (what a passing submission shows):** The identities agree to about 1e-15, the equation with c = 6 has no solution because the maximum is 5, c = 2.5 gives four solutions in the window, and the hand-written atan2 matches the library on 10,000 points.
+
+</details>
+
+### U0.4 Complex numbers I: algebra, the plane, polar form, powers and roots
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+- **Blocks:** (a) the number i and arithmetic; (b) the plane, modulus and conjugate; (c) polar form, De Moivre and roots; (d) polynomials with complex roots. Habit: *draw the number in the plane, then compute; multiplication scales and turns, addition slides*.
+- **Topics:** why numbers beyond the reals (a quadratic with negative discriminant, and Cardano's cubic whose three real roots pass through square roots of negatives); i with i² = −1; a + bi, real and imaginary parts; addition, multiplication, powers of i; the conjugate and division by multiplying numerator and denominator by the conjugate; the Argand plane, modulus |z| = √(a² + b²) and distance |z − w|; |zw| = |z||w|, |z̄| = |z|, z z̄ = |z|², and the triangle inequality; the argument and the principal argument in (−π, π]; polar form z = r(cos θ + i sin θ); multiplication multiplies moduli and adds arguments, so multiplying by i turns a point a quarter turn; De Moivre's theorem (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ; the n n-th roots of a nonzero number, equally spaced on a circle; sets in the plane (|z − a| = r, |z − a| = |z − b|, Re z ≥ c); polynomials: quadratics with complex roots, the conjugate-pair theorem for real coefficients, factoring a real polynomial into real linear and quadratic factors, the fundamental theorem of algebra; complex numbers as 2 × 2 real matrices [[a, −b], [b, a]] and the eigenvalues ±i of a rotation.
+- **Results:** the complex numbers form a field (every nonzero z has the inverse z̄/|z|²) [D]; |zw| = |z||w| [P]; the triangle inequality [P]; the polar product rule from the angle-sum formulas of U0.3 [P]; De Moivre's theorem by induction [P]; the n n-th roots of w are r^{1/n}(cos((θ + 2πk)/n) + i sin((θ + 2πk)/n)) for k = 0 to n − 1 [P]; if a real polynomial has root z it has root z̄ [P]; every real polynomial of odd degree has a real root [S: the non-real roots pair off as conjugates, so an odd number of roots leaves a real one, given the fundamental theorem; the intermediate value theorem of U2.1 gives it directly]; the fundamental theorem of algebra [X→U7.3, where Liouville's theorem proves it]; the map a + bi ↦ [[a, −b], [b, a]] preserves sums and products [D].
+- **Build:** a `Cx` class with addition, multiplication, division, modulus, argument and power, tested against Python's built-in `complex` on 10⁵ random pairs; n-th roots drawn in the plane for n = 3 to 12 with the product and sum checked; Cardano's method on x³ − 15x − 4 = 0 (the cube root of 2 + 11i is 2 + i, giving the real root 4) checked against `numpy.roots`; the matrix representation tested against complex multiplication.
+- **Gap-fills:** *[inferred: Needham Ch.1; Ahlfors Ch.1; Nahin]* the extended plane, Möbius maps and the exponential function of a complex variable beyond U0.5 are in U7.3 and U7.4.
+
+**Assignment A0.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** How many distinct complex numbers z satisfy z^5 = 1?
+
+(A) 1  
+(B) 2  
+(C) 4  
+(D) 5
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) For all complex z and w, the modulus of zw equals the modulus of z times the modulus of w  
+(B) If a polynomial with real coefficients has the root 2 + 3i then it also has the root 2 - 3i  
+(C) Multiplying a complex number by i turns it a quarter turn counterclockwise about the origin  
+(D) Every complex number has exactly two fifth roots
+
+**Q3 (2 marks, numerical answer).** Compute the real number (1 + i)^8.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that if a polynomial p with real coefficients has p(z) = 0, then p of the conjugate of z is also 0.
+
+**Q5 (3 marks, programming).** Write a class Cx with add, multiply, divide, modulus, argument and integer power, and test it against Python complex on 100,000 random pairs. Then draw the 7th roots of 1 and check that their sum is 0 and their product is 1, and solve x^3 - 15x - 4 = 0 by Cardano's method using your class. Predict the three roots first.
+
+<details><summary>Key for A0.4 (open only after your attempt)</summary>
+
+- **Q1:** D. There are exactly five fifth roots of 1, equally spaced on the unit circle at angles 2 pi k / 5.
+- **Q2:** ABC. D is false: a nonzero complex number has five fifth roots.
+- **Q3:** 16 (tolerance ±0.0001). The modulus of 1 + i is sqrt 2 and its argument 45 degrees, so the eighth power has modulus 16 and argument 360 degrees, giving 16.
+- **Q4 (marking outline):** Write p(x) = a0 + a1 x + ... + an x^n with every a_k real. Conjugation respects sums and products, so the conjugate of p(z) equals a0 + a1 (conj z) + ... + an (conj z)^n, because each a_k is its own conjugate. This is p(conj z). Since p(z) = 0 and the conjugate of 0 is 0, p(conj z) = 0.
+- **Q5 (what a passing submission shows):** The class agrees with complex to 1e-12, the seventh roots sum to 0 and multiply to 1, and Cardano gives 4, -2 + sqrt 3 and -2 - sqrt 3, equal to numpy.roots to 1e-9, with the intermediate cube root 2 + i of 2 + 11i.
+
+</details>
+
+### U0.5 Complex numbers II: the complex exponential, Euler's formula, roots of unity and phasors
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+- **Blocks:** (a) e^{iθ} and Euler's formula; (b) trigonometry as exponent laws; (c) roots of unity and the discrete Fourier idea; (d) phasors and rotations in practice. Habit: *turn a trigonometric problem into an exponential one, compute with exponent laws, turn it back*.
+- **Topics:** e^{iθ} := cos θ + i sin θ, why this is the right definition (it obeys e^{iα}e^{iβ} = e^{i(α+β)} by the angle-sum formulas, it has modulus 1, and it is what the exponential series and the equation y′ = iy give, as U2.4 and U7.1 prove); Euler's formula and the identity e^{iπ} + 1 = 0; polar form z = r e^{iθ}; e^{x + iy} = e^x (cos y + i sin y); cos θ = (e^{iθ} + e^{−iθ})/2 and sin θ = (e^{iθ} − e^{−iθ})/(2i); deriving the angle-sum, double-angle and power-reducing identities from exponent laws; De Moivre as (e^{iθ})ⁿ = e^{inθ}; the n-th roots of unity ω^k with ω = e^{2πi/n}, their sum (zero for n ≥ 2) and product, primitive roots and the cyclic group they form (a first example for U1.6); the geometric sum of ω^k; complex logarithm as a multi-valued function and its principal value Log z = ln|z| + i Arg z; complex powers; the hyperbolic functions cosh and sinh, and cos(ix) = cosh x; frequency, angular frequency and period; phasors: A cos(ωt + φ) is the real part of A e^{iφ} e^{iωt}, so sinusoids of one frequency add as complex numbers; the discrete Fourier transform X_k = Σ x_n ω^{−nk} as a matrix of roots of unity and the orthogonality of its columns; sampling and aliasing (a sinusoid of frequency f sampled at rate fs is indistinguishable from one at f + k·fs); rotary position encodings as multiplication of a pair of coordinates by e^{imθ} (a preview of U12.3).
+- **Results:** e^{iα}e^{iβ} = e^{i(α+β)} from the angle-sum formulas [P]; |e^{iθ}| = 1 [P]; Euler's formula as a theorem for the exponential defined by its series [X→U2.4, and again by y′ = iy in U7.1]; cos and sin as exponentials [D]; the angle-sum formulas and De Moivre from the exponent law [D]; the sum of the n-th roots of unity is 0 for n ≥ 2 [P]; Σ_{n=0}^{N−1} ω^{(j−k)n} = N when j ≡ k and 0 otherwise [P], so the DFT matrix has orthogonal columns and is inverted by its conjugate transpose divided by N [D]; the sum of two sinusoids of the same frequency is a sinusoid of that frequency, with amplitude |A₁e^{iφ₁} + A₂e^{iφ₂}| [D]; Log z is multi-valued by 2πi k [Def]; a sinusoid is determined by its samples only below the Nyquist frequency fs/2 [S; the sampling theorem is in U7.5].
+- **Build:** Euler's identity and the exponent law checked to machine precision; the DFT from scratch as a matrix, compared with `numpy.fft.fft` on random vectors (error below 10⁻¹²) and used to find the frequency of a sampled noisy sinusoid; the orthogonality of the columns; a phasor adder checked against direct summation of two cosines; and a rotary-pair test showing that ⟨R(mθ)q, R(nθ)k⟩ depends only on m − n for random 2-D vectors.
+- **Gap-fills:** *[inferred: Needham Ch.1 and 2; Stewart–Redlin–Watson]* power series and the proof of Euler's formula from them are in U2.4; the ODE route in U7.1; the Fourier transform in U7.5.
+
+**Assignment A0.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which value does the principal complex logarithm Log(-1) take?
+
+(A) 0  
+(B) i pi  
+(C) -i pi / 2  
+(D) pi
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) e^(i pi) + 1 = 0  
+(B) cos x = (e^(ix) + e^(-ix))/2  
+(C) The sum of the n-th roots of unity is 0 for every n >= 2  
+(D) e^(ix) can have modulus other than 1 when x is real
+
+**Q3 (2 marks, numerical answer).** Find the amplitude of the sinusoid 2 cos(wt) + 3 cos(wt + pi/3) using phasors. Give it to three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the n-th roots of unity sum to zero when n >= 2.
+
+**Q5 (3 marks, programming).** Build the n x n DFT matrix from roots of unity, compare its action with numpy.fft.fft on random vectors, check that its columns are orthogonal, and use it to find the frequency of a noisy sampled sinusoid. Then test that the inner product of two 2-D vectors rotated by m theta and n theta depends only on m - n. Predict the aliasing of a 13 Hz tone sampled at 10 Hz first.
+
+<details><summary>Key for A0.5 (open only after your attempt)</summary>
+
+- **Q1:** B. -1 = e^(i pi), so Log(-1) = ln 1 + i pi = i pi, taking the argument in (-pi, pi].
+- **Q2:** ABC. D is false: the modulus of e^(ix) is the square root of cos squared x + sin squared x, which is always 1.
+- **Q3:** 4.359 (tolerance ±0.001). The phasors add: 2 + 3 e^(i pi/3) has modulus squared 4 + 9 + 12 cos 60 degrees = 19, so the amplitude is sqrt 19 = 4.359.
+- **Q4 (marking outline):** Let w = e^(2 pi i / n), so the roots are 1, w, ..., w^(n-1) and w^n = 1 with w not equal to 1 when n >= 2. The sum S satisfies w S = w + w^2 + ... + w^n = S, because w^n = 1 replaces the first term 1. Hence (w - 1) S = 0, and since w is not 1, S = 0.
+- **Q5 (what a passing submission shows):** The matrix agrees with fft to 1e-12, the Gram matrix is n times the identity, the sinusoid's frequency is recovered at the right bin, the rotated inner products are equal for equal m - n, and the 13 Hz tone is identical to a 3 Hz tone at the sample points.
+
+</details>
 
 ## D1. Discrete Mathematics and Mathematical Reasoning
 
@@ -6115,7 +6338,9 @@ Generated from each source's own prerequisite lines; each is rewritten below as 
 
 | Prerequisite (concrete) | First needed in | Depth needed | How probed |
 |---|---|---|---|
-| Algebra, functions, graphs, trigonometry, exponents and logarithms | U2.1 | L2 | Mixed unseen set of 6 items, first 10 minutes of U2.1 |
+| Algebra, functions, graphs, exponents and logarithms | U2.1 | L2 | One unseen probe item (the D0 trigger table); taught on demand by U0.1 when a gap shows |
+| Trigonometry: radians, the unit circle, identities, inverse trigonometric functions, polar coordinates | U2.2 (derivatives of sin and cos), U2.3, U3.3, U4.4, U5.5 | L2 | One unseen probe item per block (cos 150 degrees; sin squared x without the square); taught on demand by U0.2 and U0.3 |
+| Complex numbers: arithmetic, polar form, De Moivre, Euler's formula, roots of unity | U4.6, U7.1, U7.3, U2.4, U7.5, U1.6, U12.3 | L2 | Compute (3 + 4i)/(1 − 2i) and write 1 + i in polar form; taught on demand by U0.4 and U0.5 |
 | Sets, relations, functions; basic logic | U1.1 | L2 | Prediction on a quantifier negation |
 | Proof by induction, contradiction, contrapositive | U1.1 | L3 | Prove an unseen identity; taught first if shaky |
 | Limits and continuity (ε–δ) | U2.1 | L3 | Prove a limit |
@@ -6142,7 +6367,7 @@ Generated from each source's own prerequisite lines; each is rewritten below as 
 | Reinforcement-learning vocabulary | U10.4 | L2 | Describe an MDP |
 | Computer organization (cache, memory hierarchy, parallelism) | U16.1 (source prerequisite of CSO) | L2 | Predict a cache-miss pattern; taught first if shaky |
 
-**Remedial rule (Master Rules II.3):** school-level algebra, trigonometry and Python are remedial and on demand: a short probe locates a gap, the matching area is taught, and the learner returns to the exact point they left.
+**Remedial rule (Master Rules II.3):** school-level algebra, trigonometry, complex numbers and Python are remedial and on demand (D0 holds the first three as units U0.1 to U0.5, with a trigger table; added 2026-11-06): a short probe locates a gap, the matching area is taught, and the learner returns to the exact point they left.
 
 ## Appendix D. Validation against the listed books and references
 
@@ -6163,6 +6388,7 @@ Master Rules 1.6 and 1.7: benchmarks are named, never linked; contents "recalled
 | Borkar, *Stochastic Approximation: A Dynamical Systems Viewpoint*; Borkar, *Probability Theory: An Advanced Course*; Williams, *Probability with Martingales*; Grimmett–Stirzaker; Hirsch–Smale–Devaney (all listed by SA) | **Not verified** | Used to label the SA units' gap-fills *recalled, not checked*. Spot-check against the books before closing U5.9, U7.7 and U8.16–U8.17. |
 | Vazirani, *Approximation Algorithms*; Williamson–Shmoys, *The Design of Approximation Algorithms* (both listed by AA) | **Not verified** | D17 ratios that the sources do not state (Steiner tree and facility-location rounding, scheduling hardness) are marked *recalled, not checked* in the units. |
 | Strang (LA, *Learning from Data*), Axler, Kay, Rosenthal, Johnson–Wichern, Nocedal–Wright, Bishop, Hastie et al., Alpaydin, Duda–Hart–Stork, Haykin, Nielsen, Bengio, Mitchell, Spivak, Thomas–Finney, Kreyszig, Piskunov, O'Neil, Cheney, Artin, Halmos, Herstein, Hoffman–Kunze, Jacobson, Greub, Chvátal, Dantzig–Thapa, Bazaraa et al., Bertsekas, Chong–Zak, Dennis–Schnabel, Sun–Yuan, Rockafellar, Hiriart-Urruty–Lemaréchal, Tikhomirov, Churchill–Brown, Ahlfors, Conway, Debnath–Bhatta, Jain–Iyengar, Miller–Freund, Mayer, Maity, Forsyth, Pradhan–Kumar, Rengaswamy–Suresh, Sze et al., Nedić | **Not verified** (no machine-readable contents reached) | Named as benchmarks and used to label gap-fills as *[inferred: …, recalled, not checked]*. They should be spot-checked against the physical books before a domain is closed (Master Rules 1.6). |
+| Stewart–Redlin–Watson, *Precalculus*; Gelfand–Saul, *Trigonometry*; Spivak; Needham, *Visual Complex Analysis*; Ahlfors; Nahin, *An Imaginary Tale* (benchmarks of D0, added 2026-11-06) | **Not verified**: recalled, not checked | D0 is standard school and first-year material. Every number its units state (log laws, exact trigonometric values, the law of cosines, the identities, De Moivre, Cardano's cubic, roots of unity, the DFT, the rotary-pair property, aliasing) was recomputed by a script (`verify/v_d0.py`) on 2026-11-06. |
 
 
 ### D.2 Gap candidates (not added; need your agreement per Master Rules 7.4)
@@ -6279,7 +6505,7 @@ These are covered by a listed reference but by no outline, and each is a whole s
 
 | Source course | NPTEL assignments | Plan |
 |---|---|---|
-| All 148 content units | Authored NPTEL-style assignments `A1.1`–`A17.7`, embedded at the end of each unit (keys collapsed under each) | **Done.** Five questions each: MCQ, multiple-select, numerical, prove/derive, NumPy programming. |
+| All 153 content units | Authored NPTEL-style assignments `A0.1`–`A17.7`, embedded at the end of each unit (keys collapsed under each) | **Done.** Five questions each: MCQ, multiple-select, numerical, prove/derive, NumPy programming. |
 | MFML (W1–W12), EMML (8 weeks of PDFs), DM (probable; id to confirm) | Official NPTEL weekly assignments exist (lines 101, 151, 213) | **Not downloaded.** Optional: on your approval they can be fetched, stored as text and mapped to units through Appendix B, to be set beside the authored ones. |
 
 ### F.2 Decisions I need from you
