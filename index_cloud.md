@@ -1,8 +1,10 @@
-# Unified Cloud Curriculum: index
+# Unified Cloud Curriculum: index (merged with the machine-learning curriculum, folded by subject)
 
-Index of `unified_cloud_curriculum.md` (built 2026-11-05 UTC from `cloud-computing.txt`, 13 NPTEL outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC; `cloud-computing2.txt`, 6 computer-architecture outlines: MCA, CAO, CA, ACA, PCA, GPU; `dbms.txt`, 3 database courses: FDB, DBD, IDB; the System Design Primer, the python-patterns collection and the Gang of Four catalogue: SDP, PYP, GOF; and `data-analytics.txt`, 8 new outlines: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD, the ninth, BDC, being a duplicate; and `software-engineering.txt`, 2 outlines: ISE, SEM), all added 2026-11-06. 23 domains, 290 units, 280 assignments (A<d>.<n>, five questions, key collapsed), 55 prerequisite bridges, 10 capstones. All 478 source cells from 35 courses are cited. D15 (database systems) is printed between D9 and D10; D21, D17, D18 and D19 (data science foundations) between D10 and D11; D23 (Go, taught on demand) right after D17; D20 after D11; D22 (software engineering) and D16 (software and system design) after D12; D14 is printed before the capstones (D13), which stay together at the end. Separate from `unified_curriculum.md`; a merge is an open decision (Appendix D of the file).
+Index of `unified_cloud_curriculum.md`, the primary curriculum. Built from the cloud sources (`cloud-computing.txt`, `cloud-computing2.txt`, `dbms.txt`, the System Design Primer, python-patterns and the Gang of Four catalogue, `data-analytics.txt`, `software-engineering.txt`) on 2026-11-05 and 2026-11-06, and, on 2026-11-06, merged completely with the earlier machine-learning curriculum (`unified_curriculum.md`, from `nptel.txt` and `iit-genai.md`) and folded in by subject: its pre-calculus and discrete mathematics are inside D21, its algorithms and complexity inside D17, its linear algebra inside D18, its probability and statistics inside D19; calculus and analysis form D24, optimization D25, and machine learning, reinforcement learning, deep learning, language models, generative models, retrieval and agents, evaluation and safety, and ML systems are D26 to D33 at the start of Part E; its capstones are U13.11 to U13.17. 33 domains, 450 units, 433 assignments (A<d>.<n>, five questions, key collapsed), 150 prerequisite bridges and on-demand units that other units call on, 17 capstones. All 1,042 source cells from 79 courses are cited (478 cloud, 564 machine-learning). The merged units are never read as a block: each cloud unit that needs one carries an *On demand* line, and each merged unit that is called on starts with a *Bridge for:* line (map in Appendix H.3 of the file). Cloud identifiers did not change. Where a domain holds both cloud and merged units, the units are printed on a reading ladder (in the domain introduction), so unit numbers inside such a domain are not in print order: D17, D18, D19 and D21 list their units below in the order printed. D15 (database systems) is printed between D9 and D10; D21, D24, D17, D23, D18, D19 and D25 between D10 and Part E; D26 to D33 before D11; D20 after D11; D22 and D16 after D12; D14 before the capstones (D13), which stay together at the end. The old identifiers of the merged units are shown as (old …); the full map is Appendix H.2.
 
-Bridge units are marked (bridge). Capstones carry no assignment.
+Bridge units are marked (bridge). Merged units are marked (merged, on demand). Capstones carry no assignment.
+
+# Part A. Foundations: the cloud, networks and cloud compute
 
 ## D1. Orientation: the cloud, Google Cloud Platform and the lab protocol
 
@@ -52,6 +54,8 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U4.6 Network virtualization and geo-distributed clouds: SDN in the data center, VL2, NVP, MPLS, B4 and SWAN
 - U4.7 Google Cloud compute services: Compute Engine, App Engine, containers and Kubernetes, Cloud Functions
 - U4.8 Cloud networking on GCP: VPC networks, subnets, firewall rules, load balancing and hybrid connectivity
+
+# Part B. Cryptography, security, risk and privacy
 
 ## D5. Cryptography: from classical ciphers to provable security, public-key systems, advanced primitives and post-quantum cryptography
 
@@ -116,6 +120,8 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U8.8 Anonymity and privacy-enhancing technologies: re-identification, k-anonymity, differential privacy and anonymous communication
 - U8.9 Privacy regulation: GDPR in Europe, privacy in India (DPDP, Aadhaar) and breach duties
 - U8.10 Information privacy: economics and strategy
+
+# Part C. Distributed systems, storage and databases
 
 ## D9. Distributed systems: models, randomised and peer-to-peer algorithms, time, coordination, consensus, consistency, transactions, recovery and blockchains
 
@@ -182,16 +188,50 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U10.6 In-memory key-value stores and the families of NoSQL databases
 - U10.7 Google Cloud storage and database options
 
-## D21. On-demand prerequisites for the data-analytics extension: school mathematics, Python, scientific Python (in place of R), proofs and discrete reasoning, graph theory and probability from first principles
+# Part D. Mathematics and data science foundations: prerequisites, calculus, algorithms, linear algebra, statistics and optimization
+
+## D21. On-demand prerequisites: school mathematics, pre-calculus (functions, trigonometry, complex numbers), Python, scientific Python (in place of R), proofs, discrete mathematics, graph theory and probability from first principles
 
 - U21.1 Bridge: Python from scratch — types, control flow, functions, recursion, objects, exceptions, generators, testing, NumPy and the floating-point model (bridge)
 - U21.2 Bridge: school mathematics through class 12, consolidated — algebra, functions, trigonometry, coordinate and vector geometry, matrices and determinants, calculus, differential equations, linear programming and probability, with numerical methods built from scratch (bridge)
+- U21.7 Functions, exponentials and logarithms (bridge) (merged, on demand) (old U0.1)
+- U21.8 Angles and the trigonometric functions (bridge) (merged, on demand) (old U0.2)
+- U21.9 Identities, inverse trigonometric functions, equations, polar coordinates and rotations (bridge) (merged, on demand) (old U0.3)
+- U21.10 Complex numbers I: algebra, the plane, polar form, powers and roots (bridge) (merged, on demand) (old U0.4)
+- U21.11 Complex numbers II: the complex exponential, Euler's formula, roots of unity and phasors (bridge) (merged, on demand) (old U0.5)
 - U21.3 Bridge: scientific Python for data analysis — arrays and broadcasting, data frames, distributions, formulas, random numbers and plotting, each built from scratch before the library is used (this replaces the R programming prerequisite of the Bayesian course) (bridge)
 - U21.4 Bridge: proofs and discrete reasoning — logic, sets, counting, direct proof, contrapositive and contradiction, induction, the pigeonhole and double counting, and invariants (bridge)
+- U21.12 Logic, proof paradigms and formal languages (bridge) (merged, on demand) (old U1.1)
+- U21.13 Counting, generating functions and combinatorics (bridge) (merged, on demand) (old U1.2)
+- U21.14 Posets, lattices, Boolean algebra and switching circuits (merged, on demand) (old U1.3)
 - U21.5 Bridge: graph theory from scratch — definitions, degrees, paths and connectivity, trees, Eulerian and Hamiltonian graphs, bipartite graphs, planarity, colouring, matchings and representations (bridge)
+- U21.15 Graph theory (bridge) (merged, on demand) (old U1.4)
+- U21.16 Number theory and cryptography (bridge) (merged, on demand) (old U1.5)
+- U21.17 Algebra: finite fields, codes, groups and orbit counting (bridge) (merged, on demand) (old U1.6)
+- U21.18 An invitation to mathematics: polynomials, functions, matrices, conservation laws (bridge) (merged, on demand) (old U1.7)
 - U21.6 Bridge: probability from first principles — sample spaces, random variables, expectation, the standard distributions, limit theorems and simulation by inversion, rejection and Monte Carlo (bridge)
 
-## D17. Algorithms and data structures, taught on demand: analysis, divide and conquer, sorting, hashing, trees, amortisation, greedy and dynamic programming, graph search, shortest paths, network flow, tries, B-trees, string matching and hard problems
+## D24. Calculus and analysis, taught on demand: single-variable and multivariable calculus, differential equations, dynamical systems, numerical methods, complex analysis and transforms
+
+- U24.1 Numbers, countability, functions, limits and continuity (bridge) (merged, on demand) (old U2.1)
+- U24.2 Differentiation and mean value theorems (bridge) (merged, on demand) (old U2.2)
+- U24.3 Integration, applications and transcendental functions (bridge) (merged, on demand) (old U2.3)
+- U24.4 Taylor expansion, sequences, series and power series (merged, on demand) (old U2.4)
+- U24.5 Improper integrals, Gamma and Beta functions, integrals dependent on parameters (bridge) (merged, on demand) (old U2.5)
+- U24.6 Functions of several variables, partial derivatives and differentiability (bridge) (merged, on demand) (old U3.1)
+- U24.7 Taylor expansion in several variables, maxima, minima and Lagrange multipliers (bridge) (merged, on demand) (old U3.2)
+- U24.8 Multiple integrals and their applications (bridge) (merged, on demand) (old U3.3)
+- U24.9 Vector calculus: fields, line and surface integrals, Green, Gauss and Stokes (merged, on demand) (old U3.4)
+- U24.10 Matrix calculus, Jacobians and Hessians for machine learning (merged, on demand) (old U3.5)
+- U24.11 First- and higher-order ordinary differential equations (bridge) (merged, on demand) (old U7.1)
+- U24.12 Numerical analysis: iteration, root finding, interpolation and quadrature (merged, on demand) (old U7.2)
+- U24.13 Complex variables: analytic functions and complex integration (merged, on demand) (old U7.3)
+- U24.14 Series, singularities, residues, real integrals and conformal mapping (merged, on demand) (old U7.4)
+- U24.15 Laplace, Z, Fourier and discrete Fourier transforms (bridge) (merged, on demand) (old U7.5)
+- U24.16 Mathematical modelling: discrete and continuous dynamical systems (bridge) (merged, on demand) (old U7.6)
+- U24.17 ODE theory for dynamical systems: Gronwall, limit sets, invariant sets and chain transitivity (bridge) (merged, on demand) (old U7.7)
+
+## D17. Algorithms and data structures, taught on demand: analysis, divide and conquer, sorting, hashing, trees, amortisation, greedy and dynamic programming, graph search, shortest paths, network flow, tries, B-trees, string matching, hard problems, NP-completeness and approximation algorithms
 
 - U17.1 Bridge: discrete mathematics for algorithm analysis: induction, sums, logarithms, recurrences and probability (bridge)
 - U17.2 Introduction to algorithms and their analysis: time complexity, asymptotics, merge sort, recurrences and clever linear-time algorithms (bridge)
@@ -210,6 +250,13 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U17.15 Bridge: arrays, linked lists, recursion, binary search, the elementary sorts and bit tricks — the floor under D17, built from scratch (bridge)
 - U17.16 Tries, B-trees, skip lists and string matching: the lookup structures of routers, databases and search engines (bridge)
 - U17.17 Backtracking, branch and bound, exact exponential algorithms, approximation and local search: living with hard problems (bridge)
+- U17.18 Review of NP-completeness and the approximation framework (bridge) (merged, on demand) (old U17.1)
+- U17.19 Approximation for vertex cover, set cover and the traveling salesman problem (bridge) (merged, on demand) (old U17.2)
+- U17.20 Approximation for the knapsack problem and job scheduling (bridge) (merged, on demand) (old U17.3)
+- U17.21 Linear programming basics and deterministic rounding (bridge) (merged, on demand) (old U17.4)
+- U17.22 Randomized rounding (bridge) (merged, on demand) (old U17.5)
+- U17.23 The primal–dual method (bridge) (merged, on demand) (old U17.6)
+- U17.24 Semidefinite programming for max cut, and hardness of approximation (bridge) (merged, on demand) (old U17.7)
 
 ## D23. Go, taught on demand: the language of the system-design, database-coding and cloud-computing exercises
 
@@ -222,31 +269,55 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U23.7 Cloud-native Go: reconciliation loops, leases and fencing, backoff, a twelve-factor service and a container image (bridge)
 - U23.8 Testing, benchmarking and profiling Go programs: table tests, fuzzing, the race detector, coverage, benchmarks and `pprof` (bridge)
 
-## D18. Applied linear algebra for data and signals: vectors, matrices, eigenvalues, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
+## D18. Linear algebra, core, abstract, numerical and applied: vectors, matrices, vector spaces, eigenvalues, canonical forms, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
 
 - U18.1 Bridge: complex numbers, trigonometry and phasors, and the language of vector spaces (bridge)
+- U18.14 Systems of linear equations, matrices, elimination, rank and inverses (bridge) (merged, on demand) (old U4.1)
 - U18.2 Introduction to vectors, properties and applications: norms, inner products, angles, orthogonality, projection and Gram–Schmidt
 - U18.3 Introduction to matrices and applications: subspaces, rank, circuits, graphs, social networks and traffic flow
+- U18.15 Vectors, vector spaces, subspaces, bases and dimension (bridge) (merged, on demand) (old U4.2)
+- U18.16 Linear maps, representation by matrices, duality and quotient spaces (bridge) (merged, on demand) (old U4.3)
+- U18.17 Inner products, norms, orthogonality, projections and Gram–Schmidt (bridge) (merged, on demand) (old U4.4)
+- U18.18 Determinants, multilinear forms and permutations (bridge) (merged, on demand) (old U4.5)
 - U18.4 Eigenvalue decomposition: properties, diagonalisation, the spectral theorem, PCA and eigenfaces
+- U18.19 Eigenvalues, eigenvectors, similarity and diagonalization (bridge) (merged, on demand) (old U4.6)
+- U18.20 Canonical forms: minimal polynomial, invariant subspaces, Jordan and rational forms (bridge) (merged, on demand) (old U4.7)
+- U18.21 Spectral theory: normal operators, symmetric matrices, quadratic forms, PSD matrices and kernels (bridge) (merged, on demand) (old U4.8)
 - U18.5 Singular value decomposition and applications: beamforming in MIMO, dimensionality reduction, rate maximisation and the MUSIC algorithm
+- U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation (bridge) (merged, on demand) (old U4.9)
+- U18.23 Least squares, regularized and constrained least squares (bridge) (merged, on demand) (old U4.10)
 - U18.6 Linear regression and least squares: system identification, ridge regression, support vector machines and kernel SVMs
 - U18.7 Optimal linear MMSE estimation: the MMSE receiver, market prediction and forecasting, and ARMA models
 - U18.8 Data analytics with matrices: recommender systems, user rating prediction, data completion and the Netflix problem
+- U18.24 Applications of linear algebra: PageRank, sparsity, dynamical systems, Markov chains, signal processing and data analytics (bridge) (merged, on demand) (old U4.11)
 - U18.9 The DFT and the FFT matrix, OFDM and SC-FDMA: structure, properties and signal processing in OFDM systems
 - U18.10 Dynamical systems: modelling robots and chemical plants, autonomous linear systems and systems with inputs and outputs
 - U18.11 Unsupervised learning: centroid-based clustering, probabilistic model-based clustering and the EM algorithm
 - U18.12 The linear perceptron, compressive sensing and orthogonal matching pursuit: sparse signal estimation
 - U18.13 Discrete-time Markov chains and operations research: supply chains, forecasting, and resource and inventory management
 
-## D19. Statistics, data mining and Bayesian analysis: from probability and sampling to testing, regression, clustering, trees, association rules, classification, Bayesian inference, MCMC and model comparison
+## D19. Probability, statistics, data mining and Bayesian analysis: from probability, random variables and limit theorems to sampling, testing, regression, clustering, trees, association rules, classification, Bayesian inference, MCMC, model comparison and forecasting
 
 - U19.1 Bridge: calculus, counting and matrices for statistics (bridge)
 - U19.2 Introduction to data analytics and Python fundamentals: the analytics workflow, data types, descriptive statistics and visualisation
+- U19.27 Data, descriptive statistics and measures of association (bridge) (merged, on demand) (old U6.1)
 - U19.3 Probability and random variables: events, conditional probability, Bayes' rule, distributions, expectation and the limit theorems
+- U19.18 Probability foundations: from events to Bayes' theorem (bridge) (merged, on demand) (old U5.1)
+- U19.19 Random variables, distributions and moments (bridge) (merged, on demand) (old U5.2)
+- U19.20 Special discrete distributions and the Poisson process (bridge) (merged, on demand) (old U5.3)
+- U19.21 Special continuous distributions and the normal distribution (bridge) (merged, on demand) (old U5.4)
+- U19.22 Functions of random variables, transformations and order statistics (bridge) (merged, on demand) (old U5.5)
+- U19.23 Joint distributions, conditioning, covariance and multivariate normal (bridge) (merged, on demand) (old U5.6)
+- U19.24 Limit theorems and concentration inequalities (bridge) (merged, on demand) (old U5.7)
+- U19.25 Markov chains, queueing theory and reliability (bridge) (merged, on demand) (old U5.8)
+- U19.26 Conditional expectation and martingales (merged, on demand) (old U5.9)
 - U19.4 Sampling and sampling distributions: the standard error, the t, chi-square and F distributions, confidence intervals and the bootstrap
+- U19.28 Sampling distributions and point estimation (bridge) (merged, on demand) (old U6.2)
 - U19.5 Hypothesis testing: null and alternative, p-values, errors and power, one- and two-sided tests, and multiple comparisons
+- U19.29 Confidence intervals and hypothesis testing (bridge) (merged, on demand) (old U6.3)
 - U19.6 Two-sample testing and the analysis of variance: pooled and Welch t tests, paired tests, one-way and two-way ANOVA
 - U19.7 Linear regression and multiple regression: least squares, inference, diagnostics and model building
+- U19.30 Correlation, regression and multivariate analysis (bridge) (merged, on demand) (old U6.4)
 - U19.8 Maximum likelihood, logistic regression and the ROC curve
 - U19.9 The chi-square test and cluster analysis: goodness of fit, independence, hierarchical and k-means clustering, density-based clustering and outlier detection
 - U19.10 Classification and regression trees (CART): impurity, splitting, overfitting and pruning
@@ -254,9 +325,131 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U19.12 Classification: decision trees, the Bayes classifier, nearest neighbours, support vector machines and kernel machines
 - U19.13 Evaluation, visualisation, sequence mining and case studies
 - U19.14 Bayesian inference: Bayes' theorem, the likelihood, prior and posterior, analytical methods and grid approximation
+- U19.31 Bayesian inference and MCMC (bridge) (merged, on demand) (old U6.5)
 - U19.15 Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan, taught in Python with PyMC and Bambi
 - U19.16 Bayesian regression and hierarchical models
 - U19.17 Model comparison, mixture models and multinomial processing trees
+- U19.32 Forecasting with statistical and machine-learning models: hydrology and water-resources applications (merged, on demand) (old U6.6)
+
+## D25. Optimization: Theory, Algorithms and Applications
+
+- U25.1 Optimization problems: formulation, history, transformations and basic facts (merged, on demand) (old U8.1)
+- U25.2 Convex sets, cones, polyhedra and separation (bridge) (merged, on demand) (old U8.2)
+- U25.3 Convex functions and their calculus (bridge) (merged, on demand) (old U8.3)
+- U25.4 Unconstrained optimization theory (merged, on demand) (old U8.4)
+- U25.5 Constrained optimization theory: Lagrange, cones, Fritz John and KKT (bridge) (merged, on demand) (old U8.5)
+- U25.6 Lagrangian duality, saddle points and minimax (bridge) (merged, on demand) (old U8.6)
+- U25.7 Linear programming: simplex, duality, sensitivity and interior-point methods (bridge) (merged, on demand) (old U8.7)
+- U25.8 Unconstrained descent methods: line search, gradient, Newton, quasi-Newton, conjugate gradient, trust region (bridge) (merged, on demand) (old U8.8)
+- U25.9 Constrained optimization algorithms: QP, projected and reduced gradient, penalty, augmented Lagrangian, SQP (bridge) (merged, on demand) (old U8.9)
+- U25.10 First-order methods for ML: stochastic, accelerated, proximal, adaptive, and the dynamical-systems view (bridge) (merged, on demand) (old U8.10)
+- U25.11 Conic and structured convex programs: QCQP, SOCP, SDP, geometric programs (merged, on demand) (old U8.11)
+- U25.12 Applications of optimization: signal estimation, compressive sensing, radar, big data and finance (bridge) (merged, on demand) (old U8.12)
+- U25.13 Non-smooth and difference-of-convex optimization (bridge) (merged, on demand) (old U8.13)
+- U25.14 Distributed optimization: graphs, consensus, ADMM and dual decomposition (bridge) (merged, on demand) (old U8.14)
+- U25.15 Dynamic optimization and complementarity problems (merged, on demand) (old U8.15)
+- U25.16 Stochastic approximation: algorithms, step sizes and the ODE method (bridge) (merged, on demand) (old U8.16)
+- U25.17 Convergence rates, stability, two-timescale algorithms and stochastic recursive inclusions (merged, on demand) (old U8.17)
+
+# Part E. Machine learning and AI, big data, scalable data science, cloud operations and system design
+
+## D26. Machine Learning Foundations: Supervised, Unsupervised, Probabilistic, Data Mining and Learning Theory
+
+- U26.0 History of AI, symbolic AI and the machine-learning workflow (merged, on demand) (old U9.0)
+- U26.1 What machine learning is: paradigms, data, hypothesis spaces and the statistical framework (bridge) (merged, on demand) (old U9.1)
+- U26.2 Model evaluation and selection: bias–variance, validation, tuning and metrics (bridge) (merged, on demand) (old U9.2)
+- U26.3 Linear regression and linear classification: estimation, logistic and softmax regression, surrogate losses (bridge) (merged, on demand) (old U9.3)
+- U26.4 Regularization and implicit regularization (bridge) (merged, on demand) (old U9.4)
+- U26.5 Perceptron, support vector machines and kernel methods (bridge) (merged, on demand) (old U9.5)
+- U26.6 Bayes decision theory, density estimation and probabilistic classifiers (bridge) (merged, on demand) (old U9.6)
+- U26.7 Decision trees and ensembles: bagging, boosting, random forests (bridge) (merged, on demand) (old U9.7)
+- U26.8 Dimensionality reduction and feature learning (bridge) (merged, on demand) (old U9.8)
+- U26.9 Clustering, mixture models and the EM algorithm (bridge) (merged, on demand) (old U9.9)
+- U26.10 Probabilistic graphical models, hidden Markov models, inference and Gaussian processes (bridge) (merged, on demand) (old U9.10)
+- U26.11 Instance-based learning, collaborative filtering and recommendation (bridge) (merged, on demand) (old U9.11)
+- U26.12 Data mining: preprocessing, association rules, sequence mining, outliers and case studies (bridge) (merged, on demand) (old U9.12)
+- U26.13 Learning theory: PAC, VC dimension, generalization and modern overparametrization (merged, on demand) (old U9.13)
+- U26.14 Symbolic and knowledge-based machine learning, tools and cognitive-science influences (merged, on demand) (old U9.14)
+
+## D27. Sequential Decision Making: Bandits and Reinforcement Learning
+
+- U27.1 From batch to online learning: adversarial full-information and bandit settings (merged, on demand) (old U10.1)
+- U27.2 Stochastic bandits: regret notions, UCB, KL-UCB and lower bounds (merged, on demand) (old U10.2)
+- U27.3 Contextual bandits and pure exploration (merged, on demand) (old U10.3)
+- U27.4 Markov decision processes, dynamic programming and temporal-difference learning (bridge) (merged, on demand) (old U10.4)
+- U27.5 Policy gradient, actor–critic and proximal policy optimization (merged, on demand) (old U10.5)
+- U27.6 Stochastic approximation in reinforcement learning (merged, on demand) (old U10.6)
+
+## D28. Deep Learning Foundations
+
+- U28.1 Perceptron, multilayer networks, activations and loss functions (bridge) (merged, on demand) (old U11.1)
+- U28.2 Backpropagation and training deep networks (bridge) (merged, on demand) (old U11.2)
+- U28.3 Overfitting, regularization and generalization in deep networks (merged, on demand) (old U11.3)
+- U28.4 Convolutional neural networks and image representation (bridge) (merged, on demand) (old U11.4)
+- U28.5 Explainable AI for deep models (merged, on demand) (old U11.5)
+- U28.6 Segmentation and object detection (merged, on demand) (old U11.6)
+- U28.7 Recurrent networks: RNN, LSTM, GRU, backpropagation through time and attention in RNNs (merged, on demand) (old U11.7)
+- U28.8 Autoencoders and representation learning (merged, on demand) (old U11.8)
+
+## D29. Natural Language Processing, the Transformer and Large Language Models
+
+- U29.1 NLP foundations and the classical NLP pipeline (merged, on demand) (old U12.1)
+- U29.2 Word representations and multilingual embeddings (merged, on demand) (old U12.2)
+- U29.3 Attention and the Transformer architecture (bridge) (merged, on demand) (old U12.3)
+- U29.4 Pretraining, self-supervised learning and the LLM landscape (merged, on demand) (old U12.4)
+- U29.5 Scaling laws, LLM architectures and long context (merged, on demand) (old U12.5)
+- U29.6 Decoding strategies and sampling (merged, on demand) (old U12.6)
+- U29.7 Prompting: fundamentals, APIs and advanced techniques (merged, on demand) (old U12.7)
+- U29.8 Instruction tuning, RLHF and alignment: PPO and DPO (bridge) (merged, on demand) (old U12.8)
+- U29.9 Parameter-efficient fine-tuning: LoRA and QLoRA (merged, on demand) (old U12.9)
+- U29.10 Prompt optimization, compression and prompt security (merged, on demand) (old U12.10)
+
+## D30. Deep Generative Models
+
+- U30.1 Probabilistic deep generative modelling: foundations and taxonomy (merged, on demand) (old U13.1)
+- U30.2 Generative modelling via variational divergence minimization (merged, on demand) (old U13.2)
+- U30.3 Generative adversarial networks: formulation, training, WGAN and applications (merged, on demand) (old U13.3)
+- U30.4 Variational autoencoders, improvements and VQ-VAE (merged, on demand) (old U13.4)
+- U30.5 Autoregressive models (merged, on demand) (old U13.5)
+- U30.6 Energy-based and score-based models; Langevin sampling (merged, on demand) (old U13.6)
+- U30.7 Denoising diffusion probabilistic models, conditional diffusion and Stable Diffusion (merged, on demand) (old U13.7)
+- U30.8 Normalizing flows (gap-fill from the references) (merged, on demand) (old U13.8)
+
+## D31. Retrieval-Augmented Generation and Agentic Systems
+
+- U31.1 Why RAG, RAG architecture and classical retrievers (merged, on demand) (old U14.1)
+- U31.2 RAG failure modes, types of RAG and assessment (merged, on demand) (old U14.2)
+- U31.3 Sparse retrieval limits and dense representations (bridge) (merged, on demand) (old U14.3)
+- U31.4 Learning retrieval-oriented embeddings and choosing an embedding model (merged, on demand) (old U14.4)
+- U31.5 Document processing and chunking (merged, on demand) (old U14.5)
+- U31.6 Vector databases and indexes: KNN, IVF, PQ, HNSW, FAISS and ChromaDB (bridge) (merged, on demand) (old U14.6)
+- U31.7 The retrieval pipeline: bi-encoder, cross-encoder, ColBERT and two-stage retrieval (merged, on demand) (old U14.7)
+- U31.8 Production RAG: request shaping, query transformation, routing, security, cost and observability (bridge) (merged, on demand) (old U14.8)
+- U31.9 Limits of single-shot RAG and the move to agents (merged, on demand) (old U14.9)
+- U31.10 Agent basics, tool calling and orchestration (merged, on demand) (old U14.10)
+- U31.11 Planning with ReAct (merged, on demand) (old U14.11)
+- U31.12 State machines and LangGraph (merged, on demand) (old U14.12)
+- U31.13 Agentic memory (merged, on demand) (old U14.13)
+- U31.14 Provenance and citations (merged, on demand) (old U14.14)
+- U31.15 Multi-agent architecture summary, error handling and best practices (merged, on demand) (old U14.15)
+
+## D32. Evaluation, Safety and Responsible AI
+
+- U32.1 LLM evaluation: metric architecture and reference-based metrics (bridge) (merged, on demand) (old U15.1)
+- U32.2 LLM-as-a-judge and factuality (merged, on demand) (old U15.2)
+- U32.3 AI safety foundations and threat models (bridge) (merged, on demand) (old U15.3)
+- U32.4 White-box attacks and prompt injection (bridge) (merged, on demand) (old U15.4)
+- U32.5 Black-box attacks and the jailbreak taxonomy (merged, on demand) (old U15.5)
+- U32.6 Defense, interpretability and ethics (bridge) (merged, on demand) (old U15.6)
+
+## D33. ML Systems, Efficiency and Distributed and Federated Learning
+
+- U33.1 CNN computation and accelerators (bridge) (merged, on demand) (old U16.1)
+- U33.2 Parallelism for training, communication and fault tolerance (bridge) (merged, on demand) (old U16.2)
+- U33.3 LLM decoding, memory management and serving infrastructure (bridge) (merged, on demand) (old U16.3)
+- U33.4 Model compression and quantization (bridge) (merged, on demand) (old U16.4)
+- U33.5 Graph neural network inference systems (merged, on demand) (old U16.5)
+- U33.6 Federated learning (bridge) (merged, on demand) (old U16.6)
 
 ## D11. Big data and cloud analytics: batch, dataflow, messaging, streaming, machine learning at scale and graph processing
 
@@ -325,6 +518,8 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U16.15 Worked designs II: a web crawler, Mint, a social graph, a key-value cache for a search engine, and sales ranking
 - U16.16 Scaling a system from one box to millions of users, real-world architectures, and the reading lists
 
+# Part F. Computer architecture and parallel hardware
+
 ## D14. Computer architecture and parallel hardware: digital logic, instruction sets, arithmetic, pipelines and speculation, memory hierarchy, I/O, multiprocessors, coherence and consistency, on-chip networks, GPUs and accelerators, power and reliability
 
 - U14.1 Bridge: binary representation, number systems and digital logic (bridge)
@@ -350,6 +545,8 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U14.21 Quality of service for caches and networks on chip, and emerging directions
 - U14.22 Low-power design, reliability and hardware security
 
+# Part G. Capstones
+
 ## D13. Capstones
 
 - U13.1 Capstone: a user-space TCP/IP stack over a lossy virtual link (capstone)
@@ -362,3 +559,10 @@ Bridge units are marked (bridge). Capstones carry no assignment.
 - U13.8 Capstone: a small relational database engine checked against sqlite3 (capstone)
 - U13.9 Capstone: a design dossier and a working miniature of a large-scale service (capstone)
 - U13.10 Capstone: an analytics pipeline from raw data to a decision, with the statistics, the model, the sketches and the distributed run built from scratch (capstone)
+- U13.11 Capstone A: the mathematics of machine learning, end to end (capstone) (old U18.1)
+- U13.12 Capstone B: a classical-ML library from scratch (capstone) (old U18.2)
+- U13.13 Capstone C: a deep-learning framework from scratch (capstone) (old U18.3)
+- U13.14 Capstone D: an LLM application platform (RAG + agents + safety) (capstone) (old U18.4)
+- U13.15 Capstone E: generative models (capstone) (old U18.5)
+- U13.16 Capstone F: ML systems and efficiency (capstone) (old U18.6)
+- U13.17 Final integrated capstone: train, align, compress, serve, evaluate and secure a small language model (capstone) (old U18.7)

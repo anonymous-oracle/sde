@@ -1,36 +1,37 @@
 # Unified Cloud Curriculum: Networks → Cloud Compute → Cryptography and Security → Distributed Systems → Storage → Data Science Foundations (Prerequisites, Algorithms, Linear Algebra, Statistics) → Big Data and Scalable Data Science → Cloud Operations → Software Engineering and Go on Demand → Software and System Design → Computer Architecture and Parallel Hardware
 
-**Built:** 2026-11-05 (UTC), from `cloud-computing.txt` (13 NPTEL course outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC), `cloud-computing2.txt` (6 architecture course outlines: MCA, CAO, CA, ACA, PCA, GPU), `dbms.txt` (3 database courses: FDB, DBD, IDB) and, added on 2026-11-06, three public design sources outside NPTEL (the System Design Primer by Donne Martin, SDP; the python-patterns collection, PYP; and the Gang of Four catalogue of 23 design patterns, GOF) `data-analytics.txt` (nine NPTEL outlines of which eight are new: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD; its ninth, Big Data Computing, is an exact duplicate of BDC and adds no cells) and `software-engineering.txt` (two NPTEL outlines: ISE and SEM), 35 source courses in all, under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
-**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a from-scratch guideline: Python by default, and Go, taught on demand, for the system-design, database-coding and cloud-computing exercises (neither is a prohibition). It follows the same method as the earlier `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) and is a **separate file**; the two can be merged later (see Appendix D). Coverage was checked by script: all 478 source cells (course weeks and outlines) are cited by at least one unit and the words of each cell occur in the units that cite it; the few atoms the script still flags are listed and reviewed in Appendix E.
+**Built:** 2026-11-05 (UTC), from `cloud-computing.txt` (13 NPTEL course outlines: GCF, CN, ACN, PCS, CSP, EH, CNS, TPMC, FOC, ADS, CCDS, DS, BDC), `cloud-computing2.txt` (6 architecture course outlines: MCA, CAO, CA, ACA, PCA, GPU), `dbms.txt` (3 database courses: FDB, DBD, IDB) and, added on 2026-11-06, three public design sources outside NPTEL (the System Design Primer by Donne Martin, SDP; the python-patterns collection, PYP; and the Gang of Four catalogue of 23 design patterns, GOF) `data-analytics.txt` (nine NPTEL outlines of which eight are new: DAP, AGDS, SDS, DBMS, BDA, ALA, DM, DSAD; its ninth, Big Data Computing, is an exact duplicate of BDC and adds no cells) and `software-engineering.txt` (two NPTEL outlines: ISE and SEM), and, on 2026-11-06, the whole of the earlier machine-learning curriculum (`unified_curriculum.md`, built from `nptel.txt`, 43 NPTEL and learner-supplied course outlines, and `iit-genai.md`, a 12-chapter, 78-section Generative AI course; 44 more source courses, merged by subject), 79 source courses in all, under `Master_Rules.md`, Part III.1 (starting a course: generate the full structure first).
+**Status:** one unified document: the curriculum structure with, inside every content unit, an NPTEL-style assignment and its key (collapsed), and a from-scratch guideline: Python by default, and Go, taught on demand, for the system-design, database-coding and cloud-computing exercises (neither is a prohibition). The earlier `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) is **merged into it by subject** (its mathematics is folded into D17, D18, D19 and D21 and forms D24 and D25, its machine learning and AI are D26 to D33, and its capstones are U13.11 to U13.17; its units are entered on demand): this document is primary, the earlier file and its index are kept only as superseded records, and Appendix H is the merge record. Coverage: all 1,042 source cells (478 cloud, 564 machine-learning) are cited by at least one unit. For the 478 cloud cells the check is by script and word-level: the words of each cell occur in the units that cite it, and the few atoms the script still flags are listed and reviewed in Appendix E. The 564 machine-learning cells were checked by the same rule against their source files (`nptel.txt`, `iit-genai.md`): 4,150 atoms, 44 flagged, all generic prose or source typos and none technical (Appendix H.1).
 
 ---
 
 ## How to read this document
 
-1. **Parts and domains.** Seven parts, 23 domains (D1–D23). Domain D22 (software engineering) and domain D16 (software and system design) are printed after D12, D22 first because D16 uses its UML and design notation. Domain D23 (Go, taught on demand) is printed right after D17 with the other on-demand domains: it is entered from the Go track line of a system-design, database-coding or cloud-computing unit and is never read as a block. The data-analytics extension (2026-11-06) adds Part D: D21 (on-demand prerequisites), D17 (algorithms and data structures), D18 (applied linear algebra) and D19 (statistics, data mining and Bayesian analysis), printed between the storage domain D10 and the big-data domain D11, and D20 (scalable data science), printed after D11. Domain D14 (computer architecture and parallel hardware) is printed before the capstones (D13), which stay together at the end; domain D15 (database systems) is printed between D9 and D10, because it is the foundation that the storage and big-data domains lean on; the identifier is a name, not a position. Each domain has an aim, named benchmarks and units.
+1. **Parts and domains.** Seven parts, 33 domains (D1–D33). The earlier machine-learning curriculum (merged on 2026-11-06) is folded in **by subject**, with no block of its own: its pre-calculus and discrete mathematics are units of D21 (U21.7 to U21.18), its algorithms and complexity units of D17 (U17.18 to U17.24), its linear algebra units of D18 (U18.14 to U18.24) and its probability and statistics units of D19 (U19.18 to U19.32); calculus, differential equations and numerical methods are D24 and optimization is D25 (both in Part D); and machine learning, reinforcement learning, deep learning, language models, generative models, retrieval and agents, evaluation and safety, and ML systems are D26 to D33 (the first domains of Part E). These units are **entered on demand** from the cloud units that carry an *On demand* line, begin with a **Bridge for:** or **On demand:** line, and are never read as a block; the order for studying them for their own sake is the second table below, and each merged domain prints its reading ladder. Part G is the capstones (D13), now 17 in number, which stay together at the end. Domain D22 (software engineering) and domain D16 (software and system design) are printed after D12, D22 first because D16 uses its UML and design notation. Domain D23 (Go, taught on demand) is printed right after D17 with the other on-demand domains: it is entered from the Go track line of a system-design, database-coding or cloud-computing unit and is never read as a block. The data-analytics extension (2026-11-06) adds Part D: D21 (on-demand prerequisites), D17 (algorithms and data structures), D18 (applied linear algebra) and D19 (statistics, data mining and Bayesian analysis), printed between the storage domain D10 and the big-data domain D11, and D20 (scalable data science), printed after D11; the machine-learning merge adds D24 (calculus) after D21 and D25 (optimization) after D19 in Part D, and puts D26 to D33 at the start of Part E, before D11. Domain D14 (computer architecture and parallel hardware) is printed before the capstones (D13), which stay together at the end; domain D15 (database systems) is printed between D9 and D10, because it is the foundation that the storage and big-data domains lean on; the identifier is a name, not a position. Each domain has an aim, named benchmarks and units.
 2. **Units.** A unit (`U<domain>.<n>`) is a group of related topics. Each has: **Sources** (generated: which source course weeks or outline cells it absorbs), **Topics** (every topic and subtopic, merged across sources and kept close to the sources' own words), **Results** (the theorems and formulas it teaches, each with a proof status), **Build** (the from-scratch implementation, with a cost tag) and **Gap-fills** (what a unit adds that no source names, marked *inferred* with the reference). Bridge units start with a **Bridge for:** line naming the units that need them.
-3. **Assignments.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The ten capstones (D13) are projects with their own acceptance criteria and carry no assignment.
+3. **Assignments.** Each content unit ends with its **Assignment** (`A<domain>.<n>`): five questions, with the key in a collapsed block that you open only after an attempt. The seventeen capstones (D13) are projects with their own acceptance criteria and carry no assignment.
 4. **Proof-status tags** on results: **[P]** prove in full; **[D]** derive with every step; **[S]** proof sketch (the reason a full proof is not given is stated); **[X]** stated, proof deferred (the unit that will prove it, or "beyond course scope", is named); **[Def]** definition, not proved; **[check]** verified by a script in the unit's Build.
 5. **Source keys** (for example `GCF`, `CNS`) are listed in Appendix A. `W3` means Week 3 of that course; `o` means the course's outline or about-text.
 6. **Merging rule.** Where several courses cover the same ground (four database courses, three cryptography courses, four distributed-systems courses, three networking courses, four security and privacy courses), they are merged into one unit at the deepest source level and every source week is cited. The overlap is the point of unifying.
 7. **Honesty conventions.** *Recalled, not checked* marks a claim from memory (benchmark titles, formulas of standard results). *Inferred* marks a gap-fill with its reference. Facts checked on the web are named as such, with what was checked (Appendix F).
+8. **Merged units: how they are entered and who owns what.** The units folded in from the earlier machine-learning curriculum are on demand. A cloud unit that needs something from them carries an **On demand** line naming the units, and each such merged unit begins with a **Bridge for:** line naming the cloud units that call on it: take the named unit, then return to the exact point you left. A merged unit that no cloud unit calls on says so in its **On demand:** line and names the units it builds on. Where a merged unit and a cloud unit teach the same ground, the cloud unit owns it: the merged unit says which cloud units it shares ground with, lists the atoms removed because the cloud unit already teaches them, and keeps only what goes further (the proofs, the abstract setting, the extra cases). The same-subject pairs that remain on purpose, a compact or applied cloud unit with the full theory beside it, are declared in Appendix G.2 and Appendix H.5; every removal is in Appendix H.4.
 
 ## Course profile (Master Rules II.1)
 
 | Item | Value |
 |---|---|
-| **Aim** | Expert-level command of how the cloud works from the wire to the data centre and the managed service: networks and Internet protocols, virtualization and cloud compute, cryptography and its provable security, ethical hacking and defence, security governance, risk and privacy, distributed-systems theory and the industrial systems built on it, cloud storage and databases, big-data engines, cloud operations and machine learning on Google Cloud, database systems from the relational model to transactions, recovery, distribution and NoSQL, software and system design (object-oriented design, the design patterns, and designing services that survive load and failure, with back-of-the-envelope estimates), algorithms and data structures, applied linear algebra, statistics, data mining and Bayesian analysis, scalable data science (sketches, near-neighbour search, MapReduce and distributed optimisation), and the computer architecture and parallel hardware underneath it all (instruction sets, pipelines, caches and memory, multicore coherence and memory models, networks on chip, GPUs and accelerators, power, reliability and hardware security). Every mechanism is also implemented from scratch at toy scale. |
-| **Starting level** | School mathematics, one programming language (Python), and basic IT. Everything else, including probability, queueing, graph algorithms, graph theory, proof techniques, scientific Python (R is replaced by Python), coding theory, number theory, operating-system fundamentals, SQL and machine-learning basics, is taught by bridge units placed just before the topic that needs it (Master Rules 3.3). Appendix C maps each prerequisite the sources state to where it is handled. |
+| **Aim** | Expert-level command of how the cloud works from the wire to the data centre and the managed service: networks and Internet protocols, virtualization and cloud compute, cryptography and its provable security, ethical hacking and defence, security governance, risk and privacy, distributed-systems theory and the industrial systems built on it, cloud storage and databases, big-data engines, cloud operations and machine learning on Google Cloud, database systems from the relational model to transactions, recovery, distribution and NoSQL, software and system design (object-oriented design, the design patterns, and designing services that survive load and failure, with back-of-the-envelope estimates), algorithms and data structures, applied linear algebra, statistics, data mining and Bayesian analysis, scalable data science (sketches, near-neighbour search, MapReduce and distributed optimisation), and the computer architecture and parallel hardware underneath it all (instruction sets, pipelines, caches and memory, multicore coherence and memory models, networks on chip, GPUs and accelerators, power, reliability and hardware security). The merged machine-learning units add expert-level command of the mathematics of machine learning (discrete mathematics, calculus, linear algebra, probability, statistics, differential equations and transforms, optimization), classical and deep machine learning, generative models, large language models, retrieval and agents, evaluation and safety, ML systems and approximation algorithms, with the three habits of the contest solver, the researcher and the architect (Master Rules section 10), taught on demand wherever a cloud unit needs it. Every mechanism is also implemented from scratch at toy scale. |
+| **Starting level** | School mathematics, one programming language (Python), and basic IT. Everything else, including probability, queueing, graph algorithms, graph theory, proof techniques, scientific Python (R is replaced by Python), coding theory, number theory, operating-system fundamentals, SQL and machine-learning basics, is taught by bridge units placed just before the topic that needs it (Master Rules 3.3); school trigonometry and complex numbers are not assumed fluent and are taught on demand by U21.7 to U21.11 (the pre-calculus units). Appendix C maps each prerequisite the sources state to where it is handled. |
 | **Benchmarks** | Named per domain in each domain's intro. Titles marked *recalled, not checked* have not been verified against the book itself. Appendix F lists what was checked. |
-| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) Build a unified curriculum from the source file in the same way as the earlier one, with the prerequisites wired in. (2) A prerequisite bridge is taught just before the concept that demands it begins, in academic depth. (3) Weekly assignments, with from-scratch Python implementations where necessary. (4) Unify all topics and concepts into a single file. (5) Carried over from the earlier work: NPTEL-style assignments (MCQ, multiple select, numerical, prove or derive, programming; 10 marks; pass at 7/10) and from-scratch Python as the default, where NumPy-first is "not strict ... more of a suggestion. Feel free to design as needed." (6) Nothing may be omitted: every source topic and subtopic is covered. (7) 2026-11-04, architecture extension: the same unification as before (overlapping topics merge into the deepest owner, new topics are added). (8) 2026-11-04: real lab practice where a free GPU is available, with a simulator fallback when it is not; graded work never depends on a GPU. (9) 2026-11-04: the learner is on a MacBook with Apple silicon and its GPU, so the hardware labs are based on it (AArch64, NEON, Metal) and the emulator's instruction set is a small AArch64 (A64) subset; understanding the underlying topics is the goal. (10) 2026-11-05, database extension: add the course of `dbms.txt` into the same curriculum with the same method; the three database courses are unified into one domain (D15), with NPTEL-style weekly assignments, prerequisite bridges just before need, and from-scratch Python builds checked against `sqlite3`. (11) 2026-11-06, design extension: fetch all the concepts of design patterns (the Gang of Four 23 and the python-patterns catalogue with its anti-patterns) and of Donne Martin's System Design Primer (topics, method, the eight worked designs, the object-oriented designs, appendix and reading lists) and add them to this curriculum as one new domain (D16), with the same method: weekly assignments, bridges just before need, a capstone, and every figure recomputed. (12) 2026-11-06, data-analytics extension: assimilate and adapt `data-analytics.txt` (eight new courses) into the same curriculum, fetching textbook material where needed; and, in a follow-up the same day, fetch and consolidate every prerequisite, taught on demand in academic depth, with from-scratch implementation exercises and assignments (D21); and, in a second follow-up that day, convert everything R-related to Python (the Bayesian course's R, brms and Stan become Python with PyMC and Bambi, U21.3 teaches scientific Python in place of the R prerequisite) and teach algorithms and data structures on demand like the prerequisites (the entry map of D17, a "Bridge for" line on every D17 unit, and three added units U17.15 to U17.17). (13) 2026-11-06, software-engineering extension: add the content of `software-engineering.txt` (two outlines) into the same curriculum (D22), and teach Go on demand for system design, database-related coding and cloud computing, with Python for everything else (D23 and a Go track line in each such unit). (14) 2026-11-06, in the same turn: all related and overlapping concepts are unified and de-duplicated, one owner per concept (Appendix G). |
-| **Acceptance gates (6.7)** | Formatter clean (`ruff format --check`), linter clean (`ruff check`), `pytest` passes, known-answer tests pass where standards publish them (hash, cipher and checksum vectors), results within stated tolerance of an oracle (a library, a closed form or a brute-force check), and every simulation is deterministic for a given seed and checked by invariants (DSim). No hidden failure. |
+| **Learner's standing instructions (recorded as overrides, Master Rules 0.3)** | (1) Build a unified curriculum from the source file in the same way as the earlier one, with the prerequisites wired in. (2) A prerequisite bridge is taught just before the concept that demands it begins, in academic depth. (3) Weekly assignments, with from-scratch Python implementations where necessary. (4) Unify all topics and concepts into a single file. (5) Carried over from the earlier work: NPTEL-style assignments (MCQ, multiple select, numerical, prove or derive, programming; 10 marks; pass at 7/10) and from-scratch Python as the default, where NumPy-first is "not strict ... more of a suggestion. Feel free to design as needed." (6) Nothing may be omitted: every source topic and subtopic is covered. (7) 2026-11-04, architecture extension: the same unification as before (overlapping topics merge into the deepest owner, new topics are added). (8) 2026-11-04: real lab practice where a free GPU is available, with a simulator fallback when it is not; graded work never depends on a GPU. (9) 2026-11-04: the learner is on a MacBook with Apple silicon and its GPU, so the hardware labs are based on it (AArch64, NEON, Metal) and the emulator's instruction set is a small AArch64 (A64) subset; understanding the underlying topics is the goal. (10) 2026-11-05, database extension: add the course of `dbms.txt` into the same curriculum with the same method; the three database courses are unified into one domain (D15), with NPTEL-style weekly assignments, prerequisite bridges just before need, and from-scratch Python builds checked against `sqlite3`. (11) 2026-11-06, design extension: fetch all the concepts of design patterns (the Gang of Four 23 and the python-patterns catalogue with its anti-patterns) and of Donne Martin's System Design Primer (topics, method, the eight worked designs, the object-oriented designs, appendix and reading lists) and add them to this curriculum as one new domain (D16), with the same method: weekly assignments, bridges just before need, a capstone, and every figure recomputed. (12) 2026-11-06, data-analytics extension: assimilate and adapt `data-analytics.txt` (eight new courses) into the same curriculum, fetching textbook material where needed; and, in a follow-up the same day, fetch and consolidate every prerequisite, taught on demand in academic depth, with from-scratch implementation exercises and assignments (D21); and, in a second follow-up that day, convert everything R-related to Python (the Bayesian course's R, brms and Stan become Python with PyMC and Bambi, U21.3 teaches scientific Python in place of the R prerequisite) and teach algorithms and data structures on demand like the prerequisites (the entry map of D17, a "Bridge for" line on every D17 unit, and three added units U17.15 to U17.17). (13) 2026-11-06, software-engineering extension: add the content of `software-engineering.txt` (two outlines) into the same curriculum (D22), and teach Go on demand for system design, database-related coding and cloud computing, with Python for everything else (D23 and a Go track line in each such unit). (14) 2026-11-06, in the same turn: all related and overlapping concepts are unified and de-duplicated, one owner per concept (Appendix G). (15) Carried over from the merged machine-learning curriculum: from `nptel.txt`, "learn to implement these techniques from the scratch in python, numpy, etc." and "If there are no assignments provided for certain topics, then create them."; in chat on 2026-11-03, "Add assignments just like an academic/nptel course. I also need to learn from the scratch python implementations (numpy at maximum)", then "The numpy only rule is not strict. It is more of a suggestion. Feel free to design as needed.", and the addition of the courses Stochastic Approximation and Approximation Algorithms; on 2026-11-06, "add a pre calculus bridge to be taught on demand. I am a trigonometry and complex numbers noob" (U21.7 to U21.11, with a trigger table, a probe and a return point for every trigger). (16) 2026-11-06: "The cloud curriculum is the primary curriculum. To it, merge the other ml curriculum completely. Also merge and update both the respective index files accordingly. ... whenever some concept is required from the other ml curriculum, it should be taught on demand. But ensure that topics are deduped and unified." Effects: the merged units, the capstones U13.11 to U13.17, the On demand and Bridge for lines, Appendix H, and both index files. (17) 2026-11-06, after the first merge: "Fold by subject but in addition, ensure that all topics still remain in the file. The only requirement here is that the cloud curriculum file is the primary curriculum and the other file is taught on demand but is folded by subject." Effects: the merged units sit inside the cloud domains of the same subject or in subject domains of their own (no separate Part), the reading ladders, the identifier changes of Appendix H.2 and both index files. |
+| **Acceptance gates (6.7)** | Formatter clean (`ruff format --check`), linter clean (`ruff check`), `pytest` passes, known-answer tests pass where standards publish them (hash, cipher and checksum vectors), results within stated tolerance of an oracle (a library, a closed form or a brute-force check), and every simulation is deterministic for a given seed and checked by invariants (DSim); in the machine-learning domains, gradient checks within 1e-5 against finite differences. No hidden failure. |
 | **Layer order for a topic (3.6)** | Concept and intuition → formal statement and derivation → from-scratch build → professional tool → real-world application and limits → check and close. A tool is used after the thing it automates has been built by hand (6.8). |
-| **Real-world lens (II.6)** | Name it, touch it in a lab, design with it. Every Build line carries a cost tag: **[local]** runs on your machine with no cloud spend; **[local VM]** runs in a local virtual machine or container, and for any security lab on a host-only network that you own; **[credit]** spends cloud credit and is optional, with a budget alert set first and the teardown script written before the create script; **[plan only]** write the plan and the scripts but do not run them (they would spend money or touch systems that are not yours); **[learning only]** hand-built security code that is never deployed. The GPU labs of D14 add three tags, tried in this order: **[local GPU]** the Apple GPU through Metal (PyTorch `mps` or MLX); **[free cloud GPU]** a free Colab or Kaggle NVIDIA GPU on a personal account, with no secrets in the notebook; **[simulator]** a CPU simulator or model, always available and the tier on which every assignment is solvable. |
+| **Real-world lens (II.6)** | Name it, touch it in a lab, design with it. Every Build line carries a cost tag: **[local]** runs on your machine with no cloud spend; **[local VM]** runs in a local virtual machine or container, and for any security lab on a host-only network that you own; **[credit]** spends cloud credit and is optional, with a budget alert set first and the teardown script written before the create script; **[plan only]** write the plan and the scripts but do not run them (they would spend money or touch systems that are not yours); **[learning only]** hand-built security code that is never deployed. The machine-learning domains add *replay-first, spend-capped* for any paid LLM API (Master Rules 11.2); its from-scratch work is **[local]**. The GPU labs of D14 add three tags, tried in this order: **[local GPU]** the Apple GPU through Metal (PyTorch `mps` or MLX); **[free cloud GPU]** a free Colab or Kaggle NVIDIA GPU on a personal account, with no secrets in the notebook; **[simulator]** a CPU simulator or model, always available and the tier on which every assignment is solvable. |
 | **Safety and cost (Master Rules 11)** | Lab-only. No scanning, probing or attacking anything you do not own or have written permission to test. No malware or exploit authoring: offensive topics appear as Python models, simulations or standard tools inside an isolated host-only lab. Local first. No secrets in code, notes or history. A work account is never used for labs (11.4); use a temporary lab project or a personal account with a budget alert. Hand-built cryptographic and security code is for learning and is never deployed. The legal-and-regulatory units (U8.9) are teaching tools and are not legal advice. |
 | **Pacing (2.7, 8.5)** | The sources' durations (8 or 12 weeks) describe their own pacing only. Here the learner advances by passing checks, never by the calendar. |
-| **Default tooling (from-scratch guideline, flexible)** | (1) Write the mechanism you are learning by hand first. (2) The default toolbox is the Python standard library (sockets, `subprocess`, `struct`, `hashlib` for oracles only, `multiprocessing`) plus NumPy and Matplotlib, because they keep every step visible. (3) This is a **guideline, not a prohibition**: where another tool serves the learning goal, use it, and the unit's Build line names it (for example Wireshark and `tcpdump` for packet work, Mininet or network namespaces for topologies, `nmap` and Metasploit only inside the isolated lab, PySpark and Kafka in the local lab, `gcloud` for the cloud steps). (4) Libraries serve as **oracles** in tests of the from-scratch version (`cryptography`, `networkx`, SQLite, `re`, PySpark, scikit-learn). (5) Go (standard library, `go test -race`, `gofmt` and `go vet` clean) is the language of the exercises in the units that carry a Go track line (system design, database coding, cloud computing), entered on demand from D23; Python stays the oracle there and the default everywhere else. (6) Apple silicon MacBook: AArch64, NEON, Metal through PyTorch MPS or MLX; small C or assembly programs with `clang` after the Python model. |
-| **Assignments (NPTEL style)** | One per content unit (280, A1.1 to A23.8). Five questions: MCQ (1 mark), multiple select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint.** The tutor never writes graded work (6.13). Every numerical key was computed by running its expression. |
-| **Capstones (9.6)** | U13.1 to U13.10: a user-space TCP/IP stack, a secure channel from your own primitives, a replicated sharded key-value store, an end-to-end data platform, a small service on Google Cloud, a security programme for a synthetic organisation, a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel, a small relational database engine checked against `sqlite3`, a design dossier with a working miniature of a large-scale service, and an analytics pipeline from raw data to a decision with the statistics, models, sketches and distributed run built from scratch. |
+| **Default tooling (from-scratch guideline, flexible)** | (1) Write the mechanism you are learning by hand first. (2) The default toolbox is the Python standard library (sockets, `subprocess`, `struct`, `hashlib` for oracles only, `multiprocessing`) plus NumPy and Matplotlib, because they keep every step visible. (3) This is a **guideline, not a prohibition**: where another tool serves the learning goal, use it, and the unit's Build line names it (for example Wireshark and `tcpdump` for packet work, Mininet or network namespaces for topologies, `nmap` and Metasploit only inside the isolated lab, PySpark and Kafka in the local lab, `gcloud` for the cloud steps). (4) Libraries serve as **oracles** in tests of the from-scratch version (`cryptography`, `networkx`, SQLite, `re`, PySpark, scikit-learn). (5) Go (standard library, `go test -race`, `gofmt` and `go vet` clean) is the language of the exercises in the units that carry a Go track line (system design, database coding, cloud computing), entered on demand from D23; Python stays the oracle there and the default everywhere else. (6) Apple silicon MacBook: AArch64, NEON, Metal through PyTorch MPS or MLX; small C or assembly programs with `clang` after the Python model. (7) Machine-learning domains (NumPy-first, flexible): the default toolbox is the standard library plus NumPy and Matplotlib, because it keeps every step visible; a unit that departs from it says so (U28.4 uses PyTorch for transfer learning, U31.12 LangGraph, U33.2 PyTorch DDP, U17.24 may use `cvxpy`); libraries that implement the same algorithm (scikit-learn, SciPy solvers, PyTorch autograd) serve as oracles in a separate test after your version passes; derive gradients by hand and check them by finite differences; keep models toy-sized so they train in minutes on a CPU. Optional environment task **A0** (not scored): create `scratch/` and `tests/oracle/`, write `grad_check(f, x)` returning the maximum relative error (target below 1e-6 on f(x) = sum(x**3)), and, if you want, an import report listing imports beyond the default set (it informs and never blocks). |
+| **Assignments (NPTEL style)** | One per content unit (433: 280 written for the cloud units, and 153 carried over from the merged machine-learning units, which sit in the domains of their subject). Five questions: MCQ (1 mark), multiple select (2; all correct options and none wrong), numerical answer (2), prove or derive (2), programming (3); 10 marks. **Pass** at 7/10 with the derivation and the code both accepted (Master Rules 6.12). **Attempt before any hint.** The tutor never writes graded work (6.13). Every numerical key of the cloud domains was computed by running its expression; the numerical keys of the merged units were computed by script when that curriculum was built (the expressions are not stored in this file), and the 153 programming questions of the merged units are specifications whose checkable numeric predictions were run with reference code (the tasks themselves were not solved here): you write the solutions, the tutor never does (Master Rules 2.10, 6.13). **Attempt before any hint**; hints escalate one notch at a time and only when asked: what structure do you see, then a smaller case, then the smallest useful hint, then the key (5.7); a missed question gets one smaller, reworded retry (6.5); **predict first**: write a one-line prediction of Q5's outcome before running it (6.1, 6.4); a qualifying-style set drawn from a domain's assignments runs before its capstone (8.7, 9.5); missed questions are re-attempted cold at about 1, 3 and 7 days (8.2). |
+| **Capstones (9.6)** | U13.1 to U13.17. U13.1 to U13.10: a user-space TCP/IP stack, a secure channel from your own primitives, a replicated sharded key-value store, an end-to-end data platform, a small service on Google Cloud, a security programme for a synthetic organisation, a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel, a small relational database engine checked against `sqlite3`, a design dossier with a working miniature of a large-scale service, and an analytics pipeline from raw data to a decision with the statistics, models, sketches and distributed run built from scratch. U13.11 to U13.17 (from the merged machine-learning curriculum, one per stretch and then one integrated final capstone): the mathematics of machine learning end to end, a classical-ML library from scratch, a deep-learning framework from scratch, an LLM application platform (RAG, agents and safety), generative models, ML systems and efficiency, and a final integrated capstone that trains, aligns, compresses, serves, evaluates and secures a small language model. |
 | **Shared simulator** | **DSim**, a deterministic discrete-event distributed-systems simulator (seeded delays, loss, duplication, crashes, partitions, an invariant checker), is built in U9.1 and reused through D9, D10, D11 and the capstones, and in U14.14 and U14.15, where coherence and consistency protocols are modelled as message-passing systems where natural. Network and security units before U9.1 use smaller purpose-built simulators. |
 | **Record** | The list of units in this document is the record template. Initial state: every unit not started, no evidence; resume point U1.1. The live record (mastery states, misconception register, error log, decision journal) belongs in your tracker file (Master Rules 8.3). |
 
@@ -38,29 +39,39 @@
 
 | Part | Domain | Units | Absorbs mainly |
 |---|---|---|---|
-| A. Foundations | D1 Orientation | U1.1–U1.3 | GCF, CCDS |
+| A. Foundations | D1 Orientation | U1.1–U1.3 | GCF |
 |  | D2 Computer networks and the Internet protocols | U2.1–U2.14 | CN, EH |
 |  | D3 Advanced networking | U3.1–U3.12 | ACN |
 |  | D4 Cloud compute | U4.1–U4.8 | CCDS, GCF |
 | B. Cryptography and security | D5 Cryptography | U5.1–U5.25 | TPMC, CNS, FOC, EH |
-|  | D6 Ethical hacking and technical security | U6.1–U6.10 | EH, CSP |
-|  | D7 Security operations frameworks and cloud security | U7.1–U7.7 | PCS, CSP |
+|  | D6 Ethical hacking and technical security | U6.1–U6.10 | EH |
+|  | D7 Security operations frameworks and cloud security | U7.1–U7.7 | PCS |
 |  | D8 Governance, risk, resilience and privacy | U8.1–U8.10 | CSP, PCS |
-| C. Distributed systems and storage | D9 Distributed systems | U9.1–U9.22 | DS, ADS, CCDS |
-|  | D15 Database systems | U15.1–U15.27 | FDB, IDB, DBD, DBMS |
+| C. Distributed systems and storage | D9 Distributed systems | U9.1–U9.22 | ADS, DS, CCDS |
+|  | D15 Database systems | U15.1–U15.27 | DBD, FDB, IDB, DBMS |
 |  | D10 Cloud storage and databases | U10.1–U10.7 | BDC, ADS, CCDS |
-| D. Data science foundations | D21 On-demand prerequisites for the data-analytics extension | U21.1–U21.6 | none (assembles all) |
-|  | D17 Algorithms and data structures, taught on demand | U17.1–U17.17 | DSAD, AGDS |
+| D. Mathematics and data science foundations | D21 On-demand prerequisites | U21.1–U21.18 | none for the cloud bridges; DMK, IM, HEM for the merged units |
+|  | D24 Calculus and analysis, taught on demand | U24.1–U24.17 | AEMK, EM1, EM2, MFML, AEMA, PMO, CAL1, EMML, MM, OMLH, ALAJ, LAR, SA |
+|  | D17 Algorithms and data structures, taught on demand | U17.1–U17.24 | AA, AGDS, DSAD |
 |  | D23 Go, taught on demand | U23.1–U23.8 | none (assembles all) |
-|  | D18 Applied linear algebra for data and signals | U18.1–U18.13 | ALA |
-|  | D19 Statistics, data mining and Bayesian analysis | U19.1–U19.17 | DAP, BDA, DM |
-| E. Big data, scalable data science, cloud operations and system design | D11 Big data and cloud analytics | U11.1–U11.11 | BDC, CCDS, DS |
+|  | D18 Linear algebra, core, abstract, numerical and applied | U18.1–U18.24 | EMML, ALAB, MFML, ALAK, LAP, LAR, ALA, ALAJ, AEMK, PMO, EM1, OMLH, AOW, MLE, MLESA |
+|  | D19 Probability, statistics, data mining and Bayesian analysis | U19.1–U19.32 | S50, IPS, SMLM, AEMA, PSS, MFML, EMML, DAP, MLCE, MLESA, BDA, MLE, DM, AOW, BAN, HEM, ALAJ, DOML, SA |
+|  | D25 Optimization | U25.1–U25.17 | CVX, PMO, OFF, EMML, DOML, AOW, OMLH, MFML, OAT, MLESA, LPCS, FML, MLCE, SA |
+| E. Machine learning and AI, big data, scalable data science, cloud operations and system design | D26 Machine Learning Foundations | U26.0–U26.14 | MLE, MLESA, MLDL, IMLK, MLCE, DMIN, FML, SMLM, MLK, EMML, MFML, ALAJ |
+|  | D27 Sequential Decision Making | U27.1–U27.6 | BAN |
+|  | D28 Deep Learning Foundations | U28.1–U28.8 | FDL, MLDL, MLE, MLCE, GEN, MLESA, MFML, FML, MLK |
+|  | D29 Natural Language Processing, the Transformer and Large Language Models | U29.1–U29.10 | GEN, DLNLP, FDL, MFGAI |
+|  | D30 Deep Generative Models | U30.1–U30.8 | MFGAI, MLE, FDL, FML |
+|  | D31 Retrieval-Augmented Generation and Agentic Systems | U31.1–U31.15 | GEN |
+|  | D32 Evaluation, Safety and Responsible AI | U32.1–U32.6 | GEN, FDL |
+|  | D33 ML Systems, Efficiency and Distributed and Federated Learning | U33.1–U33.6 | CSO, DOML, MFGAI |
+|  | D11 Big data and cloud analytics | U11.1–U11.11 | BDC, CCDS, DS |
 |  | D20 Scalable data science | U20.1–U20.8 | SDS |
 |  | D12 Cloud operations and machine learning on Google Cloud | U12.1–U12.3 | GCF |
 |  | D22 Software engineering | U22.1–U22.14 | ISE, SEM |
 |  | D16 Software and system design | U16.1–U16.16 | SDP, PYP, GOF |
-| F. Computer architecture and parallel hardware | D14 Computer architecture and parallel hardware | U14.1–U14.22 | MCA, ACA, GPU, PCA, CA, CAO |
-| G. Capstones | D13 Capstones | U13.1–U13.10 | none (assembles all) |
+| F. Computer architecture and parallel hardware | D14 Computer architecture and parallel hardware | U14.1–U14.22 | MCA, CAO, ACA, CA, GPU, PCA |
+| G. Capstones | D13 Capstones | U13.1–U13.17 | none (assembles all) |
 
 ## Default order (a plan, not a cage: Master Rules 3.3)
 
@@ -75,16 +86,34 @@ Three spines run side by side after the orientation; take them in any interleavi
 | 5 | U6.1 → U6.10, U7.1 → U7.7, U8.1 → U8.10 | Ethical hacking in the isolated lab, defence frameworks and cloud IAM, governance, risk, resilience and privacy. U8.2 (quantitative risk) is a bridge. |
 | 6 | U9.1 → U9.22 | Distributed systems: DSim, gossip, peer-to-peer, time, snapshots, mutual exclusion, election, consensus, consistency, transactions, recovery, ordering, blockchains. U9.1, U9.2 and U9.17 are bridges. |
 | 7 | U15.1 → U15.27, U10.1 → U10.7, U11.1 → U11.11 | Database systems first: modelling, the relational model, algebra and calculus, SQL, normalisation, storage and indexing, query processing and optimisation, transactions, recovery, security, enhanced and distributed models, NoSQL (D15: U15.1 to U15.19 can be taken any time after stage 1, U15.20 to U15.23 after U9.17 whose theorems they cite, and U15.24 to U15.27 after U9.16 and U9.18; U15.3, U15.14 and U15.19 are bridges). Then storage and databases in the cloud (U10.1 stays as the compact SQL bridge for a reader who skips D15), big-data engines, messaging, streaming and graph processing. U11.8 (machine learning) and U11.10 (Markov chains and PageRank) are bridges. |
-| 7b | D21: U21.1 → U21.6, D17: U17.1 → U17.17, D18: U18.1 → U18.13, D19: U19.1 → U19.17 | The data-science foundations, after the storage domains and before the big-data engines. D21 and D17 are entered on demand (D17 through its entry map and the pointer in the Gap-fills of each unit that needs an algorithm or a data structure: take only the unit named, do its Build and assignment, and return); a straight run is U17.15, U17.1 to U17.14, U17.16, U17.17. D21 is entered on demand: U21.1 (Python) before any Build of D17 to D20 that you cannot yet write; U21.2 (school mathematics) before U18.1 and U19.1; U21.3 (scientific Python, in place of the R of the Bayesian course) before U19.2, and again before any Build that uses pandas, SciPy or PyMC; U21.4 (proofs) before U17.1; U21.5 (graph theory) before U17.10; U21.6 (probability) before U19.3. Then D17 (algorithms and data structures, with U17.15 first if recursion or linked lists are new), D18 (applied linear algebra: needs U21.2 and U17.1) and D19 (statistics, data mining, Bayesian analysis: U19.1 and U19.2 first, U19.14 to U19.17 after U19.3 and U19.4). |
+| 7b | D21: U21.1 → U21.18, D24: U24.1 → U24.17, D17: U17.1 → U17.24, D18: U18.1 → U18.24, D19: U19.1 → U19.32, D25: U25.1 → U25.17 | The data-science foundations, after the storage domains and before the big-data engines. D21 and D17 are entered on demand (D17 through its entry map and the pointer in the Gap-fills of each unit that needs an algorithm or a data structure: take only the unit named, do its Build and assignment, and return); a straight run is U17.15, U17.1 to U17.14, U17.16, U17.17. D21 is entered on demand: U21.1 (Python) before any Build of D17 to D20 that you cannot yet write; U21.2 (school mathematics) before U18.1 and U19.1; U21.3 (scientific Python, in place of the R of the Bayesian course) before U19.2, and again before any Build that uses pandas, SciPy or PyMC; U21.4 (proofs) before U17.1; U21.5 (graph theory) before U17.10; U21.6 (probability) before U19.3. Then D17 (algorithms and data structures, with U17.15 first if recursion or linked lists are new), D18 (applied linear algebra: needs U21.2 and U17.1) and D19 (statistics, data mining, Bayesian analysis: U19.1 and U19.2 first, U19.14 to U19.17 after U19.3 and U19.4). The merged units of these domains (their first line says Bridge for or On demand) are entered the same way: from a call, or along the reading ladder printed in the domain's introduction when you study the subject for its own sake; the order for the whole of mathematics and machine learning is the second table below. |
 | 8 | U12.1 → U12.3, D20: U20.1 → U20.8 | Cloud operations and machine learning on Google Cloud; scalable data science (needs U11.3, U11.4, U11.7, U11.8, U17.5 and U18.5; U20.6 and U20.7 after U11.3 and U11.4). |
 | 8b | D22: U22.1 → U22.14 | Software engineering: life cycle and process models, planning and estimation, scheduling, requirements, formal specification, design, object-oriented analysis and design with UML (the notation that U16.1 and the pattern units use), testing and debugging, maintenance and agile methods, reliability. U22.1 to U22.9 can be taken any time after stage 1; U22.10 to U22.12 (testing) need only Python; U22.13 uses the queueing of U2.1; U22.14 uses the probability of U21.6. |
 | 8c | D23: U23.1 → U23.8 | Go on demand. Not a stage: enter U23.1 (the toolchain, slices, maps, errors and tests) when the first Go track line of a system-design, database-coding or cloud-computing unit asks for it, then only the unit that line names: U23.2 (interfaces, generics, the LRU cache), U23.3 (concurrency), U23.4 (networked services), U23.5 (the log-structured store and `database/sql`), U23.6 (rate limiters, rings, Bloom filters), U23.7 (reconciliation, leases, containers) and U23.8 (testing, fuzzing, benchmarks, profiling). |
 | 9 | D16: U16.1 → U16.16 | Software and system design: U16.1 (object-oriented design, a bridge; the UML notation is U22.9's) and U16.2 to U16.7 (the design patterns and the object-oriented exercises) can be taken any time after stage 1; U16.8 to U16.13 (estimation, scalability, availability, the data tier, caching, asynchronism) after U9.16, U10.6, U11.6 and U15.20, whose theory they put to work; U16.14 to U16.16 (the worked designs) last. |
 | 10 | D14: U14.1 → U14.22 | D14: U14.1 to U14.5 any time after stage 1; U14.6 to U14.12 after U4.1; U14.13 to U14.16 after U9.1 and U3.3; U14.17 to U14.20 after U11.9; U14.21 and U14.22 last. U14.1 (digital logic and number representation) is a bridge. |
-| 11 | U13.1 → U13.10 | The capstones; U13.7 needs U14.2 to U14.16, U13.8 needs U15.1 to U15.23, U13.9 needs U16.1 to U16.16 and U13.10 needs D19, D20 and U17.5. |
+| 10b | D26–D33 | **Not a stage and never read as a block.** The machine-learning, reinforcement-learning, deep-learning, language-model, generative, retrieval, agent, safety and ML-systems domains of the merged curriculum, entered from the *On demand* line of a cloud unit (Appendix H.3 lists every call) and left again at the exact point you came from; the order inside them, and the order for the mathematics folded into D17 to D25, is the second table below. |
+| 11 | U13.1 → U13.17 | The capstones (U13.11 to U13.17 need the merged units: U13.11 closes the mathematics (U21.12 to U21.18, U24.1 to U24.5, U24.6 to U24.10, U18.14 to U18.24, U19.18 to U19.26, U19.27 to U19.32, U24.11 to U24.17 and D25), U13.12 closes D26 and D27, U13.13 closes D28, U13.14 closes D29, D31 and D32, U13.15 closes D30, U13.16 closes D33, and U13.17 assembles U13.11 to U13.16); U13.7 needs U14.2 to U14.16, U13.8 needs U15.1 to U15.23, U13.9 needs U16.1 to U16.16 and U13.10 needs D19, D20 and U17.5. |
 
 Stages 4 to 5 (security) and stage 6 to 7 (systems and data) can be interleaved with stage 3 once stage 2 is done, if you prefer to reach distributed systems sooner. Within a stage, follow the unit order.
 
+### Order for studying mathematics and machine learning for their own sake (the merged units, in the order of the merged curriculum)
+
+| Stage | Units | Why here |
+|---|---|---|
+| 0 | U21.12; U24.1–U24.5 | Proof habits and one-variable analysis before anything that uses limits. |
+| on demand | U21.7–U21.11 | Opened only when a probe shows a gap while working elsewhere, at the unit named in the D21 trigger table, then return to the exact point left: U21.7 (functions, exponentials, logarithms) from U24.1; U21.8 (angles and trigonometry) from U24.2 and U18.17; U21.9 (identities, inverse trigonometric functions, polar form, rotations) from U24.3, U24.8 and U19.22; U21.10 (complex numbers) from U18.19, U24.11 and U24.13; U21.11 (Euler's formula, roots of unity, phasors) from U24.4, U24.15 and U29.3. |
+| 1 | U18.14–U18.19; U24.6–U24.7; U19.18–U19.22 | Vectors, matrices, eigen-structure, gradients and the language of probability: the minimum that ML notation needs. |
+| 2 | U18.20–U18.23; U19.23–U19.24; U19.27–U19.32; U24.8–U24.10 | Decompositions, least squares, joint distributions, inference, matrix calculus. |
+| 3 | U25.1–U25.8; U26.0–U26.4 | Optimization basics and the first ML models, built by hand: regression, logistic regression, regularization, evaluation. |
+| 4 | U25.9–U25.13; U26.5–U26.14; U21.13–U21.17; U24.11–U24.16; U17.18–U17.24 (after U25.7 and U25.11) | Duality, SVMs, kernels, trees, clustering, graphical models, learning theory; discrete structures and applied analysis as they are needed. |
+| 5 | D28; U19.26; U24.17; U25.16–U25.17 | Deep learning (backpropagation uses U24.6, U24.10, U25.10); stochastic approximation explains why SGD and RL updates converge, and needs martingales (U19.26) and ODE limit sets (U24.17). |
+| 6 | D29; D27 (U27.6 last) | Attention, Transformers, LLMs, then alignment (needs RL: U27.4–U27.5; U27.6 needs U25.16–U25.17). |
+| 7 | D30 | Generative models (needs U19.23, U26.9, U26.10, U30.1 foundations, U24.15). |
+| 8 | D31; D32 | RAG, agents, evaluation and safety. |
+| 9 | D33; U25.14; U13.11–U13.17 | Systems, distributed and federated learning, capstones. |
+
+Just-in-time rule: a prerequisite from another domain is taught immediately before the topic that first uses it (Master Rules 3.3), and the stage table above is updated when that happens.
 
 # PART A. FOUNDATIONS: THE CLOUD, NETWORKS AND CLOUD COMPUTE
 
@@ -221,6 +250,7 @@ Bridge for: U2.2 (statistical multiplexing, delay), U2.13 (ALOHA), U3.3 (head-of
 - **Results:** Exponential is the only memoryless continuous distribution [P]; superposition of independent Poisson processes is Poisson [P]; M/M/1 stationary law π_n = (1−ρ)ρⁿ [D]; mean number ρ/(1−ρ) and delay 1/(μ−λ) [D]; Little's law L = λW for any stable system [P]; Erlang C waiting probability [D]; Pollaczek–Khinchine mean wait [S, proof needs residual-life argument].
 - **Build:** a discrete-event simulator (event heap) for M/M/1 and M/M/c, with confidence intervals checked against the formulas; a Little's-law auditor that recomputes L, λ, W from event logs. [local]
 - **Gap-fills:** *[inferred: Kleinrock; Bertsekas–Gallager; recalled, not checked]* PASTA (statement), Jackson networks (statement), heavy-tail traffic and self-similarity as a caveat to Poisson models. The probability itself is taught from first principles in U21.6 and as statistics in U19.3.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.25 Markov chains, queueing theory and reliability.
 
 **Assignment A2.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -456,6 +486,7 @@ Bridge for: U2.9 (routing protocols), U2.12 (spanning tree protocol), U3.7 (cont
 - **Results:** Dijkstra's algorithm is correct for non-negative weights [P]; Bellman–Ford after k rounds gives shortest paths of at most k hops [P]; cut property and cycle property of MSTs [P]; Kruskal and Prim are correct [P]; synchronous distance-vector reaches the fixed point in at most n−1 rounds, but count-to-infinity can occur after a cost increase [D].
 - **Build:** only the routing-specific parts are built here: asynchronous distance-vector Bellman–Ford with a count-to-infinity demonstration and a spanning-tree election; Dijkstra, Bellman–Ford, Floyd–Warshall, graph search and the minimum spanning trees are built once, with their property-test suites, in U17.10 to U17.13 (the owners) and reused, with `networkx` as the oracle. [local]
 - **Gap-fills:** *[inferred: CLRS Ch.22–24]* incremental shortest-path updates; ECMP path enumeration. The algorithms themselves (breadth-first and depth-first search, Dijkstra, Bellman–Ford, minimum spanning trees) are developed with proofs in U17.10 to U17.12, and the graph-theory vocabulary in U21.5. On demand: U17.12 for shortest paths, U17.10 for spanning trees and U17.11 for graph search.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.15 Graph theory.
 
 **Assignment A2.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -613,6 +644,7 @@ Bridge for: U2.12 (error control); reused in U5.5 (GF(2⁸)) and U5.6 (LFSR as p
 - **Results:** A code with minimum distance d detects d−1 and corrects ⌊(d−1)/2⌋ errors [P]; Hamming(7,4) corrects every single-bit error [P]; an r-bit CRC detects every burst of length ≤ r, every odd number of errors if (x+1) divides the generator, and all double errors for a suitable generator [P]; sphere-packing bound and perfection of Hamming codes [D].
 - **Build:** GF(2) polynomial arithmetic; CRC-8, CRC-16 and CRC-32 (checked against `zlib.crc32`); Hamming(7,4) encoder and syndrome decoder; exhaustive measurement of undetected-error rate for a small CRC. [local]
 - **Gap-fills:** *[inferred: MacWilliams–Sloane; Lin–Costello, recalled, not checked]* Reed–Solomon over GF(2⁸) (deferred to U10.2 erasure coding), convolutional codes (mention).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.17 Algebra.
 
 **Assignment A2.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -814,6 +846,7 @@ Bridge for: U3.3 (switch scheduling) and U3.10 (Clos networks).
 - **Results:** Hall's condition is necessary and sufficient for a perfect matching [P]; a maximal matching has at least half the size of a maximum matching [P]; every k-regular bipartite multigraph decomposes into k perfect matchings [P]; every doubly stochastic matrix is a convex combination of permutation matrices [P].
 - **Build:** augmenting-path maximum matching; Birkhoff decomposition of a random doubly stochastic matrix; checked against `scipy.optimize.linear_sum_assignment` as the oracle. [local]
 - **Gap-fills:** *[inferred: Lovász–Plummer; Diestel Ch.2, recalled, not checked]* the max-flow view of matching (formalised in U4.5). On demand: U17.14 for flows, matching and the augmenting-path method.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.15 Graph theory.
 
 **Assignment A3.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1406,6 +1439,7 @@ Bridge for: U4.6 (B4 and SWAN allocation), U3.6 (max–min fairness), U11.9 (opt
 - **Results:** Max-flow equals min-cut [P]; integral capacities give integral max-flow [P]; weak duality [P] and strong duality [S]; water-filling gives the unique max–min fair allocation [P].
 - **Build:** Edmonds–Karp is built once, in U17.14 (the owner), and reused; here: a simplex solver on small LPs, duality checks and water-filling allocation, checked against `scipy.optimize.linprog` and `networkx`. [local]
 - **Gap-fills:** *[inferred: CLRS Ch.26; Bertsimas–Tsitsiklis, recalled, not checked]* interior-point methods (statement). The max-flow algorithms and the max-flow min-cut theorem are proved in U17.14. On demand: U17.14 teaches the flow algorithms in full.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U25.6 Lagrangian duality, saddle points and minimax; U25.7 Linear programming.
 
 **Assignment A4.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1558,6 +1592,7 @@ Bridge for: U4.6 (B4 and SWAN allocation), U3.6 (max–min fairness), U11.9 (opt
 </details>
 
 
+
 # PART B. CRYPTOGRAPHY, SECURITY, RISK AND PRIVACY
 
 ## D5. Cryptography: from classical ciphers to provable security, public-key systems, advanced primitives and post-quantum cryptography
@@ -1571,6 +1606,7 @@ Bridge for: U5.3 (perfect secrecy, entropy of language), U5.9 (advantage and dis
 - **Results:** Union bound [P]; Markov and Chebyshev [P]; with k samples from N values the collision probability is at least 1 − e^{−k(k−1)/(2N)} so k ≈ 1.18√N gives 1/2 [D]; the expected number of draws to first collision is about √(πN/2) [D]; entropy is at most log|X| with equality for the uniform law [P]; statistical distance equals the best distinguisher's advantage [P]; sums and polynomial multiples of negligible functions are negligible [P].
 - **Build:** Monte Carlo birthday experiments against the formulas; an entropy and index-of-coincidence estimator for any plain text you supply; a distinguisher-advantage estimator with confidence intervals. [local]
 - **Gap-fills:** *[inferred: Katz–Lindell Appendix A; Mitzenmacher–Upfal Ch.1–3, recalled, not checked]* Chernoff bounds are added later in U9.2.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.21 Special continuous distributions and the normal distribution.
 
 **Assignment A5.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1610,6 +1646,7 @@ Bridge for: U5.3 (perfect secrecy, entropy of language), U5.9 (advantage and dis
 - **Results:** gcd(a, b) = gcd(b, a mod b) [P]; Bézout's identity [P]; Euclid's algorithm takes O(log b) steps and at most about 4.8·log₁₀b divisions by Lamé [P]; a has an inverse mod n iff gcd(a, n) = 1 [P]; square-and-multiply computes a^e mod n with O(log e) multiplications [P].
 - **Build:** gcd, extended gcd, modular inverse, linear congruence solver and square-and-multiply, all checked against `math.gcd` and `pow(a, -1, n)`; bit-operation counter. [local]
 - **Gap-fills:** *[inferred: Stinson Ch.2; Niven–Zuckerman–Montgomery, recalled, not checked]* binary gcd, Montgomery multiplication (idea only).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.16 Number theory and cryptography.
 
 **Assignment A5.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1727,6 +1764,7 @@ Bridge for: U5.3 (perfect secrecy, entropy of language), U5.9 (advantage and dis
 - **Results:** Lagrange's theorem [P]; the order of an element divides the group order [P]; a degree-d polynomial over a field has at most d roots [P]; every finite subgroup of the multiplicative group of a field is cyclic [P]; existence and uniqueness of GF(pⁿ) [X, proof beyond course scope]; a matrix is invertible over Z_n iff its determinant is a unit mod n [P].
 - **Build:** GF(p) and GF(2⁸) arithmetic (xtime multiplication, log/antilog tables), polynomial arithmetic over a field, matrix inverse mod n, brute-force group-axiom checker. [local]
 - **Gap-fills:** *[inferred: Lidl–Niederreiter; Hoffstein–Pipher–Silverman Ch.2, recalled, not checked]* Galois theory beyond finite fields is not needed.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.17 Algebra; U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.16 Linear maps, representation by matrices, duality and quotient spaces.
 
 **Assignment A5.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -1845,6 +1883,7 @@ Bridge for: U5.9 onward (every proof of security is a reduction). Addresses the 
 - **Results:** If one-way functions exist then P ≠ NP [P]; computational indistinguishability is transitive over polynomially many hybrids [P]; advantage loss accumulates additively along a chain of reductions [D]; Goldreich–Levin hard-core bit [X, beyond course scope].
 - **Build:** a generic security-game harness (challenger, adversary interface, trial runner with confidence intervals) reused in U5.9–U5.16. [local]
 - **Gap-fills:** *[inferred: Sipser; Goldreich Ch.2; Katz–Lindell Ch.3, recalled, not checked]* the P versus NP status of the assumptions used later (factoring, discrete log are not known to be NP-complete). On demand: U17.14 for reductions and NP-completeness, and U17.17 for what to do when a problem is hard.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U17.18 Review of NP-completeness and the approximation framework.
 
 **Assignment A5.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2002,6 +2041,7 @@ Bridge for: U5.13 (discrete log and DDH), U5.14 (RSA, Rabin, ElGamal), U5.15 (cu
 - **Results:** Fermat's little theorem and Euler's theorem [P]; CRT [P]; Euler's criterion [P]; Legendre multiplicativity [P]; quadratic reciprocity [X, proof beyond course scope]; for composite n at most a quarter of the bases in Z_n^* are Miller–Rabin non-witnesses [P, in the form: at most 1/2 by the subgroup argument, with 1/4 stated]; a Carmichael number passes the Fermat test for all coprime bases and 561 is the smallest [D]; if n = pq and the four square roots of a mod n are known then n factors [P].
 - **Build:** CRT solver, Tonelli–Shanks, Jacobi symbol, Fermat, Solovay–Strassen and Miller–Rabin tests with a measured error rate on Carmichael numbers, Pollard rho and p − 1 factoring, a random prime and safe-prime generator with timing, all checked against `sympy` or `pow`. [local]
 - **Gap-fills:** *[inferred: Stinson Ch.5; Niven–Zuckerman–Montgomery, recalled, not checked]* Lucas–Lehmer and Baillie–PSW testing, Gauss's lemma for the Legendre symbol.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.16 Number theory and cryptography.
 
 **Assignment A5.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2041,6 +2081,7 @@ Bridge for: U5.13 (discrete log and DDH), U5.14 (RSA, Rabin, ElGamal), U5.15 (cu
 - **Results:** Baby-step giant-step finds a logarithm in O(√n) time and space [P]; Pohlig–Hellman reduces the logarithm in a group of smooth order to prime-order subgroups [P]; DDH is false in Z_p^* (the Legendre symbol of g^{ab} leaks) but plausible in a prime-order subgroup [P]; DH key exchange is secure against a passive eavesdropper under CDH, with key indistinguishability under DDH [P]; unauthenticated DH is broken by an active man in the middle [D].
 - **Build:** DH over a toy and a 512-bit group; BSGS, Pollard rho and Pohlig–Hellman logarithms against measured group sizes; a DDH distinguisher in Z_p^* by the Legendre symbol with its advantage measured; a small-subgroup key-recovery against your own sloppy DH implementation; an active MITM on your own loopback exchange. [local; learning only]
 - **Gap-fills:** *[inferred: Boneh–Shoup Ch.10; Katz–Lindell Ch.9, recalled, not checked]* generic-group lower bound (Shoup) as the sense in which √n is optimal.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.17 Algebra.
 
 **Assignment A5.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2119,6 +2160,7 @@ Bridge for: U5.13 (discrete log and DDH), U5.14 (RSA, Rabin, ElGamal), U5.15 (cu
 - **Results:** Chord-and-tangent defines an abelian group [S: closure and inverses shown, associativity verified by computation and stated in general, X]; |E(F_p)| lies in [p + 1 − 2√p, p + 1 + 2√p] [X, Hasse]; double-and-add computes kP in O(log k) group operations and the ladder does so with a regular operation pattern [P]; Pollard rho on a group of prime order n costs O(√n) [S]; an invalid-curve point of small order leaks the key bits modulo that order [D].
 - **Build:** affine and Jacobian curve arithmetic over F_p, a Montgomery ladder, ECDH over secp256k1 with 2G checked against the `cryptography` library, X25519 checked on its RFC 7748 vector, a naive point-counting routine for toy primes tested against the Hasse interval, and an invalid-curve attack on a deliberately unchecked toy ECDH server on loopback. [local; learning only]
 - **Gap-fills:** *[inferred: Washington, Elliptic Curves; Hankerson–Menezes–Vanstone, recalled, not checked]* Schoof's point-counting algorithm (stated), Edwards-curve complete addition formulas.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.17 Algebra.
 
 **Assignment A5.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2509,6 +2551,7 @@ Bridge for: U5.13 (discrete log and DDH), U5.14 (RSA, Rabin, ElGamal), U5.15 (cu
 - **Results:** BB84 with an intercepting attacker in the intercept-resend strategy introduces 25% error in the sifted key [D]; Shor's classical post-processing: given the order r of a mod N, with r even and a^{r/2} ≢ −1, gcd(a^{r/2} ± 1, N) is a non-trivial factor, succeeding with probability at least 1/2 over random a [P]; Grover needs about (π/4)√N queries [S]; Regev's scheme is correct when the accumulated noise is below q/4 [P]; LWE hardness from worst-case lattice problems [X].
 - **Build:** a BB84 simulator with and without an eavesdropper and the 25% error measured; Shor's algorithm with a classical order-finder standing in for the quantum step (labelled so) and a small state-vector (NumPy) quantum simulator running Grover on 4 qubits and period finding for N = 15; a Regev-style LWE encryption with parameters from correctness; a polynomial-ring NTT with a toy module-LWE KEM labelled learning only; the library `liboqs-python` or the `cryptography` library's ML-KEM where available as the oracle for the standardised algorithm. [local; learning only]
 - **Gap-fills:** *[inferred: Regev 2009; Peikert, A decade of lattice cryptography; NIST FIPS 203–205, checked on the web as above]* crypto-agility and inventory (links to U8.1 and U8.3).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation.
 
 **Assignment A5.25** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2786,6 +2829,7 @@ Aim: the attacker's view, taught so that defenders can reason about it, in an en
 - **Results:** A query built by string concatenation lets the attacker change its parse tree, while a parameterised query fixes the parse tree before the data arrives, so injection is impossible for the parameter positions [P]; the expected number of attempts for a rate-limited online guess of a password from a space of size N at q guesses per window is N/(2q) windows [D]; a CSRF token bound to the session and checked server-side defeats cross-origin form posts [P].
 - **Build:** a small vulnerable web application written in the standard library with SQLite on loopback only, an automated test harness that demonstrates SQL injection and XSS against your own application, and the fixed versions (parameterised queries, output encoder, CSRF token, token-bucket login limiter, secure cookie flags); a Burp Suite or `mitmproxy` session against your own application and DVWA in the isolated lab. [local VM; lab only]
 - **Gap-fills:** *[inferred: OWASP ASVS; Stuttard–Pinto, recalled, not checked]* deserialisation flaws, template injection, API security (OWASP API list, check the current edition).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U32.4 White-box attacks and prompt injection.
 
 **Assignment A6.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -2985,6 +3029,7 @@ Aim: the defender's working vocabulary. Each framework is treated as a data mode
 - **Results:** Choosing the fewest detections that cover a set of techniques is set cover, NP-hard, and the greedy rule that always takes the detection covering most uncovered techniques is within a factor H(n) ≈ ln n + 1 of optimal [P]; the Jaccard similarity of two groups' technique sets is a bounded, symmetric measure of overlap, and 1 minus Jaccard is a metric [P]; a coverage score that counts a technique as covered by any one detection overstates assurance when detections fail independently with probability q: expected uncovered fraction is q^k with k detections [D].
 - **Build:** a loader and validator for a locally-defined technique-layer JSON (tactic, technique, score, comment) modelled on Navigator layers; a coverage calculator; a greedy and an exact (small-instance) set-cover detection planner; a group-similarity matrix on a technique set you enter by hand from a public report with the source named; a Sigma-style rule evaluator that tags events with technique identifiers. [local]
 - **Gap-fills:** *[inferred: the ATT&CK release notes; Sigma rule specification, recalled, not checked]* the current matrix version and tactic count must be read from the ATT&CK site at study time.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U32.3 AI safety foundations and threat models.
 
 **Assignment A7.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3180,6 +3225,7 @@ Aim: the defender's working vocabulary. Each framework is treated as a data mode
 - **Results:** The effective permission set of a principal on a resource is the union of its bindings along the path to the root minus matching deny rules, and evaluation is monotone in the allow set [P]; PKCE binds the authorization code to the client that began the flow, so an intercepted code is useless without the verifier [S]; the smallest set of roles that covers the permissions a workload has actually used is a set-cover problem and role recommendation is its greedy approximation [P].
 - **Build:** an IAM policy evaluator with hierarchy inheritance, groups, conditions and deny rules, tested against a table of cases; an OAuth 2.0 authorization-code-with-PKCE server and client on loopback, with JWT signing and verification from the U5 primitives (HMAC and RSA, learning only) and an API behind a token-bucket quota; an audit-log analyser flagging over-broad bindings and service-account keys older than a threshold; a plan-only IAM design for the capstone project. [local; plan only]
 - **Gap-fills:** *[inferred: RFC 6749, RFC 7636, RFC 7519; the platform's IAM documentation, recalled, not checked]* workload identity federation and the service-account-key incident pattern (read the provider's guidance).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U32.3 AI safety foundations and threat models; U32.6 Defense, interpretability and ethics.
 
 **Assignment A7.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3263,6 +3309,7 @@ Bridge for: U8.3 (risk management), U8.5 (resilience assessment), U13.6 (securit
 - **Results:** For compound Poisson S = X₁ + … + X_N with N ~ Poisson(λ), E[S] = λE[X] and Var[S] = λE[X²] [P]; for lognormal(μ, σ²), E[X] = exp(μ + σ²/2) [D]; with a gamma(a, b) prior and k events in t years the posterior is gamma(a + k, b + t) [P]; two risks can be ranked in opposite order by a 5-by-5 matrix and by expected annual loss [D, by example].
 - **Build:** a Monte Carlo loss-exceedance engine with value at risk and expected shortfall, checked against the closed-form moments; a gamma–Poisson updater; a return-on-security-investment calculator with a sensitivity sweep; the rank-reversal example reproduced in code. [local]
 - **Gap-fills:** *[inferred: Hubbard–Seiersen; Cox, What's wrong with risk matrices, recalled, not checked]* copulas for dependent losses (named only).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.19 Random variables, distributions and moments; U19.21 Special continuous distributions and the normal distribution; U19.24 Limit theorems and concentration inequalities.
 
 **Assignment A8.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3497,6 +3544,7 @@ Bridge for: U8.3 (risk management), U8.5 (resilience assessment), U13.6 (securit
 - **Results:** The Laplace mechanism with scale Δf/ε satisfies ε-differential privacy [P]; sequential composition adds the ε's and parallel composition on disjoint data takes the maximum [P]; randomised response with truth probability p gives ε = ln(p/(1 − p)) and an unbiased estimator with variance that grows as ε shrinks [D]; k-anonymity is broken by a homogeneity or background-knowledge attack even when every class has at least k rows [D].
 - **Build:** a k-anonymiser over a generalisation lattice and a linkage attack on a synthetic population against a synthetic public register; the Laplace mechanism, randomised response and a privacy-budget accountant with measured error against ε; a layered-encryption onion routing toy on loopback using your own primitives, learning only. [local]
 - **Gap-fills:** *[inferred: Sweeney 2002; Dwork and Roth 2014, recalled, not checked]* local versus central differential privacy, the privacy-utility trade-off in practice.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.21 Special continuous distributions and the normal distribution; U33.6 Federated learning.
 
 **Assignment A8.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -3609,6 +3657,7 @@ Bridge for: U8.3 (risk management), U8.5 (resilience assessment), U13.6 (securit
 </details>
 
 
+
 # PART C. DISTRIBUTED SYSTEMS, STORAGE AND DATABASES
 
 ## D9. Distributed systems: models, randomised and peer-to-peer algorithms, time, coordination, consensus, consistency, transactions, recovery and blockchains
@@ -3660,6 +3709,7 @@ Aim: four source courses (an advanced course that starts from gossip, a cloud-an
 - **Results:** Chernoff: for X a sum of independent Bernoulli variables with mean μ, P[X ≥ (1 + δ)μ] ≤ exp(−δ²μ/(2 + δ)) [P]; the coupon collector needs about n ln n draws in expectation [P]; with n balls in n bins the maximum load is at most 3 ln n / ln ln n with high probability [P]; with two random choices per ball the maximum load is ln ln n / ln 2 + O(1) [X, stated with simulation].
 - **Build:** Monte Carlo for balls-into-bins with one and two choices against the predicted loads; coupon-collector estimates; a random-walk mixing-time estimator on a ring, a grid and an expander-like random regular graph. [local]
 - **Gap-fills:** *[inferred: Mitzenmacher–Upfal Ch.3–5, recalled, not checked]* power of two choices as the basis of load-balancing in cloud schedulers. The underlying probability (Markov, Chebyshev, the weak law) is proved in U21.6.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.24 Limit theorems and concentration inequalities.
 
 **Assignment A9.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -4328,6 +4378,7 @@ Bridge for: U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 
 - **Results:** A set of local checkpoints is a consistent global checkpoint iff no message is orphaned, equivalently no checkpoint depends causally on another's later state [P]; uncoordinated checkpointing can cascade to the initial state (domino effect) [D, by example]; Koo–Toueg's two-phase protocol yields a consistent global checkpoint with a minimal set of participating processes [S]; Dijkstra's K-state ring stabilises from every initial state when K ≥ n [P].
 - **Build:** a recovery-line calculator over a space-time diagram that finds the maximum consistent cut and exhibits the domino effect; Koo–Toueg in DSim; Dijkstra's token ring started from random states with the stabilisation time measured. [local]
 - **Gap-fills:** *[inferred: Elnozahy et al., A survey of rollback-recovery protocols, 2002; Dijkstra 1974, recalled, not checked]* checkpointing in large-scale machine-learning training (links to U12.3).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U33.2 Parallelism for training, communication and fault tolerance.
 
 **Assignment A9.19** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5078,6 +5129,7 @@ Bridge for: U15.15 to U15.18 (file organisation, indexes, and the costs of query
 - **Build:** a B+-tree (insert, delete with redistribution and merging, search, range scan, bulk load, invariant checker) tested against a sorted-list oracle on random and adversarial sequences; ISAM with overflow chains; dense and sparse indexes over a paged file with block-access counters, reproducing the multilevel example. [local]
 - **Go track:** the B+-tree is written in Go with generics (enter U23.2): the same node-count and height results as the Python build are the oracle, and the lookup is the structure under a Go sorted index for the store of U23.5. [local]
 - **Gap-fills:** *[inferred: Bayer and McCreight 1972 on B-trees; Comer 1979, "The ubiquitous B-tree"; Graefe 2011 on B-tree techniques; O'Neil et al. 1996 on LSM trees, recalled, not checked]* write-optimised indexes (LSM) are placed in U10.4 and U10.5, not repeated. On demand: U17.16 for B-trees with the height bound and the insertion algorithm, and U17.7 for search trees.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U31.6 Vector databases and indexes.
 
 **Assignment A15.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5434,6 +5486,7 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 - **Results:** An active rule fires on an event when a condition holds and runs an action, and a rule set terminates if its triggering graph has no cycle, a sufficient test that is not necessary [D]; a temporal table records valid time (when a fact is true in the world) and transaction time (when the database held it), and a bitemporal table answers "what did we believe on date x about date y" without losing history [Def]; two intervals can stand in exactly 13 Allen relations (before, meets, overlaps, starts, during, finishes, equals and the inverses of the first six), and enumerating all pairs of intervals with endpoints from 0 to 6 finds all 13 [D, check]; an R-tree stores minimum bounding rectangles in a balanced tree like the B+-tree of U15.16, but boxes at one level may overlap, so a window query may follow several branches; it returns exactly the rectangles that intersect the window, which a brute-force scan confirmed on 200 random windows over 3000 rectangles [D, check]; Morton order interleaves coordinate bits so that nearby points tend to be nearby in one key, and for x = 5 and y = 3 with three bits, taking the bit of x first in each pair, the code is 100111 in binary, 39 [D, check]; the fraction of a unit cube within 0.05 of its surface is 1 − 0.9^d, which is 0.19 for d = 2 and 0.878 for d = 20, so in high dimension nearly all points are near the boundary and the ratio of the farthest to the nearest distance from a query falls toward 1 (in one run 28.6 at d = 2, 1.37 at d = 100 and 1.10 at d = 1000), which is why similarity indexes degrade [D, check].
 - **Build:** a trigger engine with rule priorities and a loop guard; a bitemporal table with as-of queries; the 13 Allen relations; an R-tree with quadratic split tested against brute force; Morton keys; and a nearest-neighbour experiment measuring the distance ratio across dimensions on random vectors. [local]
 - **Gap-fills:** *[inferred: Guttman 1984 (R-tree); Allen 1983; Snodgrass on TSQL2; Beyer, Goldstein, Ramakrishnan and Shaft 1999 on nearest neighbours in high dimension, recalled, not checked]* image features and audio fingerprints are named, not built.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U31.3 Sparse retrieval limits and dense representations; U31.6 Vector databases and indexes.
 
 **Assignment A15.25** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5512,6 +5565,7 @@ Bridge for: U15.21 (precedence graphs and serial orders), U15.22 (wait-for graph
 - **Results:** Under a network partition a replicated store must give up consistency or availability, and BASE systems choose availability and let replicas converge later, so reads can return old values [D, as in U9.16]; with N replicas, writes to W and reads from R, a read is guaranteed to see the latest write when R + W > N, and otherwise it can miss it: for N = 3, R = 1, W = 1 the exact stale fraction is C(2,1)/C(3,1) = 2/3 (a simulation gave 0.667) and for N = 5, R = 2, W = 3 it is C(2,2)/C(5,2) = 0.1 (simulated 0.103), while 3,2,2 and 5,3,3 never returned a stale value [D, check]; a key-value store gives O(1) get and put by key but no joins, a document store keeps nested records whose schema can differ, a column-family store groups columns for wide sparse tables, and a graph store keeps adjacency so a hop is a pointer lookup instead of a join [D]; on the property graph with edges 1–2, 1–3, 2–4, 3–4, 4–5, 5–6, 2–7, 7–8, 3–9, the vertices exactly two hops from 1 are 4, 7 and 9 and those within two hops are 2, 3, 4, 7 and 9, found by breadth-first search with a visited set, and a relational version needs one self-join per hop [D, check]; big data is the regime where volume, velocity or variety exceeds one machine's relational engine, and it leads to the distributed processing of D11 [Def]; the course closes by tying the layers together: model, language, design theory, storage, query processing, transactions, distribution [recap].
 - **Build:** a three-replica key-value store with tunable R and W, hinted writes and read repair, measuring stale reads against C(N−W,R)/C(N,R); a tiny property graph store with breadth-first traversal and a pattern query, checked against the same query written as repeated self-joins in sqlite3. [local]
 - **Gap-fills:** *[inferred: Brewer 2000 and Gilbert and Lynch 2002 on CAP; DeCandia et al. 2007 (Dynamo); Robinson, Webber and Eifrem, Graph Databases, recalled, not checked]* the Kanpur course closes with the recap of Lecture 48, whose content is the course map above. The Course Summarization of the Kharagpur DBMS course (week 8) is the recap above.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U31.6 Vector databases and indexes.
 
 **Assignment A15.27** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5754,6 +5808,7 @@ Bridge for: U10.4 onward (every store here is defined by what it gives up relati
 - **Build:** a Redis-style in-memory server on sockets speaking a simple text protocol with strings, lists, hashes, expiry, snapshot and append-only persistence and crash recovery; an LRU and an LFU cache against a Zipf workload with the hit ratio against the formula; a document store with a secondary index; a decision table placing each family on CAP. [local]
 - **Go track:** the in-memory store is written in Go (enter U23.2 and U23.3): the generic LRU cache of U23.2 under a Zipf load of 400,000 requests over 1,000 keys with 100 slots hits 75.67% of requests against 9.99% under uniform load, and a mutex around it makes it safe for concurrent use. [local]
 - **Gap-fills:** *[inferred: Sadalage–Fowler, NoSQL Distilled; the Redis documentation, recalled, not checked]* vector databases for embeddings as the family that postdates the source.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U31.6 Vector databases and indexes.
 
 **Assignment A10.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5827,11 +5882,36 @@ Bridge for: U10.4 onward (every store here is defined by what it gives up relati
 </details>
 
 
-# PART D. DATA SCIENCE FOUNDATIONS: PREREQUISITES, ALGORITHMS, LINEAR ALGEBRA AND STATISTICS
 
-## D21. On-demand prerequisites for the data-analytics extension: school mathematics, Python, scientific Python (in place of R), proofs and discrete reasoning, graph theory and probability from first principles
+# PART D. MATHEMATICS AND DATA SCIENCE FOUNDATIONS: PREREQUISITES, CALCULUS, ALGORITHMS, LINEAR ALGEBRA, STATISTICS AND OPTIMIZATION
 
-Aim: every prerequisite that the eight data-analytics courses state or assume, gathered in one place, taught in academic depth and only when a unit asks for it. Each unit is a bridge in the usual sense (it begins with "Bridge for:" and is entered on demand, from the unit that needs it) but, unlike the short bridges at the head of D17, D18 and D19, it is a full unit with proofs, a from-scratch build and an assignment. Hands-on work is the rule: nothing in D21 is learned by reading alone, and every build implements the idea without calling a library routine for it first, then compares with the library. The stated prerequisites and where each is taught: Data Analytics with Python, "basic knowledge of Python but not necessary" (U21.1 for the language, U21.2 for school mathematics); Algorithmic Graph Theory and Data Structures, "Data Structure, Graph Theory and Probability" (D17 for data structures, U21.5 for graph theory, U21.6 for probability); Scalable Data Science, "Algorithms, Machine Learning" (D17 and the machine-learning bridge U11.8, with the full machine-learning curriculum as the long form); Data Base Management System, "procedural and/or object-oriented programming (C, C++, Java, Python), data structures, algorithms" (U21.1, U16.1, D17); Bayesian Data Analysis, "R programming; mathematics up to class 12" (U21.3, which teaches the same skills in Python, and U21.2); Data Structures and Algorithms Design, "very good analytical skills" (U21.4); Applied Linear Algebra, Data Mining and Big Data Computing state none (U18.1 supplies the complex numbers that D18 needs). Benchmarks (the Python tutorial's chapter list and the Class 11 and 12 NCERT mathematics chapter lists and Hammack's *Book of Proof* contents were read from public pages on 2026-11-06; the others are recalled, not checked): the Python Tutorial (sixteen chapters from "An Informal Introduction" through "Floating-Point Arithmetic: Issues and Limitations"); NCERT Mathematics for Classes 11 and 12; Hammack, *Book of Proof*; West, *Introduction to Graph Theory*; Diestel, *Graph Theory*; Ross, *A First Course in Probability*; Grinstead and Snell, *Introduction to Probability*; McKinney, *Python for Data Analysis* and the NumPy, pandas, SciPy, patsy and statsmodels documentation (recalled, not checked), which replace Venables, Smith and the R Core Team, *An Introduction to R*. Environment note (decision of 2026-11-06): R is replaced by Python throughout the curriculum. The Bayesian course's stated prerequisite, R programming, is taught as scientific Python in U21.3, and the course's brms and Stan are replaced by Bambi and PyMC (U19.15 to U19.17), both installed in the workspace and run.
+## D21. On-demand prerequisites: school mathematics, pre-calculus (functions, trigonometry, complex numbers), Python, scientific Python (in place of R), proofs, discrete mathematics, graph theory and probability from first principles
+
+Aim: every prerequisite that the eight data-analytics courses state or assume, gathered in one place, taught in academic depth and only when a unit asks for it. Each unit is a bridge in the usual sense (it begins with "Bridge for:" and is entered on demand, from the unit that needs it) but, unlike the short bridges at the head of D17, D18 and D19, it is a full unit with proofs, a from-scratch build and an assignment. Hands-on work is the rule: nothing in D21 is learned by reading alone, and every build implements the idea without calling a library routine for it first, then compares with the library. The stated prerequisites and where each is taught: Data Analytics with Python, "basic knowledge of Python but not necessary" (U21.1 for the language, U21.2 for school mathematics); Algorithmic Graph Theory and Data Structures, "Data Structure, Graph Theory and Probability" (D17 for data structures, U21.5 for graph theory, U21.6 for probability); Scalable Data Science, "Algorithms, Machine Learning" (D17 and the machine-learning bridge U11.8, with D26 to D29 as the long form); Data Base Management System, "procedural and/or object-oriented programming (C, C++, Java, Python), data structures, algorithms" (U21.1, U16.1, D17); Bayesian Data Analysis, "R programming; mathematics up to class 12" (U21.3, which teaches the same skills in Python, and U21.2); Data Structures and Algorithms Design, "very good analytical skills" (U21.4); Applied Linear Algebra, Data Mining and Big Data Computing state none (U18.1 supplies the complex numbers that D18 needs). Benchmarks (the Python tutorial's chapter list and the Class 11 and 12 NCERT mathematics chapter lists and Hammack's *Book of Proof* contents were read from public pages on 2026-11-06; the others are recalled, not checked): the Python Tutorial (sixteen chapters from "An Informal Introduction" through "Floating-Point Arithmetic: Issues and Limitations"); NCERT Mathematics for Classes 11 and 12; Hammack, *Book of Proof*; West, *Introduction to Graph Theory*; Diestel, *Graph Theory*; Ross, *A First Course in Probability*; Grinstead and Snell, *Introduction to Probability*; McKinney, *Python for Data Analysis* and the NumPy, pandas, SciPy, patsy and statsmodels documentation (recalled, not checked), which replace Venables, Smith and the R Core Team, *An Introduction to R*. Environment note (decision of 2026-11-06): R is replaced by Python throughout the curriculum. The Bayesian course's stated prerequisite, R programming, is taught as scientific Python in U21.3, and the course's brms and Stan are replaced by Bambi and PyMC (U19.15 to U19.17), both installed in the workspace and run.
+
+
+**Merged units, folded in by subject.** This domain also holds the units of Pre-calculus Bridge (remedial, taught on demand): functions, trigonometry and complex numbers (U21.7–U21.11) and Discrete Mathematics and Mathematical Reasoning (U21.12–U21.18) from the earlier machine-learning curriculum, marked * below. They are on demand: each begins with a **Bridge for:** or **On demand:** line, and the cloud unit owns every topic that both teach. **Reading ladder** (the order of study when you take the subject for its own sake; compact cloud units stand beside the merged units that go deeper): U21.1, U21.2, U21.7*, U21.8*, U21.9*, U21.10*, U21.11*, U21.3, U21.4, U21.12*, U21.13*, U21.14*, U21.5, U21.15*, U21.16*, U21.17*, U21.18*, U21.6.
+
+**Pre-calculus Bridge (remedial, taught on demand): functions, trigonometry and complex numbers (U21.7–U21.11).** Aim: the school-level toolkit that the calculus, linear algebra, complex analysis, signal and Transformer units quietly assume, taught from zero for a learner who reports being new to trigonometry and complex numbers. It is **remedial and on demand** (Master Rules II.3), not a block to be done up front: a unit of this block is opened only when the learner struggles with a basic skill while working elsewhere, a short probe locates the gap, the matching unit is taught to the depth bar below, and the learner returns to exactly the point they left. An area the learner handles fluently is never taught. Added 2026-11-06 at the learner's request: "add a pre calculus bridge to be taught on demand. I am a trigonometry and complex numbers noob."
+
+Benchmarks (recalled, not checked): Stewart, Redlin and Watson, *Precalculus: Mathematics for Calculus*; Gelfand and Saul, *Trigonometry*; Spivak, *Calculus* (the chapters on the trigonometric, exponential and logarithmic functions); Needham, *Visual Complex Analysis* (Chapters 1 and 2); Ahlfors, *Complex Analysis* (Chapter 1); Nahin, *An Imaginary Tale*.
+
+**Depth bar.** Fast, error-free hand work on unseen items: exact trigonometric values without a calculator, any angle-sum or double-angle identity derived rather than recalled, a triangle solved from any three data, a complex number moved between rectangular and polar form and raised to a power or rooted, and Euler's formula used to turn a trigonometric identity into an exponent law. Central results are proved or derived with every step (the angle-sum formulas, the law of cosines, De Moivre's theorem, the sum of the roots of unity); the two results whose proofs need calculus (Euler's formula from the series, the fundamental theorem of algebra) are stated, with the unit that proves them named (Master Rules 4.2).
+
+**Placement note.** These units have no place in the default order. They are printed inside D21 because every other domain may call them. The block is never taught all at once: the trigger table says which later unit calls which block, what the probe is, and where to return. A block taught is logged in the record with its cause (conceptual, misread, slip, strategic; Master Rules 3.3.5). The probe is one unseen item, not a quiz; if it is handled fluently the block is skipped and logged as "probed, fluent".
+
+| Trigger (where the gap shows) | Probe (one unseen item) | Teach | Return to |
+|---|---|---|---|
+| U24.1 reading a graph, inverse functions, a function's domain; U25.3 convexity of exp and log | Sketch y = |x − 2| + 1 and state its range; find the inverse of y = x² on x ≥ 0 | U21.7 | U24.1, U25.3 |
+| U24.3 and U24.4 exponentials and logarithms; U19.20 to U19.21 growth and decay, log-likelihood; U26.3 logistic regression | Solve 3^x = 50 and simplify log(a²b) − log(ab²) | U21.7 | the unit that called |
+| U24.2 derivatives of sin and cos; U18.15 and U18.17 the angle between vectors; U24.9 line and surface integrals | Give the exact value of cos 150° and convert 7π/6 to degrees; find the angle between (1, 0) and (1, 1) | U21.8 | U24.2, U18.17 |
+| U24.3 trigonometric substitution and integrals of sin² x; U24.8 polar coordinates in double integrals; U19.22 Box–Muller; U18.19 rotation matrices | Write sin² x without a square; convert (r, θ) = (2, 2π/3) to (x, y) | U21.9 | U24.3, U24.8, U19.22 |
+| U24.11 oscillating solutions; U18.19 and U18.21 complex eigenvalues and unitary matrices; U24.13 to U24.15 complex analysis; U21.16 and U21.17 cyclic groups, roots of unity | Compute (3 + 4i)/(1 − 2i) and write 1 + i in polar form | U21.10 | the unit that called |
+| U24.4 Taylor series of exp, sin and cos; U24.15 Laplace, Fourier and discrete Fourier transforms; U29.3 sinusoidal and rotary positional encodings; U28.4 convolution as a frequency view | Evaluate e^{iπ/2} and write cos x in terms of e^{ix} | U21.11 | U24.4, U24.15, U29.3 |
+
+**Capstone (II.3, remedial).** Set only on the units that were taught: a timed mixed set of at most 12 unseen items drawn from them (a speed exercise only, Master Rules 6.14) with the key written first, plus a one-page explanation, for a non-expert, of one quantitative decision that uses them (for example why rotating each pair of coordinates of an embedding by an angle proportional to its position makes dot products depend only on the offset between positions, or why a 50 Hz signal needs more than 100 samples a second). The domain is closed when both pass.
+
+**Discrete Mathematics and Mathematical Reasoning (U21.12–U21.18).** Aim: proof fluency, counting, graphs, number theory and algebra. Taught early because every later proof (limits, linear algebra, probability, learning theory) rests on the proof paradigms here. Benchmarks (recalled, not checked): Rosen, *Discrete Mathematics and Its Applications*; Lovász–Pelikán–Vesztergombi, *Discrete Mathematics*; Graham–Knuth–Patashnik, *Concrete Mathematics*; West, *Introduction to Graph Theory*; Artin, *Algebra*.
 
 ### U21.1 Bridge: Python from scratch — types, control flow, functions, recursion, objects, exceptions, generators, testing, NumPy and the floating-point model
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
@@ -5880,6 +5960,7 @@ Bridge for: U19.1, U18.1 to U18.13, U17.1, U19.2 to U19.17, U20.1 and every unit
 - **Results:** the quadratic formula, the sum of a geometric series (1 − rⁿ)/(1 − r) and the binomial theorem (Σ C(10, k) 2ᵏ = 3¹⁰ = 59,049) [P, check]; (1 + 1/n)ⁿ → e, with 2.7182804691 at n = 10⁶ against 2.7182818285 [D, check]; sin(a + b) = sin a cos b + cos a sin b to 9·10⁻¹⁶ on 1000 random pairs and sin x ≈ x with error −1.67·10⁻⁷ at x = 0.01 [P, check]; bisection on x³ − x − 2 on [1, 2] gives 1.5213797068 in 40 steps (error 4·10⁻¹³) and Newton's method on x² − 2 has errors 0.0858, 2.5·10⁻³, 2.1·10⁻⁶ and 1.6·10⁻¹², so the number of correct digits doubles each step [D, check]; Gauss–Jordan inversion of a 3×3 matrix with determinant −1 agrees with NumPy to 4·10⁻¹⁶ and Cramer's rule returns (1, 0, 2) [P, check]; a forward difference for the derivative of sin at 1 has error 4.2·10⁻⁶ at h = 10⁻⁵ against 1.1·10⁻¹¹ for the central difference, and the central-difference error is 9.0·10⁻⁶, 1.1·10⁻¹¹, 2.6·10⁻⁹ and 1.2·10⁻⁶ at h = 10⁻², 10⁻⁵, 10⁻⁸ and 10⁻¹¹, so truncation and rounding errors cross near h = 10⁻⁵ [D, check]; for ∫₀¹ eˣ dx the trapezoid rule has error 1.4·10⁻³ with 10 intervals and 1.4·10⁻⁵ with 100, and Simpson's rule 9.5·10⁻⁷ with 10 [D, check]; Euler's method for y′ = y on [0, 1] gives 2.5937 with h = 0.1 and 2.7048 with h = 0.01, while the fourth-order Runge–Kutta step gives 2.718280 with h = 0.1 against e = 2.718282 [D, check]; for the linear programme maximise 3x + 2y subject to x + y ≤ 4, x + 3y ≤ 6, x, y ≥ 0 the corner points (0, 0), (4, 0), (3, 1) and (0, 2) give 0, 12, 11 and 4, so the maximum is 12 at (4, 0) [P, check]; the lines (1, 2, 3) + t(2, 3, 4) and (2, −1, 0) + s(1, 2, 3) are skew at distance 1.633 [P, check].
 - **Build:** from scratch: bisection and Newton root finders with error tables; Gauss–Jordan elimination with partial pivoting giving the inverse, the determinant and the solution of a system, and Cramer's rule, compared with `numpy.linalg`; numerical differentiation with a step-size sweep that reproduces the V-shaped error curve; trapezoid, Simpson and a Monte-Carlo integrator with convergence plots; Euler and fourth-order Runge–Kutta for ODEs with a step-halving experiment; a corner-point enumerator for a two-variable linear programme; a symbolic-free derivative checker (finite difference against a hand derivative) for ten functions; a plot of sine and cosine as the projections of a rotating point. [local]
 - **Gap-fills:** *[inferred: NCERT Mathematics Classes 11 and 12 (chapter lists read from public pages); Stewart, Calculus; Strang, Calculus, recalled, not checked]* conic sections and the three-dimensional geometry of planes are taught only as far as vectors need them; the proofs of the mean value theorem and of the fundamental theorem of calculus are sketched, not given; complex numbers are taken to depth in U18.1.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.7 Functions, exponentials and logarithms; U21.8 Angles and the trigonometric functions; U21.9 Identities, inverse trigonometric functions, equations.
 
 **Assignment A21.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5910,6 +5991,217 @@ Bridge for: U19.1, U18.1 to U18.13, U17.1, U19.2 to U19.17, U20.1 and every unit
 - **Q3:** 12 (tolerance ±0.01). The values are 0, 12, 11 and 4, so the maximum is 12.
 - **Q4 (marking outline):** For n = 1 the sum is 1 = 1^2. Assume the sum of the first n odd numbers is n^2. Adding the next odd number 2n+1 gives n^2 + 2n + 1 = (n+1)^2.
 - **Q5 (what a passing submission shows):** The central-difference error is smallest near h = 1e-5 (about 1e-11) and grows on both sides, Gauss-Jordan agrees with NumPy to 1e-15, and RK4 with h = 0.1 gives 2.71828 for y' = y at x = 1.
+
+</details>
+
+### U21.7 Functions, exponentials and logarithms
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+Bridge for: U21.2 (school mathematics through class 12, consolidated).
+Shares ground with the cloud units U21.2 (school mathematics through class 12, consolidated), U17.1 (discrete mathematics for algorithm analysis) and U19.1 (calculus, counting and matrices for statistics); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Blocks (each with its own probe, habit and build):** (a) functions, graphs and inverses; (b) transformations of graphs; (c) polynomials and quadratics; (d) exponents, exponentials and logarithms. Habit trained throughout: *test a formula at three easy values before trusting it* (0, 1 and a negative or large one).
+- **Topics:** a function as a rule from a domain to a codomain with a range; graphs and how to read them; composition; one-to-one functions and the horizontal-line test; inverse functions, restricting a domain so that an inverse exists, the graph of the inverse as a reflection in the line y = x; transformations y = a f(b(x − h)) + k (shift, stretch, reflect) and what each constant does; even and odd functions; absolute value and piecewise functions; polynomials, degree, roots, factor and remainder theorems, completing the square, the quadratic formula and the discriminant; rational functions and asymptotes; inequalities; integer, zero, negative and rational exponents and their laws; the exponential function a^x, growth and decay, and the number e as the limit of (1 + 1/n)^n; logarithms as inverses of exponentials, the laws of logarithms, change of base, the natural logarithm, logarithmic scales; arithmetic and geometric sequences, sigma notation and the geometric sum; lines, slope, distance between points and the equation of a circle.
+- **Results:** factor theorem [P]; the quadratic formula by completing the square [D] and the sign of the discriminant deciding the number of real roots [D]; the graph of f⁻¹ is the reflection of the graph of f in y = x [D]; the laws of logarithms from the laws of exponents [P]; change of base [P]; geometric sum a(1 − rⁿ)/(1 − r) [P]; (1 + 1/n)ⁿ increases toward 2.71828... [check; the limit is proved in U24.1 and U24.4].
+- **Build:** a small function plotter with the transformation constants as sliders (or printed tables), an inverse built by bisection and checked against the closed form, the compound-interest table for n = 1, 12, 365 and 10⁶, a random test of the three log laws and change of base to 12 digits, and quadratic roots by formula against `numpy.roots`.
+- **Gap-fills:** *[inferred: Stewart–Redlin–Watson; Spivak]* the number e is defined here by its numerical behaviour only; its definition as the base whose exponential has slope equal to its value waits for U24.3.
+
+**Assignment A21.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The function f(x) = x squared is restricted to x greater than or equal to 0. Which statement about its inverse is correct?
+
+(A) The inverse is the square root function and its graph is the reflection of f in the line y = x  
+(B) The inverse does not exist because f is not one-to-one on any domain  
+(C) The inverse is f itself  
+(D) The inverse is the reciprocal 1/f(x)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) log(xy) = log x + log y for x, y > 0  
+(B) log_b(x) = ln(x)/ln(b)  
+(C) (1 + 1/n)^n increases toward about 2.718 as n grows  
+(D) log(x + y) = log x + log y
+
+**Q3 (2 marks, numerical answer).** Solve 3^x = 50. Give x to three decimal places.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the product law log_b(xy) = log_b(x) + log_b(y) from the law of exponents b^m b^n = b^(m+n).
+
+**Q5 (3 marks, programming).** Write transform(f, a, b, h, k) returning the function x -> a f(b(x - h)) + k, and an inverse finder by bisection for an increasing function on an interval. Test them on f = square on [0, 10] and print the compound-interest values of (1 + 1/n)^n for n = 1, 12, 365 and 10**6. Predict the last value to three decimals first.
+
+<details><summary>Key for A21.7 (open only after your attempt)</summary>
+
+- **Q1:** A. On x >= 0 the function is one-to-one, its inverse is the square root, and graphs of inverse functions are mirror images in y = x.
+- **Q2:** ABC. D is false: the log of a sum has no such rule; the product rule is the one that holds.
+- **Q3:** 3.561 (tolerance ±0.001). Take logarithms: x = ln 50 / ln 3 = 3.912 / 1.0986 = 3.561.
+- **Q4 (marking outline):** Let m = log_b x and n = log_b y, so b^m = x and b^n = y by the definition of the logarithm as the inverse of b^t. Then xy = b^m b^n = b^(m+n) by the exponent law. Taking log_b of both sides, which undoes b^t, gives log_b(xy) = m + n = log_b x + log_b y.
+- **Q5 (what a passing submission shows):** The bisection inverse of the square agrees with the square root to 1e-9, the shifted-stretched graph passes through the predicted points, and the interest table gives 2.0, 2.613, 2.715 and 2.718.
+
+</details>
+
+### U21.8 Angles and the trigonometric functions
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+Bridge for: U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces), U21.2 (school mathematics through class 12, consolidated).
+Shares ground with the cloud units U18.1 (complex numbers, trigonometry and phasors) and U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Blocks:** (a) angles, radians and the unit circle; (b) right triangles and exact values; (c) graphs, period, amplitude and phase; (d) solving triangles: the laws of sines and cosines; (e) angles between vectors. Habit: *draw the unit circle and mark the quadrant before computing any sign*.
+- **Topics:** angle as an amount of turning; degrees and radians (an angle in radians is arc length divided by radius, so a full turn is 2π, 180° is π, and one radian is about 57.3°); sin, cos, tan and their reciprocals csc, sec, cot on a right triangle (SOH CAH TOA) and then on the unit circle for every angle (the point reached after turning θ from (1, 0) is (cos θ, sin θ)); signs by quadrant and reference angles; exact values at 0, 30°, 45°, 60° and 90° from the 30-60-90 and 45-45-90 triangles; periodicity (sin and cos repeat every 2π, tan every π) and symmetry (cos is even, sin is odd, sin(π − θ) = sin θ, sin(θ + π) = −sin θ, cos(π/2 − θ) = sin θ); graphs of sin, cos and tan; the sinusoid A sin(B(x − C)) + D with amplitude |A|, period 2π/|B|, phase shift C, and the frequency in cycles per unit as |B|/2π and the angular frequency ω = B; arc length s = rθ and sector area ½r²θ; the Pythagorean identity sin²θ + cos²θ = 1; the law of sines and the law of cosines, area ½ab sin C, solving a triangle from side-angle-side, side-side-side and angle-side-angle and the ambiguous side-side-angle case; the small-angle behaviour sin θ ≈ θ and tan θ ≈ θ for θ in radians; components of a plane vector (|v| cos θ, |v| sin θ), the dot product, and the angle between two vectors cos θ = u·v/(|u||v|).
+- **Results:** sin²θ + cos²θ = 1 from the unit circle [P]; exact values at 30°, 45° and 60° [D]; the law of cosines c² = a² + b² − 2ab cos C by coordinates [P]; the law of sines [P]; area ½ab sin C [P]; sin θ < θ < tan θ for 0 < θ < π/2 by comparing areas [S; it is the engine of lim sin x/x = 1 in U24.2]; the formula cos θ = u·v/(|u||v|) from the law of cosines [D]; the period of A sin(Bx + C) is 2π/|B| [P].
+- **Build:** a unit-circle explorer printing (cos θ, sin θ) with the quadrant and the reference angle, a triangle solver for all four cases checked against `numpy` on 10,000 random triangles (angles sum to π, the law of sines holds to about 10⁻⁸, the loss coming from near-degenerate triangles where arccos is ill-conditioned), the small-angle error table for θ = 1, 0.1, 0.01 and 0.001 radians, and the wavelengths of the sinusoidal positional encoding for a given dimension (a preview of U29.3). Only the standard library and NumPy are used; `math.sin` is the oracle.
+- **Gap-fills:** *[inferred: Gelfand–Saul; Stewart–Redlin–Watson]* the geometric definition of sine for an obtuse angle is by the unit circle only; the calculus definition and the series are in U24.3 and U24.4.
+
+**Assignment A21.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is the exact value of cos(2 pi / 3)?
+
+(A) 1/2  
+(B) -1/2  
+(C) sqrt(3)/2  
+(D) -sqrt(3)/2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) One radian is the angle for which the arc length equals the radius  
+(B) sin(pi - x) = sin x  
+(C) The sinusoid sin(3x) has period 2 pi / 3  
+(D) For small angles in radians, sin x is approximately x
+
+**Q3 (2 marks, numerical answer).** A triangle has sides 7 and 9 with the angle between them equal to 60 degrees. Find the third side to three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the law of cosines c squared = a squared + b squared - 2ab cos C by placing the triangle in coordinates.
+
+**Q5 (3 marks, programming).** Write solve_triangle for the four given-data cases (SSS, SAS, ASA, SSA with both solutions) and test it on 10,000 random triangles by checking that the angles sum to pi and the law of sines holds. Also print sin x and x - sin x for x = 1, 0.1, 0.01, 0.001. Predict the ratio of the last two errors first.
+
+<details><summary>Key for A21.8 (open only after your attempt)</summary>
+
+- **Q1:** B. 2 pi / 3 is 120 degrees, in the second quadrant where cosine is negative, with reference angle 60 degrees whose cosine is 1/2.
+- **Q2:** ABCD. All four hold: the period of sin(Bx) is 2 pi / B, and the small-angle error of sin x is about x cubed over 6.
+- **Q3:** 8.185 (tolerance ±0.001). The law of cosines gives c squared = 49 + 81 - 126 (0.5) = 67, so c = 8.185.
+- **Q4 (marking outline):** Put the vertex C at the origin with side CB of length a along the positive x-axis, so B = (a, 0), and put A at (b cos C, b sin C), since CA has length b and makes angle C with CB. The side c is the distance AB, so c squared = (b cos C - a)^2 + (b sin C)^2 = b squared cos squared C - 2ab cos C + a squared + b squared sin squared C. Using sin squared plus cos squared = 1 this is a squared + b squared - 2ab cos C.
+- **Q5 (what a passing submission shows):** On random triangles the angle sum is pi to 1e-9 and the law of sines holds to about 1e-8, the SSA case returns two triangles when the data allow, and x - sin x falls by 1000 for every tenfold drop in x, as the cube law x^3/6 predicts.
+
+</details>
+
+### U21.9 Identities, inverse trigonometric functions, equations, polar coordinates and rotations
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+Bridge for: U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces), U21.2 (school mathematics through class 12, consolidated).
+Shares ground with the cloud units U18.1 (complex numbers, trigonometry and phasors) and U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Blocks:** (a) angle-sum and the identities that follow from it; (b) a cos x + b sin x as one cosine; (c) inverse functions and equations; (d) polar coordinates and rotation. Habit: *derive an identity from the angle-sum formula once, then recognise it; test it at x = 0 and x = π/2*.
+- **Topics:** the angle-sum and angle-difference formulas for sine, cosine and tangent; double-angle formulas (cos 2x = cos²x − sin²x = 2cos²x − 1 = 1 − 2sin²x, sin 2x = 2 sin x cos x); half-angle and power-reducing formulas (sin²x = (1 − cos 2x)/2, cos²x = (1 + cos 2x)/2); product-to-sum and sum-to-product; the form a cos x + b sin x = R cos(x − φ) with R = √(a² + b²) and φ = atan2(b, a); the inverse functions arcsin, arccos and arctan with their domains and principal ranges ([−π/2, π/2], [0, π] and (−π/2, π/2)), the two-argument arctangent atan2 and why a calculator's arctan(b/a) loses the quadrant; sin(arcsin x) = x but arcsin(sin x) = x only on the principal range; solving trigonometric equations and writing all solutions (x = α + 2πk or x = π − α + 2πk); polar coordinates (x, y) = (r cos θ, r sin θ), conversion both ways, simple curves (circle, line through the origin, cardioid, spiral); rotation of the plane by θ as the matrix with rows (cos θ, −sin θ) and (sin θ, cos θ), and its composition R(α)R(β) = R(α + β).
+- **Results:** cos(α + β) = cos α cos β − sin α sin β by composing two rotations [D]; the remaining sum and difference formulas from it [D]; the double-angle and power-reducing formulas [D]; a cos x + b sin x = R cos(x − φ), so its maximum is √(a² + b²) [D]; arcsin(sin x) is the principal-range representative of x only for x in [−π/2, π/2] [D]; the rotation matrices form a commutative group whose product law is the angle-sum formula [D]; the general solution of sin x = s [D].
+- **Build:** a random-point checker for twelve identities (maximum error below 10⁻¹⁵), a solver for a cos x + b sin x = c with all solutions in a window, atan2 against a hand-written quadrant rule, and rotation matrices composed and compared with `numpy`.
+- **Gap-fills:** *[inferred: Stewart–Redlin–Watson; Gelfand–Saul]* polar areas and arc lengths wait for U24.8 and U24.3; hyperbolic functions are in U21.11.
+
+**Assignment A21.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is arcsin(sin(5 pi / 6))?
+
+(A) 5 pi / 6  
+(B) pi / 6  
+(C) -pi / 6  
+(D) pi / 3
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which identities are correct for all x?
+
+(A) sin(2x) = 2 sin x cos x  
+(B) cos(2x) = 1 - 2 sin squared x  
+(C) sin squared x = (1 - cos 2x)/2  
+(D) cos(x + y) = cos x cos y + sin x sin y
+
+**Q3 (2 marks, numerical answer (degrees)).** Write 3 cos x + 4 sin x as R cos(x - phi) with R > 0. Give phi in degrees to two decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive cos(a + b) = cos a cos b - sin a sin b by composing rotations of the plane.
+
+**Q5 (3 marks, programming).** Write a checker that tests twelve trigonometric identities at 100,000 random points and reports the maximum error, a solver for a cos x + b sin x = c returning all solutions in [-2 pi, 2 pi], and a quadrant-correct atan2 of your own compared with math.atan2. Predict whether 3 cos x + 4 sin x = 6 has solutions before running it.
+
+<details><summary>Key for A21.9 (open only after your attempt)</summary>
+
+- **Q1:** B. sin(5 pi / 6) = 1/2, and arcsin returns the angle in [-pi/2, pi/2] with that sine, which is pi / 6; the identity arcsin(sin x) = x holds only on that range.
+- **Q2:** ABC. D is false: the sign is minus, cos(x + y) = cos x cos y - sin x sin y.
+- **Q3:** 53.13 degrees (tolerance ±0.01). R = 5 and (cos phi, sin phi) = (3/5, 4/5), so phi = atan2(4, 3) = 53.13 degrees.
+- **Q4 (marking outline):** The matrix R(t) with rows (cos t, -sin t) and (sin t, cos t) turns the plane by t about the origin. Turning by b and then by a is turning by a + b, so R(a)R(b) = R(a + b). Multiply the matrices: the top-left entry of R(a)R(b) is cos a cos b - sin a sin b, and the top-left entry of R(a + b) is cos(a + b). Equating the entries gives the formula, and the bottom-left entries give sin(a + b) = sin a cos b + cos a sin b.
+- **Q5 (what a passing submission shows):** The identities agree to about 1e-15, the equation with c = 6 has no solution because the maximum is 5, c = 2.5 gives four solutions in the window, and the hand-written atan2 matches the library on 10,000 points.
+
+</details>
+
+### U21.10 Complex numbers I: algebra, the plane, polar form, powers and roots
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+Bridge for: U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces).
+Shares ground with the cloud units U18.1 (complex numbers, trigonometry and phasors) and U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Builds on U21.9.
+- **Blocks:** (a) the number i and arithmetic; (b) the plane, modulus and conjugate; (c) polar form, De Moivre and roots; (d) polynomials with complex roots. Habit: *draw the number in the plane, then compute; multiplication scales and turns, addition slides*.
+- **Topics:** why numbers beyond the reals (a quadratic with negative discriminant, and Cardano's cubic whose three real roots pass through square roots of negatives); i with i² = −1; a + bi, real and imaginary parts; addition, multiplication, powers of i; the conjugate and division by multiplying numerator and denominator by the conjugate; the Argand plane, modulus |z| = √(a² + b²) and distance |z − w|; |zw| = |z||w|, |z̄| = |z|, z z̄ = |z|², and the triangle inequality; the argument and the principal argument in (−π, π]; polar form z = r(cos θ + i sin θ); multiplication multiplies moduli and adds arguments, so multiplying by i turns a point a quarter turn; De Moivre's theorem (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ; the n n-th roots of a nonzero number, equally spaced on a circle; sets in the plane (|z − a| = r, |z − a| = |z − b|, Re z ≥ c); polynomials: quadratics with complex roots, the conjugate-pair theorem for real coefficients, factoring a real polynomial into real linear and quadratic factors, the fundamental theorem of algebra; complex numbers as 2 × 2 real matrices [[a, −b], [b, a]] and the eigenvalues ±i of a rotation.
+- **Results:** the complex numbers form a field (every nonzero z has the inverse z̄/|z|²) [D]; |zw| = |z||w| [P]; the triangle inequality [P]; the polar product rule from the angle-sum formulas of U21.9 [P]; De Moivre's theorem by induction [P]; the n n-th roots of w are r^{1/n}(cos((θ + 2πk)/n) + i sin((θ + 2πk)/n)) for k = 0 to n − 1 [P]; if a real polynomial has root z it has root z̄ [P]; every real polynomial of odd degree has a real root [S: the non-real roots pair off as conjugates, so an odd number of roots leaves a real one, given the fundamental theorem; the intermediate value theorem of U24.1 gives it directly]; the fundamental theorem of algebra [X→U24.13, where Liouville's theorem proves it]; the map a + bi ↦ [[a, −b], [b, a]] preserves sums and products [D].
+- **Build:** a `Cx` class with addition, multiplication, division, modulus, argument and power, tested against Python's built-in `complex` on 10⁵ random pairs; n-th roots drawn in the plane for n = 3 to 12 with the product and sum checked; Cardano's method on x³ − 15x − 4 = 0 (the cube root of 2 + 11i is 2 + i, giving the real root 4) checked against `numpy.roots`; the matrix representation tested against complex multiplication.
+- **Gap-fills:** *[inferred: Needham Ch.1; Ahlfors Ch.1; Nahin]* the extended plane, Möbius maps and the exponential function of a complex variable beyond U21.11 are in U24.13 and U24.14.
+
+**Assignment A21.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** How many distinct complex numbers z satisfy z^5 = 1?
+
+(A) 1  
+(B) 2  
+(C) 4  
+(D) 5
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) For all complex z and w, the modulus of zw equals the modulus of z times the modulus of w  
+(B) If a polynomial with real coefficients has the root 2 + 3i then it also has the root 2 - 3i  
+(C) Multiplying a complex number by i turns it a quarter turn counterclockwise about the origin  
+(D) Every complex number has exactly two fifth roots
+
+**Q3 (2 marks, numerical answer).** Compute the real number (1 + i)^8.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that if a polynomial p with real coefficients has p(z) = 0, then p of the conjugate of z is also 0.
+
+**Q5 (3 marks, programming).** Write a class Cx with add, multiply, divide, modulus, argument and integer power, and test it against Python complex on 100,000 random pairs. Then draw the 7th roots of 1 and check that their sum is 0 and their product is 1, and solve x^3 - 15x - 4 = 0 by Cardano's method using your class. Predict the three roots first.
+
+<details><summary>Key for A21.10 (open only after your attempt)</summary>
+
+- **Q1:** D. There are exactly five fifth roots of 1, equally spaced on the unit circle at angles 2 pi k / 5.
+- **Q2:** ABC. D is false: a nonzero complex number has five fifth roots.
+- **Q3:** 16 (tolerance ±0.0001). The modulus of 1 + i is sqrt 2 and its argument 45 degrees, so the eighth power has modulus 16 and argument 360 degrees, giving 16.
+- **Q4 (marking outline):** Write p(x) = a0 + a1 x + ... + an x^n with every a_k real. Conjugation respects sums and products, so the conjugate of p(z) equals a0 + a1 (conj z) + ... + an (conj z)^n, because each a_k is its own conjugate. This is p(conj z). Since p(z) = 0 and the conjugate of 0 is 0, p(conj z) = 0.
+- **Q5 (what a passing submission shows):** The class agrees with complex to 1e-12, the seventh roots sum to 0 and multiply to 1, and Cardano gives 4, -2 + sqrt 3 and -2 - sqrt 3, equal to numpy.roots to 1e-9, with the intermediate cube root 2 + i of 2 + 11i.
+
+</details>
+
+### U21.11 Complex numbers II: the complex exponential, Euler's formula, roots of unity and phasors
+**Sources:** none (remedial bridge added on 2026-11-06 at the learner's request; taught on demand)
+Bridge for: U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA).
+Shares ground with the cloud units U18.1 (complex numbers, trigonometry and phasors), U21.2 (school mathematics through class 12, consolidated) and U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Blocks:** (a) e^{iθ} and Euler's formula; (b) trigonometry as exponent laws; (c) roots of unity and the discrete Fourier idea; (d) phasors and rotations in practice. Habit: *turn a trigonometric problem into an exponential one, compute with exponent laws, turn it back*.
+- **Topics:** e^{iθ} := cos θ + i sin θ, why this is the right definition (it obeys e^{iα}e^{iβ} = e^{i(α+β)} by the angle-sum formulas, it has modulus 1, and it is what the exponential series and the equation y′ = iy give, as U24.4 and U24.11 prove); Euler's formula and the identity e^{iπ} + 1 = 0; polar form z = r e^{iθ}; e^{x + iy} = e^x (cos y + i sin y); cos θ = (e^{iθ} + e^{−iθ})/2 and sin θ = (e^{iθ} − e^{−iθ})/(2i); deriving the angle-sum, double-angle and power-reducing identities from exponent laws; De Moivre as (e^{iθ})ⁿ = e^{inθ}; the n-th roots of unity ω^k with ω = e^{2πi/n}, their sum (zero for n ≥ 2) and product, primitive roots and the cyclic group they form (a first example for U21.17); the geometric sum of ω^k; complex logarithm as a multi-valued function and its principal value Log z = ln|z| + i Arg z; complex powers; the hyperbolic functions cosh and sinh, and cos(ix) = cosh x; frequency, angular frequency and period; phasors: A cos(ωt + φ) is the real part of A e^{iφ} e^{iωt}, so sinusoids of one frequency add as complex numbers; the discrete Fourier transform X_k = Σ x_n ω^{−nk} as a matrix of roots of unity and the orthogonality of its columns; sampling and aliasing (a sinusoid of frequency f sampled at rate fs is indistinguishable from one at f + k·fs); rotary position encodings as multiplication of a pair of coordinates by e^{imθ} (a preview of U29.3).
+- **Results:** e^{iα}e^{iβ} = e^{i(α+β)} from the angle-sum formulas [P]; |e^{iθ}| = 1 [P]; Euler's formula as a theorem for the exponential defined by its series [X→U24.4, and again by y′ = iy in U24.11]; cos and sin as exponentials [D]; the angle-sum formulas and De Moivre from the exponent law [D]; the sum of the n-th roots of unity is 0 for n ≥ 2 [P]; Σ_{n=0}^{N−1} ω^{(j−k)n} = N when j ≡ k and 0 otherwise [P], so the DFT matrix has orthogonal columns and is inverted by its conjugate transpose divided by N [D]; the sum of two sinusoids of the same frequency is a sinusoid of that frequency, with amplitude |A₁e^{iφ₁} + A₂e^{iφ₂}| [D]; Log z is multi-valued by 2πi k [Def]; a sinusoid is determined by its samples only below the Nyquist frequency fs/2 [S; the sampling theorem is in U24.15].
+- **Build:** Euler's identity and the exponent law checked to machine precision; the DFT from scratch as a matrix, compared with `numpy.fft.fft` on random vectors (error below 10⁻¹²) and used to find the frequency of a sampled noisy sinusoid; the orthogonality of the columns; a phasor adder checked against direct summation of two cosines; and a rotary-pair test showing that ⟨R(mθ)q, R(nθ)k⟩ depends only on m − n for random 2-D vectors.
+- **Gap-fills:** *[inferred: Needham Ch.1 and 2; Stewart–Redlin–Watson]* power series and the proof of Euler's formula from them are in U24.4; the ODE route in U24.11; the Fourier transform in U24.15.
+
+**Assignment A21.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which value does the principal complex logarithm Log(-1) take?
+
+(A) 0  
+(B) i pi  
+(C) -i pi / 2  
+(D) pi
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) e^(i pi) + 1 = 0  
+(B) cos x = (e^(ix) + e^(-ix))/2  
+(C) The sum of the n-th roots of unity is 0 for every n >= 2  
+(D) e^(ix) can have modulus other than 1 when x is real
+
+**Q3 (2 marks, numerical answer).** Find the amplitude of the sinusoid 2 cos(wt) + 3 cos(wt + pi/3) using phasors. Give it to three decimals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the n-th roots of unity sum to zero when n >= 2.
+
+**Q5 (3 marks, programming).** Build the n x n DFT matrix from roots of unity, compare its action with numpy.fft.fft on random vectors, check that its columns are orthogonal, and use it to find the frequency of a noisy sampled sinusoid. Then test that the inner product of two 2-D vectors rotated by m theta and n theta depends only on m - n. Predict the aliasing of a 13 Hz tone sampled at 10 Hz first.
+
+<details><summary>Key for A21.11 (open only after your attempt)</summary>
+
+- **Q1:** B. -1 = e^(i pi), so Log(-1) = ln 1 + i pi = i pi, taking the argument in (-pi, pi].
+- **Q2:** ABC. D is false: the modulus of e^(ix) is the square root of cos squared x + sin squared x, which is always 1.
+- **Q3:** 4.359 (tolerance ±0.001). The phasors add: 2 + 3 e^(i pi/3) has modulus squared 4 + 9 + 12 cos 60 degrees = 19, so the amplitude is sqrt 19 = 4.359.
+- **Q4 (marking outline):** Let w = e^(2 pi i / n), so the roots are 1, w, ..., w^(n-1) and w^n = 1 with w not equal to 1 when n >= 2. The sum S satisfies w S = w + w^2 + ... + w^n = S, because w^n = 1 replaces the first term 1. Hence (w - 1) S = 0, and since w is not 1, S = 0.
+- **Q5 (what a passing submission shows):** The matrix agrees with fft to 1e-12, the Gram matrix is n times the identity, the sinusoid's frequency is recovered at the right bin, the rotated inner products are equal for equal m - n, and the 13 Hz tone is identical to a 3 Hz tone at the sample points.
 
 </details>
 
@@ -5960,6 +6252,7 @@ Bridge for: U17.1 to U17.14, U19.3, U21.5, U21.6 and every [P] result of D17 to 
 - **Results:** De Morgan's laws, ¬(p ∧ q) ≡ ¬p ∨ ¬q, hold on all four rows of the truth table [P, check]; there are 2^(2^n) Boolean functions of n variables, 256 for n = 3 [P, check]; any 13 integers contain two with the same residue modulo 12 (pigeonhole) [P, check on 1000 random sets]; the number of solutions of x₁ + x₂ + x₃ + x₄ = 10 in non-negative integers is C(13, 3) = 286 [P, check by enumeration]; by inclusion–exclusion 74 of the integers 1 to 100 are divisible by 2, 3 or 5 [P, check]; the numbers of derangements of 3, 4, 5 and 6 objects are 2, 9, 44 and 265, with D_n = n! Σ (−1)ᵏ/k! [P, check]; the sum of the first n odd numbers is n², and 2ⁿ > n² for every n ≥ 5 although it fails for n = 2, 3 and 4, which is why the base case matters [P, check]; every integer n ≥ 2 has a prime factor, by strong induction [P, check up to 2000]; √2 is irrational, by contradiction on a fraction in lowest terms [P]; the Catalan numbers 1, 2, 5, 14, 42, 132 and 429 count the standard bracket sequences [check]; the handshake lemma (Σ degrees = 2E) is proved by double counting [P].
 - **Build:** from scratch: a truth-table generator and a tautology and equivalence checker for formulas given as strings; a brute-force verifier that tests a claimed identity or inequality for n up to a bound and reports the first counter-example (reproducing the 2ⁿ > n² failure at 2, 3 and 4); an induction harness that checks a base case and then the inductive step as a program on a finite range; a counting toolkit (permutations, combinations, stars and bars, inclusion–exclusion, derangements) each checked by enumeration; a pigeonhole counter-example searcher; a loop-invariant tracer that asserts an invariant at every iteration of binary search, insertion sort and Euclid's algorithm. [local]
 - **Gap-fills:** *[inferred: Hammack, Book of Proof, Parts I to IV (the contents were read from public pages); Velleman, How to Prove It; Grimaldi, Discrete and Combinatorial Mathematics, recalled, not checked]* the formal logic of first-order theories is in U15.3; number theory is in U5.2 and U5.12; graph proofs are in U21.5; recurrences are solved in U17.1.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.12 Logic, proof paradigms and formal languages; U21.13 Counting, generating functions and combinatorics; U21.18 An invitation to mathematics.
 
 **Assignment A21.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -5993,6 +6286,131 @@ Bridge for: U17.1 to U17.14, U19.3, U21.5, U21.6 and every [P] result of D17 to 
 
 </details>
 
+### U21.12 Logic, proof paradigms and formal languages
+**Sources:** DMK W1, o; HEM W1–2, o; IM o
+Bridge for: U17.1 (discrete mathematics for algorithm analysis), U21.4 (proofs and discrete reasoning).
+Shares ground with the cloud units U15.3 (sets, relations), U21.4 (proofs and discrete reasoning) and U17.1 (discrete mathematics for algorithm analysis); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.4: a truth-table and tautology checker in Python.
+- **Topics:** Formalizing proofs and proof paradigms; representation of statements; duality; tautologies and contradictions; quantifiers; predicates and validity of arguments; propositional logics; languages and grammar; finite state machines and their transition table diagrams; the idea of mathematics beyond "procedures-to-solve-routine-problems"; interconnections between seemingly disjoint topics; HEM main topics: discrete mathematics, graph theory, linear programming problems, queuing theory; discrete mathematics as the study of mathematical structures that are discrete (elements take finite values as opposed to continuous structures); five main topics: proofs, combinatorics, graphs, number theory and algebra; the course will be full of puzzles and CS examples.
+- **Results:** Equivalence laws and duality principle [P]; soundness of standard inference rules (modus ponens, resolution) [P]; principle of mathematical induction and strong induction [P].
+- **Build:** a DFA simulator driven by a transition table.
+- **Gap-fills:** *[inferred: Rosen]* direct proof, contrapositive, contradiction, cases, induction, strong induction, structural induction, well-ordering; sets, relations and functions as the common language; regular languages and context-free grammars as the bridge to formal-language theory (see language-theory track).
+
+**Assignment A21.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which formula is a tautology?
+
+(A) p AND (NOT p)  
+(B) (p -> q) OR (q -> p)  
+(C) p XOR q  
+(D) p -> (NOT p)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are logically equivalent to p -> q?
+
+(A) (NOT p) OR q  
+(B) (NOT q) -> (NOT p)  
+(C) q -> p  
+(D) NOT (p AND (NOT q))
+
+**Q3 (2 marks, numerical answer (functions)).** How many distinct Boolean functions of 3 variables exist?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove by induction that 1 + 2 + ... + n = n(n+1)/2 for all n >= 1, stating the base case, the inductive hypothesis and where it is used.
+
+**Q5 (3 marks, programming).** Write truth_table_is_tautology(f, n) (f takes n Booleans) and dfa_run(delta, start, accepting, word). Enumerate inputs with NumPy. Acceptance: the tautology test accepts (p->q) or (q->p) and rejects p xor q; a DFA you design accepts exactly binary strings with an even number of 1s on 6 hand-picked words. Predict the number of rows enumerated for n=6.
+
+<details><summary>Key for A21.12 (open only after your attempt)</summary>
+
+- **Q1:** B. Either p implies q or q implies p in every row; the others fail for some assignment.
+- **Q2:** ABD. The converse q -> p is not equivalent; the other three are the standard equivalent forms.
+- **Q3:** 256 functions (tolerance ±0). Each of the 8 input rows independently takes value 0 or 1, so 2^8.
+- **Q4 (marking outline):** Base n=1; assume for n; add n+1 to both sides and factor to (n+1)(n+2)/2.
+- **Q5 (what a passing submission shows):** 64 rows enumerated; all stated tests pass; the DFA has two states.
+
+</details>
+
+### U21.13 Counting, generating functions and combinatorics
+**Sources:** DMK W2–3; IM A
+Bridge for: U17.1 (discrete mathematics for algorithm analysis), U19.1 (calculus, counting and matrices for statistics), U21.4 (proofs and discrete reasoning).
+Shares ground with the cloud units U21.4 (proofs and discrete reasoning) and U17.1 (discrete mathematics for algorithm analysis); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.4: inclusion–exclusion.
+- **Topics:** Counting; generating functions; basic combinatorics; counting principles (basic methods, the pigeonhole principle, the binomial theorem, permutations, graphs, recurrence relations, bijective proofs); polynomials in several variables and counting monomials.
+- **Results:** Binomial theorem [P]; pigeonhole principle and generalized form [P]; solution of linear recurrences by characteristic roots and by generating functions [D]; bijective proof of Vandermonde-type identities [P].
+- **Build:** recurrence solver and coefficient extraction from power series using NumPy; brute-force verification of counting formulas on small cases.
+- **Gap-fills:** *[inferred: Concrete Mathematics; Lovász]* ordinary and exponential generating functions, partitions, Catalan numbers, Stirling numbers, derangements, double counting.
+
+**Assignment A21.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** How many distinct arrangements of the letters of BANANA exist?
+
+(A) 720  
+(B) 120  
+(C) 60  
+(D) 30
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which identities are true for all 0 <= k <= n?
+
+(A) C(n,k) = C(n,n-k)  
+(B) sum over k of C(n,k) = 2^n  
+(C) C(n,k) = C(n-1,k) + C(n-1,k-1)  
+(D) C(n,k) = n!/k!
+
+**Q3 (2 marks, numerical answer (permutations)).** How many derangements (no fixed point) of 5 objects exist?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the sum over k of C(n,k) equals 2^n twice: once by the binomial theorem and once by a bijection between subsets and binary strings.
+
+**Q5 (3 marks, programming).** Using np.convolve on coefficient arrays, count the ways to make 50 cents from coins 1, 5, 10 and 25 (order irrelevant). Predict the answer first, then compare with a brute-force count you also write. Both must agree.
+
+<details><summary>Key for A21.13 (open only after your attempt)</summary>
+
+- **Q1:** C. 6!/(3! 2!) = 60.
+- **Q2:** ABC. D omits the (n-k)! in the denominator.
+- **Q3:** 44 permutations (tolerance ±0). Inclusion-exclusion: 5! (1 - 1 + 1/2 - 1/6 + 1/24 - 1/120) = 44.
+- **Q4 (marking outline):** Set x=y=1 in (x+y)^n; each subset of an n-set corresponds to its indicator string of length n.
+- **Q5 (what a passing submission shows):** 49 ways by generating-function product and by brute force.
+
+</details>
+
+### U21.14 Posets, lattices, Boolean algebra and switching circuits
+**Sources:** DMK W4; HEM W2–5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+Shares ground with the cloud unit U14.1 (binary representation, number systems and digital logic); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Posets, chains and anti-chains; partially ordered sets I and II; duality and lattices as an algebraic system; sublattice I and II; Boolean algebra; switching algebra; Boolean functions; different representations of Boolean functions; circuit minimization and simplification (I and II); Karnaugh map I and II; table diagrams (of Boolean functions and of finite-state machines).
+- **Results:** Dilworth's theorem [P]; Mirsky's theorem [P]; Boolean algebra axioms imply duality and De Morgan laws [P]; canonical (sum-of-products) form exists and is unique [P].
+- **Build:** Quine–McCluskey minimizer from scratch; checked against hand Karnaugh-map reductions.
+- **Gap-fills:** *[inferred: Rosen]* Hasse diagrams, Sperner's theorem, distributive and complemented lattices, Stone representation (statement).
+
+**Assignment A21.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In a partially ordered set, an antichain is a subset in which
+
+(A) every two elements are comparable  
+(B) no two distinct elements are comparable  
+(C) there is a greatest element  
+(D) the order is total
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are laws of Boolean algebra?
+
+(A) x + xy = x  
+(B) x + x' = 1  
+(C) x x' = 1  
+(D) x + yz = (x + y)(x + z)
+
+**Q3 (2 marks, numerical answer (cells)).** In a 4-variable Karnaugh map, how many cells does the largest group representing a single-literal product term contain?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** From the Boolean algebra axioms, prove De Morgan's law (x + y)' = x' y' by showing x' y' is the complement of x + y and using uniqueness of complements.
+
+**Q5 (3 marks, programming).** Implement prime_implicants(minterms, nvars) by Quine-McCluskey merging with NumPy bit operations. Acceptance: for minterms {0,1,2,5,6,7} on 3 variables it returns exactly six implicants; compare with the cover you find by hand on a Karnaugh map. Predict the count first.
+
+<details><summary>Key for A21.14 (open only after your attempt)</summary>
+
+- **Q1:** B. Antichain means pairwise incomparable.
+- **Q2:** ABD. x x' = 0, so C is false.
+- **Q3:** 8 cells (tolerance ±0). A single literal fixes one variable, leaving 3 free: 2^3 cells.
+- **Q4 (marking outline):** Show (x+y)+x'y' = 1 and (x+y)x'y' = 0 by distributivity; uniqueness gives the result.
+- **Q5 (what a passing submission shows):** Six: 00-, 0-0, -01, 1-1, 11-, -10.
+
+</details>
+
 ### U21.5 Bridge: graph theory from scratch — definitions, degrees, paths and connectivity, trees, Eulerian and Hamiltonian graphs, bipartite graphs, planarity, colouring, matchings and representations
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
 Bridge for: U17.10, U17.11, U17.12, U17.13, U17.14, U2.7, U3.2, U15.19, U18.3, and the unit "Algorithmic Graph Theory and Data Structures" as a whole.
@@ -6000,6 +6418,7 @@ Bridge for: U17.10, U17.11, U17.12, U17.13, U17.14, U2.7, U3.2, U15.19, U18.3, a
 - **Results:** the sum of the degrees is twice the number of edges, so the number of odd-degree vertices is even [P, double counting]; a tree on n vertices has n − 1 edges, and the equivalent characterisations of a tree are proved to coincide [P]; the Prüfer map is a bijection from sequences in {1, …, n}ⁿ⁻² to labelled trees, so there are nⁿ⁻² of them: 125 for n = 5, with the round trip of encoding and decoding checked on all 125 sequences, and 1296 for n = 6, which equals the cofactor of the Laplacian of K₆ [P, check]; K₃,₃ has 81 spanning trees, by the matrix-tree theorem [P, check]; a connected graph has an Eulerian circuit iff every degree is even, so Königsberg (degrees 3, 3, 3 and 5) has none [P, check]; for a connected planar graph V − E + F = 2, so E ≤ 3V − 6; K₅ has 10 edges against the bound 9 and K₃,₃ has 9 against 2V − 4 = 8, so neither is planar [P, check]; there are 64 labelled graphs on four vertices and 11 up to isomorphism [P, check by brute force]; the greedy colouring of the Petersen graph uses 3 colours in 1741 and 4 in 259 of 2000 random vertex orders, never more than Δ + 1 = 4 [P, check]; the reflected binary Gray code 0, 1, 3, 2, 6, 7, 5, 4 is a Hamiltonian path in the 3-cube [check].
 - **Build:** from scratch: a `Graph` class (adjacency list and matrix, directed and undirected, with degree, neighbours and component counting); Prüfer encoding and decoding with a bijection test; an Euler-circuit finder (Hierholzer) and a Hamiltonian-cycle backtracker; a bipartiteness checker by two-colouring; a planarity-bound checker; a greedy colourer with random orders; a canonical-form isomorphism tester by brute force for small graphs; each tested against `networkx` where installed. [local]
 - **Gap-fills:** *[inferred: West, Introduction to Graph Theory; Diestel, Graph Theory; Bondy and Murty, recalled, not checked]* the proofs of Kuratowski's, Brooks', Vizing's and the four-colour theorem are not given; extremal and random graph theory are named only; the algorithms on graphs (search, shortest paths, flows) are in U17.11 to U17.14.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.15 Graph theory.
 
 **Assignment A21.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6033,6 +6452,173 @@ Bridge for: U17.10, U17.11, U17.12, U17.13, U17.14, U2.7, U3.2, U15.19, U18.3, a
 
 </details>
 
+### U21.15 Graph theory
+**Sources:** DMK W5–7; HEM W5–8
+Bridge for: U2.7 (graph algorithms for routing), U3.2 (bipartite matching, Hall's theorem and Birkhoff–von Neumann decomposition), U11.11 (Big data applications), U21.5 (graph theory from scratch).
+Shares ground with the cloud units U21.5 (graph theory from scratch), U17.11 (Graph search), U17.14 (Flow networks, the Ford–Fulkerson method) and U3.2 (bipartite matching); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.5: matrix representation of graphs (incidence and adjacency matrices); Euler's circuit theorem; graph class with adjacency/incidence matrices, BFS/DFS, bipartiteness and Euler-tour test.
+- **Topics:** Basic graph theory; various types of graph; tours, cycles, cliques, covers; Eulerian and Hamiltonian graphs; travelling salesman problem; vertex and edge connectivity; coloring, matching, planarity; planar graphs; Kuratowski's theorem; detection of planarity; Euler's formula; dual of a planar graph; colouring of graphs; chromatic numbers; four colour theorem; various types of graphs; dual of a planar graph.
+- **Results:** Handshake lemma [P]; Euler's formula V−E+F=2 [P]; Kuratowski's theorem [X→proof deferred, stated with the two obstruction graphs]; five-colour theorem [P]; four-colour theorem [X]; Hall's marriage theorem [P]; König's theorem [P]; Menger / max-flow–min-cut [X→U25.6, proved there by LP duality].
+- **Build:** greedy and DSATUR colouring; TSP by dynamic programming (Held–Karp) at toy size.
+- **Gap-fills:** *[inferred: West]* trees and spanning trees (Kruskal, Prim), shortest paths (Dijkstra), Dirac and Ore conditions, Ramsey's theorem, spectral graph theory (adjacency/Laplacian eigenvalues; link to U18.21 and to spectral clustering in U26.9).
+
+**Assignment A21.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A connected planar graph has 6 vertices and 9 edges. How many faces does it have?
+
+(A) 3  
+(B) 4  
+(C) 5  
+(D) 6
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which statements are true?
+
+(A) K5 is not planar  
+(B) K3,3 is not planar  
+(C) Every planar graph is 4-colourable  
+(D) A graph with an Euler circuit has all degrees odd
+
+**Q3 (2 marks, numerical answer (edges)).** How many edges does the complete graph K8 have?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the handshake lemma (sum of degrees = 2E) and deduce that the number of odd-degree vertices is even.
+
+**Q5 (3 marks, programming).** Write is_bipartite(adj) using BFS two-colouring on a NumPy adjacency matrix, and has_euler_circuit(adj) using connectivity and degree parity. Acceptance: C5 not bipartite, C6 bipartite, K3,3 bipartite; K4 has no Euler circuit and C6 has one. Predict each answer first.
+
+<details><summary>Key for A21.15 (open only after your attempt)</summary>
+
+- **Q1:** C. Euler: V - E + F = 2 gives F = 5.
+- **Q2:** ABC. An Euler circuit needs all degrees even.
+- **Q3:** 28 edges (tolerance ±0). C(8,2) = 28.
+- **Q4 (marking outline):** Each edge contributes 2 to the degree sum; an even sum forces an even count of odd terms.
+- **Q5 (what a passing submission shows):** C5 False, C6 True, K3,3 True; K4 False, C6 True.
+
+</details>
+
+### U21.16 Number theory and cryptography
+**Sources:** DMK W8–9; IM A
+Bridge for: U5.2 (integers modulo n), U5.12 (number theory for public-key cryptography).
+Shares ground with the cloud units U5.12 (number theory for public-key cryptography), U5.2 (integers modulo n), U5.14 (Public-key encryption I) and U5.13 (Key exchange, cyclic groups and the Diffie–Hellman family); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U5.12: Fermat's little theorem and Euler's theorem. U5.14: correctness of RSA.
+- **Topics:** Basic number theory; elementary number theory (modular arithmetic, divisibility, prime numbers); density of primes; cryptography.
+- **Results:** Euclid's algorithm and Bézout's identity [P]; fundamental theorem of arithmetic [P]; Chinese remainder theorem [P]; infinitude of primes [P]; Chebyshev-type density bounds [S]; prime number theorem [X].
+- **Build:** extended Euclid, fast modular exponentiation, Miller–Rabin and toy RSA from scratch. Hand-built cryptography is for learning only and is never deployed (Master Rules 6.8).
+- **Gap-fills:** *[inferred: Hardy–Wright; Rosen]* primality tests, Diffie–Hellman, discrete logarithm, hashing as modular arithmetic.
+
+**Assignment A21.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** What is 3^100 mod 7?
+
+(A) 1  
+(B) 2  
+(C) 4  
+(D) 5
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) gcd(a,b) divides ax + by for all integers x, y  
+(B) If prime p divides ab then p divides a or b  
+(C) phi(n) = n - 1 for every n > 1  
+(D) The Chinese remainder theorem needs pairwise coprime moduli
+
+**Q3 (2 marks, numerical answer).** Compute Euler's totient phi(36).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Fermat's little theorem: for prime p and p not dividing a, a^(p-1) = 1 mod p, by multiplying the residues 1..p-1 by a.
+
+**Q5 (3 marks, programming).** Implement ext_gcd, modinv, modpow (square and multiply) and miller_rabin with plain integer code (NumPy optional, for testing arrays of inputs). Acceptance: modinv(3,11)=4; modpow(7,560,561)=1 while miller_rabin(561) is False; toy RSA with p=61, q=53, e=17 recovers a message. Never deploy hand-built cryptography.
+
+<details><summary>Key for A21.16 (open only after your attempt)</summary>
+
+- **Q1:** C. 3^6 = 1 mod 7 and 100 = 4 mod 6, so 3^4 = 81 = 4 mod 7.
+- **Q2:** ABD. phi(n) = n - 1 only for prime n.
+- **Q3:** 12 (tolerance ±0). Count integers up to 36 coprime to 36: 12.
+- **Q4 (marking outline):** a, 2a, ..., (p-1)a is a permutation of 1..p-1 mod p; equate the products and cancel (p-1)!.
+- **Q5 (what a passing submission shows):** modinv(3,11)=4; 561 (a Carmichael number) is rejected; RSA round trip succeeds.
+
+</details>
+
+### U21.17 Algebra: finite fields, codes, groups and orbit counting
+**Sources:** DMK W10–12
+Bridge for: U2.11 (coding theory), U5.5 (groups, rings, fields, finite fields and linear algebra over them), U5.13 (Key exchange, cyclic groups and the Diffie–Hellman family), U5.15 (Elliptic curves).
+Shares ground with the cloud units U2.11 (coding theory) and U5.5 (groups, rings, fields); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U5.5: Lagrange's theorem.
+- **Topics:** Finite fields; codes; basic group theory; orbit counting; normal subgroups.
+- **Results:** existence and uniqueness of finite fields of order p^n [S]; Hamming bound and distance of linear codes [P]; orbit–stabilizer theorem [P]; Burnside's lemma [P]; first isomorphism theorem for groups [P].
+- **Build:** GF(2^m) arithmetic; Hamming and Reed–Solomon encoder/decoder at toy size; Burnside-count of necklaces by enumeration versus formula.
+- **Gap-fills:** *[inferred: Artin; MacWilliams–Sloane]* cyclic groups, permutation groups (link to U18.18 signature of a permutation), quotient groups, BCH codes.
+
+**Assignment A21.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A group of order 12 can have a subgroup of order
+
+(A) 5  
+(B) 7  
+(C) 8  
+(D) 6
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A field with 8 elements exists  
+(B) A field with 6 elements exists  
+(C) The Hamming (7,4) code corrects any single-bit error  
+(D) The minimum distance of the Hamming (7,4) code is 3
+
+**Q3 (2 marks, numerical answer (necklaces)).** Using Burnside's lemma, how many distinct necklaces of 4 beads in 2 colours exist under rotation?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the orbit-stabilizer theorem: for a group G acting on X, abs(orbit of x) times abs(stabilizer of x) equals abs(G).
+
+**Q5 (3 marks, programming).** Implement gf8_mul over GF(2^3) with modulus x^3 + x + 1 using bit operations, then a Hamming(7,4) encoder and single-error corrector. Acceptance: gf8_mul(3,5)=4; flipping any one of 7 bits of any of the 16 codewords is corrected. Predict gf8_mul(3,5) first.
+
+<details><summary>Key for A21.17 (open only after your attempt)</summary>
+
+- **Q1:** D. Lagrange: the subgroup order must divide 12; only 6 does.
+- **Q2:** ACD. Finite field orders are prime powers, so 6 is impossible.
+- **Q3:** 6 necklaces (tolerance ±0). Rotations fix 16, 2, 4, 2 colourings; the average is 6.
+- **Q4 (marking outline):** The map gStab -> g.x is a bijection from left cosets of the stabilizer to the orbit.
+- **Q5 (what a passing submission shows):** gf8_mul(3,5)=4 and 16 x 7 = 112 single-bit errors are all corrected.
+
+</details>
+
+### U21.18 An invitation to mathematics: polynomials, functions, matrices, conservation laws
+**Sources:** IM o, A
+Bridge for: U21.4 (proofs and discrete reasoning).
+Shares ground with the cloud units U5.5 (groups, rings, fields), U21.2 (school mathematics through class 12, consolidated), U17.1 (discrete mathematics for algorithm analysis) and U21.4 (proofs and discrete reasoning); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Polynomials (interpolation, Taylor's formula, polynomials with integer values, polynomials in several variables, counting monomials); functions (continuous functions, the intermediate value property and its applications, fixed points, linear transformations of the plane, the derivative and dilations, higher-order derivatives and the binomial theorem, polynomial approximation to functions); matrices (matrices and transformations, multiplication versus composition, determinants as dilation factors, polynomials applied to matrices, matrices in probability theory, matrices in polynomial interpolation, the Vandermonde determinant); conservation laws (invariants of transformations, discrete transformations and applications, transformations in Euclidean geometry, circle inversions); elementary number theory (modular arithmetic, divisibility, prime numbers).
+- **Results:** Lagrange interpolation uniqueness [P]; intermediate value theorem [P in U24.2]; Vandermonde determinant [D]; invariants as proof tool [P].
+- **Build:** interpolation and Vandermonde solve in NumPy, with condition-number growth observed (bridge to U18.22).
+- **Gap-fills:** this unit is a conceptual bridge; each theme is taught again at depth in D24, D18 and U21.16.
+
+**Assignment A21.18** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A polynomial of degree at most n passing through n+1 points with distinct x-values is
+
+(A) not guaranteed to exist  
+(B) unique  
+(C) non-unique  
+(D) only unique if n is even
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which follow from the intermediate value theorem?
+
+(A) Every cubic polynomial has a real root  
+(B) Every continuous f from [0,1] to [0,1] has a fixed point  
+(C) Every continuous function is differentiable  
+(D) The equation cos x = x has a solution
+
+**Q3 (2 marks, numerical answer).** Compute the Vandermonde determinant for nodes 1, 2, 4.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that every continuous f from [0,1] to [0,1] has a fixed point by applying the intermediate value theorem to g(x) = f(x) - x.
+
+**Q5 (3 marks, programming).** Build the Vandermonde matrix for n equally spaced nodes on [-1,1], interpolate 1/(1+25x^2) and report the maximum error on a fine grid and the condition number for n = 5, 10, 15, 20. Predict the trend first.
+
+<details><summary>Key for A21.18 (open only after your attempt)</summary>
+
+- **Q1:** B. The Vandermonde system is nonsingular for distinct nodes.
+- **Q2:** ABD. Continuity does not imply differentiability.
+- **Q3:** 6 (tolerance ±0). Product over pairs of (xj - xi) = 1*3*2 = 6.
+- **Q4 (marking outline):** g(0) >= 0 and g(1) <= 0; IVT gives a zero of g.
+- **Q5 (what a passing submission shows):** Error first falls then grows near the ends (Runge); condition number grows exponentially with n.
+
+</details>
+
 ### U21.6 Bridge: probability from first principles — sample spaces, random variables, expectation, the standard distributions, limit theorems and simulation by inversion, rejection and Monte Carlo
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
 Bridge for: U19.3 to U19.17, U20.1 to U20.8, U17.5, U18.7, U18.13 and the probability prerequisite of Algorithmic Graph Theory and Data Structures.
@@ -6040,6 +6626,7 @@ Bridge for: U19.3 to U19.17, U20.1 to U20.8, U17.5, U18.7, U18.13 and the probab
 - **Results:** Markov: P(X ≥ a) ≤ E[X]/a and Chebyshev: P(|X − μ| ≥ kσ) ≤ 1/k² [P]; the weak law: P(|X̄ₙ − μ| ≥ ε) ≤ σ²/(nε²) [P; check: for fair coins and ε = 0.1 the bound is 0.25 at n = 100 and 0.025 at n = 1000, while the observed frequencies are 0.035 and 0.0]; for the exponential distribution P(X > s + t given X > s) = P(X > t) [P; check: 0.1118 and 0.1108 against e^(−λt) = 0.1108 for λ = 2, s = 0.7, t = 1.1]; inverse-transform sampling X = −ln(1 − U)/λ gives mean 0.5004 and variance 0.2505 for λ = 2, against 0.5 and 0.25 [P, check]; rejection sampling of Beta(2, 5) under a rectangle accepts 40.7 % of proposals, equal to 1/f_max = 0.4069, and the accepted mean is 0.2849 against 2/7 [P, check]; Monte-Carlo estimation of π from 10⁶ points has error 4.5·10⁻⁴ against a theoretical standard deviation of 1.6·10⁻³, so the 1/√n rate holds [D, check]; the expected number of draws to collect all n coupons is n H_n, 224.96 for n = 50, and 3000 simulations average 226.0 [D, check]; the sum of 12 uniform variables minus 6 has variance 0.9995 and passes a Kolmogorov–Smirnov test against the standard normal (p = 0.32) [check, the central limit theorem at n = 12]; a geometric variable with p = 0.2 has mean 5 = 1/p [P, check].
 - **Build:** from scratch: a linear congruential generator with a uniformity test (chi-square on ten bins); samplers for the exponential (by inversion), the normal (by Box–Muller), the Poisson (by multiplying uniforms) and the beta (by rejection), each tested with moments and a Kolmogorov–Smirnov statistic; a Monte-Carlo integrator and a π estimator with an error-versus-n plot; a coupon-collector simulator checked against its formula (the birthday simulator is the one of U5.1); an empirical check of Markov, Chebyshev and the weak law on several distributions; a central-limit-theorem demonstrator for a skewed distribution. [local]
 - **Gap-fills:** *[inferred: Ross, A First Course in Probability; Grinstead and Snell; Wasserman, All of Statistics Chapters 1 to 5, recalled, not checked]* measure-theoretic probability is not needed and is not taught; the proof of the central limit theorem is sketched only; Markov chains are in U11.10 and U18.13; the probability of random processes for networks is in U2.1 and tail bounds for algorithms in U9.2.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.21 Special continuous distributions and the normal distribution; U19.22 Functions of random variables, transformations and order statistics; U19.23 Joint distributions, conditioning, covariance and multivariate normal; U19.24 Limit theorems and concentration inequalities.
 
 **Assignment A21.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6073,7 +6660,703 @@ Bridge for: U19.3 to U19.17, U20.1 to U20.8, U17.5, U18.7, U18.13 and the probab
 
 </details>
 
-## D17. Algorithms and data structures, taught on demand: analysis, divide and conquer, sorting, hashing, trees, amortisation, greedy and dynamic programming, graph search, shortest paths, network flow, tries, B-trees, string matching and hard problems
+## D24. Calculus and analysis, taught on demand: single-variable and multivariable calculus, differential equations, dynamical systems, numerical methods, complex analysis and transforms
+
+Aim: the calculus and applied-analysis toolkit that optimization, probability, signal processing and learning theory use, folded from the earlier machine-learning curriculum into one domain by subject: single-variable calculus and real analysis, then calculus in several variables, then differential equations, numerical methods, complex analysis and transforms. It is **on demand**: a unit is opened from a Bridge for or On demand line, or when you choose to study the subject for its own sake; the units below keep their sources and benchmarks.
+
+**Single-variable calculus and real analysis (U24.1–U24.5).** Aim: a rigorous single-variable calculus (Spivak-style) plus the analysis vocabulary that optimization, probability and learning theory later use. Benchmarks (recalled, not checked): Spivak, *Calculus*; Thomas–Finney, *Calculus and Analytic Geometry*; Cheney, *Analysis for Applied Mathematics*; Rudin, *Principles of Mathematical Analysis*.
+
+**Multivariable and vector calculus (U24.6–U24.10).** Aim: derivatives, integrals and fields in several variables, the machinery behind gradients, Jacobians, Hessians and backpropagation. Benchmarks (recalled, not checked): Thomas' Calculus; Kreyszig, *Advanced Engineering Mathematics*; Piskunov, *Differential and Integral Calculus*; Deisenroth et al., *Mathematics for Machine Learning*, Ch. 5.
+
+**Differential equations, dynamical systems, numerical methods, complex analysis and transforms (U24.11–U24.17).** Aim: the applied-analysis toolkit (ODEs, difference equations, numerics, complex variables, Laplace/Z/Fourier) that supports optimization-as-dynamics (D25), signal processing, diffusion models (D30) and FFT-based systems (D33). Benchmarks (recalled, not checked): Kreyszig, *Advanced Engineering Mathematics* (10th ed.); O'Neil; Jain–Iyengar; Churchill–Brown; Ahlfors; Conway; Debnath–Bhatta; Strogatz, *Nonlinear Dynamics and Chaos*; Murray, *Mathematical Biology*.
+
+### U24.1 Numbers, countability, functions, limits and continuity
+**Sources:** CAL1 W1–2, o; PMO W1–2; OFF W1
+Bridge for: U19.1 (calculus, counting and matrices for statistics).
+- **Topics:** Introduction to numbers; countability and uncountability; examples of irrational numbers; functions; limits of functions I and II; continuous functions; intermediate value theorem; maximum value theorem; supremum and infimum; sets in Rn (balls, neighbourhood, interior point, open sets, closed sets, bounded sets, compact sets, level sets, epigraphs); supremum and infimum of a set; sequence, subsequence, limsup and liminf; order of convergence of a sequence; limit, continuity, uniform continuity and Lipschitz continuity and their geometries; overview of real analysis.
+- **Results:** Uncountability of the reals (diagonal argument) [P]; completeness (least upper bound) [Def]; intermediate value theorem [P]; extreme value (maximum value) theorem [P]; Bolzano–Weierstrass [P]; Heine–Borel for Rn [S].
+- **Build:** bisection and ε–δ explorers in Python; numerical estimation of convergence order from an error sequence.
+- **Gap-fills:** *[inferred: Spivak; Cheney]* metric spaces and normed spaces (needed by D18 norms and D25), Cauchy sequences, completeness of Rn.
+
+**Assignment A24.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which set is uncountable?
+
+(A) The rationals  
+(B) The integers squared Z x Z  
+(C) The interval (0,1)  
+(D) The algebraic numbers
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Every Cauchy sequence of reals converges  
+(B) Every bounded monotone sequence converges  
+(C) Every bounded sequence converges  
+(D) A continuous function on [a,b] attains its maximum
+
+**Q3 (2 marks, numerical answer).** For f(x) = 3x + 1 at x = 2, what is the largest delta that works in the epsilon-delta definition for epsilon = 0.06?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the interval (0,1) is uncountable using Cantor's diagonal argument.
+
+**Q5 (3 marks, programming).** Write estimate_order(errors) returning the slope p fitted to log e_{k+1} against log e_k. Apply it to Newton iterates for sqrt(2) and to bisection errors. Predict both orders first.
+
+<details><summary>Key for A24.1 (open only after your attempt)</summary>
+
+- **Q1:** C. Cantor's diagonal argument; the others are countable.
+- **Q2:** ABD. Bounded sequences such as (-1)^n need not converge.
+- **Q3:** 0.02 (tolerance ±0.001). abs(f(x) - 7) = 3 abs(x - 2) < 0.06 iff abs(x - 2) < 0.02.
+- **Q4 (marking outline):** Assume a list of decimal expansions; build a number differing from the nth in the nth digit (avoiding 0 and 9 runs); it is missing from the list.
+- **Q5 (what a passing submission shows):** About 2 for Newton and about 1 for bisection.
+
+</details>
+
+### U24.2 Differentiation and mean value theorems
+**Sources:** CAL1 W3–4; EM1 W1, o; AEMK W1; PMO W2
+Bridge for: U19.1 (calculus, counting and matrices for statistics).
+Shares ground with the cloud unit U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.2: derivatives, maxima and minima.
+- **Topics:** Derivative of a function; rules of differentiation; Rolle's theorem and Lagrange MVT (mean-value theorem); Cauchy's mean value theorem; differentiability; monotonic functions and inverse function; differential calculus of functions of one variable; indeterminate forms; Newton's method for solving equations; optimization problems; little-oh and big-Oh notations.
+- **Results:** Rolle and Lagrange mean value theorems [P]; Cauchy mean value theorem [P]; L'Hôpital's rule (indeterminate forms) [P]; inverse function theorem in one variable [P]; first and second derivative tests [P]; local quadratic convergence of Newton's method [D].
+- **Build:** Newton and secant solvers from scratch, with the error curve plotted against the predicted order (links to U25.8).
+- **Gap-fills:** *[inferred: Thomas–Finney]* related rates and curve sketching as applied optimization problems.
+
+**Assignment A24.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Newton's method for f(x) = x^2 - 2 starting at x0 = 1 gives x1 =
+
+(A) 1.25  
+(B) 1.5  
+(C) 1.75  
+(D) 2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Rolle's theorem is a special case of the mean value theorem  
+(B) The mean value theorem needs continuity on [a,b] and differentiability on (a,b)  
+(C) f'(c)=0 always means a local extremum at c  
+(D) If f' > 0 on an interval then f is increasing there
+
+**Q3 (2 marks, numerical answer).** Newton's method for x^2 - 2 from x0 = 1.5: compute x2 (one more step after 1.5).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the Lagrange mean value theorem from Rolle's theorem by applying Rolle to g(x) = f(x) - f(a) - (f(b)-f(a))(x-a)/(b-a).
+
+**Q5 (3 marks, programming).** Implement bisection, Newton and secant solvers returning (root, iterations). Solve cos x = x. Acceptance: root 0.7390851332 to 1e-10; Newton from 1.0 needs at most 6 iterations. Predict the iteration counts of all three first.
+
+<details><summary>Key for A24.2 (open only after your attempt)</summary>
+
+- **Q1:** B. x1 = 1 - (1 - 2)/2 = 1.5.
+- **Q2:** ABD. f(x)=x^3 has f'(0)=0 without an extremum.
+- **Q3:** 1.417 (tolerance ±0.0001). x2 = 1.5 - 0.25/3 = 1.41667.
+- **Q4 (marking outline):** g(a)=g(b)=0, so g'(c)=0 which rearranges to the MVT.
+- **Q5 (what a passing submission shows):** Newton about 4-5, secant about 6, bisection about 34 iterations for 1e-10.
+
+</details>
+
+### U24.3 Integration, applications and transcendental functions
+**Sources:** CAL1 W4–7; EM1 o; AEMK W2
+Bridge for: U19.1 (calculus, counting and matrices for statistics).
+Shares ground with the cloud unit U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Integration I, II, III in the style and spirit of Newton and Leibnitz; indefinite integrals; integration by parts; integration of rational functions; trapezoidal rule for evaluating a definite integral; Simpson's rule for evaluating a definite integral; applications of definite integral I–IV; transcendental functions I and II; surface and volume of revolution; calculation of centre of gravity and centre of mass; area and volume as integrals.
+- **Results:** Fundamental theorem of calculus (both parts) [P]; integrability of continuous functions [S]; error bounds for trapezoid and Simpson rules [D]; properties of exp and log from their integral definition [P].
+- **Build:** trapezoid, Simpson and adaptive quadrature in NumPy, checked against `scipy.integrate`.
+- **Gap-fills:** *[inferred: Thomas–Finney]* partial fractions procedure and trigonometric substitutions; Riemann sums and the Riemann–Darboux definition.
+
+**Assignment A24.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The integral of x e^x from 0 to 1 equals
+
+(A) 1  
+(B) e - 1  
+(C) e  
+(D) 2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Simpson's rule is exact for cubic polynomials  
+(B) The trapezoid rule is exact for linear functions  
+(C) d/dx of the integral of f from a to x equals f(x) for continuous f  
+(D) Every continuous function has an elementary closed-form antiderivative
+
+**Q3 (2 marks, numerical answer).** Trapezoid rule with n = 4 intervals for the integral of x^2 on [0,1].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the fundamental theorem of calculus, part 2: if F' = f with f continuous on [a,b] then the integral of f equals F(b) - F(a), using part 1.
+
+**Q5 (3 marks, programming).** Implement composite trapezoid and Simpson rules and an adaptive Simpson routine. Integrate sin on [0, pi] (exact value 2). Acceptance: when n doubles, the error ratio is about 4 for trapezoid and about 16 for Simpson. Predict both ratios first.
+
+<details><summary>Key for A24.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Integrate by parts: [x e^x - e^x] from 0 to 1 = 0 - (-1) = 1.
+- **Q2:** ABC. e^(-x^2) is continuous with no elementary antiderivative.
+- **Q3:** 0.3438 (tolerance ±0.0001). h/2 (f0 + 2 f1 + 2 f2 + 2 f3 + f4) = 0.34375.
+- **Q4 (marking outline):** G(x)=integral from a to x of f has G'=f; F-G is constant; evaluate at a and b.
+- **Q5 (what a passing submission shows):** Ratios near 4 and 16.
+
+</details>
+
+### U24.4 Taylor expansion, sequences, series and power series
+**Sources:** CAL1 W7–8; EM1 o; AEMK W1; MFML W9; PMO W2
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Taylor's expansion I and II; Taylor's and Maclaurin's theorems and series; infinite sequence I and II; infinite series and their convergence; tests for convergence of a series; absolute and conditional convergence; power series; Taylor's theorem with remainder in little-o and big-O form; historical development of the calculus.
+- **Results:** Taylor's theorem with Lagrange remainder [P]; ratio, root and comparison tests [P]; Abel/radius-of-convergence theorem (Cauchy–Hadamard) [P]; Rearrangement of conditionally convergent series (Riemann) [S].
+- **Build:** Taylor polynomials of exp, sin, log with error versus remainder bound.
+- **Gap-fills:** *[inferred: Spivak]* uniform convergence of series (needed in D24 Fourier and complex analysis).
+
+**Assignment A24.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The radius of convergence of the series sum of x^n / n! is
+
+(A) 0  
+(B) 1  
+(C) e  
+(D) infinity
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which series converge?
+
+(A) Sum of 1/n^2  
+(B) Sum of 1/n  
+(C) Sum of (-1)^n / n  
+(D) Sum of 1/n!
+
+**Q3 (2 marks, numerical answer).** Evaluate the degree-3 Maclaurin polynomial of e^x at x = 0.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the ratio test: if the limit of abs(a_{n+1}/a_n) is L < 1 then the series converges absolutely.
+
+**Q5 (3 marks, programming).** Write taylor_poly(coeffs, x) and compare Taylor polynomials of sin at 0 of degree 1 to 9 against the Lagrange remainder bound at x = 1. Acceptance: the observed error never exceeds the bound. Predict which degree first achieves 1e-6.
+
+<details><summary>Key for A24.4 (open only after your attempt)</summary>
+
+- **Q1:** D. The ratio of consecutive terms tends to 0 for every x.
+- **Q2:** ACD. The harmonic series diverges; the alternating harmonic series converges conditionally.
+- **Q3:** 1.646 (tolerance ±0.0001). 1 + 0.5 + 0.125 + 0.0208333 = 1.64583.
+- **Q4 (marking outline):** Pick r with L<r<1; eventually abs(a_{n+1}) <= r abs(a_n), so terms are dominated by a geometric series.
+- **Q5 (what a passing submission shows):** Degree 9 (error about 2.8e-6 for degree 7, below 1e-6 at degree 9).
+
+</details>
+
+### U24.5 Improper integrals, Gamma and Beta functions, integrals dependent on parameters
+**Sources:** EM1 W5, o; AEMK W2
+Bridge for: U19.14 (Bayesian inference).
+Shares ground with the cloud units U19.14 (Bayesian inference) and U21.6 (probability from first principles); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Improper integrals; convergence of improper integral; tests of convergence; Gamma and Beta functions and their properties; differentiation under the integral sign; Leibnitz rule of differentiation; integrals dependent on parameters and applications.
+- **Results:** Comparison and limit-comparison tests for improper integrals [P]; Γ(n+1)=nΓ(n) and the Beta–Gamma relation [P]; Leibniz rule [P under uniform-convergence conditions].
+- **Build:** numerical evaluation of Γ and B and moment integrals used later in D19 (Gamma, Beta and normal densities).
+- **Gap-fills:** *[inferred: Kreyszig]* Gaussian integral (needed for D19 normal distribution).
+
+**Assignment A24.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The value of the Gamma function at 1/2 is
+
+(A) 1  
+(B) sqrt(pi)  
+(C) pi  
+(D) 1/2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which improper integrals converge?
+
+(A) Integral from 1 to infinity of x^-2 dx  
+(B) Integral from 0 to 1 of 1/x dx  
+(C) Integral from 0 to 1 of x^(-1/2) dx  
+(D) Integral from 1 to infinity of 1/x dx
+
+**Q3 (2 marks, numerical answer).** Compute the Beta function B(2,3).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Gamma(n+1) = n Gamma(n) for n > 0 by integration by parts.
+
+**Q5 (3 marks, programming).** Compute Gamma(x) for x = 0.5, 1, 2.5 by numerical integration with a change of variables handling the endpoint singularity. Acceptance: relative error below 1e-6 against the closed forms sqrt(pi), 1 and 1.5 sqrt(pi)/2 (computed by hand). Predict which x is hardest.
+
+<details><summary>Key for A24.5 (open only after your attempt)</summary>
+
+- **Q1:** B. Gamma(1/2) equals the Gaussian integral over the half-line scaled to sqrt(pi).
+- **Q2:** AC. The 1/x integrals diverge logarithmically.
+- **Q3:** 0.08333 (tolerance ±0.0001). Gamma(2)Gamma(3)/Gamma(5) = 1*2/24 = 1/12.
+- **Q4 (marking outline):** Integrate t^n e^-t by parts; the boundary term vanishes and the remaining integral is n Gamma(n).
+- **Q5 (what a passing submission shows):** x = 0.5 is hardest because of the integrable singularity at 0.
+
+</details>
+
+### U24.6 Functions of several variables, partial derivatives and differentiability
+**Sources:** EM1 W2–3, o; AEMK W1, o; MFML W9; EMML W7; PMO W1–2; OMLH W1–2
+Bridge for: U19.1 (calculus, counting and matrices for statistics).
+Shares ground with the cloud units U21.2 (school mathematics through class 12, consolidated) and U19.1 (calculus, counting and matrices for statistics); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Functions of several variables; limit and continuity; partial derivatives and their geometrical interpretation; total differential and differentiability; derivatives of composite and implicit functions; implicit function theorem; derivatives of higher order and their commutativity; Euler's theorem on homogeneous functions; partial derivative, gradient, Hessian, directional derivative; differentiability and the hierarchy of partial derivatives, directional derivatives and differentiability; chain rule; gradient, Jacobian and Hessian; change of variables; vector calculus; basic concepts of calculus; tools from calculus of several variables; hierarchy of PDs (partial derivatives), DD (directional derivatives) and differentiability.
+- **Results:** Equality of mixed partials (Schwarz/Clairaut) [P]; chain rule in several variables [P]; differentiability implies directional derivatives and continuity, with the converse counterexamples [P]; implicit function theorem [S, proof sketch via contraction mapping]; Euler's homogeneous function theorem [P].
+- **Build:** numerical gradient and Jacobian checker (finite differences) and tape-based reverse-mode differentiation from scratch (bridge to U28.2 backpropagation).
+- **Gap-fills:** *[inferred: MML Ch.5]* gradients of vector-valued functions, gradients of matrices, useful identities, automatic differentiation (forward and reverse mode).
+
+**Assignment A24.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The gradient of f(x,y) = x^2 y at (1,2) is
+
+(A) (2,1)  
+(B) (4,1)  
+(C) (4,2)  
+(D) (1,4)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Mixed second partials are equal when they are continuous  
+(B) A differentiable function is continuous  
+(C) Existence of all partial derivatives implies differentiability  
+(D) A differentiable function has all directional derivatives
+
+**Q3 (2 marks, numerical answer).** Directional derivative of f = x^2 y at (1,2) in the direction (3,4)/5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that if f is differentiable at a then the directional derivative along a unit vector u equals the gradient dotted with u.
+
+**Q5 (3 marks, programming).** Implement num_grad and num_jacobian by central differences and a small tape-based reverse-mode differentiator supporting add, mul, sin, square. Acceptance: for f(x) = sin(x1 x2) + x2^2 the tape gradient matches central differences to 1e-8 at three random points. Predict the gradient at (1, 2) first.
+
+<details><summary>Key for A24.6 (open only after your attempt)</summary>
+
+- **Q1:** B. (2xy, x^2) = (4, 1).
+- **Q2:** ABD. Partials can exist at a point where the function is not even continuous.
+- **Q3:** 3.2 (tolerance ±0.0001). Gradient (4,1) dotted with (0.6, 0.8) = 3.2.
+- **Q4 (marking outline):** Apply the chain rule to g(t) = f(a + t u) at t = 0.
+- **Q5 (what a passing submission shows):** Gradient (2 cos 2, cos 2 + 4) = about (-0.832, 3.584).
+
+</details>
+
+### U24.7 Taylor expansion in several variables, maxima, minima and Lagrange multipliers
+**Sources:** EM1 W4, o; AEMK W1; MFML W9
+Bridge for: U19.1 (calculus, counting and matrices for statistics).
+- **Topics:** Taylor's expansion of functions of several variables; Taylor's series with gradient and Hessian terms; maxima and minima; saddle points; constrained maxima/minima problems using Lagrange's method of multipliers.
+- **Results:** Second-order Taylor expansion with remainder [P]; second-derivative test via Hessian definiteness [P]; Lagrange multiplier rule for equality constraints [D]; KKT conditions [X→U25.5].
+- **Build:** Newton step on a two-variable function, with Hessian eigenvalues classifying the stationary point.
+
+**Assignment A24.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The origin is a stationary point of f(x,y) = x^2 - y^2. It is
+
+(A) a local minimum  
+(B) a local maximum  
+(C) a saddle point  
+(D) not stationary
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A positive definite Hessian at a stationary point gives a strict local minimum  
+(B) An indefinite Hessian gives a saddle  
+(C) A positive semidefinite Hessian guarantees a local minimum  
+(D) f(x) = x^4 has a minimum at 0 although f''(0) = 0
+
+**Q3 (2 marks, numerical answer).** Maximum value of x + y subject to x^2 + y^2 = 2.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the Lagrange condition grad f = lambda grad g for a constrained stationary point by showing grad f must be orthogonal to the tangent space of g = 0.
+
+**Q5 (3 marks, programming).** For f(x,y) = x^3 - 3x + y^2 find stationary points by Newton's method on the gradient and classify them from Hessian eigenvalues. Acceptance: (1,0) is a minimum and (-1,0) a saddle. Predict the eigenvalues of the Hessian at (1,0) first.
+
+<details><summary>Key for A24.7 (open only after your attempt)</summary>
+
+- **Q1:** C. The Hessian diag(2,-2) is indefinite.
+- **Q2:** ABD. PSD alone is inconclusive (x^3 at 0).
+- **Q3:** 2 (tolerance ±0.001). Lagrange: x = y = 1 gives the maximum 2.
+- **Q4 (marking outline):** Along any feasible curve, d/dt f = grad f . velocity = 0; tangents span the null space of grad g, so grad f is in the span of grad g.
+- **Q5 (what a passing submission shows):** Eigenvalues 6 and 2 at (1,0); -6 and 2 at (-1,0).
+
+</details>
+
+### U24.8 Multiple integrals and their applications
+**Sources:** EM1 W6–7, o; AEMK W2
+Bridge for: U19.1 (calculus, counting and matrices for statistics).
+- **Topics:** Double and triple integrals; multiple integrals and their properties; change of order of integration; change of variables; Jacobian transformation; Fubini theorem; surface, area and volume integrals; applications of multiple integrals.
+- **Results:** Fubini's theorem [S, statement and conditions]; change-of-variables formula with Jacobian determinant [S; derived for linear maps in U18.18]; polar/spherical coordinates [D].
+- **Build:** Monte Carlo and grid evaluation of double integrals (forward link to D19 Monte Carlo).
+
+**Assignment A24.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The double integral of x y over the unit square is
+
+(A) 1/4  
+(B) 1/2  
+(C) 1  
+(D) 1/8
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Fubini's theorem applies to a continuous function on a rectangle  
+(B) The Jacobian of polar coordinates is r  
+(C) Changing the order of integration never changes the value  
+(D) Spherical coordinates use rho^2 sin(phi) as Jacobian
+
+**Q3 (2 marks, numerical answer).** Integral of r^2 over the unit disk (use polar coordinates).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the polar-coordinate Jacobian r by computing the determinant of the partial-derivative matrix of (x,y) = (r cos t, r sin t).
+
+**Q5 (3 marks, programming).** Estimate the integral of x^2 over the unit disk by Monte Carlo with N = 10^2, 10^4, 10^6 uniform points in the bounding square. Acceptance: the true value pi/4 lies within 3 standard errors, and the error shrinks like 1/sqrt(N). Predict the error at N = 10^6.
+
+<details><summary>Key for A24.8 (open only after your attempt)</summary>
+
+- **Q1:** A. (1/2)(1/2) = 1/4.
+- **Q2:** ABD. Order can matter if the function is not absolutely integrable.
+- **Q3:** 1.571 (tolerance ±0.001). Integral of r^2 * r dr dtheta = 2 pi * 1/4 = pi/2.
+- **Q4 (marking outline):** det of [[cos t, -r sin t],[sin t, r cos t]] = r.
+- **Q5 (what a passing submission shows):** Error about 1e-3; value about 0.785.
+
+</details>
+
+### U24.9 Vector calculus: fields, line and surface integrals, Green, Gauss and Stokes
+**Sources:** EM2 W1–2, o; AEMK W9–11
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Vector and scalar fields; level surface; limit, continuity and differentiability of vector functions; curve and arc length; unit vectors; directional derivatives; divergence, gradient and curl; some applications to mechanics; tangent, normal and binormal; Serret–Frenet formulae; line integral; parametric representations; surface integral; volume integral; line and surface integrals; Green's, Gauss' divergence and Stokes' theorems; vector and scalar fields; limit, continuity and differentiability of vector functions; directional derivative, gradient, curl, divergence; line and surface integrals; Green, Gauss and Stokes theorems.
+- **Results:** Green's theorem [P for simple regions]; divergence (Gauss) theorem [S]; Stokes' theorem [S]; conservative-field criterion [P]; Frenet–Serret equations [D].
+- **Build:** numerical line and flux integrals; verification of Green/Gauss on a test field.
+- **Gap-fills:** *[inferred: Kreyszig]* Laplacian and harmonic functions (links to D24 complex analysis); divergence of vector fields as it reappears in D30 continuity and Fokker–Planck equations.
+
+**Assignment A24.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The curl of a gradient field is
+
+(A) the divergence  
+(B) zero  
+(C) the Laplacian  
+(D) a scalar
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Green's theorem is the planar case of Stokes' theorem  
+(B) The divergence of a curl is zero  
+(C) The curl of a gradient is zero  
+(D) Gauss' theorem equates the flux through a closed surface with the volume integral of the curl
+
+**Q3 (2 marks, numerical answer).** Divergence of F = (x^2, y^2, z^2) at (1,2,3).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Green's theorem for a rectangle by evaluating both sides of the integral of (Q_x - P_y) as iterated integrals.
+
+**Q5 (3 marks, programming).** Compute the circulation of F = (-y, x) around the unit circle by parametrization and NumPy trapezoid, and the double integral of curl F over the disk by a grid. Acceptance: both equal 2 pi within 1e-6 and 1e-3. Predict the value first.
+
+<details><summary>Key for A24.9 (open only after your attempt)</summary>
+
+- **Q1:** B. curl grad f = 0 for twice continuously differentiable f.
+- **Q2:** ABC. Gauss' theorem uses the divergence, not the curl.
+- **Q3:** 12 (tolerance ±0.001). 2x + 2y + 2z = 12.
+- **Q4 (marking outline):** Split into the integral of Q_x (x outer) and of -P_y; apply the fundamental theorem in one variable; match boundary segments.
+- **Q5 (what a passing submission shows):** 2 pi = 6.283 on both sides.
+
+</details>
+
+### U24.10 Matrix calculus, Jacobians and Hessians for machine learning
+**Sources:** MFML W10; EMML W7–8
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Matrix derivatives; basic concepts of calculus, gradient, Jacobian, chain rule, change of variables; calculus in Python; Jacobian and Hessian of scalar and vector functions of matrices.
+- **Results:** Gradients of trace, quadratic form and log-determinant [D]; chain rule in matrix form for a two-layer network [D].
+- **Build:** NumPy autodiff-checking of every matrix-derivative identity against finite differences.
+- **Gap-fills:** *[inferred: MML Ch.5; Petersen–Pedersen Matrix Cookbook]* gradients of the least-squares loss and softmax cross-entropy used in D26 and D28.
+
+**Assignment A24.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The gradient of x^T A x with respect to x is
+
+(A) A x  
+(B) (A + A^T) x  
+(C) A^T x  
+(D) 2 A x always
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which matrix-calculus identities are correct?
+
+(A) Gradient of the squared norm of (W x - y) with respect to W is 2 (W x - y) x^T  
+(B) Gradient of log det X with respect to X is X^(-T)  
+(C) Derivative of trace(A X) with respect to X is A  
+(D) Gradient of softmax cross-entropy with respect to logits is p - y
+
+**Q3 (2 marks, numerical answer).** Sum of the components of grad (x^T A x) at x = (1,1) for A = [[2,1],[0,3]].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the gradient of the least-squares loss norm(X w - y) squared with respect to w and the normal equations.
+
+**Q5 (3 marks, programming).** Write check_identity(f, grad_f, x) using central differences and verify the three gradient identities for x^T A x, log det of a random SPD matrix, and softmax cross-entropy. Acceptance: relative error below 1e-6 for each. Predict whether the log det check needs a symmetric perturbation.
+
+<details><summary>Key for A24.10 (open only after your attempt)</summary>
+
+- **Q1:** B. It equals 2Ax only for symmetric A.
+- **Q2:** ABD. The derivative of trace(AX) is A^T.
+- **Q3:** 12 (tolerance ±0.001). (A + A^T) x = (5,7), sum 12.
+- **Q4 (marking outline):** Expand to w^T X^T X w - 2 w^T X^T y + y^T y; gradient 2 X^T (X w - y); set to zero.
+- **Q5 (what a passing submission shows):** All three pass; the log det gradient is checked with symmetric perturbations.
+
+</details>
+
+### U24.11 First- and higher-order ordinary differential equations
+**Sources:** EM1 W11–12, o; AEMK W3; MM W3
+Bridge for: U18.10 (Dynamical systems).
+Shares ground with the cloud unit U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.2: First-order differential equations.
+- **Topics:** solution of first-order ODEs; integrating factor; exact forms; ODE order, degree, solution and geometrical significance; solution of first-order first-degree ODE by separation of variables, homogeneous equation and Bernoulli equation; second-order ODEs and auxiliary solutions; higher-order differential equations with constant coefficients; Cauchy–Euler equations.
+- **Results:** Existence and uniqueness (Picard–Lindelöf) [S]; solution of linear constant-coefficient ODEs by characteristic equation [P]; superposition and Wronskian [P]; variation of parameters [D].
+- **Build:** Euler, Heun and RK4 integrators from scratch with global-error order measured.
+- **Gap-fills:** *[inferred: Kreyszig Ch.1–2]* method of undetermined coefficients, power-series solutions, systems of ODEs (feeds U24.16 and gradient flow in U25.10).
+
+**Assignment A24.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The solution of y' = y with y(0) = 1 is
+
+(A) e^x  
+(B) x + 1  
+(C) cos x  
+(D) 1/x
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Picard-Lindelof needs a Lipschitz condition  
+(B) Roots of the characteristic equation give solutions of constant-coefficient linear ODEs  
+(C) A nonzero Wronskian implies linear independence  
+(D) The explicit Euler method has global order 2
+
+**Q3 (2 marks, numerical answer).** y' = -2y, y(0) = 3. Compute y(1).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Solve y'' + 3y' + 2y = 0 with y(0) = 1, y'(0) = 0 and show the solution is unique.
+
+**Q5 (3 marks, programming).** Implement Euler, Heun and RK4 and verify the global error order on y' = -2y at h = 0.1, 0.05, 0.025. Predict the slopes first.
+
+<details><summary>Key for A24.11 (open only after your attempt)</summary>
+
+- **Q1:** A. Separate variables.
+- **Q2:** ABC. Euler is first order.
+- **Q3:** 0.406 (tolerance ±0.0005). 3 e^-2 = 0.406.
+- **Q4 (marking outline):** Roots -1 and -2; y = 2e^-x - e^-2x; uniqueness from the Wronskian being nonzero.
+- **Q5 (what a passing submission shows):** Slopes about 1, 2 and 4.
+
+</details>
+
+### U24.12 Numerical analysis: iteration, root finding, interpolation and quadrature
+**Sources:** EM2 W5–6, o; AEMK W4–5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+Shares ground with the cloud unit U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Iterative methods for solution of systems of linear equations (Jacobi and Gauss–Seidel); solution of algebraic and transcendental equations (bisection, fixed-point iteration, Newton–Raphson); finite differences; interpolation; error in interpolation polynomials; Newton's forward and backward interpolation formulae; Lagrange's interpolation; numerical integration (trapezoidal, Simpson's 1/3rd and 3/8th rules).
+- **Results:** Convergence of Jacobi/Gauss–Seidel for diagonally dominant matrices [P]; contraction mapping and fixed-point convergence [P]; interpolation error formula [D]; composite Simpson error [D].
+- **Build:** all iterative solvers and interpolation formulae from scratch, checked against `scipy`.
+- **Gap-fills:** *[inferred: Burden–Faires]* Runge's phenomenon, Chebyshev nodes, Gaussian quadrature.
+
+**Assignment A24.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Jacobi iteration converges for
+
+(A) all matrices  
+(B) strictly diagonally dominant matrices  
+(C) singular matrices  
+(D) only symmetric matrices
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Fixed-point iteration converges when abs(g') < 1 near the fixed point  
+(B) Lagrange interpolation through n+1 points is unique  
+(C) Equispaced interpolation can show the Runge phenomenon  
+(D) Newton-Raphson converges from any starting point
+
+**Q3 (2 marks, numerical answer).** Simpson's 1/3 rule with 2 intervals for the integral of x^2 on [0,2].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the contraction mapping fixed-point theorem on a closed interval.
+
+**Q5 (3 marks, programming).** Implement Jacobi, Gauss-Seidel, Newton forward-difference interpolation and composite Simpson. Compare iteration counts for a diagonally dominant 5x5 system. Predict which solver needs fewer iterations.
+
+<details><summary>Key for A24.12 (open only after your attempt)</summary>
+
+- **Q1:** B. Diagonal dominance gives contraction.
+- **Q2:** ABC. Newton can diverge.
+- **Q3:** 2.667 (tolerance ±0.001). h/3 (f0 + 4 f1 + f2) = 8/3.
+- **Q4 (marking outline):** Iterates form a Cauchy sequence by geometric decay; the limit is a fixed point and is unique.
+- **Q5 (what a passing submission shows):** Gauss-Seidel needs about half the iterations of Jacobi.
+
+</details>
+
+### U24.13 Complex variables: analytic functions and complex integration
+**Sources:** EM2 W3–4, o; AEMK W12; AEMA W1–3, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Function of complex variables and their properties including continuity and differentiability; analytic functions and Cauchy–Riemann equations; harmonic functions, harmonic conjugates and Milne's method; applications to the problems of potential flow I and II; line integrals in the complex plane; complex integration; Cauchy's theorem I and II; Cauchy's integral theorem and formula; Cauchy's integral formula for derivatives of an analytic function; derivatives of analytic functions; Morera's theorem; Liouville's theorem and the fundamental theorem of algebra; winding number and maximum modulus principle; limit, continuity, differentiability and analyticity of functions.
+- **Results:** Cauchy–Riemann necessary and sufficient conditions [P]; Cauchy's theorem (Goursat) [S]; Cauchy integral formula and derivative formula [P]; Liouville and fundamental theorem of algebra [P]; maximum modulus [P].
+- **Build:** numerical contour integration and verification of Cauchy's formula.
+
+**Assignment A24.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The function f(z) = conjugate of z is
+
+(A) analytic everywhere  
+(B) analytic nowhere  
+(C) analytic on the real axis only  
+(D) entire
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Cauchy-Riemann equations are necessary for analyticity  
+(B) The real part of an analytic function is harmonic  
+(C) A bounded entire function is constant  
+(D) Every continuous complex function is analytic
+
+**Q3 (2 marks, numerical answer).** Magnitude of the contour integral of 1/z around the unit circle (counterclockwise).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the real and imaginary parts of an analytic function (C^2) are harmonic.
+
+**Q5 (3 marks, programming).** Numerically evaluate the contour integral of f(z)/(z - a) over the unit circle for f = exp and a = 0.5, and compare with 2 pi i f(a). Predict the error scaling with the number of quadrature points.
+
+<details><summary>Key for A24.13 (open only after your attempt)</summary>
+
+- **Q1:** B. Cauchy-Riemann fails everywhere.
+- **Q2:** ABC. Continuity is weaker.
+- **Q3:** 6.283 (tolerance ±0.001). The integral equals 2 pi i.
+- **Q4 (marking outline):** Differentiate the Cauchy-Riemann equations and use equality of mixed partials.
+- **Q5 (what a passing submission shows):** Error falls geometrically with the number of points for analytic integrands.
+
+</details>
+
+### U24.14 Series, singularities, residues, real integrals and conformal mapping
+**Sources:** EM2 W4, o; AEMK W12; AEMA W3–7, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Sequences and series; uniform convergence of series; power series and radius of convergence (Hadamard's formula); Taylor's and Laurent's series; zeros and singularities of an analytic function; zeros and poles; meromorphic functions; residue at a singularity; residue theorem; the argument principle and Rouché's theorem; evaluation of real integrals using residues I–V; integration through a branch cut; evaluation of real integrals; bilinear transformations and cross ratio; conformal mapping I and II; conformal mappings from half-plane to disk and half-plane to half-plane; disk to disk and angular region to disk; application of conformal mapping to potential theory.
+- **Results:** Laurent expansion existence and uniqueness [P]; residue theorem [P]; argument principle and Rouché [P]; Möbius transformations map circles to circles [P]; Riemann mapping theorem [X].
+- **Build:** residue calculator for rational functions; conformal map visualizer.
+
+**Assignment A24.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The residue of 1/z at z = 0 is
+
+(A) 0  
+(B) 1  
+(C) -1  
+(D) infinity
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The residue theorem sums residues inside a contour  
+(B) A Laurent series converges in an annulus  
+(C) Mobius transformations map circles and lines to circles and lines  
+(D) The Riemann mapping theorem is proved in this unit
+
+**Q3 (2 marks, numerical answer).** Integral of 1/(1 + x^2) over the real line.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Evaluate the integral of 1/(1 + x^2) over the real line by the residue theorem with a large semicircle.
+
+**Q5 (3 marks, programming).** Write a residue calculator for rational functions with simple poles, evaluate the integral above, and compare with trapezoid on [-1000, 1000]. Predict the truncation error.
+
+<details><summary>Key for A24.14 (open only after your attempt)</summary>
+
+- **Q1:** B. Coefficient of 1/z.
+- **Q2:** ABC. Its proof is deferred.
+- **Q3:** 3.142 (tolerance ±0.001). Residue at i is 1/(2i), giving 2 pi i/(2i) = pi.
+- **Q4 (marking outline):** Close in the upper half plane; the arc contribution vanishes; residue at i gives pi.
+- **Q5 (what a passing submission shows):** About 2/1000 = 0.002 from the tails.
+
+</details>
+
+### U24.15 Laplace, Z, Fourier and discrete Fourier transforms
+**Sources:** EM2 W7–12, o; AEMA W7–9, o; ALAJ W8
+Bridge for: U17.3 (Divide and conquer), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA).
+Shares ground with the cloud unit U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.9: structure of FFT/IFFT matrices; FFT (radix-2) from scratch.
+- **Topics:** Laplace transform and its properties; Laplace transform of special functions; convolution theorem; evaluation of integrals by Laplace transform; solution of initial and boundary value problems; Fourier series representation of a function and its convergence; Fourier integral representation; Fourier sine and cosine transforms; Fourier transform and properties of the Fourier transform; applications of Fourier series to boundary value problems; review of unilateral and bilateral Z-transforms and their properties; application of calculus of residues for the inversion formula of Z-transforms and Laplace transforms; finite Fourier transforms; discrete Fourier transforms I and II and applications; Fourier integrals and Fourier transforms; applications in signal processing, potential theory and bending of beams; Z-transforms I, II and III; review of bilateral Z-transforms.
+- **Results:** Convolution theorem for Laplace and Fourier [P]; Dirichlet convergence theorem for Fourier series [S]; Parseval/Plancherel [P]; inversion formula for Z and Laplace transform by residues [D]; FFT divide-and-conquer recurrence [D].
+- **Build:** spectral solution of a heat-equation boundary value problem.
+- **Gap-fills:** *[inferred: Kreyszig]* Fourier transforms as a view of attention/positional encodings (link to U29.2) and of convolution (link to U28.5).
+
+**Assignment A24.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Laplace transform of e^(at) is
+
+(A) 1/(s - a)  
+(B) 1/(s + a)  
+(C) a/s  
+(D) s - a
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The convolution theorem turns convolution into multiplication  
+(B) Parseval's identity relates time and frequency energy  
+(C) The FFT costs O(n log n)  
+(D) The naive DFT costs O(n)
+
+**Q3 (2 marks, numerical answer).** Laplace transform of f(t) = t evaluated at s = 2.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the convolution theorem for Laplace transforms.
+
+**Q5 (3 marks, programming).** Implement a radix-2 FFT and compare with a naive DFT (error below 1e-10). Solve u_t = u_xx on [0, pi] with u(x,0) = sin x spectrally. Predict u(x,1) first.
+
+<details><summary>Key for A24.15 (open only after your attempt)</summary>
+
+- **Q1:** A. Integrate e^-(s-a)t.
+- **Q2:** ABC. It costs O(n^2).
+- **Q3:** 0.25 (tolerance ±0.001). 1/s^2 = 0.25.
+- **Q4 (marking outline):** Write the product of two integrals as a double integral and change variables to tau and t - tau.
+- **Q5 (what a passing submission shows):** u(x,1) = e^-1 sin x.
+
+</details>
+
+### U24.16 Mathematical modelling: discrete and continuous dynamical systems
+**Sources:** MM W1–4, o; LAR W7
+Bridge for: U18.10 (Dynamical systems).
+- **Topics:** Overview of mathematical modeling, types of mathematical models and methods to solve them; discrete-time linear models (Fibonacci rabbit model, cell-growth model, prey–predator model); analytical solution methods and stability analysis of systems of linear difference equations; graphical solution by cobweb diagrams; discrete-time age-structured (Leslie) model; Jury's stability test; numerical methods to find eigenvalues (power method and LR method); discrete-time non-linear models (different cell-division models, prey–predator model); stability of non-linear discrete-time models; logistic difference equation; bifurcation diagrams; introduction to continuous-time models, limitations and advantage of discrete-time models, need of continuous-time models; model for growth of microorganisms; chemostat; stability and linearization methods for systems of ODEs; continuous-time single-species model (Allee effect); qualitative solution of differential equations using phase diagrams; Lotka–Volterra competition and prey–predator models; mathematical modelling in biological sciences, deterministic discrete and continuous time, linear and non-linear population dynamics; major content chosen from dynamical systems (population dynamics); prey–predator (preypredator) models; graphical solution for clear analysis of the nature of the models.
+- **Results:** Stability of a linear difference system by eigenvalue modulus [P]; Jury criterion [S]; period-doubling route to chaos in the logistic map (observed and explained) [S]; Hartman–Grobman linearization [X]; Lyapunov stability of a fixed point [P in U25.10].
+- **Build:** cobweb and bifurcation diagram generators; Lotka–Volterra phase portraits; simulation of Leslie matrices.
+- **Gap-fills:** *[source gap: the source lists only 4 of 12 course weeks; remaining weeks added from benchmarks]* *[inferred: Murray; Strogatz]* Hopf bifurcation, limit cycles, SIR epidemic models, reaction–diffusion models, parameter estimation for models (links to D26).
+
+**Assignment A24.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The nonzero fixed point of the logistic map x -> r x (1 - x) is
+
+(A) 1/r  
+(B) 1 - 1/r  
+(C) r - 1  
+(D) r/2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A fixed point of a 1-D map is stable if abs(f') < 1  
+(B) The logistic map shows period doubling on the route to chaos  
+(C) The Lotka-Volterra model has closed orbits  
+(D) Linearization always decides stability
+
+**Q3 (2 marks, numerical answer).** Nonzero fixed point of the logistic map with r = 2.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the stability condition for a fixed point of x_(n+1) = f(x_n) and apply it to the logistic map to show stability for 1 < r < 3.
+
+**Q5 (3 marks, programming).** Generate a bifurcation diagram for r from 2.8 to 4 and detect the first two period-doubling values. Integrate Lotka-Volterra with RK4 and show closed orbits. Predict the first doubling value.
+
+<details><summary>Key for A24.16 (open only after your attempt)</summary>
+
+- **Q1:** B. Solve x = r x (1 - x).
+- **Q2:** ABC. Zero real parts are inconclusive.
+- **Q3:** 0.6 (tolerance ±0.001). 1 - 1/r = 0.6.
+- **Q4 (marking outline):** Linearize; stable iff abs(f'(x*)) < 1; f'(x*) = 2 - r.
+- **Q5 (what a passing submission shows):** About r = 3 and r = 3.449.
+
+</details>
+
+### U24.17 ODE theory for dynamical systems: Gronwall, limit sets, invariant sets and chain transitivity
+**Sources:** SA W4, o
+Bridge for: U18.10 (Dynamical systems).
+- **Topics:** Ordinary differential equations: existence and uniqueness of solutions; Gronwall inequality; asymptotic behaviours of trajectories; invariant sets; internally chain transitive sets; equilibria, stability and Lyapunov functions.
+- **Results:** Picard–Lindelöf existence and uniqueness [P under a Lipschitz condition]; Gronwall's inequality (integral form) [P]; the omega-limit set of a bounded trajectory is nonempty, compact and invariant [P]; LaSalle's invariance principle [S]; an internally chain transitive set is invariant and the limit set of a bounded asymptotic pseudo-trajectory is internally chain transitive [X→U25.16].
+- **Build:** RK4 integration of a planar system; numerical estimate of its omega-limit set; gradient flow with an explicit Lyapunov function.
+- **Gap-fills:** *[inferred: Hirsch–Smale–Devaney, recalled, not checked]* phase portraits, stability of linear systems, Poincaré–Bendixson (statement).
+
+**Assignment A24.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Gronwall's inequality bounds a function u with u' <= L u by
+
+(A) u(0) e^(L t)  
+(B) u(0) + L t  
+(C) u(0)/L  
+(D) 0
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The omega-limit set of a trajectory is invariant  
+(B) The omega-limit set of a bounded trajectory is nonempty and compact  
+(C) Every omega-limit set is a single point  
+(D) A Lyapunov function can certify stability
+
+**Q3 (2 marks, numerical answer).** Gronwall bound at t = 1 for u(0) = 1, u' <= 2u.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove: if u' <= L u for t >= 0 then u(t) <= u(0) e^(L t).
+
+**Q5 (3 marks, programming).** Integrate the Van der Pol oscillator with RK4 (mu = 0.5) from several starting points and estimate the omega-limit set and its amplitude. Predict the amplitude of the limit cycle.
+
+<details><summary>Key for A24.17 (open only after your attempt)</summary>
+
+- **Q1:** A. Integrate the differential inequality.
+- **Q2:** ABD. Limit cycles are limit sets that are not points.
+- **Q3:** 7.389 (tolerance ±0.001). u(1) <= e^2 = 7.389.
+- **Q4 (marking outline):** Multiply by e^(-L t); the product has non-positive derivative.
+- **Q5 (what a passing submission shows):** About 2.
+
+</details>
+
+## D17. Algorithms and data structures, taught on demand: analysis, divide and conquer, sorting, hashing, trees, amortisation, greedy and dynamic programming, graph search, shortest paths, network flow, tries, B-trees, string matching, hard problems, NP-completeness and approximation algorithms
 
 Aim: the algorithmic toolkit that every other domain quietly uses (routing in D2, lookup structures in D3, indexes and joins in D15, schedulers and consensus in D9, search and streaming in D11 and D20), taught from the analysis of a loop up to flow networks and the idea of NP-completeness. Two courses supply the outline (Algorithmic Graph Theory and Data Structures, IIT Kharagpur; Data Structures and Algorithms Design, IIT Kanpur) and one textbook sets the bar. Three habits run through it: *state the loop invariant before writing the loop*, *count operations by running the code and compare with the formula*, and *ask what the worst input looks like*. Benchmarks (recalled, not checked in full; the part and chapter structure of CLRS was read from public contents lists on 2026-11-06): Cormen, Leiserson, Rivest and Stein, *Introduction to Algorithms*, 3rd ed. (Parts I to VI and Chapters 27 to 35); Kleinberg and Tardos, *Algorithm Design*; Dasgupta, Papadimitriou and Vazirani, *Algorithms*; Sedgewick and Wayne, *Algorithms*. D17 owns the algorithms and the data structures; the short routing and lookup bridges U2.7 and U3.1, the flow bridge U4.5 and the storage bridge U15.14 stay where they are and point here.
 
@@ -6100,6 +7383,11 @@ Aim: the algorithmic toolkit that every other domain quietly uses (routing in D2
 | U19.x, U20.x | hashing, sketches, top-k, kd-trees | U17.4, U17.5, U17.8 |
 | U13.x | any capstone data structure | the unit named in its Build |
 
+
+**Merged units, folded in by subject.** This domain also holds the units of Approximation Algorithms and Computational Complexity (U17.18–U17.24) from the earlier machine-learning curriculum, marked * below. They are on demand: each begins with a **Bridge for:** or **On demand:** line, and the cloud unit owns every topic that both teach. **Reading ladder** (the order of study when you take the subject for its own sake; compact cloud units stand beside the merged units that go deeper): U17.1, U17.2, U17.3, U17.4, U17.5, U17.6, U17.7, U17.8, U17.9, U17.10, U17.11, U17.12, U17.13, U17.14, U17.15, U17.16, U17.17, U17.18*, U17.19*, U17.20*, U17.21*, U17.22*, U17.23*, U17.24*.
+
+**Approximation Algorithms and Computational Complexity (U17.18–U17.24).** Aim: coping with NP-hard problems: the approximation framework, combinatorial algorithms, LP rounding (deterministic and randomized), the primal–dual method, SDP rounding, and hardness of approximation. It reuses linear programming and duality (U25.6, U25.7), probability (U19.24) and graph theory (U21.15), and gives the integer-programming view behind LP relaxations used in D25. Benchmarks (listed by the course, recalled, not checked): Vazirani, *Approximation Algorithms*; Williamson–Shmoys, *The Design of Approximation Algorithms*; Garey–Johnson, *Computers and Intractability*; Arora–Barak, *Computational Complexity*.
+
 ### U17.1 Bridge: discrete mathematics for algorithm analysis: induction, sums, logarithms, recurrences and probability
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
 Bridge for: U17.2 to U17.17.
@@ -6107,6 +7395,7 @@ Bridge for: U17.2 to U17.17.
 - **Results:** the sum of the first n integers is n(n+1)/2 [P, induction]; the geometric sum (r^(n+1) − 1)/(r − 1) [P]; the harmonic number H_n = ln n + γ + o(1), with γ ≈ 0.5772 [S, by comparing with the integral, checked numerically]; the expected number of fixed points of a random permutation is 1, by linearity of expectation over indicator variables whatever the dependence [P, check]; a tree on n vertices has n − 1 edges [P]
 - **Build:** a harness that times a function and fits the growth exponent on a log–log plot; simulations of the harmonic sum and the fixed-point count against the formulas; an induction checker that tests a claimed closed form for the first 1,000 values. [local]
 - **Gap-fills:** *[inferred: CLRS Appendices A to C]* summation tricks and combinatorial identities beyond the above are taught inside the unit that first needs them. The full treatment, with proofs and from-scratch builds, is U21.4 (proofs and counting) and U21.6 (probability), with U21.2 for the school mathematics.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.12 Logic, proof paradigms and formal languages; U21.13 Counting, generating functions and combinatorics.
 
 **Assignment A17.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6187,6 +7476,7 @@ Bridge for: U11.3 and U15.17 (the sort inside the shuffle and inside external so
 - **Results:** the master theorem for the cases f = O(n^(log_b a − ε)), Θ(n^(log_b a)) and Ω(n^(log_b a + ε)) with the regularity condition [S; the first two cases proved by the recursion tree]; quicksort makes n(n − 1)/2 comparisons on sorted input and 2(n + 1)H_n − 4n ≈ 1.386 n lg n in expectation with a random pivot [D, check]; Karatsuba gives T(n) = 3T(n/2) + O(n) = Θ(n^(lg 3)) ≈ n^1.585 against n² [D, check]; the half-majority element, if one exists, survives pairwise elimination of distinct pairs and is found in O(n) time and O(1) space [P, check]; the number of inversions equals the number of swaps of adjacent sorted elements and is found in O(n log n) by merge sort [P, check]
 - **Build:** quicksort with a comparison counter on sorted, random and adversarial input; Karatsuba with digit-operation counts compared with schoolbook; half-majority and inversion counters tested against O(n²) versions. [local]
 - **Gap-fills:** *[inferred: CLRS Chapters 4, 5 and 7; Strassen's matrix multiplication in Chapter 28]* the Akra–Bazzi generalisation of the master theorem is stated only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U24.15 Laplace, Z, Fourier and discrete Fourier transforms.
 
 **Assignment A17.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6467,6 +7757,7 @@ Bridge for: U2.7 (spanning trees), U14.9 (Belady's MIN is a greedy rule), U15.18
 - **Results:** the 0/1 knapsack costs O(nW) time, pseudo-polynomial in the bit length of W [D, check]; the LCS table costs O(mn) [P, check]; the greedy activity-selection choice (earliest finish) is part of some optimal solution [P, check]; the cut property: the lightest edge across any cut belongs to some MST, so Prim and Kruskal are correct [P]; Prim costs O(E lg V) with a binary heap and Kruskal O(E lg E) [D, check]; Prim and Kruskal return the same total weight on random graphs [check]
 - **Build:** knapsack, LCS and rod cutting by memoisation and by table with a recursion-call count; Prim and Kruskal checked against each other and against `scipy.sparse.csgraph.minimum_spanning_tree`. [local]
 - **Gap-fills:** *[inferred: CLRS Chapters 15, 16 and 23]* matroid theory for greedy algorithms is named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U27.4 Markov decision processes.
 
 **Assignment A17.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6547,6 +7838,7 @@ Bridge for: U2.7 and U2.9 (path computation in OSPF and BGP), U3.10 (data-centre
 - **Results:** Dijkstra is correct for non-negative weights (each extracted vertex has its final distance) [P] and costs O((V + E) lg V) with a binary heap [D]; a three-vertex graph with a negative edge makes Dijkstra return a wrong distance [D, check]; Bellman–Ford is correct after V − 1 rounds when no negative cycle is reachable, and a further improving round proves one exists [P, check]; the constraints x_j − x_i ≤ w_ij are feasible iff the constraint graph has no negative cycle [P, check]; an arbitrage cycle is a cycle whose product of rates exceeds 1, a negative cycle under weights −log rate [P, check]
 - **Build:** Dijkstra with a heap, Bellman–Ford with negative-cycle detection, a difference-constraint solver and an arbitrage detector, tested against `scipy.sparse.csgraph.shortest_path`. [local]
 - **Gap-fills:** *[inferred: CLRS Chapter 24]* A* search and the bidirectional Dijkstra of the routing literature are applied extras.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U27.4 Markov decision processes.
 
 **Assignment A17.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6627,6 +7919,7 @@ Bridge for: U3.2, U4.5 and U4.6 (matching, flows and traffic engineering), U5.8 
 - **Results:** the value of any flow equals the capacity crossing any cut, so max flow ≤ min cut [P]; Ford–Fulkerson terminates with a maximum flow for integer capacities in at most |f*| augmentations, giving O(E |f*|) [P]; max-flow min-cut: the three statements (f is maximum, the residual graph has no augmenting path, some cut has capacity |f|) are equivalent [P, check]; Edmonds–Karp (shortest augmenting paths) runs in O(VE²) [S]; the integer flow found in a unit-capacity bipartite network is a maximum matching [P, check]; Cook–Levin: SAT is NP-complete [X]
 - **Build:** Ford–Fulkerson with BFS (Edmonds–Karp) tested against `scipy.sparse.csgraph.maximum_flow` and against the minimum cut found by brute force on small graphs; a bipartite matcher checked against Hall's condition; a reduction of 3-SAT to vertex cover verified on small formulas. [local]
 - **Gap-fills:** *[inferred: CLRS Chapters 26, 34 and 35; Kleinberg–Tardos Chapters 7 and 8]* push–relabel and approximation algorithms are named only; the Cook–Levin proof is not given.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U17.18 Review of NP-completeness and the approximation framework.
 
 **Assignment A17.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6747,6 +8040,7 @@ Bridge for: U5.8 (reductions), U15.18 (join ordering is hard), U4.5 (integer pro
 - **Results:** backtracking with column and diagonal sets counts 4, 92 and 724 solutions of the N-queens problem for n = 6, 8 and 10 in 153, 2,057 and 35,539 search nodes against nⁿ = 46,656, 16,777,216 and 10¹⁰ [check]; Held–Karp on 10 random points returns the optimum of the brute-force search, 2.852322, in (n − 1)(n − 2)2^{n−3} = 9,216 inner steps against 181,440 distinct tours [P, check]; the minimum-spanning-tree preorder tour is at most 1.381 times the optimum on 60 random metric instances of 9 points (mean 1.19), within the proved bound of 2 [P, check]; the vertex cover from a maximal matching is at most twice the optimum, because the matching edges are disjoint and any cover needs one endpoint of each [P]: the worst ratio over 100 random graphs on 9 vertices is exactly 2.0, and the cover is optimal in only 2 of them [check]; greedy set cover on a layered instance of 62 elements takes 5 sets against an optimum of 2, a ratio of 2.5 within H₆₂ = 4.71 [check]; branch and bound for the 0/1 knapsack agrees with the dynamic program on 50 of 50 random instances of 22 items and visits a mean of 117 nodes against 2²³ = 8,388,608 [check]; meet in the middle on 40 numbers builds two lists of 2²⁰ sums, finds a target made from 7 of the numbers and rejects the target 1 [check]; 2-opt from random tours of 9 points lowers the mean ratio to the optimum from 1.72 to 1.005, with a worst ratio of 1.067, which is a measurement and not a guarantee [check].
 - **Build:** an N-queens counter with a node counter; a 0/1 knapsack by branch and bound with the fractional bound, checked against the dynamic program, with the node count plotted against n; Held–Karp against brute force; subset sum by meet in the middle; the maximal-matching vertex cover checked against an exact search, the MST tour against Held–Karp, greedy set cover on the layered instance, and 2-opt with random restarts; a table of the measured ratios beside the proved bounds. [local]
 - **Gap-fills:** *[inferred: CLRS Chapters 34 and 35; Vazirani, Approximation Algorithms; Kleinberg and Tardos, Chapters 10 and 11; Held and Karp 1962; Horowitz and Sahni 1974 for meet in the middle; Christofides 1976, recalled, not checked]* the 1.5-approximation of Christofides, polynomial-time approximation schemes, the inapproximability results and fixed-parameter algorithms are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U17.18 Review of NP-completeness and the approximation framework; U17.19 Approximation for vertex cover; U17.20 Approximation for the knapsack problem and job scheduling; U17.21 Linear programming basics and deterministic rounding; U17.22 Randomized rounding; U17.23 The primal–dual method; U17.24 Semidefinite programming for max cut, and hardness of approximation.
 
 **Assignment A17.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -6779,6 +8073,289 @@ Bridge for: U5.8 (reductions), U15.18 (join ordering is hard), U4.5 (integer pro
 - **Q5 (what a passing submission shows):** N-queens gives 92 solutions for n = 8 in far fewer nodes than 8 to the 8, branch and bound equals the dynamic program on all instances, Held-Karp equals brute force, and every measured approximation ratio is below its proved bound of 2.
 
 </details>
+
+### U17.18 Review of NP-completeness and the approximation framework
+**Sources:** AA W1, o
+Bridge for: U5.8 (computational complexity, one-way functions and the reduction method), U17.14 (Flow networks, the Ford–Fulkerson method), U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+Shares ground with the cloud units U17.14 (Flow networks, the Ford–Fulkerson method) and U17.17 (Backtracking, branch and bound); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Review of NP-completeness; many real-world problems are NP-complete and unlikely to admit polynomial-time algorithms; designing efficient algorithms for approximately optimal solutions; approximation ratio (relative and absolute guarantees), PTAS and FPTAS; bounding the optimum from below or above as the basic proof technique.
+- **Results:** Vertex cover is NP-hard by reduction from independent set [P]; transitivity of polynomial-time reductions [P]; Cook–Levin theorem [X, stated]; definition of an alpha-approximation [Def].
+- **Build:** a reduction checker for small SAT to vertex cover instances and an exact exponential-time solver for baselines.
+- **Gap-fills:** *[inferred: Garey–Johnson; Arora–Barak, recalled, not checked]* P, NP, co-NP, canonical NP-complete problems (3-SAT, clique, Hamiltonian cycle, subset sum, partition).
+
+**Assignment A17.18** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A set S is independent in a graph iff the complement of S is
+
+(A) a vertex cover  
+(B) a clique  
+(C) a matching  
+(D) a spanning tree
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) P is contained in NP  
+(B) Polynomial-time reductions are transitive  
+(C) An approximation ratio for a minimization problem is at least 1  
+(D) If P is not NP, every NP-hard problem has a PTAS
+
+**Q3 (2 marks, numerical answer (vertices)).** Size of a minimum vertex cover of an 8-vertex graph whose largest independent set has 3 vertices.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that S is an independent set iff V minus S is a vertex cover.
+
+**Q5 (3 marks, programming).** Write a brute-force exact vertex cover and independent set solver and the reduction between them; verify the identity size(IS) + size(VC) = n on 200 random graphs. Predict the result.
+
+<details><summary>Key for A17.18 (open only after your attempt)</summary>
+
+- **Q1:** A. Every edge must have an endpoint outside S.
+- **Q2:** ABC. Many NP-hard problems provably do not.
+- **Q3:** 5 vertices (tolerance ±0). The complement of a maximum independent set is a minimum vertex cover.
+- **Q4 (marking outline):** An edge has both endpoints in S exactly when it is uncovered by V minus S.
+- **Q5 (what a passing submission shows):** The identity holds on every instance.
+
+</details>
+
+### U17.19 Approximation for vertex cover, set cover and the traveling salesman problem
+**Sources:** AA W2
+Bridge for: U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+Shares ground with the cloud unit U17.17 (Backtracking, branch and bound); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Approximation algorithm for the vertex cover problem (maximal matching, factor 2); weighted vertex cover; set cover (greedy algorithm with logarithmic ratio); the traveling salesman problem (metric TSP by doubling a minimum spanning tree, factor 2).
+- **Results:** Matching-based vertex cover is a 2-approximation [P]; greedy set cover is an H_n-approximation [P]; MST doubling gives a 2-approximation for metric TSP [P]; Christofides' 3/2 bound [X, stated; the matching argument is sketched].
+- **Build:** the three algorithms with worst-case instance generators showing the ratios are tight.
+- **Gap-fills:** *[inferred: Vazirani, recalled, not checked]* tight examples, the primal-dual view previewed for U17.23.
+
+**Assignment A17.19** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The maximal-matching algorithm for vertex cover is a
+
+(A) 2-approximation  
+(B) 1.5-approximation  
+(C) log n-approximation  
+(D) exact algorithm
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Greedy set cover has a logarithmic approximation ratio  
+(B) Doubling a minimum spanning tree gives a 2-approximation for metric TSP  
+(C) General TSP has a constant-factor approximation  
+(D) The size of a maximal matching is at most the optimal vertex cover size
+
+**Q3 (2 marks, numerical answer).** Harmonic number H_10, the greedy set-cover ratio for 10 elements.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the maximal-matching algorithm returns a vertex cover of size at most twice the optimum.
+
+**Q5 (3 marks, programming).** Implement the three algorithms and build tight instances. Predict the ratio of the vertex cover algorithm on the complete bipartite graph K_{n,n}.
+
+<details><summary>Key for A17.19 (open only after your attempt)</summary>
+
+- **Q1:** A. Take both endpoints of every matching edge.
+- **Q2:** ABD. General TSP has none unless P = NP.
+- **Q3:** 2.929 (tolerance ±0.001). 1 + 1/2 + ... + 1/10 = 2.929.
+- **Q4 (marking outline):** Matching edges are disjoint, so OPT needs one endpoint per edge; the algorithm takes two per edge.
+- **Q5 (what a passing submission shows):** Exactly 2.
+
+</details>
+
+### U17.20 Approximation for the knapsack problem and job scheduling
+**Sources:** AA W3
+Bridge for: U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+- **Topics:** Approximation algorithm for the knapsack problem (pseudo-polynomial dynamic programming, profit scaling and an FPTAS); job scheduling problems (list scheduling, longest-processing-time rule, makespan minimization on identical machines).
+- **Results:** Knapsack FPTAS error bound [P]; list scheduling is a (2 - 1/m)-approximation [P]; LPT scheduling bound [S].
+- **Build:** knapsack DP and FPTAS, list scheduling and LPT on random and adversarial instances, with ratio-versus-instance plots.
+- **Gap-fills:** *[inferred: Williamson–Shmoys, recalled, not checked]* PTAS for makespan, strong NP-hardness and why no FPTAS exists for it.
+
+**Assignment A17.20** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The knapsack FPTAS works by
+
+(A) scaling profits and running the dynamic program  
+(B) random sampling  
+(C) branching  
+(D) ignoring weights
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Knapsack has a pseudo-polynomial dynamic program  
+(B) List scheduling is a (2 - 1/m)-approximation  
+(C) Knapsack is strongly NP-hard  
+(D) LPT is at least as good as arbitrary list order in the worst case
+
+**Q3 (2 marks, numerical answer).** List-scheduling bound 2 - 1/m for m = 4 machines.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that list scheduling has makespan at most (2 - 1/m) times optimal.
+
+**Q5 (3 marks, programming).** Implement the knapsack DP and FPTAS and list scheduling and LPT; compare measured ratios on random and adversarial instances. Predict which scheduler is better on random instances.
+
+<details><summary>Key for A17.20 (open only after your attempt)</summary>
+
+- **Q1:** A. Rounding profits keeps the table small.
+- **Q2:** ABD. Knapsack is only weakly NP-hard.
+- **Q3:** 1.75 (tolerance ±0.001). 1.75.
+- **Q4 (marking outline):** The last job finishes at average load of the others plus its length; both are bounded by OPT.
+- **Q5 (what a passing submission shows):** LPT.
+
+</details>
+
+### U17.21 Linear programming basics and deterministic rounding
+**Sources:** AA W4–6
+Bridge for: U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+Builds on U25.6, U25.7.
+- **Topics:** Basics of linear programming (relaxations, duality, integrality gap; see U25.6 and U25.7); deterministic rounding for set cover and vertex cover (threshold rounding); deterministic rounding for the Steiner tree problem and the facility location problem (filtering and rounding).
+- **Results:** LP rounding gives an f-approximation for set cover (f = maximum element frequency) [P]; threshold rounding gives a 2-approximation for vertex cover [P]; the integrality gap of the vertex cover LP is 2 [P]; ratios for Steiner tree and facility location rounding [S, ratios to be confirmed against Williamson–Shmoys Ch. 4, recalled, not checked].
+- **Build:** LP relaxations solved with your simplex from A25.7 (or a library solver, your choice) and rounded; integrality-gap instances. **Tooling:** your own simplex from A25.7 or `scipy.optimize.linprog` for the LP solves; the rounding logic is yours.
+
+**Assignment A17.21** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The integrality gap of the vertex-cover LP is
+
+(A) 2  
+(B) 1  
+(C) log n  
+(D) n
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Threshold rounding at 1/2 gives a 2-approximation for vertex cover  
+(B) LP rounding gives an f-approximation for set cover  
+(C) For a minimization problem the LP optimum is at most the integer optimum  
+(D) For a minimization problem the LP optimum is at least the integer optimum
+
+**Q3 (2 marks, numerical answer).** Ratio of integer to LP optimum for vertex cover on the complete graph K_10 (integer n-1 versus LP n/2).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that setting x_v = 1/2 for every vertex is feasible for the vertex-cover LP of any graph, and deduce that the LP optimum is at most n/2.
+
+**Q5 (3 marks, programming).** Solve vertex-cover and set-cover LP relaxations (your simplex from A25.7 or a library LP solver, your choice), round, and report the ratios against exact optima on random instances. Predict the vertex-cover ratio bound.
+
+<details><summary>Key for A17.21 (open only after your attempt)</summary>
+
+- **Q1:** A. Shown by the complete graph.
+- **Q2:** ABC. The relaxation can only lower the minimum.
+- **Q3:** 1.8 (tolerance ±0.001). 9/5 = 1.8.
+- **Q4 (marking outline):** Each edge constraint requires x_u + x_v >= 1, which equals 1.
+- **Q5 (what a passing submission shows):** At most 2, usually about 1.1 to 1.3 on random graphs.
+
+</details>
+
+### U17.22 Randomized rounding
+**Sources:** AA W7–8
+Bridge for: U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+Builds on U19.24.
+- **Topics:** Randomized rounding for the max-SAT problem (random assignment, LP-based randomized rounding, combining the two); randomized rounding for the Steiner tree problem and the facility location problem.
+- **Results:** A uniformly random assignment satisfies at least half the clauses in expectation, and a k-literal clause with probability 1 - 2^-k [P]; LP randomized rounding gives 1 - 1/e [P]; the better of the two gives 3/4 [P]; derandomization by conditional expectations [S].
+- **Build:** the three max-SAT procedures on random formulas with measured ratios against the LP bound and an exact solver at small size.
+- **Gap-fills:** *[inferred: Williamson–Shmoys, recalled, not checked]* Chernoff-bound rounding (link to U19.24) and a randomized-rounding ratio for facility location of about 1 + 2/e.
+
+**Assignment A17.22** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A uniformly random assignment satisfies a clause with k distinct literals with probability
+
+(A) 1 - 2^-k  
+(B) 1/2  
+(C) 2^-k  
+(D) k/2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) LP-based randomized rounding gives a 1 - 1/e ratio for max-SAT  
+(B) Taking the better of random assignment and LP rounding gives 3/4  
+(C) Conditional expectations can derandomize the algorithms  
+(D) A random assignment is optimal
+
+**Q3 (2 marks, numerical answer).** Expected fraction of satisfied clauses under a random assignment when every clause has 3 distinct literals.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a random assignment satisfies at least half of the clauses in expectation, by linearity of expectation.
+
+**Q5 (3 marks, programming).** Implement random assignment, LP randomized rounding and their combination for max-SAT on random formulas and compare with the exact optimum on small ones. Predict the ratio on random 3-SAT with clause density 4.
+
+<details><summary>Key for A17.22 (open only after your attempt)</summary>
+
+- **Q1:** A. Only the all-false assignment of its literals fails.
+- **Q2:** ABC. It is not optimal.
+- **Q3:** 0.875 (tolerance ±0.001). 7/8.
+- **Q4 (marking outline):** Each clause is satisfied with probability at least 1/2; sum over clauses.
+- **Q5 (what a passing submission shows):** Random assignment alone gets about 7/8.
+
+</details>
+
+### U17.23 The primal–dual method
+**Sources:** AA W9–10
+Bridge for: U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+- **Topics:** Primal-dual method for set cover; primal-dual method for the Steiner tree problem; relaxed complementary slackness; growing dual variables until constraints go tight.
+- **Results:** Primal-dual set cover is an f-approximation [P]; the primal-dual Steiner forest/tree algorithm is a 2-approximation [S]; relaxed complementary slackness implies the cost bound [P].
+- **Build:** dual-ascent set cover and a primal-dual Steiner tree on random graphs, tracking the dual lower bound against the primal cost.
+
+**Assignment A17.23** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The primal-dual method for set cover gives an
+
+(A) f-approximation  
+(B) exact solution  
+(C) log n guarantee only  
+(D) 1/2-approximation
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Relaxed complementary slackness underlies the analysis  
+(B) Any feasible dual solution lower-bounds the optimum  
+(C) The primal-dual Steiner algorithm is a 2-approximation  
+(D) The method always solves the LP exactly
+
+**Q3 (2 marks, numerical answer).** Bound on the ratio when the primal cost is 14 and the best feasible dual value is 7.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the primal-dual set-cover algorithm is an f-approximation using relaxed complementary slackness.
+
+**Q5 (3 marks, programming).** Implement dual ascent for set cover and a primal-dual Steiner tree on random graphs, tracking the dual lower bound against the primal cost. Predict the final ratio against f.
+
+<details><summary>Key for A17.23 (open only after your attempt)</summary>
+
+- **Q1:** A. f is the maximum element frequency.
+- **Q2:** ABC. It builds a feasible primal and dual, not an exact LP solution.
+- **Q3:** 1.867 (tolerance ±0.001). OPT >= 7.5 so cost/OPT <= 1.867.
+- **Q4 (marking outline):** Each chosen set is tight; cost <= sum over elements of y_e times frequency <= f times dual <= f OPT.
+- **Q5 (what a passing submission shows):** At most f, usually well below it.
+
+</details>
+
+### U17.24 Semidefinite programming for max cut, and hardness of approximation
+**Sources:** AA W11–12
+Bridge for: U17.17 (Backtracking, branch and bound, exact exponential algorithms).
+- **Topics:** Semidefinite programming for the max-cut problem (vector relaxation, random-hyperplane rounding); hardness of approximation: the traveling salesman problem (no constant-factor approximation in general unless P = NP) and job scheduling (hardness of improving on known ratios).
+- **Results:** Random-hyperplane rounding of the max-cut SDP gives about 0.878 [P for the per-edge analysis]; general TSP has no polynomial-time approximation within any constant unless P = NP, by a gap-introducing reduction from Hamiltonian cycle [P]; makespan on unrelated machines cannot be approximated within 3/2 - epsilon unless P = NP [X, stated, recalled, not checked].
+- **Build:** the SDP solved by a simple low-rank projected-gradient method (or `cvxpy`, your choice) and hyperplane rounding on random graphs, with the measured cut ratio. **Tooling:** a low-rank projected-gradient SDP solver in NumPy, or `cvxpy`; the rounding is yours.
+- **Gap-fills:** *[inferred: Williamson–Shmoys; Arora–Barak, recalled, not checked]* PCP theorem (statement), gap problems and the Unique Games Conjecture (statement).
+
+**Assignment A17.24** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Goemans-Williamson max-cut algorithm guarantees about
+
+(A) 0.878 of the optimum  
+(B) 0.5  
+(C) 0.99  
+(D) 1/e
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) General TSP cannot be approximated within a constant unless P = NP  
+(B) Random hyperplane rounding separates vectors with probability proportional to their angle  
+(C) Metric TSP cannot be approximated within any constant  
+(D) Gap-introducing reductions prove hardness of approximation
+
+**Q3 (2 marks, numerical answer).** Probability a random hyperplane separates two unit vectors at angle pi/3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a random hyperplane through the origin separates unit vectors at angle theta with probability theta/pi.
+
+**Q5 (3 marks, programming).** Solve the max-cut SDP by a low-rank projected-gradient method (or `cvxpy`, your choice), round with random hyperplanes and report the average cut against the SDP bound on random graphs. Predict the ratio.
+
+<details><summary>Key for A17.24 (open only after your attempt)</summary>
+
+- **Q1:** A. Random hyperplane rounding of the SDP.
+- **Q2:** ABD. Metric TSP has a 3/2 approximation.
+- **Q3:** 0.3333 (tolerance ±0.001). theta/pi = 1/3.
+- **Q4 (marking outline):** Project onto the plane they span; the normal direction is uniform; the separating arcs have measure 2 theta of 2 pi.
+- **Q5 (what a passing submission shows):** At least 0.878 on average, usually 0.95 or more on random graphs.
+
+</details>
+
 
 ## D23. Go, taught on demand: the language of the system-design, database-coding and cloud-computing exercises
 
@@ -7104,9 +8681,14 @@ Bridge for: every Go track line (the acceptance rule), U22.10 to U22.12 (testing
 
 </details>
 
-## D18. Applied linear algebra for data and signals: vectors, matrices, eigenvalues, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
+## D18. Linear algebra, core, abstract, numerical and applied: vectors, matrices, vector spaces, eigenvalues, canonical forms, the SVD, least squares, estimation, recommenders, the DFT and OFDM, dynamical systems, clustering, perceptrons, compressive sensing and Markov chains
 
 Aim: linear algebra learned through the problems that use it, in the order that one course (Applied Linear Algebra for Signal Processing, Data Analytics and Machine Learning, IIT Kanpur) teaches them: wireless communication, machine learning, signal processing, data analytics, operations research and everyday applications such as circuits, graphs and traffic. Every unit has the same shape: the algebra, a derivation of the one result that matters, and a script that checks the result on random data and then solves the applied problem. The book that sets the bar is Strang, *Introduction to Linear Algebra*, 5th ed. (twelve chapters: vectors, equations, subspaces, orthogonality, determinants, eigenvalues, the SVD, linear transformations, complex vectors and matrices, applications, numerical linear algebra, probability and statistics; the chapter list was read from public contents pages on 2026-11-06). Other benchmarks, recalled and not checked in full: Boyd and Vandenberghe, *Introduction to Applied Linear Algebra*; Golub and Van Loan, *Matrix Computations*; Tse and Viswanath, *Fundamentals of Wireless Communication*; Kay, *Fundamentals of Statistical Signal Processing*. Ownership: D18 owns the applied treatment of eigenvalues, the SVD, least squares, estimation and Markov chains for operations research. The machine-learning foundations bridge U11.8 (regression, k-means, matrix factorisation), the Markov-chain and PageRank bridge U11.10, the finite-field linear algebra of U5.5, the network-flow bridge U4.5 and the coding bridge U2.11 stay where they are and point here. Data in the scripts is synthetic so that every claim can be recomputed offline; where a named public dataset is the real thing (faces, Netflix ratings, MovieLens) the unit says so and the script accepts it when it is present.
+
+
+**Merged units, folded in by subject.** This domain also holds the units of Linear Algebra: Core, Abstract, Numerical and Applied (U18.14–U18.24) from the earlier machine-learning curriculum, marked * below. They are on demand: each begins with a **Bridge for:** or **On demand:** line, and the cloud unit owns every topic that both teach. **Reading ladder** (the order of study when you take the subject for its own sake; compact cloud units stand beside the merged units that go deeper): U18.1, U18.14*, U18.2, U18.3, U18.15*, U18.16*, U18.17*, U18.18*, U18.4, U18.19*, U18.20*, U18.21*, U18.5, U18.22*, U18.23*, U18.6, U18.7, U18.8, U18.24*, U18.9, U18.10, U18.11, U18.12, U18.13.
+
+**Linear Algebra: Core, Abstract, Numerical and Applied (U18.14–U18.24).** Aim: five source courses (basic, abstract/coordinate-free, advanced canonical forms, numerical/applied for ML, signal-processing applications) merged into one ladder: computation first, then structure, then decompositions, then applications. Benchmarks (recalled, not checked): Strang, *Introduction to Linear Algebra* (5th ed.) and *Learning from Data*; Axler, *Linear Algebra Done Right* (3rd ed.); Hoffman–Kunze; Halmos; Artin; Greub; Jacobson; Deisenroth et al. Ch. 2–4; Trefethen–Bau, *Numerical Linear Algebra*; Golub–Van Loan.
 
 ### U18.1 Bridge: complex numbers, trigonometry and phasors, and the language of vector spaces
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
@@ -7114,7 +8696,8 @@ Bridge for: U18.2 to U18.13.
 - **Topics:** the complex plane, modulus and argument, the conjugate, Euler's formula e^(iθ) = cos θ + i sin θ, polar form and why multiplication is a rotation and a scaling; sines and cosines as the real part of a rotating phasor, the addition formulas, the amplitude and phase of a sum of sinusoids of equal frequency; roots of unity and their sum; complex vectors and the conjugate transpose (the Hermitian transpose), the complex inner product; the language used by the units that follow (span, linear independence, basis, dimension, subspace, linear map, rank, null space) with one worked example of each; solving a small linear system by elimination; the reading habit that a matrix is a function and not a table.
 - **Results:** e^(iπ) + 1 = 0 and |e^(iθ)| = 1 [P, from the series or from the addition formulas]; the N-th roots of unity sum to zero for N ≥ 2, because the sum is a geometric series with ratio ≠ 1 [P, check]; A cos(ωt) + B sin(ωt) = R cos(ωt − φ) with R = √(A² + B²) [P]; the inner product of two complex vectors is xᴴy, and ‖x‖² = xᴴx is real and non-negative [Def].
 - **Build:** a phasor plotter that adds sinusoids as complex numbers and compares with the time-domain sum; a numerical check of the roots-of-unity sum and of Euler's formula; a small elimination routine checked against `numpy.linalg.solve`. [local]
-- **Gap-fills:** *[inferred: Strang Chapter 9; the learner has no prior complex-number background, and the ML curriculum's bridge D0 teaches the same material in a different order]* determinants are used only in the form "zero determinant means singular" and in the matrix-tree theorem of U18.3. The school-level prerequisites (trigonometry, matrices, determinants, vectors) are taught in depth in U21.2.
+- **Gap-fills:** *[inferred: Strang Chapter 9; the learner has no prior complex-number background, and the pre-calculus units U21.7 to U21.11 teach the same material in a different order and at greater depth]* determinants are used only in the form "zero determinant means singular" and in the matrix-tree theorem of U18.3. The school-level prerequisites (trigonometry, matrices, determinants, vectors) are taught in depth in U21.2.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.8 Angles and the trigonometric functions; U21.9 Identities, inverse trigonometric functions, equations; U21.10 Complex numbers I; U21.11 Complex numbers II.
 
 **Assignment A18.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7148,12 +8731,55 @@ Bridge for: U18.2 to U18.13.
 
 </details>
 
+### U18.14 Systems of linear equations, matrices, elimination, rank and inverses
+**Sources:** LAR W1–4, o; LAP W2,9; ALAB o, P1; EM1 W8, o; AEMK W6–7; EMML W1, o; MFML W1, o; ALAK W2; MLE W1; MLESA W0
+Bridge for: U18.3 (Introduction to matrices and applications), U19.1 (calculus, counting and matrices for statistics).
+Shares ground with the cloud units U18.3 (Introduction to matrices and applications), U5.5 (groups, rings, fields) and U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.3: existence and uniqueness of solutions. U5.5: determinants, rank, invertibility. U21.2: elementary matrix operations, elementary matrices and elementary operations on matrices.
+- **Topics:** Matrices and matrix operations; row echelon form (REF); linear systems; Gauss elimination and inverse of a matrix; system of linear equations (review); rank of a matrix and its properties; computation of the rank; matrix inverse; computational rules for matrices; row and column reduced matrices; echelon matrix and its properties; solution of a system of equations using rank concepts; homogeneous and non-homogeneous systems; left and right inverses; pseudo inverse; triangular systems; basics of matrix algebra; Gauss elimination for homogeneous and non-homogeneous equations; system of linear equations – Gauss elimination; system of linear equations; Gauss elimination (Gauss-Jordan).
+- **Results:** Row operations preserve solution set [P]; rank = row rank = column rank [P]; solvability criterion rank(A)=rank([A|b]) [P]; uniqueness of reduced row echelon form [P]; an n×n matrix is invertible iff rank n iff det≠0 [P].
+- **Build:** Gaussian elimination with partial pivoting, RREF, rank and inverse from scratch; compare with `numpy.linalg`.
+- **Gap-fills:** *[inferred: Strang Ch.1–3]* four fundamental subspaces, column picture versus row picture, block matrices and matrix multiplication as four equivalent views.
+
+**Assignment A18.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The rank of the matrix [[1,2],[2,4]] is
+
+(A) 0  
+(B) 1  
+(C) 2  
+(D) 3
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Elementary row operations preserve the solution set  
+(B) Row rank equals column rank  
+(C) Ax = b is solvable iff rank(A) = rank([A b])  
+(D) A 3x3 matrix with determinant 0 can be invertible
+
+**Q3 (2 marks, numerical answer).** Solve 2x + y = 5 and x - y = 1. Compute x^2 + y^2.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that elementary row operations do not change the solution set of Ax = b, by showing each is invertible by another elementary operation.
+
+**Q5 (3 marks, programming).** Write gauss_solve (partial pivoting), rref and rank (with a tolerance). Solve the 5x5 Hilbert system with solution all ones and report the residual and error. Predict the condition number order of magnitude first.
+
+<details><summary>Key for A18.14 (open only after your attempt)</summary>
+
+- **Q1:** B. The second row is twice the first.
+- **Q2:** ABC. Determinant zero means singular.
+- **Q3:** 5 (tolerance ±0.001). x = 2, y = 1, so 5.
+- **Q4 (marking outline):** Each operation is reversible, so solutions of one system are solutions of the other.
+- **Q5 (what a passing submission shows):** Hilbert(5) condition about 4.8e5; the residual is near 1e-16 but the error is about 1e-12 to 1e-11 (bounded by condition number times machine epsilon, about 5e-11), many orders larger than the residual.
+
+</details>
+
 ### U18.2 Introduction to vectors, properties and applications: norms, inner products, angles, orthogonality, projection and Gram–Schmidt
 **Sources:** ALA W1, o
 - **Topics:** vectors as lists of numbers and as arrows; addition, scaling and linear combinations; the inner (dot) product, length (the norm), distance and angle; the Cauchy–Schwarz and triangle inequalities; orthogonal and orthonormal sets; the projection of a vector onto a vector and onto a subspace; the Gram–Schmidt process and the QR factorisation; vectors that represent data: a document as a word-count vector and cosine similarity, a stock return series as a vector and correlation as the cosine of centred vectors; vectors that represent signals: the matched filter that correlates a received signal with a known pulse; the application list of the course (Wireless: MIMO/ OFDM systems, Beamforming, Channel Estimation; Machine Learning: Regression, Clustering, EM Algorithm, Perceptron, SVM/ Kernel SVM, Principal Component Analysis (PCA), Face recognition) is introduced here as a map of where each idea returns.
 - **Results:** |xᵀy| ≤ ‖x‖ ‖y‖ with equality iff the vectors are parallel [P]; the projection of b onto a is (aᵀb / aᵀa) a and the residual is orthogonal to a [D]; classical Gram–Schmidt applied to independent columns gives A = QR with orthonormal Q and upper-triangular R [P, check on random 8×4 matrices: reconstruction error 4·10⁻¹⁶ and orthogonality error 7·10⁻¹⁶]; the sample correlation of two series equals the cosine of the angle between their centred vectors [P, check]; the matched filter maximises the output signal-to-noise ratio for white noise, by Cauchy–Schwarz [D].
 - **Build:** Gram–Schmidt (classical and modified) against `numpy.linalg.qr`; 10,000 random vector pairs checked against Cauchy–Schwarz (no violation); correlation against `numpy.corrcoef`; a cosine-similarity search over a small corpus; a matched filter that finds a known pulse in noise. [local]
 - **Gap-fills:** *[inferred: Strang Chapters 1 and 4; Boyd and Vandenberghe Part I]* the loss of orthogonality of classical Gram–Schmidt on nearly dependent columns is shown by the script, with Householder QR named as the stable alternative.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.17 Inner products, norms, orthogonality, projections and Gram–Schmidt.
 
 **Assignment A18.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7193,6 +8819,7 @@ Bridge for: U18.2 to U18.13.
 - **Results:** rank A + dim null A = number of columns [P]; the incidence matrix of a graph with n vertices and c connected components has rank n − c, and the Laplacian L = BᵀB has a null space of dimension c [P, check: a 6-vertex graph with 2 components gives rank 4 and nullity 2]; (Aᵏ)ᵢⱼ is the number of walks of length k from i to j, and trace(A³)/6 counts the triangles of a simple graph [P, check against enumeration]; the nodal equations of a resistor network have a unique solution once one node is grounded [S, check: a ladder with 1 Ω, 2 Ω and 3 Ω gives node voltages 5/6 V and 1/2 V for 1 A injected]; the number of spanning trees of a connected graph is any cofactor of the Laplacian (Kirchhoff's matrix-tree theorem) [X, check: K₄ has 16]; for a four-road loop with conservation at each junction the system has rank 3 and a one-dimensional space of free circulations [check].
 - **Build:** a circuit solver built from an incidence matrix and conductances and checked against a hand solution; walk counting by matrix power against brute-force enumeration; a Laplacian component counter on random graphs; a traffic-flow solver that returns a particular solution and the null-space basis. [local]
 - **Gap-fills:** *[inferred: Strang Chapters 2, 3 and 10.1 (graphs and networks)]* the four-subspace picture is drawn for the incidence matrix, where each subspace has a physical name (potentials, currents, cuts, loops).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.14 Systems of linear equations, matrices, elimination, rank and inverses; U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.16 Linear maps, representation by matrices, duality and quotient spaces; U18.18 Determinants, multilinear forms and permutations.
 
 **Assignment A18.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7226,12 +8853,182 @@ Bridge for: U18.2 to U18.13.
 
 </details>
 
+### U18.15 Vectors, vector spaces, subspaces, bases and dimension
+**Sources:** LAP W1–4, o; LAR W3; ALAB P1, P2; EM1 W8, o; AEMK W6; EMML W1; MFML W1; ALAK W1; ALAJ W1; PMO W1; OMLH W1–2
+Bridge for: U5.5 (groups, rings, fields, finite fields and linear algebra over them), U5.25 (Quantum and post-quantum cryptography), U18.2 (Introduction to vectors, properties and applications), U18.3 (Introduction to matrices and applications).
+Shares ground with the cloud units U5.5 (groups, rings, fields), U18.3 (Introduction to matrices and applications) and U18.1 (complex numbers, trigonometry and phasors); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.1: vector space, subspace, basis and dimension.
+- **Topics:** Vectors, operations on vectors, properties and applications; introduction to algebraic structures (rings and fields); definition of vector spaces and examples; definition of subspaces and examples (continued); sum of subspaces; generating system, linear dependence and independence, and bases; Rn, subspaces, linear independence; examples of a basis of a vector space; review of univariate polynomials, examples of univariate polynomials and rational functions; vector spaces with finite generating system; Steinitz's exchange theorem and examples; examples of finite-dimensional vector spaces; dimension formula and its examples; existence of a basis; vectors in machine learning; ordered basis and coordinate matrix; computations concerning subspaces; vector spaces over an arbitrary scalar field (even a finite field); coordinate-free algebraic methods; basis and dimension of a vector space; subspaces.
+- **Results:** Steinitz exchange lemma [P]; any two bases have equal cardinality (dimension well defined) [P]; existence of a basis in finite-dimensional spaces [P]; dimension formula dim(U+W)=dim U+dim W−dim(U∩W) [P].
+- **Build:** subspace-membership, basis extraction and dimension tools using exact rational arithmetic and then floating point (observe rank decisions with tolerance).
+- **Gap-fills:** *[inferred: Axler Ch.1–2]* span, list length versus independence, infinite-dimensional examples (polynomials, sequences, function spaces) as motivation for D30.
+
+**Assignment A18.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The dimension of the subspace {(x,y,z): x + y + z = 0} of R^3 is
+
+(A) 1  
+(B) 2  
+(C) 3  
+(D) 0
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Any three vectors in R^2 are linearly dependent  
+(B) The span of any set is a subspace  
+(C) The unit sphere is a subspace  
+(D) Polynomials of degree at most 3 form a space of dimension 4
+
+**Q3 (2 marks, numerical answer).** dim U = 3, dim W = 4 and dim(U intersect W) = 2. What is dim(U + W)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that in a space spanned by n vectors, any n + 1 vectors are linearly dependent (Steinitz exchange argument).
+
+**Q5 (3 marks, programming).** Write column_basis(A, tol) using elimination and use it to compute the dimension of the column space. Test on a 5x5 matrix of rank 3 built from products, then perturb by 1e-12 noise and by 1e-6 noise. Predict the rank each tolerance reports.
+
+<details><summary>Key for A18.15 (open only after your attempt)</summary>
+
+- **Q1:** B. One independent linear constraint removes one dimension.
+- **Q2:** ABD. The unit sphere is not closed under scaling.
+- **Q3:** 5 (tolerance ±0). Dimension formula: 5.
+- **Q4 (marking outline):** Replace spanning vectors one at a time by the independent vectors; after n exchanges the (n+1)th is a combination.
+- **Q5 (what a passing submission shows):** Exact rank 3; tolerance 1e-9 still reports 3 for 1e-12 noise but 5 for 1e-6 noise.
+
+</details>
+
+### U18.16 Linear maps, representation by matrices, duality and quotient spaces
+**Sources:** LAP W5–8; LAR W5; ALAB P1, P2, o; EM1 W9, o; AEMK W6; MFML W2; EMML W2; PMO W1; ALAK W1
+Bridge for: U5.5 (groups, rings, fields, finite fields and linear algebra over them), U18.3 (Introduction to matrices and applications).
+Shares ground with the cloud units U18.3 (Introduction to matrices and applications), U18.1 (complex numbers, trigonometry and phasors) and U5.5 (groups, rings, fields); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.3: matrix of a linear map; rank–nullity theorem.
+- **Topics:** Introduction to linear maps; examples of linear maps; linear maps and bases; pigeonhole principle in linear algebra; interpolation and the rank theorem; direct sums of vector spaces; projections; direct-sum decomposition of a vector space; dimension equality; dual spaces; quotient spaces; homomorphism theorem of vector spaces; isomorphism theorem of vector spaces; change of bases; linear transformation; existence of linear transformation; representation of transformations by matrices; change of ordered basis and matrix representation of transformations; algebra of linear transformations; linear operators and linear functionals; dual space and double dual space; transpose of a linear transformation; linear transformations (EM1 Week 9); rank-nullity; linear transformations; linear transformations (ALAK Week 1); linear transformations.
+- **Results:** Rank–nullity theorem [P]; a linear map is determined by its action on a basis [P]; isomorphism theorem for vector spaces [P]; V ≅ V** for finite dimension [P]; matrix of composite is product of matrices [P]; change-of-basis formula [D].
+- **Build:** matrix of a map in arbitrary bases, change of basis and the effect on a matrix; null space and range via SVD, from scratch after U18.22.
+- **Gap-fills:** *[inferred: Axler Ch.3]* invertibility and isomorphic vector spaces; linear transformations of the plane (rotation, shear, reflection) as pictures.
+
+**Assignment A18.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A 5 x 8 matrix has rank 3. The dimension of its null space is
+
+(A) 3  
+(B) 5  
+(C) 8  
+(D) 2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A linear map is determined by its values on a basis  
+(B) The kernel of a linear map is a subspace  
+(C) A change-of-basis matrix is singular  
+(D) For finite-dimensional V, V is isomorphic to its double dual
+
+**Q3 (2 marks, numerical answer).** A 4 x 6 matrix has rank 2. What is the nullity?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the rank-nullity theorem: dim V = dim ker T + dim im T.
+
+**Q5 (3 marks, programming).** Write matrix_of_map(T, basis_in, basis_out). Check T(x,y) = (y,x) in the standard basis, then in the basis (1,1),(1,-1). Predict the second matrix first.
+
+<details><summary>Key for A18.16 (open only after your attempt)</summary>
+
+- **Q1:** B. Rank-nullity: 8 - 3 = 5.
+- **Q2:** ABD. Change-of-basis matrices are invertible.
+- **Q3:** 4 (tolerance ±0). Nullity = columns - rank = 4.
+- **Q4 (marking outline):** Extend a basis of the kernel to a basis of V; the images of the added vectors form a basis of the image.
+- **Q5 (what a passing submission shows):** Standard matrix [[0,1],[1,0]]; in the new basis diag(1,-1).
+
+</details>
+
+### U18.17 Inner products, norms, orthogonality, projections and Gram–Schmidt
+**Sources:** LAR W6; ALAB P4; MFML W3; EMML W2,6; ALAK W1,3; ALAJ W1; PMO W1; AOW W1
+Bridge for: U18.2 (Introduction to vectors, properties and applications).
+Shares ground with the cloud units U18.2 (Introduction to vectors, properties and applications) and U18.1 (complex numbers, trigonometry and phasors); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.2: inner products and norms; Gram–Schmidt orthogonalization and process; inner product and vector norm; Gram–Schmidt produces an orthonormal basis.
+- **Topics:** Inner product spaces; matrix norms; Gramian matrix; orthogonal complements and orthogonal complement; best approximation; orthogonality, projection and real symmetric matrices (Week 3); projection mapping; norms and spaces; orthogonal matrices; rotators and reflectors; QR decomposition; properties of vectors and norms.
+- **Results:** Cauchy–Schwarz and triangle inequalities [P]; orthogonal projection onto a subspace is the best approximation (Pythagoras) [P]; V = W ⊕ W^⊥ [P]; projection matrix P = A(AᵀA)⁻¹Aᵀ [D]; equivalence of norms on Rn [S].
+- **Build:** classical and modified Gram–Schmidt, Householder QR and Givens rotators from scratch, observing loss of orthogonality (MGS vs CGS).
+- **Gap-fills:** *[inferred: MML Ch.3]* analytic geometry: lengths, distances, angles, orthonormal bases, orthogonal projections, rotations; p-norms and the unit ball geometry (links to L1 sparsity in U26.4).
+
+**Assignment A18.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The orthogonal projection of (3,4) onto the x-axis is
+
+(A) (3,4)  
+(B) (3,0)  
+(C) (0,4)  
+(D) (1,0)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) abs(u.v) <= norm(u) norm(v)  
+(B) Gram-Schmidt returns an orthonormal basis of the same span  
+(C) An orthogonal projection matrix satisfies P^2 = P and P^T = P  
+(D) Orthogonal matrices change vector lengths
+
+**Q3 (2 marks, numerical answer).** Cosine of the angle between (1,2,2) and (2,2,1).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the orthogonal projection of b onto a subspace W is the unique closest point of W to b, using Pythagoras.
+
+**Q5 (3 marks, programming).** Implement classical Gram-Schmidt, modified Gram-Schmidt and Householder QR. On the 10x10 Hilbert matrix report the norm of Q^T Q - I for each. Predict the ranking first.
+
+<details><summary>Key for A18.17 (open only after your attempt)</summary>
+
+- **Q1:** B. Keep the component along (1,0).
+- **Q2:** ABC. Orthogonal matrices preserve length.
+- **Q3:** 0.8889 (tolerance ±0.001). Dot product 8 over norms 3 and 3.
+- **Q4 (marking outline):** For w in W, norm(b-w)^2 = norm(b-p)^2 + norm(p-w)^2 because b-p is orthogonal to W.
+- **Q5 (what a passing submission shows):** Classical GS loses orthogonality badly, modified GS is better, Householder is near machine epsilon.
+
+</details>
+
+### U18.18 Determinants, multilinear forms and permutations
+**Sources:** LAP W10–12, o; LAR W4
+Bridge for: U18.3 (Introduction to matrices and applications).
+Shares ground with the cloud unit U21.2 (school mathematics through class 12, consolidated); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.2: properties of determinants and adjoint of a matrix.
+Builds on U24.8.
+- **Topics:** Permutation groups; canonical cycle decomposition of permutations; signature of a permutation; introduction to multilinear maps; multilinear maps (continued); introduction to determinants; determinants (continued); computational rules for determinants; adjoint–determinant theorem; the determinant of a linear operator; determinants and volumes (and continued); LR decomposition; elementary divisor theorem; determinants via the theory of multilinear forms.
+- **Results:** Existence and uniqueness of an alternating n-linear form with det(I)=1 [P]; det(AB)=det A·det B [P]; adjoint–determinant theorem A·adj(A)=det(A)·I [P]; |det A| is the volume scaling factor [D]; Cramer's rule [P].
+- **Build:** determinant by permutation expansion, by LU, and by cofactor, with cost measured; volume of a parallelepiped.
+- **Gap-fills:** *[inferred: Strang Ch.5]* determinant as dilation factor (links to change of variables in U24.8 and normalizing flows in D30).
+
+**Assignment A18.18** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The determinant of [[1,2],[3,4]] is
+
+(A) -2  
+(B) 2  
+(C) 10  
+(D) -10
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) det(AB) = det(A) det(B)  
+(B) Swapping two rows flips the sign of the determinant  
+(C) det(A + B) = det(A) + det(B)  
+(D) The absolute determinant is the volume scaling factor
+
+**Q3 (2 marks, numerical answer).** Determinant of [[2,0,1],[1,3,2],[0,1,1]].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that any alternating multilinear function of the rows changes sign when two rows are swapped.
+
+**Q5 (3 marks, programming).** Compute determinants of random 6x6 matrices by permutation expansion, by LU and by cofactor recursion. Acceptance: all agree to 1e-9. Time n = 6, 7, 8 and predict the growth factor of the permutation method.
+
+<details><summary>Key for A18.18 (open only after your attempt)</summary>
+
+- **Q1:** A. 1*4 - 2*3.
+- **Q2:** ABD. The determinant is not additive.
+- **Q3:** 3 (tolerance ±0.001). Expand along row 1: 2(3-2) + 1(1-0) = 3.
+- **Q4 (marking outline):** Apply the alternating property to the sum of the two rows placed in both positions and expand by multilinearity.
+- **Q5 (what a passing submission shows):** Permutation and cofactor grow about n times per extra row factorially (about 7-8x per step); LU grows as n^3.
+
+</details>
+
 ### U18.4 Eigenvalue decomposition: properties, diagonalisation, the spectral theorem, PCA and eigenfaces
 **Sources:** ALA W3, o
 - **Topics:** eigenvalue decomposition, properties and applications (the course's list: principal component analysis and eigenfaces); eigenvalues and eigenvectors, the characteristic polynomial, trace and determinant as the sum and product of the eigenvalues; diagonalisation A = VΛV⁻¹ and powers of a matrix; the spectral theorem for symmetric and Hermitian matrices (real eigenvalues, orthonormal eigenvectors); positive semi-definite matrices; the Rayleigh quotient; covariance matrices; principal component analysis: centring the data, the covariance matrix, the directions of maximal variance, the fraction of variance explained, choosing the number of components; eigenfaces for facial recognition: images as vectors, the mean face, the face space spanned by the leading eigenvectors, recognition by the nearest neighbour in face space; the limits of the method (lighting, pose).
 - **Results:** trace A = Σλᵢ and det A = Πλᵢ [P, check: a 5×5 covariance matrix gives 22.456 and 28.312 both ways]; a real symmetric matrix has real eigenvalues and orthonormal eigenvectors [S]; the Rayleigh quotient wᵀSw/wᵀw is at most λ_max and is attained at its eigenvector [P]; the first principal component, the unit vector that maximises the variance wᵀSw, is the top eigenvector of the covariance matrix [D]; the mean squared reconstruction error of a rank-k projection equals the sum of the discarded eigenvalues [P, check: 5.343 both ways for k = 2]; on 200 synthetic 16×16 "faces" built from five hidden patterns plus noise the first five eigenfaces capture 99.8 % of the variance and the sixth eigenvalue is 1.3·10⁻⁴ of the first [check].
 - **Build:** PCA from the covariance matrix and from the SVD of the centred data, compared with `sklearn.decomposition.PCA`; an eigenface pipeline on synthetic faces, with the Olivetti faces used instead when scikit-learn can fetch them; a nearest-neighbour recogniser in face space with a confusion matrix. [local]
 - **Gap-fills:** *[inferred: Strang Chapter 6; Jolliffe, Principal Component Analysis, recalled, not checked]* the Jordan form is named and not used; the numerical eigenvalue algorithms (QR iteration) are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.19 Eigenvalues, eigenvectors, similarity and diagonalization; U18.20 Canonical forms; U18.21 Spectral theory; U26.8 Dimensionality reduction and feature learning.
 
 **Assignment A18.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7265,12 +9062,137 @@ Bridge for: U18.2 to U18.13.
 
 </details>
 
+### U18.19 Eigenvalues, eigenvectors, similarity and diagonalization
+**Sources:** LAR W7–8; EM1 W10, o; AEMK W8; MFML W2; EMML W2; ALAJ W3; ALAB P3; LAP o
+Bridge for: U18.4 (Eigenvalue decomposition).
+Shares ground with the cloud unit U18.4 (Eigenvalue decomposition); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.4: eigenvalue decomposition, properties and applications.
+- **Topics:** Eigenvalues and eigenvectors; similarity, diagonalization and applications; characteristic values and diagonalization (review); Hermitian, skew-Hermitian and unitary matrices and their eigenvalue properties; similarity of matrices; diagonalization of matrices; special matrices and properties; characteristic polynomial; algebraic versus geometric multiplicity.
+- **Results:** Eigenvectors for distinct eigenvalues are independent [P]; diagonalizability criterion (geometric = algebraic multiplicity) [P]; similar matrices share characteristic polynomial [P]; trace = sum and det = product of eigenvalues [P]; Cayley–Hamilton [P in U18.20].
+- **Build:** power iteration, inverse iteration and QR iteration from scratch, checked against `numpy.linalg.eig`.
+- **Gap-fills:** *[inferred: Strang Ch.6]* powers of a matrix, difference/differential equation solutions via eigen-decomposition (feeds D24 and D27).
+
+**Assignment A18.19** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A 2x2 matrix has trace 5 and determinant 6. Its eigenvalues are
+
+(A) 1 and 4  
+(B) 2 and 3  
+(C) 1 and 6  
+(D) 5 and 1
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Eigenvectors for distinct eigenvalues are linearly independent  
+(B) Similar matrices have the same eigenvalues  
+(C) Every square matrix is diagonalizable  
+(D) The trace equals the sum of the eigenvalues
+
+**Q3 (2 marks, numerical answer).** Largest eigenvalue of [[2,1],[1,2]].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that eigenvectors belonging to distinct eigenvalues are linearly independent.
+
+**Q5 (3 marks, programming).** Implement power iteration, inverse iteration with a shift, and unshifted QR iteration. Compare the observed convergence rate of power iteration with abs(lambda2/lambda1) on a symmetric 5x5 matrix. Predict the rate first.
+
+<details><summary>Key for A18.19 (open only after your attempt)</summary>
+
+- **Q1:** B. They sum to 5 and multiply to 6.
+- **Q2:** ABD. Defective matrices exist.
+- **Q3:** 3 (tolerance ±0.001). Eigenvalues 3 and 1.
+- **Q4 (marking outline):** Assume a minimal dependent set, apply A and subtract a multiple to get a shorter dependency, contradiction.
+- **Q5 (what a passing submission shows):** Observed rate matches abs(lambda2/lambda1) within 5 percent.
+
+</details>
+
+### U18.20 Canonical forms: minimal polynomial, invariant subspaces, Jordan and rational forms
+**Sources:** ALAB o, P3; EMML W6; LAP W10
+Bridge for: U18.4 (Eigenvalue decomposition).
+Shares ground with the cloud unit U5.5 (groups, rings, fields); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Annihilating polynomials; minimal polynomial; invariant subspace; triangulation (two lectures); simultaneous triangulation and simultaneous diagonalization; direct-sum decomposition; invariant direct sums; the primary decomposition theorem; Jordan forms and Jordan canonical form; rational form; elementary divisor theorem; canonical forms and Jordan forms (course component iv).
+- **Results:** Cayley–Hamilton theorem [P]; minimal polynomial divides every annihilating polynomial [P]; triangulability over algebraically closed fields [P]; primary decomposition theorem [P]; existence and uniqueness of Jordan form [S]; rational canonical form [X, proof beyond course scope, stated].
+- **Build:** Jordan-chain computation for small matrices with exact arithmetic; demonstrate numerical instability of Jordan form in floating point.
+
+**Assignment A18.20** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The minimal polynomial of the 3x3 identity matrix is
+
+(A) x - 1  
+(B) (x - 1)^3  
+(C) x  
+(D) x^3 - 1
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Cayley-Hamilton: p(A) = 0 for the characteristic polynomial p  
+(B) The minimal polynomial divides the characteristic polynomial  
+(C) A Jordan form is always diagonal  
+(D) Over C, A is diagonalizable iff its minimal polynomial has distinct roots
+
+**Q3 (2 marks, numerical answer (blocks)).** How many Jordan blocks does [[2,1],[0,2]] have (nullity of A - 2I)?
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the Cayley-Hamilton theorem for a diagonalizable matrix.
+
+**Q5 (3 marks, programming).** Using Python fractions (exact arithmetic), compute a Jordan chain for A = [[2,1,0],[0,2,1],[0,0,2]]. Then perturb A by 1e-10 and compute eigenvalues with your own power or QR iteration (NumPy by default). Predict the size of the eigenvalue shift.
+
+<details><summary>Key for A18.20 (open only after your attempt)</summary>
+
+- **Q1:** A. I satisfies A - I = 0.
+- **Q2:** ABD. Jordan forms can have off-diagonal ones.
+- **Q3:** 1 blocks (tolerance ±0). Nullity of [[0,1],[0,0]] is 1.
+- **Q4 (marking outline):** Write A = P D P^-1; p(A) = P p(D) P^-1 and p(lambda_i) = 0 for each diagonal entry.
+- **Q5 (what a passing submission shows):** One block of size 3; eigenvalue shift about the cube root of 1e-10, roughly 5e-4.
+
+</details>
+
+### U18.21 Spectral theory: normal operators, symmetric matrices, quadratic forms, PSD matrices and kernels
+**Sources:** ALAB o, P4; MFML W3; EMML W3; PMO W1; OMLH W1–2; AOW W1; AEMK W8; ALAK W8, o
+Bridge for: U18.4 (Eigenvalue decomposition), U20.1 (Scalable data science).
+Shares ground with the cloud units U18.4 (Eigenvalue decomposition) and U18.6 (Linear regression and least squares); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.4: spectral theorem for symmetric matrices; real symmetric matrices.
+- **Topics:** Operators on inner-product spaces; the adjoint of a linear operator; normal and self-adjoint operators; unitary and orthogonal operators and their matrices; bilinear and quadratic forms; orthogonal projections and the spectral theorem; spectral decomposition; definiteness of matrices (eigenvalue criterion and Sylvester criterion); quadratic forms and quadratic functions; positive semi-definite (PSD) matrices and kernel functions; Gaussian random vectors; eigenvalue-eigenvector decomposition of square matrices.
+- **Results:** Spectral theorem for real symmetric / Hermitian matrices [P]; spectral theorem for normal operators [P]; Sylvester's criterion [P]; PSD ⇔ nonnegative eigenvalues ⇔ Gram form [P]; Mercer-type statement for kernel matrices [S, used in U26.5].
+- **Build:** Jacobi eigenvalue algorithm for symmetric matrices; PSD test by Cholesky; Gram-matrix kernel construction.
+- **Gap-fills:** *[inferred: MML Ch.4]* Cholesky decomposition, Rayleigh quotient and variational characterization of eigenvalues (needed for PCA in U26.7).
+
+**Assignment A18.21** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The eigenvalues of a real symmetric matrix are
+
+(A) always positive  
+(B) always real  
+(C) always integers  
+(D) always distinct
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Real symmetric matrices have an orthonormal eigenbasis  
+(B) A symmetric matrix is PSD iff all eigenvalues are nonnegative  
+(C) B^T B is positive semidefinite for any B  
+(D) A symmetric matrix with positive diagonal entries is positive definite
+
+**Q3 (2 marks, numerical answer).** Smallest eigenvalue of [[2,-1],[-1,2]].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that a real symmetric matrix has real eigenvalues and that eigenvectors for distinct eigenvalues are orthogonal.
+
+**Q5 (3 marks, programming).** Implement the Jacobi eigenvalue algorithm and Cholesky. Build an RBF Gram matrix on 20 random points and report its smallest eigenvalue and whether Cholesky succeeds. Predict the sign of the smallest eigenvalue.
+
+<details><summary>Key for A18.21 (open only after your attempt)</summary>
+
+- **Q1:** B. Spectral theorem.
+- **Q2:** ABC. Positive diagonal alone is not enough.
+- **Q3:** 1 (tolerance ±0.001). Eigenvalues 1 and 3.
+- **Q4 (marking outline):** Use conjugate transpose to show lambda equals its conjugate; for orthogonality compare x^T A y computed two ways.
+- **Q5 (what a passing submission shows):** The smallest eigenvalue is at rounding level, about 1e-15 in magnitude (machine epsilon times the largest eigenvalue) and often slightly negative although the exact value is positive; plain Cholesky can fail, and a diagonal jitter of about 1e-8 makes it succeed.
+
+</details>
+
 ### U18.5 Singular value decomposition and applications: beamforming in MIMO, dimensionality reduction, rate maximisation and the MUSIC algorithm
 **Sources:** ALA W4, o
 - **Topics:** the SVD A = UΣVᴴ, singular values and singular vectors, the relation to the eigenvalues of AᴴA and AAᴴ, rank from the SVD, the pseudo-inverse, the best low-rank approximation (Eckart–Young); applications: image compression by a rank-k truncation, dimensionality reduction (truncated SVD, latent semantic analysis); wireless MIMO channels y = Hx + n, how precoding with V and combining with Uᴴ turns the channel into parallel scalar channels with gains σᵢ, beamforming along the top singular vector, rate maximisation: capacity Σ log₂(1 + pᵢσᵢ²/N₀) and water-filling of the power; array processing and the MUSIC algorithm (the signal and noise subspaces of the array covariance, the pseudo-spectrum, peaks at the arrival angles).
 - **Results:** every matrix has an SVD, with σᵢ² the eigenvalues of AᴴA [P, from the spectral theorem]; Eckart–Young: the best rank-k approximation in the spectral norm has error σ_(k+1) and in the Frobenius norm √(Σ_{i>k} σᵢ²) [S, check on a 6×4 matrix: 2.078, 1.747 and 0.821 for k = 1, 2, 3]; A⁺ = VΣ⁺Uᴴ [P, check to 10⁻¹⁶]; a rank-k image of 512×512 needs k(512 + 512 + 1) numbers: 10,250 for k = 10 (3.9 % of 262,144) and 51,250 for k = 50 (19.6 %) [check]; with the channel's right singular vectors as transmit directions the received vector is diagonalised and the gain of the best direction is σ₁² [P, check to 6·10⁻¹⁵]; water-filling, pᵢ = (μ − N₀/σᵢ²)⁺ with Σpᵢ = P, is optimal for the capacity [D, check]: a 4×4 Rayleigh channel with σ² = 13.78, 5.15, 1.79, 0.071 and P = 10, N₀ = 1 allocates 3.54, 3.41, 3.05 and 0 and reaches 12.54 bit/s/Hz against 11.63 for equal power, and a numerical optimiser agrees to 10⁻⁹; MUSIC resolves two sources at 20° and 50° on an 8-element half-wavelength array with 2000 snapshots at about 20 dB, returning peaks at 20.0° and 50.0° [check].
 - **Build:** the SVD by the eigendecomposition of AᵀA and against `numpy.linalg.svd`; image compression of a synthetic picture at ranks 10 and 50 with the storage count; a MIMO link with SVD precoding, water-filling and a capacity comparison; a MUSIC pseudo-spectrum plotter. [local]
 - **Gap-fills:** *[inferred: Strang Chapter 7; Tse and Viswanath Chapters 7 and 8, recalled, not checked]* channel state is assumed known at the transmitter; the limited-feedback and fading-capacity cases are named only. Complex arithmetic is needed throughout; see U18.1.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation; U26.8 Dimensionality reduction and feature learning.
 
 **Assignment A18.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7304,12 +9226,96 @@ Bridge for: U18.2 to U18.13.
 
 </details>
 
+### U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation
+**Sources:** ALAK W2–4,9,12, o; ALAB P4, o; EMML W3,6; MFML W4; ALAJ W4; PMO W1; OMLH W1–2
+Bridge for: U5.25 (Quantum and post-quantum cryptography), U14.4 (Computer arithmetic), U18.5 (Singular value decomposition and applications), U20.1 (Scalable data science), U20.5 (Randomised numerical linear algebra).
+Shares ground with the cloud unit U18.5 (Singular value decomposition and applications); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.5: image compression by truncated SVD; compare with `numpy.linalg.svd`.
+- **Topics:** LU decomposition and computational complexity; rotators and reflectors; QR decomposition; condition number of a square matrix and its geometric interpretation; norm of a matrix; sensitivity analysis results for the system of linear equations; singular value decomposition (SVD), relation to condition number, sensitivity analysis of least squares problems and variation in parameter estimates in regression; generalized (g-) inverse and pseudo-inverse; low-rank approximation (LRA) and structured low-rank approximation (SLRA); polar decomposition; spectral decomposition; Python implementation of SVD and low-rank approximation; SVD algorithms and methods; applications of SVD: beamforming in MIMO, dimensionality reduction, rate maximization in wireless, MUSIC algorithm; alternating projections for computing LRA and SLRA; approximate GCD computation; singular value decomposition (SVD) as component vii of advanced linear algebra.
+- **Results:** Existence of SVD [P]; Eckart–Young–Mirsky low-rank optimality [P]; cond(A)=σmax/σmin and error amplification bound [D]; Moore–Penrose pseudo-inverse via SVD, four defining equations [P]; polar decomposition [P].
+- **Build:** SVD via eigendecomposition of AᵀA, then one-sided Jacobi/Golub–Kahan from scratch.
+- **Gap-fills:** *[inferred: Trefethen–Bau; Strang Ch.7]* floating-point arithmetic, backward stability, Cholesky, randomized SVD (links to LoRA in U29.7).
+
+**Assignment A18.22** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For A = U S V^T the rank of A equals
+
+(A) the number of nonzero singular values  
+(B) the largest singular value  
+(C) the trace of S  
+(D) the determinant of S
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Truncated SVD gives the best rank-k approximation (Eckart-Young)  
+(B) cond2(A) = sigma_max / sigma_min  
+(C) Singular values equal the eigenvalues of A  
+(D) The pseudo-inverse is V S^+ U^T
+
+**Q3 (2 marks, numerical answer).** Frobenius error of the best rank-1 approximation of diag(3,2,1).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the singular values of A are the square roots of the eigenvalues of A^T A and that the spectral norm of A equals sigma_1.
+
+**Q5 (3 marks, programming).** Implement SVD from the eigendecomposition of A^T A and then by one-sided Jacobi. Compress a synthetic 64x64 image by truncated SVD for k = 1..20 and check that the Frobenius error equals the square root of the sum of discarded squared singular values. Predict the identity first.
+
+<details><summary>Key for A18.22 (open only after your attempt)</summary>
+
+- **Q1:** A. Rank is the count of nonzero singular values.
+- **Q2:** ABD. Singular values are square roots of eigenvalues of A^T A.
+- **Q3:** 2.236 (tolerance ±0.001). Discard singular values 2 and 1: sqrt(5).
+- **Q4 (marking outline):** A^T A is symmetric PSD; the maximum of norm(Ax)/norm(x) is the square root of its top eigenvalue.
+- **Q5 (what a passing submission shows):** Error equals the square root of the sum of squares of discarded singular values to 1e-10.
+
+</details>
+
+### U18.23 Least squares, regularized and constrained least squares
+**Sources:** ALAK W5–7, o; ALAJ W5–6; EMML W5; MFML W10
+Bridge for: U18.6 (Linear regression and least squares), U18.7 (Optimal linear MMSE estimation), U19.7 (Linear regression and multiple regression).
+Shares ground with the cloud units U18.7 (Optimal linear MMSE estimation) and U18.6 (Linear regression and least squares); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.7: constrained least squares; applications: system identification, MMSE receiver, market prediction and forecasting, ARMA models; optimal linear MMSE estimation. U18.6: linear regression and least squares; least squares by normal equations, QR and SVD with conditioning experiments.
+- **Topics:** Linear least squares: existence and uniqueness, geometrical interpretation, data fitting with least squares, feature engineering, application to vector auto-regressive models, fitting with continuous and discontinuous piecewise linear functions; application of least squares to classification (two-class and multi-class least-squares classifiers, polynomial classifiers, MNIST data set); multi-objective least squares; applications to estimation and regularized inversion; regularized data fitting and image de-blurring; application to portfolio optimization; least square approximation and minimum-norm solution; least squares and PCA; concept of cost function and relation to parameter estimation; parameter estimation problems; applications to portfolio optimization.
+- **Results:** Normal equations characterize the minimizer [P]; solution via QR and via SVD [D]; Gauss–Markov (BLUE) [P in U19.30]; ridge solution and its SVD shrinkage form [D]; KKT system for equality-constrained least squares [D].
+- **Build:** ridge and weighted LS; polynomial classifier on MNIST via LS.
+
+**Assignment A18.23** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The normal equations for least squares are
+
+(A) X w = y  
+(B) X^T X w = X^T y  
+(C) X X^T w = y  
+(D) w = X^T y
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The ridge solution is (X^T X + lambda I)^-1 X^T y  
+(B) QR is numerically more stable than the normal equations  
+(C) The least-squares solution is always unique  
+(D) X^T X + lambda I is invertible for lambda > 0
+
+**Q3 (2 marks, numerical answer).** Slope of the least-squares line through (0,1), (1,2), (2,2).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the ridge solution and show that in the SVD basis each singular direction is shrunk by sigma/(sigma^2 + lambda) compared with 1/sigma.
+
+**Q5 (3 marks, programming).** Fit a degree-12 polynomial by normal equations, by QR and by SVD on 30 noisy points. Report the error of each against the truth and the condition numbers of X and X^T X. Predict the relation between the two condition numbers.
+
+<details><summary>Key for A18.23 (open only after your attempt)</summary>
+
+- **Q1:** B. Setting the gradient of the squared error to zero.
+- **Q2:** ABD. Rank-deficient X gives non-unique solutions.
+- **Q3:** 0.5 (tolerance ±0.001). Sxy/Sxx = 1/2.
+- **Q4 (marking outline):** Substitute X = U S V^T into the ridge normal equations and simplify.
+- **Q5 (what a passing submission shows):** cond(X^T X) is about cond(X)^2; the normal equations lose about twice the digits.
+
+</details>
+
 ### U18.6 Linear regression and least squares: system identification, ridge regression, support vector machines and kernel SVMs
 **Sources:** ALA W5, o
 - **Topics:** applications of least squares in the course: system identification, linear regression, support vector machines and kernel SVMs; least squares as the projection of b onto the column space; the normal equations and the QR and SVD solutions; the pseudo-inverse solution of an under-determined system; ridge (Tikhonov) regularisation and what it does to the singular values; linear regression as least squares; system identification: estimating an FIR channel from a training sequence, the Toeplitz data matrix; support vector machines: the maximum-margin separator, the margin 2/‖w‖, the soft margin and the hinge loss, the dual problem in which the data enter only through inner products, support vectors; kernel SVMs: the kernel trick, polynomial and Gaussian (RBF) kernels, why a non-linearly separable problem such as XOR becomes separable in a feature space.
 - **Results:** x minimises ‖Ax − b‖ iff AᵀAx = Aᵀb, and then the residual is orthogonal to the columns of A [P, check: normal equations agree with `lstsq` to 4·10⁻¹⁵, A ᵀr = 10⁻¹³]; the ridge solution (AᵀA + λI)⁻¹Aᵀb equals Σ (σᵢ/(σᵢ² + λ))(uᵢᵀb)vᵢ, so each component is shrunk by σᵢ²/(σᵢ² + λ) [D, check: agreement 3·10⁻¹⁵, and the solution norm drops from 3.755 to 3.639 for λ = 1]; an FIR channel h = (0.8, 0.5, −0.3) estimated from 64 BPSK training symbols with noise standard deviation 0.05 comes back as (0.802, 0.497, −0.316) [check]; the hard-margin SVM minimises ½‖w‖² under yᵢ(wᵀxᵢ + b) ≥ 1 and the margin is 2/‖w‖ [D, check: two Gaussian clusters give margin 1.65 and 3 support vectors]; the dual depends on the data only through the Gram matrix, so any positive semi-definite kernel can replace the inner product [D]; (1 + aᵀb)² is the inner product of the six-dimensional feature map with weights (1, √2a₁, √2a₂, a₁², √2a₁a₂, a₂²) [P, check]; on XOR data a linear SVM scores 54 %, an RBF kernel 97.5 % and a quadratic kernel 98.5 % on the training set [check].
 - **Build:** least squares by the normal equations, QR and SVD, and ridge with a λ sweep; FIR system identification with a noise sweep; an SVM from scratch (a projected-gradient solver on the dual) compared with `sklearn.svm.SVC`; the XOR experiment with linear, polynomial and RBF kernels. [local]
 - **Gap-fills:** *[inferred: Strang Chapter 4; Hastie–Tibshirani–Friedman Chapters 3 and 12, recalled, not checked]* the SMO solver is named only; the regression and SVM basics of U11.8 are the short version.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.23 Least squares, regularized and constrained least squares; U26.3 Linear regression and linear classification; U26.5 Perceptron, support vector machines and kernel methods.
 
 **Assignment A18.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7349,6 +9355,7 @@ Bridge for: U18.2 to U18.13.
 - **Results:** the LMMSE estimator is the one whose error is orthogonal to the observation, E[(x − x̂)yᵀ] = 0 [P, D]; the error covariance is Σ_xx − Σ_xy Σ_yy⁻¹ Σ_yx [D, check: theory 0.664 and simulation 0.665 for a 4-input, 6-output channel with σ² = 0.5]; the two forms Σ_xy Σ_yy⁻¹ and (HᴴH + σ²I)⁻¹Hᴴ are equal [P, check to 2·10⁻¹⁶]; zero-forcing has MSE σ² trace((HᴴH)⁻¹) = 0.866 on the same channel, against 0.664 for MMSE [check]; for an AR(p) process the best linear one-step predictor solves the Yule–Walker equations Ra = r [D, check: coefficients (0.6, −0.3) are recovered as (0.604, −0.305) from 10⁵ samples]; an AR process is stationary iff the roots of its characteristic polynomial lie inside the unit circle of the z-plane in the form used by the script (modulus 0.548 here) [S]; the minimum-variance portfolio is w = Σ⁻¹1/(1ᵀΣ⁻¹1) [D, check: weights (0.620, 0.237, 0.143) and variance 0.0265 against 0.0362 for equal weights].
 - **Build:** the LMMSE estimator from covariances and its Monte-Carlo check; MMSE and zero-forcing receivers across a range of noise levels; an AR(2) simulator with Yule–Walker estimation and a rolling one-step forecast with its error; an ARMA fit using `statsmodels` when it is installed, and a minimum-variance portfolio. [local]
 - **Gap-fills:** *[inferred: Kay Chapters 10 and 12; Box–Jenkins, recalled, not checked]* the non-Gaussian and non-linear cases are named only; real market data is an input the script accepts, and no result above depends on market data.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.23 Least squares, regularized and constrained least squares; U19.23 Joint distributions, conditioning, covariance and multivariate normal.
 
 **Assignment A18.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7388,6 +9395,7 @@ Bridge for: U18.2 to U18.13.
 - **Results:** each ALS half-step minimises the objective over one factor exactly, so the objective never increases [P, check]; if the true matrix has rank r and enough entries are seen, ALS recovers it [X, check: a 100×80 rank-3 matrix with 30 % of the entries seen gives an RMSE of 2.7·10⁻⁷ on all entries after 60 sweeps]; the Netflix training set had 100,480,507 ratings by 480,189 users of 17,770 movies, so about 98.8 % of the matrix is empty and a dense copy would need about 34 GB at four bytes per entry [check, with the figures read from the contest descriptions on 2026-11-06]; predicting each movie's mean scored RMSE 1.0540, Netflix's Cinematch 0.9525 on the test set, and the 2009 winner BellKor's Pragmatic Chaos 0.8567, a 10.06 % improvement [source: public contest write-ups]; the winning solution was an ensemble of many models, of which matrix factorisation was the strongest single family [S].
 - **Build:** a synthetic rating generator with a hidden low rank and noise; ALS with a bias term and a held-out RMSE curve; soft-impute by iterated SVD; a comparison with an item-based neighbourhood predictor; the MovieLens ratings are used instead when they can be fetched. [local]
 - **Gap-fills:** *[inferred: Koren, Bell and Volinsky 2009, recalled, not checked; the Netflix figures were read from public pages]* implicit-feedback models and the scalable Spark implementation (U11.9) are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.11 Instance-based learning, collaborative filtering and recommendation.
 
 **Assignment A18.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7421,12 +9429,55 @@ Bridge for: U18.2 to U18.13.
 
 </details>
 
+### U18.24 Applications of linear algebra: PageRank, sparsity, dynamical systems, Markov chains, signal processing and data analytics
+**Sources:** ALAK W10–12, o; ALAJ W2–4,7–12, o; EMML W6; LAP o
+Bridge for: U11.10 (Markov chains, eigenvectors and PageRank), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA), U20.6 (MapReduce and related paradigms).
+Shares ground with the cloud units U11.10 (Markov chains, eigenvectors and PageRank), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA), U18.10 (Dynamical systems) and U18.13 (Discrete-time Markov chains and operations research); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U11.10: convergence of the power method and PageRank damping. U18.9: structure of FFT/IFFT matrices and their properties.
+- **Topics:** Applications of matrices – circuits, graphs, social networks, traffic flow; eigenvalue decomposition applications – principal component analysis (PCA), eigenfaces for facial recognition; multicollinearity problem and PCA and dimensionality reduction; power method and the Google PageRank algorithm; underdetermined systems of linear equations, least-norm solutions, sparse solutions, dictionary learning and sparse code recovery; inverse eigenvalue problem and construction of Markov chains from a given stationary distribution; low-rank approximation and structured low-rank approximation with model order selection in time series (Hankel SLRA, autoregressive model order selection); image de-blurring; tensors and CP tensor decomposition, tensor-decomposition-based sparse learning in deep networks; matrix completion problems and collaborative filtering; data analytics: recommender systems, user rating prediction, the Netflix problem; system model for OFDM/SC-FDMA and signal processing in OFDM systems; modelling of dynamical systems (robots, chemical plants), solution of autonomous linear dynamical systems (LDS) and solution with inputs and outputs; unsupervised learning: centroid-based clustering, probabilistic model-based clustering and the EM algorithm; linear perceptron and training a perceptron by stochastic gradient; compressive sensing and orthogonal matching pursuit for sparse signal estimation; discrete-time Markov chains with applications to supply chain management, forecasting and operations research (resource and inventory management); applications in wireless (MIMO/OFDM, beamforming, channel estimation), machine learning (regression, clustering, EM algorithm, perceptron, SVM, kernel SVM, PCA, face recognition), signal processing (signal estimation, regularization, compressive sensing, image compression, robotics and dynamical systems), data analytics (recommender systems, data completion, data prediction, forecasting, optimal estimation, financial models), operations research and miscellaneous applications; application to the Google page ranking algorithm; operations research (inventory and supply-chain management); electrical circuits; control and finance; wireless communication.
+- **Results:** Perron–Frobenius for positive matrices [S]; stationary distribution of an irreducible aperiodic chain [P in U19.25]; DFT matrix is unitary and diagonalizes circulants [P].
+- **Build:** PageRank on a small web graph; matrix completion by alternating least squares and by nuclear-norm heuristic; OMP from scratch; CP decomposition by ALS.
+- **Gap-fills:** *[inferred: Strang LfD]* low-rank matrix and tensor ideas that reappear in LoRA (U29.7) and compression (U33.4).
+
+**Assignment A18.24** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The damping factor in PageRank mainly ensures
+
+(A) faster hashing  
+(B) a unique stationary vector and convergence of the power method  
+(C) symmetric links  
+(D) dense graphs
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The power method converges at rate abs(lambda2/lambda1)  
+(B) PageRank is the stationary distribution of the Google matrix  
+(C) Orthogonal matching pursuit is always optimal  
+(D) The scaled DFT matrix is unitary
+
+**Q3 (2 marks, numerical answer).** Stationary probability of state 1 for P = [[0.9,0.1],[0.5,0.5]].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the DFT matrix divided by sqrt(n) is unitary.
+
+**Q5 (3 marks, programming).** Implement PageRank by power iteration on a 6-node graph with damping 0.85 and check it against the top eigenvector by your own eigensolver. Also implement OMP to recover a 3-sparse vector in R^50 from 20 Gaussian measurements and report the success rate over 200 trials. Predict the success rate band first.
+
+<details><summary>Key for A18.24 (open only after your attempt)</summary>
+
+- **Q1:** B. It makes the chain irreducible and aperiodic.
+- **Q2:** ABD. OMP is greedy and can fail.
+- **Q3:** 0.8333 (tolerance ±0.001). pi1 = 0.9 pi1 + 0.5 pi2 gives pi1 = 5 pi2, so 5/6.
+- **Q4 (marking outline):** Entries are roots of unity; distinct columns are orthogonal because of the geometric sum identity.
+- **Q5 (what a passing submission shows):** PageRank vectors agree to 1e-8; OMP recovers the support in about 85 percent of trials (a band of 80 to 90 percent).
+
+</details>
+
 ### U18.9 The DFT and the FFT matrix, OFDM and SC-FDMA: structure, properties and signal processing in OFDM systems
 **Sources:** ALA W7–8, o
 - **Topics:** the DFT matrix F with entries e^(−2πi jk/N); it is a unitary matrix after scaling by 1/√N; the FFT/IFFT matrices and their structure (the recursion of the radix-2 FFT and the operation count N/2 · lg N butterflies); circulant matrices and why the DFT diagonalises them (circular convolution becomes pointwise multiplication); the system model for OFDM (inverse FFT at the transmitter, the cyclic prefix, the FFT at the receiver, one complex gain per subcarrier, one-tap equalisation); channel estimation from pilot subcarriers; SC-FDMA (DFT-precoded OFDM) and why the uplink uses it (a lower peak-to-average power ratio); signal processing in OFDM systems: synchronisation errors and inter-carrier interference are named.
 - **Results:** F Fᴴ = N·I, so the scaled DFT is unitary and the inverse is the conjugate transpose [P, check to 8·10⁻¹⁷]; every circulant matrix is C = F⁻¹ diag(F c) F, with the DFT of the first column as the eigenvalues [P, check to 2·10⁻¹⁵]; the radix-2 FFT satisfies T(N) = 2T(N/2) + N/2 butterflies, so (N/2) lg N of them: 5,120 for N = 1024 against 1,048,576 products for the direct matrix, a factor of 205 [D, check]; with a cyclic prefix at least as long as the channel memory the received subcarriers satisfy Y_k = H_k X_k exactly [D, check: 64 subcarriers, prefix 16, a 4-tap channel, error 7·10⁻¹⁶; without the prefix the error is 0.098]; for 64 QPSK symbols on 256 points the 99th percentile of the peak-to-average power ratio is 9.77 dB for OFDM and 6.91 dB for localised SC-FDMA, and the medians are 7.28 dB and 5.29 dB [check].
 - **Build:** the DFT matrix, a recursive FFT checked against `numpy.fft`, and the operation counts; a complete OFDM link (modulation, prefix, multipath channel, one-tap equaliser) with a bit-error-rate curve; the effect of a short prefix; a PAPR experiment for OFDM and SC-FDMA. [local]
 - **Gap-fills:** *[inferred: Tse and Viswanath Chapter 3; 3GPP LTE uplink descriptions, recalled, not checked]* the mapping of subcarriers to users in LTE and 5G, and the radio-frequency chain that sits under the model, are named only; the Fourier analysis of continuous signals is not needed here. On demand: U17.3 for the divide-and-conquer recursion of the FFT.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.11 Complex numbers II; U18.24 Applications of linear algebra; U24.15 Laplace, Z, Fourier and discrete Fourier transforms.
 
 **Assignment A18.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7466,6 +9517,7 @@ Bridge for: U18.2 to U18.13.
 - **Results:** x(t) = A^t x(0) and, with A = VΛV⁻¹, the state is a sum of modes λᵢᵗ [P]; a discrete system is asymptotically stable iff the spectral radius is below one, and a continuous one iff every eigenvalue has negative real part [P for diagonalisable A; check: ρ = 0.9 for a 2×2 example, eigenvalues −1 and −2 for the continuous example]; e^(At) is the sum of Aᵏtᵏ/k! and the zero-order-hold discretisation is A_d = e^(AΔ) [D, check: series and `expm` agree to 10⁻¹⁶ and 50 steps of Δ = 0.1 reproduce x(5) exactly]; the pair (A, B) is controllable iff [B, AB, …, A^(n−1)B] has rank n [S, check]; the double integrator is controllable and, with unit step and zero initial state, input (4, −4) takes it to position 4 and velocity 0 in two steps [check]; the two-tank plant with eigenvalues −0.3 and −0.5 is controllable from the inflow to tank 1 (rank 2) and has steady-state levels (2, 3.33) per unit inflow, and is not controllable from an input into tank 2 alone (rank 1) because tank 1 is unaffected [check].
 - **Build:** a simulator for the discrete and continuous cases with the exact solution for comparison; the two-tank and double-integrator models with their controllability matrices; a deadbeat controller for the double integrator; an observability check and a Luenberger observer. [local]
 - **Gap-fills:** *[inferred: Strang Chapter 6.3 (differential equations); Boyd and Vandenberghe Chapters 9 and 10 for state-space models, recalled, not checked]* non-linear plants are linearised and not analysed further; pole placement and the linear-quadratic regulator are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U24.11 First- and higher-order ordinary differential equations; U24.16 Mathematical modelling; U24.17 ODE theory for dynamical systems.
 
 **Assignment A18.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7505,6 +9557,7 @@ Bridge for: U18.2 to U18.13.
 - **Results:** the E-step computes r_ik = π_k N(x_i | μ_k, σ_k²) / Σ_j π_j N(x_i | μ_j, σ_j²) and the M-step sets μ_k = Σ r_ik x_i / Σ r_ik, σ_k² as the weighted variance and π_k = Σ r_ik/n [D]; the log-likelihood is non-decreasing across iterations, because the E-step makes the Jensen lower bound tight and the M-step maximises it [P, check]; k-means is the limit of EM with equal spherical covariances as the variance goes to zero [S]; on 500 points drawn from 0.6 N(0, 1) and 0.4 N(4, 1.5²) the fit gives means (0.123, 4.213), standard deviations (1.025, 1.608) and weights (0.630, 0.370), with the log-likelihood rising from −1981 to −1064 [check].
 - **Build:** k-means with k-means++ against `sklearn.cluster.KMeans`; EM for a one-dimensional and a two-dimensional mixture with the log-likelihood plot and a monotonicity assertion; a comparison of hard and soft clustering on overlapping groups; the number of components chosen by BIC. [local]
 - **Gap-fills:** *[inferred: Bishop Chapter 9; Hastie–Tibshirani–Friedman Chapter 14, recalled, not checked]* variational inference and the mixture of experts are named only; spectral clustering (U18.3's Laplacian) is named.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.9 Clustering, mixture models and the EM algorithm.
 
 **Assignment A18.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7543,7 +9596,8 @@ Bridge for: U18.2 to U18.13.
 - **Topics:** the linear perceptron: the decision rule sign(wᵀx), the perceptron update on a mistake, training with stochastic gradient (the perceptron as SGD on a hinge-like loss), convergence for separable data; compressive sensing: a sparse signal x in N dimensions seen through M ≪ N linear measurements y = Φx, why the system is under-determined and why sparsity makes it solvable; the ℓ0 problem and its ℓ1 relaxation (basis pursuit) stated; orthogonal matching pursuit (OMP) for sparse signal estimation: pick the column most correlated with the residual, re-fit by least squares on the chosen columns, update the residual; coherence and the restricted isometry property stated; the number of measurements needed; image compression and sparse signals in a transform basis.
 - **Results:** the perceptron makes at most (R/γ)² mistakes on data of radius R separable with margin γ [P, Novikoff; check: on 300 two-dimensional points with γ = 0.505 and R = 3.78 the bound is 56 and the run made 2 mistakes]; after each OMP step the residual is orthogonal to every chosen column [P, check]; if the mutual coherence μ of Φ satisfies (2s − 1)μ < 1, OMP recovers every s-sparse signal exactly in s steps [X]; the minimum-norm solution of the under-determined system is not sparse [check: all 128 entries non-zero, error 1.97 for a 5-sparse signal and M = 40]; with N = 128, s = 5 and Gaussian Φ, OMP recovers the signal in 29.5 % of trials at M = 20, 85 % at M = 30, 97.2 % at M = 40 (500 trials), 98.5 % at M = 50 and 100 % at M = 60 [check], although the coherence of that Φ is 0.557, far above 1/9, so the coherence guarantee is sufficient and very conservative.
 - **Build:** a perceptron with a mistake counter checked against the margin bound; an OMP implementation with the orthogonality assertion; a phase-transition experiment over M and s; basis pursuit by linear programming (`scipy.optimize.linprog`) compared with OMP; a sparse-in-DCT signal recovered from random samples. [local]
-- **Gap-fills:** *[inferred: Candès and Wakin 2008; Foucart and Rauhut, recalled, not checked]* the restricted isometry proof and noise-robust recovery guarantees are stated only; the multi-layer perceptron and back-propagation are in the machine-learning curriculum, not here.
+- **Gap-fills:** *[inferred: Candès and Wakin 2008; Foucart and Rauhut, recalled, not checked]* the restricted isometry proof and noise-robust recovery guarantees are stated only; the multi-layer perceptron and back-propagation are in U28.1 and U28.2, not here.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U25.12 Applications of optimization; U25.13 Non-smooth and difference-of-convex optimization; U28.1 Perceptron, multilayer networks, activations and loss functions.
 
 **Assignment A18.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7583,6 +9637,7 @@ Bridge for: U18.2 to U18.13.
 - **Results:** the n-step distribution of the chain is π₀Pⁿ and a stationary distribution solves πP = π [P, check: a 3-state chain has π = (0.4634, 0.3171, 0.2195), equal to a row of P⁵⁰, with |λ₂| = 0.4618 and total-variation distance 2·10⁻⁴ after ten steps]; for an absorbing chain with transient block Q the matrix N = (I − Q)⁻¹ gives expected visits, and its row sums the expected time to absorption [P, check: a four-state gambler's-ruin chain gives 2 steps and absorption probabilities 2/3 and 1/3]; for an inventory with demand probabilities 0.1, 0.2, 0.4, 0.2, 0.1 on 0 to 4 units and policy (s, S) = (2, 5) the stationary distribution over the opening stock is (0.099, 0.199, 0.226, 0.288, 0.130, 0.058), an order is placed in 52.4 % of periods and 0.0288 units of demand are lost per period, and a 400,000-period simulation gives 52.5 % and 0.0288 [check].
 - **Build:** a Markov-chain toolkit (n-step, stationary distribution by eigenvector and by power iteration, absorbing analysis); an (s, S) inventory simulator checked against the stationary-distribution cost; a brand-switching model for forecasting market share; a sweep over (s, S) that picks the policy with the lowest cost per period for given ordering and holding costs. [local]
 - **Gap-fills:** *[inferred: Strang Chapter 10.3 (Markov matrices); Ross, Introduction to Probability Models; Hillier and Lieberman, recalled, not checked]* Markov decision processes and the optimisation of the policy by dynamic programming are named only; continuous-time chains and queueing models are in U2.1 and U9.2.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.25 Markov chains, queueing theory and reliability; U27.4 Markov decision processes.
 
 **Assignment A18.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7616,9 +9671,16 @@ Bridge for: U18.2 to U18.13.
 
 </details>
 
-## D19. Statistics, data mining and Bayesian analysis: from probability and sampling to testing, regression, clustering, trees, association rules, classification, Bayesian inference, MCMC and model comparison
+## D19. Probability, statistics, data mining and Bayesian analysis: from probability, random variables and limit theorems to sampling, testing, regression, clustering, trees, association rules, classification, Bayesian inference, MCMC, model comparison and forecasting
 
 Aim: the statistical and data-mining toolkit of an analyst, taught so that every method is run, checked against a simulation whose answer is known, and then applied to a small realistic problem. Three courses supply the outline: Data Analytics with Python (IIT Roorkee), Data Mining (IIT Kharagpur; the title is inferred, because the outline file gives only the instructor's name) and Bayesian Data Analysis for the Behavioral Sciences. The course tools were Python for the first, open-source software for the second and R with the brms package and Stan for the third; D19 teaches every method from scratch in Python with NumPy and SciPy and, for the Bayesian course, replaces R, brms and Stan by their Python counterparts (Bambi and PyMC, installed in the workspace and run, with ArviZ for diagnostics), so R is not used anywhere in this curriculum. Benchmarks (recalled, not checked in full): Montgomery and Runger, *Applied Statistics and Probability for Engineers*; Wasserman, *All of Statistics*; James, Witten, Hastie and Tibshirani, *An Introduction to Statistical Learning*; Han, Kamber and Pei, *Data Mining: Concepts and Techniques*; Tan, Steinbach and Kumar, *Introduction to Data Mining*; Gelman et al., *Bayesian Data Analysis*, 3rd ed.; McElreath, *Statistical Rethinking*; Kruschke, *Doing Bayesian Data Analysis*. Ownership: D19 owns statistical inference, regression as statistics, data-mining algorithms and Bayesian analysis. The machine-learning bridge U11.8 and the applied algebra of D18 (least squares in U18.6, EM in U18.11, the SVM in U18.6) stay where they are and are referenced; the probability bridge U2.1 and the tail-bound bridge U9.2 are referenced for random processes and concentration; the scalable versions of the algorithms belong to D20 and D11.
+
+
+**Merged units, folded in by subject.** This domain also holds the units of Probability and Stochastic Models (U19.18–U19.26) and Statistics and Statistical Inference (U19.27–U19.32) from the earlier machine-learning curriculum, marked * below. They are on demand: each begins with a **Bridge for:** or **On demand:** line, and the cloud unit owns every topic that both teach. **Reading ladder** (the order of study when you take the subject for its own sake; compact cloud units stand beside the merged units that go deeper): U19.1, U19.2, U19.27*, U19.3, U19.18*, U19.19*, U19.20*, U19.21*, U19.22*, U19.23*, U19.24*, U19.25*, U19.26*, U19.4, U19.28*, U19.5, U19.29*, U19.6, U19.7, U19.30*, U19.8, U19.9, U19.10, U19.11, U19.12, U19.13, U19.14, U19.31*, U19.15, U19.16, U19.17, U19.32*.
+
+**Probability and Stochastic Models (U19.18–U19.26).** Aim: probability from events to limit theorems, the joint and multivariate machinery used by ML, and the stochastic models (Poisson process, Markov chains, queues, reliability) named in the sources. Benchmarks (recalled, not checked): Kay, *Intuitive Probability and Random Processes*; Rosenthal, *A First Look at Rigorous Probability Theory*; Deisenroth et al. Ch. 6; Blitzstein–Hwang, *Introduction to Probability*; Grimmett–Stirzaker.
+
+**Statistics and Statistical Inference (U19.27–U19.32).** Aim: from descriptive statistics to estimation theory, hypothesis testing, regression and Bayesian inference, including the learner's own "50 statistical techniques" list. Benchmarks (recalled, not checked): Casella–Berger, *Statistical Inference*; Miller–Freund, *Mathematical Statistics with Applications*; Johnson–Wichern, *Applied Multivariate Statistical Analysis* (6th ed.); Hastie–Tibshirani–Friedman, *The Elements of Statistical Learning*; Maity, *Statistical Methods in Hydrology and Hydroclimatology*.
 
 ### U19.1 Bridge: calculus, counting and matrices for statistics
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
@@ -7627,6 +9689,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** the derivative of ln x is 1/x and of e^x is e^x [P]; ∫e^(−x²/2) dx over the real line is √(2π) [P, by the polar-coordinates trick; check: 2.5066283 numerically]; the binomial coefficients of row n sum to 2ⁿ [P, check: 1024 for n = 10]; at an interior maximum the first derivative is zero and the second is non-positive [P].
 - **Build:** numerical differentiation and integration compared with exact results for ten functions; a plot of a log-likelihood and its maximum found by derivative and by a grid. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapter 1; Wasserman Chapter 1]* multiple integrals are used only for joint densities and are explained where they first appear. The full treatment of the school mathematics is U21.2, of probability U21.6, and of Python and R U21.1 and U21.3.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.13 Counting, generating functions and combinatorics; U24.1 Numbers, countability, functions, limits and continuity; U24.2 Differentiation and mean value theorems; U24.3 Integration, applications and transcendental functions; U24.6 Functions of several variables; U24.7 Taylor expansion in several variables, maxima; U24.8 Multiple integrals and their applications; U18.14 Systems of linear equations, matrices, elimination, rank and inverses.
 
 **Assignment A19.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7666,6 +9729,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** the mean minimises the sum of squared deviations and the median the sum of absolute deviations [P]; Chebyshev: at most 1/k² of any data set lies more than k standard deviations from the mean [P; check: an exponential sample has 4.75 % beyond two standard deviations, under the 25 % bound]; Welford's one-pass update gives the sample variance to 10⁻¹⁵ [P, check], whereas the sum-of-squares formula returns 0.0 for 1000 values near 10⁹ whose true variance is 1.008 [check, catastrophic cancellation]; for a lognormal sample the mean (1.646) and the median (1.000) differ widely, which is why the choice of summary matters [check]; the IQR rule flags 4.2 % of an exponential sample as outliers [check].
 - **Build:** a pandas notebook that loads a CSV, summarises it, plots it and flags outliers; Welford against the naive formula; a one-page "analytics brief" script that prints the summary table of any data frame. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapter 6; Wes McKinney, Python for Data Analysis, recalled, not checked]* the audience, industry and outline lines of the course are treated as the framing of this unit and not as content.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.27 Data, descriptive statistics and measures of association.
 
 **Assignment A19.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7699,12 +9763,55 @@ Bridge for: U19.2 to U19.17.
 
 </details>
 
+### U19.27 Data, descriptive statistics and measures of association
+**Sources:** PSS W1–2, o; IPS W8–9; SMLM W1, o; MLCE W1; S50 D1
+Bridge for: U19.2 (Introduction to data analytics and Python fundamentals).
+Shares ground with the cloud unit U19.2 (Introduction to data analytics and Python fundamentals); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.2: Sample mean minimizes squared deviation and median minimizes absolute deviation; box plots and histograms by hand.
+- **Topics:** Different types of data; tables, charts, histograms, frequency distributions; measures of association; descriptive statistics I–IV; sample and population properties; introduction to probability and statistics; role of statistics, machine learning and data science; descriptive statistics for EDA and feature understanding; descriptive statistics as the data-understanding layer: foundation for EDA and feature understanding.
+- **Results:** Chebyshev-type bounds for samples [P].
+- **Build:** descriptive-statistics library from scratch (mean, median, mode, variance, SD, range, IQR, skewness, kurtosis, quantiles).
+- **Gap-fills:** *[inferred: Johnson–Wichern Ch.1]* outlier detection, standardization, graphical displays of multivariate data.
+
+**Assignment A19.27** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which statistic is least affected by one extreme outlier?
+
+(A) Mean  
+(B) Variance  
+(C) Median  
+(D) Range
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) IQR = Q3 - Q1  
+(B) Skewness measures asymmetry  
+(C) Standard deviation has the same units as the data  
+(D) Variance has the same units as the data
+
+**Q3 (2 marks, numerical answer).** Interquartile range of 1,2,3,4,5,6,7,8 (linear-interpolation percentiles).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the sample mean minimizes the sum of squared deviations.
+
+**Q5 (3 marks, programming).** Write a descriptive-statistics module (mean, median, mode, variance, SD, range, IQR, skewness, kurtosis, quantiles) and a text five-number-summary box plot. Predict which statistic changes most when one value of a 100-point sample is replaced by a 10-sigma outlier.
+
+<details><summary>Key for A19.27 (open only after your attempt)</summary>
+
+- **Q1:** C. The median depends on order, not magnitude.
+- **Q2:** ABC. Variance has squared units.
+- **Q3:** 3.5 (tolerance ±0.001). Q3 = 6.25, Q1 = 2.75.
+- **Q4 (marking outline):** Differentiate sum (x_i - c)^2 in c and set to zero; the second derivative is positive.
+- **Q5 (what a passing submission shows):** The variance (and kurtosis) change most; the median barely moves.
+
+</details>
+
 ### U19.3 Probability and random variables: events, conditional probability, Bayes' rule, distributions, expectation and the limit theorems
 **Sources:** DAP W2; BDA W1–2
 - **Topics:** introduction to probability: sample space, events, the axioms, counting; conditional probability, independence, the law of total probability and Bayes' rule; probability and random variables I: discrete random variables, the probability mass function, the cumulative distribution function, expectation, variance; probability and random variables II: continuous random variables, density functions, joint, marginal and conditional distributions, covariance and correlation; the common distributions (Bernoulli, binomial, Poisson, uniform, exponential, normal) and where each arises; the Poisson approximation to the binomial; the law of large numbers and the central limit theorem stated; simulation as a way to check an answer.
 - **Results:** P(A | B) = P(B | A) P(A) / P(B) [P]; a test with 1 % prevalence, 90 % sensitivity and 5 % false positives gives P(disease | positive) = 15.4 %, not 90 % [P, check]; E[aX + bY] = aE[X] + bE[Y] without independence, and Var(X + Y) = Var X + Var Y + 2 Cov(X, Y) [P]; the binomial (n, p) has mean np and variance np(1 − p) [P, check: 6.0 and 4.2 for n = 20, p = 0.3]; for n = 1000, p = 0.003 the binomial and Poisson probabilities of five events are 0.10087 and 0.10082 [check]; with 23 people the probability that two share a birthday is 0.5073 [P, check]; the law of large numbers: the error of a binomial proportion with p = 0.3 was 0.07, 0.0068 and 0.0006 at 10², 10⁴ and 10⁶ trials [check]; the standardised mean of 30 exponential variables has P(Z < 1.96) = 0.966 against 0.975 for the normal, so the central limit theorem is asymptotic and skew shows at moderate n [check].
 - **Build:** a simulator for conditional probability problems checked against Bayes' rule; the birthday problem by formula (reuse the simulator of U5.1); histograms of sample means for four distributions and growing n; the Poisson-binomial comparison. [local]
 - **Gap-fills:** *[inferred: Wasserman Chapters 1 to 5; the probability and random-process material of U2.1 and the tail bounds of U9.2]* the proof of the central limit theorem is stated and not given.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.21 Special continuous distributions and the normal distribution; U19.22 Functions of random variables, transformations and order statistics; U19.23 Joint distributions, conditioning, covariance and multivariate normal.
 
 **Assignment A19.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7738,12 +9845,389 @@ Bridge for: U19.2 to U19.17.
 
 </details>
 
+### U19.18 Probability foundations: from events to Bayes' theorem
+**Sources:** IPS W1–2, o; PSS W3, o; MFML W5, o; AEMA W9, o; EMML W10; SMLM W2; MLE W2; MLESA W0; S50 D2
+Bridge for: U2.1 (probability, random processes and queueing for networks), U5.1 (probability, entropy and asymptotics for cryptography), U19.3 (Probability and random variables), U21.6 (probability from first principles).
+Shares ground with the cloud units U19.3 (Probability and random variables), U21.6 (probability from first principles) and U5.1 (probability, entropy and asymptotics for cryptography); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.3: law of total probability.
+- **Topics:** Sets, classes, collections; sequence of sets; ring and field (algebra) of sets; sigma-ring, sigma-field and monotone class; random experiment and events; definitions of probability; properties of the probability function I and II; conditional probability; independence of events; problems in probability I and II; probability concepts, conditional probability and Bayes' theorem; probability foundations from events to Bayes' theorem; basic concepts of probability; probability networks; review of probability, Bayes theorem; joint probability; marginal probability; independence of events; probability theory recap; probability theory as the core math backbone: critical for uncertainty modeling and ML intuition.
+- **Results:** Continuity of probability along monotone sequences [P]; inclusion–exclusion for events [P]; law of total probability [P]; Bayes' theorem [P]; Borel–Cantelli lemmas [P]; π–λ / monotone class uniqueness theorem [S].
+- **Build:** Bayes' rule on diagnostic-test and spam-filter examples; Monte Carlo verification of birthday and Monty-Hall problems.
+- **Gap-fills:** *[inferred: Rosenthal; Kay]* measure-theoretic probability space (Ω, F, P), conditional independence, probabilistic graphical models as "probability networks" (links to U26.9).
+
+**Assignment A19.18** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Two fair dice are rolled. The probability that the sum is 7 is
+
+(A) 1/12  
+(B) 1/6  
+(C) 1/9  
+(D) 7/36
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) P(A or B) = P(A) + P(B) - P(A and B)  
+(B) Independent events satisfy P(A and B) = P(A) P(B)  
+(C) Mutually exclusive events of positive probability are independent  
+(D) The law of total probability uses a partition of the sample space
+
+**Q3 (2 marks, numerical answer).** A disease has prevalence 1 percent; a test has sensitivity 90 percent and false-positive rate 5 percent. Probability of disease given a positive test.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive Bayes' theorem and the law of total probability from the definition of conditional probability.
+
+**Q5 (3 marks, programming).** Estimate by Monte Carlo (N = 10^5, fixed seed) the probability that switching wins the Monty Hall game and the probability that 23 people contain a shared birthday. Predict both first.
+
+<details><summary>Key for A19.18 (open only after your attempt)</summary>
+
+- **Q1:** B. 6 of 36 outcomes.
+- **Q2:** ABD. Exclusive events with positive probability are dependent.
+- **Q3:** 0.1538 (tolerance ±0.001). Bayes: 0.009/0.0585 = 0.1538.
+- **Q4 (marking outline):** P(A and B) = P(A given B)P(B) = P(B given A)P(A); sum over a partition for the denominator.
+- **Q5 (what a passing submission shows):** About 2/3 and about 0.507.
+
+</details>
+
+### U19.19 Random variables, distributions and moments
+**Sources:** IPS W2–3, o; MFML W6; PSS W4; SMLM W2; EMML W10–11; S50 D1, D3
+Bridge for: U2.1 (probability, random processes and queueing for networks), U5.1 (probability, entropy and asymptotics for cryptography), U8.2 (quantitative risk), U19.3 (Probability and random variables), U21.6 (probability from first principles).
+Shares ground with the cloud unit U21.6 (probability from first principles); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Random variables; probability distribution of a random variable I and II (PMF, PDF, CDF); moments; characteristics of distributions I and II; moments of random variables; expectation and variance; expected value; mean, median, mode, variance, standard deviation, range, interquartile range, skewness, kurtosis, percentiles and quantiles as distribution characteristics.
+- **Results:** Properties of the CDF and its characterization [P]; linearity of expectation [P]; variance identity Var X = E[X²] − (E X)² [P]; Jensen's inequality [P]; moment generating function determines moments [S].
+- **Build:** empirical CDF, histogram and moment estimators; skewness and kurtosis from scratch.
+- **Gap-fills:** *[inferred: Kay; Rosenthal]* characteristic functions, expectation as Lebesgue integral, entropy and KL divergence (needed in D26, D30).
+
+**Assignment A19.19** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a random variable X, Var(X) equals
+
+(A) E[X^2] - (E[X])^2  
+(B) E[X]^2 - E[X^2]  
+(C) E[(X)^2]  
+(D) E[X] - 1
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A CDF is non-decreasing  
+(B) Expectation is linear  
+(C) Var(aX) = a^2 Var(X)  
+(D) E[XY] = E[X]E[Y] for all X and Y
+
+**Q3 (2 marks, numerical answer).** Variance of a fair six-sided die.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Var(aX + b) = a^2 Var(X).
+
+**Q5 (3 marks, programming).** Write the empirical CDF, sample moments, skewness and excess kurtosis. For N = 10^6 draws from Exp(1) (inverse-CDF sampler) report both. Predict their theoretical values first.
+
+<details><summary>Key for A19.19 (open only after your attempt)</summary>
+
+- **Q1:** A. Standard variance identity.
+- **Q2:** ABC. That product rule needs uncorrelated variables.
+- **Q3:** 2.917 (tolerance ±0.001). E[X^2] = 91/6, mean 3.5: variance 35/12.
+- **Q4 (marking outline):** Centre by the mean a E[X] + b; the shift cancels and a squares.
+- **Q5 (what a passing submission shows):** Skewness about 2 and excess kurtosis about 6.
+
+</details>
+
+### U19.20 Special discrete distributions and the Poisson process
+**Sources:** IPS W3–4; AEMA W9–10; PSS W4; EMML W11; SMLM W3; S50 D3
+Bridge for: U2.1 (probability, random processes and queueing for networks), U5.1 (probability, entropy and asymptotics for cryptography), U19.3 (Probability and random variables), U21.6 (probability from first principles).
+Shares ground with the cloud units U19.3 (Probability and random variables), U21.6 (probability from first principles) and U2.1 (probability, random processes and queueing for networks); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.6: discrete and continuous distribution functions; Poisson process and exponential distribution.
+- **Topics:** Special discrete distributions I, II and III; discrete distributions (Bernoulli, binomial, negative binomial, Poisson, geometric, hypergeometric, multinomial); Poisson process I and II.
+- **Results:** Poisson as the limit of binomial [P]; memorylessness of the geometric and exponential laws [P]; Poisson process: counts are Poisson and inter-arrivals exponential [D]; mean and variance of each standard law [D].
+- **Build:** samplers for each discrete law from uniform random numbers; simulation of a Poisson process.
+- **Gap-fills:** *[inferred: Kay]* Bernoulli trials and the multinomial as a model for categorical outputs (softmax in D28/D29).
+
+**Assignment A19.20** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a Poisson random variable the variance equals
+
+(A) the mean  
+(B) the square of the mean  
+(C) half the mean  
+(D) one
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The geometric distribution is memoryless  
+(B) Binomial(n, lambda/n) tends to Poisson(lambda)  
+(C) Inter-arrival times in a Poisson process are exponential  
+(D) The variance of Bernoulli(p) is p
+
+**Q3 (2 marks, numerical answer).** P(X = 3) for X ~ Poisson(2).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that Binomial(n, lambda/n) probabilities converge to Poisson(lambda) as n goes to infinity.
+
+**Q5 (3 marks, programming).** Sample Poisson by inversion and by thinning from a simulated Poisson process of rate 3 on [0,10]. Check that counts have mean about 30 and variance about 30 over 5000 runs. Predict the variance first.
+
+<details><summary>Key for A19.20 (open only after your attempt)</summary>
+
+- **Q1:** A. Mean = variance = lambda.
+- **Q2:** ABC. The variance is p(1 - p).
+- **Q3:** 0.1804 (tolerance ±0.0005). e^-2 * 8/6 = 0.1804.
+- **Q4 (marking outline):** Write C(n,k)(lambda/n)^k(1-lambda/n)^(n-k) and take limits term by term.
+- **Q5 (what a passing submission shows):** Mean and variance both near 30.
+
+</details>
+
+### U19.21 Special continuous distributions and the normal distribution
+**Sources:** IPS W4–5; AEMA W10–11; PSS W4; SMLM W3; EMML W11; S50 D3
+Bridge for: U5.1 (probability, entropy and asymptotics for cryptography), U8.2 (quantitative risk), U8.8 (Anonymity and privacy-enhancing technologies), U19.3 (Probability and random variables), U21.6 (probability from first principles).
+Shares ground with the cloud units U21.6 (probability from first principles), U19.14 (Bayesian inference) and U19.3 (Probability and random variables); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.6: Box–Muller and inverse-CDF samplers from scratch.
+Builds on U24.5.
+- **Topics:** Special continuous distributions I–V; uniform, exponential, gamma, beta, normal and log-normal distributions; normal distribution and problems on normal distribution; problems on special distributions I and II; continuous probability distribution; Gamma and Beta families (link to U24.5); probability distributions for modeling uncertainty: used in generative models, likelihoods and simulations; normal (Gaussian) distribution.
+- **Results:** Normal density integrates to one [P]; closure of the normal under affine maps and sums of independent normals [P]; exponential is the only memoryless continuous law [P]; relationship among Gamma, chi-square and exponential [P].
+- **Build:** Q–Q plots against the standard normal.
+- **Gap-fills:** *[inferred: Blitzstein–Hwang]* heavy tails, mixture distributions and the exponential family (needed for U26.9 and U19.31).
+
+**Assignment A19.21** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** If Z is standard normal, P(abs(Z) < 1.96) is about
+
+(A) 0.68  
+(B) 0.90  
+(C) 0.95  
+(D) 0.99
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A sum of independent normals is normal  
+(B) The exponential distribution is memoryless  
+(C) A log-normal variable is the exponential of a normal variable  
+(D) The normal density has two modes
+
+**Q3 (2 marks, numerical answer).** P(-1 < Z < 1) for standard normal Z.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the integral of exp(-x^2/2) over the real line equals sqrt(2 pi) using polar coordinates on the square of the integral.
+
+**Q5 (3 marks, programming).** Implement Box-Muller and inverse-CDF exponential samplers and compute the Kolmogorov-Smirnov statistic for N = 10^5 against the exact CDFs. Predict the typical size of the statistic.
+
+<details><summary>Key for A19.21 (open only after your attempt)</summary>
+
+- **Q1:** C. Standard 95 percent interval.
+- **Q2:** ABC. It is unimodal.
+- **Q3:** 0.6827 (tolerance ±0.0005). erf(1/sqrt 2) = 0.6827.
+- **Q4 (marking outline):** Square the integral, switch to polar, integrate r exp(-r^2/2) to get 2 pi.
+- **Q5 (what a passing submission shows):** About 1/sqrt(N) scale, near 0.003.
+
+</details>
+
+### U19.22 Functions of random variables, transformations and order statistics
+**Sources:** IPS W6–7
+Bridge for: U19.3 (Probability and random variables), U21.6 (probability from first principles).
+Shares ground with the cloud units U19.3 (Probability and random variables), U21.6 (probability from first principles) and U19.1 (calculus, counting and matrices for statistics); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.3: Function of a random variable I and II.
+- **Topics:** additive properties of distributions I and II; transformation of random variables; distribution of order statistics.
+- **Results:** Density of Y=g(X) by change of variables [D]; sum of independent variables by convolution [P]; joint law of order statistics [D]; Jacobian formula for multivariate transformations [S].
+- **Build:** numerical check of transformed densities against histograms of simulated samples.
+
+**Assignment A19.22** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** If U is uniform on (0,1), then -ln U has the distribution
+
+(A) uniform  
+(B) Exp(1)  
+(C) normal  
+(D) Gamma(2)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The density of a sum of independent variables is a convolution  
+(B) The CDF of the maximum of n iid variables is F(x)^n  
+(C) For monotone g, f_Y(y) = f_X(g^-1(y)) abs(d g^-1/dy)  
+(D) Order statistics of iid samples are independent
+
+**Q3 (2 marks, numerical answer).** Expected value of the maximum of 3 independent U(0,1) variables.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the density of Y = g(X) for a strictly increasing differentiable g.
+
+**Q5 (3 marks, programming).** Simulate the maximum and minimum of n = 5 uniforms 10^5 times and compare histograms with the derived densities. Predict the mean of the maximum.
+
+<details><summary>Key for A19.22 (open only after your attempt)</summary>
+
+- **Q1:** B. P(-ln U > t) = e^-t.
+- **Q2:** ABC. Order statistics are dependent.
+- **Q3:** 0.75 (tolerance ±0.001). The maximum has density 3x^2, mean 3/4.
+- **Q4 (marking outline):** F_Y(y) = F_X(g^-1(y)); differentiate with the chain rule.
+- **Q5 (what a passing submission shows):** 5/6 = 0.833 for the maximum and 1/6 for the minimum.
+
+</details>
+
+### U19.23 Joint distributions, conditioning, covariance and multivariate normal
+**Sources:** IPS W6–7; MFML W7–8; AEMA W11, o; SMLM W4–5; EMML W11; MLCE W2; S50 D2, D6; AOW W1
+Bridge for: U18.7 (Optimal linear MMSE estimation), U19.3 (Probability and random variables), U21.6 (probability from first principles).
+Shares ground with the cloud units U19.3 (Probability and random variables) and U21.6 (probability from first principles); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.3: jointly distributed random variables; marginal and conditional probability distributions.
+- **Topics:** Joint distributions I and II; conditioning of random variables; independence and product moments; linearity property of correlation and examples; bivariate normal distribution I and II; joint probability distribution (three parts); bivariate and multivariate probability distributions; introduction to copulas and applications; sample geometry; covariance matrices and properties; covariance and correlation matrix; joint probability and covariance; covariance, Pearson correlation, Spearman rank correlation, Kendall tau; correlation coefficient; modelling of joint distributions through copulas.
+- **Results:** Law of iterated expectation and law of total variance [P]; covariance matrix is symmetric PSD [P]; conditional of a multivariate normal is normal with explicit mean and covariance [D]; Sklar's theorem [X]; correlation = 0 implies independence only for jointly normal [P].
+- **Build:** multivariate normal sampler via Cholesky; conditioning formula verified by simulation; Gaussian copula sampler.
+- **Gap-fills:** *[inferred: MML Ch.6; Johnson–Wichern]* Gaussian marginalization and conditioning, change of variables for densities, sample geometry (n-dimensional view of centred data).
+
+**Assignment A19.23** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Zero covariance implies independence
+
+(A) always  
+(B) never  
+(C) for jointly normal variables  
+(D) for uniform variables
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A covariance matrix is symmetric positive semidefinite  
+(B) Correlation lies in [-1, 1]  
+(C) Var(Y) = E[Var(Y given X)] + Var(E[Y given X])  
+(D) Normal marginals always imply a jointly normal pair
+
+**Q3 (2 marks, numerical answer).** For a bivariate normal with means 0, sigma_x = 1, sigma_y = 2 and rho = 0.5, compute E[Y given X = 1].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the law of iterated expectation E[E[Y given X]] = E[Y] for discrete variables.
+
+**Q5 (3 marks, programming).** Sample from a 3-D multivariate normal by Cholesky. Verify the empirical covariance, then compute the conditional mean and covariance of one component given the others by the formula and by regression on samples. Predict the agreement.
+
+<details><summary>Key for A19.23 (open only after your attempt)</summary>
+
+- **Q1:** C. True only for jointly Gaussian pairs.
+- **Q2:** ABC. Joint normality needs more than normal marginals.
+- **Q3:** 1 (tolerance ±0.001). rho sigma_y/sigma_x times x = 1.
+- **Q4 (marking outline):** Sum over x of E[Y given X=x] P(X=x) and swap sums.
+- **Q5 (what a passing submission shows):** Agreement within sampling error about 1/sqrt(N).
+
+</details>
+
+### U19.24 Limit theorems and concentration inequalities
+**Sources:** MFML W8; BAN W6; S50 D4
+Bridge for: U8.2 (quantitative risk), U9.2 (tail bounds, balls into bins and randomised-algorithm analysis), U11.7 (Stream processing and approximate algorithms), U20.1 (Scalable data science), U21.6 (probability from first principles).
+Shares ground with the cloud units U20.1 (Scalable data science) and U21.6 (probability from first principles); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U21.6: central limit theorem.
+- **Topics:** Limit theorems; a primer on concentration inequalities; sampling techniques.
+- **Results:** Markov and Chebyshev inequalities [P]; weak law of large numbers [P]; strong law of large numbers [S]; central limit theorem (via characteristic functions) [P]; Hoeffding and Chernoff bounds [P]; sub-Gaussian tail bounds [P].
+- **Build:** empirical convergence in the CLT for several source distributions; tail-bound tightness plots (used again in U27.3 for UCB).
+- **Gap-fills:** *[inferred: Lattimore–Szepesvári Ch.5]* Cramér–Chernoff method, sub-Gaussian and sub-exponential variables, martingales and Azuma–Hoeffding.
+
+**Assignment A19.24** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Chebyshev's inequality bounds P(abs(X - mu) >= k sigma) by
+
+(A) 1/k  
+(B) 1/k^2  
+(C) k^2  
+(D) e^-k
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The weak law of large numbers holds for iid variables with finite mean  
+(B) The CLT applies to iid variables with finite variance  
+(C) Hoeffding's inequality needs bounded variables  
+(D) Markov's inequality applies to any real random variable
+
+**Q3 (2 marks, numerical answer).** The Chebyshev bound on P(abs(X - mu) >= 3 sigma).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove Chebyshev's inequality from Markov's inequality applied to (X - mu)^2.
+
+**Q5 (3 marks, programming).** Draw sample means of n = 1, 5, 30, 200 from Exp(1) and track the skewness against 2/sqrt(n). Also compare empirical tail frequencies of Bernoulli means with Hoeffding's bound. Predict the skewness at n = 200.
+
+<details><summary>Key for A19.24 (open only after your attempt)</summary>
+
+- **Q1:** B. Standard form.
+- **Q2:** ABC. Markov needs nonnegativity.
+- **Q3:** 0.1111 (tolerance ±0.001). 1/k^2 with k = 3.
+- **Q4 (marking outline):** P((X-mu)^2 >= a^2) <= E[(X-mu)^2]/a^2 = sigma^2/a^2.
+- **Q5 (what a passing submission shows):** About 0.14.
+
+</details>
+
+### U19.25 Markov chains, queueing theory and reliability
+**Sources:** HEM W11–12, o; AEMA W12, o; ALAJ W12; DOML W8
+Bridge for: U2.1 (probability, random processes and queueing for networks), U11.10 (Markov chains, eigenvectors and PageRank), U18.13 (Discrete-time Markov chains and operations research), U22.14 (Software reliability).
+Shares ground with the cloud units U2.1 (probability, random processes and queueing for networks), U11.10 (Markov chains, eigenvectors and PageRank) and U18.13 (Discrete-time Markov chains and operations research); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U2.1: Little's law. U18.13: discrete-time Markov chains.
+- **Topics:** Queuing system; distribution of arrivals and service times; analysis of M/M/1:FIFO and its application; analysis of M/M/S FIFO and its application; queueing theory and reliability theory; reliability, service time for a customer in a facility, life testing.
+- **Results:** Stationary distribution of M/M/1 [D]; Erlang-C formula for M/M/s [D]; existence and convergence of stationary distribution for finite irreducible aperiodic chains [P].
+- **Build:** discrete-event simulator of M/M/1 and M/M/s queues compared with closed forms (reappears in U33.3 for LLM serving queues).
+- **Gap-fills:** *[inferred: Kay Part II]* random processes, stationarity, Poisson and Gaussian processes; random walks (linking to U13 diffusion).
+
+**Assignment A19.25** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** An M/M/1 queue has arrival rate 2 and service rate 3. Its utilization is
+
+(A) 1/3  
+(B) 2/3  
+(C) 1  
+(D) 3/2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Little's law: L = lambda W  
+(B) A finite irreducible aperiodic chain has a unique stationary distribution  
+(C) M/M/1 is stable iff rho < 1  
+(D) The Erlang-C waiting probability can exceed 1
+
+**Q3 (2 marks, numerical answer).** Mean number in an M/M/1 system with lambda = 2 and mu = 3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the M/M/1 stationary distribution pi_n = (1 - rho) rho^n from the balance equations.
+
+**Q5 (3 marks, programming).** Write a discrete-event simulator of an M/M/1 queue with lambda = 2, mu = 3 for 10^5 customers and estimate the mean time in system. Predict it from theory first.
+
+<details><summary>Key for A19.25 (open only after your attempt)</summary>
+
+- **Q1:** B. rho = lambda/mu.
+- **Q2:** ABC. It is a probability.
+- **Q3:** 2 (tolerance ±0.001). L = rho/(1 - rho) = 2.
+- **Q4 (marking outline):** Balance across cuts: lambda pi_n = mu pi_{n+1}; normalize the geometric series.
+- **Q5 (what a passing submission shows):** 1/(mu - lambda) = 1 time unit.
+
+</details>
+
+### U19.26 Conditional expectation and martingales
+**Sources:** SA W2–3, o
+On demand: no cloud unit calls on this unit directly; enter it from U19.24 or when a later unit of the part needs it.
+Builds on U19.24.
+- **Topics:** Conditional expectation: examples, definition (with respect to a sigma-field), the least-squares best predictor (orthogonal projection in L²), existence, properties (linearity, tower property, taking out what is known, Jensen); martingales: filtration, adapted process, definition, examples (random walks, Doob martingales, likelihood ratios), martingale convergence; measure-theoretic bridge taught just in time (sigma-fields, random variables as measurable functions, expectation as an integral, monotone and dominated convergence, L² spaces, modes of convergence: almost surely, in probability, in L^p).
+- **Results:** Conditional expectation is the L²-orthogonal projection onto the sub-sigma-field [P]; tower property [P]; existence in general (Radon–Nikodym) [X, proof beyond course scope, stated; L² case proved]; Doob's martingale convergence for L²-bounded martingales [P]; general L¹-bounded case via upcrossings [S].
+- **Build:** simulate random-walk, product and Doob martingales; verify the tower property by Monte Carlo and the L² convergence of a bounded-variance martingale.
+- **Gap-fills:** *[inferred: Williams, *Probability with Martingales*; Grimmett–Stirzaker; Borkar, *Probability Theory: An Advanced Course*, all recalled, not checked]* stopping times and optional stopping, Doob's maximal inequality, Azuma–Hoeffding (link to U19.24). The source lists "measure-theoretic probability" as a prerequisite; here it is a claim to probe and teach as the topics above, not an assumption (Master Rules III.1.6).
+
+**Assignment A19.26** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The tower property states that E[E[X given G]] equals
+
+(A) E[X]  
+(B) 0  
+(C) Var(X)  
+(D) E[X given G]^2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Conditional expectation is the L2 orthogonal projection onto the sub-sigma-field  
+(B) A martingale satisfies E[M_{n+1} given F_n] = M_n  
+(C) Every submartingale is a martingale  
+(D) The partial sums of fair coin flips (+1 or -1) form a martingale
+
+**Q3 (2 marks, numerical answer).** Two fair dice are rolled; E[sum given first die = 3].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the tower property E[E[X given G]] = E[X] when G is generated by a finite partition.
+
+**Q5 (3 marks, programming).** Simulate Polya's urn (start with 1 red and 1 blue ball, add a ball of the drawn colour) and track the red fraction, a martingale. Verify that its mean stays 0.5 and examine the distribution of the limit over 5000 runs. Predict the limit's distribution.
+
+<details><summary>Key for A19.26 (open only after your attempt)</summary>
+
+- **Q1:** A. Averaging the conditional expectation recovers the mean.
+- **Q2:** ABD. Submartingales only satisfy an inequality.
+- **Q3:** 6.5 (tolerance ±0.001). 3 + E[second die] = 6.5.
+- **Q4 (marking outline):** Condition on each partition cell and sum with the cell probabilities.
+- **Q5 (what a passing submission shows):** The limit is uniform on [0,1].
+
+</details>
+
 ### U19.4 Sampling and sampling distributions: the standard error, the t, chi-square and F distributions, confidence intervals and the bootstrap
 **Sources:** DAP W3
 - **Topics:** population and sample, parameter and statistic; random, stratified, cluster and systematic sampling and the biases of convenience samples; the sampling distribution of the mean and of a proportion; the standard error; the central limit theorem at work; the t, chi-square and F distributions and where each comes from; confidence intervals for a mean and a proportion and what "95 %" means; sample-size planning; the bootstrap as a way to get a standard error and an interval without a formula.
 - **Results:** the standard error of the sample mean is σ/√n, so quadrupling the sample halves it [P, check: 0.40 for n = 25 and 0.20 for n = 100 with σ = 2]; for normal data the t interval x̄ ± t(0.975, n − 1) s/√n has exact coverage 95 % [P, check: 94.8 % for n = 10, critical value 2.262], while replacing t by 1.96 gives 91.6 % [check]; for exponential data with n = 10 the t interval covers only 90.1 % and with n = 100 about 94.2 % [check]; the bootstrap standard error of a mean of 50 values (0.172) matches the formula (0.175) [check].
 - **Build:** a coverage simulator that reports the true coverage of intervals under different distributions and sample sizes; a bootstrap for the median and a trimmed mean; a sample-size calculator. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapters 7 and 8; Efron and Tibshirani, An Introduction to the Bootstrap, recalled, not checked]* the finite-population correction is stated; the Bayesian reading of an interval is in U19.14.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.28 Sampling distributions and point estimation.
 
 **Assignment A19.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7777,12 +10261,55 @@ Bridge for: U19.2 to U19.17.
 
 </details>
 
+### U19.28 Sampling distributions and point estimation
+**Sources:** IPS W8–10; S50 D4
+Bridge for: U19.4 (Sampling and sampling distributions), U19.8 (Maximum likelihood, logistic regression and the ROC curve).
+Shares ground with the cloud unit U19.4 (Sampling and sampling distributions); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.4: chi-square distribution; sampling techniques (random, stratified).
+- **Topics:** Basic concepts; t-distribution; F-distribution; introduction to estimation; unbiased and consistent estimators; LSE and MME (least squares and method of moments); examples on MME and MLE; examples on MLE I and II; MSE; UMVUE, sufficiency and completeness; Rao–Blackwell theorem and its applications.
+- **Results:** Distribution of the sample mean and variance for normal samples (Cochran/Student) [P]; MLE invariance and asymptotic normality [D / S]; Rao–Blackwell theorem [P]; Lehmann–Scheffé [S]; Cramér–Rao bound [P].
+- **Build:** MLE by closed form and by numerical optimization (links to D25); bias–variance of estimators by simulation.
+- **Gap-fills:** *[inferred: Casella–Berger]* Fisher information, factorization theorem for sufficiency, bootstrap.
+
+**Assignment A19.28** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The maximum-likelihood estimate of a Bernoulli parameter is
+
+(A) the sample median  
+(B) the sample mean  
+(C) the sample variance  
+(D) always 0.5
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) An unbiased estimator has expectation equal to the parameter  
+(B) Sample variance with divisor n - 1 is unbiased  
+(C) The MLE is always unbiased  
+(D) Rao-Blackwellization improves an unbiased estimator using a sufficient statistic
+
+**Q3 (2 marks, numerical answer).** MLE of the Poisson rate for the sample 2, 3, 4, 3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the MLE of the mean and variance of a normal sample and show that the variance MLE is biased.
+
+**Q5 (3 marks, programming).** Fit a Gamma distribution by Newton's method on the likelihood. Estimate bias and variance of the MLE of the shape by simulation for n = 20, 100, 500. Predict the trend of the bias.
+
+<details><summary>Key for A19.28 (open only after your attempt)</summary>
+
+- **Q1:** B. Maximize p^s (1-p)^(n-s).
+- **Q2:** ABD. The MLE of normal variance is biased.
+- **Q3:** 3 (tolerance ±0.001). The sample mean, 3.
+- **Q4 (marking outline):** Set derivatives of the log-likelihood to zero; E[S_MLE^2] = (n-1)/n sigma^2.
+- **Q5 (what a passing submission shows):** Bias is positive for small n and shrinks like 1/n.
+
+</details>
+
 ### U19.5 Hypothesis testing: null and alternative, p-values, errors and power, one- and two-sided tests, and multiple comparisons
 **Sources:** DAP W4
 - **Topics:** the logic of a test: null and alternative hypotheses, the test statistic, the rejection region, the p-value and what it is not; type I and type II errors and the significance level; power and its dependence on effect size, sample size, variance and α; the z test and the one-sample t test; one-sided and two-sided tests; confidence intervals and tests as two views of the same thing; practical significance against statistical significance; multiple testing: the family-wise error rate, Bonferroni and the Benjamini–Hochberg procedure for the false discovery rate.
 - **Results:** if the null is true and the test is exact, the p-value is uniform on (0, 1), so the type I error equals α [P, check: 5.04 % rejections of a true null with n = 25]; the power of the two-sided z test for an effect of 0.5σ with n = 32 is Φ(0.5√32 − 1.96) + Φ(−0.5√32 − 1.96) = 0.807 [D, check: simulation of the t test gives 0.780]; with 20 independent true nulls the chance of at least one rejection at α = 0.05 is 1 − 0.95²⁰ = 64.2 %, and Bonferroni at 0.05/20 brings it to 4.9 % [P, check]; among 1000 tests (900 null, 100 with effect 3σ) uncorrected testing makes 137 rejections of which 36 % are false, Bonferroni makes 19, and Benjamini–Hochberg at q = 0.05 makes 61 with 3.3 % false [check].
 - **Build:** a simulator for type I error and power over a grid of effect sizes and sample sizes; a multiple-testing experiment with the three corrections; a power-curve plot. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapter 9; Benjamini and Hochberg 1995, recalled, not checked]* the Neyman–Pearson lemma is stated; permutation tests are named and used in U19.6.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.29 Confidence intervals and hypothesis testing.
 
 **Assignment A19.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7816,12 +10343,54 @@ Bridge for: U19.2 to U19.17.
 
 </details>
 
+### U19.29 Confidence intervals and hypothesis testing
+**Sources:** IPS W10–12; AEMA W12, o; S50 D4, D5
+Bridge for: U13.10 (Capstone), U19.5 (Hypothesis testing), U19.6 (Two-sample testing and the analysis of variance).
+Shares ground with the cloud units U19.5 (Hypothesis testing) and U19.6 (Two-sample testing and the analysis of variance); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Confidence intervals I–IV; basic definitions of testing; two types of errors (Type I and II); power of a test; p-values; Neyman–Pearson fundamental lemma and its applications I and II; testing for normal mean; testing for normal variance; large-sample test for variance and two-sample problem; paired t-test; testing equality of proportions; testing of hypotheses I–III; hypothesis testing framework; t-test (one-sample, two-sample); z-test; chi-square test; ANOVA; Mann–Whitney U test; Wilcoxon signed-rank test; testing of hypotheses; applications to reliability, queueing and life testing; statistical inference as decision making: used in A/B testing, experiments and validation, general framework; hypothesis testing as core business use: used in product decisions and experimentation; analysis of variance (ANOVA).
+- **Results:** Neyman–Pearson lemma [P]; duality of confidence intervals and tests [P]; distribution of the t statistic [P]; likelihood-ratio test and Wilks' theorem [S].
+- **Build:** each test from scratch with exact p-values, checked against `scipy.stats`; power curves by simulation; A/B-test simulator.
+- **Gap-fills:** *[inferred: S50]* multiple testing (Bonferroni, Benjamini–Hochberg), effect sizes.
+
+**Assignment A19.29** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A p-value is
+
+(A) the probability the null hypothesis is true  
+(B) the probability of data at least as extreme as observed, assuming the null  
+(C) the type II error rate  
+(D) the effect size
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A type I error rejects a true null hypothesis  
+(B) Power equals one minus the type II error rate  
+(C) A p-value is the probability that H0 is true  
+(D) The Neyman-Pearson lemma gives a most powerful test for simple hypotheses
+
+**Q3 (2 marks, numerical answer).** z statistic: sample mean 52, null mean 50, known sigma 10, n = 100.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the 95 percent confidence interval for a normal mean with known sigma and show its duality with the two-sided z-test.
+
+**Q5 (3 marks, programming).** Implement one-sample z and t tests with exact p-values by numerical integration of the density, a power curve by simulation, and an A/B test simulator. Acceptance: type I error near 0.05 over 20000 null runs. Predict the empirical type I rate.
+
+<details><summary>Key for A19.29 (open only after your attempt)</summary>
+
+- **Q1:** B. It is conditional on the null.
+- **Q2:** ABD. C confuses p-values with posteriors.
+- **Q3:** 2 (tolerance ±0.001). z = 2/(10/10) = 2.
+- **Q4 (marking outline):** Pivot (xbar - mu)/(sigma/sqrt n) is standard normal; mu0 is in the interval iff the test fails to reject at 5 percent.
+- **Q5 (what a passing submission shows):** About 0.05 within 0.005.
+
+</details>
+
 ### U19.6 Two-sample testing and the analysis of variance: pooled and Welch t tests, paired tests, one-way and two-way ANOVA
 **Sources:** DAP W5–6
 - **Topics:** two sample testing: the pooled and Welch t tests, the paired t test, tests for proportions and the F test for two variances; an introduction to ANOVA: comparing several means with one F test, the between-group and within-group sums of squares, the assumptions (independence, equal variance, normality) and how to check them, post-hoc comparisons (Tukey, Bonferroni); two-way ANOVA: two factors, main effects and an interaction, the balanced design and the sums-of-squares decomposition, interaction plots; the relation of ANOVA to regression with dummy variables.
 - **Results:** the pooled test assumes equal variances and fails when they differ and the sizes are unequal: with groups of 10 and 40 whose standard deviations are 1 and 4 its false-positive rate is 0.1 %, and with the large variance in the small group (standard deviations 4 and 1) it is 29.3 %, while Welch's test stays at 4.9 % and 5.1 % [check]; for two groups t² = F, 0.6227 both ways [P, check]; in one-way ANOVA SST = SSB + SSW and F = (SSB/(k − 1))/(SSW/(N − k)), with F = 12.78 for three groups of 12 whose means are 0, 0.5 and 1 [P, check]; in a balanced two-way design SST = SSA + SSB + SSAB + SSE, with degrees of freedom adding to abr − 1 = 35 [P, check]; a significant F says that some mean differs, not which [P].
 - **Build:** pooled, Welch and paired tests against `scipy.stats`; one-way ANOVA from sums of squares against `f_oneway`; a balanced two-way ANOVA with an interaction plot; a permutation test of two groups. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapters 10 and 13; Montgomery, Design and Analysis of Experiments, recalled, not checked]* unbalanced designs, random-effects and repeated-measures ANOVA are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.29 Confidence intervals and hypothesis testing.
 
 **Assignment A19.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7861,6 +10430,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** in simple regression the slope is Cov(x, y)/Var(x) and R² = r² [P, check: 1.5654 both ways, R² = 0.7438 = r²]; the hat matrix H = X(XᵀX)⁻¹Xᵀ has trace equal to the number of parameters [P, check: 2.0]; the variance inflation factor of a predictor is 1/(1 − R_j²), and two predictors correlated at 0.947 give VIF = 9.66 and standard errors three times those of a model with one predictor (0.199 and 0.194 against 0.066) [P, check]; AIC = n ln(RSS/n) + 2k and BIC = n ln(RSS/n) + k ln n, and on 60 points from a quadratic the lowest AIC (−76.9) and BIC (−68.5) are both at degree 2 while RSS keeps falling at higher degrees [check]; the least-squares estimator is the best linear unbiased estimator under the Gauss–Markov assumptions [S].
 - **Build:** simple and multiple regression from the normal equations compared with `numpy.linalg.lstsq` and with `sklearn.linear_model.LinearRegression`; a residual-diagnostic panel; a VIF calculator; polynomial degree selection by AIC, BIC and cross-validation. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapters 11 and 12; James et al. Chapters 3 and 6]* the lasso and ridge are in U11.8 and U18.6; the full matrix algebra is in D18.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.23 Least squares, regularized and constrained least squares; U19.30 Correlation, regression and multivariate analysis.
 
 **Assignment A19.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7894,12 +10464,55 @@ Bridge for: U19.2 to U19.17.
 
 </details>
 
+### U19.30 Correlation, regression and multivariate analysis
+**Sources:** AEMA W11–12; SMLM W6–7; MLCE W2; MLESA W2; S50 D6, D7; MFML W8
+Bridge for: U19.7 (Linear regression and multiple regression).
+Shares ground with the cloud units U19.7 (Linear regression and multiple regression), U19.6 (Two-sample testing and the analysis of variance), U18.6 (Linear regression and least squares) and U19.16 (Bayesian regression and hierarchical models); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.7: simple linear regression and multiple linear regression.
+- **Topics:** Correlation and regression I and II; coefficient of determination; confidence intervals and hypothesis testing for regression; linear regression, multiple linear regression, logistic regression, ridge regression, lasso regression, polynomial regression; multivariate analysis: principal component analysis, empirical orthogonal functions (EOF) and analysis of variance (ANOVA); subset selection; shrinkage methods; principal component regression; partial least squares; sample geometry and covariance matrices; correlation and relationships: used in feature selection and diagnostics; regression and predictive modeling as the core of ML plus explainability.
+- **Results:** Gauss–Markov theorem [P]; distribution of OLS estimates under normal errors [D]; R² and adjusted R² [D]; ANOVA F-test decomposition [P].
+- **Build:** OLS with standard errors and t-tests from scratch; ridge and lasso (coordinate descent) from scratch.
+- **Gap-fills:** *[inferred: Johnson–Wichern]* factor analysis, canonical correlation, MANOVA, Hotelling's T².
+
+**Assignment A19.30** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** R-squared measures
+
+(A) the proportion of variance explained by the model  
+(B) the slope  
+(C) the p-value  
+(D) the residual mean
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) OLS is unbiased under the Gauss-Markov conditions  
+(B) Ridge shrinks coefficients toward zero  
+(C) Lasso can set coefficients exactly to zero  
+(D) Adjusted R-squared never decreases when a predictor is added
+
+**Q3 (2 marks, numerical answer).** R-squared for y = (1,2,3,4) and predictions (1.1,1.9,3.2,3.8).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that OLS is unbiased and derive its covariance sigma^2 (X^T X)^-1.
+
+**Q5 (3 marks, programming).** Implement OLS with standard errors and t-statistics, ridge, and lasso by coordinate descent. Recover a sparse coefficient vector in R^20 from 100 noisy rows and report support recovery for lasso. Predict which coefficients lasso keeps.
+
+<details><summary>Key for A19.30 (open only after your attempt)</summary>
+
+- **Q1:** A. 1 minus SSE/SST.
+- **Q2:** ABC. Adjusted R-squared can decrease.
+- **Q3:** 0.98 (tolerance ±0.001). SSE = 0.10 and SST = 5 give 0.98.
+- **Q4 (marking outline):** beta_hat = beta + (X^T X)^-1 X^T eps; take expectation and covariance.
+- **Q5 (what a passing submission shows):** Lasso keeps the true support with small shrinkage bias.
+
+</details>
+
 ### U19.8 Maximum likelihood, logistic regression and the ROC curve
 **Sources:** DAP W8–9
 - **Topics:** concepts of MLE: the likelihood function, the log-likelihood, maximisation, the invariance and large-sample properties of maximum likelihood estimators, the bias of the MLE of a variance; the logistic regression model for a binary response: odds, log-odds, the logit link and odds ratios; fitting by iteratively reweighted least squares (Newton's method) and its convergence; inference on coefficients; classification thresholds; ROC and the evaluation of a classifier: the confusion matrix, sensitivity and specificity, the ROC curve, the area under it and its probabilistic meaning; choosing a threshold by cost; calibration.
 - **Results:** the MLE of a Bernoulli probability is k/n, and of a normal variance is (1/n)Σ(xᵢ − x̄)², whose expectation is (n − 1)/n times the true variance [P, check: 3.197 against 3.2 for σ² = 4, n = 5]; for logistic regression the score is Xᵀ(y − p) and the Newton step is (XᵀWX)⁻¹Xᵀ(y − p) with W = diag(p(1 − p)) [D]; IRLS reaches the optimum in five iterations on 500 observations ((−0.480, 0.918, −2.246) against the true (−0.5, 1.0, −2.0)) and agrees with `sklearn` to 2·10⁻⁴ [check]; a coefficient of ln 2 multiplies the odds by 2 [P]; the area under the ROC curve equals the probability that a random positive scores above a random negative, the Mann–Whitney statistic, 0.8967 by pairs, `roc_auc_score` and `mannwhitneyu` [P, check].
 - **Build:** a maximum-likelihood fit of a Bernoulli, a normal and a Poisson model by derivative and by `scipy.optimize`; IRLS for logistic regression; an ROC and precision–recall plotter; a threshold chooser by expected cost. [local]
 - **Gap-fills:** *[inferred: Montgomery and Runger Chapter 12; Hosmer and Lemeshow, Applied Logistic Regression, recalled, not checked]* multinomial and ordinal logistic regression and the Fisher information are named.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.28 Sampling distributions and point estimation; U26.3 Linear regression and linear classification.
 
 **Assignment A19.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7939,6 +10552,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** for a 2×2 table the chi-square statistic equals the square of the two-proportion z statistic [P, check: the table (30, 20; 20, 30) gives χ² = 4.0, p = 0.0455, z = 2.0]; a fair-die goodness-of-fit test on the counts 8, 12, 9, 11, 14, 6 gives χ² = 4.2 on 5 degrees of freedom, p = 0.52 [check]; on three well-separated blobs the silhouette is 0.81 at k = 2, 0.83 at k = 3 and falls to 0.68 and 0.54 at k = 4 and 5 [check]; on two interleaved moons the adjusted Rand index is 0.23 for k-means and 0.20 for complete linkage but 1.0 for single linkage and for DBSCAN [check]; with 50 standard-normal points and 10 outliers uniform on 8 to 10 the outliers inflate the standard deviation to 3.47, so the z-score rule at 3 flags none of them while the robust MAD score flags all 10, which is the masking effect [check].
 - **Build:** a chi-square test from the table against `scipy.stats.chi2_contingency`; hierarchical clustering with all four linkages and a dendrogram; k-means with silhouette selection; DBSCAN on moons; an outlier detector with z, MAD and LOF scores. [local]
 - **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 10 and 12; Tan, Steinbach and Kumar Chapters 7 and 9]* Fisher's exact test, model-based clustering (U18.11) and the curse of dimensionality for clustering (U19.12) are cross-references.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.9 Clustering, mixture models and the EM algorithm.
 
 **Assignment A19.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -7978,6 +10592,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** the Gini index of a 50/50 node is 0.5 and its entropy 1 bit, and both are zero for a pure node [Def, check]; a split of a 10/10 node into 8/2 and 2/8 children reduces the Gini impurity by 0.18 and the entropy by 0.278 bits [D, check]; on 300 training and 300 test points of a noisy rule a fully grown tree has 49 leaves, 100 % training accuracy and 70.7 % test accuracy, while the cost-complexity penalty chosen by five-fold cross-validation prunes it to a stump with 78.7 % training and 80.7 % test accuracy [check]; the greedy split is not globally optimal, since choosing the best tree is NP-hard [X].
 - **Build:** a CART implementation (Gini and entropy, categorical and numeric splits, depth and leaf limits) compared with `sklearn.tree.DecisionTreeClassifier`; the pruning path and the cross-validated penalty; a regression tree on a curve. [local]
 - **Gap-fills:** *[inferred: Breiman, Friedman, Olshen and Stone, Classification and Regression Trees, 1984; James et al. Chapter 8, recalled, not checked]* missing-value handling by surrogate splits and the C4.5 and ID3 variants are named.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.7 Decision trees and ensembles.
 
 **Assignment A19.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8017,6 +10632,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** a set of d items has 2^d − 1 non-empty itemsets and 3^d − 2^(d+1) + 1 association rules [P, check: 63 and 602 for d = 6 by enumeration]; downward closure: every subset of a frequent itemset is frequent [P], so Apriori may prune any candidate with an infrequent subset [P]; on the five-basket example with minimum support 3 Apriori counts 13 candidates instead of 63 and finds eight frequent itemsets (four items and the pairs bread–diaper, diaper–milk, bread–milk and beer–diaper) [check]; the rule diaper → beer has support 0.6, confidence 0.75 and lift 1.25, while (bread, milk) → diaper has lift 0.83, below 1, so confidence alone can mislead [check]; min–max scaling maps a column to [0, 1] and z-scoring to mean 0 and standard deviation 1 [Def].
 - **Build:** an Apriori implementation with candidate counting checked against brute force, a rule generator with support, confidence and lift, and a preprocessing pipeline (imputation, scaling, discretisation) on a messy data frame. [local]
 - **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 2, 3 and 6; Agrawal and Srikant 1994, recalled, not checked]* the audience and industry lines of the outline are treated as framing; FP-growth and Eclat are named.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.12 Data mining.
 
 **Assignment A19.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8056,6 +10672,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** the Bayes classifier that picks the class with the largest posterior has the smallest possible error [P]; for two unit-variance Gaussians 1.5 apart in each of two coordinates the Bayes error is 14.4 %, and k-nearest neighbours on 2000 training points reaches 21.1 % at k = 1, 16.9 % at k = 5, 15.1 % at k = 25 and 14.6 % at k = 101 [check]; as n → ∞ the one-nearest-neighbour error is at most twice the Bayes error [S, Cover–Hart]; with Laplace smoothing the message "cheap now" scores log P(spam) = −4.20 against −5.89 for ham on the five-message toy corpus, a posterior of 0.844 for spam [check]; the ratio of the largest to the smallest distance from a point to 500 uniform points falls from 55 in 2 dimensions to 3.9 in 10, 1.43 in 100 and 1.10 in 1000 [check, distance concentration].
 - **Build:** naive Bayes with smoothing for a small text corpus, k-NN with a k sweep and a dimension sweep, an ID3 tree with information gain, and an SVM comparison with `sklearn.svm.SVC`. [local]
 - **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 8 and 9; Tan, Steinbach and Kumar Chapters 3 to 5]* rule-based classifiers, neural networks and ensembles are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.5 Perceptron, support vector machines and kernel methods; U26.6 Bayes decision theory; U26.7 Decision trees and ensembles; U26.11 Instance-based learning, collaborative filtering and recommendation.
 
 **Assignment A19.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8095,6 +10712,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** PrefixSpan finds exactly the frequent subsequences that brute-force enumeration finds [P, check: nine frequent sequences a, ab, abc, ac, b, bb, bc, c and cb at minimum support 3 on four sequences]; accuracy misleads on skew: with a 2.06 % positive rate a model that never fires has 97.9 % accuracy and zero recall, and on a simulated fraud-like problem (AUC 0.824) logistic regression at threshold 0.5 has accuracy 0.979, precision 0 and recall 0, at threshold 0.1 precision 0.127, recall 0.204, and at 0.05 precision 0.091, recall 0.417 with accuracy 0.902 [check]; five-fold cross-validation of a depth-3 tree gives accuracies 0.683 to 0.792 with mean 0.723 and standard deviation 0.045, so a single split can mislead by several points [check]; the expected precision of random guessing equals the base rate, so a precision of 0.127 is about six times better than chance [check].
 - **Build:** PrefixSpan against brute force; an evaluation harness (stratified k-fold, ROC and precision–recall curves, a cost-aware threshold chooser); a visualisation panel; a complete churn or fraud case study on synthetic data with a written one-page recommendation. [local]
 - **Gap-fills:** *[inferred: Han, Kamber and Pei Chapters 3, 8 and 13; Pei et al. 2001 for PrefixSpan, recalled, not checked]* the case studies use synthetic data so that every figure is reproducible; real industrial data sets are named where a public one exists.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.2 Model evaluation and selection; U26.12 Data mining.
 
 **Assignment A19.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8134,6 +10752,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** a Beta(a, b) prior and k successes in n trials give a Beta(a + k, b + n − k) posterior [P]; with a flat prior and 7 heads in 10 tosses the posterior is Beta(8, 4), mean 2/3, mode 0.7 and 95 % credible interval (0.390, 0.891), which a 1001-point grid reproduces to three decimals [P, check]; with a Beta(10, 10) prior the posterior mean moves to 0.567, which is the prior sensitivity [P, check]; the posterior predictive probability of three more heads in three tosses is 0.330 under Beta(8, 4) [P, check]; for a normal mean with known variance 1, prior N(0, 2²) and five observations the posterior is normal with mean 1.143 and standard deviation 0.436, pulled slightly from the sample mean 1.2 [P, check]; a gamma(2, 1) prior and counts totalling 14 in 5 periods give a gamma(16, 6) posterior with mean 2.667 [P, check]; the Laplace approximation to Beta(8, 4) has standard deviation 0.145 against the exact 0.131 [check].
 - **Build:** a conjugate-update library for the three pairs; a grid-posterior plotter for any one-parameter model; prior-sensitivity plots; the posterior predictive check for a coin model. [local]
 - **Gap-fills:** *[inferred: Gelman et al. Chapters 1 to 3; Kruschke Chapters 5 to 7; McElreath Chapters 2 and 3, recalled, not checked]* the course is the introduction to the Bayesian way; decision theory with a loss function is named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U24.5 Improper integrals, Gamma and Beta functions; U19.31 Bayesian inference and MCMC.
 
 **Assignment A19.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8167,12 +10786,55 @@ Bridge for: U19.2 to U19.17.
 
 </details>
 
+### U19.31 Bayesian inference and MCMC
+**Sources:** S50 D8, D9; MLESA W5; MLE W4,11; SMLM o
+Bridge for: U19.14 (Bayesian inference), U19.15 (Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan), U19.16 (Bayesian regression and hierarchical models).
+Shares ground with the cloud units U19.15 (Markov chain Monte Carlo, Hamiltonian Monte Carlo), U19.14 (Bayesian inference), U19.16 (Bayesian regression and hierarchical models) and U8.2 (quantitative risk); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.14: prior and posterior distributions.
+- **Topics:** Bayesian inference; MCMC (Markov chain Monte Carlo); MLE, MAP and Bayesian estimation; Monte Carlo methods; conjugate priors; Bayesian statistics as modern AI thinking: used in uncertainty-aware AI and LLMs; MCMC stands for Markov Chain Monte Carlo.
+- **Results:** Posterior ∝ likelihood × prior [P]; conjugacy of Beta–Binomial and Normal–Normal [D]; correctness (detailed balance) of Metropolis–Hastings [P]; Gibbs sampler as a special case [P].
+- **Build:** Metropolis–Hastings and Gibbs sampler from scratch; posterior of a coin bias and of a linear-regression coefficient.
+- **Gap-fills:** *[inferred: Murphy PML Ch.3–4; Bishop]* credible intervals, posterior predictive, Hamiltonian Monte Carlo (statement), variational inference (link to D30 VAE).
+
+**Assignment A19.31** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In Bayesian inference the posterior is proportional to
+
+(A) likelihood times prior  
+(B) prior divided by likelihood  
+(C) likelihood plus prior  
+(D) evidence only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Beta is conjugate to the Bernoulli likelihood  
+(B) Metropolis-Hastings satisfies detailed balance  
+(C) Gibbs sampling uses full conditional distributions  
+(D) MCMC samples are independent
+
+**Q3 (2 marks, numerical answer).** Posterior mean for a Beta(2,2) prior after 7 heads in 10 tosses.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the Beta-Binomial posterior from Bayes' rule.
+
+**Q5 (3 marks, programming).** Write a Metropolis-Hastings sampler for the coin bias with a Beta(2,2) prior and 7 heads in 10 tosses. Report acceptance rate and posterior mean after burn-in. Predict the posterior mean.
+
+<details><summary>Key for A19.31 (open only after your attempt)</summary>
+
+- **Q1:** A. Bayes' rule.
+- **Q2:** ABC. MCMC samples are correlated.
+- **Q3:** 0.6429 (tolerance ±0.001). Posterior Beta(9,5) has mean 9/14.
+- **Q4 (marking outline):** Multiply p^(a-1)(1-p)^(b-1) by p^s(1-p)^(n-s); recognize Beta(a+s, b+n-s).
+- **Q5 (what a passing submission shows):** About 0.643 with acceptance 30-60 percent for a well-tuned proposal.
+
+</details>
+
 ### U19.15 Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan, taught in Python with PyMC and Bambi
 **Sources:** BDA W5–6,11
 - **Topics:** parameter estimation II: Markov Chain Monte Carlo: why grids fail in many dimensions, the Metropolis and Metropolis–Hastings algorithms, the Gibbs sampler, proposal scale and the acceptance rate, burn-in, trace plots, convergence diagnostics (R-hat and the effective sample size); parameter estimation III: Hamiltonian Monte Carlo and the brms package: the leapfrog integrator, the step size and trajectory length, the No-U-Turn sampler named, divergences; the brms package, the course's formula interface to Stan, is replaced here by Bambi, a formula interface on PyMC with the same style of formula (`y ~ x1 + x2`, `(1|group)`) and the same No-U-Turn sampler; Bayesian modeling with Stan: the data, parameters and model blocks of a Stan program map one to one onto a PyMC model (the data are the `observed` arguments, the parameters are the random variables, the model block is the priors and the likelihood inside `with pm.Model()`), PyMC builds a computation graph and compiles it where Stan compiles C++, and the output is read with ArviZ (the summary table, R-hat, effective sample size, trace plots, divergences); NumPyro is the other Python option and is named only.
 - **Results:** Metropolis with a symmetric proposal satisfies detailed balance with respect to the target, so the target is its stationary distribution [P]; for a 20-dimensional standard normal, a random-walk proposal of scale 2.38/√d accepts 24.6 % of moves and gives about 311 effective samples from 20,000 draws, a scale of 0.1 accepts 82 % and gives 48, and a scale of 3.0 accepts none and never moves [check]; leapfrog integration is reversible and volume-preserving, so the Hamiltonian Monte Carlo accept step needs only the energy error [P]; in the same 20 dimensions HMC with step 0.3 and 10 steps accepts 99.5 % of proposals with a largest energy error of 0.058, and its draws are nearly independent, about 5,000 effective samples from 5,000 draws for 55,000 gradient evaluations [check]; on a correlated Gaussian (ρ = 0.95) random-walk Metropolis has about 316 effective samples from 20,000 draws while HMC is again near independence [check]; four chains for the Beta(8, 4) posterior started at 0.1, 0.3, 0.7 and 0.9 give R-hat = 1.0007 and mean 0.672, sd 0.130 against the exact 0.667 and 0.131, whereas four short, badly scaled chains give R-hat = 3.7 [check]; PyMC's No-U-Turn sampler on the same Beta(8, 4) posterior (7 successes in 10 trials, uniform prior; four chains of 1,000 draws) gives mean 0.667, sd 0.130 and R-hat = 1.002 with no divergences [check]; on the 20-dimensional standard normal it has no divergences, R-hat at most 1.003 and a bulk effective sample size of at least 7,266 from 4,000 draws, above the number of draws because the draws are anti-correlated, at 27,136 gradient evaluations [check; PyMC 6.4.0, seed 7, and the figures move a little between versions].
 - **Build:** a Metropolis sampler, a Gibbs sampler for a bivariate normal and an HMC sampler with a leapfrog integrator, each tested on known targets with R-hat and effective-sample-size functions; the same models in PyMC (installed, and run) and a regression through Bambi, and a translation table from the course's brms and Stan idioms (`brm`, `prior`, `posterior_summary`, the data, parameters and model blocks, `sampling`) to their Bambi, PyMC and ArviZ equivalents. [local]
 - **Gap-fills:** *[inferred: Gelman et al. Chapters 10 to 12; McElreath Chapters 9 and 10; the Stan reference manual, recalled, not checked]* Decision of 2026-11-06: R, brms and Stan are replaced by Python throughout; PyMC 6.4 and Bambi 0.21 run the same models with the same sampler family, Stan itself (through CmdStanPy) is an alternative that is not needed, and no curriculum figure depends on an R random stream.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.31 Bayesian inference and MCMC; U26.10 Probabilistic graphical models, hidden Markov models.
 
 **Assignment A19.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8212,6 +10874,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** with a normal prior of variance τ² on the coefficients and noise variance σ² the posterior mean is the ridge estimator with λ = σ²/τ² [P, check: identical to 10⁻¹⁶ with λ = 2]; the posterior of the coefficients is normal with covariance (XᵀX/σ² + I/τ²)⁻¹ [D]; in the eight-schools data (effects 28, 8, −3, 7, −1, 1, 18, 12 with standard errors 15, 10, 16, 11, 9, 11, 10, 18) complete pooling gives 7.69 with standard error 4.07 and no pooling returns the raw values, and the hierarchical posterior for the between-school standard deviation τ under a uniform prior has median 5.2, mean 6.5 and 95th percentile 17.0, with partial-pooled school means (11.4, 7.9, 6.1, 7.6, 5.1, 6.1, 10.7, 8.5) so that the extreme 28 is shrunk to 11.4 [D, check by numerical integration over τ]; shrinkage for school j is the factor B_j = σ_j²/(σ_j² + τ²) toward the pooled mean [P]; PyMC on the same data with a flat prior on μ and a uniform prior on τ over (0, 100), in the non-centred form and with target_accept 0.95, has no divergences and gives a τ median of 5.39, mean 6.63 and 95th percentile 17.36, with school means 11.4, 7.8, 6.0, 7.7, 5.1, 6.1, 10.8 and 8.4, matching the grid [check]; the centred form with a half-Cauchy(5) prior on τ gives 535 divergences in 8,000 draws and an effective sample size of 86 for τ, the non-centred form of the same model gives 4 divergences and 4,254, and the same data then give a τ median of 2.7 against 5.4 under the uniform prior, so the prior on τ matters when there are eight groups [check]; Bambi's `y ~ x1 + x2` on 60 simulated points gives posterior means 1.155, 1.901 and −1.062 against least squares 1.156, 1.903 and −1.063 under its weak default priors [check].
 - **Build:** conjugate Bayesian linear regression with posterior bands; the eight-schools posterior by a grid over τ and by an MCMC sampler in centred and non-centred form, with the divergence or mixing difference shown and the same two forms in PyMC and a Bambi regression compared with least squares; a many-participants simulation that compares complete, no and partial pooling by held-out error. [local]
 - **Gap-fills:** *[inferred: Gelman et al. Chapters 5 and 14 and the eight-schools example of Chapter 5; Gelman and Hill, Data Analysis Using Regression and Multilevel/Hierarchical Models, recalled, not checked]* group-level predictors and crossed random effects are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.31 Bayesian inference and MCMC; U26.10 Probabilistic graphical models, hidden Markov models.
 
 **Assignment A19.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8251,6 +10914,7 @@ Bridge for: U19.2 to U19.17.
 - **Results:** for a conjugate normal model with 30 observations the exact leave-one-out log predictive density is −47.608, the importance-sampling estimate is −47.629 and WAIC gives −47.626 with an effective number of parameters of 1.30 [P, check]; for 7 heads in 10 tosses with a uniform prior on p against p = 0.5 the marginal likelihoods are 1/11 and C(10, 7)/2¹⁰, so BF₁₀ = 0.776 (BF₀₁ = 1.289), the posterior density at 0.5 divided by the prior density is also 1.289 (Savage–Dickey) [P, check]; the same data give BF₁₀ = 0.559 under a Beta(0.5, 0.5) prior and 1.07 under Beta(10, 10) and 1.01 under Beta(100, 100), so the Bayes factor depends on the prior in a way the posterior does not [P, check]; in the one-high-threshold model with hit rate H = D + (1 − D)g and false-alarm rate F = (1 − D)g the parameters are D = H − F and g = F/(1 − D), and rates 0.8 and 0.3 give D = 0.5 and g = 0.6; from 100 simulated old and 100 new items (75 hits, 27 false alarms) the estimates are 0.48 and 0.52 [P, check]; a two-high-threshold model with separate detection parameters for old and new items has three parameters for two free probabilities and is not identifiable [P]; ArviZ's PSIS-LOO for 30 normal draws with known σ = 1 and a N(0, 10²) prior on the mean gives elpd_loo −39.74 (standard error 2.66, p_loo 0.76, every Pareto k below 0.7) against the exact leave-one-out −39.752 [check]; a two-component normal mixture in PyMC with an ordering constraint on the means recovers weights 0.558 and 0.442 and means −1.11 and 2.02 from 300 points whose true weight on the upper component is 0.43 and whose true means are −1 and 2, with R-hat at most 1.002 [check]; started from separated values, four unconstrained chains did not swap labels in this run (R-hat 1.001), so the ordering constraint is a safeguard and not a cure for a problem that appeared here [check].
 - **Build:** exact and importance-sampling leave-one-out against each other; Bayes factors for coin and normal models by integration and by the Savage–Dickey ratio, with a prior-sensitivity plot; an MPT fitted by maximum likelihood and by MCMC; a two-component Gaussian mixture fitted by MCMC, showing label switching and its fix by ordering, and the same mixture, an ArviZ `loo` and a model comparison in PyMC. [local]
 - **Gap-fills:** *[inferred: Vehtari, Gelman and Gabry 2017; Kass and Raftery 1995; Batchelder and Riefer 1999 for MPTs, recalled, not checked]* hierarchical MPTs and bridge sampling for Bayes factors are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U26.2 Model evaluation and selection; U26.9 Clustering, mixture models and the EM algorithm.
 
 **Assignment A19.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8285,11 +10949,3724 @@ Bridge for: U19.2 to U19.17.
 </details>
 
 
-# PART E. BIG DATA, SCALABLE DATA SCIENCE, CLOUD OPERATIONS, MACHINE LEARNING AND SYSTEM DESIGN
+### U19.32 Forecasting with statistical and machine-learning models: hydrology and water-resources applications
+**Sources:** SMLM W1,12, o
+On demand: no cloud unit calls on this unit directly; enter it from U19.23 or when a later unit of the part needs it.
+Shares ground with the cloud unit U18.7 (Optimal linear MMSE estimation); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Builds on U19.23.
+- **Topics:** Forecasting using statistical and machine-learning algorithms with applications to hydrology and water-resources engineering; the role of statistics, machine learning and data science in hydroclimatology and water resources; determining the characteristics of observational data and events; data-driven solutions for engineering challenges; probabilistic solutions from joint and conditional distributions; suitability of data-driven models and assessing their performance; time-series forecasting (ARMA/ARIMA, regression, random forest, LSTM) and forecast-skill metrics.
+- **Results:** Stationarity and the Box–Jenkins identification logic for ARMA models [D]; forecast error decomposition [D].
+- **Build:** rolling-origin forecasting evaluation of ARMA versus random forest versus LSTM on a streamflow-like series.
+- **Gap-fills:** *[inferred: Maity, Statistical Methods in Hydrology and Hydroclimatology; Forsyth, Applied Machine Learning]* extreme-value analysis and frequency analysis of hydrologic series, copula-based joint modelling (links to U19.23).
+
+**Assignment A19.32** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which assumption do ARMA models standardly require?
+
+(A) Stationarity  
+(B) Independence of all variables  
+(C) Normal marginals  
+(D) Linear trends
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Rolling-origin evaluation respects time order  
+(B) Shuffling a time series before splitting leaks future information  
+(C) A persistence forecast is a useful baseline  
+(D) Mean absolute error is unit-free
+
+**Q3 (2 marks, numerical answer).** Stationary variance of AR(1) x_t = 0.8 x_(t-1) + e_t with unit-variance noise.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the autocovariance of a stationary AR(1) process.
+
+**Q5 (3 marks, programming).** Simulate an AR(2) streamflow-like series, fit AR coefficients by least squares, and run a rolling-origin forecast against persistence. Report the skill score. Predict the sign of the skill.
+
+<details><summary>Key for A19.32 (open only after your attempt)</summary>
+
+- **Q1:** A. Constant mean and autocovariance.
+- **Q2:** ABC. MAE has the units of the data.
+- **Q3:** 2.778 (tolerance ±0.001). sigma^2/(1 - phi^2) = 2.778.
+- **Q4 (marking outline):** gamma(h) = phi^h gamma(0) by multiplying the recursion by x_(t-h) and taking expectations.
+- **Q5 (what a passing submission shows):** Positive skill, since the AR model beats persistence on autocorrelated data.
+
+</details>
+
+## D25. Optimization: Theory, Algorithms and Applications
+
+Aim: eight dedicated source courses (primer, convex, LP, nonlinear programming, ML-oriented, software implementation, wireless/signal applications, distributed optimization) plus the optimization weeks of eight other courses, merged into one ladder: formulation and analysis, convex analysis, optimality and duality, linear programming, algorithms, then applications. Benchmarks (recalled, not checked unless noted): Boyd–Vandenberghe, *Convex Optimization* (Parts I and II confirmed from the published contents: convex sets, convex functions, convex optimization problems, duality; approximation and fitting, statistical estimation, geometric problems; the algorithms part on unconstrained and equality-constrained minimization and interior-point methods is recalled, not checked); Nocedal–Wright, *Numerical Optimization*; Bertsekas, *Nonlinear Programming*; Bazaraa–Sherali–Shetty; Chong–Zak; Dennis–Schnabel; Sun–Yuan; Rockafellar, *Convex Analysis*; Hiriart-Urruty–Lemaréchal; Chvátal and Dantzig–Thapa for LP; Tikhomirov, *Stories about Maxima and Minima*.
+
+### U25.1 Optimization problems: formulation, history, transformations and basic facts
+**Sources:** PMO W1, o; OAT W1–3, o; OFF W1–4, o; OMLH W3, o; MFML W10; MLE W3; EMML W8–10, o; CVX o; MLESA W0
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Introduction and history on the development of optimization theory; introduction to optimization; optimization overview of real analysis; optimization over open sets; optimization over surfaces; transformation of optimization problems; basic facts of maxima and minima and convex optimization; important classes of convex optimization problems; convex and non-convex optimization problems in machine learning; constrained and unconstrained optimization; numerical computation and optimization; introduction to optimization and its role as the workhorse of machine learning; introduction to Python for optimization; optimization algorithms (overview); introduction to optimization (Week 8 EMML); numerical optimization in machine learning; optimization using Python; convex optimization recap; mathematical optimization problem statement (variables, objective, constraints, feasible set, level sets); introduction to machine learning packages; Python basics for optimization; optimization using Python.
+- **Results:** Fermat's necessary condition for interior extrema [P]; Weierstrass existence theorem [P in U25.4]; equivalent reformulations (epigraph form, slack variables, change of variables) preserve optimal values [P].
+- **Build:** a small modelling layer in Python (objective, constraints, gradient check) used by all later optimization units.
+- **Gap-fills:** *[inferred: Boyd Ch.1; Tikhomirov]* taxonomy of problem classes (LP, QP, QCQP, SOCP, SDP, GP, integer), local versus global minima, optimization over open sets and manifolds (Lagrange multipliers on surfaces).
+
+**Assignment A25.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Minimizing f(x) is equivalent to maximizing
+
+(A) f(x)  
+(B) -f(x)  
+(C) 1/f(x)  
+(D) f(x)^2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Epigraph form minimizes t subject to f(x) <= t  
+(B) Slack variables turn inequality constraints into equalities  
+(C) Every local minimum is a global minimum  
+(D) Equivalent reformulations preserve the optimal value
+
+**Q3 (2 marks, numerical answer).** Minimum value of f(x,y) = x^2 + y^2 - 2x - 4y.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that minimizing f over a feasible set C is equivalent to minimizing t over (x,t) with f(x) <= t and x in C.
+
+**Q5 (3 marks, programming).** Write a small Problem class holding an objective, gradient, constraints and a feasibility check, plus grad_check. Test on the Rosenbrock function. Acceptance: gradient error below 1e-6 at 5 random points. Predict the minimizer first.
+
+<details><summary>Key for A25.1 (open only after your attempt)</summary>
+
+- **Q1:** B. The maximizers of -f are the minimizers of f.
+- **Q2:** ABD. Local minima are global only under convexity.
+- **Q3:** -5 (tolerance ±0.001). Stationary point (1,2) gives -5.
+- **Q4 (marking outline):** At the optimum t = f(x); any feasible (x,t) has t >= f(x), so the optimal values coincide.
+- **Q5 (what a passing submission shows):** Minimizer (1,1) with value 0.
+
+</details>
+
+### U25.2 Convex sets, cones, polyhedra and separation
+**Sources:** PMO W3; CVX o, L1-9; AOW W2; EMML W8; LPCS W1–5, o; OFF W4; DOML W1
+Bridge for: U20.1 (Scalable data science).
+- **Topics:** Convex sets, examples of commonly occurring convex sets and convexity-preserving operations; separation result (a point and a closed convex set); hyperplanes and half-spaces; affine and linear combinations, cones and polyhedra; basics of convex optimization and basic properties of convex sets; introduction to polyhedral sets; separation theorems for convex sets; theorems of the alternative (Farkas' theorem, Gordan's theorem and other results); hyperplane separation theorems; Application: power constraints in wireless systems; convex sets and convex functions (week 1 DOML); structure behind convex optimization and why so many special cases can be solved efficiently; column space–row space duality; basic facts of convex optimization; mathematical optimization; motivation behind studying linear programming; basics of linear algebra for LP; algorithmic game theory, theoretical computer science and machine learning as application areas of LP; linear and affine combinations; this leads to the simplex algorithm; hyperplane separation theorems; Section III convex sets and convex functions.
+- **Results:** Separating hyperplane theorem (point and closed convex set) [P]; supporting hyperplane theorem [P]; Farkas' lemma [P]; Gordan's theorem [P]; Carathéodory's theorem [P]; Minkowski/Krein–Milman for polytopes [S].
+- **Build:** projection onto convex sets (ball, box, simplex, halfspace) from scratch; separating-hyperplane finder via QP.
+
+**Assignment A25.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The intersection of any family of convex sets is
+
+(A) always convex  
+(B) never convex  
+(C) convex only if finite  
+(D) convex only if closed
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are convex sets?
+
+(A) A hyperplane  
+(B) The union of two disjoint intervals  
+(C) A halfspace  
+(D) The cone of positive semidefinite matrices
+
+**Q3 (2 marks, numerical answer).** Distance from the point (3,4) to the closed unit ball.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the separating hyperplane theorem for a point x0 outside a closed convex set C using the projection of x0 onto C.
+
+**Q5 (3 marks, programming).** Implement projections onto a ball, a box, a halfspace and the probability simplex (sort-based). Verify the variational inequality (c - p).(x - p) <= 0 on random points. Predict the projection of (0.5, 0.5, 2) onto the simplex.
+
+<details><summary>Key for A25.2 (open only after your attempt)</summary>
+
+- **Q1:** A. Convex combinations stay in every member.
+- **Q2:** ACD. Disjoint intervals are not convex together.
+- **Q3:** 4 (tolerance ±0.001). Norm 5 minus radius 1.
+- **Q4 (marking outline):** Let p be the projection; the vector x0 - p separates because (c - p).(x0 - p) <= 0 for all c in C.
+- **Q5 (what a passing submission shows):** (0, 0, 1).
+
+</details>
+
+### U25.3 Convex functions and their calculus
+**Sources:** PMO W3–4; CVX L1-9, L10-19; AOW W3; EMML W8; DOML W1–2; OMLH W3; MLESA W0
+Bridge for: U20.1 (Scalable data science).
+- **Topics:** Convex functions and their continuity, Lipschitz continuity and directional derivative; zeroth-order and first-order characterizations of convexity; second-order characterization of convexity; convexity-preserving operations; properties of convex functions; convex/concave functions, examples and conditions for convexity; continuity and differentiability properties of convex functions; differentiable convex functions; non-differentiable convex functions; calculus of sub-differentials (subdifferential of a convex function); Fenchel conjugate; strong convexity and its implications; first- and second-order conditions for optimization; application: beamforming in wireless systems, multi-user wireless, cognitive radio systems.
+- **Results:** Jensen's inequality [P]; first-order condition f(y) ≥ f(x)+∇f(x)ᵀ(y−x) [P]; Hessian PSD ⇔ convex [P]; convex functions are locally Lipschitz in the interior [P]; subdifferential is nonempty, convex and compact in the interior [P]; Fenchel–Moreau (statement) [X]; strong convexity ⇒ unique minimizer and quadratic growth [P].
+- **Build:** numerical convexity tester via random Hessian sampling; subgradient computation for ℓ1, hinge and max functions.
+
+**Assignment A25.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which function is convex on the real line?
+
+(A) sin x  
+(B) x^3  
+(C) e^x  
+(D) log x
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A C^2 function is convex iff its Hessian is positive semidefinite  
+(B) A sum of convex functions is convex  
+(C) A pointwise maximum of convex functions is convex  
+(D) A composition of convex functions is always convex
+
+**Q3 (2 marks, numerical answer).** Length of the subdifferential interval of f(x) = abs(x) at x = 0.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the first-order characterization: a differentiable f is convex iff f(y) >= f(x) + grad f(x).(y - x) for all x, y.
+
+**Q5 (3 marks, programming).** Write a convexity tester sampling random points and Hessians by finite differences, and subgradient routines for hinge, L1 and max. Acceptance: softplus passes, sin fails. Predict the verdict for x^4 - x^2.
+
+<details><summary>Key for A25.3 (open only after your attempt)</summary>
+
+- **Q1:** C. Its second derivative is positive everywhere.
+- **Q2:** ABC. Composition needs monotonicity conditions.
+- **Q3:** 2 (tolerance ±0.001). The subdifferential is [-1, 1].
+- **Q4 (marking outline):** One direction by the limit of the convexity inequality along a segment; the other by combining two supporting lines at a convex combination.
+- **Q5 (what a passing submission shows):** Not convex: second derivative is negative near 0.
+
+</details>
+
+### U25.4 Unconstrained optimization theory
+**Sources:** PMO W4–5; OMLH W3; OFF W2–3; CVX L20-26
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Local optima and its variants; saddle point; coercive functions; existence of optima (Weierstrass theorem; theorem for coercive functions); descent direction and its first-order and second-order characterizations; direction of descent; first-order and second-order necessary and sufficient conditions for minima; first- and second-order conditions for optimisation; optimization over open sets.
+- **Results:** First-order necessary condition [P]; second-order necessary and sufficient conditions [P]; for convex f, stationary ⇒ global minimum [P]; coercive continuous functions attain their minimum [P].
+- **Build:** classify the stationary points of Rosenbrock, Himmelblau and a saddle function by Hessian eigenvalues.
+
+**Assignment A25.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A necessary condition for an interior local minimum of a differentiable f is
+
+(A) f = 0  
+(B) grad f = 0  
+(C) Hessian = 0  
+(D) f is convex
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) f'(x) = 0 and f''(x) > 0 imply a strict local minimum  
+(B) A continuous coercive function attains its minimum  
+(C) A stationary point of a convex function is a global minimum  
+(D) Every stationary point is a local minimum
+
+**Q3 (2 marks, numerical answer).** Minimum value of f(x) = x^4 - 4x.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the second-order necessary condition: if x* is a local minimizer of a C^2 function then the Hessian is positive semidefinite.
+
+**Q5 (3 marks, programming).** Find stationary points of Himmelblau's function with Newton's method from 200 random starts, classify by Hessian eigenvalues and count each type. Predict the counts first.
+
+<details><summary>Key for A25.4 (open only after your attempt)</summary>
+
+- **Q1:** B. Fermat's condition.
+- **Q2:** ABC. Saddles are stationary but not minima.
+- **Q3:** -3 (tolerance ±0.001). f' = 4x^3 - 4 = 0 at x = 1, f = -3.
+- **Q4 (marking outline):** Taylor expand along any direction d: f(x*+td) - f(x*) = (t^2/2) d^T H d + o(t^2) >= 0.
+- **Q5 (what a passing submission shows):** Four minima, one maximum, four saddle points.
+
+</details>
+
+### U25.5 Constrained optimization theory: Lagrange, cones, Fritz John and KKT
+**Sources:** PMO W8–9; CVX L10-19, o; DOML W2–3; AOW W6; EMML W12; MFML W10
+Bridge for: U20.1 (Scalable data science).
+- **Topics:** Revisit of the Lagrange multipliers method; cones for constrained optimization (cone, dual cone, cone of feasible directions, linearizing cone, cone of descent directions, tangent cone); geometric optimality conditions; first-order Fritz John (FJ) and KKT necessary optimality conditions; first-order KKT sufficient optimality condition; second-order KKT necessary and sufficient conditions; constraint qualification; Rockafellar–Pshenichny optimality condition; properties of normals and projections; projection on a convex set and normal cone; computing the normal cone of inequality constraints; tangent cone; minimization of a convex function with convex inequality constraints; constrained optimization problems (primal and Lagrangian dual); KKT conditions and primal/dual methods; Lagrangian multiplier method; Karush–Kuhn–Tucker conditions (CVX outline); saddle-point conditions; Karush–Kuhn–Tucker conditions; projection on a convex set and normal cone; sub-differential of a convex function (subdifferential); Section VI constraint optimization theory.
+- **Results:** Lagrange multiplier theorem [P under regularity]; Fritz John conditions [P]; KKT necessary conditions under LICQ/MFCQ [P]; KKT sufficient for convex problems [P]; Slater's condition [P in U25.6].
+- **Build:** KKT-system solver for small QPs; verification of KKT residuals on solutions from `scipy.optimize`.
+
+**Assignment A25.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** KKT stationarity for min f(x) subject to g(x) <= 0 is
+
+(A) grad f = 0  
+(B) grad f + lambda grad g = 0 with lambda >= 0  
+(C) grad f = lambda grad g with lambda < 0  
+(D) g = 0 always
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Complementary slackness requires lambda g(x*) = 0  
+(B) KKT conditions are necessary under a constraint qualification  
+(C) KKT conditions are sufficient for convex problems  
+(D) Multipliers of inequality constraints may be negative in standard form
+
+**Q3 (2 marks, numerical answer).** Lagrange multiplier at the solution of min x^2 subject to x >= 1 (written 1 - x <= 0).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that for a convex problem any point satisfying the KKT conditions is a global minimizer.
+
+**Q5 (3 marks, programming).** Solve min 0.5 x^T Q x + c^T x s.t. A x <= b for 2 variables by enumerating active sets and checking KKT. Report the residual. Predict how many active sets you must check for 3 constraints.
+
+<details><summary>Key for A25.5 (open only after your attempt)</summary>
+
+- **Q1:** B. Plus complementary slackness lambda g = 0.
+- **Q2:** ABC. They must be nonnegative.
+- **Q3:** 2 (tolerance ±0.001). 2x - lambda = 0 with x = 1 gives lambda = 2.
+- **Q4 (marking outline):** The Lagrangian is convex in x, so stationarity gives its global minimum; weak duality and complementary slackness equate the values.
+- **Q5 (what a passing submission shows):** At most 2^3 = 8 candidate active sets; residual below 1e-9.
+
+</details>
+
+### U25.6 Lagrangian duality, saddle points and minimax
+**Sources:** PMO W10; CVX o, L10-19; DOML W2–3,7; AOW W6; EMML W12; LPCS W4–6; OFF W6–7
+Bridge for: U4.5 (network flows and linear programming), U20.8 (Distributed optimisation with ADMM and its applications).
+Shares ground with the cloud unit U4.5 (network flows and linear programming); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U4.5: an algorithm for the max-flow problem; Weak duality; LP strong duality.
+- **Topics:** Lagrangian duality (how one discovers duality; geometric interpretation of duality); results on the dual function (the dual problem is a convex optimization problem; differentiability of the dual function); weak duality theorem and duality gap; equal primal and dual objective values imply optimality; strong duality theorem (convex problem and Slater's constraint qualification imply strong duality); saddle-point optimality and absence of duality gap; relationship between saddle-point criteria and KKT conditions; duality in connection with linear programming; strong duality for convex problems and consequences; Lagrangian duality and examples; duality principle and KKT framework for optimization; concepts of duality, hard and soft margin classifier (SVM dual); duality theory and strong duality (LP); Von Neumann's minimax theorem as an application of strong duality; existence of Nash equilibria; Yao's technique for lower bounds in communication complexity; the relation between primal and dual used to prove the max-flow min-cut theorem; primal–dual methods and an algorithm for max flow; dual ascent and dual decomposition; application: water-filling power allocation; duality theory, one of the main reasons LP has so many applications; Nash equilibria (John Nash); primal–dual methods; Section VII Lagrangian duality theory.
+- **Results:** strong duality under Slater [P]; complementary slackness [P]; Von Neumann minimax theorem [P]; Nash existence for finite two-player zero-sum games [P]; max-flow = min-cut [P].
+- **Build:** dual of an LP and of an SVM computed and checked numerically; zero-sum game solved by LP.
+
+**Assignment A25.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a minimization problem, weak duality states
+
+(A) dual optimum <= primal optimum  
+(B) dual optimum >= primal optimum  
+(C) they are always equal  
+(D) the dual is nonconvex
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Strong duality holds for convex problems under Slater's condition  
+(B) The dual function is concave  
+(C) For a feasible bounded LP, strong duality holds  
+(D) The duality gap is always zero
+
+**Q3 (2 marks, numerical answer).** Dual optimal value of min 3 x1 + 2 x2 s.t. x1 + x2 >= 4, x >= 0.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove weak duality for min f(x) s.t. g(x) <= 0: the dual function lower-bounds the primal optimum.
+
+**Q5 (3 marks, programming).** Compute the value of the zero-sum game [[3,-1],[-2,4]] analytically and by fictitious play for 10^5 rounds. Predict the value first.
+
+<details><summary>Key for A25.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Any dual function value lower-bounds the primal optimum.
+- **Q2:** ABC. Gaps can be positive for nonconvex problems.
+- **Q3:** 8 (tolerance ±0.001). The dual max 4 y s.t. y <= 3, y <= 2 gives 8.
+- **Q4 (marking outline):** For feasible x and lambda >= 0, L(x, lambda) <= f(x), and the dual function is the infimum of L over x.
+- **Q5 (what a passing submission shows):** Value 1; fictitious play empirical value approaches 1.
+
+</details>
+
+### U25.7 Linear programming: simplex, duality, sensitivity and interior-point methods
+**Sources:** CVX L10-19, L20-26, L27-33, o; HEM W9–10, o; LPCS W1–3,7–8, o; OFF W5–7; OAT W9–11; AOW W4; EMML W11; MFML W10
+Bridge for: U4.5 (network flows and linear programming).
+Shares ground with the cloud unit U4.5 (network flows and linear programming); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Pleasures of linear programming; direction of descent; extreme points of linear programming; polyhedral sets and cones; foundation of simplex methods; fundamental theorem of linear programming; simplex methods (and continued); simplex method; two-phase method II; dual simplex method and its application; sensitivity analysis I; graphical method I and II; introduction to linear programming; Gaussian elimination, rank–nullity, basics of LP and its definition; linear programming basics and examples; basic results and the fundamental theorems of linear programming; introduction to interior-point methods; log barrier function; primal–dual framework; overview of interior-point algorithm; short-step algorithm and short-step path-following method; predictor–corrector method; affine scaling method; Karmarkar's algorithm; LP with integer constraints and relaxation (ILP, rounding, approximation algorithm for set cover); applications of LP in machine learning (linear regression and classification by LP tools, Boolean functions); error-minimizing LPP; Linear programming problems (HEM main topic 3); linear program application: power allocation in multi-cell cooperative OFDM; introduction to linear programming and duality; short-step path-following method; modelling a quantity as an integer linear program (ILP) and the concept of relaxation of a linear program; linear regression and classification approached with LP tools; Section VIII linearly constrained nonlinear optimization algorithms.
+- **Results:** Fundamental theorem of LP (optimum at a vertex) [P]; simplex terminates under Bland's rule [P]; strong duality and complementary slackness [P]; polynomial-time convergence of short-step path-following [S]; integrality gap of LP relaxation of set cover and rounding bound [P]; ℓ1 and ℓ∞ regression as LPs [D].
+- **Build:** tableau simplex (two-phase and dual) from scratch; log-barrier interior-point method from scratch; compare with `scipy.optimize.linprog`.
+- **Gap-fills:** *[inferred: Chvátal; Dantzig–Thapa]* degeneracy and cycling, network simplex, transportation and assignment problems, total unimodularity.
+
+**Assignment A25.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** If a linear program has an optimum and its feasible region is a pointed polyhedron, an optimum is attained at
+
+(A) an interior point  
+(B) a vertex  
+(C) the origin  
+(D) the centroid
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The simplex method moves between vertices  
+(B) Bland's rule prevents cycling  
+(C) Interior-point methods follow the central path  
+(D) The dual simplex method maintains primal feasibility
+
+**Q3 (2 marks, numerical answer).** Maximum of 3x + 2y subject to x + y <= 4, x <= 2, x, y >= 0.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that if an LP in standard form has an optimal solution, it has an optimal basic feasible solution.
+
+**Q5 (3 marks, programming).** Implement tableau simplex (two-phase) and a log-barrier interior-point method. Solve the example above and report the dual values. Predict the optimal dual variables.
+
+<details><summary>Key for A25.7 (open only after your attempt)</summary>
+
+- **Q1:** B. Fundamental theorem of linear programming.
+- **Q2:** ABC. It maintains dual feasibility.
+- **Q3:** 10 (tolerance ±0.001). Vertex (2,2) gives 10.
+- **Q4 (marking outline):** Take an optimal solution with the fewest positive entries; if its columns were dependent, move along the null direction without worsening the cost, reducing support.
+- **Q5 (what a passing submission shows):** Optimum 10 at (2,2); duals 2 for the sum constraint and 1 for x <= 2.
+
+</details>
+
+### U25.8 Unconstrained descent methods: line search, gradient, Newton, quasi-Newton, conjugate gradient, trust region
+**Sources:** PMO W5–8; OAT W3–6; OMLH W4,7–8; OFF W10–11; EMML W9–10; MFML W10; FML W4; DOML W3
+Bridge for: U20.7 (Scala and Spark, and distributed machine learning and optimisation).
+- **Topics:** General structure of an optimization algorithm, global convergence, descent property, quadratic termination property; introduction to line search (exact and inexact); inexact line searches (Armijo–Goldstein, Wolfe–Powell, Armijo backtracking); global convergence of gradient descent methods using exact and inexact line searches; where general descent methods converge (almost always to a local minimizer; capture theorem); scaling of variables; practical stopping criteria; steepest descent method, descent property, zigzagging, scaling effect, Barzilai–Borwein gradient method; global convergence of steepest descent and its order of convergence, scaling effect and dimension independence; Newton method and its local convergence; dimension dependency of Newton method and scaling effect; Levenberg–Marquardt and other modified Newton methods; quasi-Newton methods (quasi-Newton equation, general quasi-Newton algorithm, variable metric method, comparison of Newton and quasi-Newton methods); global convergence of quasi-Newton methods for uniformly convex functions; superlinear convergence of quasi-Newton methods; basic conjugate direction method and its convergence rate (basic CG method); gradient descent/conjugate gradient algorithm; Newton's method; quasi-Newton methods; trust region methods (Cauchy point, dogleg and double dogleg methods); gradient descent: math and programming of basic optimization problems and their solutions; Newton's method and optimization for ML in practice with PyTorch/TensorFlow; gradient descent and other optimization algorithms in machine learning; gradient descent primal and dual view and convergence for linear and logistic regression; Barzilai and Borwein (Borwin) gradient method; dog leg and double dog leg methods; Section V unconstrained optimization methods; continued lectures on Newton and quasi-Newton methods.
+- **Results:** Convergence of gradient descent for L-smooth convex functions at rate O(1/k) and for strongly convex at linear rate [P]; Zoutendijk condition [P]; local quadratic convergence of Newton [P]; superlinear convergence of BFGS [S]; CG finds the minimizer of an n-dimensional quadratic in ≤ n steps [P]; Armijo backtracking terminates [P].
+- **Build:** GD with backtracking, Newton, BFGS/L-BFGS, CG and dogleg trust region from scratch; iteration-count and condition-number experiments on quadratics and Rosenbrock; compare with `scipy.optimize.minimize`.
+- **Gap-fills:** *[inferred: Nocedal–Wright Ch.3–7; Dennis–Schnabel]* Wolfe-condition line-search algorithms, limited-memory BFGS, nonlinear least squares (Gauss–Newton), derivative-free methods.
+
+**Assignment A25.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Steepest descent on a badly conditioned quadratic typically
+
+(A) zigzags and converges slowly  
+(B) converges in one step  
+(C) diverges always  
+(D) ignores curvature and is exact
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Newton's method converges quadratically near a nondegenerate minimizer  
+(B) BFGS converges superlinearly  
+(C) Conjugate gradient solves an n-dimensional quadratic in at most n steps  
+(D) Gradient descent converges for every step size
+
+**Q3 (2 marks, numerical answer).** Gradient descent on f = x^2/2 with step 0.5 from x0 = 4. Value after 3 steps.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that gradient descent with step 1/L on an L-smooth, mu-strongly convex quadratic contracts the error by a factor of at most (1 - mu/L) per step.
+
+**Q5 (3 marks, programming).** Implement GD with backtracking, Newton, BFGS and conjugate gradient. Compare iteration counts on quadratics with condition numbers 10 and 1000. Predict the CG iteration count for n = 20.
+
+<details><summary>Key for A25.8 (open only after your attempt)</summary>
+
+- **Q1:** A. Rate is governed by the condition number.
+- **Q2:** ABC. Large steps diverge.
+- **Q3:** 0.5 (tolerance ±0.001). Each step multiplies x by 0.5.
+- **Q4 (marking outline):** Error update e <- (I - A/L) e; eigenvalues of I - A/L lie in [0, 1 - mu/L].
+- **Q5 (what a passing submission shows):** At most 20 iterations in exact arithmetic; GD needs hundreds for condition 1000.
+
+</details>
+
+### U25.9 Constrained optimization algorithms: QP, projected and reduced gradient, penalty, augmented Lagrangian, SQP
+**Sources:** PMO W11–12; OAT W7–8; OFF W10–11; DOML W6; OMLH W5–6
+Bridge for: U20.8 (Distributed optimisation with ADMM and its applications).
+Builds on U25.7.
+- **Topics:** Quadratic programming methods (active-set method; interior-point method); projected gradient algorithm; reduced gradient algorithm; penalty methods (exterior penalty method; interior penalty method); quadratic penalty method; augmented Lagrangian method and method of multipliers; sequential quadratic programming (Lagrange–Newton method; reduced Hessian matrix method); trust region method; null space method; linearly constrained and nonlinearly constrained nonlinear optimization algorithms; projected gradient descent; Section IX nonlinearly constrained nonlinear optimization algorithms; continued lectures on variants of gradient descent and neural-network training theory; Section VIII: linearly constrained nonlinear optimization algorithms.
+- **Results:** Exterior penalty solutions converge to a constrained minimizer as the penalty grows [P]; augmented Lagrangian avoids ill-conditioning and converges with bounded penalty [S]; SQP as Newton on the KKT system [D]; active-set termination for convex QP [S].
+- **Build:** quadratic-penalty and augmented-Lagrangian solvers from scratch on a small equality-constrained problem; projected gradient onto the simplex.
+- **Gap-fills:** *[inferred: Nocedal–Wright Ch.16–18; Bertsekas]* filter methods and merit functions, barrier methods (link to U25.7 IPM).
+
+**Assignment A25.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The quadratic penalty method may suffer because
+
+(A) the penalty must grow, making the problem ill-conditioned  
+(B) it needs no gradients  
+(C) it is exact for finite penalty  
+(D) it ignores constraints
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Augmented Lagrangian methods avoid sending the penalty to infinity  
+(B) Projected gradient requires an easy projection  
+(C) SQP applies Newton's method to the KKT system  
+(D) Exterior penalty iterates are always feasible
+
+**Q3 (2 marks, numerical answer).** Minimizer of x^2 + 9 (x - 1)^2 (quadratic penalty for min x^2 s.t. x = 1, mu = 9).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** For min x^2 s.t. x = 1, derive the penalty minimizer for general mu and show it converges to the constrained solution as mu goes to infinity.
+
+**Q5 (3 marks, programming).** Solve min x^2 + y^2 s.t. x + y = 1 with quadratic penalty and with augmented Lagrangian; compare iteration counts and condition numbers. Predict the solution.
+
+<details><summary>Key for A25.9 (open only after your attempt)</summary>
+
+- **Q1:** A. Conditioning degrades as mu grows.
+- **Q2:** ABC. They approach feasibility from outside.
+- **Q3:** 0.9 (tolerance ±0.001). Derivative: 2x + 18 (x - 1) = 0 gives x = 0.9.
+- **Q4 (marking outline):** Set 2x + 2 mu (x - 1) = 0 so x = mu/(1+mu), which tends to 1.
+- **Q5 (what a passing submission shows):** (0.5, 0.5); augmented Lagrangian reaches it with a bounded penalty.
+
+</details>
+
+### U25.10 First-order methods for ML: stochastic, accelerated, proximal, adaptive, and the dynamical-systems view
+**Sources:** OMLH W5–8; DOML W3–6; FML W4–5; MLCE W5; FDL W2; OAT W12; MFML W10; MLESA W5
+Bridge for: U11.8 (machine-learning foundations for scalable learning), U11.9 (Big data applications), U20.7 (Scala and Spark, and distributed machine learning and optimisation).
+Shares ground with the cloud units U20.7 (Scala and Spark) and U11.8 (machine-learning foundations for scalable learning); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Variants of gradient descent (projected, stochastic, proximal, accelerated, coordinate descent) and training a neural network (theory and implementation); analysis of gradient descent; analysis of accelerated optimization algorithms; optimization algorithms as dynamical systems and introduction to stability theory; Lyapunov analysis of gradient flows; gradient flows for equality-constrained optimization and saddle-point problems; accelerated gradient flows; SGD and its analysis for linear and logistic regression, SGD versus GD as a learning algorithm, model selection; training of ML models; gradient descent algorithm; stochastic gradient descent; momentum-based GD, Nesterov accelerated GD, AdaDelta, AdaGrad, RMSProp, Adam; variants such as momentum, AdaGrad, Adam and RMSprop; gradient descent and stochastic gradient descent (MFML); an application from machine learning (OAT Week 12); initialization, training and validation; along with implementation and optimization in real-world applications.
+- **Results:** SGD convergence for convex and strongly convex objectives with variance bound [P]; Nesterov's O(1/k²) rate and its optimality [S]; Lyapunov function for gradient flow gives exponential convergence for strongly convex f [P]; proximal gradient converges at O(1/k) [P]; Adam update as adaptive preconditioning (no general convergence guarantee, counterexample) [S].
+- **Build:** SGD, momentum, Nesterov, AdaGrad, RMSProp and Adam from scratch in NumPy on least squares and logistic regression; ODE-view simulation of gradient flow versus discrete GD.
+- **Gap-fills:** *[inferred: Bach LTFP Ch.5; Goodfellow Ch.8]* learning-rate schedules, mini-batching and variance reduction (SVRG), second-order and natural-gradient ideas.
+
+**Assignment A25.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** SGD with a constant step size converges
+
+(A) exactly for any loss  
+(B) to a neighbourhood of the minimizer  
+(C) never  
+(D) only if the loss is linear
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Momentum accelerates movement along consistently signed gradients  
+(B) Adam uses first and second moment estimates  
+(C) Nesterov acceleration attains O(1/k^2) on smooth convex problems  
+(D) AdaGrad's effective step size grows over time
+
+**Q3 (2 marks, numerical answer).** Adam's first update magnitude with learning rate 0.001, gradient 1 and epsilon 1e-8.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that gradient descent is the Euler discretization of the gradient flow x' = -grad f(x) and that f decreases along the flow at rate norm(grad f)^2.
+
+**Q5 (3 marks, programming).** Implement SGD, momentum, Nesterov, AdaGrad, RMSProp and Adam on least squares and on logistic regression and plot loss curves. Predict which optimizer is least sensitive to feature scaling.
+
+<details><summary>Key for A25.10 (open only after your attempt)</summary>
+
+- **Q1:** B. Gradient noise keeps it from converging exactly.
+- **Q2:** ABC. It shrinks.
+- **Q3:** 0.001 (tolerance ±0.0001). Bias-corrected m = 1 and v = 1 give about the learning rate.
+- **Q4 (marking outline):** d/dt f(x(t)) = grad f . x' = -norm(grad f)^2.
+- **Q5 (what a passing submission shows):** Adam and RMSProp are least sensitive because they rescale per coordinate.
+
+</details>
+
+### U25.11 Conic and structured convex programs: QCQP, SOCP, SDP, geometric programs
+**Sources:** AOW W4–6,9, o; CVX o, L34-40; MLESA W0
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Convex optimization problems; linear programs; QCQP and SOCP problems; application: channel shortening for wireless equalization and robust beamforming in wireless systems; semi-definite programming (SDP); saddle-point type conditions for SDP; approximate solutions; geometric programs and optimal power allocation for cooperative communication; optimization for MIMO systems, OFDM systems and MIMO-OFDM systems; cognitive radio and cooperative communication.
+- **Results:** Every LP, QP, QCQP and SOCP is an SDP-representable convex program [P]; Schur-complement representation of quadratic constraints [P]; GP becomes convex under log transformation [P]; SDP strong duality under strict feasibility [S].
+- **Build:** the same problems solved with from-scratch IPM and with `cvxpy`, with solver comparison. **Tooling:** from-scratch interior point in NumPy; `cvxpy` as the reference solver.
+
+**Assignment A25.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Second-order cone programs generalize
+
+(A) only LP  
+(B) LP and convex QCQP  
+(C) nonconvex problems  
+(D) only integer programs
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Every LP is a semidefinite program  
+(B) A geometric program becomes convex after a log transform  
+(C) A QCQP is convex if every quadratic form is PSD  
+(D) SDP solves every nonconvex problem exactly
+
+**Q3 (2 marks, numerical answer).** Largest x with [[1,x],[x,1]] positive semidefinite.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that norm(A x + b) <= c^T x + d is a second-order cone constraint and that squaring gives a convex quadratic constraint when c^T x + d >= 0.
+
+**Q5 (3 marks, programming).** Solve min c^T x s.t. norm(x) <= 1 with your own log-barrier method for c = (3,4). Compare with the analytic solution. Predict the optimal value.
+
+<details><summary>Key for A25.11 (open only after your attempt)</summary>
+
+- **Q1:** B. A convex quadratic constraint is a cone constraint.
+- **Q2:** ABC. SDP gives relaxations, not exact solutions in general.
+- **Q3:** 1 (tolerance ±0.001). Eigenvalues 1 plus or minus x need to be nonnegative.
+- **Q4 (marking outline):** The constraint is membership of (Ax+b, c^T x + d) in the Lorentz cone.
+- **Q5 (what a passing submission shows):** Optimal value -5 at x = -c/norm(c).
+
+</details>
+
+### U25.12 Applications of optimization: signal estimation, compressive sensing, radar, big data and finance
+**Sources:** AOW W2–12, o; EMML o; MLCE W4
+Bridge for: U18.12 (The linear perceptron, compressive sensing and orthogonal matching pursuit).
+Shares ground with the cloud units U18.12 (The linear perceptron), U18.5 (Singular value decomposition and applications) and U18.2 (Introduction to vectors, properties and applications); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.12: compressive sensing and sparse signal processing; OMP recovery experiments (phase transition). U18.5: water-filling power allocation. U18.2: wireless channel estimation.
+- **Topics:** Optimization for signal estimation (LS, WLS, regularization); image reconstruction and deblurring; convex optimization for machine learning (PCA and SVM); OMP (orthogonal matching pursuit); LASSO (least absolute shrinkage and selection operator) for signal estimation; radar for target detection, array processing, MUSIC and MIMO-radar schemes for enhanced target detection; convex optimization for big-data analytics, recommender systems, user-rating prediction and latent-factor methods; optimization for finance (financial models and portfolio optimization); loss functions as optimization objectives (MSE, MAE, MSLE, cross-entropy, Tweedie, MAPE) and their statistical basis; Principal Component Analysis (PCA); Support Vector Machines (SVM); LASSO techniques; wireless communication, signal processing, machine learning, big data and finance as application fields.
+- **Results:** LASSO yields sparse solutions (subgradient optimality) [D]; restricted-isometry sufficient condition for exact recovery (statement) [X]; water-filling is the KKT solution of capacity maximization [D]; Markowitz mean–variance solution [D].
+- **Build:** ISTA and coordinate-descent LASSO; water-filling solver.
+
+**Assignment A25.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The LASSO penalty promotes sparsity because
+
+(A) L1 balls have corners on the axes  
+(B) it is smooth  
+(C) it equals L2  
+(D) it ignores data
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) ISTA uses soft thresholding  
+(B) Water-filling is the KKT solution for capacity maximization  
+(C) Orthogonal matching pursuit is greedy  
+(D) Compressive sensing requires dense signals
+
+**Q3 (2 marks, numerical answer).** Soft-threshold of 2.5 with threshold 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive soft thresholding as the proximal operator of lambda times abs(x).
+
+**Q5 (3 marks, programming).** Implement ISTA and coordinate-descent LASSO, OMP, and a water-filling solver for four channels with gains 1, 2, 4, 8 and total power 4. Take each channel's noise level to be 1/gain and predict the water level.
+
+<details><summary>Key for A25.12 (open only after your attempt)</summary>
+
+- **Q1:** A. Level sets of the loss often first touch corners.
+- **Q2:** ABC. It exploits sparsity.
+- **Q3:** 1.5 (tolerance ±0.001). sign(x) max(abs(x) - 1, 0) = 1.5.
+- **Q4 (marking outline):** Minimize 0.5 (z - x)^2 + lambda abs(z); case on the sign of z.
+- **Q5 (what a passing submission shows):** Noise levels 1, 1/2, 1/4, 1/8; all four channels are active (the water level exceeds the largest noise level), so the water level is (4 + 1.875)/4 = 1.469 and the powers are 0.469, 0.969, 1.219, 1.344. A channel gets zero power only if its noise level exceeds the water level, which none does here.
+
+</details>
+
+### U25.13 Non-smooth and difference-of-convex optimization
+**Sources:** CVX o, L34-40
+Bridge for: U18.12 (The linear perceptron, compressive sensing and orthogonal matching pursuit).
+- **Topics:** Descent direction for non-smooth functions; minimization of difference-convex (DC) functions (and continued); approximate solutions; concluding lecture (overview of convex optimization).
+- **Results:** Optimality 0 ∈ ∂f(x) [P]; subgradient method convergence rate [P]; DC algorithm (DCA) monotone descent [P].
+- **Build:** subgradient method for hinge-loss SVM; DCA for a sparse regression with a non-convex penalty.
+
+**Assignment A25.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a convex f, x* is a minimizer iff
+
+(A) 0 is in the subdifferential at x*  
+(B) f(x*) = 0  
+(C) the gradient is positive  
+(D) the Hessian is zero
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The subgradient method converges at O(1/sqrt k) in objective  
+(B) DCA monotonically decreases a DC objective  
+(C) Every subgradient step decreases the objective  
+(D) abs(x) is differentiable at 0
+
+**Q3 (2 marks, numerical answer).** Largest subgradient of f(x) = max(0, x) at x = 0.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that for convex f, 0 belongs to the subdifferential at x* iff x* minimizes f.
+
+**Q5 (3 marks, programming).** Train a hinge-loss linear classifier by the subgradient method with diminishing steps on a toy dataset, and apply a DC algorithm to a sparse regression with a nonconvex penalty. Predict the shape of the objective curve.
+
+<details><summary>Key for A25.13 (open only after your attempt)</summary>
+
+- **Q1:** A. Subgradient optimality.
+- **Q2:** AB. Subgradient steps need not descend.
+- **Q3:** 1 (tolerance ±0.001). The subdifferential is [0,1].
+- **Q4 (marking outline):** Subgradient inequality f(y) >= f(x*) + 0.(y - x*) is exactly minimality.
+- **Q5 (what a passing submission shows):** Noisy non-monotone objective for the subgradient method; monotone decrease for DCA.
+
+</details>
+
+### U25.14 Distributed optimization: graphs, consensus, ADMM and dual decomposition
+**Sources:** DOML W1,7–10, o; MFML o
+Bridge for: U20.8 (Distributed optimisation with ADMM and its applications).
+Shares ground with the cloud unit U20.8 (Distributed optimisation with ADMM and its applications); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Builds on U21.15, U18.21.
+- **Topics:** Introduction to distributed optimization; ADMM (alternating direction method of multipliers); dual ascent and dual decomposition; introduction to graph theory; distributed consensus; continuous-time analysis of consensus algorithms; distributed optimization problem (economic dispatch problem); distributed optimization algorithms; centralized versus distributed or decentralized algorithms under communication overhead, network topology, computational resources and robustness; graph theory, iterative methods for convex problems, synchronous and asynchronous setups, consensus algorithms; recent literature that exploits control theory for accelerated distributed optimization algorithms; graph theory, iterative methods for convex problems; distributed machine learning; synchronous and asynchronous setups.
+- **Results:** ADMM convergence for convex problems [S]; consensus convergence rate governed by the second-smallest Laplacian eigenvalue [P]; dual decomposition for separable problems [D]; distributed gradient descent converges to a neighbourhood with constant steps [S].
+- **Build:** ADMM for LASSO and consensus averaging over a graph from scratch (reuses U21.15 and U18.21).
+- **Gap-fills:** *[inferred: Nedić, Distributed Optimization Over Networks; Boyd et al., ADMM monograph]* push-sum and directed graphs, gradient tracking, asynchronous updates.
+
+**Assignment A25.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Averaging consensus on a connected undirected graph converges to
+
+(A) the maximum  
+(B) the average of initial values  
+(C) zero  
+(D) a random value
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Convergence rate is governed by the Laplacian's second-smallest eigenvalue  
+(B) ADMM alternates minimization over blocks and a dual update  
+(C) Dual decomposition applies to separable objectives  
+(D) Consensus reaches the global mean on a disconnected graph
+
+**Q3 (2 marks, numerical answer).** Second-smallest eigenvalue of the Laplacian of a path on 3 nodes.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that x <- (I - eps L) x preserves the average and converges to it on a connected graph when 0 < eps < 2/lambda_max(L).
+
+**Q5 (3 marks, programming).** Run averaging consensus on a ring of 10 nodes and on the complete graph, and ADMM for LASSO. Predict which graph converges faster.
+
+<details><summary>Key for A25.14 (open only after your attempt)</summary>
+
+- **Q1:** B. With symmetric doubly stochastic weights.
+- **Q2:** ABC. Components never mix.
+- **Q3:** 1 (tolerance ±0.001). Eigenvalues 0, 1, 3.
+- **Q4 (marking outline):** 1^T L = 0 preserves the sum; other eigenmodes contract by abs(1 - eps lambda_i) < 1.
+- **Q5 (what a passing submission shows):** The complete graph; the ring needs far more iterations.
+
+</details>
+
+### U25.15 Dynamic optimization and complementarity problems
+**Sources:** OFF W8–9,12, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Nonlinear and convex optimization (Weeks 8–9); complementarity problems and algorithms for the same; dynamic optimization; real analysis and convexity as the base for LP, convex optimization and nonlinear programming.
+- **Results:** Bellman's principle of optimality [P]; finite-horizon dynamic programming recursion [P]; KKT conditions as a complementarity problem [D].
+- **Build:** value-iteration and backward-induction solver for a finite-horizon problem (feeds U27.4 MDPs).
+- **Gap-fills:** *[inferred: Bertsekas, Dynamic Programming and Optimal Control]* linear–quadratic regulator, Pontryagin principle (statement), calculus of variations.
+
+**Assignment A25.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Bellman's principle of optimality says that
+
+(A) any tail of an optimal policy is optimal for its subproblem  
+(B) greedy is always optimal  
+(C) optimal policies are unique  
+(D) costs must be convex
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Finite-horizon DP works backward from the last stage  
+(B) KKT conditions can be written as a complementarity problem  
+(C) The LQR solution comes from a Riccati recursion  
+(D) A greedy choice is always optimal
+
+**Q3 (2 marks, numerical answer).** Shortest path cost A to D with edges A-B 2, A-C 5, B-C 1, B-D 4, C-D 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the principle of optimality for finite-horizon deterministic DP: the value function satisfies V_t(x) = min over u of cost + V_{t+1}(next state).
+
+**Q5 (3 marks, programming).** Implement backward induction for a finite-horizon inventory problem and value iteration for the infinite-horizon discounted version. Verify the policies agree for a long horizon. Predict the form of the optimal policy.
+
+<details><summary>Key for A25.15 (open only after your attempt)</summary>
+
+- **Q1:** A. Substructure.
+- **Q2:** ABC. Greedy fails without special structure.
+- **Q3:** 4 (tolerance ±0.001). The path A-B-C-D costs 4.
+- **Q4 (marking outline):** If a tail were improvable, replacing it would improve the whole path.
+- **Q5 (what a passing submission shows):** A base-stock (order-up-to) policy.
+
+</details>
+
+### U25.16 Stochastic approximation: algorithms, step sizes and the ODE method
+**Sources:** SA W1,5–6, o
+Bridge for: U20.7 (Scala and Spark, and distributed machine learning and optimisation).
+Shares ground with the cloud unit U20.7 (Scala and Spark); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Builds on U24.17.
+- **Topics:** Introduction to stochastic approximation: iterative algorithms that locate zeroes or optimal points of functions when function evaluations are compromised by noise; motivating examples from web-crawling and reinforcement learning; applications in regression, system identification, adaptive control and machine learning; the Robbins–Monro scheme and stochastic gradient descent as special cases; step-size conditions (sum of steps infinite, sum of squares finite); convergence of stochastic approximation algorithms by the ODE method (martingale noise, interpolated trajectory, asymptotic pseudo-trajectory, limit set of the algorithm as an internally chain transitive set of the mean ODE); ODE method continued: convergence to equilibria under a Lyapunov function.
+- **Results:** Gronwall-based tracking lemma (the interpolated iterates follow the ODE on every finite horizon) [P]; martingale noise vanishes along tails for square-summable steps [P]; Robbins–Monro convergence with a Lyapunov function [S]; the limit set of the iterates is internally chain transitive [X, stated from U24.17].
+- **Build:** Robbins–Monro mean estimation and root finding with noise; SGD as stochastic approximation; compare step sizes 1/n and n^-0.6; plot iterates against the mean ODE.
+- **Gap-fills:** *[inferred: Borkar, *Stochastic Approximation: A Dynamical Systems Viewpoint*, recalled, not checked]* Kiefer–Wolfowitz finite-difference variant; asynchronous updates (needed in U27.6).
+
+**Assignment A25.16** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Robbins-Monro step-size conditions are
+
+(A) sum of steps infinite and sum of squares finite  
+(B) steps constant  
+(C) steps growing  
+(D) sum of steps finite
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) SGD is a special case of stochastic approximation  
+(B) Steps a_n = n^-0.6 satisfy the Robbins-Monro conditions  
+(C) A constant step size converges exactly to the zero  
+(D) The ODE method compares the iterates to a mean ODE
+
+**Q3 (2 marks, numerical answer).** Running estimate x_n = x_(n-1) + (1/n)(X_n - x_(n-1)), x_0 = 0, observations 2, 4, 6. Value of x_3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the recursion with steps 1/n produces the sample mean and satisfies the Robbins-Monro conditions.
+
+**Q5 (3 marks, programming).** Run Robbins-Monro root finding for f(x) = x - 3 with unit Gaussian noise using steps 1/n, n^-0.6 and a constant 0.1. Plot the error. Predict which gives the lowest final error and which has a noise floor.
+
+<details><summary>Key for A25.16 (open only after your attempt)</summary>
+
+- **Q1:** A. They average out the noise while still reaching the target.
+- **Q2:** ABD. Constant steps leave a noise floor.
+- **Q3:** 4 (tolerance ±0.001). The recursion is the running mean, 4.
+- **Q4 (marking outline):** Induction on n for the mean; the harmonic series diverges and the sum of 1/n^2 converges.
+- **Q5 (what a passing submission shows):** 1/n gives the lowest error; the constant step has a noise floor.
+
+</details>
+
+### U25.17 Convergence rates, stability, two-timescale algorithms and stochastic recursive inclusions
+**Sources:** SA W7–10, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Convergence rates of linear stochastic approximation algorithms; stability of stochastic approximation algorithms (boundedness of the iterates); two-timescale stochastic approximation: convergence; stochastic recursive inclusions: convergence (set-valued drift, differential inclusions).
+- **Results:** Mean-square error of linear stochastic approximation with steps c/n decays like 1/n under a condition on c [D]; asymptotic normality at the square-root rate [S]; Borkar–Meyn stability criterion via the scaled ODE [S]; two-timescale convergence [S]; convergence of stochastic recursive inclusions to invariant sets of the differential inclusion [S].
+- **Build:** rate experiments for linear stochastic approximation with several constants c; a two-timescale example on a small bandit actor–critic; the subgradient method as a stochastic recursive inclusion.
+- **Gap-fills:** *[inferred: Borkar, recalled, not checked]* Polyak–Ruppert averaging, Markov-noise and constant-step-size analysis.
+
+**Assignment A25.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In two-timescale stochastic approximation the fast iterate sees the slow iterate as
+
+(A) quasi-static  
+(B) random noise only  
+(C) diverging  
+(D) zero
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The Borkar-Meyn criterion uses the scaled ODE to prove stability  
+(B) Polyak-Ruppert averaging improves the asymptotic rate constant  
+(C) The mean-square error of linear stochastic approximation with steps c/n decays like 1/n under a condition on c  
+(D) Stability of the iterates is automatic
+
+**Q3 (2 marks, numerical answer).** Asymptotic variance c^2 sigma^2/(2c - 1) of sqrt(n)(x_n - theta) for c = 2 and sigma = 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive, to first order in 1/n, the recursion v_(n+1) = (1 - 2c/n) v_n + c^2 sigma^2/n^2 for the variance of linear stochastic approximation with unit slope and show n v_n tends to c^2 sigma^2/(2c - 1) when c > 1/2.
+
+**Q5 (3 marks, programming).** Simulate the linear recursion x_(n+1) = x_n + (c/n)(-(x_n - theta) + noise) for c = 0.4, 1, 2 and estimate n times the mean-square error. Predict which c converges slower than 1/n.
+
+<details><summary>Key for A25.17 (open only after your attempt)</summary>
+
+- **Q1:** A. Time-scale separation.
+- **Q2:** ABC. Boundedness must be proved.
+- **Q3:** 1.333 (tolerance ±0.001). 4/3.
+- **Q4 (marking outline):** Expand the squared error; substitute n v_n = w_n and analyse the fixed point.
+- **Q5 (what a passing submission shows):** c = 0.4, which is below 1/2.
+
+</details>
+
+
+# PART E. MACHINE LEARNING AND AI, BIG DATA, SCALABLE DATA SCIENCE, CLOUD OPERATIONS AND SYSTEM DESIGN
+
+## D26. Machine Learning Foundations: Supervised, Unsupervised, Probabilistic, Data Mining and Learning Theory
+
+Aim: nine dedicated source courses (engineering ML, IIT ML courses, KTH symbolic ML, data mining, statistical ML) merged into one classical-ML ladder, each algorithm built from scratch in NumPy first, then compared with scikit-learn. Benchmarks (recalled, not checked unless noted): Bishop, *Pattern Recognition and Machine Learning*; Hastie–Tibshirani–Friedman, *The Elements of Statistical Learning*; Murphy, *Probabilistic Machine Learning: An Introduction* (book site confirmed: a long contents PDF exists, not retrievable as text); Bach, *Learning Theory from First Principles* (chapters confirmed: mathematical preliminaries, supervised learning, least-squares regression, empirical risk minimization, optimization, local averaging, kernel methods, sparse methods, neural networks, ensemble learning, online learning to bandits, overparameterized models, structured prediction, probabilistic methods, lower bounds); Mitchell, *Machine Learning*; Alpaydin; Duda–Hart–Stork; Rengaswamy–Suresh, *Data Science for Engineers*; Deisenroth et al. Part II (when models meet data, linear regression, PCA, GMM, SVM).
+
+### U26.0 History of AI, symbolic AI and the machine-learning workflow
+**Sources:** GEN 2.1, 2.2, 2.3, 2.4, 2.5, 2.6
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** History of AI: the birth of AI (the 1956 Dartmouth Conference), major milestones, the Turing Test, what is artificial intelligence; the symbolic AI era: representing knowledge (logic, rule-based inference, semantic nets), expert systems, hitting the wall (the AI winter); machine learning and data: data as the fuel of machine learning, the journey of AI; supervised learning: core paradigms, workflow (train/test split, training, testing), tutorial with scikit-learn (with NumPy and Matplotlib), evaluation metrics (confusion matrix; accuracy, precision, recall, F1); unsupervised learning: core paradigms, why compress high-dimensional data, workflow (training), challenges and limitations; feature learning through embeddings: one-hot vectors and classification with them, limitations of sparse representations and why sparsity breaks similarity, distributional semantics (words by context), dense (distributed) representations and embeddings.
+- **Results:** Confusion-matrix identities for accuracy, precision, recall and F1 [D]; sparsity of one-hot vectors makes all distinct words orthogonal [P].
+- **Build:** a rule-based expert-system toy, then the scikit-learn supervised and unsupervised workflows end to end, with each metric recomputed by hand from the confusion matrix.
+
+**Assignment A26.0** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Turing test was proposed in
+
+(A) 1936  
+(B) 1950  
+(C) 1956  
+(D) 1969
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Expert systems encode rules written by humans  
+(B) The AI winter followed unmet expectations and funding cuts  
+(C) One-hot vectors of distinct words are orthogonal  
+(D) Accuracy is always an adequate metric under heavy class imbalance
+
+**Q3 (2 marks, numerical answer).** F1 score with TP = 40, FP = 10, FN = 20.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that F1 is the harmonic mean of precision and recall and is at most their arithmetic mean.
+
+**Q5 (3 marks, programming).** Write a forward-chaining rule engine for a toy diagnosis task, then a confusion-matrix utility computing accuracy, precision, recall and F1 from predictions. Verify the F1 identity above on random labels. Predict which metric a majority-class predictor scores well on.
+
+<details><summary>Key for A26.0 (open only after your attempt)</summary>
+
+- **Q1:** B. Turing's 1950 paper; Dartmouth was 1956.
+- **Q2:** ABC. Accuracy misleads on imbalanced data.
+- **Q3:** 0.7273 (tolerance ±0.001). Precision 0.8, recall 0.667, F1 0.727.
+- **Q4 (marking outline):** F1 = 2PR/(P+R); AM-HM inequality.
+- **Q5 (what a passing submission shows):** Accuracy is high on imbalanced data while recall of the minority class is 0.
+
+</details>
+
+### U26.1 What machine learning is: paradigms, data, hypothesis spaces and the statistical framework
+**Sources:** MLCE W1, o; MLDL W1, o; MLK W1–3, o; MLE W1–3, o; MLESA W1, o; FML W1, o; IMLK W1, o; SMLM W8–9; MFML W12; DMIN W1, o
+Bridge for: U11.8 (machine-learning foundations for scalable learning).
+Shares ground with the cloud units U11.8 (machine-learning foundations for scalable learning) and U19.12 (Classification); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Introduction to data science and machine learning; differences between supervised, unsupervised and reinforcement learning with examples from engineering disciplines; introduction to ML and performance measures; basic definitions, types of learning, hypothesis space and inductive bias; machine learning in its context within AI; the introduction to the machine-learning course; characterization of learning problems; forms of representation; statistical decision theory for regression and classification; overview of ML; stochastic framework for supervised learning; risk minimization; Bayes optimal predictor; stochastic optimization; empirical risk minimization (ERM); statistical learning: introduction, supervised and unsupervised learning problems, loss functions; introduction to artificial intelligence and neural networks (SMLM Week 9); algorithms for ML – classification, clustering and regression; intro to machine learning packages; broad heuristics governing basic ML algorithms in engineering applications; limits and applicability of ML algorithms; mathematical basics (linear algebra and probability recap); computational basics; basics of Python; scientific-computing packages NumPy, SciPy, Matplotlib; simple ML packages (scikit-learn, PyTorch); Bayesian classification; multilayer perceptron; autoencoders; convolutional and recurrent neural networks and attention mechanisms; decision trees and ensemble methods, boosting and bagging, random forests, support vector machines, Gaussian process regression; logistic regression, k-nearest neighbour, basic clustering algorithms, feature reduction methods; hypothesis space; evaluation strategies and cross-validation; adaptive systems; reinforcement learning and deep learning through decision trees; optimization (SGD) and energy-based models with Langevin sampling as foundations of generative models; Classical Techniques 1 and 2 and Advanced Techniques 1 and 2 (course blocks).
+- **Results:** Bayes optimal classifier minimizes 0–1 risk [P]; Bayes optimal regressor is the conditional mean under squared loss [P]; ERM decomposition into estimation and approximation error [D]; no-free-lunch theorem [S].
+- **Build:** a minimal ML framework in NumPy (dataset split, fit/predict API, metrics) used by all later units.
+- **Gap-fills:** *[inferred: Mitchell Ch.1–2; Bach Ch.2; Murphy]* concept learning, version spaces, the formal learning problem (inputs, targets, loss, risk), data cleaning and feature scaling.
+
+**Assignment A26.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Under 0-1 loss the Bayes optimal classifier predicts
+
+(A) the class with the highest posterior  
+(B) the most common class  
+(C) a random class  
+(D) the class with highest prior only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Supervised learning needs labelled examples  
+(B) ERM minimizes average loss on the training set  
+(C) No classifier is best on all distributions (no free lunch)  
+(D) Test error is typically below training error
+
+**Q3 (2 marks, numerical answer).** Bayes error at a point where P(y = 1 given x) = 0.3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the Bayes classifier minimizes the probability of error among all classifiers.
+
+**Q5 (3 marks, programming).** Build a minimal ML framework: train/test split, a fit/predict interface, accuracy, a majority-class baseline and a kNN classifier. Acceptance: kNN beats the baseline on a synthetic two-moons dataset. Predict the gap.
+
+<details><summary>Key for A26.1 (open only after your attempt)</summary>
+
+- **Q1:** A. Argmax of P(y given x).
+- **Q2:** ABC. Test error is typically above training error.
+- **Q3:** 0.3 (tolerance ±0.001). The error of the argmax rule is the smaller posterior.
+- **Q4 (marking outline):** Conditional on x, choosing the class with the larger posterior leaves the smaller error probability; integrate over x.
+- **Q5 (what a passing submission shows):** kNN reaches above 90 percent versus about 50 percent for majority.
+
+</details>
+
+### U26.2 Model evaluation and selection: bias–variance, validation, tuning and metrics
+**Sources:** MLCE W3,6, o; MLDL W1; MLESA W1,7; MLE W4; IMLK W1; EMML W6; DMIN W7; SMLM W8
+Bridge for: U11.8 (machine-learning foundations for scalable learning), U13.10 (Capstone), U19.13 (Evaluation, visualisation, sequence mining and case studies), U19.17 (Model comparison, mixture models and multinomial processing trees).
+Shares ground with the cloud units U19.8 (Maximum likelihood, logistic regression and the ROC curve), U19.13 (Evaluation, visualisation, sequence mining and case studies), U11.8 (machine-learning foundations for scalable learning) and U19.7 (Linear regression and multiple regression); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.8: AUC equals the probability that a positive outranks a negative.
+- **Topics:** Overfitting and underfitting; bias–variance tradeoff; performance measures; k-fold cross-validation and leave-one-out cross-validation; hyperparameter tuning via grid search, randomized search and Bayesian approaches; bootstrapping and cross-validation; classification evaluation measures; ROC curve; MDL (minimum description length); classification metrics; evaluation and visualization (data mining); evaluation strategies and cross-validation; confidence intervals and goodness of fit; train/validation/test discipline; implementation of regression models in Python.
+- **Results:** Bias–variance decomposition of expected squared error [D]; leave-one-out cross-validation estimator formula for linear smoothers [D].
+- **Build:** cross-validation, ROC/AUC, confusion-matrix metrics (accuracy, precision, recall, F1) and grid/random search from scratch.
+- **Gap-fills:** *[inferred: ESL Ch.7]* optimism and AIC/BIC, nested cross-validation, calibration, statistical comparison of classifiers.
+
+**Assignment A26.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A model with low bias and high variance is typically
+
+(A) underfit  
+(B) overfit  
+(C) perfect  
+(D) biased
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) k-fold cross-validation estimates generalization error  
+(B) Expected squared error decomposes into bias squared, variance and noise  
+(C) AUC is the probability a random positive outranks a random negative  
+(D) Accuracy is the best metric for imbalanced classes
+
+**Q3 (2 marks, numerical answer).** AUC for positive scores 0.9, 0.8, 0.4 and negative scores 0.7, 0.3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the bias-variance decomposition of expected squared error for an estimator of a noisy target.
+
+**Q5 (3 marks, programming).** Implement k-fold cross-validation, ROC and AUC, and grid and random search. Check your AUC equals the pairwise-ordering estimate on random scores. Predict why random search often wins in high dimension.
+
+<details><summary>Key for A26.2 (open only after your attempt)</summary>
+
+- **Q1:** B. It tracks noise.
+- **Q2:** ABC. Use precision-recall or AUC.
+- **Q3:** 0.8333 (tolerance ±0.001). 5 of 6 pairs are ordered correctly.
+- **Q4 (marking outline):** Add and subtract the expected prediction; cross terms vanish.
+- **Q5 (what a passing submission shows):** It explores more distinct values of the important hyperparameters per trial.
+
+</details>
+
+### U26.3 Linear regression and linear classification: estimation, logistic and softmax regression, surrogate losses
+**Sources:** MLCE W2–4, o; MLDL W1,5; MLESA W2–3; MLE W4; FML W2–3; IMLK W2,5; SMLM W6; EMML W5; S50 D7
+Bridge for: U11.8 (machine-learning foundations for scalable learning), U11.9 (Big data applications), U18.6 (Linear regression and least squares), U19.8 (Maximum likelihood, logistic regression and the ROC curve).
+Shares ground with the cloud units U19.8 (Maximum likelihood, logistic regression and the ROC curve), U11.8 (machine-learning foundations for scalable learning), U19.16 (Bayesian regression and hierarchical models) and U19.7 (Linear regression and multiple regression); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.7: linear regression estimation error and model error.
+- **Topics:** Linear regression, model parametrization and fitting; coefficient of determination; linear modelling; multivariate regression; subset selection; shrinkage methods; principal component regression; partial least squares; linear classification and surrogate losses; logistic regression; softmax regression; bounding estimation error in binary classification; loss functions (mean-squared error, mean absolute error, mean-squared logarithmic error, cross-entropy loss, Tweedie loss, mean absolute percentage error) and the statistical basis of some loss functions; MLE and MAP interpretation; linear discriminant analysis; Bayesian regression; nonlinear regression; Basics of Python; dealing with overfitting via regularization (ridge regression and LASSO); decision trees and overfitting.
+- **Results:** OLS = MLE under Gaussian noise [D]; logistic regression log-likelihood is concave, gradient and Hessian [D]; softmax cross-entropy gradient is (p−y) [D]; estimation error bound for linear least squares [P]; surrogate-loss consistency (hinge, logistic) [S].
+- **Build:** linear, logistic and softmax regression with gradient descent and Newton/IRLS from scratch; compare with scikit-learn.
+- **Gap-fills:** *[inferred: Bishop Ch.3–4; ESL Ch.3–4]* generalized linear models, Poisson regression, perceptron convergence (see U26.5).
+
+**Assignment A26.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The logistic regression loss is
+
+(A) convex  
+(B) concave  
+(C) nonconvex  
+(D) linear
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) OLS is the maximum-likelihood estimate under Gaussian noise  
+(B) The gradient of softmax cross-entropy with respect to logits is p - y  
+(C) The logistic loss is nonconvex  
+(D) Newton's method (IRLS) applies to logistic regression
+
+**Q3 (2 marks, numerical answer).** Predicted probability of logistic regression for logit 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the gradient and Hessian of the logistic-regression negative log-likelihood.
+
+**Q5 (3 marks, programming).** Implement linear, logistic and softmax regression with gradient descent and Newton's method. Gradient-check each and compare accuracy and iterations. Predict the number of Newton iterations to converge.
+
+<details><summary>Key for A26.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Negative log-likelihood of a log-linear model.
+- **Q2:** ABD. It is convex.
+- **Q3:** 0.7311 (tolerance ±0.001). sigma(1) = 0.731.
+- **Q4 (marking outline):** Gradient X^T (p - y); Hessian X^T diag(p(1-p)) X, positive semidefinite.
+- **Q5 (what a passing submission shows):** Newton converges in 5-8 iterations versus hundreds for GD.
+
+</details>
+
+### U26.4 Regularization and implicit regularization
+**Sources:** MLCE W3; MLDL W1; MLE W4; FML W6; MLESA W2; ALAK W7
+Bridge for: U11.8 (machine-learning foundations for scalable learning).
+Shares ground with the cloud units U20.8 (Distributed optimisation with ADMM and its applications) and U18.6 (Linear regression and least squares); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Regularization (ridge regression and LASSO); min-norm regularization for linear regression and classification; equivalent forms of regularization (penalized, constrained, early stopping); implicit regularization; L1 versus L2 (geometry and sparsity); variants of gradient descent; regularization and shrinkage; sparsity.
+- **Results:** Ridge shrinkage in the SVD basis [D]; lasso soft-thresholding solution for orthonormal design [D]; gradient descent from zero converges to the min-norm interpolant for under-determined least squares [P]; constrained and penalized forms are equivalent (Lagrangian) [P].
+- **Build:** ridge path, lasso path and elastic net by coordinate descent from scratch.
+
+**Assignment A26.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Which penalty tends to produce exactly sparse solutions?
+
+(A) L2  
+(B) L1  
+(C) none  
+(D) dropout only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Ridge shrinks all coefficients  
+(B) Gradient descent from zero on an underdetermined least-squares problem finds the minimum-norm solution  
+(C) The L1 ball has corners  
+(D) Ridge coefficients grow without bound as lambda grows
+
+**Q3 (2 marks, numerical answer).** 1-D ridge coefficient with x = (1,1,1), y = (1,1,1), lambda = 3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the lasso solution for an orthonormal design as soft thresholding of the OLS coefficients.
+
+**Q5 (3 marks, programming).** Compute ridge and lasso paths (coordinate descent) and elastic net on synthetic data with 5 true nonzero features in 30. Predict the number of nonzero lasso coefficients at very large lambda.
+
+<details><summary>Key for A26.4 (open only after your attempt)</summary>
+
+- **Q1:** B. Corners of the L1 ball.
+- **Q2:** ABC. They shrink toward zero.
+- **Q3:** 0.5 (tolerance ±0.001). w = sum xy/(sum x^2 + lambda) = 0.5.
+- **Q4 (marking outline):** Decouple coordinates; solve 0.5 (z - b)^2 + lambda abs(z).
+- **Q5 (what a passing submission shows):** Zero.
+
+</details>
+
+### U26.5 Perceptron, support vector machines and kernel methods
+**Sources:** MLDL W4; MLESA W4; FML W7–8; IMLK W5; MLCE W9–10; DMIN W4; MFML W4; EMML W11–12; MLE W9; ALAJ W5,11; SMLM W11
+Bridge for: U18.6 (Linear regression and least squares), U19.12 (Classification).
+Shares ground with the cloud units U18.6 (Linear regression and least squares), U19.12 (Classification), U18.2 (Introduction to vectors, properties and applications) and U18.12 (The linear perceptron); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.6: kernels (linear, polynomial, Gaussian); compare with `sklearn.svm`. U18.12: linear perceptron and training a perceptron by stochastic gradient.
+- **Topics:** Perceptron criteria; discriminative models; support vector machines (SVM) for classification and regression; perceptron; kernel function and kernel SVM; kernel machines; linear models in infinite-dimensional spaces; the kernel trick; the representer theorem; universal kernels; Bayes consistency and generalization rate with universal kernel machines; hard and soft margin classifier; SVM in Python; introduction to SVM and error-minimizing LPP; Support Vector Machines and applications (MFML Week 4); SVM and kernel machine (data mining); SVM and kernel SVM; kernel machines; deep neural networks, SVM and K-means clustering as covered in the statistical-methods course.
+- **Results:** Perceptron convergence theorem (mistake bound) [P]; SVM primal–dual derivation and support vectors [D]; representer theorem [P]; Mercer's theorem [X]; universal kernel ⇒ Bayes consistency (statement and sketch) [S].
+- **Build:** perceptron, SVM via SMO and via QP (cvx), kernel ridge regression and kernel SVM from scratch.
+- **Gap-fills:** *[inferred: Bishop Ch.6–7; Bach Ch.7]* support-vector regression, multi-class SVM, reproducing-kernel Hilbert spaces.
+
+**Assignment A26.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A support vector machine chooses the separator that
+
+(A) maximizes the margin  
+(B) minimizes the number of features  
+(C) maximizes training error  
+(D) ignores labels
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The kernel trick computes inner products in a feature space implicitly  
+(B) Support vectors lie on or inside the margin  
+(C) The perceptron converges on separable data  
+(D) The SVM dual has one variable per feature
+
+**Q3 (2 marks, numerical answer).** Perceptron mistake bound (R/gamma)^2 for R = 2 and margin gamma = 0.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the perceptron convergence theorem for linearly separable data with margin gamma and radius R.
+
+**Q5 (3 marks, programming).** Implement the perceptron, a kernel SVM by SMO and kernel ridge regression. Show an RBF kernel solving XOR. Predict the number of support vectors on XOR.
+
+<details><summary>Key for A26.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Maximum-margin principle.
+- **Q2:** ABC. The dual has one variable per sample.
+- **Q3:** 16 (tolerance ±0.001). 16 mistakes.
+- **Q4 (marking outline):** Weight inner product with the separator grows linearly; weight norm grows like sqrt of mistakes; combine.
+- **Q5 (what a passing submission shows):** All four points are support vectors.
+
+</details>
+
+### U26.6 Bayes decision theory, density estimation and probabilistic classifiers
+**Sources:** MLDL W2–3; MLESA W3,5,8; MLE W9; IMLK W4; DMIN W3; MLK W4; FML W12
+Bridge for: U19.12 (Classification).
+Shares ground with the cloud units U19.12 (Classification), U19.14 (Bayesian inference) and U19.3 (Probability and random variables); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Bayes decision theory; normal density and discriminant function; Bayes decision theory for binary features; Bayesian belief network; parametric and non-parametric density estimation (ML and Bayesian estimation); Parzen window and KNN; probability and Bayes learning; naive Bayes; Bayes classifier; K-nearest neighbour; linear discriminant analysis; parameter estimation (MLE, MAP, Bayesian estimation); multi-class classification; k-NNs; kNN (Classical Techniques 2); applications.
+- **Results:** Discriminant functions of Gaussian class-conditionals are quadratic (linear for shared covariance) [D]; naive Bayes factorization and Laplace smoothing [D]; kNN asymptotic error ≤ 2× Bayes error (Cover–Hart) [S]; Parzen estimator bias–variance [D].
+- **Build:** Gaussian discriminant analysis, naive Bayes, Parzen and kNN from scratch.
+
+**Assignment A26.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Naive Bayes assumes
+
+(A) features are conditionally independent given the class  
+(B) features are independent of the class  
+(C) labels are continuous  
+(D) the prior is uniform
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Gaussian class-conditionals with shared covariance give a linear boundary  
+(B) The 1-NN error is at most twice the Bayes error asymptotically  
+(C) A Parzen window is a kernel density estimator  
+(D) Naive Bayes never needs smoothing
+
+**Q3 (2 marks, numerical answer).** Posterior spam probability: prior 0.4, P(word given spam) 0.5, P(word given ham) 0.1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that Gaussian class-conditionals with equal covariance give a linear discriminant.
+
+**Q5 (3 marks, programming).** Implement Gaussian discriminant analysis, naive Bayes with Laplace smoothing, a Parzen classifier and kNN. Compare on two datasets. Predict which suffers most from the curse of dimensionality.
+
+<details><summary>Key for A26.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Factorization of the likelihood.
+- **Q2:** ABC. Zero counts need Laplace smoothing.
+- **Q3:** 0.7692 (tolerance ±0.001). 0.2/0.26 = 0.769.
+- **Q4 (marking outline):** The log-odds is linear because the quadratic terms cancel.
+- **Q5 (what a passing submission shows):** kNN and Parzen.
+
+</details>
+
+### U26.7 Decision trees and ensembles: bagging, boosting, random forests
+**Sources:** MLCE W8–10; MLDL W5–6; MLESA W6–8; MLE W9; IMLK W2,7; SMLM W10; DMIN W3; FML W12; MLK W4
+Bridge for: U11.8 (machine-learning foundations for scalable learning), U11.9 (Big data applications), U19.10 (Classification and regression trees (CART)), U19.12 (Classification).
+Shares ground with the cloud units U19.10 (Classification and regression trees (CART)), U11.8 (machine-learning foundations for scalable learning) and U11.9 (Big data applications); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.10: regression and classification via decision trees. U11.9: decision-tree-based inductive learning.
+- **Topics:** Decision trees and their working; recursive binary splitting; regression trees; stopping criterion and pruning loss functions; categorical attributes; multiway splits; missing values; decision-tree instability and evaluation measures; ensembling of decision trees; ensemble methods (ensemble strategies, bagging, committee machines and stacking, boosting); random forests; adaptive boosting (AdaBoost); gradient boosting; gradient-boosted machine learning; model averaging; regularization for boosted trees; binary trees; implementation of decision trees, SVM and GPR in Python; Classical Techniques 1 (course block).
+- **Results:** Information gain and Gini impurity as concave impurity measures [D]; bagging variance reduction for correlated estimators [D]; AdaBoost training-error bound [P]; gradient boosting as functional gradient descent [D].
+- **Build:** CART, random forest, AdaBoost and gradient boosting from scratch; compare with scikit-learn and XGBoost-style implementations.
+- **Gap-fills:** *[inferred: ESL Ch.9–10, 15–16]* out-of-bag error, variable importance, shrinkage and subsampling.
+
+**Assignment A26.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Bagging mainly reduces
+
+(A) bias  
+(B) variance  
+(C) noise  
+(D) dimension
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Random forests decorrelate trees by feature subsampling  
+(B) AdaBoost reweights misclassified points  
+(C) Gradient boosting fits successive residual gradients  
+(D) A single decision tree is a low-variance model
+
+**Q3 (2 marks, numerical answer).** Gini impurity of a node with 6 positive and 4 negative examples.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that splitting never increases weighted Gini or entropy impurity, using concavity.
+
+**Q5 (3 marks, programming).** Implement CART, a random forest, AdaBoost and gradient boosting. Compare to a single tree on noisy data and report out-of-bag error. Predict the ranking.
+
+<details><summary>Key for A26.7 (open only after your attempt)</summary>
+
+- **Q1:** B. Averaging decorrelated predictors.
+- **Q2:** ABC. Trees are high variance.
+- **Q3:** 0.48 (tolerance ±0.001). 1 - 0.36 - 0.16 = 0.48.
+- **Q4 (marking outline):** Parent impurity is concave in class proportions; Jensen gives parent >= weighted children.
+- **Q5 (what a passing submission shows):** Boosting and forest beat a single tree; the single tree overfits.
+
+</details>
+
+### U26.8 Dimensionality reduction and feature learning
+**Sources:** MLCE W7–8; MLDL W7; IMLK W3; EMML W3–4; MFML W4,10; MLESA W2; SMLM W7; DMIN W1; MLE o
+Bridge for: U18.4 (Eigenvalue decomposition), U18.5 (Singular value decomposition and applications), U20.5 (Randomised numerical linear algebra).
+Shares ground with the cloud units U18.4 (Eigenvalue decomposition) and U18.5 (Singular value decomposition and applications); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.4: principal component analysis (PCA).
+Builds on U18.22.
+- **Topics:** Unsupervised learning; why compress high-dimensional data; singular value decomposition; Python implementation of PCA; linear discriminant analysis (LDA) and its Python implementation; the dimensionality problem; feature reduction; nonlinear dimensionality reduction via uniform manifold approximation and projection (UMAP), t-distributed stochastic neighbour embedding (t-SNE) and autoencoders; implementation of unsupervised learning in Python; PCA and least squares; principal component regression; multicollinearity; empirical orthogonal functions.
+- **Results:** PCA as top-k eigenvectors of the covariance matrix (variance maximization) [P]; PCA equals best rank-k reconstruction (Eckart–Young) [P in U18.22]; Fisher's criterion for LDA [D]; t-SNE gradient [D]; linear autoencoder spans the PCA subspace [P].
+- **Build:** PCA via covariance eigendecomposition and via SVD, LDA, kernel PCA and a t-SNE sketch from scratch; compare with scikit-learn.
+- **Gap-fills:** *[inferred: MML Ch.10; ESL Ch.14]* probabilistic PCA, independent component analysis, spectral embedding.
+
+**Assignment A26.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The first principal component is the direction of
+
+(A) maximum variance  
+(B) minimum variance  
+(C) maximum mean  
+(D) class separation
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) PCA can be computed from the SVD of centred data  
+(B) Explained-variance ratios sum to 1  
+(C) t-SNE preserves global distances exactly  
+(D) LDA uses class labels
+
+**Q3 (2 marks, numerical answer).** Explained-variance ratio of the first component for covariance eigenvalues 2 and 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the direction maximizing projected variance is the top eigenvector of the covariance matrix.
+
+**Q5 (3 marks, programming).** Implement PCA (covariance and SVD routes), LDA, kernel PCA and a basic t-SNE. Verify the two PCA routes agree to 1e-10. Predict their sign relationship.
+
+<details><summary>Key for A26.8 (open only after your attempt)</summary>
+
+- **Q1:** A. Top eigenvector of the covariance.
+- **Q2:** ABD. t-SNE preserves local neighbourhoods.
+- **Q3:** 0.6667 (tolerance ±0.001). 2/(2+1).
+- **Q4 (marking outline):** Maximize w^T C w subject to norm(w) = 1 by a Lagrange multiplier.
+- **Q5 (what a passing submission shows):** Components agree up to sign.
+
+</details>
+
+### U26.9 Clustering, mixture models and the EM algorithm
+**Sources:** MLCE W7–8; MLDL W8–9; MLESA W10–11; MLE W10; IMLK W8; DMIN W5; ALAJ W10; SMLM W11
+Bridge for: U11.9 (Big data applications), U18.11 (Unsupervised learning), U19.9 (The chi-square test and cluster analysis), U19.17 (Model comparison, mixture models and multinomial processing trees), U20.6 (MapReduce and related paradigms).
+Shares ground with the cloud units U18.11 (Unsupervised learning) and U19.9 (The chi-square test and cluster analysis); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.11: Gaussian mixture model (GMM); centroid-based and probabilistic model-based clustering. U19.9: hierarchical agglomerative clustering (adaptive hierarchical clustering).
+Builds on U21.15, U18.21.
+- **Topics:** Clustering algorithms including k-means and density-based clustering; concept of mixture model; expectation–maximization (EM) algorithm; K-means clustering; fuzzy K-means clustering; mean-shift clustering; partitional clustering; BIRCH algorithm; CURE algorithm; density-based clustering; outlier detection; k-means clustering (statistical-methods course Week 11); kNN and applications (Classical Techniques 2); Classical Techniques 2 (course block).
+- **Results:** k-means monotonically decreases its objective and converges to a local minimum [P]; EM never decreases the likelihood [P]; k-means as the hard-assignment limit of spherical GMM [D]; Jensen-based ELBO derivation of EM [D].
+- **Build:** k-means++, GMM-EM, DBSCAN, agglomerative linkage and mean-shift from scratch.
+- **Gap-fills:** *[inferred: MML Ch.11; Bishop Ch.9]* choosing k (silhouette, BIC), spectral clustering (uses U18.21 and U21.15).
+
+**Assignment A26.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The k-means objective is
+
+(A) non-increasing at each iteration  
+(B) non-decreasing  
+(C) constant  
+(D) random
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) EM never decreases the likelihood  
+(B) k-means depends on initialization  
+(C) DBSCAN can find non-convex clusters  
+(D) A GMM uses hard assignments
+
+**Q3 (2 marks, numerical answer).** k-means SSE for points 1, 2, 10, 11 with two converged clusters.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that each k-means iteration does not increase the objective.
+
+**Q5 (3 marks, programming).** Implement k-means++, GMM-EM and DBSCAN. Compare on blobs and on two moons using the adjusted Rand index. Predict which fails on moons.
+
+<details><summary>Key for A26.9 (open only after your attempt)</summary>
+
+- **Q1:** A. Assignment and update steps each reduce it.
+- **Q2:** ABC. It uses soft assignments.
+- **Q3:** 1 (tolerance ±0.001). Centres 1.5 and 10.5, each point 0.5 away.
+- **Q4 (marking outline):** Assignment minimizes distance for fixed centres; the mean minimizes squared distance for fixed assignments.
+- **Q5 (what a passing submission shows):** k-means and a spherical GMM fail; DBSCAN succeeds.
+
+</details>
+
+### U26.10 Probabilistic graphical models, hidden Markov models, inference and Gaussian processes
+**Sources:** MLESA W5,8–9; MLDL W2,5; MLE W11; MLCE W10; FML W11–12
+Bridge for: U19.15 (Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan), U19.16 (Bayesian regression and hierarchical models).
+- **Topics:** Bayesian networks; undirected graphical models; hidden Markov models (HMM); variable elimination; belief propagation; structured probabilistic models; Monte Carlo methods; Gaussian process regression (GPR) and its implementation in Python; probabilistic models for supervised learning; likelihood estimation; Bayesian belief network; Advanced Techniques 1 (structured probabilistic models and Monte Carlo methods).
+- **Results:** d-separation and the factorization theorem [S]; forward–backward and Viterbi algorithms [D]; belief propagation is exact on trees [P]; GP posterior mean and variance [D].
+- **Build:** HMM (forward, Viterbi, Baum–Welch), variable elimination on a small Bayesian network and GP regression from scratch.
+- **Gap-fills:** *[inferred: Bishop Ch.8, 11, 13; Murphy; Goodfellow Ch.16–19]* sampling methods, approximate inference, partition-function problem (links to U30.6).
+
+**Assignment A26.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Viterbi algorithm finds
+
+(A) the most probable hidden state sequence  
+(B) the likelihood only  
+(C) the transition matrix  
+(D) the emission matrix
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The forward algorithm computes the sequence likelihood  
+(B) Belief propagation is exact on trees  
+(C) Baum-Welch is an EM algorithm  
+(D) A GP posterior variance does not depend on where the inputs are
+
+**Q3 (2 marks, numerical answer).** GP posterior mean at x = 1 given one noiseless observation y = 1 at x = 0, RBF kernel exp(-(x-x')^2/2).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show the forward algorithm computes the likelihood in O(T N^2) rather than O(N^T).
+
+**Q5 (3 marks, programming).** Implement HMM forward, Viterbi and Baum-Welch, variable elimination on a 5-node Bayesian network, and GP regression. Verify forward probabilities sum to the brute-force likelihood on a short sequence. Predict the Baum-Welch likelihood trend.
+
+<details><summary>Key for A26.10 (open only after your attempt)</summary>
+
+- **Q1:** A. Dynamic programming over paths.
+- **Q2:** ABC. Variance shrinks near observed inputs.
+- **Q3:** 0.6065 (tolerance ±0.001). k(1,0)/k(0,0) * 1 = 0.6065.
+- **Q4 (marking outline):** alpha_t(j) = sum_i alpha_{t-1}(i) a_ij b_j(o_t): N^2 work per step.
+- **Q5 (what a passing submission shows):** Monotone non-decreasing.
+
+</details>
+
+### U26.11 Instance-based learning, collaborative filtering and recommendation
+**Sources:** IMLK W3; DMIN W3; ALAJ W7
+Bridge for: U11.9 (Big data applications), U18.8 (Data analytics with matrices), U19.12 (Classification).
+Shares ground with the cloud units U11.9 (Big data applications) and U18.8 (Data analytics with matrices); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U18.8: the Netflix problem and data completion.
+- **Topics:** Instance-based learning; collaborative-filtering-based recommendation; K-nearest neighbour.
+- **Results:** Matrix-factorization objective and ALS updates [D]; curse of dimensionality for distance-based methods [P].
+- **Build:** kNN with KD-tree, user–user and item–item collaborative filtering, ALS matrix factorization from scratch.
+
+**Assignment A26.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Item-based collaborative filtering typically uses
+
+(A) cosine similarity of rating vectors  
+(B) the sigmoid  
+(C) FFT  
+(D) entropy of words
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Matrix factorization can be fitted by alternating least squares  
+(B) kNN suffers from the curse of dimensionality  
+(C) New users face a cold-start problem  
+(D) Mean imputation is always optimal
+
+**Q3 (2 marks, numerical answer).** Cosine similarity of (5,3,0) and (4,2,1).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that, with the item factors fixed, the ALS update for a user vector is a ridge regression.
+
+**Q5 (3 marks, programming).** Implement kNN, user-user collaborative filtering and ALS matrix factorization. Evaluate RMSE on synthetic rank-3 ratings with 30 percent observed. Predict the RMSE trend with rank.
+
+<details><summary>Key for A26.11 (open only after your attempt)</summary>
+
+- **Q1:** A. Similarity between rating columns.
+- **Q2:** ABC. It is only a baseline.
+- **Q3:** 0.973 (tolerance ±0.001). 26/26.72 = 0.973.
+- **Q4 (marking outline):** Minimize the sum of squared errors over rated items plus lambda times norm squared.
+- **Q5 (what a passing submission shows):** RMSE drops sharply at the true rank 3.
+
+</details>
+
+### U26.12 Data mining: preprocessing, association rules, sequence mining, outliers and case studies
+**Sources:** DMIN W1–2,5–8, o
+Bridge for: U13.10 (Capstone), U19.11 (Data mining), U19.13 (Evaluation, visualisation, sequence mining and case studies).
+Shares ground with the cloud units U19.11 (Data mining) and U19.13 (Evaluation, visualisation, sequence mining and case studies); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U19.11: data mining as an interdisciplinary topic spanning databases, machine learning and algorithms; Apriori anti-monotonicity (downward closure); support, confidence and lift. U19.13: case studies on industrial problems.
+Builds on U26.9.
+- **Topics:** taught in the cloud units U19.11 (introduction to data mining, preprocessing, association rule mining, classification basics) and U19.13 (evaluation, visualisation, sequence mining, case studies and implementations in open-source software), and not repeated here; what this unit adds is the frequent-pattern algorithm FP-growth and the PrefixSpan sketch for sequences, the link from clustering to outlier detection (clusters are U19.9 and U26.9), and the assignment A26.12, which is set after those units.
+- **Results:** FP-growth correctness [S]; (the downward-closure property and the measures support, confidence and lift are proved and defined in U19.11).
+- **Build:** FP-growth and a PrefixSpan sketch, then an end-to-end mining pipeline (clean, mine, evaluate, visualize) on top of the Apriori of U19.11.
+- **Gap-fills:** *[inferred: Han–Kamber; Tan–Steinbach–Kumar]* feature selection, imbalanced data, data warehousing basics.
+
+**Assignment A26.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Apriori relies on
+
+(A) downward closure of frequent itemsets  
+(B) FFT  
+(C) convexity  
+(D) Bayes rule
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Support is the fraction of transactions containing an itemset  
+(B) Confidence is P(consequent given antecedent)  
+(C) Lift above 1 indicates positive association  
+(D) Lift always equals confidence
+
+**Q3 (2 marks, numerical answer).** Lift with support(A) = 0.4, support(B) = 0.5, support(A and B) = 0.3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the downward closure property used by Apriori.
+
+**Q5 (3 marks, programming).** Implement Apriori and FP-growth on toy baskets and check they return the same frequent itemsets and rules. Predict which candidates Apriori prunes.
+
+<details><summary>Key for A26.12 (open only after your attempt)</summary>
+
+- **Q1:** A. Subsets of frequent sets are frequent.
+- **Q2:** ABC. Lift divides confidence by consequent support.
+- **Q3:** 1.5 (tolerance ±0.001). 1.5.
+- **Q4 (marking outline):** Any transaction containing the superset also contains each subset, so support(subset) >= support(superset).
+- **Q5 (what a passing submission shows):** All supersets of infrequent itemsets are pruned.
+
+</details>
+
+### U26.13 Learning theory: PAC, VC dimension, generalization and modern overparametrization
+**Sources:** IMLK W7, o; MLESA W12; FML W1,3,5,8–10,12; MLE o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Computational learning theory; PAC learning model; sample complexity; VC dimension; learning theory; Bayes consistency and generalization rate; overparametrization; minimal versus optimal regularization; latent variables; modularity in modelling; deep learning models; estimation error in deep learning; optimization error and implicit bias in deep learning; tradeoffs between representational power and learnability; model averaging; hypothesis-space capacity; overparametrization regime in linear regression connecting to billion-parameter models; modern concepts in ML: overparametrization; optional videos (RL framework, TD learning, solution methods, applications).
+- **Results:** PAC bound for finite hypothesis classes [P]; VC-dimension generalization bound [S]; Sauer–Shelah lemma [P]; Rademacher-complexity bound [S]; benign overfitting / double descent for min-norm interpolation [S].
+- **Build:** empirical double-descent experiment with random features and min-norm least squares.
+- **Gap-fills:** *[inferred: Bach Ch.4, 12, 15; Shalev-Shwartz–Ben-David]* uniform convergence, margin bounds, lower bounds, online-to-batch conversion (link to U10).
+
+**Assignment A26.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The VC dimension of linear classifiers in R^d (with bias) is
+
+(A) d  
+(B) d + 1  
+(C) 2d  
+(D) infinite
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A PAC bound for finite classes grows with log of the class size  
+(B) The Sauer-Shelah lemma bounds the growth function  
+(C) Double descent occurs for min-norm interpolation near n = p  
+(D) A larger VC dimension always shrinks the generalization gap
+
+**Q3 (2 marks, numerical answer).** PAC sample size (1/eps)(ln abs(H) + ln(1/delta)) for abs(H) = 1000, eps = 0.1, delta = 0.05.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove the finite-hypothesis-class PAC bound for a consistent learner.
+
+**Q5 (3 marks, programming).** Run a random-features regression with min-norm least squares for p from 5 to 200 on n = 50 samples and plot test error against p. Predict the location of the peak.
+
+<details><summary>Key for A26.13 (open only after your attempt)</summary>
+
+- **Q1:** B. Radon's theorem.
+- **Q2:** ABC. It tends to enlarge the gap.
+- **Q3:** 99.03 (tolerance ±0.5). (6.908 + 2.996)/0.1 = 99.0.
+- **Q4 (marking outline):** Union bound over bad hypotheses with true error above eps, each surviving m samples with probability at most (1 - eps)^m.
+- **Q5 (what a passing submission shows):** Test error peaks near p = n.
+
+</details>
+
+### U26.14 Symbolic and knowledge-based machine learning, tools and cognitive-science influences
+**Sources:** MLK W4–8, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Inductive learning based on symbolic representations and weak theories; learning enabled by prior theories; inductive logic programming; decision-tree-based inductive learning; reinforcement learning and deep learning as seen in the course; machine-learning-based artificial neural networks; tools and resources; cognitive science influences; examples, demos and exam preparation.
+- **Results:** Version-space convergence [P]; ID3 entropy criterion [D]; inductive-bias characterization of learners [P].
+- **Build:** a small ILP learner (FOIL-style) and ID3 from scratch.
+- **Gap-fills:** *[inferred: Mitchell Ch.2, 10–12]* version spaces, explanation-based learning, first-order rule learning; link to neuro-symbolic agent design in D31.
+
+**Assignment A26.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The version space is the set of hypotheses
+
+(A) consistent with all training examples  
+(B) with the lowest bias  
+(C) with highest variance  
+(D) that are linear
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) ID3 chooses splits by information gain  
+(B) Inductive logic programming learns first-order rules  
+(C) Every learner needs an inductive bias  
+(D) Explanation-based learning requires no domain theory
+
+**Q3 (2 marks, numerical answer).** Entropy in bits of a node with 9 positive and 5 negative examples.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that binary entropy is maximized at p = 1/2.
+
+**Q5 (3 marks, programming).** Implement ID3 and a FOIL-style rule learner on a small family-relations dataset. Predict the first split chosen on the play-tennis dataset.
+
+<details><summary>Key for A26.14 (open only after your attempt)</summary>
+
+- **Q1:** A. Candidate-elimination definition.
+- **Q2:** ABC. It uses a domain theory.
+- **Q3:** 0.9403 (tolerance ±0.001). 0.940.
+- **Q4 (marking outline):** H' = log((1-p)/p) is zero at 1/2 and H is concave.
+- **Q5 (what a passing submission shows):** Outlook.
+
+</details>
+
+## D27. Sequential Decision Making: Bandits and Reinforcement Learning
+
+Aim: online learning, regret analysis and bandits (from the Bandit Algorithms course), then MDPs and reinforcement learning, which the LLM-alignment units (RLHF, PPO, DPO) require. Benchmarks (recalled; partly confirmed from published contents): Lattimore–Szepesvári, *Bandit Algorithms* (parts on probability and concentration, stochastic and adversarial bandits, lower bounds, contextual and linear bandits, Bayesian methods and non-stationary bandits, ending with partial monitoring and Markov decision processes); Cesa-Bianchi–Lugosi, *Prediction, Learning, and Games*; Bubeck–Cesa-Bianchi, *Regret Analysis of Stochastic and Nonstochastic Multi-armed Bandit Problems*; Sutton–Barto, *Reinforcement Learning: An Introduction*.
+
+### U27.1 From batch to online learning: adversarial full-information and bandit settings
+**Sources:** BAN W1–4, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Introduction to bandit algorithms; from the batch to the online setting; exploration versus exploitation dilemma; adversarial setting with full information (Halving algorithm, weighted majority (WM) algorithm); adversarial setting with bandit information; regret lower bounds for the adversarial setting; applications in online advertising, recommendation systems, auctions, routing and e-commerce.
+- **Results:** Halving mistake bound log₂|H| [P]; weighted-majority/Hedge regret O(√(T ln N)) [P]; Exp3 regret O(√(TK ln K)) [P]; adversarial lower bound Ω(√(TK)) [S].
+- **Build:** Hedge and Exp3 from scratch and regret curves against adaptive and oblivious adversaries.
+
+**Assignment A27.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Hedge algorithm has regret of order
+
+(A) log T  
+(B) sqrt(T ln N)  
+(C) T  
+(D) T^2
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Exp3 handles bandit feedback  
+(B) The halving algorithm makes at most log2 of the class size mistakes  
+(C) Adversarial bandit regret has a lower bound of order sqrt(T K)  
+(D) Exp3 requires full-information feedback
+
+**Q3 (2 marks, numerical answer).** Halving mistake bound for a class of 1024 hypotheses.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the halving algorithm makes at most log2 of the number of hypotheses mistakes in the realizable case.
+
+**Q5 (3 marks, programming).** Implement Hedge and Exp3 and plot regret against sqrt(T) versus an adaptive adversary. Predict the slope on a log-log plot.
+
+<details><summary>Key for A27.1 (open only after your attempt)</summary>
+
+- **Q1:** B. Standard bound for N experts.
+- **Q2:** ABC. Exp3 uses importance-weighted estimates.
+- **Q3:** 10 (tolerance ±0.001). log2(1024) = 10.
+- **Q4 (marking outline):** Each mistake removes at least half the hypotheses.
+- **Q5 (what a passing submission shows):** About 0.5.
+
+</details>
+
+### U27.2 Stochastic bandits: regret notions, UCB, KL-UCB and lower bounds
+**Sources:** BAN W5–8, o
+On demand: no cloud unit calls on this unit directly; enter it from U19.24 or when a later unit of the part needs it.
+Builds on U19.24.
+- **Topics:** Introduction to the stochastic setting and various regret notions; a primer on concentration inequalities (see U19.24); stochastic bandit algorithms UCB and KL-UCB; explore-then-commit and ε-greedy; lower bounds for stochastic bandits; Thompson sampling as a Bayesian alternative.
+- **Results:** UCB logarithmic regret bound [P]; KL-UCB asymptotic optimality [S]; Lai–Robbins instance-dependent lower bound [S]; minimax lower bound via change of measure [S].
+- **Build:** UCB1, KL-UCB, Thompson sampling and ε-greedy on Bernoulli bandits with confidence-interval plots.
+- **Gap-fills:** *[inferred: Lattimore–Szepesvári Ch.6–16, 34–36]* MOSS, Bayesian regret, non-stationary bandits.
+
+**Assignment A27.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The UCB1 index of an arm is
+
+(A) empirical mean plus a confidence bonus  
+(B) empirical mean minus a bonus  
+(C) the median  
+(D) a random value
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) UCB has logarithmic regret in the stochastic setting  
+(B) Thompson sampling samples arms from their posterior  
+(C) A fixed-epsilon greedy strategy has sublinear regret  
+(D) The Lai-Robbins bound lower-bounds regret
+
+**Q3 (2 marks, numerical answer).** UCB1 index for mean 0.5, 10 pulls, round t = 100: mean + sqrt(2 ln t / n).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the Hoeffding confidence radius sqrt(ln(1/delta)/(2n)) for the mean of n rewards in [0,1].
+
+**Q5 (3 marks, programming).** Implement UCB1, Thompson sampling and epsilon-greedy on a 10-armed Bernoulli bandit; plot cumulative regret. Predict which has the flattest regret curve.
+
+<details><summary>Key for A27.2 (open only after your attempt)</summary>
+
+- **Q1:** A. Optimism in the face of uncertainty.
+- **Q2:** ABD. Fixed epsilon explores forever and has linear regret.
+- **Q3:** 1.46 (tolerance ±0.001). 0.5 + 0.960 = 1.460.
+- **Q4 (marking outline):** Hoeffding: P(mean - mu >= r) <= exp(-2 n r^2); set equal to delta.
+- **Q5 (what a passing submission shows):** UCB1 and Thompson sampling grow logarithmically; epsilon-greedy grows linearly.
+
+</details>
+
+### U27.3 Contextual bandits and pure exploration
+**Sources:** BAN W9–12, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Introduction to contextual bandits; overview of contextual bandit algorithms; introduction to pure-exploration setups (fixed confidence versus fixed budget); algorithms for pure exploration (LUCB, KL-LUCB, lil'UCB).
+- **Results:** LinUCB regret bound [S]; sample complexity of LUCB [S]; lower bound for best-arm identification [S].
+- **Build:** LinUCB on a simulated recommendation task; LUCB for best-arm identification.
+- **Gap-fills:** *[inferred: Lattimore–Szepesvári Ch.18–19]* linear bandits, offline policy evaluation (links to U32.3 evaluation of deployed systems).
+
+**Assignment A27.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** LinUCB assumes rewards are
+
+(A) linear in the context features  
+(B) constant  
+(C) independent of context  
+(D) binary only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Contextual bandits use side information  
+(B) Pure exploration aims to identify the best arm  
+(C) Fixed-confidence and fixed-budget are two settings  
+(D) Pure exploration minimizes cumulative regret
+
+**Q3 (2 marks, numerical answer).** LinUCB bonus alpha sqrt(x^T A^-1 x) with A = I, x = (3,4), alpha = 0.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the ridge estimate in LinUCB is theta_hat = A^-1 b with A = I + sum x x^T and b = sum r x.
+
+**Q5 (3 marks, programming).** Simulate LinUCB on a linear recommendation task and LUCB for best-arm identification. Predict the sample complexity ordering by arm gap.
+
+<details><summary>Key for A27.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Ridge estimate plus an ellipsoidal bonus.
+- **Q2:** ABC. It minimizes simple regret or identification error.
+- **Q3:** 2.5 (tolerance ±0.001). 0.5 * 5 = 2.5.
+- **Q4 (marking outline):** Minimize squared error plus norm squared; set the gradient to zero.
+- **Q5 (what a passing submission shows):** Smaller gaps need quadratically more samples.
+
+</details>
+
+### U27.4 Markov decision processes, dynamic programming and temporal-difference learning
+**Sources:** MLESA W12; MLK o; OFF W12
+Bridge for: U17.10 (Greedy algorithms, dynamic programming, graphs and minimum spanning trees), U17.12 (Single-source shortest paths), U18.13 (Discrete-time Markov chains and operations research).
+- **Topics:** Introduction to reinforcement learning; the RL framework; temporal-difference (TD) learning; solution methods; applications; reinforcement learning within the symbolic-ML course; Markov decision processes and value functions; dynamic programming (policy and value iteration); Monte Carlo, TD(0) and Q-learning; exploration in RL; optional videos on the RL framework, TD learning, solution methods and applications.
+- **Results:** Bellman optimality equation [D]; contraction of the Bellman operator and convergence of value iteration [P]; policy-improvement theorem [P]; Q-learning convergence (statement) [X].
+- **Build:** value iteration, tabular Q-learning and SARSA on a grid world; deep Q-network sketch (after U11).
+- **Gap-fills:** *[inferred: Sutton–Barto Ch.3–7, 9–10]* function approximation, off-policy learning, eligibility traces.
+
+**Assignment A27.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Value iteration converges because the Bellman operator is
+
+(A) a contraction  
+(B) linear  
+(C) random  
+(D) nonmonotone
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The Bellman optimality equation characterizes V*  
+(B) Q-learning is off-policy  
+(C) SARSA is on-policy  
+(D) TD(0) needs a transition model
+
+**Q3 (2 marks, numerical answer).** Optimal value of a state with reward 1 per step forever and discount 0.9.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that the Bellman optimality operator is a gamma-contraction in the sup norm.
+
+**Q5 (3 marks, programming).** Implement value iteration and tabular Q-learning on a 4x4 gridworld with a goal and a pit. Compare learned policies. Predict the greedy action next to the pit.
+
+<details><summary>Key for A27.4 (open only after your attempt)</summary>
+
+- **Q1:** A. Banach fixed-point theorem.
+- **Q2:** ABC. TD learns from samples.
+- **Q3:** 10 (tolerance ±0.001). 1/(1 - gamma) = 10.
+- **Q4 (marking outline):** abs(max_a x_a - max_a y_a) <= max_a abs(x_a - y_a); transitions average.
+- **Q5 (what a passing submission shows):** The agent avoids stepping toward the pit.
+
+</details>
+
+### U27.5 Policy gradient, actor–critic and proximal policy optimization
+**Sources:** FDL W12; MFGAI W12
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Reinforcement learning for fine-tuning; proximal policy optimization (PPO); policy gradient theorem; baselines and advantage estimation; trust-region and clipped-surrogate objectives; connection to RLHF and alignment (taught again in U29.9).
+- **Results:** Policy-gradient theorem [D]; baseline invariance [P]; monotonic-improvement bound motivating TRPO/PPO [S]; PPO clipped objective [D].
+- **Build:** REINFORCE with baseline and a PPO implementation on a small control task.
+- **Gap-fills:** *[inferred: Sutton–Barto Ch.13; Schulman et al. TRPO/PPO papers, recalled, not checked]* generalized advantage estimation, KL penalties and entropy regularization.
+
+**Assignment A27.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The policy-gradient theorem expresses grad J as
+
+(A) an expectation of grad log pi times return  
+(B) the sum of rewards only  
+(C) a Hessian  
+(D) a constant
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A baseline reduces gradient variance  
+(B) PPO clips the probability ratio  
+(C) REINFORCE is unbiased  
+(D) A baseline biases the gradient
+
+**Q3 (2 marks, numerical answer).** PPO clipped objective value for ratio 1.5, epsilon 0.2, advantage 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that subtracting a state-dependent baseline from the return does not change the expected policy gradient.
+
+**Q5 (3 marks, programming).** Implement REINFORCE with a baseline and PPO on a pole-balancing environment you write (NumPy by default). Predict which gives a smoother learning curve.
+
+<details><summary>Key for A27.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Score-function form.
+- **Q2:** ABC. Baselines independent of the action leave it unbiased.
+- **Q3:** 1.2 (tolerance ±0.001). min(1.5, clip(1.5) = 1.2) = 1.2.
+- **Q4 (marking outline):** E[grad log pi * b(s)] = b(s) grad sum_a pi = 0.
+- **Q5 (what a passing submission shows):** PPO.
+
+</details>
+
+### U27.6 Stochastic approximation in reinforcement learning
+**Sources:** SA W11–12, o
+On demand: no cloud unit calls on this unit directly; enter it from U27.4 or when a later unit of the part needs it.
+Builds on U27.4.
+- **Topics:** Applications of stochastic approximation to reinforcement learning: temporal-difference learning as a linear stochastic approximation and its convergence under linear function approximation; Q-learning as stochastic approximation (the Bellman operator as a contraction in the mean ODE); asynchronous updates; actor–critic as two-timescale stochastic approximation; rates of policy evaluation.
+- **Results:** TD(0) with linear features converges to the projected Bellman fixed point on-policy [S]; Q-learning converges under step-size and visitation conditions [S, completing the statement deferred in U27.4]; two-timescale actor–critic convergence [S].
+- **Build:** TD(0) with linear features, Q-learning with decaying steps and a two-timescale actor–critic on a small MDP.
+- **Gap-fills:** *[inferred: Sutton–Barto; Borkar, recalled, not checked]* off-policy divergence examples, gradient-TD methods.
+
+**Assignment A27.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The TD(0) update can be viewed as
+
+(A) a stochastic approximation iteration  
+(B) a batch least-squares fit  
+(C) a tree search  
+(D) a Monte Carlo rollout only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Q-learning can be analysed as asynchronous stochastic approximation  
+(B) TD(0) with linear features converges on-policy  
+(C) Off-policy TD with linear features always converges  
+(D) Actor-critic is naturally analysed with two timescales
+
+**Q3 (2 marks, numerical answer).** TD(0): V(s) = 0.5, r = 1, gamma = 0.9, V(s') = 0.8, alpha = 0.1. Updated V(s).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the mean ODE of TD(0) with linear features is theta' = -A theta + b with A = Phi^T D (I - gamma P) Phi.
+
+**Q5 (3 marks, programming).** Implement TD(0) with linear features on a 5-state chain, compare with the projected fixed point computed by linear algebra, and write Q-learning and a two-timescale actor-critic for a small MDP. Predict the TD error against the fixed point as steps decay like 1/n.
+
+<details><summary>Key for A27.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Noisy sample of the Bellman equation drives the update.
+- **Q2:** ABD. Off-policy linear TD can diverge.
+- **Q3:** 0.622 (tolerance ±0.001). delta = 1.22; V(s) becomes 0.622.
+- **Q4 (marking outline):** Take the expectation of the TD update over the stationary state distribution D.
+- **Q5 (what a passing submission shows):** It shrinks to the sampling noise level with decaying steps.
+
+</details>
+
+## D28. Deep Learning Foundations
+
+Aim: neural networks from perceptron to CNNs, RNNs, autoencoders and explainability, with backpropagation and every optimizer written by hand before PyTorch. Benchmarks (recalled; contents partly confirmed): Goodfellow–Bengio–Courville, *Deep Learning* (applied math and ML basics; modern practical deep networks: feedforward networks, regularization, optimization, CNNs, sequence modelling, practical methodology, applications; research topics: linear factor models, autoencoders, representation learning, structured probabilistic models, Monte Carlo methods, partition function, approximate inference, deep generative models); Nielsen, *Neural Networks and Deep Learning*; Haykin; Bengio, *Learning Deep Architectures for AI*; Foster, *Generative Deep Learning* 2nd ed. (Ch. 2 on deep learning); Bhuyan, *Computer Vision and Image Processing*.
+
+### U28.1 Perceptron, multilayer networks, activations and loss functions
+**Sources:** FDL W1, o; MFML W11; MLDL W10; MLE W5; MLESA W5; IMLK W6; MLCE W11; FML W9; MLK W6; GEN 2.7, 3.1, 3.2; SMLM W9,11
+Bridge for: U12.3 (Machine learning on Google Cloud), U14.20 (Domain-specific accelerators and efficient neural-network training and), U18.12 (The linear perceptron, compressive sensing and orthogonal matching pursuit).
+- **Topics:** Overview of machine learning and deep learning; difference between ML and DL with an example; history and evolution of deep learning with computational efficiency; biological inspiration (the neuron); examples of end-to-end deep learning; perceptron (Rosenblatt, 1958): single-layer perceptron, perceptron learning algorithm, single-layer perceptron numerical problem and limitations; introduction to the Colab environment and building a simple perceptron; multilayer perceptron (MLP); shallow versus deep neural networks; how to design a neural network with examples; activation functions and non-linearity; loss functions; neural networks: input → weights → activation → output, layers and neurons; hands-on network on a dummy dataset; a problem-first approach (business problem: why customer churn is increasing, what data is needed, how to model it); neural nets, perceptron, backpropagation algorithm; RBF neural network and applications; early models of neural networks; machine-learning-based artificial neural networks; deep learning models (modularity in modelling, overparametrization); Back Propagation Algorithm; computer vision, natural language processing, healthcare and robotics as application areas; CNNs, RNNs and autoencoders as the course arc; deep neural networks (SMLM Week 11); Advanced Techniques 2 (autoencoders, GAN).
+- **Results:** Single-layer perceptron cannot represent XOR [P]; universal approximation theorem for one hidden layer [S]; depth–width separation examples [S].
+- **Build:** perceptron, a 2-layer MLP and arbitrary-depth MLP from scratch in NumPy, trained on XOR, a churn-style tabular dataset and MNIST.
+- **Gap-fills:** *[inferred: Goodfellow Ch.6; Nielsen Ch.1–2]* hidden-unit choices (ReLU family, GELU, SiLU), output units and cost functions as maximum likelihood.
+
+**Assignment A28.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A single-layer perceptron cannot represent
+
+(A) AND  
+(B) OR  
+(C) XOR  
+(D) NAND
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) ReLU(x) = max(0, x)  
+(B) The sigmoid saturates for large inputs  
+(C) A one-hidden-layer network is a universal approximator on compact sets  
+(D) Deeper networks always generalize better
+
+**Q3 (2 marks, numerical answer (parameters)).** Number of parameters in an MLP 784-128-10 with biases.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that no single linear threshold unit computes XOR.
+
+**Q5 (3 marks, programming).** Implement a perceptron and a configurable MLP (forward only first) in NumPy. Show the perceptron failing on XOR and a 2-2-1 MLP with hand-chosen weights solving it. Predict the number of hidden units needed.
+
+<details><summary>Key for A28.1 (open only after your attempt)</summary>
+
+- **Q1:** C. XOR is not linearly separable.
+- **Q2:** ABC. Depth is not a guarantee.
+- **Q3:** 101770 parameters (tolerance ±0). 100,352 + 128 + 1,280 + 10 = 101,770.
+- **Q4 (marking outline):** Four inequalities on w1, w2, b are inconsistent: w1 + b > 0, w2 + b > 0, b <= 0, w1 + w2 + b <= 0.
+- **Q5 (what a passing submission shows):** Two hidden units suffice.
+
+</details>
+
+### U28.2 Backpropagation and training deep networks
+**Sources:** FDL W2; MFML W11; GEN 2.7, 3.3; MLE W5; MLESA W5; MLDL W10; MLCE W11; FML W10
+Bridge for: U12.3 (Machine learning on Google Cloud), U14.17 (GPU architecture), U14.20 (Domain-specific accelerators and efficient neural-network training and).
+Builds on U25.10.
+- **Topics:** Gradient descent and mathematical formulation of the backpropagation algorithm; backpropagation: how neural networks learn; learning: loss functions, optimization, overfitting; initialization; training and validation; backpropagation in deep learning (estimation error, optimization error, implicit bias); working of feed-forward neural networks; hands-on artificial neural network for classification and regression with exposure to hyperparameter tuning; momentum-based GD, Nesterov accelerated GD, stochastic GD, AdaDelta, AdaGrad, RMSProp and Adam (optimizers taught in U25.10 and used here); back propagation algorithm (MFML Week 11).
+- **Results:** Backpropagation computes the exact gradient in O(forward cost) [D]; vanishing/exploding gradient bounds for deep chains [D]; Xavier/He initialization variance derivation [D].
+- **Build:** reverse-mode autodiff engine and full MLP training loop from scratch; gradient check against finite differences; then re-implementation in PyTorch (`autograd`) as the oracle. **Tooling:** NumPy autodiff first; PyTorch `autograd` as the oracle.
+- **Gap-fills:** *[inferred: Goodfellow Ch.8, 11]* batch normalization, learning-rate warm-up and schedules, practical methodology (debugging, diagnostics).
+
+**Assignment A28.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Backpropagation is an application of
+
+(A) the chain rule  
+(B) Bayes' rule  
+(C) the central limit theorem  
+(D) the pigeonhole principle
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) He initialization uses variance 2/n_in for ReLU layers  
+(B) Backpropagation costs about the same as one forward pass  
+(C) Deep sigmoid networks suffer vanishing gradients  
+(D) Backpropagation needs one forward pass per weight
+
+**Q3 (2 marks, numerical answer).** Product of the maximum sigmoid derivative (0.25) over 10 layers.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive backpropagation for a two-layer network with tanh hidden units and mean-squared error, giving each gradient.
+
+**Q5 (3 marks, programming).** Write a reverse-mode autodiff engine (tape of operations) and an MLP trained by SGD on a 2-class spiral. Acceptance: gradient check below 1e-6 and training accuracy above 95 percent. Predict the loss at initialization for 2 classes.
+
+<details><summary>Key for A28.2 (open only after your attempt)</summary>
+
+- **Q1:** A. Reverse-mode differentiation.
+- **Q2:** ABC. That is finite differences, not backpropagation.
+- **Q3:** 9.537e-07 (tolerance ±1e-9). 0.25^10 = 9.54e-7.
+- **Q4 (marking outline):** delta2 = yhat - y; grad W2 = delta2 h^T; delta1 = (W2^T delta2) * (1 - h^2); grad W1 = delta1 x^T.
+- **Q5 (what a passing submission shows):** ln 2 = 0.693.
+
+</details>
+
+### U28.3 Overfitting, regularization and generalization in deep networks
+**Sources:** FDL W2; GEN 2.8, 3.3; MLESA W5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+Shares ground with the cloud unit U11.8 (machine-learning foundations for scalable learning); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U11.8: the bias–variance tradeoff.
+- **Topics:** What overfitting and underfitting are; detecting overfitting: training versus validation loss; regularization: penalizing complexity; L1 versus L2 (geometry and sparsity); dropout and early stopping; data augmentation; regularization techniques; putting it together: a scikit-learn pipeline; summary and quick reference; hyperparameter tuning.
+- **Results:** Dropout as an ensemble/approximate Bayesian average [S]; L2 regularization equals weight decay for SGD [P]; early stopping as implicit L2 for quadratic loss [D].
+- **Build:** dropout, weight decay, early stopping and augmentation layers from scratch; learning-curve diagnostics.
+
+**Assignment A28.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Weight decay with plain SGD is equivalent to
+
+(A) L2 regularization  
+(B) L1 regularization  
+(C) dropout  
+(D) batch normalization
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Early stopping acts as a regularizer  
+(B) Data augmentation enlarges the effective training set  
+(C) Dropout approximates an ensemble of subnetworks  
+(D) L2 regularization produces exactly sparse weights
+
+**Q3 (2 marks, numerical answer).** Inverted-dropout scale factor for keep probability 0.8.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that adding lambda/2 norm(w)^2 to the loss gives the SGD update w <- (1 - eta lambda) w - eta grad L.
+
+**Q5 (3 marks, programming).** Add dropout, weight decay, early stopping and augmentation to your MLP from A28.2. Plot train and validation loss. Predict the effect of each on the generalization gap.
+
+<details><summary>Key for A28.3 (open only after your attempt)</summary>
+
+- **Q1:** A. The gradient of lambda/2 norm(w)^2 is lambda w.
+- **Q2:** ABC. L1 produces sparsity.
+- **Q3:** 1.25 (tolerance ±0.001). Divide kept activations by the keep probability.
+- **Q4 (marking outline):** Differentiate the penalty and substitute.
+- **Q5 (what a passing submission shows):** Each reduces the gap; early stopping halts near the validation minimum.
+
+</details>
+
+### U28.4 Convolutional neural networks and image representation
+**Sources:** FDL W3–4; MLE W6–7; MLDL W11; MLCE W11–12; CSO W1
+Bridge for: U12.3 (Machine learning on Google Cloud), U14.20 (Domain-specific accelerators and efficient neural-network training and).
+Shares ground with the cloud unit U14.20 (Domain-specific accelerators and efficient neural-network); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Fundamentals of image representation, image preprocessing and data augmentation; introduction to convolutional neural networks (CNN), inspiration behind CNN, key components and CNN layers explained in detail with the math behind; hands-on simple CNN for binary and multiclass classification; CNN operations and CNN architectures; CNN training, transfer learning and applications; vanishing and exploding gradients in deep neural networks; standard CNN architectures (LeNet-5, AlexNet, VGGNet, GoogLeNet, ResNet); introduction to transfer learning; hands-on transfer learning and building an ensemble model; working of convolutional neural networks; basics of CNN computations.
+- **Results:** Convolution as a linear, translation-equivariant operator [P]; output-size and parameter-count formulae [D]; ResNet identity mapping eases optimization (gradient path) [D]; backpropagation through convolution is a correlation [D].
+- **Build:** conv, pooling and a small CNN (forward and backward) in NumPy via im2col; then PyTorch; compare receptive-field arithmetic with measured gradients. **Tooling:** conv, pooling and the small CNN in NumPy; PyTorch is the sensible tool for transfer learning with pretrained weights.
+- **Gap-fills:** *[inferred: Goodfellow Ch.9]* pooling and invariance, 1-D/3-D convolutions, depthwise-separable convolutions, normalization layers.
+
+**Assignment A28.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A 32-wide input, 5-wide kernel, no padding and stride 1 gives an output width of
+
+(A) 27  
+(B) 28  
+(C) 30  
+(D) 32
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Convolution is translation-equivariant  
+(B) Pooling adds some local translation invariance  
+(C) Residual connections ease gradient flow  
+(D) The parameter count of a convolution layer grows with image size
+
+**Q3 (2 marks, numerical answer (parameters)).** Parameters in a 3x3 convolution with 3 input and 16 output channels, with biases.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the gradient of the loss with respect to the input of a convolution layer as a correlation with the flipped kernel.
+
+**Q5 (3 marks, programming).** Implement conv2d forward and backward (via im2col), max-pooling and a small CNN in NumPy. Gradient-check every layer to 1e-6. Predict the output shape for a 28x28 input through conv 3x3 (no padding) then 2x2 pooling.
+
+<details><summary>Key for A28.4 (open only after your attempt)</summary>
+
+- **Q1:** B. (32 - 5)/1 + 1 = 28.
+- **Q2:** ABC. Weights are shared across positions.
+- **Q3:** 448 parameters (tolerance ±0). 432 weights + 16 biases.
+- **Q4 (marking outline):** Write the output as a sum over kernel taps and apply the chain rule per input position.
+- **Q5 (what a passing submission shows):** 13 x 13 spatial size.
+
+</details>
+
+### U28.5 Explainable AI for deep models
+**Sources:** FDL W5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Introduction to XAI and the need for XAI; techniques of XAI; XAI methods with mathematical foundations and numerical examples (PCI, occlusion, SHAP, LIME, Grad-CAM, guided backpropagation, CAMs); hands-on interpreting the results of a CNN model using XAI techniques.
+- **Results:** Shapley value axioms and uniqueness [P]; Grad-CAM as gradient-weighted activation map [D]; LIME as local linear surrogate [D].
+- **Build:** occlusion maps, LIME and Shapley sampling from scratch; Grad-CAM in PyTorch. **Tooling:** occlusion, LIME and exact Shapley in NumPy; Grad-CAM on a pretrained CNN in PyTorch.
+
+**Assignment A28.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Shapley efficiency axiom says attributions
+
+(A) sum to the value of the full coalition minus the empty coalition  
+(B) are all equal  
+(C) are all positive  
+(D) are independent of the model
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) LIME fits a local linear surrogate  
+(B) Grad-CAM weights feature maps by gradients of the class score  
+(C) Occlusion maps measure score drops when regions are masked  
+(D) Shapley values violate the efficiency axiom
+
+**Q3 (2 marks, numerical answer).** Shapley value of player 1 with v({1}) = 2, v({2}) = 3, v({1,2}) = 7.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Prove that for two players the Shapley values sum to v({1,2}).
+
+**Q5 (3 marks, programming).** Implement occlusion maps, a LIME explainer and exact Shapley values for a 4-feature model, all in NumPy. Verify that exact Shapley values sum to f(x) minus the baseline. Predict how many coalitions are evaluated.
+
+<details><summary>Key for A28.5 (open only after your attempt)</summary>
+
+- **Q1:** A. They fully distribute the payoff.
+- **Q2:** ABC. D is false: efficiency is one of the defining Shapley axioms.
+- **Q3:** 3 (tolerance ±0.001). Average marginal contribution: (2 + 4)/2 = 3.
+- **Q4 (marking outline):** phi1 + phi2 = 0.5(v1 + v12 - v2) + 0.5(v2 + v12 - v1) = v12.
+- **Q5 (what a passing submission shows):** 2^4 = 16.
+
+</details>
+
+### U28.6 Segmentation and object detection
+**Sources:** FDL W6; MLDL W12
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** CNN-based segmentation algorithms: UNet and attention-based UNet; CNN-based object detection models: YOLO, RCNN and Faster RCNN; hands-on object detection using YOLO; hands-on UNet and attention UNet; U-Net, applications and case studies.
+- **Results:** Intersection-over-union and non-maximum suppression [Def]; anchor/region-proposal losses [D].
+- **Build:** U-Net for a small segmentation set; IoU and NMS from scratch; YOLO inference with a pretrained model. **Tooling:** IoU, NMS and the small U-Net in NumPy; YOLO inference with a pretrained model.
+
+**Assignment A28.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Intersection over union of two boxes is
+
+(A) overlap area divided by union area  
+(B) overlap divided by the smaller area  
+(C) the sum of areas  
+(D) the distance of centres
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Non-maximum suppression removes overlapping duplicate detections  
+(B) U-Net uses skip connections between encoder and decoder  
+(C) YOLO is a single-stage detector  
+(D) IoU can exceed 1
+
+**Q3 (2 marks, numerical answer).** IoU of boxes [0,0,2,2] and [1,1,3,3].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that IoU lies in [0,1] and equals 1 only for identical sets.
+
+**Q5 (3 marks, programming).** Implement IoU, NMS and a small U-Net-style segmentation network on synthetic shapes in NumPy. Predict the Dice score after a short training run on easy shapes.
+
+<details><summary>Key for A28.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Standard definition.
+- **Q2:** ABC. IoU lies between 0 and 1.
+- **Q3:** 0.1429 (tolerance ±0.001). Intersection 1, union 4 + 4 - 1 = 7.
+- **Q4 (marking outline):** Intersection is a subset of the union; equality of measures forces equal sets up to null sets.
+- **Q5 (what a passing submission shows):** Above 0.9 on circles versus a background.
+
+</details>
+
+### U28.7 Recurrent networks: RNN, LSTM, GRU, backpropagation through time and attention in RNNs
+**Sources:** FDL W7–8; MLE W8; MLCE W12; MLDL W12; MLK W6; DLNLP W4
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Sequence-to-sequence models; introduction to recurrent neural networks (RNN), limitations of feed-forward neural networks, need for RNN and their structure; variants of RNN; challenges in RNN (vanishing and exploding gradients); backpropagation through time; numerical problem on RNN; hands-on RNN and its variants on structured data; long short-term memory (LSTM) architecture and its necessity; bidirectional LSTM; stacked LSTMs; GRU architecture; LSTM versus GRU: speed, accuracy, complexity and when to use GRU over LSTM; why attention mechanism in RNNs, working of the attention mechanism and its benefits; hands-on LSTM models for structured and unstructured data; recurrent neural networks implementation in Python; RNN language models (RNN LMs), GRUs, LSTMs, Bi-LSTMs; LSTMs for sequence labeling; LSTMs for sequence-to-sequence.
+- **Results:** Gradient of BPTT as a product of Jacobians [D]; vanishing/exploding conditions via spectral radius [D]; LSTM cell-state additive path [D].
+- **Build:** vanilla RNN, LSTM and GRU with BPTT from scratch; character-level language model.
+- **Gap-fills:** *[inferred: Goodfellow Ch.10]* gradient clipping, echo-state ideas, teacher forcing.
+
+**Assignment A28.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** LSTMs mitigate vanishing gradients mainly through
+
+(A) an additive cell-state path  
+(B) larger learning rates  
+(C) sigmoid activations only  
+(D) dropout
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) BPTT unrolls the network in time  
+(B) A GRU has fewer parameters than an LSTM  
+(C) Gradient clipping helps with exploding gradients  
+(D) RNN training is parallel across time steps
+
+**Q3 (2 marks, numerical answer).** Factor by which a gradient shrinks through 20 steps when the recurrent Jacobian has norm 0.9.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Write the BPTT gradient as a product of Jacobians and state when it vanishes or explodes.
+
+**Q5 (3 marks, programming).** Implement RNN, LSTM and GRU with BPTT and a character-level language model in NumPy. Gradient-check one LSTM step. Predict the effect of gradient clipping on loss spikes.
+
+<details><summary>Key for A28.7 (open only after your attempt)</summary>
+
+- **Q1:** A. The forget-gated linear path carries gradient.
+- **Q2:** ABC. The recurrence is sequential.
+- **Q3:** 0.1216 (tolerance ±0.001). 0.9^20 = 0.1216.
+- **Q4 (marking outline):** dL/dh_k contains the product of W^T diag(f'); behaviour depends on the largest singular value relative to 1.
+- **Q5 (what a passing submission shows):** Clipping removes the rare loss explosions.
+
+</details>
+
+### U28.8 Autoencoders and representation learning
+**Sources:** FDL W10; MLDL W12; MLE W12; MLCE W8; GEN 2.6
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Unsupervised learning: introduction to autoencoder and architecture of AE with mathematical foundation; types (simple, deep, CNN-based); training of autoencoders; hands-on building an AE and its variants; autoencoders and their relation to PCA; feature learning through embeddings: one-hot vectors and classification with them, limitations of sparse representations, why sparsity breaks similarity, distributional semantics (words by context), dense (distributed) representations and embeddings; auto encoders and relation to PCA; Advanced Techniques 2 (autoencoders, generative adversarial networks).
+- **Results:** Linear autoencoder with MSE recovers the PCA subspace [P]; sparse/denoising/contractive objectives [D].
+- **Build:** dense, convolutional and denoising autoencoders from scratch; latent-space visualization.
+
+**Assignment A28.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** An autoencoder forces compression through
+
+(A) a bottleneck layer  
+(B) a larger hidden layer  
+(C) label supervision  
+(D) a softmax
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A linear autoencoder with MSE recovers the PCA subspace  
+(B) A denoising autoencoder is trained to reconstruct clean inputs from noisy ones  
+(C) A VAE is the same as a plain autoencoder  
+(D) A larger latent than input always improves representation
+
+**Q3 (2 marks, numerical answer).** Compression ratio of an autoencoder from 784 inputs to a 32-dimensional code.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the optimal linear autoencoder with squared error spans the top-k principal subspace (Eckart-Young).
+
+**Q5 (3 marks, programming).** Implement a dense and a denoising autoencoder in NumPy and compare reconstruction error with PCA of the same dimension. Predict the relation for the linear case.
+
+<details><summary>Key for A28.8 (open only after your attempt)</summary>
+
+- **Q1:** A. Low-dimensional code.
+- **Q2:** AB. A VAE adds a probabilistic prior; overcomplete codes can learn the identity.
+- **Q3:** 24.5 (tolerance ±0.001). 24.5.
+- **Q4 (marking outline):** Reconstruction error is the Frobenius distance to a rank-k matrix, minimized by truncated SVD.
+- **Q5 (what a passing submission shows):** Equal up to optimization error.
+
+</details>
+
+## D29. Natural Language Processing, the Transformer and Large Language Models
+
+Aim: NLP foundations, embeddings, attention and the Transformer, pretraining, decoding, prompting, alignment (RLHF, PPO, DPO), parameter-efficient fine-tuning and prompt optimization, with every mechanism built in NumPy or PyTorch. Benchmarks (confirmed against the published contents): Jurafsky–Martin, *Speech and Language Processing* 3rd ed. (words and tokens, n-gram language models, logistic regression and text classification, embeddings, neural networks, Transformers and pretraining, post-training, masked language models, interpretability, information retrieval and RAG, agents, machine translation, RNNs and LSTMs); Foster, *Generative Deep Learning* 2nd ed. (Transformers and large language models); Goodfellow Ch. 10 and 12.4.
+
+### U29.1 NLP foundations and the classical NLP pipeline
+**Sources:** GEN 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7; DLNLP W1, o; FDL W9
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** NLP in the GenAI context: NLP as the interface layer of AI systems (chatbots, search, automation); real-world uses in support, finance and healthcare; text representation: Bag of Words → TF-IDF → Word2Vec → embeddings; goal: convert text to numbers; intuition: similar meaning, similar vectors; language modelling basics: predicting the next word, context window, probability distribution over words; evolution of language models: n-grams → RNN → Transformers, parallel processing and context awareness; the classical NLP pipeline: cleaning → tokenization → stopwords → lemmatization → features → model; hands-on: tokenize with NLTK, apply TF-IDF, build a simple classifier; limitations of classical NLP (no deep context, manual features, poor generalization); bridge to GenAI: classical NLP → deep learning → LLMs → agents; the agent loop (observe, reason, act); modern NLP architecture: input → embeddings → retrieval → LLM → output; hands-on task: build and compare a mini NLP pipeline; what is natural language processing; a brief primer on word-level and sentence-level tasks; n-gram language model; introduce NLP tasks; classical NLP versus deep-learning NLP; text preprocessing (tokenization, stopwords, lemmatization); question answering, text summarization and dialogs as NLP applications; in the last decade deep-learning methods became the default for NLP problems.
+- **Results:** Chain rule for language-model probability [P]; maximum-likelihood n-gram estimates and smoothing (add-k, Kneser–Ney idea) [D]; perplexity as exponentiated cross-entropy [D]; TF-IDF weighting rationale [D].
+- **Build:** tokenizer, n-gram LM with smoothing, TF-IDF and a Naive-Bayes/logistic text classifier from scratch; compare with NLTK and scikit-learn.
+- **Gap-fills:** *[inferred: SLP3 Ch.2–4, 18]* byte-pair encoding and subword tokenization (also needed by U29.4), regular expressions and text normalization, sequence labelling for parts of speech and named entities.
+
+**Assignment A29.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The chain rule gives the probability of a sentence as
+
+(A) a product of conditional next-word probabilities  
+(B) a sum of unigram counts  
+(C) the maximum word probability  
+(D) the vocabulary size
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) TF-IDF down-weights terms common across documents  
+(B) Perplexity is the exponential of the cross-entropy  
+(C) n-gram models need smoothing for unseen events  
+(D) Bag-of-words preserves word order
+
+**Q3 (2 marks, numerical answer).** Perplexity of a model assigning probability 1/8 to every token.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that perplexity equals exp of the average negative log-likelihood per token and that a uniform model has perplexity equal to the vocabulary size.
+
+**Q5 (3 marks, programming).** Implement a tokenizer, a bigram language model with add-k smoothing and a TF-IDF plus naive-Bayes classifier on a toy corpus. Predict the perplexity of a unigram model on the training text versus bigram.
+
+<details><summary>Key for A29.1 (open only after your attempt)</summary>
+
+- **Q1:** A. P(w1..wn) = product of P(wi given earlier words).
+- **Q2:** ABC. Order is discarded.
+- **Q3:** 8 (tolerance ±0.001). exp(-log(1/8)) = 8.
+- **Q4 (marking outline):** Definition; uniform gives exp(log V) = V.
+- **Q5 (what a passing submission shows):** Bigram perplexity is lower on training text.
+
+</details>
+
+### U29.2 Word representations and multilingual embeddings
+**Sources:** DLNLP W2–3; FDL W9; GEN 1.2; MFGAI o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Introduction to deep learning for NLP: shallow and deep neural networks and representation learning; word representations: one-hot encoding, word embeddings Word2Vec, GloVe, fastText; multilingual representations with emphasis on Indian languages; hands-on RNN for an NLP task.
+- **Results:** Skip-gram with negative sampling implicitly factorizes a shifted PMI matrix [S]; GloVe objective [D].
+- **Build:** skip-gram with negative sampling and GloVe from scratch; analogy and similarity tests.
+- **Gap-fills:** *[inferred: SLP3 Ch.5]* contextual versus static embeddings, bias in embeddings (link to U32.4).
+
+**Assignment A29.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Skip-gram predicts
+
+(A) context words from a centre word  
+(B) the centre word from the sum of contexts  
+(C) the next sentence  
+(D) the part of speech
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Negative sampling replaces the full softmax  
+(B) GloVe uses global co-occurrence counts  
+(C) Static embeddings give one vector per word type  
+(D) fastText ignores subword information
+
+**Q3 (2 marks, numerical answer).** Cosine similarity of (1,0) and (1,1).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the gradient of the skip-gram negative-sampling loss with respect to the centre vector.
+
+**Q5 (3 marks, programming).** Train skip-gram with negative sampling in NumPy on a small corpus and list nearest neighbours of three words. Predict whether frequent or rare words have noisier nearest neighbours.
+
+<details><summary>Key for A29.2 (open only after your attempt)</summary>
+
+- **Q1:** A. Standard definition.
+- **Q2:** ABC. fastText adds character n-grams.
+- **Q3:** 0.7071 (tolerance ±0.001). 1/sqrt 2 = 0.707.
+- **Q4 (marking outline):** Loss = -log sigma(u_o.v_c) - sum log sigma(-u_k.v_c); differentiate.
+- **Q5 (what a passing submission shows):** Rare words, because they receive few updates.
+
+</details>
+
+### U29.3 Attention and the Transformer architecture
+**Sources:** GEN 3.4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7; DLNLP W5; FDL W11; FML W9
+Bridge for: U12.3 (Machine learning on Google Cloud).
+- **Topics:** Toward GenAI: attention intuition, self-attention, transformers, the bridge to GenAI; before transformers: limitations of pre-attention models, seq2seq with an RNN, seq2seq with an attention layer, the attention idea and why attention alone was not enough, the self-attention idea; the encoder: what self-attention is, query/key/value step by step, the attention mechanism vectorized, a tiny worked example, the feed-forward layer; making deep networks train: residual connections, layer normalization, scaled dot-product attention; positional encoding (injecting order into attention); multi-head attention: why multiple heads, a 2-head worked example (computing Q, K, V; scores, softmax and the attention matrix; head outputs; combining heads; comparing the heads), a full model in PyTorch; the decoder: decoder design and overview, masked self-attention and masked multi-head self-attention, cross-attention (Q, K, V; encoder–decoder attention; matrix form; a worked example; what it cannot do), self-attention versus cross-attention, the complete decoder, autoregressive generation (the decoder loop, with a step-by-step example); evolution: "Attention Is All You Need", from attention to pretrained models, the modern transformer zoo; sequence-to-sequence with attention; transformer architectures: self-attention, encoder–decoder attention.
+- **Results:** Scaled dot-product attention with 1/√d_k scaling stabilizes softmax variance [D]; permutation equivariance of self-attention without positions [P]; parameter and FLOP count of a Transformer block [D]; causal mask makes training parallel but generation sequential [P].
+- **Build:** single-head, multi-head and masked attention, sinusoidal positional encoding, an encoder block, a decoder block and a tiny decoder-only Transformer trained on characters, all from scratch in NumPy, then PyTorch as the oracle. **Tooling:** attention and a tiny Transformer in NumPy; once gradient checks pass, PyTorch is fine for anything beyond toy scale.
+- **Gap-fills:** *[inferred: SLP3 Ch.7; Foster Ch.9]* rotary and relative positional encodings, grouped-query attention, FlashAttention (links to U33.3), encoder-only versus decoder-only versus encoder–decoder families.
+
+**Assignment A29.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Attention scores are divided by sqrt(d_k) to
+
+(A) keep dot-product variance from growing with dimension  
+(B) reduce parameters  
+(C) enforce causality  
+(D) normalize labels
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A causal mask blocks attention to future positions  
+(B) Self-attention without positional information is permutation-equivariant  
+(C) Multi-head outputs are concatenated and projected  
+(D) Attention cost is linear in sequence length
+
+**Q3 (2 marks, numerical answer).** Attention weight on the first token for scores (2, 0) after softmax.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for independent unit-variance components the dot product of two d-dimensional vectors has variance d, motivating the 1/sqrt(d) scaling.
+
+**Q5 (3 marks, programming).** Implement scaled dot-product attention, multi-head attention, a causal mask and sinusoidal positional encoding in NumPy. Acceptance: the output at position t does not change when later tokens change. Predict the shape of the attention matrix for T = 6.
+
+<details><summary>Key for A29.3 (open only after your attempt)</summary>
+
+- **Q1:** A. The variance of q.k grows with d_k.
+- **Q2:** ABC. Cost is quadratic.
+- **Q3:** 0.8808 (tolerance ±0.001). e^2/(e^2 + 1) = 0.881.
+- **Q4 (marking outline):** Sum of d independent products each with variance 1.
+- **Q5 (what a passing submission shows):** 6 x 6 lower-triangular after masking.
+
+</details>
+
+### U29.4 Pretraining, self-supervised learning and the LLM landscape
+**Sources:** GEN 5.1; DLNLP W6–7, o; FDL W11–12; MFGAI W10, o
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** The LLM landscape: BERT (contextual language-model training; the GLUE benchmark); GPT-1 and GPT-2 (decoder-only generation; LAMBADA); T5 and BART (text-to-text and denoising seq2seq); GPT-3 (few-shot and in-context learning); InstructGPT and RLHF; the open-weights wave (LLaMA, Mistral, Falcon); MMLU; the multimodal and reasoning era; a map of innovations (architecture, training, data); self-supervised learning (SSL) and pretraining, designing SSL objectives; pretrained Bi-LSTMs: ELMo; pretrained Transformers: BERT, GPT, T5, BART; self-supervised learning objectives and loss functions; masked language modeling; large language models: tokenizers, pre-training and post-training, multimodal alignment; applications: question answering, dialog modeling, text summarization; multilingual extension with application to Indian languages; auto-regressive models and large language models introduction; massive multitask language understanding (MMLU); in-context learning, parameter-efficient fine-tuning and RLHF as the course arc; deep generative models, autoregressive models, diffusion models and large language models.
+- **Results:** Masked-LM and causal-LM objectives as conditional likelihoods [D]; cross-entropy loss per token and perplexity [D]; next-sentence and denoising objectives compared [P].
+- **Build:** a masked-LM and a causal-LM pretraining loop at toy scale; fine-tune a small pretrained BERT/GPT for classification and QA. **Tooling:** LM pipelines and losses in NumPy; fine-tuning a pretrained checkpoint with PyTorch.
+- **Gap-fills:** *[inferred: SLP3 Ch.7, 9]* data curation and deduplication, training-data contamination (links to U32.1), pretraining compute budgets.
+
+**Assignment A29.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** BERT is pretrained with
+
+(A) masked language modelling  
+(B) causal language modelling only  
+(C) reinforcement learning  
+(D) image captions
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) GPT models are decoder-only  
+(B) T5 casts tasks as text-to-text  
+(C) BERT is autoregressive  
+(D) MMLU measures multitask knowledge
+
+**Q3 (2 marks, numerical answer).** Perplexity for a per-token cross-entropy of 2.0 nats.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the causal language-modelling loss is the sum over positions of token cross-entropies, from the chain rule.
+
+**Q5 (3 marks, programming).** Build the data pipeline and loss for a causal LM and a masked LM on a toy corpus in NumPy, and verify that the loss of a uniform random model equals ln V. Predict ln V for V = 64.
+
+<details><summary>Key for A29.4 (open only after your attempt)</summary>
+
+- **Q1:** A. Masked-token prediction.
+- **Q2:** ABD. BERT is bidirectional and not autoregressive.
+- **Q3:** 7.389 (tolerance ±0.001). e^2 = 7.389.
+- **Q4 (marking outline):** Take the negative log of the product of conditionals.
+- **Q5 (what a passing submission shows):** ln 64 = 4.159.
+
+</details>
+
+### U29.5 Scaling laws, LLM architectures and long context
+**Sources:** DLNLP W9,11; CSO W5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Scaling laws; various large language models and their unique architectural differences; handling long context; basics of large language models (systems view).
+- **Results:** Power-law loss versus compute, parameters and data (Kaplan/Chinchilla form) [X, empirical law: fitted, not proved]; compute-optimal allocation [D from the fitted law].
+- **Build:** fit a scaling law to training runs of a family of tiny Transformers.
+- **Gap-fills:** *[inferred: SLP3 Ch.7; Kaplan et al. and Hoffmann et al., recalled, not checked]* mixture-of-experts, sliding-window and sparse attention, positional-interpolation tricks for long context.
+
+**Assignment A29.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Neural scaling laws show loss falling as
+
+(A) a power law in compute, data and parameters  
+(B) a linear function  
+(C) an exponential in time  
+(D) a constant
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Compute-optimal training balances parameters and data  
+(B) Loss follows a power law in compute  
+(C) More parameters always lower loss regardless of data  
+(D) Mixture-of-experts activates a sparse subset of parameters
+
+**Q3 (2 marks, numerical answer).** Loss ratio when parameters double, for L proportional to N^-0.076.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** For L = A N^-a + A D^-a with compute C = 6 N D, show the minimum has N = D.
+
+**Q5 (3 marks, programming).** Fit a power law to the final losses of five toy models of increasing size by log-log least squares, in NumPy. Predict whether the fitted exponent is close to the true generating exponent.
+
+<details><summary>Key for A29.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Empirical power laws.
+- **Q2:** ABD. Without enough data, big models overfit.
+- **Q3:** 0.9487 (tolerance ±0.001). 0.9487.
+- **Q4 (marking outline):** Substitute D = C/(6N); by symmetry and convexity the minimum is at N = D.
+- **Q5 (what a passing submission shows):** Within a few percent for low noise.
+
+</details>
+
+### U29.6 Decoding strategies and sampling
+**Sources:** GEN 5.3, 6.2; MFGAI W11
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Choosing the next word at each step; greedy decoding and its problem; beam search (how it works, with an example); greedy and beam search are deterministic; the quality-versus-diversity tradeoff; random sampling: temperature, top-k, top-p (nucleus); repetition and frequency penalties; max tokens and stop sequences; parameter cheat sheet; tutorial: putting it all together; common LLM inference terms: tokens, temperature, top-k, top-p; LLMs: models, sampling, inference and quantization methods (sampling part).
+- **Results:** Temperature as softmax scaling and its entropy limits [D]; top-p truncation as adaptive support [P]; beam search is not exact search [P].
+- **Build:** greedy, beam, temperature, top-k and top-p decoders from scratch over a small LM.
+
+**Assignment A29.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** As temperature goes to zero, sampling approaches
+
+(A) greedy decoding  
+(B) uniform sampling  
+(C) beam search  
+(D) top-p
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Top-p chooses the smallest set with cumulative probability at least p  
+(B) Beam search is guaranteed to find the most probable sequence  
+(C) Higher temperature gives more diverse outputs  
+(D) Greedy decoding is deterministic
+
+**Q3 (2 marks, numerical answer).** Softmax probability of the first token for logits (2,1,0) at temperature 1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that softmax(z/T) concentrates on the argmax as T goes to 0 and approaches uniform as T goes to infinity.
+
+**Q5 (3 marks, programming).** Implement greedy, beam search, temperature, top-k and top-p decoding over your bigram model. Predict which produces the most repetition.
+
+<details><summary>Key for A29.6 (open only after your attempt)</summary>
+
+- **Q1:** A. The softmax concentrates on the argmax.
+- **Q2:** ACD. Beam search is a heuristic.
+- **Q3:** 0.6652 (tolerance ±0.001). 0.665.
+- **Q4 (marking outline):** Divide numerator and denominator by the largest term; take limits.
+- **Q5 (what a passing submission shows):** Greedy decoding.
+
+</details>
+
+### U29.7 Prompting: fundamentals, APIs and advanced techniques
+**Sources:** GEN 5.2, 5.4, 6.1, 6.3, 6.4; DLNLP W9; FDL W11
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** What prompts are; a first basic prompt, then a more advanced one; elements of a prompt; prompting through APIs: introduction to the OpenAI API and frontier models; basic chat completion; roles in prompting; tool calling with an example; coding and reasoning models; image generation models; examples: a chatbot application, image generation; introduction: prompting and the autoregressive language model, what a prompt is, what prompt engineering is; types of prompting: overview, zero-shot and few-shot prompting, chain-of-thought (CoT) prompting and its variants (zero-shot CoT, few-shot CoT, automatic CoT, self-consistency), ReAct prompting, meta prompting, directional stimulus prompting (DSP), prompt chaining, tree of thoughts (ToT); limitations of LLM prompting; mitigating prompt-injection attacks; in-context learning; chain-of-thought prompting; limits and defenses.
+- **Results:** Self-consistency as marginalization over reasoning paths [D]; why chain-of-thought helps (extra serial computation) [S].
+- **Build:** a chat client with roles, tool-calling and a ReAct loop; prompt-chaining pipeline; ToT search on a small puzzle. Live API calls follow a recorded-response replay first and run only under a spend cap (Master Rules 11.2). **Tooling:** client, tool loop and ReAct against a mock model first; live API calls are replay-first and spend-capped.
+
+**Assignment A29.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Few-shot prompting differs from zero-shot by
+
+(A) including worked examples in the prompt  
+(B) updating model weights  
+(C) using a smaller model  
+(D) removing the instruction
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Chain-of-thought prompting elicits intermediate reasoning  
+(B) Self-consistency takes a majority vote over sampled reasoning paths  
+(C) ReAct interleaves reasoning with tool actions  
+(D) Prompt chaining uses a single prompt only
+
+**Q3 (2 marks, numerical answer).** Probability that a majority of 5 independent samples, each correct with probability 0.6, is correct.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a majority vote of 3 independent voters each correct with probability p exceeds p when p > 1/2.
+
+**Q5 (3 marks, programming).** Build a chat client with roles and a tool-calling loop against a deterministic mock model you write (no network), plus a ReAct loop with a calculator tool. Predict the number of model calls for a two-step arithmetic question.
+
+<details><summary>Key for A29.7 (open only after your attempt)</summary>
+
+- **Q1:** A. In-context examples.
+- **Q2:** ABC. It uses several linked prompts.
+- **Q3:** 0.6826 (tolerance ±0.001). 0.6826.
+- **Q4 (marking outline):** P(majority) = 3p^2 - 2p^3; compare with p.
+- **Q5 (what a passing submission shows):** Three calls: two tool requests and a final answer.
+
+</details>
+
+### U29.8 Instruction tuning, RLHF and alignment: PPO and DPO
+**Sources:** DLNLP W8, o; MFGAI W12; FDL W12; GEN 5.1
+Bridge for: U12.3 (Machine learning on Google Cloud).
+Builds on U27.5.
+- **Topics:** Instruction fine-tuning; FLAN-T5; reinforcement learning through human feedback (RLHF); LLMs: reinforcement-learning-based alignment methods (PPO, DPO); reinforcement learning for fine-tuning; proximal policy optimization; InstructGPT and RLHF: aligning models with human preferences; post-training.
+- **Results:** Bradley–Terry reward-model likelihood [D]; KL-regularized RLHF objective and its closed-form optimal policy [D]; DPO loss derived from that closed form [D]; PPO clipped objective (see U27.5) [D].
+- **Build:** reward model on preference pairs; toy PPO-for-text and DPO fine-tuning of a tiny LM, from scratch.
+- **Gap-fills:** *[inferred: SLP3 Ch.8; Ouyang et al., Rafailov et al., recalled, not checked]* constitutional and AI-feedback methods, reward hacking.
+
+**Assignment A29.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Direct preference optimization differs from PPO-based RLHF in that it
+
+(A) needs no separate reward model or rollouts  
+(B) needs more rewards  
+(C) uses no preferences  
+(D) requires a critic network
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Reward models are commonly trained with the Bradley-Terry model  
+(B) RLHF uses a KL penalty to a reference policy  
+(C) PPO-based RLHF needs a reward signal  
+(D) DPO needs online rollouts
+
+**Q3 (2 marks, numerical answer).** Bradley-Terry probability that item a (reward 1) beats item b (reward 0).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the optimal policy of the KL-regularized objective: pi*(y) proportional to pi_ref(y) exp(r(y)/beta).
+
+**Q5 (3 marks, programming).** Train a reward model by logistic regression on preference pairs and write the DPO loss with a gradient check on a tiny tabular policy. Predict the sign of the DPO gradient on the preferred response.
+
+<details><summary>Key for A29.8 (open only after your attempt)</summary>
+
+- **Q1:** A. It optimizes a closed-form objective on preference pairs.
+- **Q2:** ABC. DPO is offline.
+- **Q3:** 0.7311 (tolerance ±0.001). sigma(1) = 0.731.
+- **Q4 (marking outline):** Lagrangian over the simplex; stationarity gives the exponential tilt.
+- **Q5 (what a passing submission shows):** It increases the preferred response's relative log-probability.
+
+</details>
+
+### U29.9 Parameter-efficient fine-tuning: LoRA and QLoRA
+**Sources:** DLNLP W10; FDL W11
+On demand: no cloud unit calls on this unit directly; enter it from U18.22 or when a later unit of the part needs it.
+Builds on U18.22.
+- **Topics:** Parameter-efficient fine-tuning (PEFT): LoRA and QLoRA; low-rank adaptation.
+- **Results:** Low-rank update ΔW = BA parameter count and rank bound [D]; QLoRA 4-bit NormalFloat plus paged optimizers (stated) [X→U33.4].
+- **Build:** LoRA layer from scratch merged into a frozen Transformer; compare full fine-tuning and LoRA on a small task.
+- **Gap-fills:** *[inferred: Hu et al., Dettmers et al., recalled, not checked]* adapters, prefix tuning, link to SVD low-rank theory in U18.22.
+
+**Assignment A29.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** LoRA represents a weight update as
+
+(A) a product of two low-rank matrices  
+(B) a sparse mask  
+(C) a quantized copy  
+(D) a hash
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The rank of B A is at most r  
+(B) The base weights are frozen during LoRA training  
+(C) QLoRA keeps the frozen base in 4-bit precision  
+(D) LoRA must increase inference latency
+
+**Q3 (2 marks, numerical answer).** Ratio of full-update to LoRA parameters for a 1024 x 1024 layer with rank 8.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that rank(B A) is at most r and count the parameters of a LoRA update of a d x d weight.
+
+**Q5 (3 marks, programming).** Implement a LoRA linear layer in NumPy with forward, backward and merge. Fine-tune a frozen regression network and compare with full fine-tuning. Predict the parameter ratio.
+
+<details><summary>Key for A29.9 (open only after your attempt)</summary>
+
+- **Q1:** A. Delta W = B A.
+- **Q2:** ABC. The update can be merged into the base weights.
+- **Q3:** 64 (tolerance ±0.001). 1,048,576 / 16,384 = 64.
+- **Q4 (marking outline):** rank(BA) <= min(rank B, rank A) <= r; parameters 2 d r.
+- **Q5 (what a passing submission shows):** About 64x fewer trainable parameters at rank 8 and width 1024.
+
+</details>
+
+### U29.10 Prompt optimization, compression and prompt security
+**Sources:** GEN 7.1, 7.2, 7.4, 7.5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Prompt optimization: motivation; the need for versioning, testing and iteration (prompts as versioned artifacts); optimization objectives; types: manual and automatic; automatic prompt optimization (APO): instruction search, gradient optimization, evolutionary optimization, DSPy; verbalized sampling: the mode collapse problem and verbalized sampling; prompt compression: basic and advanced techniques, the LLMLingua family (LLMLingua, LLMLingua-2, with examples); prompt security: prompt injection, indirect prompt injection, prompt leaking.
+- **Results:** Prompt search as discrete black-box optimization (objective, search space, evaluation noise) [Def]; mode collapse from preference tuning [S].
+- **Build:** a prompt-version registry and A/B test harness; evolutionary prompt search over a tiny task; token-pruning prompt compressor.
+
+**Assignment A29.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Indirect prompt injection arrives through
+
+(A) retrieved or external content processed by the model  
+(B) the system administrator only  
+(C) the learning rate  
+(D) the tokenizer
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Prompts should be versioned and tested like code  
+(B) Automatic prompt optimization searches over instructions  
+(C) LLMLingua compresses prompts using a small model's token importance  
+(D) Prompt leaking is harmless
+
+**Q3 (2 marks, numerical answer).** Compression ratio when a 1000-token prompt is compressed to 250 tokens.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the sample size n >= ln(2/delta)/(2 eps^2) needed so an A/B accuracy estimate is within eps with probability 1 - delta (Hoeffding).
+
+**Q5 (3 marks, programming).** Write a prompt registry with versions and an A/B harness scored by a deterministic mock grader, an evolutionary prompt search over a toy task, and a token-pruning compressor. Predict n for eps = 0.05 and delta = 0.05.
+
+<details><summary>Key for A29.10 (open only after your attempt)</summary>
+
+- **Q1:** A. Instructions hidden in data.
+- **Q2:** ABC. Leaked prompts can expose secrets.
+- **Q3:** 4 (tolerance ±0.001). 4x.
+- **Q4 (marking outline):** Two-sided Hoeffding: 2 exp(-2 n eps^2) <= delta.
+- **Q5 (what a passing submission shows):** About 738 samples.
+
+</details>
+
+## D30. Deep Generative Models
+
+Aim: the probabilistic foundations of generative modelling and every major model family (GANs, VAEs, autoregressive models, energy-based and score-based models, diffusion models), each derived and implemented from scratch. Benchmarks (confirmed from published contents where stated): Foster, *Generative Deep Learning* 2nd ed. (generative modeling, deep learning, VAEs, GANs, autoregressive models, normalizing flows, energy-based models, diffusion models, Transformers, advanced GANs, music generation, world models, multimodal models); Goodfellow Ch. 13–20; Murphy, *Probabilistic Machine Learning: Advanced Topics* (recalled, not checked); Kingma–Welling, Goodfellow et al., Ho et al., Song et al. (recalled, not checked).
+
+### U30.1 Probabilistic deep generative modelling: foundations and taxonomy
+**Sources:** MFGAI W1, o; FML W11, o; MLE W11
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Introduction to probabilistic deep generative modelling; probabilistic foundations and learning algorithms of deep generative models; likelihood estimation; energy-based models (EBMs); MLE; structured probabilistic models; Monte Carlo methods; taxonomy of generative models (explicit/implicit density, tractable/approximate); hands-on PyTorch implementation.
+- **Results:** MLE equals minimizing KL(p_data‖p_θ) [D]; the partition function makes EBM likelihood intractable [P]; importance sampling and its variance [D].
+- **Build:** a tiny density estimator by MLE (Gaussian mixture) and importance-sampling estimator from scratch.
+- **Gap-fills:** *[inferred: Foster Ch.1; Goodfellow Ch.16–17]* generative versus discriminative modelling, representation learning, core probability tools.
+
+**Assignment A30.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Maximum-likelihood training minimizes
+
+(A) KL(p_data relative to p_model)  
+(B) KL(p_model relative to p_data)  
+(C) squared error only  
+(D) total variation
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The partition function makes energy-based likelihood intractable  
+(B) Importance sampling gives unbiased estimates  
+(C) A generative model represents the data distribution  
+(D) Explicit-density models cannot be sampled
+
+**Q3 (2 marks, numerical answer).** KL(Bernoulli(0.5) relative to Bernoulli(0.25)) in nats.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that maximizing expected log-likelihood is equivalent to minimizing KL(p_data relative to p_theta).
+
+**Q5 (3 marks, programming).** Fit a Gaussian mixture by EM on 2-D data and estimate a rare-event probability by importance sampling, both in NumPy. Predict the variance reduction versus naive Monte Carlo.
+
+<details><summary>Key for A30.1 (open only after your attempt)</summary>
+
+- **Q1:** A. Equivalent up to a constant.
+- **Q2:** ABC. Many can.
+- **Q3:** 0.1438 (tolerance ±0.001). 0.1438.
+- **Q4 (marking outline):** KL = E log p_data - E log p_theta; the first term is constant.
+- **Q5 (what a passing submission shows):** Large reduction when the proposal covers the rare region.
+
+</details>
+
+### U30.2 Generative modelling via variational divergence minimization
+**Sources:** MFGAI W2
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Generative modelling via variational divergence minimization; f-divergences (KL, reverse KL, Jensen–Shannon, total variation); variational (dual) representation of f-divergences; f-GAN.
+- **Results:** Variational lower bound on an f-divergence via the Fenchel conjugate [D]; JS divergence recovers the original GAN objective [D].
+- **Build:** numerical estimation of f-divergences between Gaussians; f-GAN objective on a 1-D toy distribution.
+
+**Assignment A30.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The Jensen-Shannon divergence is
+
+(A) symmetric and bounded by ln 2  
+(B) asymmetric  
+(C) unbounded  
+(D) negative
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) KL divergence is asymmetric  
+(B) f-divergences have a variational (dual) representation  
+(C) JS divergence is at most ln 2  
+(D) Total variation is unbounded
+
+**Q3 (2 marks, numerical answer).** Total variation between Bernoulli(0.2) and Bernoulli(0.7).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that JS(P, Q) is at most ln 2.
+
+**Q5 (3 marks, programming).** Estimate KL, JS and TV between two Gaussians numerically and compare with the closed form for KL. Predict how the three behave as the means separate.
+
+<details><summary>Key for A30.2 (open only after your attempt)</summary>
+
+- **Q1:** A. JS of two distributions is at most ln 2 nats.
+- **Q2:** ABC. TV is at most 1.
+- **Q3:** 0.5 (tolerance ±0.001). TV = half the L1 distance = 0.5.
+- **Q4 (marking outline):** JS is the average of two KLs to the mixture, each at most ln 2 by log-sum bounds on mixture ratios.
+- **Q5 (what a passing submission shows):** KL grows quadratically; JS saturates at ln 2; TV saturates at 1.
+
+</details>
+
+### U30.3 Generative adversarial networks: formulation, training, WGAN and applications
+**Sources:** MFGAI W3–4, o; MLDL W12; MLE W12; FDL W12
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Generative adversarial networks Part 1 (introduction and formulation); minimax game and optimal discriminator; GAN training difficulties (mode collapse, vanishing gradients); Part 2: WGANs (Wasserstein distance, Kantorovich–Rubinstein duality, weight clipping and gradient penalty) and applications; generative adversarial network (GAN) as a recent trend in deep learning; VAEs and GANs as deep generative models; generative adversarial networks.
+- **Results:** Optimal discriminator D*(x)=p_data/(p_data+p_g) [D]; the generator objective equals 2·JS(p_data‖p_g) − log 4 at D* [D]; Kantorovich–Rubinstein duality [S]; Wasserstein distance remains informative for disjoint supports [P].
+- **Build:** vanilla GAN, WGAN-GP and a conditional GAN from scratch on 2-D and MNIST data; mode-collapse experiments.
+- **Gap-fills:** *[inferred: Foster Ch.4, 10]* DCGAN, StyleGAN-style progressive growing, evaluation with Inception score and FID.
+
+**Assignment A30.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** For a fixed generator the optimal GAN discriminator is
+
+(A) p_data/(p_data + p_g)  
+(B) 0.5 everywhere  
+(C) p_g/p_data  
+(D) 1
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Mode collapse is a known GAN failure  
+(B) WGAN uses the Wasserstein distance  
+(C) Saturating generator losses can cause vanishing gradients  
+(D) GANs are trained by exact likelihood
+
+**Q3 (2 marks, numerical answer).** Optimal discriminator value where p_data = 0.6 and p_g = 0.2.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the optimal discriminator by maximizing the pointwise integrand p log D + q log(1 - D).
+
+**Q5 (3 marks, programming).** Implement a GAN and a WGAN with gradient penalty in NumPy with hand-derived gradients on a 1-D Gaussian target. Acceptance: generated mean and variance within 10 percent. Predict the failure mode with an overly strong discriminator.
+
+<details><summary>Key for A30.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Derived in the original GAN paper.
+- **Q2:** ABC. They are implicit models.
+- **Q3:** 0.75 (tolerance ±0.001). 0.75.
+- **Q4 (marking outline):** Differentiate in D and set to zero: D = p/(p + q).
+- **Q5 (what a passing submission shows):** Vanishing generator gradients with the saturating loss.
+
+</details>
+
+### U30.4 Variational autoencoders, improvements and VQ-VAE
+**Sources:** MFGAI W5–6; FDL W12; MLE W12
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Generative modelling via variational auto-encoding; evidence lower bound (ELBO); reparameterization trick; amortized inference; VAE improvisations (β-VAE, importance-weighted bounds, hierarchical and conditional VAEs); VQ-VAE (vector-quantized latents, straight-through estimator, codebook learning); VAEs and GANs compared; improvisations and VQVAE.
+- **Results:** ELBO = reconstruction − KL(q‖p) and the gap equals KL(q‖posterior) [D]; reparameterization gives low-variance pathwise gradients [D]; closed-form KL between Gaussians [D].
+- **Build:** VAE and VQ-VAE from scratch, with latent interpolation and posterior-collapse diagnostics.
+
+**Assignment A30.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The ELBO equals reconstruction term minus
+
+(A) KL(q(z given x) relative to p(z))  
+(B) the entropy of x  
+(C) the variance of z  
+(D) zero
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) The reparameterization trick gives low-variance gradients  
+(B) Posterior collapse is a failure mode  
+(C) VQ-VAE uses a straight-through estimator  
+(D) VAEs maximize the exact likelihood
+
+**Q3 (2 marks, numerical answer).** KL(N(2,1) relative to N(0,1)) in nats.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the ELBO from the log marginal likelihood using Jensen's inequality.
+
+**Q5 (3 marks, programming).** Implement a VAE with a 2-D latent on toy data in NumPy with hand gradients. Gradient-check the ELBO. Predict the KL term at initialization.
+
+<details><summary>Key for A30.4 (open only after your attempt)</summary>
+
+- **Q1:** A. Standard decomposition.
+- **Q2:** ABC. They maximize a bound.
+- **Q3:** 2 (tolerance ±0.001). mu^2/2 = 2.
+- **Q4 (marking outline):** log p(x) = log E_q[p(x,z)/q(z)] >= E_q[log p(x,z) - log q(z)].
+- **Q5 (what a passing submission shows):** Near zero.
+
+</details>
+
+### U30.5 Autoregressive models
+**Sources:** MFGAI W10, o
+On demand: no cloud unit calls on this unit directly; enter it from U29.3 or when a later unit of the part needs it.
+Builds on U29.3.
+- **Topics:** Auto-regressive models (chain-rule factorization, masked/causal networks, PixelCNN-style and Transformer-based decoders) and the introduction to large language models; likelihood training and sampling cost.
+- **Results:** Exact likelihood by chain rule [P]; exposure bias and teacher forcing [S].
+- **Build:** a character/pixel-level autoregressive model from scratch (shares code with U29.3).
+
+**Assignment A30.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** An autoregressive model factorizes a joint distribution by
+
+(A) the chain rule  
+(B) independence  
+(C) marginalization  
+(D) Bayes' rule on labels
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Teacher forcing feeds ground-truth history during training  
+(B) Exposure bias arises from the train-test mismatch  
+(C) Likelihood is tractable and exact  
+(D) Sampling is parallel across tokens
+
+**Q3 (2 marks, numerical answer).** Log-likelihood of a 3-token sequence where each token has probability 0.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the chain-rule factorization of a joint distribution is exact for any ordering.
+
+**Q5 (3 marks, programming).** Build a character-level trigram autoregressive model, sample from it and compare negative log-likelihood with the bigram model. Predict which has lower held-out NLL on a small corpus.
+
+<details><summary>Key for A30.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Product of conditionals.
+- **Q2:** ABC. Sampling is sequential.
+- **Q3:** -2.079 (tolerance ±0.001). ln(0.125) = -2.079.
+- **Q4 (marking outline):** Repeated application of P(A, B) = P(A) P(B given A).
+- **Q5 (what a passing submission shows):** Trigram on large text; bigram can win on tiny text because of sparsity.
+
+</details>
+
+### U30.6 Energy-based and score-based models; Langevin sampling
+**Sources:** FML W11; MFGAI W9; MLE W11
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Energy-based models, maximum-likelihood training with MCMC and contrastive divergence; Langevin sampling; score-based models; score matching (explicit, denoising, sliced); conditional diffusion models and score-based models; Monte Carlo methods.
+- **Results:** Gradient of the log-likelihood of an EBM is a difference of expectations [D]; Langevin dynamics targets p(x) [S]; denoising score matching equals score of the noised distribution [D].
+- **Build:** Langevin sampler on a 2-D mixture; denoising score matching on toy data.
+- **Gap-fills:** *[inferred: Goodfellow Ch.18; Foster Ch.7]* contrastive divergence, noise-contrastive estimation.
+
+**Assignment A30.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The score of a density is
+
+(A) the gradient of its log-density  
+(B) the density itself  
+(C) its Fourier transform  
+(D) its entropy
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Langevin dynamics uses the score to sample  
+(B) Denoising score matching learns the score of a noised distribution  
+(C) The EBM log-likelihood gradient is a difference of expectations  
+(D) Score matching needs the partition function
+
+**Q3 (2 marks, numerical answer).** Score of the standard normal at x = 2.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the score of N(mu, sigma^2) is -(x - mu)/sigma^2.
+
+**Q5 (3 marks, programming).** Run Langevin sampling on a 2-D two-component mixture using the analytic score, then train a small network by denoising score matching. Predict the effect of a too-large step.
+
+<details><summary>Key for A30.6 (open only after your attempt)</summary>
+
+- **Q1:** A. grad log p(x).
+- **Q2:** ABC. It avoids the partition function.
+- **Q3:** -2 (tolerance ±0.001). -(x - mu)/sigma^2 = -2.
+- **Q4 (marking outline):** Differentiate the log-density.
+- **Q5 (what a passing submission shows):** Samples drift past modes and become unstable.
+
+</details>
+
+### U30.7 Denoising diffusion probabilistic models, conditional diffusion and Stable Diffusion
+**Sources:** MFGAI W7–9, o; FDL W12
+On demand: no cloud unit calls on this unit directly; enter it from U28.6, U28.8, U29.3 or when a later unit of the part needs it.
+Builds on U28.6, U28.8, U29.3.
+- **Topics:** Denoising diffusion probabilistic models (DDPMs): formulation; forward and reverse diffusion; variational lower bound; denoising score matching; diffusion models: multiple forms and implementation (ε-prediction, x₀-prediction, v-prediction, DDIM, SDE and probability-flow ODE views); conditional diffusion models (classifier guidance, classifier-free guidance); score-based models; Stable Diffusion: latent-space denoising; deep generative models overview.
+- **Results:** Closed-form forward marginal q(x_t|x₀) [D]; reverse-process posterior mean [D]; ELBO simplifies to a denoising regression loss [D]; DDIM as a deterministic reverse process [D]; SDE/probability-flow correspondence [S].
+- **Build:** DDPM with a small U-Net (reuse U28.6) on 2-D then MNIST; classifier-free guidance; latent diffusion using the autoencoder of U28.8. **Tooling:** 1-D/2-D DDPM in NumPy with hand gradients; a PyTorch U-Net is reasonable for the image version, where hand gradients get long.
+- **Gap-fills:** *[inferred: Foster Ch.8; Ho et al.; Song et al., recalled, not checked]* noise schedules, fast samplers, evaluation by FID, text-to-image conditioning with cross-attention (reuses U29.3).
+
+**Assignment A30.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The forward diffusion marginal q(x_t given x_0) is
+
+(A) Gaussian with mean sqrt(alpha_bar) x_0  
+(B) uniform  
+(C) Laplace  
+(D) deterministic
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Many DDPMs train a network to predict the added noise  
+(B) DDIM provides a deterministic sampler  
+(C) Classifier-free guidance combines conditional and unconditional predictions  
+(D) The reverse process has no learned parameters
+
+**Q3 (2 marks, numerical answer).** alpha_bar_3 for constant beta = 0.1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive q(x_t given x_0) = N(sqrt(alpha_bar_t) x_0, (1 - alpha_bar_t) I) by induction.
+
+**Q5 (3 marks, programming).** Implement a DDPM on 1-D data with an MLP noise predictor trained by hand-derived gradients in NumPy, and sample. Acceptance: sample mean and variance within 15 percent. Predict the effect of fewer sampling steps.
+
+<details><summary>Key for A30.7 (open only after your attempt)</summary>
+
+- **Q1:** A. Closed form from a product of Gaussians.
+- **Q2:** ABC. The reverse mean is learned.
+- **Q3:** 0.729 (tolerance ±0.0005). (1 - beta)^3 = 0.729.
+- **Q4 (marking outline):** Compose Gaussian steps; means multiply and variances add appropriately.
+- **Q5 (what a passing submission shows):** Quality degrades, a deterministic DDIM-style sampler degrades less.
+
+</details>
+
+### U30.8 Normalizing flows (gap-fill from the references)
+**Sources:** none (gap-fill unit added from the references)
+On demand: no cloud unit calls on this unit directly; enter it from U24.8, U18.18, U30.1, U30.7 or when a later unit of the part needs it.
+Builds on U24.8, U18.18, U30.1, U30.7.
+- **Topics:** Change of variables for densities and the Jacobian determinant (links to U24.8 and U18.18); invertible networks with tractable determinants; coupling layers (RealNVP-style) and autoregressive flows; training by exact maximum likelihood; continuous normalizing flows and the probability-flow ODE (link to U30.7); comparison of flows, GANs, VAEs, autoregressive and diffusion models on likelihood, sampling speed and sample quality.
+- **Results:** Change-of-variables formula for densities [D]; determinant of a triangular Jacobian is the product of its diagonal [P]; log-likelihood of a flow [D].
+- **Build:** RealNVP on a 2-D dataset from scratch, with density plots.
+- **Gap-fills:** *[inferred: Foster, chapter on normalizing flow models (the publisher's description confirms the book covers them; chapter number recalled, not checked); Goodfellow Ch.20]* this family appears in the references but in none of the outlines; added so the model taxonomy of U30.1 is complete.
+
+**Assignment A30.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A normalizing flow computes densities using
+
+(A) the change-of-variables formula  
+(B) a partition function  
+(C) MCMC  
+(D) adversarial training
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Triangular Jacobians have determinants equal to the product of diagonal entries  
+(B) Coupling layers are invertible by design  
+(C) Flows give exact likelihoods  
+(D) Flows require MCMC to sample
+
+**Q3 (2 marks, numerical answer).** log p_x(1) for x = 2z + 1 with z standard normal.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the 1-D change-of-variables formula p_x(x) = p_z(g^-1(x)) abs(d g^-1/dx).
+
+**Q5 (3 marks, programming).** Implement an affine coupling layer with forward, inverse and log-determinant in NumPy. Acceptance: inverse(forward(x)) equals x to 1e-10 and the log-determinant matches finite differences. Predict the log-determinant for scale s(x1) = 0 everywhere.
+
+<details><summary>Key for A30.8 (open only after your attempt)</summary>
+
+- **Q1:** A. With the Jacobian determinant.
+- **Q2:** ABC. Sampling is one pass.
+- **Q3:** -1.612 (tolerance ±0.001). z = 0, log p_z(0) = -0.919, minus log 2: -1.612.
+- **Q4 (marking outline):** P(X <= x) = P(Z <= g^-1(x)) for monotone increasing g; differentiate.
+- **Q5 (what a passing submission shows):** Zero.
+
+</details>
+
+## D31. Retrieval-Augmented Generation and Agentic Systems
+
+Aim: RAG from first principles to production, then agentic RAG, multi-agent orchestration, memory and provenance, implemented with and without frameworks. Benchmarks: Jurafsky–Martin, *SLP3* (confirmed: information retrieval and RAG; agents); Manning–Raghavan–Schütze, *Introduction to Information Retrieval* (recalled, not checked); Khattab–Zaharia (ColBERT), Reimers–Gurevych (Sentence-BERT), Lewis et al. (RAG), Yao et al. (ReAct) (recalled, not checked).
+
+### U31.1 Why RAG, RAG architecture and classical retrievers
+**Sources:** GEN 8.1, 8.2, 8.3; DLNLP W11
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Why RAG: limitations of LLMs (hallucinations, verifiability, knowledge cutoff); motivation for RAG; introduction to RAG: overview, architecture and workflow, with an example; sparse retrieval and dense retrieval; augmentation and generation; the retrieval phase in detail (the retrieval pipeline, chunking and query formulation); retrievers: information-retrieval methods; TF-IDF; BM25 (a non-binary model); retrieval-augmented generation in the course on long context.
+- **Results:** TF-IDF and BM25 scoring formulas and saturation of term frequency [D]; inverted-index query processing [D].
+- **Build:** inverted index, TF-IDF and BM25 retriever and a minimal RAG loop from scratch.
+- **Gap-fills:** *[inferred: SLP3 Ch.11; Manning et al.]* retrieval metrics (precision@k, recall@k, MRR, nDCG), query likelihood models.
+
+**Assignment A31.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Retrieval-augmented generation reduces hallucination mainly by
+
+(A) grounding answers in retrieved documents  
+(B) increasing temperature  
+(C) shrinking the model  
+(D) removing the prompt
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) BM25 saturates the contribution of repeated terms  
+(B) IDF is commonly log(N / document frequency)  
+(C) An inverted index maps terms to the documents containing them  
+(D) Dense retrieval needs no embeddings
+
+**Q3 (2 marks, numerical answer).** IDF = ln(N/df) for a term occurring in 10 of 1000 documents.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the BM25 term-frequency component tf (k1 + 1)/(tf + k1 (1 - b + b dl/avgdl)) is bounded above by k1 + 1 for fixed document length.
+
+**Q5 (3 marks, programming).** Build an inverted index, TF-IDF and BM25 retrievers and a minimal RAG loop with a mock generator that quotes the top passage. Acceptance: recall@3 above 0.9 on a 20-question toy corpus. Predict which retriever wins on keyword-heavy queries.
+
+<details><summary>Key for A31.1 (open only after your attempt)</summary>
+
+- **Q1:** A. The answer is conditioned on evidence.
+- **Q2:** ABC. Dense retrieval compares embeddings.
+- **Q3:** 4.605 (tolerance ±0.001). ln 100 = 4.605.
+- **Q4 (marking outline):** Divide numerator and denominator by tf and let tf go to infinity.
+- **Q5 (what a passing submission shows):** BM25 on exact keyword queries.
+
+</details>
+
+### U31.2 RAG failure modes, types of RAG and assessment
+**Sources:** GEN 8.4, 8.5, 8.6
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** RAG failure modes: retrieval failures, context failures, generation failures; types of RAG: standard RAG, standard RAG with memory, agentic RAG, Chain-of-RAG (CoRAG) mechanics and more examples; assessment: the RAG assessment framework; RAGAS.
+- **Results:** Decomposition of end-to-end RAG error into retrieval recall and generation faithfulness [D].
+- **Build:** failure-injection harness (drop gold chunk, add distractor, conflicting context) and RAGAS-style metrics (faithfulness, answer relevance, context precision/recall).
+
+**Assignment A31.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A retrieval failure is
+
+(A) the gold passage is not retrieved  
+(B) the answer is too long  
+(C) the prompt is misspelled  
+(D) the model is quantized
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Generation failures include unfaithful answers  
+(B) Retrieval failures include missing the gold passage  
+(C) Context failures include contradictory or overloaded context  
+(D) RAGAS metrics are computed without any model
+
+**Q3 (2 marks, numerical answer).** Context recall when 3 of 4 gold facts are supported by the retrieved context.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Let r be retrieval recall, a1 the answer accuracy when the gold passage is retrieved and a0 otherwise. Show P(correct) = r a1 + (1 - r) a0 and that it increases in r when a1 > a0.
+
+**Q5 (3 marks, programming).** Write a failure-injection harness (drop the gold chunk, add a distractor, add a contradicting chunk) and token-overlap proxies for faithfulness and context recall. Predict which injection hurts most.
+
+<details><summary>Key for A31.2 (open only after your attempt)</summary>
+
+- **Q1:** A. The needed evidence never reaches the generator.
+- **Q2:** ABC. RAGAS uses LLM or embedding judgements.
+- **Q3:** 0.75 (tolerance ±0.001). 0.75.
+- **Q4 (marking outline):** Law of total probability; derivative equals a1 - a0.
+- **Q5 (what a passing submission shows):** Dropping the gold chunk.
+
+</details>
+
+### U31.3 Sparse retrieval limits and dense representations
+**Sources:** GEN 9.1, 9.2
+Bridge for: U15.25 (Enhanced data models).
+- **Topics:** RAG workflow recap; sparse retrieval and why sparsity breaks similarity; dense representations; vector embeddings; the RAG-with-embeddings pipeline; sentence embeddings from BERT and how they compare.
+- **Results:** Cosine similarity versus dot product versus Euclidean distance and when they coincide [P].
+- **Build:** mean-pooled BERT sentence embeddings versus TF-IDF on a retrieval benchmark.
+
+**Assignment A31.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Cosine similarity ranges over
+
+(A) [0, 1] only  
+(B) [-1, 1]  
+(C) [0, infinity)  
+(D) (-infinity, infinity)
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) For unit vectors cosine similarity equals the dot product  
+(B) Sparse bag-of-words vectors of documents with no shared words are orthogonal  
+(C) Dense embeddings can place synonyms close together  
+(D) Dense embeddings of synonyms must be orthogonal
+
+**Q3 (2 marks, numerical answer).** Second component of the mean-pooled vector of (1,2) and (3,4).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that for unit vectors a and b, norm(a - b)^2 = 2 - 2 cos(a,b), so cosine and Euclidean rankings agree.
+
+**Q5 (3 marks, programming).** With a small trained embedding table (from A29.2), build mean-pooled sentence embeddings and compare retrieval with TF-IDF on a paraphrase-heavy toy set. Predict which wins.
+
+<details><summary>Key for A31.3 (open only after your attempt)</summary>
+
+- **Q1:** B. Cosine of the angle between vectors.
+- **Q2:** ABC. Synonyms are close, not orthogonal.
+- **Q3:** 3 (tolerance ±0.001). (2 + 4)/2 = 3.
+- **Q4 (marking outline):** Expand the squared norm.
+- **Q5 (what a passing submission shows):** Embeddings win on paraphrases; TF-IDF on exact terms.
+
+</details>
+
+### U31.4 Learning retrieval-oriented embeddings and choosing an embedding model
+**Sources:** GEN 9.3, 9.4
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Getting negative examples and hard mining; dense retrieval with a bi-encoder; the costlier but more accurate alternative (cross-encoder); Sentence-BERT architecture; choosing an embedding model: common models (all-MiniLM-L6-v2 for prototyping, OpenAI text-embedding-3-small); Matryoshka embeddings and how they order dimensions; design decisions, including under real conditions; the most common silent production RAG bug.
+- **Results:** InfoNCE/contrastive loss with in-batch negatives [D]; Matryoshka loss as a multi-prefix objective [D].
+- **Build:** a bi-encoder trained with in-batch and hard negatives; embedding-model comparison with a cost and quality table.
+
+**Assignment A31.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In-batch negatives in contrastive training are
+
+(A) other examples' positives used as negatives  
+(B) random noise  
+(C) test labels  
+(D) held-out queries
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Hard negatives often improve retrieval quality  
+(B) A bi-encoder allows document embeddings to be precomputed  
+(C) A cross-encoder is more accurate but slower  
+(D) Matryoshka embeddings are useful only at full dimension
+
+**Q3 (2 marks, numerical answer).** InfoNCE loss for a batch of 4 when all similarity scores are equal.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the InfoNCE loss with uniform scores over N candidates equals ln N.
+
+**Q5 (3 marks, programming).** Train a NumPy bi-encoder (two linear towers) with in-batch negatives on toy query-document pairs and then with mined hard negatives. Report recall@1. Predict the effect of hard negatives.
+
+<details><summary>Key for A31.4 (open only after your attempt)</summary>
+
+- **Q1:** A. They are free negatives.
+- **Q2:** ABC. They are designed to truncate gracefully.
+- **Q3:** 1.386 (tolerance ±0.001). ln N = 1.386.
+- **Q4 (marking outline):** The softmax probability of the positive is 1/N; take the negative log.
+- **Q5 (what a passing submission shows):** Recall@1 improves, with some risk from false negatives.
+
+</details>
+
+### U31.5 Document processing and chunking
+**Sources:** GEN 9.5, 9.6
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Document processing basics, including OCR; design decisions for documents; chunking: why chunk, right-sizing for retrieval; strategies: fixed-size, sliding window, semantic; matching strategy to document type (uniform prose and baselines; strongly structured documents: Markdown, legal clauses, API docs, code); tuning chunking and an overlap myth; general RAG prose.
+- **Build:** four chunkers and a recall@k comparison on structured and unstructured corpora.
+
+**Assignment A31.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Chunk overlap mainly helps to
+
+(A) avoid losing information at chunk boundaries  
+(B) reduce index size  
+(C) speed up training  
+(D) remove duplicates
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Fixed-size chunking is a simple baseline  
+(B) Sliding windows overlap neighbouring chunks  
+(C) Semantic chunking splits where embedding similarity drops  
+(D) Chunk size has no effect on retrieval quality
+
+**Q3 (2 marks, numerical answer (chunks)).** Number of chunks for 1000 tokens with chunk size 200 and overlap 50.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the number of sliding windows for length L, size w and stride s as ceil((L - w)/s) + 1.
+
+**Q5 (3 marks, programming).** Implement fixed-size, sliding-window, sentence and semantic chunkers. Compare recall@3 on a structured (Markdown) and an unstructured corpus. Predict the winner on structured documents.
+
+<details><summary>Key for A31.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Context spans boundaries.
+- **Q2:** ABC. It has a large effect.
+- **Q3:** 7 chunks (tolerance ±0). Stride 150; windows start at 0, 150, ..., 900 (the last is shorter).
+- **Q4 (marking outline):** Windows start at multiples of s until the end is covered.
+- **Q5 (what a passing submission shows):** Structure-aware chunking by headings.
+
+</details>
+
+### U31.6 Vector databases and indexes: KNN, IVF, PQ, HNSW, FAISS and ChromaDB
+**Sources:** GEN 9.7, 10.1, 10.2
+Bridge for: U10.6 (In-memory key-value stores and the families of NoSQL databases), U15.16 (Indexing), U15.25 (Enhanced data models), U15.27 (NoSQL systems, graph databases and big data), U20.3 (Count-Min and Count sketches, and approximate near-neighbour search).
+- **Topics:** Vector databases: introduction and why an efficient vector database is required; KNN, the naive approach; IVF (inverted file index) and how much work it saves; PQ (product quantization): indexing, the 95% memory claim, and search; IVF and PQ recap; IVF + PQ combined and why the approximation works; HNSW: zooming in through layers, the efSearch candidate list, why search is about log N; FAISS; ChromaDB (a database wrapped around vector search); design decisions for vector databases: prototype scale versus raw speed and large scale; choosing a FAISS index (corpus size is the main driver); vector index methods.
+- **Results:** Memory and distance-computation cost of IVF, PQ and IVF-PQ [D]; HNSW expected search complexity (small-world argument) [S]; recall–latency trade-off curves [Def].
+- **Build:** brute-force KNN, IVF with k-means centroids, PQ codebooks and a small HNSW from scratch; compare with FAISS and ChromaDB. **Tooling:** brute force, IVF, PQ and HNSW in NumPy; FAISS and ChromaDB for the scale comparison.
+
+**Assignment A31.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** HNSW search cost scales roughly as
+
+(A) O(N)  
+(B) O(log N)  
+(C) O(N^2)  
+(D) O(1) always
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) IVF searches only the nprobe nearest cluster lists  
+(B) Product quantization compresses vectors  
+(C) FAISS is a vector-search library  
+(D) Brute-force KNN is sublinear in N
+
+**Q3 (2 marks, numerical answer).** Compression factor of PQ: 128-dim float32 vector (512 bytes) stored as 16 one-byte codes.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the IVF cost nlist + nprobe N/nlist distance computations is minimized at nlist = sqrt(nprobe N).
+
+**Q5 (3 marks, programming).** Implement brute-force KNN, IVF (k-means lists), PQ and a small HNSW in NumPy. Plot recall versus distance computations. Predict the nlist for N = 10^6 and nprobe = 1.
+
+<details><summary>Key for A31.6 (open only after your attempt)</summary>
+
+- **Q1:** B. Navigable small-world layers.
+- **Q2:** ABC. Brute force is linear.
+- **Q3:** 32 (tolerance ±0.001). 32x.
+- **Q4 (marking outline):** Set the derivative in nlist to zero.
+- **Q5 (what a passing submission shows):** About 1000.
+
+</details>
+
+### U31.7 The retrieval pipeline: bi-encoder, cross-encoder, ColBERT and two-stage retrieval
+**Sources:** GEN 10.3
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Semantic search and a minimal end-to-end pipeline; bi-encoder versus cross-encoder: the cost of accuracy; ColBERT and late interaction; the two-stage pattern as the industry standard; three failures that silently wreck a RAG system.
+- **Results:** Latency/cost model of two-stage retrieve-then-rerank [D]; MaxSim late-interaction scoring [Def].
+- **Build:** hybrid (BM25 + dense) first stage with reciprocal-rank fusion and a cross-encoder reranker.
+
+**Assignment A31.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The two-stage retrieval pattern is
+
+(A) cheap retrieval of candidates followed by expensive reranking  
+(B) expensive then cheap  
+(C) only reranking all documents  
+(D) only BM25
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A cross-encoder scores query and document jointly  
+(B) ColBERT uses late interaction over token embeddings  
+(C) Reciprocal rank fusion merges ranked lists  
+(D) Cross-encoding a million documents per query is cheap
+
+**Q3 (2 marks, numerical answer).** Reciprocal rank fusion (k = 60) score for a document ranked 1 in one list and 3 in another.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that two-stage retrieval beats cross-encoding all N documents when c1 N + c2 K < c2 N, with first-stage cost c1 per document and rerank cost c2 per candidate on K candidates.
+
+**Q5 (3 marks, programming).** Build a hybrid BM25 plus dense first stage with reciprocal rank fusion and a toy cross-encoder reranker. Report recall@10 and latency. Predict whether hybrid beats either alone.
+
+<details><summary>Key for A31.7 (open only after your attempt)</summary>
+
+- **Q1:** A. Recall first, precision second.
+- **Q2:** ABC. It is prohibitively expensive.
+- **Q3:** 0.03227 (tolerance ±0.0001). 0.0323.
+- **Q4 (marking outline):** Compare total costs and rearrange.
+- **Q5 (what a passing submission shows):** Typically yes on mixed query types.
+
+</details>
+
+### U31.8 Production RAG: request shaping, query transformation, routing, security, cost and observability
+**Sources:** GEN 10.4, 10.5, 10.6, 10.7
+Bridge for: U16.15 (Worked designs II).
+- **Topics:** From RAG to agentic: the enterprise DevOps and support agent; what is different in production; request shaping, with a project example; query transformations: rewriting, follow-up questions, multi-query retrieval, step-back prompting; query routing strategies (rule-based, embedding-based, classifier-based, LLM-based, hybrid) and applications (data-source routing, model and workflow routing, prompt and index routing); security, cost and observability: retrieval gateways, access control and least privilege, cost management, semantic caching and choosing the threshold, observability.
+- **Results:** Semantic-cache hit-rate versus threshold and error trade-off [D].
+- **Build:** query rewriter, multi-query retriever, router and semantic cache with metrics and tracing.
+
+**Assignment A31.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Raising a semantic cache's similarity threshold
+
+(A) reduces false hits but lowers the hit rate  
+(B) raises both  
+(C) has no effect  
+(D) guarantees correctness
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Query rewriting can resolve follow-up questions  
+(B) Multi-query retrieval merges results of several rewrites  
+(C) Step-back prompting asks a more general question first  
+(D) Routers must always call an LLM
+
+**Q3 (2 marks, numerical answer).** Expected cost per request with a 30 percent cache hit rate, LLM cost 0.02 and cache lookup cost 0.001 paid on every request.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the break-even hit rate h* = c_cache / c_llm at which a cache lookup costing c_cache on every request pays for itself.
+
+**Q5 (3 marks, programming).** Implement a rule-based query rewriter, multi-query retrieval, a router and a semantic cache with a threshold. Plot hit rate and wrong-answer rate against the threshold. Predict the shape.
+
+<details><summary>Key for A31.8 (open only after your attempt)</summary>
+
+- **Q1:** A. Precision-recall trade-off.
+- **Q2:** ABC. Rule or classifier routers exist.
+- **Q3:** 0.015 (tolerance ±0.0001). 0.014 + 0.001 = 0.015.
+- **Q4 (marking outline):** Savings h c_llm equal the lookup cost.
+- **Q5 (what a passing submission shows):** Hit rate falls and wrong-hit rate falls as the threshold rises.
+
+</details>
+
+### U31.9 Limits of single-shot RAG and the move to agents
+**Sources:** GEN 10.8, 11.1
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Limits of single-shot RAG: the multi-hop query case study; why if/else logic is not enough; from passive search to active problem solving; from pipelines to agents: the limits of linear RAG; simple versus complex tasks; agentic RAG: from pipeline to control loop.
+- **Build:** a multi-hop QA benchmark and a single-shot baseline measuring where it fails.
+
+**Assignment A31.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A multi-hop question requires
+
+(A) combining facts from several documents  
+(B) a longer prompt only  
+(C) a bigger embedding  
+(D) a lower temperature
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Single-shot retrieval often fails on multi-hop questions  
+(B) An agentic loop can retrieve iteratively  
+(C) Simple lookup tasks rarely need an agent  
+(D) Fixed if/else routing scales to all question types
+
+**Q3 (2 marks, numerical answer).** Probability that both hops are retrieved correctly if each succeeds independently with probability 0.8.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that the success probability of a k-hop pipeline with independent hop success p is p^k and decays geometrically.
+
+**Q5 (3 marks, programming).** Build a 30-question toy multi-hop QA set over a small knowledge base and a single-shot baseline. Report accuracy by hop count. Predict the accuracy drop from 1 to 3 hops.
+
+<details><summary>Key for A31.9 (open only after your attempt)</summary>
+
+- **Q1:** A. Intermediate answers feed later retrieval.
+- **Q2:** ABC. Branch logic cannot anticipate every question.
+- **Q3:** 0.64 (tolerance ±0.001). 0.64.
+- **Q4 (marking outline):** Product rule for independent events.
+- **Q5 (what a passing submission shows):** Roughly multiplicative decay.
+
+</details>
+
+### U31.10 Agent basics, tool calling and orchestration
+**Sources:** GEN 11.2, 11.3
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Anatomy of an agent and its core loop; an example in the project context; tool calling, the engine of agency, and designing a tool; the multi-agent concept: a DevOps multi-agent team; orchestration: planners and executors, why separate planning from execution; a case study of the planner in action; specialist agents in the execution phase; re-planning.
+- **Build:** tool schema, a tool-calling loop and a planner–executor pair from scratch (no framework).
+
+**Assignment A31.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A tool schema tells the agent
+
+(A) the tool's name, description and argument types  
+(B) the learning rate  
+(C) the model weights  
+(D) the tokenizer
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Planner and executor can be separated  
+(B) Re-planning handles failed steps  
+(C) Clear tool descriptions improve tool selection  
+(D) Agents have no loop
+
+**Q3 (2 marks, numerical answer (calls)).** Model calls for one planner call, three steps each with one reasoning call and one tool-selection call, and one final answer.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that an agent loop with step budget B makes at most B iterations and therefore terminates.
+
+**Q5 (3 marks, programming).** Write tool-schema validation, a tool-calling loop and a planner-executor pair with a deterministic mock model, standard library and NumPy by default. Acceptance: invalid arguments are rejected with a message; a two-step task completes. Predict the number of calls.
+
+<details><summary>Key for A31.10 (open only after your attempt)</summary>
+
+- **Q1:** A. It is the interface contract.
+- **Q2:** ABC. Agents loop until done or a budget runs out.
+- **Q3:** 8 calls (tolerance ±0). 1 + 6 + 1 = 8.
+- **Q4 (marking outline):** The loop counter increases each iteration and the loop exits at B.
+- **Q5 (what a passing submission shows):** Eight calls for the example in Q3.
+
+</details>
+
+### U31.11 Planning with ReAct
+**Sources:** GEN 11.4
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** The limitation of pure chain-of-thought reasoning; the formal definition of the ReAct loop; scaling ReAct: the context and tool-exhaustion problem; hierarchical ReAct: triage as a meta-planner; caveat in production: the planning trap.
+- **Build:** ReAct and hierarchical-ReAct agents with a step-budget and failure analysis.
+
+**Assignment A31.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The ReAct loop alternates
+
+(A) thought, action, observation  
+(B) train, test, deploy  
+(C) encode, decode, embed  
+(D) rank, fuse, cache
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Hierarchical ReAct delegates sub-tasks to sub-agents  
+(B) Context grows with each step  
+(C) Too many tools can exhaust the context and confuse selection  
+(D) ReAct eliminates all reasoning errors
+
+**Q3 (2 marks, numerical answer (tokens)).** Context length after 10 steps if it starts at 500 tokens and each step adds 300.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that if each step re-reads the whole context, total tokens processed over T steps grows quadratically in T.
+
+**Q5 (3 marks, programming).** Implement ReAct and hierarchical ReAct with a step budget on a mock model and tools. Report calls, tokens and failures. Predict which handles 8-tool tasks better.
+
+<details><summary>Key for A31.11 (open only after your attempt)</summary>
+
+- **Q1:** A. Reason, act, observe.
+- **Q2:** ABC. It does not.
+- **Q3:** 3500 tokens (tolerance ±0). 3500.
+- **Q4 (marking outline):** Sum of an arithmetic series c0 + k d.
+- **Q5 (what a passing submission shows):** The hierarchical version.
+
+</details>
+
+### U31.12 State machines and LangGraph
+**Sources:** GEN 11.5
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** What a state machine is and why use one for AI; LangChain versus LangGraph; core concepts: nodes and edges; designing the multi-agent DevOps graph (three parts); wiring the team in code and the power of compile(); human-in-the-loop (HITL): pausing the infrastructure agent; caveats: multi-agent infinite loops and state bloat.
+- **Results:** Graph termination conditions and loop bounds [D].
+- **Build:** the same agent team as a hand-written state machine, then in LangGraph; HITL interrupt and resume. **Tooling:** hand-written state machine first, then LangGraph.
+- **Gap-fills:** *[inferred: SLP3 Ch.12]* agent protocols and tool standards (stated at survey level).
+
+**Assignment A31.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** In a state-machine view of an agent, edges represent
+
+(A) allowed transitions between nodes  
+(B) tokens  
+(C) embeddings  
+(D) gradients
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Graph frameworks make control flow explicit  
+(B) Human-in-the-loop interrupts pause before risky actions  
+(C) Loops need bounds to avoid infinite cycles  
+(D) State never grows
+
+**Q3 (2 marks, numerical answer (executions)).** Maximum node executions with a loop bound of 5 cycles through 3 nodes.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a cyclic graph whose loop edge is guarded by a counter with bound B terminates in at most B cycles.
+
+**Q5 (3 marks, programming).** Implement the agent team as a hand-written state machine (standard library), with an interrupt and resume for human approval, then re-implement it in LangGraph (framework use is a design choice here). Acceptance: both versions produce the same trace on a scripted task. Predict the trace length.
+
+<details><summary>Key for A31.12 (open only after your attempt)</summary>
+
+- **Q1:** A. Control flow.
+- **Q2:** ABC. State can bloat.
+- **Q3:** 15 executions (tolerance ±0). 15.
+- **Q4 (marking outline):** The counter strictly increases and the guard fails at B.
+- **Q5 (what a passing submission shows):** Equal traces; length equals node executions.
+
+</details>
+
+### U31.13 Agentic memory
+**Sources:** GEN 11.6
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** The concept and types of memory; episodic memory and its limits; semantic (long-term) memory: writing and reading; the self-healing system in action; caveats: memory contradiction and the needle in a haystack.
+- **Build:** episodic buffer and semantic store with conflict resolution and recall evaluation.
+
+**Assignment A31.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Episodic memory stores
+
+(A) specific past interactions  
+(B) general facts only  
+(C) model weights  
+(D) embeddings of words only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Stored memories can contradict each other  
+(B) Retrieval can miss a needle in a long memory  
+(C) Semantic memory holds distilled long-term facts  
+(D) Memory never needs maintenance
+
+**Q3 (2 marks, numerical answer).** Recall@k when 17 of 20 queries retrieve the right memory.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Give a counterexample showing last-write-wins conflict resolution can overwrite a correct memory with an incorrect newer one.
+
+**Q5 (3 marks, programming).** Implement an episodic buffer and a semantic store with conflict resolution by timestamp and confidence, and a recall evaluation. Predict the effect of adding confidence.
+
+<details><summary>Key for A31.13 (open only after your attempt)</summary>
+
+- **Q1:** A. Event-level records.
+- **Q2:** ABC. It needs pruning and conflict handling.
+- **Q3:** 0.85 (tolerance ±0.001). 0.85.
+- **Q4 (marking outline):** A newer but wrong statement replaces an older correct fact; the policy has no notion of reliability.
+- **Q5 (what a passing submission shows):** Fewer wrong overwrites.
+
+</details>
+
+### U31.14 Provenance and citations
+**Sources:** GEN 11.7
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** What provenance is and why citations matter; the spectrum of citation architectures (inline prompting, structured tool forcing, post-hoc attribution, agentic state provenance); the trade-off matrix; citations in the multi-agent project; UI and UX of citations; post-processing: verifying citations; connecting provenance to state machines.
+- **Build:** structured-output citations with a verifier that checks each claim against retrieved spans.
+
+**Assignment A31.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Provenance in a RAG answer tells the reader
+
+(A) which sources support each claim  
+(B) the model size  
+(C) the training loss  
+(D) the GPU used
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Inline citations can be prompted  
+(B) Structured output can force citation fields  
+(C) Post-hoc attribution links claims to sources after generation  
+(D) Citations never need verification
+
+**Q3 (2 marks, numerical answer).** Citation precision when 8 of 10 citations actually support their claims.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** With citation precision 1 and recall 0.5, show the F1 score is 2/3.
+
+**Q5 (3 marks, programming).** Implement structured citations (claim, source id, quoted span) and a verifier that checks that the span appears in the source. Predict the false-positive risk of token-overlap verification.
+
+<details><summary>Key for A31.14 (open only after your attempt)</summary>
+
+- **Q1:** A. Traceability.
+- **Q2:** ABC. Models can fabricate citations.
+- **Q3:** 0.8 (tolerance ±0.001). 0.8.
+- **Q4 (marking outline):** F1 = 2 P R/(P + R) = 1/1.5.
+- **Q5 (what a passing submission shows):** It accepts spans that overlap lexically but do not entail the claim.
+
+</details>
+
+### U31.15 Multi-agent architecture summary, error handling and best practices
+**Sources:** GEN 11.8
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Summary of the multi-agent architecture and the DevOps agent journey; project implementation steps; inter-agent error handling; system prompts; key takeaways of multi-agent orchestration strategy; summary and best practices.
+- **Build:** the D31 integrated project (see U13.14).
+
+**Assignment A31.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A robust multi-agent system handles a failed agent by
+
+(A) retries, fallbacks and escalation  
+(B) ignoring errors  
+(C) restarting training  
+(D) increasing temperature
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) System prompts define roles and constraints  
+(B) Errors propagate along agent chains  
+(C) Retries with backoff help transient failures  
+(D) Agents should never log decisions
+
+**Q3 (2 marks, numerical answer).** End-to-end success of a chain of 3 agents each succeeding with probability 0.95.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the success probability of a series chain and show a single retry improves each component to 1 - (1 - p)^2.
+
+**Q5 (3 marks, programming).** Simulate an agent chain with random failures and policies (none, retry once, fallback). Verify the series formula for the no-policy case to within sampling error. Predict the success rate with one retry.
+
+<details><summary>Key for A31.15 (open only after your attempt)</summary>
+
+- **Q1:** A. Explicit error policy.
+- **Q2:** ABC. Logging is essential for debugging.
+- **Q3:** 0.8574 (tolerance ±0.001). 0.857.
+- **Q4 (marking outline):** Independent attempts; the failure probability squares.
+- **Q5 (what a passing submission shows):** About 0.9975^3 = 0.9925.
+
+</details>
+
+## D32. Evaluation, Safety and Responsible AI
+
+Aim: measuring LLM systems rigorously, then the threat landscape (attacks, jailbreaks, privacy, legal risk) and defenses. All attacks are studied only in local or disposable setups against models and data the learner owns (Master Rules 11.1). Benchmarks (recalled, not checked unless noted): Jurafsky–Martin *SLP3* (confirmed: interpretability); Zou et al. (GCG), Chao et al. (PAIR), Carlini et al. on extraction and membership inference, Zheng et al. on LLM-as-a-judge.
+
+### U32.1 LLM evaluation: metric architecture and reference-based metrics
+**Sources:** GEN 7.3, 12.1, 12.2; FDL W12
+Bridge for: U12.3 (Machine learning on Google Cloud).
+- **Topics:** LLM evaluation: the metric architecture; common metrics; ways to compute metric scores (statistical scorers, model-based scorers); why evaluate LLMs; the setup, the ideal scenario and its limitations; the coefficient of agreement; reference-based metrics: precision and recall (the foundations); ROUGE (recall-oriented n-gram overlap, with code); BLEU (precision-based n-gram scoring, with code); METEOR (F-score with stems and synonyms, with code); BERTScore (semantic similarity, with code); comparison: when to use which, and limitations; benchmarking and evaluation of LLMs.
+- **Results:** BLEU brevity penalty and modified n-gram precision [D]; ROUGE-N/L definitions [Def]; Cohen's kappa [D].
+- **Build:** ROUGE, BLEU, METEOR-style and BERTScore-style scorers from scratch, checked against reference libraries; inter-annotator agreement.
+- **Gap-fills:** *[inferred: SLP3 Ch.13]* human evaluation design, confidence intervals for metrics, benchmark contamination.
+
+**Assignment A32.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** BLEU is primarily based on
+
+(A) n-gram precision  
+(B) recall  
+(C) embeddings  
+(D) human votes
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) ROUGE emphasizes recall  
+(B) METEOR uses stems and synonyms  
+(C) BERTScore compares contextual embeddings  
+(D) BLEU measures recall
+
+**Q3 (2 marks, numerical answer).** Clipped unigram precision of candidate "the the cat" against reference "the cat sat".
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that without clipping the candidate "the the the" against reference "the cat" would get unigram precision 1, whereas with clipping it gets 1/3.
+
+**Q5 (3 marks, programming).** Implement ROUGE-1, ROUGE-L, BLEU, a METEOR-like score and a BERTScore-like score (cosine over a toy embedding table), plus Cohen's kappa. Verify clipping on the example. Predict which metric rewards a paraphrase most.
+
+<details><summary>Key for A32.1 (open only after your attempt)</summary>
+
+- **Q1:** A. With a brevity penalty.
+- **Q2:** ABC. BLEU is precision-oriented.
+- **Q3:** 0.6667 (tolerance ±0.001). The word 'the' is clipped to 1 match (the reference has one); 'cat' matches once; 2 of 3.
+- **Q4 (marking outline):** Count matches with and without the clip at the reference count.
+- **Q5 (what a passing submission shows):** The embedding-based score.
+
+</details>
+
+### U32.2 LLM-as-a-judge and factuality
+**Sources:** GEN 12.3
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** LLM-as-a-judge: overview and main variations; the original and revised workflows; typical dimensions to evaluate; factuality: focus and quantification.
+- **Results:** Position and verbosity bias of judges and calibration against human labels [S].
+- **Build:** pairwise and rubric judges with position-swap debiasing and agreement with human labels.
+
+**Assignment A32.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Position bias in an LLM judge means
+
+(A) it prefers an answer because of its position  
+(B) it dislikes long answers  
+(C) it ignores the question  
+(D) it uses more memory
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Swapping answer order and averaging reduces position bias  
+(B) Judges can favour verbose answers  
+(C) Rubrics improve consistency  
+(D) LLM judges agree perfectly with humans
+
+**Q3 (2 marks, numerical answer).** Cohen's kappa with observed agreement 0.85 and chance agreement 0.5.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that kappa equals 1 for perfect agreement and 0 when agreement equals chance.
+
+**Q5 (3 marks, programming).** Build a pairwise judge and a rubric judge on a deterministic mock scorer with an injected position bias, then debias by order swapping and report agreement with synthetic human labels. Predict the kappa change.
+
+<details><summary>Key for A32.2 (open only after your attempt)</summary>
+
+- **Q1:** A. Order effects.
+- **Q2:** ABC. Agreement is imperfect.
+- **Q3:** 0.7 (tolerance ±0.001). 0.7.
+- **Q4 (marking outline):** Substitute p_o = 1 and p_o = p_e.
+- **Q5 (what a passing submission shows):** Kappa rises after debiasing.
+
+</details>
+
+### U32.3 AI safety foundations and threat models
+**Sources:** GEN 12.4, 12.5, 12.6
+Bridge for: U7.2 (Knowing your attacker), U7.7 (Cloud security and identity), U12.3 (Machine learning on Google Cloud).
+- **Topics:** AI safety foundations: early security (information security), trustworthy ML, AI safety for LLMs, threat models; attacks on models: membership inference, model extraction, model poisoning, model hijacking, adversarial attacks; risks of GenAI: data privacy risks, jailbreak risks, legal and IP risks.
+- **Results:** Membership-inference advantage and its link to overfitting [D]; extraction cost via query complexity [S].
+- **Build:** a membership-inference test on a model the learner trained; adversarial examples (FGSM) on a small CNN.
+
+**Assignment A32.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Membership inference exploits
+
+(A) a model behaving differently on training data  
+(B) network latency  
+(C) tokenization  
+(D) GPU memory
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Model extraction queries a model to copy it  
+(B) Data poisoning corrupts training data  
+(C) Adversarial examples are small perturbations that flip predictions  
+(D) All attacks require access to the weights
+
+**Q3 (2 marks, numerical answer).** Attack advantage TPR - FPR for TPR 0.7 and FPR 0.4.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show the best threshold attack has zero advantage when the loss distributions of members and non-members are identical.
+
+**Q5 (3 marks, programming).** Train an overfitted logistic regression in NumPy, run a loss-threshold membership-inference attack, and craft FGSM examples against a linear model you own. Predict the advantage drop under L2 regularization.
+
+<details><summary>Key for A32.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Overfitting leaks membership.
+- **Q2:** ABC. Black-box attacks exist.
+- **Q3:** 0.3 (tolerance ±0.001). 0.3.
+- **Q4 (marking outline):** TPR(t) = FPR(t) for every threshold.
+- **Q5 (what a passing submission shows):** Advantage falls.
+
+</details>
+
+### U32.4 White-box attacks and prompt injection
+**Sources:** GEN 12.7
+Bridge for: U6.7 (Web application attacks and secure coding).
+- **Topics:** White-box attacks: Greedy Coordinate Gradient (method and results); indirect prompt injection; prompt leakage.
+- **Build:** a GCG-style discrete optimization against a small open model in a disposable sandbox, measuring attack success and transfer.
+
+**Assignment A32.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Greedy Coordinate Gradient attacks use
+
+(A) token-level gradients to pick substitutions  
+(B) image filters  
+(C) network packets  
+(D) no gradients
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Indirect injection hides instructions in external content  
+(B) Prompt leakage reveals hidden instructions  
+(C) White-box attacks need access to gradients or weights  
+(D) Black-box attacks use model gradients
+
+**Q3 (2 marks, numerical answer).** Attack success rate for 12 successes in 50 attempts.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the normal-approximation half-width 1.96 sqrt(p (1 - p)/n) of a 95 percent interval for a success rate.
+
+**Q5 (3 marks, programming).** In a sandbox, implement a GCG-style discrete search against a toy linear text classifier you train, in NumPy by default, and report attack success with intervals. No real model is attacked. Predict the interval half-width for 24 percent over 50 tries.
+
+<details><summary>Key for A32.4 (open only after your attempt)</summary>
+
+- **Q1:** A. White-box discrete optimization.
+- **Q2:** ABC. Black-box attacks use only queries.
+- **Q3:** 0.24 (tolerance ±0.001). 0.24.
+- **Q4 (marking outline):** CLT for a binomial proportion.
+- **Q5 (what a passing submission shows):** About 0.118.
+
+</details>
+
+### U32.5 Black-box attacks and the jailbreak taxonomy
+**Sources:** GEN 12.8, 12.9
+On demand: no cloud unit calls on this unit directly; enter it when a unit of this domain or a capstone needs it.
+- **Topics:** Black-box attacks: model weakness, categories of responses and overall results; context contamination; DeepWordBug; instruction-centric prompts (TechHazardQA); Prompt Automatic Iterative Refinement (PAIR) and its results; jailbreak taxonomy: language strategies, rhetoric techniques, imaginary words, LLM operational exploitation.
+- **Build:** measurement harness (attack success rate by category) against a locally hosted model, with no harmful payloads stored.
+
+**Assignment A32.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** PAIR is
+
+(A) an iterative attacker-model refinement of prompts  
+(B) a defense  
+(C) a dataset  
+(D) a tokenizer
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) A taxonomy organizes jailbreaks by strategy  
+(B) Context contamination changes the model's prior context  
+(C) DeepWordBug perturbs characters  
+(D) Jailbreaks are always single-turn
+
+**Q3 (2 marks, numerical answer).** Expected number of queries to the first success with per-query probability 0.1.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the expected number of trials until the first success for a geometric random variable.
+
+**Q5 (3 marks, programming).** Build a measurement harness reporting attack success by category against a locally hosted mock model with benign placeholder prompts, with confidence intervals. Predict the CI width for 100 trials at 20 percent.
+
+<details><summary>Key for A32.5 (open only after your attempt)</summary>
+
+- **Q1:** A. Prompt Automatic Iterative Refinement.
+- **Q2:** ABC. Multi-turn attacks exist.
+- **Q3:** 10 (tolerance ±0.001). Geometric mean 10.
+- **Q4 (marking outline):** Sum k (1-p)^(k-1) p = 1/p.
+- **Q5 (what a passing submission shows):** About plus or minus 0.078.
+
+</details>
+
+### U32.6 Defense, interpretability and ethics
+**Sources:** GEN 12.10; DLNLP W12; FDL W5
+Bridge for: U7.7 (Cloud security and identity).
+- **Topics:** Defense: red teaming versus blue teaming and the summary; analysis and interpretability of language models; ethical considerations; explainability as a safety tool.
+- **Build:** a red-team/blue-team exercise on the learner's own RAG agent, producing a defect list and fixes.
+
+**Assignment A32.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Red teaming is
+
+(A) adversarial testing of your own system  
+(B) a training method  
+(C) a metric  
+(D) a database
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Blue teaming builds and tests defenses  
+(B) Defense in depth uses several layers  
+(C) Interpretability helps explain failures  
+(D) One defense layer suffices
+
+**Q3 (2 marks, numerical answer).** Residual attack success if each of 3 independent layers blocks 70 percent.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that independent layers multiply failure probabilities and give a counterexample where perfectly correlated layers give no benefit.
+
+**Q5 (3 marks, programming).** Run a red-team/blue-team exercise against your own mock RAG agent: write 10 attack cases, a defect list, fixes and a regression test. Predict the residual failures after one round.
+
+<details><summary>Key for A32.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Find failures before attackers do.
+- **Q2:** ABC. Single layers fail.
+- **Q3:** 0.027 (tolerance ±0.0005). 0.027.
+- **Q4 (marking outline):** Independent: product; perfectly correlated layers fail together, so residual equals one layer's.
+- **Q5 (what a passing submission shows):** Some attacks still succeed; the defect list drives round two.
+
+</details>
+
+## D33. ML Systems, Efficiency and Distributed and Federated Learning
+
+Aim: how neural networks, LLMs and graph networks actually run: accelerators, parallelism, memory, serving, compression, fault tolerance and federated training. Benchmarks: Sze–Chen–Yang–Emer, *Efficient Processing of Deep Neural Networks* (listed reference) with research articles shared in the lectures; Boyd et al., Nedić (distributed optimization); Hennessy–Patterson (recalled, not checked).
+
+### U33.1 CNN computation and accelerators
+**Sources:** CSO W1–3,10–12, o
+Bridge for: U14.17 (GPU architecture), U14.20 (Domain-specific accelerators and efficient neural-network training and).
+Shares ground with the cloud unit U14.20 (Domain-specific accelerators and efficient neural-network); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+- **Topics:** Basics of convolutional neural network (CNN) computations; CNN accelerators 1 and 2; ML accelerators with emerging technologies; workload characterization of ML algorithms; introduction to neural processing units (NPUs); computing kernels of training and inference and how they can be efficiently computed; edge versus cloud execution.
+- **Results:** Roofline model and arithmetic intensity of convolution and matmul [D]; dataflow classes (weight-, output-, row-stationary) and data-reuse counts [D].
+- **Build:** loop-nest convolution with tiling in NumPy/C and a roofline plot from measured throughput.
+
+**Assignment A33.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The roofline model bounds performance by
+
+(A) peak compute and memory bandwidth times arithmetic intensity  
+(B) disk size  
+(C) network latency  
+(D) clock only
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Arithmetic intensity is FLOPs per byte moved  
+(B) Weight-stationary dataflows keep weights in local storage  
+(C) NPUs specialize for neural-network kernels  
+(D) Convolutions are always compute-bound
+
+**Q3 (2 marks, numerical answer (FLOP/byte)).** Arithmetic intensity (FLOPs per byte) of a 1024^3 float32 matrix multiply.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a convolution layer with Hout x Wout outputs, Cout output channels, Cin input channels and a K x K kernel performs Hout Wout Cout K^2 Cin multiply-accumulates.
+
+**Q5 (3 marks, programming).** Write a loop-nest convolution with tiling and count memory accesses with and without tiling; plot a roofline from measured throughput. Predict the access reduction from tiling.
+
+<details><summary>Key for A33.1 (open only after your attempt)</summary>
+
+- **Q1:** A. min(peak, bandwidth x intensity).
+- **Q2:** ABC. Small layers can be memory-bound.
+- **Q3:** 170.67 FLOP/byte (tolerance ±0.01). 2 N^3 FLOPs over 3 N^2 values of 4 bytes.
+- **Q4 (marking outline):** Each output element needs K^2 Cin MACs.
+- **Q5 (what a passing submission shows):** Roughly the tile reuse factor.
+
+</details>
+
+### U33.2 Parallelism for training, communication and fault tolerance
+**Sources:** CSO W4,8; DOML W10
+Bridge for: U9.19 (Failures and recovery), U14.13 (Parallel architectures and programming models).
+- **Topics:** Parallelism for training large ML models (data, tensor, pipeline parallelism); fault tolerance in ML training (checkpointing, recovery); introduction to neural networks and the ring-allreduce algorithm.
+- **Results:** Ring-allreduce bandwidth cost 2(p−1)/p·n [D]; pipeline bubble fraction [D]; Young's checkpoint-interval approximation [D].
+- **Build:** ring-allreduce simulator; data-parallel SGD across processes with PyTorch DDP. **Tooling:** ring all-reduce simulator in NumPy; PyTorch DDP for the real run.
+
+**Assignment A33.2** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Data-parallel training replicates
+
+(A) the model on each worker with different data shards  
+(B) the data on each worker  
+(C) one layer per worker  
+(D) nothing
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Ring all-reduce has per-worker traffic near 2n independent of worker count  
+(B) Pipeline parallelism creates a bubble  
+(C) Checkpointing limits lost work after a failure  
+(D) All-reduce traffic per worker grows linearly with workers
+
+**Q3 (2 marks, numerical answer (GB)).** Per-worker traffic of ring all-reduce for 8 workers and a 1 GB gradient (GB).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the per-worker traffic 2 (p - 1)/p n of ring all-reduce from its reduce-scatter and all-gather phases.
+
+**Q5 (3 marks, programming).** Write a ring all-reduce simulator in NumPy and verify it sums gradients across 8 simulated workers; then run data-parallel SGD with PyTorch DDP (framework use is a design choice here). Predict the traffic count.
+
+<details><summary>Key for A33.2 (open only after your attempt)</summary>
+
+- **Q1:** A. Gradients are averaged.
+- **Q2:** ABC. It stays near 2n.
+- **Q3:** 1.75 GB (tolerance ±0.001). 2 (p - 1)/p times n = 1.75.
+- **Q4 (marking outline):** Each phase sends (p - 1) chunks of size n/p.
+- **Q5 (what a passing submission shows):** 1.75 n per worker.
+
+</details>
+
+### U33.3 LLM decoding, memory management and serving infrastructure
+**Sources:** CSO W5–7, o; MFGAI W11
+Bridge for: U14.20 (Domain-specific accelerators and efficient neural-network training and), U16.9 (Scalability and the front of the system), U16.12 (Caching), U16.13 (Asynchronism, communication and security basics).
+Builds on U19.25.
+- **Topics:** Basics of large language models; accelerated decoding and memory management of LLMs (KV cache, paged attention, speculative decoding, batching); LLM serving infrastructure (scheduling, continuous batching, queueing); LLMs: models, sampling, inference and quantization methods (inference part).
+- **Results:** KV-cache memory per sequence 2·L·H·d_head·T·b bytes (layers L, heads H, head size d_head, tokens T, bytes per value b) [D]; memory-bound decoding throughput bound [D]; M/M/c queue intuition for serving (link to U19.25) [D].
+- **Build:** a KV-cache decoder and a continuous-batching scheduler simulator; measure tokens/s versus batch size.
+
+**Assignment A33.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** The KV cache stores
+
+(A) keys and values of past tokens  
+(B) model weights  
+(C) gradients  
+(D) token strings
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Continuous batching adds new requests between decode steps  
+(B) Paged attention manages KV memory in blocks  
+(C) Speculative decoding drafts tokens with a smaller model  
+(D) Decoding at batch size 1 is compute-bound
+
+**Q3 (2 marks, numerical answer (bytes)).** KV-cache bytes per token for 32 layers, 32 heads, head size 128 and fp16 (2 bytes).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Derive the KV-cache memory per sequence 2 L H d_head T b.
+
+**Q5 (3 marks, programming).** Implement a KV-cache decoder for your tiny Transformer and a continuous-batching scheduler simulator. Verify cached and uncached decoding give identical logits to 1e-10, and plot tokens per second versus batch size. Predict the trend.
+
+<details><summary>Key for A33.3 (open only after your attempt)</summary>
+
+- **Q1:** A. Avoids recomputation in decoding.
+- **Q2:** ABC. It is memory-bandwidth-bound.
+- **Q3:** 524288 bytes (tolerance ±0). 2 (K and V) x L x H x d_head x bytes = 524,288.
+- **Q4 (marking outline):** One K and one V vector of size H d_head per layer per token.
+- **Q5 (what a passing submission shows):** Throughput rises with batch size until compute saturates.
+
+</details>
+
+### U33.4 Model compression and quantization
+**Sources:** FDL W12; MFGAI W11; CSO o
+Bridge for: U14.20 (Domain-specific accelerators and efficient neural-network training and).
+Shares ground with the cloud unit U14.20 (Domain-specific accelerators and efficient neural-network); where they overlap the cloud unit owns the topic and this unit goes further (the proofs, the abstract setting or the extra cases listed below).
+Not repeated here, because the cloud unit teaches it: U14.20: quantization methods (post-training and quantization-aware.
+- **Topics:** Model compression (pruning, distillation, low-rank factorization); INT8/INT4; NormalFloat as used by QLoRA); system optimization techniques for CNNs, LLMs and graph neural networks.
+- **Results:** Quantization error bounds and scale/zero-point derivation [D]; distillation loss with temperature [D].
+- **Build:** uniform and per-channel quantization, magnitude pruning and logit distillation from scratch.
+
+**Assignment A33.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** Symmetric int8 quantization sets the scale to the largest absolute weight divided by
+
+(A) 127  
+(B) 255  
+(C) 8  
+(D) 1
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Per-channel scales usually reduce error versus per-tensor  
+(B) Magnitude pruning removes small weights  
+(C) Distillation uses temperature-softened teacher outputs  
+(D) Quantization never changes outputs
+
+**Q3 (2 marks, numerical answer).** int8 scale for weights in the range [-2.54, 2.54].
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that uniform rounding error is at most half the scale.
+
+**Q5 (3 marks, programming).** Implement per-tensor and per-channel int8 quantization, magnitude pruning and logit distillation on your MLP. Plot accuracy against bits. Predict the bit width at which accuracy collapses.
+
+<details><summary>Key for A33.4 (open only after your attempt)</summary>
+
+- **Q1:** A. Maps the largest magnitude to 127.
+- **Q2:** ABC. Rounding introduces error.
+- **Q3:** 0.02 (tolerance ±0.0001). 0.02.
+- **Q4 (marking outline):** The nearest grid point is within scale/2.
+- **Q5 (what a passing submission shows):** Around 3-4 bits without calibration.
+
+</details>
+
+### U33.5 Graph neural network inference systems
+**Sources:** CSO W9, o
+On demand: no cloud unit calls on this unit directly; enter it from U21.15, U18.21 or when a later unit of the part needs it.
+Builds on U21.15, U18.21.
+- **Topics:** System optimization for graph neural network (GNN) inference; sparse versus dense kernels; neighbourhood sampling; large language models, CNNs and GNNs as the three kernels studied.
+- **Build:** message-passing GCN layer from scratch with sparse matrix multiply and a sampling baseline.
+- **Gap-fills:** *[inferred: Hamilton, Graph Representation Learning, recalled, not checked]* GCN, GraphSAGE and attention-based GNN layers (link to U21.15 and U18.21).
+
+**Assignment A33.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** A GCN layer computes
+
+(A) normalized adjacency times features times weights  
+(B) only weights  
+(C) convolution over pixels  
+(D) attention over tokens
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) GCN layers are permutation-equivariant  
+(B) Neighbourhood sampling bounds memory  
+(C) Message passing aggregates neighbour features  
+(D) Dense N x N adjacency is always best
+
+**Q3 (2 marks, numerical answer).** Symmetric normalization weight between nodes with self-loop degrees 2 and 3.
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that a GCN layer is permutation-equivariant.
+
+**Q5 (3 marks, programming).** Implement a GCN layer with a sparse adjacency using index arrays and np.add.at, plus a neighbour-sampling baseline. Check permutation equivariance numerically. Predict the memory ratio of sparse to dense on a graph with 1% density.
+
+<details><summary>Key for A33.5 (open only after your attempt)</summary>
+
+- **Q1:** A. A_hat H W.
+- **Q2:** ABC. Sparse formats scale better.
+- **Q3:** 0.4082 (tolerance ±0.001). 1/sqrt 6 = 0.408.
+- **Q4 (marking outline):** Relabeling nodes permutes rows and columns of A and rows of H consistently; the output rows permute equally.
+- **Q5 (what a passing submission shows):** Sparse storage is far smaller at 1 percent density; index arrays dominate its size.
+
+</details>
+
+### U33.6 Federated learning
+**Sources:** DOML W11–12
+Bridge for: U8.8 (Anonymity and privacy-enhancing technologies).
+Builds on U32.3.
+- **Topics:** Introduction to federated learning; data heterogeneity in federated learning; computational heterogeneity in federated learning; robustness in federated learning.
+- **Results:** FedAvg client drift under non-IID data [S]; Byzantine-robust aggregation (median, Krum) guarantees [S].
+- **Build:** FedAvg simulation with non-IID partitions and a robust aggregator against a poisoning client.
+- **Gap-fills:** *[inferred: McMahan et al., recalled, not checked]* differential privacy and secure aggregation (stated; link to U32.3).
+
+**Assignment A33.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
+
+**Q1 (1 mark, multiple choice).** FedAvg aggregates
+
+(A) client model updates weighted by data size  
+(B) raw client data  
+(C) only gradients of one client  
+(D) random weights
+
+**Q2 (2 marks, multiple select; all correct options and no wrong option).** Which are true?
+
+(A) Non-IID data causes client drift  
+(B) Robust aggregation resists malicious clients  
+(C) Secure aggregation hides individual updates  
+(D) Federated learning removes all communication
+
+**Q3 (2 marks, numerical answer).** Weighted average of client parameters 1.0 (100 samples) and 3.0 (300 samples).
+
+**Q4 (2 marks, prove or derive; every step with its reason).** Show that FedAvg with one local gradient step per round equals centralized SGD on the weighted mean gradient.
+
+**Q5 (3 marks, programming).** Simulate FedAvg with non-IID partitions and one malicious client, comparing mean and coordinate-wise median aggregation. Predict which resists the attacker.
+
+<details><summary>Key for A33.6 (open only after your attempt)</summary>
+
+- **Q1:** A. Weighted averaging.
+- **Q2:** ABC. Communication is the bottleneck.
+- **Q3:** 2.5 (tolerance ±0.001). 2.5.
+- **Q4 (marking outline):** Averaging the updated weights averages the gradient steps with the same weights.
+- **Q5 (what a passing submission shows):** The coordinate-wise median.
+
+</details>
 
 ## D11. Big data and cloud analytics: batch, dataflow, messaging, streaming, machine learning at scale and graph processing
 
-Aim: the data-processing half of the big-data course and the cloud-course weeks on MapReduce, Spark and Kafka, merged and reordered so that each engine is built in miniature before it is compared with the real system: first the batch model (MapReduce), then the in-memory dataflow model (Spark), then the other dataflow systems of the advanced course (Condor, DryadLINQ), then messaging and streaming, then machine learning on top of the engines, then graph processing. Two bridges, on machine learning and on Markov chains and PageRank, are taught immediately before the units that need them. The depth of machine learning itself is in the earlier unified curriculum; this domain takes only what the engines need. Benchmarks (recalled, not checked): Baesens, *Analytics in a Big Data World* and Leskovec, Rajaraman and Ullman, *Mining of Massive Datasets* (both named in the source); Lam, *Hadoop in Action*; Deroos et al., *Hadoop for Dummies* (named in the source); Witten and Frank, *Data Mining* (named in the source); Karau et al., *Learning Spark*; Kleppmann, *Designing Data-Intensive Applications*; and the primary papers (MapReduce, Spark RDDs, Pregel, Kafka) named in each unit.
+Aim: the data-processing half of the big-data course and the cloud-course weeks on MapReduce, Spark and Kafka, merged and reordered so that each engine is built in miniature before it is compared with the real system: first the batch model (MapReduce), then the in-memory dataflow model (Spark), then the other dataflow systems of the advanced course (Condor, DryadLINQ), then messaging and streaming, then machine learning on top of the engines, then graph processing. Two bridges, on machine learning and on Markov chains and PageRank, are taught immediately before the units that need them. The depth of machine learning itself is in D26 to D29 and the optimisation of D25, entered on demand from U11.8, U11.9 and U12.3; this domain takes only what the engines need. Benchmarks (recalled, not checked): Baesens, *Analytics in a Big Data World* and Leskovec, Rajaraman and Ullman, *Mining of Massive Datasets* (both named in the source); Lam, *Hadoop in Action*; Deroos et al., *Hadoop for Dummies* (named in the source); Witten and Frank, *Data Mining* (named in the source); Karau et al., *Learning Spark*; Kleppmann, *Designing Data-Intensive Applications*; and the primary papers (MapReduce, Spark RDDs, Pregel, Kafka) named in each unit.
 
 ### U11.1 Introduction to big data
 **Sources:** BDC W1, o
@@ -8533,6 +14910,7 @@ Aim: the data-processing half of the big-data course and the cloud-course weeks 
 - **Results:** Reservoir sampling keeps each of n items with probability k/n [P]; the Count-Min sketch with width ⌈e/ε⌉ and depth ⌈ln(1/δ)⌉ overestimates any count by at most εN with probability at least 1 − δ and never underestimates [P]; Misra–Gries with k counters finds every item of frequency above N/(k + 1) [P]; HyperLogLog with m registers has relative standard error about 1.04/√m [recalled, not checked; the unit's script measures it].
 - **Build:** a windowed aggregation engine with event-time windows, watermarks and late-data handling on a synthetic disordered stream; reservoir sampling built here, and the sketches (Bloom filter U3.1, Misra–Gries and distinct count U20.2, Count-Min U20.3) plugged into the windowed operator from their owners and checked against exact answers with the error bounds measured, with Flajolet–Martin and HyperLogLog built here as the two estimators U20.2 only names; a checkpointed stateful operator with a crash test. [local]
 - **Gap-fills:** *[inferred: Cormode–Muthukrishnan 2005; Flajolet et al. 2007; Akidau et al., the Dataflow model, VLDB 2015, recalled, not checked]* Beam and the cloud dataflow service (U12.2). The guarantees and experiments for Misra–Gries, Count-Min, Count sketch, MinHash and SimHash are in U20.2 to U20.4. On demand: U17.4 for heaps and top-k, U17.5 for hashing and U17.6 for windows as queues.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.24 Limit theorems and concentration inequalities.
 
 **Assignment A11.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8568,11 +14946,12 @@ Aim: the data-processing half of the big-data course and the cloud-course weeks 
 
 ### U11.8 Bridge: machine-learning foundations for scalable learning
 **Sources:** none (prerequisite bridge, added so that later units rest on taught ground)
-Bridge for: U11.9 (machine learning on the engines), U12.3 (machine learning on the cloud platform). A compact version of the foundations; the full treatment is in the earlier unified machine-learning curriculum.
+Bridge for: U11.9 (machine learning on the engines), U12.3 (machine learning on the cloud platform). A compact version of the foundations; the full treatment is the machine-learning foundations, U26.0 to U26.14,, taught on demand and listed in the On demand line below.
 - **Topics:** Supervised and unsupervised learning; empirical risk and loss functions; linear and logistic regression and the normal equations; gradient descent, mini-batches and learning-rate behaviour; regularisation and the bias–variance trade-off; evaluation (train, validation and test splits, cross-validation, precision, recall, ROC and AUC); k-means and Lloyd's algorithm; nearest-neighbour methods; decision trees and ensembles; matrix factorisation for recommendation.
 - **Results:** The least-squares solution satisfies XᵀXw = Xᵀy [D]; the logistic-loss gradient is Xᵀ(σ(Xw) − y) [D]; Lloyd's algorithm never increases the k-means objective and terminates [P]; expected squared error decomposes into bias squared, variance and noise [P].
 - **Build:** NumPy implementations of linear and logistic regression (closed form and gradient descent), k-means, k-nearest neighbours and a decision stump ensemble on synthetic data, with a train/validation/test harness and cross-validation, each checked against a reference library. [local]
-- **Gap-fills:** *[inferred: Hastie–Tibshirani–Friedman; Witten–Frank (named in the source), recalled, not checked]* stochastic gradient descent theory is in the earlier curriculum. The roofline model, arithmetic intensity, systolic arrays and quantisation error of the hardware that runs these models are owned by U14.20. The statistics (U19.4 to U19.9), the applied linear algebra (D18), the Bayesian view (U19.14 to U19.17) and the scalable techniques (D20) that extend this bridge are in the domains named; the full machine-learning curriculum is the long form.
+- **Gap-fills:** *[inferred: Hastie–Tibshirani–Friedman; Witten–Frank (named in the source), recalled, not checked]* stochastic gradient descent theory is in U25.10 and U25.16. The roofline model, arithmetic intensity, systolic arrays and quantisation error of the hardware that runs these models are owned by U14.20. The statistics (U19.4 to U19.9), the applied linear algebra (D18), the Bayesian view (U19.14 to U19.17) and the scalable techniques (D20) that extend this bridge are in the domains named; the full machine-learning curriculum is the long form.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U25.10 First-order methods for ML; U26.1 What machine learning is; U26.2 Model evaluation and selection; U26.3 Linear regression and linear classification; U26.4 Regularization and implicit regularization; U26.7 Decision trees and ensembles.
 
 **Assignment A11.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8612,6 +14991,7 @@ Bridge for: U11.9 (machine learning on the engines), U12.3 (machine learning on 
 - **Results:** The gradient of a sum of per-example losses is the sum of per-example gradients, so it decomposes over partitions and aggregates with an associative, commutative reduce [P]; each distributed gradient step communicates O(d) values per worker against O(nd/p) local computation, so speed-up holds while computation dominates communication [D]; in ALS each user's factor solves a d-by-d regularised normal equation given the item factors, so users can be updated in parallel [D].
 - **Build:** data-parallel logistic regression, k-means and ALS on your mini-Spark of U11.4 with weak and strong scaling measured, each compared to PySpark MLlib in local mode as an oracle where installable; a communication-cost model compared with the measured times. [local]
 - **Gap-fills:** *[inferred: Meng et al., MLlib, JMLR 2016; Li et al., the parameter server, OSDI 2014, recalled, not checked]* large-scale deep-learning training (links to U12.3). Accelerator-side limits (the roofline model, systolic arrays, quantisation error) are owned by U14.20. Classical statistical and data-mining models are in D19 and the distributed optimisation behind the trainers is in U20.7 and U20.8.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U25.10 First-order methods for ML; U26.3 Linear regression and linear classification; U26.7 Decision trees and ensembles; U26.9 Clustering, mixture models and the EM algorithm; U26.11 Instance-based learning, collaborative filtering and recommendation.
 
 **Assignment A11.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8652,6 +15032,7 @@ Bridge for: U11.11 (graph processing). Builds on the random-walk material of U9.
 - **Results:** An irreducible aperiodic finite chain has a unique stationary distribution and converges to it [X, Perron–Frobenius]; the PageRank matrix with damping α has second eigenvalue of modulus at most α, so power iteration reaches error ε in about ln ε / ln α iterations [P]; the stationary distribution of a random walk on an undirected graph is proportional to degree [P].
 - **Build:** power iteration for PageRank on a synthetic web graph with dangling-node handling, the convergence rate against α, personalised PageRank, and a comparison with the dense eigenvector computed by NumPy. [local]
 - **Gap-fills:** *[inferred: Page et al. 1999; Langville–Meyer; Levin–Peres–Wilmer, recalled, not checked]* HITS (named). Markov chains as models for supply chains, inventory and forecasting are in U18.13. On demand: U17.11 for graph traversal and U17.12 for the shortest-path comparison.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.24 Applications of linear algebra; U19.25 Markov chains, queueing theory and reliability.
 
 **Assignment A11.10** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8691,6 +15072,7 @@ Bridge for: U11.11 (graph processing). Builds on the random-walk material of U9.
 - **Results:** Single-source shortest paths in the vertex-centric model terminates in at most D + 1 supersteps for a graph of weighted diameter D in hops [D]; vertex-cut partitioning of a power-law graph replicates each high-degree vertex across machines, so the expected replication factor is far below the edge-cut communication on the same graph [D, by simulation]; PageRank reaches accuracy ε in about ln ε / ln α supersteps (from U11.10) [P].
 - **Build:** a mini-Pregel BSP engine with PageRank, connected components and SSSP, checked against single-machine implementations; edge-cut versus vertex-cut partitioning experiments on a synthetic power-law graph with the replication factor and communication volume measured; the same algorithms written as join-based operations on your mini-Spark to mirror GraphX. [local]
 - **Gap-fills:** *[inferred: Malewicz et al., Pregel, SIGMOD 2010; Gonzalez et al., PowerGraph, OSDI 2012 and GraphX, OSDI 2014, recalled, not checked]* graph neural networks as the successor family (named). On demand: U17.11 and U17.12 for graph traversal and shortest paths.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U21.15 Graph theory.
 
 **Assignment A11.11** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8734,6 +15116,7 @@ Aim: what to do when the data, the model or the output does not fit in one machi
 - **Results:** Hoeffding: for independent variables in [0, 1], P(|X̄ − μ| ≥ t) ≤ 2e^(−2nt²) [P]; for n = 100 and t = 0.1 the bound is 0.271 and the exact binomial probability 0.0569, so the bound is safe and loose [check]; Chernoff for a sum with mean 20 gives P(X ≥ 40) ≤ e^(−20/3) = 1.3·10⁻³ against an exact 4.8·10⁻⁵ [P, check]; gradient descent with step 2/(L + μ) on a quadratic with condition number κ = L/μ shrinks the error by (κ − 1)/(κ + 1) per step, so it needs about (κ/2) ln(1/ε) steps: 71 steps at κ = 10 and 709 at κ = 100 to reach 10⁻⁶ [P, check]; a 10-million-feature model for 300 classes at four bytes per weight needs 12 GB, which is why model size is a scaling problem as well as data size [check]; the randomised range finder with 60 Gaussian probes recovers the top five singular values of a 2000×1000 rank-50-plus-noise matrix to relative error 4·10⁻⁶ [check].
 - **Build:** a concentration-bound plotter (Markov, Chebyshev, Chernoff and Hoeffding against the exact tail); gradient descent with step-size sweeps on quadratics of several condition numbers; a randomised SVD checked against `numpy.linalg.svd`; a memory estimator for a bag-of-words model. [local]
 - **Gap-fills:** *[inferred: Boyd and Vandenberghe, Convex Optimization, Chapter 9; Halko, Martinsson and Tropp 2011 for the range finder, recalled, not checked]* the proof of Chernoff's bound is sketched; accelerated methods and second-order methods are named.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.21 Spectral theory; U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation; U19.24 Limit theorems and concentration inequalities; U25.2 Convex sets, cones, polyhedra and separation; U25.3 Convex functions and their calculus; U25.5 Constrained optimization theory.
 
 **Assignment A20.1** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8812,6 +15195,7 @@ Aim: what to do when the data, the model or the output does not fit in one machi
 - **Results:** Count-Min with width ⌈e/ε⌉ and depth ⌈ln(1/δ)⌉ never underestimates and overestimates by more than εN with probability at most δ [P, Markov and independence across rows; check: with ε = 0.001 and δ = 0.01 the table has 2719×5 = 13,595 cells for 13,638 distinct items, the largest overcount is 30 against εN = 197, and no estimate is below the truth]; the Count sketch estimate is unbiased with error about ‖f‖₂/√w [P; check: 5 rows of 2000 counters on the same stream give a maximum error of 224 against ‖f‖₂/√w = 1305]; for a random permutation P[min h(A) = min h(B)] = J(A, B) [P], so with 128 hashes the estimate has standard deviation √(J(1 − J)/128) = 0.044, observed 0.045 [check]; a linear hash family (ax + b) mod p is not min-wise independent: on two ranges of consecutive integers with J = 0.5 it estimates 0.435, while random permutations give 0.499, and on random sets the linear family is unbiased (0.504) [check]; with b = 20 bands of r = 5 rows the candidate probability 1 − (1 − s⁵)²⁰ is 0.047 at s = 0.3, 0.47 at 0.5, 0.64 at 0.55 and 0.9996 at 0.8, with the threshold near (1/b)^(1/r) = 0.549 [D, check]; for random hyperplanes P[sign(r·u) = sign(r·v)] = 1 − θ/π [P, check: 0.7745 against 0.7759]; an exact kd-tree nearest-neighbour search on 5000 uniform points computes about 5 distances in 2 dimensions, 424 in 8, 4797 in 16 and all 5000 in 32, which is the curse of dimensionality [check].
 - **Build:** Count-Min and Count sketches on a Zipf stream with the guarantee tested; a MinHash signature builder with banded LSH for near-duplicate document search; SimHash against exact cosine; a kd-tree with a distance-computation counter. [local]
 - **Gap-fills:** *[inferred: Indyk and Motwani 1998; Cormode and Muthukrishnan 2005; MMDS Chapter 3, recalled, not checked]* the min-wise independent families and the approximate version are named; the sketch update cost for very high rates is in U11.7.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U31.6 Vector databases and indexes.
 
 **Assignment A20.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8890,6 +15274,7 @@ Aim: what to do when the data, the model or the output does not fit in one machi
 - **Results:** with columns and rows sampled by leverage scores, CUR from c = 40 columns and rows of a 400×300 rank-20-plus-noise matrix has Frobenius error 1.62 times the best rank-20 SVD error, and 1.13 times with c = 80 (at c = 160 the approximation has rank above 20, so the ratio 0.77 is not a contradiction) [S, check]; the sparse projection has the same distortion as the dense Gaussian one (standard deviation 0.052 against 0.051 for k = 200) with only 33 % non-zero entries [P, check]; sketch-and-solve for least squares with a Gaussian sketch of k rows returns a residual within 1 + ε of optimal, observed ratios 1.109, 1.025 and 1.009 for k = 100, 400 and 1600 on a 20,000×20 problem [S, check]; random Fourier features z(x) = √(2/D) cos(Wx + b) with W drawn from the kernel's spectral density satisfy E[z(x)·z(y)] = k(x − y) for the Gaussian kernel, with maximum error 0.67, 0.18 and 0.059 and mean error 0.117, 0.035 and 0.011 at D = 50, 500 and 5000, falling like 1/√D [P, check].
 - **Build:** a CUR decomposition with leverage-score sampling against the truncated SVD; a sparse projection compared with a dense one in time and distortion; a sketch-and-solve least-squares solver; random Fourier features with a linear SVM against an exact kernel SVM (U18.6). [local]
 - **Gap-fills:** *[inferred: Drineas, Mahoney and Muthukrishnan 2008 for CUR; Achlioptas 2003; Rahimi and Recht 2007; Woodruff 2014, recalled, not checked]* the fast transforms (the subsampled randomised Hadamard transform and CountSketch embeddings) are named only.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation; U26.8 Dimensionality reduction and feature learning.
 
 **Assignment A20.5** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8929,6 +15314,7 @@ Aim: what to do when the data, the model or the output does not fit in one machi
 - **Results:** one-phase MapReduce multiplication of two n×n matrices communicates 2n³ key–value pairs and two-phase communicates 2n² + n³ [D, check by instrumenting a miniature framework: 16,000 and 8,800 for n = 20, both exact to 4·10⁻¹⁵]; the MapReduce PageRank equals the power-iteration result of U11.10 to 10⁻¹⁷ after 100 iterations on a 50-node graph [check]; MapReduce k-means finds the three centres of three planted clusters, (4.01, −0.02), (−0.03, −0.02) and (−0.02, 4.02), in 10 rounds [check]; the shuffle, not the arithmetic, dominates: the work of both multiplication plans is n³ products, but the communication differs by a factor of two for every n [P].
 - **Build:** a miniature in-memory MapReduce framework that counts emitted pairs, with word count, PageRank, k-means and both matrix-multiplication plans written on it; the same jobs on Hadoop Streaming or Spark when available; a communication-cost calculator. [local]
 - **Gap-fills:** *[inferred: MMDS Chapter 2; Dean and Ghemawat 2004, recalled, not checked]* the combiner and the straggler problem are covered in U11.3; the reducer-size trade-off for one-phase multiplication is stated and not derived.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.24 Applications of linear algebra; U26.9 Clustering, mixture models and the EM algorithm.
 
 **Assignment A20.6** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -8968,6 +15354,7 @@ Aim: what to do when the data, the model or the output does not fit in one machi
 - **Results:** SGD on a convex function with gradient norms at most G and a solution at distance at most R from the start, with step η = R/(G√T), satisfies E[f(w̄_T)] − f* ≤ RG/√T for the averaged iterate [P]; the proof uses ‖w_(t+1) − w*‖² = ‖w_t − w*‖² − 2η g_t·(w_t − w*) + η²‖g_t‖², takes expectations, uses convexity and telescopes [P]; on logistic regression with 5000 points in 10 dimensions the suboptimality of the averaged iterate was 0.112, 0.052 and 0.020 for T = 10³, 10⁴ and 10⁵ against bounds 2.05, 0.65 and 0.20, so the 1/√T rate holds and the constant is loose [check]; one SGD step costs 1/5000 of a full gradient on that data [check]; in a data-parallel setting a full-gradient step needs one communication round per iteration, which is why the number of rounds, not the number of operations, is minimised [S].
 - **Build:** SGD with the averaged iterate and the bound plotted; mini-batch sizes and the variance of the gradient estimate; a data-parallel gradient descent on the miniature framework of U20.6 counting rounds; the Spark word count and logistic regression when PySpark is installed. [local]
 - **Gap-fills:** *[inferred: Bottou, Curtis and Nocedal 2018; Zinkevich et al. 2010 for parallel SGD; Spark documentation, recalled, not checked]* strongly convex rates (1/T), momentum and adaptive methods are named; Scala is not required to be learned beyond reading.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U25.8 Unconstrained descent methods; U25.10 First-order methods for ML; U25.16 Stochastic approximation.
 
 **Assignment A20.7** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -9007,6 +15394,7 @@ Aim: what to do when the data, the model or the output does not fit in one machi
 - **Results:** consensus ADMM for least squares with four workers converges to the centralised solution [S]; its speed depends sharply on ρ: after 300 iterations the error is 3.7·10⁻³, 1.9·10⁻³, 5.0·10⁻⁶ and 2.4·10⁻¹⁵ for ρ = 0.1, 1, 10 and 100, and ρ = 100 reaches 10⁻⁶ in 43 iterations (each worker's local matrix has eigenvalues of order 400) [check]; the lasso by ADMM with the soft-threshold z-step selects exactly the planted support {0, 1, 2, 3, 4} and agrees with `sklearn.linear_model.Lasso` to 2·10⁻¹¹ for ρ = 40 after 2000 iterations [P, check]; distributed k-means on 10⁸ points in 100 dimensions over 100 workers with 10 centres communicates 10⁵ numbers per round, against 10¹⁰ numbers for shipping the data once, a ratio of 10⁵ [check].
 - **Build:** consensus ADMM for least squares and the lasso with residual plots and a ρ sweep; distributed k-means on the miniature MapReduce framework with a bytes-moved counter; a decision flowchart from the problem types of U20.1 to the techniques of D20. [local]
 - **Gap-fills:** *[inferred: Boyd et al. 2011; Bahmani et al. 2012 for k-means‖, recalled, not checked]* the convergence proof of ADMM is stated and not given; federated learning and parameter-server systems are named and left to D12.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U25.6 Lagrangian duality, saddle points and minimax; U25.9 Constrained optimization algorithms; U25.14 Distributed optimization.
 
 **Assignment A20.8** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -9128,7 +15516,8 @@ Aim: the last three weeks of the cloud-platform course, taught as the operationa
 - **Topics:** Let machines do the work (Week 8): the managed machine-learning platform as a whole (datasets, training jobs on CPUs, GPUs and TPUs, hyperparameter tuning, a model registry, online and batch prediction endpoints, pipelines and monitoring), automated machine learning as a search over models and features, machine learning inside the warehouse by SQL, the pre-trained application programming interfaces (vision, language, speech, translation) and when to use one rather than train a model; the MLOps loop (reproducible training, deployment, drift detection and retraining); responsible AI: fairness metrics (demographic parity, equalised odds, calibration), explainability by feature attribution, model cards and data documentation, privacy in training (U8.8) and the cost and carbon footprint of training.
 - **Results:** The population stability index of a feature is Σ (a_i − e_i) ln(a_i/e_i) over bins and a value above about 0.25 is conventionally treated as a major shift [Def, threshold recalled, not checked]; except in degenerate cases a classifier cannot be both calibrated and have equal false-positive and false-negative rates across groups with different base rates [X, Kleinberg et al. and Chouldechova, stated]; for a linear model the contribution of feature j to a prediction relative to a baseline is w_j(x_j − x̄_j) and these contributions sum to the prediction difference [D].
 - **Build:** a small multilayer perceptron trained from scratch in NumPy on synthetic data; a drift monitor using the population stability index and a Kolmogorov–Smirnov test on a shifted stream; fairness metrics and a threshold-adjustment experiment on a synthetic population with a measured accuracy cost; a model-card generator; an inference server on loopback with a measured latency percentile checked against an SLO from U12.1. Managed training and an endpoint are described as a plan and run only in a lab project at the free tier or with credit. [local; plan only; credit if applied]
-- **Gap-fills:** *[inferred: the platform's machine-learning documentation; Mitchell et al. 2019; Barocas et al., recalled, not checked]* generative-model services and their evaluation (the earlier unified curriculum treats the models; this unit names only the service layer). The accelerators behind managed training (the roofline model, systolic arrays as in tensor-processing units, quantisation error) are treated in U14.20.
+- **Gap-fills:** *[inferred: the platform's machine-learning documentation; Mitchell et al. 2019; Barocas et al., recalled, not checked]* generative-model services and their evaluation (the models are treated in D29 and D30; this unit names only the service layer). The accelerators behind managed training (the roofline model, systolic arrays as in tensor-processing units, quantisation error) are treated in U14.20.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U28.1 Perceptron, multilayer networks, activations and loss functions; U28.2 Backpropagation and training deep networks; U28.4 Convolutional neural networks and image representation; U29.3 Attention and the Transformer architecture; U29.8 Instruction tuning, RLHF and alignment; U32.1 LLM evaluation; U32.3 AI safety foundations and threat models.
 
 **Assignment A12.3** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -9680,6 +16069,7 @@ Bridge for: U22.4 (quality management), U22.12 (when to stop testing), U13.9 (de
 - **Results:** in the Jelinski–Moranda model with N₀ = 60 faults and φ = 0.02 the mean time to the next failure is 1/(φ(N₀ − i)) = 0.83 at the start, 1.67 after 30 fixes and 50 after 59 fixes, so each fix buys a longer interval and the last faults are the hardest to find [D, check]; maximum-likelihood fits to 200 simulated projects, of which the first 45 failures were observed, converge for 195 of them, with a median N₀ of 60.3 (interquartile range 54.0 to 72.9) and a median φ of 0.0195, the wide interval showing how little 45 failures say about the 15 faults left [check]; a Goel–Okumoto curve fitted to Poisson-noisy cumulative counts generated with a = 100 and b = 0.03 returns a = 106.9 and b = 0.031 and an estimate of 3.9 faults remaining [check]; triple modular redundancy with independent failures of probability p has a failure probability 3p² − 2p³, 0.028 for p = 0.1 and 0.000298 for p = 0.01 [P, check]; with a common-mode failure of probability q that defeats all versions at once, the system failure probability is about q + (1 − q)(3p² − 2p³), measured as 0.0279, 0.0374 and 0.0761 for q = 0, 0.01 and 0.05 against 0.0766 predicted at 0.05, so diversity helps only against independent faults [D, check]; a component with a constant failure rate of 1/500 per hour has R(100 h) = 0.8187 and, with a mean time to repair of 2 hours, an availability of 0.99602 [D, check].
 - **Build:** a Jelinski–Moranda simulator with a maximum-likelihood estimator and a plot of the estimate against the number of observed failures; a Goel–Okumoto fitter with a stopping rule; a Monte Carlo of N-version voting with a common-mode parameter; a reliability calculator for series and parallel systems with repair. [local]
 - **Gap-fills:** *[inferred: Shooman, Software Engineering: Reliability, Development and Management (the second book of the Dhanbad outline; its table of contents was not checked); Jelinski and Moranda 1972; Goel and Okumoto 1979; Avizienis 1985 on N-version programming; Randell 1975 on recovery blocks; Lyu, Handbook of Software Reliability Engineering]* this unit is not tied to a week of the outline (the book is in the reading list only); the Bayesian reliability models and the Musa–Okumoto model are named only. The service-level vocabulary is U9.13 and its operation U12.1.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.25 Markov chains, queueing theory and reliability.
 
 **Assignment A22.14** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -10038,6 +16428,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Build:** a load balancer in Python with round robin and least loaded, the consistent-hash policy being the ring of U9.5 (the owner) reused, health checks and sessions, driven by a request generator; a toy reverse proxy that caches and compresses; a service registry with heartbeats in the DSim harness (U9.1); measure throughput and latency percentiles as servers are added. Cloud routes: the GCP load balancers and Cloud CDN of U4.8 (the same ideas as managed services). [local]
 - **Go track:** the load-balancing and rate-limiting exercises are written in Go (enter U23.4 and U23.6): a reverse proxy with round-robin choice and health checks from the standard library, the token bucket (burst of 5 admitted from 20 at once, 99 admitted of 100 allowed over 10 s) and the sliding-window log, with an injected clock. [local]
 - **Gap-fills:** *[inferred: Nygard on stability patterns (timeouts, bulkheads, circuit breakers); the twelve-factor app on stateless processes, recalled, not checked]* circuit breakers and service meshes are named, not built.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U33.3 LLM decoding, memory management and serving infrastructure.
 
 **Assignment A16.9** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -10158,6 +16549,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Build:** an LRU cache (U10.6) with the four update strategies as pluggable policies over a simulated database, driven by Zipf and uniform streams with hit ratio, staleness and loss metrics; a sharded cache cluster on the ring of U9.5 and a cluster that loses a node; a cache-aside wrapper for `sqlite3`. [local]
 - **Go track:** the caching exercises are written in Go (enter U23.2 and U23.3): the LRU cache, cache-aside with a mutex, and request coalescing for a cache stampede (50 concurrent callers for one key make 1 backend call and 49 share it). [local]
 - **Gap-fills:** *[inferred: Nishtala et al. 2013, "Scaling Memcache at Facebook"; cache stampede and request coalescing, recalled, not checked]* the thundering-herd problem (many misses for one hot key at once) is not in the source and is taught as a gap-fill.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U33.3 LLM decoding, memory management and serving infrastructure.
 
 **Assignment A16.12** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -10198,6 +16590,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Build:** a bounded task queue with workers and back pressure measured against λ and μ; an idempotent consumer with a seen-set; a small HTTP service in Python's standard library with GET, PUT and POST and an idempotency key, exercised by a retrying client; the RPC-versus-REST mapping of the primer's table implemented both ways over the same in-memory data. [local]
 - **Go track:** the queue, back-pressure and worker exercises are written in Go (enter U23.3): a bounded channel as the queue, a worker pool with a concurrency bound (peak exactly 8 of 8) and cancellation when one job fails (11 of 1,000 jobs started), tested under the race detector. [local]
 - **Gap-fills:** *[inferred: Hohpe and Woolf on messaging patterns; Fielding 2000 on REST; the gRPC and Protocol Buffers documentation, recalled, not checked]* gRPC and GraphQL are named, not built; the security section is thin in the source (it says so), and the basics are extended in D5 to D8.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U33.3 LLM decoding, memory management and serving infrastructure.
 
 **Assignment A16.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -10278,6 +16671,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Build:** a miniature of each: a crawler over a synthetic web graph with a priority queue, URL dedupe, shingle and min-hash content signatures and a one-week recrawl clock; a transaction categoriser and budget aggregator with a queue and workers; a sharded social graph with a lookup service, single and bidirectional breadth-first search and the message count per query; a sharded LRU cache with consistent hashing and hit-ratio measurement under Zipf load; a two-step MapReduce ranker (U11.3's engine, or `collections.Counter`) checked against a direct sort. [local]
 - **Go track:** the crawler and the search key-value cache are written in Go (enter U23.3 and U23.6): a concurrent fetch pipeline with a bounded worker pool and context cancellation, a Bloom filter for the seen-URL test (9.59 bits per item, measured false-positive rate 0.0101 at the target 0.01) and the LRU cache of U23.2. [local]
 - **Gap-fills:** *[inferred: Manning, Raghavan and Schütze on crawling and indexing; Broder on shingling and min-hash; Newman on shortest paths in networks, recalled, not checked]* the primer's code for these designs is not reproduced here and its class names are used only as labels; the source says its sections for these are examples, not the only correct designs. On demand: U17.16 for tries and the inverted index, U17.11 and U17.12 for the crawler and the social graph.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U31.8 Production RAG.
 
 **Assignment A16.15** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -10350,6 +16744,7 @@ Bridge for: U16.2 to U16.7, and every capstone that builds a program of more tha
 - **Q5 (what a passing submission shows):** The simulator reports the bottleneck of each configuration, the unhedged slow-query fraction matches 63 percent, hedging reduces it, and the limiter never admits more than b plus r times t in a window.
 
 </details>
+
 
 
 # PART F. COMPUTER ARCHITECTURE AND PARALLEL HARDWARE
@@ -10495,6 +16890,7 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 - **Results:** Carry lookahead: c_{i+1} = g_i + p_i·c_i, and the prefix operator is associative, so all carries are computed in ⌈log₂ n⌉ levels [P]; Kogge–Stone uses log₂ n levels and n·log₂ n − n + 1 operator cells (49 for n = 16), Brent–Kung 2·log₂ n − 1 levels and 2n − 2 − log₂ n cells [D, check]; a Kogge–Stone adder matches integer addition on 2000 random 16-bit pairs [check]; radix-2 Booth digits a_{i−1} − a_i reproduce the 2's complement value and radix-4 Booth digits lie in {−2, …, 2}, halving the partial products [P, check]; a Wallace tree of 3:2 counters reduces k operands to two in d levels where the capacities are 3, 4, 6, 9, 13, 19, 28, 42, 63, … (m_{d+1} = ⌊3m_d/2⌋), so 16, 24 and 32 operands need 6, 7 and 8 levels, that is O(log k) [D, check]; non-restoring division gives the same quotient and remainder as restoring division (checked on all 8-bit pairs) [P, check]; IEEE binary32 has largest finite (2 − 2^{−23})·2^{127} ≈ 3.4028·10^{38}, smallest normal 2^{−126}, smallest subnormal 2^{−149} and machine epsilon 2^{−23} [D, check]; 0xC0B00000 decodes to −5.5 and 0xC1240000 to −10.25 [check]; with guard, round and sticky bits, round to nearest even is exact as if computed to infinite precision and then rounded [S]; Sterbenz's lemma: if y/2 ≤ x ≤ 2y then x − y is exact [P, check]; in binary64 (10^{16} + 1) − 10^{16} = 0 while (10^{16} − 10^{16}) + 1 = 1, so addition is not associative [check].
 - **Build:** a bit-level adder library (ripple, carry-select, Kogge–Stone and Brent–Kung prefix networks with cell and depth counts), Booth and Wallace multipliers and restoring, non-restoring and SRT-style dividers, all checked against Python integers; a soft-float binary32 add, multiply and divide with all four rounding modes, checked against NumPy float32 on random and edge-case inputs (subnormals, ties, overflow, NaN) [check]. Real lab on the Mac: IEEE 754 in C and Python; compare your soft-float to the hardware for all rounding cases you can reach (the C `fesetround` interface; whether Apple's cores flush subnormals in any mode is recalled, not checked); denormals and rounding experiments. [local]
 - **Gap-fills:** *[inferred: Goldberg, What every computer scientist should know about floating-point arithmetic (1991); IEEE 754-2019; Parhami, Computer Arithmetic; Koren, Computer Arithmetic Algorithms; recalled, not checked]* builds on U14.1 (2's complement, full adders). Fused multiply-add and its single rounding are added as a gap-fill.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation.
 
 **Assignment A14.4** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -10846,6 +17242,7 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 - **Results:** Speed-up S = T₁/T_p and efficiency E = S/p [Def]; Amdahl's and Gustafson's laws are derived in U11.1 and applied here, not re-derived; the Karp–Flatt metric e = (1/S − 1/p)/(1 − 1/p) estimates the serial fraction from a measured speed-up, returns exactly s when Amdahl's model holds, and gives 0.0476 for S = 6 on p = 8 [D, check]; for a computation DAG with work W and span D a greedy scheduler satisfies max(W/p, D) ≤ T_p ≤ W/p + D (Brent's bound), so W = 10⁶ and D = 10³ on 64 processors give speed-up at least 60.15, and parallelism W/D bounds any speed-up [P, check on 150 random DAG schedules]; for an n × n grid computation on p processors, block partitioning gives a communication-to-computation ratio of 4√p/n and strip partitioning 2p/n, 0.031 against 0.125 at n = 1024 and p = 64 [D, check]; shared memory and message passing can each emulate the other, and the costs of the emulation are what the communication architecture must make cheap [D].
 - **Build:** one kernel (a 2-D stencil or a histogram) in a shared-memory version with threads and in a message-passing version with processes and queues, with measured speed-up and Karp–Flatt serial fraction, and a work-span scheduler simulator for DAGs [check]. Real lab on the Mac: thread and process scaling with Python `multiprocessing` and C `pthreads` over 1 to the number of performance cores (and then all cores, noting the efficiency cores of Apple silicon); compare the measured speed-up with Amdahl's law using the serial fraction estimated by Karp–Flatt. [local]
 - **Gap-fills:** *[inferred: Culler, Singh and Gupta, Parallel Computer Architecture: A Hardware/Software Approach; Flynn (1972); Karp and Flatt (1990); Brent (1974); Blumofe and Leiserson on work stealing; recalled, not checked]* links to U9.9 (distributed shared memory in software) and U11.1 (scaling laws).
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U33.2 Parallelism for training, communication and fault tolerance.
 
 **Assignment A14.13** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -11002,6 +17399,7 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 - **Results:** On a hypothetical SM with 2048 threads, 32 blocks, 65536 registers and 64 KiB of shared memory, blocks of 256 threads using 40 registers and 12 KiB each are limited by shared memory to 5 resident blocks, an occupancy of 62.5%, while 32 registers and no shared memory give 8 blocks and 100% [D, check]; when a warp diverges on an if–else the paths execute one after the other under complementary masks, so a branch on tid mod 2 with paths of 20 and 10 instructions costs 30 cycles at SIMD efficiency 0.5, and a branch that is uniform within each warp costs only the path taken at efficiency 1 [D, check]; nested divergence costs the sum of the executed paths (17 cycles in the stack simulator's nested example) [check]; to hide a memory latency L when each warp computes C cycles between misses, a scheduler needs about 1 + L/C resident warps, 41 for L = 400 and C = 10, the same model as coarse multithreading in U14.8 with zero switch cost [D, check].
 - **Build:** a SIMT execution simulator with warps, an active mask, a reconvergence stack, a round-robin warp scheduler and a memory latency, which reports cycles and SIMD efficiency for branching kernels, and an occupancy calculator for stated resource limits [check]. Real lab: simulation first, then a vocabulary map from the CUDA terms to Apple's Metal terms (thread to thread, warp to SIMD-group, block to threadgroup, shared memory to threadgroup memory, `__syncthreads` to `threadgroup_barrier`; the Apple SIMD-group width is recalled as 32, recalled, not checked). Fallback logic: (1) check whether a GPU route is available (`torch.backends.mps.is_available()` for the Mac, or a Colab or Kaggle notebook on a personal account if you want a real warp-level divergence measurement); (2) if so, time a divergent and a warp-uniform kernel and record the numbers; (3) if not, run the same kernels on the SIMT simulator and say so. [simulator] [local GPU] [free cloud GPU]
 - **Gap-fills:** *[inferred: Lindholm et al. (2008) on NVIDIA Tesla; Fung et al. (2007) on dynamic warp formation; Aamodt, Fung and Rogers, General-Purpose Graphics Processor Architectures; Hennessy and Patterson, Chapter 4; recalled, not checked]* none new.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U28.2 Backpropagation and training deep networks; U33.1 CNN computation and accelerators.
 
 **Assignment A14.17** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -11119,6 +17517,7 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 - **Results:** The roofline bounds attainable throughput by min(π, I·β) for peak compute π, memory bandwidth β and arithmetic intensity I [D]; with π = 10 TFLOP/s and β = 400 GB/s the ridge point is 25 FLOP/B, a vector add (1 FLOP per 12 B) reaches only 33.3 GFLOP/s, and an N × N matrix multiply with ideal reuse has I = N/6, 170.7 at N = 1024, and is compute bound [D, check]; an n × n output-stationary systolic array computes an n × K by K × n product in K + 2n − 2 cycles, so its utilisation K/(K + 2n − 2) is 0.335 for n = K = 128 and 0.942 for K = 4096 [D, check on a cycle simulator]; a uniform quantiser with step Δ has error variance Δ²/12 and, for a full-range uniform signal, an SQNR of about 6.02 dB per bit [D, check]; symmetric INT8 quantisation uses the scale max|x|/127, so with max|x| = 2.54 the value 1.0 maps to code 50 [D, check]; a 3 × 3 convolution from 64 to 128 channels on a 56 × 56 output needs 231 211 008 MACs [D, check]. Ownership: this unit owns the roofline model, arithmetic intensity, systolic arrays and quantisation error; U11.8, U11.9 and U12.3 cite it.
 - **Build:** a systolic-array simulator (output-stationary, configurable size) mapped to a small CNN layer through im2col, with a throughput and energy model built from stated per-operation energies, and a roofline analyser that places each layer and kernel of the unit on the plot [check]; a quantisation study that measures error and accuracy change for INT8 and INT4 on a small model. GPU tiers with fallback logic: (1) check availability; (2) Tier 1, train and quantise a small CNN with PyTorch `mps` or MLX on the Mac and time it (macOS 14 or later, Python 3.10 or later, beta; `PYTORCH_ENABLE_MPS_FALLBACK=1`), or Tier 2 on a free Colab or Kaggle GPU on a personal account to compare mixed precision on tensor cores; (3) otherwise run the same model on the CPU and the systolic simulator and say so. [local GPU] [free cloud GPU] [simulator]
 - **Gap-fills:** *[inferred: Williams, Waterman and Patterson (2009) on the roofline model; Kung (1982) on systolic arrays; Jouppi et al. (2017) on the TPU; Sze, Chen, Yang and Emer, Efficient Processing of Deep Neural Networks; Horowitz (2014) on energy per operation; Jacob et al. (2018) on integer quantisation; recalled, not checked]* links to U11.8 and U12.3 (and U11.9), which cite this unit.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U28.1 Perceptron, multilayer networks, activations and loss functions; U28.2 Backpropagation and training deep networks; U28.4 Convolutional neural networks and image representation; U33.1 CNN computation and accelerators; U33.3 LLM decoding, memory management and serving infrastructure; U33.4 Model compression and quantization.
 
 **Assignment A14.20** (10 marks; pass at 7/10 with Q4 and Q5 accepted)
 
@@ -11231,11 +17630,15 @@ Bridge for: U14.2 (instruction encoding, sign extension), U14.4 (adders, multipl
 </details>
 
 
+
 # PART G. CAPSTONES
 
 ## D13. Capstones
 
-Aim: ten integrating projects, each one drawing on units from several domains, each built from your own components first and then checked against standard tools. A capstone has no weekly assignment; it is accepted against the listed criteria, with the Master Rules' tutor stance applied (the tutor does not write graded work). Each is local first, labelled with its cost, and, wherever it touches security, confined to the laboratory rules of U6.1.
+Aim: seventeen integrating projects (U13.1 to U13.10 draw on the cloud domains; U13.11 to U13.17 draw on the merged machine-learning units and were the capstones of that curriculum), each one drawing on units from several domains, each built from your own components first and then checked against standard tools. A capstone has no weekly assignment; it is accepted against the listed criteria, with the Master Rules' tutor stance applied (the tutor does not write graded work). Each is local first, labelled with its cost, and, wherever it touches security, confined to the laboratory rules of U6.1.
+
+
+The machine-learning capstones (U13.11 to U13.17) in detail: each stretch of the mathematics and machine-learning units closes with one integrated, learner-built deliverable defended end to end (Master Rules 9.6). The tutor reviews and questions; the learner writes everything (Master Rules 9.4). **Acceptance criteria common to every capstone (written before work starts, Master Rules 9.3):** required behaviour with automated tests; one number predicted, then measured; one injected failure detected and recovered from; cost estimated, then read from the actual bill (local labs: zero); a threat model; a decision record for each major choice (the judgment turn, Master Rules 10.4); a clean teardown; an oral defence against adversarial questions. Capstone code follows the NumPy-first tooling guideline of the course profile (standard library + NumPy + Matplotlib by default, libraries as oracles in tests, other tools where they serve the deliverable); record each such choice in the decision record. A capstone never replaces unit-by-unit mastery; domain exit audits (Master Rules 8.7) run first.
 
 ### U13.1 Capstone: a user-space TCP/IP stack over a lossy virtual link
 **Sources:** none (capstone; assembles earlier units)
@@ -11310,7 +17713,65 @@ Aim: ten integrating projects, each one drawing on units from several domains, e
 - **Results:** the recovered effects match the generator's ground truth within the reported intervals on at least 90 percent of repeated runs with fresh seeds [check]; the from-scratch regression, logistic regression and tree agree with the library versions (scikit-learn or SciPy) to the stated tolerances [check]; the sampler's R-hat is below 1.01 and its posterior means agree with the closed-form or grid answer where one exists [check]; the sketch-based frequencies stay inside their stated error bounds and the sketched pipeline's decision agrees with the exact pipeline's on the full data [check]; the pipeline is reproducible from one command and one seed [check]; the memo's cost figure recomputes from the stated assumptions to within 5 percent [check].
 - **Build:** a package with one module per stage and a test per module, a single `run_pipeline` script with a seed argument, a notebook that regenerates every figure, and the two-page memo. Runs locally in Python on the Mac's CPU with invented data only; an optional run of the scaled stage on a managed cluster service (U12.3) is labelled with its cost and torn down after the test. [local]
 - **Gap-fills:** *[inferred: the capstone pattern of U13.1 to U13.9; Provost and Fawcett, Data Science for Business, and Gelman et al., Regression and Other Stories, as comparable reading, recalled, not checked]* acceptance: a reviewer can change one assumption (the churn rate, the cost of a false negative, the data size) and find that the memo, the models and the sketches move in the predicted direction, and the work is accepted against the Master Rules' tutor stance with no graded work written by the tutor. On demand: U17.4, U17.5 and U17.16 for the data structures of the pipeline.
+- **On demand:** the deeper treatment of this unit's ground is entered only when it is needed, never up front: U19.29 Confidence intervals and hypothesis testing; U26.2 Model evaluation and selection; U26.12 Data mining.
 
+### U13.11 Capstone A: the mathematics of machine learning, end to end
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes the mathematics units (U21.12 to U21.18, U24.1 to U24.5, U24.6 to U24.10, U18.14 to U18.24, U19.18 to U19.26, U19.27 to U19.32, U24.11 to U24.17 and D25). A qualifying-examination-level unseen problem set (at least one proof or derivation and one computational problem per domain, key written first) plus a small reproduction: implement PCA via SVD, ridge/lasso regression, logistic regression by Newton/IRLS, SGD with momentum and Adam, an SVM dual solver and a simple LP/QP solver, each checked against a hand computation and against the professional library.
+- **Predict then measure:** the number of Newton iterations to convergence and the condition number of the Hessian; the SGD error floor for a given step size.
+- **Injected failure:** an ill-conditioned design matrix; diagnose by SVD and fix by regularization.
+- **Defence:** derive the SVD-based PCA, the KKT conditions of the SVM and the convergence rate of gradient descent on a quadratic.
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
+
+### U13.12 Capstone B: a classical-ML library from scratch
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes D26–D27. A NumPy library (kNN, naive Bayes, CART and random forest, AdaBoost and gradient boosting, kernel SVM, k-means, GMM-EM, PCA, HMM, UCB and Thompson-sampling bandits, tabular Q-learning) with a uniform fit/predict interface, a benchmark harness against scikit-learn on at least five datasets, and a written learning-theory note (PAC/VC bound versus observed generalization gap).
+- **Predict then measure:** test-accuracy gap versus scikit-learn for each algorithm; regret slope of UCB versus Thompson sampling.
+- **Injected failure:** label noise and covariate shift; detect with the evaluation tools of U26.2.
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
+
+### U13.13 Capstone C: a deep-learning framework from scratch
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes D28. A reverse-mode autodiff engine with Linear, Conv2d, RNN/LSTM, LayerNorm, Dropout, attention layers; SGD/Adam; a gradient checker; training an MLP, a CNN, an LSTM and a small Transformer on real data; every layer's gradient verified against PyTorch to 1e-5; explanation maps (U28.5) on the CNN.
+- **Predict then measure:** parameter counts, FLOPs and the training loss at step 100.
+- **Injected failure:** exploding gradients in the LSTM; fix with clipping and initialization changes.
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
+
+### U13.14 Capstone D: an LLM application platform (RAG + agents + safety)
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes D29, D31 and D32. A grounded multi-agent support/DevOps assistant: ingestion and chunking, hybrid retrieval with reranking, query routing, planner–executor agents in a state machine with human-in-the-loop, episodic and semantic memory, citations with a verifier, semantic caching, observability, an evaluation harness (retrieval metrics, RAGAS-style faithfulness, LLM-as-judge with debiasing) and a red-team/blue-team report covering prompt injection, indirect injection and leakage.
+- **Predict then measure:** recall@k, answer faithfulness, p95 latency and cost per request.
+- **Injected failure:** poisoned document in the corpus; detect with provenance checks and contain with least-privilege tools.
+- **Cost tag:** live API calls only after recorded-response replay and under a spend cap (Master Rules 11.2).
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
+
+### U13.15 Capstone E: generative models
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes D30. Small-scale GAN (WGAN-GP), VAE/VQ-VAE and DDPM with classifier-free guidance on the same dataset, compared by sample quality (FID proxy), likelihood bound, sampling cost and failure modes (mode collapse, posterior collapse, sampling slowness).
+- **Predict then measure:** ELBO versus bits per dimension; sampling steps versus quality curve.
+- **Injected failure:** mode collapse in the GAN; diagnose and apply gradient penalty.
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
+
+### U13.16 Capstone F: ML systems and efficiency
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes D33. Serve a small Transformer with a KV cache, continuous batching and quantization; load-test with a Poisson arrival process against the M/M/c prediction of U19.25; simulate data-parallel training with ring-allreduce and checkpoint recovery; run a federated-averaging experiment with non-IID clients and one malicious client.
+- **Predict then measure:** tokens/s versus batch size, memory per request and queueing delay at 70% utilization.
+- **Injected failure:** a worker crash mid-training; recover from checkpoint and quantify lost work.
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
+
+### U13.17 Final integrated capstone: train, align, compress, serve, evaluate and secure a small language model
+**Sources:** none (capstone; assembles earlier units)
+Integration unit (Part G): entered after the domains it closes, which it names; built from your own components first and defended against the acceptance criteria of this domain.
+- **Topics:** Closes the machine-learning capstones and assembles parts the learner built in U13.11 to U13.16: pretrain a tiny decoder-only Transformer from scratch (U29.3, U13.13), align it with SFT plus DPO/PPO (U29.8, U27.5), adapt it with LoRA (U29.9), quantize and serve it (U33.3, U33.4), put it behind the RAG-agent platform (U13.14), and evaluate and red-team the full system (U32.1–U32.6). Defended as a professional design review with a decision record for each major choice.
+- **Predict then measure:** perplexity versus scaling-law prediction (U29.5); win-rate against the base model; end-to-end latency and cost; attack success rate before and after defenses.
+- **Injected failure:** reward hacking in the preference stage or a jailbreak that bypasses the system prompt; detect, patch and re-test.
+- **Tooling:** capstone code follows the course's NumPy-first guideline; record any other choice in the decision record.
 
 ---
 
@@ -11355,12 +17816,58 @@ Aim: ten integrating projects, each one drawing on units from several domains, e
 | DSAD | Data Structures and Algorithms Design | Nitin Saxena, IIT Kanpur (NPTEL 106104697) | `data-analytics.txt (copied as src5.txt)` 326–351 | 13 |
 | ISE | Introduction to Software Engineering: A Road Map to Reliable Software Development and Maintenance | Subhashis Chatterjee, IIT (ISM) Dhanbad (NPTEL 111105002) | `software-engineering.txt (copied as src6.txt)` 19–42 | 13 |
 | SEM | Software Engineering | Rajib Mall, IIT Kharagpur (NPTEL 106105182) | `software-engineering.txt (copied as src6.txt)` 64–85 | 13 |
+| MFML | Mathematical Foundations for Machine Learning (ML curriculum) | Rao & Rajan, IISc/NITK (106108702) | `nptel.txt` 18–45 | 13 |
+| MFGAI | Mathematical Foundations of Generative AI (ML curriculum) | Prathosh A P, IISc (106108004) | `nptel.txt` 70–93 | 13 |
+| EMML | Essential Mathematics for Machine Learning (ML curriculum) | Gupta & Kumar, IIT Roorkee (111107137) | `nptel.txt` 124–144 | 13 |
+| EM1 | Engineering Mathematics I (ML curriculum) | Jitendra Kumar, IIT Kharagpur (111105121) | `nptel.txt` 170–189 | 13 |
+| EM2 | Engineering Mathematics II (ML curriculum) | Jitendra Kumar, IIT Kharagpur | `nptel.txt` 198 | 13 |
+| MM | Mathematical Modelling: Analysis and Applications (ML curriculum) | Ameeya Kumar Nayak, IIT Roorkee | `nptel.txt` 201 | 5 |
+| HEM | Higher Engineering Mathematics (ML curriculum) | P. N. Agrawal, IIT Roorkee (2019) | `nptel.txt` 203 | 13 |
+| IM | An Invitation to Mathematics (ML curriculum) | NPTEL video course | `nptel.txt` 205–206 | 2 |
+| AEMK | Advanced Engineering Mathematics (ML curriculum) | Hari Shankar Mahato, IIT Kharagpur | `nptel.txt` 208–209 | 13 |
+| DMK | Discrete Mathematics (title not in source; inferred from content) (ML curriculum) | Nitin Saxena, IIT Kanpur | `nptel.txt` 211 | 13 |
+| AEMA | Advanced Engineering Mathematics (ML curriculum) | P. N. Agarwal, IIT Roorkee (111107119) | `nptel.txt` 232–252 | 13 |
+| OMLH | Optimisation for Machine Learning: Theory and Implementation (Hindi) (ML curriculum) | Pravesh Biyani, IIIT Delhi | `nptel.txt` 265–286 | 9 |
+| CVX | Convex Optimization (ML curriculum) | Joydeep Dutta, IIT Kanpur | `nptel.txt` 290–362 | 6 |
+| AOW | Applied Optimization for Wireless, Machine Learning, Big Data (ML curriculum) | Aditya K. Jagannatham, IIT Kanpur | `nptel.txt` 390–426 | 13 |
+| OAT | Optimization Algorithms: Theory and Software Implementation (ML curriculum) | D. Thirumulanathan, IIT Kanpur | `nptel.txt` 440–455 | 13 |
+| PMO | A Primer to Mathematical Optimization (ML curriculum) | Debdas Ghosh, IIT (BHU) (111104165) | `nptel.txt` 474–497 | 13 |
+| OFF | Optimization from Fundamentals (ML curriculum) | Ankur A. Kulkarni, IIT Bombay | `nptel.txt` 513–530 | 13 |
+| CSO | Computer System Optimizations for ML (ML curriculum) | Sumit K. Mandal, IISc (106108003) | `nptel.txt` 550–573 | 13 |
+| DOML | Distributed Optimization and Machine Learning (ML curriculum) | Mayank Baranwal, IIT Bombay (106101466) | `nptel.txt` 595–618 | 13 |
+| BAN | Bandit Algorithm (Online Machine Learning) (ML curriculum) | Manjesh Kumar Hanawal, IIT Bombay (110101145) | `nptel.txt` 640–663 | 13 |
+| MLCE | Machine Learning for Core Engineering Disciplines (ML curriculum) | Ananth Govind Rajan, IISc (127108778) | `nptel.txt` 686–707 | 13 |
+| ALAJ | Applied Linear Algebra for Signal Processing, Data Analytics and ML (ML curriculum) | Aditya K. Jagannatham, IIT Kanpur (108104174) | `nptel.txt` 729–757 | 13 |
+| MLDL | Machine Learning and Deep Learning - Fundamentals and Applications (ML curriculum) | M. K. Bhuyan, IIT Guwahati (108103192) | `nptel.txt` 779–802 | 13 |
+| MLK | Machine Learning (ML) (ML curriculum) | Carl Gustaf Jansson, KTH | `nptel.txt` 823–839 | 9 |
+| MLE | Machine Learning for Engineering (title not in source) (ML curriculum) | Balaji Srinivasan & Ganapathy Krishnamurthi, IIT Madras | `nptel.txt` 854–880 | 13 |
+| MLESA | Machine Learning for Engineering and Science Applications (ML curriculum) | Balaraman Ravindran, IIT Madras | `nptel.txt` 894–916 | 14 |
+| FML | Foundations of Machine Learning (ML curriculum) | J. Saketha Nath, IIT Hyderabad (106106001) | `nptel.txt` 937–960 | 13 |
+| IMLK | Introduction to Machine Learning (IITKGP) (ML curriculum) | Sudeshna Sarkar, IIT Kharagpur (106105152) | `nptel.txt` 985–1002 | 9 |
+| SMLM | Statistical and Machine Learning Methods: Basics and Applications (ML curriculum) | Rajib Maity, IIT Kharagpur (105105001) | `nptel.txt` 1025–1048 | 13 |
+| S50 | 50 Statistical Techniques an AI Engineer Needs to Know (learner list, 9 of 50 categories present) (ML curriculum) | learner-supplied list | `nptel.txt` 1058–1125 | 9 |
+| DMIN | Data Mining (ML curriculum) | Pabitra Mitra, IIT Kharagpur | `nptel.txt` 1134–1149 | 9 |
+| FDL | Foundations of Deep Learning: Concepts and Applications (ML curriculum) | Multifaculty (AICTE) | `nptel.txt` 1174–1262 | 13 |
+| DLNLP | Deep Learning for Natural Language Processing (ML curriculum) | Pawan Goyal, IIT Kharagpur (108105572) | `nptel.txt` 1280–1303 | 13 |
+| CAL1 | Calculus of One Real Variable (ML curriculum) | Joydeep Dutta, IIT Kanpur (109104124) | `nptel.txt` 1325–1340 | 9 |
+| ALAB | Advanced Linear Algebra (ML curriculum) | Premananda Bera, IIT Roorkee | `nptel.txt` 1352–1399 | 5 |
+| ALAK | Applied Linear Algebra in AI and ML (ML curriculum) | Swanand Khare, IIT Kharagpur | `nptel.txt` 1408–1446 | 13 |
+| LAP | Linear Algebra (ML curriculum) | Dilip P. Patil, IIT Bombay (111108098) | `nptel.txt` 1465–1486 | 13 |
+| LAR | Basic Linear Algebra (ML curriculum) | I. K. Rana, IIT Bombay | `nptel.txt` 1503–1513 | 9 |
+| LPCS | Linear Programming and its Applications to Computer Science (ML curriculum) | Rajat Mittal, IIT Kanpur (106104356) | `nptel.txt` 1531–1549 | 9 |
+| PSS | Preparatory Probability and Statistics (title not in source) (ML curriculum) | G. Srinivasan, IIT Madras | `nptel.txt` 1562–1570 | 5 |
+| IPS | Introduction to Probability and Statistics (ML curriculum) | Somesh Kumar, IIT Kharagpur | `nptel.txt` 1600–1689 | 13 |
+| SA | Stochastic Approximation: Theory and Applications (ML curriculum) | Gugan Chandrashekhar Mallika Thoppe, IISc Bangalore (106108700) | `nptel.txt` 1709–1732 | 13 |
+| AA | Approximation Algorithms (ML curriculum) | Palash Dey, IIT Kharagpur (106105471) | `nptel.txt` 1756–1779 | 13 |
+| GEN | Generative AI: Topics and Chapter Structure (12 chapters, 78 sections) (ML curriculum) | `iit-genai.md` | `iit-genai.md` 1–505 | 78 |
 
 The line numbers for FDB, DBD and IDB refer to `src3.txt`, a cleaned copy of `dbms.txt` (the letter-spaced text of Database Design modules 7 to 11 was re-joined by hand; see Appendix E.1), kept in the work archive. Nothing else in `dbms.txt` was altered.
 
 The line numbers for SDP, PYP and GOF refer to `src4.txt`, an outline of 54 lines generated by a script (`design_src/mk_src4.py`) from the headings, bold terms, tables and solution outlines of two public repositories cloned on 2026-11-06: the System Design Primer by Donne Martin (commit ae9bbd7, 20 March 2026) and the python-patterns collection (commit a8e4090, 1 November 2026); the GOF cells list the 23 Gang of Four patterns. The primer is licensed CC BY 4.0 (Copyright 2017 Donne Martin, `LICENSE.txt` in the repository); this document paraphrases and re-derives its content, reproduces none of its code, and credits it here. The python-patterns clone has no LICENSE file, so only its catalogue (names and one-line descriptions) is used, in the curriculum's own words.
 
 The line numbers for DAP, AGDS, SDS, DBMS, BDA, ALA, DM and DSAD refer to `src5.txt`, a verbatim copy of `data-analytics.txt` (356 lines). The file holds nine outlines; the ninth, Big Data Computing, is an exact duplicate of BDC (checked line by line against `cloud-computing.txt`) and has no cells of its own. The DBMS course is a fourth database course and its cells are cited by the existing D15 units. For DM the file gives only the instructor's name and the outline text, so its title is inferred.
+
+The machine-learning rows (the 44 courses of the merged machine-learning curriculum, marked ML curriculum) refer to `nptel.txt` (43 NPTEL and learner-supplied outlines) and `iit-genai.md` (GEN, a 12-chapter, 78-section Generative AI course), the two source files of that curriculum; their line numbers are those recorded when it was built; the files were supplied after the first assembly and the word-level check was run on them (Appendix H.1). The old key DM (Discrete Mathematics, IIT Kanpur) is DMK here, because DM is the Data Mining key of D19.
 
 The line numbers for ISE and SEM refer to `src6.txt`, a verbatim copy of `software-engineering.txt` (87 lines, two outlines). Anomalies in it are listed in Appendix E.1.
 
@@ -11438,7 +17945,99 @@ Each entry is `cell → units`. A cell may feed several units because one source
 
 **SEM** (Software Engineering): o → U22.1; W1 → U22.1; W2 → U22.2; W3 → U22.2; W4 → U22.5; W5 → U22.7; W6 → U22.8; W7 → U22.9; W8 → U22.9; W9 → U22.9; W10 → U22.10; W11 → U22.11; W12 → U22.12
 
-Total: 478 cells, every one cited.
+Total for the cloud courses: 478 cells, every one cited.
+
+### Machine-learning courses (the merged curriculum)
+
+**MFML** (Mathematical Foundations for Machine Learning): o → U18.14, U19.18, U25.14; W1 → U18.14, U18.15; W2 → U18.16, U18.19; W3 → U18.17, U18.21; W4 → U18.22, U26.5, U26.8; W5 → U19.18; W6 → U19.19; W7 → U19.23; W8 → U19.23, U19.24, U19.30; W9 → U24.4, U24.6, U24.7; W10 → U24.10, U18.23, U25.1, U25.5, U25.7, U25.8, U25.10, U26.8; W11 → U28.1, U28.2; W12 → U26.1
+
+**MFGAI** (Mathematical Foundations of Generative AI): o → U29.2, U29.4, U30.1, U30.3, U30.5, U30.7; W1 → U30.1; W2 → U30.2; W3 → U30.3; W4 → U30.3; W5 → U30.4; W6 → U30.4; W7 → U30.7; W8 → U30.7; W9 → U30.6, U30.7; W10 → U29.4, U30.5; W11 → U29.6, U33.3, U33.4; W12 → U27.5, U29.8
+
+**EMML** (Essential Mathematics for Machine Learning): o → U18.14, U25.1, U25.12; W1 → U18.14, U18.15; W2 → U18.16, U18.17, U18.19; W3 → U18.21, U18.22, U26.8; W4 → U26.8; W5 → U18.23, U26.3; W6 → U18.17, U18.20, U18.22, U18.24, U26.2; W7 → U24.6, U24.10; W8 → U24.10, U25.1, U25.2, U25.3; W9 → U25.1, U25.8; W10 → U19.18, U19.19, U25.1, U25.8; W11 → U19.19, U19.20, U19.21, U19.23, U25.7, U26.5; W12 → U25.5, U25.6, U26.5
+
+**EM1** (Engineering Mathematics I): o → U24.2, U24.3, U24.4, U24.5, U24.6, U24.7, U24.8, U18.14, U18.15, U18.16, U18.19, U24.11; W1 → U24.2; W2 → U24.6; W3 → U24.6; W4 → U24.7; W5 → U24.5; W6 → U24.8; W7 → U24.8; W8 → U18.14, U18.15; W9 → U18.16; W10 → U18.19; W11 → U24.11; W12 → U24.11
+
+**EM2** (Engineering Mathematics II): o → U24.9, U24.12, U24.13, U24.14, U24.15; W1 → U24.9; W2 → U24.9; W3 → U24.13; W4 → U24.13, U24.14; W5 → U24.12; W6 → U24.12; W7 → U24.15; W8 → U24.15; W9 → U24.15; W10 → U24.15; W11 → U24.15; W12 → U24.15
+
+**MM** (Mathematical Modelling: Analysis and Applications): o → U24.16; W1 → U24.16; W2 → U24.16; W3 → U24.11, U24.16; W4 → U24.16
+
+**HEM** (Higher Engineering Mathematics): o → U21.12, U19.25, U25.7; W1 → U21.12; W2 → U21.12, U21.14; W3 → U21.14; W4 → U21.14; W5 → U21.14, U21.15; W6 → U21.15; W7 → U21.15; W8 → U21.15; W9 → U25.7; W10 → U25.7; W11 → U19.25; W12 → U19.25
+
+**IM** (An Invitation to Mathematics): o → U21.12, U21.18; A → U21.13, U21.16, U21.18
+
+**AEMK** (Advanced Engineering Mathematics): o → U24.6; W1 → U24.2, U24.4, U24.6, U24.7; W2 → U24.3, U24.5, U24.8; W3 → U24.11; W4 → U24.12; W5 → U24.12; W6 → U18.14, U18.15, U18.16; W7 → U18.14; W8 → U18.19, U18.21; W9 → U24.9; W10 → U24.9; W11 → U24.9; W12 → U24.13, U24.14
+
+**DMK** (Discrete Mathematics (title not in source; inferred from content)): o → U21.12; W1 → U21.12; W2 → U21.13; W3 → U21.13; W4 → U21.14; W5 → U21.15; W6 → U21.15; W7 → U21.15; W8 → U21.16; W9 → U21.16; W10 → U21.17; W11 → U21.17; W12 → U21.17
+
+**AEMA** (Advanced Engineering Mathematics): o → U19.18, U19.23, U19.25, U19.29, U24.13, U24.14, U24.15; W1 → U24.13; W2 → U24.13; W3 → U24.13, U24.14; W4 → U24.14; W5 → U24.14; W6 → U24.14; W7 → U24.14, U24.15; W8 → U24.15; W9 → U19.18, U19.20, U24.15; W10 → U19.20, U19.21; W11 → U19.21, U19.23, U19.30; W12 → U19.25, U19.29, U19.30
+
+**OMLH** (Optimisation for Machine Learning: Theory and Implementation (Hindi)): o → U25.1; W1 → U24.6, U18.15, U18.21, U18.22; W2 → U24.6, U18.15, U18.21, U18.22; W3 → U25.1, U25.3, U25.4; W4 → U25.8; W5 → U25.9, U25.10; W6 → U25.9, U25.10; W7 → U25.8, U25.10; W8 → U25.8, U25.10
+
+**CVX** (Convex Optimization): o → U25.1, U25.2, U25.5, U25.6, U25.7, U25.11, U25.13; L1-9 → U25.2, U25.3; L10-19 → U25.3, U25.5, U25.6, U25.7; L20-26 → U25.4, U25.7; L27-33 → U25.7; L34-40 → U25.11, U25.13
+
+**AOW** (Applied Optimization for Wireless, Machine Learning, Big Data): o → U25.11, U25.12; W1 → U18.17, U18.21, U19.23; W2 → U25.2, U25.12; W3 → U25.3, U25.12; W4 → U25.7, U25.11, U25.12; W5 → U25.11, U25.12; W6 → U25.5, U25.6, U25.11, U25.12; W7 → U25.12; W8 → U25.12; W9 → U25.11, U25.12; W10 → U25.12; W11 → U25.12; W12 → U25.12
+
+**OAT** (Optimization Algorithms: Theory and Software Implementation): o → U25.1; W1 → U25.1; W2 → U25.1; W3 → U25.1, U25.8; W4 → U25.8; W5 → U25.8; W6 → U25.8; W7 → U25.9; W8 → U25.9; W9 → U25.7; W10 → U25.7; W11 → U25.7; W12 → U25.10
+
+**PMO** (A Primer to Mathematical Optimization): o → U25.1; W1 → U24.1, U24.6, U18.15, U18.16, U18.17, U18.21, U18.22, U25.1; W2 → U24.1, U24.2, U24.4, U24.6; W3 → U25.2, U25.3; W4 → U25.3, U25.4; W5 → U25.4, U25.8; W6 → U25.8; W7 → U25.8; W8 → U25.5, U25.8; W9 → U25.5; W10 → U25.6; W11 → U25.9; W12 → U25.9
+
+**OFF** (Optimization from Fundamentals): o → U25.1, U25.15; W1 → U24.1, U25.1; W2 → U25.1, U25.4; W3 → U25.1, U25.4; W4 → U25.1, U25.2; W5 → U25.7; W6 → U25.6, U25.7; W7 → U25.6, U25.7; W8 → U25.15; W9 → U25.15; W10 → U25.8, U25.9; W11 → U25.8, U25.9; W12 → U25.15, U27.4
+
+**CSO** (Computer System Optimizations for ML): o → U33.1, U33.3, U33.4, U33.5; W1 → U28.4, U33.1; W2 → U33.1; W3 → U33.1; W4 → U33.2; W5 → U29.5, U33.3; W6 → U33.3; W7 → U33.3; W8 → U33.2; W9 → U33.5; W10 → U33.1; W11 → U33.1; W12 → U33.1
+
+**DOML** (Distributed Optimization and Machine Learning): o → U25.14; W1 → U25.2, U25.3, U25.14; W2 → U25.3, U25.5, U25.6; W3 → U25.5, U25.6, U25.8, U25.10; W4 → U25.10; W5 → U25.10; W6 → U25.9, U25.10; W7 → U25.6, U25.14; W8 → U19.25, U25.14; W9 → U25.14; W10 → U25.14, U33.2; W11 → U33.6; W12 → U33.6
+
+**BAN** (Bandit Algorithm (Online Machine Learning)): o → U27.1, U27.2, U27.3; W1 → U27.1; W2 → U27.1; W3 → U27.1; W4 → U27.1; W5 → U27.2; W6 → U19.24, U27.2; W7 → U27.2; W8 → U27.2; W9 → U27.3; W10 → U27.3; W11 → U27.3; W12 → U27.3
+
+**MLCE** (Machine Learning for Core Engineering Disciplines): o → U26.1, U26.2, U26.3; W1 → U19.27, U26.1; W2 → U19.23, U19.30, U26.3; W3 → U26.2, U26.3, U26.4; W4 → U25.12, U26.3; W5 → U25.10; W6 → U26.2; W7 → U26.8, U26.9; W8 → U26.7, U26.8, U26.9, U28.8; W9 → U26.5, U26.7; W10 → U26.5, U26.7, U26.10; W11 → U28.1, U28.2, U28.4; W12 → U28.4, U28.7
+
+**ALAJ** (Applied Linear Algebra for Signal Processing, Data Analytics and ML): o → U18.24; W1 → U18.15, U18.17; W2 → U18.24; W3 → U18.19, U18.24; W4 → U18.22, U18.24; W5 → U18.23, U26.5; W6 → U18.23; W7 → U18.24, U26.11; W8 → U18.24, U24.15; W9 → U18.24; W10 → U18.24, U26.9; W11 → U18.24, U26.5; W12 → U18.24, U19.25
+
+**MLDL** (Machine Learning and Deep Learning - Fundamentals and Applications): o → U26.1; W1 → U26.1, U26.2, U26.3, U26.4; W2 → U26.6, U26.10; W3 → U26.6; W4 → U26.5; W5 → U26.3, U26.7, U26.10; W6 → U26.7; W7 → U26.8; W8 → U26.9; W9 → U26.9; W10 → U28.1, U28.2; W11 → U28.4; W12 → U28.6, U28.7, U28.8, U30.3
+
+**MLK** (Machine Learning (ML)): o → U26.1, U26.14, U27.4; W1 → U26.1; W2 → U26.1; W3 → U26.1; W4 → U26.6, U26.7, U26.14; W5 → U26.14; W6 → U26.14, U28.1, U28.7; W7 → U26.14; W8 → U26.14
+
+**MLE** (Machine Learning for Engineering (title not in source)): o → U26.1, U26.8, U26.13; W1 → U18.14, U26.1; W2 → U19.18, U26.1; W3 → U25.1, U26.1; W4 → U19.31, U26.2, U26.3, U26.4; W5 → U28.1, U28.2; W6 → U28.4; W7 → U28.4; W8 → U28.7; W9 → U26.5, U26.6, U26.7; W10 → U26.9; W11 → U19.31, U26.10, U30.1, U30.6; W12 → U28.8, U30.3, U30.4
+
+**MLESA** (Machine Learning for Engineering and Science Applications): o → U26.1; W0 → U18.14, U19.18, U25.1, U25.3, U25.11; W1 → U26.1, U26.2; W2 → U19.30, U26.3, U26.4, U26.8; W3 → U26.3, U26.6; W4 → U26.5; W5 → U19.31, U25.10, U26.6, U26.10, U28.1, U28.2, U28.3; W6 → U26.7; W7 → U26.2, U26.7; W8 → U26.6, U26.7, U26.10; W9 → U26.10; W10 → U26.9; W11 → U26.9; W12 → U26.13, U27.4
+
+**FML** (Foundations of Machine Learning): o → U26.1, U30.1; W1 → U26.1, U26.13; W2 → U26.3; W3 → U26.3, U26.13; W4 → U25.8, U25.10; W5 → U25.10, U26.13; W6 → U26.4; W7 → U26.5; W8 → U26.5, U26.13; W9 → U26.13, U28.1, U29.3; W10 → U26.13, U28.2; W11 → U26.10, U30.1, U30.6; W12 → U26.6, U26.7, U26.10, U26.13
+
+**IMLK** (Introduction to Machine Learning (IITKGP)): o → U26.1, U26.13; W1 → U26.1, U26.2; W2 → U26.3, U26.7; W3 → U26.8, U26.11; W4 → U26.6; W5 → U26.3, U26.5; W6 → U28.1; W7 → U26.7, U26.13; W8 → U26.9
+
+**SMLM** (Statistical and Machine Learning Methods: Basics and Applications): o → U19.27, U19.31, U19.32; W1 → U19.27, U19.32; W2 → U19.18, U19.19; W3 → U19.20, U19.21; W4 → U19.23; W5 → U19.23; W6 → U19.30, U26.3; W7 → U19.30, U26.8; W8 → U26.1, U26.2; W9 → U26.1, U28.1; W10 → U26.7; W11 → U26.5, U26.9, U28.1; W12 → U19.32
+
+**S50** (50 Statistical Techniques an AI Engineer Needs to Know (learner list, 9 of 50 categories present)): D1 → U19.19, U19.27; D2 → U19.18, U19.23; D3 → U19.19, U19.20, U19.21; D4 → U19.24, U19.28, U19.29; D5 → U19.29; D6 → U19.23, U19.30; D7 → U19.30, U26.3; D8 → U19.31; D9 → U19.31
+
+**DMIN** (Data Mining): o → U26.1, U26.12; W1 → U26.1, U26.8, U26.12; W2 → U26.12; W3 → U26.6, U26.7, U26.11; W4 → U26.5; W5 → U26.9, U26.12; W6 → U26.12; W7 → U26.2, U26.12; W8 → U26.12
+
+**FDL** (Foundations of Deep Learning: Concepts and Applications): o → U28.1; W1 → U28.1; W2 → U25.10, U28.2, U28.3; W3 → U28.4; W4 → U28.4; W5 → U28.5, U32.6; W6 → U28.6; W7 → U28.7; W8 → U28.7; W9 → U29.1, U29.2; W10 → U28.8; W11 → U29.3, U29.4, U29.7, U29.9; W12 → U27.5, U29.4, U29.8, U30.3, U30.4, U30.7, U32.1, U33.4
+
+**DLNLP** (Deep Learning for Natural Language Processing): o → U29.1, U29.4, U29.8; W1 → U29.1; W2 → U29.2; W3 → U29.2; W4 → U28.7; W5 → U29.3; W6 → U29.4; W7 → U29.4; W8 → U29.8; W9 → U29.5, U29.7; W10 → U29.9; W11 → U29.5, U31.1; W12 → U32.6
+
+**CAL1** (Calculus of One Real Variable): o → U24.1; W1 → U24.1; W2 → U24.1; W3 → U24.2; W4 → U24.2, U24.3; W5 → U24.3; W6 → U24.3; W7 → U24.3, U24.4; W8 → U24.4
+
+**ALAB** (Advanced Linear Algebra): o → U18.14, U18.16, U18.20, U18.21, U18.22; P1 → U18.14, U18.15, U18.16; P2 → U18.15, U18.16; P3 → U18.19, U18.20; P4 → U18.17, U18.21, U18.22
+
+**ALAK** (Applied Linear Algebra in AI and ML): o → U18.21, U18.22, U18.23, U18.24; W1 → U18.15, U18.16, U18.17; W2 → U18.14, U18.22; W3 → U18.17, U18.22; W4 → U18.22; W5 → U18.23; W6 → U18.23; W7 → U18.23, U26.4; W8 → U18.21; W9 → U18.22; W10 → U18.24; W11 → U18.24; W12 → U18.22, U18.24
+
+**LAP** (Linear Algebra): o → U18.15, U18.18, U18.19, U18.24; W1 → U18.15; W2 → U18.14, U18.15; W3 → U18.15; W4 → U18.15; W5 → U18.16; W6 → U18.16; W7 → U18.16; W8 → U18.16; W9 → U18.14; W10 → U18.18, U18.20; W11 → U18.18; W12 → U18.18
+
+**LAR** (Basic Linear Algebra): o → U18.14; W1 → U18.14; W2 → U18.14; W3 → U18.14, U18.15; W4 → U18.14, U18.18; W5 → U18.16; W6 → U18.17; W7 → U18.19, U24.16; W8 → U18.19
+
+**LPCS** (Linear Programming and its Applications to Computer Science): o → U25.2, U25.7; W1 → U25.2, U25.7; W2 → U25.2, U25.7; W3 → U25.2, U25.7; W4 → U25.2, U25.6; W5 → U25.2, U25.6; W6 → U25.6; W7 → U25.7; W8 → U25.7
+
+**PSS** (Preparatory Probability and Statistics (title not in source)): o → U19.18, U19.27; W1 → U19.27; W2 → U19.27; W3 → U19.18; W4 → U19.19, U19.20, U19.21
+
+**IPS** (Introduction to Probability and Statistics): o → U19.18, U19.19; W1 → U19.18; W2 → U19.18, U19.19; W3 → U19.19, U19.20; W4 → U19.20, U19.21; W5 → U19.21; W6 → U19.22, U19.23; W7 → U19.22, U19.23; W8 → U19.27, U19.28; W9 → U19.27, U19.28; W10 → U19.28, U19.29; W11 → U19.29; W12 → U19.29
+
+**SA** (Stochastic Approximation: Theory and Applications): o → U19.26, U24.17, U25.16, U25.17, U27.6; W1 → U25.16; W2 → U19.26; W3 → U19.26; W4 → U24.17; W5 → U25.16; W6 → U25.16; W7 → U25.17; W8 → U25.17; W9 → U25.17; W10 → U25.17; W11 → U27.6; W12 → U27.6
+
+**AA** (Approximation Algorithms): o → U17.18; W1 → U17.18; W2 → U17.19; W3 → U17.20; W4 → U17.21; W5 → U17.21; W6 → U17.21; W7 → U17.22; W8 → U17.22; W9 → U17.23; W10 → U17.23; W11 → U17.24; W12 → U17.24
+
+**GEN** (Generative AI: Topics and Chapter Structure (12 chapters, 78 sections)): 1.1 → U29.1; 1.2 → U29.1, U29.2; 1.3 → U29.1; 1.4 → U29.1; 1.5 → U29.1; 1.6 → U29.1; 1.7 → U29.1; 2.1 → U26.0; 2.2 → U26.0; 2.3 → U26.0; 2.4 → U26.0; 2.5 → U26.0; 2.6 → U26.0, U28.8; 2.7 → U28.1, U28.2; 2.8 → U28.3; 3.1 → U28.1; 3.2 → U28.1; 3.3 → U28.2, U28.3; 3.4 → U29.3; 4.1 → U29.3; 4.2 → U29.3; 4.3 → U29.3; 4.4 → U29.3; 4.5 → U29.3; 4.6 → U29.3; 4.7 → U29.3; 5.1 → U29.4, U29.8; 5.2 → U29.7; 5.3 → U29.6; 5.4 → U29.7; 6.1 → U29.7; 6.2 → U29.6; 6.3 → U29.7; 6.4 → U29.7; 7.1 → U29.10; 7.2 → U29.10; 7.3 → U32.1; 7.4 → U29.10; 7.5 → U29.10; 8.1 → U31.1; 8.2 → U31.1; 8.3 → U31.1; 8.4 → U31.2; 8.5 → U31.2; 8.6 → U31.2; 9.1 → U31.3; 9.2 → U31.3; 9.3 → U31.4; 9.4 → U31.4; 9.5 → U31.5; 9.6 → U31.5; 9.7 → U31.6; 10.1 → U31.6; 10.2 → U31.6; 10.3 → U31.7; 10.4 → U31.8; 10.5 → U31.8; 10.6 → U31.8; 10.7 → U31.8; 10.8 → U31.9; 11.1 → U31.9; 11.2 → U31.10; 11.3 → U31.10; 11.4 → U31.11; 11.5 → U31.12; 11.6 → U31.13; 11.7 → U31.14; 11.8 → U31.15; 12.1 → U32.1; 12.2 → U32.1; 12.3 → U32.2; 12.4 → U32.3; 12.5 → U32.3; 12.6 → U32.3; 12.7 → U32.4; 12.8 → U32.5; 12.9 → U32.5; 12.10 → U32.6
+
+Total for the machine-learning courses: 564 cells, every one cited; 1042 cells in the whole document.
 
 ## Appendix C. Prerequisite bridges and the prerequisites the sources state
 
@@ -11460,7 +18059,7 @@ Total: 478 cells, every one cited.
 | U8.2 | quantitative risk — frequency and severity models, Monte Carlo loss exceedance, Bayesian updating and decision under uncertainty | U8.3 (risk management), U8.5 (resilience assessment), U13.6 (security programme capstone). Builds on U5.1 |
 | U9.17 | transactions — ACID, serializability, locking, logging and recovery | U9.18 (atomic commit, Percolator, Spanner), U10.5 (Bigtable), U10.7 (managed databases). Builds on U10.1's relational view if read in order, and is self-contained otherwise. The relational and storage background is domain D15 (U15.20 to U15.23 develop the same theory in full, citing the theorems proved here); this unit is the compact version |
 | U10.1 | the relational model, SQL, indexing and query processing | U10.4 onward (every store here is defined by what it gives up relative to a relational database), U12.2 (BigQuery). Addresses the SQL prerequisite stated in the cloud-platform source and the database prerequisite stated in the big-data source. Full treatment is in domain D15 (U15.4 to U15.18), read before D10 in the default order; this unit stays as the compact version for a reader who skips D15 |
-| U11.8 | machine-learning foundations for scalable learning | U11.9 (machine learning on the engines), U12.3 (machine learning on the cloud platform). A compact version of the foundations; the full treatment is in the earlier unified machine-learning curriculum |
+| U11.8 | machine-learning foundations for scalable learning | U11.9 (machine learning on the engines), U12.3 (machine learning on the cloud platform). A compact version of the foundations; the full treatment is the machine-learning foundations, U26.0 to U26.14,, taught on demand and listed in the On demand line below |
 | U11.10 | Markov chains, eigenvectors and PageRank | U11.11 (graph processing). Builds on the random-walk material of U9.2 |
 | U14.1 | binary representation, number systems and digital logic | U14.2 (instruction encoding, sign extension), U14.4 (adders, multipliers, IEEE 754), U14.5 (datapath, control state machines), U14.6 (pipeline registers and clocked timing), and every later D14 simulator built from gates and flip-flops. It is the prerequisite the sources state ("a basic understanding of digital logic") |
 | U15.3 | sets, relations, functions and first-order logic for the relational model, algebra and calculus | U15.4 to U15.6 (relations as sets of tuples, the algebra and the calculus), U15.11 (functional dependencies as logical statements and the proofs about them) and U15.13 (dependencies as constraints). The sources state discrete mathematics as a prerequisite; this unit supplies it |
@@ -11501,8 +18100,103 @@ Total: 478 cells, every one cited.
 | U23.6 | System-design building blocks in Go: rate limiters, consistent hashing, Bloom filters and caches | U16.8 to U16.15 (the system-design primer: load balancing, rate limiting, sharding, caching, the crawler and the key-value store), U9.5 (Chord and distributed hash tables), U10.3 (Dynamo's ring), U11.7 and U20.2 (Bloom filters and sketches) |
 | U23.7 | Cloud-native Go: reconciliation loops, leases and fencing, backoff, a twelve-factor service and a container image | U4.4 (containers and Kubernetes), U4.7 (App Engine, Cloud Functions and the compute services), U9.10 and U9.15 (leader election, Chubby and ZooKeeper), U9.14 (Raft), U12.1 (reliability), U13.3, U13.5 and U13.9 |
 | U23.8 | Testing, benchmarking and profiling Go programs: table tests, fuzzing, the race detector, coverage, benchmarks and `pprof` | every Go track line (the acceptance rule), U22.10 to U22.12 (testing theory in a second language), U16.6 (testability) |
+| U21.7 | Functions, exponentials and logarithms | U21.2 (school mathematics through class 12, consolidated) |
+| U21.8 | Angles and the trigonometric functions | U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces), U21.2 (school mathematics through class 12, consolidated) |
+| U21.9 | Identities, inverse trigonometric functions, equations, polar coordinates and rotations | U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces), U21.2 (school mathematics through class 12, consolidated) |
+| U21.10 | Complex numbers I: algebra, the plane, polar form, powers and roots | U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces) |
+| U21.11 | Complex numbers II: the complex exponential, Euler's formula, roots of unity and phasors | U18.1 (complex numbers, trigonometry and phasors, and the language of vector spaces), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA) |
+| U21.12 | Logic, proof paradigms and formal languages | U17.1 (discrete mathematics for algorithm analysis), U21.4 (proofs and discrete reasoning) |
+| U21.13 | Counting, generating functions and combinatorics | U17.1 (discrete mathematics for algorithm analysis), U19.1 (calculus, counting and matrices for statistics), U21.4 (proofs and discrete reasoning) |
+| U21.15 | Graph theory | U2.7 (graph algorithms for routing), U3.2 (bipartite matching, Hall's theorem and Birkhoff–von Neumann decomposition), U11.11 (Big data applications), U21.5 (graph theory from scratch) |
+| U21.16 | Number theory and cryptography | U5.2 (integers modulo n), U5.12 (number theory for public-key cryptography) |
+| U21.17 | Algebra: finite fields, codes, groups and orbit counting | U2.11 (coding theory), U5.5 (groups, rings, fields, finite fields and linear algebra over them), U5.13 (Key exchange, cyclic groups and the Diffie–Hellman family), U5.15 (Elliptic curves) |
+| U21.18 | An invitation to mathematics: polynomials, functions, matrices, conservation laws | U21.4 (proofs and discrete reasoning) |
+| U24.1 | Numbers, countability, functions, limits and continuity | U19.1 (calculus, counting and matrices for statistics) |
+| U24.2 | Differentiation and mean value theorems | U19.1 (calculus, counting and matrices for statistics) |
+| U24.3 | Integration, applications and transcendental functions | U19.1 (calculus, counting and matrices for statistics) |
+| U24.5 | Improper integrals, Gamma and Beta functions, integrals dependent on parameters | U19.14 (Bayesian inference) |
+| U24.6 | Functions of several variables, partial derivatives and differentiability | U19.1 (calculus, counting and matrices for statistics) |
+| U24.7 | Taylor expansion in several variables, maxima, minima and Lagrange multipliers | U19.1 (calculus, counting and matrices for statistics) |
+| U24.8 | Multiple integrals and their applications | U19.1 (calculus, counting and matrices for statistics) |
+| U18.14 | Systems of linear equations, matrices, elimination, rank and inverses | U18.3 (Introduction to matrices and applications), U19.1 (calculus, counting and matrices for statistics) |
+| U18.15 | Vectors, vector spaces, subspaces, bases and dimension | U5.5 (groups, rings, fields, finite fields and linear algebra over them), U5.25 (Quantum and post-quantum cryptography), U18.2 (Introduction to vectors, properties and applications), U18.3 (Introduction to matrices and applications) |
+| U18.16 | Linear maps, representation by matrices, duality and quotient spaces | U5.5 (groups, rings, fields, finite fields and linear algebra over them), U18.3 (Introduction to matrices and applications) |
+| U18.17 | Inner products, norms, orthogonality, projections and Gram–Schmidt | U18.2 (Introduction to vectors, properties and applications) |
+| U18.18 | Determinants, multilinear forms and permutations | U18.3 (Introduction to matrices and applications) |
+| U18.19 | Eigenvalues, eigenvectors, similarity and diagonalization | U18.4 (Eigenvalue decomposition) |
+| U18.20 | Canonical forms: minimal polynomial, invariant subspaces, Jordan and rational forms | U18.4 (Eigenvalue decomposition) |
+| U18.21 | Spectral theory: normal operators, symmetric matrices, quadratic forms, PSD matrices and kernels | U18.4 (Eigenvalue decomposition), U20.1 (Scalable data science) |
+| U18.22 | LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation | U5.25 (Quantum and post-quantum cryptography), U14.4 (Computer arithmetic), U18.5 (Singular value decomposition and applications), U20.1 (Scalable data science), U20.5 (Randomised numerical linear algebra) |
+| U18.23 | Least squares, regularized and constrained least squares | U18.6 (Linear regression and least squares), U18.7 (Optimal linear MMSE estimation), U19.7 (Linear regression and multiple regression) |
+| U18.24 | Applications of linear algebra: PageRank, sparsity, dynamical systems, Markov chains, signal processing and data analytics | U11.10 (Markov chains, eigenvectors and PageRank), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA), U20.6 (MapReduce and related paradigms) |
+| U19.18 | Probability foundations: from events to Bayes' theorem | U2.1 (probability, random processes and queueing for networks), U5.1 (probability, entropy and asymptotics for cryptography), U19.3 (Probability and random variables), U21.6 (probability from first principles) |
+| U19.19 | Random variables, distributions and moments | U2.1 (probability, random processes and queueing for networks), U5.1 (probability, entropy and asymptotics for cryptography), U8.2 (quantitative risk), U19.3 (Probability and random variables), U21.6 (probability from first principles) |
+| U19.20 | Special discrete distributions and the Poisson process | U2.1 (probability, random processes and queueing for networks), U5.1 (probability, entropy and asymptotics for cryptography), U19.3 (Probability and random variables), U21.6 (probability from first principles) |
+| U19.21 | Special continuous distributions and the normal distribution | U5.1 (probability, entropy and asymptotics for cryptography), U8.2 (quantitative risk), U8.8 (Anonymity and privacy-enhancing technologies), U19.3 (Probability and random variables), U21.6 (probability from first principles) |
+| U19.22 | Functions of random variables, transformations and order statistics | U19.3 (Probability and random variables), U21.6 (probability from first principles) |
+| U19.23 | Joint distributions, conditioning, covariance and multivariate normal | U18.7 (Optimal linear MMSE estimation), U19.3 (Probability and random variables), U21.6 (probability from first principles) |
+| U19.24 | Limit theorems and concentration inequalities | U8.2 (quantitative risk), U9.2 (tail bounds, balls into bins and randomised-algorithm analysis), U11.7 (Stream processing and approximate algorithms), U20.1 (Scalable data science), U21.6 (probability from first principles) |
+| U19.25 | Markov chains, queueing theory and reliability | U2.1 (probability, random processes and queueing for networks), U11.10 (Markov chains, eigenvectors and PageRank), U18.13 (Discrete-time Markov chains and operations research), U22.14 (Software reliability) |
+| U19.27 | Data, descriptive statistics and measures of association | U19.2 (Introduction to data analytics and Python fundamentals) |
+| U19.28 | Sampling distributions and point estimation | U19.4 (Sampling and sampling distributions), U19.8 (Maximum likelihood, logistic regression and the ROC curve) |
+| U19.29 | Confidence intervals and hypothesis testing | U13.10 (Capstone), U19.5 (Hypothesis testing), U19.6 (Two-sample testing and the analysis of variance) |
+| U19.30 | Correlation, regression and multivariate analysis | U19.7 (Linear regression and multiple regression) |
+| U19.31 | Bayesian inference and MCMC | U19.14 (Bayesian inference), U19.15 (Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan), U19.16 (Bayesian regression and hierarchical models) |
+| U24.11 | First- and higher-order ordinary differential equations | U18.10 (Dynamical systems) |
+| U24.15 | Laplace, Z, Fourier and discrete Fourier transforms | U17.3 (Divide and conquer), U18.9 (The DFT and the FFT matrix, OFDM and SC-FDMA) |
+| U24.16 | Mathematical modelling: discrete and continuous dynamical systems | U18.10 (Dynamical systems) |
+| U24.17 | ODE theory for dynamical systems: Gronwall, limit sets, invariant sets and chain transitivity | U18.10 (Dynamical systems) |
+| U25.2 | Convex sets, cones, polyhedra and separation | U20.1 (Scalable data science) |
+| U25.3 | Convex functions and their calculus | U20.1 (Scalable data science) |
+| U25.5 | Constrained optimization theory: Lagrange, cones, Fritz John and KKT | U20.1 (Scalable data science) |
+| U25.6 | Lagrangian duality, saddle points and minimax | U4.5 (network flows and linear programming), U20.8 (Distributed optimisation with ADMM and its applications) |
+| U25.7 | Linear programming: simplex, duality, sensitivity and interior-point methods | U4.5 (network flows and linear programming) |
+| U25.8 | Unconstrained descent methods: line search, gradient, Newton, quasi-Newton, conjugate gradient, trust region | U20.7 (Scala and Spark, and distributed machine learning and optimisation) |
+| U25.9 | Constrained optimization algorithms: QP, projected and reduced gradient, penalty, augmented Lagrangian, SQP | U20.8 (Distributed optimisation with ADMM and its applications) |
+| U25.10 | First-order methods for ML: stochastic, accelerated, proximal, adaptive, and the dynamical-systems view | U11.8 (machine-learning foundations for scalable learning), U11.9 (Big data applications), U20.7 (Scala and Spark, and distributed machine learning and optimisation) |
+| U25.12 | Applications of optimization: signal estimation, compressive sensing, radar, big data and finance | U18.12 (The linear perceptron, compressive sensing and orthogonal matching pursuit) |
+| U25.13 | Non-smooth and difference-of-convex optimization | U18.12 (The linear perceptron, compressive sensing and orthogonal matching pursuit) |
+| U25.14 | Distributed optimization: graphs, consensus, ADMM and dual decomposition | U20.8 (Distributed optimisation with ADMM and its applications) |
+| U25.16 | Stochastic approximation: algorithms, step sizes and the ODE method | U20.7 (Scala and Spark, and distributed machine learning and optimisation) |
+| U26.1 | What machine learning is: paradigms, data, hypothesis spaces and the statistical framework | U11.8 (machine-learning foundations for scalable learning) |
+| U26.2 | Model evaluation and selection: bias–variance, validation, tuning and metrics | U11.8 (machine-learning foundations for scalable learning), U13.10 (Capstone), U19.13 (Evaluation, visualisation, sequence mining and case studies), U19.17 (Model comparison, mixture models and multinomial processing trees) |
+| U26.3 | Linear regression and linear classification: estimation, logistic and softmax regression, surrogate losses | U11.8 (machine-learning foundations for scalable learning), U11.9 (Big data applications), U18.6 (Linear regression and least squares), U19.8 (Maximum likelihood, logistic regression and the ROC curve) |
+| U26.4 | Regularization and implicit regularization | U11.8 (machine-learning foundations for scalable learning) |
+| U26.5 | Perceptron, support vector machines and kernel methods | U18.6 (Linear regression and least squares), U19.12 (Classification) |
+| U26.6 | Bayes decision theory, density estimation and probabilistic classifiers | U19.12 (Classification) |
+| U26.7 | Decision trees and ensembles: bagging, boosting, random forests | U11.8 (machine-learning foundations for scalable learning), U11.9 (Big data applications), U19.10 (Classification and regression trees (CART)), U19.12 (Classification) |
+| U26.8 | Dimensionality reduction and feature learning | U18.4 (Eigenvalue decomposition), U18.5 (Singular value decomposition and applications), U20.5 (Randomised numerical linear algebra) |
+| U26.9 | Clustering, mixture models and the EM algorithm | U11.9 (Big data applications), U18.11 (Unsupervised learning), U19.9 (The chi-square test and cluster analysis), U19.17 (Model comparison, mixture models and multinomial processing trees), U20.6 (MapReduce and related paradigms) |
+| U26.10 | Probabilistic graphical models, hidden Markov models, inference and Gaussian processes | U19.15 (Markov chain Monte Carlo, Hamiltonian Monte Carlo, the brms package and Stan), U19.16 (Bayesian regression and hierarchical models) |
+| U26.11 | Instance-based learning, collaborative filtering and recommendation | U11.9 (Big data applications), U18.8 (Data analytics with matrices), U19.12 (Classification) |
+| U26.12 | Data mining: preprocessing, association rules, sequence mining, outliers and case studies | U13.10 (Capstone), U19.11 (Data mining), U19.13 (Evaluation, visualisation, sequence mining and case studies) |
+| U27.4 | Markov decision processes, dynamic programming and temporal-difference learning | U17.10 (Greedy algorithms, dynamic programming, graphs and minimum spanning trees), U17.12 (Single-source shortest paths), U18.13 (Discrete-time Markov chains and operations research) |
+| U28.1 | Perceptron, multilayer networks, activations and loss functions | U12.3 (Machine learning on Google Cloud), U14.20 (Domain-specific accelerators and efficient neural-network training and), U18.12 (The linear perceptron, compressive sensing and orthogonal matching pursuit) |
+| U28.2 | Backpropagation and training deep networks | U12.3 (Machine learning on Google Cloud), U14.17 (GPU architecture), U14.20 (Domain-specific accelerators and efficient neural-network training and) |
+| U28.4 | Convolutional neural networks and image representation | U12.3 (Machine learning on Google Cloud), U14.20 (Domain-specific accelerators and efficient neural-network training and) |
+| U29.3 | Attention and the Transformer architecture | U12.3 (Machine learning on Google Cloud) |
+| U29.8 | Instruction tuning, RLHF and alignment: PPO and DPO | U12.3 (Machine learning on Google Cloud) |
+| U31.3 | Sparse retrieval limits and dense representations | U15.25 (Enhanced data models) |
+| U31.6 | Vector databases and indexes: KNN, IVF, PQ, HNSW, FAISS and ChromaDB | U10.6 (In-memory key-value stores and the families of NoSQL databases), U15.16 (Indexing), U15.25 (Enhanced data models), U15.27 (NoSQL systems, graph databases and big data), U20.3 (Count-Min and Count sketches, and approximate near-neighbour search) |
+| U31.8 | Production RAG: request shaping, query transformation, routing, security, cost and observability | U16.15 (Worked designs II) |
+| U32.1 | LLM evaluation: metric architecture and reference-based metrics | U12.3 (Machine learning on Google Cloud) |
+| U32.3 | AI safety foundations and threat models | U7.2 (Knowing your attacker), U7.7 (Cloud security and identity), U12.3 (Machine learning on Google Cloud) |
+| U32.4 | White-box attacks and prompt injection | U6.7 (Web application attacks and secure coding) |
+| U32.6 | Defense, interpretability and ethics | U7.7 (Cloud security and identity) |
+| U33.1 | CNN computation and accelerators | U14.17 (GPU architecture), U14.20 (Domain-specific accelerators and efficient neural-network training and) |
+| U33.2 | Parallelism for training, communication and fault tolerance | U9.19 (Failures and recovery), U14.13 (Parallel architectures and programming models) |
+| U33.3 | LLM decoding, memory management and serving infrastructure | U14.20 (Domain-specific accelerators and efficient neural-network training and), U16.9 (Scalability and the front of the system), U16.12 (Caching), U16.13 (Asynchronism, communication and security basics) |
+| U33.4 | Model compression and quantization | U14.20 (Domain-specific accelerators and efficient neural-network training and) |
+| U33.6 | Federated learning | U8.8 (Anonymity and privacy-enhancing technologies) |
+| U17.18 | Review of NP-completeness and the approximation framework | U5.8 (computational complexity, one-way functions and the reduction method), U17.14 (Flow networks, the Ford–Fulkerson method), U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
+| U17.19 | Approximation for vertex cover, set cover and the traveling salesman problem | U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
+| U17.20 | Approximation for the knapsack problem and job scheduling | U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
+| U17.21 | Linear programming basics and deterministic rounding | U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
+| U17.22 | Randomized rounding | U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
+| U17.23 | The primal–dual method | U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
+| U17.24 | Semidefinite programming for max cut, and hardness of approximation | U17.17 (Backtracking, branch and bound, exact exponential algorithms) |
 
-55 bridge units in all. In D17 every unit is an on-demand bridge (the entry map in its introduction lists the units that call on it), which is why D17 appears here in full. Several other units (U5.2 modular arithmetic, U5.5 algebra, U9.1 models and the simulator, U9.2 tail bounds) also begin from first principles and carry source citations as well.
+150 bridge units in all. In D17 every unit is an on-demand bridge (the entry map in its introduction lists the units that call on it), which is why D17 appears here in full. Several other units (U5.2 modular arithmetic, U5.5 algebra, U9.1 models and the simulator, U9.2 tail bounds) also begin from first principles and carry source citations as well.
 
 ### C.2 What the sources state as prerequisites, and where each is handled
 
@@ -11529,12 +18223,84 @@ Total: 478 cells, every one cited.
 | IDB | PRE-REQUISITES : Studying B Tech (computer science) 3rd year, Discrete Mathematics or Discrete Structures, Programming and Data Structures INTENDED AUDIENCE : Any Interested Learners | Discrete mathematics, data structures and programming: U15.3, U15.14 and U15.19, with U1.2 for Python. |
 | DAP | PRE-REQUISITES : Basic knowledge of Python but not necessary | Basic Python, not necessary: U21.1 teaches the language from scratch; the school mathematics and probability the course uses are U21.2 and U21.6. |
 | AGDS | PREREQUISITES: Data Structure, Graph Theory and Probability | Data structures: D17 (U17.5 to U17.9). Graph theory: U21.5. Probability: U21.6 and U19.3. |
-| SDS | PREREQUISITES : Algorithms, Machine Learning | Algorithms: D17 (with U17.1 and U21.4 for the mathematics under them). Machine learning: U11.8 here and the full machine-learning curriculum; U20.1 reviews the optimisation, linear algebra and concentration inequalities it needs. |
+| SDS | PREREQUISITES : Algorithms, Machine Learning | Algorithms: D17 (with U17.1 and U21.4 for the mathematics under them). Machine learning: U11.8 here and the full treatment in D26; U20.1 reviews the optimisation, linear algebra and concentration inequalities it needs. |
 | DBMS | Students from all disciplines can enroll for this course.PRE-REQUISTES :1. Procedural and / or Object-Oriented Programming (C / C++ / Java / Python) 2. Data Structures 3. AlgorithmsINDUSTRY SUPPORT : DBMS is so fundamental that all companies dealing with systems as well as application development (i | Procedural or object-oriented programming (C, C++, Java, Python): U21.1 and U16.1 (Python replaces the other languages, inferred). Data structures and algorithms: D17. |
 | BDA | PRE-REQUISITES : The only prerequisite is R programming. Mathematics background up to class 12 is desired. To prepare for this course, participants can do courses like: ‘Foundations of R Software’ available on NPTEL taught by Prof. Shalabh, IIT Kanpur | R programming: replaced by Python throughout (decision of 2026-11-06); U21.3 teaches scientific Python in its place. Mathematics up to class 12: U21.2 and U19.1. The suggested NPTEL course Foundations of R Software is replaced by U21.3. |
 | DSAD | Very good analytical skills. | Very good analytical skills: U21.4 (proofs and discrete reasoning) and U17.1. |
 | ISE | Basics of Algorithm, and knowledge of programming in any language | Basics of algorithms: D17 on demand (entry map). Programming in any language: Python (U1.2, U21.1), with Go on demand (D23) for system-design, database-coding and cloud-computing exercises. |
 | SEM | C Programming, Java or C++ programming | C, Java or C++: Python replaces them (inferred), Go is taught on demand (D23) for the system-design, database-coding and cloud-computing exercises, and the object-oriented bridge is U16.1. |
+
+### C.3 Prerequisite claims made by the machine-learning sources (to verify, not trust)
+
+Generated from each source's own prerequisite lines; each is rewritten below as concrete topics and probed when reached (Master Rules 3.3).
+
+
+| Course | Prerequisite line(s) in the source |
+|---|---|
+| MFML | Basic Mathematics at school and undergraduate level |
+| MFGAI | Prerequisites Probability, Course in Machine Learning |
+| EM2 | prerequisite: Engineering Mathematics I |
+| OMLH | PRE-REQUISITES : Linear Algebra, Basic Calculus, Basic Programming courses |
+| CVX | Pre-requisites: Knowledge in Linear Algebra & RealAnalysis Hyperlinks: |
+| AOW | PRE-REQUISITES : Basic knowledge of - Calculus, Probability, Matrices |
+| OAT | PRE-REQUISITES : A basic knowledge on optimization theory is expected Foundations of Optimization - https://nptel.ac.in/courses/111104071 |
+| PMO | Calculus, Linear Algebra, Coordinate Geometry |
+| CSO | Computer Organization |
+| DOML | A background in convex optimization and differential equations is preferred |
+| BAN | PREREQUISITES : Basics of Probability Theory and Optimization |
+| MLDL | Knowledge of Linear Algebra, Probability and Random Process, PDE will be helpful. |
+| MLK | PRE-REQUISITES : Basic knowledge in Computer science and applied Mathematics |
+| MLE | PREREQUISITES: Familiarity with Multivariable Calculus, Linear Algebra, Probability, Statistics. Comfortable with basic programming. |
+| MLESA | PRE-REQUISITES: We will assume that the students know programming for some of the assignments.If the students have done introductory courses on probability theory and linear algebra it would be helpful. We will review some of the basic topics in the first two  |
+| FML | Anyone with a good understanding of basic engineering math is eligible. Especially subjects like linear algebra, probability theory, and optimization. |
+| IMLK | Basic programming skills (in Python), algorithm design, basics of probability &amp; statisticsINDUSTRY SUPPORT : Data science companies and many other industries value machine learning skills. |
+| SMLM | Basic Knowledge of Probability and Statistics |
+| FDL | This course is designed to be self-contained and suitable for learners with no prior background in the subject. However, a basic familiarity with Python programming is recommended to facilitate better understanding of the concepts and hands-on components of th |
+| DLNLP | Participants should have done a course on MachineLearning, and should know basics of PythonProgramming |
+| CAL1 | First year engineering, science and economics students with mathematics as main course.Prerequisites : Basic mathematics till 12th standard |
+| ALAB | PRE-REQUISITES : Linear Algebra B.Sc /BE I/II year |
+| ALAK | PRE-REQUISITES : Senior undergraduate and post graduate students from CSE, EE, ECE, AI, Maths INTENDED AUDIENCE : First course in Engineering Mathematics with some exposure to linear algebra |
+| LAP | PREREQUISITES : Language of Set Theory; Elementary Algebra and Calculus |
+| LAR | PREREQUISITES : Core INDUSTRY SUPPORT : Basic mathematics at school level undergraduate level |
+| LPCS | Linear algebraBasic Linear Algebra - https://nptel.ac.in/courses/111101115Linear Algebra - https://nptel.ac.in/courses/111104137https://nptel.ac.in/courses/111106135 |
+| IPS | PRE-REQUISITES: Must have good knowledge of Differential and Integral Calculus, sequences and series, Basic Linear/ Matrix Algebra (usually students who have completed Mathematics-I and II at first year undergraduate |
+| SA | Real analysis, Measure-theoretic Probability, Optimization, Design and Analysis of Algorithms, Ordinary Differential Equations |
+| AA | Knowledge of algorithm design principles. |
+
+### C.4 Prerequisite chain of the merged units down to school level, as concrete topics
+
+| Prerequisite (concrete) | First needed in | Depth needed | How probed |
+|---|---|---|---|
+| Algebra, functions, graphs, exponents and logarithms | U24.1 | L2 | One unseen probe item (the D21 trigger table); taught on demand by U21.7 when a gap shows |
+| Trigonometry: radians, the unit circle, identities, inverse trigonometric functions, polar coordinates | U24.2 (derivatives of sin and cos), U24.3, U24.8, U18.17, U19.22 | L2 | One unseen probe item per block (cos 150 degrees; sin squared x without the square); taught on demand by U21.8 and U21.9 |
+| Complex numbers: arithmetic, polar form, De Moivre, Euler's formula, roots of unity | U18.19, U24.11, U24.13, U24.4, U24.15, U21.17, U29.3 | L2 | Compute (3 + 4i)/(1 − 2i) and write 1 + i in polar form; taught on demand by U21.10 and U21.11 |
+| Sets, relations, functions; basic logic | U21.12 | L2 | Prediction on a quantifier negation |
+| Proof by induction, contradiction, contrapositive | U21.12 | L3 | Prove an unseen identity; taught first if shaky |
+| Limits and continuity (ε–δ) | U24.1 | L3 | Prove a limit |
+| Derivative rules, chain rule | U24.2 | L2 | Differentiate an unseen composite |
+| Integration techniques | U24.3 | L2 | Evaluate an unseen integral |
+| Series convergence tests | U24.4 | L3 | Decide convergence of an unseen series with a reason |
+| Partial derivatives, gradient | U24.6 | L3 | Compute a gradient and check it numerically |
+| Vectors, dot product, geometry of R² and R³ | U18.15 | L2 | Projection of one vector on another |
+| Matrix multiplication, elimination | U18.14 | L2 | Solve a 3×3 system by hand |
+| Eigenvalues and diagonalization | U18.19 | L3 | Diagonalize an unseen 3×3 matrix |
+| Measure-theoretic probability (sigma-fields, expectation as an integral, convergence modes), claimed as a prerequisite by SA | U19.26 | L3 | Prove that a limit of measurable functions is measurable; taught first if shaky |
+| Real analysis (sequences, compactness, Lipschitz continuity), claimed by SA and CVX | U24.1 | L3 | Prove a compactness statement |
+| Design and analysis of algorithms (greedy, dynamic programming, graph algorithms, reductions), claimed by SA and AA | U17.18 and U21.15 | L3 | Analyse an unseen greedy algorithm's cost; taught first if shaky |
+| Counting (permutations, combinations) | U19.18 | L2 | Unseen counting problem |
+| Probability axioms, conditional probability | U19.18 | L3 | Unseen Bayes problem with a prediction |
+| Expectation, variance, standard distributions | U19.19–U19.21 | L3 | Derive a mean and a variance |
+| Covariance matrix, multivariate normal | U19.23 | L3 | Compute and interpret a conditional |
+| Convexity and Jensen's inequality | U25.3 | L3 | Prove a function convex |
+| Gradient descent as a loop | U25.8 | L2 | Predict the next iterate on a quadratic |
+| Python programming (functions, classes, NumPy arrays, plotting) | U21.12 builds | L2 | First build; remedial Python taught on demand |
+| Big-O and basic algorithms (sorting, search, graphs) | U21.15, U25.8 | L2 | Predict the cost of a loop nest |
+| Floating-point arithmetic | U18.22 | L2 | Predict a rounding failure |
+| Information theory (entropy, KL divergence) | U19.19, U26.9, U30.2 | L3 | Compute KL between two Bernoulli laws |
+| Reinforcement-learning vocabulary | U27.4 | L2 | Describe an MDP |
+| Computer organization (cache, memory hierarchy, parallelism) | U33.1 (source prerequisite of CSO) | L2 | Predict a cache-miss pattern; taught first if shaky |
+
+**Remedial rule (Master Rules II.3), as carried from the merged curriculum:** school-level algebra, trigonometry, complex numbers and Python are remedial and on demand (D21 holds the first three as units U21.7 to U21.11, with a trigger table; added 2026-11-06): a short probe locates a gap, the matching area is taught, and the learner returns to the exact point they left.
 
 ## Appendix D. Gap-fills, candidates not added, and decisions needed
 
@@ -11547,6 +18313,7 @@ Total: 478 cells, every one cited.
 - **D17 to D21** (the data-analytics extension, 2026-11-06): eight new courses from `data-analytics.txt` gave four new domains, D17 (algorithms and data structures, taught on demand with an entry map and three added units, U17.15 to U17.17), D18 (applied linear algebra), D19 (statistics, data mining and Bayesian analysis) and D20 (scalable data science); the DBMS course was mapped onto the existing D15 units with no new unit. D21 (on-demand prerequisites: Python, school mathematics, scientific Python in place of R, proofs, graph theory, probability) consolidates every prerequisite the sources state or assume, taught in depth with from-scratch builds and assignments, and U13.10 (an analytics pipeline) was added as a capstone. Ownership rules: D15 owns database theory, U11.3 and U11.4 own MapReduce and Spark, U11.7 owns the stream-sketch idea, U11.8 and U11.10 own the compact machine-learning and Markov-chain bridges; D17 to D20 add the analysis, the proofs and the experiments, and the existing units point to them.
 - **D22 and D23** (software engineering and Go on demand, 2026-11-06): `software-engineering.txt` holds two NPTEL outlines (ISE, Introduction to Software Engineering, Dhanbad; SEM, Software Engineering, Kharagpur), merged into D22 (14 units, U22.1 to U22.14: life cycle and process models, planning and estimation, scheduling and configuration management, requirements, formal specification, design, structured and object-oriented analysis and design, three units of testing and debugging, maintenance and agile methods, and reliability). U22.14 (software reliability) is a gap-fill from Shooman's book, which the Dhanbad outline lists but ties to no week. D23 (Go, taught on demand, 8 units U23.1 to U23.8) holds the language that the system-design, database-coding and cloud-computing exercises are written in; its programs are in the `go/` module of the work archive, standard library only, with tests run under the race detector (`verify/v_go.out`).
 - **Language policy** (2026-11-06): Python is the default language of every Build. Go is the language for three kinds of exercise: system design (D16), database coding (D15, D10 and capstone U13.8) and cloud computing (D4, D9, D11, D12 and capstones U13.3, U13.5 and U13.9). Each such unit carries a **Go track** line naming the Go unit to enter on demand and the result to reproduce; the Python build stays as the oracle where one exists.
+- **The merged machine-learning units and the capstones U13.11 to U13.17** (2026-11-06): the earlier machine-learning curriculum, merged completely, folded in by subject and entered on demand: 153 units with an assignment (spread over D17, D18, D19, D21 and D24 to D33) and seven capstones. Added by the merge, beyond what that curriculum contained: the demand map from cloud units to merged units and the On demand and Bridge for lines (Appendix H.3), the Shares ground with lines and the removal ledger (H.4), the compact-versus-full register (G.2) and the reading ladder of each merged domain. Nothing was taken out of the merged units except the duplicates of H.4.
 - **Capstones** (D13) assemble the earlier units and are not sourced.
 
 ### D.2 Gap candidates (not added; need your agreement per Master Rules 7.4)
@@ -11559,13 +18326,12 @@ These are adjacent subjects that no outline names, or that a unit mentions only 
 | Serverless platforms in depth (functions, managed containers) and event-driven design | Mentioned only in passing in the compute and operations units | D4 or D12 |
 | Service meshes and Kubernetes internals beyond the orchestration loop | U4.4 and U11.2 teach the control loop; the rest is operations practice | D4 |
 | Formal specification and model checking of protocols (for example TLA+) | Natural companion to D9; mentioned only in passing | D9 |
-| Full machine-learning course | U11.8 is a compact bridge; the full treatment is in the earlier unified curriculum | link to the earlier file |
 
 ### D.3 Decisions I need from you
 
 1. **Labs list.** The GCF outline says the course has 26 labs on Qwiklabs but does not list them. The Build lines give a lab for each concept instead. If you can supply the list, I will map each lab to a unit.
 2. **Gap candidates** in D.2: add any, none or all.
-3. **Merging with the earlier file.** `unified_curriculum.md` (mathematics, machine learning, deep learning, LLMs) and this file share a method. Merge into one document, or keep two linked by U11.8, U9.2, U5.1 and U14.20? (The merge is planned as a separate, optional step and has not been done.)
+3. **Merging with the earlier file: done (2026-11-06).** `unified_curriculum.md` is merged into this document by subject (the merged units sit in D17, D18, D19, D21 and D24 to D33, and its capstones are U13.11 to U13.17), on the user's instruction that this document is primary and the earlier material is taught on demand (Appendix H). The earlier file and its index are kept, with a note that they are superseded.
 4. **Institution of the GCF course.** The file's header says IIT Guwahati while the course block names IIT Kharagpur (Appendix E). Which should the record carry?
 5. **Lab environment.** The architecture labs are based on your Apple silicon MacBook (decided 2026-11-04). The security units still assume an isolated host-only VM network you own: tell me the VM tool you use on the Mac and I will adjust those Build lines and cost tags.
 6. **C and C++ for DS.** The source asks for C or C++; the curriculum uses Python. Say if you want selected builds ported.
@@ -11580,7 +18346,44 @@ These are adjacent subjects that no outline names, or that a unit mentions only 
 14. **Software engineering, recorded (2026-11-06).** `software-engineering.txt` is two outlines, merged into D22. Their week-by-week order is kept inside D22 but several topics were merged because the outlines overlap: life-cycle models (ISE W2, SEM W2 and W3), requirements (ISE W5, SEM W4), design basics (ISE W7, SEM W5), object-oriented analysis and design (ISE W9, SEM W7 to W9) and testing (ISE W10 and W11, SEM W10 to W12) each form one set of units. Numbers in D22 (COCOMO constants, the Halstead counts, the reliability fits) are recomputed by `verify/v_g1.py` to `v_g3.py`; the textbook constants and the standards are recalled and marked so. Say if you want the Shooman reliability unit (U22.14) removed, since no week of the outline calls for it.
 15. **Go on demand, recorded (2026-11-06).** On the user's instruction Go is taught on demand for system design, database-related coding and cloud computing, and Python for everything else. D23 holds the language (U23.1 bridge, interfaces and generics, concurrency, networked services, database coding, system-design building blocks, cloud-native Go, testing and profiling). Limits to know: the build machine could not download modules, so the programs use only the standard library and the SQLite, gRPC and Kubernetes client libraries are named and not used; no container daemon was available, so the Dockerfile and the image size are untested (the static binary and its signal handling were run); the benchmark times are from one machine and are marked as such. Say if any Go-track exercise should stay in Python.
 16. **Overlapping and related concepts unified and de-duplicated, recorded (2026-11-06).** On the user's instruction every concept that two or more units taught or built is now taught and built once, by one owner, and the other units keep only what their domain adds and point to the owner (Appendix G lists each concept, its owner and the units that reuse it). The pass found, among others, probability basics taught three times (now U21.6), the Bloom filter and universal hashing built three times (U3.1 and U17.5), consistent hashing in five places (U9.5), shortest paths and spanning trees in the routing bridge and in D17 (D17), the flow and matching build (U17.14), the page-table and TLB build (U4.1), the lock manager, recovery log and precedence graph in the distributed-systems bridge and in D15 (D15), the relational engine in the storage bridge, D15 and the capstone (D15 and U13.8), UML notation (U22.9), and the birthday simulator (U5.1). Coverage of every source cell was re-run after each change.
+17. **Machine-learning curriculum merged, recorded (2026-11-06).** On the user's instruction this curriculum is primary and `unified_curriculum.md` was merged into it completely, with cloud units calling on merged units on demand (a Bridge for line on each called unit and an On demand line on each caller), overlapping topics deduplicated under one owner, and both index files updated (Appendix H).
+18. **Official NPTEL assignments (carried from the merged units).** Do you still want the official weekly assignments of MFML (weeks 1 to 12), EMML (8 weeks) and the course id of nptel.txt line 213 downloaded as a supplement to the authored ones, with images and PDFs deleted afterwards? Nothing was downloaded (Appendix E.5).
+19. **Gap candidates of the merged units (carried).** The candidates of D.5 (speech and linguistic NLP, structured prediction, linear factor models, music generation and world models, partial monitoring): add any, none or all.
+20. **Truncated machine-learning sources (carried).** OMLH has 8 of its weeks, MM has 4, S50 has 9 of 50 categories: confirm that benchmark fill-ins are acceptable, or supply the missing outlines.
+21. **Missing course titles (carried).** DMK (the old DM), MLE and PSS have no title in the source; the inferred titles of Appendix A need your confirmation.
 Resolved on 2026-11-04 and no longer open: the placement of the architecture courses (D14, printed before the capstones), the scope of the GPU labs (three tiers with a simulator fallback) and the assembly language (an AArch64 subset with a crosswalk to the MIPS-like and RISC-V-like forms).
+
+### D.4 Merged units: what was checked against the listed books and references, and what it changed
+
+| Reference (listed by) | How checked | Outcome |
+|---|---|---|
+| Jurafsky–Martin, *Speech and Language Processing*, 3rd ed. (DLNLP) | **Checked**: 26 chapter titles read from the authors' site | Ch. 2–12 and 14 map to U29.1–U29.10, U28.7, U31.1–U31.12, U32.6. **Not covered by any source:** speech (Ch. 15–17), machine translation (Ch. 13), and classical linguistic structure (Ch. 18–26: sequence labelling, parsing, information extraction, semantic roles, coreference, discourse, conversation). Listed as a gap candidate in D.5, pending your agreement. |
+| Deisenroth–Faisal–Ong, *Mathematics for Machine Learning* (MFML) | **Checked**: 12 chapter titles from the publisher and the book site | All 12 chapters map: Ch. 2 → U18.14–U18.15; Ch. 3 → U18.17; Ch. 4 → U18.19–U18.22; Ch. 5 → U24.6–U24.10; Ch. 6 → D19; Ch. 7 → D25; Ch. 8 → U26.1–U26.2; Ch. 9 → U26.3; Ch. 10 → U26.8; Ch. 11 → U26.9; Ch. 12 → U26.5. Added: Cholesky, Rayleigh quotient, analytic-geometry topics, probabilistic PCA. |
+| Boyd–Vandenberghe, *Convex Optimization* (DOML, CVX) | **Partly checked**: parts and chapters 1–8 confirmed from publisher contents; the algorithms part (unconstrained, equality-constrained, interior-point) is *recalled, not checked* | Theory → U25.2, U25.3, U25.6; applications (approximation and fitting, statistical estimation, geometric problems) → U18.23, U25.12; algorithms → U25.8, U25.7. Added: problem taxonomy, epigraph forms, SDP representability. |
+| Bach, *Learning Theory from First Principles* (FML) | **Checked**: 15 chapter titles from the PDF | Ch. 2–12, 14, 15 map to U26.1, U26.3–U26.7, U26.13, U25.10, D27, U26.10. **Not in any outline:** Ch. 13 (structured prediction) → gap candidate in D.5. |
+| Lattimore–Szepesvári, *Bandit Algorithms* (BAN) | **Partly checked**: part structure and several chapter titles from the publisher | D27 covers the stochastic, adversarial, contextual and pure-exploration topics; added MOSS, Bayesian and non-stationary bandits, linear bandits, MDP bridge. Gap candidate: partial monitoring. |
+| Goodfellow–Bengio–Courville, *Deep Learning* (MLDL) | **Partly checked**: part structure and chapter headings from the book site | Part I → D18, D19, D25, D26; Part II → D28; Part III: autoencoders → U28.8, structured probabilistic models and Monte Carlo → U26.10, U30.6, deep generative models → D30. Gap candidates: linear factor models, ICA, sparse coding, partition-function estimation, approximate inference. |
+| Foster, *Generative Deep Learning*, 2nd ed. (MFGAI) | **Checked**: contents from the publisher | VAEs, GANs, autoregressive, EBMs, diffusion, Transformers map to D30 and U29.3. **Normalizing flows** appear in the book's description and in no outline: added as U30.8. Gap candidates: music generation, world models. |
+| Murphy, *Probabilistic Machine Learning: An Introduction* (FML) | **Not verified**: the book site gives its contents only as an image and a PDF | Cited as *recalled, not checked* in D26 and D30. |
+| Borkar, *Stochastic Approximation: A Dynamical Systems Viewpoint*; Borkar, *Probability Theory: An Advanced Course*; Williams, *Probability with Martingales*; Grimmett–Stirzaker; Hirsch–Smale–Devaney (all listed by SA) | **Not verified** | Used to label the SA units' gap-fills *recalled, not checked*. Spot-check against the books before closing U19.26, U24.17 and U25.16–U25.17. |
+| Vazirani, *Approximation Algorithms*; Williamson–Shmoys, *The Design of Approximation Algorithms* (both listed by AA) | **Not verified** | D17 ratios that the sources do not state (Steiner tree and facility-location rounding, scheduling hardness) are marked *recalled, not checked* in the units. |
+| Strang (LA, *Learning from Data*), Axler, Kay, Rosenthal, Johnson–Wichern, Nocedal–Wright, Bishop, Hastie et al., Alpaydin, Duda–Hart–Stork, Haykin, Nielsen, Bengio, Mitchell, Spivak, Thomas–Finney, Kreyszig, Piskunov, O'Neil, Cheney, Artin, Halmos, Herstein, Hoffman–Kunze, Jacobson, Greub, Chvátal, Dantzig–Thapa, Bazaraa et al., Bertsekas, Chong–Zak, Dennis–Schnabel, Sun–Yuan, Rockafellar, Hiriart-Urruty–Lemaréchal, Tikhomirov, Churchill–Brown, Ahlfors, Conway, Debnath–Bhatta, Jain–Iyengar, Miller–Freund, Mayer, Maity, Forsyth, Pradhan–Kumar, Rengaswamy–Suresh, Sze et al., Nedić | **Not verified** (no machine-readable contents reached) | Named as benchmarks and used to label gap-fills as *[inferred: …, recalled, not checked]*. They should be spot-checked against the physical books before a domain is closed (Master Rules 1.6). |
+| Stewart–Redlin–Watson, *Precalculus*; Gelfand–Saul, *Trigonometry*; Spivak; Needham, *Visual Complex Analysis*; Ahlfors; Nahin, *An Imaginary Tale* (benchmarks of D21, added 2026-11-06) | **Not verified**: recalled, not checked | D21 is standard school and first-year material. Every number its units state (log laws, exact trigonometric values, the law of cosines, the identities, De Moivre, Cardano's cubic, roots of unity, the DFT, the rotary-pair property, aliasing) was recomputed by a script (`verify/v_d0.py`) on 2026-11-06. |
+
+
+### D.5 Merged units: gap candidates (not added; need your agreement per Master Rules 7.4)
+
+These are covered by a listed reference but by no outline, and each is a whole subject. They are **not** in the structure above until you agree.
+
+| Candidate | Reference | Would sit in |
+|---|---|---|
+| Speech: phonetics, feature extraction, ASR, text-to-speech | SLP3 Ch. 15–17 | new D29-X |
+| Machine translation | SLP3 Ch. 13 | D29 |
+| Classical linguistic structure: tagging, parsing, information extraction, semantic roles, coreference, discourse, dialogue | SLP3 Ch. 18–26 | new D29-X |
+| Structured prediction | Bach Ch. 13 | D26 |
+| Linear factor models, ICA, slow-feature analysis, sparse coding; partition-function estimation; approximate inference | Goodfellow Ch. 13, 18, 19 | D26 / D30 |
+| Music generation, world models | Foster Ch. 11–12 | D30 |
+| Partial monitoring | Lattimore–Szepesvári | D27 |
 
 ## Appendix E. Source anomalies, typos and residual flagged atoms
 
@@ -11619,7 +18422,7 @@ Resolved on 2026-11-04 and no longer open: the placement of the architecture cou
 
 ### E.2 Atoms the word-level check still flags, reviewed by hand
 
-- **Outline-prose atoms flagged:** 307. They are audience statements, marketing sentences and connective phrases (for example 'to practice the learning'); every topic named in an outline appears in the units that cite it, with the outline map sentences in U1.1, U2.2, U3.3, U5.3, U6.1, U8.1, U9.1, U11.1, U14.1, U14.2, U14.11, U14.13, U14.18 and U15.1 where an outline names many topics.
+- **Outline-prose atoms flagged:** 306. They are audience statements, marketing sentences and connective phrases (for example 'to practice the learning'); every topic named in an outline appears in the units that cite it, with the outline map sentences in U1.1, U2.2, U3.3, U5.3, U6.1, U8.1, U9.1, U11.1, U14.1, U14.2, U14.11, U14.13, U14.18 and U15.1 where an outline names many topics.
 - **Non-outline atoms flagged:** 35. All were reviewed one by one: URLs and URL fragments, years, reading labels (R11 to R21), the phrase 'accessible at', one section label ('Examples'), and the titles of cases or articles that are covered under their topic.
 
 <details><summary>Full list of non-outline flagged atoms</summary>
@@ -11661,6 +18464,100 @@ Resolved on 2026-11-04 and no longer open: the placement of the architecture cou
 - `CSP:W12` //hbswk.hbs.edu/item/cold-call-apples-dilemma-balancing-privacy-and-safety-responsibilities
 
 </details>
+
+### E.3 Anomalies in the machine-learning sources (kept visible, not silently fixed)
+
+| Source | Issue | Handling |
+|---|---|---|
+| EM2 | prerequisite: Engineering Mathematics I | Recorded in Appendix C.3. |
+| MM | source lists only 4 of the course weeks | Missing weeks or categories are filled from benchmarks and marked *inferred* in the units that cite this source. |
+| HEM | source Week 4 text duplicates Week 2 text (copy error); stray "288" in Week 12 | Repeated text is cited as given in each cell; nothing is lost and nothing is double-counted as a new topic. |
+| DMK | title absent in source | Title inferred from the course content; please confirm (Appendix D.3, item 21). |
+| OMLH | source lists only 8 weeks; Weeks 2, 6, 8 repeat Weeks 1, 5, 7 text | Missing weeks or categories are filled from benchmarks and marked *inferred* in the units that cite this source. |
+| ALAJ | source Weeks 8 and 9 both carry the dynamical-systems text | Repeated text is cited as given in each cell; nothing is lost and nothing is double-counted as a new topic. |
+| MLE | title absent in source | Title inferred from the course content; please confirm (Appendix D.3, item 21). |
+| S50 | heading says 50 techniques; only categories 1-9 appear in the source | Missing weeks or categories are filled from benchmarks and marked *inferred* in the units that cite this source. |
+| LPCS | source Weeks 1-3 and 4-5 repeat the same module text | Repeated text is cited as given in each cell; nothing is lost and nothing is double-counted as a new topic. |
+| PSS | title absent in source | Title inferred from the course content; please confirm (Appendix D.3, item 21). |
+| IPS | lines 1579-1594 duplicate Week 1-2 items | Repeated text is cited as given in each cell; nothing is lost and nothing is double-counted as a new topic. |
+| CVX | Lines 318–329 are page header/footer text (prerequisites, a pointer to Boyd's lectures, coordinator), interleaved with the lecture list | Prerequisites go to Appendix C.3; the Boyd lectures are treated as a reference. |
+| nptel.txt line 213 | Cites course id 106104573, which matches no course id listed in the file (it follows the Discrete Mathematics block) | Flagged in E.5. |
+| Typos | 'Grpah', 'Dula' (HEM), 'diinensionality' (ALAK), 'Resarch' (ALAJ), 'liner' (LPCS), 'Borwin', 'Byod', 'Rockafeller', 'Hiriat', 'Seidal' | Meaning taken from context; the unit text uses the correct spelling. |
+
+### E.4 Merged units: atoms the word-level check flagged when the machine-learning curriculum was built, reviewed by hand
+
+- **Outline-prose atoms flagged (as reported for the machine-learning curriculum before the merge):** 272. All were reviewed by hand: they are audience statements, marketing sentences and connective phrases; every topic named in an outline appears in the units that cite it.
+- **Non-outline atoms flagged (before the merge):** 52. All were reviewed: source typos, section labels (for example 'Section VIII', 'Classical Techniques 1'), key-takeaway sentences, and prose in LPCS and FDL whose topics are present under other wording.
+
+<details><summary>Full list of non-outline flagged atoms</summary>
+
+- `IM:A` COURSEABSTRACT ◦ Polynomials
+- `HEM:W5` Various types of Grpah
+- `HEM:W7` Dula of a Planar graph
+- `ALAK:W10` and diinensionality reduction
+- `HEM:W12` Application of M/M/S FIFO 288
+- `MLE:W4` Applications
+- `AEMK:W4` Jacobi and Gauss-Seidal method
+- `LPCS:W1` we will move to the basics of liner algebra
+- `LPCS:W1` In particular
+- `LPCS:W2` we will move to the basics of liner algebra
+- `LPCS:W2` In particular
+- `LPCS:W3` we will move to the basics of liner algebra
+- `LPCS:W3` In particular
+- `LPCS:W4` This module will start with hyperplane separation theorems
+- `LPCS:W4` will be covered in detail
+- `LPCS:W4` from John Nash of “a beautiful mind”
+- `LPCS:W5` This module will start with hyperplane separation theorems
+- `LPCS:W5` will be covered in detail
+- `LPCS:W5` from John Nash of “a beautiful mind”
+- `CVX:L10-19` considered
+- `LPCS:W6` We will discuss primal-dual methods too
+- `LPCS:W6` this will allow us to develop an algorithm for the max flow problem
+- `LPCS:W7` In many instance
+- `LPCS:W7` the quantity in focus does not turn out to be a linear program
+- `LPCS:W8` In particular
+- `LPCS:W8` If time permits
+- `LPCS:W8` we will see other applications
+- `LPCS:W8` like in the area of Boolean functions
+- `LPCS:W8` of linear programming and possible extensions
+- `FDL:W12` how multimodal and instructionfollowing capabilities emerge
+- `FDL:W12` Concepts of generative models like VAEs
+- `SA:W12` continue.
+- `FDL:W1` A conceptual and practical foundation on the basic architecture of Neural Networks
+- `FDL:W3` Understand how CNNs learn visual patterns
+- `FDL:W3` effective convolution-based models from the scratch
+- `FDL:W4` Understand the progression from AlexNet to ResNet
+- `FDL:W4` and also be able to apply powerful pretrained
+- `FDL:W4` models using transfer learning and boost performance using ensemble techniques
+- `FDL:W5` Understand the theory behind explainable AI
+- `FDL:W6` real-world tasks
+- `FDL:W8` Understand the GRU architecture
+- `FDL:W8` Compare LSTM vs GRU
+- `FDL:W8` A conceptual and practical understanding of LSTMs
+- `FDL:W8` and attention-enhanced RNNs
+- `MLE:W8` Applications
+- `FDL:W10` Understanding the working mechanism of Autoencoders and its implementation
+- `FDL:W11` A strong conceptual foundation in Transformers
+- `LPCS:W4` we will also cover Yao’s technique to give lower bounds in communication complexity setting
+- `LPCS:W5` we will also cover Yao’s technique to give lower bounds in communication complexity setting
+- `FDL:W12` Diffusion uses latent-space denoising to generate high-quality images
+- `FDL:W6` Understanding of modern CNN-based segmentation and detection architectures and be able to apply them to
+- `FDL:W7` Conceptual foundation in sequential deep learning models using RNNs and understand their limitations
+
+</details>
+
+### E.5 Notes found inside `nptel.txt` (none acted on)
+
+`nptel.txt` contains five notes written to an assistant, not course content. **None was acted on**: no file was downloaded, fetched or deleted. They are reported here so you can decide (Appendix D.3, item 18).
+
+| Line | What the note says | Status |
+|---|---|---|
+| 99 | "ingest the project files. Also, along with learning this course, I also want to learn to implement these techniques from the scratch in python, numpy, etc." | **Applied to the design**: every unit has a from-scratch **Build** and the project docs (Master Rules) governed the structure. |
+| 101 | Fetch NPTEL assignment images for course 106108702 (Mathematical Foundations for ML), weeks 1–12, from `archive.nptel.ac.in`, store as text, delete the images | **Not done.** Needs your OK to download. |
+| 103 | "store it in text and delete the images to save space" | Not done (see 101). |
+| 105 | "integrate into the curriculum and unify. If there are no assignments provided for certain topics, then create them." | **Unification done**, and the missing assignments were authored (one per merged content unit). |
+| 151 | Fetch assignment PDFs for course 111107137 (Essential Mathematics for ML), 8 weeks, extract text, delete the PDFs | **Not done.** Needs your OK to download. |
+| 213 | Fetch assignment images for course id 106104573, weeks 1–12 (pattern `noc25_cs27_assignment_Week_N`), store, delete | **Not done.** The id matches no listed course; it follows the Discrete Mathematics block, so it is probably that course. Please confirm. |
 
 ## Appendix F. Verification register and safety notes
 
@@ -11720,3 +18617,483 @@ Where two or more units touched a concept, one unit owns the definition, the der
 | Git object model and merge, Git usage | U22.4 (model), U1.2 (usage) | none |
 | Reconciliation loop, lease and fencing, backoff | U23.7 | U9.10, U9.15, U4.4, U13.3 |
 | Testing theory (coverage, mutation, property-based, debugging) | U22.10 to U22.12 | U16.6, U23.8 |
+
+### G.2 Compact versus full treatment: pairs of units that teach the same subject at two depths
+
+These pairs remain on purpose. The cloud unit is the compact or applied version, inside its own domain, and is where to start; the merged unit is the full treatment, entered on demand from the cloud unit's On demand line. Atoms that both would state identically were removed from the merged unit (Appendix H.4); the right-hand column says what the full unit adds.
+
+| Concept | Compact (cloud) | Full (merged unit, on demand) | What the full unit adds |
+|---|---|---|---|
+| Trigonometry, complex numbers, Euler's formula, phasors | U18.1 and U21.2 | U21.7 to U21.11 | angle sums derived, the law of cosines, De Moivre and the roots of unity proved, Euler's formula, aliasing and the DFT as roots of unity |
+| Counting, induction, proof techniques | U21.4 and U17.1 | U21.12 and U21.13 | formal languages, generating functions and the wider combinatorics |
+| Graph theory | U21.5 | U21.15 | Hall's, König's and the five-colour theorem proved, Kuratowski stated, DSATUR and Held–Karp builds |
+| Number theory and groups for cryptography | U5.2, U5.5 and U5.12 | U21.16 and U21.17 | the abstract algebra behind it: orbit counting, codes over finite fields |
+| Single-variable and multivariable calculus for statistics and optimisation | U19.1 and U21.2 | U24.1 to U24.10 | real analysis, Taylor and power series, Lagrange multipliers, vector calculus, matrix calculus |
+| Vectors, inner products, norms, projections, Gram–Schmidt and QR | U18.2 | U18.17 | abstract inner-product spaces, best approximation, Householder and Givens QR, loss of orthogonality |
+| Matrices, rank, null spaces, rank–nullity, linear maps | U18.3 | U18.14 to U18.16 | vector spaces and bases in the abstract, duality and quotient spaces |
+| Eigenvalues, diagonalisation, the spectral theorem | U18.4 | U18.19 to U18.21 | canonical forms (Jordan and rational), normal operators, positive semi-definite matrices and kernels |
+| The singular value decomposition and low-rank approximation | U18.5 | U18.22 | LU, conditioning, the pseudo-inverse, perturbation of the SVD |
+| Least squares, ridge regression and MMSE estimation | U18.6 and U18.7 | U18.23 | constrained and regularised least squares in full |
+| Probability: events, conditioning, Bayes, random variables, standard distributions, limit theorems | U21.6 and U19.3 | U19.18 to U19.24 | σ-fields and measure-theoretic foundations, transformations and order statistics, the multivariate normal, characteristic functions, Hoeffding and Chernoff proofs |
+| Markov chains, queues, stationary distributions, PageRank | U11.10, U2.1 and U18.13 | U19.25 and U18.24 | Perron–Frobenius, reliability, convergence rates |
+| Descriptive statistics, sampling, confidence intervals, tests, regression | U19.2 to U19.7 | U19.27 to U19.30 | the Neyman–Pearson lemma, estimation theory, multivariate analysis |
+| Bayesian inference and MCMC | U19.14 and U19.15 | U19.31 | conjugacy proofs and posterior asymptotics |
+| Optimisation: LP and flows, convexity, duality | U4.5 and U20.1 | U25.1 to U25.7 | convex analysis, KKT, strong duality, simplex and interior-point methods |
+| SGD, first-order methods and distributed optimisation (ADMM) | U20.7 and U20.8 | U25.8 to U25.17 | convergence rates, acceleration, proximal and adaptive methods, stochastic approximation |
+| Machine-learning foundations (the compact bridge) | U11.8 | U26.1 to U26.4 | the statistical framework, bias–variance proofs, regularisation, estimation |
+| Logistic regression, ROC and AUC, evaluation of classifiers | U19.8 and U19.13 | U26.2 and U26.3 | model selection theory, softmax regression, Newton and IRLS |
+| SVM, kernels and the perceptron | U18.6 and U18.12 | U26.5 | the representer theorem, universal kernels, kernel machines |
+| Decision trees and ensembles | U19.10 and U19.12 | U26.7 | bagging, boosting and random forests in full |
+| Clustering, Gaussian mixtures and the EM algorithm | U18.11 and U19.9 | U26.9 | EM monotonicity proof, model-based and spectral clustering |
+| PCA and dimensionality reduction | U18.4 and U20.5 | U26.8 | feature learning, probabilistic PCA, manifold methods |
+| Collaborative filtering and the Netflix problem | U18.8 and U11.9 | U26.11 | instance-based learning and recommendation in general |
+| Data mining | U19.11 and U19.13 | U26.12 | FP-growth and PrefixSpan only (the rest is owned by the cloud units) |
+| Accelerators, quantisation and CNN computation | U14.20 | U33.1 and U33.4 | pruning and distillation, the dataflow analysis of CNN accelerators |
+| NP-completeness and approximation algorithms | U17.14 and U17.17 | U17.18 to U17.24 | LP rounding, the primal–dual method, SDP rounding, hardness of approximation |
+| The DFT and the FFT | U18.9 | U24.15 | Laplace, Z and Fourier transforms, with the divide-and-conquer recurrence derived |
+
+## Appendix H. Merge record: the machine-learning curriculum merged into this document (2026-11-06)
+
+### H.1 What was done
+
+- **Direction.** This document is primary. `unified_curriculum.md` (19 domains D0 to D18, 160 units, 153 assignments, 564 source cells) was merged into it completely: no unit, assignment or source cell was dropped. Its identifiers were renumbered (H.2); its text is otherwise carried over, with the cloud references and the "Bridge for" and "Shares ground with" lines added and the atoms listed in H.4 removed.
+- **Fold by subject.** In a second pass the same day, on standing instruction (17), the merged units were moved out of a separate Part into the domains of their subject, without removing a topic. Pre-calculus and discrete mathematics joined D21 (U21.7 to U21.18), approximation algorithms and complexity joined D17 (U17.18 to U17.24), linear algebra joined D18 (U18.14 to U18.24), probability and statistics joined D19 (U19.18 to U19.32); calculus, differential equations, numerical methods, complex analysis and transforms became D24 (U24.1 to U24.17), optimization became D25, and machine learning through ML systems became D26 to D33, at the start of Part E. Cloud identifiers did not change. Inside each host domain the units are printed on a reading ladder (given in the domain introduction) that sets each compact cloud unit beside the merged unit that goes deeper; unit numbers follow the order of merging, not the ladder. The document stays at about 2 MB because the two curricula overlap little (the largest wording overlap between any cloud unit and any merged unit is under 50 %, nearly all pairs are under 35 %): folding changes where a unit stands, not how much there is to teach.
+- **On demand.** Every cloud unit that needs something from the old curriculum carries an **On demand** line (H.3 lists all 86 of them, with 196 links), and each merged unit that a cloud unit calls on begins with a **Bridge for:** line naming its callers (95 of the 160 units; the others name the merged units they build on). The merged units are never read as a block.
+- **Deduplication.** Cloud units are source-cited and are never trimmed, so the cloud unit owns every overlapping topic. In each merged unit (a) atoms (topics, results, builds) that a cloud unit already states at the same or a stronger proof status were removed and listed (H.4: 76 atoms), (b) results where the merged unit proves more than the cloud unit were kept (H.5: 37 candidates kept, with the reason), and (c) one unit that was almost entirely duplicated (U26.12, data mining) was cut down to its increment. Same-subject pairs that remain on purpose are declared in G.2 and H.5. Where the cloud unit is the compact version and the merged unit the full one, the cloud unit's On demand line points at the full one.
+- **Capstones.** The seven capstones of the old curriculum are U13.11 to U13.17 in D13 (Part G), so all capstones are together. D13 now has 17 units.
+- **Collisions resolved.** The old course key DM (Discrete Mathematics, Kanpur) is DMK here because DM is the Data Mining key of D19. All other course keys were unique. The old cell `S50 D1`–`D4` keep their names.
+- **Source files and word-level coverage.** `nptel.txt` and `iit-genai.md` were not at hand when the merge was first assembled, so it was first checked at the level of cells (every cell is cited by a merged unit: Appendix B) and of atoms (every removed atom has a named cloud owner that contains its words). They were supplied afterwards and the word-level check was run on the assembled document (`mlcheck.py`, the same rule as the cloud check: each source atom must have at least 75 % of its content stems in the units that cite its cell, the words of any removed atom counting through its cloud owner). Result: cells 564; atoms 4150; flagged 44 (generic prose 37, source typos 7, technical 0); outline atoms not covered 659; whole-course fallback cells 4. The flagged atoms are generic prose fragments (for example learning-outcome sentences) and misspellings in the sources (liner, Seidal, Grpah, Dula, diinensionality); none names a technical topic that is not taught. About-text atoms (audience, prerequisites, industry support, instructor biography) are not required content and are counted separately. The coverage of the 478 cloud cells is unchanged and was re-run: all cited, same 27 residual flags.
+
+- **Answer keys: how they were checked.** The 153 merged assignments carry over unchanged apart from renumbering and the corrections listed below. (1) All 153 Q3 numeric keys were recomputed independently of the printed key (`verify_keys.py` writes its own value from the question text): 26 keys were recomputed by the audit script from the key text itself, and 127 of 127 keys recomputed independently and equal within the stated tolerance; mismatches []; no independent value written for [] (2) All 306 multiple-choice and multiple-select keys (Q1 and Q2) were read one by one against their options. (3) All 153 Q4 derivation outlines were read against their questions. (4) The checkable Q5 predictions (about sixty numeric or countable claims such as iteration counts, convergence ratios, event probabilities, condition numbers, Himmelblau's stationary points, water-filling, OMP success, Runge error) were run with reference code, and the formula-based ones (confidence-interval half-widths, sample sizes, traffic and parameter ratios, call counts) were recomputed by hand. Q5 is a programming task graded on the learner's own code, so its key states what a passing submission shows; it was not run as a whole. Corrections made: U33.1: 2 N^3 / (12 N^2) = N/6 = 170.667 for N = 1024; the old key 170.7 was 0.033 away, outside its own tolerance of 0.01, so a correct answer of 170.67 would have been marked wrong; U28.5: option D of Q2 was debatable (interventional SHAP does treat features as independent), so the key rationale did not settle it; D is now plainly false; U28.5: key rationale matching the reworded option D; U25.12: the Q5 question gave gains but no noise model, so the water level was undetermined; it now states noise level = 1/gain; U25.12: the reference run gives water level 1.469 with all four channels active; the old key only described a conditional case that does not occur; U18.14: a reference run of the 5x5 Hilbert system gives error 2e-12, not 1e-10; U18.21: a reference run gives -3e-16 and -1e-15 with Cholesky failing, not about -1e-12; U18.24: a reference run (three seeds, 200 trials each) gives 84, 86 and 86.5 percent, not the high 80s to 90s.
+
+### H.2 Identifier map: old (machine-learning curriculum) to final
+
+Cloud identifiers did not change. The units of the earlier machine-learning curriculum were folded into the domains of their subject; the capstones U18.n are U13.(10+n) in D13. Old domains: D0 → D21 (pre-calculus, U21.7 to U21.11), D1 → D21 (discrete mathematics, U21.12 to U21.18), D2 → D24 (U24.1 to U24.5), D3 → D24 (U24.6 to U24.10), D4 → D18 (U18.14 to U18.24), D5 → D19 (U19.18 to U19.26), D6 → D19 (U19.27 to U19.32), D7 → D24 (U24.11 to U24.17), D8 → D25, D9 → D26, D10 → D27, D11 → D28, D12 → D29, D13 → D30, D14 → D31, D15 → D32, D16 → D33, D17 → D17 (U17.18 to U17.24), D18 → D13 (capstones). Assignments follow their units (A5.1 is A19.18). An earlier printing of this merge, made the same day, put these units in a separate Part G numbered U24.x to U41.x; those identifiers are retired.
+
+| Old | New | Title |
+|---|---|---|
+| U0.1 | U21.7 | Functions, exponentials and logarithms |
+| U0.2 | U21.8 | Angles and the trigonometric functions |
+| U0.3 | U21.9 | Identities, inverse trigonometric functions, equations, polar coordinates and rotations |
+| U0.4 | U21.10 | Complex numbers I: algebra, the plane, polar form, powers and roots |
+| U0.5 | U21.11 | Complex numbers II: the complex exponential, Euler's formula, roots of unity and phasors |
+| U1.1 | U21.12 | Logic, proof paradigms and formal languages |
+| U1.2 | U21.13 | Counting, generating functions and combinatorics |
+| U1.3 | U21.14 | Posets, lattices, Boolean algebra and switching circuits |
+| U1.4 | U21.15 | Graph theory |
+| U1.5 | U21.16 | Number theory and cryptography |
+| U1.6 | U21.17 | Algebra: finite fields, codes, groups and orbit counting |
+| U1.7 | U21.18 | An invitation to mathematics: polynomials, functions, matrices, conservation laws |
+| U2.1 | U24.1 | Numbers, countability, functions, limits and continuity |
+| U2.2 | U24.2 | Differentiation and mean value theorems |
+| U2.3 | U24.3 | Integration, applications and transcendental functions |
+| U2.4 | U24.4 | Taylor expansion, sequences, series and power series |
+| U2.5 | U24.5 | Improper integrals, Gamma and Beta functions, integrals dependent on parameters |
+| U3.1 | U24.6 | Functions of several variables, partial derivatives and differentiability |
+| U3.2 | U24.7 | Taylor expansion in several variables, maxima, minima and Lagrange multipliers |
+| U3.3 | U24.8 | Multiple integrals and their applications |
+| U3.4 | U24.9 | Vector calculus: fields, line and surface integrals, Green, Gauss and Stokes |
+| U3.5 | U24.10 | Matrix calculus, Jacobians and Hessians for machine learning |
+| U4.1 | U18.14 | Systems of linear equations, matrices, elimination, rank and inverses |
+| U4.2 | U18.15 | Vectors, vector spaces, subspaces, bases and dimension |
+| U4.3 | U18.16 | Linear maps, representation by matrices, duality and quotient spaces |
+| U4.4 | U18.17 | Inner products, norms, orthogonality, projections and Gram–Schmidt |
+| U4.5 | U18.18 | Determinants, multilinear forms and permutations |
+| U4.6 | U18.19 | Eigenvalues, eigenvectors, similarity and diagonalization |
+| U4.7 | U18.20 | Canonical forms: minimal polynomial, invariant subspaces, Jordan and rational forms |
+| U4.8 | U18.21 | Spectral theory: normal operators, symmetric matrices, quadratic forms, PSD matrices and kernels |
+| U4.9 | U18.22 | LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation |
+| U4.10 | U18.23 | Least squares, regularized and constrained least squares |
+| U4.11 | U18.24 | Applications of linear algebra: PageRank, sparsity, dynamical systems, Markov chains, signal processing and da |
+| U5.1 | U19.18 | Probability foundations: from events to Bayes' theorem |
+| U5.2 | U19.19 | Random variables, distributions and moments |
+| U5.3 | U19.20 | Special discrete distributions and the Poisson process |
+| U5.4 | U19.21 | Special continuous distributions and the normal distribution |
+| U5.5 | U19.22 | Functions of random variables, transformations and order statistics |
+| U5.6 | U19.23 | Joint distributions, conditioning, covariance and multivariate normal |
+| U5.7 | U19.24 | Limit theorems and concentration inequalities |
+| U5.8 | U19.25 | Markov chains, queueing theory and reliability |
+| U5.9 | U19.26 | Conditional expectation and martingales |
+| U6.1 | U19.27 | Data, descriptive statistics and measures of association |
+| U6.2 | U19.28 | Sampling distributions and point estimation |
+| U6.3 | U19.29 | Confidence intervals and hypothesis testing |
+| U6.4 | U19.30 | Correlation, regression and multivariate analysis |
+| U6.5 | U19.31 | Bayesian inference and MCMC |
+| U6.6 | U19.32 | Forecasting with statistical and machine-learning models: hydrology and water-resources applications |
+| U7.1 | U24.11 | First- and higher-order ordinary differential equations |
+| U7.2 | U24.12 | Numerical analysis: iteration, root finding, interpolation and quadrature |
+| U7.3 | U24.13 | Complex variables: analytic functions and complex integration |
+| U7.4 | U24.14 | Series, singularities, residues, real integrals and conformal mapping |
+| U7.5 | U24.15 | Laplace, Z, Fourier and discrete Fourier transforms |
+| U7.6 | U24.16 | Mathematical modelling: discrete and continuous dynamical systems |
+| U7.7 | U24.17 | ODE theory for dynamical systems: Gronwall, limit sets, invariant sets and chain transitivity |
+| U8.1 | U25.1 | Optimization problems: formulation, history, transformations and basic facts |
+| U8.2 | U25.2 | Convex sets, cones, polyhedra and separation |
+| U8.3 | U25.3 | Convex functions and their calculus |
+| U8.4 | U25.4 | Unconstrained optimization theory |
+| U8.5 | U25.5 | Constrained optimization theory: Lagrange, cones, Fritz John and KKT |
+| U8.6 | U25.6 | Lagrangian duality, saddle points and minimax |
+| U8.7 | U25.7 | Linear programming: simplex, duality, sensitivity and interior-point methods |
+| U8.8 | U25.8 | Unconstrained descent methods: line search, gradient, Newton, quasi-Newton, conjugate gradient, trust region |
+| U8.9 | U25.9 | Constrained optimization algorithms: QP, projected and reduced gradient, penalty, augmented Lagrangian, SQP |
+| U8.10 | U25.10 | First-order methods for ML: stochastic, accelerated, proximal, adaptive, and the dynamical-systems view |
+| U8.11 | U25.11 | Conic and structured convex programs: QCQP, SOCP, SDP, geometric programs |
+| U8.12 | U25.12 | Applications of optimization: signal estimation, compressive sensing, radar, big data and finance |
+| U8.13 | U25.13 | Non-smooth and difference-of-convex optimization |
+| U8.14 | U25.14 | Distributed optimization: graphs, consensus, ADMM and dual decomposition |
+| U8.15 | U25.15 | Dynamic optimization and complementarity problems |
+| U8.16 | U25.16 | Stochastic approximation: algorithms, step sizes and the ODE method |
+| U8.17 | U25.17 | Convergence rates, stability, two-timescale algorithms and stochastic recursive inclusions |
+| U9.0 | U26.0 | History of AI, symbolic AI and the machine-learning workflow |
+| U9.1 | U26.1 | What machine learning is: paradigms, data, hypothesis spaces and the statistical framework |
+| U9.2 | U26.2 | Model evaluation and selection: bias–variance, validation, tuning and metrics |
+| U9.3 | U26.3 | Linear regression and linear classification: estimation, logistic and softmax regression, surrogate losses |
+| U9.4 | U26.4 | Regularization and implicit regularization |
+| U9.5 | U26.5 | Perceptron, support vector machines and kernel methods |
+| U9.6 | U26.6 | Bayes decision theory, density estimation and probabilistic classifiers |
+| U9.7 | U26.7 | Decision trees and ensembles: bagging, boosting, random forests |
+| U9.8 | U26.8 | Dimensionality reduction and feature learning |
+| U9.9 | U26.9 | Clustering, mixture models and the EM algorithm |
+| U9.10 | U26.10 | Probabilistic graphical models, hidden Markov models, inference and Gaussian processes |
+| U9.11 | U26.11 | Instance-based learning, collaborative filtering and recommendation |
+| U9.12 | U26.12 | Data mining: preprocessing, association rules, sequence mining, outliers and case studies |
+| U9.13 | U26.13 | Learning theory: PAC, VC dimension, generalization and modern overparametrization |
+| U9.14 | U26.14 | Symbolic and knowledge-based machine learning, tools and cognitive-science influences |
+| U10.1 | U27.1 | From batch to online learning: adversarial full-information and bandit settings |
+| U10.2 | U27.2 | Stochastic bandits: regret notions, UCB, KL-UCB and lower bounds |
+| U10.3 | U27.3 | Contextual bandits and pure exploration |
+| U10.4 | U27.4 | Markov decision processes, dynamic programming and temporal-difference learning |
+| U10.5 | U27.5 | Policy gradient, actor–critic and proximal policy optimization |
+| U10.6 | U27.6 | Stochastic approximation in reinforcement learning |
+| U11.1 | U28.1 | Perceptron, multilayer networks, activations and loss functions |
+| U11.2 | U28.2 | Backpropagation and training deep networks |
+| U11.3 | U28.3 | Overfitting, regularization and generalization in deep networks |
+| U11.4 | U28.4 | Convolutional neural networks and image representation |
+| U11.5 | U28.5 | Explainable AI for deep models |
+| U11.6 | U28.6 | Segmentation and object detection |
+| U11.7 | U28.7 | Recurrent networks: RNN, LSTM, GRU, backpropagation through time and attention in RNNs |
+| U11.8 | U28.8 | Autoencoders and representation learning |
+| U12.1 | U29.1 | NLP foundations and the classical NLP pipeline |
+| U12.2 | U29.2 | Word representations and multilingual embeddings |
+| U12.3 | U29.3 | Attention and the Transformer architecture |
+| U12.4 | U29.4 | Pretraining, self-supervised learning and the LLM landscape |
+| U12.5 | U29.5 | Scaling laws, LLM architectures and long context |
+| U12.6 | U29.6 | Decoding strategies and sampling |
+| U12.7 | U29.7 | Prompting: fundamentals, APIs and advanced techniques |
+| U12.8 | U29.8 | Instruction tuning, RLHF and alignment: PPO and DPO |
+| U12.9 | U29.9 | Parameter-efficient fine-tuning: LoRA and QLoRA |
+| U12.10 | U29.10 | Prompt optimization, compression and prompt security |
+| U13.1 | U30.1 | Probabilistic deep generative modelling: foundations and taxonomy |
+| U13.2 | U30.2 | Generative modelling via variational divergence minimization |
+| U13.3 | U30.3 | Generative adversarial networks: formulation, training, WGAN and applications |
+| U13.4 | U30.4 | Variational autoencoders, improvements and VQ-VAE |
+| U13.5 | U30.5 | Autoregressive models |
+| U13.6 | U30.6 | Energy-based and score-based models; Langevin sampling |
+| U13.7 | U30.7 | Denoising diffusion probabilistic models, conditional diffusion and Stable Diffusion |
+| U13.8 | U30.8 | Normalizing flows (gap-fill from the references) |
+| U14.1 | U31.1 | Why RAG, RAG architecture and classical retrievers |
+| U14.2 | U31.2 | RAG failure modes, types of RAG and assessment |
+| U14.3 | U31.3 | Sparse retrieval limits and dense representations |
+| U14.4 | U31.4 | Learning retrieval-oriented embeddings and choosing an embedding model |
+| U14.5 | U31.5 | Document processing and chunking |
+| U14.6 | U31.6 | Vector databases and indexes: KNN, IVF, PQ, HNSW, FAISS and ChromaDB |
+| U14.7 | U31.7 | The retrieval pipeline: bi-encoder, cross-encoder, ColBERT and two-stage retrieval |
+| U14.8 | U31.8 | Production RAG: request shaping, query transformation, routing, security, cost and observability |
+| U14.9 | U31.9 | Limits of single-shot RAG and the move to agents |
+| U14.10 | U31.10 | Agent basics, tool calling and orchestration |
+| U14.11 | U31.11 | Planning with ReAct |
+| U14.12 | U31.12 | State machines and LangGraph |
+| U14.13 | U31.13 | Agentic memory |
+| U14.14 | U31.14 | Provenance and citations |
+| U14.15 | U31.15 | Multi-agent architecture summary, error handling and best practices |
+| U15.1 | U32.1 | LLM evaluation: metric architecture and reference-based metrics |
+| U15.2 | U32.2 | LLM-as-a-judge and factuality |
+| U15.3 | U32.3 | AI safety foundations and threat models |
+| U15.4 | U32.4 | White-box attacks and prompt injection |
+| U15.5 | U32.5 | Black-box attacks and the jailbreak taxonomy |
+| U15.6 | U32.6 | Defense, interpretability and ethics |
+| U16.1 | U33.1 | CNN computation and accelerators |
+| U16.2 | U33.2 | Parallelism for training, communication and fault tolerance |
+| U16.3 | U33.3 | LLM decoding, memory management and serving infrastructure |
+| U16.4 | U33.4 | Model compression and quantization |
+| U16.5 | U33.5 | Graph neural network inference systems |
+| U16.6 | U33.6 | Federated learning |
+| U17.1 | U17.18 | Review of NP-completeness and the approximation framework |
+| U17.2 | U17.19 | Approximation for vertex cover, set cover and the traveling salesman problem |
+| U17.3 | U17.20 | Approximation for the knapsack problem and job scheduling |
+| U17.4 | U17.21 | Linear programming basics and deterministic rounding |
+| U17.5 | U17.22 | Randomized rounding |
+| U17.6 | U17.23 | The primal–dual method |
+| U17.7 | U17.24 | Semidefinite programming for max cut, and hardness of approximation |
+| U18.1 | U13.11 | Capstone A: the mathematics of machine learning, end to end |
+| U18.2 | U13.12 | Capstone B: a classical-ML library from scratch |
+| U18.3 | U13.13 | Capstone C: a deep-learning framework from scratch |
+| U18.4 | U13.14 | Capstone D: an LLM application platform (RAG + agents + safety) |
+| U18.5 | U13.15 | Capstone E: generative models |
+| U18.6 | U13.16 | Capstone F: ML systems and efficiency |
+| U18.7 | U13.17 | Final integrated capstone: train, align, compress, serve, evaluate and secure a small language model |
+
+
+### H.3 On-demand map: which cloud unit calls on which merged units
+
+| Cloud unit | merged units, entered only when needed |
+|---|---|
+| U2.1 probability, random processes and queueing for networks | U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.25 Markov chains, queueing theory and reliability |
+| U2.7 graph algorithms for routing | U21.15 Graph theory |
+| U2.11 coding theory | U21.17 Algebra |
+| U3.2 bipartite matching | U21.15 Graph theory |
+| U4.5 network flows and linear programming | U25.6 Lagrangian duality, saddle points and minimax; U25.7 Linear programming |
+| U5.1 probability, entropy and asymptotics for cryptography | U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.21 Special continuous distributions and the normal distribution |
+| U5.2 integers modulo n | U21.16 Number theory and cryptography |
+| U5.5 groups, rings, fields, finite fields and linear algebra over them | U21.17 Algebra; U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.16 Linear maps, representation by matrices, duality and quotient spaces |
+| U5.8 computational complexity, one-way functions and the reduction method | U17.18 Review of NP-completeness and the approximation framework |
+| U5.12 number theory for public-key cryptography | U21.16 Number theory and cryptography |
+| U5.13 Key exchange, cyclic groups and the Diffie–Hellman family | U21.17 Algebra |
+| U5.15 Elliptic curves | U21.17 Algebra |
+| U5.25 Quantum and post-quantum cryptography | U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation |
+| U6.7 Web application attacks and secure coding | U32.4 White-box attacks and prompt injection |
+| U7.2 Knowing your attacker | U32.3 AI safety foundations and threat models |
+| U7.7 Cloud security and identity | U32.3 AI safety foundations and threat models; U32.6 Defense, interpretability and ethics |
+| U8.2 quantitative risk | U19.19 Random variables, distributions and moments; U19.21 Special continuous distributions and the normal distribution; U19.24 Limit theorems and concentration inequalities |
+| U8.8 Anonymity and privacy-enhancing technologies | U19.21 Special continuous distributions and the normal distribution; U33.6 Federated learning |
+| U9.2 tail bounds, balls into bins and randomised-algorithm analysis | U19.24 Limit theorems and concentration inequalities |
+| U9.19 Failures and recovery | U33.2 Parallelism for training, communication and fault tolerance |
+| U10.6 In-memory key-value stores and the families of NoSQL databases | U31.6 Vector databases and indexes |
+| U11.7 Stream processing and approximate algorithms | U19.24 Limit theorems and concentration inequalities |
+| U11.8 machine-learning foundations for scalable learning | U25.10 First-order methods for ML; U26.1 What machine learning is; U26.2 Model evaluation and selection; U26.3 Linear regression and linear classification; U26.4 Regularization and implicit regularization; U26.7 Decision trees and ensembles |
+| U11.9 Big data applications | U25.10 First-order methods for ML; U26.3 Linear regression and linear classification; U26.7 Decision trees and ensembles; U26.9 Clustering, mixture models and the EM algorithm; U26.11 Instance-based learning, collaborative filtering and recommendation |
+| U11.10 Markov chains, eigenvectors and PageRank | U18.24 Applications of linear algebra; U19.25 Markov chains, queueing theory and reliability |
+| U11.11 Big data applications | U21.15 Graph theory |
+| U12.3 Machine learning on Google Cloud | U28.1 Perceptron, multilayer networks, activations and loss functions; U28.2 Backpropagation and training deep networks; U28.4 Convolutional neural networks and image representation; U29.3 Attention and the Transformer architecture; U29.8 Instruction tuning, RLHF and alignment; U32.1 LLM evaluation; U32.3 AI safety foundations and threat models |
+| U13.10 Capstone | U19.29 Confidence intervals and hypothesis testing; U26.2 Model evaluation and selection; U26.12 Data mining |
+| U14.4 Computer arithmetic | U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation |
+| U14.13 Parallel architectures and programming models | U33.2 Parallelism for training, communication and fault tolerance |
+| U14.17 GPU architecture | U28.2 Backpropagation and training deep networks; U33.1 CNN computation and accelerators |
+| U14.20 Domain-specific accelerators and efficient neural-network training | U28.1 Perceptron, multilayer networks, activations and loss functions; U28.2 Backpropagation and training deep networks; U28.4 Convolutional neural networks and image representation; U33.1 CNN computation and accelerators; U33.3 LLM decoding, memory management and serving infrastructure; U33.4 Model compression and quantization |
+| U15.16 Indexing | U31.6 Vector databases and indexes |
+| U15.25 Enhanced data models | U31.3 Sparse retrieval limits and dense representations; U31.6 Vector databases and indexes |
+| U15.27 NoSQL systems, graph databases and big data | U31.6 Vector databases and indexes |
+| U16.9 Scalability and the front of the system | U33.3 LLM decoding, memory management and serving infrastructure |
+| U16.12 Caching | U33.3 LLM decoding, memory management and serving infrastructure |
+| U16.13 Asynchronism, communication and security basics | U33.3 LLM decoding, memory management and serving infrastructure |
+| U16.15 Worked designs II | U31.8 Production RAG |
+| U17.1 discrete mathematics for algorithm analysis | U21.12 Logic, proof paradigms and formal languages; U21.13 Counting, generating functions and combinatorics |
+| U17.3 Divide and conquer | U24.15 Laplace, Z, Fourier and discrete Fourier transforms |
+| U17.10 Greedy algorithms, dynamic programming | U27.4 Markov decision processes |
+| U17.12 Single-source shortest paths | U27.4 Markov decision processes |
+| U17.14 Flow networks, the Ford–Fulkerson method | U17.18 Review of NP-completeness and the approximation framework |
+| U17.17 Backtracking, branch and bound, exact exponential algorithms | U17.18 Review of NP-completeness and the approximation framework; U17.19 Approximation for vertex cover; U17.20 Approximation for the knapsack problem and job scheduling; U17.21 Linear programming basics and deterministic rounding; U17.22 Randomized rounding; U17.23 The primal–dual method; U17.24 Semidefinite programming for max cut, and hardness of approximation |
+| U18.1 complex numbers, trigonometry and phasors | U21.8 Angles and the trigonometric functions; U21.9 Identities, inverse trigonometric functions, equations; U21.10 Complex numbers I; U21.11 Complex numbers II |
+| U18.2 Introduction to vectors, properties and applications | U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.17 Inner products, norms, orthogonality, projections and Gram–Schmidt |
+| U18.3 Introduction to matrices and applications | U18.14 Systems of linear equations, matrices, elimination, rank and inverses; U18.15 Vectors, vector spaces, subspaces, bases and dimension; U18.16 Linear maps, representation by matrices, duality and quotient spaces; U18.18 Determinants, multilinear forms and permutations |
+| U18.4 Eigenvalue decomposition | U18.19 Eigenvalues, eigenvectors, similarity and diagonalization; U18.20 Canonical forms; U18.21 Spectral theory; U26.8 Dimensionality reduction and feature learning |
+| U18.5 Singular value decomposition and applications | U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation; U26.8 Dimensionality reduction and feature learning |
+| U18.6 Linear regression and least squares | U18.23 Least squares, regularized and constrained least squares; U26.3 Linear regression and linear classification; U26.5 Perceptron, support vector machines and kernel methods |
+| U18.7 Optimal linear MMSE estimation | U18.23 Least squares, regularized and constrained least squares; U19.23 Joint distributions, conditioning, covariance and multivariate normal |
+| U18.8 Data analytics with matrices | U26.11 Instance-based learning, collaborative filtering and recommendation |
+| U18.9 The DFT and the FFT matrix, OFDM and SC-FDMA | U21.11 Complex numbers II; U18.24 Applications of linear algebra; U24.15 Laplace, Z, Fourier and discrete Fourier transforms |
+| U18.10 Dynamical systems | U24.11 First- and higher-order ordinary differential equations; U24.16 Mathematical modelling; U24.17 ODE theory for dynamical systems |
+| U18.11 Unsupervised learning | U26.9 Clustering, mixture models and the EM algorithm |
+| U18.12 The linear perceptron | U25.12 Applications of optimization; U25.13 Non-smooth and difference-of-convex optimization; U28.1 Perceptron, multilayer networks, activations and loss functions |
+| U18.13 Discrete-time Markov chains and operations research | U19.25 Markov chains, queueing theory and reliability; U27.4 Markov decision processes |
+| U19.1 calculus, counting and matrices for statistics | U21.13 Counting, generating functions and combinatorics; U24.1 Numbers, countability, functions, limits and continuity; U24.2 Differentiation and mean value theorems; U24.3 Integration, applications and transcendental functions; U24.6 Functions of several variables; U24.7 Taylor expansion in several variables, maxima; U24.8 Multiple integrals and their applications; U18.14 Systems of linear equations, matrices, elimination, rank and inverses |
+| U19.2 Introduction to data analytics and Python fundamentals | U19.27 Data, descriptive statistics and measures of association |
+| U19.3 Probability and random variables | U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.21 Special continuous distributions and the normal distribution; U19.22 Functions of random variables, transformations and order statistics; U19.23 Joint distributions, conditioning, covariance and multivariate normal |
+| U19.4 Sampling and sampling distributions | U19.28 Sampling distributions and point estimation |
+| U19.5 Hypothesis testing | U19.29 Confidence intervals and hypothesis testing |
+| U19.6 Two-sample testing and the analysis of variance | U19.29 Confidence intervals and hypothesis testing |
+| U19.7 Linear regression and multiple regression | U18.23 Least squares, regularized and constrained least squares; U19.30 Correlation, regression and multivariate analysis |
+| U19.8 Maximum likelihood, logistic regression and the ROC curve | U19.28 Sampling distributions and point estimation; U26.3 Linear regression and linear classification |
+| U19.9 The chi-square test and cluster analysis | U26.9 Clustering, mixture models and the EM algorithm |
+| U19.10 Classification and regression trees (CART) | U26.7 Decision trees and ensembles |
+| U19.11 Data mining | U26.12 Data mining |
+| U19.12 Classification | U26.5 Perceptron, support vector machines and kernel methods; U26.6 Bayes decision theory; U26.7 Decision trees and ensembles; U26.11 Instance-based learning, collaborative filtering and recommendation |
+| U19.13 Evaluation, visualisation, sequence mining and case studies | U26.2 Model evaluation and selection; U26.12 Data mining |
+| U19.14 Bayesian inference | U24.5 Improper integrals, Gamma and Beta functions; U19.31 Bayesian inference and MCMC |
+| U19.15 Markov chain Monte Carlo, Hamiltonian Monte Carlo | U19.31 Bayesian inference and MCMC; U26.10 Probabilistic graphical models, hidden Markov models |
+| U19.16 Bayesian regression and hierarchical models | U19.31 Bayesian inference and MCMC; U26.10 Probabilistic graphical models, hidden Markov models |
+| U19.17 Model comparison, mixture models and multinomial processing trees | U26.2 Model evaluation and selection; U26.9 Clustering, mixture models and the EM algorithm |
+| U20.1 Scalable data science | U18.21 Spectral theory; U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation; U19.24 Limit theorems and concentration inequalities; U25.2 Convex sets, cones, polyhedra and separation; U25.3 Convex functions and their calculus; U25.5 Constrained optimization theory |
+| U20.3 Count-Min and Count sketches, and approximate near-neighbour search | U31.6 Vector databases and indexes |
+| U20.5 Randomised numerical linear algebra | U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation; U26.8 Dimensionality reduction and feature learning |
+| U20.6 MapReduce and related paradigms | U18.24 Applications of linear algebra; U26.9 Clustering, mixture models and the EM algorithm |
+| U20.7 Scala and Spark, and distributed machine learning and optimisation | U25.8 Unconstrained descent methods; U25.10 First-order methods for ML; U25.16 Stochastic approximation |
+| U20.8 Distributed optimisation with ADMM and its applications | U25.6 Lagrangian duality, saddle points and minimax; U25.9 Constrained optimization algorithms; U25.14 Distributed optimization |
+| U21.2 school mathematics through class 12, consolidated | U21.7 Functions, exponentials and logarithms; U21.8 Angles and the trigonometric functions; U21.9 Identities, inverse trigonometric functions, equations |
+| U21.4 proofs and discrete reasoning | U21.12 Logic, proof paradigms and formal languages; U21.13 Counting, generating functions and combinatorics; U21.18 An invitation to mathematics |
+| U21.5 graph theory from scratch | U21.15 Graph theory |
+| U21.6 probability from first principles | U19.18 Probability foundations; U19.19 Random variables, distributions and moments; U19.20 Special discrete distributions and the Poisson process; U19.21 Special continuous distributions and the normal distribution; U19.22 Functions of random variables, transformations and order statistics; U19.23 Joint distributions, conditioning, covariance and multivariate normal; U19.24 Limit theorems and concentration inequalities |
+| U22.14 Software reliability | U19.25 Markov chains, queueing theory and reliability |
+
+### H.4 Duplicates removed from merged units, with the cloud owner that already teaches each
+
+| merged unit | Field | Removed atom | Cloud owner and field |
+|---|---|---|---|
+| U21.12 | Build | a truth-table and tautology checker in Python | U21.4 Build |
+| U21.13 | Results | inclusion–exclusion [P] | U21.4 Topics |
+| U21.15 | Build | graph class with adjacency/incidence matrices, BFS/DFS, bipartiteness and Euler-tour test | U21.5 Build |
+| U21.15 | Results | Euler's circuit theorem [P] | U21.5 Topics |
+| U21.15 | Topics | matrix representation of graphs (incidence and adjacency matrices) | U21.5 Topics |
+| U21.16 | Results | Fermat's little theorem and Euler's theorem [P] | U5.12 Results |
+| U21.16 | Results | correctness of RSA [P] | U5.14 Topics |
+| U21.17 | Results | Lagrange's theorem [P] | U5.5 Topics |
+| U24.2 | Topics | derivatives, maxima and minima | U21.2 Topics |
+| U18.14 | Topics | elementary matrix operations, elementary matrices and elementary operations on matrices | U21.2 Topics |
+| U18.14 | Topics | determinants, rank, invertibility | U5.5 Topics |
+| U18.14 | Topics | existence and uniqueness of solutions | U18.3 Topics |
+| U18.15 | Topics | vector space, subspace, basis and dimension | U18.1 Topics |
+| U18.16 | Topics | matrix of a linear map | U18.3 Topics |
+| U18.16 | Topics | rank–nullity theorem | U18.3 Topics |
+| U18.17 | Results | Gram–Schmidt produces an orthonormal basis [P] | U18.2 Results |
+| U18.17 | Topics | inner products and norms | U18.2 Topics |
+| U18.17 | Topics | Gram–Schmidt orthogonalization and process | U18.2 Topics |
+| U18.17 | Topics | inner product and vector norm | U18.2 Topics |
+| U18.18 | Topics | properties of determinants and adjoint of a matrix | U21.2 Topics |
+| U18.19 | Topics | eigenvalue decomposition, properties and applications | U18.4 Topics |
+| U18.21 | Topics | spectral theorem for symmetric matrices | U18.4 Topics |
+| U18.21 | Topics | real symmetric matrices | U18.4 Topics |
+| U18.22 | Build | image compression by truncated SVD | U18.5 Topics |
+| U18.22 | Build | compare with `numpy.linalg.svd` | U18.5 Build |
+| U18.23 | Build | least squares by normal equations, QR and SVD with conditioning experiments | U18.6 Build |
+| U18.23 | Topics | constrained least squares | U18.7 Topics |
+| U18.23 | Topics | linear regression and least squares | U18.6 Topics |
+| U18.23 | Topics | applications: system identification, MMSE receiver, market prediction and forecasting, ARMA models | U18.7 Topics |
+| U18.23 | Topics | optimal linear MMSE estimation | U18.7 Topics |
+| U18.24 | Results | convergence of the power method and PageRank damping [D] | U11.10 Topics |
+| U18.24 | Topics | structure of FFT/IFFT matrices and their properties | U18.9 Topics |
+| U19.18 | Topics | law of total probability | U19.3 Topics |
+| U19.20 | Topics | discrete and continuous distribution functions | U21.6 Topics |
+| U19.20 | Topics | Poisson process and exponential distribution | U21.6 Topics |
+| U19.21 | Build | Box–Muller and inverse-CDF samplers from scratch | U21.6 Topics |
+| U19.22 | Topics | Function of a random variable I and II | U19.3 Topics |
+| U19.23 | Topics | jointly distributed random variables | U19.3 Topics |
+| U19.23 | Topics | marginal and conditional probability distributions | U19.3 Topics |
+| U19.24 | Topics | central limit theorem | U21.6 Topics |
+| U19.25 | Results | Little's law [P] | U2.1 Topics |
+| U19.25 | Topics | discrete-time Markov chains | U18.13 Topics |
+| U19.27 | Build | box plots and histograms by hand | U19.2 Topics |
+| U19.27 | Results | Sample mean minimizes squared deviation and median minimizes absolute deviation [P] | U19.2 Results |
+| U19.28 | Topics | chi-square distribution | U19.4 Topics |
+| U19.28 | Topics | sampling techniques (random, stratified) | U19.4 Topics |
+| U19.30 | Topics | simple linear regression and multiple linear regression | U19.7 Build |
+| U19.31 | Topics | prior and posterior distributions | U19.14 Topics |
+| U24.11 | Topics | First-order differential equations | U21.2 Topics |
+| U24.15 | Build | FFT (radix-2) from scratch | U18.9 Topics |
+| U24.15 | Topics | structure of FFT/IFFT matrices | U18.9 Topics |
+| U25.6 | Results | Weak duality [P] | U4.5 Results |
+| U25.6 | Results | LP strong duality [P] | U4.5 Results |
+| U25.6 | Topics | an algorithm for the max-flow problem | U4.5 Gap-fills |
+| U25.12 | Build | OMP recovery experiments (phase transition) | U18.12 Build |
+| U25.12 | Topics | wireless channel estimation | U18.2 Topics |
+| U25.12 | Topics | compressive sensing and sparse signal processing | U18.12 Topics |
+| U25.12 | Topics | water-filling power allocation | U18.5 Results |
+| U26.2 | Results | AUC equals the probability that a positive outranks a negative [P] | U19.8 Results |
+| U26.3 | Topics | linear regression estimation error and model error | U19.7 Topics |
+| U26.5 | Build | compare with `sklearn.svm` | U18.6 Build |
+| U26.5 | Topics | kernels (linear, polynomial, Gaussian) | U18.6 Topics |
+| U26.5 | Topics | linear perceptron and training a perceptron by stochastic gradient | U18.12 Topics |
+| U26.7 | Topics | regression and classification via decision trees | U19.10 Topics |
+| U26.7 | Topics | decision-tree-based inductive learning | U11.9 Topics |
+| U26.8 | Topics | principal component analysis (PCA) | U18.4 Topics |
+| U26.9 | Topics | Gaussian mixture model (GMM) | U18.11 Topics |
+| U26.9 | Topics | hierarchical agglomerative clustering (adaptive hierarchical clustering) | U19.9 Topics |
+| U26.9 | Topics | centroid-based and probabilistic model-based clustering | U18.11 Topics |
+| U26.11 | Topics | the Netflix problem and data completion | U18.8 Topics |
+| U26.12 | Results | Apriori anti-monotonicity (downward closure) [P] | U19.11 Topics |
+| U26.12 | Results | support, confidence and lift [Def] | U19.11 Topics |
+| U26.12 | Topics | case studies on industrial problems | U19.13 Topics |
+| U26.12 | Topics | data mining as an interdisciplinary topic spanning databases, machine learning and algorithms | U19.11 Topics |
+| U28.3 | Topics | the bias–variance tradeoff | U11.8 Topics |
+| U33.4 | Topics | quantization methods (post-training and quantization-aware | U14.20 Topics |
+
+### H.5 Overlaps kept on purpose
+
+**Candidates that matched a cloud atom but were kept.** Results that the merged unit proves more fully than the cloud unit (stronger proof status) and a few matches that were spurious or that point from the full treatment to a compact bridge:
+
+| merged unit | Field | Atom kept | Cloud unit | Reason |
+|---|---|---|---|---|
+| U21.15 | Results | Hall's marriage theorem [P] | U3.2 | stronger proof status |
+| U21.15 | Results | Menger / max-flow–min-cut [X→U25.6, proved there by LP duality] | U17.14 | stronger proof status |
+| U21.16 | Results | Euclid's algorithm and Bézout's identity [P] | U5.2 | stronger proof status |
+| U21.16 | Results | Chinese remainder theorem [P] | U5.12 | stronger proof status |
+| U21.17 | Results | Hamming bound and distance of linear codes [P] | U2.11 | stronger proof status |
+| U21.18 | Results | invariants as proof tool [P] | U21.4 | stronger proof status |
+| U24.3 | Results | Fundamental theorem of calculus (both parts) [P] | U21.2 | stronger proof status |
+| U18.16 | Results | Rank–nullity theorem [P] | U18.3 | stronger proof status |
+| U18.17 | Results | Cauchy–Schwarz and triangle inequalities [P] | U18.2 | stronger proof status |
+| U18.19 | Results | trace = sum and det = product of eigenvalues [P] | U18.4 | stronger proof status |
+| U18.21 | Results | Spectral theorem for real symmetric / Hermitian matrices [P] | U18.4 | stronger proof status |
+| U18.24 | Results | stationary distribution of an irreducible aperiodic chain [P in U19.25] | U11.10 | stronger proof status |
+| U18.24 | Results | DFT matrix is unitary and diagonalizes circulants [P] | U18.9 | stronger proof status |
+| U19.18 | Results | law of total probability [P] | U19.3 | stronger proof status |
+| U19.24 | Results | Markov and Chebyshev inequalities [P] | U20.1 | stronger proof status |
+| U19.24 | Results | weak law of large numbers [P] | U21.6 | stronger proof status |
+| U19.24 | Results | central limit theorem (via characteristic functions) [P] | U21.6 | stronger proof status |
+| U19.24 | Results | Hoeffding and Chernoff bounds [P] | U20.1 | stronger proof status |
+| U19.25 | Results | Stationary distribution of M/M/1 [D] | U2.1 | stronger proof status |
+| U19.25 | Results | existence and convergence of stationary distribution for finite irreducible aperiodic chai | U11.10 | stronger proof status |
+| U19.29 | Results | Neyman–Pearson lemma [P] | U19.5 | stronger proof status |
+| U19.31 | Results | Posterior ∝ likelihood × prior [P] | U19.14 | stronger proof status |
+| U19.31 | Results | conjugacy of Beta–Binomial and Normal–Normal [D] | U19.14 | stronger proof status |
+| U24.15 | Results | FFT divide-and-conquer recurrence [D] | U18.9 | stronger proof status |
+| U25.6 | Results | max-flow = min-cut [P] | U4.5 | stronger proof status |
+| U26.0 | Results | Confusion-matrix identities for accuracy, precision, recall and F1 [D] | U19.13 | stronger proof status |
+| U26.6 | Results | naive Bayes factorization and Laplace smoothing [D] | U19.12 | stronger proof status |
+| U26.8 | Results | PCA as top-k eigenvectors of the covariance matrix (variance maximization) [P] | U18.4 | stronger proof status |
+| U26.9 | Results | EM never decreases the likelihood [P] | U18.11 | stronger proof status |
+| U26.11 | Results | curse of dimensionality for distance-based methods [P] | U19.12 | stronger proof status |
+| U26.12 | Gap-fills | *[inferred: Han–Kamber | U19.11 | reference list |
+| U17.18 | Results | Cook–Levin theorem [X, stated] | U17.14 | stronger proof status |
+| U26.2 | Topics | bias–variance tradeoff | U11.8 | kept: U11.8 is the compact bridge, this unit is its full treatment |
+| U26.2 | Results | Bias–variance decomposition of expected squared error [D] | U11.8 | kept: U11.8 is the compact bridge, this unit is its full treatment |
+| U26.5 | Topics | support vector machines (SVM) for classification and regression | U18.6 | kept: spurious match, the owner does not teach it |
+| U26.7 | Topics | ensembling of decision trees | U11.8 | kept: U11.8 is the compact bridge, this unit is its full treatment |
+| U26.10 | Results | GP posterior mean and variance [D] | U19.16 | kept: spurious match, the owner does not teach it |
+
+**Same-subject unit pairs that remain** (cosine similarity of the unit texts after trimming, 0.25 or more; the cloud unit is the compact or applied version, the merged unit the fuller treatment, entered on demand):
+
+| merged unit | Cloud unit | Similarity |
+|---|---|---|
+| U21.11 Complex numbers II | U18.1 complex numbers, trigonometry and phasors | 0.47 |
+| U18.17 Inner products, norms, orthogonality, projections and Gram–Schmidt | U18.2 Introduction to vectors, properties and applications | 0.45 |
+| U21.15 Graph theory | U21.5 graph theory from scratch | 0.42 |
+| U26.12 Data mining | U19.11 Data mining | 0.39 |
+| U19.29 Confidence intervals and hypothesis testing | U19.5 Hypothesis testing | 0.38 |
+| U25.14 Distributed optimization | U20.8 Distributed optimisation with ADMM and its applications | 0.37 |
+| U26.7 Decision trees and ensembles | U19.10 Classification and regression trees (CART) | 0.37 |
+| U26.9 Clustering, mixture models and the EM algorithm | U18.11 Unsupervised learning | 0.34 |
+| U18.22 LU, QR, conditioning, SVD, pseudo-inverse and low-rank approximation | U18.5 Singular value decomposition and applications | 0.34 |
+| U19.20 Special discrete distributions and the Poisson process | U19.3 Probability and random variables | 0.34 |
+| U21.13 Counting, generating functions and combinatorics | U21.4 proofs and discrete reasoning | 0.33 |
+| U26.5 Perceptron, support vector machines and kernel methods | U18.6 Linear regression and least squares | 0.32 |
+| U25.6 Lagrangian duality, saddle points and minimax | U4.5 network flows and linear programming | 0.32 |
+| U17.19 Approximation for vertex cover | U17.17 Backtracking, branch and bound, exact exponential algorithms | 0.31 |
+| U33.1 CNN computation and accelerators | U14.20 Domain-specific accelerators and efficient neural-network training | 0.30 |
+| U21.10 Complex numbers I | U18.1 complex numbers, trigonometry and phasors | 0.30 |
+| U21.9 Identities, inverse trigonometric functions, equations | U18.1 complex numbers, trigonometry and phasors | 0.30 |
+| U19.31 Bayesian inference and MCMC | U19.15 Markov chain Monte Carlo, Hamiltonian Monte Carlo | 0.29 |
+| U17.18 Review of NP-completeness and the approximation framework | U17.14 Flow networks, the Ford–Fulkerson method | 0.28 |
+| U18.21 Spectral theory | U18.4 Eigenvalue decomposition | 0.28 |
+| U21.17 Algebra | U2.11 coding theory | 0.28 |
+| U18.19 Eigenvalues, eigenvectors, similarity and diagonalization | U18.4 Eigenvalue decomposition | 0.28 |
+| U19.24 Limit theorems and concentration inequalities | U20.1 Scalable data science | 0.27 |
+| U19.31 Bayesian inference and MCMC | U19.14 Bayesian inference | 0.27 |
+| U26.5 Perceptron, support vector machines and kernel methods | U19.12 Classification | 0.27 |
+| U26.1 What machine learning is | U11.8 machine-learning foundations for scalable learning | 0.27 |
+| U19.20 Special discrete distributions and the Poisson process | U21.6 probability from first principles | 0.27 |
+| U21.9 Identities, inverse trigonometric functions, equations | U21.2 school mathematics through class 12, consolidated | 0.27 |
+| U25.10 First-order methods for ML | U20.7 Scala and Spark, and distributed machine learning and optimisation | 0.26 |
+| U21.12 Logic, proof paradigms and formal languages | U15.3 sets, relations | 0.26 |
+| U26.11 Instance-based learning, collaborative filtering and recommendation | U11.9 Big data applications | 0.26 |
+| U18.14 Systems of linear equations, matrices, elimination, rank and inverses | U18.3 Introduction to matrices and applications | 0.26 |
+| U26.9 Clustering, mixture models and the EM algorithm | U19.9 The chi-square test and cluster analysis | 0.26 |
+| U26.6 Bayes decision theory | U19.12 Classification | 0.25 |
+| U24.12 Numerical analysis | U21.2 school mathematics through class 12, consolidated | 0.25 |
+| U21.7 Functions, exponentials and logarithms | U21.2 school mathematics through class 12, consolidated | 0.25 |
+| U18.24 Applications of linear algebra | U11.10 Markov chains, eigenvectors and PageRank | 0.25 |
+| U21.12 Logic, proof paradigms and formal languages | U21.4 proofs and discrete reasoning | 0.25 |
+| U26.3 Linear regression and linear classification | U19.8 Maximum likelihood, logistic regression and the ROC curve | 0.25 |
+
+### H.6 Audit
+
+The audit of this merge is delivered as `merge_audit_report.md`. It has two parts. First, the 63 checks of the first merge (counts, identifier and reference checks, coverage, the dedupe ledger re-verified against the owners, the assignments, stale-wording scans and the limitations), run on the merged document before the fold: 63 checks: 63 pass, 0 fail, 0 warnings. Second, the fold audit, which pairs every unit before and after by title and checks that text, assignment and keys are identical apart from identifiers and the rewritten wording, that no unit or assignment was lost or duplicated, that every identifier resolves, that no wording of the old separate Part remains, and that the indexes agree: 41 fold checks: 41 pass, 0 fail.

@@ -441,3 +441,22 @@ Do this **only if the learner asks**; it is a larger change and it is not part o
 **Order of domains.** `ORDER` now has D23 after D17 (with the other on-demand domains) and D22 before D16 (D16 uses the UML notation of U22.9).
 
 **Final counts.** 23 domains, 290 units, 280 assignments, 55 bridges, 10 capstones, 478 source cells, 35 courses; coverage uncited 0, only the 27 CSP URL-noise atoms flagged.
+
+## 18. Merging the machine-learning curriculum (2026-11-06)
+Order: `ml_import.py` (units_ml, assign_ml, merge_ledger.json) -> `cloud_wire.py` (idempotent pointers and stale fixes) -> `residual.py` -> `assemble_cloud.py OUT.md` -> `gen_index.py INDEX_CLOUD INDEX_ML` -> `audit.py DOC INDEX_CLOUD INDEX_ML REPORT` -> write `audit_summary.txt` from its first line and assemble again so Appendix H.6 shows the result.
+ID scheme: ML D0-D17 become D24-D41 (units keep their number, assignments follow); ML capstones U18.n become U13.(10+n). Cloud IDs never change. Text already in final IDs must be protected from the remapper (a line starting with \x00 in ml_import.py).
+Dedupe rule: cloud units are never trimmed. An ML atom is removed only if a cloud owner already states it (token containment >= 0.8, proof tag not weaker in the owner) or it is on the hand-reviewed list (DROP_EXTRA, DROP_EXTRA_OWNED); every removal is in Appendix H.4. When in doubt keep the atom: the audit checks proof status against the whole owner unit.
+Source checks (need `nptel.txt` and `iit-genai.md` staged to /mnt/user-data/uploads/sde/): `mlcheck.py DOC` (word-level coverage of the 564 ML cells, uses mlcheck_src.py; writes mlcheck_summary.txt) and `verify_keys.py` (independent recomputation of the 127 numeric keys the audit cannot parse; the audit calls both and writes verify_keys.out). Assemble after the audit so H.1 and H.6 show the results. Known limits: MCQ/MSQ/derivation keys of the ML assignments are carried unchanged and not re-derived; programming questions are not executed. One ML key was corrected (A40.1, 170.67).
+
+**Answer-key review (final sweep).** `KEY_FIXES` in `ml_import.py` lists every correction to a Part G assignment block (six entries: A40.1 Q3, A35.5 Q2 option and rationale, A32.12 Q5 question and key, A28.1, A28.8 and A28.11 Q5 keys). The audit applies them when it checks that each Part G assignment equals the old one after renumbering, and H.1 prints their reasons. To add a correction, append a `dict(unit, old, new, why)` (old must occur in the block) and rerun the pipeline order above. The reference runs for the Q5 predictions are in `q5_reference_checks.py` (not part of the pipeline; rerun it if a Q5 key is edited).
+
+
+## 19. The fold by subject (second pass)
+
+Pipeline order, after the first merge has been assembled and audited (section 18; the audited document is copied to `F_doc.md`): `fold.py F_doc.md X.md` -> `gen_index_x.py X.md INDEX_CLOUD INDEX_ML` -> `audit_fold.py F_doc.md X.md REPORT INDEX_CLOUD INDEX_ML` (writes `fold_audit_summary.txt`) -> `fold.py` again so that H.6 shows the result -> `gen_index_x.py` and `audit_fold.py` once more. The final document is X.md; F_doc.md and the F indexes (`index_cloud_F.md`, `unified_curriculum_index_F.md`) are kept only as inputs.
+
+**Files.** `fold_core.py` (parser of the document into parts, domains and units; the identifier map F to final: `DOM`, `OFF`, `fx`), `fold_struct.py` (the layout of the parts and the reading ladders `LADDER`), `fold_rw.py` (explicit rewrites of sentences that spoke of Part G: `FRONT`, `BODY`, `APPX`; each must match exactly once), `fold_text.py` (generic wording rules), `fold.py`, `gen_index_x.py`, `audit_fold.py`.
+
+**Identifier rule.** In F space the merged units are U24.x to U41.x. Final: old D24/D25 -> U21.(6+n)/U21.(11+n); D26/D27/D31 -> U24.n, U24.(5+n), U24.(10+n); D28 -> U18.(13+n); D29/D30 -> U19.(17+n)/U19.(26+n); D41 -> U17.(17+n); D32 -> D25; D33..D40 -> D26..D33 (U33.0 -> U26.0). Text written in the rewrites uses an `@` prefix on identifiers that are already final; `fx` leaves them alone and `unat` strips the marker. A domain reference to a merged domain (for example D28 for linear algebra) maps to the domain that now holds that subject; where a reference needs the exact unit range, the rewrite names the units.
+
+**Adding or moving a merged unit.** Edit the ladder or layout, adjust `OFF` if numbering changes, rerun the pipeline; `audit_fold.py` pairs units by title, so titles must stay unique.
