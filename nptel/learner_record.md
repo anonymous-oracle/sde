@@ -1,0 +1,62 @@
+# Learner record: Unified Cloud Curriculum (Master Rules 8.3)
+
+Opened: 2026-11-05 (UTC). Course file: `unified_cloud_curriculum.md` (re-read 2026-11-07: 33 domains, 450 units; U1.1 unchanged). Index: `index_cloud.md`. Rules: `Master_Rules.md` (precedence 0.2).
+
+**Update policy (session overrides S2 and S3):** the record is NOT updated every turn. It is updated (a) when an incident or irregularity occurs (skipped, impatient or stuck events, wrong predictions, misconceptions, tutor errata, overrides, failed checks, deferred proofs) and (b) once at the end of every unit (state, depth, evidence, resume point, recalls due).
+
+## Resume point (as of 2026-11-09)
+**Week 1 of the source courses is the study block (S8), and every module in it gets hands-on work (S9).** CCDS Week 1 ("Introduction to Clouds, Virtualization and Virtual Machine", NPTEL 106104182) has four items; the curriculum spreads them over U1.1, U4.2 and U4.3. GCF Week 1 ("So, What's the Cloud anyway? Start with a Solid Platform", NPTEL 106105223, no sub-topics listed) is U1.3.
+1. CCDS item 1, Introduction to Cloud Computing (U1.1): Why Clouds, What is a Cloud, What's new in today's Clouds, Cloud computing vs. Distributed computing, Utility computing, Features of today's Clouds: Massive scale, AAS classification (HaaS, IaaS, PaaS, SaaS), Data-intensive Computing, New Cloud Paradigms, Categories of Clouds (private, public). **In progress.** Taught so far: what a cloud is, X-as-a-service, who operates what, deployment models, history, the four features new in today's clouds as a table, failures at scale (one failure per 1,100 machine-days gives one per 0.11 day on 10,000 machines; the learner computed it correctly). Last check (10-hour job, 10,000 machines, expected failures, about 3.8): answered "a maximum of 4" on 2026-11-09, which treats an expected value as a cap (see misconception register); to be settled next turn. Still to teach: new programming paradigms, data-intensive computing, cloud versus distributed computing, utility computing.
+2. CCDS item 2, Virtualization (U4.2): what virtualization is, benefits, models (bare metal, hosted hypervisor). Not started.
+3. CCDS item 3, Types of virtualization (U4.2): processor, memory, full, para, device. Not started.
+4. CCDS item 4, Hotspot mitigation for VM migration (U4.3): enterprise data centers, data-center workloads, provisioning methods, Sandpiper architecture, resource provisioning, black-box and gray-box approaches, live VM migration stages, hotspot mitigation. Not started.
+5. GCF Week 1 (U1.3): Google Cloud Platform core infrastructure. Not started.
+Hands-on plan (S9): for each of items 1 to 4 and GCF Week 1, one from-scratch implementation exercise per module, at most 4 per module, written by the learner, with tests written and run by the tutor. NPTEL's own weekly assignments (checked 2026-11-09 in NPTEL course pages: multiple-choice quizzes, "one or multiple options may be correct", 25% of the final score) are not coding tasks, so the tutor supplies the coding work.
+Curriculum additions inside U4.2 (Popek-Goldberg theorem, trap-and-emulate, binary translation, VT-x, shadow paging, ballooning, I/O virtualization details) are not named in the course outline and are parked under S6/S7 unless the learner asks. U1.2 (bridge) and OS or architecture prerequisites only on demand.
+
+## Standing instructions (dated table, 0.3)
+Course-profile instructions (1)-(17) live in the curriculum file's profile table and are not copied here; (11)-(17) are dated 2026-11-06. The learner's session instructions are numbered S1-S9 here to avoid clashing with the profile numbers (they were first logged as 11-13 on 2026-11-05).
+
+| # | Date | Learner's instruction | Rule changed / scope |
+|---|---|---|---|
+| S1 | 2026-11-05 | "begin this course" (start at resume point U1.1, default order) | none |
+| S2 | 2026-11-05 | "do not update learner record always. Only record incidents or any irregularities so that it can be tracked." | 8.3, 8.6: no routine per-turn updates. Narrowed by S3. |
+| S3 | 2026-11-05 | "Also update the learner record after every unit." | 8.6: one record update at the end of every unit, in addition to incidents. Per-turn updates stay off. Scope: until revoked. |
+| S4 | 2026-11-07 | "ingest the new index file" | none; one-off action |
+| S5 | 2026-11-08 | "I will finish the code and point you to the location. I have linked the folder to this project on my system. So, use it. Also, carry out the tests yourself. My first and foremost goal is to learn a concept. Not write tests for it." | 6.3, 6.7: the tutor writes and runs the tests and acceptance checks; the learner writes only the solution code. The tutor still never writes the learner's solution (2.10). Scope: until revoked. |
+| S6 | 2026-11-09 | "going forward, teach only what the NPTEL courses teach. Teach pre-requisites only on demand." | 1.3, 1.6, 3.3, 7.4, III.1(2): in units sourced from NPTEL courses, teach the topics those courses name; no curriculum-added topics; prerequisites only on demand (no up-front probing or pre-bridges). Amended by S7. |
+| S7 | 2026-11-09 | Full message: "yes that is exactly why you need to teach me and provide from the scratch coding assignments for the main track. Also, S6 applies to only NPTEL courses and nothing else. One more thing, I only asked you to park material that is not related to the main track. Your pooling related material and cost comparisons came from a textbook/reference material. If that is taught in the nptel course, I am more than happy to learn it." | Amends S6. (1) From-scratch coding assignments STAY for the main track (the NPTEL topics); the tutor teaches and provides them. (2) S6 governs the NPTEL-sourced units only; it does not limit other domains whose sources are not NPTEL. (3) What is parked is reference or textbook material added inside the NPTEL units: the pooling mathematics, break-even and cost comparisons, and their Monte Carlo build and assignment items; they return to scope if the NPTEL lectures teach them. Checked 2026-11-09 against the published CCDS outline and the curriculum's GCF Sources: neither names them; the lecture videos could not be inspected. Until revoked. |
+| S8 | 2026-11-09 | "check week1 material. There's more" | Week 1 of the source courses, not the curriculum's unit boundaries, sets the study block: CCDS Week 1 items 1 to 4 (U1.1, U4.2, U4.3) and GCF Week 1 (U1.3). Checked against the NPTEL syllabus PDFs 106104182 and 106105223 the same day. Until revoked. |
+| S9 | 2026-11-09 | Full message: "A maximum of 4. Coding assignments from nptel as well as from the scratch implementation exercises have to be present for each module so that the concept is grasped at a hands on level too got it? If nptel does not have coding assignments for topics, you would have to create them." (The first sentence is read as the answer to the failure-count check; the tutor said so in the reply.) | 6.3, 7.4: every module of the study block carries hands-on work, both NPTEL coding assignments where NPTEL has them and from-scratch implementation exercises; where NPTEL has no coding assignment for a topic (the case for Week 1, whose assignments are quizzes) the tutor creates one. "Module" = each numbered CCDS Week 1 item and GCF Week 1. Combines with S5 (the tutor writes and runs the tests; the learner writes only the solution) and S7. Until revoked. |
+
+## Topic states (as of 2026-11-09)
+| Unit | State | Depth | Evidence | Notes |
+|---|---|---|---|---|
+| U1.1 | in progress | L2 (service models, deployment models, history taught) | reference-material economics done with the tutor before S6/S7 (kept as done, now parked: break-even, pooling at numbers level, committed capacity); exercise 1 passes all 9 tutor tests; failures-at-scale interval computed correctly | remaining items in the resume point; decision-record rung not evidenced; module hands-on exercise per S9 not yet set |
+| U4.2, U4.3, U1.3 | not started | | | in scope as Week 1 material (S8) |
+| all others | not started | | | |
+
+## Incident logs
+- **Skipped / impatient / stuck events:**
+  - 2026-11-07, U1.1 reflection rung (decision record): "I get it, let's move." Explicit request to move on (5.4.1). Tutor moved on, gave the expected answer in one line. Not evidenced.
+  - 2026-11-08, variance (reference material): stuck (conceptual). The learner wrote "I am unable to wrap my head around the concept"; variance read as one squared deviation, and "total" as a time-total. Foothold given, then the learner solved the n = 9 and lockstep items. The four-hour table's total-column variance was not computed by the learner: not evidenced.
+- **Misconception register:**
+  - "sigma of the total = sum of the sigmas", 2026-11-08: corrected. Resolved.
+  - n counted over time instead of over tenants in the sigma formula (twice, 2026-11-08): watch for recurrence.
+  - 2026-11-08, committed capacity: "for committing to be cheap the usage should fall below 1/3" (a fixed all-year cost does not depend on use); corrected the same turn.
+  - 2026-11-09, why a cluster cannot be treated as one computer: the learner answered with separate locations and multi-tenancy (real but secondary); the main reason (failures at scale) was led to with an estimate, which the learner computed correctly.
+  - 2026-11-09, expected failures in a 10-hour job on 10,000 machines: "a maximum of 4". The number is close to the expected value (3.79) but it was stated as a cap; failures arrive at random, so 5 or more happens with probability about 0.33. Expected value read as upper bound. Open until the next turn's correction lands.
+  - Candidate (a) from an earlier entry (2026-11-07), "a drop in usage of layer 3 would invalidate renting's saving", is NOT supported by the session transcript (the learner wrote that an increase would, which is correct). Marked not confirmed.
+- **Wrong predictions:**
+  - 2026-11-06, "which deployment model gives the best pooling benefit": hybrid or multi-cloud (expected: public). The later reasoning answers a total-cost question, a valid separate point.
+  - 2026-11-09, committed rate 0.1 of on-demand: predicted committing cheapest at all utilisations; true only above u = 0.1. Corrected with the u = 0.05 case.
+- **Error log by cause:**
+  - 2026-11-05, block 4 sale-of-d-days: 93 submitted, true 94.63 (nearest day 95). Slip (arithmetic).
+  - 2026-11-06, block 2 service models: right model (IaaS), operating-system row read the wrong way round, repaired after one prompt. Misread/slip.
+  - 2026-11-07, block 4 four-layer case: applied the 1/3 rule to the fleet average instead of per layer. Strategic/conceptual; resolved with one hint.
+  - 2026-11-08, exercise 1: all 9 tutor tests pass, `ruff check` clean, `ruff format --check` failed (cosmetic). Slip (formatting). The prediction named the right layers; the total (26,280c) was not stated.
+- **Errata (tutor's, 8.4):** (1) 2026-11-06, the pooling-benefit question was ambiguous between pooling benefit and lowest total cost. (2) 2026-11-08, the sigma-of-the-total question blurred independence of the tenants with the total. (3) 2026-11-09, the tutor first read S6 as dropping the build exercises and matching assignments; the learner clarified in S7. (4) 2026-11-09, the tutor treated CCDS Week 1 as U1.1 only and said what "remained" in U1.1; Week 1 also contains virtualization, types of virtualization and VM migration (U4.2, U4.3), as the curriculum's own coverage matrix (CCDS W1 to U1.1, U4.2, U4.3) and the NPTEL outline show. The learner caught it ("There's more"); fixed by S8. All repaired in the same session.
+- **Record irregularity (2026-11-09):** the record was changed by another writer between two tutor writes, and two entries did not match this session's transcript (a "skipped check" entry for the cluster-as-one-computer question, and "Monte Carlo restored under S7"). Reconciled against the transcript.
+- **Deferred proofs:** elasticity-as-stability (to U2.1)
+- **Device bridge:** 2026-11-08, the bound device was not connected; the learner uploaded the file instead and it was read and tested from the upload.
+- **Decision journal, heuristics catalogue, built projects:** none yet. Candidate heuristics: "apply break-even per layer, not on the fleet average"; "a test that gives the same answer for every input cannot decide anything"; "a fixed cost loses to a variable cost at low use, and wins at high use"; "an expected count is a centre, not a cap".
