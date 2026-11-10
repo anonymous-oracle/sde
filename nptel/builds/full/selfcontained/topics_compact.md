@@ -1,6 +1,6 @@
 # Full topics: compact domain → level → DAG
 
-36,628 topics, exact names/levels/order retained. Level is inherited from the enclosing header. The teaching method for every topic is in this pack's sibling meta-rules.
+36,640 topics, exact names/levels/order retained. Level is inherited from the enclosing header. The teaching method for every topic is in this pack's sibling meta-rules.
 
 Level legend: H=HS; U=UG; J=UG+PG; P=PG-only; I=industry; ?=level-unknown (not reclassified).
 
@@ -27655,6 +27655,9 @@ autoscaling group
 between-group
 kosaraju
 kubernete
+gpt-1 and gpt-2
+gpt-3
+t5
 lambada
 langgraph
 large-valued data
@@ -29285,6 +29288,7 @@ loop invariant and variant
 arbitrage detection in exchange rate
 candidate keys
 disjoint or overlapping
+hnsw
 efsearch candidate list
 interest flooding
 opentelemetry as the vendor-neutral standard
@@ -30015,6 +30019,7 @@ state machine and timing
 work-group to block
 work-item to thread
 caller and callee-saved register
+tool calling
 calling and orchestration
 published outline give no sub-list
 stated with its sub-exponential cost
@@ -33236,6 +33241,7 @@ objective and error budget
 organisation leak
 organisation leak and how to reduce
 dartmouth conference
+ai winter
 parallel processing and context awareness
 pluggable storage engine
 lower peak-to-average power ratio
@@ -33353,6 +33359,7 @@ semantic search
 bayesian estimation of an event frequency
 map and bayesian estimation
 ml and bayesian estimation
+meteor metric
 f-score with stem and synonym
 data fragmentation
 fragmentation and reassembly with path-mtu discovery
@@ -33593,6 +33600,8 @@ identify the noun
 photo upload
 potential data loss if the active fail before replication
 predictive modeling as the core of ml plus explainability
+instructgpt
+rlhf
 aligning model with human preference
 med and nexthop
 principle of an honest chart
@@ -34917,6 +34926,7 @@ search engine like google
 search keyword
 set-valued drift
 sparse retrieval
+bm25
 sparse retrieval and dense retrieval
 sparse retrieval limit
 sparse retrieval limit and dense
@@ -35667,6 +35677,8 @@ martin instability
 multiplexed address and data line
 connection establishment and closure
 nat and pat
+word2vec
+hard negative mining
 sentence-bert architecture
 sentence embedding from bert
 shared memory usage

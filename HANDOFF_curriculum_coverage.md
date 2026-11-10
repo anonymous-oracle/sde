@@ -1,5 +1,5 @@
 # HANDOFF — Curriculum coverage, graph expansion & Claude learning packs (context spine)
-Last updated: 2026-11-10 ~11:05 IST (see §12 for 10:15–11:05 changes) · Owner: Suhas · Machine: Suhas's MacBook Air (all work runs on the Mac; stdlib Python only)
+Last updated: 2026-11-10 ~11:25 IST (see §12 for 10:15–11:25 changes) · Owner: Suhas · Machine: Suhas's MacBook Air (all work runs on the Mac; stdlib Python only)
 
 ---
 ## START HERE (read this first in any new chat)
@@ -13,6 +13,7 @@ Last updated: 2026-11-10 ~11:05 IST (see §12 for 10:15–11:05 changes) · Owne
 5. Nothing committed to git. Originals in `/Users/suhas/sde/nptel/` untouched.
 
 **Canonical files (upload candidates)**
+- **Current self-contained pair (supersedes the two bullets below; see §12):** `/Users/suhas/sde/nptel/builds/full/selfcontained/topics_compact.md` + `meta_rules_compact.md` (+ `Master_Rules.md`, `learn-SKILL.md`). 36,640 topics.
 - Recommended full upload: `/Users/suhas/sde/nptel/builds/full/topics_sorted_compact.md` + `/Users/suhas/sde/nptel/builds/full/meta_rules_and_index_sorted_compact.md` (+ `/Users/suhas/sde/nptel/learner_record.md`).
 - Alternative (preserves written teaching text pointers): `/Users/suhas/sde/nptel/builds/hybrid/topics.md` + `meta_rules_and_index.md` (+ original curriculum for pointers to resolve).
 
@@ -245,3 +246,15 @@ grep -n '^## 10' ~/sde/nptel/builds/full/meta_rules_and_index_sorted_compact.md
 3. Upload set for Claude cowork: `topics_compact.md`, `meta_rules_compact.md`, `Master_Rules.md`, `learn-SKILL.md` (+ progress record if any).
 
 **Update ~11:09 IST:** both new files built and verified. `topics_compact.md` 655,741 B (~164k tokens; 36,628 plain names, no IDs). `meta_rules_compact.md` 16,235 B (~4k tokens; rules 1-8, 10, 11 + domain → level count table; level totals H 79, U 6,046, J 4,785, P 8,429, I 79, ? 17,210). Old lean pair still present, awaiting Suhas's yes to delete. Builder/log in /tmp.
+
+**Update ~11:25 IST — old lean pair deleted; IIT GenAI gap-fill (supersedes the "Next steps" list above):**
+- Suhas said yes: `topics_sorted_compact_lean.md` and `meta_rules_and_index_sorted_compact_lean.md` are deleted. `selfcontained/` now holds only `topics_compact.md` and `meta_rules_compact.md`.
+- Noise tags: gone from the new pair (no IDs, no `noise:true` flag, no audit lists). They remain in the older full-build files (`topics*.md`, `meta_rules_and_index*.md`), which were not modified. The 43 former noise topics are still listed in `topics_compact.md` as ordinary topics with no caution flag; their IDs were stripped, so which lines they are has not been mapped. Open choice for Suhas: keep, drop, or add a one-line caution to the meta file.
+- Checked `/Users/suhas/sde/iit-genai.md` (12 chapters, ~500 lines) against `topics_compact.md`, concept-level (~130 terms, not line-by-line). Nearly all present; most already exist as `Curriculum-only` level-`?` topics (this curriculum appears to be ingested already). Not found by name: word2vec, InstructGPT, RLHF, BM25, HNSW, hard negative mining, GPT-1/2/3, T5, METEOR (NLP metric), tool calling, AI winter. PAIR, TechHazardQA and Chain-of-RAG were found.
+- **Added those 12 topics** (at Suhas's request) to `topics_compact.md`: `word2vec`, `hard negative mining`, `bm25`, `gpt-1 and gpt-2`, `gpt-3`, `t5`, `instructgpt`, `rlhf`, `hnsw`, `meteor metric`, `tool calling`, `ai winter`.
+  - Placement: domain **Curriculum-only**, level **?** (no level evidence, so level not guessed; taught at graduate depth per the level-unknown rule). Each is inserted next to its nearest related existing topic in that band (for example `hnsw` before `efsearch candidate list`, `rlhf` before `aligning model with human preference`), not at a computed DAG position.
+  - Naming: `meteor metric` rather than `meteor`, because `meteor` already exists as an unrelated Mathematics topic. The topic names come from the headings and bullets of `iit-genai.md`.
+- **New counts:** 36,640 topics (was 36,628). Level-unknown 17,222 (was 17,210). Curriculum-only 8,545 (was 8,533). The header line of `topics_compact.md` and the domain → level table plus totals in `meta_rules_compact.md` were updated; a recount of the topics file matches the table exactly. Diff versus the pre-change files shows only the 12 added lines, the header count and those three meta lines. Other level totals unchanged (H 79, U 6,046, J 4,785, P 8,429, I 79).
+- Backups of the pre-change files (and of this handoff): `/private/tmp/claude-501/-Users-suhas-sde/0a62790a-4998-4621-8c44-aa0780fa5101/scratchpad/backup_pre_genai/` (session scratchpad, may not persist). Insert script: `.../scratchpad/add_genai.py`.
+- The earlier counts in this handoff (36,628 etc.) still describe the detailed and compact-sorted full builds, which were not changed. `iit-genai.md` itself is untouched and uncommitted.
+- Still open: git commit (needs yes; exclude `nptel/builds/full/graph/`), CS2023 gap-fill, level-unknown resolution, §10 doctrine only in the full sorted meta files, and the stale-script list in §8. Upload set for Claude cowork: `topics_compact.md`, `meta_rules_compact.md`, `Master_Rules.md`, `learn-SKILL.md`.

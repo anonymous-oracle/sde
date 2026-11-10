@@ -87,10 +87,10 @@ Level legend: H=HS; U=UG; J=UG+PG; P=PG-only; I=industry; ?=level-unknown (not r
 | 13 | ML & AI | — | 122 | 321 | 666 | — | 402 | 1,511 |
 | 14 | Information Theory & Coding | — | 217 | 245 | 472 | — | 477 | 1,411 |
 | 15 | Data Mining & Databases | — | 374 | 388 | 527 | — | 483 | 1,772 |
-| 16 | Curriculum-only | — | — | — | — | — | 8533 | 8,533 |
+| 16 | Curriculum-only | — | — | — | — | — | 8545 | 8,545 |
 | 17 | NLP & Speech | — | 29 | 48 | 517 | — | 161 | 755 |
 | 18 | CS2023 gap-fill | — | — | — | — | — | 38 | 38 |
 | 19 | Graph concepts | — | — | — | — | — | 55 | 55 |
-|  | Total | 79 | 6,046 | 4,785 | 8,429 | 79 | 17,210 | 36,628 |
+|  | Total | 79 | 6,046 | 4,785 | 8,429 | 79 | 17,222 | 36,640 |
 
-Totals by level: H (HS) = 79; U (UG) = 6,046; J (UG+PG) = 4,785; P (PG-only) = 8,429; I (industry) = 79; ? (level-unknown) = 17,210. Grand total: 36,628 topics.
+Totals by level: H (HS) = 79; U (UG) = 6,046; J (UG+PG) = 4,785; P (PG-only) = 8,429; I (industry) = 79; ? (level-unknown) = 17,222. Grand total: 36,640 topics.
