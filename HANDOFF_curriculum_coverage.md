@@ -1,5 +1,5 @@
 # HANDOFF — Curriculum coverage, graph expansion & Claude learning packs (context spine)
-Last updated: 2026-11-10 ~10:15 IST · Owner: Suhas · Machine: Suhas's MacBook Air (all work runs on the Mac; stdlib Python only)
+Last updated: 2026-11-10 ~11:05 IST (see §12 for 10:15–11:05 changes) · Owner: Suhas · Machine: Suhas's MacBook Air (all work runs on the Mac; stdlib Python only)
 
 ---
 ## START HERE (read this first in any new chat)
@@ -214,3 +214,34 @@ grep -n '^## 10' ~/sde/nptel/builds/full/meta_rules_and_index_sorted_compact.md
   - Upload `hybrid/topics.md`, `hybrid/meta_rules_and_index.md`, `nptel/unified_cloud_curriculum.md` (so the T/A pointers resolve) and `learner_record.md`.
   - Optionally add `assignments/assignments.md`.
 - Don't upload `full/graph/` (too large). The packs contain pointers and rules, not teaching text.
+
+---
+## 12. Update 2026-11-10 10:15–11:05 IST — self-contained compact Claude pack (supersedes §11 upload guidance)
+**Suhas's rules added this session (standing):**
+- Pack files must be self-contained. Topics files reference NO other file. Meta-rules files may reference ONLY `Master_Rules.md` and `learn-SKILL.md` (plus their sibling topics file).
+- The compact meta-rules file must capture the overall teaching method for ALL topics, and describe how the course is structured as a domain → level map only — no per-unit index, audit lists, noise IDs or other tags. Topics file: no tags (no short IDs).
+- Assessment cadence (meta §11): weekly assignments (§10 five-question format); one meaningful coding capstone per **collection of related units** (not per tiny unit; Claude forms collections from consecutive related topics in a domain/level band and announces scope first); plus from-scratch implementation exercises during teaching (no libraries, toy size, then compare with a real tool).
+- Level-unknown (?) topics are taught at graduate depth (UG core + graduate extension, like UG+PG) unless the learner says otherwise; the tag stays unknown. A level is a floor, not a ceiling.
+- Lean pack: Claude authors all lessons/checks/assignments/capstones fresh (labelled tutor-generated); no embedded original teaching text or assignments (Suhas rejected the 2.18 MB version with embedded text).
+
+**Done:**
+- Built self-contained versions of all three full-build pairs (`*_sc.md`, with 960 teaching blocks + 415 assignments embedded verbatim as an in-file appendix). Then built the lean compact pair. At Suhas's request **everything in `selfcontained/` except the lean pair was deleted** (the `_sc` files, scripts, logs, verification JSONs, `__pycache__`).
+- `/Users/suhas/sde/nptel/builds/full/selfcontained/` now holds:
+  - `topics_sorted_compact_lean.md` (801,037 B, ~165k tokens): original compact list, 36,628 topic lines byte-identical, header rewritten to name no file. Still has base-36 short IDs.
+  - `meta_rules_and_index_sorted_compact_lean.md` (525,252 B, ~158k tokens): rules 1–8, §10, §11, level-unknown rule; rules 3/6/§10 rewritten to "author fresh". Still contains the full unit index, reversed-edge audit and noise IDs (the bulk of its size).
+- Token estimate for lean pair + Master_Rules.md (~15k) + learn-SKILL.md (~3k): ~340k total (estimate, not tokenizer-exact).
+- Confirmed all full-build topics files (and the lean one) contain 101 HS-bridge topics and 95 SDP topics; hybrid has both fully; staged only partial (~46% SDP / 23% HS).
+- `/Users/suhas/nptel-ocw.zip` (3.7 GB unpacked, a backup of ~/sde) was only listed, not used, copied or deleted. The iCloud copy was unreadable (macOS privacy block). An empty folder `ocw-courses/recovery/zipcopy/` was created and left in place.
+- Originals in `builds/full/` and `~/sde/nptel/*.md` unchanged. Nothing committed.
+
+**In progress at time of writing (new files, written alongside; existing two lean files not modified):**
+- `selfcontained/meta_rules_compact.md`: rules 1–8, 10, 11 only (references to unit index/IDs/audit/noise/graph removed; rule 2 → follow domain → level → topic order, check prerequisites and bridge just in time), plus a "Course structure: domain → level map" table (domain order, per-level topic counts, totals). Target: a few thousand tokens.
+- `selfcontained/topics_compact.md`: same domain/level headings and order, plain topic names only, no short IDs.
+- Builder scripts/logs go to /tmp or `ocw-courses/recovery/curriculum/`, not `selfcontained/`.
+
+**Next steps:**
+1. Verify the two new files (36,628 topics; counts match; only allowed filenames; no tags).
+2. Show Suhas; on his yes, delete the two older lean files so `selfcontained/` holds only `topics_compact.md` + `meta_rules_compact.md`.
+3. Upload set for Claude cowork: `topics_compact.md`, `meta_rules_compact.md`, `Master_Rules.md`, `learn-SKILL.md` (+ progress record if any).
+
+**Update ~11:09 IST:** both new files built and verified. `topics_compact.md` 655,741 B (~164k tokens; 36,628 plain names, no IDs). `meta_rules_compact.md` 16,235 B (~4k tokens; rules 1-8, 10, 11 + domain → level count table; level totals H 79, U 6,046, J 4,785, P 8,429, I 79, ? 17,210). Old lean pair still present, awaiting Suhas's yes to delete. Builder/log in /tmp.
