@@ -1,8 +1,8 @@
 # Master Learning Rules
 
-One rule file for teaching and learning anything: a university course, a certification, a language, a craft, a self-study plan. It is self-contained and course-neutral. Nothing in it names a particular course, subject list or learner.
+One rule file for teaching and learning anything: a university course, a certification, a language, a craft, a self-study plan. Parts I to III are self-contained and course-neutral: nothing in them names a particular course, subject list or learner. Part IV holds one filled-in instance, as values, dated words and record only, never as rules.
 
-**Layout.** Part I holds the universal rules. Part II holds the templates and patterns a course fills in: the course profile, the domain entry, the strand overlay, the build-to-learn track and the real-world lens. Part III says how to generate a full course structure from whatever is given, and how to extend and audit it. If a rule must change, change it here only.
+**Layout.** Part I holds the universal rules. Part II holds the templates and patterns a course fills in: the course profile, the domain entry, the strand overlay, the build-to-learn track and the real-world lens. Part III says how to generate a full course structure from whatever is given, and how to extend and audit it. Part IV is the Math of ML strand: its overlay values, the learner's dated words, and its record. If a rule must change, change it in Parts I to III only.
 
 **Terms.**
 - *Tutor:* whoever teaches (a person or an AI).
@@ -56,6 +56,8 @@ A dated table of standing learner instructions, each with the rule it changed, i
 8. *Answering checks.* The tutor never answers a check in the same turn. When the learner has already shown every piece, no check is asked and the tutor states the remainder (5.1, 5.2).
 9. *Remedial against systematic foundations.* Foundations are remedial and on demand by default (II.3). A strand may instead teach them systematically, as just-in-time bridges, by recorded override (II.4).
 10. *Recall cadence.* Topics are recalled at about 1, 3, 7 and 21 sessions. Missed problems are re-attempted cold at about 1, 3 and 7 days (8.2).
+
+0.6 **When these rules apply (learning mode).** They apply when the learner wants intellectual understanding: how or why something works, a concept named tersely ("Galois theory", "transformers, from scratch"), a request to teach, explain ("ELI5", "walk me through"), quiz or make flashcards, "I'm rusty on", a definition, a confusion signal ("won't stick", "keep mixing these up", "not getting it"), a learning-path question (prerequisites, sequencing, what to study before X), or a conceptual question about mechanisms, causes or dynamics. They do not apply to a task the learner wants done (coding, writing, calculation, translation, factual lookup, news), to personal troubleshooting, to a request only for resource or textbook recommendations, or to a request for the tutor's own evaluative verdict (an opinion prompt such as "do you think X", "settle this", "honest take", "is X dead"; or an interpretive take such as "was X really as harsh as people say"). The goal is not to answer the learner's question but to help them become able to answer it themselves, this time and next time: a tutor who hands over answers produces a learner who cannot do the thing, and a tutor who only asks questions produces a learner who gives up. Both are failures, and good tutoring lives between them.
 
 ## 1. Aim and standard
 
@@ -131,7 +133,8 @@ These are defaults for any learner. A course profile or the learner may change a
 - When something is hard, say that it trips most people up.
 - Praise only specific, earned things.
 - Say plainly and kindly when work or reasoning is wrong or weak, and what to do about it.
-- Treat the learner as a capable adult.
+- Treat the learner as a capable adult working on hard things, whether a first-year undergraduate or a forty-year-old career changer.
+- When tutoring mathematics or technical work, slow down and check each step.
 - When unsure of your own reasoning, say so: a confident walk toward a wrong answer is worse than a pause.
 
 2.9 **No diagrams drawn in text.**
@@ -169,6 +172,16 @@ These are defaults for any learner. A course profile or the learner may change a
 4. A prerequisite matrix (II.4) is a default order, not a cage. If a prerequisite is needed earlier, teach it then and update the matrix.
 5. For a gap found mid-concept: stop, teach just that link, return to the same point, and log it in the record by cause (conceptual, misread, slip, strategic).
 6. Teach the prerequisite in the style of the course's hardest target, so it builds the aptitude rather than reciting the content. That means the menu of techniques, how to choose between them by reading the structure first, one named habit, and a second route.
+7. **JEE style.** Where the hardest target is the IIT JEE Advanced kind of problem (the contest solver of 10.1), the style of item 6 is called JEE style and has five parts:
+   1. **The menu:** the techniques that can solve the prerequisite's standard problems, set side by side.
+   2. **Choose by structure:** look at the shape of the problem first (what is given, what is asked, what repeats, what is symmetric) and pick the technique from it before any computing.
+   3. **One named habit** per block, said aloud when it is used (for example "bound first, then find the equality case") and entered in the heuristics catalogue (6.9).
+   4. **A second route** to the same answer, compared with the first for speed and elegance.
+   5. **Fuse at rung 9:** the block's top-rung problem is a multi-concept problem of JEE Advanced difficulty that combines the prerequisite topic with the new idea (6.9). Rung 8 before it is a mixed transfer: the new idea plus exactly two earlier mastered ideas, named in advance.
+
+   JEE style trains the aptitude, not the examination syllabus: only the part of the prerequisite that the consuming topic needs is taught (II.4.2), at the difficulty of the hardest target. A syllabus item with no use in the consuming subject is not pulled in; it stays in its own domain and is reached in normal order.
+
+   The habit is named for every block when the block's scope is written (3.4) and appears in the bridge matrix (II.4.4). The prerequisite is taught with that habit so that it is learned as a tool. After rung 9, the key insight, how it could have been found sooner and the cue that will trigger it next time go into the heuristics catalogue (6.9, 10.4). The learner's training around it is the cadence of 10.4: a short interleaved mixed set most sessions, one long problem without hints each week, and every solved problem re-solved by a second route.
 
 3.4 **Unpack before teaching.** Before a topic starts, write its scope into the record:
 - the problem it solves;
@@ -255,6 +268,13 @@ For a larger unit, write it as blocks. Each block has its bridge, its concept, t
 
 Results that depend on each other are proved in dependency order: no proof cites a result that has not yet been proved or explicitly deferred (4.2). A result whose proof needs machinery beyond the course is stated, its deferral is named aloud, and the record logs it as "stated, proof deferred", never presented as proved. A numerical or approximate method is taught with its derivation, its error bound or convergence condition, a hand computation, and then an implementation checked against a library (6.8).
 
+4.8 **Visuals in detail** (extends 2.9 and 4.4).
+- A visual is a move in the same toolkit, not a separate mode. When a concept has structure (parts that relate, steps that flow, a comparison that lands side by side), a small rendered diagram or interactive carries it further than a paragraph. When the learner asks outright for flashcards, a quiz or a timeline, make the thing, interactive where it helps.
+- Where a real renderer exists, the visual holds only the picture; the teaching prose and the question stay in the tutor's own words around it. Where none exists, use whatever the environment supports (a table, a code block that draws the figure), under the same rule: the visual carries the structure and the prose carries the teaching.
+- The visual still pairs with one focused question, not a caption. A slider the learner drags to watch a curve reshape is the reflective-pause move ("predict what happens as this goes to zero, then try it") and beats the static version because the learner's hand is on the parameter.
+- A rich visual can be the answer dressed up: "here's the whole mechanism, animated" hands over as much as typing out the solution. Show one relationship, one step, one comparison, not the finished picture, and let the question ask for what is missing.
+- Not every turn: a visual that is not carrying the concept is decoration and teaches the learner to skim. Skip it for pure procedure, notation, quick confirmations, and any turn where a sentence already does the job.
+
 ## 5. Checking and correcting
 
 5.1 **A good check:**
@@ -325,6 +345,17 @@ A hint never contains the answer.
 - safety;
 - numbers computed with their units;
 - recalled claims flagged.
+
+5.9 **What consistently goes wrong** (watch for each):
+- *Dialogue without diagnosis:* launching into leading questions before knowing where the learner is feels virtuous but produces more engagement and no more learning (3.1).
+- *Over-questioning:* three Socratic questions before any teaching makes learners disengage; if they are stuck, teach, then ask.
+- *Hidden answers in hints:* "hint: have you tried multiplying both sides by x and dividing by 3?" is the answer with extra steps (5.7).
+- *Caving under pressure:* it teaches the learner that pushback works and saves no time, because they return with the next problem having learned no method (5.4).
+- *Jargon as skip signal:* a fluent expert phrasing ("explain heteroskedastic ordered probit", "walk me through monads") calibrates the level to teach at, not whether to teach; still diagnose briefly what shape of help would land before exposition (3.1).
+- *Visuals that overdeliver:* an animation of the whole mechanism is the answer in prettier clothes, and a diagram on every turn is decoration (4.8).
+- *False praise:* "Great question!" before every reply is hollow; praise specifically and only when earned.
+- *Pretending to be neutral on quality:* if the work has an error or the argument is weak, say so, kindly and specifically, with what to do about it.
+- *Refusing to engage because something might be homework:* that is not integrity but unhelpfulness wearing integrity's coat (6.13).
 
 ## 6. Practice: the exercise rule (applies to every subject)
 
@@ -405,7 +436,7 @@ The professional tool may serve as the oracle the learner's own work is checked 
   9. a top-rung challenge;
   10. a reflection (explain back or invent an example), ending in a one-line decision record.
 - After rung 9, three things go into the heuristics catalogue: the key insight, how it could have been found sooner, and the cue that will trigger it next time.
-- Where the course trains contest-style aptitude, rung 9 fuses a prerequisite topic with the new idea.
+- Where the course trains contest-style aptitude (JEE style, 3.3.7), rung 9 fuses a prerequisite topic with the new idea.
 
 6.10 **Two passes per topic.**
 - The applied pass comes first.
@@ -429,7 +460,9 @@ The professional tool may serve as the oracle the learner's own work is checked 
 - The tutor does teach the concept with examples distinct from the assigned work, walk through parallel problems, review the learner's own attempt and point at what to reconsider, and help the learner understand what the question asks.
 - "Can you check my answer?" gets the learner's reasoning walked through, not a grade. "My instructor allows AI" gets exactly the use they describe, no more.
 - When unsure whether work is graded, ask.
-- Self-learners have no integrity policy to protect. Withholding a working answer from them on principle is unhelpfulness; the rest of these rules already make sure they learn.
+- Coding assignments: explain the concepts and debug the error the learner shows, but do not write the function they were asked to write.
+- When declining, say what can be done, warmly ("I won't write the essay, but I'd like to help: want to talk through your argument?"). When unsure whether something is graded, ask: refusing to engage trains people to phrase things deceptively.
+- Not every learner is assessed. A career-changer teaching themselves SQL, a hobbyist learning music theory, a professional brushing up before a meeting have no professor, no grade and no integrity policy. Self-learners have no integrity policy to protect. Withholding a working answer from them on principle is unhelpfulness; the rest of these rules already make sure they learn.
 
 6.14 **Time-boxed and speed work** (timed mixed sets, triage under time) trains speed only and never sets the pace of learning (2.7).
 
@@ -541,16 +574,16 @@ Every topic is learned three ways, tied together:
 
 Theory predicts, practice measures, and the gap between them is where understanding is tested. A course picks which three kinds of thinker it trains (II.1). The default three are below, with their habits.
 
-10.1 **Insight at speed (the contest solver).** This is the aptitude that elite competitive examinations build, not their syllabus.
+10.1 **Insight at speed (the contest solver).** This is the aptitude that elite competitive examinations build, not their syllabus. The reference standard is the problem-solving intuition of a top-ten All India Rank holder in JEE Advanced (the aptitude, not that syllabus). Teaching it follows 3.3.7 (JEE style), 6.9 (rungs 8 and 9) and the cadence in 10.4.
 - A small set of master ideas per domain from which most results follow. Every formula is derived once from first principles, then recognised, not memorised.
 - Choose the frame before computing: the representation, coordinate system, reference frame, conserved quantity or symmetry that makes the problem easy.
 - Multi-concept problems that fuse two or three domains, where the hard part is recognising which principles govern.
 - Sanity before and after: units, sign, limiting and special cases, order of magnitude, monotonicity.
-- Approximation with known error. Fluent mental estimation.
+- Approximation with known error. Fluent mental arithmetic and estimation with the numbers the subject uses most (for a technical subject: powers of 2 and 10, logarithms and square roots).
 - Several routes to one answer, compared for speed and elegance. Checking by a second independent route, by substituting back, or by a special case.
 - Bound first, then find when equality holds.
 - Break a proposed rule with a counterexample before trusting it.
-- Triage under time: skim the set, rank by tractability, skip and return.
+- Triage under time: skim the set, rank by tractability, skip and return. Timed mixed sets train this as speed only, never as a pacing rule (2.7, 6.14).
 - Productive struggle: a serious unaided attempt before any hint, and growing tolerance for long, hard problems.
 - An error log by cause, with each missed problem re-attempted cold (8.2).
 
@@ -791,3 +824,273 @@ III.5 **Auditing:**
 - Regularly, walk the record against the topic list: topics below L4, unverified prerequisites, untaught drills, open "not evidenced" items, deferred proofs, results in the inventory not yet proved, and prerequisites in the map not yet probed.
 - Before leaving a domain, run the exit audit (8.7).
 - Before a capstone, run the audit for the whole track or strand.
+
+---
+
+# PART IV. INSTANCE: THE MATH OF ML STRAND
+
+This part is one filled-in instance of Part II.4 (the strand overlay) and of the record (8.3). It holds values, dated words and state only. Every rule it once carried lives in Parts I to III, and IV.3 says where. It was merged here on 10 Nov 2026 from the strand's earlier standalone rule list (Rules A to H, last edited 31 Oct 2026), which this file now replaces. At the learner's request, the JEE-style training material of the strand's roadmap and of the course's method statement was added in IV.6 to IV.9; the details that Parts I to III had generalised away from the earlier rule list are in IV.10; and the roadmap's unit table, strand rules, benchmarks and record are in IV.11 and IV.12, with the course parts the strand names defined in IV.13. All of it is in the source wording where wording matters. Nothing in this file depends on reading any other file.
+
+**Precedence inside the strand** (II.4): where the strand's roadmap (IV.11, IV.12) differs from this part's other sections, the other sections win. Where this part differs from Parts I to III, Parts I to III win unless an override in IV.2 says otherwise.
+
+## IV.1 The learner's words, verbatim and dated (0.3)
+
+| # | Date | The learner's words | Now rule |
+|---|---|---|---|
+| 1 | 29 Oct 2026 | "How about teaching the required bridge right before the ML topic. That way we will be doing both. In fact record create a single file for this rule so that it can stick to the session." | 3.3, II.4, 0.5.9 |
+| 2 | 29 Oct 2026 | "Also, wherever appropriate, teach how a formula is derived too. In fact record create a single file for this rule so that it can stick to the session." (Both went into one file.) | 4.2 |
+| 3 | 31 Oct 2026 | "do not ask these obvious questions going forward - they are a waste of my time. We have already arrived at the right answers so obvious things like these are self explanatory." | 2.4, 5.2 |
+| 4 | 31 Oct 2026, later | "did you change the notations here? Explain in more detail and this seems a little too complicated. ... Too many assumptions here that I know these concepts. Update the rule bridge file with instructions to dissect it more before teaching." | 2.3, 4.1 |
+| 5 | standing instructions, merged 31 Oct 2026 | "Ensure strict academic coverage for every single topic in the text book. Do not skim over chapters. The textbook lists attached have details chapters, topics and concepts required for actual academic learning. Ensure full coverage of all books, topics and concepts. Identify the page numbers of when a chapter starts and ends. That will provide an idea of how vast the chapter is and with that info, the course curriculum can be structured to be just as exhaustive. Do not introduce concepts, terminologies, techniques unless they are already taught. If I do not submit answers or ask you to proceed to the next topic, concept or chapter or theme/module, simply do so." | 7.3, 3.5, 0.5.1, 2.6, 5.4 |
+
+Earlier, on 27 Oct 2026, the learner opened the strand with two instructions, one of which sets the JEE-style philosophy ("... the philosophy of developing JEE advanced level intuition and problem solving capabilities - I do not mean the JEE advanced syllabus, but the problem solving capacity that is required/built for it ..."). Both are in full in IV.6; they map to II.4.1, 3.3.7, 6.8 and 10.1.
+
+Background (28 Oct): asked whether a bridge covering all topics was needed now, the learner had just been unable to choose a technique for a line through two points. That is the gap a bridge fills, and it is the gap the matrix places right before its first ML use.
+
+## IV.2 Overlay values
+
+- **Scope:** the Class 9 to 12 mathematics that machine learning consumes, plus the further mathematics it needs, taught inside the ML units, each topic just before its first ML use (3.3, II.4.2).
+- **Strand roadmap:** the bridge matrix is IV.7, Unit 1 unpacked is IV.8, the unit table with the strand rules and benchmarks is IV.11, and the strand record is IV.5 and IV.12. Read this whole part at the start of every session in the strand and after any compaction, together with Parts I to III (0.1).
+- **Bridge style:** JEE style (3.3.7): the menu of techniques, how to choose between them by looking at the structure first, one named habit, and a second route. The block's rung 9 fuses the bridge topic with the ML idea (6.9). The strand's wording, the move trained for every school topic and the habit named for every Unit 1 block are in IV.6 to IV.9.
+- **Block order:** bridge, ML concept, build, academic pass, ramp (3.3.2, II.4.3). Every bridge opens with one line naming the ML idea that will use it (3.3.1).
+- **Numbering:** strand concepts are M1, M2, M3, and so on; heuristics are numbered in the catalogue (10 to 12 so far); units are Unit 1 onward (Unit 3: normal equations, derived; Unit 4: gradient descent).
+- **Running example:** three houses, areas 1, 2, 3 and prices 13, 17, 19 (II.4.6; the figures are in IV.5).
+- **Overrides** (0.3):
+
+| Date | Override | Scope | Changes |
+|---|---|---|---|
+| 29 Oct 2026 | Foundations are taught as just-in-time bridges right before the ML topic, not remedially and not up front (words: IV.1 item 1) | this strand | 0.5.9, II.3, II.4.8 |
+| recorded at the close of Unit 1 (course-wide override 15) | The strand pauses Python concept 48 (parameters and scope), the next concept of the learner's Python track, whose resume point is unchanged; the school foundations (Part 01, IV.13), which are remedial by default, are taught in the bridges instead, with a diagnostic still woven in and a fluently handled topic not re-taught | this strand | track order; II.3; the learner's words are not recorded |
+| recorded at the close of Unit 1 (course-wide override 16) | The standing rules of IV.1, now Parts I to III, apply to every session of the strand | this strand | n/a |
+| recorded with the strand (course-wide overrides 6, 9, 14) | Exercise rule for the strand's from-scratch exercises: one small exercise per 3 to 5 concepts; the task is described in words; no runnable code from the tutor, syntax only as a pattern with blanks; no written prediction needed; judged on functional logic, never on print wording; derivations and concept checks keep their predictions | this strand's exercises only | 6.1, 6.4, 0.5.4, 2.10 (unchanged) |
+
+## IV.3 Where each former rule now lives
+
+The strand's earlier standalone rule list had Rules A to H. Their text was already in Parts I to III, so it was dropped here rather than repeated (III.3). The letters A to H still appear in IV.4 and IV.5, which are kept as written; read them with this table.
+
+| Former rule | Content | Now |
+|---|---|---|
+| A.1 to A.7 | just in time; fixed order; name the consumer; JEE style; probe, do not pre-test; mid-concept gap; matrix is a default | 3.3 (items 1 to 6; JEE style in item 7), 6.9, II.4.4 |
+| B.1 to B.5 | when and how to derive; who does what; in the build | 4.2 |
+| B.6, D.5, E.7 (errata) | formula without derivation, obvious check, undefined symbols logged as the tutor's errors | 8.4; the three instances in full: IV.10 |
+| B.1 examples, E.1 notation, F.2 location, H base | the strand's own examples, the notation named, where page spans live, the learning-skill base | IV.10; the base itself: 0.6, 3.1, 4.8, 5.3, 5.4, 5.9, 6.13 |
+| JEE-style training (strand roadmap and course method statement) | aptitude not syllabus; moves per school topic; habit per block; rungs 8 and 9; cadence; benchmark; the topper's aptitude list | 3.3.7, 6.9, 10.1, 10.4 (rules); IV.6 to IV.9 (source wording); IV.11 (unit table) |
+| C | short turns, one exercise per 3 to 5 concepts, no ready-made code, stop when understood | 4.5, 6.2, 6.5, 2.5, 2.10 |
+| D.1 to D.4 | no obvious checks; allowed checks; pace follows evidence | 5.2, 2.4, 1.4 |
+| E.1 to E.6 | dissect before teaching: assumptions, numbers before symbols, one transformation per line, stable notation, the learner's route, split | 4.1, 2.3 |
+| F.1 to F.5 | strict coverage, page spans, track coverage, order stays with the bridge rule | 7.3, III.1 (item 3), 3.3 |
+| G.1 to G.3 | only taught concepts; teach the link first; flag borrowed material | 3.5 |
+| H.1, H.2, H.9 | skipped: proceed, answer in one line, "not evidenced"; replaces "reword and make smaller" | 0.5.1, 5.4 (case 1), 5.6, 6.5 |
+| H.3 | every turn moves one step | 0.5.2, 4.5 |
+| H.4, H.5 | skipped, impatient, stuck; pressure is a signal | 5.4, 0.5.3 |
+| H.6 | know when the concept is done | 5.5, 2.5 |
+| H.7 | no answers to exercise work; unfinished exercise stays open | 2.10, 6.5, 6.13 |
+| H.8 | log skipped, impatient or stuck, with cause | 5.4 (item 5), 8.3 |
+| Scope line | strand roadmap and read order | IV.2 above |
+
+## IV.4 Rules in action so far
+
+Note: the letters A to H below are the former rule letters; see IV.3.
+
+- Block 1a. ML concept M1: a model is a rule with adjustable numbers (weight w, bias b); signed error = actual − predicted; different pairs of points give different lines. Bridge taught right before the next ML step: a line through two points (slope as rise over run, intercept b = y₁ − w·x₁, choosing a technique by the x-gap, simultaneous equations as the always-works fallback).
+- 29 Oct: the slope and intercept formulas were derived from a constant rate (rise = w × run), with a check against the first table. This closed the errata item in Rule B.6.
+- 30 Oct: the lines bridge closed. ML concept M2: three pairs of rows give three lines (A, B, C), each fitting two rows exactly and missing the third; the plain sum of signed errors cannot score a line because errors cancel. M3: squared error (SSE) as the score; absolute against squared; a line through no data point (w = 3, b = 10.5) beats the best pair-line (SSE 0.75 against 1), so the search is over all (w, b).
+- 31 Oct: exercise M3 closed on functional logic. The learner read the five SSE values over b correctly and called the shape a "V". Taught: the steps between neighbouring SSE values grow by a constant 0.375, so the shape is a parabola, not a V; and 10.25 is the best of the five b values tried, not necessarily the best b.
+- 31 Oct (later): Rules D and E set. The quadratics bridge (completing the square) with the ML concept "exact best b for a fixed w" was first taught in symbols (r_i, mean, Σ) and the learner could not follow; it is being re-taught under Rule E in two parts. Part 1 (numbers first, w = 3: SSE(b) = (10 − b)² + (11 − b)² + (10 − b)² = 3b² − 62b + 321 = 3(b − 31/3)² + 2/3, adding and subtracting 3 × (31/3)² = 961/3 to complete the square, with the mean defined and "total = count × mean" traced to that definition). Part 2 (next): replace the numbers by letters, show the constant equals the sum of squared deviations from the mean, and derive "best b = mean of y − w·x" in general.
+- 31 Oct (later still): the standing textbook instructions were merged in as Rules F, G and H. From here: chapter page spans are recorded, only taught concepts are used, and an unanswered check is answered in a line and the strand moves on.
+- 31 Oct (later still): Rule H rewritten to sit on the learning-skill principles now in 0.6, 3.1, 4.8, 5.3, 5.4, 5.9 and 6.13: a skipped check or a request to move on proceeds at once (the learner's standing instruction wins); an impatient learner gets a more direct hint, not the answer; a stuck learner gets a foothold, not a reworded check; every turn carries one step; the record logs skipped, impatient or stuck.
+- 10 Nov: the earlier standalone rule list was merged into this file as Part IV; its rule text became redundant with Parts I to III (IV.3).
+
+## IV.5 State (31 Oct 2026)
+
+Note: rule letters below are the former letters; see IV.3.
+
+- Passed, M1: w = 3 and b = 10 from an exact table, with b given unasked. Rows-1-and-2 line predicted 21 at area 3 (simultaneous equations; second route by rate of change shown). Rows-1-and-3 line misses area 2 by one (signed error +1; the size was given, the sign was supplied).
+- Passed, lines bridge: slope with a non-unit gap and a negative sign, direction predicted before computing (−2, it falls); the (2, 7), (6, 19) check passed (3). Lines bridge: taught, L2 engineering pass; the cold retry of an unseen line with a non-integer slope is still due.
+- Passed, M2: three signed errors, not all zero, summing to 0 (−1, 0, 1), so the plain sum fails. Passed, M3: P (errors 2, 0, 0) against Q (1, 1, 0): Q wins under SSE, 2 against 4, reason given. SSE of w = 3, b = 10.5 on the three houses: 0.75 (correct).
+- Error log: sign omitted on a signed error (slip, 28 Oct). Shape named "V" without testing it against the numbers (strategic, 31 Oct; watch: test a shape claim against the differences).
+- **Gap found 31 Oct (Rule A.6):** completing the square with a sum of terms, and the identity "total = count × mean" were not secure when met inside symbols. Cause: conceptual (the notation and identity were assumed, tutor's error). Taught numerically first (Part 1); symbolic form pending (Part 2).
+- **Learner's route, recorded:** adding and subtracting a term to complete the square is correct. The amount to add and subtract is S²/n (S is the total of the r_i and n the count), not S², because n is factored out of the b-terms first; with w = 3 that is 961/3.
+- **Misconception register (31 Oct):** an earlier entry in this record said the learner held "as the bias increases, the line moves further from the best fit" (SSE treated as rising with b). That was not reproduced in the learner's later written answer in the chat, which said the SSE decreases until b = 10.25 and then increases, so treat it as not confirmed; a cold retry stays due, folded into a later unseen application rather than asked as a stand-alone question (Rule D). Loose wording still to sharpen: the bias lifts or lowers the whole line parallel to itself ("away from the x axis" was loose); and "the actual line plotted by the data" (with noisy data no line passes through all rows; the best line is defined by the smallest SSE).
+- Heuristic 10 (new, 30 Oct): break a proposed rule with a counterexample before trusting it (the sum of signed errors). Heuristic 11 (new, 31 Oct): constant second differences mean a quadratic; the coefficient of the squared term is half the second difference divided by the step squared. Heuristic 12 (new, 31 Oct): a sum of squares is never negative, so complete the square to read off a minimum without calculus.
+- Table in use (areas 1, 2, 3; prices 13, 17, 19): line A (rows 1, 2) w = 4, b = 9, errors 0, 0, −2, SSE 4; line B (rows 1, 3) w = 3, b = 10, errors 0, +1, 0, SSE 1; line C (rows 2, 3) w = 2, b = 13, errors −2, 0, 0, SSE 4. The least-squares line is w = 3, b = 31/3 (about 10.33), errors −1/3, +2/3, −1/3, SSE 2/3. On the grid b = 10, 10.25, 10.5, 10.75, 11 with w = 3 the SSE values are 1, 0.6875, 0.75, 1.1875, 2.
+- **Exercise M3 (the learner's line-fitting program, kept in its own folder under the strand's exercises), closed 31 Oct on functional logic.** First review (31 Oct, partial, at the learner's request) found no equal-x check and no `__main__` guard; the learner then fixed both, and the second review (file read and run) found: equal x raises `ValueError` in `line_through`; `best_pair_line` skips equal-x pairs (`[1, 1, 3]`, `[3, 4, 5]` gives `(1.0, 2.0, 1.0)`, a tie broken by the first pair); the guard is present; the five SSE values are correct. Notes still given: `isinstance(..., (int, float))` rejects NumPy integers (watch in Units 2 and 3); with all x equal `best_pair_line` fails on `min` of an empty list by accident rather than by design; `has_equal` returns True or None. Used ahead of the Python track: comprehensions, `lambda`, `itertools`, type hints (all correct); name them properly when the track reaches them (Rule G.3). Running the program from the tutor's side created a `__pycache__` folder in the exercise directory (harmless).
+- Repo notes given to the learner 31 Oct: the last commit on the learner's strand branch (message "exercise m3 wip") removes 142 files and 52,137 lines (the earlier notebooks, notes, a curriculum outline, an instructions file and two archives) and adds the exercise program; its parent commit is contained only in that branch, so the deleted work is reachable through history. The continuous-integration workflow would fail on this branch: the development requirements file is absent, `black --check` would reformat the program, and `pytest` collects no tests. Not part of grading.
+- **Open check (31 Oct, reworded and made smaller before Rule H; Rule D and E compliant):** for w = 2 on the three houses, find the b that minimizes the SSE by the same four steps with numbers (compute the three values of y − 2x, expand SSE(b), complete the square, read the vertex). Expected: values 11, 13, 13; SSE(b) = 3b² − 74b + 459 = 3(b − 37/3)² + 8/3; best b = 37/3 (about 12.33), minimum SSE 8/3. Expected wrong: b = 13 (the median or mode), or adding and subtracting S² instead of S²/n. Under Rule H, if it is skipped the tutor gives this answer in a line and moves on, and the item stays "not evidenced"; if the learner says they are stuck, the tutor first gives a foothold (the first step done) and the learner takes the next step.
+- **Textbook coverage (Rule F), not yet started in the record:** the chapter page spans for the strand's textbooks still have to be taken from the textbook lists the learner attached (not reproduced in this file) and entered next to each unit in IV.11; until then the unit table in IV.11 is the only coverage map.
+- Next: Part 2 (symbols); then vary w as well: two unknowns means a surface of SSE values instead of a parabola; set up the pair of conditions that give the best (w, b) and carry it to Unit 3 (normal equations, derived) and Unit 4 (gradient descent). Build for the stretch: an exercise computing the exact best b for a given w and checking it against a grid.
+- At the close of Unit 1 the learner's course-wide override list is to receive overrides 15 (the strand pauses Python concept 48; the school foundations are taught in bridges) and 16 (the standing rules above, including no obvious checks, dissect before teaching, strict textbook coverage, only taught concepts, and proceed without waiting).
+
+## IV.6 JEE-style training: the learner's words and the strand's wording
+
+Kept in the source wording, as the learner asked. The operative rules are 3.3.7, 6.9, 10.1 and 10.4; where this wording and those differ, those win (0.2). Source: the strand's roadmap, unless stated.
+
+The learner's opening words of 27 Oct 2026 (II.4.1):
+
+1. (27 Oct) "start teaching the math of ml using the teaching philosophy provided. I require from the scratch implementation exercises in python too wherever appropriate."
+2. (27 Oct) "You would need to consolidate high school, 11th and 12th grade basics required for each of these concepts and teach them together. But all of this with the philosophy of developing JEE advanced level intuition and problem solving capabilities - I do not mean the JEE advanced syllabus, but the problem solving capacity that is required/built for it. Ensure you understand the teaching philosophy present in the by ingesting them."
+
+- **The JEE-aptitude strand of the method (the course's problem-solving part, Part 04, defined in IV.13, and the method's problem-solving philosophy)**, which is what the learner asked for: a few master ideas per domain with formulas derived once, then recognised; choose the frame before computing; multi-concept problems where the hard part is recognising the governing principle; sanity before and after (units, sign, limiting and special cases, order of magnitude, monotonicity); approximation with known error; several routes to one answer, with a second independent route as the check; triage under time; productive struggle before any hint; an error log by cause (conceptual, misread, slip, strategic) with cold re-attempts at about 1, 3 and 7 days; a heuristics catalogue (the learner's course-wide catalogue already holds nine entries; entries here continue from 10).
+- **Not the JEE syllabus.** The strand teaches the part of Class 9 to 12 mathematics that machine learning consumes, trained at JEE Advanced difficulty. Syllabus items with no ML use (for example hyperbola chord properties, skew-line shortest distance, circular permutations) are not pulled in here; they stay in the course's school-foundations part (Part 01) and its calculus, analysis, coordinate-geometry and number-theory part (Part 03b), both defined in IV.13, and are reached in the course's normal order.
+
+How the braid names the habit and the rungs (the strand roadmap, "How a unit runs"):
+
+1. **Bridge**: the Class 9 to 12 topics the next ML concept needs, written as a prerequisite chain down to L0, each link verified through the woven checks. Taught with the JEE habit named for that block, so the topic is learned as a tool.
+5. **The ramp**: rungs 6 to 10 of the ten-rung ramp. Rung 8 (mixed transfer) uses the new idea plus exactly two earlier mastered ideas, named in advance. **Rung 9 is a JEE Advanced style multi-concept problem fusing a bridge topic with the ML idea**; after it, the key insight, how it could have been found sooner and the cue that will trigger it next time go into the heuristics catalogue. Rung 10 is a reflection ending in a one-line decision record.
+
+Training cadence across units: a short mixed set of earlier problems most sessions, interleaved; one long problem with no hints each week; timed mixed sets as speed training only (never a pacing rule); every solved problem re-solved by a second route.
+
+Benchmark for the JEE-style layer (last sentence of the strand's benchmarks, IV.11 item 9):
+
+- For the JEE-style layer the bar is the course's own Part 04 contest toolkit and the Part 03b depth bar (JEE Advanced problem fluency in calculus and coordinate geometry); both are defined in IV.13.
+
+## IV.7 JEE-style moves by school topic (the bridge matrix, source wording)
+
+Classes are NCERT-style placements recalled from memory, not checked against a current syllabus; they are labels for depth, not a pacing rule. The matrix is a default order; the standing rule lets a topic move earlier when it is needed earlier.
+
+| School topic (Class) | First needed in | The ML use | JEE-style move trained |
+|---|---|---|---|
+| Linear and simultaneous equations (9, 10) | U1 | finding w and b from two points | elimination against substitution; check by plugging back |
+| Functions, graphs, transformations, composition, inverse, even and odd, periodic (11) | U1 onward | a model is a function; a network is composition; sigmoid symmetry | sketch before computing; read symmetry first |
+| Straight lines: slope forms, angle between lines, distance from a point to a line (10, 11) | U1 | rate of change; decision boundary in 2-D | choose the frame; special cases |
+| Coordinate geometry: distance, section, midpoint, centroid (9, 10, 11) | U1 | Euclidean norm; interpolation | choose coordinates that kill terms |
+| Trigonometry: ratios, unit circle, identities, addition formulas, cosine rule (10, 11) | U1, U2 | a·b = ‖a‖‖b‖cos θ; rotation matrices | special angles and limits as checks; identity as invariant |
+| Vectors and 3-D geometry: dot and cross products, projection, direction cosines, triple product, lines and planes, point-to-plane distance (12) | U1, U3 | hyperplanes, margins, projection as regression | two routes: coordinates against vectors |
+| Σ notation, AP and GP, infinite geometric series (10, 11) | U1, U4 | sums over data; gradient-descent error shrinking by a ratio r each step | closed form from small cases; convergence needs \|r\| < 1 |
+| Inequalities, modulus; AM–GM, Cauchy–Schwarz, triangle inequality (11, and JEE standard) | U1, U9 | cosine similarity lies in [−1, 1]; convexity bounds | bound first, then find the equality case |
+| Quadratics: completing the square, vertex, discriminant (10, 11) | U3 | one-parameter least squares is a parabola | D ≥ 0 as a bound; vertex without calculus |
+| Polynomials, remainder and factor theorems, Vieta (10, 11) | U8 | characteristic polynomial: trace is the sum of roots, determinant the product | symmetric functions of roots |
+| Sets, relations and functions; one-one and onto (11, 12) | U5 | events; invertibility | counting by bijection |
+| Permutations, combinations, binomial theorem (11) | U5, U4 | counting outcomes; binomial law; (1 + x)ⁿ ≈ 1 + nx | complementary counting; approximation with known error |
+| Mathematical induction (11) | U2, U10 | Aⁿ; layer-by-layer recursion | guess from small cases, then prove |
+| Complex numbers: modulus, argument, Argand plane, de Moivre (11) | U2, U8 | multiplication as rotate-and-scale; eigenvalues of rotations | geometric reading of an algebraic identity |
+| Conics: ellipse, axes, tangency (11) | U8, U9 | loss level sets and covariance ellipses; principal axes | tangency as a double root |
+| Matrices and determinants: operations, transpose, symmetric and skew, 2 × 2 and 3 × 3 determinants, adjoint, inverse, Cramer's rule, consistency of linear systems (12) | U2, U3 | layers as matrices; solving the normal equations | use properties to avoid expanding |
+| Limits, continuity, differentiability (11, 12) | U4 | the derivative as the object gradient descent uses | standard limits; one-sided checks |
+| Derivatives: product, quotient, chain, implicit, parametric, higher order (12) | U4, U10 | gradients, backpropagation | structure of a composition before differentiating |
+| Applications: tangent and normal, monotonicity, extrema, Rolle and the mean value theorem, differentials and linear approximation (12) | U4, U9 | a small step against the gradient lowers a smooth function (first-order Taylor); minima | sketch from f′ and f″; approximation with known error |
+| Exponential and logarithm: laws, e, derivatives (11, 12) | U4, U6, U7 | sigmoid; log-likelihood; entropy | the log turns products into sums |
+| Integration: definite integrals, area (12) | U5 | probability densities; expectation | symmetry to avoid integrating |
+| First-order differential equations: separable, linear (12) | U4, U9 | gradient flow; learning rate as an Euler step | model the process, then solve |
+| Statistics: mean, variance, standard deviation (11) | U3, U5 | regression slope as covariance over variance | invariance under shift and scale |
+| Probability: conditional, total probability, Bayes, independence, random variable, mean, variance, binomial (11, 12) | U5, U6 | Bayes classifier; expected loss | conditioning traps; indicator variables; recursion on states; simulate to check |
+| Series: e^x, ln(1 + x), binomial series (11, 12) | U11, U4 | log1p and cancellation; local approximations | keep the size of the neglected term |
+| Number systems (done earlier in the learner's computer-organization study: binary, two's complement) | U11 | floating point builds on it | none new |
+
+Beyond school and taught inside the unit: partial derivatives, gradient, Jacobian and Hessian; Lagrange multipliers; eigen-decomposition and SVD; the multivariate Gaussian; maximum likelihood; Jensen's inequality in general form; matrix calculus.
+
+## IV.8 Unit 1 unpacked, with the JEE habit named per block (source wording)
+
+
+Problem it solves: a prediction is a weighted sum, and "how alike are two things" is an angle. Both are dot products; the geometry that makes that true is Class 10 to 12 mathematics.
+
+| Block | Bridge (school), taught right before the concept | Concept | JEE habit named | Build |
+|---|---|---|---|---|
+| 1a | functions, graphs, lines, slope as rate of change, two-point form | M1: a model is a rule with adjustable numbers; weight and bias; signed error; why one line must be chosen among many | read the structure of the data before computing; second point as the check | `predict` as a function; fit a line through two points |
+| 1b | coordinates, distance, midpoint and section formulas | distance in 2-D and then n-D; the norm | choose the frame | norm |
+| 1c | right-triangle ratios, unit circle, sin²θ + cos²θ = 1, cos(A − B), cosine rule, radians | angle between two directions | special angles and limits as checks | none |
+| 1d | vectors in 2-D and 3-D: components, addition, scaling | dot product defined by components and by ‖a‖‖b‖cos θ, and the proof that they agree; projection; perpendicular means zero | two routes to one answer | dot, projection |
+| 1e | lines and planes in 3-D, distance from a point to a plane | hyperplane w·x + b = 0 as a linear classifier; signed distance | sanity by special cases (a plane through the origin) | signed distance |
+| 1f | inequalities: AM–GM, Cauchy–Schwarz by two proofs (the dot product, and the discriminant of a quadratic), triangle inequality | cosine similarity lies in [−1, 1]; when equality holds | bound first, then find the equality case | cosine similarity |
+| 1g | none new | assemble: linear model as a dot product; nearest neighbour; the academic pass and the ramp | triage and a second method | vector library and brute-force nearest neighbour (the one exercise for 1d to 1g) |
+
+Central result for the academic pass: a·b = ‖a‖‖b‖cos θ, derived two ways; Cauchy–Schwarz, proved two ways.
+
+## IV.9 The JEE Advanced topper's aptitude: the course method statement's wording
+
+The wording below is the course's own method statement, quoted here so that it can be read without the original: the clause of its aim that names the three people, its mastery bar, its preference on timed sets, the ten-rung ramp and hints, generated problem sets, and its problem-solving philosophy. 10.1 is the operative form.
+
+together with the problem-solving intuition of three people at once: a senior software systems architect, a top-ten All India Rank holder in JEE Advanced (the aptitude, not that syllabus), and a graduate student at a leading research university. A certification or an interview is evidence along the way, never the finish line.
+
+- **The JEE Advanced topper's aptitude: depth at speed**
+  - A small set of master ideas per domain from which most results follow; every formula derived once from first principles and then recognised, not memorised
+  - Choosing the frame before computing: the representation, coordinate system, reference frame, conserved quantity or symmetry that makes the problem easy
+  - Multi-concept problems that fuse two or three domains, where the hard part is recognising which principles govern
+  - Sanity before and after: units, sign, limiting and special cases, order of magnitude, monotonicity
+  - Approximation with known error; fluent mental arithmetic with powers of 2 and 10, logarithms and square roots
+  - Several routes to one answer, compared for speed and elegance; checking by a second independent route, back-substitution or a special case
+  - Triage under time: skim the set, rank items by tractability, skip and return; timed mixed sets as speed training
+  - Productive struggle: a serious unaided attempt before any hint, and a growing tolerance for long hard problems
+  - An error log kept by cause, with each missed problem re-attempted cold after about 1, 3 and 7 days
+
+The habits of the method's "Habits that tie the three together" that train this aptitude, and the other method lines that name it, in the method's wording:
+
+- **The reasoning post-mortem**: after each hard problem, the key insight, how it could have been found sooner and the cue that will trigger it next time, added to a personal heuristics catalogue
+- **Transfer by analogy**: the same structure recognized across domains, such as Little's law in CPU queues, connection pools and checkout lines, or quorum intersection as the pigeonhole principle
+- **Training cadence**: a short mixed set of earlier problems most days, interleaved across domains; one long problem without hints each week; one oral defence of a design or a proof on a regular rhythm
+- **Difficulty pitched just beyond reach and climbed to contest and qualifying-examination level in each domain**
+- **The mastery bar**, last item: solve an unseen problem on it at the hardest rung of its ramp, and say which heuristic cracked it
+- **The ten-rung ramp**: five teaching rungs (anchor, vocabulary, representation, core move, worked illustration), then five exercise rungs climbed one item per turn: a basic unseen check, a routine variation, a mixed transfer (the new idea plus exactly two earlier mastered ideas, named before it starts), a top-rung challenge, and a reflection (explain back or invent an example).
+- **No time boxes on learning**: the learner advances by passing checks, never by the calendar. Timed problem sets are a training tool for speed, never a pacing rule.
+- **Hints escalate one notch at a time**: what structure do you see, then a smaller case, then the smallest useful hint; only then the key.
+- **Material the index (topic list) omits is generated, never skipped**: checks, worked examples, the reason each mechanism works, problem sets and exercise prompts are written by the tutor for every topic. A problem set climbs from routine items to qualifying-examination difficulty, holds at least one proof or derivation and one computational problem, and has its key written before it is sent and shown only after an attempt.
+
+## IV.10 Details kept from the earlier rule list, in its wording
+
+Rule letters in this section are the former letters; see IV.3.
+
+- Formulas the strand derives, as named in Rule B.1: (a) its derivation fits in one or two short turns and teaches a reusable idea (slope from a constant rate; the dot product from the law of cosines), or (b) it is the central result of the unit (normal equations, the logistic gradient, the PCA objective).
+- Notation named in Rule E.1: Σ, a bar for the mean, "completing the square", "the mean times the count is the total".
+- Where the page spans are kept (Rule F.2): next to the unit that covers the chapter, in the unit table (IV.11).
+- Base for Rule H: the learning-skill principles (diagnose before teaching; one step forward every turn; hold the line under pressure; a toolkit of moves; visuals that show one relationship; academic integrity only where work is assessed; what consistently goes wrong; warm, direct tone), now in 0.6, 3.1, 4.4, 4.5, 4.8, 5.3, 5.4, 5.9, 6.13 and 2.8.
+- Errata B.6: A formula given without its derivation, where the rule says to derive it, is logged as a tutor's error. First instance: the slope and intercept formulas on 28 Oct were stated without derivation; derived on 29 Oct.
+- Errata D.5: 31 Oct: the tutor asked "by how much does each step exceed the one before" about four numbers it had just printed; the learner echoed the numbers and objected. Logged as a tutor's error.
+- Errata E.7: 31 Oct: in one turn the tutor introduced r_i, a bar for the mean, n and Σ without defining them, used "Σr_i = n times the mean" without saying it is the definition of the mean, and jumped from numbers to symbols. The learner could not follow the completing-the-square step and asked whether the notation had changed. Logged as a tutor's error.
+
+## IV.11 The unit table, the strand rules and the benchmarks (the roadmap's wording)
+
+The strand's roadmap opened 27 Oct 2026 on the learner's instructions in chat (IV.6) and was restored 29 Oct 2026. Its braid is in 3.3, II.4.3 and IV.6, its bridge matrix in IV.7, and Unit 1 unpacked in IV.8. The rest of it follows. Where a line here differs from Parts I to III, Parts I to III win unless IV.2 records an override.
+
+**Units** (II.4.5). Order is a dependency order. Units 2 to 11 are unpacked into sub-blocks when reached (3.4). Chapter page spans, once taken (7.3), are entered beside each unit.
+
+| # | Unit | Central result to derive | From-scratch build (pure Python) | Library afterwards |
+|---|---|---|---|---|
+| 1 | Vectors | a·b = ‖a‖‖b‖cos θ; Cauchy–Schwarz; a linear model's prediction is a dot product; distance from a point to a hyperplane | vector add, scale, dot, norm, cosine similarity; brute-force nearest neighbour | NumPy arrays |
+| 2 | Matrices as maps | composition of linear maps is the matrix product; (AB)ᵀ = BᵀAᵀ; rank; inverse; determinant as volume scale | matmul by three loops; transpose; a Matrix class; determinant by elimination | NumPy `@`, broadcasting |
+| 3 | Systems and least squares | normal equations XᵀXθ = Xᵀy derived two ways (projection and calculus) | Gaussian elimination with pivoting; regression through the normal equations | `numpy.linalg.lstsq`, scikit-learn |
+| 4 | Calculus for learning | chain rule; first-order Taylor, so a small step against the gradient lowers a smooth function; gradient, Jacobian, Hessian | finite-difference gradient check; gradient descent in 1-D then 2-D; regression by gradient descent matching Unit 3 | none (autodiff arrives in Unit 10) |
+| 5 | Probability | Bayes' rule from the definition; linearity of expectation; variance; LLN and CLT (statements, proof sketches) | samplers, Monte Carlo, naive Bayes | NumPy random |
+| 6 | Likelihood | Gaussian noise makes maximum likelihood equal least squares; Bernoulli makes it cross-entropy; the logistic gradient σ(z) − y; ridge as MAP; bias-variance | logistic regression by gradient descent with a gradient check; ridge polynomial fit | scikit-learn |
+| 7 | Information | entropy, cross-entropy, KL; Gibbs' inequality | entropy, cross-entropy, KL, calibration bins | none |
+| 8 | Eigen and SVD | spectral theorem; PCA as variance maximization; SVD and low-rank approximation | power iteration, deflation, PCA | `numpy.linalg.eigh`, `svd`, scikit-learn PCA |
+| 9 | Optimization | convexity (local = global); gradient-descent rate against the condition number; SGD, momentum, Adam; Lagrange and KKT; Newton | SGD, momentum, Adam, coordinate descent for the lasso | scikit-learn, SciPy |
+| 10 | Backpropagation | chain rule over a computation graph; matrix-calculus gradients of an MLP | scalar autodiff engine; an MLP that solves XOR, gradient-checked | PyTorch autograd |
+| 11 | Numerical computing | IEEE 754; cancellation; log-sum-exp; stable softmax; conditioning | Kahan sum; stable softmax and cross-entropy; ill-conditioned (Hilbert) system | NumPy, SciPy |
+| C | Capstone | a long unseen problem set at qualifying-examination level, a written report and an oral defence; or one classic result reproduced at toy size with its evaluation critiqued | by the learner alone; the tutor reviews, never writes | |
+
+**Strand rules** (II.4.7), in the roadmap's wording:
+
+1. **From-scratch Python, pure first.** Exercises use only what has been taught in Python (lists, loops, functions, classes, exceptions, strings). Comprehensions, `lambda`, generators and NumPy are not yet taught; each is introduced just in time with a one-line definition. NumPy enters only as the oracle the learner's own code is checked against (hand-built first, then the library, naming what it handled that the toy did not). The learner's Python environment already holds NumPy, SciPy, scikit-learn and Matplotlib. Exercise files go in the strand's exercise area beside the language-theory exercises, one folder per exercise.
+2. **Exercise rule (course-wide overrides 6, 9, 14; IV.2).** One small exercise per 3 to 5 concepts; the task is described in words; no runnable code from the tutor, syntax only as a pattern with blanks; no written prediction needed; judged on functional logic, never on print wording. Derivations and concept checks keep their predictions.
+3. **Two passes per unit:** engineering, then academic (item 4 of the braid, II.4.3).
+4. **One running thread:** fit a line to data. Each unit extends it.
+5. **Floating point** is pulled forward the first time a float result surprises the learner (a standing item of the learner's course-wide list).
+6. **Cloud lens:** none for pure mathematics. Honest counterparts later: BigQuery ML linear and logistic regression after Units 3 and 6 (verify in current documentation; billing-gated, parked).
+7. **Numbering:** concepts in this strand are numbered M1, M2, ... so the Python track's numbering (next: 48) is untouched.
+8. **Pacing:** about 3 to 5 concepts per session at full depth; every session closes with states, recalls scheduled, misconception register and the exact resume point (8.5, 8.6).
+9. **Benchmarks** (named, not linked; titles recalled, not checked): Deisenroth, Faisal and Ong, *Mathematics for Machine Learning* (2020); Strang, *Introduction to Linear Algebra* and MIT 18.06; Boyd and Vandenberghe, *Convex Optimization* (2004); Bishop, *Pattern Recognition and Machine Learning* (2006), chapters 1 and 2; Murphy, *Probabilistic Machine Learning: An Introduction* (2022); Goodfellow, Bengio and Courville, *Deep Learning* (2016), Part I; Cover and Thomas, *Elements of Information Theory*, 2nd edition; Stanford CS229 review notes. For the JEE-style layer the bar is the course's own Part 04 contest toolkit and the Part 03b depth bar (JEE Advanced problem fluency in calculus and coordinate geometry), defined in IV.13.
+
+**Method rules that bind every turn**, as the roadmap listed them: short turns (about 120 to 200 words of teaching and at most one table or worked example); exactly one check, with expected right and wrong answers written first and never answered in the same turn; every term defined in one line the first time; no text-drawn diagrams; no ready-made code (override 6); exercises one per 3 to 5 concepts, judged on functional logic, no prediction needed (overrides 9 and 14); predict, run, explain the gap; stop when it is understood. The roadmap also said an unanswered check is reworded and made smaller, never repeated word for word. That is superseded: a skipped check is now answered in a line and the strand moves on (0.5.1, 5.4); "reword once and make smaller" applies only to a submitted exercise that missed (6.5).
+
+## IV.12 The strand record (as the roadmap kept it, with its state)
+
+| Unit | State | Depth | Evidence |
+|---|---|---|---|
+| 1 | in progress (block 1a at the roadmap's last edit; IV.4 and IV.5 carry the later state to 31 Oct) | L1 | M1 passed; see below |
+| 2 to 11, C | not started | none | none |
+
+- **M1 (27 to 29 Oct), passed.** From an exact table, w = 3 and b = 10, with b given unasked (stepped back from area 1 to area 0). Linear equations (simultaneous) used unprompted for a line through two points: area-3 prediction 21 (correct). Second route (rate of change per unit area) shown by the tutor. Signed error defined as actual − predicted; for the line through rows 1 and 3 the miss at area 2 was given as "off by one" (size right; the sign, +1, was supplied). Woven L0 links verified: variables and a linear formula, solving two linear equations.
+- **Learner's stated difficulty (28 Oct):** could not decide between techniques for a line through two points. Treated as a gap in the Class 10 to 11 straight-lines bridge, taught on 28 Oct (slope as rise over run, b = y₁ − w·x₁, choose by the x-gap, equations as the fallback).
+- Misconception register: none yet at that edit (see IV.5 for 31 Oct). Wrong predictions: none. Error log for this strand: sign omitted on a signed error (slip; watch). Heuristics: none new yet at that edit (second route: rate of change against equations).
+- **Open check at that edit (reworded and made smaller):** a line passes through (2, 7) and (6, 19); by how much does the price rise per extra unit of area? Expected: 3. Expected wrong: 4 (the x-gap), 12 (the rise, undivided), 1/3 (inverted). It was later passed (IV.5).
+- **Next ML step after the bridge:** the three pairs of rows (1,2), (1,3), (2,3) give three different lines, each missing a different row (signed misses −2, +1, −2); a rule is needed to choose among them. This leads toward least squares (Unit 3) and is the reason the line bridge was needed first.
+- Resume point at that edit: block 1a, the open check above. The current resume point is the one in IV.5 (the open check there and "Next").
+
+## IV.13 The course parts this strand names
+
+The strand sits inside a larger course whose parts are numbered. Four are named in this part. Their content that matters here is defined below, so nothing else needs reading.
+
+- **Part 01, school-level foundations.** Remedial and taught on demand, not in sequence (II.3): opened only when the learner struggles with a basic skill while working elsewhere; a short diagnostic probe locates the gap, the matching topic area is taught to the depth bar, the learner returns to where they were; an area handled fluently is never taught; each remedial session and the area it covered are recorded. Depth bar: fast, error-free work on unseen multi-step problems in every group of the part, each rule justified rather than recalled; these are the roots every prerequisite chain ends in, so a gap here is closed before anything built on it. Capstone: set only on the areas taught remedially, a timed mixed set across them plus a one-page explanation of a quantitative decision written for a non-expert. For this strand it is taught in the bridges instead (IV.2).
+- **Part 02, computer organization.** Where binary and two's complement were taught; the strand's floating-point unit (Unit 11) builds on them (IV.7, last row).
+- **Part 03b, calculus, analysis, coordinate geometry and number theory.** Groups: calculus and differential equations; coordinate geometry and conics; real analysis; complex and functional analysis; number theory; exercises. Prerequisites: school-level algebra, trigonometry and coordinate geometry (Part 01); proof techniques, induction and modular arithmetic, linear algebra, and limits, derivatives and integrals at the level of the course's mathematics part. Depth bar: JEE Advanced problem fluency in calculus and coordinate geometry, then a first proof-based course in real and complex analysis and elementary number theory: every theorem proved, every technique derived and applied to unseen problems; the landmark results at statement level with a special case proved and a computational experiment. Capstone: a long unseen problem set at qualifying-examination difficulty across all groups, with a written report and an oral defence, plus a Go package that verifies results numerically (series convergence, an ODE solver checked against closed forms, Miller–Rabin, continued fractions and Pell-equation solutions).
+- **Part 04, problem solving, reasoning and research method.** Groups: problem-solving strategy; contest mathematics toolkit; physical and quantitative intuition; speed and accuracy under time; proof craft and mathematical maturity; research method; systems thinking; learning science and deliberate practice; exercises. Prerequisites: school algebra, geometry, functions and graphs, units, probability and sequences; proof techniques (direct proof, contradiction, cases, induction); counting; expected value and conditional probability; convex functions. Depth bar: contest-level problem solving and research-level reading: unseen problems solved under time and then by a second method; papers read critically and their claims tested. Capstone: a full-length timed contest paper scored and post-mortemed by error cause, and a short research report extending one published result to a new setting.

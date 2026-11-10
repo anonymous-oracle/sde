@@ -1,260 +1,229 @@
-# HANDOFF — Curriculum coverage, graph expansion & Claude learning packs (context spine)
-Last updated: 2026-11-10 ~11:25 IST (see §12 for 10:15–11:25 changes) · Owner: Suhas · Machine: Suhas's MacBook Air (all work runs on the Mac; stdlib Python only)
+# HANDOFF — Curriculum coverage, topic graph & topic language model (context spine, PRUNED)
+Last updated: 2026-11-10 (evening, after the crew session — see §1 and §9) · Owner: Suhas · Machine: Suhas's MacBook Air (16 GB RAM, Apple silicon; all work on the Mac; stdlib Python only)
+
+**Lossless pruning:** the complete previous handoff (every section, 424 lines, 61,792 B) is kept unchanged at `/Users/suhas/sde/ocw-courses/recovery/handoff_archive_20261110/HANDOFF_curriculum_coverage.full_before_prune.md`. This file holds everything a fresh session needs; the archive holds the blow-by-blow (build chronology, reversed experiments, per-run numbers). Its section numbers are cited as `[A§n]`.
 
 ---
-## START HERE (read this first in any new chat)
-**What this is:** A learning-curriculum project. A unified topic graph built from NPTEL/OCW/university course lists (+ System Design Primer + CBSE high-school bridge) drives curriculum "packs" that Suhas uploads to a Claude cowork project to learn in a structured, prerequisite-ordered way. Claude teaches from a topic list + a meta-rules/index file and generates teaching content and assignments on the go.
+## 0. READ THIS FIRST — what we are trying to do now
 
-**State in 5 lines**
-1. Main graph expanded and swapped in: 37,503 nodes / 487,223 edges (`/Users/suhas/sde/ocw-courses/uglists/graph/`).
-2. Three builds exist: staged, hybrid, full — in `/Users/suhas/sde/nptel/builds/{staged,hybrid,full}/`.
-3. Full build is re-sorted domain → level → DAG, with a compact upload pair (1.32 MB) and an Assignment Doctrine (§10) in its meta file.
-4. All 433 existing assignments and 18 capstones extracted verbatim into `/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/`.
-5. Nothing committed to git. Originals in `/Users/suhas/sde/nptel/` untouched.
+**Project:** a unified topic graph (NPTEL/OCW/university course lists + System Design Primer + CBSE bridge + cloud curriculum + iit-genai) drives curriculum "packs" Suhas uploads to a Claude cowork project; Claude teaches from a topic list + meta-rules file. Packs are being fed by a graph that currently contains junk topics.
 
-**Canonical files (upload candidates)**
-- **Current self-contained pair (supersedes the two bullets below; see §12):** `/Users/suhas/sde/nptel/builds/full/selfcontained/topics_compact.md` + `meta_rules_compact.md` (+ `Master_Rules.md`, `learn-SKILL.md`). 36,640 topics.
-- Recommended full upload: `/Users/suhas/sde/nptel/builds/full/topics_sorted_compact.md` + `/Users/suhas/sde/nptel/builds/full/meta_rules_and_index_sorted_compact.md` (+ `/Users/suhas/sde/nptel/learner_record.md`).
-- Alternative (preserves written teaching text pointers): `/Users/suhas/sde/nptel/builds/hybrid/topics.md` + `meta_rules_and_index.md` (+ original curriculum for pointers to resolve).
+**Active goals (Suhas's, in order; all open — nothing below is applied to the graph or topics files yet):**
+1. **Graph topic nodes must be ≤3 words.** Build an n-gram language model of how words come together (built, §3) and use it to filter junk. **Retain all information:** failing/longer-than-3-word nodes are *retyped* (e.g. `phrase` / `non_topic`), never deleted; their content and edges are kept and linked to extracted ≤3-word technical terms. Example he gave: a long memory-safety sentence is purely technical and must survive. New graph = a **new copy**; originals untouched.
+2. His premise "junk n-grams occur more often in a language model than topics" is **only partly true** (§3): true for generic frequent phrases ("in this lecture"), false for rare junk (whole curriculum sentences; 24% of graph keys have no corpus evidence). Use a combined score, never frequency alone.
+3. **The local DeepSeek-R1 model is the FINAL GATEKEEPER** for junk: every uncertain / no-corpus-evidence phrase and the final accepted topic set pass through R1 (reasoning on, on-disk tool definitions, one phrase per request, logged) before anything is accepted into the graph or the topics file; R1's verdict is the last word.
+4. **R1 rules:** runs only in memory-safe supervised processes (RAM cap; **8 GB limit** → watchdog cap ≈7.6 GB); **all requests go through the request queue**; tool definitions stored on disk (+sha256) and reused; reasoning enabled.
+5. **Corpus expansion (Suhas's proposal; my modifications below were APPROVED by him on 2026-11-10 — "your proposals have my approval"; NOT started yet):** use https://ocw.mit.edu/search/?d=Electrical%20Engineering%20and%20Computer%20Science&d=Mathematics to find all related OCW courses; per course collect prerequisites, lecture/textbook PDFs → text (handle LaTeX; repair garbled text, using R1 for refinement) and reference books + their parsed PDFs the same way; build per-course topic graphs and add them to the main graph; rebuild the n-gram LM from the enlarged graph/corpus; add topics to the **topics compact file in the same minimalist fashion (no tags/IDs)**; link concepts by domain and sub-domain through a **separate domain-level graph** added later in the topics file (no tags).
+   - Approved modifications (his approval covers (a)–(d), the book rule and the ocw.mit.edu-only network exception below): (a) list the search results and **diff against the 299 courses already in the corpus**, fetch only missing; (b) reference books: parse **only PDFs hosted on ocw.mit.edu** (CC-licensed); other books recorded as bibliographic nodes (title/author/edition), no copyrighted downloads from elsewhere; (c) garbled text: deterministic repair first (ligatures, hyphenation, `pdftotext` layout, LaTeX token-stripping), R1 only on a small flagged residue (≈8 tok/s); (d) order: course list+diff → fetch+parse → rebuild LM → filter candidates (R1 gatekeeper) → domain graph → topics file last. Approved with them: the book rule and a **network exception limited to `ocw.mit.edu`** (workers run `env -i` with no network by default, so the first brief must grant exactly that host and nothing else). The OCW search page is JS-rendered: first worker tests sitemap/course-page access before fetching.
+6. **Process:** use `/crew` with **haiku 5.5 medium** workers (`claude-haiku-5-5`, `--effort medium`; no advisor); master plans/briefs/reviews; "Commit: NONE"; nothing committed so far. Suhas said **"Not yet"** to restarting the crew (before approving the proposals); he resumes in a new session. His later approval covers the OCW expansion proposals; the R1 service/tools/scorer restart (§6 first bullet) has not been separately approved — confirm the order of work at the start.
 
-**First commands to re-verify (read-only)**
+---
+## 1. State right now (2026-11-10 evening, everything stopped on Suhas's instruction)
+- **Nothing is running** (no Ollama, supervisor, queue server, crawler, worker; verified with pgrep). **Nothing committed.** Main graph and topics files unchanged.
+- **R1 model process: ended and verified (2026-11-10 ~17:30).** The last clean `supervisor.py stop` was at 16:01:02 (end of the stress test; `supervisor.log`: "ollama group stopped / stopped"). Re-checked at the end of the session: `pgrep` finds no ollama/runner/supervisor/queue_server process, nothing listens on ports 11500, 11600 or 11434, `supervisor.py status` = `running: no`, `ollama group recorded: 8397, alive: []`, `DOWN.flag: clear` (0 bytes), `kills: 0`, `num_ctx: 4096`, queue counts done 24 / failed 2 (the 2 failed = the kill-test job and the cancelled test job). The model weights stay in the Ollama store (6.73 GB Q6_K); restart only with `python3 -I -B $BASE/code/llmq/supervisor.py start` when R1 is needed, never a bare `ollama serve`.
+- **Done this session (crew workers: `claude-haiku-5-5`, `--effort medium`, master reviewed; details §9):** (1) R1 service restarted for the new model, guard tests passed (§9.1); (2) memory stress test passed (peak ≈5.1 GB, §9.2); (3) OCW EECS/Math course list built and diffed against the corpus (§9.3). **Not done:** no OCW course content downloaded (`fetched/` and `processed/` do not exist), the widening crawl never wrote anything, W3 and W6 still unreviewed.
+- **Graph source decision (Suhas, this session):** use the newer zip `~/nptel-ocw.zip` (13:07, extended graph 203,945,792 B); `~/nptel-ocw.pre_cloudgenai_20261110.zip` (10:34, 197,012,332 B) is the older backup. The plain copy `recovery/graph_cloudgenai_20261110/expanded/` has identical sizes.
+- Workers W3 (scorer/routing), W6 (tool definitions) were **stopped mid-run**; outputs partial and **unreviewed** (review or redo before use). W7's queue extensions turned out to be already in the code and were tested live this session (§9.1).
+- `BASE/out/llmq/DOWN.flag` is a **0-byte file = clear** (the supervisor only blocks on a non-empty flag; verified after the kill test and `start --reset`). No deletion needed. `queue.db` holds jobs from all runs (WAL files present); `queue.db.pre_w7.bak*` = W7's backup.
+- Ollama store holds only the new model (old 7B + `nptel-r1` alias deleted at his request).
+- `BASE=/Users/suhas/sde/ocw-courses/recovery/topic_lm_20261110/` (479 MB; `corpus/` 238 MB; untracked, not gitignored).
+- Git status: ` M HANDOFF_curriculum_coverage.md`, `?? concerns.md`, `?? ocw-courses/`.
+
+---
+## 2. The model (best within 8 GB)
+- **DeepSeek-R1-0528-Qwen3-8B, Q6_K** (6.73 GB). Ollama tag `hf.co/bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF:Q6_K` (id c6c1b8d0fd57). Qwen3, 8.19 B params, 36 layers, 8 KV heads. **Native context 131,072** (YaRN); run at **num_ctx 4096** (KV ≈147 KB/token fp16; +8192 ctx ≈ +0.6 GB). Defaults: temperature 0.6, top_p 0.95. Fallback if over cap: Q5_K_M (5.85 GB). Stronger than the old 7B (newer/larger distill) — not yet measured against it on gold.
+- **Measured** (`BASE/out/model/probe.py`): peak RSS ≈6.5–6.6 GB at ctx 4096 (2,673-token prompt), ≈**7.9 tok/s** → ~1.4 GB headroom.
+- **Native tool calling NOT confirmed:** capabilities list tools/thinking/completion, but one `/api/chat` test with `tools` returned plain text, no `tool_calls`. Test native vs prompt-based protocol on the gold subset; prompt-based is the safe default: `<tool_call>{"name":…,"arguments":{…}}</tool_call>` (stop at `</tool_call>`), results as `<tool_response>…</tool_response>`.
+- Raw prompt format (raw mode, open think block): `<｜begin▁of▁sentence｜><｜User｜>…<｜Assistant｜><think>\n` — write fullwidth bar/underscore as Python escapes `｜`, `▁`.
+- Earlier finding: batched no-think T/J prompting scored 68% on 100 gold phrases → use reasoning + tools, **one phrase per request**, evaluated on a gold *subset* (~1–2 min/phrase).
+
+---
+## 3. What exists (BASE paths, all stdlib Python) and findings
+- **Corpus:** `corpus/ocw-courses/uglists/graph/work/docs.jsonl` (from the zip): 8,060 docs, 233 M chars, 299 courses; fields id/course/ctype/src/path/kind/lec/partial/text.
+- **Language model (W1, done):** `code/{tok.py,build_lm.py,eval_lm.py}`, `out/lm/{lm.py,lm_counts.pkl,lm_tables.pkl,build_stats.json,eval.json,LM_REPORT.md}`. Interpolated Kneser-Ney trigram (D=0.75, continuation counts). Tokenizer: segments break at any char except letters/digits/space/hyphen/apostrophe; hyphenated/apostrophe words are single tokens. API: `LM.phrase_logp, unigram_logp, bigram_logp, logp_token`.
+- **Features (W2, done):** `code/w2_*.py`, `out/features/{candidates.tsv,features.tsv,FEATURES_REPORT.md,…}`: count, df, n_courses, spread, domain_kl, frac_lecture/assess/admin, neighbour entropies, lp_*, pmi/npmi, pmi_min_split, shape cols; plus node-derived cols (has_extkg, ext_sources, …) that **must be excluded from training** (leakage). 1,111 node ids contain commas (node_ids can't be split back).
+- **Gold labels:** `out/gold_labels.tsv` — 171 rows (`label<TAB>gold`: 80 junk, 91 topic), my manual judgement of a random 150 sample (seed 11) + extras. Used for honest evaluation, not training.
+- **Scorer (W3, stopped):** `code/w3_model.py`, `code/w3_eval.py`, `out/filter/{model_A.json,model_A_noLM.json,model_B.json,train_summary.json}`. PU learning: positives = graph topics endorsed by external KGs (has_extkg or n_courses≥2); negatives = frequent generic corpus n-grams absent from the graph. routing.tsv / r1_queue_input.tsv / FILTER_REPORT.md never produced.
+- **R1 queue service (W5 done, W7 partial):** `code/llmq/{supervisor.py,queue_server.py,llmq.py}`, `out/llmq/README.md`. Ollama on private 127.0.0.1:11500 under a supervisor with an RSS watchdog (kills process group over cap, restarts with halved num_ctx 4096→2048→1024→512, DOWN.flag after 3 kills); sqlite-WAL queue on 127.0.0.1:11600, single consumer, fixed model name, raw prompts. Idle-server guard tests passed; loaded-model kill test and memory-shortage pause test **not done**. W7's wanted extensions (num_predict ≤2048, temperature, seed, stop strings, num_ctx_request, timeout, cancel endpoint) — state unreviewed. Cap in service must be changed for the new model (≈7.6 GB).
+- **Tool definitions (W6, stopped):** `tools/{tool_definitions.json,tool_definitions.sha256,executors.py,render.py,build_indexes.py,test_tools.py,prompts/}`, `out/tools/{corpus_norm.txt,graph_index.json,submissions.jsonl,test_submissions.jsonl}`. Seven tools planned (corpus/graph lookups, `submit_terms`, verdict submit …). Partial, unreviewed.
+- **Findings (do not re-derive):** ~35% of original topic nodes are non-topic (150-sample review; plausible 27–43%); most added 4+ word nodes are whole curriculum sentences; only 43 flagged `noise`. LM probability alone barely separates (gold avg log-prob −8.74 junk vs −7.79 topic); single features ≤0.65 AUC. Useful signals combined: cross-course/domain spread (generic phrases spread evenly, topics cluster), cohesion (PMI), neighbour variety. 24% of graph keys have no corpus evidence → R1 judge or word-count rule; more relevant corpus shrinks that for EECS/Math.
+
+### Planned pipeline (outline decided; thresholds/routing need master review)
+1. Candidates = all graph topic keys + ≤3-word terms extracted from long phrases. 2. Statistical scorer → `topic_confident / junk_confident / uncertain` (no-corpus-evidence keys = uncertain). 3. **R1 gatekeeper** via queue + tools (reasoning on, one phrase per request, validated JSON verdict, logs with tool-definitions sha256): decides uncertain items, re-checks the confident-topic set, samples confident-junk; calibrate on gold subset, report accuracy honestly. 4. ≤3-word graph rewrite as a new copy (retype, keep edges, link to extracted terms; report counts). 5. Corpus expansion (§0.5) → rebuild LM → repeat 2–4 → domain graph → compact topics file only on Suhas's explicit go.
+
+---
+## 4. Standing rules (Suhas's own)
+Ask before deleting ANY file on the Mac; ask before any git commit; work on the Mac, stdlib Python only, no pip, no OCR, public/legal sources only; never invent topics, sources, course codes, levels, assignments or capstones; curriculum changes additive only; never modify originals in `~/sde/nptel/`; do not restore `unified_cloud_curriculum_index.md`; each build in its own folder under `~/sde/nptel/builds/`; write new versions as new files and back up before replacing; pack files self-contained (topics file references no other file; meta file may reference only `Master_Rules.md` and `learn-SKILL.md`; no IDs/tags in the topics file); level-unknown (?) topics are taught at graduate depth (UG core + graduate extension) with the tag unchanged; use crew workers (haiku 5.5 medium) for implementation, master plans/reviews; **do not touch any topics file until Suhas says so**; the main graph is the working target ("We are only working on the main graph for now").
+
+---
+## 5. Curriculum project background (condensed; detail in `[A§2–A§12]`)
+- **Origin:** raise coverage of `~/sde/nptel/unified_cloud_curriculum.md` from the main graph (additive gap-fill; levels UG / UG+PG / PG-only from `topic_levels.tsv`); clean up `~/sde/ocw-courses` (only approved deletions, done ~11.6 MB). The original handoff was deleted at his request and is not recoverable.
+- **Graph facts:** `unified_graph.json` node types topic, curriculum_unit, course, external_course; edge types include covers, ext_prereq, cooccurrence, containment, mentions, curriculum_item_order, same_as. Only `ext_prereq` and DAG edges are prerequisite claims. Levels from `topic_levels(_expanded).tsv`: HS, UG, UG+PG(J), PG-only(P), industry(I), `?` unknown (never guessed). Topic node fields: id, type, label, aliases, sources, score, ngram_rank, df, n_courses, courses, category, curriculum_units, context; new nodes carry provenance/source_context/noise.
+- **Graph history:** SDP (donnemartin) + CBSE high-school bridge added earlier (+131 nodes/+515 edges; `expand:sdp`/`expand:hs`). Then extended from `unified_cloud_curriculum.md` Topics items + `iit-genai.md`: **40,779 nodes (+3,276) / 504,079 edges (+16,856)** (covers 3,181, containment 5,203, mentions 5,527 heuristic tier 0.6, curriculum_item_order 2,891, same_as 54; dag_view +5,152 containment, 51 excluded for cycles, still acyclic); provenance `expand:cloud_topics` (3,042) / `expand:genai` (234); new nodes have no level/category, n_courses 0, df 0 (never corpus-validated — root of the junk problem). Known noise: generic components ("summary"), 257 cloud items not made whole nodes, no standalone `b4` (2-char floor), 95 ids shared between cloud and genai deltas. Builders: `~/sde/ocw-courses/recovery/graph_cloudgenai_20261110/delta/` (workers G1–G6).
+- **Where the graph lives:** only inside `~/nptel-ocw.zip` (`ocw-courses/uglists/graph/{unified_graph.json,dag_view.json,GRAPH_REPORT.md}`, `nptel/builds/full/graph/{unified_graph.json,dag_view.json}`; 25,897 entries, `unzip -t` clean) and as plain files in `~/sde/ocw-courses/recovery/graph_cloudgenai_20261110/expanded/` (`unified_graph.json` sha1 76ac1141b9a67f38, `dag_view.json` 141e27fffb25776a, `CHANGES.md`, `merge_check.txt` = ALL_CHECKS True). `.../original/` = pre-change byte copy (sha1 a697b1e17e15efe0 / c4050b251220fcf6). Backup of the older zip: `~/nptel-ocw.pre_cloudgenai_20261110.zip`. The live folders `ocw-courses/uglists/graph/` and `nptel/builds/full/graph/` no longer exist (extract the zip into a fresh empty folder; run Python with `-I`). **Stale vs the extended graph (not regenerated):** `unified_graph.graphml`, `lexical_graph.json/.graphml`, `audit.json`, `topological_node_order.json`, `topic_levels_expanded.tsv`, `topics_by_course.json`, `recovery/graph_expansion_20261110/*`.
+- **Builds** (`~/sde/nptel/builds/{staged,hybrid,full}/`): staged (original + filtered insertions), hybrid (480 units, original bodies/433 assignments/435 details blocks verbatim; recommended for preserved written teaching), full (all 36,628 graph topics, sorted domain → level HS→UG→UG+PG→PG-only→industry→unknown → DAG; level switches 19,646 → 63; 24,828 `.pN` segments; domain order minimises backward cross-domain prerequisites, HS first). Sort trade-off: 49,159 reversed typed relations (49,056 DAG + 761 ext_prereq, overlapping); 0 DAG reversals within a band, 38 explicit non-DAG exceptions; 1,526 DAG + 61 explicit edges have non-topic endpoints. Assignments/capstones: 433 + 18 extracted verbatim to `~/sde/ocw-courses/recovery/curriculum/assignments/`; the pack carries an **Assignment Doctrine (§10)** instead of pointers (5 questions/10 marks: single-choice 1, multiple-select 2, numerical 2, proof 2, build 3; pass 7/10 unless learner profile says otherwise; key written first, revealed after attempt; capstones after domain exit; results in `learner_record.md`) — modelled on the originals, not official NPTEL policy; exists only in the sorted full meta files.
+- **Current upload pair (self-contained, lean, no IDs/tags):** `~/sde/nptel/builds/full/selfcontained/topics_compact.md` (**36,640 topic lines**, 655,860 B, ~164k tokens; level totals H 79, U 6,046, J 4,785, P 8,429, I 79, ? 17,222; Curriculum-only 8,545) + `meta_rules_compact.md` (16,235 B; rules 1–8, 10, 11 + domain → level count table; weekly assignments; one coding capstone per collection of related units; from-scratch implementation exercises) + `Master_Rules.md` + `learn-SKILL.md`. It includes 12 iit-genai additions (word2vec, hard negative mining, bm25, gpt-1 and gpt-2, gpt-3, t5, instructgpt, rlhf, hnsw, meteor metric, tool calling, ai winter) in Curriculum-only, level `?`. The 43 former noise topics remain as ordinary lines (keep/drop/caution undecided). 2,130 curriculum items were added then **reverted on Suhas's instruction**; kept in `recovery/curriculum/curriculum_add_20261110/` (`added.txt`, `add_curriculum_topics.py`, `skipped_review.tsv`, `backup_before/` = current 36,640 state, `apply_lines.py` generic and tested: `python3 -I apply_lines.py additions.tsv topics_in meta_in topics_out meta_out`, rows `domain<TAB>level<TAB>phrase`). Older pairs (`topics_sorted_compact.md` + meta 1.32 MB, detailed sorted 5.2/4.6 MB, hybrid, staged) still exist (36,628 counts apply to them).
+- **n-gram history:** the frequency-mined 2–3-word phrases (worker N1, `recovery/curriculum/ngram_20261110/`, KEPT, unapplied) were mostly generic; a 762-term uni/bi/trigram topics file built from the extended graph (G7) was judged meaningless ("add a constant") and **deleted at his request**. Cause: purely lexical filter, no topichood test. Suhas's principle: **if it is not a topic in the graph, drop it — filter candidates through the graph/evidence BEFORE adding any n-grams.** This is what §0 now implements.
+- **`~/sde/concerns.md`** (six concerns): bare names define no scope, homonyms ("chubby", "cap"), junk lines ("hagmann", "vpn access to iitd"), process rule (match in right domain and scope), five syllabus gaps (vl2, mpls, sli, google's b4, hirschberg and sinclair — now graph nodes, NOT topics-file lines), GCF 106105223 uncheckable.
+- **Parked proposal (from before the LM work):** a topics-only lexicon file (label, aliases, domain, level as-is, n courses, broader terms, scope note, sense tag; TSV; exclude noise/headings/sentences); open question whether it covers only the 36,640 file topics (my lean) or all graph-validated topics.
+
+---
+## 6. Open items (all need Suhas's call)
+- Crew (haiku 5.5 medium, no advisor): (a) **DONE** queue/watchdog for the new model (cap 7600 MB, ctx ladder, guard tests, W7 options verified, stress test; §9.1–9.2); (b) review/redo W6 tools; (c) review/redo W3 scorer + routing; then agent loop, gold evaluation (native vs prompt tool protocol), R1 pass. Open: the cold-load readings of 7.0–7.2 GB were not reproduced in the stress test (cold loads untested); consider re-testing cold loads.
+- OCW expansion (approved: four modifications, book rule, `ocw.mit.edu`-only network exception): course list + diff **DONE** (§9.3; 381 courses → 119 matched / 39 ambiguous / 223 missing, 7.26 GB of full-course zips). **Next, in Suhas's order:** fetch the 223 missing courses' content **without lecture videos**, in **batches** (fetch → text → verify → delete that batch's raw files → next batch; he authorised exactly that deletion). Blocked point found: the server returns HTTP 501 for suffix Range (`bytes=-N`) but 206 for explicit `bytes=a-b` → read each zip's central directory remotely with explicit ranges and fetch only non-video members (§9.4). Brief for the batch worker is described in §9.4 and not yet run. **Widening the list** (≈2,206 other sitemap courses incl. RES.6/RES.18 and cross-listed; request cap 4,000 with exponential back-off) was approved, started, then **stopped before writing anything** (Suhas wants the 223 first). His caution: *a course listing EECS/Math is not necessarily relevant* → a relevance filter is needed before widening or fetching more. Open: the 39 same-number/different-term courses (fetch or not), the 14 courses with no full-course zip, prerequisites (OCW pages have no Prerequisites label; the `prerequisites_text` column is empty for all 381).
+- Threshold for "is a topic"; whether 4+ word phrases stay as retyped `phrase` nodes in the topics file; lexicon scope; regenerate stale graph artifacts; put cloud curriculum items back into the topics file.
+- git commit (explicit yes; exclude large graph data — `recovery/graph_cloudgenai_20261110/` is ~0.5 GB and not ignored; `nptel/builds/full/graph/` not ignored either); `/tmp/n2_topics.diff` deletion; CS2023 gap-fill (blocked, 0/60: 54 no level evidence, 5 unsafe aliases, 1 covered); resolving the 17,222 level-unknown topics (needs real syllabus evidence); §10 doctrine only in sorted full meta; the 257 skipped curriculum items; retire older builds?; stale scripts (they target historical paths — update paths and write to a new dated folder before rerunning; never write into `~/sde/nptel/*.md`).
+
+## 7. First commands in a fresh session (read-only)
 ```
-ls -la ~/sde/nptel ~/sde/nptel/builds/*
-du -sh ~/sde/nptel/builds/*
+BASE=/Users/suhas/sde/ocw-courses/recovery/topic_lm_20261110
+ls $BASE/code $BASE/out $BASE/tools
+head -60 $BASE/out/lm/LM_REPORT.md; head -60 $BASE/out/features/FEATURES_REPORT.md; head -60 $BASE/out/llmq/README.md
+pgrep -fl 'ollama|supervisor|queue_server' || echo none-running
+ls -l ~/sde/nptel/builds/full/selfcontained ~/sde/ocw-courses/recovery/graph_cloudgenai_20261110/expanded
+cat ~/sde/ocw-courses/recovery/graph_cloudgenai_20261110/expanded/merge_check.txt
 git -C ~/sde status --short
-python3 -c "import json;print(json.load(open('/Users/suhas/sde/nptel/builds/full/sort_verification.json')).keys())"
-grep -c '' ~/sde/nptel/builds/full/topics_sorted_compact.md
-grep -n '^## 10' ~/sde/nptel/builds/full/meta_rules_and_index_sorted_compact.md
+```
+(Ollama must be started via the supervisor, `OLLAMA_HOST=127.0.0.1:11500`, never a bare `ollama serve`.)
+
+## 8. Archive index (what the full version holds)
+`[A§1]` original brief/evidence boundary · `[A§2]` 16-item decision log · `[A§3]` requirements checklist · `[A§4]` methods/contracts · `[A§5]` verification results and pack comparison table · `[A§6]` file map of all builds/reports/scripts · `[A§8–A§9]` known issues/safe resumption · `[A§10]` enhancement backlog · `[A§11]` older upload guidance · `[A§12]` 10:15–13:10 update log (compact pack, genai additions, concerns, n-gram experiments, revert, graph extension, zip replace) · `[A§13]` session-close state + brainstorm (superseded by this file) · `[A§14]` the §14 text written this session (same content as §0–§3 here).
+
+---
+## 9. Crew session of 2026-11-10 evening — what was done, and where every script lives
+Master = the interactive session (planned, briefed, reviewed); workers = one-shot `claude -p --model claude-haiku-5-5 --effort medium` runs under `env -i` with an allowlist (python3 -I only, read-only git, no network except where stated), "Commit: NONE". Worker logs and scratch scripts are in the session scratchpad `/private/tmp/claude-501/-Users-suhas-sde/f2676f85-3d16-4982-8f59-849a002e6561/scratchpad/` (temporary; copy anything you need): `r1restart/` (R1-restart.log, launch.py, sample.py, step3b.py, step4.py, step5_poll.py, step6_check.py, memsample_step3.tsv — the R1-restart worker's throwaway test drivers), `stress/` (run/resume/stress logs), `ocwlist/ocwlist.log`, `ocwwide/` (empty), `ocwzips/` (ocwzips.log = the blocked report; ocwzips2.log, ocwzips3.log empty because those runs were stopped).
+
+### 9.1 R1 service restarted for the new model (worker R1-RESTART, reviewed, ACCEPTED)
+- Edited (originals backed up in `BASE/code/llmq_bak_20261110_7b/{supervisor.py,queue_server.py,llmq.py}`): `BASE/code/llmq/supervisor.py` (manifest path = `~/.ollama/models/manifests/hf.co/bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF/Q6_K`, `DEFAULT_CAP_MB = 7600`), `BASE/code/llmq/queue_server.py` (`MODEL = 'hf.co/bartowski/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B-GGUF:Q6_K'`, `cap_mb=7600`), `BASE/code/llmq/llmq.py` (new `build_raw_prompt(user_text, think=True)`: open `<think>\n` or closed block; `build_judge_prompt` unchanged). README updated: `BASE/out/llmq/README.md`; full test table: `BASE/out/llmq/R1_RESTART_REPORT.md`.
+- Verified live: reasoning request 8.59 tok/s with `</think>` present; queue options temperature/seed/stop/num_ctx_request/timeout_s/num_predict ≤2048 and `/cancel/<id>` all work; six invalid inputs → HTTP 400; watchdog kills #1/#2/#3 at ctx 4096→2048→1024 then `DOWN.flag` written, `start --reset` clears it (0 bytes) and restores ctx 4096; forced memory-pause keeps a job queued (not killed) and it completes after a normal restart. Start/stop only via `python3 -I -B BASE/code/llmq/supervisor.py start|stop|status` (Ollama on 127.0.0.1:11500, queue on 11600).
+- **Rule breach to know about:** this worker deleted `BASE/code/llmq/__pycache__/` (regenerable bytecode; Python recreated it). Disclosed to Suhas. Later briefs use `python3 -I -B` and forbid deletions.
+- Unexplained: `supervisor.log` contains an old `NameError: name 'Control' is not defined` traceback (before this session), never investigated.
+
+### 9.2 Memory stress test (worker R1-STRESS, reviewed, ACCEPTED)
+- `BASE/out/llmq/stress/stress.py` (stdlib; 1 s sampler; phases short/mid/max14k/max14k_long/repeat; `--resume`), `BASE/out/llmq/stress/stress_results.tsv` (raw samples), `BASE/out/llmq/STRESS_REPORT.md`.
+- Result: `/status` memory = max(ps-RSS sum, footprint sum) over the Ollama group (decimal MB). Peaks 5,012–5,073 MB across all phases (14,000-char prompt = 3,414 real tokens; 2,048-token generation ran past num_ctx via context shift); highest value seen 5,310.7 MB (interrupted run) → **2.29 GB margin to the 7,600 MB cap**. Footprint (non-mapped part) grew 493→764 MB between P3 and P5, cause unknown. **Cold loads were not tested** (earlier cold-load/kill-test readings were 7,040–7,228 MB and are not reproduced). Tokens/s 6.1–8.0.
+
+### 9.3 OCW EECS/Math course list and corpus diff (worker OCW-LIST, reviewed, ACCEPTED)
+Folder `OCW=/Users/suhas/sde/ocw-courses/recovery/ocw_expansion_20261110/`:
+- Scripts: `OCW/probe.py` (robots/sitemap/search-page/sample-course probe), `OCW/listing.py` (list, corpus profile, diff, HEAD sizing). Outputs: `ACCESS_REPORT.md`, `course_list.tsv` (381), `existing_courses.tsv` (299 corpus courses: 154 MIT_OCW, 6 NPTEL, 139 other), `diff_matched.tsv` (119: 112 exact slug, 7 number+term), `diff_ambiguous.tsv` (39: same course number, different term), `missing_courses.tsv` (223; extra column `full_course_zip_url`).
+- Facts: OCW search page is a 9.9 KB JS shell (not scrapeable); `robots.txt` = `Allow: /`; sitemap index has 2,588 children (2,587 per-course slugs; 381 start `6-`/`18-`: 216 and 165; EECS 224 / Math 178 listings counted per cross-listing). `/courses/<slug>/download` is an HTML landing page, the real file is `https://ocw.mit.edu/courses/<slug>/<number>-<term>.zip`. 209 missing courses have a zip (7,259,369,219 B total, median 18.8 MB, max 699 MB = `6-007-electromagnetic-energy…-spring-2011`, then 498 MB `6-370`, 314 MB `6-849`, 229 MB `18-706`); 191 are under 50 MB; 14 have no full-course zip. 814 requests, no 429/403.
+- **Coverage gap:** 2,206 sitemap courses with other numbers were not checked (RES.6/RES.18, cross-listed courses). Corpus already holds 6 `res-*` courses.
+
+### 9.4 OCW content fetch (no videos, batched) — scripts written, NEVER run live
+- `OCW/zipfetch.py` (≈23 KB) = Range-backed read-only zip reader + planner + downloader + checkpoint/back-off logic, `OCW/zipfetch_test.py` (live gate test), `OCW/zips_checkpoint.jsonl` (2 lines: robots + accounting), `OCW/ZIPS_REPORT.md` (still the old *blocked* report). Both scripts were written by one worker and **edited mid-run by a second worker that was stopped**: treat them as **untested and possibly half-edited**; review or rewrite before use. Nothing under `OCW/fetched/`, `OCW/processed/`, `OCW/selftest/`, `BATCH_LEDGER.tsv`, `batch_deleted.tsv` exists; **no file was downloaded or deleted.**
+- Server finding (worker + curl): `Range: bytes=-N` (suffix) → **501**; explicit `Range: bytes=a-b` → **206** (verified on one small zip; the 699 MB zip not yet tested with explicit ranges); HEAD gives `Accept-Ranges: bytes` and correct Content-Length; no redirect seen.
+- Agreed design (Suhas): per-zip read the central directory with explicit tail range (offset from Content-Length), keep only text-like members (pdf, txt, tex, html, xml, json, csv, notebooks, source code, captions srt/vtt/sbv, Office files), never audio/video/images; 4 MiB blocks (256 KiB when kept < 20 % of the zip); ≥0.5 s between requests; back-off on 429/503/502/504/403/network (Retry-After else min(5·2^k, 900) s, base delay ×1.5 after 429/503, ×0.8 after 50 clean requests, log `zips_backoff.log`); caps 25,000 requests, 2 GiB per batch, stop if free disk < 25 GB; a 200 answer to a Range request ⇒ STOP, never download whole zips; only `ocw.mit.edu`, redirects to other hosts not followed.
+- **Batch pipeline (Suhas's instruction, last thing he asked for):** batches of 15 courses ascending by zip size; per batch: (A) fetch kept members → `OCW/fetched/<slug>/` (+ `MANIFEST.tsv` of every member); (B) process to text (`pdftotext -layout` at `/opt/homebrew/bin/pdftotext`; raw text kept under `OCW/processed/<slug>/raw/`; repair = ligatures, soft hyphen, quotes, end-of-line hyphen rejoin; docx/pptx/xlsx/odf via zipfile+xml; html/ipynb/captions stripped; **no OCR**, no LaTeX stripping yet; garble flags → `OCW/processed/flagged.tsv` as residue for R1); output `OCW/processed/<slug>/docs.jsonl` in the corpus schema (`id, course, ctype="ocw", src="ocw_zip", path, kind, lec, partial, text` + `repair`, `flagged`; `kind` from path keywords); (C) verify; (D) **delete that batch's raw downloaded files only** (Suhas explicitly authorised this: only files inside `OCW/fetched/<slug>/`, listed in that MANIFEST, with a docs line; files with status unsupported/empty/failed are kept; `os.remove`/`os.rmdir`, log to `OCW/batch_deleted.tsv`; dry-run first); (E) ledger `OCW/BATCH_LEDGER.tsv`; then next batch. Before any live run: live range test on the smallest zip and on the 699 MB zip, and a loopback self-test (`OCW/zipfetch_selftest.py`, fake 3 MB mp4 never requested).
+- Worker brief outline + all numbers above are in this section; the full brief texts exist only in the session transcript (not saved to disk). Rewrite from §9.4 if needed.
+
+### 9.5 Decisions and rules established this session
+- Suhas: "use the latest of the two zips" (§1). "Just because it lists EECS/Math does not mean it is a relevant course" → add a relevance filter step before widening. "Fetch the 223 missing course zips, do not download lecture videos" → Range design above. "Do it in batches… delete it and then start another batch" → batch pipeline. "Stop everything" → all workers stopped; scripts' locations recorded here.
+- Network exception remains `ocw.mit.edu` only (workers otherwise `env -i`, no network). Brief rule: workers use `python3 -I -B`, never `Bash(env:*)`, never git commit.
+- Still open from §6: the stopped W3/W6 workers, thresholds, lexicon scope, git commit (exclude the large untracked trees `ocw-courses/recovery/graph_cloudgenai_20261110/` and `nptel/builds/full/graph/`; `ocw-courses/` is entirely untracked).
+- Backups of this file: `ocw-courses/recovery/handoff_archive_20261110/HANDOFF_curriculum_coverage.before_crew_session_update.md` (this file as it was before this update) and `.full_before_prune.md` (the full 424-line version).
+
+### 9.6 Skill file for resuming this project
+- `/Users/suhas/sde/.claude/skills/topic-graph-project/SKILL.md` — project skill `topic-graph-project` (read-only start checklist, crew/worker conventions incl. `python3 -I -B` and the `ocw.mit.edu`-only network exception, Suhas's standing rules, where the pieces live, the OCW batch fetch pipeline, lessons learned). It is project-level (untracked, not committed), loads in sessions started in `/Users/suhas/sde`, and works together with the user-level `/crew` skill (`~/.claude/skills/crew/SKILL.md`). Update it when the pipeline or rules change.
+
+## OCW expansion 2026-11-10 — status & pending
+
+Snapshot time: **2026-11-10 22:39:08 IST** (UTC+05:30). Append-only update; prior sections above are unchanged bytes. Backup before this append: `ocw-courses/recovery/ocw_expansion_20261110/handoff_backups/HANDOFF_curriculum_coverage.20261110_223700_IST.md` (SHA256 `b084dacaa8984d6e6561e8626d5ff029026085445579d00edd634504f4ad619f`, 34033 bytes; original prefix `# HANDOFF — Curriculum coverage…`).
+
+`O=/Users/suhas/sde/ocw-courses/recovery/ocw_expansion_20261110`.
+
+### Goal & search inventory (verified)
+
+- **Goal:** expand the OCW **text** corpus for IDSS + EECS + Mathematics; record relevance later — **no filtering yet**.
+- **Source API (approved narrow exception):** `POST https://open.mit.edu/api/v0/search/` only, departments OR {Institute for Data, Systems, and Society; Electrical Engineering and Computer Science; Mathematics}, `offered_by=OCW`, `type=course`, paginated `from`/`size` to exhaustion (`size=10`, 48 pages). Evidence: `O/ZIP_LINKS_REPORT.md`, `O/zip_links_completeness.json`, `O/zip_links_summary.json` (completeness invariant PASS).
+- **Counts (match brief; verified):** API/`hits.total` = **480** unique courses = TSV rows; **460** HEAD-verified zips; **20** no-zip (`O/zip_links_no_zip.tsv`); **349** new vs existing corpus; **335** new-with-zip. No discrepancy vs current ledgers/reports.
+- Per-department (search): EECS 285, Mathematics 198, IDSS 21; multi-department 24.
+
+### Zip URL pattern, hosts, download policy
+
+- Zip URL form: `https://ocw.mit.edu/courses/<slug>/<course-number-with-dots>-<term>-<year>.zip`. Course-number **can differ from slug** — recorded from API number/term, HEAD, or download-page href; do not guess. Example verified in `O/zip_links.tsv`: slug `18-443-statistics-for-applications-spring-2015` → `…/18.650-spring-2015.zip` (HEAD 200, 26448588 bytes). HEAD status/bytes recorded per row (`head_status` 200×460, 404×18, empty×2).
+- **Hosts:** `ocw.mit.edu` plus the one approved `POST open.mit.edu/api/v0/search/`. UA `course-list-research/1.0` (reported in `O/RESUME_REVIEW_REPORT.md`). Sequential pacing ≥0.5s / backoff on `Retry-After` otherwise `min(5*2^k, 900)` — standing crew/owner policy for OCW clients (not re-derived from a dedicated rate-limit report in this pass).
+- **Whole-ZIP download** superseded the old range-only `zipfetch` member approach (`O/WHOLEZIP_BUILD_REPORT.md`, `O/sequential_zip_download.py` path). **Processing is OFFLINE** after archives land.
+
+### Downloads & walk (current evidence)
+
+- **All 335 new-with-zip downloads DONE** (owner claim verified):
+  - `O/download_control/state.json`: `status=DONE`, `completed=335`, `total=335`, `bytes_done=bytes_planned=14875611846`, mode `all335_sequential_download_only`, heartbeat `2026-11-10T16:40:33+00:00`.
+  - `O/download_ledger.tsv`: **335 unique slugs** with final status `DONE` (319) or `SKIP_COMPLETE` (16); every row `expected_bytes==actual_bytes`; **sum(actual_bytes)=14875611846** (exact match to planned / zip_links new-verified bytes). All 335 `local_path` files present on disk (15 early batch1 under `O/fetched/<slug>/whole_batch001/course.zip`; remainder under `O/downloads_zip/<slug>/…`).
+  - **Logical archive bytes** = 14875611846. **HTTP traffic bytes** are not independently totalled from allowed files in this pass (`state.bytes_done` equals logical; raw ledger also contains one historical `RESUME` row at partial offset 2097152 for `18-705-…` before a later complete row) — do not equate traffic to logical without a full request account.
+- **20-course walk: NOT run / NOT finished.** `O/walk_ledger.tsv` is header-only (71 bytes); `O/downloads_walk/` empty; `O/WALK_QUEUE_REPORT.md` recorded queue waiting on zips then never started networking. `O/walk_control/state.json` snapshot `status=BLOCKED` reason `other_ocw_downloader_pids=[43106]` at `2026-11-10T16:40:59+00:00` — **stale relative to zip DONE**; treat as uncertain/failed queue, never “walk finished.” Owner brief: queued walker died / being fixed. **Do not touch downloader/walker in this handoff write.**
+
+### Crew / agent CLI (current operating rules)
+
+- Crew uses **agent CLI `--model auto` only** (not bare claude model picks for this track). Copyable launch template:
+
+```bash
+env -i HOME="$HOME" PATH="$PATH" USER="$USER" agent -p --model auto --trust --auto-review --output-format text --workspace <dir> "$(cat <brief-file>)" > <log> 2>&1
 ```
 
----
-## 1. Purpose, starting brief & evidence boundaries
-- The task started from the original `~/sde/HANDOFF_curriculum_coverage.md` (deleted 2026-11-10 at Suhas's request; **not recoverable** — never in git). From the conversation and run reports, it asked:
-  - **Part 1:** raise topic coverage of `~/sde/nptel/unified_cloud_curriculum.md` and `~/sde/nptel/index_cloud.md` from the main topic graph via additive gap-fill insertions (insertions-only diff), tagging topics UG / UG+PG / PG-only from `topic_levels.tsv`.
-  - **Part 2:** clean up `~/sde/ocw-courses` (propose; delete only with approval).
-- The original rules are carried forward in §7.
-- Evidence boundary: exact early wording/timestamps of the first requests and the deleted handoff's transfer-archive checksum note are not recoverable. Everything else below is verified against files on the Mac.
+Background manager; never `--force` / `--yolo` / `-w` / `--worktree`; never bare `ollama serve`.
+- Mandatory workspace `cli.json` denylist categories (from this writer’s `O/crew_scratch/handoff_t41/.cursor/cli.json`): Shell `rm`/`rmdir`; git writes (`commit`/`push`/`add`/`reset`/`checkout`/`clean`/`worktree`); `env`/`printenv`; `pip`/`pip3`; `sudo`; `ssh`/`scp`; `wget`/`curl`; `ollama`; secrets/home reads (`~/.ssh`, `~/.cursor`, `~/.claude`, `**/.env*`); `nptel` Write deny. Approved Write: `O/**` plus **this one** outside-O exception `Write(/Users/suhas/sde/HANDOFF_curriculum_coverage.md)`.
+- Worker preamble verbatim at top of briefs; **Commit:NONE** overrides generic “commit yourself”; stop on any tool refusal — never workaround; master runs cheap independent reviews / test reruns via **separate** workers; count manifests + 3 docs per round; **ONE worker at a time**; no host-identity / `~/.cursor` searches.
+- **Serialization note:** continuation worker tree rooted at **PID 68441** (`O/crew_scratch/iter4_continue/worker.log`) is **temporarily SIGSTOP’d by master** solely to serialize this handoff append — **not dead**; master resumes after independent append validation. Do not signal/manage other processes; do not read that continue log from this writer.
 
-## 2. Request & decision log (with rationale) — do not reverse without asking Suhas
-1. **Execute the handoff on the Mac, not the assistant's computer.** All scripts and outputs live on the Mac.
-2. **Gap-fill proposals:**
-   - The first run proposed 1,847 noisy topics. Filters were tightened (allowlist plus a level-lookup fix), bringing it to 304 proposals. The staged output is in `recovery/curriculum/out/`.
-   - The CS2023 fold-in is blocked: 0/60 inserted (54 had no usable level evidence, 5 unsafe aliases, 1 already covered).
-3. **Graph lacked System Design Primer (donnemartin) + high-school bridge.**
-   - Decision: copy the main graph, expand it, verify it's intact, swap it in, and delete the old one.
-   - Done: +131 nodes, +515 edges, with provenance `expand:sdp` / `expand:hs`.
-   - Sources: the SDP GitHub README; cbseacademic.nic.in curriculum 2026-27 (Maths, Physics, Computer Science).
-   - `backup_pre_recovery/` kept. Evidence in `recovery/graph_expansion_20261110/`.
-4. **Enhance vs rebuild.** Suhas needs an index plus a curriculum file for Claude cowork. Decision: build a hybrid and a full rebuild separately, compare them, and recommend.
-   - Hybrid: 480 units; keeps all 450 original unit bodies, 433 assignments and 435 details blocks verbatim.
-   - Full: initially 2,816 topics (strict filter). Suhas: "All graph topics are needed", so it was rebuilt with all 36,628 topics (14,022 main units plus 24 noise-appendix units holding 43 noise topics).
-5. **Cleanup approved and done** (~11.6 MB):
-   - Deleted `recovery/recov.tgz`, 6 `__pycache__` dirs and `uglists/prev/ucc/._index_cloud.md`.
-   - Audit: `cleanup_audit.log`, `cleanup_approved_result.json`.
-6. **Teaching and assignments map** built for each build: `teaching_assignments_map.md/.json`.
-7. **Claude pack format.** Topic lists suffice for Claude, so each pack has two files, `topics.md` and `meta_rules_and_index.md`.
-   - The meta rules cover: teach to the level tag, follow prerequisite order, use existing content via pointers, otherwise generate (definitions, results with proof tags, a build, and a 5-question check with a hidden key).
-   - Made for all 3 builds and compared (`claude_pack_COMPARISON.md`).
-8. **Recommendation given:** Hybrid for preserved written teaching. Full for the complete inventory and on-demand authoring; it is not completed teaching.
-9. **"Make the full rebuild smaller / an index"** was started, then **stopped** by Suhas. The `claude_pack_compact/` folder doesn't exist.
-10. **Extract existing assignments to a separate file:** 433 verbatim, with answer keys.
-11. **Move packs into `~/sde/nptel`, each build in its own folder.**
-    - Final location: `~/sde/nptel/builds/{staged,hybrid,full}/`. (A detour moving them to `~/sde/` was a misread and has been corrected.)
-12. **Record the entire graph in the full build.** A ~231 MB copy went into `full/graph/`. Suhas: "stick with this."
-13. **Level order was not maintained** (19,646 level switches). Decision: re-sort the full build by domain → level (HS → UG → UG+PG → PG-only → industry → level-unknown) → DAG.
-    - Level switches dropped to 63.
-    - Units were split into 24,828 contiguous `.pN` segments.
-    - Domain order was derived by exactly minimising backward cross-domain prerequisite counts, with HS fixed first.
-14. **Assignment and capstone pointers** were first added to the sorted index, then **reverted** at Suhas's request.
-    - They were replaced by **§10 Assignment Doctrine**, which generates NPTEL- and university-style assignments and capstones on the go.
-    - The doctrine is modelled on an analysis of the 433 assignments and 18 capstones. It is explicitly not official NPTEL policy.
-    - A backup with the pointers is kept.
-15. **Prune size while keeping all topics:** compact pair created (1,324,483 bytes, down from 9,803,953 bytes for the detailed sorted pair).
-16. **Old handoff deleted; this context-spine handoff written.**
+### Parser / classifier fixes (landed; R1 still deferred)
 
-## 3. Requirements checklist
-| Requirement | Status | Evidence |
-|---|---|---|
-| Work on Mac only | Met | all outputs under /Users/suhas |
-| Additive-only curriculum changes, originals untouched | Met | hash checks; `~/sde/nptel/*.md` unchanged |
-| Never invent topics/sources/codes/assignments | Met | graph-node-only topics; verbatim extraction; doctrine marked "modelled" |
-| SDP + HS in main graph, verify before swap, delete old | Met | `recovery/graph_expansion_20261110/` |
-| Hybrid vs full comparison + recommendation | Met | `recovery/curriculum/COMPARISON.md` |
-| Cleanup | Met (approved items only) | `cleanup_approved_result.json` |
-| Teaching/assignment map per build | Met | `teaching_assignments_map.*` |
-| 2-file Claude pack ×3 + comparison | Met | `nptel/builds/*`, `claude_pack_COMPARISON.md` |
-| Full build = all graph topics | Met | 36,628 topics |
-| Domain → level → DAG order | Met (with trade-off, §5) | `sort_verification.json` |
-| Assignments/capstones as doctrine, not literal | Met (sorted full meta files only) | §10 in `*_sorted*.md` |
-| Smaller file, all topics kept | Met | compact pair 1.32 MB |
-| CS2023 gap-fill | **Not met** (blocked) | `cs2023_review.json` |
-| Level tags for every topic | **Partial**: 17,210 level-unknown in full | graph level data |
-| Git commit | **Not done** (needs Suhas's yes) | `git status` |
-| Install a build into the live curriculum files | **Not requested/not done** | — |
+- **LaTeX (`latex_v2` / `latex_text.py`):** grouped sub/superscripts `_{…}^{…}`; Unicode ops/Greek; same-file macros; environment labels; layout-macro drop (`O/LATEX_V2_REPORT.md`).
+- **PDF (`extract_v2`):** `pdftotext -layout -enc UTF-8` + glyph/repair passes; replacement in math context → `math_glyph_loss`, other → `glyph_loss` (trial/ITER reports); separate from genuine binary **garbled** (`O/EXTRACT_V2_REPORT.md`, `O/TRIAL_V2_REPORT.md`).
+- **Classifier (`classifier_v2` / `process_v2`):** `site_meta` vs academic; span labels `clean` / `junk` / `garbled` / `math_glyph_loss` / `glyph_loss`; junk kept in full text; queue **only** genuine garbled (`O/CLASSIFIER_V2_REPORT.md`, `O/ITER4_BUILD_REPORT.md`).
+- **Notebooks (`nb_v4` / `nb_text.py`):** BoxData / RowBox / FractionBox / Greek; unknown `\[Name]` kept literal; process hook for `.nb`; safe in-memory / persistent fixtures — **not** `TemporaryDirectory` (past fixture-cleanup violation reported + remediated in `O/NB_V4_REPORT.md`; not an authorized raw deletion).
+- **Limits:** image-only → no OCR; unhandled legacy formats unsupported; `18-s66` severe binary/font garble → **KEEP RAW** (R1 deferred). Stdlib span classifier as above.
 
-## 4. Methods & semantic contracts
-- **Graph:**
-  - `unified_graph.json` has node types topic, curriculum_unit, course and external_course.
-  - Edge types include covers, ext_prereq, cooccurrence and more.
-  - `dag_view.json` is the DAG view.
-  - Only `ext_prereq` and DAG edges count as prerequisite claims. Containment, taxonomy, cooccurrence and lecture sequence are not automatically prerequisites.
-- **Levels:**
-  - Tags come from `topic_levels.tsv` / `topic_levels_expanded.tsv`.
-  - Joint UG/PG is written as UG+PG; practitioner topics are tagged industry.
-  - Unknown stays unknown and is never guessed.
-- **Staged build:** the original curriculum plus filtered additive insertions.
-- **Hybrid build:** the unit skeleton is regenerated from the graph, and existing content is carried over verbatim.
-- **Full build:** every graph topic in DAG order, with placeholders and no fabricated teaching.
-- **Sort:** domain → level band → DAG.
-  - Every prerequisite that ends up after its dependent is listed in the audit, so Claude bridges it just in time.
-- **Compaction:**
-  - Drops per-line provenance (g:, c:, src:, SDP/CBSE line refs), T@/A: pointers, repeated headings and source-edge registry indices.
-  - Levels are inherited from headers. Topic IDs are short, and the audit is stored as adjacency lists.
-  - It is not lossless archival compression. The detailed files keep the metadata.
-- **Assignment doctrine:**
-  - Five questions worth 10 marks: single-choice 1, multiple-select 2, numerical 2, proof/derivation 2, build/programming 3.
-  - The default pass is 7/10 with the proof and build accepted, but only if the learner profile has no rule of its own.
-  - Write and verify the key first, and reveal it only after an attempt.
-  - Distractors target misconceptions, and correct-answer positions vary. The originals show bias: single-choice A/B/C/D = 158/224/46/5, and multiple-select ABC = 330.
-  - Capstones come after domain exit. Each has fixed criteria, tests, predict-then-measure, an injected failure, a threat model, cost, teardown and an oral defence. There is also a remedial variant.
-  - Results are logged in `learner_record.md`.
+### R1 — deferred to the very end
 
-## 5. Verification results
-- **Graph:** all 12 installed graph payload hashes are OK, and the 4 copied graph files match the originals.
-- **Compact full topics:** all 36,628 names, levels and their order are identical to `topics_sorted.md`, and the detailed graph IDs are unique.
-- **Assignments:** all 433 assignments and keys match the staged and original curriculum byte for byte (spot checks: A1.1, A26.1, A14.22).
-- **Capstones:** all 18 match their source ranges and hashes.
-- **Sorted-order trade-off:**
-  - 49,159 reversed typed relations (these are relations, not topics): 49,056 DAG and 761 explicit ext_prereq. The two sets overlap, so don't add them.
-  - By cause: domain grouping 31,863, level grouping 17,258, same-band non-DAG 38.
-  - Within a band there are **0 DAG reversals**, but **38 explicit non-DAG exceptions**.
-  - Before the sort: 318 DAG and 157 ext_prereq reversals.
-  - 1,526 DAG edges and 61 explicit edges have non-topic endpoints, so they can't be placed in a topic-only list (disclosed).
-- **Pack comparison** (before the sort):
+- Queue file target: `O/garbled_queue.jsonl` (**absent now** — not created until production queueing). Old batch1 `O/processed/r1_log.jsonl` counts only: submitted=8, repaired=8, rejected=1 (historical; do not resume casually).
+- Supervisor **only:** `python3 -I -B /Users/suhas/sde/ocw-courses/recovery/topic_lm_20261110/code/llmq/supervisor.py start|status|stop` — **NO execution now**. Queue `127.0.0.1:11600` / client `llmq.py`; reasoning on; one item/request; `num_ctx_request=4096`; spans ≤1500 chars; cap ~7600 MB; stop after step; never bare `ollama serve`. Repair validation (numerals/math preserved; resume budget / completed-span quota) fixed earlier (`O/R1_REPAIR_REPORT.md`, `O/RESUME_REVIEW_REPORT.md`) — tooling only until end pass.
 
-  | Pack | Topics | SDP / HS coverage | Prereq violations | Size |
-  |---|---:|---:|---:|---:|
-  | Staged | 14,574 | 46% / 23% | 456 | 2.05 MB |
-  | Hybrid | 14,704 | 100% / 100% | 461 | 2.07 MB |
-  | Full | 36,628 | — | 0 (main DAG) | 4.7 MB |
+### Approved iterative plan (still in force)
 
-  Teaching and assignment pointer coverage: staged and hybrid 66% / 15%, full 26% / 6%.
-- **HS and SDP in the full sorted build:** the HS-source domain has 101 distinct topics (79 tagged HS level), and the SDP domain has 95.
-- **Assignment metadata discrepancy:** status records show 423 direct plus 10 context-only, while the header count says 425 direct (two context-only records have topic lists). The sources were not altered.
+1. 3 random not-yet-trialled courses / round → parse + classify → inspect 3 docs / counts / ledgers → regression fix + rerun.
+2. Stdlib-only modules ≤250 LOC; guarded delete of **scratch round outputs** only after evidence (not raw zips).
+3. Continue through every downloaded zip course **+** the 20 walked courses; then final refined **bulk** all courses.
+4. Per-course verify: actual source / raw / output SHA, non-image nonempty text, counts; master final audit.
+5. Guarded raw delete **ONLY** passing courses; keep failed / unparsed / image-only / severe-garble raw; preserve text / manifests / ledgers.
+6. Delete apply: dry-run exact plan + hash + approval; only `os.remove` / `os.rmdir`; never symlink follow / `rmtree` / outside `O`; log `O/deleted_ledger.tsv`.
+7. Old partial-range `O/fetched/**` remains **protected** until Suhas decides.
 
-## 6. File map (absolute paths)
-`/Users/suhas/sde/nptel/` — originals (DO NOT MODIFY): `unified_cloud_curriculum.md` (2.13 MB), `index_cloud.md`, `learner_record.md`
-`/Users/suhas/sde/nptel/builds/`
-- `staged/` — `topics.md` (2.0 MB), `meta_rules_and_index.md` (53 KB)
-- `hybrid/` — `topics.md` (2.0 MB), `meta_rules_and_index.md` (54 KB)
-- `full/` (251,373,448 bytes total)
-  - `topics_sorted_compact.md` (801 KB) + `meta_rules_and_index_sorted_compact.md` (523 KB): **upload pair**
-  - `topics_sorted.md` (5.2 MB) + `meta_rules_and_index_sorted.md` (4.6 MB): detailed, with metadata and §10
-  - `meta_rules_and_index_sorted.with_pointers.bak.md`: backup taken before the pointer revert
-  - `topics.md` (3.9 MB) + `meta_rules_and_index.md` (765 KB): original DAG-ordered full pack (no §10)
-  - `graph/` (230,848,757 bytes): `unified_graph.json`, `dag_view.json`, `topological_node_order.json`, `topic_levels_expanded.tsv`
-  - `sort_verification.json`, `assignment_doctrine_analysis_20261110.json`
+### State — milestone vs live snapshot (separate explicitly)
 
-`/Users/suhas/sde/ocw-courses/recovery/curriculum/`
-- `assignments/`:
-  - `assignments.md` (1.2 MB) and `.json`: 433 verbatim assignments
-  - `capstones.md` (44 KB): 18 verbatim capstones (17 from D13, 1 remedial from D21)
-- `out/`: staged sources, `teaching_assignments_map.*`, `RUN_REPORT.md`, `FILTER_NOTES.md`, `cleanup_proposal.md`, `cs2023_review.json`
-- `rebuild_hybrid/` (includes `unit_manifest.json`) and `rebuild_full/` (includes `full_scope.json`): build sources
-- Reports: `COMPARISON.md`, `claude_pack_COMPARISON.md`, `FINAL_VERIFICATION.json`, `EXPANSION_RUN_REPORT.md`, `*_CHECKS.json`, `filter_audit.json`
-- Scripts: `propose.py`, `insert.py`, `inspect_graph.py`, `cleanup_audit.py`, `sort_full_domain_level_20261110.py`
+**Accepted milestone (FIRST2 only; `O/iter_evidence/MILESTONE_FIRST2.md`, `O/ITER4_FIRST2_REPORT.md`):**
+- round_01: docs=544 academic=107 site_meta=437; round_02: docs=689 academic=184 site_meta=505; **111 tests** passed at that gate.
 
-`/Users/suhas/sde/ocw-courses/uglists/graph/`: main graph (1.3 GB folder) and `backup_pre_recovery/`
-`/Users/suhas/sde/ocw-courses/recovery/graph_expansion_20261110/`: expansion evidence
+**Actual snapshot now (do not confuse with milestone):**
+- `O/iter_ledger.tsv` + `O/iter4_control/checkpoint.json`: **rounds_completed = round_01 … round_15** (15 rounds / 45 course slots). Detailed docs/academic/meta counts present for rounds 01–07; rounds 08–15 ledger rows currently store coarse `counts=3` with `states=round_done` (continuation still refining evidence). `iter_evidence/round_16/` exists as empty dir only — **no** `round_meta.json`.
+- `bulk_done=false`; `O/production_v4` absent; `O/garbled_queue.jsonl` absent.
+- Continuation: PID **68441** paused for this writer; master resumes afterward.
+- Key reports: `NB_V4`, `ITER4_BUILD`, `ITER4_HARDEN`, `ITER4_FIRST2` (no `*CONTINUATION*` report file at `O/` root yet).
+- Key paths: inventory `zip_links.tsv` / `zip_links_no_zip.tsv` / `zip_links_completeness.json` / `SEARCH_REPORT.md`; ledgers `download_ledger.tsv` / `walk_ledger.tsv` / `iter_ledger.tsv` / `deleted_ledger.tsv` / `BATCH_LEDGER.tsv`; dirs `downloads_zip/` / `downloads_walk/` / `iter/` / `iter_evidence/` / `iter4_control/` / `download_control/` / `walk_control/`; wrappers `nb_v4/` `latex_v2/` `extract_v2/` `classifier_v2/` `process_v2/` `iter4/` + `iter4_pipeline.py` / `nb_text.py`.
 
-## 7. Standing rules & preferences
-- Ask Suhas before deleting ANY file on the Mac, even temporary ones. Ask before any git commit.
-- Work on the Mac, not the assistant's computer. Use stdlib Python only: no pip, no OCR. Use public, legal sources only.
-- Never invent topics, sources, course codes, levels, assignments or capstones.
-- Curriculum changes are additive only. Never modify the originals in `~/sde/nptel/`.
-- Do not restore `unified_cloud_curriculum_index.md`.
-- Each build stays in its own folder under `~/sde/nptel/builds/`.
-- Write new versions as new files rather than overwriting, and back up before replacing anything.
+### Watcher
 
-## 8. Known issues & open work
-- **Git:**
-  - Nothing is committed. `git status` shows `nptel/builds/`, `nptel/unified_cloud_curriculum.md` and `ocw-courses/` as untracked.
-  - `nptel/builds/full/graph/` (~231 MB) is **not gitignored**. Exclude it before any commit.
-- **CS2023:** blocked, 0 of 60 inserted.
-- **Levels:** 17,210 level-unknown topics in the full build.
-- **Doctrine scope:** §10 exists only in the two sorted full meta files, not in staged, hybrid or the original full pack.
-- **Stale scripts:**
-  - `sort_full_domain_level_20261110.py` targets the old `/Users/suhas/sde/nptel/full/`.
-  - The pack generator recreates the historical `claude_pack/` folders.
-  - `final_verify.py` expects the historical pack locations.
-  - No standalone script exists for assignment extraction, compaction or doctrine insertion.
-- **Leftovers:** possible old drafts in `recovery/`. Clean them only with approval.
+Operator-stated schedule (latest owner brief): **~15 min watcher routine through Nov 14**. Configuration / routine ID / exact end time **not independently verified** from reports in this pass — do not invent them.
 
-## 9. Safe resumption & reproduction
-1. Run the Start Here checks.
-2. Read `sort_verification.json` and `FINAL_VERIFICATION.json`.
-3. Before rerunning any script:
-   - update its paths to `/Users/suhas/sde/nptel/builds/...`;
-   - redirect its output to a new dated folder;
-   - never write into `~/sde/nptel/*.md`.
-4. Verify after any change: topic count is 36,628, the name/level/order equality check passes, and the originals' hashes are unchanged.
+### Deletion records so far (ledgers only)
 
-## 10. Enhancement backlog (proposals — not done; confirm with Suhas)
-- **Resolve level-unknown topics** using real syllabus or course evidence. This needs sources. The risk is guessed levels.
-- **Unblock CS2023:** find level evidence and safe alias mappings for the 54 + 5 topics.
-- **Reduce cross-block reversals:** for example, a "bridge-first" variant that pulls needed prerequisites into earlier bands. The trade-off is more level switching.
-- **Per-domain pack split,** so Claude gets smaller uploads one domain at a time.
-- **Add §10 to the hybrid and staged meta files** for consistency.
-- **Git hygiene:** add `nptel/builds/full/graph/` to `.gitignore`, then commit (with Suhas's yes).
-- **Consolidated script:** one reproducible end-to-end script covering extraction, sort, compaction and doctrine.
-- **Learner progress tracking** in `learner_record.md` (mastery per domain and level band).
+- `O/deleted_ledger.tsv`: **1** row with `outcome=deleted`, **6** logical bytes; path under `O/iter/_testtmp/iter4/delete/to_remove.txt`; policy `round_outputs` (scratch/test — **not** a raw archive).
+- `O/batch_deleted.tsv`: **absent** → no recorded batch raw deletion (absence ≠ proof none ever happened outside ledgers).
+- `O/BATCH_LEDGER.tsv`: batch1 stage `BLOCKED_R1_DRY_RUN`; `raw_deleted=0`, `archive_deleted=0`.
+- **No ledger proof of production raw-zip deletion.** TemporaryDirectory past fixture cleanup was a reported test-hygiene violation and was remediated — **not** authorized raw deletion.
 
-## 11. Claude cowork upload guidance
-- **Option A (complete scope):** upload `full/topics_sorted_compact.md`, `full/meta_rules_and_index_sorted_compact.md` and `nptel/learner_record.md`. Claude generates teaching and assignments using §10.
-- **Option B (preserved teaching text):**
-  - Upload `hybrid/topics.md`, `hybrid/meta_rules_and_index.md`, `nptel/unified_cloud_curriculum.md` (so the T/A pointers resolve) and `learner_record.md`.
-  - Optionally add `assignments/assignments.md`.
-- Don't upload `full/graph/` (too large). The packs contain pointers and rules, not teaching text.
+### PENDING (execution order; status from current evidence)
 
----
-## 12. Update 2026-11-10 10:15–11:05 IST — self-contained compact Claude pack (supersedes §11 upload guidance)
-**Suhas's rules added this session (standing):**
-- Pack files must be self-contained. Topics files reference NO other file. Meta-rules files may reference ONLY `Master_Rules.md` and `learn-SKILL.md` (plus their sibling topics file).
-- The compact meta-rules file must capture the overall teaching method for ALL topics, and describe how the course is structured as a domain → level map only — no per-unit index, audit lists, noise IDs or other tags. Topics file: no tags (no short IDs).
-- Assessment cadence (meta §11): weekly assignments (§10 five-question format); one meaningful coding capstone per **collection of related units** (not per tiny unit; Claude forms collections from consecutive related topics in a domain/level band and announces scope first); plus from-scratch implementation exercises during teaching (no libraries, toy size, then compare with a real tool).
-- Level-unknown (?) topics are taught at graduate depth (UG core + graduate extension, like UG+PG) unless the learner says otherwise; the tag stays unknown. A level is a floor, not a ceiling.
-- Lean pack: Claude authors all lessons/checks/assignments/capstones fresh (labelled tutor-generated); no embedded original teaching text or assignments (Suhas rejected the 2.18 MB version with embedded text).
+1. **PENDING — fix/run 20-course walk** after zip completion, same host + shared request lock; verify walk ledger files/SHA. Subtasks: relaunch/fix walker; empty ledger today; do not claim done until COMPLETE rows exist. *(Zips DONE — unblocks walk.)*
+2. **PENDING — real NB canary + fix regressions** (nb_v4 landed; live canary on real course `.nb` still owed).
+3. **IN PROGRESS — remaining 3-course rounds** through all downloaded + eventually walked courses; evidence/samples/test checksums; delete only superseded scratch outputs. Substatus: rounds 01–15 recorded `round_done`; milestone first2 independently verified; later rounds’ coarse ledger counts need full evidence parity; walk courses not yet in pool.
+4. **PENDING — final frozen-version bulk parse ALL** (`bulk_done=false`; `production_v4` absent).
+5. **PENDING — per-course verification + checksums + global garbled-queue dedup** (verify tooling exists; full fleet not signed off).
+6. **PENDING — master independent final audit** / tests rerun / 3 samples / counts.
+7. **PENDING — exact guarded raw dry-run + apply only passes**; preserve failures/evidence/text. (`delete_plan.json` last blocked on stale `downloader:RUNNING`; no approval/apply.)
+8. **PENDING (last) — deferred R1 queue pass then re-verify**; resource cap + validation. No live R1 now.
+9. **PENDING — Suhas decision:** old batch1 partial-range / whole_batch files under `O/fetched/` — **no automatic delete**.
+10. **PENDING — Suhas decision:** old range / link-discovery artifact cleanup; **never touch git / nptel**.
+11. **PENDING — integrate new texts into topic graph separately**; **DO NOT touch Topics files / main graph until Suhas says so**.
+12. **OPTIONAL / no changes now — crew skill + agent CLI recipe update** (separate approval).
 
-**Done:**
-- Built self-contained versions of all three full-build pairs (`*_sc.md`, with 960 teaching blocks + 415 assignments embedded verbatim as an in-file appendix). Then built the lean compact pair. At Suhas's request **everything in `selfcontained/` except the lean pair was deleted** (the `_sc` files, scripts, logs, verification JSONs, `__pycache__`).
-- `/Users/suhas/sde/nptel/builds/full/selfcontained/` now holds:
-  - `topics_sorted_compact_lean.md` (801,037 B, ~165k tokens): original compact list, 36,628 topic lines byte-identical, header rewritten to name no file. Still has base-36 short IDs.
-  - `meta_rules_and_index_sorted_compact_lean.md` (525,252 B, ~158k tokens): rules 1–8, §10, §11, level-unknown rule; rules 3/6/§10 rewritten to "author fresh". Still contains the full unit index, reversed-edge audit and noise IDs (the bulk of its size).
-- Token estimate for lean pair + Master_Rules.md (~15k) + learn-SKILL.md (~3k): ~340k total (estimate, not tokenizer-exact).
-- Confirmed all full-build topics files (and the lean one) contain 101 HS-bridge topics and 95 SDP topics; hybrid has both fully; staged only partial (~46% SDP / 23% HS).
-- `/Users/suhas/nptel-ocw.zip` (3.7 GB unpacked, a backup of ~/sde) was only listed, not used, copied or deleted. The iCloud copy was unreadable (macOS privacy block). An empty folder `ocw-courses/recovery/zipcopy/` was created and left in place.
-- Originals in `builds/full/` and `~/sde/nptel/*.md` unchanged. Nothing committed.
-
-**In progress at time of writing (new files, written alongside; existing two lean files not modified):**
-- `selfcontained/meta_rules_compact.md`: rules 1–8, 10, 11 only (references to unit index/IDs/audit/noise/graph removed; rule 2 → follow domain → level → topic order, check prerequisites and bridge just in time), plus a "Course structure: domain → level map" table (domain order, per-level topic counts, totals). Target: a few thousand tokens.
-- `selfcontained/topics_compact.md`: same domain/level headings and order, plain topic names only, no short IDs.
-- Builder scripts/logs go to /tmp or `ocw-courses/recovery/curriculum/`, not `selfcontained/`.
-
-**Next steps:**
-1. Verify the two new files (36,628 topics; counts match; only allowed filenames; no tags).
-2. Show Suhas; on his yes, delete the two older lean files so `selfcontained/` holds only `topics_compact.md` + `meta_rules_compact.md`.
-3. Upload set for Claude cowork: `topics_compact.md`, `meta_rules_compact.md`, `Master_Rules.md`, `learn-SKILL.md` (+ progress record if any).
-
-**Update ~11:09 IST:** both new files built and verified. `topics_compact.md` 655,741 B (~164k tokens; 36,628 plain names, no IDs). `meta_rules_compact.md` 16,235 B (~4k tokens; rules 1-8, 10, 11 + domain → level count table; level totals H 79, U 6,046, J 4,785, P 8,429, I 79, ? 17,210). Old lean pair still present, awaiting Suhas's yes to delete. Builder/log in /tmp.
-
-**Update ~11:25 IST — old lean pair deleted; IIT GenAI gap-fill (supersedes the "Next steps" list above):**
-- Suhas said yes: `topics_sorted_compact_lean.md` and `meta_rules_and_index_sorted_compact_lean.md` are deleted. `selfcontained/` now holds only `topics_compact.md` and `meta_rules_compact.md`.
-- Noise tags: gone from the new pair (no IDs, no `noise:true` flag, no audit lists). They remain in the older full-build files (`topics*.md`, `meta_rules_and_index*.md`), which were not modified. The 43 former noise topics are still listed in `topics_compact.md` as ordinary topics with no caution flag; their IDs were stripped, so which lines they are has not been mapped. Open choice for Suhas: keep, drop, or add a one-line caution to the meta file.
-- Checked `/Users/suhas/sde/iit-genai.md` (12 chapters, ~500 lines) against `topics_compact.md`, concept-level (~130 terms, not line-by-line). Nearly all present; most already exist as `Curriculum-only` level-`?` topics (this curriculum appears to be ingested already). Not found by name: word2vec, InstructGPT, RLHF, BM25, HNSW, hard negative mining, GPT-1/2/3, T5, METEOR (NLP metric), tool calling, AI winter. PAIR, TechHazardQA and Chain-of-RAG were found.
-- **Added those 12 topics** (at Suhas's request) to `topics_compact.md`: `word2vec`, `hard negative mining`, `bm25`, `gpt-1 and gpt-2`, `gpt-3`, `t5`, `instructgpt`, `rlhf`, `hnsw`, `meteor metric`, `tool calling`, `ai winter`.
-  - Placement: domain **Curriculum-only**, level **?** (no level evidence, so level not guessed; taught at graduate depth per the level-unknown rule). Each is inserted next to its nearest related existing topic in that band (for example `hnsw` before `efsearch candidate list`, `rlhf` before `aligning model with human preference`), not at a computed DAG position.
-  - Naming: `meteor metric` rather than `meteor`, because `meteor` already exists as an unrelated Mathematics topic. The topic names come from the headings and bullets of `iit-genai.md`.
-- **New counts:** 36,640 topics (was 36,628). Level-unknown 17,222 (was 17,210). Curriculum-only 8,545 (was 8,533). The header line of `topics_compact.md` and the domain → level table plus totals in `meta_rules_compact.md` were updated; a recount of the topics file matches the table exactly. Diff versus the pre-change files shows only the 12 added lines, the header count and those three meta lines. Other level totals unchanged (H 79, U 6,046, J 4,785, P 8,429, I 79).
-- Backups of the pre-change files (and of this handoff): `/private/tmp/claude-501/-Users-suhas-sde/0a62790a-4998-4621-8c44-aa0780fa5101/scratchpad/backup_pre_genai/` (session scratchpad, may not persist). Insert script: `.../scratchpad/add_genai.py`.
-- The earlier counts in this handoff (36,628 etc.) still describe the detailed and compact-sorted full builds, which were not changed. `iit-genai.md` itself is untouched and uncommitted.
-- Still open: git commit (needs yes; exclude `nptel/builds/full/graph/`), CS2023 gap-fill, level-unknown resolution, §10 doctrine only in the full sorted meta files, and the stale-script list in §8. Upload set for Claude cowork: `topics_compact.md`, `meta_rules_compact.md`, `Master_Rules.md`, `learn-SKILL.md`.
+**Already completed (do not re-list as false pending):** search pagination + zip HEAD inventory (480/460/20/349/335); whole-zip client + **all 335 downloads**; latex_v2 / extract_v2 / classifier_v2 / process_v2 / nb_v4 wrappers; iter4 build + harden + first2 milestone (111 tests); R1/verify tooling authored with live repair deferred; TemporaryDirectory fixture remediation in tests.
