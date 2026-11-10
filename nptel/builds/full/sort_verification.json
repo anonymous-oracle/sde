@@ -1,0 +1,590 @@
+{
+  "generated": "2026-11-10T07:39:11.699959+05:30",
+  "timezone": "IST (Asia/Calcutta)",
+  "status": "verified",
+  "topic_count": 36628,
+  "topic_set_identical": true,
+  "all_topic_lines_verbatim": true,
+  "graph_topic_set_identical": true,
+  "meta_rules_verbatim": true,
+  "original_unit_count": 14046,
+  "sorted_unit_segments": 24828,
+  "original_units_split": 5379,
+  "domain_order": [
+    "extkg:highschool-bridge",
+    "Mathematics",
+    "Algorithms & Theory of CS",
+    "Other/Unknown",
+    "Signal/Image/Audio/Video Processing",
+    "Computer Architecture",
+    "Operating Systems",
+    "System Design Primer",
+    "Distributed Systems & Cloud",
+    "Computer Networks",
+    "Software Engineering",
+    "Cryptography & Security",
+    "ML & AI",
+    "Information Theory & Coding",
+    "Data Mining & Databases",
+    "Curriculum-only",
+    "NLP & Speech",
+    "CS2023 gap-fill",
+    "Graph concepts"
+  ],
+  "domain_counts": {
+    "extkg:highschool-bridge": 101,
+    "Algorithms & Theory of CS": 2085,
+    "CS2023 gap-fill": 38,
+    "Computer Architecture": 701,
+    "Computer Networks": 897,
+    "Cryptography & Security": 1029,
+    "Curriculum-only": 8533,
+    "Data Mining & Databases": 1772,
+    "Distributed Systems & Cloud": 2956,
+    "Graph concepts": 55,
+    "Information Theory & Coding": 1411,
+    "ML & AI": 1511,
+    "Mathematics": 7314,
+    "NLP & Speech": 755,
+    "Operating Systems": 739,
+    "Other/Unknown": 2639,
+    "Signal/Image/Audio/Video Processing": 1402,
+    "Software Engineering": 2595,
+    "System Design Primer": 95
+  },
+  "level_counts": {
+    "HS": 79,
+    "level-unknown": 17210,
+    "UG+PG": 4785,
+    "UG": 6046,
+    "PG-only": 8429,
+    "industry": 79
+  },
+  "level_switches": {
+    "before": 19646,
+    "after": 63
+  },
+  "prerequisite_violations": {
+    "before": {
+      "unique_typed_relations": 475,
+      "dag_topic_edges": 318,
+      "explicit_ext_prereq_edges": 157,
+      "dag_by_type": {
+        "course_prereq": 26,
+        "lecture_order": 261,
+        "containment": 31
+      },
+      "same_domain_level_dag": 34,
+      "same_domain_level_explicit": 38,
+      "noise_involving_dag": 318
+    },
+    "after": {
+      "unique_typed_relations": 49159,
+      "dag_topic_edges": 49056,
+      "explicit_ext_prereq_edges": 761,
+      "dag_by_type": {
+        "course_prereq": 15723,
+        "ext_prereq": 658,
+        "lecture_order": 26548,
+        "ext_broader": 1199,
+        "containment": 4928
+      },
+      "same_domain_level_dag": 0,
+      "same_domain_level_explicit": 38,
+      "noise_involving_dag": 331
+    }
+  },
+  "audit_relation_count": 208977,
+  "audit_reasons": {
+    "domain": 31863,
+    "level": 17258,
+    "same-band/non-DAG": 38
+  },
+  "domain_order_method": "Exact minimum backwards prerequisite-relation count, HS fixed first; graph-isolated groups last alphabetically",
+  "cross_domain_prerequisite_relations": 51153,
+  "optimal_domain_backward_prerequisite_relations": 12825,
+  "out_of_scope_non_topic_endpoint_records": {
+    "dag": 1526,
+    "explicit_ext_prereq": 61
+  },
+  "assignments": {
+    "existing": 433,
+    "distinct_referenced_in_unit_index": 433,
+    "unit_segments_with_assignment_pointer": 2280,
+    "pointer_occurrences": 3375,
+    "all_433_ranges_valid": true,
+    "all_433_content_hashes_verified": true,
+    "existing_direct_mapped_topic_count": 2260,
+    "existing_direct_plus_context_mapped_topic_count": 2380,
+    "retained_original_alias_pointer_links": 0,
+    "current_direct_or_context_topic_coverage": 2380,
+    "source_file_lines": 19164
+  },
+  "capstones": {
+    "count": 18,
+    "d13_integrating_projects": 17,
+    "d21_remedial_capstones": 1,
+    "all_verbatim": true,
+    "all_hashes_verified": true,
+    "all_indexed": true,
+    "original_index_d13_entries_match": true,
+    "domain_pointer_occurrences": 134,
+    "shared_protocol_capstones_lines": [
+      13,
+      20
+    ],
+    "original_index_excerpt_capstones_lines": [
+      271,
+      291
+    ],
+    "blocks": [
+      {
+        "id": "D21-remedial",
+        "title": "Capstone (II.3, remedial)",
+        "unit_ids": [
+          "U21.7",
+          "U21.8",
+          "U21.9",
+          "U21.10",
+          "U21.11"
+        ],
+        "source_start": 5895,
+        "source_end": 5912,
+        "kind": "remedial capstone",
+        "cap_start": 27,
+        "cap_end": 44,
+        "sha256": "6388fb7edc2363f44752f2dbd0e5510b75d12bf9cde08eee434d7ab41b739105",
+        "mapped_domains": [
+          "extkg:highschool-bridge",
+          "Mathematics",
+          "Other/Unknown",
+          "Signal/Image/Audio/Video Processing",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "Information Theory & Coding",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.1",
+        "title": "Capstone: a user-space TCP/IP stack over a lossy virtual link",
+        "unit_ids": [
+          "U13.1"
+        ],
+        "source_start": 17643,
+        "source_end": 17648,
+        "kind": "integrating project",
+        "cap_start": 51,
+        "cap_end": 56,
+        "sha256": "0a5624932218fb2131b603428a0380547aeceb27f795c96e9d363e7df055078d",
+        "mapped_domains": [
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Operating Systems",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "Information Theory & Coding",
+          "Data Mining & Databases",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.2",
+        "title": "Capstone: a secure channel from your own primitives (never deployed)",
+        "unit_ids": [
+          "U13.2"
+        ],
+        "source_start": 17650,
+        "source_end": 17655,
+        "kind": "integrating project",
+        "cap_start": 63,
+        "cap_end": 68,
+        "sha256": "24c221b06fe74b037577fd9e19d206b676d0a9469f23b8ee84f125e89a866c50",
+        "mapped_domains": [
+          "Algorithms & Theory of CS",
+          "Software Engineering",
+          "Cryptography & Security",
+          "Information Theory & Coding",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.3",
+        "title": "Capstone: a replicated, sharded key-value store with fault injection",
+        "unit_ids": [
+          "U13.3"
+        ],
+        "source_start": 17657,
+        "source_end": 17663,
+        "kind": "integrating project",
+        "cap_start": 75,
+        "cap_end": 81,
+        "sha256": "baeb26fa7a52f573b1d96cadaafd2e8aa782c78d2e89b9aabab2d1977a1146cd",
+        "mapped_domains": [
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Computer Architecture",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.4",
+        "title": "Capstone: an end-to-end data platform from your own engines",
+        "unit_ids": [
+          "U13.4"
+        ],
+        "source_start": 17665,
+        "source_end": 17670,
+        "kind": "integrating project",
+        "cap_start": 88,
+        "cap_end": 93,
+        "sha256": "117d1ccc05e71c1e18a2038afe9ebc35b32a3eaf2f1a08223fe75e91c5f609ab",
+        "mapped_domains": [
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "Data Mining & Databases",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.5",
+        "title": "Capstone: a small service on Google Cloud with identity, networking, reliability and cost controls",
+        "unit_ids": [
+          "U13.5"
+        ],
+        "source_start": 17672,
+        "source_end": 17678,
+        "kind": "integrating project",
+        "cap_start": 100,
+        "cap_end": 106,
+        "sha256": "d7881d14e610cf7b90d7563544f1c5969940a5970de7fe31f12d35edfcaa31ae",
+        "mapped_domains": [
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Other/Unknown",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Software Engineering",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.6",
+        "title": "Capstone: a security programme for a synthetic organisation",
+        "unit_ids": [
+          "U13.6"
+        ],
+        "source_start": 17680,
+        "source_end": 17685,
+        "kind": "integrating project",
+        "cap_start": 113,
+        "cap_end": 118,
+        "sha256": "27d0f5ba4980c261d7fb05ca6924c67eddd007aff838cb0360a6f4cf5fc22b5b",
+        "mapped_domains": [
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Distributed Systems & Cloud",
+          "Software Engineering",
+          "Cryptography & Security",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.7",
+        "title": "Capstone: a multicore simulator (pipeline, caches, coherence and a NoC) running a parallel kernel",
+        "unit_ids": [
+          "U13.7"
+        ],
+        "source_start": 17687,
+        "source_end": 17692,
+        "kind": "integrating project",
+        "cap_start": 125,
+        "cap_end": 130,
+        "sha256": "27b1b76cc30510486b276bad2623abd47a60866445daaf4c7c2594a73da7bd9a",
+        "mapped_domains": [
+          "Mathematics",
+          "Other/Unknown",
+          "Operating Systems",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Software Engineering",
+          "ML & AI",
+          "Information Theory & Coding",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.8",
+        "title": "Capstone: a small relational database engine checked against sqlite3",
+        "unit_ids": [
+          "U13.8"
+        ],
+        "source_start": 17694,
+        "source_end": 17700,
+        "kind": "integrating project",
+        "cap_start": 137,
+        "cap_end": 143,
+        "sha256": "0ad377f39b061999eb3aceae2cfe3eb1118fc4069cc9a81f9f4c2341bfd8e2fe",
+        "mapped_domains": [
+          "extkg:highschool-bridge",
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Operating Systems",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Software Engineering",
+          "ML & AI",
+          "Data Mining & Databases",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.9",
+        "title": "Capstone: a design dossier and a working miniature of a large-scale service",
+        "unit_ids": [
+          "U13.9"
+        ],
+        "source_start": 17702,
+        "source_end": 17708,
+        "kind": "integrating project",
+        "cap_start": 150,
+        "cap_end": 156,
+        "sha256": "a66369dcca75b05e26c22f3f2ee8b5c04a0fcc04d5c9c26c2a0288fa5d0ef3c5",
+        "mapped_domains": [
+          "Mathematics",
+          "Other/Unknown",
+          "Computer Architecture",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.10",
+        "title": "Capstone: an analytics pipeline from raw data to a decision, with the statistics, the model, the sketches and the distributed run built from scratch",
+        "unit_ids": [
+          "U13.10"
+        ],
+        "source_start": 17710,
+        "source_end": 17716,
+        "kind": "integrating project",
+        "cap_start": 163,
+        "cap_end": 169,
+        "sha256": "4bd56b6fcbf211992c37a8e0744c4674fd66f716ef62bee3558abcd8c0bf01c1",
+        "mapped_domains": [
+          "extkg:highschool-bridge",
+          "Mathematics",
+          "Algorithms & Theory of CS",
+          "Other/Unknown",
+          "Signal/Image/Audio/Video Processing",
+          "Computer Architecture",
+          "System Design Primer",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "ML & AI",
+          "Data Mining & Databases",
+          "Curriculum-only",
+          "NLP & Speech"
+        ]
+      },
+      {
+        "id": "U13.11",
+        "title": "Capstone A: the mathematics of machine learning, end to end",
+        "unit_ids": [
+          "U13.11"
+        ],
+        "source_start": 17718,
+        "source_end": 17725,
+        "kind": "integrating project",
+        "cap_start": 176,
+        "cap_end": 183,
+        "sha256": "aea7fd5a325fcf05c866289ef45f310441f229012e18a1b576a3f60088bc6f53",
+        "mapped_domains": [
+          "Mathematics",
+          "Other/Unknown",
+          "ML & AI",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.12",
+        "title": "Capstone B: a classical-ML library from scratch",
+        "unit_ids": [
+          "U13.12"
+        ],
+        "source_start": 17727,
+        "source_end": 17733,
+        "kind": "integrating project",
+        "cap_start": 190,
+        "cap_end": 196,
+        "sha256": "fad69de172aafa38c6c7c4ecce5ca663aa00b96f0d1db3847d2b485b12161bb9",
+        "mapped_domains": [
+          "Other/Unknown",
+          "ML & AI",
+          "Data Mining & Databases",
+          "Curriculum-only",
+          "NLP & Speech"
+        ]
+      },
+      {
+        "id": "U13.13",
+        "title": "Capstone C: a deep-learning framework from scratch",
+        "unit_ids": [
+          "U13.13"
+        ],
+        "source_start": 17735,
+        "source_end": 17741,
+        "kind": "integrating project",
+        "cap_start": 203,
+        "cap_end": 209,
+        "sha256": "f63e20ffe114cd09385d0ab9089cb75b97b7c861be1437c03b01398491ed4f92",
+        "mapped_domains": [
+          "Mathematics",
+          "Other/Unknown",
+          "ML & AI",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.14",
+        "title": "Capstone D: an LLM application platform (RAG + agents + safety)",
+        "unit_ids": [
+          "U13.14"
+        ],
+        "source_start": 17743,
+        "source_end": 17750,
+        "kind": "integrating project",
+        "cap_start": 216,
+        "cap_end": 223,
+        "sha256": "1a50fca1faeebca5d422cced0d90dcf55fde72ecfc1b39ab0d3ea9b0cdd48667",
+        "mapped_domains": [
+          "Other/Unknown",
+          "Computer Architecture",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Cryptography & Security",
+          "ML & AI",
+          "Curriculum-only",
+          "NLP & Speech"
+        ]
+      },
+      {
+        "id": "U13.15",
+        "title": "Capstone E: generative models",
+        "unit_ids": [
+          "U13.15"
+        ],
+        "source_start": 17752,
+        "source_end": 17758,
+        "kind": "integrating project",
+        "cap_start": 230,
+        "cap_end": 236,
+        "sha256": "b6ae507faa0a7241a76087c8e16fdc031aaee0dd4e508d8a8e2be63daaeb3438",
+        "mapped_domains": [
+          "Mathematics",
+          "ML & AI",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.16",
+        "title": "Capstone F: ML systems and efficiency",
+        "unit_ids": [
+          "U13.16"
+        ],
+        "source_start": 17760,
+        "source_end": 17766,
+        "kind": "integrating project",
+        "cap_start": 243,
+        "cap_end": 249,
+        "sha256": "5935d65b71f8a3a80a40f7ec9efb26a2606bd390e7c743e91d3353feda24832b",
+        "mapped_domains": [
+          "Mathematics",
+          "Other/Unknown",
+          "Signal/Image/Audio/Video Processing",
+          "System Design Primer",
+          "ML & AI",
+          "Information Theory & Coding",
+          "Curriculum-only"
+        ]
+      },
+      {
+        "id": "U13.17",
+        "title": "Final integrated capstone: train, align, compress, serve, evaluate and secure a small language model",
+        "unit_ids": [
+          "U13.17"
+        ],
+        "source_start": 17768,
+        "source_end": 17776,
+        "kind": "integrating project",
+        "cap_start": 256,
+        "cap_end": 264,
+        "sha256": "f48740c78f67135e647934e9e1a180c1cf0c808d11432f418fc8032dd5b2f41e",
+        "mapped_domains": [
+          "Mathematics",
+          "Other/Unknown",
+          "Signal/Image/Audio/Video Processing",
+          "Distributed Systems & Cloud",
+          "Computer Networks",
+          "Software Engineering",
+          "Cryptography & Security",
+          "ML & AI",
+          "Curriculum-only",
+          "NLP & Speech"
+        ]
+      }
+    ]
+  },
+  "source_hashes": {
+    "/Users/suhas/sde/nptel/full/topics.md": "bbb91faf1688f16a5fd58130fb701002c4cef4af238de0603e7f2c233ba9b9a2",
+    "/Users/suhas/sde/nptel/full/meta_rules_and_index.md": "8d89f37405a7dda3900c1aca5164919a09b0632e86a84c7e00f3afb5c72e390b",
+    "/Users/suhas/sde/nptel/full/graph/unified_graph.json": "e8af1883f6da1faa2a950588d2e25aa45f451f906695ef98c088fe195bc4f9c0",
+    "/Users/suhas/sde/nptel/full/graph/dag_view.json": "6129d4b913c2aa5d4f5607b12c34d200825e09535f248668eb726143408640d5",
+    "/Users/suhas/sde/nptel/full/graph/topological_node_order.json": "814512049293879dbeba8767a96d6f0bbfcbc112895aee80535845936c878fd6",
+    "/Users/suhas/sde/nptel/full/graph/topic_levels_expanded.tsv": "c30ea0a650016b380efd6c55733514eaa527af58e59a3c7ad448fb26edb5d816",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/rebuild_full/unit_manifest.json": "502d4c5de6b66b932e666fb3373574f71ee8ee2fe2308c60abfddcb8cadec2e3",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/rebuild_full/teaching_assignments_map.json": "aac08177284f7ddcabeda172fa667d36bfedb4e0f7ac495d8f86095e53ed3178",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/assignments.json": "75c070eb5890fefc80c67a0bb2a9ea710bbf9e5522ab5f9928f709b70ef10576",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/assignments.md": "b298165a3a3bbfe38df978b6e9fa87a40f0fa9b60b7f52c1d6400dd9c84f185f",
+    "/Users/suhas/sde/nptel/unified_cloud_curriculum.md": "0a81c35c21c3a8343764ccd8f443933fc0db88aab51c6282318751cd5318e6a9",
+    "/Users/suhas/sde/nptel/index_cloud.md": "a752ad9dd1f9f7033b0f4e93af3a4b47a37b6f5063b0c555dc9edd30651d1b36"
+  },
+  "all_sources_unchanged": true,
+  "notes": [
+    "No topic, level, assignment question, capstone, project content or domain subject invented.",
+    "Original files, assignments.md and all existing pack files remain unchanged.",
+    "Noise reconciliation topics are retained in domain/level bands, not taught as validated subject material.",
+    "Only explicit capstone/project declarations are extracted; ordinary per-unit Build exercises and incidental project/projection mentions are not recast as new capstones.",
+    "No file deleted, no original overwritten, no commit, no package installs; stdlib Python on the Mac only."
+  ],
+  "outputs": {
+    "/Users/suhas/sde/nptel/full/topics_sorted.md": {
+      "bytes": 5228396,
+      "lines": 102625,
+      "sha256": "453a394b44cdf53d72425f20c8a8552700dca0c95e002e371285b962f85ad6ec"
+    },
+    "/Users/suhas/sde/nptel/full/meta_rules_and_index_sorted.md": {
+      "bytes": 4659755,
+      "lines": 74333,
+      "sha256": "d7e1cfe47df220912fad832f5f9e0b0da0d769a50284849011ee427dd80339ef"
+    },
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/capstones.md": {
+      "bytes": 44322,
+      "lines": 293,
+      "sha256": "8a18dccbad972695fa21777e15f61bfad58f9d0697f362350820193c6cd65ef1"
+    }
+  }
+}

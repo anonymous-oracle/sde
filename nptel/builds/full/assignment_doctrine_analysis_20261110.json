@@ -1,0 +1,132 @@
+{
+  "time": "2026-11-10T07:43:49.374039+05:30",
+  "timezone": "IST (Asia/Calcutta)",
+  "status": "verified",
+  "topic_count": 36628,
+  "original_rules_verbatim": true,
+  "ordering_rule_retained_except_obsolete_pointer_clause": true,
+  "sorted_index_identical_minus_removed_pointers": true,
+  "full_audit_byte_identical": true,
+  "full_audit_sha256": "7f031e05b8cec1a679fcb016e8ad5af21d24a2b1ccf62db95c4b3d64cc33cdb6",
+  "compact_name_level_order_identical": true,
+  "compact_unit_mapping_identical": true,
+  "compact_all_49159_typed_edges_identical": true,
+  "protected_files_unchanged": {
+    "/Users/suhas/sde/nptel/full/topics_sorted.md": "453a394b44cdf53d72425f20c8a8552700dca0c95e002e371285b962f85ad6ec",
+    "/Users/suhas/sde/nptel/full/topics.md": "bbb91faf1688f16a5fd58130fb701002c4cef4af238de0603e7f2c233ba9b9a2",
+    "/Users/suhas/sde/nptel/full/meta_rules_and_index.md": "8d89f37405a7dda3900c1aca5164919a09b0632e86a84c7e00f3afb5c72e390b",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/assignments.md": "b298165a3a3bbfe38df978b6e9fa87a40f0fa9b60b7f52c1d6400dd9c84f185f",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/assignments.json": "75c070eb5890fefc80c67a0bb2a9ea710bbf9e5522ab5f9928f709b70ef10576",
+    "/Users/suhas/sde/ocw-courses/recovery/curriculum/assignments/capstones.md": "8a18dccbad972695fa21777e15f61bfad58f9d0697f362350820193c6cd65ef1",
+    "/Users/suhas/sde/nptel/index_cloud.md": "a752ad9dd1f9f7033b0f4e93af3a4b47a37b6f5063b0c555dc9edd30651d1b36",
+    "/Users/suhas/sde/nptel/unified_cloud_curriculum.md": "0a81c35c21c3a8343764ccd8f443933fc0db88aab51c6282318751cd5318e6a9",
+    "/Users/suhas/sde/nptel/learner_record.md": "f0e0dd7498b5ba0b9254d877fbfa27c45ab04047390765fe0e1f0dd1dc4ba0b0"
+  },
+  "removed": {
+    "domain_capstone_pointer_lines": 17,
+    "domain_capstone_pointer_occurrences": 134,
+    "unit_segments_with_assignment_pointers": 2280,
+    "assignment_pointer_occurrences": 3375,
+    "assignment_and_capstone_section_bytes": 4833,
+    "capstone_register_entries": 18,
+    "extraction_registry_lines": 2
+  },
+  "doctrine_bytes": 2688,
+  "doctrine": "## 10. Assignment doctrine\nModelled on the observed curriculum, not official NPTEL/university policy. Extends rule 6; reuse suitable sources only when actually available, otherwise label work tutor-generated self-study.\n- Scope: name the unit/level, outcomes and taught prerequisites. Assess only taught material; bridge gaps first. Use rule 1: HS hand reasoning; UG formal core; UG+PG core plus extension; PG-only precise hypotheses, proofs and counterexamples; industry measured trade-offs. Keep level-unknown unresolved; calibrate to demonstrated prerequisites.\n- Weekly NPTEL-style check: five questions, 10 marks: single-choice (1), multiple-select (2; all correct/no wrong), numerical application (2; units/tolerance), justified proof/derivation (2), programming/build/transfer (3). Use subject-equivalents, not forced coding. For university problem sets/exams retain this coverage but deepen multi-step reasoning and unseen transfer; declare timing, format and rubric first. These are tutor templates, not claimed institutional rules.\n- Mix concept discrimination, conditions/counterexamples, calculation, rigorous reasoning and transfer; no observed easy/medium/hard quota exists. Vary contexts, parameters, proof routes and failure cases; track prior items and avoid repetition. Distractors target plausible misconceptions, not ambiguity or trivia; vary correct positions/subsets, avoiding the source's answer-position bias.\n- Write and verify the hidden key first: worked numerical steps, units/tolerance, justified proof steps, rubric/partial credit and build tests/acceptance evidence; explain every option. Follow rules 5–6: reveal only after an attempt; worksheet keys may use collapsed details (not private). Never claim unrun tests passed or write graded submissions.\n- Use the actual profile's grading/pass rule. Only if none exists, propose and obtain agreement to the observed self-study default: 1/2/2/2/3 marks, at least 7/10 AND accepted proof and transfer. No universal pass mark; record misses and a fresh retry.\n- Capstones follow domain-exit/mastery audits, not each weekly check: learner-built integration of taught units, explicit scope/deliverables and criteria fixed first; tests/oracle, predict then measure, injected failure/recovery, threat model, cost, decisions, teardown and oral defence. Accept against criteria, not a weekly score. Remedial variant: only taught bridge units, at most 12 unseen speed items (key first) plus a one-page non-expert explanation; both must pass.\n- Update learner_record.md: scope/version, marks by outcome, proof/build acceptance, evidence, misconceptions, hints, retries, mastery gaps and exact resume point (rule 8).\n\n",
+  "sizes": {
+    "before_meta": 4659755,
+    "after_meta": 4575557,
+    "before_topics": 5228396,
+    "compact_meta": 523483,
+    "compact_topics": 801000,
+    "compact_combined": 1324483
+  },
+  "analysis": {
+    "assignments": 433,
+    "questions_per_assignment": {
+      "5": 433
+    },
+    "total_questions": 2165,
+    "type_counts": {
+      "single_choice": 433,
+      "multiple_select": 433,
+      "numerical": 433,
+      "proof_derivation": 433,
+      "programming": 433,
+      "standalone_true_false": 0
+    },
+    "option_count_each_choice_question": 4,
+    "marks_per_assignment": 10,
+    "question_weights": [
+      1,
+      2,
+      2,
+      2,
+      3
+    ],
+    "pass_rule_count": 433,
+    "pass_rule": "7/10 and Q4/Q5 accepted; observed self-study rule, not verified NPTEL policy",
+    "explicit_difficulty_labels": 0,
+    "keys": {
+      "hidden_details": 433,
+      "q1_choice_plus_reason": 433,
+      "q2_subset_plus_reason": 433,
+      "q3_answer_tolerance_reason": 433,
+      "q4_marking_outline": 433,
+      "q5_passing_submission_criteria": 433
+    },
+    "single_choice_key_positions": {
+      "A": 158,
+      "B": 224,
+      "C": 46,
+      "D": 5
+    },
+    "multiple_select_keys": {
+      "ABC": 330,
+      "ABD": 77,
+      "ACD": 14,
+      "AB": 7,
+      "ABCD": 3,
+      "AC": 2
+    },
+    "numerical_explicit_unit_headers": 205,
+    "numerical_no_unit_header": 228,
+    "mapping": {
+      "unit_links": 433,
+      "domains": 32,
+      "unique_topics": 2380,
+      "status_direct": 423,
+      "status_context_only": 10,
+      "metadata_discrepancy": "Header says 425 direct; two context-only status assignments have nonempty mapped_topics, making list count 425. Context_topics is nonempty for eight. No source corrected."
+    },
+    "capstones": {
+      "total": 18,
+      "integrating": 17,
+      "remedial": 1,
+      "topics_field": 17,
+      "topics_results_build_gapfills_structure": 10,
+      "predict_measure_injected_failure_tooling_structure": 7,
+      "remedial_max_unseen_items": 12,
+      "acceptance": "Criteria fixed first; learner-built; tests, predicted vs measured, failure/recovery, cost, threat model, decision record, teardown, oral defence; domain audit first; remedial mixed speed set plus non-expert explanation must both pass"
+    },
+    "existing_rules": "Rule 6 already requires five complementary questions, verified key before issue, reveal after attempt/details for worksheet, actual profile grading with no universal pass mark. Rules 1/2/4/5/7/8 cover calibration, taught prerequisites, builds, integrity and evidence/progress."
+  },
+  "outputs": {
+    "/Users/suhas/sde/nptel/full/meta_rules_and_index_sorted.md": {
+      "bytes": 4575557,
+      "sha256": "c86831c968991db517580854d5a5eec2f214647881fd0f792696851d8c84e62f"
+    },
+    "/Users/suhas/sde/nptel/full/meta_rules_and_index_sorted.with_pointers.bak.md": {
+      "bytes": 4659755,
+      "sha256": "d7e1cfe47df220912fad832f5f9e0b0da0d769a50284849011ee427dd80339ef"
+    },
+    "/Users/suhas/sde/nptel/full/topics_sorted_compact.md": {
+      "bytes": 801000,
+      "sha256": "c416828d7b6bef356666fcf2eea0e3e3487e86fa95d5c9acf8aa4e14afe40601"
+    },
+    "/Users/suhas/sde/nptel/full/meta_rules_and_index_sorted_compact.md": {
+      "bytes": 523483,
+      "sha256": "a9755a26a64860ee5f7dff60402eb048ea3098c88c4d61eb80e05b7e244833cc"
+    }
+  }
+}

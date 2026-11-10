@@ -51,3 +51,8 @@ docs/diagrams/**/*.svg
 .ml-venv
 
 
+
+### Large generated data (GitHub 100MB limit)
+nptel/builds/full/graph/
+ocw-courses/uglists/graph/*.json
+ocw-courses/uglists/graph/*.graphml
