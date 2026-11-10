@@ -147,10 +147,10 @@ Snapshot time: **2026-11-10 22:39:08 IST** (UTC+05:30). Append-only update; prio
 ### Downloads & walk (current evidence)
 
 - **All 335 new-with-zip downloads DONE** (owner claim verified):
-  - `O/download_control/state.json`: `status=DONE`, `completed=335`, `total=335`, `bytes_done=bytes_planned=14875611846`, mode `all335_sequential_download_only`, heartbeat `2026-11-10T16:40:33+00:00`.
+  - `O/download_control/state.json`: `status=DONE`, `completed=335`, `total=335`, `bytes_done=bytes_planned=14875611846`, mode `all335_sequential_download_only`, heartbeat `2026-11-10 22:10:33 IST`.
   - `O/download_ledger.tsv`: **335 unique slugs** with final status `DONE` (319) or `SKIP_COMPLETE` (16); every row `expected_bytes==actual_bytes`; **sum(actual_bytes)=14875611846** (exact match to planned / zip_links new-verified bytes). All 335 `local_path` files present on disk (15 early batch1 under `O/fetched/<slug>/whole_batch001/course.zip`; remainder under `O/downloads_zip/<slug>/…`).
   - **Logical archive bytes** = 14875611846. **HTTP traffic bytes** are not independently totalled from allowed files in this pass (`state.bytes_done` equals logical; raw ledger also contains one historical `RESUME` row at partial offset 2097152 for `18-705-…` before a later complete row) — do not equate traffic to logical without a full request account.
-- **20-course walk: NOT run / NOT finished.** `O/walk_ledger.tsv` is header-only (71 bytes); `O/downloads_walk/` empty; `O/WALK_QUEUE_REPORT.md` recorded queue waiting on zips then never started networking. `O/walk_control/state.json` snapshot `status=BLOCKED` reason `other_ocw_downloader_pids=[43106]` at `2026-11-10T16:40:59+00:00` — **stale relative to zip DONE**; treat as uncertain/failed queue, never “walk finished.” Owner brief: queued walker died / being fixed. **Do not touch downloader/walker in this handoff write.**
+- **20-course walk: NOT run / NOT finished.** `O/walk_ledger.tsv` is header-only (71 bytes); `O/downloads_walk/` empty; `O/WALK_QUEUE_REPORT.md` recorded queue waiting on zips then never started networking. `O/walk_control/state.json` snapshot `status=BLOCKED` reason `other_ocw_downloader_pids=[43106]` at `2026-11-10 22:10:59 IST` — **stale relative to zip DONE**; treat as uncertain/failed queue, never “walk finished.” Owner brief: queued walker died / being fixed. **Do not touch downloader/walker in this handoff write.**
 
 ### Crew / agent CLI (current operating rules)
 
@@ -220,8 +220,8 @@ Operator-stated schedule (latest owner brief): **~15 min watcher routine through
 5. **PENDING — per-course verification + checksums + global garbled-queue dedup** (verify tooling exists; full fleet not signed off).
 6. **PENDING — master independent final audit** / tests rerun / 3 samples / counts.
 7. **PENDING — exact guarded raw dry-run + apply only passes**; preserve failures/evidence/text. (`delete_plan.json` last blocked on stale `downloader:RUNNING`; no approval/apply.)
-8. **PENDING (last) — deferred R1 queue pass then re-verify**; resource cap + validation. No live R1 now.
-9. **PENDING — Suhas decision:** old batch1 partial-range / whole_batch files under `O/fetched/` — **no automatic delete**.
+8. **PENDING (last) — deferred R1 queue pass then re-verify**; resource cap + validation. No new R1 pass launched by this current loop; deferred end pass.
+9. **PENDING — Suhas decision:** old partial-range files under `O/fetched/` require Suhas decision — **no automatic delete**. The **15** completed whole ZIPs under `O/fetched/<slug>/whole_batch001/course.zip` are **DISTINCT** from partial-range cache; those full ZIPs remain untouched now and need provenance/path-gate handling during the already approved final verification/raw deletion plan — **do not mislabel them as partial downloads**. No new deletion permissions granted.
 10. **PENDING — Suhas decision:** old range / link-discovery artifact cleanup; **never touch git / nptel**.
 11. **PENDING — integrate new texts into topic graph separately**; **DO NOT touch Topics files / main graph until Suhas says so**.
 12. **OPTIONAL / no changes now — crew skill + agent CLI recipe update** (separate approval).
