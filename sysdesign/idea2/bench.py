@@ -1,0 +1,26 @@
+import time
+
+to_seconds = 1000000000
+
+def measure(fn, n):
+    if n==0:
+        return []
+    durations = []
+    for i in range(n):
+        t0 = time.perf_counter_ns()
+        fn()
+        durations.append((time.perf_counter_ns() - t0) / to_seconds)
+    return durations
+
+if __name__ == "__main__":
+
+    for _ in range(5):
+        durations = measure(lambda: sum(range(100000)), 1000)
+        max_call = durations.index(max(durations)) + 1
+        durations = sorted(durations)
+        if len(durations) > 0:
+            mini, maxi = durations[0], durations[-1]
+            median = durations[len(durations) // 2]
+            # print(mini, maxi, median)
+            print(f"""Minimum: {mini}\t Maximum: {maxi}\t Median: {median}\t Maximum call: {max_call}\t Calls > 3*Median: {[True if n > 3 * median else False for n in durations].count(True)}""")
+            time.sleep(1)
