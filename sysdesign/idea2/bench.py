@@ -1,7 +1,7 @@
 import time
 from math import ceil
 
-to_seconds = 1000000000
+to_seconds = 1000
 
 def measure(fn, n):
     if n==0:
