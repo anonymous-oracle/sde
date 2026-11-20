@@ -10,7 +10,7 @@ def measure(fn, n):
     for i in range(n):
         t0 = time.perf_counter_ns()
         fn()
-        durations.append((time.perf_counter_ns() - t0) * to_seconds)
+        durations.append((time.perf_counter_ns() - t0) / to_seconds)
     return durations
 
 def percentile(sorted_values, p):
