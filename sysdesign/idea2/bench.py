@@ -1,7 +1,7 @@
 import time
 from math import ceil
 
-to_seconds = 1000
+to_micro_seconds = 1000
 
 def measure(fn, n):
     if n==0:
@@ -10,7 +10,7 @@ def measure(fn, n):
     for i in range(n):
         t0 = time.perf_counter_ns()
         fn()
-        durations.append((time.perf_counter_ns() - t0) / to_seconds)
+        durations.append((time.perf_counter_ns() - t0) / to_micro_seconds)
     return durations
 
 def percentile(sorted_values, p):
@@ -29,8 +29,8 @@ if __name__ == "__main__":
             mini, maxi = durations[0], durations[-1]
             median = durations[len(durations) // 2]
             # print(mini, maxi, median)
-            # print(f"""Minimum: {mini}\t Maximum: {maxi}\t Median: {median}\t Maximum call: {max_call}\t Calls > 3*Median: {[True if n > 3 * median else False for n in durations].count(True)}""")
-            # time.sleep(1)
+            print(f"""Minimum: {mini}\t Maximum: {maxi}\t Median: {median}\t Maximum call: {max_call}\t Calls > 3*Median: {[True if n > 3 * median else False for n in durations].count(True)}""")
+            time.sleep(1)
             for p in [50, 95, 99]:
-                print(percentile(durations, p))
+                print(f"""Percentiles for {p}: {percentile(durations, p)}""")
     
