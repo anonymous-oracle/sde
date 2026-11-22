@@ -45,12 +45,14 @@ class HashMap:
 
     def delete(self, key):
         bucket = hash(key) % self.m 
+        key_found = False
         value = None
         for k, v in self.buckets[bucket]:
             if k==key:
+                key_found = True
                 value = v
                 break
-        if value is not None:
+        if key_found:
             idx=self.buckets[bucket].index((key, value))
             self.buckets[bucket].pop(idx)
             self.n -= 1
@@ -81,7 +83,7 @@ if __name__ == "__main__":
         t0 = time.perf_counter_ns()
         hm.get(i)
         t1 = time.perf_counter_ns() - t0
-        lookup_durations.append(t1 / 10000)
+        lookup_durations.append(t1 / 1000)
     lookup_durations = sorted(lookup_durations)
     for p in [50, 95, 99]:
         print(f"""Percentile for p: {percentile(lookup_durations, p)}""")
