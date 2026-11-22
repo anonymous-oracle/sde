@@ -58,7 +58,7 @@ class HashMap:
             self.n -= 1
 
 if __name__ == "__main__":
-    from bench import percentile
+    from week1.bench import percentile
     import time
     hm = HashMap(resizing=True)
     for i in range(10000):
