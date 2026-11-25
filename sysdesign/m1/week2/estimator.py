@@ -1,4 +1,5 @@
 from week1.units import to_seconds
+import math
 
 def validate_stage_ms(stage_ms):
     if not isinstance(stage_ms, list):
@@ -24,7 +25,8 @@ def in_flight(rate_per_s, time_s):
 
 def servers_needed(rate_per_s, latency_s, per_server_limit):
     validate_stage_ms([rate_per_s, latency_s, per_server_limit])
-    
+    L = in_flight(rate_per_s=rate_per_s, latency_s=latency_s)
+    return math.ceil(L / per_server_limit)
 
 
 if __name__ == "__main__":
