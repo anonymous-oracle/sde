@@ -1,8 +1,9 @@
-from week1.units import to_seconds
 import math
 
 def validate_stage_ms(stage_ms):
     if not isinstance(stage_ms, list):
+        raise ValueError("Invalid input")
+    if len(stage_ms)==0:
         raise ValueError("Invalid input")
     for ms in stage_ms:
         if not isinstance(ms, (int, float)):
@@ -10,24 +11,43 @@ def validate_stage_ms(stage_ms):
         if float(ms) < 0:
             raise ValueError("Invalid input")
 
+def check_zero(data_list):
+    for ms in data_list:
+        if ms == 0:
+            raise ValueError("Input cannot be 0")
+
 def pipeline_latency_s(stage_ms):
     validate_stage_ms(stage_ms=stage_ms)
+    check_zero(data_list=stage_ms)
     return sum(stage_ms) / 1000
 
 def pipeline_throughput_per_s(stage_ms):
     validate_stage_ms(stage_ms=stage_ms)
+    check_zero(stage_ms)
     max_latency = max(stage_ms)
     return (1 / max_latency) * 1000
 
 def in_flight(rate_per_s, time_s):
-    validate_stage_ms[rate_per_s, time_s]
+    validate_stage_ms([rate_per_s, time_s])
+    check_zero([time_s])
     return rate_per_s * time_s
 
 def servers_needed(rate_per_s, latency_s, per_server_limit):
-    validate_stage_ms([rate_per_s, latency_s, per_server_limit])
-    L = in_flight(rate_per_s=rate_per_s, latency_s=latency_s)
-    return math.ceil(L / per_server_limit)
+    if per_server_limit <= 0:
+        raise ValueError("Invalid input")
+    validate_stage_ms([latency_s, per_server_limit])
+    L = in_flight(rate_per_s=rate_per_s, time_s=latency_s)
+    n_servers = L / per_server_limit
+    floor_n_servers = math.floor(n_servers)
+    if abs(n_servers - floor_n_servers) < 1e-9:
+        return floor_n_servers
+    return math.ceil(n_servers)
 
+def tail_fraction(p_slow, k):
+    if p_slow > 1 or k < 1:
+        raise ValueError
+    validate_stage_ms([p_slow, k])
+    return 1 - (1 - p_slow)**k
 
 if __name__ == "__main__":
     def close(a, b):
